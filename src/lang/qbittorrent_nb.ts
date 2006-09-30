@@ -3,960 +3,966 @@
     <name>AboutDlg</name>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Om qBittorrent</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Om</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished"></translation>
+        <translation>Opphavsmann</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Navn:</translation>
     </message>
     <message>
         <source>Country:</source>
-        <translation type="unfinished"></translation>
+        <translation>Land:</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished"></translation>
+        <translation>E-post:</translation>
     </message>
     <message>
         <source>Home page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hjemmeside:</translation>
     </message>
     <message>
         <source>Christophe Dumez</source>
-        <translation type="unfinished"></translation>
+        <translation>Christophe Dumez</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished"></translation>
+        <translation>Frankrike</translation>
     </message>
     <message>
         <source>Thanks To</source>
-        <translation type="unfinished"></translation>
+        <translation>Takk til</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation type="unfinished"></translation>
+        <translation>Oversettelse</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisens</translation>
     </message>
     <message>
         <source>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</translation>
     </message>
     <message encoding="UTF-8">
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>En bitttorrent klient som bruker Qt4 og libtorrent, programmert i C++.&lt;br&gt;
+&lt;br&gt;
+Copyright © 2006 av Christophe Dumez&lt;br&gt;
+&lt;br&gt; &lt;u&gt;Hjemmeside:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>chris@qbittorrent.org</source>
-        <translation type="unfinished"></translation>
+        <translation>chris@qbittorrent.org</translation>
     </message>
     <message>
         <source>http://www.dchris.eu</source>
-        <translation type="unfinished"></translation>
+        <translation>http://www.dchris.eu</translation>
     </message>
     <message>
         <source>Birthday:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fødselsdag:</translation>
     </message>
     <message>
         <source>Occupation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yrke:</translation>
     </message>
     <message>
         <source>03/05/1985</source>
-        <translation type="unfinished"></translation>
+        <translation>03. mai 1985</translation>
     </message>
     <message>
         <source>Student in computer science</source>
-        <translation type="unfinished"></translation>
+        <translation>Datateknologi student</translation>
     </message>
 </context>
 <context>
     <name>DLListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
     <name>Dialog</name>
     <message>
         <source>Options -- qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Valg -- qBittorrent</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternativer</translation>
     </message>
     <message>
         <source>Main</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppsett</translation>
     </message>
     <message>
         <source>Save Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filsti for nedlastinger:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedlastingsbegrensning:</translation>
     </message>
     <message>
         <source>Upload Limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opplastingsbegrensning:</translation>
     </message>
     <message>
         <source>Max Connects:</source>
-        <translation type="unfinished"></translation>
+        <translation>Makismalt antall tilkoblinger:</translation>
     </message>
     <message>
         <source>Port range:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port-rekkevidde:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Disable</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktiver</translation>
     </message>
     <message>
         <source>connections</source>
-        <translation type="unfinished"></translation>
+        <translation>tilkoblinger</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Mellomtjener</translation>
     </message>
     <message>
         <source>Proxy Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Mellomtjener oppsett</translation>
     </message>
     <message>
         <source>Server IP:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tjener IP:</translation>
     </message>
     <message>
         <source>0.0.0.0</source>
-        <translation type="unfinished"></translation>
+        <translation>0.0.0.0</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port:</translation>
     </message>
     <message>
         <source>Proxy server requires authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Mellomtjener krever autentisering</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentisering</translation>
     </message>
     <message>
         <source>User Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Brukernavn:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Passord:</translation>
     </message>
     <message>
         <source>Enable connection through a proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiver tilkobling gjennom en mellomtjener</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <source>Scanned Dir:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gjennomsøkt mappe:</translation>
     </message>
     <message>
         <source>Enable directory scan (auto add torrent files inside)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiver gjennomsøkning av mapper (legg automatisk til torrent filer funnet)</translation>
     </message>
     <message>
         <source>Connection Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilkoblings oppsett</translation>
     </message>
     <message>
         <source>Share ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Delings forhold:</translation>
     </message>
     <message>
         <source>Activate IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiver IP filtrering</translation>
     </message>
     <message>
         <source>Filter Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Filteroppsett</translation>
     </message>
     <message>
         <source>Start IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Start IP</translation>
     </message>
     <message>
         <source>End IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Slutt IP</translation>
     </message>
     <message>
         <source>Origin</source>
-        <translation type="unfinished"></translation>
+        <translation>Opphav</translation>
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk</translation>
     </message>
     <message>
         <source>IP Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>IP filter</translation>
     </message>
     <message>
         <source> Add Range</source>
-        <translation type="unfinished"></translation>
+        <translation>Legg til rekkevidde</translation>
     </message>
     <message>
         <source> Remove Range</source>
-        <translation type="unfinished"></translation>
+        <translation>Fjern rekkevidde</translation>
     </message>
     <message>
         <source>ipfilter.dat Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>ipfilter.dat filsti:</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Spørr etter bekreftelse ved avslutning</translation>
     </message>
     <message>
         <source>Go to systray when minimizing window</source>
-        <translation type="unfinished"></translation>
+        <translation>Ved minimering av vinduet, flytt til systemkurven </translation>
     </message>
     <message>
         <source>Misc</source>
-        <translation type="unfinished"></translation>
+        <translation>Diverse</translation>
     </message>
     <message>
         <source>Localization</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokalisering</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Språk:</translation>
     </message>
     <message>
         <source>Behaviour</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppførsel</translation>
     </message>
     <message>
         <source>OSD</source>
-        <translation type="unfinished"></translation>
+        <translation>Skjermmeldinger</translation>
     </message>
     <message>
         <source>Always display OSD</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis alltid skjermmeldinger</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis skjermmeldinger kun når vinduet er minimert</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis aldri skjermmeldinger</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <source>1 KiB DL = </source>
-        <translation type="unfinished"></translation>
+        <translation>1 KiB nedlastet =</translation>
     </message>
     <message>
         <source>KiB UP max.</source>
-        <translation type="unfinished"></translation>
+        <translation>KiB opplasting max.</translation>
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT (Uten sporingstjener):</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktiver DHT (Uten sporingstjener) støtte</translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisk fjerning av ferdige nedlastinger</translation>
     </message>
     <message>
         <source>Preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Forhåndsvisnings program</translation>
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lyd/Video avspiller:</translation>
     </message>
 </context>
 <context>
     <name>GUI</name>
     <message>
         <source>Open Torrent Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Åpne torrentfiler</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Denne filen er enten ødelagt, eller det er ikke en torrentfil.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ønsker du å slette alle filene in nedlastingslisten?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ja</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nei</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ønsker du å slette valgt(e) element(er) i nedlastingslisten?</translation>
     </message>
     <message>
         <source>Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferdig</translation>
     </message>
     <message>
         <source>Checking...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrollerer...</translation>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kobler til...</translation>
     </message>
     <message>
         <source>Downloading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Laster ned...</translation>
     </message>
     <message>
         <source>Download list cleared.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedlastingslisten er tømt.</translation>
     </message>
     <message>
         <source>All Downloads Paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle nedlastinger er pauset.</translation>
     </message>
     <message>
         <source>All Downloads Resumed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle nedlastinger er gjennopptatt.</translation>
     </message>
     <message>
         <source> started.</source>
-        <translation type="unfinished"></translation>
+        <translation>startet.</translation>
     </message>
     <message>
         <source>UP Speed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Opplastingshastighet:</translation>
     </message>
     <message>
         <source>Couldn&apos;t create the directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke oprette mappen:</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentfiler</translation>
     </message>
     <message>
         <source>already in download list.</source>
         <comment>&lt;file&gt; already in download list.</comment>
-        <translation type="unfinished"></translation>
+        <translation>ligger allerede i nedlastingslisten.</translation>
     </message>
     <message>
         <source>added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>lagt til i nedlastingslisten.</translation>
     </message>
     <message>
         <source>resumed. (fast resume)</source>
-        <translation type="unfinished"></translation>
+        <translation>Gjenopptatt. (Hurtig gjenopptaging)</translation>
     </message>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Klarte ikke å dekode torrentfilen:</translation>
     </message>
     <message>
         <source>removed.</source>
         <comment>&lt;file&gt; removed.</comment>
-        <translation type="unfinished"></translation>
+        <translation>fjernet.</translation>
     </message>
     <message>
         <source>paused.</source>
         <comment>&lt;file&gt; paused.</comment>
-        <translation type="unfinished"></translation>
+        <translation>er pauset.</translation>
     </message>
     <message>
         <source>resumed.</source>
         <comment>&lt;file&gt; resumed.</comment>
-        <translation type="unfinished"></translation>
+        <translation>er gjenopptatt.</translation>
     </message>
     <message>
         <source>Listening on port: </source>
-        <translation type="unfinished"></translation>
+        <translation>Lytter på port:</translation>
     </message>
     <message>
         <source>qBittorrent </source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <source>Are you sure? -- qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Er du sikker? -- qBittorrent</translation>
     </message>
     <message>
         <source>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;Nedlastingshastighet:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Online</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Tilkoblingsstatus:&lt;/b&gt;&lt;br&gt;Tilkoblet</translation>
     </message>
     <message>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Tilkoblingsstatus:&lt;/b&gt;&lt;br&gt;Beskyttet av en brannmur?&lt;br&gt;&lt;i&gt;Ingen innkommende tilkoblinger...&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Tilkoblingsstatus:&lt;/b&gt;&lt;br&gt;Frakoblet&lt;br&gt;&lt;i&gt;Ingen tjenere funnet...&lt;/i&gt;</translation>
     </message>
     <message>
         <source> has finished downloading.</source>
-        <translation type="unfinished"></translation>
+        <translation>er ferdig lastet ned.</translation>
     </message>
     <message>
         <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke lytte på noen av de oppgitte portene.</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen</translation>
     </message>
     <message>
         <source>Empty search pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen søketekst</translation>
     </message>
     <message>
         <source>Please type a search pattern first</source>
-        <translation type="unfinished"></translation>
+        <translation>Vennligst skriv en tekst å søke etter først</translation>
     </message>
     <message>
         <source>No seach engine selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen søkemotor valgt</translation>
     </message>
     <message>
         <source>You must select at least one search engine.</source>
-        <translation type="unfinished"></translation>
+        <translation>Du må velge minst en søkemotor.</translation>
     </message>
     <message>
         <source>Searching...</source>
-        <translation type="unfinished"></translation>
+        <translation>Søker...</translation>
     </message>
     <message>
         <source>Are you sure you want to quit? -- qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Er du sikker på at du ønsker å avslutte? -- qBittorrent</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation type="unfinished"></translation>
+        <translation>Er du sikker på at du ønsker å avslutte qbittorrent?</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <source>Search is finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Søket er ferdig</translation>
     </message>
     <message>
         <source>An error occured during search...</source>
-        <translation type="unfinished"></translation>
+        <translation>Det oppsto en feil under søket...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished"></translation>
+        <translation>Søk avsluttet</translation>
     </message>
     <message>
         <source>Search returned no results</source>
-        <translation type="unfinished"></translation>
+        <translation>Søket ga ingen resultater</translation>
     </message>
     <message>
         <source>Search plugin update -- qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdatering av søkeprogramtillegget -- qBittorrent</translation>
     </message>
     <message>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Søkeprogramtillegget kan oppdateres, ønsker du å oppdater det nå?
+
+Endringer:</translation>
     </message>
     <message>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Beklager, oppdateringstjeneren er midlertidig utilgjengelig.</translation>
     </message>
     <message>
         <source>Your search plugin is already up to date.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ditt søkeprogramstillegg er allerede oppdatert.</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation>Resultater</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Navn</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Størrelse</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Fremdrift</translation>
     </message>
     <message>
         <source>DL Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedlastingshastighet</translation>
     </message>
     <message>
         <source>UP Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Opplastingshastighet</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <source>ETA</source>
-        <translation type="unfinished"></translation>
+        <translation>ETA</translation>
     </message>
     <message>
         <source>Seeders</source>
-        <translation type="unfinished"></translation>
+        <translation>Delere</translation>
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedlastere</translation>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Søkemotor</translation>
     </message>
     <message>
         <source>Stalled</source>
         <comment>state of a torrent whose DL Speed is 0</comment>
-        <translation type="unfinished"></translation>
+        <translation>Laster ikke ned</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished"></translation>
+        <translation>Pauset</translation>
     </message>
     <message>
         <source>Preview process already running</source>
-        <translation type="unfinished"></translation>
+        <translation>Forhåndsvisningen kjører allerede</translation>
     </message>
     <message>
         <source>There is already another preview process running.
 Please close the other one first.</source>
-        <translation type="unfinished"></translation>
+        <translation>En annen forhåndsvisning kjører alt.
+Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Klarte ikke å laste ned</translation>
     </message>
     <message>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
-        <translation type="unfinished"></translation>
+        <translation>årsak:</translation>
     </message>
     <message>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>Laster ned</translation>
     </message>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vennligst vent...</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Log:</source>
-        <translation type="unfinished"></translation>
+        <translation>Logg:</translation>
     </message>
     <message>
         <source>Total DL Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Total nedlastingshastighet:</translation>
     </message>
     <message>
         <source>Total UP Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Total opplastingshatighet:</translation>
     </message>
     <message>
         <source>&amp;Options</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Valg</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rediger</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fil</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hjelp</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Åpne</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Avslutt</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Innstillinger</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Om</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Start</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Pause</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Slett</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation type="unfinished"></translation>
+        <translation>Paus alle</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation type="unfinished"></translation>
+        <translation>Start alle</translation>
     </message>
     <message>
         <source>Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Hjelpetekst</translation>
     </message>
     <message>
         <source>Delete All</source>
-        <translation type="unfinished"></translation>
+        <translation>Slett alle</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent egenskaper</translation>
     </message>
     <message>
         <source>Connection Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilkoblingsstatus</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Søk</translation>
     </message>
     <message>
         <source>Search Pattern:</source>
-        <translation type="unfinished"></translation>
+        <translation>Søketekst:</translation>
     </message>
     <message>
         <source>Status:</source>
-        <translation type="unfinished"></translation>
+        <translation>Status:</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Stoppet</translation>
     </message>
     <message>
         <source>Search Engines</source>
-        <translation type="unfinished"></translation>
+        <translation>Søkemotorer</translation>
     </message>
     <message>
         <source>Results:</source>
-        <translation type="unfinished"></translation>
+        <translation>Resultater:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Stopp</translation>
     </message>
     <message>
         <source>Download from URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Last ned fra nettadresse</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Last ned</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Nullstill</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <source>Create torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Lag torrent</translation>
     </message>
     <message>
         <source>Update search plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdater søketilleggsprogrammet</translation>
     </message>
     <message>
         <source>Session ratio: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nedlastingsforhold for økten:</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Overføringer</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Forhåndsvis filen</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation type="unfinished"></translation>
+        <translation>Nullstill loggen</translation>
     </message>
 </context>
 <context>
     <name>PropListDelegate</name>
     <message>
         <source>False</source>
-        <translation type="unfinished"></translation>
+        <translation>Usant</translation>
     </message>
     <message>
         <source>True</source>
-        <translation type="unfinished"></translation>
+        <translation>Sant</translation>
     </message>
 </context>
 <context>
     <name>Ui</name>
     <message>
         <source>Please contact me if you would like to translate qBittorrent to your own language.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vennligst kontakt meg om du skulle ønske å oversette qBittorrent til ditt eget språk.</translation>
     </message>
     <message>
         <source>qBittorrent </source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeg ønsker å takke følgende personer, som frivillig har oversatt qBittorrent:</translation>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished"></translation>
+        <translation>Forhåndsvisning er ikke mulig</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished"></translation>
+        <translation>Beklager, vi kan ikke forhåndsvise denne filen</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Navn</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Størrelse</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Fremdrift</translation>
     </message>
     <message>
         <source>No URL entered</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen nettadresse angitt</translation>
     </message>
     <message>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vennligst angi minimum en nettadresse.</translation>
     </message>
 </context>
 <context>
     <name>authentication</name>
     <message>
         <source>Tracker authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentisering for sporingstjeneren</translation>
     </message>
     <message>
         <source>Tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sporingstjener:</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Innlogging</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>Brukernavn:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Passord:</translation>
     </message>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>Logg på</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
 </context>
 <context>
     <name>createTorrentDialog</name>
     <message>
         <source>Create Torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>Lag en torrentfil</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Create</source>
-        <translation type="unfinished"></translation>
+        <translation>Opprett</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <source>Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Mappe</translation>
     </message>
     <message>
         <source>Torrent Creation Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Verktøy for å opprette en torrentfil</translation>
     </message>
     <message>
         <source>&lt;center&gt;Destination torrent file:&lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;center&gt;Målfil:&lt;/center&gt;</translation>
     </message>
     <message>
         <source>&lt;center&gt;Input file or directory:&lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;center&gt;Inndata eller mappe:&lt;/center&gt;</translation>
     </message>
     <message>
         <source>&lt;center&gt;Announce url:&lt;br&gt;(One per line)&lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;center&gt;Annonserings-nettadresse:&lt;br&gt;(En per linje)&lt;/center&gt;</translation>
     </message>
     <message>
         <source>&lt;center&gt;Comment:&lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;center&gt;Kommentarer:&lt;/center&gt;</translation>
     </message>
 </context>
 <context>
     <name>createtorrent</name>
     <message>
         <source>Select destination torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg torrent-målfil</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentfiler</translation>
     </message>
     <message>
         <source>Select input directory or file</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg inndata eller mappe</translation>
     </message>
     <message>
         <source>No destination path set</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen målsti angitt</translation>
     </message>
     <message>
         <source>Please type a destination path first</source>
-        <translation type="unfinished"></translation>
+        <translation>Vennligst velg en målsti først</translation>
     </message>
     <message>
         <source>No input path set</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen filsti for inndata er valgt</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation type="unfinished"></translation>
+        <translation>Vennligst velg en filsti for inndata først</translation>
     </message>
     <message>
         <source>Input path does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Filstien til inndataene eksisterer ikke</translation>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation type="unfinished"></translation>
+        <translation>Vennligst skriv en gyldig filsti til inndataene først</translation>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentfilen blir opprettet</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vellykket opprettelse av torrentfil:</translation>
     </message>
 </context>
 <context>
     <name>downloadFromURL</name>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation type="unfinished"></translation>
+        <translation>Last ned torrenter fra nettadresser</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation type="unfinished"></translation>
+        <translation>Kun en nettadresse per linje</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Last ned</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <source>Download from urls</source>
-        <translation type="unfinished"></translation>
+        <translation>Last ned fra nettadresser</translation>
     </message>
 </context>
 <context>
@@ -964,310 +970,310 @@ Please close the other one first.</source>
     <message>
         <source>B</source>
         <comment>bytes</comment>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
-        <translation type="unfinished"></translation>
+        <translation>KiB</translation>
     </message>
     <message>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
-        <translation type="unfinished"></translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
-        <translation type="unfinished"></translation>
+        <translation>GiB</translation>
     </message>
     <message>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
-        <translation type="unfinished"></translation>
+        <translation>TiB</translation>
     </message>
     <message>
         <source>m</source>
         <comment>minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>min</translation>
     </message>
     <message>
         <source>h </source>
         <comment>hours</comment>
-        <translation type="unfinished"></translation>
+        <translation>timer</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>ukjent</translation>
     </message>
     <message>
         <source>h</source>
         <comment>hours</comment>
-        <translation type="unfinished"></translation>
+        <translation>timer</translation>
     </message>
     <message>
         <source>d</source>
         <comment>days</comment>
-        <translation type="unfinished"></translation>
+        <translation>dager</translation>
     </message>
     <message>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ukjent</translation>
     </message>
 </context>
 <context>
     <name>options_imp</name>
     <message>
         <source>Options saved successfully!</source>
-        <translation type="unfinished"></translation>
+        <translation>Innstillingene ble lagret!</translation>
     </message>
     <message>
         <source>Choose Scan Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg mappe som skal gjennomsøkes</translation>
     </message>
     <message>
         <source>Choose save Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg mappe for lagring</translation>
     </message>
     <message>
         <source>Choose ipfilter.dat file</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg ipfilter.dat fil</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Lese/Skrive feil</translation>
     </message>
     <message>
         <source>Couldn&apos;t open:</source>
-        <translation type="unfinished"></translation>
+        <translation>Klarte ikke å åpne:</translation>
     </message>
     <message>
         <source>in read mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>i lesemodus.</translation>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyldig linje</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Linje</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation type="unfinished"></translation>
+        <translation>er ugyldig.</translation>
     </message>
     <message>
         <source>Range Start IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Områdets start IP</translation>
     </message>
     <message>
         <source>Start IP:</source>
-        <translation type="unfinished"></translation>
+        <translation>Start IP:</translation>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyldig IP</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Denne IPen er ugyldig.</translation>
     </message>
     <message>
         <source>Range End IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Områdets slutt IP</translation>
     </message>
     <message>
         <source>End IP:</source>
-        <translation type="unfinished"></translation>
+        <translation>Slutt IP:</translation>
     </message>
     <message>
         <source>IP Range Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>IP rekkevidde kommentarer</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar:</translation>
     </message>
     <message>
         <source>to</source>
         <comment>&lt;min port&gt; to &lt;max port&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation>til</translation>
     </message>
     <message>
         <source>Choose your favourite preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg ditt favorittprogram for forhåndsvisning</translation>
     </message>
 </context>
 <context>
     <name>preview</name>
     <message>
         <source>Preview selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Forhåndsvis merket område</translation>
     </message>
     <message>
         <source>File preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Forhåndsvisning av fil</translation>
     </message>
     <message>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>Følgende filer kan forhåndsvises, &lt;br&gt;vennligst velg en av de:</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Forhåndsvis</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
 </context>
 <context>
     <name>properties</name>
     <message>
         <source>Torrent Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Egenskaper for torrent</translation>
     </message>
     <message>
         <source>File Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Filnavn</translation>
     </message>
     <message>
         <source>Current Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Nåværende økt</translation>
     </message>
     <message>
         <source>Download state:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedlastningstilstand:</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferdig</translation>
     </message>
     <message>
         <source>Queued for checking</source>
-        <translation type="unfinished"></translation>
+        <translation>I kø for kontrollering</translation>
     </message>
     <message>
         <source>Checking files</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrollerer filer</translation>
     </message>
     <message>
         <source>Connecting to tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Kobler til sporingstjener</translation>
     </message>
     <message>
         <source>Downloading Metadata</source>
-        <translation type="unfinished"></translation>
+        <translation>Laster ned metadata</translation>
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Laster ned</translation>
     </message>
     <message>
         <source>Seeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Deler</translation>
     </message>
     <message>
         <source>Allocating</source>
-        <translation type="unfinished"></translation>
+        <translation>Tildeler</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukjent</translation>
     </message>
     <message>
         <source>Complete: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ferdig:</translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation type="unfinished"></translation>
+        <translation>Delvis:</translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filer i denne torrenten:</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Størrelse</translation>
     </message>
     <message>
         <source>Selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Valgte</translation>
     </message>
     <message>
         <source> Unselect</source>
-        <translation type="unfinished"></translation>
+        <translation>Gjør om til uvalgt</translation>
     </message>
     <message>
         <source> Select</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg</translation>
     </message>
     <message>
         <source>You can select here precisely which files you want to download in current torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Du kan her velge hvilke filer du ønsker å laste ned fra den gjeldende torrenten.</translation>
     </message>
     <message>
         <source>Tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Sporingstjener</translation>
     </message>
     <message>
         <source>Trackers:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sporingstjenere:</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen - Utilgjengelig?</translation>
     </message>
     <message>
         <source>Errors:</source>
-        <translation type="unfinished"></translation>
+        <translation>Feil:</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Fremgang</translation>
     </message>
     <message>
         <source>Main infos</source>
-        <translation type="unfinished"></translation>
+        <translation>Hovedinformasjon</translation>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation type="unfinished"></translation>
+        <translation>Antall nedlastere:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nåværende sporingstjener:</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation type="unfinished"></translation>
+        <translation>Totalt opplastet:</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation type="unfinished"></translation>
+        <translation>Totalt nedlastet:</translation>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Totalt antall feilet:</translation>
     </message>
     <message>
         <source>Torrent content</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentinnhold</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Innstillinger</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>Last ned i riktig rekkefølge (treigere, men bedre for forhåndsvisning)</translation>
     </message>
     <message>
         <source>Share Ratio:</source>

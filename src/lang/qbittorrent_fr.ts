@@ -1749,5 +1749,9 @@ Veuillez d&apos;abord le quitter.</translation>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Télécharger dans le bon ordre (plus lent mais bon pour la prévisualisation)</translation>
     </message>
+    <message>
+        <source>Share Ratio:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

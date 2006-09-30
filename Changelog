@@ -12,6 +12,7 @@
     - FEATURE: Rewritten search engine plugin (by fab31)
     - FEATURE: Rewritten parts of the download/search lists to improve performance
     - FEATURE: Individual share ratio is now displayed in each torrent properties.
+    - I18N: Added Norwegian translation
     - BUGFIX: Fixed a memory leak when pressing OK in torrent properties
     - BUGFIX: Improved code so that GUI never freeze during downloading from an url
     - BUGFIX: Forgot to remove torrent file from scanned directory when "Clear Finished torrents" is enabled

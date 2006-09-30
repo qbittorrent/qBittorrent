@@ -1481,5 +1481,9 @@ hours</comment>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Share Ratio:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
