@@ -48,9 +48,6 @@
 #include "downloadThread.h"
 #include "downloadFromURLImp.h"
 
-#include <sys/time.h>
-#include <sys/resource.h>
-
 /*****************************************************
  *                                                   *
  *                       GUI                         *
@@ -1421,17 +1418,10 @@ void GUI::configureSession(){
         setInfoBar(tr("Listening on port: ")+ QString(misc::toString(new_listenPort).c_str()));
       }
     }
-    struct rlimit rlim;
-    getrlimit(RLIMIT_NOFILE, &rlim);
-    s->set_max_connections((int)rlim.rlim_max-60);
     // Apply max connec limit (-1 if disabled)
     int max_connec = options->getMaxConnec();
-    if(max_connec == -1 or max_connec >= (int)rlim.rlim_max-50){
-      s->set_max_connections(rlim.rlim_max-50);
-    }else{
-      s->set_max_connections(max_connec);
-    }
-    // Apply Up/Dl limits (-1 if disabled)
+    s->set_max_connections(max_connec);
+
     limits = options->getLimits();
     switch(limits.first){
       case -1: // Download limit disabled
