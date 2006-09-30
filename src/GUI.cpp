@@ -1261,6 +1261,8 @@ void GUI::addTorrents(const QStringList& pathsList, bool fromScanDir, const QStr
       int row = DLListModel->rowCount();
       // Adding files to bittorrent session
       h = s->add_torrent(t, fs::path(saveDir.path().toStdString()), resume_data);
+      h.set_max_connections(60);
+      h.set_max_uploads(-1);
       //qDebug("Added to session");
       torrent_status torrentStatus = h.status();
       DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
