@@ -14,6 +14,9 @@
 - Add some transparency (menus, OSD)
 - Rewrite trayicon using QSystemTrayIcon class (waiting for Qt 4.2)
 - Popup when adding a torrent (Save path, select files in the torrent...) (v0.8.0?)
+- Display remaining HD space (check it before adding a new torrent?)
+- Add a column "Tracker status"?
+- Option to shutdown computer when downloads are finished
 
 // Harder
 - Allow user to organize the downloads into categories/folders
