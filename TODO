@@ -1,0 +1,36 @@
+// Easy
+- Write documentation
+- Translations into as many languages as possible
+- Improve man page
+- Add more keyboard shortcuts
+- Improve torrent creation tool (look & features)
+
+// Intermediate
+- Move novaUpdater to a Thread (probably use downloadThread) to prevent GUI freezing
+- Port on MacOS, Windows (and create an installer for Windows) - Progressing
+- Allow to prioritize files within a torrent
+- Allow to prioritize torrents
+- Optimize code to use less memory/cpu
+- Add some transparency (menus, OSD)
+- Rewrite trayicon using QSystemTrayIcon class (waiting for Qt 4.2)
+- Popup when adding a torrent (Save path, select files in the torrent...) (v0.8.0?)
+
+// Harder
+- Allow user to organize the downloads into categories/folders
+- Display new searches in new tabs
+- Display a progress bar that really display the pieces we have (like in eMule)
+
+// Unsure
+- Move Speed/ratio to a status bar ?
+- Azureus spoofing to prevent ban from trackers?
+- Download from RSS?
+- Encryption support (waiting for libtorrent)
+- Split kernel from GUI? (would be a lot better but require some deep changes)
+- Web interface?
+
+// Before 0.7.0
+- Test file previewing
+- Test tracker authentication
+- Wait for libtorrent v0.11 final release
+- Test DHT
+- Test incremental download

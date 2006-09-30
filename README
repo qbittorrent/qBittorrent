@@ -1,0 +1,34 @@
+qBittorrent - A BitTorrent client in Qt4.1
+------------------------------------------
+
+Description:
+********************************
+qBittorrent is a bittorrent client programmed in C++ / Qt4.1 that use
+libtorrent (sometimes called rb_libtorrent) by Arvid Norberg.
+
+It aims to be a good alternative to all other bittorrent clients
+out there. qBittorrent is fast, stable and provides unicode
+support.
+
+Installation:
+********************************
+For installation follow the instructions from INSTALL file, but simple
+
+./configure
+make && make install
+qbittorrent
+
+will install and execute qBittorrent hopefully without any problems.
+
+For more information please visit:
+http://www.qbittorrent.org
+
+Please report any bug (or feature requests) to:
+http://bugs.qbittorrent.org
+
+You can also meet me on IRC:
+#qbittorrent on irc.freenode.net
+
+------------------------------------------
+Christophe Dumez <chris@qbittorrent.org>
+

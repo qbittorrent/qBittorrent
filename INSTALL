@@ -1,0 +1,33 @@
+qBittorrent - A BitTorrent client in C++ / Qt4.1
+------------------------------------------
+
+*** Necessary if qt3 is default on your system ***
+export QTDIR=/usr/include/qt4
+export PATH=$QTDIR/bin:$PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$QTDIR/lib
+*** End ***
+
+./configure
+make && make install
+qbittorrent
+
+will install and execute qBittorrent hopefully without any problems.
+
+Dependencies:
+- Qt >= 4.1 (libqt-devel, libqtxml, libqtgui, libqtcore, libqtnetwork)
+
+- rb_libtorrent by Arvid Norberg (>= v0.10 REQUIRED)
+    -> http://libtorrent.sf.net
+    Be carefull: another library (the one used by rtorrent) use the same name.
+    These are TWO different libraries and qBittorrent will only work with the one provided
+    on sourceforge (created by Arvid Norberg). The two libraries conflicts with each other.
+
+- libboost: libboost-filesystem, libboost-date-time, libboost-thread, libboost-serialization
+
+- libcurl
+
+- python >= 2.3 (previous might work - not tested): needed by search engine.
+
+
+------------------------------------------
+Christophe Dumez <chris@qbittorrent.org>

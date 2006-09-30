@@ -1,0 +1,780 @@
+<ui version="4.0" >
+ <author></author>
+ <comment></comment>
+ <exportmacro></exportmacro>
+ <class>properties</class>
+ <widget class="QDialog" name="properties" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>538</width>
+    <height>547</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Torrent Properties</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <property name="margin" >
+    <number>9</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item>
+    <widget class="QTabWidget" name="torrentContent" >
+     <property name="currentIndex" >
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab" >
+      <attribute name="title" >
+       <string>Main infos</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="fileName" >
+         <property name="maximumSize" >
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="font" >
+          <font>
+           <family>Sans Serif</family>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="text" >
+          <string/>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line" >
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget3" >
+         <layout class="QHBoxLayout" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <layout class="QVBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label" >
+              <property name="font" >
+               <font>
+                <family>Sans Serif</family>
+                <pointsize>9</pointsize>
+                <weight>75</weight>
+                <italic>false</italic>
+                <bold>true</bold>
+                <underline>false</underline>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="text" >
+               <string>Download state:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_3" >
+              <property name="font" >
+               <font>
+                <family>Sans Serif</family>
+                <pointsize>9</pointsize>
+                <weight>75</weight>
+                <italic>false</italic>
+                <bold>true</bold>
+                <underline>false</underline>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="text" >
+               <string>Number of peers:</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
+              <property name="spacing" >
+               <number>6</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="dlState" >
+                <property name="text" >
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>111</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
+              <property name="spacing" >
+               <number>6</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="nbPeers" >
+                <property name="text" >
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="complete_partial" >
+                <property name="text" >
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2" >
+         <property name="sizePolicy" >
+          <sizepolicy>
+           <hsizetype>7</hsizetype>
+           <vsizetype>7</vsizetype>
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize" >
+          <size>
+           <width>0</width>
+           <height>193</height>
+          </size>
+         </property>
+         <property name="title" >
+          <string>Tracker</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <layout class="QVBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
+              <property name="spacing" >
+               <number>6</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_9" >
+                <property name="font" >
+                 <font>
+                  <family>Sans Serif</family>
+                  <pointsize>9</pointsize>
+                  <weight>75</weight>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                  <underline>false</underline>
+                  <strikeout>false</strikeout>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>Trackers:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_10" >
+                <property name="font" >
+                 <font>
+                  <family>Sans Serif</family>
+                  <pointsize>9</pointsize>
+                  <weight>75</weight>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                  <underline>false</underline>
+                  <strikeout>false</strikeout>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>Errors:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_2" >
+                <property name="maximumSize" >
+                 <size>
+                  <width>16777215</width>
+                  <height>16</height>
+                 </size>
+                </property>
+                <property name="font" >
+                 <font>
+                  <family>Sans Serif</family>
+                  <pointsize>9</pointsize>
+                  <weight>75</weight>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                  <underline>false</underline>
+                  <strikeout>false</strikeout>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>Current tracker:</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
+              <property name="spacing" >
+               <number>6</number>
+              </property>
+              <item>
+               <widget class="QListWidget" name="trackersURLS" >
+                <property name="sizePolicy" >
+                 <sizepolicy>
+                  <hsizetype>7</hsizetype>
+                  <vsizetype>7</vsizetype>
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextBrowser" name="trackerErrors" >
+                <property name="lineWrapMode" >
+                 <enum>QTextEdit::NoWrap</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="trackerURL" >
+                <property name="maximumSize" >
+                 <size>
+                  <width>16777215</width>
+                  <height>16</height>
+                 </size>
+                </property>
+                <property name="text" >
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox" >
+         <property name="sizePolicy" >
+          <sizepolicy>
+           <hsizetype>5</hsizetype>
+           <vsizetype>5</vsizetype>
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize" >
+          <size>
+           <width>0</width>
+           <height>97</height>
+          </size>
+         </property>
+         <property name="font" >
+          <font>
+           <family>Sans Serif</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="title" >
+          <string>Current Session</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QWidget" name="widget2" >
+            <property name="sizePolicy" >
+             <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>7</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <layout class="QHBoxLayout" >
+             <property name="margin" >
+              <number>0</number>
+             </property>
+             <property name="spacing" >
+              <number>6</number>
+             </property>
+             <item>
+              <layout class="QVBoxLayout" >
+               <property name="margin" >
+                <number>0</number>
+               </property>
+               <property name="spacing" >
+                <number>6</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label_5" >
+                 <property name="font" >
+                  <font>
+                   <family>Sans Serif</family>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <italic>false</italic>
+                   <bold>true</bold>
+                   <underline>false</underline>
+                   <strikeout>false</strikeout>
+                  </font>
+                 </property>
+                 <property name="text" >
+                  <string>Total uploaded:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_6" >
+                 <property name="font" >
+                  <font>
+                   <family>Sans Serif</family>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <italic>false</italic>
+                   <bold>true</bold>
+                   <underline>false</underline>
+                   <strikeout>false</strikeout>
+                  </font>
+                 </property>
+                 <property name="text" >
+                  <string>Total downloaded:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lbl_ratio" >
+                 <property name="font" >
+                  <font>
+                   <family>Sans Serif</family>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <italic>false</italic>
+                   <bold>true</bold>
+                   <underline>false</underline>
+                   <strikeout>false</strikeout>
+                  </font>
+                 </property>
+                 <property name="text" >
+                  <string>Share Ratio:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_8" >
+                 <property name="font" >
+                  <font>
+                   <family>Sans Serif</family>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <italic>false</italic>
+                   <bold>true</bold>
+                   <underline>false</underline>
+                   <strikeout>false</strikeout>
+                  </font>
+                 </property>
+                 <property name="text" >
+                  <string>Total failed:</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" >
+               <property name="margin" >
+                <number>4</number>
+               </property>
+               <property name="spacing" >
+                <number>6</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="upTotal" >
+                 <property name="text" >
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="dlTotal" >
+                 <property name="text" >
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="shareRatio" >
+                 <property name="text" >
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="failed" >
+                 <property name="text" >
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation" >
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" >
+                <size>
+                 <width>181</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_3" >
+         <property name="minimumSize" >
+          <size>
+           <width>43</width>
+           <height>52</height>
+          </size>
+         </property>
+         <property name="maximumSize" >
+          <size>
+           <width>16777215</width>
+           <height>52</height>
+          </size>
+         </property>
+         <property name="title" >
+          <string>Options</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QCheckBox" name="incrementalDownload" >
+            <property name="text" >
+             <string>Download in correct order (slower but good for previewing)</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2" >
+      <attribute name="title" >
+       <string>Torrent content</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_4" >
+         <property name="font" >
+          <font>
+           <family>Sans Serif</family>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="text" >
+          <string>Files contained in current torrent:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTreeView" name="filesList" >
+         <property name="minimumSize" >
+          <size>
+           <width>0</width>
+           <height>301</height>
+          </size>
+         </property>
+         <property name="selectionMode" >
+          <enum>QAbstractItemView::ExtendedSelection</enum>
+         </property>
+         <property name="indentation" >
+          <number>1</number>
+         </property>
+         <property name="itemsExpandable" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widgetc" >
+         <layout class="QHBoxLayout" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="unselect" >
+            <property name="text" >
+             <string> Unselect</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="select" >
+            <property name="text" >
+             <string> Select</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_7" >
+         <property name="font" >
+          <font>
+           <family>Sans Serif</family>
+           <pointsize>8</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="text" >
+          <string>You can select here precisely which files you want to download in current torrent.</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okButton" >
+       <property name="text" >
+        <string>OK</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <pixmapfunction></pixmapfunction>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>properties</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>278</x>
+     <y>253</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>96</x>
+     <y>254</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

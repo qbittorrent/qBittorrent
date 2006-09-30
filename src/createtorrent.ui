@@ -1,0 +1,275 @@
+<ui version="4.0" >
+ <author></author>
+ <comment></comment>
+ <exportmacro></exportmacro>
+ <class>createTorrentDialog</class>
+ <widget class="QDialog" name="createTorrentDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>560</width>
+    <height>307</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Torrent Creation Tool</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <property name="margin" >
+    <number>9</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="createTorrent_title" >
+     <property name="minimumSize" >
+      <size>
+       <width>0</width>
+       <height>27</height>
+      </size>
+     </property>
+     <property name="maximumSize" >
+      <size>
+       <width>16777215</width>
+       <height>27</height>
+      </size>
+     </property>
+     <property name="font" >
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+       <underline>false</underline>
+       <strikeout>false</strikeout>
+      </font>
+     </property>
+     <property name="text" >
+      <string>Create Torrent file</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <item>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>0</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="lbl_destination" >
+         <property name="maximumSize" >
+          <size>
+           <width>16777215</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="text" >
+          <string>&lt;center>Destination torrent file:&lt;/center></string>
+         </property>
+         <property name="buddy" >
+          <cstring>txt_destination</cstring>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_input" >
+         <property name="maximumSize" >
+          <size>
+           <width>16777215</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="text" >
+          <string>&lt;center>Input file or directory:&lt;/center></string>
+         </property>
+         <property name="buddy" >
+          <cstring>txt_input</cstring>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_announce_url" >
+         <property name="maximumSize" >
+          <size>
+           <width>16777215</width>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="text" >
+          <string>&lt;center>Announce url:&lt;br>(One per line)&lt;/center></string>
+         </property>
+         <property name="buddy" >
+          <cstring></cstring>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_comment" >
+         <property name="text" >
+          <string>&lt;center>Comment:&lt;/center></string>
+         </property>
+         <property name="buddy" >
+          <cstring>txt_comment</cstring>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>0</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item>
+          <widget class="QLineEdit" name="txt_destination" />
+         </item>
+         <item>
+          <widget class="QToolButton" name="browse_destination" >
+           <property name="text" >
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item>
+          <widget class="QLineEdit" name="txt_input" />
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkDirectory" >
+           <property name="text" >
+            <string>Directory</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="browse_input" >
+           <property name="text" >
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="txt_announce" />
+       </item>
+       <item>
+        <widget class="QTextEdit" name="txt_comment" >
+         <property name="acceptRichText" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>131</width>
+         <height>31</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="createButton" >
+       <property name="text" >
+        <string>Create</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton" >
+       <property name="text" >
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <pixmapfunction></pixmapfunction>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>createTorrentDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>355</x>
+     <y>275</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>179</x>
+     <y>282</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

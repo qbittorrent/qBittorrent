@@ -1,0 +1,40 @@
+/*
+-----BEGIN QCMOD-----
+name: libboost
+-----END QCMOD-----
+*/
+class qc_libboost : public ConfObj
+{
+public:
+	qc_libboost(Conf *c) : ConfObj(c) {}
+	QString name() const { return "libboost"; }
+	QString shortname() const { return "libboost"; }
+	bool exec(){
+          QString s;
+          QStringList sl;
+          sl += "/usr/include";
+          sl += "/usr/local/include";
+          sl += "/sw/include";
+          if(!conf->findHeader("boost/format.hpp", sl, &s)) {
+            qWarning("libboost includes not found!");
+            return false;
+          }
+	  conf->addIncludePath(s);
+          if(!conf->findHeader("boost/date_time/posix_time/posix_time.hpp", sl, &s)) {
+            qWarning("libboost-date-time includes not found!");
+            return false;
+          }
+	  conf->addIncludePath(s);
+          if(!conf->findHeader("boost/filesystem/path.hpp", sl, &s)) {
+            qWarning("libboost-filesystem includes not found!");
+            return false;
+          }
+          if(!conf->findHeader("boost/thread.hpp", sl, &s)) {
+            qWarning("libboost-thread includes not found!");
+            return false;
+          }
+	  conf->addIncludePath(s);
+
+          return true;
+	}
+};

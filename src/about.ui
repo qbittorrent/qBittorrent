@@ -1,0 +1,427 @@
+<ui version="4.0" >
+ <author>Christophe Dumez</author>
+ <comment></comment>
+ <exportmacro></exportmacro>
+ <class>AboutDlg</class>
+ <widget class="QDialog" name="AboutDlg" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>504</width>
+    <height>320</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>About qBittorrent</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <property name="margin" >
+    <number>9</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" >
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="logo" >
+       <property name="text" >
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lb_name" >
+       <property name="sizePolicy" >
+        <sizepolicy>
+         <hsizetype>7</hsizetype>
+         <vsizetype>5</vsizetype>
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text" >
+        <string>&lt;h3>&lt;b>qBittorrent&lt;/b>&lt;/h3></string>
+       </property>
+       <property name="textFormat" >
+        <enum>Qt::RichText</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tw_tabs" >
+     <property name="currentIndex" >
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab2" >
+      <attribute name="title" >
+       <string>About</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="widget1" >
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType" >
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="lb_about" >
+            <property name="sizePolicy" >
+             <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>7</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br>
+&lt;br>
+Copyright © 2006 by Christophe Dumez&lt;br>
+&lt;br> &lt;u>Home Page:&lt;/u> &lt;i>http://www.qbittorrent.org&lt;/i>&lt;br></string>
+            </property>
+            <property name="textFormat" >
+             <enum>Qt::RichText</enum>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType" >
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab3" >
+      <attribute name="title" >
+       <string>Author</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="te_authors" >
+         <layout class="QHBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QSplitter" name="splitter" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <widget class="QWidget" name="widget" >
+             <layout class="QHBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
+              <property name="spacing" >
+               <number>6</number>
+              </property>
+              <item>
+               <layout class="QVBoxLayout" >
+                <property name="margin" >
+                 <number>0</number>
+                </property>
+                <property name="spacing" >
+                 <number>6</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_3" >
+                  <property name="font" >
+                   <font>
+                    <family>Sans Serif</family>
+                    <pointsize>9</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                    <underline>true</underline>
+                    <strikeout>false</strikeout>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string>Name:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_4" >
+                  <property name="font" >
+                   <font>
+                    <family>Sans Serif</family>
+                    <pointsize>9</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                    <underline>true</underline>
+                    <strikeout>false</strikeout>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string>Country:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="lbl_birthday" >
+                  <property name="font" >
+                   <font>
+                    <family>Sans Serif</family>
+                    <pointsize>9</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                    <underline>true</underline>
+                    <strikeout>false</strikeout>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string>Birthday:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="lbl_occupation" >
+                  <property name="font" >
+                   <font>
+                    <family>Sans Serif</family>
+                    <pointsize>9</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                    <underline>true</underline>
+                    <strikeout>false</strikeout>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string>Occupation:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_5" >
+                  <property name="font" >
+                   <font>
+                    <family>Sans Serif</family>
+                    <pointsize>9</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                    <underline>true</underline>
+                    <strikeout>false</strikeout>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string>E-mail:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_8" >
+                  <property name="font" >
+                   <font>
+                    <family>Sans Serif</family>
+                    <pointsize>9</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                    <underline>true</underline>
+                    <strikeout>false</strikeout>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string>Home page:</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" >
+                <property name="margin" >
+                 <number>0</number>
+                </property>
+                <property name="spacing" >
+                 <number>6</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_2" >
+                  <property name="text" >
+                   <string>Christophe Dumez</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_7" >
+                  <property name="text" >
+                   <string>France</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_11" >
+                  <property name="text" >
+                   <string>03/05/1985</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_10" >
+                  <property name="text" >
+                   <string>Student in computer science</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_6" >
+                  <property name="text" >
+                   <string>chris@qbittorrent.org</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_9" >
+                  <property name="text" >
+                   <string>http://www.dchris.eu</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab4" >
+      <attribute name="title" >
+       <string>Thanks To</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QTextBrowser" name="te_thanks" />
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab5" >
+      <attribute name="title" >
+       <string>Translation</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QTextBrowser" name="te_translation" />
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab1" >
+      <attribute name="title" >
+       <string>License</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QTextBrowser" name="te_license" />
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <pixmapfunction></pixmapfunction>
+ <resources/>
+ <connections/>
+</ui>

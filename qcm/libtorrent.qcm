@@ -1,0 +1,25 @@
+/*
+-----BEGIN QCMOD-----
+name: libtorrent
+-----END QCMOD-----
+*/
+class qc_libtorrent : public ConfObj
+{
+public:
+	qc_libtorrent(Conf *c) : ConfObj(c) {}
+	QString name() const { return "libtorrent >= 0.11"; }
+	QString shortname() const { return "libtorrent"; }
+	bool exec(){
+          QString s;
+          QStringList sl;
+          sl += "/usr/include";
+          sl += "/usr/local/include";
+          sl += "/sw/include";
+          if(!conf->findHeader("libtorrent/kademlia/node.hpp", sl, &s)) {
+            qWarning("libtorrent v0.11 includes not found!\nYou can download it at http://www.libtorrent.net");
+            return false;
+          }
+	  conf->addIncludePath(s);
+          return true;
+	}
+};

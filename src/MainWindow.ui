@@ -1,0 +1,930 @@
+<ui version="4.0" >
+ <author></author>
+ <comment></comment>
+ <exportmacro></exportmacro>
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>849</width>
+    <height>526</height>
+   </rect>
+  </property>
+  <property name="contextMenuPolicy" >
+   <enum>Qt::CustomContextMenu</enum>
+  </property>
+  <property name="windowTitle" >
+   <string/>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QVBoxLayout" >
+    <property name="margin" >
+     <number>9</number>
+    </property>
+    <property name="spacing" >
+     <number>6</number>
+    </property>
+    <item>
+     <widget class="QTabWidget" name="tabs" >
+      <property name="tabPosition" >
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="currentIndex" >
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab" >
+       <attribute name="title" >
+        <string>Transfers</string>
+       </attribute>
+       <layout class="QVBoxLayout" >
+        <property name="margin" >
+         <number>9</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QWidget" name="widget" >
+          <layout class="QVBoxLayout" >
+           <property name="margin" >
+            <number>0</number>
+           </property>
+           <property name="spacing" >
+            <number>6</number>
+           </property>
+           <item>
+            <layout class="QHBoxLayout" >
+             <property name="margin" >
+              <number>0</number>
+             </property>
+             <property name="spacing" >
+              <number>6</number>
+             </property>
+             <item>
+              <spacer>
+               <property name="orientation" >
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" >
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbl_DLSpeed" >
+               <property name="text" >
+                <string>Total DL Speed:</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLCDNumber" name="LCD_DownSpeed" >
+               <property name="autoFillBackground" >
+                <bool>true</bool>
+               </property>
+               <property name="frameShadow" >
+                <enum>QFrame::Raised</enum>
+               </property>
+               <property name="smallDecimalPoint" >
+                <bool>false</bool>
+               </property>
+               <property name="numDigits" >
+                <number>6</number>
+               </property>
+               <property name="segmentStyle" >
+                <enum>QLCDNumber::Flat</enum>
+               </property>
+               <property name="value" stdset="0" >
+                <double>0</double>
+               </property>
+               <property name="intValue" stdset="0" >
+                <number>0</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="unitDL" >
+               <property name="text" >
+                <string>KiB/s</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation" >
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" >
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="label" >
+               <property name="text" >
+                <string>Session ratio: </string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLCDNumber" name="LCD_Ratio" >
+               <property name="autoFillBackground" >
+                <bool>true</bool>
+               </property>
+               <property name="numDigits" >
+                <number>4</number>
+               </property>
+               <property name="segmentStyle" >
+                <enum>QLCDNumber::Flat</enum>
+               </property>
+               <property name="value" stdset="0" >
+                <double>1</double>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbl_ratio_icon" >
+               <property name="text" >
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation" >
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" >
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbl_UPSpeed" >
+               <property name="text" >
+                <string>Total UP Speed:</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLCDNumber" name="LCD_UpSpeed" >
+               <property name="autoFillBackground" >
+                <bool>true</bool>
+               </property>
+               <property name="smallDecimalPoint" >
+                <bool>false</bool>
+               </property>
+               <property name="numDigits" >
+                <number>6</number>
+               </property>
+               <property name="segmentStyle" >
+                <enum>QLCDNumber::Flat</enum>
+               </property>
+               <property name="value" stdset="0" >
+                <double>0</double>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="unitUP" >
+               <property name="text" >
+                <string>KiB/s</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation" >
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" >
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QTreeView" name="downloadList" >
+             <property name="contextMenuPolicy" >
+              <enum>Qt::CustomContextMenu</enum>
+             </property>
+             <property name="autoScroll" >
+              <bool>true</bool>
+             </property>
+             <property name="selectionMode" >
+              <enum>QAbstractItemView::ExtendedSelection</enum>
+             </property>
+             <property name="indentation" >
+              <number>1</number>
+             </property>
+             <property name="itemsExpandable" >
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="layoutWidget_3" >
+          <layout class="QVBoxLayout" >
+           <property name="margin" >
+            <number>0</number>
+           </property>
+           <property name="spacing" >
+            <number>6</number>
+           </property>
+           <item>
+            <layout class="QHBoxLayout" >
+             <property name="margin" >
+              <number>0</number>
+             </property>
+             <property name="spacing" >
+              <number>6</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="info_icon" >
+               <property name="text" >
+                <string/>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbl_info" >
+               <property name="font" >
+                <font>
+                 <family>Sans Serif</family>
+                 <pointsize>9</pointsize>
+                 <weight>75</weight>
+                 <italic>false</italic>
+                 <bold>true</bold>
+                 <underline>true</underline>
+                 <strikeout>false</strikeout>
+                </font>
+               </property>
+               <property name="text" >
+                <string>Log:</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation" >
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" >
+                <size>
+                 <width>661</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QTextBrowser" name="infoBar" >
+             <property name="sizePolicy" >
+              <sizepolicy>
+               <hsizetype>7</hsizetype>
+               <vsizetype>0</vsizetype>
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximumSize" >
+              <size>
+               <width>16777215</width>
+               <height>123</height>
+              </size>
+             </property>
+             <property name="contextMenuPolicy" >
+              <enum>Qt::CustomContextMenu</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2" >
+       <attribute name="title" >
+        <string>Search</string>
+       </attribute>
+       <layout class="QVBoxLayout" >
+        <property name="margin" >
+         <number>9</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <layout class="QHBoxLayout" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QGroupBox" name="groupEngines" >
+            <property name="minimumSize" >
+             <size>
+              <width>131</width>
+              <height>132</height>
+             </size>
+            </property>
+            <property name="maximumSize" >
+             <size>
+              <width>125</width>
+              <height>132</height>
+             </size>
+            </property>
+            <property name="title" >
+             <string>Search Engines</string>
+            </property>
+            <layout class="QVBoxLayout" >
+             <property name="margin" >
+              <number>9</number>
+             </property>
+             <property name="spacing" >
+              <number>6</number>
+             </property>
+             <item>
+              <widget class="QCheckBox" name="mininova" >
+               <property name="text" >
+                <string/>
+               </property>
+               <property name="checked" >
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="piratebay" >
+               <property name="text" >
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="reactor" >
+               <property name="text" >
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="isohunt" >
+               <property name="text" >
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="btjunkie" >
+               <property name="text" >
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="meganova" >
+               <property name="text" >
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
+              <property name="spacing" >
+               <number>6</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="search_lbl" >
+                <property name="maximumSize" >
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="font" >
+                 <font>
+                  <family>Sans Serif</family>
+                  <pointsize>9</pointsize>
+                  <weight>75</weight>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                  <underline>false</underline>
+                  <strikeout>false</strikeout>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>Search Pattern:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="search_pattern" >
+                <property name="maximumSize" >
+                 <size>
+                  <width>16777215</width>
+                  <height>22</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="search_button" >
+                <property name="maximumSize" >
+                 <size>
+                  <width>16777215</width>
+                  <height>29</height>
+                 </size>
+                </property>
+                <property name="text" >
+                 <string>Search</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="stop_search_button" >
+                <property name="enabled" >
+                 <bool>false</bool>
+                </property>
+                <property name="maximumSize" >
+                 <size>
+                  <width>16777215</width>
+                  <height>29</height>
+                 </size>
+                </property>
+                <property name="text" >
+                 <string>Stop</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
+              <property name="spacing" >
+               <number>6</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="status_lbl" >
+                <property name="maximumSize" >
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="font" >
+                 <font>
+                  <family>Sans Serif</family>
+                  <pointsize>9</pointsize>
+                  <weight>75</weight>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                  <underline>false</underline>
+                  <strikeout>false</strikeout>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>Status:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="search_status" >
+                <property name="minimumSize" >
+                 <size>
+                  <width>400</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize" >
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="font" >
+                 <font>
+                  <family>Sans Serif</family>
+                  <pointsize>9</pointsize>
+                  <weight>50</weight>
+                  <italic>true</italic>
+                  <bold>false</bold>
+                  <underline>false</underline>
+                  <strikeout>false</strikeout>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>Stopped</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="results_lbl" >
+              <property name="maximumSize" >
+               <size>
+                <width>16777215</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="font" >
+               <font>
+                <family>Sans Serif</family>
+                <pointsize>9</pointsize>
+                <weight>75</weight>
+                <italic>false</italic>
+                <bold>true</bold>
+                <underline>false</underline>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="text" >
+               <string>Results:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>721</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTreeView" name="resultsBrowser" >
+            <property name="minimumSize" >
+             <size>
+              <width>0</width>
+              <height>200</height>
+             </size>
+            </property>
+            <property name="autoScroll" >
+             <bool>true</bool>
+            </property>
+            <property name="selectionMode" >
+             <enum>QAbstractItemView::ExtendedSelection</enum>
+            </property>
+            <property name="indentation" >
+             <number>1</number>
+            </property>
+            <property name="itemsExpandable" >
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="download_button" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="text" >
+               <string>Download</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="clear_button" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="text" >
+               <string>Clear</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>601</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="update_nova_button" >
+              <property name="text" >
+               <string>Update search plugin</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>849</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_Help" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout" />
+   </widget>
+   <widget class="QMenu" name="menu_Options" >
+    <property name="title" >
+     <string>&amp;Options</string>
+    </property>
+    <addaction name="actionOptions" />
+   </widget>
+   <widget class="QMenu" name="menu_Edit" >
+    <property name="title" >
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionStart_All" />
+    <addaction name="actionPause_All" />
+    <addaction name="separator" />
+    <addaction name="actionStart" />
+    <addaction name="actionPause" />
+    <addaction name="separator" />
+    <addaction name="actionTorrent_Properties" />
+    <addaction name="separator" />
+    <addaction name="actionDelete" />
+    <addaction name="actionDelete_All" />
+   </widget>
+   <widget class="QMenu" name="menu_File" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionOpen" />
+    <addaction name="actionDownload_from_URL" />
+    <addaction name="actionCreate_torrent" />
+    <addaction name="actionExit" />
+   </widget>
+   <addaction name="menu_File" />
+   <addaction name="menu_Edit" />
+   <addaction name="menu_Options" />
+   <addaction name="menu_Help" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QToolBar" name="toolBar" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="movable" >
+    <bool>false</bool>
+   </property>
+   <property name="orientation" >
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="iconSize" >
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea" >
+    <number>4</number>
+   </attribute>
+   <addaction name="actionOpen" />
+   <addaction name="actionDownload_from_URL" />
+   <addaction name="separator" />
+   <addaction name="actionDelete" />
+   <addaction name="actionDelete_All" />
+   <addaction name="separator" />
+   <addaction name="actionTorrent_Properties" />
+   <addaction name="separator" />
+   <addaction name="actionStart" />
+   <addaction name="actionPause" />
+   <addaction name="separator" />
+   <addaction name="actionStart_All" />
+   <addaction name="actionPause_All" />
+   <addaction name="separator" />
+   <addaction name="actionOptions" />
+   <addaction name="actionExit" />
+   <addaction name="separator" />
+   <addaction name="actionConnexion_Status" />
+  </widget>
+  <action name="actionOpen" >
+   <property name="text" >
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionExit" >
+   <property name="text" >
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionOptions" >
+   <property name="text" >
+    <string>Preferences</string>
+   </property>
+  </action>
+  <action name="actionAbout" >
+   <property name="text" >
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionStart" >
+   <property name="text" >
+    <string>Start</string>
+   </property>
+  </action>
+  <action name="actionPause" >
+   <property name="text" >
+    <string>Pause</string>
+   </property>
+  </action>
+  <action name="actionDelete" >
+   <property name="text" >
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionPause_All" >
+   <property name="text" >
+    <string>Pause All</string>
+   </property>
+  </action>
+  <action name="actionStart_All" >
+   <property name="text" >
+    <string>Start All</string>
+   </property>
+  </action>
+  <action name="actionDocumentation" >
+   <property name="text" >
+    <string>Documentation</string>
+   </property>
+  </action>
+  <action name="actionConnexion_Status" >
+   <property name="text" >
+    <string>Connection Status</string>
+   </property>
+  </action>
+  <action name="actionDelete_All" >
+   <property name="text" >
+    <string>Delete All</string>
+   </property>
+  </action>
+  <action name="actionTorrent_Properties" >
+   <property name="text" >
+    <string>Torrent Properties</string>
+   </property>
+  </action>
+  <action name="actionDownload_from_URL" >
+   <property name="text" >
+    <string>Download from URL</string>
+   </property>
+  </action>
+  <action name="actionCreate_torrent" >
+   <property name="text" >
+    <string>Create torrent</string>
+   </property>
+  </action>
+  <action name="actionPreview_file" >
+   <property name="text" >
+    <string>Preview file</string>
+   </property>
+  </action>
+  <action name="actionClearLog" >
+   <property name="text" >
+    <string>Clear log</string>
+   </property>
+  </action>
+ </widget>
+ <pixmapfunction></pixmapfunction>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>search_pattern</sender>
+   <signal>returnPressed()</signal>
+   <receiver>search_button</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>405</x>
+     <y>125</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>543</x>
+     <y>123</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
