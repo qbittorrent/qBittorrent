@@ -22,6 +22,8 @@ contains(DEBUG_MODE, 0){
   message(Release build!)
 }
 
+QMAKE_CXXFLAGS_RELEASE += -fwrapv
+QMAKE_CXXFLAGS_DEBUG += -fwrapv
 LIBS += -lcurl
 CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent

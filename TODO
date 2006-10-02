@@ -32,8 +32,6 @@
 - Web interface?
 
 // Before 0.7.0
-- Test file previewing
 - Test tracker authentication
 - Wait for libtorrent v0.11 final release
-- Test DHT
-- Test incremental download
+

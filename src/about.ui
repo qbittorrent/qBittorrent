@@ -396,7 +396,11 @@ Copyright © 2006 by Christophe Dumez&lt;br>
         <number>6</number>
        </property>
        <item>
-        <widget class="QTextBrowser" name="te_translation" />
+        <widget class="QTextBrowser" name="te_translation" >
+         <property name="lineWrapMode" >
+          <enum>QTextEdit::NoWrap</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
