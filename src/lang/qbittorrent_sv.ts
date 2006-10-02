@@ -66,20 +66,17 @@
 &lt;br&gt;
 Copyright &#xa9; 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="obsolete">En bittorrent-klient som använder Qt4 och libtorrent, programmerad i C++.&lt;br&gt; 
-&lt;br&gt; 
+        <translation type="obsolete">En bittorrent-klient som använder Qt4 och libtorrent, programmerad i C++.&lt;br&gt;
+&lt;br&gt;
 Copyright © 2006 Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;Webbplats:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
+&lt;br&gt; &lt;u&gt;Webbsida:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message encoding="UTF-8">
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation>En bittorrent-klient som använder Qt4 och libtorrent, programmerad i C++.&lt;br&gt; 
-&lt;br&gt; 
-Copyright © 2006 Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;Webbplats:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Birthday:</source>
@@ -297,7 +294,7 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation>Visa endast OSD om fönstret är minimerat eller ikonifierat</translation>
+        <translation>Visa endast OSD om ett fönster är minimerat eller ikonifierat</translation>
     </message>
     <message>
         <source>Never display OSD</source>
@@ -540,7 +537,7 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Search returned no results</source>
-        <translation>Sökningen resulterade inte i några träffar</translation>
+        <translation>Sökningen returnerade inga träffar</translation>
     </message>
     <message>
         <source>Search is Finished</source>
@@ -548,14 +545,14 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Search plugin update -- qBittorrent</source>
-        <translation>Sök efter uppdateringar för insticksmoduler -- qBittorrent</translation>
+        <translation>Uppdatering av sökinstick -- qBittorrent</translation>
     </message>
     <message>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
 </source>
-        <translation>Insticksmodul för sökning kan uppdateras, vill du uppdatera den? 
+        <translation>Sökinsticksmodulen kan bli uppdaterad. Vill du uppdatera den? 
 
 Ändringslogg:</translation>
     </message>
@@ -565,7 +562,7 @@ Changelog:
     </message>
     <message>
         <source>Your search plugin is already up to date.</source>
-        <translation>Din insticksmodul för sökning är den senaste.</translation>
+        <translation>Din sökinsticksmodul är redan uppdaterad.</translation>
     </message>
     <message>
         <source>Results</source>
@@ -807,12 +804,12 @@ Please close the other one first.</source>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <source>False</source>
-        <translation>Falskt</translation>
+        <source>True</source>
+        <translation type="unfinished">Sant</translation>
     </message>
     <message>
-        <source>True</source>
-        <translation>Sant</translation>
+        <source>False</source>
+        <translation type="unfinished">Falskt</translation>
     </message>
 </context>
 <context>
@@ -924,11 +921,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>&lt;center&gt;Destination torrent file:&lt;/center&gt;</source>
-        <translation>&lt;center&gt;Måltorrentfil:&lt;/center&gt;</translation>
+        <translation>&lt;center&gt;Mål-torrent-fil:&lt;/center&gt;</translation>
     </message>
     <message>
         <source>&lt;center&gt;Input file or directory:&lt;/center&gt;</source>
-        <translation>&lt;center&gt;Fil eller katalog för inmatning:&lt;/center&gt;</translation>
+        <translation>&lt;center&gt;Inmatningsfil eller katalog:&lt;/center&gt;</translation>
     </message>
     <message>
         <source>&lt;center&gt;Announce url:&lt;br&gt;(One per line)&lt;/center&gt;</source>
@@ -979,15 +976,19 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation>Skapande av torrent</translation>
+        <translation>Skapa torrent</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation>Torrent skapades:</translation>
+        <translation>Torrentfilen skapades:</translation>
     </message>
 </context>
 <context>
     <name>downloadFromURL</name>
+    <message>
+        <source>Download from urls</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Download Torrents from URLs</source>
         <translation type="unfinished"></translation>
@@ -1003,10 +1004,6 @@ Please close the other one first.</source>
     <message>
         <source>Cancel</source>
         <translation type="unfinished">Avbryt</translation>
-    </message>
-    <message>
-        <source>Download from urls</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1293,19 +1290,19 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Main infos</source>
-        <translation>Huvudinformation</translation>
+        <translation>Information</translation>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Antal peer:</translation>
+        <translation>Antal parter:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
-        <translation>Aktuell tracker:</translation>
+        <translation>Aktuell bevakare:</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation>Totalt uppskickat:</translation>
+        <translation>Totalt skickat:</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
@@ -1313,11 +1310,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation>Totalt misslyckat:</translation>
+        <translation>Totalt misslyckade:</translation>
     </message>
     <message>
         <source>Torrent content</source>
-        <translation>Innehåll i torrent</translation>
+        <translation>Torrent-innehåll</translation>
+    </message>
+    <message>
+        <source>Share Ratio:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Options</source>
@@ -1325,10 +1326,6 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Share Ratio:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

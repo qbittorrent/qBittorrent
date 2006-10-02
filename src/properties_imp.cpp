@@ -181,7 +181,7 @@ void properties::on_incrementalDownload_stateChanged(int){
     QFile incremental_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+QString(torrentInfo.name().c_str())+".incremental");
     incremental_file.open(QIODevice::WriteOnly | QIODevice::Text);
     incremental_file.close();
-    h.set_sequenced_download_threshold(1);
+    h.set_sequenced_download_threshold(15);
   }else{
     QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+QString(torrentInfo.name().c_str())+".incremental");
     h.set_sequenced_download_threshold(100);

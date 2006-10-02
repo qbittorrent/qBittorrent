@@ -1312,7 +1312,7 @@ void GUI::addTorrents(const QStringList& pathsList, bool fromScanDir, const QStr
       // Incremental download
       if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+QString(t.name().c_str())+".incremental")){
         qDebug("Incremental download enabled for %s", t.name().c_str());
-        h.set_sequenced_download_threshold(1);
+        h.set_sequenced_download_threshold(15);
       }
       // Update info Bar
       if(!fastResume){
