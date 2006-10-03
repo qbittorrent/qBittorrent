@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# Version: 1.8
+# Changelog:
+# - Fixed links from isohunt
+
 # Version: 1.7
 # Changelog:
 # - merged with qbittorrent branch (code cleanup, indentation mistakes)
@@ -341,12 +345,13 @@ class Isohunt(object):
 		def start_tr(self, attr):
 			params = dict(attr)
 			if 'onclick' in params:
-				Durl='http://isohunt.com/dl.php?id='
+				Durl='http://isohunt.com/download'
 				self.current_item = {}
 				self.td_counter = 0
-				begin_id = params['onclick'].find("id=")+3
-				end_id = params['onclick'][begin_id:].find("'")
-				self.current_item['link'] = '%s%s'%(Durl,str(params['onclick'][begin_id:begin_id+end_id]))
+				try:
+					self.current_item['link'] = '%s/%s'%(Durl, params['onclick'].split('/')[2])
+				except IndexError:
+					self.current_item['link'] = None
 
 		def handle_data(self, data):
 			if self.td_counter == 3:
@@ -379,8 +384,9 @@ class Isohunt(object):
 							self.current_item['seeds'] = 0
 						if not self.current_item.has_key('leech') or not self.current_item['leech'].isdigit():
 							self.current_item['leech'] = 0
-						prettyPrinter(self.current_item)
-						self.results.append('a')
+						if self.current_item['link'] is not None:
+							prettyPrinter(self.current_item)
+							self.results.append('a')
 
 	def __init__(self):
 		self.results = []
