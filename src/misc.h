@@ -135,6 +135,20 @@ class misc : public QObject{
       list.insert(i, value);
     }
 
+    template <class T> static void insertSort2(QList<QPair<int, T> > &list, const QPair<int, T>& value, Qt::SortOrder sortOrder){
+      int i = 0;
+      if(sortOrder == Qt::AscendingOrder){
+        while(i < list.size() and value.first > list.at(i).first){
+          ++i;
+        }
+      }else{
+        while(i < list.size() and value.first < list.at(i).first){
+          ++i;
+        }
+      }
+      list.insert(i, value);
+    }
+
     // Can't use template class for QString because >,< use unicode code for sorting
     // which is not what a human would expect when sorting strings.
     static void insertSortString(QList<QPair<int, QString> > &list, QPair<int, QString> value, Qt::SortOrder sortOrder){

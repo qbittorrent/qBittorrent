@@ -82,6 +82,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QStandardItemModel *SearchListModel;
     SearchListDelegate *SearchDelegate;
     QStringList supported_preview_extensions;
+    unsigned int nbTorrents;
     // Preview
     previewSelect *previewSelection;
     QProcess *previewProcess;

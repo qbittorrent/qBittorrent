@@ -122,6 +122,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   // download thread
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString, int, QString)), this, SLOT(processDownloadedFile(QString, QString, int, QString)));
+  nbTorrents = 0;
+  tabs->setTabText(0, tr("Transfers") +" (0)");
   //Resume unfinished torrent downloads
   resumeUnfinished();
   // Add torrent given on command line
@@ -1115,6 +1117,8 @@ void GUI::deleteAll(){
                               }
                               // Clear Download list
                               DLListModel->removeRows(0, DLListModel->rowCount());
+                              nbTorrents = 0;
+                              tabs->setTabText(0, tr("Transfers") +" (0)");
                               //Update info Bar
                               setInfoBar(tr("Download list cleared."));
                             }
@@ -1138,34 +1142,41 @@ void GUI::deleteSelection(){
     QString(), 0, 1) == 0) {
       //User clicked YES
       QModelIndex index;
+      QList<QPair<int, QModelIndex> > sortedIndexes;
+      // We have to remove items from the bottom
+      // to the top in order not to change indexes
+      // of files to delete.
       foreach(index, selectedIndexes){
         if(index.column() == NAME){
-          // Get the file name
-          QString fileName = index.data().toString();
-          // Get handle and pause the torrent
-          torrent_handle h = handles.value(fileName);
-          s->remove_torrent(h);
-          // remove it from scan dir or it will start again
-          if(isScanningDir){
-            QFile::remove(scan_dir+fileName+".torrent");
-          }
-          // Remove torrent from handles
-          handles.remove(fileName);
-          // Remove it from torrent backup directory
-          torrentBackup.remove(fileName+".torrent");
-          torrentBackup.remove(fileName+".fastresume");
-          torrentBackup.remove(fileName+".paused");
-          torrentBackup.remove(fileName+".incremental");
-          // Update info bar
-          setInfoBar("'" + fileName +"' "+tr("removed.", "<file> removed."));
-          // Delete item from download list
-          int row = getRowFromName(fileName);
-          if(row == -1){
-            std::cout << "Error: Couldn't find filename in download list...\n";
-            continue;
-          }
-          DLListModel->removeRow(row);
+          qDebug("row to delete: %d", index.row());
+          misc::insertSort2(sortedIndexes, QPair<int, QModelIndex>(index.row(), index), Qt::DescendingOrder);
         }
+      }
+      QPair<int, QModelIndex> sortedIndex;
+      foreach(sortedIndex, sortedIndexes){
+        qDebug("deleting row: %d, %d, col: %d", sortedIndex.first, sortedIndex.second.row(), sortedIndex.second.column());
+        // Get the file name
+        QString fileName = sortedIndex.second.data().toString();
+        // Delete item from download list
+        DLListModel->removeRow(sortedIndex.first);
+        // Get handle and pause the torrent
+        torrent_handle h = handles.value(fileName);
+        s->remove_torrent(h);
+        // Remove torrent from handles
+        handles.remove(fileName);
+        // remove it from scan dir or it will start again
+        if(isScanningDir){
+          QFile::remove(scan_dir+fileName+".torrent");
+        }
+        // Remove it from torrent backup directory
+        torrentBackup.remove(fileName+".torrent");
+        torrentBackup.remove(fileName+".fastresume");
+        torrentBackup.remove(fileName+".paused");
+        torrentBackup.remove(fileName+".incremental");
+        // Update info bar
+        setInfoBar("'" + fileName +"' "+tr("removed.", "<file> removed."));
+        --nbTorrents;
+        tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
       }
     }
   }
@@ -1328,6 +1339,8 @@ void GUI::addTorrents(const QStringList& pathsList, bool fromScanDir, const QStr
           setInfoBar("'" + file + "' "+tr("resumed. (fast resume)"));
         }
       }
+      ++nbTorrents;
+      tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
     }catch (invalid_encoding& e){ // Raised by bdecode()
       std::cout << "Could not decode file, reason: " << e.what() << '\n';
       // Display warning to tell user we can't decode the torrent file

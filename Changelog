@@ -24,6 +24,8 @@
     - BUGFIX: Fixed Memory leaks in search engine
     - BUGFIX: Remove torrent file from scanned directory if it is already in download list
     - BUGFIX: Fixed possible segfault on loading due to columns size loading
+    - BUGFIX: Fixed problems that could happen with delete selection action
+    - COSMETIC: Now displaying the number of downloads in tab title
     - COSMETIC: Redesigned download from url dialog
     - COSMETIC: Added a message to warn user that we started download from an url
     - COSMETIC: Renamed main tab from "Downloads" to "Transfers"
