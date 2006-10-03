@@ -25,6 +25,7 @@
     - BUGFIX: Remove torrent file from scanned directory if it is already in download list
     - BUGFIX: Fixed possible segfault on loading due to columns size loading
     - BUGFIX: Fixed problems that could happen with delete selection action
+    - BUGFIX: Fixed an arithmetic exception that could happen in ETA calculation
     - COSMETIC: Now displaying the number of downloads in tab title
     - COSMETIC: Redesigned download from url dialog
     - COSMETIC: Added a message to warn user that we started download from an url

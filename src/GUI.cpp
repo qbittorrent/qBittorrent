@@ -492,7 +492,7 @@ void GUI::updateDlList(){
           if(torrentStatus.download_payload_rate > 0){
             // Display "Downloading" status when connecting if download speed > 0
             DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Downloading...")));
-            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)(((qlonglong)ti.total_size()-(qlonglong)torrentStatus.total_done)/(qlonglong)torrentStatus.download_payload_rate)));
+            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate)));
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
             setRowColor(row, "green");
           }else{
