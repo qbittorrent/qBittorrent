@@ -869,6 +869,10 @@ Si et plau tanca l&apos;altre primer.</translation>
         <source>Please wait...</source>
         <translation>Espera ...</translation>
     </message>
+    <message>
+        <source>Transfers</source>
+        <translation type="unfinished">Transferits</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>

@@ -615,6 +615,10 @@ Vennligst avslutt denne først.</translation>
         <source>Please wait...</source>
         <translation>Vennligst vent...</translation>
     </message>
+    <message>
+        <source>Transfers</source>
+        <translation type="unfinished">Overføringer</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>

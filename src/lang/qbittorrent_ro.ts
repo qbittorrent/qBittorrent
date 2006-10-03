@@ -73,19 +73,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Birthday:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziua de naştere:</translation>
     </message>
     <message>
         <source>Occupation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocupaţia:</translation>
     </message>
     <message>
         <source>03/05/1985</source>
-        <translation type="unfinished">03/05/1985</translation>
+        <translation>03/05/1985</translation>
     </message>
     <message>
         <source>Student in computer science</source>
-        <translation type="unfinished"></translation>
+        <translation>Student in computer science</translation>
     </message>
 </context>
 <context>
@@ -319,23 +319,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT(Tracker-uri):</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation type="unfinished"></translation>
+        <translation>Anulează suport de DHT</translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Automat şterge descărcările finişate</translation>
     </message>
     <message>
         <source>Preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Program de preview</translation>
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation type="unfinished"></translation>
+        <translation>Audio/Video player:</translation>
     </message>
 </context>
 <context>
@@ -661,31 +661,36 @@ Changelog:
     </message>
     <message>
         <source>Preview process already running</source>
-        <translation type="unfinished"></translation>
+        <translation>Procesul de preview de acum este pornit</translation>
     </message>
     <message>
         <source>There is already another preview process running.
 Please close the other one first.</source>
-        <translation type="unfinished"></translation>
+        <translation>De acum alt proces de preview este pornit.
+Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nu pot descărca</translation>
     </message>
     <message>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
-        <translation type="unfinished"></translation>
+        <translation>reason:</translation>
     </message>
     <message>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
-        <translation type="unfinished">Descărcarea</translation>
+        <translation>Descărcarea</translation>
     </message>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vă rugăm să aşteptaţi...</translation>
+    </message>
+    <message>
+        <source>Transfers</source>
+        <translation type="unfinished">Transferuri</translation>
     </message>
 </context>
 <context>
@@ -876,15 +881,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Transferuri</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Preview fişier</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation type="unfinished"></translation>
+        <translation>Curăţă log-ul</translation>
     </message>
 </context>
 <context>
@@ -929,62 +934,62 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished"></translation>
+        <translation>Preview imposibil</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu putem face preview pentru acest fişier</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nume</translation>
+        <translation>Nume</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Capacitate</translation>
+        <translation>Capacitate</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Progress</translation>
+        <translation>Progress</translation>
     </message>
     <message>
         <source>No URL entered</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu este introdus URL-ul</translation>
     </message>
     <message>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vă rugăm să introduceţi cel puţin un URL.</translation>
     </message>
 </context>
 <context>
     <name>authentication</name>
     <message>
         <source>Tracker authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentificarea pe Tracker</translation>
     </message>
     <message>
         <source>Tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker:</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Login</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numele de utilizator:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Parola:</translation>
+        <translation>Parola:</translation>
     </message>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>Logare</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Anulare</translation>
+        <translation>Anulare</translation>
     </message>
 </context>
 <context>
@@ -1097,23 +1102,23 @@ Please close the other one first.</source>
     <name>downloadFromURL</name>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation type="unfinished"></translation>
+        <translation>Descărcarea Torrent-uri de pe URL-uri</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation type="unfinished"></translation>
+        <translation>Numai un URL pe linie</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished">Descarcă</translation>
+        <translation>Descarcă</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Anulare</translation>
+        <translation>Anulare</translation>
     </message>
     <message>
         <source>Download from urls</source>
-        <translation type="unfinished"></translation>
+        <translation>Descărcare de pe url-uri</translation>
     </message>
 </context>
 <context>
@@ -1254,30 +1259,30 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Choose your favourite preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeţi programul dvs. favorit pentru preview</translation>
     </message>
 </context>
 <context>
     <name>preview</name>
     <message>
         <source>Preview selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Secţia de preview</translation>
     </message>
     <message>
         <source>File preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Preview Fişier</translation>
     </message>
     <message>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>Următoarele fişiere suportă preview, &lt;br&gt;selectaţi unul din ei:</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Preview</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Anulare</translation>
+        <translation>Anulare</translation>
     </message>
 </context>
 <context>
@@ -1456,15 +1461,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">Opţiuni</translation>
+        <translation>Opţiuni</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>Descarcă în ordine corectă (mai încet dar bun pentru preview)</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rata de Share:</translation>
     </message>
 </context>
 </TS>

@@ -937,6 +937,10 @@ Veuillez d&apos;abord le quitter.</translation>
         <source>Please wait...</source>
         <translation>Veuillez patienter...</translation>
     </message>
+    <message>
+        <source>Transfers</source>
+        <translation>Transferts</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -1751,7 +1755,7 @@ Veuillez d&apos;abord le quitter.</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ratio de partage :</translation>
     </message>
 </context>
 </TS>

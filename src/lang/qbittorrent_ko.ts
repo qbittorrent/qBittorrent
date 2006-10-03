@@ -98,19 +98,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Birthday:</source>
-        <translation type="unfinished"></translation>
+        <translation>생일:</translation>
     </message>
     <message>
         <source>Occupation:</source>
-        <translation type="unfinished"></translation>
+        <translation>직업:</translation>
     </message>
     <message>
         <source>03/05/1985</source>
-        <translation type="unfinished">03/05/1985</translation>
+        <translation>03/05/1985</translation>
     </message>
     <message>
         <source>Student in computer science</source>
-        <translation type="unfinished"></translation>
+        <translation>컴퓨터과학 대학생</translation>
     </message>
 </context>
 <context>
@@ -374,23 +374,23 @@ list:</source>
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT(트렉커 없음):</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT(트렉커 없음) 미사용</translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>자동적으로 완료된 목록 지우기</translation>
     </message>
     <message>
         <source>Preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>프로그램 미리보기</translation>
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation type="unfinished"></translation>
+        <translation>음악/비디오 재생기:</translation>
     </message>
 </context>
 <context>
@@ -804,31 +804,36 @@ Changelog:
     </message>
     <message>
         <source>Preview process already running</source>
-        <translation type="unfinished"></translation>
+        <translation>미리보기가 진행중입니다</translation>
     </message>
     <message>
         <source>There is already another preview process running.
 Please close the other one first.</source>
-        <translation type="unfinished"></translation>
+        <translation>미리보기가 진행중입니다.
+다른 미리보기를 닫아주세요.</translation>
     </message>
     <message>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation>다운로드 실패</translation>
     </message>
     <message>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
-        <translation type="unfinished"></translation>
+        <translation>이유:</translation>
     </message>
     <message>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
-        <translation type="unfinished">다운로딩 중</translation>
+        <translation>다운로딩 중</translation>
     </message>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>기다려주십시오...</translation>
+    </message>
+    <message>
+        <source>Transfers</source>
+        <translation type="unfinished">전송</translation>
     </message>
 </context>
 <context>
@@ -1031,15 +1036,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>전송</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>미리보기</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation type="unfinished"></translation>
+        <translation>로그 지우기</translation>
     </message>
 </context>
 <context>
@@ -1092,62 +1097,62 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished"></translation>
+        <translation>미리보기 불가</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished"></translation>
+        <translation>죄송합니다. 이 파일은 미리보기를 할수 없습니다</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">파일 이름</translation>
+        <translation>파일 이름</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">크기</translation>
+        <translation>크기</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">진행상황</translation>
+        <translation>진행상황</translation>
     </message>
     <message>
         <source>No URL entered</source>
-        <translation type="unfinished"></translation>
+        <translation>주소(URL)가 포함되지 않았습니다 </translation>
     </message>
     <message>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>적어도 하나의 주소(URL)를 적어주십시오.</translation>
     </message>
 </context>
 <context>
     <name>authentication</name>
     <message>
         <source>Tracker authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>트렉커 인증</translation>
     </message>
     <message>
         <source>Tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>트렉커:</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>로그인</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>사용자:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">비밀번호:</translation>
+        <translation>비밀번호:</translation>
     </message>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>로그인</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">취소</translation>
+        <translation>취소</translation>
     </message>
 </context>
 <context>
@@ -1260,23 +1265,23 @@ Please close the other one first.</source>
     <name>downloadFromURL</name>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation type="unfinished"></translation>
+        <translation>URL에서 토렌트를 다운받기 </translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation type="unfinished"></translation>
+        <translation>한줄 당 하나의 URL을 쓰십시오</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished">다운로드</translation>
+        <translation>다운로드</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">취소</translation>
+        <translation>취소</translation>
     </message>
     <message>
         <source>Download from urls</source>
-        <translation type="unfinished"></translation>
+        <translation>URL로 부터 다운로드 받기</translation>
     </message>
 </context>
 <context>
@@ -1422,30 +1427,31 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Choose your favourite preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>미리보기를 할 프로그램을 선택해 주십시오</translation>
     </message>
 </context>
 <context>
     <name>preview</name>
     <message>
         <source>Preview selection</source>
-        <translation type="unfinished"></translation>
+        <translation>미리보기 선택</translation>
     </message>
     <message>
         <source>File preview</source>
-        <translation type="unfinished"></translation>
+        <translation>파일 미리보기</translation>
     </message>
     <message>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>다음 파일은 미리보기를 실행하실수 있습니다,
+이 중 하나를 선택해 주십시오:</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>미리보기</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">취소</translation>
+        <translation>취소</translation>
     </message>
 </context>
 <context>
@@ -1632,15 +1638,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">환경설정</translation>
+        <translation>환경설정</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>순차적으로 다운받기(늘리지만 미리보기하기에 좋음)</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>공유 비율:</translation>
     </message>
 </context>
 </TS>
