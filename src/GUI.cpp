@@ -510,7 +510,7 @@ void GUI::updateDlList(){
           if(torrentStatus.download_payload_rate > 0){
             DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Downloading...")));
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
-            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)(((qlonglong)ti.total_size()-(qlonglong)torrentStatus.total_done)/(qlonglong)torrentStatus.download_payload_rate)));
+            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate)));
             setRowColor(row, "green");
           }else{
             DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Stalled", "state of a torrent whose DL Speed is 0")));
