@@ -92,6 +92,16 @@ class downloadThread : public QThread {
           // Some SSL mambo jambo
           curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
           curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
+	  // Disable progress meter
+	  curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1);
+	  // Any kind of authentication
+	  curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+	  // Auto referrer
+	  curl_easy_setopt(curl, CURLOPT_AUTOREFERER, 1);
+	  // Follow redirections
+	  curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
+	  // Enable cookies
+	  curl_easy_setopt(curl, CURLOPT_COOKIEFILE, "");
           // We want error message:
           char errorBuffer[CURL_ERROR_SIZE];
           return_code = curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);

@@ -34,5 +34,5 @@
 // Before 0.7.0
 - Test tracker authentication
 - Wait for libtorrent v0.11rc release
-- Test & fix search engines (especially DownloadFromUrl)
+- Fix curl downloader to work with TorrentReactor engine
 
