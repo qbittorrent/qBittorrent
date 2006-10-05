@@ -29,6 +29,7 @@
     - BUGFIX: Fixed an arithmetic exception that could happen in ETA calculation
     - BUGFIX: Fixed Isohunt search engine
     - BUGFIX: Fixed download from URL function (was buggy)
+    - BUGFIX: Fixed download button in search engine
     - COSMETIC: Now displaying the number of downloads in tab title
     - COSMETIC: Redesigned download from url dialog
     - COSMETIC: Added a message to warn user that we started download from an url

@@ -34,4 +34,9 @@
 // Before 0.7.0
 - Test tracker authentication
 - Wait for libtorrent v0.11rc release
+- Fix this when deletingSelection sometimes:
+    terminate called after throwing an instance of 'libtorrent::invalid_handle'
+    what():  invalid torrent handle used
+    Abandon
+
 

@@ -1159,24 +1159,29 @@ void GUI::deleteSelection(){
         QString fileName = sortedIndex.second.data().toString();
         // Delete item from download list
         DLListModel->removeRow(sortedIndex.first);
-        // Get handle and pause the torrent
-        torrent_handle h = handles.value(fileName);
-        s->remove_torrent(h);
-        // Remove torrent from handles
-        handles.remove(fileName);
-        // remove it from scan dir or it will start again
-        if(isScanningDir){
-          QFile::remove(scan_dir+fileName+".torrent");
+        // Get handle and remove the torrent
+        QMap<QString, torrent_handle>::iterator it = handles.find(fileName);
+        if(it != handles.end() && it.key() == fileName) {
+          torrent_handle h = it.value();
+          s->remove_torrent(h);
+          // Remove torrent from handles
+          handles.erase(it);
+          // remove it from scan dir or it will start again
+          if(isScanningDir){
+            QFile::remove(scan_dir+fileName+".torrent");
+          }
+          // Remove it from torrent backup directory
+          torrentBackup.remove(fileName+".torrent");
+          torrentBackup.remove(fileName+".fastresume");
+          torrentBackup.remove(fileName+".paused");
+          torrentBackup.remove(fileName+".incremental");
+          // Update info bar
+          setInfoBar("'" + fileName +"' "+tr("removed.", "<file> removed."));
+          --nbTorrents;
+          tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
+        }else{
+          std::cout << "Error: Could not find the torrent handle supposed to be removed\n";
         }
-        // Remove it from torrent backup directory
-        torrentBackup.remove(fileName+".torrent");
-        torrentBackup.remove(fileName+".fastresume");
-        torrentBackup.remove(fileName+".paused");
-        torrentBackup.remove(fileName+".incremental");
-        // Update info bar
-        setInfoBar("'" + fileName +"' "+tr("removed.", "<file> removed."));
-        --nbTorrents;
-        tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
       }
     }
   }
@@ -2090,7 +2095,9 @@ void GUI::on_download_button_clicked(){
   QModelIndex index;
   foreach(index, selectedIndexes){
     if(index.column() == NAME){
-      downloadFromUrl(index.data().toString());
+      // Get Item url
+      QString url = searchResultsUrls.value(index.data().toString());
+      downloadFromUrl(url);
       setRowColor(index.row(), "red", false);
     }
   }
