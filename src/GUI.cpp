@@ -216,7 +216,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   // Set search engines names
   mininova->setText("Mininova");
   piratebay->setText("ThePirateBay");
-  reactor->setText("TorrentReactor");
+//   reactor->setText("TorrentReactor");
   isohunt->setText("Isohunt");
   btjunkie->setText("BTJunkie");
   meganova->setText("Meganova");
@@ -224,7 +224,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   loadCheckedSearchEngines();
   connect(mininova, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
   connect(piratebay, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
-  connect(reactor, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
+//   connect(reactor, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
   connect(isohunt, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
   connect(btjunkie, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
   connect(meganova, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
@@ -761,8 +761,8 @@ void GUI::saveCheckedSearchEngines(int) const{
       lastSearchEngines.write(QByteArray("mininova\n"));
     if(piratebay->isChecked())
       lastSearchEngines.write(QByteArray("piratebay\n"));
-    if(reactor->isChecked())
-      lastSearchEngines.write(QByteArray("reactor\n"));
+//     if(reactor->isChecked())
+//       lastSearchEngines.write(QByteArray("reactor\n"));
     if(isohunt->isChecked())
       lastSearchEngines.write(QByteArray("isohunt\n"));
     if(btjunkie->isChecked())
@@ -893,11 +893,11 @@ void GUI::loadCheckedSearchEngines(){
       }else{
         piratebay->setChecked(false);
       }
-      if(searchEnginesList.indexOf("reactor\n") != -1){
-        reactor->setChecked(true);
-      }else{
-        reactor->setChecked(false);
-      }
+//       if(searchEnginesList.indexOf("reactor\n") != -1){
+//         reactor->setChecked(true);
+//       }else{
+//         reactor->setChecked(false);
+//       }
       if(searchEnginesList.indexOf("isohunt\n") != -1){
         isohunt->setChecked(true);
       }else{
@@ -1770,7 +1770,7 @@ void GUI::on_search_button_clicked(){
     return;
   }
   // Getting checked search engines
-  if(!mininova->isChecked() && ! piratebay->isChecked() && !reactor->isChecked() && !isohunt->isChecked() && !btjunkie->isChecked() && !meganova->isChecked()){
+  if(!mininova->isChecked() && ! piratebay->isChecked()/* && !reactor->isChecked()*/ && !isohunt->isChecked() && !btjunkie->isChecked() && !meganova->isChecked()){
     QMessageBox::critical(0, tr("No seach engine selected"), tr("You must select at least one search engine."));
     return;
   }
@@ -1784,9 +1784,9 @@ void GUI::on_search_button_clicked(){
   if(piratebay->isChecked()){
     engineNames << "piratebay";
   }
-  if(reactor->isChecked()){
-    engineNames << "reactor";
-  }
+//   if(reactor->isChecked()){
+//     engineNames << "reactor";
+//   }
   if(isohunt->isChecked()){
     engineNames << "isohunt";
   }

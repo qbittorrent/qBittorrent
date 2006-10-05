@@ -49,9 +49,12 @@ class downloadThread : public QThread {
 
     void downloadUrl(const QString& url){
       mutex.lock();
+      qDebug("In Download thread function, mutex locked");
       url_list << url;
       mutex.unlock();
+      qDebug("In Download thread function, mutex unlocked (url added)");
       if(!isRunning()){
+	qDebug("In Download thread function, Launching thread (was stopped)");
         start();
       }
     }
@@ -59,12 +62,14 @@ class downloadThread : public QThread {
     void run(){
       forever{
         mutex.lock();
+	qDebug("In Download thread RUN, mutex locked");
         if(url_list.size() != 0){
           QString url = url_list.takeFirst();
           mutex.unlock();
+	  qDebug("In Download thread RUN, mutex unlocked (got url)");
           CURL *curl;
           std::string filePath;
-          int return_code;
+          int return_code, response;
           // XXX: Trick to get a unique filename
           QTemporaryFile *tmpfile = new QTemporaryFile;
           if (tmpfile->open()) {
@@ -83,8 +88,10 @@ class downloadThread : public QThread {
             fclose(file);
             return;
           }
+          std::string urlString = url.toStdString();
           // Set url to download
-          curl_easy_setopt(curl, CURLOPT_URL, (void*) url.toStdString().c_str());
+          curl_easy_setopt(curl, CURLOPT_URL, urlString.c_str());
+          qDebug("Url: %s", urlString.c_str());
           // Define our callback to get called when there's data to be written
           curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, misc::my_fwrite);
           // Set destination file
@@ -104,6 +111,7 @@ class downloadThread : public QThread {
 	  curl_easy_setopt(curl, CURLOPT_COOKIEFILE, "");
           // We want error message:
           char errorBuffer[CURL_ERROR_SIZE];
+	  errorBuffer[0]=0; /* prevent junk from being output */
           return_code = curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);
           if(return_code){
             std::cout << "Error: failed to set error buffer in curl\n";
@@ -111,15 +119,29 @@ class downloadThread : public QThread {
             QFile::remove(filePath.c_str());
             return;
           }
-          // Perform Download
-          return_code = curl_easy_perform(curl);
+	  int retries = 0;
+	  bool to_many_users = false;
+	  do{
+	    // Perform Download
+	    return_code = curl_easy_perform(curl);
+	    // We want HTTP response code
+	    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response);
+            qDebug("HTTP response code: %d", response);
+	    if(response/100 == 5){
+	      to_many_users = true;
+	      ++retries;
+	      SleeperThread::msleep(1000);
+	    }
+	  }while(to_many_users && retries < 10);
           // Cleanup
           curl_easy_cleanup(curl);
           // Close tmp file
           fclose(file);
           emit downloadFinished(url, QString(filePath.c_str()), return_code, QString(errorBuffer));
+	  qDebug("In Download thread RUN, signal emitted, ErrorBuffer: %s", errorBuffer);
         }else{
           mutex.unlock();
+	  qDebug("In Download thread RUN, mutex unlocked (no urls) -> stopping");
           break;
         }
       }

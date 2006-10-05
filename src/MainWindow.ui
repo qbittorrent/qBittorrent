@@ -405,13 +405,6 @@
               </widget>
              </item>
              <item>
-              <widget class="QCheckBox" name="reactor" >
-               <property name="text" >
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item>
               <widget class="QCheckBox" name="isohunt" >
                <property name="text" >
                 <string/>
