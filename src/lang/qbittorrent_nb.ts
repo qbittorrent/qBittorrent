@@ -127,7 +127,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Port range:</source>
-        <translation>Port-rekkevidde:</translation>
+        <translation>Port-område:</translation>
     </message>
     <message>
         <source>...</source>
@@ -195,7 +195,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Enable directory scan (auto add torrent files inside)</source>
-        <translation>Aktiver gjennomsøkning av mapper (legg automatisk til torrent filer funnet)</translation>
+        <translation>Aktiver søk av mapper (legg til torrent filer funnet)</translation>
     </message>
     <message>
         <source>Connection Settings</source>
@@ -239,11 +239,11 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source> Add Range</source>
-        <translation>Legg til rekkevidde</translation>
+        <translation>Legg til område</translation>
     </message>
     <message>
         <source> Remove Range</source>
-        <translation>Fjern rekkevidde</translation>
+        <translation>Fjern område</translation>
     </message>
     <message>
         <source>ipfilter.dat Path:</source>
@@ -251,7 +251,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Ask for confirmation on exit</source>
-        <translation>Spørr etter bekreftelse ved avslutning</translation>
+        <translation>Spør etter bekreftelse ved avslutning</translation>
     </message>
     <message>
         <source>Go to systray when minimizing window</source>
@@ -295,7 +295,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>1 KiB DL = </source>
-        <translation>1 KiB nedlastet =</translation>
+        <translation>1 KiB DL =</translation>
     </message>
     <message>
         <source>KiB UP max.</source>
@@ -307,7 +307,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation>Deaktiver DHT (Uten sporingstjener) støtte</translation>
+        <translation>Deaktiver DHT (Uten sporingstjener)</translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
@@ -315,7 +315,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Preview program</source>
-        <translation>Forhåndsvisnings program</translation>
+        <translation>Program for forhåndsvisning</translation>
     </message>
     <message>
         <source>Audio/Video player:</source>
@@ -521,7 +521,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
 
 Changelog:
 </source>
-        <translation>Søkeprogramtillegget kan oppdateres, ønsker du å oppdater det nå?
+        <translation>Søkeprogramtillegget kan oppdateres, ønsker du å oppdatere det nå?
 
 Endringer:</translation>
     </message>
@@ -802,7 +802,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Beklager, vi kan ikke forhåndsvise denne filen</translation>
+        <translation>Beklager, denne filen kan ikke forhåndsvises</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1034,7 +1034,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Choose Scan Directory</source>
-        <translation>Velg mappe som skal gjennomsøkes</translation>
+        <translation>Velg mappe for gjennomsøking</translation>
     </message>
     <message>
         <source>Choose save Directory</source>
@@ -1094,7 +1094,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>IP Range Comment</source>
-        <translation>IP rekkevidde kommentarer</translation>
+        <translation>IP område kommentarer</translation>
     </message>
     <message>
         <source>Comment:</source>
@@ -1213,11 +1213,11 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source> Unselect</source>
-        <translation>Gjør om til uvalgt</translation>
+        <translation>Avmarker</translation>
     </message>
     <message>
         <source> Select</source>
-        <translation>Velg</translation>
+        <translation>Marker</translation>
     </message>
     <message>
         <source>You can select here precisely which files you want to download in current torrent.</source>
@@ -1277,7 +1277,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation>Last ned i riktig rekkefølge (treigere, men bedre for forhåndsvisning)</translation>
+        <translation>Last ned i riktig rekkefølge (tregere, men bedre for forhåndsvisning)</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
