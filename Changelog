@@ -30,6 +30,7 @@
     - BUGFIX: Fixed Isohunt search engine
     - BUGFIX: Fixed download from URL function (was buggy)
     - BUGFIX: Fixed download button in search engine
+    - BUGFIX: Switched to full allocation mode to fix selective download
     - COSMETIC: Now displaying the number of downloads in tab title
     - COSMETIC: Redesigned download from url dialog
     - COSMETIC: Added a message to warn user that we started download from an url

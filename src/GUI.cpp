@@ -1276,7 +1276,7 @@ void GUI::addTorrents(const QStringList& pathsList, bool fromScanDir, const QStr
       }
       int row = DLListModel->rowCount();
       // Adding files to bittorrent session
-      h = s->add_torrent(t, fs::path(saveDir.path().toStdString()), resume_data);
+      h = s->add_torrent(t, fs::path(saveDir.path().toStdString()), resume_data, false);
       h.set_max_connections(60);
       h.set_max_uploads(-1);
       //qDebug("Added to session");
@@ -1654,10 +1654,9 @@ void GUI::propertiesSelection(){
 
 // Check connection status and display right icon
 void GUI::checkConnectionStatus(){
-  qDebug("Checking connection status 1");
+  qDebug("Checking connection status");
   char tmp[MAX_CHAR_TMP];
   session_status sessionStatus = s->status();
-  qDebug("Checking connection status 2");
   // Update ratio info
   float ratio = 1.;
   if(sessionStatus.total_payload_download != 0){
@@ -1668,7 +1667,6 @@ void GUI::checkConnectionStatus(){
   }
   snprintf(tmp, MAX_CHAR_TMP, "%.1f", ratio);
   LCD_Ratio->display(tmp);
-  qDebug("Checking connection status 3");
   if(ratio < 0.5){
     lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/unhappy.png")));
   }else{
@@ -1697,7 +1695,6 @@ void GUI::checkConnectionStatus(){
   if(trackerErrors.size() > 50){
     trackerErrors.clear();
   }
-  qDebug("Checking connection status 4");
   // look at session alerts and display some infos
   std::auto_ptr<alert> a = s->pop_alert();
   while (a.get()){
