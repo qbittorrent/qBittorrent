@@ -412,13 +412,6 @@
               </widget>
              </item>
              <item>
-              <widget class="QCheckBox" name="btjunkie" >
-               <property name="text" >
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item>
               <widget class="QCheckBox" name="meganova" >
                <property name="text" >
                 <string/>

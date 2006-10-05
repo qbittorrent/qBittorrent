@@ -218,7 +218,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   piratebay->setText("ThePirateBay");
 //   reactor->setText("TorrentReactor");
   isohunt->setText("Isohunt");
-  btjunkie->setText("BTJunkie");
+//   btjunkie->setText("BTJunkie");
   meganova->setText("Meganova");
   // Check last checked search engines
   loadCheckedSearchEngines();
@@ -226,7 +226,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(piratebay, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
 //   connect(reactor, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
   connect(isohunt, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
-  connect(btjunkie, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
+//   connect(btjunkie, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
   connect(meganova, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
   // Update nova.py search plugin if necessary
   updateNova();
@@ -765,8 +765,8 @@ void GUI::saveCheckedSearchEngines(int) const{
 //       lastSearchEngines.write(QByteArray("reactor\n"));
     if(isohunt->isChecked())
       lastSearchEngines.write(QByteArray("isohunt\n"));
-    if(btjunkie->isChecked())
-      lastSearchEngines.write(QByteArray("btjunkie\n"));
+//     if(btjunkie->isChecked())
+//       lastSearchEngines.write(QByteArray("btjunkie\n"));
     if(meganova->isChecked())
       lastSearchEngines.write(QByteArray("meganova\n"));
     lastSearchEngines.close();
@@ -903,11 +903,11 @@ void GUI::loadCheckedSearchEngines(){
       }else{
         isohunt->setChecked(false);
       }
-      if(searchEnginesList.indexOf("btjunkie\n") != -1){
-        btjunkie->setChecked(true);
-      }else{
-        btjunkie->setChecked(false);
-      }
+//       if(searchEnginesList.indexOf("btjunkie\n") != -1){
+//         btjunkie->setChecked(true);
+//       }else{
+//         btjunkie->setChecked(false);
+//       }
       if(searchEnginesList.indexOf("meganova\n") != -1){
         meganova->setChecked(true);
       }else{
@@ -1654,9 +1654,10 @@ void GUI::propertiesSelection(){
 
 // Check connection status and display right icon
 void GUI::checkConnectionStatus(){
-  qDebug("Checking connection status");
+  qDebug("Checking connection status 1");
   char tmp[MAX_CHAR_TMP];
   session_status sessionStatus = s->status();
+  qDebug("Checking connection status 2");
   // Update ratio info
   float ratio = 1.;
   if(sessionStatus.total_payload_download != 0){
@@ -1667,6 +1668,7 @@ void GUI::checkConnectionStatus(){
   }
   snprintf(tmp, MAX_CHAR_TMP, "%.1f", ratio);
   LCD_Ratio->display(tmp);
+  qDebug("Checking connection status 3");
   if(ratio < 0.5){
     lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/unhappy.png")));
   }else{
@@ -1695,6 +1697,7 @@ void GUI::checkConnectionStatus(){
   if(trackerErrors.size() > 50){
     trackerErrors.clear();
   }
+  qDebug("Checking connection status 4");
   // look at session alerts and display some infos
   std::auto_ptr<alert> a = s->pop_alert();
   while (a.get()){
@@ -1775,7 +1778,7 @@ void GUI::on_search_button_clicked(){
     return;
   }
   // Getting checked search engines
-  if(!mininova->isChecked() && ! piratebay->isChecked()/* && !reactor->isChecked()*/ && !isohunt->isChecked() && !btjunkie->isChecked() && !meganova->isChecked()){
+  if(!mininova->isChecked() && ! piratebay->isChecked()/* && !reactor->isChecked()*/ && !isohunt->isChecked()/* && !btjunkie->isChecked()*/ && !meganova->isChecked()){
     QMessageBox::critical(0, tr("No seach engine selected"), tr("You must select at least one search engine."));
     return;
   }
@@ -1795,9 +1798,9 @@ void GUI::on_search_button_clicked(){
   if(isohunt->isChecked()){
     engineNames << "isohunt";
   }
-  if(btjunkie->isChecked()){
-    engineNames << "btjunkie";
-  }
+//   if(btjunkie->isChecked()){
+//     engineNames << "btjunkie";
+//   }
   if(meganova->isChecked()){
     engineNames << "meganova";
   }
