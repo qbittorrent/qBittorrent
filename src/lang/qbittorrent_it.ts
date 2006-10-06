@@ -66,26 +66,18 @@
 &lt;br&gt;
 Copyright &#xa9; 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="obsolete">Un client bittorrent in Qt4 e libtorrent. Scritto in c++.&lt;br&gt;&lt;br&gt;Copyright © 2006 di Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
-    </message>
-    <message encoding="UTF-8">
-        <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
-&lt;br&gt;
-Copyright © 2006 by Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation>Un client bittorrent in Qt4 e libtorrent. Scritto in C++.&lt;br&gt;
+        <translation type="obsolete">Un client bittorrent in Qt4 e libtorrent. Scritto in C++.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 di Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>Birthday:</source>
-        <translation type="unfinished"></translation>
+        <translation>Compleanno:</translation>
     </message>
     <message>
         <source>Occupation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Occupazione:</translation>
     </message>
     <message>
         <source>03/05/1985</source>
@@ -93,6 +85,13 @@ Copyright © 2006 di Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Student in computer science</source>
+        <translation>Studente di informatica</translation>
+    </message>
+    <message encoding="UTF-8">
+        <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
+&lt;br&gt;
+Copyright © 2006 by Christophe Dumez&lt;br&gt;
+&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -140,10 +139,6 @@ Copyright © 2006 di Christophe Dumez&lt;br&gt;
     <message>
         <source>...</source>
         <translation>...</translation>
-    </message>
-    <message>
-        <source>Kb/s</source>
-        <translation type="obsolete">Kb/s</translation>
     </message>
     <message>
         <source>Disable</source>
@@ -218,14 +213,6 @@ Copyright © 2006 di Christophe Dumez&lt;br&gt;
         <translation>Percentuale di condivisione:</translation>
     </message>
     <message>
-        <source>1 KB DL = </source>
-        <translation type="obsolete">1 KB DL = </translation>
-    </message>
-    <message>
-        <source>KB UP max.</source>
-        <translation type="obsolete">KB UP max.</translation>
-    </message>
-    <message>
         <source>Activate IP Filtering</source>
         <translation>Attivare filtraggio IP</translation>
     </message>
@@ -290,10 +277,6 @@ Copyright © 2006 di Christophe Dumez&lt;br&gt;
         <translation>Chiedi conferma ed esci</translation>
     </message>
     <message>
-        <source>Clear finished downloads on exit</source>
-        <translation type="obsolete">Cancella i download finiti all&apos;uscita</translation>
-    </message>
-    <message>
         <source>Go to systray when minimizing window</source>
         <translation>Riduci alla systray quando si minimizza la finestra</translation>
     </message>
@@ -327,23 +310,23 @@ Copyright © 2006 di Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT (senza tracker):</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation type="unfinished"></translation>
+        <translation>Disabilita il supporto DHT</translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancella automaticamente i download terminati</translation>
     </message>
     <message>
         <source>Preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Programma di anteprima</translation>
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation type="unfinished"></translation>
+        <translation>Player audio/video:</translation>
     </message>
 </context>
 <context>
@@ -351,10 +334,6 @@ Copyright © 2006 di Christophe Dumez&lt;br&gt;
     <message>
         <source>Open Torrent Files</source>
         <translation>Apri file torrent</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Sconosciuto</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
@@ -375,14 +354,6 @@ Copyright © 2006 di Christophe Dumez&lt;br&gt;
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>Sei sicuro di voler cancellare gli elementi selezionati dalla lista dei download?</translation>
-    </message>
-    <message>
-        <source>paused</source>
-        <translation type="obsolete">In pausa</translation>
-    </message>
-    <message>
-        <source>started</source>
-        <translation type="obsolete">Iniziato</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -411,10 +382,6 @@ Copyright © 2006 di Christophe Dumez&lt;br&gt;
     <message>
         <source>All Downloads Resumed.</source>
         <translation>Tutti i download ripresi.</translation>
-    </message>
-    <message>
-        <source>DL Speed: </source>
-        <translation type="obsolete">Velocità Download:</translation>
     </message>
     <message>
         <source> started.</source>
@@ -473,10 +440,6 @@ Copyright © 2006 di Christophe Dumez&lt;br&gt;
         <translation>qBittorrent </translation>
     </message>
     <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Sei sicuro? -- qBittorrent</translation>
     </message>
@@ -529,22 +492,6 @@ Copyright © 2006 di Christophe Dumez&lt;br&gt;
         <translation>Ricerca...</translation>
     </message>
     <message>
-        <source>Could not create search plugin.</source>
-        <translation type="obsolete">Impossibile creare il plugin di ricerca</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation type="obsolete">Fermato</translation>
-    </message>
-    <message>
-        <source>Torrent file URL</source>
-        <translation type="obsolete">URL del file Torrent</translation>
-    </message>
-    <message>
-        <source>Torrent file URL:</source>
-        <translation type="obsolete">URL del file Torrent</translation>
-    </message>
-    <message>
         <source>Are you sure you want to quit? -- qBittorrent</source>
         <translation>Sicuro di voler uscire? -- qBittorrent</translation>
     </message>
@@ -553,24 +500,8 @@ Copyright © 2006 di Christophe Dumez&lt;br&gt;
         <translation>Sicuro di voler uscire da qBittorrent?</translation>
     </message>
     <message>
-        <source>Timed out</source>
-        <translation type="obsolete">Time out</translation>
-    </message>
-    <message>
-        <source>Error during search...</source>
-        <translation type="obsolete">Errore nella ricerca...</translation>
-    </message>
-    <message>
         <source>KiB/s</source>
         <translation>Kb/s</translation>
-    </message>
-    <message>
-        <source> KiB/s</source>
-        <translation type="obsolete">Kb/s</translation>
-    </message>
-    <message>
-        <source>Stalled</source>
-        <translation type="obsolete">In stallo</translation>
     </message>
     <message>
         <source>Search is finished</source>
@@ -587,10 +518,6 @@ Copyright © 2006 di Christophe Dumez&lt;br&gt;
     <message>
         <source>Search returned no results</source>
         <translation>La ricerca non ha prodotto risultati</translation>
-    </message>
-    <message>
-        <source>Search is Finished</source>
-        <translation type="obsolete">Ricerca finita</translation>
     </message>
     <message>
         <source>Search plugin update -- qBittorrent</source>
@@ -668,35 +595,41 @@ Changelog:</translation>
     </message>
     <message>
         <source>Preview process already running</source>
-        <translation type="unfinished"></translation>
+        <translation>Processo di anteprima già in esecuzione</translation>
     </message>
     <message>
         <source>There is already another preview process running.
 Please close the other one first.</source>
-        <translation type="unfinished"></translation>
+        <translation>C&apos;è già un altro processo di anteprima avviato. Per favore chiuderlo.</translation>
     </message>
     <message>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile scaricare</translation>
     </message>
     <message>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
-        <translation type="unfinished"></translation>
+        <translation>motivo:</translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <comment>
+Example: Downloading www.example.com/test.torrent</comment>
+        <translation type="obsolete">Scaricando</translation>
+    </message>
+    <message>
+        <source>Please wait...</source>
+        <translation>Attendere prego...</translation>
+    </message>
+    <message>
+        <source>Transfers</source>
+        <translation type="unfinished">Trasferimenti</translation>
     </message>
     <message>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
         <translation type="unfinished">Scaricando</translation>
-    </message>
-    <message>
-        <source>Please wait...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Transfers</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -712,34 +645,6 @@ Please close the other one first.</source>
     <message>
         <source>Total UP Speed:</source>
         <translation>Velocità totale upload:</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Nome</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Dimensione</translation>
-    </message>
-    <message>
-        <source>% DL</source>
-        <translation type="obsolete">% scaricato</translation>
-    </message>
-    <message>
-        <source>DL Speed</source>
-        <translation type="obsolete">Velocità download</translation>
-    </message>
-    <message>
-        <source>UP Speed</source>
-        <translation type="obsolete">velocità upload</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="obsolete">Status</translation>
-    </message>
-    <message>
-        <source>ETA</source>
-        <translation type="obsolete">ETA</translation>
     </message>
     <message>
         <source>&amp;Options</source>
@@ -810,10 +715,6 @@ Please close the other one first.</source>
         <translation>Status connessione</translation>
     </message>
     <message>
-        <source>Downloads</source>
-        <translation type="obsolete">Downloads</translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation>Ricerca</translation>
     </message>
@@ -842,18 +743,6 @@ Please close the other one first.</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <source>Seeds</source>
-        <translation type="obsolete">Seeds</translation>
-    </message>
-    <message>
-        <source>Leechers</source>
-        <translation type="obsolete">Leechers</translation>
-    </message>
-    <message>
-        <source>Search Engine</source>
-        <translation type="obsolete">Motore di ricerca</translation>
-    </message>
-    <message>
         <source>Download from URL</source>
         <translation>Download da URL</translation>
     </message>
@@ -874,10 +763,6 @@ Please close the other one first.</source>
         <translation>Crea torrent</translation>
     </message>
     <message>
-        <source>Ratio: </source>
-        <translation type="obsolete">Percentuale: </translation>
-    </message>
-    <message>
         <source>Update search plugin</source>
         <translation>Aggiorna plugin di ricerca</translation>
     </message>
@@ -887,15 +772,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Trasferimenti</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Anteprima file</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancella log</translation>
     </message>
 </context>
 <context>
@@ -907,13 +792,6 @@ Please close the other one first.</source>
     <message>
         <source>True</source>
         <translation type="unfinished">Vero</translation>
-    </message>
-</context>
-<context>
-    <name>QTextEdit</name>
-    <message>
-        <source>Clear</source>
-        <translation type="obsolete">Pulisci</translation>
     </message>
 </context>
 <context>
@@ -931,20 +809,12 @@ Please close the other one first.</source>
         <translation>Vorrei ringraziare le seguenti persone che si sono rese volontarie per tradurre qBittorrent:</translation>
     </message>
     <message>
-        <source>&lt;ul&gt;&lt;li&gt;I would like to thank sourceforge.net for hosting qBittorrent project.&lt;/li&gt;</source>
-        <translation type="obsolete">&lt;ul&gt;&lt;li&gt;Voglio inoltre ringraziare Sourceforge.Net per ospitare i files relativi al progetto.&lt;/li&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;li&gt;I also like to thank Jeffery Fernandez (developer@jefferyfernandez.id.au), our RPM packager, for his great work.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="obsolete">&lt;li&gt;Voglio anche ringraziare Jeffery Fernandez (developer@jefferyfernandez.id.au), il nostro creatore di RPM, per il suo grande lavoro.&lt;/li&gt;&lt;/ul&gt;</translation>
-    </message>
-    <message>
         <source>Preview impossible</source>
-        <translation type="unfinished"></translation>
+        <translation>Anteprima impossibile</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished"></translation>
+        <translation>Spiacenti, non è possibile fare un&apos;anteprima di questo file</translation>
     </message>
     <message>
         <source>Name</source>
@@ -960,30 +830,30 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>No URL entered</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessuna URL inserita </translation>
     </message>
     <message>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore inserire almeno un URL.</translation>
     </message>
 </context>
 <context>
     <name>authentication</name>
     <message>
         <source>Tracker authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Autenticazione del tracker</translation>
     </message>
     <message>
         <source>Tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker:</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Login</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome utente:</translation>
     </message>
     <message>
         <source>Password:</source>
@@ -991,11 +861,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>Log in</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Annulla</translation>
     </message>
 </context>
 <context>
@@ -1007,22 +877,6 @@ Please close the other one first.</source>
     <message>
         <source>Create Torrent file</source>
         <translation>Crea file torrent</translation>
-    </message>
-    <message>
-        <source>Destination torrent file:</source>
-        <translation type="obsolete">Torrent file di destinazione:</translation>
-    </message>
-    <message>
-        <source>Input file or directory:</source>
-        <translation type="obsolete">File o directory di input:</translation>
-    </message>
-    <message>
-        <source>Announce url (Tracker):</source>
-        <translation type="obsolete">URL del tracker:</translation>
-    </message>
-    <message>
-        <source>Comment:</source>
-        <translation type="obsolete">Commento:</translation>
     </message>
     <message>
         <source>...</source>
@@ -1108,11 +962,11 @@ Please close the other one first.</source>
     <name>downloadFromURL</name>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation type="unfinished"></translation>
+        <translation>Scarica torrent da URL</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation type="unfinished"></translation>
+        <translation>Solo un URL per linea</translation>
     </message>
     <message>
         <source>Download</source>
@@ -1120,11 +974,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <source>Download from urls</source>
-        <translation type="unfinished"></translation>
+        <translation>Download da URL</translation>
     </message>
 </context>
 <context>
@@ -1155,12 +1009,6 @@ Please close the other one first.</source>
         <translation>Tb</translation>
     </message>
     <message>
-        <source>m</source>
-        <comment>
-minutes</comment>
-        <translation type="obsolete">m</translation>
-    </message>
-    <message>
         <source>h</source>
         <comment>hours</comment>
         <translation>h</translation>
@@ -1169,12 +1017,6 @@ minutes</comment>
         <source>d</source>
         <comment>days</comment>
         <translation>gg</translation>
-    </message>
-    <message>
-        <source>h </source>
-        <comment>
-hours</comment>
-        <translation type="obsolete">h </translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -1277,30 +1119,30 @@ hours</comment>
     </message>
     <message>
         <source>Choose your favourite preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegliere il programma d&apos;anteprima preferito</translation>
     </message>
 </context>
 <context>
     <name>preview</name>
     <message>
         <source>Preview selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Anteprima della selezione</translation>
     </message>
     <message>
         <source>File preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Anteprima del file</translation>
     </message>
     <message>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>I seguenti files supportano l&apos;anteprima, &lt;br&gt;per favore scegliere uno d&apos;essi:</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Anteprima</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Annulla</translation>
     </message>
 </context>
 <context>
@@ -1308,10 +1150,6 @@ hours</comment>
     <message>
         <source>Torrent Properties</source>
         <translation>Proprietà del torrent</translation>
-    </message>
-    <message>
-        <source>Main Infos</source>
-        <translation type="obsolete">Informazioni principali</translation>
     </message>
     <message>
         <source>File Name</source>
@@ -1322,36 +1160,12 @@ hours</comment>
         <translation>Sessione corrente</translation>
     </message>
     <message>
-        <source>Total Uploaded:</source>
-        <translation type="obsolete">Totale Upload:</translation>
-    </message>
-    <message>
-        <source>Total Downloaded:</source>
-        <translation type="obsolete">Totale Download:</translation>
-    </message>
-    <message>
         <source>Download state:</source>
         <translation>Stato download:</translation>
     </message>
     <message>
-        <source>Current Tracker:</source>
-        <translation type="obsolete">Tracker corrente:</translation>
-    </message>
-    <message>
-        <source>Number of Peers:</source>
-        <translation type="obsolete">Numero di peer:</translation>
-    </message>
-    <message>
-        <source>Torrent Content</source>
-        <translation type="obsolete">Contenuto del torrent</translation>
-    </message>
-    <message>
         <source>OK</source>
         <translation>OK</translation>
-    </message>
-    <message>
-        <source>Total Failed:</source>
-        <translation type="obsolete">Totale fallito:</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -1422,14 +1236,6 @@ hours</comment>
         <translation>Qua puoi scegliere  quali file del torrent scaricare.</translation>
     </message>
     <message>
-        <source>False</source>
-        <translation type="obsolete">Falso</translation>
-    </message>
-    <message>
-        <source>True</source>
-        <translation type="obsolete">Vero</translation>
-    </message>
-    <message>
         <source>Tracker</source>
         <translation>Tracker</translation>
     </message>
@@ -1483,11 +1289,11 @@ hours</comment>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>Scarica nel giusto ordine (più lento ma migliore per le anteprime)</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Percentuale di condivisione:</translation>
     </message>
 </context>
 </TS>

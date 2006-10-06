@@ -14,6 +14,8 @@
     - FEATURE: Individual share ratio is now displayed in each torrent properties.
     - FEATURE: Tuned default settings to improve download speed
     - FEATURE: Downloading from an URL will retry 10 times if too many users.
+    - FEATURE: Now remembers filtered pieces in a torrent on restart
+    - FEATURE: Now updating pieces progress in real time in torrent properties
     - I18N: Added Norwegian translation
     - BUGFIX: Fixed a memory leak when pressing OK in torrent properties
     - BUGFIX: Improved code so that GUI never freeze during downloading from an url
@@ -30,7 +32,8 @@
     - BUGFIX: Fixed Isohunt search engine
     - BUGFIX: Fixed download from URL function (was buggy)
     - BUGFIX: Fixed download button in search engine
-    - BUGFIX: Switched to full allocation mode to fix selective download
+    - BUGFIX: Fixed selective download
+    - BUGFIX: Fixed memory leaks in torrent properties
     - COSMETIC: Now displaying the number of downloads in tab title
     - COSMETIC: Redesigned download from url dialog
     - COSMETIC: Added a message to warn user that we started download from an url

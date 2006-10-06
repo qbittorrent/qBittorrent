@@ -719,6 +719,56 @@ void GUI::saveWindowSize() const{
   }
 }
 
+bool GUI::loadFilteredPieces(torrent_handle &h){
+  bool has_filtered_pieces = false;
+  torrent_info torrentInfo = h.get_torrent_info();
+  QString fileName = QString(torrentInfo.name().c_str());
+  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".pieces");
+  // Read saved file
+  if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
+    return has_filtered_pieces;
+  }
+  QByteArray pieces_selection = pieces_file.readAll();
+  pieces_file.close();
+  QList<QByteArray> pieces_selection_list = pieces_selection.split('\n');
+  if(pieces_selection_list.size() != torrentInfo.num_files()+1){
+    std::cout << "Error: Corrupted pieces file\n";
+    return has_filtered_pieces;
+  }
+  for(int i=0; i<torrentInfo.num_files(); ++i){
+    int isFiltered = pieces_selection_list.at(i).toInt();
+    if( isFiltered < 0 || isFiltered > 1){
+      isFiltered = 0;
+    }
+    h.filter_piece(i, pieces_selection_list.at(i).toInt());
+    if(isFiltered){
+      has_filtered_pieces = true;
+    }
+  }
+  return has_filtered_pieces;
+}
+
+bool GUI::hasFilteredPieces(const QString& fileName){
+  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".pieces");
+  // Read saved file
+  if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
+    return false;
+  }
+  QByteArray pieces_selection = pieces_file.readAll();
+  pieces_file.close();
+  QList<QByteArray> pieces_selection_list = pieces_selection.split('\n');
+  for(int i=0; i<pieces_selection_list.size()-1; ++i){
+    int isFiltered = pieces_selection_list.at(i).toInt();
+    if( isFiltered < 0 || isFiltered > 1){
+      isFiltered = 0;
+    }
+    if(isFiltered){
+      return true;
+    }
+  }
+  return false;
+}
+
 void GUI::loadWindowSize(){
   qDebug("Loading window size");
   QFile lastWindowSize(misc::qBittorrentPath()+"lastWindowSize.txt");
@@ -1075,6 +1125,8 @@ void GUI::saveFastResumeData() const{
         bencode(std::ostream_iterator<char>(out), resumeData);
       }
     }
+    // Remove torrent
+    s->remove_torrent(h);
   }
   qDebug("Fast resume data saved");
 }
@@ -1111,7 +1163,7 @@ void GUI::deleteAll(){
                               torrents = torrentBackup.entryList();
                               QString torrent;
                               foreach(torrent, torrents){
-                                if(torrent.endsWith(".fastresume") || torrent.endsWith(".torrent") || torrent.endsWith(".paused") || torrent.endsWith(".incremental")){
+                                if(torrent.endsWith(".fastresume") || torrent.endsWith(".torrent") || torrent.endsWith(".pieces") || torrent.endsWith(".paused") || torrent.endsWith(".incremental")){
                                   torrentBackup.remove(torrent);
                                 }
                               }
@@ -1175,6 +1227,7 @@ void GUI::deleteSelection(){
           torrentBackup.remove(fileName+".fastresume");
           torrentBackup.remove(fileName+".paused");
           torrentBackup.remove(fileName+".incremental");
+          torrentBackup.remove(fileName+".pieces");
           // Update info bar
           setInfoBar("'" + fileName +"' "+tr("removed.", "<file> removed."));
           --nbTorrents;
@@ -1276,9 +1329,17 @@ void GUI::addTorrents(const QStringList& pathsList, bool fromScanDir, const QStr
       }
       int row = DLListModel->rowCount();
       // Adding files to bittorrent session
-      h = s->add_torrent(t, fs::path(saveDir.path().toStdString()), resume_data, false);
+      if(hasFilteredPieces(QString(t.name().c_str()))){
+        h = s->add_torrent(t, fs::path(saveDir.path().toStdString()), resume_data, false);
+        qDebug("Full allocation mode");
+      }else{
+        h = s->add_torrent(t, fs::path(saveDir.path().toStdString()), resume_data, true);
+        qDebug("Compact allocation mode");
+      }
       h.set_max_connections(60);
       h.set_max_uploads(-1);
+      // Load filtered pieces
+      loadFilteredPieces(h);
       //qDebug("Added to session");
       torrent_status torrentStatus = h.status();
       DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
@@ -1378,6 +1439,88 @@ void GUI::addTorrents(const QStringList& pathsList, bool fromScanDir, const QStr
   }
 }
 
+void GUI::reloadTorrent(const torrent_handle &h, bool compact_mode){
+  QDir saveDir(options->getSavePath()), torrentBackup(misc::qBittorrentPath() + "BT_backup");
+  QString fileName = QString(h.get_torrent_info().name().c_str());
+  qDebug("Reloading torrent: %s", fileName.toStdString().c_str());
+  torrent_handle new_h;
+  entry resumeData;
+  torrent_info t = h.get_torrent_info();
+    // Checking if torrentBackup Dir exists
+  // create it if it is not
+  if(! torrentBackup.exists()){
+    torrentBackup.mkpath(torrentBackup.path());
+  }
+  // Write fast resume data
+  // Pause download (needed before fast resume writing)
+  h.pause();
+  // Extracting resume data
+  if (h.has_metadata()){
+    // get fast resume data
+    resumeData = h.write_resume_data();
+  }
+  int row = -1;
+  // Delete item from download list
+  for(int i=0; i<DLListModel->rowCount(); ++i){
+    if(DLListModel->data(DLListModel->index(i, NAME)).toString()==fileName){
+      row = i;
+      break;
+    }
+  }
+  Q_ASSERT(row != -1);
+  DLListModel->removeRow(row);
+  // Remove torrent
+  s->remove_torrent(h);
+  handles.remove(fileName);
+  // Add torrent again to session
+  unsigned short timeout = 0;
+  while(h.is_valid() && timeout < 6){
+    SleeperThread::msleep(1000);
+    ++timeout;
+  }
+  if(h.is_valid()){
+    std::cout << "Error: Couldn't reload the torrent\n";
+    return;
+  }
+  new_h = s->add_torrent(t, fs::path(saveDir.path().toStdString()), resumeData, compact_mode);
+  if(compact_mode){
+    qDebug("Using compact allocation mode");
+  }else{
+    qDebug("Using full allocation mode");
+  }
+  handles.insert(QString(t.name().c_str()), new_h);
+  new_h.set_max_connections(60);
+  new_h.set_max_uploads(-1);
+  // Load filtered pieces
+  loadFilteredPieces(new_h);
+  // Adding torrent to download list
+  DLListModel->insertRow(row);
+  DLListModel->setData(DLListModel->index(row, NAME), QVariant(t.name().c_str()));
+  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)t.total_size()));
+  DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
+  DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
+  DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+  // Pause torrent if it was paused last time
+  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+QString(t.name().c_str())+".paused")){
+    DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Paused")));
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
+    setRowColor(row, "red");
+  }else{
+    DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Connecting...")));
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
+    setRowColor(row, "grey");
+  }
+  // Pause torrent if it was paused last time
+  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".paused")){
+    new_h.pause();
+  }
+  // Incremental download
+  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".incremental")){
+    qDebug("Incremental download enabled for %s", fileName.toStdString().c_str());
+    new_h.set_sequenced_download_threshold(15);
+  }
+}
+
 // As program parameters, we can get paths or urls.
 // This function parse the parameters and call
 // the right addTorrent function, considering
@@ -1409,6 +1552,7 @@ void GUI::showProperties(const QModelIndex &index){
   torrent_handle h = handles.value(fileName);
   QStringList errors = trackerErrors.value(fileName, QStringList(tr("None")));
   properties *prop = new properties(this, h, errors);
+  connect(prop, SIGNAL(changedFilteredPieces(torrent_handle, bool)), this, SLOT(reloadTorrent(torrent_handle, bool)));
   prop->show();
 }
 

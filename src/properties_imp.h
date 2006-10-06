@@ -25,6 +25,7 @@
 #include "ui_properties.h"
 #include <libtorrent/session.hpp>
 #include <QStandardItemModel>
+#include <QTimer>
 
 class PropListDelegate;
 
@@ -36,6 +37,7 @@ class properties : public QDialog, private Ui::properties{
     torrent_handle h;
     PropListDelegate *PropDelegate;
     QStandardItemModel *PropListModel;
+    QTimer *updateProgressTimer;
 
   protected slots:
     void on_select_clicked();
@@ -44,10 +46,16 @@ class properties : public QDialog, private Ui::properties{
     void on_incrementalDownload_stateChanged(int);
     void setRowColor(int row, QString color);
     void toggleSelectedState(const QModelIndex& index);
+    void saveFilteredPieces();
+    void updateProgress();
+
+  signals:
+    void changedFilteredPieces(torrent_handle h, bool compact_mode);
 
   public:
     // Constructor
-    properties(QWidget *parent = 0, torrent_handle h = torrent_handle(), QStringList trackerErrors = QStringList());
+    properties(QWidget *parent, torrent_handle h, QStringList trackerErrors = QStringList());
+    ~properties();
 };
 
 #endif

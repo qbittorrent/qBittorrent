@@ -99,19 +99,19 @@ Copyright (c) 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Birthday:</source>
-        <translation type="unfinished"></translation>
+        <translation>Geburtstag:</translation>
     </message>
     <message>
         <source>Occupation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschäftigung:</translation>
     </message>
     <message>
         <source>03/05/1985</source>
-        <translation type="unfinished">03/05/1985</translation>
+        <translation>03.05.1985</translation>
     </message>
     <message>
         <source>Student in computer science</source>
-        <translation type="unfinished"></translation>
+        <translation>Informatikstudent</translation>
     </message>
 </context>
 <context>
@@ -361,23 +361,23 @@ Copyright (c) 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT (Trackerlos):</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktiviere DHT (Trackerlos) Unterstützung</translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Abgeschlossene Downloads automatisch beseitigen</translation>
     </message>
     <message>
         <source>Preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorschau Programm</translation>
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation type="unfinished"></translation>
+        <translation>Audio/Video Player:</translation>
     </message>
 </context>
 <context>
@@ -759,35 +759,36 @@ Changelog:
     </message>
     <message>
         <source>Preview process already running</source>
-        <translation type="unfinished"></translation>
+        <translation>Preview Prozess läuft bereits</translation>
     </message>
     <message>
         <source>There is already another preview process running.
 Please close the other one first.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein anderer Preview Prozess läuft zu Zeit.
+Bitte schliessen Sie diesen zuerst.</translation>
     </message>
     <message>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Konnte Datei nicht downloaden</translation>
     </message>
     <message>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Grund:</translation>
     </message>
     <message>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
-        <translation type="unfinished">Lade</translation>
+        <translation>Lade</translation>
     </message>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte warten...</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Transfer</translation>
     </message>
 </context>
 <context>
@@ -982,15 +983,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Transfer</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorschau Datei</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation type="unfinished"></translation>
+        <translation>Log löschen</translation>
     </message>
 </context>
 <context>
@@ -1043,62 +1044,62 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorschau unmöglich</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished"></translation>
+        <translation>Bedauere, wir können keine Vorschau für diese Datei erstellen</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Name</translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Grösse</translation>
+        <translation>Grösse</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Fortschritt</translation>
+        <translation>Fortschritt</translation>
     </message>
     <message>
         <source>No URL entered</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine URL eingegeben</translation>
     </message>
     <message>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie mindestens eine URL an.</translation>
     </message>
 </context>
 <context>
     <name>authentication</name>
     <message>
         <source>Tracker authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker Authentifizierung</translation>
     </message>
     <message>
         <source>Tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker:</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Login</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzername:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Kennwort:</translation>
+        <translation>Kennwort:</translation>
     </message>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>Einloggen</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
 </context>
 <context>
@@ -1211,23 +1212,23 @@ Please close the other one first.</source>
     <name>downloadFromURL</name>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrents von URLs laden</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur eine URL pro Zeile</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Lade</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <source>Download from urls</source>
-        <translation type="unfinished"></translation>
+        <translation>Von URLs laden</translation>
     </message>
 </context>
 <context>
@@ -1373,30 +1374,30 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Choose your favourite preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie ihr bevorzugtes Vorschau Programm</translation>
     </message>
 </context>
 <context>
     <name>preview</name>
     <message>
         <source>Preview selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorschau auswahl</translation>
     </message>
     <message>
         <source>File preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei vorschauen</translation>
     </message>
     <message>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>Die folgenden Dateien unterstützen Vorschau, &lt;br&gt;bitte wählen Sie eine:</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorschau</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
 </context>
 <context>
@@ -1615,15 +1616,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">Optionen</translation>
+        <translation>Optionen</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>In richtiger Reihenfolge herunterladen (langsamer, aber besser zum Vorschauen)</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Share Verhältnis:</translation>
     </message>
 </context>
 </TS>

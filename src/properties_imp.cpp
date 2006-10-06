@@ -24,14 +24,13 @@
 #include "PropListDelegate.h"
 
 // Constructor
-properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErrors): QDialog(parent){
+properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErrors): QDialog(parent), h(h){
   setupUi(this);
   // set icons
   unselect->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
   select->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
 
   setAttribute(Qt::WA_DeleteOnClose);
-  this->h = h;
   // Set Properties list model
   PropListModel = new QStandardItemModel(0,4);
   PropListModel->setHeaderData(NAME, Qt::Horizontal, tr("File Name"));
@@ -145,6 +144,30 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
   }else{
     incrementalDownload->setChecked(false);
   }
+  updateProgressTimer = new QTimer(this);
+  connect(updateProgressTimer, SIGNAL(timeout()), this, SLOT(updateProgress()));
+  updateProgressTimer->start(2000);
+  std::vector<bool> filters = h.filtered_pieces();
+//   std::cout << "filtered pieces: ";
+//   for(int i=0; i<torrentInfo.num_files(); ++i){
+//     std::cout << filters.at(i) << " ";
+//   }
+//   std::cout << '\n';
+}
+
+properties::~properties(){
+  delete updateProgressTimer;
+  delete PropDelegate;
+  delete PropListModel;
+}
+
+void properties::updateProgress(){
+  std::vector<float> fp;
+  h.file_progress(fp);
+  torrent_info torrentInfo = h.get_torrent_info();
+  for(int i=0; i<torrentInfo.num_files(); ++i){
+    PropListModel->setData(PropListModel->index(i, PROGRESS), QVariant((double)fp[i]));
+  }
 }
 
 // Set the color of a row in data model
@@ -171,6 +194,8 @@ void properties::toggleSelectedState(const QModelIndex& index){
     setRowColor(row, "red");
     PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(false));
   }
+  // Save filtered pieces to a file to remember them
+  saveFilteredPieces();
 }
 
 void properties::on_incrementalDownload_stateChanged(int){
@@ -204,6 +229,8 @@ void properties::on_select_clicked(){
       }
     }
   }
+  // Save filtered pieces to a file to remember them
+  saveFilteredPieces();
 }
 
 void properties::on_okButton_clicked(){
@@ -226,4 +253,30 @@ void properties::on_unselect_clicked(){
       }
     }
   }
+  // Save filtered pieces to a file to remember them
+  saveFilteredPieces();
+}
+
+void properties::saveFilteredPieces(){
+  torrent_info torrentInfo = h.get_torrent_info();
+  bool hasFilteredPieces = false;
+  QString fileName = QString(torrentInfo.name().c_str());
+  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".pieces");
+  // First, remove old file
+  pieces_file.remove();
+  // Write new files
+  if(!pieces_file.open(QIODevice::WriteOnly | QIODevice::Text)){
+    std::cout << "Error: Could not save filtered pieces\n";
+    return;
+  }
+  for(int i=0; i<torrentInfo.num_files(); ++i){
+    if(h.is_piece_filtered(i)){
+      pieces_file.write(QByteArray("1\n"));
+      hasFilteredPieces = true;
+    }else{
+      pieces_file.write(QByteArray("0\n"));
+    }
+  }
+  pieces_file.close();
+  emit changedFilteredPieces(h, !hasFilteredPieces);
 }

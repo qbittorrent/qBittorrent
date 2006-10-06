@@ -119,7 +119,7 @@ class downloadThread : public QThread {
             QFile::remove(filePath.c_str());
             return;
           }
-	  int retries = 0;
+	  unsigned short retries = 0;
 	  bool to_many_users = false;
 	  do{
 	    // Perform Download
