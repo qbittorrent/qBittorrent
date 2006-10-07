@@ -231,10 +231,10 @@ void TrayIcon::TrayIconPrivate::enterEvent(QEvent *e)
 		ev.xfocus.mode = NotifyNormal;
 		ev.xfocus.detail = NotifyAncestor;
 
-		unsigned long oldTime = QX11Info::appTime();
-		QX11Info::setAppTime(1);
+// 		unsigned long oldTime = QX11Info::appTime();
+// 		QX11Info::setAppTime(1);
 		qApp->x11ProcessEvent( &ev );
-		QX11Info::setAppTime(oldTime);
+// 		QX11Info::setAppTime(oldTime);
 
 	/*}
 #endif*/
@@ -336,10 +336,10 @@ bool TrayIconFreeDesktop::x11Event(XEvent *ev)
 	switch(ev->type)
 	{
 	case ReparentNotify:
-		setUpdatesEnabled(false);
+// 		setUpdatesEnabled(false);
 		show();
-		updateMask();
-		setUpdatesEnabled(true);
+// 		updateMask();
+// 		setUpdatesEnabled(true);
 	}
 	return false;
 }
