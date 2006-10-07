@@ -108,26 +108,26 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Birthday:</source>
-        <translation type="unfinished"></translation>
+        <translation>День рождения:</translation>
     </message>
     <message>
         <source>Occupation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Занятие:</translation>
     </message>
     <message>
         <source>03/05/1985</source>
-        <translation type="unfinished">03/05/1985</translation>
+        <translation>03/05/1985</translation>
     </message>
     <message>
         <source>Student in computer science</source>
-        <translation type="unfinished"></translation>
+        <translation>Student in computer science</translation>
     </message>
 </context>
 <context>
     <name>DLListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished">КиБ/с</translation>
+        <translation>КиБ/с</translation>
     </message>
 </context>
 <context>
@@ -370,23 +370,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT:</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation type="unfinished"></translation>
+        <translation>Отключить DHT</translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматически удалять законченые скачивания</translation>
     </message>
     <message>
         <source>Preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Программа для предпросмотра</translation>
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation type="unfinished"></translation>
+        <translation>Аудио/Видео проигрователь:</translation>
     </message>
 </context>
 <context>
@@ -699,84 +699,85 @@ Changelog:
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Имя</translation>
+        <translation>Имя</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Размер</translation>
+        <translation>Размер</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Прогресс</translation>
+        <translation>Прогресс</translation>
     </message>
     <message>
         <source>DL Speed</source>
-        <translation type="unfinished">Скорость скач</translation>
+        <translation>Скорость скач</translation>
     </message>
     <message>
         <source>UP Speed</source>
-        <translation type="unfinished">Скорость загр</translation>
+        <translation>Скорость загр</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished">Статус</translation>
+        <translation>Статус</translation>
     </message>
     <message>
         <source>ETA</source>
-        <translation type="unfinished">ETA</translation>
+        <translation>ETA</translation>
     </message>
     <message>
         <source>Seeders</source>
-        <translation type="unfinished"></translation>
+        <translation>Сидеры</translation>
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished">Личеры</translation>
+        <translation>Личеры</translation>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Поисковои сэрвис</translation>
     </message>
     <message>
         <source>Stalled</source>
         <comment>state of a torrent whose DL Speed is 0</comment>
-        <translation type="unfinished">Заглохло</translation>
+        <translation>Заглохло</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished"></translation>
+        <translation>Пауза</translation>
     </message>
     <message>
         <source>Preview process already running</source>
-        <translation type="unfinished"></translation>
+        <translation>Процесс предпросмотра уже работает</translation>
     </message>
     <message>
         <source>There is already another preview process running.
 Please close the other one first.</source>
-        <translation type="unfinished"></translation>
+        <translation>Есть уже другой процесс предпросмотра.
+Пожалуйста закроите процесс.</translation>
     </message>
     <message>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Не могу загрузить</translation>
     </message>
     <message>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
-        <translation type="unfinished"></translation>
+        <translation>причина:</translation>
     </message>
     <message>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
-        <translation type="unfinished">Скачивание</translation>
+        <translation>Скачивание</translation>
     </message>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста подождите...</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Передачи</translation>
     </message>
 </context>
 <context>
@@ -967,30 +968,30 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Session ratio: </source>
-        <translation type="unfinished"></translation>
+        <translation>Сеансовый коэффициент:</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Передачи</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Фаил предпросмотра</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистить лог</translation>
     </message>
 </context>
 <context>
     <name>PropListDelegate</name>
     <message>
         <source>False</source>
-        <translation type="unfinished">Нет</translation>
+        <translation>Нет</translation>
     </message>
     <message>
         <source>True</source>
-        <translation type="unfinished">Да</translation>
+        <translation>Да</translation>
     </message>
 </context>
 <context>
@@ -1028,62 +1029,62 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпросмотр невозможен</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished"></translation>
+        <translation>Извините, предпросмотр невозможен</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Имя</translation>
+        <translation>Имя</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Размер</translation>
+        <translation>Размер</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Прогресс</translation>
+        <translation>Прогресс</translation>
     </message>
     <message>
         <source>No URL entered</source>
-        <translation type="unfinished"></translation>
+        <translation>URL не введен</translation>
     </message>
     <message>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуста введите минимум один URL.</translation>
     </message>
 </context>
 <context>
     <name>authentication</name>
     <message>
         <source>Tracker authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Аутентификация Трэкера</translation>
     </message>
     <message>
         <source>Tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Трэкер:</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Логин</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя пользователя:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Пароль:</translation>
+        <translation>Пароль:</translation>
     </message>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>Вход</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Отмена</translation>
+        <translation>Отмена</translation>
     </message>
 </context>
 <context>
@@ -1184,23 +1185,23 @@ Please close the other one first.</source>
     <name>downloadFromURL</name>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузить торреннт из URL</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation type="unfinished"></translation>
+        <translation>Толко один Torrent на линии</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished">Закачать</translation>
+        <translation>Закачать</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Отмена</translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <source>Download from urls</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузить Torrent из URL </translation>
     </message>
 </context>
 <context>
@@ -1262,7 +1263,7 @@ Please close the other one first.</source>
     <message>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
-        <translation type="unfinished">Неизвестно</translation>
+        <translation>Неизвестно</translation>
     </message>
 </context>
 <context>
@@ -1346,30 +1347,30 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Choose your favourite preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите вашу любимую программу для предпросмотра</translation>
     </message>
 </context>
 <context>
     <name>preview</name>
     <message>
         <source>Preview selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбор предпросмотра</translation>
     </message>
     <message>
         <source>File preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпросмотр файла</translation>
     </message>
     <message>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>Следующее файлы поддерживают предпросмотр, &lt;br&gt;выберите одно из них:</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпросмотр</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Отмена</translation>
+        <translation>Отмена</translation>
     </message>
 </context>
 <context>
@@ -1520,43 +1521,43 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Main infos</source>
-        <translation type="unfinished"></translation>
+        <translation>Основное инфо</translation>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation type="unfinished"></translation>
+        <translation>Число пэров:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Текущий трэкер:</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation type="unfinished"></translation>
+        <translation>Всего загружено:</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation type="unfinished"></translation>
+        <translation>Всего скачено:</translation>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Всего неудачно:</translation>
     </message>
     <message>
         <source>Torrent content</source>
-        <translation type="unfinished"></translation>
+        <translation>Содержимое Torrent-a</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">Опции</translation>
+        <translation>Опции</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>Загруить в правильном порядке</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Степень разделенности:</translation>
     </message>
 </context>
 </TS>
