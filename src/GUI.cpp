@@ -735,16 +735,19 @@ bool GUI::loadFilteredPieces(torrent_handle &h){
     std::cout << "Error: Corrupted pieces file\n";
     return has_filtered_pieces;
   }
+  std::vector<bool> selectionBitmask;
   for(int i=0; i<torrentInfo.num_files(); ++i){
     int isFiltered = pieces_selection_list.at(i).toInt();
     if( isFiltered < 0 || isFiltered > 1){
       isFiltered = 0;
     }
-    h.filter_piece(i, pieces_selection_list.at(i).toInt());
+    selectionBitmask.push_back(isFiltered);
+//     h.filter_piece(i, isFiltered);
     if(isFiltered){
       has_filtered_pieces = true;
     }
   }
+  h.filter_files(selectionBitmask);
   return has_filtered_pieces;
 }
 

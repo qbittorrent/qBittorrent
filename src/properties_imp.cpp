@@ -130,14 +130,8 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
     PropListModel->setData(PropListModel->index(row, NAME), QVariant(torrentInfo.file_at(i).path.leaf().c_str()));
     PropListModel->setData(PropListModel->index(row, SIZE), QVariant((qlonglong)torrentInfo.file_at(i).size));
     PropListModel->setData(PropListModel->index(row, PROGRESS), QVariant((double)fp[i]));
-    if(h.is_piece_filtered(i)){
-      PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(false));
-      setRowColor(row, "red");
-    }else{
-      PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(true));
-      setRowColor(row, "green");
-    }
   }
+  loadFilteredPieces();
   // Incremental download
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+QString(torrentInfo.name().c_str())+".incremental")){
     incrementalDownload->setChecked(true);
@@ -147,18 +141,46 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
   updateProgressTimer = new QTimer(this);
   connect(updateProgressTimer, SIGNAL(timeout()), this, SLOT(updateProgress()));
   updateProgressTimer->start(2000);
-  std::vector<bool> filters = h.filtered_pieces();
-//   std::cout << "filtered pieces: ";
-//   for(int i=0; i<torrentInfo.num_files(); ++i){
-//     std::cout << filters.at(i) << " ";
-//   }
-//   std::cout << '\n';
 }
 
 properties::~properties(){
   delete updateProgressTimer;
   delete PropDelegate;
   delete PropListModel;
+}
+
+void properties::loadFilteredPieces(){
+  torrent_info torrentInfo = h.get_torrent_info();
+  QString fileName = QString(torrentInfo.name().c_str());
+  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".pieces");
+  // Read saved file
+  if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
+    selectionBitmask.assign(torrentInfo.num_files(), 0);
+    return;
+  }
+  QByteArray pieces_selection = pieces_file.readAll();
+  pieces_file.close();
+  QList<QByteArray> pieces_selection_list = pieces_selection.split('\n');
+  if(pieces_selection_list.size() != torrentInfo.num_files()+1){
+    std::cout << "Error: Corrupted pieces file\n";
+    selectionBitmask.assign(torrentInfo.num_files(), 0);
+    return;
+  }
+  for(int i=0; i<torrentInfo.num_files(); ++i){
+    int isFiltered = pieces_selection_list.at(i).toInt();
+    if( isFiltered < 0 || isFiltered > 1){
+      isFiltered = 0;
+    }
+    selectionBitmask.push_back(isFiltered);
+//     h.filter_piece(i, isFiltered);
+    if(isFiltered){
+      PropListModel->setData(PropListModel->index(i, SELECTED), QVariant(false));
+      setRowColor(i, "red");
+    }else{
+      PropListModel->setData(PropListModel->index(i, SELECTED), QVariant(true));
+      setRowColor(i, "green");
+    }
+  }
 }
 
 void properties::updateProgress(){
@@ -181,19 +203,24 @@ void properties::setRowColor(int row, QString color){
 // double click on it.
 void properties::toggleSelectedState(const QModelIndex& index){
   int row = index.row();
-  if(h.is_piece_filtered(row)){
+  if(selectionBitmask.at(row)){
     // File is selected
-    h.filter_piece(row, false);
+    selectionBitmask.erase(selectionBitmask.begin()+row);
+    selectionBitmask.insert(selectionBitmask.begin()+row, 0);
+//     h.filter_piece(row, false);
     // Update list infos
     setRowColor(row, "green");
     PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(true));
   }else{
     // File is not selected
-    h.filter_piece(row, true);
+    selectionBitmask.erase(selectionBitmask.begin()+row);
+    selectionBitmask.insert(selectionBitmask.begin()+row, 1);
+//     h.filter_piece(row, true);
     // Update list infos
     setRowColor(row, "red");
     PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(false));
   }
+  h.filter_files(selectionBitmask);
   // Save filtered pieces to a file to remember them
   saveFilteredPieces();
 }
@@ -220,9 +247,12 @@ void properties::on_select_clicked(){
   foreach(index, selectedIndexes){
     if(index.column() == NAME){
       int row = index.row();
-      if(h.is_piece_filtered(row)){
+      if(selectionBitmask.at(row)){
         // File is selected
-        h.filter_piece(row, false);
+        selectionBitmask.erase(selectionBitmask.begin()+row);
+        selectionBitmask.insert(selectionBitmask.begin()+row, 0);
+        h.filter_files(selectionBitmask);
+//         h.filter_piece(row, false);
         // Update list infos
         setRowColor(row, "green");
         PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(true));
@@ -244,9 +274,12 @@ void properties::on_unselect_clicked(){
   foreach(index, selectedIndexes){
     if(index.column() == NAME){
       int row = index.row();
-      if(!h.is_piece_filtered(row)){
+      if(!selectionBitmask.at(row)){
         // File is selected
-        h.filter_piece(row, true);
+        selectionBitmask.erase(selectionBitmask.begin()+row);
+        selectionBitmask.insert(selectionBitmask.begin()+row, 1);
+        h.filter_files(selectionBitmask);
+//         h.filter_piece(row, true);
         // Update list infos
         setRowColor(row, "red");
         PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(false));
@@ -270,11 +303,11 @@ void properties::saveFilteredPieces(){
     return;
   }
   for(int i=0; i<torrentInfo.num_files(); ++i){
-    if(h.is_piece_filtered(i)){
+    if(selectionBitmask.at(i)){
       pieces_file.write(QByteArray("1\n"));
-      hasFilteredPieces = true;
     }else{
       pieces_file.write(QByteArray("0\n"));
+      hasFilteredPieces = true;
     }
   }
   pieces_file.close();

@@ -1,12 +1,12 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.7.0
     - FEATURE: Based on new libtorrent v0.11 (a lot of bugfixes, new features)
-    - FEATURE: Added DHT (Trackerless) support
-    - FEATURE: Added support for incremental download (slower but good for previewing)
+    - FEATURE: Added DHT (Trackerless - Decentralized BT) support
     - FEATURE: Audio/Video File previewing while downloading
-    - FEATURE: Tracker authentication support
+    - FEATURE: Added support for incremental download (slower but great for previewing)
+    - FEATURE: Added Tracker authentication support
     - FEATURE: Defined qBittorrent fingerprint so that it doesn't use libtorrent fingerprint anymore
     - FEATURE: Display an explicit error message when a download from url fails
-    - FEATURE: Allow the download multiple torrents from their url at once
+    - FEATURE: Allow the download multiple torrents from urls at once
     - FEATURE: New context menu on main window (Add, Start all, Pause all, Exit...)
     - FEATURE: Now supports one new search engines (MegaNova)
     - FEATURE: Rewritten search engine plugin (by fab31)

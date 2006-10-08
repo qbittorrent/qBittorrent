@@ -38,6 +38,7 @@ class properties : public QDialog, private Ui::properties{
     PropListDelegate *PropDelegate;
     QStandardItemModel *PropListModel;
     QTimer *updateProgressTimer;
+    std::vector<bool> selectionBitmask;
 
   protected slots:
     void on_select_clicked();
@@ -48,6 +49,7 @@ class properties : public QDialog, private Ui::properties{
     void toggleSelectedState(const QModelIndex& index);
     void saveFilteredPieces();
     void updateProgress();
+    void loadFilteredPieces();
 
   signals:
     void changedFilteredPieces(torrent_handle h, bool compact_mode);
