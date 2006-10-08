@@ -140,11 +140,11 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Birthday:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verjaardag</translation>
     </message>
     <message>
         <source>Occupation:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Werk</translation>
     </message>
     <message>
         <source>03/05/1985</source>
@@ -152,7 +152,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Student in computer science</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Student in computer wetenschap</translation>
     </message>
 </context>
 <context>
@@ -434,23 +434,23 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DHT (Geen Tracker)</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stop DHT (Geen Tracker) ondersteuning</translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verwijder automatish downloads die gereed zijn</translation>
     </message>
     <message>
         <source>Preview program</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kijk vooruit op het programma</translation>
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Audio/Video Speler</translation>
     </message>
 </context>
 <context>
@@ -796,22 +796,28 @@ Changelog:
     </message>
     <message>
         <source>Preview process already running</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vooruitkijk proccess is al bezig</translation>
     </message>
     <message>
         <source>There is already another preview process running.
 Please close the other one first.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Er is al een ander vooruitkijk proccess actief. 
+Stop het eerste proccess eerst.
+</translation>
     </message>
     <message>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kon niet downloaden
+
+Kon &lt;file&gt; niet downloaden</translation>
     </message>
     <message>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">reden:
+
+Reden waarom het downloaden gefaald heefd</translation>
     </message>
     <message>
         <source>Downloading</source>
@@ -820,11 +826,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wachten a.u.b</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Overdrachten</translation>
     </message>
 </context>
 <context>
@@ -1027,15 +1033,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Overdrachten</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kijk vooruit op bestand</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wist log</translation>
     </message>
 </context>
 <context>
@@ -1080,7 +1086,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vooruitkijken  onmogelijk</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
@@ -1100,11 +1106,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>No URL entered</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Geen URL ingevoerd</translation>
     </message>
     <message>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Typ op zijn minst 1 URL</translation>
     </message>
 </context>
 <context>
@@ -1232,11 +1238,11 @@ Please close the other one first.</source>
     <name>downloadFromURL</name>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Download Torrents via URLs</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">1 url per lijn</translation>
     </message>
     <message>
         <source>Download</source>
@@ -1248,7 +1254,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Download from urls</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Download uit urls</translation>
     </message>
 </context>
 <context>
