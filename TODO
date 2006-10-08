@@ -34,6 +34,6 @@
 // Before 0.7.0
 - Test tracker authentication
 - Wait for libtorrent v0.11rc release
-- Fix selective download
+- Test selective download
 
 
