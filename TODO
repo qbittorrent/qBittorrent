@@ -4,6 +4,7 @@
 - Improve man page
 - Add more keyboard shortcuts
 - Improve torrent creation tool (look & features)
+- Allow user to choose DHT port
 
 // Intermediate
 - Move novaUpdater to a Thread (probably use downloadThread) to prevent GUI freezing
@@ -30,10 +31,5 @@
 - Encryption support (waiting for libtorrent)
 - Split kernel from GUI? (would be a lot better but require some deep changes)
 - Web interface?
-
-// Before 0.7.0
-- Test tracker authentication
-- Wait for libtorrent v0.11rc release
-- Test selective download
 
 
