@@ -719,21 +719,21 @@ void GUI::saveWindowSize() const{
   }
 }
 
-bool GUI::loadFilteredPieces(torrent_handle &h){
-  bool has_filtered_pieces = false;
+bool GUI::loadFilteredFiles(torrent_handle &h){
+  bool has_filtered_files = false;
   torrent_info torrentInfo = h.get_torrent_info();
   QString fileName = QString(torrentInfo.name().c_str());
   QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".pieces");
   // Read saved file
   if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
-    return has_filtered_pieces;
+    return has_filtered_files;
   }
   QByteArray pieces_selection = pieces_file.readAll();
   pieces_file.close();
   QList<QByteArray> pieces_selection_list = pieces_selection.split('\n');
   if(pieces_selection_list.size() != torrentInfo.num_files()+1){
     std::cout << "Error: Corrupted pieces file\n";
-    return has_filtered_pieces;
+    return has_filtered_files;
   }
   std::vector<bool> selectionBitmask;
   for(int i=0; i<torrentInfo.num_files(); ++i){
@@ -744,14 +744,14 @@ bool GUI::loadFilteredPieces(torrent_handle &h){
     selectionBitmask.push_back(isFiltered);
 //     h.filter_piece(i, isFiltered);
     if(isFiltered){
-      has_filtered_pieces = true;
+      has_filtered_files = true;
     }
   }
   h.filter_files(selectionBitmask);
-  return has_filtered_pieces;
+  return has_filtered_files;
 }
 
-bool GUI::hasFilteredPieces(const QString& fileName){
+bool GUI::hasFilteredFiles(const QString& fileName){
   QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".pieces");
   // Read saved file
   if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -1332,7 +1332,7 @@ void GUI::addTorrents(const QStringList& pathsList, bool fromScanDir, const QStr
       }
       int row = DLListModel->rowCount();
       // Adding files to bittorrent session
-      if(hasFilteredPieces(QString(t.name().c_str()))){
+      if(hasFilteredFiles(QString(t.name().c_str()))){
         h = s->add_torrent(t, fs::path(saveDir.path().toStdString()), resume_data, false);
         qDebug("Full allocation mode");
       }else{
@@ -1341,8 +1341,8 @@ void GUI::addTorrents(const QStringList& pathsList, bool fromScanDir, const QStr
       }
       h.set_max_connections(60);
       h.set_max_uploads(-1);
-      // Load filtered pieces
-      loadFilteredPieces(h);
+      // Load filtered files
+      loadFilteredFiles(h);
       //qDebug("Added to session");
       torrent_status torrentStatus = h.status();
       DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
@@ -1494,8 +1494,8 @@ void GUI::reloadTorrent(const torrent_handle &h, bool compact_mode){
   handles.insert(QString(t.name().c_str()), new_h);
   new_h.set_max_connections(60);
   new_h.set_max_uploads(-1);
-  // Load filtered pieces
-  loadFilteredPieces(new_h);
+  // Load filtered Files
+  loadFilteredFiles(new_h);
   // Adding torrent to download list
   DLListModel->insertRow(row);
   DLListModel->setData(DLListModel->index(row, NAME), QVariant(t.name().c_str()));
@@ -1555,7 +1555,7 @@ void GUI::showProperties(const QModelIndex &index){
   torrent_handle h = handles.value(fileName);
   QStringList errors = trackerErrors.value(fileName, QStringList(tr("None")));
   properties *prop = new properties(this, h, errors);
-  connect(prop, SIGNAL(changedFilteredPieces(torrent_handle, bool)), this, SLOT(reloadTorrent(torrent_handle, bool)));
+  connect(prop, SIGNAL(changedFilteredFiles(torrent_handle, bool)), this, SLOT(reloadTorrent(torrent_handle, bool)));
   prop->show();
 }
 

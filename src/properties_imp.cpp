@@ -131,7 +131,7 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
     PropListModel->setData(PropListModel->index(row, SIZE), QVariant((qlonglong)torrentInfo.file_at(i).size));
     PropListModel->setData(PropListModel->index(row, PROGRESS), QVariant((double)fp[i]));
   }
-  loadFilteredPieces();
+  loadFilteredFiles();
   // Incremental download
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+QString(torrentInfo.name().c_str())+".incremental")){
     incrementalDownload->setChecked(true);
@@ -149,10 +149,11 @@ properties::~properties(){
   delete PropListModel;
 }
 
-void properties::loadFilteredPieces(){
+void properties::loadFilteredFiles(){
   torrent_info torrentInfo = h.get_torrent_info();
   QString fileName = QString(torrentInfo.name().c_str());
   QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".pieces");
+  has_filtered_files = false;
   // Read saved file
   if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
     selectionBitmask.assign(torrentInfo.num_files(), 0);
@@ -172,10 +173,10 @@ void properties::loadFilteredPieces(){
       isFiltered = 0;
     }
     selectionBitmask.push_back(isFiltered);
-//     h.filter_piece(i, isFiltered);
     if(isFiltered){
       PropListModel->setData(PropListModel->index(i, SELECTED), QVariant(false));
       setRowColor(i, "red");
+      has_filtered_files = true;
     }else{
       PropListModel->setData(PropListModel->index(i, SELECTED), QVariant(true));
       setRowColor(i, "green");
@@ -207,7 +208,6 @@ void properties::toggleSelectedState(const QModelIndex& index){
     // File is selected
     selectionBitmask.erase(selectionBitmask.begin()+row);
     selectionBitmask.insert(selectionBitmask.begin()+row, 0);
-//     h.filter_piece(row, false);
     // Update list infos
     setRowColor(row, "green");
     PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(true));
@@ -215,14 +215,13 @@ void properties::toggleSelectedState(const QModelIndex& index){
     // File is not selected
     selectionBitmask.erase(selectionBitmask.begin()+row);
     selectionBitmask.insert(selectionBitmask.begin()+row, 1);
-//     h.filter_piece(row, true);
     // Update list infos
     setRowColor(row, "red");
     PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(false));
   }
   h.filter_files(selectionBitmask);
   // Save filtered pieces to a file to remember them
-  saveFilteredPieces();
+  saveFilteredFiles();
 }
 
 void properties::on_incrementalDownload_stateChanged(int){
@@ -252,7 +251,6 @@ void properties::on_select_clicked(){
         selectionBitmask.erase(selectionBitmask.begin()+row);
         selectionBitmask.insert(selectionBitmask.begin()+row, 0);
         h.filter_files(selectionBitmask);
-//         h.filter_piece(row, false);
         // Update list infos
         setRowColor(row, "green");
         PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(true));
@@ -260,7 +258,7 @@ void properties::on_select_clicked(){
     }
   }
   // Save filtered pieces to a file to remember them
-  saveFilteredPieces();
+  saveFilteredFiles();
 }
 
 void properties::on_okButton_clicked(){
@@ -279,20 +277,19 @@ void properties::on_unselect_clicked(){
         selectionBitmask.erase(selectionBitmask.begin()+row);
         selectionBitmask.insert(selectionBitmask.begin()+row, 1);
         h.filter_files(selectionBitmask);
-//         h.filter_piece(row, true);
         // Update list infos
         setRowColor(row, "red");
         PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(false));
       }
     }
   }
-  // Save filtered pieces to a file to remember them
-  saveFilteredPieces();
+  // Save filtered files to a file to remember them
+  saveFilteredFiles();
 }
 
-void properties::saveFilteredPieces(){
+void properties::saveFilteredFiles(){
   torrent_info torrentInfo = h.get_torrent_info();
-  bool hasFilteredPieces = false;
+  bool hasFilteredFiles = false;
   QString fileName = QString(torrentInfo.name().c_str());
   QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".pieces");
   // First, remove old file
@@ -307,9 +304,14 @@ void properties::saveFilteredPieces(){
       pieces_file.write(QByteArray("1\n"));
     }else{
       pieces_file.write(QByteArray("0\n"));
-      hasFilteredPieces = true;
+      hasFilteredFiles = true;
     }
   }
   pieces_file.close();
-  emit changedFilteredPieces(h, !hasFilteredPieces);
+  if(!has_filtered_files){
+    // Don't need to reload torrent
+    // if already in full allocation mode
+    emit changedFilteredFiles(h, !hasFilteredFiles);
+  }
+  has_filtered_files = hasFilteredFiles;
 }

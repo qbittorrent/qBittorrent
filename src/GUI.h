@@ -153,8 +153,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void addUnauthenticatedTracker(QPair<torrent_handle,std::string> tracker);
     void processDownloadedFile(QString url, QString file_path, int return_code, QString errorBuffer);
     void downloadFromURLList(const QStringList& url_list);
-    bool loadFilteredPieces(torrent_handle &h);
-    bool hasFilteredPieces(const QString& fileName);
+    bool loadFilteredFiles(torrent_handle &h);
+    bool hasFilteredFiles(const QString& fileName);
     void reloadTorrent(const torrent_handle &h, bool compact_mode = true);
     // Search slots
     void on_search_button_clicked();
