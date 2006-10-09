@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>Name:</source>
-        <translation>名称:</translation>
+        <translation>姓名:</translation>
     </message>
     <message>
         <source>Country:</source>
@@ -185,7 +185,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Proxy server requires authentication</source>
-        <translation>代理服务器需要身份验证</translation>
+        <translation>此代理服务器需要身份验证</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -301,11 +301,11 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Ask for confirmation on exit</source>
-        <translation>确定要退出qBittorrent</translation>
+        <translation>退出时显示提示对话框</translation>
     </message>
     <message>
         <source>Go to systray when minimizing window</source>
-        <translation>最小化窗口时只保留图标</translation>
+        <translation>最小化到系统托盘</translation>
     </message>
     <message>
         <source>Misc</source>
@@ -361,7 +361,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation>下载结束后自动清除</translation>
+        <translation>下载结束后自动从列表中清除</translation>
     </message>
     <message>
         <source>Preview program</source>
@@ -1239,7 +1239,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Choose save Directory</source>
-        <translation>保存目录</translation>
+        <translation>保存到</translation>
     </message>
     <message>
         <source>Choose ipfilter.dat file</source>
@@ -1470,7 +1470,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Selected</source>
-        <translation>选择</translation>
+        <translation>已选中</translation>
     </message>
     <message>
         <source> Unselect</source>
@@ -1478,7 +1478,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source> Select</source>
-        <translation>选中</translation>
+        <translation>选则</translation>
     </message>
     <message>
         <source>You can select here precisely which files you want to download in current torrent.</source>
@@ -1546,7 +1546,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation>按递增顺序下载(速度会有所减慢但便于预览)</translation>
+        <translation>按递增顺序下载(速度会有所减慢但利于预览)</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
