@@ -91,19 +91,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Birthday:</source>
-        <translation type="unfinished"></translation>
+        <translation>生日:</translation>
     </message>
     <message>
         <source>Occupation:</source>
-        <translation type="unfinished"></translation>
+        <translation>职业:</translation>
     </message>
     <message>
         <source>03/05/1985</source>
-        <translation type="unfinished"></translation>
+        <translation>1985年5月3日</translation>
     </message>
     <message>
         <source>Student in computer science</source>
-        <translation type="unfinished"></translation>
+        <translation>计算机专业学生</translation>
     </message>
 </context>
 <context>
@@ -129,7 +129,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Save Path:</source>
-        <translation>保存路径:</translation>
+        <translation>保存到:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
@@ -237,7 +237,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Share ratio:</source>
-        <translation>共享比率:</translation>
+        <translation>分享率:</translation>
     </message>
     <message>
         <source>1 KB DL = </source>
@@ -353,23 +353,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT (分布式Tracker):</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation type="unfinished"></translation>
+        <translation>禁用DHT(分布式Tracker)</translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>下载结束后自动清除</translation>
     </message>
     <message>
         <source>Preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>预览</translation>
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation type="unfinished"></translation>
+        <translation>音频/视频播放器:</translation>
     </message>
 </context>
 <context>
@@ -512,7 +512,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
-        <translation>&lt;b&gt;连接状态:&lt;/b&gt;&lt;br&gt;有防火墙?&lt;br&gt;&lt;i&gt;无incoming连接...&lt;/i&gt;</translation>
+        <translation>&lt;b&gt;连接状态:&lt;/b&gt;&lt;br&gt;有防火墙?&lt;br&gt;&lt;i&gt;无对内连接...&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
@@ -544,7 +544,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>You must select at least one search engine.</source>
-        <translation>至少选择一个搜索引擎.</translation>
+        <translation>请选择至少一个搜索引擎.</translation>
     </message>
     <message>
         <source>Searching...</source>
@@ -706,7 +706,7 @@ Changelog:
     <message>
         <source>Stalled</source>
         <comment>state of a torrent whose DL Speed is 0</comment>
-        <translation type="unfinished">等待中</translation>
+        <translation>等待中</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -714,35 +714,36 @@ Changelog:
     </message>
     <message>
         <source>Preview process already running</source>
-        <translation type="unfinished"></translation>
+        <translation>预览程序已存在</translation>
     </message>
     <message>
         <source>There is already another preview process running.
 Please close the other one first.</source>
-        <translation type="unfinished"></translation>
+        <translation>另一预览程序正在运行中.
+请先关闭另一程序.</translation>
     </message>
     <message>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation>无法下载</translation>
     </message>
     <message>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
-        <translation type="unfinished"></translation>
+        <translation>原因:</translation>
     </message>
     <message>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
-        <translation type="unfinished">下载中</translation>
+        <translation>下载中</translation>
     </message>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>请稍等...</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">传输</translation>
     </message>
 </context>
 <context>
@@ -929,30 +930,30 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Session ratio: </source>
-        <translation> Session 比率:</translation>
+        <translation> 本次会话共享评价:</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>传输</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>预览文件</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation type="unfinished"></translation>
+        <translation>清除日志</translation>
     </message>
 </context>
 <context>
     <name>PropListDelegate</name>
     <message>
         <source>False</source>
-        <translation type="unfinished">错误</translation>
+        <translation>否</translation>
     </message>
     <message>
         <source>True</source>
-        <translation type="unfinished">正确</translation>
+        <translation>是</translation>
     </message>
 </context>
 <context>
@@ -994,62 +995,62 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished"></translation>
+        <translation>无法预览</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished"></translation>
+        <translation>抱歉, 此文件无法被预览</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">名称</translation>
+        <translation>名称</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">大小</translation>
+        <translation>大小</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">进度</translation>
+        <translation>进度</translation>
     </message>
     <message>
         <source>No URL entered</source>
-        <translation type="unfinished"></translation>
+        <translation>未输入URL</translation>
     </message>
     <message>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>请至少输入一个URL.</translation>
     </message>
 </context>
 <context>
     <name>authentication</name>
     <message>
         <source>Tracker authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker验证</translation>
     </message>
     <message>
         <source>Tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker:</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>登录</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>用户名:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">密码:</translation>
+        <translation>密码:</translation>
     </message>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>登入</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
 </context>
 <context>
@@ -1150,23 +1151,23 @@ Please close the other one first.</source>
     <name>downloadFromURL</name>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation type="unfinished"></translation>
+        <translation>从URL下载Torrents</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation type="unfinished"></translation>
+        <translation>每行仅可有一URL</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished">下载</translation>
+        <translation>下载</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <source>Download from urls</source>
-        <translation type="unfinished"></translation>
+        <translation>从URL下载</translation>
     </message>
 </context>
 <context>
@@ -1307,37 +1308,37 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Choose your favourite preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>选择您想要的程序以便预览文件</translation>
     </message>
 </context>
 <context>
     <name>preview</name>
     <message>
         <source>Preview selection</source>
-        <translation type="unfinished"></translation>
+        <translation>选择要预览的文件</translation>
     </message>
     <message>
         <source>File preview</source>
-        <translation type="unfinished"></translation>
+        <translation>文件预览</translation>
     </message>
     <message>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>下列文件支持预览, 请选择其一:</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>预览</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
 </context>
 <context>
     <name>properties</name>
     <message>
         <source>Torrent Properties</source>
-        <translation>Torrent所有权</translation>
+        <translation>Torrent属性</translation>
     </message>
     <message>
         <source>Main Infos</source>
@@ -1349,7 +1350,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Current Session</source>
-        <translation>当前Session</translation>
+        <translation>当前会话</translation>
     </message>
     <message>
         <source>Total Uploaded:</source>
@@ -1437,7 +1438,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Seeding</source>
-        <translation>共享中</translation>
+        <translation>正在做种</translation>
     </message>
     <message>
         <source>Allocating</source>
@@ -1461,7 +1462,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
-        <translation>文件已存在于现有的torrent:</translation>
+        <translation>存在于当前torrent内的文件有:</translation>
     </message>
     <message>
         <source>Size</source>
@@ -1469,11 +1470,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Selected</source>
-        <translation>选中</translation>
+        <translation>选择</translation>
     </message>
     <message>
         <source> Unselect</source>
-        <translation>不选中</translation>
+        <translation>不选</translation>
     </message>
     <message>
         <source> Select</source>
@@ -1481,7 +1482,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>You can select here precisely which files you want to download in current torrent.</source>
-        <translation>请在以下torrent文件中选择你想要下载的.</translation>
+        <translation>请在当前torrent中选择所需要的文件.</translation>
     </message>
     <message>
         <source>False</source>
@@ -1493,11 +1494,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Tracker</source>
-        <translation>torrent服务器</translation>
+        <translation>Tracker</translation>
     </message>
     <message>
         <source>Trackers:</source>
-        <translation>torrent服务器:</translation>
+        <translation>Trackers:</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -1521,7 +1522,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Current tracker:</source>
-        <translation>当前torrent服务器:</translation>
+        <translation>当前tracker:</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
@@ -1541,15 +1542,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">选项</translation>
+        <translation>选项</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>按递增顺序下载(速度会有所减慢但便于预览)</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>分享率:</translation>
     </message>
 </context>
 </TS>
