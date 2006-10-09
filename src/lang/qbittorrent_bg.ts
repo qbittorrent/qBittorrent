@@ -115,19 +115,19 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Birthday:</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата на раждане:</translation>
     </message>
     <message>
         <source>Occupation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Професия:</translation>
     </message>
     <message>
         <source>03/05/1985</source>
-        <translation type="unfinished">03/05/1985</translation>
+        <translation>03/05/1985</translation>
     </message>
     <message>
         <source>Student in computer science</source>
-        <translation type="unfinished"></translation>
+        <translation>Студент компютърни науки</translation>
     </message>
 </context>
 <context>
@@ -409,23 +409,23 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT (без Тракери):</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation type="unfinished"></translation>
+        <translation>Изключи DHT (без Тракери) поддръжката </translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматично изтриване на завършили сваляния</translation>
     </message>
     <message>
         <source>Preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Програма за оглед</translation>
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation type="unfinished"></translation>
+        <translation>Аудио/Видео плейър:</translation>
     </message>
 </context>
 <context>
@@ -799,35 +799,36 @@ Changelog:
     </message>
     <message>
         <source>Preview process already running</source>
-        <translation type="unfinished"></translation>
+        <translation>Процеса на оглед се изпълнява </translation>
     </message>
     <message>
         <source>There is already another preview process running.
 Please close the other one first.</source>
-        <translation type="unfinished"></translation>
+        <translation>Вече се изпълнява друг процес на оглед.
+Моля, затворете първо другия процес.</translation>
     </message>
     <message>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Свалянето е невъзможно</translation>
     </message>
     <message>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
-        <translation type="unfinished"></translation>
+        <translation>причина:</translation>
     </message>
     <message>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
-        <translation type="unfinished">Сваляне</translation>
+        <translation>Сваляне</translation>
     </message>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Моля, изчакайте...</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Трансфери</translation>
     </message>
 </context>
 <context>
@@ -1030,15 +1031,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Трансфери</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Огледай файла</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation type="unfinished"></translation>
+        <translation>Изтрий лога</translation>
     </message>
 </context>
 <context>
@@ -1091,62 +1092,62 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished"></translation>
+        <translation>Оглед невъзможен</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished"></translation>
+        <translation>Съжалявам, не можем да огледаме този файл</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Име</translation>
+        <translation>Име</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Размер</translation>
+        <translation>Размер</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Изпълнение</translation>
+        <translation>Изпълнение</translation>
     </message>
     <message>
         <source>No URL entered</source>
-        <translation type="unfinished"></translation>
+        <translation>Невъведен URL</translation>
     </message>
     <message>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>Моля въведете поне един URL.</translation>
     </message>
 </context>
 <context>
     <name>authentication</name>
     <message>
         <source>Tracker authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Удостоверяване на тракера</translation>
     </message>
     <message>
         <source>Tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Тракер:</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Вход</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>Име на потребителя:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Парола:</translation>
+        <translation>Парола:</translation>
     </message>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>Влизане</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Прекъсни</translation>
+        <translation>Прекъсни</translation>
     </message>
 </context>
 <context>
@@ -1259,23 +1260,23 @@ Please close the other one first.</source>
     <name>downloadFromURL</name>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation type="unfinished"></translation>
+        <translation>Сваляне на Торенти от URL</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation type="unfinished"></translation>
+        <translation>Само един URL на ред</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished">Свали</translation>
+        <translation>Свали</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Прекъсни</translation>
+        <translation>Прекъсни</translation>
     </message>
     <message>
         <source>Download from urls</source>
-        <translation type="unfinished"></translation>
+        <translation>Свали от url-ове</translation>
     </message>
 </context>
 <context>
@@ -1416,30 +1417,30 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Choose your favourite preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Моля, изберете любима програма за оглед</translation>
     </message>
 </context>
 <context>
     <name>preview</name>
     <message>
         <source>Preview selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Оглед на избраното</translation>
     </message>
     <message>
         <source>File preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Оглед на файла</translation>
     </message>
     <message>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>Следните файлове поддържат оглед, &lt;br&gt;моля изберете един от тях:</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Оглед</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Прекъсни</translation>
+        <translation>Прекъсни</translation>
     </message>
 </context>
 <context>
@@ -1618,15 +1619,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">Опции</translation>
+        <translation>Опции</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>Сваляне в правилен ред (по-бавен, но добър за оглед на файловете)</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Процент на споделяне:</translation>
     </message>
 </context>
 </TS>
