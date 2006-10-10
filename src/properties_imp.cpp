@@ -154,8 +154,11 @@ void properties::loadFilteredFiles(){
   QString fileName = QString(torrentInfo.name().c_str());
   QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".pieces");
   has_filtered_files = false;
+  qDebug("Loading filtered state of files");
   // Read saved file
   if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
+    qDebug("Could not find pieces file");
+    setAllPiecesState(true);
     selectionBitmask.assign(torrentInfo.num_files(), 0);
     return;
   }
@@ -164,6 +167,7 @@ void properties::loadFilteredFiles(){
   QList<QByteArray> pieces_selection_list = pieces_selection.split('\n');
   if(pieces_selection_list.size() != torrentInfo.num_files()+1){
     std::cout << "Error: Corrupted pieces file\n";
+    setAllPiecesState(true);
     selectionBitmask.assign(torrentInfo.num_files(), 0);
     return;
   }
@@ -197,6 +201,18 @@ void properties::updateProgress(){
 void properties::setRowColor(int row, QString color){
   for(int i=0; i<PropListModel->columnCount(); ++i){
     PropListModel->setData(PropListModel->index(row, i), QVariant(QColor(color)), Qt::TextColorRole);
+  }
+}
+
+void properties::setAllPiecesState(bool selected){
+  torrent_info torrentInfo = h.get_torrent_info();
+  for(int i=0; i<torrentInfo.num_files(); ++i){
+    if(selected){
+      setRowColor(i, "green");
+    }else{
+      setRowColor(i, "red");
+    }
+    PropListModel->setData(PropListModel->index(i, SELECTED), QVariant(selected));
   }
 }
 

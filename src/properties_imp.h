@@ -51,6 +51,7 @@ class properties : public QDialog, private Ui::properties{
     void saveFilteredFiles();
     void updateProgress();
     void loadFilteredFiles();
+    void setAllPiecesState(bool selected);
 
   signals:
     void changedFilteredFiles(torrent_handle h, bool compact_mode);
