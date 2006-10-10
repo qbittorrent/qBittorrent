@@ -3,11 +3,11 @@
     <name>AboutDlg</name>
     <message>
         <source>About qBittorrent</source>
-        <translation>O aplik�ii qBittorrent</translation>
+        <translation>O aplikáciii qBittorrent</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>O</translation>
+        <translation>O aplikácii</translation>
     </message>
     <message>
         <source>Author</source>
@@ -35,11 +35,11 @@
     </message>
     <message>
         <source>France</source>
-        <translation>Franczsko</translation>
+        <translation>Francúzsko</translation>
     </message>
     <message>
         <source>Thanks To</source>
-        <translation>Po�kovanie</translation>
+        <translation>Poďakovanie</translation>
     </message>
     <message>
         <source>Translation</source>
@@ -58,7 +58,7 @@
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Klient protokolu bittorrent za pomoci Qt4 a libtorrent, naprogramovaný v C++.&lt;br&gt;&lt;br&gt;Copyright © 2006, Christophe Dumez&lt;br&gt;&lt;br&gt; &lt;u&gt;Homepage:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>chris@qbittorrent.org</source>
@@ -70,26 +70,26 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Birthday:</source>
-        <translation type="unfinished"></translation>
+        <translation>Narodeniny:</translation>
     </message>
     <message>
         <source>Occupation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamestnanie:</translation>
     </message>
     <message>
         <source>03/05/1985</source>
-        <translation type="unfinished">03/05/1985</translation>
+        <translation>5.3.1985</translation>
     </message>
     <message>
         <source>Student in computer science</source>
-        <translation type="unfinished"></translation>
+        <translation>študent informatiky</translation>
     </message>
 </context>
 <context>
     <name>DLListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -108,19 +108,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Save Path:</source>
-        <translation>Cesta pre uloenie:</translation>
+        <translation>Cesta pre uloženie:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
-        <translation>Limit sahovania:</translation>
+        <translation>Limit sťahovania:</translation>
     </message>
     <message>
         <source>Upload Limit:</source>
-        <translation>Limit nahr�ania:</translation>
+        <translation>Limit nahrávania:</translation>
     </message>
     <message>
         <source>Max Connects:</source>
-        <translation>Maximum spojen�:</translation>
+        <translation>Maximum spojení:</translation>
     </message>
     <message>
         <source>Port range:</source>
@@ -136,7 +136,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Disable</source>
-        <translation>Vypn</translation>
+        <translation>Vypnúť</translation>
     </message>
     <message>
         <source>connections</source>
@@ -164,15 +164,15 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Proxy server requires authentication</source>
-        <translation>Proxy server vyaduje autentfik�iu</translation>
+        <translation>Proxy server vyžaduje autentfikáciu</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation>autentifik�ia</translation>
+        <translation>autentifikácia</translation>
     </message>
     <message>
         <source>User Name:</source>
-        <translation>Pou�atesk�meno:</translation>
+        <translation>Používateľské meno:</translation>
     </message>
     <message>
         <source>Password:</source>
@@ -180,7 +180,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Enable connection through a proxy server</source>
-        <translation>Zapn spojenie pomocou proxy servera</translation>
+        <translation>Použi spojenie pomocou proxy servera</translation>
     </message>
     <message>
         <source>Language</source>
@@ -204,11 +204,11 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Scanned Dir:</source>
-        <translation>Prezeran�adres�e:</translation>
+        <translation>Prezeraný adresár:</translation>
     </message>
     <message>
         <source>Enable directory scan (auto add torrent files inside)</source>
-        <translation>Zapn prezeranie adres�ov (automatick�prid�anie torrent sborov)</translation>
+        <translation>Zapni prezeranie adresárov (automatické pridávanie torrent súborov)</translation>
     </message>
     <message>
         <source>Connection Settings</source>
@@ -216,7 +216,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Share ratio:</source>
-        <translation>Pomer zdieania:</translation>
+        <translation>Pomer zdieľania:</translation>
     </message>
     <message>
         <source>1 KB DL = </source>
@@ -236,11 +236,11 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Start IP</source>
-        <translation>Po�ato��IP</translation>
+        <translation>Počiatočná IP</translation>
     </message>
     <message>
         <source>End IP</source>
-        <translation>Koncov�IP</translation>
+        <translation>Koncová IP</translation>
     </message>
     <message>
         <source>Origin</source>
@@ -248,11 +248,11 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Comment</source>
-        <translation>Koment�</translation>
+        <translation>Komentár</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation>Poui</translation>
+        <translation>Použi</translation>
     </message>
     <message>
         <source>IP Filter</source>
@@ -260,11 +260,11 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source> Add Range</source>
-        <translation>Prida rozsah</translation>
+        <translation> Pridaj rozsah</translation>
     </message>
     <message>
         <source> Remove Range</source>
-        <translation>Odstr�i rozsah</translation>
+        <translation> Odstráň rozsah</translation>
     </message>
     <message>
         <source>ipfilter.dat Path:</source>
@@ -272,59 +272,59 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Clear finished downloads on exit</source>
-        <translation type="obsolete">Vy�sti dokon�n�sahovania pri skon�n�programu</translation>
+        <translation type="obsolete">Vyčisti dokončené sťahovania pri skončení programu</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit</source>
-        <translation>Potvrdenie skon�nia programu</translation>
+        <translation>Potvrdenie skončenia programu</translation>
     </message>
     <message>
         <source>Go to systray when minimizing window</source>
-        <translation>Minimalizova medzi ikony (systray)</translation>
+        <translation>Minimalizovať medzi ikony (systray)</translation>
     </message>
     <message>
         <source>Misc</source>
-        <translation>Rozli</translation>
+        <translation>Rozličné</translation>
     </message>
     <message>
         <source>Localization</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokalizácia</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk:</translation>
     </message>
     <message>
         <source>Behaviour</source>
-        <translation type="unfinished"></translation>
+        <translation>Správanie</translation>
     </message>
     <message>
         <source>OSD</source>
-        <translation type="unfinished"></translation>
+        <translation>OSD</translation>
     </message>
     <message>
         <source>Always display OSD</source>
-        <translation type="unfinished"></translation>
+        <translation>Vždy zobrazuj OSD</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazuj OSD iba keď je okno minimalizované alebo ikonifikované</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation type="unfinished"></translation>
+        <translation>Nikdy nezobrazuj OSD</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <source>1 KiB DL = </source>
-        <translation type="unfinished"></translation>
+        <translation>1 KiB DL = </translation>
     </message>
     <message>
         <source>KiB UP max.</source>
-        <translation type="unfinished"></translation>
+        <translation>KiB UP max.</translation>
     </message>
     <message>
         <source>DHT (Trackerless):</source>
@@ -351,23 +351,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <name>GUI</name>
     <message>
         <source>Open Torrent Files</source>
-        <translation>Otv�a torrent sbory</translation>
+        <translation>Otvoriť torrent súbory</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="obsolete">Nezn�e</translation>
+        <translation type="obsolete">Nezne</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>Tento sbor je bu�pokoden alebo nie je torrent.</translation>
+        <translation>Tento súbor je bud poškodenť alebo nie je torrent.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
-        <translation>Ur�te chcete zmaza vetky sbory v zozname sahovanch?</translation>
+        <translation>Určite chcete zmazať všetky súbory v zozname sťahovaných?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation>&amp;�o</translation>
+        <translation>&amp;Áno</translation>
     </message>
     <message>
         <source>&amp;No</source>
@@ -375,7 +375,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
-        <translation>Ur�te chcete zmaza vybran�poloky v zozname sahovanch?</translation>
+        <translation>Určite chcete zmazať vybrané položky v zozname sťahovaných?</translation>
     </message>
     <message>
         <source>paused</source>
@@ -387,7 +387,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Finished</source>
-        <translation>skon�</translation>
+        <translation>hotovo</translation>
     </message>
     <message>
         <source>Checking...</source>
@@ -395,23 +395,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Connecting...</source>
-        <translation>prip�a sa...</translation>
+        <translation>pripája sa...</translation>
     </message>
     <message>
         <source>Downloading...</source>
-        <translation>sahuje sa...</translation>
+        <translation>sťahuje sa...</translation>
     </message>
     <message>
         <source>Download list cleared.</source>
-        <translation>Zoznam sahovanch vy�sten.</translation>
+        <translation>Zoznam sťahovanch vyčistený.</translation>
     </message>
     <message>
         <source>All Downloads Paused.</source>
-        <translation>Vetky sahovania pozastaven�.</translation>
+        <translation>Všetky sťahovania pozastavené.</translation>
     </message>
     <message>
         <source>All Downloads Resumed.</source>
-        <translation>Vetky sahovania znovu spusten�.</translation>
+        <translation>Všetky sťahovania znovu spustené.</translation>
     </message>
     <message>
         <source>DL Speed: </source>
@@ -419,39 +419,39 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source> started.</source>
-        <translation>za�t�.</translation>
+        <translation> spustené.</translation>
     </message>
     <message>
         <source>UP Speed: </source>
-        <translation>Rchlos nahr�ania: </translation>
+        <translation>Rýchlosť nahrávania: </translation>
     </message>
     <message>
         <source>Couldn&apos;t create the directory:</source>
-        <translation>Nebolo mon�vytvori adres�:</translation>
+        <translation>Nebolo možné vytvoriť adresár:</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>Torrent sbory</translation>
+        <translation>Torrent súbory</translation>
     </message>
     <message>
         <source>already in download list.</source>
-        <translation type="obsolete">u sa nach�za v zozname sahovanch.</translation>
+        <translation type="obsolete">u sa nachza v zozname sahovanch.</translation>
     </message>
     <message>
         <source>added to download list.</source>
-        <translation>pridan do zoznamu sahovanch.</translation>
+        <translation>pridaný do zoznamu sťahovaných.</translation>
     </message>
     <message>
         <source>resumed. (fast resume)</source>
-        <translation>znovu spusten. (rchle znovuspustenie)</translation>
+        <translation>znovu spustené. (rýchle znovuspustenie)</translation>
     </message>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation>Nemohol som dek�ova torrent sbor:</translation>
+        <translation>Nemohol som dekódovať torrent súbor:</translation>
     </message>
     <message>
         <source>removed.</source>
-        <translation type="obsolete">odstr�en.</translation>
+        <translation type="obsolete">odstren.</translation>
     </message>
     <message>
         <source>paused.</source>
@@ -463,7 +463,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Listening on port: </source>
-        <translation>Po�vam na porte: </translation>
+        <translation>Počúvam na porte: </translation>
     </message>
     <message>
         <source>qBittorrent </source>
@@ -475,59 +475,59 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure? -- qBittorrent</source>
-        <translation>Ste si ist? -- qBittorrent</translation>
+        <translation>Ste si istý? -- qBittorrent</translation>
     </message>
     <message>
         <source>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </source>
-        <translation>lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </translation>
+        <translation>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </translation>
     </message>
     <message>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Online</source>
-        <translation>lt;b&gt;Stav spojenia:&lt;/b&gt;&lt;br&gt;Online</translation>
+        <translation>&lt;b&gt;Stav spojenia:&lt;/b&gt;&lt;br&gt;Online</translation>
     </message>
     <message>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
-        <translation>lt;b&gt;Stav spojenia:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;iadne prich�zajce spojenia&lt;/i&gt;</translation>
+        <translation>&lt;b&gt;Stav spojenia:&lt;/b&gt;&lt;br&gt;Za firewallom?&lt;br&gt;&lt;i&gt;Žiadne prichzajúce spojenia...&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
-        <translation>lt;b&gt;Stav spojenia:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;Neboli n�den�rovesn�i...&lt;/i&gt;</translation>
+        <translation>&lt;b&gt;Stav spojenia:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;Neboli nájdení rovesníci...&lt;/i&gt;</translation>
     </message>
     <message>
         <source> has finished downloading.</source>
-        <translation>skon�lo sahovanie.</translation>
+        <translation> skončilo sťahovanie.</translation>
     </message>
     <message>
         <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation>Nepodarilo sa po�va na iadnom zo zadanch portov.</translation>
+        <translation>Nepodarilo sa počúvať na žiadnom zo zadaných portov.</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>iadny</translation>
+        <translation>Žiadny</translation>
     </message>
     <message>
         <source>Empty search pattern</source>
-        <translation>Pr�dny vyhad�ac�vzor</translation>
+        <translation>Prázdny vyhľadávací vzor</translation>
     </message>
     <message>
         <source>Please type a search pattern first</source>
-        <translation>Pros�, najprv zadajte vyhad�ac�vzor</translation>
+        <translation>Prosím, najprv zadajte vyhľadávací vzor</translation>
     </message>
     <message>
         <source>No seach engine selected</source>
-        <translation>Nebol zvolen vyhadva</translation>
+        <translation>Nebol zvolený vyhľadávač</translation>
     </message>
     <message>
         <source>You must select at least one search engine.</source>
-        <translation>Mus�e zvoli aspo�jeden vyhad�a�.</translation>
+        <translation>Musíte zvoliť aspoň jeden vyhľadávač.</translation>
     </message>
     <message>
         <source>Searching...</source>
-        <translation>Had�sa...</translation>
+        <translation>Hľadá sa...</translation>
     </message>
     <message>
         <source>Could not create search plugin.</source>
-        <translation type="obsolete">Nemohol som vytvori plugin pre vyhad�anie.</translation>
+        <translation type="obsolete">Nemohol som vytvori plugin pre vyhadanie.</translation>
     </message>
     <message>
         <source>Stopped</source>
@@ -535,19 +535,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Torrent file URL</source>
-        <translation type="obsolete">URL torrent sboru</translation>
+        <translation type="obsolete">URL torrent súboru</translation>
     </message>
     <message>
         <source>Torrent file URL:</source>
-        <translation type="obsolete">URL torrent sboru:</translation>
+        <translation type="obsolete">URL torrent súboru:</translation>
     </message>
     <message>
         <source>Are you sure you want to quit? -- qBittorrent</source>
-        <translation>Ur�te chcete ukon� program? -- qBittorrent</translation>
+        <translation>Určite chcete ukončiť program? -- qBittorrent</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>Ur�te chcete ukon� qbittorrent?</translation>
+        <translation>Určite chcete ukončiť qBittorrent?</translation>
     </message>
     <message>
         <source>Timed out</source>
@@ -555,7 +555,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Error during search...</source>
-        <translation type="obsolete">Chyba po�s hadania...</translation>
+        <translation type="obsolete">Chyba pos hadania...</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -572,109 +572,115 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>removed.</source>
         <comment>&lt;file&gt; removed.</comment>
-        <translation type="unfinished">odstr�en.</translation>
+        <translation>odstránený.</translation>
     </message>
     <message>
         <source>already in download list.</source>
         <comment>&lt;file&gt; already in download list.</comment>
-        <translation type="unfinished">u sa nach�za v zozname sahovanch.</translation>
+        <translation>už sa nacháza v zozname sťahovaných.</translation>
     </message>
     <message>
         <source>paused.</source>
         <comment>&lt;file&gt; paused.</comment>
-        <translation type="unfinished">pozastaven.</translation>
+        <translation>pozastavené.</translation>
     </message>
     <message>
         <source>resumed.</source>
         <comment>&lt;file&gt; resumed.</comment>
-        <translation type="unfinished">znovu spusten.</translation>
+        <translation>znovu spustené.</translation>
     </message>
     <message>
         <source>Search is finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyhľadávanie skočilo</translation>
     </message>
     <message>
         <source>An error occured during search...</source>
-        <translation type="unfinished"></translation>
+        <translation>Počas vyhľadávania sa vyskytla chyba...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyhľadávanie preušené</translation>
     </message>
     <message>
         <source>Search returned no results</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyhľadávanie nevrátilo žiadne výsledky</translation>
     </message>
     <message>
         <source>Search plugin update -- qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizácia zásuvného modulu vyhľadávania -- qBittorrent</translation>
     </message>
     <message>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Je možné aktualizovať vyhľadávací zásuvný modul. Chete ho aktualizovať?
+
+Záznam zmien:</translation>
     </message>
     <message>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Je mi ľúto, aktualizačný server je dočasne nedostupný.</translation>
     </message>
     <message>
         <source>Your search plugin is already up to date.</source>
-        <translation type="unfinished"></translation>
+        <translation>Váš vyhľadávací zásuvný modul je aktuálny.</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation>Výsledky</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">N�ov</translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Vekos</translation>
+        <translation>Veľkosť</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Priebeh</translation>
     </message>
     <message>
         <source>DL Speed</source>
-        <translation type="unfinished">rchlos sahovania</translation>
+        <translation>rýchlosť sťahovania</translation>
     </message>
     <message>
         <source>UP Speed</source>
-        <translation type="unfinished">rchlos nahr�ania</translation>
+        <translation>rýchlosť nahrávania</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished">Status</translation>
+        <translation>Status</translation>
     </message>
     <message>
         <source>ETA</source>
-        <translation type="unfinished">Odhadovan �s</translation>
+        <translation>Odhadovaný čas</translation>
     </message>
     <message>
         <source>Seeders</source>
-        <translation type="unfinished"></translation>
+        <translation>Seederi</translation>
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished">Leecheri</translation>
+        <translation>Leecheri</translation>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyhľadávač</translation>
     </message>
     <message>
         <source>Stalled</source>
         <comment>state of a torrent whose DL Speed is 0</comment>
-        <translation type="unfinished">Zastaven</translation>
+        <translation>Bez pohybu</translation>
     </message>
     <message>
         <source>Paused</source>
+        <translation>Pozastavený</translation>
+    </message>
+    <message>
+        <source>Transfers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -699,14 +705,10 @@ Please close the other one first.</source>
     <message>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
-        <translation type="unfinished">Sahujem</translation>
+        <translation type="unfinished">Sťahujem</translation>
     </message>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Transfers</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -714,19 +716,19 @@ Please close the other one first.</source>
     <name>MainWindow</name>
     <message>
         <source>Log:</source>
-        <translation>Log:</translation>
+        <translation>Záznam:</translation>
     </message>
     <message>
         <source>Total DL Speed:</source>
-        <translation>Celkov�rchlos sahovania:</translation>
+        <translation>Celková rýchlosť sťahovania:</translation>
     </message>
     <message>
         <source>Total UP Speed:</source>
-        <translation>Celkov�rchlos nahr�ania:</translation>
+        <translation>Celková rýchlosť nahrávania:</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="obsolete">N�ov</translation>
+        <translation type="obsolete">Nov</translation>
     </message>
     <message>
         <source>Size</source>
@@ -742,7 +744,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>UP Speed</source>
-        <translation type="obsolete">rchlos nahr�ania</translation>
+        <translation type="obsolete">rchlos nahrania</translation>
     </message>
     <message>
         <source>Status</source>
@@ -750,7 +752,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>ETA</source>
-        <translation type="obsolete">Odhadovan �s</translation>
+        <translation type="obsolete">Odhadovan s</translation>
     </message>
     <message>
         <source>&amp;Options</source>
@@ -758,23 +760,23 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;�ravy</translation>
+        <translation>&amp;Úpravy</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Sbor</translation>
+        <translation>&amp;Súbor</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Pomocn�</translation>
+        <translation>&amp;Pomocník</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation>Otvori</translation>
+        <translation>Otvoriť</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Ukon�</translation>
+        <translation>Ukončiť</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -782,35 +784,35 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>About</source>
-        <translation>O aplik�ii</translation>
+        <translation>O aplikácii</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Spusti</translation>
+        <translation>Spustiť</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pozastavi</translation>
+        <translation>Pozastaviť</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Zmaza</translation>
+        <translation>Zmazať</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Pozastavi vetky</translation>
+        <translation>Pozastaviť všetky</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>Spusti vetky</translation>
+        <translation>Spustiť všetky</translation>
     </message>
     <message>
         <source>Documentation</source>
-        <translation>Dokument�ia</translation>
+        <translation>Dokumentácia</translation>
     </message>
     <message>
         <source>Delete All</source>
-        <translation>Zmaza vetky</translation>
+        <translation>Zmazať všetky</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -822,15 +824,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="obsolete">Sahovania</translation>
+        <translation type="obsolete">Sťahovania</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>Vyhad�anie</translation>
+        <translation>Vyhľadávanie</translation>
     </message>
     <message>
         <source>Search Pattern:</source>
-        <translation>Vyhad�ac�vzor:</translation>
+        <translation>Vyhľadávací vzor:</translation>
     </message>
     <message>
         <source>Status:</source>
@@ -838,19 +840,19 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Zastaven</translation>
+        <translation>Zastavený</translation>
     </message>
     <message>
         <source>Search Engines</source>
-        <translation>Vyhad�a�</translation>
+        <translation>Vyhľadávače</translation>
     </message>
     <message>
         <source>Results:</source>
-        <translation>Vsledky:</translation>
+        <translation>Výsledky:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation>Zastavi</translation>
+        <translation>Zastaviť</translation>
     </message>
     <message>
         <source>Seeds</source>
@@ -862,19 +864,19 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Search Engine</source>
-        <translation type="obsolete">Vyhad�</translation>
+        <translation type="obsolete">Vyhad</translation>
     </message>
     <message>
         <source>Download from URL</source>
-        <translation>Stiahnu z URL</translation>
+        <translation>Stiahnuť z URL</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation>Stiahnu</translation>
+        <translation>Stiahnuť</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Vy�sti</translation>
+        <translation>Vyčistiť</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -882,15 +884,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Create torrent</source>
-        <translation>Vytvori torrent</translation>
+        <translation>Vytvoriť torrent</translation>
     </message>
     <message>
         <source>Update search plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizovať vyhľadávací zásuvný modul</translation>
     </message>
     <message>
         <source>Session ratio: </source>
-        <translation type="unfinished"></translation>
+        <translation>Pomer: </translation>
     </message>
     <message>
         <source>Transfers</source>
@@ -909,25 +911,25 @@ Please close the other one first.</source>
     <name>PropListDelegate</name>
     <message>
         <source>False</source>
-        <translation type="unfinished">Nie</translation>
+        <translation>Nie</translation>
     </message>
     <message>
         <source>True</source>
-        <translation type="unfinished">no</translation>
+        <translation>Áno</translation>
     </message>
 </context>
 <context>
     <name>QTextEdit</name>
     <message>
         <source>Clear</source>
-        <translation type="obsolete">Vy�sti</translation>
+        <translation type="obsolete">Vyčisti</translation>
     </message>
 </context>
 <context>
     <name>Ui</name>
     <message>
         <source>Please contact me if you would like to translate qBittorrent to your own language.</source>
-        <translation>Pros�, kontaktujte ma, ak chcete preloi qBittorrent do vlastn�o jazyka.</translation>
+        <translation>Prosím, kontaktujte ma, ak chcete preložiť qBittorrent do vlastného jazyka.</translation>
     </message>
     <message>
         <source>qBittorrent </source>
@@ -935,15 +937,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation>R� by som po�koval nasledovnm dobrovon�om, ktor�preloili qBittorrent:</translation>
+        <translation>Rád by som poďakoval nasledovným dobrovoľníkom, ktorí preložili qBittorrent:</translation>
     </message>
     <message>
         <source>&lt;ul&gt;&lt;li&gt;I would like to thank sourceforge.net for hosting qBittorrent project.&lt;/li&gt;</source>
-        <translation type="obsolete">lt;ul&gt;&lt;li&gt;R� by som po�koval serveru sourceforge.net za hosting projektu qBittorrent.&lt;/li&gt;</translation>
+        <translation type="obsolete">lt;ul&gt;&lt;li&gt;R by som pokoval serveru sourceforge.net za hosting projektu qBittorrent.&lt;/li&gt;</translation>
     </message>
     <message>
         <source>&lt;li&gt;I also like to thank Jeffery Fernandez (developer@jefferyfernandez.id.au), our RPM packager, for his great work.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="obsolete">lt;li&gt;Tie by som r� po�koval Jefferymu Fernandezovi (developer@jefferyfernandez.id.au), n�u tvorcovi RPM bal�kov, za jeho skvel pr�u.&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation type="obsolete">lt;li&gt;Tie by som r pokoval Jefferymu Fernandezovi (developer@jefferyfernandez.id.au), nu tvorcovi RPM balkov, za jeho skvel pru.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <source>Preview impossible</source>
@@ -955,15 +957,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">N�ov</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Vekos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Priebeh</translation>
     </message>
     <message>
         <source>No URL entered</source>
@@ -1009,11 +1011,11 @@ Please close the other one first.</source>
     <name>createTorrentDialog</name>
     <message>
         <source>Dialog</source>
-        <translation type="obsolete">Dial�</translation>
+        <translation type="obsolete">Dial</translation>
     </message>
     <message>
         <source>Create Torrent file</source>
-        <translation>Vytvori Torrent sbor</translation>
+        <translation>Vytvoriť Torrent súbor</translation>
     </message>
     <message>
         <source>Destination torrent file:</source>
@@ -1021,11 +1023,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Input file or directory:</source>
-        <translation type="obsolete">Vstupn sbor alebo adres�:</translation>
+        <translation type="obsolete">Vstupn sbor alebo adres:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="obsolete">Koment�:</translation>
+        <translation type="obsolete">Koment:</translation>
     </message>
     <message>
         <source>...</source>
@@ -1033,7 +1035,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Create</source>
-        <translation>Vytvori</translation>
+        <translation>Vytvoriť</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -1045,78 +1047,82 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Directory</source>
-        <translation>Adres�</translation>
+        <translation>Adresár</translation>
     </message>
     <message>
         <source>Torrent Creation Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Nástroj na vytvorenie Torrentu</translation>
     </message>
     <message>
         <source>&lt;center&gt;Destination torrent file:&lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;center&gt;Cieľový torrent súbor:&lt;/center&gt;</translation>
     </message>
     <message>
         <source>&lt;center&gt;Input file or directory:&lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;center&gt;Vstupný súbor alebo adresár:&lt;/center&gt;</translation>
     </message>
     <message>
         <source>&lt;center&gt;Announce url:&lt;br&gt;(One per line)&lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;center&gt;Oznamujúce url:&lt;br&gt;(jedna na riadok)&lt;/center&gt;</translation>
     </message>
     <message>
         <source>&lt;center&gt;Comment:&lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;center&gt;Komentár:&lt;/center&gt;</translation>
     </message>
 </context>
 <context>
     <name>createtorrent</name>
     <message>
         <source>Select destination torrent file</source>
-        <translation>Vybra cieov torrent sbor</translation>
+        <translation>Vybrať cieľový torrent súbor</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>Torrent sbory</translation>
+        <translation>Torrent súbory</translation>
     </message>
     <message>
         <source>Select input directory or file</source>
-        <translation>Vyberte vstupn adres� alebo sbor</translation>
+        <translation>Vyberte vstupný adresár alebo súbor</translation>
     </message>
     <message>
         <source>No destination path set</source>
-        <translation>Nebola nastaven�cieov�cesta</translation>
+        <translation>Nebola nastavená cieľová cesta</translation>
     </message>
     <message>
         <source>Please type a destination path first</source>
-        <translation>Nap�e pros� najprv cieov cestu</translation>
+        <translation>Napíšte prosím najprv cieľovú cestu</translation>
     </message>
     <message>
         <source>No input path set</source>
-        <translation>Nebola zadan�vstupn�cesta</translation>
+        <translation>Nebola zadaná vstupná cesta</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation>Nap�e pros� najprv vstupn cestu</translation>
+        <translation>Napíšte prosím najprv vstupnú cestu</translation>
     </message>
     <message>
         <source>Input path does not exist</source>
-        <translation>Vstupn�cesta neexistuje</translation>
+        <translation>Vstupná cesta neexistuje</translation>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>Pros�, nap�e spr�nu vstupn cestu</translation>
+        <translation>Prosím, napíšte správnu vstupnú cestu</translation>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvorenie torrentu</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent bol úspešne vytvorený:</translation>
     </message>
 </context>
 <context>
     <name>downloadFromURL</name>
+    <message>
+        <source>Download from urls</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Download Torrents from URLs</source>
         <translation type="unfinished"></translation>
@@ -1127,15 +1133,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished">Stiahnu</translation>
+        <translation type="unfinished">Stiahnuť</translation>
     </message>
     <message>
         <source>Cancel</source>
         <translation type="unfinished">Storno</translation>
-    </message>
-    <message>
-        <source>Download from urls</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1170,7 +1172,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Nezn�y</translation>
+        <translation>Neznámy</translation>
     </message>
     <message>
         <source>h</source>
@@ -1183,71 +1185,71 @@ Please close the other one first.</source>
     <message>
         <source>B</source>
         <comment>bytes</comment>
-        <translation type="unfinished">B</translation>
+        <translation>B</translation>
     </message>
     <message>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
-        <translation type="unfinished">KiB</translation>
+        <translation>KiB</translation>
     </message>
     <message>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
-        <translation type="unfinished">MiB</translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
-        <translation type="unfinished">GiB</translation>
+        <translation>GiB</translation>
     </message>
     <message>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
-        <translation type="unfinished">TiB</translation>
+        <translation>TiB</translation>
     </message>
     <message>
         <source>m</source>
         <comment>minutes</comment>
-        <translation type="unfinished">m</translation>
+        <translation>m</translation>
     </message>
     <message>
         <source>h</source>
         <comment>hours</comment>
-        <translation type="unfinished">h</translation>
+        <translation>h</translation>
     </message>
     <message>
         <source>d</source>
         <comment>days</comment>
-        <translation type="unfinished">d</translation>
+        <translation>d</translation>
     </message>
     <message>
         <source>h </source>
         <comment>hours</comment>
-        <translation type="unfinished">h </translation>
+        <translation>h </translation>
     </message>
     <message>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Neznáma</translation>
     </message>
 </context>
 <context>
     <name>options_imp</name>
     <message>
         <source>Options saved successfully!</source>
-        <translation>Nastavenia spene uloen�!</translation>
+        <translation>Nastavenia úspešne uložené!</translation>
     </message>
     <message>
         <source>Choose Scan Directory</source>
-        <translation>Vyberte adres�, ktor sa bude prehliada</translation>
+        <translation>Vyberte adresár, ktorý sa bude prehliadať</translation>
     </message>
     <message>
         <source>Choose save Directory</source>
-        <translation>Vyberte adres�, kde sa bude uklada</translation>
+        <translation>Vyberte adresár, kde sa bude ukladať</translation>
     </message>
     <message>
         <source>Choose ipfilter.dat file</source>
-        <translation>Vyberte ipfilter.dat sbor</translation>
+        <translation>Vyberte ipfilter.dat súbor</translation>
     </message>
     <message>
         <source>I/O Error</source>
@@ -1255,15 +1257,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Couldn&apos;t open:</source>
-        <translation>Nemohol som otvori:</translation>
+        <translation>Nemohol som otvoriť:</translation>
     </message>
     <message>
         <source>in read mode.</source>
-        <translation>na �tanie.</translation>
+        <translation>na čítanie.</translation>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>neplatn riadok</translation>
+        <translation>neplatný riadok</translation>
     </message>
     <message>
         <source>Line</source>
@@ -1275,35 +1277,35 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Range Start IP</source>
-        <translation>Po�ato��IP rozsahu</translation>
+        <translation>Počiatočná IP rozsahu</translation>
     </message>
     <message>
         <source>Start IP:</source>
-        <translation>Po�ato��IP:</translation>
+        <translation>Počiatočná IP:</translation>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>Nespr�na IP</translation>
+        <translation>Nesprávna IP</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>T�o IP je nespr�na.</translation>
+        <translation>Táto IP je nesprávna.</translation>
     </message>
     <message>
         <source>Range End IP</source>
-        <translation>Koncov�IP rozsahu</translation>
+        <translation>Koncová IP rozsahu</translation>
     </message>
     <message>
         <source>End IP:</source>
-        <translation>Koncov�IP:</translation>
+        <translation>Koncová IP:</translation>
     </message>
     <message>
         <source>IP Range Comment</source>
-        <translation>Koment� k IP rozsahu</translation>
+        <translation>Komentár k IP rozsahu</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation>Koment�:</translation>
+        <translation>Komentár:</translation>
     </message>
     <message>
         <source>to</source>
@@ -1312,7 +1314,7 @@ Please close the other one first.</source>
     <message>
         <source>to</source>
         <comment>&lt;min port&gt; to &lt;max port&gt;</comment>
-        <translation type="unfinished">a</translation>
+        <translation>až</translation>
     </message>
     <message>
         <source>Choose your favourite preview program</source>
@@ -1350,15 +1352,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Main Infos</source>
-        <translation type="obsolete">Hlavn�info</translation>
+        <translation type="obsolete">Hlavninfo</translation>
     </message>
     <message>
         <source>File Name</source>
-        <translation>N�ov sboru</translation>
+        <translation>Názov súboru</translation>
     </message>
     <message>
         <source>Current Session</source>
-        <translation>S�sn�rel�ia</translation>
+        <translation>Súčasná relácia</translation>
     </message>
     <message>
         <source>Total Uploaded:</source>
@@ -1370,15 +1372,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Download state:</source>
-        <translation>Stav sahovania:</translation>
+        <translation>Stav sťahovania:</translation>
     </message>
     <message>
         <source>Current Tracker:</source>
-        <translation type="obsolete">S�sn tracker:</translation>
+        <translation type="obsolete">Ssn tracker:</translation>
     </message>
     <message>
         <source>Number of Peers:</source>
-        <translation type="obsolete">Po�t rovesn�ov:</translation>
+        <translation type="obsolete">Pot rovesnov:</translation>
     </message>
     <message>
         <source>Torrent Content</source>
@@ -1390,31 +1392,31 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Total Failed:</source>
-        <translation type="obsolete">Celkov po�t zlyhan:</translation>
+        <translation type="obsolete">Celkov pot zlyhan:</translation>
     </message>
     <message>
         <source>Finished</source>
-        <translation>Skon�</translation>
+        <translation>Skončené</translation>
     </message>
     <message>
         <source>Queued for checking</source>
-        <translation>Zaraden�do frontu pre kontrolu</translation>
+        <translation>Zaradené frontu pre kontrolu</translation>
     </message>
     <message>
         <source>Checking files</source>
-        <translation>Kontrolujem sbory</translation>
+        <translation>Kontrolujem súbory</translation>
     </message>
     <message>
         <source>Connecting to tracker</source>
-        <translation>Prip�am sa k trackeru</translation>
+        <translation>Pripájam sa k trackeru</translation>
     </message>
     <message>
         <source>Downloading Metadata</source>
-        <translation>Sahujem metad�a</translation>
+        <translation>Sťahujem metadáta</translation>
     </message>
     <message>
         <source>Downloading</source>
-        <translation>Sahujem</translation>
+        <translation>Sťahujem</translation>
     </message>
     <message>
         <source>Seeding</source>
@@ -1426,39 +1428,39 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Nezn�y</translation>
+        <translation>Neznámy</translation>
     </message>
     <message>
         <source>Complete: </source>
-        <translation>Dokon�n:</translation>
+        <translation>Dokončené: </translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation>iasto�e: </translation>
+        <translation>Čiastočne: </translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
-        <translation>Sbory obsiahnut�v s�snom torrente:</translation>
+        <translation>Súbory obsiahnuté v súčasnom torrente:</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Vekos</translation>
+        <translation>Veľkosť</translation>
     </message>
     <message>
         <source>Selected</source>
-        <translation>Vybran</translation>
+        <translation>Vybrané</translation>
     </message>
     <message>
         <source> Unselect</source>
-        <translation>Odober</translation>
+        <translation> Odober</translation>
     </message>
     <message>
         <source> Select</source>
-        <translation>Vyber</translation>
+        <translation> Vyber</translation>
     </message>
     <message>
         <source>You can select here precisely which files you want to download in current torrent.</source>
-        <translation>Tu m�te presne vybra, ktor�sbory zo s�sn�o torrentu chcete stiahnu.</translation>
+        <translation>Tu môžete presne vybrať, ktoré súbory zo súčasného torrentu chcete stiahnuť.</translation>
     </message>
     <message>
         <source>False</source>
@@ -1478,7 +1480,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>None - Unreachable?</source>
-        <translation>iadne - Nedostupn?</translation>
+        <translation>Žiadne - Nedostupné?</translation>
     </message>
     <message>
         <source>Errors:</source>
@@ -1486,34 +1488,38 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Priebeh</translation>
     </message>
     <message>
         <source>Main infos</source>
-        <translation type="unfinished"></translation>
+        <translation>Hlavné info</translation>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet rovesníkov:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Súčasný tracker:</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation type="unfinished"></translation>
+        <translation>Celkovo nahrané:</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation type="unfinished"></translation>
+        <translation>Celkovo stiahnuté:</translation>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Celkovo zlyhané:</translation>
     </message>
     <message>
         <source>Torrent content</source>
+        <translation>Obsah torrentu</translation>
+    </message>
+    <message>
+        <source>Share Ratio:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1522,10 +1528,6 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Share Ratio:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
