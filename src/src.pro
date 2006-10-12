@@ -4,7 +4,7 @@ ICONS_PATH = Icons
 TRAYICON_CPP = trayicon
 
 #Set the following variable to 1 to enable debug
-DEBUG_MODE = 1
+DEBUG_MODE = 0
 
 # Global
 TEMPLATE = app

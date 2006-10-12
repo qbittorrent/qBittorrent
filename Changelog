@@ -35,6 +35,8 @@
     - BUGFIX: Fixed selective download
     - BUGFIX: Fixed memory leaks in torrent properties
     - BUGFIX: Fixed tooltip behaviour for trayicon
+    - BUGFIX: Fixed Ipfilter.dat loading
+    - BUGFIX: Not loading options every time we display options anymore
     - COSMETIC: Now displaying the number of downloads in tab title
     - COSMETIC: Redesigned download from url dialog
     - COSMETIC: Added a message to warn user that we started download from an url

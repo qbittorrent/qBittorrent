@@ -565,13 +565,6 @@ int options_imp::getMaxConnec() const{
   }
 }
 
-void options_imp::showLoad(){
-  if(!loadOptions()){
-    std::cout << "Warning: Couldn't load options" << '\n';
-  }
-  this->show();
-}
-
 void options_imp::on_okButton_clicked(){
   if(applyButton->isEnabled()){
     saveOptions();
@@ -784,6 +777,7 @@ void options_imp::on_browse_button_clicked(){
 //
 // Lines may be commented using '#' or '//'
 void options_imp::processFilterFile(const QString& filePath){
+  qDebug("Processing filter files");
   filtersList->clear();
   QString manualFilters= misc::qBittorrentPath() + "ipfilter.dat";
   QStringList filterFiles(manualFilters);
@@ -794,27 +788,26 @@ void options_imp::processFilterFile(const QString& filePath){
     if (file.exists()){
       if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
         QMessageBox::critical(0, tr("I/O Error"), tr("Couldn't open:")+" "+filePath+" "+tr("in read mode."));
-        return;
+        continue;
       }
       unsigned int nbLine = 0;
       while (!file.atEnd()) {
         ++nbLine;
         QByteArray line = file.readLine();
-        QString strLine = QString(line.data());
-        if(!strLine.startsWith('#') && !strLine.startsWith("//")){
+        if(!line.startsWith('#') && !line.startsWith("//")){
           // Line is not commented
-          QStringList partsList = strLine.split(',');
+          QList<QByteArray> partsList = line.split(',');
           unsigned int nbElem = partsList.size();
-          if(nbElem != 2 && nbElem != 3){
-            QMessageBox::critical(0, tr("Invalid Line"), tr("Line")+" "+QString(misc::toString(nbLine).c_str())+" "+tr("is malformed."));
-            return;
+          if(nbElem < 2){
+            std::cout << "Ipfilter.dat: line " << nbLine << " is malformed.\n";
+            continue;
           }
           int nbAccess = partsList.at(1).trimmed().toInt();
           if(nbAccess <= 127){
             QString strComment;
             QString strStartIP = partsList.at(0).split('-').at(0).trimmed();
             QString strEndIP = partsList.at(0).split('-').at(1).trimmed();
-            if(partsList.size() == 3){
+            if(nbElem > 2){
               strComment = partsList.at(2).trimmed();
             }else{
               strComment = QString();
@@ -822,17 +815,19 @@ void options_imp::processFilterFile(const QString& filePath){
             // Split IP
             IP = strStartIP.split('.');
             if(IP.size() != 4){
+              std::cout << "Ipfilter.dat: line " << nbLine << ", first IP is malformed.\n";
               continue;
             }
-            address start(address::from_string(strStartIP.toStdString()));
+            address_v4 start((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
             IP = strEndIP.split('.');
             if(IP.size() != 4){
+              std::cout << "Ipfilter.dat: line " << nbLine << ", second IP is malformed.\n";
               continue;
             }
-            address last(address::from_string(strEndIP.toStdString()));
+            address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
             // add it to list
-            QStringList item(strStartIP);
-            item.append(strEndIP);
+            QStringList item(QString(start.to_string().c_str()));
+            item.append(QString(last.to_string().c_str()));
             if(!i){
               item.append("Manual");
             }else{

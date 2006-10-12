@@ -1631,8 +1631,10 @@ void GUI::configureSession(){
     }
     // Apply filtering settings
     if(options->isFilteringEnabled()){
+      qDebug("Ip Filter enabled");
       s->set_ip_filter(options->getFilter());
     }else{
+      qDebug("Ip Filter disabled");
       s->set_ip_filter(ip_filter());
     }
     // Apply Proxy settings
@@ -2297,7 +2299,7 @@ void GUI::setLocale(QString locale){
 
 // Display Program Options
 void GUI::showOptions() const{
-  options->showLoad();
+  options->show();
 }
 
 // Is executed each time options are saved
