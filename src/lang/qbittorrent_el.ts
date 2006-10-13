@@ -863,7 +863,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Μεταφορές</translation>
+        <translation>Μεταφορές</translation>
     </message>
 </context>
 <context>
@@ -1571,11 +1571,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Complete: </source>
-        <translation> Ολόκληρο:</translation>
+        <translation type="obsolete"> Ολόκληρο:</translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation> Μερικό:</translation>
+        <translation type="obsolete"> Μερικό:</translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
@@ -1635,7 +1635,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Αριθμός διαμοιραστών:</translation>
+        <translation type="obsolete">Αριθμός διαμοιραστών:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1668,6 +1668,14 @@ Please close the other one first.</source>
     <message>
         <source>Share Ratio:</source>
         <translation>Ποσοστό μοιράσματος:</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>Διαμοιραστές:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>Συνδέσεις:</translation>
     </message>
 </context>
 </TS>

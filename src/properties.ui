@@ -9,7 +9,7 @@
     <x>0</x>
     <y>0</y>
     <width>538</width>
-    <height>547</height>
+    <height>564</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -74,15 +74,15 @@
        </item>
        <item>
         <widget class="QWidget" name="widget3" >
-         <layout class="QHBoxLayout" >
+         <layout class="QVBoxLayout" >
           <property name="margin" >
-           <number>0</number>
+           <number>9</number>
           </property>
           <property name="spacing" >
            <number>6</number>
           </property>
           <item>
-           <layout class="QVBoxLayout" >
+           <layout class="QHBoxLayout" >
             <property name="margin" >
              <number>0</number>
             </property>
@@ -95,9 +95,9 @@
                <font>
                 <family>Sans Serif</family>
                 <pointsize>9</pointsize>
-                <weight>75</weight>
+                <weight>50</weight>
                 <italic>false</italic>
-                <bold>true</bold>
+                <bold>false</bold>
                 <underline>false</underline>
                 <strikeout>false</strikeout>
                </font>
@@ -107,34 +107,6 @@
               </property>
              </widget>
             </item>
-            <item>
-             <widget class="QLabel" name="label_3" >
-              <property name="font" >
-               <font>
-                <family>Sans Serif</family>
-                <pointsize>9</pointsize>
-                <weight>75</weight>
-                <italic>false</italic>
-                <bold>true</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
-              <property name="text" >
-               <string>Number of peers:</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" >
-            <property name="margin" >
-             <number>0</number>
-            </property>
-            <property name="spacing" >
-             <number>6</number>
-            </property>
             <item>
              <layout class="QHBoxLayout" >
               <property name="margin" >
@@ -165,42 +137,78 @@
               </item>
              </layout>
             </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
             <item>
-             <layout class="QHBoxLayout" >
-              <property name="margin" >
-               <number>0</number>
+             <widget class="QLabel" name="lbl_seeds" >
+              <property name="font" >
+               <font>
+                <family>Sans Serif</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+                <underline>false</underline>
+                <strikeout>false</strikeout>
+               </font>
               </property>
-              <property name="spacing" >
-               <number>6</number>
+              <property name="text" >
+               <string>Seeders:</string>
               </property>
-              <item>
-               <widget class="QLabel" name="nbPeers" >
-                <property name="text" >
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="complete_partial" >
-                <property name="text" >
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer>
-                <property name="orientation" >
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" >
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="nbSeeds" >
+              <property name="text" >
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_leechers" >
+              <property name="font" >
+               <font>
+                <family>Sans Serif</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+                <underline>false</underline>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="text" >
+               <string>Leechers:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="nbLeechers" >
+              <property name="text" >
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
            </layout>
           </item>
@@ -222,6 +230,17 @@
            <width>0</width>
            <height>193</height>
           </size>
+         </property>
+         <property name="font" >
+          <font>
+           <family>Sans Serif</family>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
          </property>
          <property name="title" >
           <string>Tracker</string>
@@ -255,9 +274,9 @@
                  <font>
                   <family>Sans Serif</family>
                   <pointsize>9</pointsize>
-                  <weight>75</weight>
+                  <weight>50</weight>
                   <italic>false</italic>
-                  <bold>true</bold>
+                  <bold>false</bold>
                   <underline>false</underline>
                   <strikeout>false</strikeout>
                  </font>
@@ -273,9 +292,9 @@
                  <font>
                   <family>Sans Serif</family>
                   <pointsize>9</pointsize>
-                  <weight>75</weight>
+                  <weight>50</weight>
                   <italic>false</italic>
-                  <bold>true</bold>
+                  <bold>false</bold>
                   <underline>false</underline>
                   <strikeout>false</strikeout>
                  </font>
@@ -297,9 +316,9 @@
                  <font>
                   <family>Sans Serif</family>
                   <pointsize>9</pointsize>
-                  <weight>75</weight>
+                  <weight>50</weight>
                   <italic>false</italic>
-                  <bold>true</bold>
+                  <bold>false</bold>
                   <underline>false</underline>
                   <strikeout>false</strikeout>
                  </font>
@@ -378,9 +397,9 @@
           <font>
            <family>Sans Serif</family>
            <pointsize>9</pointsize>
-           <weight>50</weight>
+           <weight>75</weight>
            <italic>false</italic>
-           <bold>false</bold>
+           <bold>true</bold>
            <underline>false</underline>
            <strikeout>false</strikeout>
           </font>
@@ -426,9 +445,9 @@
                   <font>
                    <family>Sans Serif</family>
                    <pointsize>9</pointsize>
-                   <weight>75</weight>
+                   <weight>50</weight>
                    <italic>false</italic>
-                   <bold>true</bold>
+                   <bold>false</bold>
                    <underline>false</underline>
                    <strikeout>false</strikeout>
                   </font>
@@ -444,9 +463,9 @@
                   <font>
                    <family>Sans Serif</family>
                    <pointsize>9</pointsize>
-                   <weight>75</weight>
+                   <weight>50</weight>
                    <italic>false</italic>
-                   <bold>true</bold>
+                   <bold>false</bold>
                    <underline>false</underline>
                    <strikeout>false</strikeout>
                   </font>
@@ -462,9 +481,9 @@
                   <font>
                    <family>Sans Serif</family>
                    <pointsize>9</pointsize>
-                   <weight>75</weight>
+                   <weight>50</weight>
                    <italic>false</italic>
-                   <bold>true</bold>
+                   <bold>false</bold>
                    <underline>false</underline>
                    <strikeout>false</strikeout>
                   </font>
@@ -480,9 +499,9 @@
                   <font>
                    <family>Sans Serif</family>
                    <pointsize>9</pointsize>
-                   <weight>75</weight>
+                   <weight>50</weight>
                    <italic>false</italic>
-                   <bold>true</bold>
+                   <bold>false</bold>
                    <underline>false</underline>
                    <strikeout>false</strikeout>
                   </font>
@@ -565,6 +584,17 @@
            <height>52</height>
           </size>
          </property>
+         <property name="font" >
+          <font>
+           <family>Sans Serif</family>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
          <property name="title" >
           <string>Options</string>
          </property>
@@ -577,6 +607,17 @@
           </property>
           <item>
            <widget class="QCheckBox" name="incrementalDownload" >
+            <property name="font" >
+             <font>
+              <family>Sans Serif</family>
+              <pointsize>9</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+              <underline>false</underline>
+              <strikeout>false</strikeout>
+             </font>
+            </property>
             <property name="text" >
              <string>Download in correct order (slower but good for previewing)</string>
             </property>

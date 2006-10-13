@@ -81,7 +81,7 @@ Copyright ©2006 por Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>03/05/1985</source>
-        <translation type="unfinished">03/05/1985</translation>
+        <translation>03/05/1985</translation>
     </message>
     <message>
         <source>Student in computer science</source>
@@ -92,7 +92,7 @@ Copyright ©2006 por Christophe Dumez&lt;br&gt;
     <name>DLListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -611,31 +611,31 @@ Changelog:</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Tamanho</translation>
+        <translation>Tamanho</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Progresso</translation>
+        <translation>Progresso</translation>
     </message>
     <message>
         <source>DL Speed</source>
-        <translation type="unfinished">Velocidade de download</translation>
+        <translation>Velocidade de download</translation>
     </message>
     <message>
         <source>UP Speed</source>
-        <translation type="unfinished">Velocidade de Upload</translation>
+        <translation>Velocidade de Upload</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished">Status</translation>
+        <translation>Status</translation>
     </message>
     <message>
         <source>ETA</source>
-        <translation type="unfinished">ETA</translation>
+        <translation>ETA</translation>
     </message>
     <message>
         <source>Seeders</source>
@@ -643,7 +643,7 @@ Changelog:</translation>
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished">Leechers</translation>
+        <translation>Leechers</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -652,7 +652,7 @@ Changelog:</translation>
     <message>
         <source>Stalled</source>
         <comment>state of a torrent whose DL Speed is 0</comment>
-        <translation type="unfinished">Parado</translation>
+        <translation>Parado</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -680,7 +680,7 @@ Please close the other one first.</source>
     <message>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
-        <translation type="unfinished">Baixando</translation>
+        <translation>Baixando</translation>
     </message>
     <message>
         <source>Please wait...</source>
@@ -894,11 +894,11 @@ Please close the other one first.</source>
     <name>PropListDelegate</name>
     <message>
         <source>False</source>
-        <translation type="unfinished">Falso</translation>
+        <translation>Falso</translation>
     </message>
     <message>
         <source>True</source>
-        <translation type="unfinished">Verdadeiro</translation>
+        <translation>Verdadeiro</translation>
     </message>
 </context>
 <context>
@@ -940,15 +940,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Tamanho</translation>
+        <translation>Tamanho</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Progresso</translation>
+        <translation>Progresso</translation>
     </message>
     <message>
         <source>No URL entered</source>
@@ -979,7 +979,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Senha:</translation>
+        <translation>Senha:</translation>
     </message>
     <message>
         <source>Log in</source>
@@ -987,7 +987,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
 </context>
 <context>
@@ -1108,11 +1108,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished">Download</translation>
+        <translation>Download</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Download from urls</source>
@@ -1173,7 +1173,7 @@ Please close the other one first.</source>
     <message>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
-        <translation type="unfinished">Desconhecido</translation>
+        <translation>Desconhecido</translation>
     </message>
 </context>
 <context>
@@ -1280,7 +1280,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
 </context>
 <context>
@@ -1371,11 +1371,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Complete: </source>
-        <translation>Completo:</translation>
+        <translation type="obsolete">Completo:</translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation>Parcial:</translation>
+        <translation type="obsolete">Parcial:</translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
@@ -1434,10 +1434,6 @@ Please close the other one first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Number of peers:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Current tracker:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1459,7 +1455,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">Opções</translation>
+        <translation>Opções</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -1468,6 +1464,14 @@ Please close the other one first.</source>
     <message>
         <source>Share Ratio:</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation type="unfinished">Enviando:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>Leechers:</translation>
     </message>
 </context>
 </TS>

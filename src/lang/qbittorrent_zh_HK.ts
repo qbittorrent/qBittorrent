@@ -1294,10 +1294,6 @@ Please close the other one first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Number of peers:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Tracker</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1410,14 +1406,6 @@ Please close the other one first.</source>
         <translation type="unfinished">無效</translation>
     </message>
     <message>
-        <source>Complete: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Partial: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Options</source>
         <translation type="unfinished">選項</translation>
     </message>
@@ -1427,6 +1415,14 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Share Ratio:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

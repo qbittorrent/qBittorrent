@@ -1501,11 +1501,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Complete: </source>
-        <translation> Завершено:</translation>
+        <translation type="obsolete"> Завершено:</translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation> Частично:</translation>
+        <translation type="obsolete"> Частично:</translation>
     </message>
     <message>
         <source>False</source>
@@ -1525,7 +1525,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Число пэров:</translation>
+        <translation type="obsolete">Число пэров:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1558,6 +1558,14 @@ Please close the other one first.</source>
     <message>
         <source>Share Ratio:</source>
         <translation>Степень разделенности:</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>Сидеры:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>Личеры:</translation>
     </message>
 </context>
 </TS>

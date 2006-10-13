@@ -1659,11 +1659,11 @@ Veuillez d&apos;abord le quitter.</translation>
     </message>
     <message>
         <source>Complete: </source>
-        <translation> Complet :</translation>
+        <translation type="obsolete"> Complet :</translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation> Partiel :</translation>
+        <translation type="obsolete"> Partiel :</translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
@@ -1723,7 +1723,7 @@ Veuillez d&apos;abord le quitter.</translation>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Nombre de sources :</translation>
+        <translation type="obsolete">Nombre de sources :</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1756,6 +1756,14 @@ Veuillez d&apos;abord le quitter.</translation>
     <message>
         <source>Share Ratio:</source>
         <translation>Ratio de partage :</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>Sources complètes :</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>Sources partielles :</translation>
     </message>
 </context>
 </TS>

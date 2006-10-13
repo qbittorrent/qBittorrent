@@ -140,19 +140,19 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Birthday:</source>
-        <translation type="unfinished">Verjaardag</translation>
+        <translation>Verjaardag:</translation>
     </message>
     <message>
         <source>Occupation:</source>
-        <translation type="unfinished">Werk</translation>
+        <translation>Werk:</translation>
     </message>
     <message>
         <source>03/05/1985</source>
-        <translation type="unfinished">03/05/1985</translation>
+        <translation>03/05/1985</translation>
     </message>
     <message>
         <source>Student in computer science</source>
-        <translation type="unfinished">Student in computer wetenschap</translation>
+        <translation>Student in computer wetenschap</translation>
     </message>
 </context>
 <context>
@@ -434,23 +434,23 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation type="unfinished">DHT (Geen Tracker)</translation>
+        <translation>DHT (Geen Tracker):</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation type="unfinished">Stop DHT (Geen Tracker) ondersteuning</translation>
+        <translation>Stop DHT (Geen Tracker) ondersteuning</translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation type="unfinished">Verwijder automatish downloads die gereed zijn</translation>
+        <translation>Verwijder automatish downloads die gereed zijn</translation>
     </message>
     <message>
         <source>Preview program</source>
-        <translation type="unfinished">Kijk vooruit op het programma</translation>
+        <translation>Kijk vooruit op het programma</translation>
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation type="unfinished">Audio/Video Speler</translation>
+        <translation>Audio/Video Speler:</translation>
     </message>
 </context>
 <context>
@@ -796,41 +796,37 @@ Changelog:
     </message>
     <message>
         <source>Preview process already running</source>
-        <translation type="unfinished">Vooruitkijk proccess is al bezig</translation>
+        <translation>Vooruitkijk proccess is al bezig</translation>
     </message>
     <message>
         <source>There is already another preview process running.
 Please close the other one first.</source>
-        <translation type="unfinished">Er is al een ander vooruitkijk proccess actief. 
+        <translation>Er is al een ander vooruitkijk proccess actief. 
 Stop het eerste proccess eerst.
 </translation>
     </message>
     <message>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
-        <translation type="unfinished">Kon niet downloaden
-
-Kon &lt;file&gt; niet downloaden</translation>
+        <translation>Kon niet downloaden</translation>
     </message>
     <message>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
-        <translation type="unfinished">reden:
-
-Reden waarom het downloaden gefaald heefd</translation>
+        <translation>reden:</translation>
     </message>
     <message>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
-        <translation type="unfinished">Downloaden</translation>
+        <translation>Downloaden</translation>
     </message>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished">Wachten a.u.b</translation>
+        <translation>Wachten...</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Overdrachten</translation>
+        <translation>Overdrachten</translation>
     </message>
 </context>
 <context>
@@ -1033,15 +1029,15 @@ Reden waarom het downloaden gefaald heefd</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Overdrachten</translation>
+        <translation>Overdrachten</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation type="unfinished">Kijk vooruit op bestand</translation>
+        <translation>Kijk vooruit op bestand</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation type="unfinished">Wist log</translation>
+        <translation>Wist log</translation>
     </message>
 </context>
 <context>
@@ -1086,7 +1082,7 @@ Reden waarom het downloaden gefaald heefd</translation>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished">Vooruitkijken  onmogelijk</translation>
+        <translation>Vooruitkijken  onmogelijk</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
@@ -1094,23 +1090,23 @@ Reden waarom het downloaden gefaald heefd</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Naam</translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Grootte</translation>
+        <translation>Grootte</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Voortgang</translation>
+        <translation>Voortgang</translation>
     </message>
     <message>
         <source>No URL entered</source>
-        <translation type="unfinished">Geen URL ingevoerd</translation>
+        <translation>Geen URL ingevoerd</translation>
     </message>
     <message>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished">Typ op zijn minst 1 URL</translation>
+        <translation>Typ op zijn minst 1 URL.</translation>
     </message>
 </context>
 <context>
@@ -1133,7 +1129,7 @@ Reden waarom het downloaden gefaald heefd</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Wachtwoord:</translation>
+        <translation>Wachtwoord:</translation>
     </message>
     <message>
         <source>Log in</source>
@@ -1141,7 +1137,7 @@ Reden waarom het downloaden gefaald heefd</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Annuleren</translation>
+        <translation>Annuleren</translation>
     </message>
 </context>
 <context>
@@ -1238,23 +1234,23 @@ Reden waarom het downloaden gefaald heefd</translation>
     <name>downloadFromURL</name>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation type="unfinished">Download Torrents via URLs</translation>
+        <translation>Download Torrents via URLs</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation type="unfinished">1 url per lijn</translation>
+        <translation>1 url per lijn</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished">Download</translation>
+        <translation>Download</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Annuleren</translation>
+        <translation>Annuleren</translation>
     </message>
     <message>
         <source>Download from urls</source>
-        <translation type="unfinished">Download uit urls</translation>
+        <translation>Download uit urls</translation>
     </message>
 </context>
 <context>
@@ -1423,7 +1419,7 @@ Reden waarom het downloaden gefaald heefd</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Annuleren</translation>
+        <translation>Annuleren</translation>
     </message>
 </context>
 <context>
@@ -1554,11 +1550,11 @@ Reden waarom het downloaden gefaald heefd</translation>
     </message>
     <message>
         <source>Complete: </source>
-        <translation> Klaar:</translation>
+        <translation type="obsolete"> Klaar:</translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation> Gedeeltelijk:</translation>
+        <translation type="obsolete"> Gedeeltelijk:</translation>
     </message>
     <message>
         <source>False</source>
@@ -1578,7 +1574,7 @@ Reden waarom het downloaden gefaald heefd</translation>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Aantal peers:</translation>
+        <translation type="obsolete">Aantal peers:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1602,7 +1598,7 @@ Reden waarom het downloaden gefaald heefd</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">Instellingen</translation>
+        <translation>Instellingen</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -1610,6 +1606,14 @@ Reden waarom het downloaden gefaald heefd</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

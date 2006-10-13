@@ -743,7 +743,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">传输</translation>
+        <translation>传输</translation>
     </message>
 </context>
 <context>
@@ -1454,11 +1454,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Complete: </source>
-        <translation> 完整:</translation>
+        <translation type="obsolete"> 完整:</translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation> 不完整:</translation>
+        <translation type="obsolete"> 不完整:</translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
@@ -1518,7 +1518,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>peers数量:</translation>
+        <translation type="obsolete">peers数量:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1551,6 +1551,14 @@ Please close the other one first.</source>
     <message>
         <source>Share Ratio:</source>
         <translation>分享率:</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>完整种子:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>不完整种子:</translation>
     </message>
 </context>
 </TS>

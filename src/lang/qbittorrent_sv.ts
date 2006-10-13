@@ -88,7 +88,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>03/05/1985</source>
-        <translation type="unfinished">03/05/1985</translation>
+        <translation>03/05/1985</translation>
     </message>
     <message>
         <source>Student in computer science</source>
@@ -639,7 +639,7 @@ Please close the other one first.</source>
     <message>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
-        <translation type="unfinished">Hämtar</translation>
+        <translation>Hämtar</translation>
     </message>
     <message>
         <source>Please wait...</source>
@@ -809,11 +809,11 @@ Please close the other one first.</source>
     <name>PropListDelegate</name>
     <message>
         <source>True</source>
-        <translation type="unfinished">Sant</translation>
+        <translation>Sant</translation>
     </message>
     <message>
         <source>False</source>
-        <translation type="unfinished">Falskt</translation>
+        <translation>Falskt</translation>
     </message>
 </context>
 <context>
@@ -847,15 +847,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Namn</translation>
+        <translation>Namn</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Storlek</translation>
+        <translation>Storlek</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Förlopp</translation>
+        <translation>Förlopp</translation>
     </message>
     <message>
         <source>No URL entered</source>
@@ -886,7 +886,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Lösenord:</translation>
+        <translation>Lösenord:</translation>
     </message>
     <message>
         <source>Log in</source>
@@ -894,7 +894,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Avbryt</translation>
+        <translation>Avbryt</translation>
     </message>
 </context>
 <context>
@@ -1003,11 +1003,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished">Hämta</translation>
+        <translation>Hämta</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Avbryt</translation>
+        <translation>Avbryt</translation>
     </message>
 </context>
 <context>
@@ -1171,7 +1171,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Avbryt</translation>
+        <translation>Avbryt</translation>
     </message>
 </context>
 <context>
@@ -1234,11 +1234,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Complete: </source>
-        <translation>Färdig: </translation>
+        <translation type="obsolete">Färdig: </translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation>Delvis: </translation>
+        <translation type="obsolete">Delvis: </translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
@@ -1298,7 +1298,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Antal parter:</translation>
+        <translation type="obsolete">Antal parter:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1326,11 +1326,19 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">Alternativ</translation>
+        <translation>Alternativ</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>Distributörer:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>Reciprokörer:</translation>
     </message>
 </context>
 </TS>

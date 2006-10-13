@@ -785,7 +785,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Трансфери</translation>
+        <translation>Трансфери</translation>
     </message>
 </context>
 <context>
@@ -1477,11 +1477,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Complete: </source>
-        <translation>Завершено:</translation>
+        <translation type="obsolete">Завершено:</translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation>Частково:</translation>
+        <translation type="obsolete">Частково:</translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
@@ -1541,7 +1541,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Кількість пірів:</translation>
+        <translation type="obsolete">Кількість пірів:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1574,6 +1574,14 @@ Please close the other one first.</source>
     <message>
         <source>Share Ratio:</source>
         <translation>Коефіціент розподілення:</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>Сідери:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>Лічери:</translation>
     </message>
 </context>
 </TS>

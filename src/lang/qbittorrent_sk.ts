@@ -1432,11 +1432,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Complete: </source>
-        <translation>Dokončené: </translation>
+        <translation type="obsolete">Dokončené: </translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation>Čiastočne: </translation>
+        <translation type="obsolete">Čiastočne: </translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
@@ -1496,7 +1496,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Počet rovesníkov:</translation>
+        <translation type="obsolete">Počet rovesníkov:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1517,6 +1517,14 @@ Please close the other one first.</source>
     <message>
         <source>Torrent content</source>
         <translation>Obsah torrentu</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Share Ratio:</source>

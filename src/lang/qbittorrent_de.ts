@@ -788,7 +788,7 @@ Bitte schliessen Sie diesen zuerst.</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Transfer</translation>
+        <translation>Transfer</translation>
     </message>
 </context>
 <context>
@@ -1532,11 +1532,11 @@ Bitte schliessen Sie diesen zuerst.</translation>
     </message>
     <message>
         <source>Complete: </source>
-        <translation>Komplett:</translation>
+        <translation type="obsolete">Komplett:</translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation> Unvollständig:</translation>
+        <translation type="obsolete"> Unvollständig:</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -1592,7 +1592,7 @@ Bitte schliessen Sie diesen zuerst.</translation>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Anzahl der Peers:</translation>
+        <translation type="obsolete">Anzahl der Peers:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1625,6 +1625,14 @@ Bitte schliessen Sie diesen zuerst.</translation>
     <message>
         <source>Share Ratio:</source>
         <translation>Share Verhältnis:</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>Seeder:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>Leecher:</translation>
     </message>
 </context>
 </TS>

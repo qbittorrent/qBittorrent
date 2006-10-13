@@ -81,7 +81,7 @@ Copyright © 2006 di Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>03/05/1985</source>
-        <translation type="unfinished">03/05/1985</translation>
+        <translation>03/05/1985</translation>
     </message>
     <message>
         <source>Student in computer science</source>
@@ -624,12 +624,12 @@ Example: Downloading www.example.com/test.torrent</comment>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Trasferimenti</translation>
+        <translation>Trasferimenti</translation>
     </message>
     <message>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
-        <translation type="unfinished">Scaricando</translation>
+        <translation>Scaricando</translation>
     </message>
 </context>
 <context>
@@ -787,18 +787,18 @@ Example: Downloading www.example.com/test.torrent</comment>
     <name>PropListDelegate</name>
     <message>
         <source>False</source>
-        <translation type="unfinished">Falso</translation>
+        <translation>Falso</translation>
     </message>
     <message>
         <source>True</source>
-        <translation type="unfinished">Vero</translation>
+        <translation>Vero</translation>
     </message>
 </context>
 <context>
     <name>Ui</name>
     <message>
         <source>Please contact me if you would like to translate qBittorrent to your own language.</source>
-        <translation>Per favore contattami se vuoi tradurre qBittorrent nella tua lingua</translation>
+        <translation>Per favore contattami se vuoi tradurre qBittorrent nella tua lingua.</translation>
     </message>
     <message>
         <source>qBittorrent </source>
@@ -818,15 +818,15 @@ Example: Downloading www.example.com/test.torrent</comment>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Dimensione</translation>
+        <translation>Dimensione</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Progresso</translation>
+        <translation>Progresso</translation>
     </message>
     <message>
         <source>No URL entered</source>
@@ -857,7 +857,7 @@ Example: Downloading www.example.com/test.torrent</comment>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Password:</translation>
+        <translation>Password:</translation>
     </message>
     <message>
         <source>Log in</source>
@@ -970,7 +970,7 @@ Example: Downloading www.example.com/test.torrent</comment>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished">Download</translation>
+        <translation>Download</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -1205,11 +1205,11 @@ Example: Downloading www.example.com/test.torrent</comment>
     </message>
     <message>
         <source>Complete: </source>
-        <translation>Completo:</translation>
+        <translation type="obsolete">Completo:</translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation>Parziale:</translation>
+        <translation type="obsolete">Parziale:</translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
@@ -1261,7 +1261,7 @@ Example: Downloading www.example.com/test.torrent</comment>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Numero di peer:</translation>
+        <translation type="obsolete">Numero di peer:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1285,7 +1285,7 @@ Example: Downloading www.example.com/test.torrent</comment>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">opzioni</translation>
+        <translation>opzioni</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -1294,6 +1294,14 @@ Example: Downloading www.example.com/test.torrent</comment>
     <message>
         <source>Share Ratio:</source>
         <translation>Percentuale di condivisione:</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>Seeders:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>Leechers:</translation>
     </message>
 </context>
 </TS>

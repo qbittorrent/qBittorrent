@@ -81,8 +81,6 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
   for(unsigned int i=0; i<trackers.size(); ++i){
     trackersURLS->addItem(QString(trackers[i].url.c_str()));
   }
-  float peers = torrentStatus.num_peers;
-  nbPeers->setText(misc::toString(peers).c_str());
   char tmp[MAX_CHAR_TMP];
   failed->setText(misc::friendlyUnit(torrentStatus.total_failed_bytes));
   upTotal->setText(misc::friendlyUnit(torrentStatus.total_payload_upload));
@@ -106,17 +104,16 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
   if(complete == -1){
     completeStr = tr("Unknown");
   }else{
-    snprintf(tmp, MAX_CHAR_TMP, "%.1f%%", complete/peers*100.);
-    completeStr = QString(tmp);
+    completeStr = QString(misc::toString(complete).c_str());
   }
   partial = torrentStatus.num_incomplete;
   if(partial == -1){
     partialStr = tr("Unknown");
   }else{
-    snprintf(tmp, MAX_CHAR_TMP, "%.1f%%", partial/peers*100.);
-    partialStr = QString(tmp);
+    partialStr = QString(misc::toString(partial).c_str());
   }
-  complete_partial->setText("("+tr("Complete: ")+completeStr+", "+tr("Partial: ")+partialStr+")");
+  nbSeeds->setText(completeStr);
+  nbLeechers->setText(partialStr);
   // Tracker Errors
   for(int i=0; i < trackerErrors.size(); ++i){
     this->trackerErrors->append(trackerErrors.at(i));

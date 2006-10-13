@@ -833,7 +833,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">전송</translation>
+        <translation>전송</translation>
     </message>
 </context>
 <context>
@@ -1550,11 +1550,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Complete: </source>
-        <translation> 완전함:</translation>
+        <translation type="obsolete"> 완전함:</translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation> 부분적:</translation>
+        <translation type="obsolete"> 부분적:</translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
@@ -1614,7 +1614,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>전송자수:</translation>
+        <translation type="obsolete">전송자수:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1647,6 +1647,14 @@ Please close the other one first.</source>
     <message>
         <source>Share Ratio:</source>
         <translation>공유 비율:</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>완전체 공유자:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>부분 공유:</translation>
     </message>
 </context>
 </TS>

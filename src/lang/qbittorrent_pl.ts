@@ -1555,11 +1555,11 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Complete: </source>
-        <translation>Ukończone: </translation>
+        <translation type="obsolete">Ukończone: </translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation>Częściowo:</translation>
+        <translation type="obsolete">Częściowo:</translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
@@ -1619,7 +1619,7 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Liczna peer-ów:</translation>
+        <translation type="obsolete">Liczna peer-ów:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1652,6 +1652,14 @@ Zamknij najpierw okno podglądu.</translation>
     <message>
         <source>Share Ratio:</source>
         <translation>Ratio:</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>Seeders:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>Leechers:</translation>
     </message>
 </context>
 </TS>

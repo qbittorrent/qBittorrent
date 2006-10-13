@@ -1174,14 +1174,6 @@ Please close the other one first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Complete: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Partial: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Files contained in current torrent:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1230,10 +1222,6 @@ Please close the other one first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Number of peers:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Current tracker:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1263,6 +1251,14 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Share Ratio:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

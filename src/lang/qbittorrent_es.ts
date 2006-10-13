@@ -804,7 +804,7 @@ Por favor cierra el otro antes.</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Transferidos</translation>
+        <translation>Transferidos</translation>
     </message>
 </context>
 <context>
@@ -1552,11 +1552,11 @@ Por favor cierra el otro antes.</translation>
     </message>
     <message>
         <source>Complete: </source>
-        <translation> Completo:</translation>
+        <translation type="obsolete"> Completo:</translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation> Parcial:</translation>
+        <translation type="obsolete"> Parcial:</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -1616,7 +1616,7 @@ Por favor cierra el otro antes.</translation>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Numero de amigos:</translation>
+        <translation type="obsolete">Numero de amigos:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1649,6 +1649,14 @@ Por favor cierra el otro antes.</translation>
     <message>
         <source>Share Ratio:</source>
         <translation>Grado de compartición:</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>Seeders:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>Leechers:</translation>
     </message>
 </context>
 </TS>

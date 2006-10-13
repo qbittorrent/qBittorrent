@@ -871,7 +871,7 @@ Si et plau tanca l&apos;altre primer.</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Transferits</translation>
+        <translation>Transferits</translation>
     </message>
 </context>
 <context>
@@ -1619,11 +1619,11 @@ Si et plau tanca l&apos;altre primer.</translation>
     </message>
     <message>
         <source>Complete: </source>
-        <translation>Completat: </translation>
+        <translation type="obsolete">Completat: </translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation>Pacial: </translation>
+        <translation type="obsolete">Pacial: </translation>
     </message>
     <message>
         <source>False</source>
@@ -1643,7 +1643,7 @@ Si et plau tanca l&apos;altre primer.</translation>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Nombre d&apos; amics:</translation>
+        <translation type="obsolete">Nombre d&apos; amics:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1676,6 +1676,14 @@ Si et plau tanca l&apos;altre primer.</translation>
     <message>
         <source>Share Ratio:</source>
         <translation>Radi de descàrregues:</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>Seeders:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>Leechers:</translation>
     </message>
 </context>
 </TS>

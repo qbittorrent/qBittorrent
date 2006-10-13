@@ -617,7 +617,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Overføringer</translation>
+        <translation>Overføringer</translation>
     </message>
 </context>
 <context>
@@ -1193,11 +1193,11 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Complete: </source>
-        <translation>Ferdig:</translation>
+        <translation type="obsolete">Ferdig:</translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation>Delvis:</translation>
+        <translation type="obsolete">Delvis:</translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
@@ -1249,7 +1249,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Antall nedlastere:</translation>
+        <translation type="obsolete">Antall nedlastere:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1281,7 +1281,15 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Delings forhold:</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>Delere:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>Nedlastere:</translation>
     </message>
 </context>
 </TS>

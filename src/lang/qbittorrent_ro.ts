@@ -690,7 +690,7 @@ Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Transferuri</translation>
+        <translation>Transferuri</translation>
     </message>
 </context>
 <context>
@@ -1373,11 +1373,11 @@ Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
         <source>Complete: </source>
-        <translation>Completat: </translation>
+        <translation type="obsolete">Completat: </translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation>Parţial: </translation>
+        <translation type="obsolete">Parţial: </translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
@@ -1437,7 +1437,7 @@ Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Numarul de peers:</translation>
+        <translation type="obsolete">Numarul de peers:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1470,6 +1470,14 @@ Vă rugăm să-l opriţi.</translation>
     <message>
         <source>Share Ratio:</source>
         <translation>Rata de Share:</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>Seederi:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>Leecheri:</translation>
     </message>
 </context>
 </TS>

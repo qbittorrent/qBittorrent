@@ -855,7 +855,7 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Aktarımlar</translation>
+        <translation>Aktarımlar</translation>
     </message>
 </context>
 <context>
@@ -1563,11 +1563,11 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Complete: </source>
-        <translation> Tamamlandı:</translation>
+        <translation type="obsolete"> Tamamlandı:</translation>
     </message>
     <message>
         <source>Partial: </source>
-        <translation> Kısmi:</translation>
+        <translation type="obsolete"> Kısmi:</translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
@@ -1627,7 +1627,7 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Number of peers:</source>
-        <translation>Kullanıcı sayısı:</translation>
+        <translation type="obsolete">Kullanıcı sayısı:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
@@ -1660,6 +1660,14 @@ Lütfen önce diğerini kapatın.</translation>
     <message>
         <source>Share Ratio:</source>
         <translation>Paylaşım Oranı:</translation>
+    </message>
+    <message>
+        <source>Seeders:</source>
+        <translation>Seeders:</translation>
+    </message>
+    <message>
+        <source>Leechers:</source>
+        <translation>Leechers:</translation>
     </message>
 </context>
 </TS>
