@@ -23,7 +23,7 @@
 #define ABOUT_H
 
 #include "ui_about.h"
-#define VERSION "v0.7.0"
+#define VERSION "v0.7.0svn"
 
 class about : public QDialog, private Ui::AboutDlg{
   Q_OBJECT
