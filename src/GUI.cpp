@@ -480,6 +480,12 @@ void GUI::updateDlList(){
         case torrent_status::finished:
         case torrent_status::seeding:
           DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
+          DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Finished")));
+          DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
+          DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
+          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)1.));
+          setRowColor(row, "orange");
           break;
         case torrent_status::checking_files:
         case torrent_status::queued_for_checking:
@@ -1854,14 +1860,6 @@ void GUI::checkConnectionStatus(){
       if(options->getUseOSDAlways() || (options->getUseOSDWhenHiddenOnly() && (isMinimized() || isHidden()))) {
         OSDWindow->display(fileName+tr(" has finished downloading."));
       }
-      // Update download list
-      int row = getRowFromName(fileName);
-      DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Finished")));
-      DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
-      DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-      DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
-      DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)1.));
-      setRowColor(row, "orange");
       QString scan_dir = options->getScanDir();
       bool isScanningDir = !scan_dir.isNull();
       if(isScanningDir && scan_dir.at(scan_dir.length()-1) != QDir::separator()){
