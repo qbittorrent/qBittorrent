@@ -1134,7 +1134,7 @@ Veuillez d&apos;abord le quitter.</translation>
     </message>
     <message>
         <source>Session ratio: </source>
-        <translation> Ratio dession :</translation>
+        <translation> Ratio session :</translation>
     </message>
     <message>
         <source>Transfers</source>
