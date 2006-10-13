@@ -69,22 +69,15 @@ Copyright &#xa9; 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">En bittorrent-klient som använder Qt4 och libtorrent, programmerad i C++.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;Webbsida:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
-    </message>
-    <message encoding="UTF-8">
-        <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
-&lt;br&gt;
-Copyright © 2006 by Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+&lt;br&gt; &lt;u&gt;Hemsida:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>Birthday:</source>
-        <translation type="unfinished"></translation>
+        <translation>Födelsedag:</translation>
     </message>
     <message>
         <source>Occupation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yrke:</translation>
     </message>
     <message>
         <source>03/05/1985</source>
@@ -92,6 +85,13 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Student in computer science</source>
+        <translation>Studerar datorvetenskap</translation>
+    </message>
+    <message encoding="UTF-8">
+        <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
+&lt;br&gt;
+Copyright © 2006 by Christophe Dumez&lt;br&gt;
+&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -257,10 +257,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>ipfilter.dat SÖKVÄG:</translation>
     </message>
     <message>
-        <source>Clear finished downloads on exit</source>
-        <translation type="obsolete">Rensa ut färdiga hämtningar vid avslut</translation>
-    </message>
-    <message>
         <source>Ask for confirmation on exit</source>
         <translation>Fråga efter bekräftelse vid avslut</translation>
     </message>
@@ -314,23 +310,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT (Trackerlös):</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation type="unfinished"></translation>
+        <translation>Inaktivera DHT-stöd (trackerlös)</translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Töm automatiskt färdiga hämtningar</translation>
     </message>
     <message>
         <source>Preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Förhandsvisningsprogram</translation>
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ljud-/videospelare:</translation>
     </message>
 </context>
 <context>
@@ -386,10 +382,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>All Downloads Resumed.</source>
         <translation>Alla hämtningar har återupptagits.</translation>
-    </message>
-    <message>
-        <source>DL Speed: </source>
-        <translation type="obsolete">Hämtningshastighet: </translation>
     </message>
     <message>
         <source> started.</source>
@@ -448,10 +440,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>qBittorrent </translation>
     </message>
     <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Är du säker? -- qBittorrent</translation>
     </message>
@@ -504,14 +492,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Söker...</translation>
     </message>
     <message>
-        <source>Torrent file URL</source>
-        <translation type="obsolete">URL för torrent-fil</translation>
-    </message>
-    <message>
-        <source>Torrent file URL:</source>
-        <translation type="obsolete">URL för torrent-fil:</translation>
-    </message>
-    <message>
         <source>Are you sure you want to quit? -- qBittorrent</source>
         <translation>Är du säker på att du vill avsluta? -- qBittorrent</translation>
     </message>
@@ -540,10 +520,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Sökningen returnerade inga träffar</translation>
     </message>
     <message>
-        <source>Search is Finished</source>
-        <translation type="obsolete">Sökningen är färdig</translation>
-    </message>
-    <message>
         <source>Search plugin update -- qBittorrent</source>
         <translation>Uppdatering av sökinstick -- qBittorrent</translation>
     </message>
@@ -552,7 +528,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 
 Changelog:
 </source>
-        <translation>Sökinsticksmodulen kan bli uppdaterad. Vill du uppdatera den? 
+        <translation>Sökinsticksmodulen kan bli uppdaterad. Vill du uppdatera den?
 
 Ändringslogg:</translation>
     </message>
@@ -619,22 +595,23 @@ Changelog:
     </message>
     <message>
         <source>Preview process already running</source>
-        <translation type="unfinished"></translation>
+        <translation>Förhandsvisningsprocess kör redan</translation>
     </message>
     <message>
         <source>There is already another preview process running.
 Please close the other one first.</source>
-        <translation type="unfinished"></translation>
+        <translation>Det finns redan en annan förhandsvisningsprocess.
+Stäng den först.</translation>
     </message>
     <message>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte hämta</translation>
     </message>
     <message>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
-        <translation type="unfinished"></translation>
+        <translation>anledning:</translation>
     </message>
     <message>
         <source>Downloading</source>
@@ -643,11 +620,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Var god vänta...</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Överföringar</translation>
     </message>
 </context>
 <context>
@@ -733,10 +710,6 @@ Please close the other one first.</source>
         <translation>Anslutningsstatus</translation>
     </message>
     <message>
-        <source>Downloads</source>
-        <translation type="obsolete">Hämtningar</translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation>Sök</translation>
     </message>
@@ -794,15 +767,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Överföringar</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Förhandsvisa fil</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation type="unfinished"></translation>
+        <translation>Töm logg</translation>
     </message>
 </context>
 <context>
@@ -814,13 +787,6 @@ Please close the other one first.</source>
     <message>
         <source>False</source>
         <translation>Falskt</translation>
-    </message>
-</context>
-<context>
-    <name>QTextEdit</name>
-    <message>
-        <source>Clear</source>
-        <translation type="obsolete">Töm</translation>
     </message>
 </context>
 <context>
@@ -839,11 +805,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished"></translation>
+        <translation>Förhandsvisning inte möjlig</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished"></translation>
+        <translation>Tyvärr, vi kan inte förhandsvisa den här filen</translation>
     </message>
     <message>
         <source>Name</source>
@@ -859,30 +825,30 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>No URL entered</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen URL angavs</translation>
     </message>
     <message>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange åtminstone en URL</translation>
     </message>
 </context>
 <context>
     <name>authentication</name>
     <message>
         <source>Tracker authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentisering för tracker</translation>
     </message>
     <message>
         <source>Tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker:</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Inloggning</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>Användarnamn:</translation>
     </message>
     <message>
         <source>Password:</source>
@@ -890,7 +856,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>Logga in</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -991,15 +957,15 @@ Please close the other one first.</source>
     <name>downloadFromURL</name>
     <message>
         <source>Download from urls</source>
-        <translation type="unfinished"></translation>
+        <translation>Hämta från url:er</translation>
     </message>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation type="unfinished"></translation>
+        <translation>Hämta torrent-filer från url:er</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation type="unfinished"></translation>
+        <translation>Endast en url per rad</translation>
     </message>
     <message>
         <source>Download</source>
@@ -1098,18 +1064,6 @@ Please close the other one first.</source>
         <translation>i läsläge.</translation>
     </message>
     <message>
-        <source>Invalid Line</source>
-        <translation type="obsolete">Ogiltig rad</translation>
-    </message>
-    <message>
-        <source>Line</source>
-        <translation type="obsolete">Raden</translation>
-    </message>
-    <message>
-        <source>is malformed.</source>
-        <translation type="obsolete">är felaktig.</translation>
-    </message>
-    <message>
         <source>Range Start IP</source>
         <translation>Omfång start-IP</translation>
     </message>
@@ -1148,26 +1102,26 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Choose your favourite preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj ditt favoritprogram för förhandsvisning</translation>
     </message>
 </context>
 <context>
     <name>preview</name>
     <message>
         <source>Preview selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Förhandsvisa markering</translation>
     </message>
     <message>
         <source>File preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Förhandsvisa fil</translation>
     </message>
     <message>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>Följande filer har stöd för förhandsvisning. &lt;br&gt;välj en av dem:</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Förhandsvisa</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -1233,14 +1187,6 @@ Please close the other one first.</source>
         <translation>Okänd</translation>
     </message>
     <message>
-        <source>Complete: </source>
-        <translation type="obsolete">Färdig: </translation>
-    </message>
-    <message>
-        <source>Partial: </source>
-        <translation type="obsolete">Delvis: </translation>
-    </message>
-    <message>
         <source>Files contained in current torrent:</source>
         <translation>Filer i aktuell torrent:</translation>
     </message>
@@ -1263,14 +1209,6 @@ Please close the other one first.</source>
     <message>
         <source>You can select here precisely which files you want to download in current torrent.</source>
         <translation>Här kan du välja precis vilka filer du vill hämta i aktuell torrent.</translation>
-    </message>
-    <message>
-        <source>False</source>
-        <translation type="obsolete">Falskt</translation>
-    </message>
-    <message>
-        <source>True</source>
-        <translation type="obsolete">Sant</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -1297,10 +1235,6 @@ Please close the other one first.</source>
         <translation>Information</translation>
     </message>
     <message>
-        <source>Number of peers:</source>
-        <translation type="obsolete">Antal parter:</translation>
-    </message>
-    <message>
         <source>Current tracker:</source>
         <translation>Aktuell bevakare:</translation>
     </message>
@@ -1322,7 +1256,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Utdelningsratio:</translation>
     </message>
     <message>
         <source>Options</source>
@@ -1330,7 +1264,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hämta i korrekt ordning (långsammare men bra för förhandsvisning)</translation>
     </message>
     <message>
         <source>Seeders:</source>
