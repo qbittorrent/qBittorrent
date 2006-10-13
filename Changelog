@@ -1,4 +1,4 @@
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.7.0
+* Fri Oct 13 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.7.0
     - FEATURE: Based on new libtorrent v0.11 (a lot of bugfixes, new features)
     - FEATURE: Added DHT (Trackerless - Decentralized BT) support
     - FEATURE: Audio/Video File previewing while downloading
