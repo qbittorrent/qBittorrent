@@ -43,6 +43,7 @@
     - COSMETIC: Renamed main tab from "Downloads" to "Transfers"
     - COSMETIC: Improved icons
     - COSMETIC: Resized flags in localization settings
+    - COSMETIC: Improved trayicon image
 
 * Fri Aug 24 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.6.1
     - BUGFIX: Fixed possible segfaults when using context menus
