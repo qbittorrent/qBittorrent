@@ -1086,7 +1086,7 @@ Stop het eerste proccess eerst.
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished"></translation>
+        <translation>Sorry, we kunnen dit bestand niet vooruit bekijken</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1113,19 +1113,19 @@ Stop het eerste proccess eerst.
     <name>authentication</name>
     <message>
         <source>Tracker authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker authenticatie</translation>
     </message>
     <message>
         <source>Tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker:</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Login</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruikersnaam:</translation>
     </message>
     <message>
         <source>Password:</source>
@@ -1133,7 +1133,7 @@ Stop het eerste proccess eerst.
     </message>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>Log in</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -1396,26 +1396,27 @@ Stop het eerste proccess eerst.
     </message>
     <message>
         <source>Choose your favourite preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Kies uw favoriete vooruitblik programma</translation>
     </message>
 </context>
 <context>
     <name>preview</name>
     <message>
         <source>Preview selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Vooruitblik selectie</translation>
     </message>
     <message>
         <source>File preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestand vooruitblik</translation>
     </message>
     <message>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>De volgende bestanden ondersteunen vooruitkijken.
+selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Vooruitblik</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -1602,19 +1603,19 @@ Stop het eerste proccess eerst.
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>Download in juiste volgorde (langzamer maar goed voor vooruitblikken)</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Deel Ratio:</translation>
     </message>
     <message>
         <source>Seeders:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uploaders:</translation>
     </message>
     <message>
         <source>Leechers:</source>
-        <translation type="unfinished"></translation>
+        <translation>Downloaders:</translation>
     </message>
 </context>
 </TS>
