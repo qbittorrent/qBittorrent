@@ -1391,15 +1391,15 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Błędny wiersz</translation>
+        <translation type="obsolete">Błędny wiersz</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Wiersz</translation>
+        <translation type="obsolete">Wiersz</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>is malformed.</translation>
+        <translation type="obsolete">is malformed.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

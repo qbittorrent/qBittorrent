@@ -1070,15 +1070,15 @@ Example: Downloading www.example.com/test.torrent</comment>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Linea non valida</translation>
+        <translation type="obsolete">Linea non valida</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Linea</translation>
+        <translation type="obsolete">Linea</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>è malformata.</translation>
+        <translation type="obsolete">è malformata.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

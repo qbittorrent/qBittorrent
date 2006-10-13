@@ -1408,15 +1408,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Άκυρη Γραμμή</translation>
+        <translation type="obsolete">Άκυρη Γραμμή</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Η Γραμμή</translation>
+        <translation type="obsolete">Η Γραμμή</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>είναι κακοσχηματισμένη.</translation>
+        <translation type="obsolete">είναι κακοσχηματισμένη.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

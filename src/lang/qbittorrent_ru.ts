@@ -1298,15 +1298,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Неправильная строка</translation>
+        <translation type="obsolete">Неправильная строка</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Строка</translation>
+        <translation type="obsolete">Строка</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>поврежден.</translation>
+        <translation type="obsolete">поврежден.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

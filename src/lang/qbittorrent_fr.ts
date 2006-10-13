@@ -1484,15 +1484,15 @@ Veuillez d&apos;abord le quitter.</translation>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Ligne invalide</translation>
+        <translation type="obsolete">Ligne invalide</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>La ligne</translation>
+        <translation type="obsolete">La ligne</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>est mal formée.</translation>
+        <translation type="obsolete">est mal formée.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

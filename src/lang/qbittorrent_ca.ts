@@ -1416,15 +1416,15 @@ Si et plau tanca l&apos;altre primer.</translation>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Linia Invàlida</translation>
+        <translation type="obsolete">Linia Invàlida</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Linia</translation>
+        <translation type="obsolete">Linia</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>està malformada.</translation>
+        <translation type="obsolete">està malformada.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

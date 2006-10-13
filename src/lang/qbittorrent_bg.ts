@@ -1368,15 +1368,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Грешен Ред</translation>
+        <translation type="obsolete">Грешен Ред</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Ред</translation>
+        <translation type="obsolete">Ред</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>е повреден.</translation>
+        <translation type="obsolete">е повреден.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

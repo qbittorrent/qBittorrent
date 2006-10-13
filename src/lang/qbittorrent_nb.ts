@@ -1058,15 +1058,15 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Ugyldig linje</translation>
+        <translation type="obsolete">Ugyldig linje</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Linje</translation>
+        <translation type="obsolete">Linje</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>er ugyldig.</translation>
+        <translation type="obsolete">er ugyldig.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

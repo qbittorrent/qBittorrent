@@ -1325,15 +1325,15 @@ Bitte schliessen Sie diesen zuerst.</translation>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Ungültige Zeile</translation>
+        <translation type="obsolete">Ungültige Zeile</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Zeile</translation>
+        <translation type="obsolete">Zeile</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>ist fehlerhaft.</translation>
+        <translation type="obsolete">ist fehlerhaft.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

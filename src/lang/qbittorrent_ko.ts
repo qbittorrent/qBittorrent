@@ -1378,15 +1378,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>잘못된 줄</translation>
+        <translation type="obsolete">잘못된 줄</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>줄</translation>
+        <translation type="obsolete">줄</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>이 잘못되었습니다.</translation>
+        <translation type="obsolete">이 잘못되었습니다.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

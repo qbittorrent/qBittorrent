@@ -1220,18 +1220,6 @@ Please close the other one first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Invalid Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>is malformed.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Range Start IP</source>
         <translation type="unfinished"></translation>
     </message>

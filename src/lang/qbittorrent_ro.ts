@@ -1210,15 +1210,15 @@ Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Linie invalidă</translation>
+        <translation type="obsolete">Linie invalidă</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Linie</translation>
+        <translation type="obsolete">Linie</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>este neformată.</translation>
+        <translation type="obsolete">este neformată.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

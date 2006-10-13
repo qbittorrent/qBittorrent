@@ -1099,15 +1099,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Ogiltig rad</translation>
+        <translation type="obsolete">Ogiltig rad</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Raden</translation>
+        <translation type="obsolete">Raden</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>är felaktig.</translation>
+        <translation type="obsolete">är felaktig.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

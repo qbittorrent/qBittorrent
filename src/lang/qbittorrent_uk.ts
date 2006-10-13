@@ -1314,15 +1314,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Неправильна лінія</translation>
+        <translation type="obsolete">Неправильна лінія</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Лінія</translation>
+        <translation type="obsolete">Лінія</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>сформована неправильно.</translation>
+        <translation type="obsolete">сформована неправильно.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

@@ -1400,15 +1400,15 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Geçersiz Satır</translation>
+        <translation type="obsolete">Geçersiz Satır</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Satır</translation>
+        <translation type="obsolete">Satır</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>bozulmuş.</translation>
+        <translation type="obsolete">bozulmuş.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

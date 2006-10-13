@@ -1259,15 +1259,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>无效行</translation>
+        <translation type="obsolete">无效行</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>行</translation>
+        <translation type="obsolete">行</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>有残缺.</translation>
+        <translation type="obsolete">有残缺.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

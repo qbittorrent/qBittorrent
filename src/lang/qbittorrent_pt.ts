@@ -1208,15 +1208,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Linha inválida</translation>
+        <translation type="obsolete">Linha inválida</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Linha</translation>
+        <translation type="obsolete">Linha</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>está corrompido.</translation>
+        <translation type="obsolete">está corrompido.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

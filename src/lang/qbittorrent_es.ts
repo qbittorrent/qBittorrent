@@ -1349,15 +1349,15 @@ Por favor cierra el otro antes.</translation>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>línea inválida</translation>
+        <translation type="obsolete">línea inválida</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Línea</translation>
+        <translation type="obsolete">Línea</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>está mal formado.</translation>
+        <translation type="obsolete">está mal formado.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

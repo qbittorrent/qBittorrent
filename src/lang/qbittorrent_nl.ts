@@ -1351,15 +1351,15 @@ Reden waarom het downloaden gefaald heefd</translation>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>Ongeldige regel</translation>
+        <translation type="obsolete">Ongeldige regel</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>Regel</translation>
+        <translation type="obsolete">Regel</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>is onjuist geformuleerd.</translation>
+        <translation type="obsolete">is onjuist geformuleerd.</translation>
     </message>
     <message>
         <source>Range Start IP</source>

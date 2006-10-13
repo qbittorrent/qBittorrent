@@ -1265,15 +1265,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Invalid Line</source>
-        <translation>neplatný riadok</translation>
+        <translation type="obsolete">neplatný riadok</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation>riadok</translation>
+        <translation type="obsolete">riadok</translation>
     </message>
     <message>
         <source>is malformed.</source>
-        <translation>je v zlom tvare.</translation>
+        <translation type="obsolete">je v zlom tvare.</translation>
     </message>
     <message>
         <source>Range Start IP</source>
