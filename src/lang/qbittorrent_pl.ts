@@ -114,8 +114,9 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation>Klient sieci bittorrent, wykorzystuje biblioteki Qt4 i libtorrent, implementacja w C++.&lt;br&gt;(new line)&lt;br&gt;(new line)
-Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
+        <translation>Klient sieci bittorrent, wykorzystuje biblioteki Qt4 i libtorrent, implementacja w C++.&lt;br&gt;
+&lt;br&gt;
+Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Strona domowa:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
