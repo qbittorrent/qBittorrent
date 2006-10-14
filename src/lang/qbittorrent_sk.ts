@@ -104,7 +104,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Main</source>
-        <translation>Hlavn</translation>
+        <translation>Hlavný</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -328,23 +328,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT (bez trackera):</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation type="unfinished"></translation>
+        <translation>Vypnúť podporu DHT (bez trackera)</translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticky vyčisti skončené sťahovania</translation>
     </message>
     <message>
         <source>Preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Program pre náhľad</translation>
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation type="unfinished"></translation>
+        <translation>Audio/Video prehrávač:</translation>
     </message>
 </context>
 <context>
@@ -681,35 +681,36 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Prenosy</translation>
     </message>
     <message>
         <source>Preview process already running</source>
-        <translation type="unfinished"></translation>
+        <translation>Proces náhľadu už beží</translation>
     </message>
     <message>
         <source>There is already another preview process running.
 Please close the other one first.</source>
-        <translation type="unfinished"></translation>
+        <translation>Iný proces náhľadu už beží.
+Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nemohol som stiahnuť</translation>
     </message>
     <message>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
-        <translation type="unfinished"></translation>
+        <translation>dôvod:</translation>
     </message>
     <message>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
-        <translation type="unfinished">Sťahujem</translation>
+        <translation>Sťahujem</translation>
     </message>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Čakajte prosím...</translation>
     </message>
 </context>
 <context>
@@ -896,15 +897,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Prenosy</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhľad súboru</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistiť záznam</translation>
     </message>
 </context>
 <context>
@@ -949,62 +950,62 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhľad nemožný</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished"></translation>
+        <translation>Prepáčte, tento súbor sa nedá otvoriť ako náhľad</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Priebeh</translation>
+        <translation>Priebeh</translation>
     </message>
     <message>
         <source>No URL entered</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebolo zadané URL</translation>
     </message>
     <message>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, napíšte aspoň jedno URL.</translation>
     </message>
 </context>
 <context>
     <name>authentication</name>
     <message>
         <source>Tracker authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentifikácia trackera</translation>
     </message>
     <message>
         <source>Tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker:</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Prihlásenie</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>Meno používateľa:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Heslo:</translation>
+        <translation>Heslo:</translation>
     </message>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>Prihásiť sa</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Storno</translation>
+        <translation>Storno</translation>
     </message>
 </context>
 <context>
@@ -1121,23 +1122,23 @@ Please close the other one first.</source>
     <name>downloadFromURL</name>
     <message>
         <source>Download from urls</source>
-        <translation type="unfinished"></translation>
+        <translation>Stiahnuť z viacerých url</translation>
     </message>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation type="unfinished"></translation>
+        <translation>Stiahnuť torrenty z viacerých URL</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation type="unfinished"></translation>
+        <translation>Iba jeden URL na riadok</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished">Stiahnuť</translation>
+        <translation>Stiahnuť</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Storno</translation>
+        <translation>Storno</translation>
     </message>
 </context>
 <context>
@@ -1318,30 +1319,30 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Choose your favourite preview program</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvoľte si obľúbený program pre náhľad</translation>
     </message>
 </context>
 <context>
     <name>preview</name>
     <message>
         <source>Preview selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Výber náhľadu</translation>
     </message>
     <message>
         <source>File preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhľad súboru</translation>
     </message>
     <message>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nasledujúce súbory podporujú náhľad, &lt;br&gt;prosím vyberte jeden z nich:</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhľad</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Storno</translation>
+        <translation>Storno</translation>
     </message>
 </context>
 <context>
@@ -1520,23 +1521,23 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Seeders:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seederi:</translation>
     </message>
     <message>
         <source>Leechers:</source>
-        <translation type="unfinished"></translation>
+        <translation>Leecheri:</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomer zdieľania:</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">Nastavenia</translation>
+        <translation>Nastavenia</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>Stiahnuť v správnom poradí (pomalšie ale lepšie pre náhľad)</translation>
     </message>
 </context>
 </TS>
