@@ -134,7 +134,7 @@ TrayIcon::TrayIconPrivate::TrayIconPrivate(TrayIcon *object, int _size)
 
 	// This resize will not work as expected,
 	// we will get resized inside the tray later on.
-// 	resize(size, size);
+	resize(size, size);
         setMinimumSize(size, size);
         setMaximumSize(size, size);
 }
