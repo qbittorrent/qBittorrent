@@ -4,7 +4,7 @@ ICONS_PATH = Icons
 TRAYICON_CPP = trayicon
 
 #Set the following variable to 1 to enable debug
-DEBUG_MODE = 1
+DEBUG_MODE = 0
 
 # Global
 TEMPLATE = app
@@ -30,7 +30,11 @@ PKGCONFIG += libtorrent
 QT += xml network
 
 contains(DEBUG_MODE, 0){
-  DEFINES += QT_NO_DEBUG_OUTPUT
+  eval(QT_VERSION = 4.2.0) {
+    message(Qt 4.2.0 detected : enabling debug output because of a bug in this version of Qt)
+  }else{
+    DEFINES += QT_NO_DEBUG_OUTPUT
+  }
   CONFIG += release
 }
 
