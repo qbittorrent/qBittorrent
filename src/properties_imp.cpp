@@ -187,10 +187,15 @@ void properties::loadFilteredFiles(){
 
 void properties::updateProgress(){
   std::vector<float> fp;
-  h.file_progress(fp);
-  torrent_info torrentInfo = h.get_torrent_info();
-  for(int i=0; i<torrentInfo.num_files(); ++i){
-    PropListModel->setData(PropListModel->index(i, PROGRESS), QVariant((double)fp[i]));
+  try{
+    h.file_progress(fp);
+    torrent_info torrentInfo = h.get_torrent_info();
+    for(int i=0; i<torrentInfo.num_files(); ++i){
+      PropListModel->setData(PropListModel->index(i, PROGRESS), QVariant((double)fp[i]));
+    }
+  }catch(invalid_handle e){
+    // torrent was removed, closing properties
+    close();
   }
 }
 
