@@ -179,7 +179,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   // Use a tcp server to allow only one instance of qBittorrent
   tcpServer = new QTcpServer(this);
   if (!tcpServer->listen(QHostAddress::LocalHost, 1666)) {
-    std::cout  << "Couldn't create socket, single instance mode won't work...\n";
+    std::cerr  << "Couldn't create socket, single instance mode won't work...\n";
   }
   connect(tcpServer, SIGNAL(newConnection()), this, SLOT(AnotherInstanceConnected()));
   // Start connection checking timer
@@ -427,7 +427,7 @@ void GUI::readParamsInFile(){
     params << line;
   }
   if(params.size()){
-    std::cout << "Received parameters from another instance\n";
+    qDebug("Received parameters from another instance");
     addTorrents(params);
   }
   paramsFile.close();
@@ -470,7 +470,7 @@ void GUI::updateDlList(){
     if(!h.is_paused()){
       int row = getRowFromName(fileName);
       if(row == -1){
-        std::cout << "Error: Could not find filename in download list..\n";
+        std::cerr << "Error: Could not find filename in download list..\n";
         continue;
       }
       // Parse download state
@@ -721,7 +721,7 @@ void GUI::saveWindowSize() const{
     lastWindowSize.close();
     qDebug("Saved window size");
   }else{
-    std::cout << "Error: Could not save last windows size\n";
+    std::cerr << "Error: Could not save last windows size\n";
   }
 }
 
@@ -738,7 +738,7 @@ bool GUI::loadFilteredFiles(torrent_handle &h){
   pieces_file.close();
   QList<QByteArray> pieces_selection_list = pieces_selection.split('\n');
   if(pieces_selection_list.size() != torrentInfo.num_files()+1){
-    std::cout << "Error: Corrupted pieces file\n";
+    std::cerr << "Error: Corrupted pieces file\n";
     return has_filtered_files;
   }
   std::vector<bool> selectionBitmask;
@@ -831,7 +831,7 @@ void GUI::saveCheckedSearchEngines(int) const{
     lastSearchEngines.close();
     qDebug("Saved checked search engines");
   }else{
-    std::cout << "Error: Could not save last checked search engines\n";
+    std::cerr << "Error: Could not save last checked search engines\n";
   }
 }
 
@@ -851,7 +851,7 @@ void GUI::saveColWidthDLList() const{
     lastDLListWidth.close();
     qDebug("Columns width saved");
   }else{
-    std::cout << "Error: Could not save last columns width in download list\n";
+    std::cerr << "Error: Could not save last columns width in download list\n";
   }
 }
 
@@ -875,7 +875,7 @@ bool GUI::loadColWidthDLList(){
       qDebug("Loaded columns width in download list");
       return true;
     }else{
-      std::cout << "Error: Could not load last columns width for download list\n";
+      std::cerr << "Error: Could not load last columns width for download list\n";
       return false;
     }
   }
@@ -898,7 +898,7 @@ void GUI::saveColWidthSearchList() const{
     lastSearchListWidth.close();
     qDebug("Columns width saved in search list");
   }else{
-    std::cout << "Error: Could not save last columns width in search results list\n";
+    std::cerr << "Error: Could not save last columns width in search results list\n";
   }
 }
 
@@ -922,7 +922,7 @@ bool GUI::loadColWidthSearchList(){
       qDebug("Columns width loaded in search list");
       return true;
     }else{
-      std::cout << "Error: Could not load last columns width for search results list\n";
+      std::cerr << "Error: Could not load last columns width for search results list\n";
       return false;
     }
   }
@@ -974,7 +974,7 @@ void GUI::loadCheckedSearchEngines(){
       }
       qDebug("Checked search engines loaded");
     }else{
-      std::cout << "Error: Could not load last checked search engines\n";
+      std::cerr << "Error: Could not load last checked search engines\n";
     }
   }
 }
@@ -1005,7 +1005,7 @@ void GUI::closeEvent(QCloseEvent *e){
       out.unsetf(std::ios_base::skipws);
       bencode(std::ostream_iterator<char>(out), dht_state);
     }catch (std::exception& e){
-      std::cout << e.what() << "\n";
+      std::cerr << e.what() << "\n";
     }
   }
   // Save window size, columns size
@@ -1242,7 +1242,7 @@ void GUI::deleteSelection(){
           --nbTorrents;
           tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
         }else{
-          std::cout << "Error: Could not find the torrent handle supposed to be removed\n";
+          std::cerr << "Error: Could not find the torrent handle supposed to be removed\n";
         }
       }
     }
@@ -1417,7 +1417,7 @@ void GUI::addTorrents(const QStringList& pathsList, bool fromScanDir, const QStr
       ++nbTorrents;
       tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
     }catch (invalid_encoding& e){ // Raised by bdecode()
-      std::cout << "Could not decode file, reason: " << e.what() << '\n';
+      std::cerr << "Could not decode file, reason: " << e.what() << '\n';
       // Display warning to tell user we can't decode the torrent file
       if(!from_url.isNull()){
         setInfoBar(tr("Unable to decode torrent file:")+" '"+from_url+"'", "red");
@@ -1488,7 +1488,7 @@ void GUI::reloadTorrent(const torrent_handle &h, bool compact_mode){
     ++timeout;
   }
   if(h.is_valid()){
-    std::cout << "Error: Couldn't reload the torrent\n";
+    std::cerr << "Error: Couldn't reload the torrent\n";
     return;
   }
   new_h = s->add_torrent(t, fs::path(saveDir.path().toStdString()), resumeData, compact_mode);
@@ -1666,7 +1666,7 @@ void GUI::configureSession(){
       }
     }
   }catch(std::exception& e){
-    std::cout << e.what() << "\n";
+    std::cerr << e.what() << "\n";
   }
   qDebug("Session configured");
 }
@@ -1688,7 +1688,7 @@ void GUI::pauseAll(){
       // update DL Status
       int row = getRowFromName(fileName);
       if(row == -1){
-        std::cout << "Error: Filename could not be found in download list...\n";
+        std::cerr << "Error: Filename could not be found in download list...\n";
         continue;
       }
       DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
@@ -1750,7 +1750,7 @@ void GUI::startAll(){
       // update DL Status
       int row = getRowFromName(fileName);
       if(row == -1){
-        std::cout << "Error: Filename could not be found in download list...\n";
+        std::cerr << "Error: Filename could not be found in download list...\n";
         continue;
       }
       DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Connecting...")));
@@ -2062,7 +2062,7 @@ void GUI::updateNova() const{
   QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;
   QFile(misc::qBittorrentPath()+"nova.py").setPermissions(perm);
   if(provided_nova_version > getNovaVersion(misc::qBittorrentPath()+"nova.py")){
-    std::cout << "updating local search plugin with shipped one\n";
+    qDebug("updating local search plugin with shipped one");
     // nova.py needs update
     QFile::remove(misc::qBittorrentPath()+"nova.py");
     qDebug("Old nova removed");
@@ -2070,7 +2070,7 @@ void GUI::updateNova() const{
     qDebug("New nova copied");
     QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;
     QFile(misc::qBittorrentPath()+"nova.py").setPermissions(perm);
-    std::cout << "local search plugin updated\n";
+    qDebug("local search plugin updated");
   }
 }
 
@@ -2080,7 +2080,7 @@ void GUI::updateNova() const{
 void GUI::on_update_nova_button_clicked(){
   CURL *curl;
   std::string filePath;
-  std::cout << "Checking for search plugin updates on qbittorrent.org\n";
+  qDebug("Checking for search plugin updates on qbittorrent.org");
   // XXX: Trick to get a unique filename
   QTemporaryFile *tmpfile = new QTemporaryFile;
   if (tmpfile->open()) {
@@ -2089,12 +2089,12 @@ void GUI::on_update_nova_button_clicked(){
   delete tmpfile;
   FILE *file = fopen(filePath.c_str(), "w");
   if(!file){
-  std::cout << "Error: could not open temporary file...\n";
+    std::cerr << "Error: could not open temporary file...\n";
   }
   // Initilization required by libcurl
   curl = curl_easy_init();
   if(!curl){
-    std::cout << "Error: Failed to init curl...\n";
+    std::cerr << "Error: Failed to init curl...\n";
     fclose(file);
     return;
   }
@@ -2113,14 +2113,14 @@ void GUI::on_update_nova_button_clicked(){
   curl_easy_cleanup(curl);
   // Close tmp file
   fclose(file);
-  std::cout << "Version on qbittorrent.org: " << getNovaVersion(QString(filePath.c_str())) << '\n';
+  qDebug("Version on qbittorrent.org: %f", getNovaVersion(QString(filePath.c_str())));
   float version_on_server = getNovaVersion(QString(filePath.c_str()));
   if(version_on_server == 0.0){
     //First server is down, try mirror
     QFile::remove(filePath.c_str());
     FILE *file = fopen(filePath.c_str(), "w");
     if(!file){
-      std::cout << "Error: could not open temporary file...\n";
+      std::cerr << "Error: could not open temporary file...\n";
     }
     curl = curl_easy_init();
     curl_easy_setopt(curl, CURLOPT_URL, "http://hydr0g3n.free.fr/nova/nova.py");
@@ -2147,7 +2147,7 @@ void GUI::on_update_nova_button_clicked(){
                              QString(), 0, 1)){
                                return;
                              }else{
-                               std::cout << "Updating search plugin from qbittorrent.org\n";
+                               qDebug("Updating search plugin from qbittorrent.org");
 			       QFile::remove(misc::qBittorrentPath()+"nova.py");
                                QFile::copy(QString(filePath.c_str()), misc::qBittorrentPath()+"nova.py");
 			       QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;

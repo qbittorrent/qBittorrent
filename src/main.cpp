@@ -54,7 +54,7 @@ int main(int argc, char *argv[]){
   }
   // Set environment variable
   if(putenv("QBITTORRENT="VERSION)){
-    std::cout << "Couldn't set environment variable...\n";
+    std::cerr << "Couldn't set environment variable...\n";
   }
   // Buggy with Qt 4.1.2 : should try with another version
   //Check if there is another instance running
@@ -92,7 +92,7 @@ int main(int argc, char *argv[]){
   QTcpSocket tcpSocket;
   tcpSocket.connectToHost(QHostAddress::LocalHost, 1666);
   if (tcpSocket.waitForConnected(1000)){
-    std::cout << "Another qBittorrent instance is already running...\n";
+    qDebug("Another qBittorrent instance is already running...");
     //  Write params to a temporary file
     QFile paramsFile(QDir::tempPath()+QDir::separator()+"qBT-params.txt");
     int count = 0;
@@ -105,17 +105,17 @@ int main(int argc, char *argv[]){
     paramsFile.remove();
     // Write params to the file
     if (!paramsFile.open(QIODevice::WriteOnly | QIODevice::Text)){
-      std:: cout << "could not pass parameters\n";
+      std:: cerr << "could not pass parameters\n";
       return 1;
     }
-    std:: cout << "Passing parameters\n";
+    qDebug("Passing parameters");
     for(int i=1;i<argc;++i){
       paramsFile.write(QByteArray(argv[i]).append("\n"));
     }
     paramsFile.close();
     tcpSocket.disconnectFromHost();
     tcpSocket.close();
-    std:: cout << "exiting\n";
+    qDebug("exiting");
     return 0;
   }
   QApplication app(argc, argv);
@@ -145,9 +145,9 @@ int main(int argc, char *argv[]){
     locale = QLocale::system().name();
   }
   if(translator.load(QString(":/lang/qbittorrent_") + locale)){
-    std::cout << locale.toStdString() << " locale recognized, using translation.\n";
+    qDebug("%s locale recognized, using translation.", locale.toStdString().c_str());
   }else{
-    std::cout << locale.toStdString() << " locale unrecognized, using default (en_GB).\n";
+    qDebug("%s locale unrecognized, using default (en_GB).", locale.toStdString().c_str());
   }
   app.installTranslator(&translator);
   // Read torrents given on command line

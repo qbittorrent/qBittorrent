@@ -163,7 +163,7 @@ void properties::loadFilteredFiles(){
   pieces_file.close();
   QList<QByteArray> pieces_selection_list = pieces_selection.split('\n');
   if(pieces_selection_list.size() != torrentInfo.num_files()+1){
-    std::cout << "Error: Corrupted pieces file\n";
+    std::cerr << "Error: Corrupted pieces file\n";
     setAllPiecesState(true);
     selectionBitmask.assign(torrentInfo.num_files(), 0);
     return;
@@ -309,7 +309,7 @@ void properties::saveFilteredFiles(){
   pieces_file.remove();
   // Write new files
   if(!pieces_file.open(QIODevice::WriteOnly | QIODevice::Text)){
-    std::cout << "Error: Could not save filtered pieces\n";
+    std::cerr << "Error: Could not save filtered pieces\n";
     return;
   }
   for(int i=0; i<torrentInfo.num_files(); ++i){

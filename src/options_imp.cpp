@@ -97,7 +97,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     saveOptions();
   }
   if(!loadOptions()){
-    std::cout << "Warning: Couldn't load options" << '\n';
+    std::cerr << "Warning: Couldn't load options" << '\n';
   }
   // Connect signals / slots
   connect(disableUPLimit, SIGNAL(stateChanged(int)), this, SLOT(disableUpload(int)));
@@ -308,17 +308,17 @@ bool options_imp::saveOptions(){
   // Write XML file to HD
   f = fopen(savePath.toStdString().c_str(), "w");
   if (!f){
-    std::cout << "Error: Couldn't create file " << savePath.toStdString() << " for saving!" << '\n';
+    std::cerr << "Error: Couldn't create file " << savePath.toStdString() << " for saving!" << '\n';
     return false;
   }
   if (!file.open(f, QIODevice::WriteOnly | QIODevice::Text)){
-    std::cout << "Error: Couldn't open file " << savePath.toStdString() << " for saving!" << '\n';
+    std::cerr << "Error: Couldn't open file " << savePath.toStdString() << " for saving!" << '\n';
     return false;
   }
   file.write(xml.toStdString().c_str(), xml.length());
   file.close();
   if(fclose(f) == EOF){
-    std::cout << "Error: Couldn't close file " << savePath.toStdString() << " after saving!" << '\n';
+    std::cerr << "Error: Couldn't close file " << savePath.toStdString() << " after saving!" << '\n';
     return false;
   }
   // set infobar text
@@ -360,7 +360,7 @@ bool options_imp::loadOptions(){
   }
   file.close();
   if(fclose(f) == EOF){
-    std::cout << "Error: Couldn't close file " << savePath.toStdString() << " after reading!" << '\n';
+    std::cerr << "Error: Couldn't close file " << savePath.toStdString() << " after reading!" << '\n';
     return false;
   }
   // Loading option from XML
@@ -799,7 +799,7 @@ void options_imp::processFilterFile(const QString& filePath){
           QList<QByteArray> partsList = line.split(',');
           unsigned int nbElem = partsList.size();
           if(nbElem < 2){
-            std::cout << "Ipfilter.dat: line " << nbLine << " is malformed.\n";
+            std::cerr << "Ipfilter.dat: line " << nbLine << " is malformed.\n";
             continue;
           }
           int nbAccess = partsList.at(1).trimmed().toInt();
@@ -815,13 +815,13 @@ void options_imp::processFilterFile(const QString& filePath){
             // Split IP
             IP = strStartIP.split('.');
             if(IP.size() != 4){
-              std::cout << "Ipfilter.dat: line " << nbLine << ", first IP is malformed.\n";
+              std::cerr << "Ipfilter.dat: line " << nbLine << ", first IP is malformed.\n";
               continue;
             }
             address_v4 start((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
             IP = strEndIP.split('.');
             if(IP.size() != 4){
-              std::cout << "Ipfilter.dat: line " << nbLine << ", second IP is malformed.\n";
+              std::cerr << "Ipfilter.dat: line " << nbLine << ", second IP is malformed.\n";
               continue;
             }
             address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
@@ -896,7 +896,7 @@ void options_imp::on_addFilterRange_clicked(){
   }
   QFile ipfilter(misc::qBittorrentPath() + "ipfilter.dat");
   if (!ipfilter.open(QIODevice::Append | QIODevice::WriteOnly | QIODevice::Text)){
-    std::cout << "Error: Couldn't write in ipfilter.dat";
+    std::cerr << "Error: Couldn't write in ipfilter.dat";
     return;
   }
   QTextStream out(&ipfilter);
@@ -925,7 +925,7 @@ void options_imp::on_delFilterRange_clicked(){
   // Update ipfilter.dat
   QFile ipfilter(misc::qBittorrentPath() + "ipfilter.dat");
   if (!ipfilter.open(QIODevice::WriteOnly | QIODevice::Text)){
-    std::cout << "Error: Couldn't write in ipfilter.dat";
+    std::cerr << "Error: Couldn't write in ipfilter.dat";
     return;
   }
   QTextStream out(&ipfilter);

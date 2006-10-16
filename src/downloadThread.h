@@ -78,13 +78,13 @@ class downloadThread : public QThread {
           delete tmpfile;
           FILE *file = fopen(filePath.c_str(), "w");
           if(!file){
-            std::cout << "Error: could not open temporary file...\n";
+            std::cerr << "Error: could not open temporary file...\n";
             return;
           }
           // Initilization required by libcurl
           curl = curl_easy_init();
           if(!curl){
-            std::cout << "Error: Failed to init curl...\n";
+            std::cerr << "Error: Failed to init curl...\n";
             fclose(file);
             return;
           }
@@ -114,7 +114,7 @@ class downloadThread : public QThread {
 	  errorBuffer[0]=0; /* prevent junk from being output */
           return_code = curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);
           if(return_code){
-            std::cout << "Error: failed to set error buffer in curl\n";
+            std::cerr << "Error: failed to set error buffer in curl\n";
             fclose(file);
             QFile::remove(filePath.c_str());
             return;
