@@ -465,72 +465,76 @@ void GUI::updateDlList(){
   LCD_DownSpeed->display(tmp2); // DL LCD
   // browse handles
   foreach(h, handles){
-    torrent_status torrentStatus = h.status();
-    QString fileName = QString(h.get_torrent_info().name().c_str());
-    if(!h.is_paused()){
-      int row = getRowFromName(fileName);
-      if(row == -1){
-        std::cerr << "Error: Could not find filename in download list..\n";
-        continue;
-      }
-      // Parse download state
-      torrent_info ti = h.get_torrent_info();
-      // Setting download state
-      switch(torrentStatus.state){
-        case torrent_status::finished:
-        case torrent_status::seeding:
-          DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
-          DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Finished")));
-          DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
-          DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
-          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)1.));
-          setRowColor(row, "orange");
-          break;
-        case torrent_status::checking_files:
-        case torrent_status::queued_for_checking:
-          DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Checking...")));
-          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-          setRowColor(row, "grey");
-          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
-          break;
-        case torrent_status::connecting_to_tracker:
-          if(torrentStatus.download_payload_rate > 0){
-            // Display "Downloading" status when connecting if download speed > 0
-            DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Downloading...")));
-            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate)));
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
-            setRowColor(row, "green");
-          }else{
-            DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Connecting...")));
+    try{
+      torrent_status torrentStatus = h.status();
+      QString fileName = QString(h.get_torrent_info().name().c_str());
+      if(!h.is_paused()){
+        int row = getRowFromName(fileName);
+        if(row == -1){
+          std::cerr << "Error: Could not find filename in download list..\n";
+          continue;
+        }
+        // Parse download state
+        torrent_info ti = h.get_torrent_info();
+        // Setting download state
+        switch(torrentStatus.state){
+          case torrent_status::finished:
+          case torrent_status::seeding:
+            DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
+            DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Finished")));
+            DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
+            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)1.));
+            setRowColor(row, "orange");
+            break;
+          case torrent_status::checking_files:
+          case torrent_status::queued_for_checking:
+            DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Checking...")));
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
             setRowColor(row, "grey");
-          }
-          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
-          DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
-          DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
-          break;
-        case torrent_status::downloading:
-        case torrent_status::downloading_metadata:
-          if(torrentStatus.download_payload_rate > 0){
-            DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Downloading...")));
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
-            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate)));
-            setRowColor(row, "green");
-          }else{
-            DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Stalled", "state of a torrent whose DL Speed is 0")));
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/stalled.png")), Qt::DecorationRole);
+            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
+            break;
+          case torrent_status::connecting_to_tracker:
+            if(torrentStatus.download_payload_rate > 0){
+              // Display "Downloading" status when connecting if download speed > 0
+              DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Downloading...")));
+              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate)));
+              DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
+              setRowColor(row, "green");
+            }else{
+              DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Connecting...")));
+              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+              DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
+              setRowColor(row, "grey");
+            }
+            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
+            DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
+            DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
+            break;
+          case torrent_status::downloading:
+          case torrent_status::downloading_metadata:
+            if(torrentStatus.download_payload_rate > 0){
+              DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Downloading...")));
+              DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
+              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate)));
+              setRowColor(row, "green");
+            }else{
+              DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Stalled", "state of a torrent whose DL Speed is 0")));
+              DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/stalled.png")), Qt::DecorationRole);
+              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+              setRowColor(row, "black");
+            }
+            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
+            DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
+            DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
+            break;
+          default:
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-            setRowColor(row, "black");
-          }
-          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
-          DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
-          DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
-          break;
-        default:
-          DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+        }
       }
+    }catch(invalid_handle e){
+      continue;
     }
   }
 }
