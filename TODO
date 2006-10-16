@@ -5,6 +5,7 @@
 - Add more keyboard shortcuts
 - Improve torrent creation tool (look & features)
 - Allow user to choose DHT port
+- Add button : delete from list and Hard drive
 
 // Intermediate
 - Move novaUpdater to a Thread (probably use downloadThread) to prevent GUI freezing
