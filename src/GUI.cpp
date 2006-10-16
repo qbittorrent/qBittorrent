@@ -273,7 +273,7 @@ void GUI::setInfoBar(const QString& info, const QString& color){
     infoBar->clear();
     nbLines = 1;
   }
-  infoBar->append("<font color='grey'>"+ QTime::currentTime().toString("hh:mm:ss") + "</font> - <font color='" + color +"'><i>" + info + "</i></font><br>");
+  infoBar->append("<font color='grey'>"+ QTime::currentTime().toString("hh:mm:ss") + "</font> - <font color='" + color +"'><i>" + info + "</i></font>");
 }
 
 // Buggy with Qt 4.1.2 : should try with another version
