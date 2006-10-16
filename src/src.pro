@@ -40,9 +40,10 @@ contains(DEBUG_MODE, 0){
 
 # Includes
 include($$TRAYICON_CPP/trayicon.pri)
-#exists(../conf.pri) {
-#       include(../conf.pri)
-#}
+
+exists(../conf.pri) {
+       include(../conf.pri)
+}
 
 # Install
 unix {
