@@ -4,6 +4,7 @@
     - BUGFIX: Fixed finished torrent state on restart
     - BUGFIX: Fixed trayicon with Qt 4.2
     - BUGFIX: Enabling debug when Qt 4.2.0 is detected (because of a bug in this Qt)
+    - BUGFIX: Fixed new lines in log widget with Qt 4.2
     - BUGFIX: Display errors to stderr instead of stdout
     - BUGFIX: Forgot to catch invalid_handle exception thrown by libtorrent
     - BUGFIX: Close torrents properties windows when they are deleted
