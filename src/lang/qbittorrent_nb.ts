@@ -123,7 +123,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Max Connects:</source>
-        <translation>Makismalt antall tilkoblinger:</translation>
+        <translation>Maks tilkoblinger:</translation>
     </message>
     <message>
         <source>Port range:</source>
@@ -319,7 +319,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation>Lyd/Video avspiller:</translation>
+        <translation>Lyd/video avspiller:</translation>
     </message>
 </context>
 <context>
@@ -330,7 +330,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>Denne filen er enten ødelagt, eller det er ikke en torrentfil.</translation>
+        <translation>Denne filen er enten ødelagt, eller det er ikke en torrent.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
@@ -386,7 +386,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Couldn&apos;t create the directory:</source>
-        <translation>Kunne ikke oprette mappen:</translation>
+        <translation>Kunne ikke opprette mappen:</translation>
     </message>
     <message>
         <source>Torrent Files</source>
@@ -403,7 +403,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>resumed. (fast resume)</source>
-        <translation>Gjenopptatt. (Hurtig gjenopptaging)</translation>
+        <translation>gjenopptatt. (Hurtig gjenopptaging)</translation>
     </message>
     <message>
         <source>Unable to decode torrent file:</source>
@@ -446,7 +446,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
-        <translation>&lt;b&gt;Tilkoblingsstatus:&lt;/b&gt;&lt;br&gt;Beskyttet av en brannmur?&lt;br&gt;&lt;i&gt;Ingen innkommende tilkoblinger...&lt;/i&gt;</translation>
+        <translation>&lt;b&gt;Tilkoblingsstatus:&lt;/b&gt;&lt;br&gt;Brannmur?&lt;br&gt;&lt;i&gt;Ingen innkommende tilkoblinger...&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
@@ -514,7 +514,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Search plugin update -- qBittorrent</source>
-        <translation>Oppdatering av søkeprogramtillegget -- qBittorrent</translation>
+        <translation>Oppdatering av søkeprogramtillegg -- qBittorrent</translation>
     </message>
     <message>
         <source>Search plugin can be updated, do you want to update it?
@@ -531,7 +531,7 @@ Endringer:</translation>
     </message>
     <message>
         <source>Your search plugin is already up to date.</source>
-        <translation>Ditt søkeprogramstillegg er allerede oppdatert.</translation>
+        <translation>Ditt søkeprogramtillegg er allerede oppdatert.</translation>
     </message>
     <message>
         <source>Results</source>
@@ -563,7 +563,7 @@ Endringer:</translation>
     </message>
     <message>
         <source>ETA</source>
-        <translation>ETA</translation>
+        <translation>Gjenværende tid</translation>
     </message>
     <message>
         <source>Seeders</source>
@@ -617,7 +617,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation>Overføringer</translation>
+        <translation type="unfinished">Overføringer</translation>
     </message>
 </context>
 <context>
@@ -696,7 +696,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Torrent egenskaper</translation>
+        <translation>Torrentegenskaper</translation>
     </message>
     <message>
         <source>Connection Status</source>
@@ -752,7 +752,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Update search plugin</source>
-        <translation>Oppdater søketilleggsprogrammet</translation>
+        <translation>Oppdater søkeprogramtillegg</translation>
     </message>
     <message>
         <source>Session ratio: </source>
@@ -1280,16 +1280,16 @@ Vennligst avslutt denne først.</translation>
         <translation>Last ned i riktig rekkefølge (tregere, men bedre for forhåndsvisning)</translation>
     </message>
     <message>
-        <source>Share Ratio:</source>
-        <translation>Delings forhold:</translation>
-    </message>
-    <message>
         <source>Seeders:</source>
-        <translation>Delere:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Leechers:</source>
-        <translation>Nedlastere:</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share Ratio:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
