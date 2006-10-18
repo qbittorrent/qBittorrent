@@ -23,6 +23,7 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QDomDocument>
+#include <QSystemTrayIcon>
 
 #include "options_imp.h"
 #include "misc.h"
@@ -145,6 +146,11 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(neverOSD, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   // Disable apply Button
   applyButton->setEnabled(false);
+  if(!QSystemTrayIcon::supportsMessages()){
+    // Mac OS X doesn't support it yet
+    neverOSD->setChecked(true);
+    groupOSD->setEnabled(false);
+  }
 }
 
 // save options to options.xml file
@@ -535,11 +541,19 @@ QPair<int,int> options_imp::getLimits() const{
 
 // Should the program use OSD?
 bool options_imp::getUseOSDAlways() const{
+  if(!QSystemTrayIcon::supportsMessages()){
+    // Mac OS X doesn't support it yet
+    return false;
+  }
   return alwaysOSD->isChecked();
 }
 
 // Should the program use OSD when the window is hidden only?
 bool options_imp::getUseOSDWhenHiddenOnly() const{
+  if(!QSystemTrayIcon::supportsMessages()){
+    // Mac OS X doesn't support it yet
+    return false;
+  }
   return someOSD->isChecked();
 }
 
