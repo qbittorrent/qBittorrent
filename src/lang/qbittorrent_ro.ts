@@ -291,19 +291,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>OSD</source>
-        <translation>OSD</translation>
+        <translation type="obsolete">OSD</translation>
     </message>
     <message>
         <source>Always display OSD</source>
-        <translation>Întotdeauna arata OSD</translation>
+        <translation type="obsolete">Întotdeauna arata OSD</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation>Arata OSD numai cînd fereastra este minimizata sau iconificata</translation>
+        <translation type="obsolete">Arata OSD numai cînd fereastra este minimizata sau iconificata</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation>Nici o data nu afiseaza OSD</translation>
+        <translation type="obsolete">Nici o data nu afiseaza OSD</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -336,6 +336,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>Audio/Video player:</source>
         <translation>Audio/Video player:</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -691,6 +707,19 @@ Vă rugăm să-l opriţi.</translation>
     <message>
         <source>Transfers</source>
         <translation>Transferuri</translation>
+    </message>
+    <message>
+        <source>Download finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> has finished downloading.</source>
+        <comment>&lt;filename&gt; has finished downloading.</comment>
+        <translation type="unfinished"> am terminat descărcarea.</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation type="unfinished">Motor de Căutare</translation>
     </message>
 </context>
 <context>

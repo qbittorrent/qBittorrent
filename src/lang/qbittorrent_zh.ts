@@ -325,19 +325,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>OSD</source>
-        <translation>OSD</translation>
+        <translation type="obsolete">OSD</translation>
     </message>
     <message>
         <source>Always display OSD</source>
-        <translation>总是显示OSD</translation>
+        <translation type="obsolete">总是显示OSD</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation>仅当窗口为最小化或为图标时显示OSD</translation>
+        <translation type="obsolete">仅当窗口为最小化或为图标时显示OSD</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation>从不显示OSD</translation>
+        <translation type="obsolete">从不显示OSD</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -370,6 +370,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>Audio/Video player:</source>
         <translation>音频/视频播放器:</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -744,6 +760,19 @@ Please close the other one first.</source>
     <message>
         <source>Transfers</source>
         <translation>传输</translation>
+    </message>
+    <message>
+        <source>Download finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> has finished downloading.</source>
+        <comment>&lt;filename&gt; has finished downloading.</comment>
+        <translation type="unfinished"> 下载完毕.</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation type="unfinished">搜索引擎</translation>
     </message>
 </context>
 <context>

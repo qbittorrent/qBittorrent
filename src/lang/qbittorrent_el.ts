@@ -396,19 +396,19 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>OSD</source>
-        <translation>OSD</translation>
+        <translation type="obsolete">OSD</translation>
     </message>
     <message>
         <source>Always display OSD</source>
-        <translation>Εμφάνιση πάντα OSD</translation>
+        <translation type="obsolete">Εμφάνιση πάντα OSD</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation>Εμφάνιση OSD μόνο αν το παράθυρο είναι ελαχιστοποιημένο ή εικονοποιημένο</translation>
+        <translation type="obsolete">Εμφάνιση OSD μόνο αν το παράθυρο είναι ελαχιστοποιημένο ή εικονοποιημένο</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation>Απόκρυψη OSD</translation>
+        <translation type="obsolete">Απόκρυψη OSD</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -441,6 +441,22 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
     <message>
         <source>Audio/Video player:</source>
         <translation>Αναπαραγωγή Ήχου/Βίντεο:</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -864,6 +880,19 @@ Please close the other one first.</source>
     <message>
         <source>Transfers</source>
         <translation>Μεταφορές</translation>
+    </message>
+    <message>
+        <source>Download finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> has finished downloading.</source>
+        <comment>&lt;filename&gt; has finished downloading.</comment>
+        <translation type="unfinished"> έχει τελειώσει το κατέβασμα.</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation type="unfinished">Μηχανή Αναζήτησης</translation>
     </message>
 </context>
 <context>

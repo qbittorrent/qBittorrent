@@ -381,19 +381,19 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>OSD</source>
-        <translation>OSD</translation>
+        <translation type="obsolete">OSD</translation>
     </message>
     <message>
         <source>Always display OSD</source>
-        <translation>Винаги показвай OSD</translation>
+        <translation type="obsolete">Винаги показвай OSD</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation>Покажи OSD само ако минимизиран или иконизиран</translation>
+        <translation type="obsolete">Покажи OSD само ако минимизиран или иконизиран</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation>Не показвай OSD</translation>
+        <translation type="obsolete">Не показвай OSD</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -426,6 +426,22 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
     <message>
         <source>Audio/Video player:</source>
         <translation>Аудио/Видео плейър:</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -829,6 +845,19 @@ Please close the other one first.</source>
     <message>
         <source>Transfers</source>
         <translation>Трансфери</translation>
+    </message>
+    <message>
+        <source>Download finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> has finished downloading.</source>
+        <comment>&lt;filename&gt; has finished downloading.</comment>
+        <translation type="unfinished"> е завършил свалянето.</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation type="unfinished">Търсачка</translation>
     </message>
 </context>
 <context>

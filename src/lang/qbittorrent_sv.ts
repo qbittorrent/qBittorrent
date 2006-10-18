@@ -282,19 +282,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>OSD</source>
-        <translation>OSD</translation>
+        <translation type="obsolete">OSD</translation>
     </message>
     <message>
         <source>Always display OSD</source>
-        <translation>Visa alltid OSD</translation>
+        <translation type="obsolete">Visa alltid OSD</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation>Visa endast OSD om ett fönster är minimerat eller ikonifierat</translation>
+        <translation type="obsolete">Visa endast OSD om ett fönster är minimerat eller ikonifierat</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation>Visa aldrig OSD</translation>
+        <translation type="obsolete">Visa aldrig OSD</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -327,6 +327,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>Audio/Video player:</source>
         <translation>Ljud-/videospelare:</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -625,6 +641,19 @@ Stäng den först.</translation>
     <message>
         <source>Transfers</source>
         <translation>Överföringar</translation>
+    </message>
+    <message>
+        <source>Download finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> has finished downloading.</source>
+        <comment>&lt;filename&gt; has finished downloading.</comment>
+        <translation type="unfinished"> har hämtats färdigt.</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

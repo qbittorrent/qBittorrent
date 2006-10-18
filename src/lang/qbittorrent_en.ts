@@ -271,22 +271,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>OSD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always display OSD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display OSD only if window is minimized or iconified</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Never display OSD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -316,6 +300,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Audio/Video player:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -611,6 +611,19 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> has finished downloading.</source>
+        <comment>&lt;filename&gt; has finished downloading.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

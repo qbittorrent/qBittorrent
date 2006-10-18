@@ -300,19 +300,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>OSD</source>
-        <translation>OSD</translation>
+        <translation type="obsolete">OSD</translation>
     </message>
     <message>
         <source>Always display OSD</source>
-        <translation>Vždy zobrazuj OSD</translation>
+        <translation type="obsolete">Vždy zobrazuj OSD</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation>Zobrazuj OSD iba keď je okno minimalizované alebo ikonifikované</translation>
+        <translation type="obsolete">Zobrazuj OSD iba keď je okno minimalizované alebo ikonifikované</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation>Nikdy nezobrazuj OSD</translation>
+        <translation type="obsolete">Nikdy nezobrazuj OSD</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -345,6 +345,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>Audio/Video player:</source>
         <translation>Audio/Video prehrávač:</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -711,6 +727,19 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <source>Please wait...</source>
         <translation>Čakajte prosím...</translation>
+    </message>
+    <message>
+        <source>Download finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> has finished downloading.</source>
+        <comment>&lt;filename&gt; has finished downloading.</comment>
+        <translation type="unfinished"> skončilo sťahovanie.</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation type="unfinished">Vyhad</translation>
     </message>
 </context>
 <context>

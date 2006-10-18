@@ -406,19 +406,19 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>OSD</source>
-        <translation>OSD</translation>
+        <translation type="obsolete">OSD</translation>
     </message>
     <message>
         <source>Always display OSD</source>
-        <translation>OSD altijd weergeven</translation>
+        <translation type="obsolete">OSD altijd weergeven</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation>OSD alleen weergeven indien venster geminimaliseerd of in systeemvak</translation>
+        <translation type="obsolete">OSD alleen weergeven indien venster geminimaliseerd of in systeemvak</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation>OSD nooit weergeven</translation>
+        <translation type="obsolete">OSD nooit weergeven</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -451,6 +451,22 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     <message>
         <source>Audio/Video player:</source>
         <translation>Audio/Video Speler:</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -827,6 +843,19 @@ Stop het eerste proccess eerst.
     <message>
         <source>Transfers</source>
         <translation>Overdrachten</translation>
+    </message>
+    <message>
+        <source>Download finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> has finished downloading.</source>
+        <comment>&lt;filename&gt; has finished downloading.</comment>
+        <translation type="unfinished"> is klaar met downloaden.</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation type="unfinished">Zoekmachine</translation>
     </message>
 </context>
 <context>

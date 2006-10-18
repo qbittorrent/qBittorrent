@@ -275,19 +275,19 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>OSD</source>
-        <translation>Skjermmeldinger</translation>
+        <translation type="obsolete">Skjermmeldinger</translation>
     </message>
     <message>
         <source>Always display OSD</source>
-        <translation>Vis alltid skjermmeldinger</translation>
+        <translation type="obsolete">Vis alltid skjermmeldinger</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation>Vis skjermmeldinger kun når vinduet er minimert</translation>
+        <translation type="obsolete">Vis skjermmeldinger kun når vinduet er minimert</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation>Vis aldri skjermmeldinger</translation>
+        <translation type="obsolete">Vis aldri skjermmeldinger</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -320,6 +320,22 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     <message>
         <source>Audio/Video player:</source>
         <translation>Lyd/video avspiller:</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -618,6 +634,19 @@ Vennligst avslutt denne først.</translation>
     <message>
         <source>Transfers</source>
         <translation type="unfinished">Overføringer</translation>
+    </message>
+    <message>
+        <source>Download finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> has finished downloading.</source>
+        <comment>&lt;filename&gt; has finished downloading.</comment>
+        <translation type="unfinished">er ferdig lastet ned.</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -396,19 +396,19 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>OSD</source>
-        <translation>OSD</translation>
+        <translation type="obsolete">OSD</translation>
     </message>
     <message>
         <source>Always display OSD</source>
-        <translation>Her zaman OSD yi göster</translation>
+        <translation type="obsolete">Her zaman OSD yi göster</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation>OSD yi sadece pencere küçültülmüşken ya da simge durumundayken göster</translation>
+        <translation type="obsolete">OSD yi sadece pencere küçültülmüşken ya da simge durumundayken göster</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation>OSD yi asla gösterme</translation>
+        <translation type="obsolete">OSD yi asla gösterme</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -441,6 +441,22 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <source>Audio/Video player:</source>
         <translation>Ses/Video oynatıcısı:</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -856,6 +872,19 @@ Lütfen önce diğerini kapatın.</translation>
     <message>
         <source>Transfers</source>
         <translation>Aktarımlar</translation>
+    </message>
+    <message>
+        <source>Download finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> has finished downloading.</source>
+        <comment>&lt;filename&gt; has finished downloading.</comment>
+        <translation type="unfinished"> download tamamlandı.</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation type="unfinished">Arama Motoru</translation>
     </message>
 </context>
 <context>

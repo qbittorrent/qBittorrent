@@ -346,19 +346,19 @@ list:</source>
     </message>
     <message>
         <source>OSD</source>
-        <translation>OSD(On Screen Display)</translation>
+        <translation type="obsolete">OSD(On Screen Display)</translation>
     </message>
     <message>
         <source>Always display OSD</source>
-        <translation>OSD 항시 표시</translation>
+        <translation type="obsolete">OSD 항시 표시</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation>창이 최소화할때나 작업창 아이콘이 될때만 OSD 표시</translation>
+        <translation type="obsolete">창이 최소화할때나 작업창 아이콘이 될때만 OSD 표시</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation>OSD 표시하지 않기</translation>
+        <translation type="obsolete">OSD 표시하지 않기</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -391,6 +391,22 @@ list:</source>
     <message>
         <source>Audio/Video player:</source>
         <translation>음악/비디오 재생기:</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -834,6 +850,19 @@ Please close the other one first.</source>
     <message>
         <source>Transfers</source>
         <translation>전송</translation>
+    </message>
+    <message>
+        <source>Download finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> has finished downloading.</source>
+        <comment>&lt;filename&gt; has finished downloading.</comment>
+        <translation type="unfinished"> 가 완료되었습니다.</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation type="unfinished">검색 엔진</translation>
     </message>
 </context>
 <context>

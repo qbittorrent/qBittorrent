@@ -152,6 +152,9 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(actionPreview_file, SIGNAL(triggered()), this, SLOT(previewFileSelection()));
   connect(infoBar, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayInfoBarMenu(const QPoint&)));
   // Create tray icon
+  if (!QSystemTrayIcon::isSystemTrayAvailable()){
+    std::cerr << "Error: System tray unavailable\n";
+  }
   myTrayIcon = new QSystemTrayIcon(QIcon(":/Icons/qbittorrent22.png"), this);
   // Start download list refresher
   refresher = new QTimer(this);
@@ -169,6 +172,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   myTrayIconMenu->addSeparator();
   myTrayIconMenu->addAction(actionExit);
   myTrayIcon->setContextMenu(myTrayIconMenu);
+  connect(myTrayIcon, SIGNAL(messageClicked()), this, SLOT(balloonClicked()));
   // End of Icon Menu
   connect(myTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
   myTrayIcon->show();
@@ -226,8 +230,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(meganova, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
   // Update nova.py search plugin if necessary
   updateNova();
-  // OSD
-  OSDWindow = new OSD(this);
   // Supported preview extensions
   // XXX: might be incomplete
   supported_preview_extensions<<"AVI"<<"DIVX"<<"MPG"<<"MPEG"<<"MP3"<<"OGG"<<"WMV"<<"WMA"<<"RMV"<<"RMVB"<<"ASF"<<"MOV"<<"WAV"<<"MP2"<<"SWF"<<"AC3";
@@ -249,7 +251,6 @@ GUI::~GUI(){
   delete refresher;
   delete myTrayIcon;
   delete myTrayIconMenu;
-  delete OSDWindow;
   delete tcpServer;
   delete DLDelegate;
   delete DLListModel;
@@ -272,6 +273,16 @@ void GUI::setInfoBar(const QString& info, const QString& color){
   infoBar->append("<font color='grey'>"+ QTime::currentTime().toString("hh:mm:ss") + "</font> - <font color='" + color +"'><i>" + info + "</i></font>");
 }
 
+void GUI::balloonClicked(){
+  if(isHidden()){
+      show();
+      if(isMinimized()){
+        showNormal();
+      }
+      raise();
+      activateWindow();
+  }
+}
 // Buggy with Qt 4.1.2 : should try with another version
 // void GUI::readParamsOnSocket(){
 //     QTcpSocket *clientConnection = tcpServer->nextPendingConnection();
@@ -1860,7 +1871,7 @@ void GUI::checkConnectionStatus(){
       // Level: info
       setInfoBar(fileName+tr(" has finished downloading."));
       if(options->getUseOSDAlways() || (options->getUseOSDWhenHiddenOnly() && (isMinimized() || isHidden()))) {
-        OSDWindow->display(fileName+tr(" has finished downloading."));
+        myTrayIcon->showMessage(tr("Download finished"), fileName+tr(" has finished downloading.", "<filename> has finished downloading."), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
       }
       QString scan_dir = options->getScanDir();
       bool isScanningDir = !scan_dir.isNull();
@@ -2173,7 +2184,7 @@ void GUI::on_update_nova_button_clicked(){
 // Error | Stopped by user | Finished normally
 void GUI::searchFinished(int exitcode,QProcess::ExitStatus){
   if(options->getUseOSDAlways() || (options->getUseOSDWhenHiddenOnly() && (isMinimized() || isHidden()))) {
-    OSDWindow->display(tr("Search is finished"));
+    myTrayIcon->showMessage(tr("Search Engine"), tr("Search is finished"), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
   }
   if(exitcode){
     search_status->setText(tr("An error occured during search..."));

@@ -436,20 +436,16 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation>Comportement</translation>
     </message>
     <message>
-        <source>OSD</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Always display OSD</source>
-        <translation>Toujours afficher les OSD</translation>
+        <translation type="obsolete">Toujours afficher les OSD</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation>Afficher les OSD uniquement lorsque la fenêtre n&apos;est pas visible</translation>
+        <translation type="obsolete">Afficher les OSD uniquement lorsque la fenêtre n&apos;est pas visible</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation>Ne jamais afficher d&apos;OSD</translation>
+        <translation type="obsolete">Ne jamais afficher d&apos;OSD</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -482,6 +478,22 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
     <message>
         <source>Audio/Video player:</source>
         <translation>Lecteur audio/video :</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -940,6 +952,19 @@ Veuillez d&apos;abord le quitter.</translation>
     <message>
         <source>Transfers</source>
         <translation>Transferts</translation>
+    </message>
+    <message>
+        <source>Download finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> has finished downloading.</source>
+        <comment>&lt;filename&gt; has finished downloading.</comment>
+        <translation type="unfinished"> a fini de télécharger.</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation type="unfinished">Moteur de recherche</translation>
     </message>
 </context>
 <context>

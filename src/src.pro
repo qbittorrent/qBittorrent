@@ -90,7 +90,7 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
 
 # Source code
 HEADERS += GUI.h misc.h options_imp.h about_imp.h \
-           properties_imp.h createtorrent_imp.h OSD.h \
+           properties_imp.h createtorrent_imp.h \
            DLListDelegate.h SearchListDelegate.h \
 	   PropListDelegate.h previewSelect.h \
            PreviewListDelegate.h trackerLogin.h \
@@ -102,6 +102,5 @@ SOURCES += GUI.cpp \
            main.cpp \
            options_imp.cpp \
 	   properties_imp.cpp \
-	   createtorrent_imp.cpp \
-           OSD.cpp
+	   createtorrent_imp.cpp
 

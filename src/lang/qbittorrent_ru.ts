@@ -342,19 +342,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>OSD</source>
-        <translation>OSD</translation>
+        <translation type="obsolete">OSD</translation>
     </message>
     <message>
         <source>Always display OSD</source>
-        <translation>Всегда показывать OSD</translation>
+        <translation type="obsolete">Всегда показывать OSD</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation>Показывать OSD только когда окно минимизировано</translation>
+        <translation type="obsolete">Показывать OSD только когда окно минимизировано</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation>Никогда не показывать OSD</translation>
+        <translation type="obsolete">Никогда не показывать OSD</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -387,6 +387,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>Audio/Video player:</source>
         <translation>Аудио/Видео проигрователь:</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -778,6 +794,19 @@ Please close the other one first.</source>
     <message>
         <source>Transfers</source>
         <translation>Передачи</translation>
+    </message>
+    <message>
+        <source>Download finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> has finished downloading.</source>
+        <comment>&lt;filename&gt; has finished downloading.</comment>
+        <translation type="unfinished"> скачивание завершено.</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation type="unfinished">Поисковик</translation>
     </message>
 </context>
 <context>

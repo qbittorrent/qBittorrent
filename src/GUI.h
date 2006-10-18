@@ -41,9 +41,10 @@
 #include "ui_MainWindow.h"
 #include "options_imp.h"
 #include "about_imp.h"
-#include "OSD.h"
 #include "previewSelect.h"
 #include "trackerLogin.h"
+
+#define TIME_TRAY_BALLOON 5000
 
 class createtorrent;
 class QTimer;
@@ -94,7 +95,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     bool no_search_results;
     QByteArray search_result_line_truncated;
     unsigned long nb_search_results;
-    OSD *OSDWindow;
     QTcpServer *tcpServer;
     QTcpSocket *clientConnection;
 
@@ -133,6 +133,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void previewFileSelection();
     void previewFile(const QString& filePath);
     void cleanTempPreviewFile(int, QProcess::ExitStatus);
+    void balloonClicked();
     // Torrent actions
     void showProperties(const QModelIndex &index);
     void propertiesSelection();

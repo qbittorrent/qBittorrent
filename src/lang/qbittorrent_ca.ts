@@ -404,19 +404,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>OSD</source>
-        <translation>OSD</translation>
+        <translation type="obsolete">OSD</translation>
     </message>
     <message>
         <source>Always display OSD</source>
-        <translation>Mostrar sempre OSD</translation>
+        <translation type="obsolete">Mostrar sempre OSD</translation>
     </message>
     <message>
         <source>Display OSD only if window is minimized or iconified</source>
-        <translation>Mostra l&apos;OSD només si la finestra està minimitzada o iconificada</translation>
+        <translation type="obsolete">Mostra l&apos;OSD només si la finestra està minimitzada o iconificada</translation>
     </message>
     <message>
         <source>Never display OSD</source>
-        <translation>No mostrar OSD mai</translation>
+        <translation type="obsolete">No mostrar OSD mai</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -449,6 +449,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>Audio/Video player:</source>
         <translation>Reproductor de Audio/Video:</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -872,6 +888,19 @@ Si et plau tanca l&apos;altre primer.</translation>
     <message>
         <source>Transfers</source>
         <translation>Transferits</translation>
+    </message>
+    <message>
+        <source>Download finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> has finished downloading.</source>
+        <comment>&lt;filename&gt; has finished downloading.</comment>
+        <translation type="unfinished"> ha finalitzat la descàrrega.</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation type="unfinished">Motor de Busqueda</translation>
     </message>
 </context>
 <context>

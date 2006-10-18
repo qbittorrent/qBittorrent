@@ -13,8 +13,7 @@
 - Allow to prioritize files within a torrent
 - Allow to prioritize torrents
 - Optimize code to use less memory/cpu
-- Add some transparency (menus, OSD)
-- Rewrite trayicon using QSystemTrayIcon class (waiting for Qt 4.2)
+- Add some transparency (menus,...)
 - Popup when adding a torrent (Save path, select files in the torrent...) (v0.8.0?)
 - Display remaining HD space (check it before adding a new torrent?)
 - Add a column "Tracker status"?
