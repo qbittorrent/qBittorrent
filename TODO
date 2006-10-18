@@ -4,18 +4,13 @@
 - Improve man page
 - Add more keyboard shortcuts
 - Improve torrent creation tool (look & features)
-- Allow user to choose DHT port
-- Add button : delete from list and Hard drive
 
 // Intermediate
-- Move novaUpdater to a Thread (probably use downloadThread) to prevent GUI freezing
 - Port on MacOS, Windows (and create an installer for Windows) - Progressing
 - Allow to prioritize files within a torrent
 - Allow to prioritize torrents
 - Optimize code to use less memory/cpu
 - Add some transparency (menus,...)
-- Popup when adding a torrent (Save path, select files in the torrent...) (v0.8.0?)
-- Display remaining HD space (check it before adding a new torrent?)
 - Add a column "Tracker status"?
 - Option to shutdown computer when downloads are finished
 
@@ -32,4 +27,11 @@
 - Split kernel from GUI? (would be a lot better but require some deep changes)
 - Web interface?
 
-
+// In v0.8.0
+- Add Visit qBittorrent website menu entry
+- Add Report a bug in qBittorrent menu entry
+- Popup when adding a torrent (Save path, select files in the torrent...)
+- Display remaining HD space (check it before adding a new torrent?)
+- Move novaUpdater to a Thread (probably use downloadThread) to prevent GUI freezing
+- Allow user to choose DHT port
+- Add button : delete from list and Hard drive
