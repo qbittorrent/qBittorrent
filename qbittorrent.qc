@@ -2,7 +2,7 @@
  <name>qbittorrent</name>
  <profile>qbittorrent.pro</profile>
  <moddir>qcm</moddir>
-  <dep type='qt41'>
+  <dep type='qt42'>
     <required/>
   </dep>
   <dep type='libtorrent'>

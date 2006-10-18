@@ -38,9 +38,6 @@ contains(DEBUG_MODE, 0){
   CONFIG += release
 }
 
-# Includes
-include($$TRAYICON_CPP/trayicon.pri)
-
 exists(../conf.pri) {
        include(../conf.pri)
 }

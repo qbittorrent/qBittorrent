@@ -42,7 +42,6 @@
 #include "misc.h"
 #include "createtorrent_imp.h"
 #include "properties_imp.h"
-#include "trayicon/trayicon.h"
 #include "DLListDelegate.h"
 #include "SearchListDelegate.h"
 #include "downloadThread.h"
@@ -153,16 +152,13 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(actionPreview_file, SIGNAL(triggered()), this, SLOT(previewFileSelection()));
   connect(infoBar, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayInfoBarMenu(const QPoint&)));
   // Create tray icon
-  myTrayIcon = new TrayIcon(this);
+  myTrayIcon = new QSystemTrayIcon(QIcon(":/Icons/qbittorrent22.png"), this);
   // Start download list refresher
   refresher = new QTimer(this);
   connect(refresher, SIGNAL(timeout()), this, SLOT(updateDlList()));
   refresher->start(2000);
   // Center window
   centerWindow();
-  // Add tray icon and customize it
-  myTrayIcon->setWMDock(false);
-  myTrayIcon->setIcon(QPixmap::QPixmap(":/Icons/qbittorrent22.png"));
   // Tray icon Menu
   myTrayIconMenu = new QMenu(this);
   myTrayIconMenu->addAction(actionOpen);
@@ -172,9 +168,9 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   myTrayIconMenu->addAction(actionPause_All);
   myTrayIconMenu->addSeparator();
   myTrayIconMenu->addAction(actionExit);
-  myTrayIcon->setPopup(myTrayIconMenu);
+  myTrayIcon->setContextMenu(myTrayIconMenu);
   // End of Icon Menu
-  connect(myTrayIcon, SIGNAL(clicked(const QPoint &, int)), this, SLOT(toggleVisibility()));
+  connect(myTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
   myTrayIcon->show();
   // Use a tcp server to allow only one instance of qBittorrent
   tcpServer = new QTcpServer(this);
@@ -680,20 +676,22 @@ void GUI::sortSearchListString(int index, Qt::SortOrder sortOrder){
 }
 
 // Toggle Main window visibility
-void GUI::toggleVisibility(){
-  if(isHidden()){
-    show();
-    if(isMinimized()){
-      if(isMaximized()){
-        showMaximized();
-      }else{
-        showNormal();
+void GUI::toggleVisibility(QSystemTrayIcon::ActivationReason e){
+  if(e == QSystemTrayIcon::Trigger || e == QSystemTrayIcon::DoubleClick){
+    if(isHidden()){
+      show();
+      if(isMinimized()){
+        if(isMaximized()){
+          showMaximized();
+        }else{
+          showNormal();
+        }
       }
+      raise();
+      activateWindow();
+    }else{
+      hide();
     }
-    raise();
-    activateWindow();
-  }else{
-    hide();
   }
 }
 

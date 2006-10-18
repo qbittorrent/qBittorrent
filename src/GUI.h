@@ -27,6 +27,8 @@
 #include <QProcess>
 #include <QTcpServer>
 #include <QTcpSocket>
+#include <QCloseEvent>
+#include <QSystemTrayIcon>
 
 #include <libtorrent/entry.hpp>
 #include <libtorrent/bencode.hpp>
@@ -45,7 +47,6 @@
 
 class createtorrent;
 class QTimer;
-class TrayIcon;
 class DLListDelegate;
 class SearchListDelegate;
 class downloadThread;
@@ -74,7 +75,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     options_imp *options;
     createtorrent *createWindow;
     QTimer *refresher;
-    TrayIcon *myTrayIcon;
+    QSystemTrayIcon *myTrayIcon;
     QMenu *myTrayIconMenu;
     about *aboutdlg;
     QStandardItemModel *DLListModel;
@@ -102,7 +103,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void dropEvent(QDropEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
     void centerWindow();
-    void toggleVisibility();
+    void toggleVisibility(QSystemTrayIcon::ActivationReason e);
     void showAbout();
     void setInfoBar(const QString& info, const QString& color="black");
     void updateDlList();
