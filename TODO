@@ -28,6 +28,7 @@
 - Web interface?
 
 // In v0.8.0
+- Add upnp port forwarding support
 - Add Visit qBittorrent website menu entry
 - Add Report a bug in qBittorrent menu entry
 - Popup when adding a torrent (Save path, select files in the torrent...)
