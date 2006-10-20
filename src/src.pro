@@ -33,7 +33,11 @@ contains(DEBUG_MODE, 0){
   contains(QT_VERSION, 4.2.0) {
     message(Qt 4.2.0 detected : enabling debug output because of a bug in this version of Qt)
   }else{
-    DEFINES += QT_NO_DEBUG_OUTPUT
+    contains(QT_VERSION, 4.2.1) {
+      message(Qt 4.2.1 detected : enabling debug output because of a bug in this version of Qt)
+    }else{
+      DEFINES += QT_NO_DEBUG_OUTPUT
+    }
   }
   CONFIG += release
 }
