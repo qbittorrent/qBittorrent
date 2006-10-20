@@ -481,19 +481,19 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Systray Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Messages de notification</translation>
     </message>
     <message>
         <source>Always display systray messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Toujours afficher les messages de notification</translation>
     </message>
     <message>
         <source>Display systray messages only when window is hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les messages de notification lorsque la fenêtre n&apos;est pas visible</translation>
     </message>
     <message>
         <source>Never display systray messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne jamais afficher les messages de notification</translation>
     </message>
 </context>
 <context>
@@ -955,16 +955,16 @@ Veuillez d&apos;abord le quitter.</translation>
     </message>
     <message>
         <source>Download finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Téléchargement terminé</translation>
     </message>
     <message>
         <source> has finished downloading.</source>
         <comment>&lt;filename&gt; has finished downloading.</comment>
-        <translation type="unfinished"> a fini de télécharger.</translation>
+        <translation> est fini de télécharger.</translation>
     </message>
     <message>
         <source>Search Engine</source>
-        <translation type="unfinished">Moteur de recherche</translation>
+        <translation>Moteur de recherche</translation>
     </message>
 </context>
 <context>
@@ -1155,7 +1155,7 @@ Veuillez d&apos;abord le quitter.</translation>
     </message>
     <message>
         <source>Update search plugin</source>
-        <translation>Mettre à jour le plugin de recherche</translation>
+        <translation>Mettre à jour le greffon de recherche</translation>
     </message>
     <message>
         <source>Session ratio: </source>
