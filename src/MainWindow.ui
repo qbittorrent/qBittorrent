@@ -1,7 +1,4 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow" >
   <property name="geometry" >
@@ -9,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>849</width>
-    <height>526</height>
+    <height>553</height>
    </rect>
   </property>
   <property name="contextMenuPolicy" >
@@ -46,301 +43,297 @@
          <number>6</number>
         </property>
         <item>
-         <widget class="QWidget" name="widget" >
-          <layout class="QVBoxLayout" >
-           <property name="margin" >
-            <number>0</number>
-           </property>
-           <property name="spacing" >
-            <number>6</number>
-           </property>
-           <item>
-            <layout class="QHBoxLayout" >
-             <property name="margin" >
-              <number>0</number>
-             </property>
-             <property name="spacing" >
-              <number>6</number>
-             </property>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QLabel" name="lbl_DLSpeed" >
-               <property name="text" >
-                <string>Total DL Speed:</string>
-               </property>
-               <property name="alignment" >
-                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLCDNumber" name="LCD_DownSpeed" >
-               <property name="autoFillBackground" >
-                <bool>true</bool>
-               </property>
-               <property name="frameShadow" >
-                <enum>QFrame::Raised</enum>
-               </property>
-               <property name="smallDecimalPoint" >
-                <bool>false</bool>
-               </property>
-               <property name="numDigits" >
-                <number>6</number>
-               </property>
-               <property name="segmentStyle" >
-                <enum>QLCDNumber::Flat</enum>
-               </property>
-               <property name="value" stdset="0" >
-                <double>0</double>
-               </property>
-               <property name="intValue" stdset="0" >
-                <number>0</number>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="unitDL" >
-               <property name="text" >
-                <string>KiB/s</string>
-               </property>
-               <property name="alignment" >
-                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QLabel" name="label" >
-               <property name="text" >
-                <string>Session ratio: </string>
-               </property>
-               <property name="alignment" >
-                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLCDNumber" name="LCD_Ratio" >
-               <property name="autoFillBackground" >
-                <bool>true</bool>
-               </property>
-               <property name="numDigits" >
-                <number>4</number>
-               </property>
-               <property name="segmentStyle" >
-                <enum>QLCDNumber::Flat</enum>
-               </property>
-               <property name="value" stdset="0" >
-                <double>1</double>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="lbl_ratio_icon" >
-               <property name="text" >
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QLabel" name="lbl_UPSpeed" >
-               <property name="text" >
-                <string>Total UP Speed:</string>
-               </property>
-               <property name="alignment" >
-                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLCDNumber" name="LCD_UpSpeed" >
-               <property name="autoFillBackground" >
-                <bool>true</bool>
-               </property>
-               <property name="smallDecimalPoint" >
-                <bool>false</bool>
-               </property>
-               <property name="numDigits" >
-                <number>6</number>
-               </property>
-               <property name="segmentStyle" >
-                <enum>QLCDNumber::Flat</enum>
-               </property>
-               <property name="value" stdset="0" >
-                <double>0</double>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="unitUP" >
-               <property name="text" >
-                <string>KiB/s</string>
-               </property>
-               <property name="alignment" >
-                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QTreeView" name="downloadList" >
-             <property name="contextMenuPolicy" >
-              <enum>Qt::CustomContextMenu</enum>
-             </property>
-             <property name="autoScroll" >
-              <bool>true</bool>
-             </property>
-             <property name="selectionMode" >
-              <enum>QAbstractItemView::ExtendedSelection</enum>
-             </property>
-             <property name="indentation" >
-              <number>1</number>
-             </property>
-             <property name="itemsExpandable" >
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_DLSpeed" >
+              <property name="text" >
+               <string>Total DL Speed:</string>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLCDNumber" name="LCD_DownSpeed" >
+              <property name="autoFillBackground" >
+               <bool>true</bool>
+              </property>
+              <property name="frameShadow" >
+               <enum>QFrame::Raised</enum>
+              </property>
+              <property name="smallDecimalPoint" >
+               <bool>false</bool>
+              </property>
+              <property name="numDigits" >
+               <number>6</number>
+              </property>
+              <property name="segmentStyle" >
+               <enum>QLCDNumber::Flat</enum>
+              </property>
+              <property name="value" stdset="0" >
+               <double>0.000000000000000</double>
+              </property>
+              <property name="intValue" stdset="0" >
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="unitDL" >
+              <property name="text" >
+               <string>KiB/s</string>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="label" >
+              <property name="text" >
+               <string>Session ratio: </string>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLCDNumber" name="LCD_Ratio" >
+              <property name="autoFillBackground" >
+               <bool>true</bool>
+              </property>
+              <property name="numDigits" >
+               <number>4</number>
+              </property>
+              <property name="segmentStyle" >
+               <enum>QLCDNumber::Flat</enum>
+              </property>
+              <property name="value" stdset="0" >
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_ratio_icon" >
+              <property name="text" >
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_UPSpeed" >
+              <property name="text" >
+               <string>Total UP Speed:</string>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLCDNumber" name="LCD_UpSpeed" >
+              <property name="autoFillBackground" >
+               <bool>true</bool>
+              </property>
+              <property name="smallDecimalPoint" >
+               <bool>false</bool>
+              </property>
+              <property name="numDigits" >
+               <number>6</number>
+              </property>
+              <property name="segmentStyle" >
+               <enum>QLCDNumber::Flat</enum>
+              </property>
+              <property name="value" stdset="0" >
+               <double>0.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="unitUP" >
+              <property name="text" >
+               <string>KiB/s</string>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTreeView" name="downloadList" >
+            <property name="contextMenuPolicy" >
+             <enum>Qt::CustomContextMenu</enum>
+            </property>
+            <property name="autoScroll" >
+             <bool>true</bool>
+            </property>
+            <property name="selectionMode" >
+             <enum>QAbstractItemView::ExtendedSelection</enum>
+            </property>
+            <property name="indentation" >
+             <number>1</number>
+            </property>
+            <property name="itemsExpandable" >
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
-         <widget class="QWidget" name="layoutWidget_3" >
-          <layout class="QVBoxLayout" >
-           <property name="margin" >
-            <number>0</number>
-           </property>
-           <property name="spacing" >
-            <number>6</number>
-           </property>
-           <item>
-            <layout class="QHBoxLayout" >
-             <property name="margin" >
-              <number>0</number>
-             </property>
-             <property name="spacing" >
-              <number>6</number>
-             </property>
-             <item>
-              <widget class="QLabel" name="info_icon" >
-               <property name="text" >
-                <string/>
-               </property>
-               <property name="alignment" >
-                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="lbl_info" >
-               <property name="font" >
-                <font>
-                 <family>Sans Serif</family>
-                 <pointsize>9</pointsize>
-                 <weight>75</weight>
-                 <italic>false</italic>
-                 <bold>true</bold>
-                 <underline>true</underline>
-                 <strikeout>false</strikeout>
-                </font>
-               </property>
-               <property name="text" >
-                <string>Log:</string>
-               </property>
-               <property name="alignment" >
-                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>661</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QTextBrowser" name="infoBar" >
-             <property name="sizePolicy" >
-              <sizepolicy>
-               <hsizetype>7</hsizetype>
-               <vsizetype>0</vsizetype>
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="maximumSize" >
-              <size>
-               <width>16777215</width>
-               <height>123</height>
-              </size>
-             </property>
-             <property name="contextMenuPolicy" >
-              <enum>Qt::CustomContextMenu</enum>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="info_icon" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_info" >
+              <property name="font" >
+               <font>
+                <family>Sans Serif</family>
+                <pointsize>9</pointsize>
+                <weight>75</weight>
+                <italic>false</italic>
+                <bold>true</bold>
+                <underline>true</underline>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="text" >
+               <string>Log:</string>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>661</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTextBrowser" name="infoBar" >
+            <property name="sizePolicy" >
+             <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>0</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize" >
+             <size>
+              <width>16777215</width>
+              <height>123</height>
+             </size>
+            </property>
+            <property name="contextMenuPolicy" >
+             <enum>Qt::CustomContextMenu</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -768,7 +761,6 @@
    <addaction name="menu_Options" />
    <addaction name="menu_Help" />
   </widget>
-  <widget class="QStatusBar" name="statusbar" />
   <widget class="QToolBar" name="toolBar" >
    <property name="enabled" >
     <bool>true</bool>
@@ -893,7 +885,6 @@
    </property>
   </action>
  </widget>
- <pixmapfunction></pixmapfunction>
  <resources/>
  <connections>
   <connection>
