@@ -653,7 +653,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>Ви впевнені що хочете вийти з qbittorrent?</translation>
+        <translation type="obsolete">Ви впевнені що хочете вийти з qbittorrent?</translation>
     </message>
     <message>
         <source>Timed out</source>
@@ -815,6 +815,10 @@ Please close the other one first.</source>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Пошуковик</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -706,7 +706,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>Czy chcesz wyjść z programu?</translation>
+        <translation type="obsolete">Czy chcesz wyjść z programu?</translation>
     </message>
     <message>
         <source>Timed out</source>
@@ -877,6 +877,10 @@ Zamknij najpierw okno podglądu.</translation>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Wyszukiwarka</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

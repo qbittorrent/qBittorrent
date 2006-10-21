@@ -1003,7 +1003,7 @@ void GUI::closeEvent(QCloseEvent *e){
   if(options->getConfirmOnExit()){
     if(QMessageBox::question(this,
        tr("Are you sure you want to quit? -- qBittorrent"),
-       tr("Are you sure you want to quit qbittorrent?"),
+       tr("Are you sure you want to quit qBittorrent?"),
        tr("&Yes"), tr("&No"),
        QString(), 0, 1)){
          e->ignore();

@@ -506,7 +506,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>Er du sikker på at du ønsker å avslutte qbittorrent?</translation>
+        <translation type="obsolete">Er du sikker på at du ønsker å avslutte qbittorrent?</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -646,6 +646,10 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Search Engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

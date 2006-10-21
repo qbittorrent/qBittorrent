@@ -723,7 +723,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>qBittorrentten çıkmak istediğinize emin misiniz?</translation>
+        <translation type="obsolete">qBittorrentten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Timed out</source>
@@ -885,6 +885,10 @@ Lütfen önce diğerini kapatın.</translation>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Arama Motoru</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

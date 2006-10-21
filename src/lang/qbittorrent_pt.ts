@@ -558,7 +558,7 @@ Copyright ©2006 por Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>Tem certeza que deseja fechar o qBittorrent?</translation>
+        <translation type="obsolete">Tem certeza que deseja fechar o qBittorrent?</translation>
     </message>
     <message>
         <source>Timed out</source>
@@ -718,6 +718,10 @@ Please close the other one first.</source>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Mecanismo de Busca</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

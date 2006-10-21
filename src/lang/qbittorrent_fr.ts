@@ -791,7 +791,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>Etes-vous certain de vouloir quitter qBittorrent ?</translation>
+        <translation type="obsolete">Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     </message>
     <message>
         <source>Timed out</source>
@@ -965,6 +965,10 @@ Veuillez d&apos;abord le quitter.</translation>
     <message>
         <source>Search Engine</source>
         <translation>Moteur de recherche</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

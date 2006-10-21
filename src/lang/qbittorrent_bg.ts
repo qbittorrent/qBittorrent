@@ -648,7 +648,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>Сигурни ли сте че искате да напуснете qbittorrent?</translation>
+        <translation type="obsolete">Сигурни ли сте че искате да напуснете qbittorrent?</translation>
     </message>
     <message>
         <source> KiB/s</source>
@@ -858,6 +858,10 @@ Please close the other one first.</source>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Търсачка</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

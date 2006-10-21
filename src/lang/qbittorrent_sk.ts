@@ -563,7 +563,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>Určite chcete ukončiť qBittorrent?</translation>
+        <translation type="obsolete">Určite chcete ukončiť qBittorrent?</translation>
     </message>
     <message>
         <source>Timed out</source>
@@ -740,6 +740,10 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Vyhad</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

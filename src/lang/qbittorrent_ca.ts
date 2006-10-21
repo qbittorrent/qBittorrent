@@ -731,7 +731,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>Estas segur que vols sortir de qBittorrent?</translation>
+        <translation type="obsolete">Estas segur que vols sortir de qBittorrent?</translation>
     </message>
     <message>
         <source>Timed out</source>
@@ -901,6 +901,10 @@ Si et plau tanca l&apos;altre primer.</translation>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Motor de Busqueda</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

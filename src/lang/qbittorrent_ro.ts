@@ -558,7 +558,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>Sunteţi siguri să ieşiţi din qbittorrent?</translation>
+        <translation type="obsolete">Sunteţi siguri să ieşiţi din qbittorrent?</translation>
     </message>
     <message>
         <source>Timed out</source>
@@ -720,6 +720,10 @@ Vă rugăm să-l opriţi.</translation>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Motor de Căutare</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

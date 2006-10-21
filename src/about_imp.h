@@ -57,12 +57,12 @@ class about : public QDialog, private Ui::AboutDlg{
           - <u>Polish:</u> Adam Babol (a-b@users.sourceforge.net)<br>\
           - <u>Portuguese:</u> Bruno Nunes (brunopatriarca@users.sourceforge.net)<br>\
           - <u>Romanian:</u> Obada Denis (obadadenis@users.sourceforge.net)<br>\
-          - <u>Russian:</u> Nick Khazov (m2k3d0n at users.sourceforge.net)</i><br>\
-          - <u>Slovak:</u>  helix84</i><br>\
-          - <u>Spanish:</u> Vicente Raul Plata Fonseca (silverxnt@users.sourceforge.net)</i><br>\
-	  - <u>Swedish:</u> Daniel Nylander (po@danielnylander.se)</i><br>\
-          - <u>Turkish:</u> Erdem Bingöl (erdem84@gmail.com)</i><br>\
-          - <u>Ukrainian:</u> Andrey Shpachenko (masterfix@users.sourceforge.net)</i><br><br>"));
+          - <u>Russian:</u> Nick Khazov (m2k3d0n at users.sourceforge.net)<br>\
+          - <u>Slovak:</u>  helix84<br>\
+          - <u>Spanish:</u> Vicente Raul Plata Fonseca (silverxnt@users.sourceforge.net)<br>\
+	  - <u>Swedish:</u> Daniel Nylander (po@danielnylander.se)<br>\
+          - <u>Turkish:</u> Erdem Bingöl (erdem84@gmail.com)<br>\
+          - <u>Ukrainian:</u> Andrey Shpachenko (masterfix@users.sourceforge.net)<br><br>"));
       te_translation->append(tr("Please contact me if you would like to translate qBittorrent to your own language."));
       // License
       te_license->append("<center><b>GNU GENERAL PUBLIC LICENSE</b></center><br>\

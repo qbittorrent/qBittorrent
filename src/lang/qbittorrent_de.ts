@@ -644,7 +644,7 @@ Copyright (c) 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>Wollen Sie qbittorrent wirklich beenden?</translation>
+        <translation type="obsolete">Wollen Sie qbittorrent wirklich beenden?</translation>
     </message>
     <message>
         <source>Timed out</source>
@@ -814,6 +814,10 @@ Bitte schliessen Sie diesen zuerst.</translation>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Such-Maschine</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

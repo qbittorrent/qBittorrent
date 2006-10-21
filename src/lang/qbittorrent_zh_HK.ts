@@ -608,7 +608,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>確定要退出qbittorrent嗎?</translation>
+        <translation type="obsolete">確定要退出qbittorrent嗎?</translation>
     </message>
     <message>
         <source>Timed out</source>
@@ -754,6 +754,10 @@ Please close the other one first.</source>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">搜索引擎</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

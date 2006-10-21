@@ -697,7 +697,7 @@ download list?</source>
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>정말로 큐비토런트를 종료하시겠습니까?</translation>
+        <translation type="obsolete">정말로 큐비토런트를 종료하시겠습니까?</translation>
     </message>
     <message>
         <source>Timed out</source>
@@ -863,6 +863,10 @@ Please close the other one first.</source>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">검색 엔진</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

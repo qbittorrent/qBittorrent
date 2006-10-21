@@ -701,7 +701,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>Weet u zeker dat u qbittorrent af wil sluiten?</translation>
+        <translation type="obsolete">Weet u zeker dat u qbittorrent af wil sluiten?</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -856,6 +856,10 @@ Stop het eerste proccess eerst.
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Zoekmachine</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

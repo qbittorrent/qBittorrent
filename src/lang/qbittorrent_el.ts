@@ -723,7 +723,7 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>Είστε σίγουρος οτι θέλετε να βγείτε από το qbittorrent?</translation>
+        <translation type="obsolete">Είστε σίγουρος οτι θέλετε να βγείτε από το qbittorrent?</translation>
     </message>
     <message>
         <source>Error during search...</source>
@@ -893,6 +893,10 @@ Please close the other one first.</source>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Μηχανή Αναζήτησης</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

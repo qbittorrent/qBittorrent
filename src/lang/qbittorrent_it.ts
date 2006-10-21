@@ -513,7 +513,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
-        <translation>Sicuro di voler uscire da qBittorrent?</translation>
+        <translation type="obsolete">Sicuro di voler uscire da qBittorrent?</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -658,6 +658,10 @@ Example: Downloading www.example.com/test.torrent</comment>
     </message>
     <message>
         <source>Search Engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

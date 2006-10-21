@@ -486,10 +486,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Are you sure you want to quit qbittorrent?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -624,6 +620,10 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Search Engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
