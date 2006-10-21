@@ -975,7 +975,7 @@ Stäng den först.</translation>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>Ange en korrekt sökväg för indata</translation>
+        <translation type="obsolete">Ange en korrekt sökväg för indata</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -984,6 +984,10 @@ Stäng den först.</translation>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>Torrentfilen skapades:</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1106,11 +1110,11 @@ Stäng den först.</translation>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>Felaktig IP</translation>
+        <translation type="obsolete">Felaktig IP</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>Denna IP-adress är felaktig.</translation>
+        <translation type="obsolete">Denna IP-adress är felaktig.</translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1136,6 +1140,14 @@ Stäng den först.</translation>
     <message>
         <source>Choose your favourite preview program</source>
         <translation>Välj ditt favoritprogram för förhandsvisning</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

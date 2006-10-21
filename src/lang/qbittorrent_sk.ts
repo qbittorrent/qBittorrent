@@ -1140,7 +1140,7 @@ Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>Prosím, napíšte správnu vstupnú cestu</translation>
+        <translation type="obsolete">Prosím, napíšte správnu vstupnú cestu</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -1149,6 +1149,10 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>Torrent bol úspešne vytvorený:</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1319,11 +1323,11 @@ Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>Nesprávna IP</translation>
+        <translation type="obsolete">Nesprávna IP</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>Táto IP je nesprávna.</translation>
+        <translation type="obsolete">Táto IP je nesprávna.</translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1353,6 +1357,14 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <source>Choose your favourite preview program</source>
         <translation>Zvoľte si obľúbený program pre náhľad</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -1313,7 +1313,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>Παρακαλώ πληκτρολογήστε έναν έγκυρο προορισμό διαδρομής πρώτα</translation>
+        <translation type="obsolete">Παρακαλώ πληκτρολογήστε έναν έγκυρο προορισμό διαδρομής πρώτα</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -1322,6 +1322,10 @@ Please close the other one first.</source>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>Τόρεντ δημιουργήθηκε επιτυχώς:</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1461,11 +1465,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>Λάθος ΙΡ</translation>
+        <translation type="obsolete">Λάθος ΙΡ</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>Η ΙΡ είναι λάθος.</translation>
+        <translation type="obsolete">Η ΙΡ είναι λάθος.</translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1491,6 +1495,14 @@ Please close the other one first.</source>
     <message>
         <source>Choose your favourite preview program</source>
         <translation>Επιλέξτε το αγαπημένο σας πρόγραμμα προεπισκόπησης</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -1321,7 +1321,7 @@ Si et plau tanca l&apos;altre primer.</translation>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>Si us plau escriu una ruta d&apos;entrada primer</translation>
+        <translation type="obsolete">Si us plau escriu una ruta d&apos;entrada primer</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -1330,6 +1330,10 @@ Si et plau tanca l&apos;altre primer.</translation>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>Torrent creatamb éxit:</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1469,11 +1473,11 @@ Si et plau tanca l&apos;altre primer.</translation>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>IP Incorrecte</translation>
+        <translation type="obsolete">IP Incorrecte</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>Aquesta IP es incorrecta.</translation>
+        <translation type="obsolete">Aquesta IP es incorrecta.</translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1499,6 +1503,14 @@ Si et plau tanca l&apos;altre primer.</translation>
     <message>
         <source>Choose your favourite preview program</source>
         <translation>Escull el teu programa per previsualitzar</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -1278,7 +1278,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>Моля първо напишете правилен входящ път </translation>
+        <translation type="obsolete">Моля първо напишете правилен входящ път </translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -1287,6 +1287,10 @@ Please close the other one first.</source>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>Торента бе създаден успешно:</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1421,11 +1425,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>Некоректно IP</translation>
+        <translation type="obsolete">Некоректно IP</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>Това IP е некоректно.</translation>
+        <translation type="obsolete">Това IP е некоректно.</translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1451,6 +1455,14 @@ Please close the other one first.</source>
     <message>
         <source>Choose your favourite preview program</source>
         <translation>Моля, изберете любима програма за оглед</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

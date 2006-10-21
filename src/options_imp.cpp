@@ -874,13 +874,13 @@ void options_imp::on_addFilterRange_clicked(){
   QStringList IP1 = startIP.split('.');
   // Check IP
   if (!ok || startIP.isEmpty() || IP1.size() != 4){
-    QMessageBox::critical(0, tr("Incorrect IP"), tr("This IP is incorrect."));
+    QMessageBox::critical(0, tr("Invalid IP"), tr("This IP is invalid."));
     return;
   }
   for(int i=0; i<4; ++i){
     QString part = IP1.at(i).trimmed();
     if(part.isEmpty() || part.toInt() < 0 || part.toInt() > 255){
-      QMessageBox::critical(0, tr("Incorrect IP"), tr("This IP is incorrect."));
+      QMessageBox::critical(0, tr("Invalid IP"), tr("This IP is invalid."));
       return;
     }
   }
@@ -891,13 +891,13 @@ void options_imp::on_addFilterRange_clicked(){
   QStringList IP2 = lastIP.split('.');
   // check IP
   if (!ok || lastIP.isEmpty() || IP2.size() != 4){
-    QMessageBox::critical(0, tr("Incorrect IP"), tr("This IP is incorrect."));
+    QMessageBox::critical(0, tr("Invalid IP"), tr("This IP is invalid."));
     return;
   }
   for(int i=0; i<4; ++i){
     QString part = IP2.at(i).trimmed();
     if(part.isEmpty() || part.toInt() < 0 || part.toInt() > 255){
-      QMessageBox::critical(0, tr("Incorrect IP"), tr("This IP is incorrect."));
+      QMessageBox::critical(0, tr("Invalid IP"), tr("This IP is invalid."));
       return;
     }
   }

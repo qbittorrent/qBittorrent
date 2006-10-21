@@ -1254,7 +1254,7 @@ Por favor cierra el otro antes.</translation>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>Por favor escribe una ruta de entrada correcta primero</translation>
+        <translation type="obsolete">Por favor escribe una ruta de entrada correcta primero</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -1263,6 +1263,10 @@ Por favor cierra el otro antes.</translation>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>El Torrent se creó con éxito:</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1402,11 +1406,11 @@ Por favor cierra el otro antes.</translation>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>IP Incorrecta</translation>
+        <translation type="obsolete">IP Incorrecta</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>Esta IP está incorrecta.</translation>
+        <translation type="obsolete">Esta IP está incorrecta.</translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1432,6 +1436,14 @@ Por favor cierra el otro antes.</translation>
     <message>
         <source>Choose your favourite preview program</source>
         <translation>Escoge tu programa de previsualización favorito</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

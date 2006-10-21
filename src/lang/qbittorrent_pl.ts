@@ -1297,7 +1297,7 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>Proszę podać poprawną ścieżkę źródłową</translation>
+        <translation type="obsolete">Proszę podać poprawną ścieżkę źródłową</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -1306,6 +1306,10 @@ Zamknij najpierw okno podglądu.</translation>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>Utworzono plik torrent:</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1445,11 +1449,11 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>Niepoprawne IP</translation>
+        <translation type="obsolete">Niepoprawne IP</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>To jest nieprawidłowe IP.</translation>
+        <translation type="obsolete">To jest nieprawidłowe IP.</translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1475,6 +1479,14 @@ Zamknij najpierw okno podglądu.</translation>
     <message>
         <source>Choose your favourite preview program</source>
         <translation>Wybierz program którym zawsze chcesz otwierać dany typ plików</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

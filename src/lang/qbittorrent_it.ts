@@ -980,7 +980,7 @@ Example: Downloading www.example.com/test.torrent</comment>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>Per favore inserire un percorso di input corretto</translation>
+        <translation type="obsolete">Per favore inserire un percorso di input corretto</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -989,6 +989,10 @@ Example: Downloading www.example.com/test.torrent</comment>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>Il torrent è stato creato correttamente:</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1123,11 +1127,11 @@ Example: Downloading www.example.com/test.torrent</comment>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>IP non corretto</translation>
+        <translation type="obsolete">IP non corretto</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>Questo IP non è corretto</translation>
+        <translation type="obsolete">Questo IP non è corretto</translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1153,6 +1157,14 @@ Example: Downloading www.example.com/test.torrent</comment>
     <message>
         <source>Choose your favourite preview program</source>
         <translation>Scegliere il programma d&apos;anteprima preferito</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

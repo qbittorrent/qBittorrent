@@ -92,7 +92,7 @@ void createtorrent::on_createButton_clicked(){
     return;
   }
   if(!QFile::exists(input)){
-    QMessageBox::critical(0, tr("Input path does not exist"), tr("Please type a correct input path first"));
+    QMessageBox::critical(0, tr("Input path does not exist"), tr("Please type a valid input path first"));
     return;
   }
   char const* creator_str = "qBittorrent";

@@ -1283,7 +1283,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>변환할 파일 경로를 재설정해 주십시오</translation>
+        <translation type="obsolete">변환할 파일 경로를 재설정해 주십시오</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -1292,6 +1292,10 @@ Please close the other one first.</source>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>토렌트가 성공적으로 생성되었습니다:</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1431,11 +1435,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>잘못된 IP</translation>
+        <translation type="obsolete">잘못된 IP</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>잘못된 IP입니다. </translation>
+        <translation type="obsolete">잘못된 IP입니다. </translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1461,6 +1465,14 @@ Please close the other one first.</source>
     <message>
         <source>Choose your favourite preview program</source>
         <translation>미리보기를 할 프로그램을 선택해 주십시오</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

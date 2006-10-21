@@ -968,7 +968,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>Vennligst skriv en gyldig filsti til inndataene først</translation>
+        <translation type="obsolete">Vennligst skriv en gyldig filsti til inndataene først</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -977,6 +977,10 @@ Vennligst avslutt denne først.</translation>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>Vellykket opprettelse av torrentfil:</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1111,11 +1115,11 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>Ugyldig IP</translation>
+        <translation type="obsolete">Ugyldig IP</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>Denne IPen er ugyldig.</translation>
+        <translation type="obsolete">Denne IPen er ugyldig.</translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1141,6 +1145,14 @@ Vennligst avslutt denne først.</translation>
     <message>
         <source>Choose your favourite preview program</source>
         <translation>Velg ditt favorittprogram for forhåndsvisning</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

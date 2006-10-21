@@ -1305,7 +1305,7 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>Lütfen önce düzgün bir girdi yolu seçin</translation>
+        <translation type="obsolete">Lütfen önce düzgün bir girdi yolu seçin</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -1314,6 +1314,10 @@ Lütfen önce diğerini kapatın.</translation>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>Torrent başarıyla oluşturuldu:</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1453,11 +1457,11 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>Yanlış IP</translation>
+        <translation type="obsolete">Yanlış IP</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>Bu IP Adresi yanlıştır.</translation>
+        <translation type="obsolete">Bu IP Adresi yanlıştır.</translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1483,6 +1487,14 @@ Lütfen önce diğerini kapatın.</translation>
     <message>
         <source>Choose your favourite preview program</source>
         <translation>Favori önizleme programınızı seçin</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

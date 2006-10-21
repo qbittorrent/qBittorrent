@@ -941,15 +941,15 @@ Please close the other one first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please type a correct input path first</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Torrent creation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1072,14 +1072,6 @@ Please close the other one first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Incorrect IP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This IP is incorrect.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Range End IP</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1102,6 +1094,14 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Choose your favourite preview program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

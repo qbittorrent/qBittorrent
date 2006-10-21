@@ -1169,7 +1169,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>请先给出一个正确的输入路径</translation>
+        <translation type="obsolete">请先给出一个正确的输入路径</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -1178,6 +1178,10 @@ Please close the other one first.</source>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>成功创建Torrent:</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1312,11 +1316,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>错误的IP</translation>
+        <translation type="obsolete">错误的IP</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>此IP有误.</translation>
+        <translation type="obsolete">此IP有误.</translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1342,6 +1346,14 @@ Please close the other one first.</source>
     <message>
         <source>Choose your favourite preview program</source>
         <translation>选择您想要的程序以便预览文件</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

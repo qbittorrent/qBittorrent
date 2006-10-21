@@ -1252,7 +1252,7 @@ Stop het eerste proccess eerst.
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>Geef alstublieft eerst een geldig bron pad</translation>
+        <translation type="obsolete">Geef alstublieft eerst een geldig bron pad</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -1261,6 +1261,10 @@ Stop het eerste proccess eerst.
     <message>
         <source>Torrent was created successfully:</source>
         <translation>Torrent was succesvol gemaakt:</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1400,11 +1404,11 @@ Stop het eerste proccess eerst.
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>Incorrect IP</translation>
+        <translation type="obsolete">Incorrect IP</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>Dit IP is incorrect.</translation>
+        <translation type="obsolete">Dit IP is incorrect.</translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1430,6 +1434,14 @@ Stop het eerste proccess eerst.
     <message>
         <source>Choose your favourite preview program</source>
         <translation>Kies uw favoriete vooruitblik programma</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

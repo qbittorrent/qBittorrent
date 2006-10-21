@@ -1120,7 +1120,7 @@ Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>Vă rugăm să introduceţi corect calea de intrare</translation>
+        <translation type="obsolete">Vă rugăm să introduceţi corect calea de intrare</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -1129,6 +1129,10 @@ Vă rugăm să-l opriţi.</translation>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>Torrentul a fost creat cu success:</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1263,11 +1267,11 @@ Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>IP-ul incorrect</translation>
+        <translation type="obsolete">IP-ul incorrect</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>Acest IP este incorrect.</translation>
+        <translation type="obsolete">Acest IP este incorrect.</translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1293,6 +1297,14 @@ Vă rugăm să-l opriţi.</translation>
     <message>
         <source>Choose your favourite preview program</source>
         <translation>Alegeţi programul dvs. favorit pentru preview</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

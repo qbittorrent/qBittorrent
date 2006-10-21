@@ -1381,7 +1381,7 @@ Veuillez d&apos;abord le quitter.</translation>
     </message>
     <message>
         <source>Please type a correct input path first</source>
-        <translation>Veuillez vérifier la chemin du fichier/dossier à inclure</translation>
+        <translation type="obsolete">Veuillez vérifier la chemin du fichier/dossier à inclure</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -1390,6 +1390,10 @@ Veuillez d&apos;abord le quitter.</translation>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>Le torrent a été créé avec succès :</translation>
+    </message>
+    <message>
+        <source>Please type a valid input path first</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1533,11 +1537,11 @@ Veuillez d&apos;abord le quitter.</translation>
     </message>
     <message>
         <source>Incorrect IP</source>
-        <translation>IP incorrecte</translation>
+        <translation type="obsolete">IP incorrecte</translation>
     </message>
     <message>
         <source>This IP is incorrect.</source>
-        <translation>Cette IP est incorrecte.</translation>
+        <translation type="obsolete">Cette IP est incorrecte.</translation>
     </message>
     <message>
         <source>Range End IP</source>
@@ -1563,6 +1567,14 @@ Veuillez d&apos;abord le quitter.</translation>
     <message>
         <source>Choose your favourite preview program</source>
         <translation>Sélectionner votre logiciel de prévisualisation préféré</translation>
+    </message>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
