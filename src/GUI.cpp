@@ -76,7 +76,11 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   actionClearLog->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")));
   actionPreview_file->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")));
 //   actionDocumentation->setIcon(QIcon(QString::fromUtf8(":/Icons/help.png")));
-  actionConnexion_Status->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/disconnected.png")));
+  connecStatusLblIcon = new QLabel();
+  connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
+  connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/disconnected.png")));
+  connecStatusLblIcon->setToolTip(tr("<b>Connection Status:</b><br>Offline<br><i>No peers found...</i>"));
+  toolBar->addWidget(connecStatusLblIcon);
   actionDelete_All->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_all.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
   actionCreate_torrent->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/new.png")));
@@ -258,6 +262,7 @@ GUI::~GUI(){
   delete SearchDelegate;
   delete previewProcess;
   delete downloader;
+  delete connecStatusLblIcon;
   delete s;
 }
 
@@ -1846,17 +1851,17 @@ void GUI::checkConnectionStatus(){
   }
   if(sessionStatus.has_incoming_connections){
     // Connection OK
-    actionConnexion_Status->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/connected.png")));
-    actionConnexion_Status->setText(tr("<b>Connection Status:</b><br>Online"));
+    connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/connected.png")));
+    connecStatusLblIcon->setToolTip(tr("<b>Connection Status:</b><br>Online"));
   }else{
     if(sessionStatus.num_peers){
       // Firewalled ?
-      actionConnexion_Status->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/firewalled.png")));
-      actionConnexion_Status->setText(tr("<b>Connection Status:</b><br>Firewalled?<br><i>No incoming connections...</i>"));
+      connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/firewalled.png")));
+      connecStatusLblIcon->setToolTip(tr("<b>Connection Status:</b><br>Firewalled?<br><i>No incoming connections...</i>"));
     }else{
       // Disconnected
-      actionConnexion_Status->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/disconnected.png")));
-      actionConnexion_Status->setText(tr("<b>Connection Status:</b><br>Offline<br><i>No peers found...</i>"));
+      connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/disconnected.png")));
+      connecStatusLblIcon->setToolTip(tr("<b>Connection Status:</b><br>Offline<br><i>No peers found...</i>"));
     }
   }
   // Check trackerErrors list size and clear it if it is too big

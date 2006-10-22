@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>849</width>
-    <height>553</height>
+    <height>576</height>
    </rect>
   </property>
   <property name="contextMenuPolicy" >
@@ -797,7 +797,6 @@
    <addaction name="actionOptions" />
    <addaction name="actionExit" />
    <addaction name="separator" />
-   <addaction name="actionConnexion_Status" />
   </widget>
   <action name="actionOpen" >
    <property name="text" >
@@ -847,11 +846,6 @@
   <action name="actionDocumentation" >
    <property name="text" >
     <string>Documentation</string>
-   </property>
-  </action>
-  <action name="actionConnexion_Status" >
-   <property name="text" >
-    <string>Connection Status</string>
    </property>
   </action>
   <action name="actionDelete_All" >

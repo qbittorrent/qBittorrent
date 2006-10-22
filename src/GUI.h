@@ -85,6 +85,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     SearchListDelegate *SearchDelegate;
     QStringList supported_preview_extensions;
     unsigned int nbTorrents;
+    QLabel *connecStatusLblIcon;
     // Preview
     previewSelect *previewSelection;
     QProcess *previewProcess;
