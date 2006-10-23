@@ -35,6 +35,12 @@
    </item>
    <item>
     <widget class="QLabel" name="savePathLbl" >
+     <property name="font" >
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text" >
       <string>Save path:</string>
      </property>
@@ -62,6 +68,12 @@
    </item>
    <item>
     <widget class="QLabel" name="torrentContentLbl" >
+     <property name="font" >
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text" >
       <string>Torrent content:</string>
      </property>
