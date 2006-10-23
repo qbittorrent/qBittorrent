@@ -1270,7 +1270,7 @@ void GUI::deleteSelection(){
           torrentBackup.remove(fileName+".paused");
           torrentBackup.remove(fileName+".incremental");
           torrentBackup.remove(fileName+".pieces");
-          torrentBackup.remove(fileName+".filepath");
+          torrentBackup.remove(fileName+".savepath");
           // Update info bar
           setInfoBar("'" + fileName +"' "+tr("removed.", "<file> removed."));
           --nbTorrents;
