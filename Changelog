@@ -3,6 +3,7 @@
     - FEATURE: Brand new trayicon from Qt 4.2
     - FEATURE: Added a torrent addition dialog
     - I18N: Added Finnish translation
+    - BUGFIX: Made right click menu work for multiple selection in DL list
     - COSMETIC: Replaced OSD messages by systray messages
     - COSMETIC: Displaying save path in torrent properties window
 

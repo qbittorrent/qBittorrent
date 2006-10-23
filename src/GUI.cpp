@@ -358,11 +358,7 @@ void GUI::cleanTempPreviewFile(int, QProcess::ExitStatus){
 
 void GUI::displayDLListMenu(const QPoint& pos){
   QMenu myDLLlistMenu(this);
-  // Clear selection
-  downloadList->clearSelection();
-  // Select items
-  QModelIndex index = downloadList->indexAt(pos);
-  selectGivenRow(index);
+  QModelIndex index;
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   foreach(index, selectedIndexes){
@@ -378,7 +374,7 @@ void GUI::displayDLListMenu(const QPoint& pos){
       }
       myDLLlistMenu.addAction(actionDelete);
       myDLLlistMenu.addAction(actionTorrent_Properties);
-      if(!options->getPreviewProgram().isEmpty() && isFilePreviewPossible(h)){
+      if(!options->getPreviewProgram().isEmpty() && isFilePreviewPossible(h) && selectedIndexes.size()<=DLListModel->columnCount()){
          myDLLlistMenu.addAction(actionPreview_file);
       }
       break;
