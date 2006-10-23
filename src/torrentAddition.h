@@ -27,6 +27,7 @@
 #include <QFile>
 #include <fstream>
 #include <QMessageBox>
+#include <QMenu>
 
 #include <libtorrent/session.hpp>
 #include <libtorrent/bencode.hpp>
@@ -54,6 +55,10 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
     torrentAdditionDialog(QWidget *parent, QString filePath, bool fromScanDir=false, QString from_url=QString::null) : QDialog(parent), filePath(filePath), fromScanDir(fromScanDir), from_url(from_url){
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
+      actionSelect->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
+      actionUnselect->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
+      connect(actionSelect, SIGNAL(triggered()), this, SLOT(selectItems()));
+      connect(actionUnselect, SIGNAL(triggered()), this, SLOT(unselectItems()));
       //TODO: Remember last entered path
       QString home = QDir::homePath();
       if(home[home.length()-1] != QDir::separator()){
@@ -96,6 +101,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       }
       //Connects
       connect(torrentContentList, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(toggleSelection(QTreeWidgetItem*, int)));
+      connect(torrentContentList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displaySelectionMenu(const QPoint&)));
       show();
     }
 
@@ -109,6 +115,28 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
 
     void on_CancelButton_clicked(){
       close();
+    }
+
+    void selectItems(){
+      QList<QTreeWidgetItem *> selectedItems = torrentContentList->selectedItems();
+      QTreeWidgetItem *item;
+      foreach(item, selectedItems){
+        int row = torrentContentList->indexOfTopLevelItem(item);
+        setLineColor(row, "green");
+        item->setText(SELECTED, tr("True"));
+        selection.replace(row, true);
+      }
+    }
+
+    void unselectItems(){
+      QList<QTreeWidgetItem *> selectedItems = torrentContentList->selectedItems();
+      QTreeWidgetItem *item;
+      foreach(item, selectedItems){
+        int row = torrentContentList->indexOfTopLevelItem(item);
+        setLineColor(row, "red");
+        item->setText(SELECTED, tr("False"));
+        selection.replace(row, false);
+      }
     }
 
     void toggleSelection(QTreeWidgetItem *item, int){
@@ -125,6 +153,13 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         item->setText(SELECTED, tr("True"));
         selection.replace(row, true);
       }
+    }
+
+    void displaySelectionMenu(const QPoint& pos){
+      QMenu mySelectionMenu(this);
+      mySelectionMenu.addAction(actionSelect);
+      mySelectionMenu.addAction(actionUnselect);
+      mySelectionMenu.exec(mapToGlobal(pos)+QPoint(10, 150));
     }
 
     void saveFilteredFiles(){
