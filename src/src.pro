@@ -4,7 +4,7 @@ ICONS_PATH = Icons
 TRAYICON_CPP = trayicon
 
 #Set the following variable to 1 to enable debug
-DEBUG_MODE = 0
+DEBUG_MODE = 1
 
 # Global
 TEMPLATE = app
@@ -99,10 +99,11 @@ HEADERS += GUI.h misc.h options_imp.h about_imp.h \
            DLListDelegate.h SearchListDelegate.h \
 	   PropListDelegate.h previewSelect.h \
            PreviewListDelegate.h trackerLogin.h \
-           downloadThread.h downloadFromURLImp.h
+           downloadThread.h downloadFromURLImp.h \
+           torrentAddition.h
 FORMS += MainWindow.ui options.ui about.ui \
          properties.ui createtorrent.ui preview.ui \
-         login.ui downloadFromURL.ui
+         login.ui downloadFromURL.ui addTorrentDialog.ui
 SOURCES += GUI.cpp \
            main.cpp \
            options_imp.cpp \

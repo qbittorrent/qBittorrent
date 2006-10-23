@@ -138,7 +138,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // Torrent actions
     void showProperties(const QModelIndex &index);
     void propertiesSelection();
-    void addTorrents(const QStringList& pathsList, bool fromScanDir = false, const QString& from_url = QString());
+    void addTorrent(const QString& path, bool fromScanDir = false, const QString& from_url = QString());
     void pauseAll();
     void startAll();
     void pauseSelection();
@@ -152,7 +152,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void scanDirectory();
     void setGlobalRatio(float ratio);
     void configureSession();
-    void ProcessParams(const QStringList& params);
+    void processParams(const QStringList& params);
     void addUnauthenticatedTracker(QPair<torrent_handle,std::string> tracker);
     void processDownloadedFile(QString url, QString file_path, int return_code, QString errorBuffer);
     void downloadFromURLList(const QStringList& url_list);
@@ -196,7 +196,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QByteArray getNovaChangelog(const QString& novaPath) const;
     void updateNova() const;
     bool isFilePreviewPossible(const torrent_handle& h) const;
-
+    QString getSavePath(QString fileName);
 };
 
 #endif

@@ -36,3 +36,4 @@
 - Move novaUpdater to a Thread (probably use downloadThread) to prevent GUI freezing
 - Allow user to choose DHT port
 - Add button : delete from list and Hard drive
+- Check if there is at least one file in selection (torrent properties)
