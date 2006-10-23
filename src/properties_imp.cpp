@@ -42,6 +42,7 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
   filesList->setItemDelegate(PropDelegate);
   connect(filesList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(toggleSelectedState(const QModelIndex&)));
   // get Infos from torrent handle
+  save_path->setText(QString(h.save_path().string().c_str()));
   torrent_status torrentStatus = h.status();
   torrent_info torrentInfo = h.get_torrent_info();
   fileName->setText(torrentInfo.name().c_str());
