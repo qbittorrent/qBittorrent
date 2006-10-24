@@ -31,9 +31,7 @@
 - Add upnp port forwarding support
 - Add Visit qBittorrent website menu entry
 - Add Report a bug in qBittorrent menu entry
-- Popup when adding a torrent (Save path, select files in the torrent...)
 - Display remaining HD space (check it before adding a new torrent?)
 - Move novaUpdater to a Thread (probably use downloadThread) to prevent GUI freezing
-- Allow user to choose DHT port
 - Add button : delete from list and Hard drive
 - Check if there is at least one file in selection (torrent properties)

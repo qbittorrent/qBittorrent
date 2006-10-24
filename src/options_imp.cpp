@@ -34,9 +34,10 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   setupUi(this);
   // Setting icons
   tabWidget->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/systemtray.png")));
-  tabWidget->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/filter.png")));
-  tabWidget->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/proxy.png")));
-  tabWidget->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/style.png")));
+  tabWidget->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/locale.png")));
+  tabWidget->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/filter.png")));
+  tabWidget->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/proxy.png")));
+  tabWidget->setTabIcon(4, QIcon(QString::fromUtf8(":/Icons/style.png")));
   lbl_icon_i18n->setPixmap(QPixmap(QString::fromUtf8(":/Icons/locale.png")));
   addFilterRange->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
   delFilterRange->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
@@ -105,15 +106,16 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // Connect signals / slots
   connect(disableUPLimit, SIGNAL(stateChanged(int)), this, SLOT(disableUpload(int)));
   connect(disableDLLimit,  SIGNAL(stateChanged(int)), this, SLOT(disableDownload(int)));
+  connect(disableDHT,  SIGNAL(stateChanged(int)), this, SLOT(disableDHTGroup(int)));
   connect(disableRatio,  SIGNAL(stateChanged(int)), this, SLOT(disableShareRatio(int)));
   connect(activateFilter,  SIGNAL(stateChanged(int)), this, SLOT(enableFilter(int)));
   connect(enableProxy_checkBox,  SIGNAL(stateChanged(int)), this, SLOT(enableProxy(int)));
   connect(enableProxyAuth_checkBox,  SIGNAL(stateChanged(int)), this, SLOT(enableProxyAuth(int)));
   connect(enableScan_checkBox, SIGNAL(stateChanged(int)), this, SLOT(enableDirScan(int)));
   connect(disableMaxConnec, SIGNAL(stateChanged(int)), this, SLOT(disableMaxConnecLimit(int)));
+  connect(checkAdditionDialog, SIGNAL(stateChanged(int)), this, SLOT(enableSavePath(int)));
   // Apply button is activated when a value is changed
   // Main
-  connect(txt_savePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spin_download, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spin_upload, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spin_port_min, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
@@ -127,6 +129,9 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(enableScan_checkBox, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(disableMaxConnec, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(disableDHT, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(spin_dht_port, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  // Language
+  connect(combo_i18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   // IPFilter
   connect(activateFilter, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(filterFile, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -138,7 +143,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(proxy_username, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(proxy_password, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   // Misc Settings
-  connect(combo_i18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkAdditionDialog, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(txt_savePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(check_goToSysTray, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(clearFinished_checkBox, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(confirmExit_checkBox, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
@@ -226,6 +232,10 @@ bool options_imp::saveOptions(){
   }else{
     optionValue = doc.createTextNode("1");
   }
+  tag.appendChild(optionValue);
+  tag = doc.createElement("DHTPort");
+  root.appendChild(tag);
+  optionValue = doc.createTextNode(misc::toString(getDHTPort()).c_str());
   tag.appendChild(optionValue);
   if(scanDir->isEnabled()){
     tag = doc.createElement("scan_dir");
@@ -405,8 +415,18 @@ bool options_imp::loadOptions(){
   if(!tag.isNull()){
     if(tag.text().toInt() == 0){
       disableDHT->setChecked(true);
+      groupDHT->setEnabled(false);
     }else{
       disableDHT->setChecked(false);
+      groupDHT->setEnabled(true);
+    }
+  }
+  tag = root.firstChildElement("DHTPort");
+  if(!tag.isNull()){
+    if(tag.text().toInt() < 1000){
+      spin_dht_port->setValue(6881);
+    }else{
+      spin_dht_port->setValue(tag.text().toInt());
     }
   }
   tmp = root.firstChildElement("max_connec").text().toInt();
@@ -510,6 +530,14 @@ std::pair<unsigned short, unsigned short> options_imp::getPorts() const{
   return std::make_pair(this->spin_port_min->value(), this->spin_port_min->value());
 }
 
+int options_imp::getDHTPort() const{
+  if(isDHTEnabled()){
+    return spin_dht_port->value();
+  }else{
+    return -1;
+  }
+}
+
 QString options_imp::getPreviewProgram() const{
   QString preview_txt = preview_program->text();
   preview_txt.trimmed();
@@ -609,6 +637,30 @@ void options_imp::disableDownload(int checkBoxValue){
     //enable
     spin_download->setEnabled(true);
   }
+}
+
+void options_imp::disableDHTGroup(int checkBoxValue){
+  if(checkBoxValue==2){
+    //Disable
+    groupDHT->setEnabled(false);
+  }else{
+    //enable
+    groupDHT->setEnabled(true);
+  }
+}
+
+void options_imp::enableSavePath(int checkBoxValue){
+ if(checkBoxValue==2){
+    //enable
+    groupSavePath->setEnabled(false);
+  }else{
+    //disable
+    groupSavePath->setEnabled(true);
+  }
+}
+
+bool options_imp::useAdditionDialog() const{
+  return checkAdditionDialog->isChecked();
 }
 
 void options_imp::disableMaxConnecLimit(int checkBoxValue){

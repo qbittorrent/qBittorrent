@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>506</width>
-    <height>490</height>
+    <height>491</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -75,50 +75,6 @@
        <property name="spacing" >
         <number>6</number>
        </property>
-       <item>
-        <layout class="QHBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="lbl_savePath" >
-           <property name="text" >
-            <string>Save Path:</string>
-           </property>
-           <property name="buddy" >
-            <cstring>proxy_username</cstring>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" >
-           <property name="margin" >
-            <number>0</number>
-           </property>
-           <property name="spacing" >
-            <number>6</number>
-           </property>
-           <item>
-            <widget class="QLineEdit" name="txt_savePath" >
-             <property name="text" >
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="browse_button" >
-             <property name="text" >
-              <string>...</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </item>
        <item>
         <widget class="QGroupBox" name="groupBox" >
          <property name="minimumSize" >
@@ -197,13 +153,6 @@
                <widget class="QLabel" name="label_3" >
                 <property name="text" >
                  <string>Share ratio:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="lblDHT" >
-                <property name="text" >
-                 <string>DHT (Trackerless):</string>
                 </property>
                </widget>
               </item>
@@ -423,7 +372,7 @@
                 <item>
                  <widget class="QSpinBox" name="spin_port_min" >
                   <property name="maximum" >
-                   <number>60000</number>
+                   <number>65525</number>
                   </property>
                   <property name="minimum" >
                    <number>1000</number>
@@ -549,16 +498,80 @@
                 </item>
                </layout>
               </item>
-              <item>
-               <widget class="QCheckBox" name="disableDHT" >
-                <property name="text" >
-                 <string>Disable DHT (Trackerless) support</string>
-                </property>
-               </widget>
-              </item>
              </layout>
             </item>
            </layout>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="disableDHT" >
+            <property name="text" >
+             <string>Disable DHT (Trackerless) support</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupDHT" >
+            <property name="title" >
+             <string>DHT configuration</string>
+            </property>
+            <layout class="QVBoxLayout" >
+             <property name="margin" >
+              <number>9</number>
+             </property>
+             <property name="spacing" >
+              <number>6</number>
+             </property>
+             <item>
+              <layout class="QHBoxLayout" >
+               <property name="margin" >
+                <number>0</number>
+               </property>
+               <property name="spacing" >
+                <number>6</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="dhtPort_lbl" >
+                 <property name="text" >
+                  <string>DHT port:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="spin_dht_port" >
+                 <property name="minimumSize" >
+                  <size>
+                   <width>6</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximum" >
+                  <number>65525</number>
+                 </property>
+                 <property name="minimum" >
+                  <number>1000</number>
+                 </property>
+                 <property name="value" >
+                  <number>6881</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer>
+                 <property name="orientation" >
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" >
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -619,6 +632,127 @@
           </layout>
          </item>
         </layout>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3" >
+      <attribute name="title" >
+       <string>Language</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2" >
+         <property name="title" >
+          <string>Localization</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="lbl_icon_i18n" >
+              <property name="text" >
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_i18n" >
+              <property name="text" >
+               <string>Language:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="combo_i18n" >
+              <property name="minimumSize" >
+               <size>
+                <width>300</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="sizeAdjustPolicy" >
+               <enum>QComboBox::AdjustToContents</enum>
+              </property>
+              <property name="modelColumn" >
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_i18n_info" >
+         <property name="text" >
+          <string>&lt;b>Note:&lt;/b> Changes will be applied after qBittorrent is restarted.</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label" >
+         <property name="text" >
+          <string>&lt;b>Translators note:&lt;/b> If qBittorrent is not available in your language, &lt;br/>and if you would like to translate it in your mother tongue, &lt;br/>please contact me (chris@qbittorrent.org).</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -1007,224 +1141,212 @@
       <attribute name="title" >
        <string>Misc</string>
       </attribute>
-      <widget class="QGroupBox" name="groupBox_2" >
-       <property name="geometry" >
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>452</width>
-         <height>66</height>
-        </rect>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
        </property>
-       <property name="title" >
-        <string>Localization</string>
+       <property name="spacing" >
+        <number>6</number>
        </property>
-       <layout class="QVBoxLayout" >
-        <property name="margin" >
-         <number>9</number>
-        </property>
-        <property name="spacing" >
-         <number>6</number>
-        </property>
-        <item>
-         <layout class="QHBoxLayout" >
+       <item>
+        <widget class="QCheckBox" name="checkAdditionDialog" >
+         <property name="text" >
+          <string>Display a torrent addition dialog everytime I add a torrent</string>
+         </property>
+         <property name="checked" >
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupSavePath" >
+         <property name="enabled" >
+          <bool>false</bool>
+         </property>
+         <property name="title" >
+          <string>Default save path</string>
+         </property>
+         <layout class="QVBoxLayout" >
           <property name="margin" >
-           <number>0</number>
+           <number>9</number>
           </property>
           <property name="spacing" >
            <number>6</number>
           </property>
           <item>
-           <widget class="QLabel" name="lbl_icon_i18n" >
-            <property name="text" >
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="lbl_i18n" >
-            <property name="text" >
-             <string>Language:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="combo_i18n" >
-            <property name="minimumSize" >
-             <size>
-              <width>300</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="sizeAdjustPolicy" >
-             <enum>QComboBox::AdjustToContents</enum>
-            </property>
-            <property name="modelColumn" >
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
              <number>0</number>
             </property>
-           </widget>
-          </item>
-          <item>
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
+            <property name="spacing" >
+             <number>6</number>
             </property>
-            <property name="sizeHint" >
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
+            <item>
+             <widget class="QLabel" name="lbl_savePath" >
+              <property name="text" >
+               <string>Save Path:</string>
+              </property>
+              <property name="buddy" >
+               <cstring>proxy_username</cstring>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
+              <property name="spacing" >
+               <number>6</number>
+              </property>
+              <item>
+               <widget class="QLineEdit" name="txt_savePath" >
+                <property name="text" >
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="browse_button" >
+                <property name="text" >
+                 <string>...</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </item>
          </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QGroupBox" name="groupBox_3" >
-       <property name="geometry" >
-        <rect>
-         <x>9</x>
-         <y>81</y>
-         <width>466</width>
-         <height>95</height>
-        </rect>
-       </property>
-       <property name="title" >
-        <string>Behaviour</string>
-       </property>
-       <layout class="QVBoxLayout" >
-        <property name="margin" >
-         <number>9</number>
-        </property>
-        <property name="spacing" >
-         <number>6</number>
-        </property>
-        <item>
-         <widget class="QCheckBox" name="confirmExit_checkBox" >
-          <property name="text" >
-           <string>Ask for confirmation on exit</string>
-          </property>
-          <property name="checked" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="clearFinished_checkBox" >
-          <property name="text" >
-           <string>Automatically clear finished downloads</string>
-          </property>
-          <property name="checked" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="check_goToSysTray" >
-          <property name="text" >
-           <string>Go to systray when minimizing window</string>
-          </property>
-          <property name="checked" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QGroupBox" name="groupBox_4" >
-       <property name="geometry" >
-        <rect>
-         <x>10</x>
-         <y>180</y>
-         <width>461</width>
-         <height>67</height>
-        </rect>
-       </property>
-       <property name="title" >
-        <string>Preview program</string>
-       </property>
-       <layout class="QVBoxLayout" >
-        <property name="margin" >
-         <number>9</number>
-        </property>
-        <property name="spacing" >
-         <number>6</number>
-        </property>
-        <item>
-         <layout class="QHBoxLayout" >
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_3" >
+         <property name="title" >
+          <string>Behaviour</string>
+         </property>
+         <layout class="QVBoxLayout" >
           <property name="margin" >
-           <number>0</number>
+           <number>9</number>
           </property>
           <property name="spacing" >
            <number>6</number>
           </property>
           <item>
-           <widget class="QLabel" name="lbl_preview" >
+           <widget class="QCheckBox" name="confirmExit_checkBox" >
             <property name="text" >
-             <string>Audio/Video player:</string>
+             <string>Ask for confirmation on exit</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="preview_program" />
+           <widget class="QCheckBox" name="clearFinished_checkBox" >
+            <property name="text" >
+             <string>Automatically clear finished downloads</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="browsePreview" >
+           <widget class="QCheckBox" name="check_goToSysTray" >
             <property name="text" >
-             <string>...</string>
+             <string>Go to systray when minimizing window</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
             </property>
            </widget>
           </item>
          </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QGroupBox" name="groupOSD" >
-       <property name="geometry" >
-        <rect>
-         <x>10</x>
-         <y>250</y>
-         <width>466</width>
-         <height>100</height>
-        </rect>
-       </property>
-       <property name="title" >
-        <string>Systray Messages</string>
-       </property>
-       <layout class="QVBoxLayout" >
-        <property name="margin" >
-         <number>9</number>
-        </property>
-        <property name="spacing" >
-         <number>6</number>
-        </property>
-        <item>
-         <widget class="QRadioButton" name="alwaysOSD" >
-          <property name="text" >
-           <string>Always display systray messages</string>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_4" >
+         <property name="title" >
+          <string>Preview program</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
           </property>
-          <property name="checked" >
-           <bool>true</bool>
+          <property name="spacing" >
+           <number>6</number>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="someOSD" >
-          <property name="text" >
-           <string>Display systray messages only when window is hidden</string>
+          <item>
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="lbl_preview" >
+              <property name="text" >
+               <string>Audio/Video player:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="preview_program" />
+            </item>
+            <item>
+             <widget class="QToolButton" name="browsePreview" >
+              <property name="text" >
+               <string>...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupOSD" >
+         <property name="title" >
+          <string>Systray Messages</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="neverOSD" >
-          <property name="text" >
-           <string>Never display systray messages</string>
+          <property name="spacing" >
+           <number>6</number>
           </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+          <item>
+           <widget class="QRadioButton" name="alwaysOSD" >
+            <property name="text" >
+             <string>Always display systray messages</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="someOSD" >
+            <property name="text" >
+             <string>Display systray messages only when window is hidden</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="neverOSD" >
+            <property name="text" >
+             <string>Never display systray messages</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>

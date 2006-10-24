@@ -1690,6 +1690,13 @@ void GUI::configureSession(){
         qDebug("Disabling DHT Support");
       }
     }
+    int dht_port = options->getDHTPort();
+    if(dht_port >= 1000){
+      struct dht_settings DHTSettings;
+      DHTSettings.service_port = dht_port;
+      s->set_dht_settings(DHTSettings);
+      qDebug("Set DHT Port to %d", dht_port);
+    }
     // Apply filtering settings
     if(options->isFilteringEnabled()){
       qDebug("Ip Filter enabled");

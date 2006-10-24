@@ -46,12 +46,12 @@ class options_imp : public QDialog, private Ui::Dialog{
     bool loadOptions();
     // Main options
     std::pair<unsigned short, unsigned short> getPorts() const;
-    QString getSavePath() const;
     QPair<int,int> getLimits() const;
     float getRatio() const;
     int getMaxConnec() const;
     QString getScanDir() const;
     bool isDHTEnabled() const;
+    int getDHTPort() const;
     // Filter Settings
     bool isFilteringEnabled() const;
     ip_filter getFilter() const;
@@ -66,6 +66,8 @@ class options_imp : public QDialog, private Ui::Dialog{
     QString getLocale() const;
     QTranslator translator;
     // Misc Settings
+    bool useAdditionDialog() const;
+    QString getSavePath() const;
     bool getClearFinishedOnExit() const;
     bool getGoToSysTrayOnMinimizingWindow() const;
     bool getConfirmOnExit() const;
@@ -84,6 +86,7 @@ class options_imp : public QDialog, private Ui::Dialog{
     void on_browsePreview_clicked();
     void on_filterBrowse_clicked();
     void disableDownload(int checkBoxValue);
+    void disableDHTGroup(int checkBoxValue);
     void disableMaxConnecLimit(int);
     void enableFilter(int checkBoxValue);
     void disableUpload(int checkBoxValue);
@@ -95,6 +98,7 @@ class options_imp : public QDialog, private Ui::Dialog{
     void processFilterFile(const QString& filePath=QString());
     void enableApplyButton();
     void checkPortsLogic();
+    void enableSavePath(int checkBoxValue);
 
   public slots:
     void setLocale(QString locale);
