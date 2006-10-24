@@ -1059,8 +1059,12 @@ void GUI::dropEvent(QDropEvent *event){
 //   addTorrents(files);
   QString file;
   foreach(file, files){
-    torrentAdditionDialog *dialog = new torrentAdditionDialog(this, file.trimmed().replace("file://", ""));
-    connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), this, SLOT(addTorrent(QString, bool, QString())));
+    if(options->useAdditionDialog()){
+      torrentAdditionDialog *dialog = new torrentAdditionDialog(this, file.trimmed().replace("file://", ""));
+      connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), this, SLOT(addTorrent(QString, bool, QString())));
+    }else{
+      addTorrent(file.trimmed().replace("file://", ""));
+    }
   }
 }
 
@@ -1097,8 +1101,12 @@ void GUI::askForTorrents(){
                                             tr("Torrent Files")+" (*.torrent)");
   if(!pathsList.empty()){
     for(int i=0; i<pathsList.size(); ++i){
-      torrentAdditionDialog *dialog = new torrentAdditionDialog(this, pathsList.at(i));
-      connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
+      if(options->useAdditionDialog()){
+        torrentAdditionDialog *dialog = new torrentAdditionDialog(this, pathsList.at(i));
+        connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
+      }else{
+        addTorrent(pathsList.at(i));
+      }
     }
     //Add torrents to download list
 //     addTorrents(pathsList);
@@ -1127,8 +1135,12 @@ void GUI::scanDirectory(){
       }
     }
     foreach(file, to_add){
-      torrentAdditionDialog *dialog = new torrentAdditionDialog(this, file, true);
-      connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
+      if(options->useAdditionDialog()){
+        torrentAdditionDialog *dialog = new torrentAdditionDialog(this, file, true);
+        connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
+      }else{
+        addTorrent(file, true);
+      }
     }
 //     if(!to_add.empty()){
 //       addTorrents(to_add, true);
@@ -1594,9 +1606,12 @@ void GUI::processParams(const QStringList& params){
     if(param.startsWith("http://", Qt::CaseInsensitive) || param.startsWith("ftp://", Qt::CaseInsensitive) || param.startsWith("https://", Qt::CaseInsensitive)){
       downloadFromUrl(param);
     }else{
-      torrentAdditionDialog *dialog = new torrentAdditionDialog(this, param);
-      connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
-//       addTorrents(QStringList(param));
+      if(options->useAdditionDialog()){
+        torrentAdditionDialog *dialog = new torrentAdditionDialog(this, param);
+        connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
+      }else{
+        addTorrent(param);
+      }
     }
   }
 }
@@ -2384,9 +2399,12 @@ void GUI::processDownloadedFile(QString url, QString file_path, int return_code,
     return;
   }
   // Add file to torrent download list
-  torrentAdditionDialog *dialog = new torrentAdditionDialog(this, file_path, false, url);
-  connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
-//   addTorrents(QStringList(file_path), false, url);
+  if(options->useAdditionDialog()){
+    torrentAdditionDialog *dialog = new torrentAdditionDialog(this, file_path, false, url);
+    connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
+  }else{
+    addTorrent(file_path, false, url);
+  }
 }
 
 // Take an url string to a torrent file,

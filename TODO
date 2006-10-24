@@ -13,6 +13,7 @@
 - Add some transparency (menus,...)
 - Add a column "Tracker status"?
 - Option to shutdown computer when downloads are finished
+- Add upnp port forwarding support
 
 // Harder
 - Allow user to organize the downloads into categories/folders
@@ -28,7 +29,6 @@
 - Web interface?
 
 // In v0.8.0
-- Add upnp port forwarding support
 - Add Visit qBittorrent website menu entry
 - Add Report a bug in qBittorrent menu entry
 - Display remaining HD space (check it before adding a new torrent?)
