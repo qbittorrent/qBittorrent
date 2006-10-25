@@ -1,12 +1,17 @@
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.8.0
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.9.0
     - FEATURE: Based on Qt 4.2
     - FEATURE: Brand new trayicon from Qt 4.2
+    - COSMETIC: Replaced OSD messages by systray messages
+
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.8.0
     - FEATURE: Added a torrent addition dialog
     - FEATURE: Allow user to change DHT port
     - I18N: Added Finnish translation
+    - BUGFIX: Enabled debug with Qt 4.2.1 too because Trolltech didn't fix their bug yet
+    - BUGFIX: Fixed layout in torrent properties
     - BUGFIX: Made right click menu work for multiple selection in DL list
     - BUGFIX: Fixed utf-8 support in paths and filenames
-    - COSMETIC: Replaced OSD messages by systray messages
+    - COSMETIC: Connection status in toolBar is not clickable anymore
     - COSMETIC: Displaying save path in torrent properties window
     - COSMETIC: Reworked options window a little
 
