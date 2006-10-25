@@ -29,6 +29,8 @@ CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent
 QT += xml network
 
+DEFINES += QT_NO_CAST_TO_ASCII
+
 contains(DEBUG_MODE, 0){
   contains(QT_VERSION, 4.2.0) {
     message(Qt 4.2.0 detected : enabling debug output because of a bug in this version of Qt)

@@ -863,7 +863,7 @@ void GUI::saveColWidthDLList() const{
     width_list << QString(misc::toString(downloadList->columnWidth(i)).c_str());
   }
   if(lastDLListWidth.open(QIODevice::WriteOnly | QIODevice::Text)){
-    lastDLListWidth.write(QByteArray(width_list.join(" ").toStdString().c_str()));
+    lastDLListWidth.write(width_list.join(" ").toAscii());
     lastDLListWidth.close();
     qDebug("Columns width saved");
   }else{
@@ -910,7 +910,7 @@ void GUI::saveColWidthSearchList() const{
     width_list << QString(misc::toString(resultsBrowser->columnWidth(i)).c_str());
   }
   if(lastSearchListWidth.open(QIODevice::WriteOnly | QIODevice::Text)){
-    lastSearchListWidth.write(QByteArray(width_list.join(" ").toStdString().c_str()));
+    lastSearchListWidth.write(width_list.join(" ").toAscii());
     lastSearchListWidth.close();
     qDebug("Columns width saved in search list");
   }else{
@@ -1017,7 +1017,7 @@ void GUI::closeEvent(QCloseEvent *e){
   if(DHTEnabled){
     try{
       entry dht_state = s->dht_state();
-      boost::filesystem::ofstream out(misc::qBittorrentPath().toStdString()+"dht_state", std::ios_base::binary);
+      boost::filesystem::ofstream out((const char*)(misc::qBittorrentPath()+QString("dht_state")).toUtf8(), std::ios_base::binary);
       out.unsetf(std::ios_base::skipws);
       bencode(std::ostream_iterator<char>(out), dht_state);
     }catch (std::exception& e){
@@ -1114,7 +1114,7 @@ void GUI::askForTorrents(){
     lastDirFile.open(QIODevice::WriteOnly | QIODevice::Text);
     QStringList top_dir = pathsList.at(0).split(QDir::separator());
     top_dir.removeLast();
-    lastDirFile.write(QByteArray(top_dir.join(QDir::separator()).toStdString().c_str()));
+    lastDirFile.write(top_dir.join(QDir::separator()).toUtf8());
     lastDirFile.close();
   }
 }
@@ -1150,7 +1150,7 @@ void GUI::scanDirectory(){
 
 void GUI::saveFastResumeData() const{
   qDebug("Saving fast resume data");
-  std::string file;
+  QString file;
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
   // Checking if torrentBackup Dir exists
   // create it if it is not
@@ -1163,14 +1163,14 @@ void GUI::saveFastResumeData() const{
     h.pause();
     // Extracting resume data
     if (h.has_metadata()){
-      QString filename = QString(h.get_torrent_info().name().c_str());
-      if(QFile::exists(torrentBackup.path()+QDir::separator()+filename+".torrent")){
+      QString fileName = QString(h.get_torrent_info().name().c_str());
+      if(QFile::exists(torrentBackup.path()+QDir::separator()+fileName+".torrent")){
         // Remove old .fastresume data in case it exists
-        QFile::remove(filename + ".fastresume");
+        QFile::remove(fileName + ".fastresume");
         // Write fast resume data
         entry resumeData = h.write_resume_data();
-        file = filename.toStdString() + ".fastresume";
-        boost::filesystem::ofstream out(fs::path(torrentBackup.path().toStdString()) / file, std::ios_base::binary);
+        file = fileName + ".fastresume";
+        boost::filesystem::ofstream out(fs::path((const char*)torrentBackup.path().toUtf8()) / (const char*)file.toUtf8(), std::ios_base::binary);
         out.unsetf(std::ios_base::skipws);
         bencode(std::ostream_iterator<char>(out), resumeData);
       }
@@ -1334,8 +1334,8 @@ void GUI::addTorrent(const QString& path, bool fromScanDir, const QString& from_
   if(file.isEmpty()){
     return;
   }
-  qDebug("Adding %s to download list", file.toStdString().c_str());
-  std::ifstream in(file.toStdString().c_str(), std::ios_base::binary);
+  qDebug("Adding %s to download list", (const char*)file.toUtf8());
+  std::ifstream in((const char*)file.toUtf8(), std::ios_base::binary);
   in.unsetf(std::ios_base::skipws);
   try{
     // Decode torrent file
@@ -1363,7 +1363,7 @@ void GUI::addTorrent(const QString& path, bool fromScanDir, const QString& from_
       try{
         std::stringstream strStream;
         strStream << t.name() << ".fastresume";
-        boost::filesystem::ifstream resume_file(fs::path(torrentBackup.path().toStdString()) / strStream.str(), std::ios_base::binary);
+        boost::filesystem::ifstream resume_file(fs::path((const char*)torrentBackup.path().toUtf8()) / strStream.str(), std::ios_base::binary);
         resume_file.unsetf(std::ios_base::skipws);
         resume_data = bdecode(std::istream_iterator<char>(resume_file), std::istream_iterator<char>());
         fastResume=true;
@@ -1371,15 +1371,15 @@ void GUI::addTorrent(const QString& path, bool fromScanDir, const QString& from_
       catch (fs::filesystem_error&) {}
       //qDebug("Got fast resume data");
     }
-    //Get Save Path TODO: finish
     QString savePath = getSavePath(QString(t.name().c_str()));
     int row = DLListModel->rowCount();
     // Adding files to bittorrent session
+    std::cout << "save path: " << (const char*)savePath.toUtf8() << "\n";
     if(hasFilteredFiles(QString(t.name().c_str()))){
-      h = s->add_torrent(t, fs::path(savePath.toStdString()), resume_data, false);
+      h = s->add_torrent(t, fs::path((const char*)savePath.toUtf8()), resume_data, false);
       qDebug("Full allocation mode");
     }else{
-      h = s->add_torrent(t, fs::path(savePath.toStdString()), resume_data, true);
+      h = s->add_torrent(t, fs::path((const char*)savePath.toUtf8()), resume_data, true);
       qDebug("Compact allocation mode");
     }
     h.set_max_connections(60);
@@ -1496,7 +1496,7 @@ QString GUI::getSavePath(QString fileName){
     line = savepath_file.readAll();
     savepath_file.close();
     qDebug("Save path: %s", line.data());
-    savePath = QString(line.data());
+    savePath = QString::fromUtf8(line.data());
   }else{
     savePath = options->getSavePath();
   }
@@ -1505,7 +1505,7 @@ QString GUI::getSavePath(QString fileName){
   QDir saveDir(savePath);
   if(!saveDir.exists()){
     if(!saveDir.mkpath(saveDir.path())){
-      std::cerr << "Couldn't create the save directory: " << saveDir.path().toStdString() +"\n";
+      std::cerr << "Couldn't create the save directory: " << (const char*)saveDir.path().toUtf8() << "\n";
       // TODO: handle this better
       return QDir::homePath();
     }
@@ -1516,7 +1516,7 @@ QString GUI::getSavePath(QString fileName){
 void GUI::reloadTorrent(const torrent_handle &h, bool compact_mode){
   QDir saveDir(options->getSavePath()), torrentBackup(misc::qBittorrentPath() + "BT_backup");
   QString fileName = QString(h.get_torrent_info().name().c_str());
-  qDebug("Reloading torrent: %s", fileName.toStdString().c_str());
+  qDebug("Reloading torrent: %s", (const char*)fileName.toUtf8());
   torrent_handle new_h;
   entry resumeData;
   torrent_info t = h.get_torrent_info();
@@ -1556,7 +1556,7 @@ void GUI::reloadTorrent(const torrent_handle &h, bool compact_mode){
     std::cerr << "Error: Couldn't reload the torrent\n";
     return;
   }
-  new_h = s->add_torrent(t, fs::path(saveDir.path().toStdString()), resumeData, compact_mode);
+  new_h = s->add_torrent(t, fs::path((const char*)saveDir.path().toUtf8()), resumeData, compact_mode);
   if(compact_mode){
     qDebug("Using compact allocation mode");
   }else{
@@ -1590,7 +1590,7 @@ void GUI::reloadTorrent(const torrent_handle &h, bool compact_mode){
   }
   // Incremental download
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".incremental")){
-    qDebug("Incremental download enabled for %s", fileName.toStdString().c_str());
+    qDebug("Incremental download enabled for %s", (const char*)fileName.toUtf8());
     new_h.set_sequenced_download_threshold(15);
   }
 }
@@ -1686,7 +1686,7 @@ void GUI::configureSession(){
     setGlobalRatio(options->getRatio());
     // DHT (Trackerless)
     if(options->isDHTEnabled() && !DHTEnabled){
-      boost::filesystem::ifstream dht_state_file(misc::qBittorrentPath().toStdString()+"dht_state", std::ios_base::binary);
+      boost::filesystem::ifstream dht_state_file((const char*)(misc::qBittorrentPath()+QString("dht_state")).toUtf8(), std::ios_base::binary);
       dht_state_file.unsetf(std::ios_base::skipws);
       entry dht_state;
       try{
@@ -2156,15 +2156,15 @@ void GUI::updateNova() const{
 // ask user for action.
 void GUI::on_update_nova_button_clicked(){
   CURL *curl;
-  std::string filePath;
+  QString filePath;
   qDebug("Checking for search plugin updates on qbittorrent.org");
   // XXX: Trick to get a unique filename
   QTemporaryFile *tmpfile = new QTemporaryFile;
   if (tmpfile->open()) {
-    filePath = tmpfile->fileName().toStdString();
+    filePath = tmpfile->fileName();
   }
   delete tmpfile;
-  FILE *file = fopen(filePath.c_str(), "w");
+  FILE *file = fopen((const char*)filePath.toUtf8(), "w");
   if(!file){
     std::cerr << "Error: could not open temporary file...\n";
   }
@@ -2190,12 +2190,12 @@ void GUI::on_update_nova_button_clicked(){
   curl_easy_cleanup(curl);
   // Close tmp file
   fclose(file);
-  qDebug("Version on qbittorrent.org: %f", getNovaVersion(QString(filePath.c_str())));
-  float version_on_server = getNovaVersion(QString(filePath.c_str()));
+  qDebug("Version on qbittorrent.org: %f", getNovaVersion(filePath));
+  float version_on_server = getNovaVersion(filePath);
   if(version_on_server == 0.0){
     //First server is down, try mirror
-    QFile::remove(filePath.c_str());
-    FILE *file = fopen(filePath.c_str(), "w");
+    QFile::remove(filePath);
+    FILE *file = fopen((const char*)filePath.toUtf8(), "w");
     if(!file){
       std::cerr << "Error: could not open temporary file...\n";
     }
@@ -2214,19 +2214,19 @@ void GUI::on_update_nova_button_clicked(){
     curl_easy_cleanup(curl);
     // Close tmp file
     fclose(file);
-    version_on_server = getNovaVersion(QString(filePath.c_str()));
+    version_on_server = getNovaVersion(filePath);
   }
   if(version_on_server > getNovaVersion(misc::qBittorrentPath()+"nova.py")){
     if(QMessageBox::question(this,
                              tr("Search plugin update -- qBittorrent"),
-                             tr("Search plugin can be updated, do you want to update it?\n\nChangelog:\n")+QString(getNovaChangelog(QString(filePath.c_str())).data()),
+                             tr("Search plugin can be updated, do you want to update it?\n\nChangelog:\n")+getNovaChangelog(filePath),
                              tr("&Yes"), tr("&No"),
                              QString(), 0, 1)){
                                return;
                              }else{
                                qDebug("Updating search plugin from qbittorrent.org");
 			       QFile::remove(misc::qBittorrentPath()+"nova.py");
-                               QFile::copy(QString(filePath.c_str()), misc::qBittorrentPath()+"nova.py");
+                               QFile::copy(filePath, misc::qBittorrentPath()+"nova.py");
 			       QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;
 			       QFile(misc::qBittorrentPath()+"nova.py").setPermissions(perm);
                              }
@@ -2240,7 +2240,7 @@ void GUI::on_update_nova_button_clicked(){
     }
   }
   // Delete tmp file
-  QFile::remove(filePath.c_str());
+  QFile::remove(filePath);
 }
 
 // Slot called when search is Finished

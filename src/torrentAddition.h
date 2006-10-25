@@ -65,7 +65,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         home += QDir::separator();
       }
       savePathTxt->setText(home+"qBT_dir");
-      std::ifstream in(filePath.toStdString().c_str(), std::ios_base::binary);
+      std::ifstream in((const char*)filePath.toUtf8(), std::ios_base::binary);
       in.unsetf(std::ios_base::skipws);
       try{
         // Decode torrent file
@@ -204,7 +204,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       // Save savepath
       QFile savepath_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".savepath");
       savepath_file.open(QIODevice::WriteOnly | QIODevice::Text);
-      savepath_file.write(QByteArray(savePath.path().toStdString().c_str()));
+      savepath_file.write(savePath.path().toUtf8());
       savepath_file.close();
       // Create .incremental file if necessary
       if(checkIncrementalDL->isChecked()){

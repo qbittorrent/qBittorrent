@@ -124,7 +124,7 @@ int main(int argc, char *argv[]){
   bool isLocalized = false;
   // Open options file to read locale
   QString optionsPath = misc::qBittorrentPath()+"options.xml";
-  FILE *f = fopen(optionsPath.toStdString().c_str(), "r");
+  FILE *f = fopen((const char*)optionsPath.toUtf8(), "r");
   if(f){
     if (file.open(f, QIODevice::ReadOnly | QIODevice::Text)){
       if (doc.setContent(&file)) {
@@ -145,9 +145,9 @@ int main(int argc, char *argv[]){
     locale = QLocale::system().name();
   }
   if(translator.load(QString(":/lang/qbittorrent_") + locale)){
-    qDebug("%s locale recognized, using translation.", locale.toStdString().c_str());
+    qDebug("%s locale recognized, using translation.", (const char*)locale.toUtf8());
   }else{
-    qDebug("%s locale unrecognized, using default (en_GB).", locale.toStdString().c_str());
+    qDebug("%s locale unrecognized, using default (en_GB).", (const char*)locale.toUtf8());
   }
   app.installTranslator(&translator);
   // Read torrents given on command line

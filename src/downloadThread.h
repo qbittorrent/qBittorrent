@@ -68,15 +68,15 @@ class downloadThread : public QThread {
           mutex.unlock();
 	  qDebug("In Download thread RUN, mutex unlocked (got url)");
           CURL *curl;
-          std::string filePath;
+          QString filePath;
           int return_code, response;
           // XXX: Trick to get a unique filename
           QTemporaryFile *tmpfile = new QTemporaryFile;
           if (tmpfile->open()) {
-            filePath = tmpfile->fileName().toStdString();
+            filePath = tmpfile->fileName();
           }
           delete tmpfile;
-          FILE *file = fopen(filePath.c_str(), "w");
+          FILE *file = fopen((const char*)filePath.toUtf8(), "w");
           if(!file){
             std::cerr << "Error: could not open temporary file...\n";
             return;
@@ -88,10 +88,9 @@ class downloadThread : public QThread {
             fclose(file);
             return;
           }
-          std::string urlString = url.toStdString();
           // Set url to download
-          curl_easy_setopt(curl, CURLOPT_URL, urlString.c_str());
-          qDebug("Url: %s", urlString.c_str());
+          curl_easy_setopt(curl, CURLOPT_URL, (const char*)url.toUtf8());
+          qDebug("Url: %s", (const char*)url.toUtf8());
           // Define our callback to get called when there's data to be written
           curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, misc::my_fwrite);
           // Set destination file
@@ -116,7 +115,7 @@ class downloadThread : public QThread {
           if(return_code){
             std::cerr << "Error: failed to set error buffer in curl\n";
             fclose(file);
-            QFile::remove(filePath.c_str());
+            QFile::remove(filePath);
             return;
           }
 	  unsigned short retries = 0;
@@ -137,7 +136,7 @@ class downloadThread : public QThread {
           curl_easy_cleanup(curl);
           // Close tmp file
           fclose(file);
-          emit downloadFinished(url, QString(filePath.c_str()), return_code, QString(errorBuffer));
+          emit downloadFinished(url, filePath, return_code, QString(errorBuffer));
 	  qDebug("In Download thread RUN, signal emitted, ErrorBuffer: %s", errorBuffer);
         }else{
           mutex.unlock();

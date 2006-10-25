@@ -324,19 +324,19 @@ bool options_imp::saveOptions(){
   tag.appendChild(optionValue);
   xml = doc.toString();
   // Write XML file to HD
-  f = fopen(savePath.toStdString().c_str(), "w");
+  f = fopen((const char*)savePath.toUtf8(), "w");
   if (!f){
-    std::cerr << "Error: Couldn't create file " << savePath.toStdString() << " for saving!" << '\n';
+    std::cerr << "Error: Couldn't create file " << (const char*)savePath.toUtf8() << " for saving!" << '\n';
     return false;
   }
   if (!file.open(f, QIODevice::WriteOnly | QIODevice::Text)){
-    std::cerr << "Error: Couldn't open file " << savePath.toStdString() << " for saving!" << '\n';
+    std::cerr << "Error: Couldn't open file " << (const char*)savePath.toUtf8() << " for saving!" << '\n';
     return false;
   }
-  file.write(xml.toStdString().c_str(), xml.length());
+  file.write((const char*)xml.toUtf8(), xml.length());
   file.close();
   if(fclose(f) == EOF){
-    std::cerr << "Error: Couldn't close file " << savePath.toStdString() << " after saving!" << '\n';
+    std::cerr << "Error: Couldn't close file " << (const char*)savePath.toUtf8() << " after saving!" << '\n';
     return false;
   }
   // set infobar text
@@ -365,7 +365,7 @@ bool options_imp::loadOptions(){
   // Getting savepath for options.xml
   savePath = misc::qBittorrentPath() + "options.xml";
   // Read XML file on HD
-  f = fopen(savePath.toStdString().c_str(), "r");
+  f = fopen((const char*)savePath.toUtf8(), "r");
   if (!f){
     return false;
   }
@@ -378,7 +378,7 @@ bool options_imp::loadOptions(){
   }
   file.close();
   if(fclose(f) == EOF){
-    std::cerr << "Error: Couldn't close file " << savePath.toStdString() << " after reading!" << '\n';
+    std::cerr << "Error: Couldn't close file " << (const char*)savePath.toUtf8() << " after reading!" << '\n';
     return false;
   }
   // Loading option from XML

@@ -54,7 +54,7 @@ class trackerLogin : public QDialog, private Ui::authentication{
   public slots:
     void on_loginButton_clicked(){
       // login
-      h.set_tracker_login(lineUsername->text().toStdString(), linePasswd->text().toStdString());
+      h.set_tracker_login(std::string((const char*)lineUsername->text().toUtf8()), std::string((const char*)linePasswd->text().toUtf8()));
       close();
     }
 

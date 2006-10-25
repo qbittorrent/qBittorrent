@@ -99,8 +99,8 @@ void createtorrent::on_createButton_clicked(){
   int piece_size = 256 * 1024;
   try {
     torrent_info t;
-    path full_path = complete(path(input.toStdString().c_str()));
-    ofstream out(complete(path(destination.toStdString().c_str())), std::ios_base::binary);
+    path full_path = complete(path((const char*)input.toUtf8()));
+    ofstream out(complete(path((const char*)destination.toUtf8())), std::ios_base::binary);
 
     add_files(t, full_path.branch_path(), full_path.leaf());
     t.set_piece_size(piece_size);
@@ -108,7 +108,7 @@ void createtorrent::on_createButton_clicked(){
     storage st(t, full_path.branch_path());
     QStringList trackers = txt_announce->toPlainText().split('\n');
     for(int i=0; i<trackers.size(); ++i){
-      t.add_tracker(trackers.at(i).toStdString().c_str());
+      t.add_tracker((const char*)trackers.at(i).toUtf8());
     }
 
     // calculate the hash for all pieces
@@ -123,7 +123,7 @@ void createtorrent::on_createButton_clicked(){
     // Set qBittorrent as creator and add user comment to
     // torrent_info structure
     t.set_creator(creator_str);
-    t.set_comment(txt_comment->toPlainText().toStdString().c_str());
+    t.set_comment((const char*)txt_comment->toPlainText().toUtf8());
     // create the torrent and print it to out
     entry e = t.create_torrent();
     libtorrent::bencode(std::ostream_iterator<char>(out), e);
