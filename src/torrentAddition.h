@@ -51,7 +51,6 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
     QString from_url;
 
   public:
-    // Check if the torrent in already in download list before calling this dialog
     torrentAdditionDialog(QWidget *parent, QString filePath, bool fromScanDir=false, QString from_url=QString::null) : QDialog(parent), filePath(filePath), fromScanDir(fromScanDir), from_url(from_url){
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
@@ -88,12 +87,31 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       }catch (invalid_torrent_file&){ // Raised by torrent_info constructor
         // Display warning to tell user we can't decode the torrent file
         if(!from_url.isNull()){
-          emit setInfoBar(tr("Unable to decode torrent file:")+" '"+from_url+"'", "red");
+          emit setInfoBarGUI(tr("Unable to decode torrent file:")+" '"+from_url+"'", "red");
         }else{
-          emit setInfoBar(tr("Unable to decode torrent file:")+" '"+filePath+"'", "red");
+          emit setInfoBarGUI(tr("Unable to decode torrent file:")+" '"+filePath+"'", "red");
         }
-        emit setInfoBar(tr("This file is either corrupted or this isn't a torrent."),"red");
+        emit setInfoBarGUI(tr("This file is either corrupted or this isn't a torrent."),"red");
         if(fromScanDir){
+          // Remove .corrupt file in case it already exists
+          QFile::remove(filePath+".corrupt");
+          //Rename file extension so that it won't display error message more than once
+          QFile::rename(filePath,filePath+".corrupt");
+        }
+        close();
+      }
+      catch(invalid_encoding& e){
+        std::cerr << "Could not decode file, reason: " << e.what() << '\n';
+        // Display warning to tell user we can't decode the torrent file
+        if(!from_url.isNull()){
+          emit setInfoBarGUI(tr("Unable to decode torrent file:")+" '"+from_url+"'", "red");
+        }else{
+          emit setInfoBarGUI(tr("Unable to decode torrent file:")+" '"+filePath+"'", "red");
+        }
+        emit setInfoBarGUI(tr("This file is either corrupted or this isn't a torrent."),"red");
+        if(fromScanDir){
+          // Remove .corrupt file in case it already exists
+          QFile::remove(filePath+".corrupt");
           //Rename file extension so that it won't display error message more than once
           QFile::rename(filePath,filePath+".corrupt");
         }
@@ -242,7 +260,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
     }
 
   signals:
-    void setInfoBar(QString message, QString color);
+    void setInfoBarGUI(const QString& message, const QString& color);
     void torrentAddition(const QString& filePath, bool fromScanDir, const QString& from_url);
 };
 

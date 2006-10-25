@@ -438,7 +438,6 @@ void GUI::readParamsInFile(){
   if(params.size()){
     qDebug("Received parameters from another instance");
     processParams(params);
-//     addTorrents(params);
   }
   paramsFile.close();
   paramsFile.remove();
@@ -1056,12 +1055,12 @@ void GUI::dropEvent(QDropEvent *event){
   event->acceptProposedAction();
   QStringList files=event->mimeData()->text().split('\n');
   // Add file to download list
-//   addTorrents(files);
   QString file;
   foreach(file, files){
     if(options->useAdditionDialog()){
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this, file.trimmed().replace("file://", ""));
       connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), this, SLOT(addTorrent(QString, bool, QString())));
+      connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
     }else{
       addTorrent(file.trimmed().replace("file://", ""));
     }
@@ -1104,12 +1103,11 @@ void GUI::askForTorrents(){
       if(options->useAdditionDialog()){
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this, pathsList.at(i));
         connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
+        connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
       }else{
         addTorrent(pathsList.at(i));
       }
     }
-    //Add torrents to download list
-//     addTorrents(pathsList);
     // Save last dir to remember it
     lastDirFile.open(QIODevice::WriteOnly | QIODevice::Text);
     QStringList top_dir = pathsList.at(0).split(QDir::separator());
@@ -1138,13 +1136,11 @@ void GUI::scanDirectory(){
       if(options->useAdditionDialog()){
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this, file, true);
         connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
+        connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
       }else{
         addTorrent(file, true);
       }
     }
-//     if(!to_add.empty()){
-//       addTorrents(to_add, true);
-//     }
   }
 }
 
@@ -1309,7 +1305,6 @@ void GUI::resumeUnfinished(){
   foreach(fileName, filePaths){
     addTorrent(fileName);
   }
-//   addTorrents(filePaths);
   qDebug("Unfinished torrents resumed");
 }
 
@@ -1481,6 +1476,8 @@ void GUI::addTorrent(const QString& path, bool fromScanDir, const QString& from_
     }
     setInfoBar(tr("This file is either corrupted or this isn't a torrent."),"red");
     if(fromScanDir){
+      // Remove .corrupt file in case it already exists
+      QFile::remove(file+".corrupt");
       //Rename file extension so that it won't display error message more than once
       QFile::rename(file,file+".corrupt");
     }
@@ -1608,6 +1605,7 @@ void GUI::processParams(const QStringList& params){
       if(options->useAdditionDialog()){
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this, param);
         connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
+        connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
       }else{
         addTorrent(param);
       }
@@ -2401,6 +2399,7 @@ void GUI::processDownloadedFile(QString url, QString file_path, int return_code,
   if(options->useAdditionDialog()){
     torrentAdditionDialog *dialog = new torrentAdditionDialog(this, file_path, false, url);
     connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
+    connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
   }else{
     addTorrent(file_path, false, url);
   }
