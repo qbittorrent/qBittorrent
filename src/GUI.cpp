@@ -1374,7 +1374,6 @@ void GUI::addTorrent(const QString& path, bool fromScanDir, const QString& from_
     QString savePath = getSavePath(QString(t.name().c_str()));
     int row = DLListModel->rowCount();
     // Adding files to bittorrent session
-    std::cout << "save path: " << (const char*)savePath.toUtf8() << "\n";
     if(hasFilteredFiles(QString(t.name().c_str()))){
       h = s->add_torrent(t, fs::path((const char*)savePath.toUtf8()), resume_data, false);
       qDebug("Full allocation mode");
