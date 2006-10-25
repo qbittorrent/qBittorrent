@@ -228,7 +228,7 @@ inside)</source>
     </message>
     <message>
         <source>Language</source>
-        <translation type="obsolete">언어</translation>
+        <translation type="unfinished">언어</translation>
     </message>
     <message>
         <source>Please choose your preferred language in the following 
@@ -374,7 +374,7 @@ list:</source>
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation>DHT(트렉커 없음):</translation>
+        <translation type="obsolete">DHT(트렉커 없음):</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
@@ -406,6 +406,30 @@ list:</source>
     </message>
     <message>
         <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DHT configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DHT port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display a torrent addition dialog everytime I add a torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default save path</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -989,7 +1013,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Connection Status</source>
-        <translation>연결 상태</translation>
+        <translation type="obsolete">연결 상태</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -1155,6 +1179,61 @@ Please close the other one first.</source>
     <message>
         <source>Please type at least one URL.</source>
         <translation>적어도 하나의 주소(URL)를 적어주십시오.</translation>
+    </message>
+</context>
+<context>
+    <name>addTorrentDialog</name>
+    <message>
+        <source>Torrent addition dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Torrent content:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Selected</source>
+        <translation type="unfinished">선택됨</translation>
+    </message>
+    <message>
+        <source>Download in correct order (slower but good for previewing)</source>
+        <translation type="unfinished">순차적으로 다운받기(늘리지만 미리보기하기에 좋음)</translation>
+    </message>
+    <message>
+        <source>Add to download list in paused state</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">취소</translation>
+    </message>
+    <message>
+        <source>select</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unselect</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1700,6 +1779,57 @@ Please close the other one first.</source>
     <message>
         <source>Leechers:</source>
         <translation>부분 공유:</translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>torrentAdditionDialog</name>
+    <message>
+        <source>True</source>
+        <translation type="unfinished">맞음</translation>
+    </message>
+    <message>
+        <source>Unable to decode torrent file:</source>
+        <translation type="unfinished">토런트 파일을 읽을 수가 없습니다:</translation>
+    </message>
+    <message>
+        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
+        <translation type="unfinished">이 파일은 오류가 있거나 토런트 파일이 아닙니다.</translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>False</source>
+        <translation type="unfinished">아님</translation>
+    </message>
+    <message>
+        <source>Empty save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save path creation error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not create the save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid file selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You must select at least one file in the torrent</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

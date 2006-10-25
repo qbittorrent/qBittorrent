@@ -247,7 +247,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Language</source>
-        <translation type="obsolete">Język</translation>
+        <translation type="unfinished">Język</translation>
     </message>
     <message>
         <source>Please choose your preferred language in the following list:</source>
@@ -423,7 +423,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation>DHT (Trackerless):</translation>
+        <translation type="obsolete">DHT (Trackerless):</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
@@ -455,6 +455,30 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DHT configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DHT port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display a torrent addition dialog everytime I add a torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default save path</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1003,7 +1027,7 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Connection Status</source>
-        <translation>Status połączenia</translation>
+        <translation type="obsolete">Status połączenia</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -1169,6 +1193,61 @@ Zamknij najpierw okno podglądu.</translation>
     <message>
         <source>Please type at least one URL.</source>
         <translation>Proszę podać przynajmniej jeden adres URL.</translation>
+    </message>
+</context>
+<context>
+    <name>addTorrentDialog</name>
+    <message>
+        <source>Torrent addition dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Torrent content:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Selected</source>
+        <translation type="unfinished">Zaznaczony</translation>
+    </message>
+    <message>
+        <source>Download in correct order (slower but good for previewing)</source>
+        <translation type="unfinished">Pobierz w ustalonej kolejności (wolniejsze ale lepsze przy korzystaniu z opcji poglądu)</translation>
+    </message>
+    <message>
+        <source>Add to download list in paused state</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Anuluj</translation>
+    </message>
+    <message>
+        <source>select</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unselect</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1705,6 +1784,57 @@ Zamknij najpierw okno podglądu.</translation>
     <message>
         <source>Leechers:</source>
         <translation>Leechers:</translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>torrentAdditionDialog</name>
+    <message>
+        <source>True</source>
+        <translation type="unfinished">Tak</translation>
+    </message>
+    <message>
+        <source>Unable to decode torrent file:</source>
+        <translation type="unfinished">Problem z odkodowaniem pliku torrent:</translation>
+    </message>
+    <message>
+        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
+        <translation type="unfinished">Plik jest uszkodzony lub nie jest plikiem torrent.</translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>False</source>
+        <translation type="unfinished">Nie</translation>
+    </message>
+    <message>
+        <source>Empty save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save path creation error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not create the save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid file selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You must select at least one file in the torrent</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

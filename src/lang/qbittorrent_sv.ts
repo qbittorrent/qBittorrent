@@ -310,7 +310,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>DHT (Trackerless):</source>
-        <translation>DHT (Trackerlös):</translation>
+        <translation type="obsolete">DHT (Trackerlös):</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
@@ -342,6 +342,34 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Never display systray messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DHT configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DHT port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display a torrent addition dialog everytime I add a torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default save path</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -740,7 +768,7 @@ Stäng den först.</translation>
     </message>
     <message>
         <source>Connection Status</source>
-        <translation>Anslutningsstatus</translation>
+        <translation type="obsolete">Anslutningsstatus</translation>
     </message>
     <message>
         <source>Search</source>
@@ -863,6 +891,61 @@ Stäng den först.</translation>
     <message>
         <source>Please type at least one URL.</source>
         <translation>Ange åtminstone en URL</translation>
+    </message>
+</context>
+<context>
+    <name>addTorrentDialog</name>
+    <message>
+        <source>Torrent addition dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Torrent content:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Selected</source>
+        <translation type="unfinished">Markerad</translation>
+    </message>
+    <message>
+        <source>Download in correct order (slower but good for previewing)</source>
+        <translation type="unfinished">Hämta i korrekt ordning (långsammare men bra för förhandsvisning)</translation>
+    </message>
+    <message>
+        <source>Add to download list in paused state</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Avbryt</translation>
+    </message>
+    <message>
+        <source>select</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unselect</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1318,6 +1401,57 @@ Stäng den först.</translation>
     <message>
         <source>Leechers:</source>
         <translation>Reciprokörer:</translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>torrentAdditionDialog</name>
+    <message>
+        <source>True</source>
+        <translation type="unfinished">Sant</translation>
+    </message>
+    <message>
+        <source>Unable to decode torrent file:</source>
+        <translation type="unfinished">Kunde inte avkoda torrent-fil:</translation>
+    </message>
+    <message>
+        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
+        <translation type="unfinished">Denna fil är antingen skadad eller så är den inte en torrent-fil.</translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>False</source>
+        <translation type="unfinished">Falskt</translation>
+    </message>
+    <message>
+        <source>Empty save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save path creation error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not create the save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid file selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You must select at least one file in the torrent</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
