@@ -1059,7 +1059,7 @@ void GUI::dropEvent(QDropEvent *event){
   foreach(file, files){
     if(options->useAdditionDialog()){
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this, file.trimmed().replace("file://", ""));
-      connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), this, SLOT(addTorrent(QString, bool, QString())));
+      connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
       connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
     }else{
       addTorrent(file.trimmed().replace("file://", ""));
