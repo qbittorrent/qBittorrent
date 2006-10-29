@@ -144,7 +144,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void pauseSelection();
     void startSelection();
     void askForTorrents();
-    void deleteAll();
+    void deletePermanently();
     void deleteSelection();
     void resumeUnfinished();
     void saveFastResumeData() const;

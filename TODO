@@ -33,5 +33,4 @@
 - Add Report a bug in qBittorrent menu entry
 - Display remaining HD space (check it before adding a new torrent?)
 - Move novaUpdater to a Thread (probably use downloadThread) to prevent GUI freezing
-- Add button : delete from list and Hard drive
 - Check if there is at least one file in selection (torrent properties)

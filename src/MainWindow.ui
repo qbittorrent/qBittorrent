@@ -745,7 +745,7 @@
     <addaction name="actionTorrent_Properties" />
     <addaction name="separator" />
     <addaction name="actionDelete" />
-    <addaction name="actionDelete_All" />
+    <addaction name="actionDelete_Permanently" />
    </widget>
    <widget class="QMenu" name="menu_File" >
     <property name="title" >
@@ -784,7 +784,7 @@
    <addaction name="actionDownload_from_URL" />
    <addaction name="separator" />
    <addaction name="actionDelete" />
-   <addaction name="actionDelete_All" />
+   <addaction name="actionDelete_Permanently" />
    <addaction name="separator" />
    <addaction name="actionTorrent_Properties" />
    <addaction name="separator" />
@@ -848,9 +848,9 @@
     <string>Documentation</string>
    </property>
   </action>
-  <action name="actionDelete_All" >
+  <action name="actionDelete_Permanently" >
    <property name="text" >
-    <string>Delete All</string>
+    <string>Delete Permanently</string>
    </property>
   </action>
   <action name="actionTorrent_Properties" >

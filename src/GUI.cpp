@@ -82,7 +82,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/disconnected.png")));
   connecStatusLblIcon->setToolTip(tr("<b>Connection Status:</b><br>Offline<br><i>No peers found...</i>"));
   toolBar->addWidget(connecStatusLblIcon);
-  actionDelete_All->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_all.png")));
+  actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
   actionCreate_torrent->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/new.png")));
   info_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/log.png")));
@@ -138,7 +138,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   // Connecting Actions to slots
   connect(actionExit, SIGNAL(triggered()), this, SLOT(close()));
   connect(actionOpen, SIGNAL(triggered()), this, SLOT(askForTorrents()));
-  connect(actionDelete_All, SIGNAL(triggered()), this, SLOT(deleteAll()));
+  connect(actionDelete_Permanently, SIGNAL(triggered()), this, SLOT(deletePermanently()));
   connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelection()));
   connect(actionOptions, SIGNAL(triggered()), this, SLOT(showOptions()));
   connect(actionDownload_from_URL, SIGNAL(triggered()), this, SLOT(askForTorrentUrl()));
@@ -374,6 +374,7 @@ void GUI::displayDLListMenu(const QPoint& pos){
         myDLLlistMenu.addAction(actionPause);
       }
       myDLLlistMenu.addAction(actionDelete);
+      myDLLlistMenu.addAction(actionDelete_Permanently);
       myDLLlistMenu.addAction(actionTorrent_Properties);
       if(!options->getPreviewProgram().isEmpty() && isFilePreviewPossible(h) && selectedIndexes.size()<=DLListModel->columnCount()){
          myDLLlistMenu.addAction(actionPreview_file);
@@ -392,7 +393,6 @@ void GUI::displayGUIMenu(const QPoint& pos){
   myGUIMenu.addAction(actionDownload_from_URL);
   myGUIMenu.addAction(actionStart_All);
   myGUIMenu.addAction(actionPause_All);
-  myGUIMenu.addAction(actionDelete_All);
   myGUIMenu.addAction(actionExit);
   myGUIMenu.exec(mapToGlobal(pos));
 }
@@ -1182,49 +1182,76 @@ void GUI::saveFastResumeData() const{
   qDebug("Fast resume data saved");
 }
 
-// delete All Downloads in the list
-void GUI::deleteAll(){
+// delete from download list AND from hard drive
+void GUI::deletePermanently(){
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  QStringList torrents;
   QString scan_dir = options->getScanDir();
   bool isScanningDir = !scan_dir.isNull();
   if(isScanningDir && scan_dir.at(scan_dir.length()-1) != QDir::separator()){
     scan_dir += QDir::separator();
   }
-
-  if(QMessageBox::question(
-                            this,
-                            tr("Are you sure? -- qBittorrent"),
-                            tr("Are you sure you want to delete all files in download list?"),
-                            tr("&Yes"), tr("&No"),
-                            QString(), 0, 1) == 0) {
-                              // User clicked YES
-                              // Remove torrents from BT session
-                              foreach(torrent_handle h, handles){
-                                // remove it from scan dir or it will start again
-                                if(isScanningDir){
-                                  QFile::remove(scan_dir+QString(h.get_torrent_info().name().c_str())+".torrent");
-                                }
-                                // remove it from session
-                                s->remove_torrent(h);
-                              }
-                              // Clear handles
-                              handles.clear();
-                              // Clear torrent backup directory
-                              torrents = torrentBackup.entryList();
-                              QString torrent;
-                              foreach(torrent, torrents){
-                                if(torrent.endsWith(".fastresume") || torrent.endsWith(".torrent") || torrent.endsWith(".pieces") || torrent.endsWith(".paused") || torrent.endsWith(".incremental") || torrent.endsWith(".savepath")){
-                                  torrentBackup.remove(torrent);
-                                }
-                              }
-                              // Clear Download list
-                              DLListModel->removeRows(0, DLListModel->rowCount());
-                              nbTorrents = 0;
-                              tabs->setTabText(0, tr("Transfers") +" (0)");
-                              //Update info Bar
-                              setInfoBar(tr("Download list cleared."));
-                            }
+  QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  if(!selectedIndexes.isEmpty()){
+    if(QMessageBox::question(
+          this,
+    tr("Are you sure? -- qBittorrent"),
+    tr("Are you sure you want to delete the selected item(s) in download list and in hard drive?"),
+    tr("&Yes"), tr("&No"),
+    QString(), 0, 1) == 0) {
+      //User clicked YES
+      QModelIndex index;
+      QList<QPair<int, QModelIndex> > sortedIndexes;
+      // We have to remove items from the bottom
+      // to the top in order not to change indexes
+      // of files to delete.
+      foreach(index, selectedIndexes){
+        if(index.column() == NAME){
+          qDebug("row to delete: %d", index.row());
+          misc::insertSort2(sortedIndexes, QPair<int, QModelIndex>(index.row(), index), Qt::DescendingOrder);
+        }
+      }
+      QPair<int, QModelIndex> sortedIndex;
+      foreach(sortedIndex, sortedIndexes){
+        qDebug("deleting row: %d, %d, col: %d", sortedIndex.first, sortedIndex.second.row(), sortedIndex.second.column());
+        // Get the file name
+        QString fileName = sortedIndex.second.data().toString();
+        QString savePath;
+        // Delete item from download list
+        DLListModel->removeRow(sortedIndex.first);
+        // Get handle and remove the torrent
+        QMap<QString, torrent_handle>::iterator it = handles.find(fileName);
+        if(it != handles.end() && it.key() == fileName) {
+          torrent_handle h = it.value();
+          savePath = QString::fromUtf8(h.save_path().string().c_str());
+          s->remove_torrent(h);
+          // Remove torrent from handles
+          handles.erase(it);
+          // remove it from scan dir or it will start again
+          if(isScanningDir){
+            QFile::remove(scan_dir+fileName+".torrent");
+          }
+          // Remove it from torrent backup directory
+          torrentBackup.remove(fileName+".torrent");
+          torrentBackup.remove(fileName+".fastresume");
+          torrentBackup.remove(fileName+".paused");
+          torrentBackup.remove(fileName+".incremental");
+          torrentBackup.remove(fileName+".pieces");
+          torrentBackup.remove(fileName+".savepath");
+          // Remove from Hard drive TODO
+          qDebug("Removing this on hard drive: %s", qPrintable(savePath+QDir::separator()+fileName));
+          QDir downloadedDir(savePath+QDir::separator()+fileName);
+          downloadedDir.rmpath(savePath+QDir::separator()+fileName);
+          QFile::remove(savePath+QDir::separator()+fileName);
+          // Update info bar
+          setInfoBar("'" + fileName +"' "+tr("removed.", "<file> removed."));
+          --nbTorrents;
+          tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
+        }else{
+          std::cerr << "Error: Could not find the torrent handle supposed to be removed\n";
+        }
+      }
+    }
+  }
 }
 
 // delete selected items in the list
