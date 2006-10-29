@@ -43,6 +43,10 @@ using namespace libtorrent;
 class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
   Q_OBJECT
 
+  signals:
+    void setInfoBarGUI(const QString& info, const QString& color);
+    void torrentAddition(const QString& filePath, bool fromScanDir, const QString& from_url);
+
   private:
     QString fileName;
     QString filePath;
@@ -51,7 +55,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
     QString from_url;
 
   public:
-    torrentAdditionDialog(QWidget *parent, QString filePath, bool fromScanDir=false, QString from_url=QString::null) : QDialog(parent), filePath(filePath), fromScanDir(fromScanDir), from_url(from_url){
+    torrentAdditionDialog(QWidget *parent) : QDialog(parent) {
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       actionSelect->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
@@ -64,6 +68,12 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         home += QDir::separator();
       }
       savePathTxt->setText(home+"qBT_dir");
+    }
+
+    void showLoad(QString filePath, bool fromScanDir=false, QString from_url=QString::null){
+      this->filePath = filePath;
+      this->fromScanDir = fromScanDir;
+      this->from_url = from_url;
       std::ifstream in((const char*)filePath.toUtf8(), std::ios_base::binary);
       in.unsetf(std::ios_base::skipws);
       try{
@@ -91,7 +101,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         }else{
           emit setInfoBarGUI(tr("Unable to decode torrent file:")+" '"+filePath+"'", "red");
         }
-        emit setInfoBarGUI(tr("This file is either corrupted or this isn't a torrent."),"red");
+        emit setInfoBarGUI(tr("This file is either corrupted or this isn't a torrent."), "red");
         if(fromScanDir){
           // Remove .corrupt file in case it already exists
           QFile::remove(filePath+".corrupt");
@@ -108,7 +118,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         }else{
           emit setInfoBarGUI(tr("Unable to decode torrent file:")+" '"+filePath+"'", "red");
         }
-        emit setInfoBarGUI(tr("This file is either corrupted or this isn't a torrent."),"red");
+        emit setInfoBarGUI(tr("This file is either corrupted or this isn't a torrent."), "red");
         if(fromScanDir){
           // Remove .corrupt file in case it already exists
           QFile::remove(filePath+".corrupt");
@@ -258,10 +268,6 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       emit torrentAddition(filePath, fromScanDir, from_url);
       close();
     }
-
-  signals:
-    void setInfoBarGUI(const QString& message, const QString& color);
-    void torrentAddition(const QString& filePath, bool fromScanDir, const QString& from_url);
 };
 
 #endif
