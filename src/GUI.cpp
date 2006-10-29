@@ -1112,11 +1112,12 @@ void GUI::askForTorrents(){
       }
     }
     // Save last dir to remember it
-    lastDirFile.open(QIODevice::WriteOnly | QIODevice::Text);
-    QStringList top_dir = pathsList.at(0).split(QDir::separator());
-    top_dir.removeLast();
-    lastDirFile.write(top_dir.join(QDir::separator()).toUtf8());
-    lastDirFile.close();
+    if(lastDirFile.open(QIODevice::WriteOnly | QIODevice::Text)){
+      QStringList top_dir = pathsList.at(0).split(QDir::separator());
+      top_dir.removeLast();
+      lastDirFile.write(top_dir.join(QDir::separator()).toUtf8());
+      lastDirFile.close();
+    }
   }
 }
 

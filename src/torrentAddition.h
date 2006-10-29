@@ -62,12 +62,19 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       actionUnselect->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
       connect(actionSelect, SIGNAL(triggered()), this, SLOT(selectItems()));
       connect(actionUnselect, SIGNAL(triggered()), this, SLOT(unselectItems()));
-      //TODO: Remember last entered path
       QString home = QDir::homePath();
       if(home[home.length()-1] != QDir::separator()){
         home += QDir::separator();
       }
-      savePathTxt->setText(home+"qBT_dir");
+      QString dirPath = home+"qBT_dir";
+      QFile lastDirFile(misc::qBittorrentPath()+"lastDirTorrentAdd.txt");
+      // Load remembered last dir
+      if(lastDirFile.exists()){
+        lastDirFile.open(QIODevice::ReadOnly | QIODevice::Text);
+        dirPath=lastDirFile.readLine();
+        lastDirFile.close();
+      }
+      savePathTxt->setText(dirPath);
     }
 
     void showLoad(QString filePath, bool fromScanDir=false, QString from_url=QString::null){
@@ -135,7 +142,13 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
 
   public slots:
     void on_browseButton_clicked(){
-      QString dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
+      QString dir;
+      QDir saveDir(savePathTxt->text());
+      if(saveDir.exists()){
+        dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), savePathTxt->text());
+      }else{
+        dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
+      }
       if(!dir.isNull()){
         savePathTxt->setText(dir);
       }
@@ -234,6 +247,12 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       savepath_file.open(QIODevice::WriteOnly | QIODevice::Text);
       savepath_file.write(savePath.path().toUtf8());
       savepath_file.close();
+      // Save last dir to remember it
+      QFile lastDirFile(misc::qBittorrentPath()+"lastDirTorrentAdd.txt");
+      if(lastDirFile.open(QIODevice::WriteOnly | QIODevice::Text)){
+        lastDirFile.write(savePathTxt->text().toUtf8());
+        lastDirFile.close();
+      }
       // Create .incremental file if necessary
       if(checkIncrementalDL->isChecked()){
         QFile incremental_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".incremental");
