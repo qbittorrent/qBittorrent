@@ -28,9 +28,7 @@
 - Split kernel from GUI? (would be a lot better but require some deep changes)
 - Web interface?
 
-// In v0.8.0
+// In v0.9.0
 - Add Visit qBittorrent website menu entry
 - Add Report a bug in qBittorrent menu entry
-- Display remaining HD space (check it before adding a new torrent?)
-- Move novaUpdater to a Thread (probably use downloadThread) to prevent GUI freezing
-- Check if there is at least one file in selection (torrent properties)
+
