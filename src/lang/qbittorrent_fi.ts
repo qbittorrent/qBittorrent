@@ -362,7 +362,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
-        <translation>Haluatko varmasti poistaa kaikki tiedostot latauslistasta?</translation>
+        <translation type="obsolete">Haluatko varmasti poistaa kaikki tiedostot latauslistasta?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -394,7 +394,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Download list cleared.</source>
-        <translation>Lataulista tyhjennettiin.</translation>
+        <translation type="obsolete">Lataulista tyhjennettiin.</translation>
     </message>
     <message>
         <source>All Downloads Paused.</source>
@@ -665,6 +665,10 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -738,7 +742,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
     </message>
     <message>
         <source>Delete All</source>
-        <translation>Poista kaikki</translation>
+        <translation type="obsolete">Poista kaikki</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -815,6 +819,10 @@ Uutta esikatselua ei voi aloittaa.</translation>
     <message>
         <source>Clear log</source>
         <translation>Tyhjennä loki</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

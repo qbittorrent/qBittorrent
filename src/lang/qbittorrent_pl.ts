@@ -543,7 +543,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
-        <translation>Czy chcesz usunać wszystkie pliki z listy pobierania?</translation>
+        <translation type="obsolete">Czy chcesz usunać wszystkie pliki z listy pobierania?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -555,7 +555,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Download list cleared.</source>
-        <translation>List pobierania wyczyszczona.</translation>
+        <translation type="obsolete">List pobierania wyczyszczona.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
@@ -906,6 +906,10 @@ Zamknij najpierw okno podglądu.</translation>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -1019,7 +1023,7 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Delete All</source>
-        <translation>Skasuj wszystko</translation>
+        <translation type="obsolete">Skasuj wszystko</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -1116,6 +1120,10 @@ Zamknij najpierw okno podglądu.</translation>
     <message>
         <source>Clear log</source>
         <translation>Wyczyść logi</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -503,7 +503,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
-        <translation>Download listesindeki bütün dosyaları silmek istediğinizden emin misiniz?</translation>
+        <translation type="obsolete">Download listesindeki bütün dosyaları silmek istediğinizden emin misiniz?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -547,7 +547,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Download list cleared.</source>
-        <translation>Download listesi temizlendi.</translation>
+        <translation type="obsolete">Download listesi temizlendi.</translation>
     </message>
     <message>
         <source>All Downloads Paused.</source>
@@ -914,6 +914,10 @@ Lütfen önce diğerini kapatın.</translation>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -1027,7 +1031,7 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Delete All</source>
-        <translation>Hepsini Sil</translation>
+        <translation type="obsolete">Hepsini Sil</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -1124,6 +1128,10 @@ Lütfen önce diğerini kapatın.</translation>
     <message>
         <source>Clear log</source>
         <translation>Kaydı temizle</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

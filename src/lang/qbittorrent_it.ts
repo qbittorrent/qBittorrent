@@ -385,7 +385,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
-        <translation>Sei sicuro di voler cancellare tutti i file nella lista di download?</translation>
+        <translation type="obsolete">Sei sicuro di voler cancellare tutti i file nella lista di download?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -417,7 +417,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Download list cleared.</source>
-        <translation>Lista download vuota.</translation>
+        <translation type="obsolete">Lista download vuota.</translation>
     </message>
     <message>
         <source>All Downloads Paused.</source>
@@ -692,6 +692,10 @@ Example: Downloading www.example.com/test.torrent</comment>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -765,7 +769,7 @@ Example: Downloading www.example.com/test.torrent</comment>
     </message>
     <message>
         <source>Delete All</source>
-        <translation>Cancella tutti</translation>
+        <translation type="obsolete">Cancella tutti</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -842,6 +846,10 @@ Example: Downloading www.example.com/test.torrent</comment>
     <message>
         <source>Clear log</source>
         <translation>Cancella log</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

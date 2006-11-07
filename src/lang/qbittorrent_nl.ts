@@ -570,7 +570,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
-        <translation>Weet u zeker dat u alle bestanden uit de downloadlijst wilt verwijderen?</translation>
+        <translation type="obsolete">Weet u zeker dat u alle bestanden uit de downloadlijst wilt verwijderen?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -582,7 +582,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Download list cleared.</source>
-        <translation>Downloadlijst leeg gemaakt.</translation>
+        <translation type="obsolete">Downloadlijst leeg gemaakt.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
@@ -885,6 +885,10 @@ Stop het eerste proccess eerst.
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -998,7 +1002,7 @@ Stop het eerste proccess eerst.
     </message>
     <message>
         <source>Delete All</source>
-        <translation>Verwijder alles</translation>
+        <translation type="obsolete">Verwijder alles</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -1095,6 +1099,10 @@ Stop het eerste proccess eerst.
     <message>
         <source>Clear log</source>
         <translation>Wist log</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

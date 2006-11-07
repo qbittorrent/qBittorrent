@@ -385,7 +385,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
-        <translation>Är du säker på att du vill ta bort alla filer i hämtningslistan?</translation>
+        <translation type="obsolete">Är du säker på att du vill ta bort alla filer i hämtningslistan?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -417,7 +417,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Download list cleared.</source>
-        <translation>Hämtningslista tömd.</translation>
+        <translation type="obsolete">Hämtningslista tömd.</translation>
     </message>
     <message>
         <source>All Downloads Paused.</source>
@@ -687,6 +687,10 @@ Stäng den först.</translation>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -760,7 +764,7 @@ Stäng den först.</translation>
     </message>
     <message>
         <source>Delete All</source>
-        <translation>Ta bort alla</translation>
+        <translation type="obsolete">Ta bort alla</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -837,6 +841,10 @@ Stäng den först.</translation>
     <message>
         <source>Clear log</source>
         <translation>Töm logg</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -403,7 +403,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
-        <translation>Určite chcete zmazať všetky súbory v zozname sťahovaných?</translation>
+        <translation type="obsolete">Určite chcete zmazať všetky súbory v zozname sťahovaných?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -443,7 +443,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Download list cleared.</source>
-        <translation>Zoznam sťahovanch vyčistený.</translation>
+        <translation type="obsolete">Zoznam sťahovanch vyčistený.</translation>
     </message>
     <message>
         <source>All Downloads Paused.</source>
@@ -769,6 +769,10 @@ Najskôr ho prosím zatvorte.</translation>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -870,7 +874,7 @@ Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
         <source>Delete All</source>
-        <translation>Zmazať všetky</translation>
+        <translation type="obsolete">Zmazať všetky</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -963,6 +967,10 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <source>Clear log</source>
         <translation>Vyčistiť záznam</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

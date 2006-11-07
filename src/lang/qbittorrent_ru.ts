@@ -506,7 +506,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
-        <translation>Вы уверены что хотите удалить все файлы из списка закачек?</translation>
+        <translation type="obsolete">Вы уверены что хотите удалить все файлы из списка закачек?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -518,7 +518,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Download list cleared.</source>
-        <translation>Список закачек очищен.</translation>
+        <translation type="obsolete">Список закачек очищен.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
@@ -836,6 +836,10 @@ Please close the other one first.</source>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -941,7 +945,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Delete All</source>
-        <translation>Удалить Все</translation>
+        <translation type="obsolete">Удалить Все</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -1038,6 +1042,10 @@ Please close the other one first.</source>
     <message>
         <source>Clear log</source>
         <translation>Очистить лог</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

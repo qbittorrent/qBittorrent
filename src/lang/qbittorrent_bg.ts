@@ -488,7 +488,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
-        <translation>Сигурни ли сте че искате да изтриете всички файлове от списъка за сваляне?</translation>
+        <translation type="obsolete">Сигурни ли сте че искате да изтриете всички файлове от списъка за сваляне?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -532,7 +532,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Download list cleared.</source>
-        <translation>Списъка за сваляне е създаден. </translation>
+        <translation type="obsolete">Списъка за сваляне е създаден. </translation>
     </message>
     <message>
         <source>All Downloads Paused.</source>
@@ -887,6 +887,10 @@ Please close the other one first.</source>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -1000,7 +1004,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Delete All</source>
-        <translation>Изтрий Всички</translation>
+        <translation type="obsolete">Изтрий Всички</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -1097,6 +1101,10 @@ Please close the other one first.</source>
     <message>
         <source>Clear log</source>
         <translation>Изтрий лога</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

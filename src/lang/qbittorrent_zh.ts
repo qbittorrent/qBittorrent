@@ -428,7 +428,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
-        <translation>确定删除下载列表中的所有文件?</translation>
+        <translation type="obsolete">确定删除下载列表中的所有文件?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -468,7 +468,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Download list cleared.</source>
-        <translation>下载列表已清空.</translation>
+        <translation type="obsolete">下载列表已清空.</translation>
     </message>
     <message>
         <source>All Downloads Paused.</source>
@@ -802,6 +802,10 @@ Please close the other one first.</source>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -903,7 +907,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Delete All</source>
-        <translation>删除所有</translation>
+        <translation type="obsolete">删除所有</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -1000,6 +1004,10 @@ Please close the other one first.</source>
     <message>
         <source>Clear log</source>
         <translation>清除日志</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

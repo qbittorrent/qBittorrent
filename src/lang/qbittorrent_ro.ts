@@ -398,7 +398,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
-        <translation>Sunteţi siguri să ştergeţi toate fişierele din lista de download?</translation>
+        <translation type="obsolete">Sunteţi siguri să ştergeţi toate fişierele din lista de download?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -438,7 +438,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Download list cleared.</source>
-        <translation>Lista Download curăţită.</translation>
+        <translation type="obsolete">Lista Download curăţită.</translation>
     </message>
     <message>
         <source>All Downloads Paused.</source>
@@ -753,6 +753,10 @@ Vă rugăm să-l opriţi.</translation>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -854,7 +858,7 @@ Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
         <source>Delete All</source>
-        <translation>Şterge Toţi</translation>
+        <translation type="obsolete">Şterge Toţi</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -951,6 +955,10 @@ Vă rugăm să-l opriţi.</translation>
     <message>
         <source>Clear log</source>
         <translation>Curăţă log-ul</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
