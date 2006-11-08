@@ -174,7 +174,13 @@
   </layout>
   <action name="actionSelect" >
    <property name="text" >
-    <string>select</string>
+    <string>Select</string>
+   </property>
+   <property name="iconText" >
+    <string>Select</string>
+   </property>
+   <property name="toolTip" >
+    <string>Select</string>
    </property>
   </action>
   <action name="actionUnselect" >
