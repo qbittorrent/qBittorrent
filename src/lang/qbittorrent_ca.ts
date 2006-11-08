@@ -1274,11 +1274,11 @@ Si et plau tanca l&apos;altre primer.</translation>
         <translation type="unfinished">Cancelar</translation>
     </message>
     <message>
-        <source>select</source>
+        <source>Unselect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unselect</source>
+        <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -941,11 +941,11 @@ Vennligst avslutt denne først.</translation>
         <translation type="unfinished">Avbryt</translation>
     </message>
     <message>
-        <source>select</source>
+        <source>Unselect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unselect</source>
+        <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

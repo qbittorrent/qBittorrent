@@ -1077,11 +1077,11 @@ Vă rugăm să-l opriţi.</translation>
         <translation type="unfinished">Anulare</translation>
     </message>
     <message>
-        <source>select</source>
+        <source>Unselect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unselect</source>
+        <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

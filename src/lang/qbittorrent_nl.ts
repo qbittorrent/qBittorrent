@@ -1221,11 +1221,11 @@ Stop het eerste proccess eerst.
         <translation type="unfinished">Annuleren</translation>
     </message>
     <message>
-        <source>select</source>
+        <source>Unselect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unselect</source>
+        <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

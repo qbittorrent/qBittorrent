@@ -1208,11 +1208,15 @@ Por favor cierra el otro antes.</translation>
     </message>
     <message>
         <source>select</source>
-        <translation>seleccionar</translation>
+        <translation type="obsolete">seleccionar</translation>
     </message>
     <message>
         <source>Unselect</source>
         <translation>Deseleccionar</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

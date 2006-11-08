@@ -1251,11 +1251,15 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>select</source>
-        <translation>Zaznacz</translation>
+        <translation type="obsolete">Zaznacz</translation>
     </message>
     <message>
         <source>Unselect</source>
         <translation>Odznacz</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

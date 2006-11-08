@@ -1237,11 +1237,15 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>select</source>
-        <translation>선택</translation>
+        <translation type="obsolete">선택</translation>
     </message>
     <message>
         <source>Unselect</source>
         <translation>선택하지 않기</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

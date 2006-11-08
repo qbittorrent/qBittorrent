@@ -1179,11 +1179,11 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation type="unfinished">Abbrechen</translation>
     </message>
     <message>
-        <source>select</source>
+        <source>Unselect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unselect</source>
+        <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
