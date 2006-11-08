@@ -217,7 +217,7 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Idioma</translation>
+        <translation>Idioma</translation>
     </message>
     <message>
         <source>Please choose your preferred language in the following list:</source>
@@ -392,44 +392,44 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation>Reproductor de Audio/Video:</translation>
     </message>
     <message>
-        <source>Systray Messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display systray messages only when window is hidden</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Never display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>DHT configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración DHT</translation>
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Puerto DHT:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Nota: &lt;/b&gt; Los cambios se aplicarán después de reiniciar qBittorrent.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Nota de los traductores:&lt;/b&gt; Si qBittorrent no está disponible en tu idioma,&lt;br/&gt;y si quisieras traducirlo a tu lengua natal,&lt;br/&gt;por favor contáctame (chris@qbittorrent.org).</translation>
     </message>
     <message>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Desplegar un diálogo de agregar torrent cada que agregue un torrent</translation>
     </message>
     <message>
         <source>Default save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruta de guardado por defecto</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation>Mensajes de Systray</translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation>Siempre mostrar mensajes de bandeja de sistema</translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation>Desplegar mensajes de la bandeja del sistema sólo cuando la ventana está oculta</translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation>Nunca desplegar mensajes de la bandeja del sistema</translation>
     </message>
 </context>
 <context>
@@ -847,6 +847,14 @@ Por favor cierra el otro antes.</translation>
         <translation>Transferidos</translation>
     </message>
     <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation>¿Seguro que deseas salir de qBittorrent?</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation>¿Seguro que deseas borrar el o los elementos seleccionados de la lista de descargas y del disco duro?</translation>
+    </message>
+    <message>
         <source>Download finished</source>
         <translation type="unfinished"></translation>
     </message>
@@ -858,14 +866,6 @@ Por favor cierra el otro antes.</translation>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Motor de Búsqueda</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1080,7 +1080,7 @@ Por favor cierra el otro antes.</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>Borrar permanentemente</translation>
     </message>
 </context>
 <context>
@@ -1164,55 +1164,55 @@ Por favor cierra el otro antes.</translation>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Diálogo de adición de torrent</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruta de guardado:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished"></translation>
+        <translation>Contenido del torrent:</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre del archivo</translation>
     </message>
     <message>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño del archivo</translation>
     </message>
     <message>
         <source>Selected</source>
-        <translation type="unfinished">Seleccionado</translation>
+        <translation>Seleccionado</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished">Descargar por orden (mas lento pero mas bueno para previsualizar)</translation>
+        <translation>Descargar por orden (mas lento pero mejor para previsualizar)</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation type="unfinished"></translation>
+        <translation>Agregar a la lista de descargas en estado de pausa</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Agregar</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>select</source>
-        <translation type="unfinished"></translation>
+        <translation>seleccionar</translation>
     </message>
     <message>
         <source>Unselect</source>
-        <translation type="unfinished"></translation>
+        <translation>Deseleccionar</translation>
     </message>
 </context>
 <context>
@@ -1353,7 +1353,7 @@ Por favor cierra el otro antes.</translation>
     </message>
     <message>
         <source>Please type a valid input path first</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor digita una ruta de entrada válida primero</translation>
     </message>
 </context>
 <context>
@@ -1526,11 +1526,11 @@ Por favor cierra el otro antes.</translation>
     </message>
     <message>
         <source>Invalid IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP inválida</translation>
     </message>
     <message>
         <source>This IP is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Esta IP es inválida.</translation>
     </message>
 </context>
 <context>
@@ -1792,54 +1792,54 @@ Por favor cierra el otro antes.</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruta de guardado:</translation>
     </message>
 </context>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
         <source>True</source>
-        <translation type="unfinished">Verdadero</translation>
+        <translation>Verdadero</translation>
     </message>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation type="unfinished">Imposible decodificar el archivo torrent:</translation>
+        <translation>Imposible decodificar el archivo torrent:</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Este archivo puede estar corrupto, o no ser un torrent.</translation>
+        <translation>Este archivo puede estar corrupto, o no ser un torrent.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecciona la ruta de guardado</translation>
     </message>
     <message>
         <source>False</source>
-        <translation type="unfinished">Falso</translation>
+        <translation>Falso</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruta de guardado vacía</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor ingresa una ruta de guardado</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error en la creación de ruta de guardado</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo crear la ruta de guardado</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Selección de archivo inválida</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Debes seleccionar al menos un arcihvo en el torrent</translation>
     </message>
 </context>
 </TS>

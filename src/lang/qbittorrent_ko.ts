@@ -137,7 +137,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Scanned Dir:</source>
-        <translation>공뷰폴더  설정:</translation>
+        <translation>스캔된 폴더:</translation>
     </message>
     <message>
         <source>...</source>
@@ -145,7 +145,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Save Path:</source>
-        <translation>저장폴더 설정:</translation>
+        <translation>저장폴더 저장:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
@@ -157,7 +157,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Max Connects:</source>
-        <translation>동시 연결:</translation>
+        <translation>최대 동시 연결:</translation>
     </message>
     <message>
         <source>Port range:</source>
@@ -228,7 +228,7 @@ inside)</source>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">언어</translation>
+        <translation>언어</translation>
     </message>
     <message>
         <source>Please choose your preferred language in the following 
@@ -250,7 +250,7 @@ list:</source>
     </message>
     <message>
         <source>Enable directory scan (auto add torrent files inside)</source>
-        <translation>자동 자료목록 새로고침(받은 자료는 자동적으로 표시될 것입니다)</translation>
+        <translation>자동으로 목록 스캔하기(자동적으로 토렌트 파일 추가하기)</translation>
     </message>
     <message>
         <source>Please choose your preferred language in the following list:</source>
@@ -322,7 +322,7 @@ list:</source>
     </message>
     <message>
         <source>Ask for confirmation on exit</source>
-        <translation>종료 재확인</translation>
+        <translation>종료시 확인</translation>
     </message>
     <message>
         <source>Go to systray when minimizing window</source>
@@ -361,10 +361,6 @@ list:</source>
         <translation type="obsolete">OSD 표시하지 않기</translation>
     </message>
     <message>
-        <source>KiB/s</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>1 KiB DL = </source>
         <translation> 1 KiB 다운로드 =</translation>
     </message>
@@ -378,59 +374,63 @@ list:</source>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation>DHT(트렉커 없음) 미사용</translation>
+        <translation>DHT(트렉커 없음) 사용하지 않기</translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation>자동적으로 완료된 목록 지우기</translation>
+        <translation>완료된 목록 자동으로 지우기</translation>
     </message>
     <message>
         <source>Preview program</source>
-        <translation>프로그램 미리보기</translation>
+        <translation>미리보기 프로그램</translation>
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation>음악/비디오 재생기:</translation>
+        <translation>음악 및 영상 재생기:</translation>
     </message>
     <message>
-        <source>Systray Messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display systray messages only when window is hidden</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Never display systray messages</source>
-        <translation type="unfinished"></translation>
+        <source>KiB/s</source>
+        <translation></translation>
     </message>
     <message>
         <source>DHT configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT 설정</translation>
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT 포트:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;참고:&lt;/b&gt; 수정된 상항은 프로그램 재시작시 적용 될것입니다.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;번역자 노트:&lt;/b&gt; 만약 큐비토렌트가 자신이 사용하는 언어로 번역되지 않았고, &lt;br/&gt;자신의 사용하는 언어로 번역/수정 작업에 참여하고 싶다면, &lt;br/&gt;저에게 email을 주십시오  (chris@qbittorrent.org).</translation>
     </message>
     <message>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>토렌트 추가시 &apos;토렌트 추가 다이얼로그&apos; 보이기 </translation>
     </message>
     <message>
         <source>Default save path</source>
-        <translation type="unfinished"></translation>
+        <translation>기본 저장 경로</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation>시스템 트레이 아이템</translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation>시스템 트레이 아이템 항시 보기</translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation>프로그램 윈도우가 최소화시에만 시스템 트레이 아이템 보여주기</translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation>시스템 트레이 아이템 사용하지 않기</translation>
     </message>
 </context>
 <context>
@@ -876,6 +876,14 @@ Please close the other one first.</source>
         <translation>전송</translation>
     </message>
     <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation>정말로 큐비토런트를 종료하시겠습니까?</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation>정말로 지금 선택하신 파일들을 다운로드 목록과 하드 드라이브에서 삭제하시겠습니까?</translation>
+    </message>
+    <message>
         <source>Download finished</source>
         <translation type="unfinished"></translation>
     </message>
@@ -887,14 +895,6 @@ Please close the other one first.</source>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">검색 엔진</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1109,7 +1109,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>영구 삭제</translation>
     </message>
 </context>
 <context>
@@ -1193,55 +1193,55 @@ Please close the other one first.</source>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>토렌트 추가 다이얼로그</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>저장 경로:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished"></translation>
+        <translation>토렌트 내용:</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>파일 이름</translation>
     </message>
     <message>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>파일 크기</translation>
     </message>
     <message>
         <source>Selected</source>
-        <translation type="unfinished">선택됨</translation>
+        <translation>선택됨</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished">순차적으로 다운받기(늘리지만 미리보기하기에 좋음)</translation>
+        <translation>순차적으로 다운받기(느리지만 미리보기에 편합니다)</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation type="unfinished"></translation>
+        <translation>정지 상태로 다운로드 목록에 추가하기</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>추가</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">취소</translation>
+        <translation>취소</translation>
     </message>
     <message>
         <source>select</source>
-        <translation type="unfinished"></translation>
+        <translation>선택</translation>
     </message>
     <message>
         <source>Unselect</source>
-        <translation type="unfinished"></translation>
+        <translation>선택하지 않기</translation>
     </message>
 </context>
 <context>
@@ -1382,7 +1382,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Please type a valid input path first</source>
-        <translation type="unfinished"></translation>
+        <translation>먼저 변환 될 파일의 경로를 설정해 주십시오 </translation>
     </message>
 </context>
 <context>
@@ -1555,11 +1555,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Invalid IP</source>
-        <translation type="unfinished"></translation>
+        <translation>유효하지 않은 IP</translation>
     </message>
     <message>
         <source>This IP is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>유효하지 않은 IP 입니다.</translation>
     </message>
 </context>
 <context>
@@ -1790,54 +1790,54 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>저장 경로:</translation>
     </message>
 </context>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
         <source>True</source>
-        <translation type="unfinished">맞음</translation>
+        <translation>맞음</translation>
     </message>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation type="unfinished">토런트 파일을 읽을 수가 없습니다:</translation>
+        <translation>토런트 파일을 해독 할 수가 없습니다:</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">이 파일은 오류가 있거나 토런트 파일이 아닙니다.</translation>
+        <translation>이 파일은 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>저장 경로 선택</translation>
     </message>
     <message>
         <source>False</source>
-        <translation type="unfinished">아님</translation>
+        <translation>틀림</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation type="unfinished"></translation>
+        <translation>저장 경로 지우기</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation type="unfinished"></translation>
+        <translation>저장 경로를 지정해주십시오</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>저장 경로 설정이 잘못되었습니다</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation type="unfinished"></translation>
+        <translation>부적당한 파일 선택</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>토렌트에서 적어도 하나 이상의 파일을 선택해야 합니다 </translation>
     </message>
 </context>
 </TS>

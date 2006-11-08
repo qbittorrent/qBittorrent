@@ -167,7 +167,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Save Path:</source>
-        <translation>Ścieżka zapisu:</translation>
+        <translation>Katalog docelowy:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
@@ -247,7 +247,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Język</translation>
+        <translation>Język</translation>
     </message>
     <message>
         <source>Please choose your preferred language in the following list:</source>
@@ -442,44 +442,44 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
         <translation>Odtwarzacz multimedialny:</translation>
     </message>
     <message>
-        <source>Systray Messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display systray messages only when window is hidden</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Never display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>DHT configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja DHT</translation>
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port DHT:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Uwaga:&lt;/b&gt; Zmiany zostaną zastosowane przy następnym uruchomieniu aplikacji.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Informacja dla tłumaczy:&lt;/b&gt; Jeżeli qBittorent nie jest dostępny w Twoim języku, &lt;br/&gt; a jesteś zainteresowany tłumaczeniem, &lt;br/&gt; skontaktuj się ze mną (chris@qbittorrent.org).</translation>
     </message>
     <message>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetl dodatkowe informacje podczas dodawania nowego pliku torrent</translation>
     </message>
     <message>
         <source>Default save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Domyślna katalog zapisu</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation>Wiadomości w pasku zadań</translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation>Zawsze wyświetlaj wiadomości w pasku zadań</translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation>Wyświetlaj wiadomości w pasku zadań gdy okno aplikacji jest zminimalizowane</translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation>Nigdy nie wyświetlaj wiadomości w pasku zadań</translation>
     </message>
 </context>
 <context>
@@ -890,6 +890,14 @@ Zamknij najpierw okno podglądu.</translation>
         <translation>Prędkość</translation>
     </message>
     <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation>Czy na pewno chcesz zakończyć aplikację qBittorrent?</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation>Czy na pewno chcesz usunać wybrany element z listy i z dysku?</translation>
+    </message>
+    <message>
         <source>Download finished</source>
         <translation type="unfinished"></translation>
     </message>
@@ -901,14 +909,6 @@ Zamknij najpierw okno podglądu.</translation>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Wyszukiwarka</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -983,7 +983,7 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Wyjście</translation>
+        <translation>Zakończ</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -1123,7 +1123,7 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń całkowicie</translation>
     </message>
 </context>
 <context>
@@ -1207,55 +1207,55 @@ Zamknij najpierw okno podglądu.</translation>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodatkowe informacje o pliku torrent</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog docelowy:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zawartość torrent-a:</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa pliku</translation>
     </message>
     <message>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>Wielkość pliku</translation>
     </message>
     <message>
         <source>Selected</source>
-        <translation type="unfinished">Zaznaczony</translation>
+        <translation>Zaznaczony</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished">Pobierz w ustalonej kolejności (wolniejsze ale lepsze przy korzystaniu z opcji poglądu)</translation>
+        <translation>Pobierz w ustalonej kolejności (wolniejsze ale lepsze przy korzystaniu z opcji poglądu)</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj tylko do listy pobierania (bez rozpoczynania pobierania)</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Anuluj</translation>
+        <translation>Anuluj</translation>
     </message>
     <message>
         <source>select</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz</translation>
     </message>
     <message>
         <source>Unselect</source>
-        <translation type="unfinished"></translation>
+        <translation>Odznacz</translation>
     </message>
 </context>
 <context>
@@ -1364,23 +1364,23 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>No destination path set</source>
-        <translation>Ścieżka docelowy nie ustawiony</translation>
+        <translation>Katalog docelowy nie ustawiony</translation>
     </message>
     <message>
         <source>Please type a destination path first</source>
-        <translation>Proszę podać ścieżkę docelową</translation>
+        <translation>Proszę podać katalog docelowy</translation>
     </message>
     <message>
         <source>No input path set</source>
-        <translation>Ścieżka źródłowa nie zdefiniowana</translation>
+        <translation>Katalog źródłowy nie zdefiniowany</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation>Proszę podać ścieżkę żródłową</translation>
+        <translation>Proszę podać katalog żródłowy</translation>
     </message>
     <message>
         <source>Input path does not exist</source>
-        <translation>Ścieżka źródłowa nie istnieje</translation>
+        <translation>Katalog źródłowy nie istnieje</translation>
     </message>
     <message>
         <source>Please type a correct input path first</source>
@@ -1396,7 +1396,7 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Please type a valid input path first</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosze podać prawidłowy katalog źródłowy</translation>
     </message>
 </context>
 <context>
@@ -1569,11 +1569,11 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Invalid IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Niepoprawny adres IP</translation>
     </message>
     <message>
         <source>This IP is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ten adres IP jest niepoprawny.</translation>
     </message>
 </context>
 <context>
@@ -1795,54 +1795,54 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog zapisu:</translation>
     </message>
 </context>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
         <source>True</source>
-        <translation type="unfinished">Tak</translation>
+        <translation>Tak</translation>
     </message>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation type="unfinished">Problem z odkodowaniem pliku torrent:</translation>
+        <translation>Problem z odkodowaniem pliku torrent:</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Plik jest uszkodzony lub nie jest plikiem torrent.</translation>
+        <translation>Plik jest uszkodzony lub nie jest plikiem torrent.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz katalog docelowy</translation>
     </message>
     <message>
         <source>False</source>
-        <translation type="unfinished">Nie</translation>
+        <translation>Nie</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Niepoprawny katalog docelowy</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Podaj katalog docelowy</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd zakładania katalogu docelowego</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można założyć katalogu docelowego</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybrany niepoprawny plik</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Musisz wybrać przynajmniej jeden plik z pliku torrent</translation>
     </message>
 </context>
 </TS>
