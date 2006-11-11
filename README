@@ -1,9 +1,9 @@
-qBittorrent - A BitTorrent client in Qt4.1
+qBittorrent - A BitTorrent client in Qt4.2
 ------------------------------------------
 
 Description:
 ********************************
-qBittorrent is a bittorrent client programmed in C++ / Qt4.1 that use
+qBittorrent is a bittorrent client programmed in C++ / Qt4.2 that use
 libtorrent (sometimes called rb_libtorrent) by Arvid Norberg.
 
 It aims to be a good alternative to all other bittorrent clients

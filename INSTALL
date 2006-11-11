@@ -1,4 +1,4 @@
-qBittorrent - A BitTorrent client in C++ / Qt4.1
+qBittorrent - A BitTorrent client in C++ / Qt4.2
 ------------------------------------------
 
 *** Necessary if qt3 is default on your system ***
@@ -14,7 +14,7 @@ qbittorrent
 will install and execute qBittorrent hopefully without any problems.
 
 Dependencies:
-- Qt >= 4.1 (libqt-devel, libqtxml, libqtgui, libqtcore, libqtnetwork)
+- Qt >= 4.2 (libqt-devel, libqtxml, libqtgui, libqtcore, libqtnetwork)
 
 - rb_libtorrent by Arvid Norberg (>= v0.11 REQUIRED)
     -> http://libtorrent.sf.net
