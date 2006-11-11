@@ -338,48 +338,48 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Audio/Video player:</translation>
     </message>
     <message>
-        <source>Systray Messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display systray messages only when window is hidden</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Never display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>DHT configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurarea DHT</translation>
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Portul DHT:</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Limba</translation>
     </message>
     <message>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Notă:&lt;/b&gt; Schimbările vor fi aplicate după restartarea qBittorrent.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Notă pentru translatori:&lt;/b&gt; Dacă qBittorrent nu este tradus in limba dvs, &lt;br/&gt;şi dacă doriti să traduceţi in limba dvs,&lt;br/&gt;vă rog să mă contactaţi (chris@qbittorrent.org).</translation>
     </message>
     <message>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Arată dialogul de adăugare fiecaredată cînd adaug un torrent</translation>
     </message>
     <message>
         <source>Default save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Calea de salvare</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation>Mesajele din systray</translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation>Întotdeauna arată mesajele din systray</translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation>Afişează mesajele din systray numai cînd fereastra este ascunsă</translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation>Niciodată nu afişa mesajele din systray</translation>
     </message>
 </context>
 <context>
@@ -737,6 +737,14 @@ Vă rugăm să-l opriţi.</translation>
         <translation>Transferuri</translation>
     </message>
     <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation>Doriti să eşiţi din qBittorrent?</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation>Doriti să ştergeţi item(ii) selectaţi?</translation>
+    </message>
+    <message>
         <source>Download finished</source>
         <translation type="unfinished"></translation>
     </message>
@@ -748,14 +756,6 @@ Vă rugăm să-l opriţi.</translation>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Motor de Căutare</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -958,7 +958,7 @@ Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>Şterge permanent</translation>
     </message>
 </context>
 <context>
@@ -1034,51 +1034,55 @@ Vă rugăm să-l opriţi.</translation>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialogul de adăugare a torrentului</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Calea de salvare:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished"></translation>
+        <translation>Conţinutul torrent-ului:</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Numele fişierului</translation>
     </message>
     <message>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>Dimensiunea fişierului</translation>
     </message>
     <message>
         <source>Selected</source>
-        <translation type="unfinished">Selectat</translation>
+        <translation>Selectat</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished">Descarcă în ordine corectă (mai încet dar bun pentru preview)</translation>
+        <translation>Descarcă în ordine corectă (mai încet dar bun pentru preview)</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation type="unfinished"></translation>
+        <translation>Adauga în lista de descărcare în stare de pauză</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Adaugă</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Anulare</translation>
+        <translation>Anulare</translation>
+    </message>
+    <message>
+        <source>select</source>
+        <translation type="obsolete">selectează</translation>
     </message>
     <message>
         <source>Unselect</source>
-        <translation type="unfinished"></translation>
+        <translation>Deselectează</translation>
     </message>
     <message>
         <source>Select</source>
@@ -1223,7 +1227,7 @@ Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
         <source>Please type a valid input path first</source>
-        <translation type="unfinished"></translation>
+        <translation>Introduceţi o cale validă</translation>
     </message>
 </context>
 <context>
@@ -1391,11 +1395,11 @@ Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
         <source>Invalid IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP greşit</translation>
     </message>
     <message>
         <source>This IP is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Acest IP este valid.</translation>
     </message>
 </context>
 <context>
@@ -1617,54 +1621,54 @@ Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Calea de salvare:</translation>
     </message>
 </context>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
         <source>True</source>
-        <translation type="unfinished">Adevărat</translation>
+        <translation>Adevărat</translation>
     </message>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation type="unfinished">Nu pot decoda fişierul torrent:</translation>
+        <translation>Nu pot decoda fişierul torrent:</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Acest fişier este deteriorat sau nu este torrent.</translation>
+        <translation>Acest fişier este deteriorat sau nu este torrent.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeţi calea de salvare</translation>
     </message>
     <message>
         <source>False</source>
-        <translation type="unfinished">Fals</translation>
+        <translation>Fals</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Calea de salvare vidă</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Vă rugăm să introduceţi calea de salvare</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvează calea care crează erori</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu pot crea calea de salvare</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecţia fişierului invalidă</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Trebuie să selectaţi cel puţin un fişier din torrent</translation>
     </message>
 </context>
 </TS>

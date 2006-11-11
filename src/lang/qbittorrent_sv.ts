@@ -62,16 +62,6 @@
         <translation>http://www.dchris.eu</translation>
     </message>
     <message>
-        <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
-&lt;br&gt;
-Copyright &#xa9; 2006 by Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="obsolete">En bittorrent-klient som använder Qt4 och libtorrent, programmerad i C++.&lt;br&gt;
-&lt;br&gt;
-Copyright © 2006 Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;Hemsida:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
-    </message>
-    <message>
         <source>Birthday:</source>
         <translation>Födelsedag:</translation>
     </message>
@@ -86,6 +76,16 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <source>Student in computer science</source>
         <translation>Studerar datorvetenskap</translation>
+    </message>
+    <message>
+        <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
+&lt;br&gt;
+Copyright &#xa9; 2006 by Christophe Dumez&lt;br&gt;
+&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
+        <translation type="obsolete">En bittorrent-klient som använder Qt4 och libtorrent, programmerad i C++.&lt;br&gt;
+&lt;br&gt;
+Copyright © 2006 Christophe Dumez&lt;br&gt;
+&lt;br&gt; &lt;u&gt;Webbplats:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message encoding="UTF-8">
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
@@ -118,7 +118,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Save Path:</source>
-        <translation>Plats att spara filer i:</translation>
+        <translation>Plats att spara filer:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
@@ -170,7 +170,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Proxy server requires authentication</source>
-        <translation>Proxyserver kräver autentisering</translation>
+        <translation>Proxyservern kräver autentisering</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -246,15 +246,15 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source> Add Range</source>
-        <translation>Lägg till omfång</translation>
+        <translation> Lägg till omfång</translation>
     </message>
     <message>
         <source> Remove Range</source>
-        <translation>Ta bort omfång</translation>
+        <translation> Ta bort omfång</translation>
     </message>
     <message>
         <source>ipfilter.dat Path:</source>
-        <translation>ipfilter.dat SÖKVÄG:</translation>
+        <translation>Sökväg till ipfilter.dat:</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit</source>
@@ -270,7 +270,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Localization</source>
-        <translation>Lokalisering</translation>
+        <translation>Lokalanpassning</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -279,22 +279,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>Behaviour</source>
         <translation>Beteende</translation>
-    </message>
-    <message>
-        <source>OSD</source>
-        <translation type="obsolete">OSD</translation>
-    </message>
-    <message>
-        <source>Always display OSD</source>
-        <translation type="obsolete">Visa alltid OSD</translation>
-    </message>
-    <message>
-        <source>Display OSD only if window is minimized or iconified</source>
-        <translation type="obsolete">Visa endast OSD om ett fönster är minimerat eller ikonifierat</translation>
-    </message>
-    <message>
-        <source>Never display OSD</source>
-        <translation type="obsolete">Visa aldrig OSD</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -307,10 +291,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>KiB UP max.</source>
         <translation>KiB sändning max.</translation>
-    </message>
-    <message>
-        <source>DHT (Trackerless):</source>
-        <translation type="obsolete">DHT (Trackerlös):</translation>
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
@@ -329,48 +309,48 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Ljud-/videospelare:</translation>
     </message>
     <message>
-        <source>Systray Messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display systray messages only when window is hidden</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Never display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>DHT configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT-konfiguration</translation>
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT-port:</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Språk</translation>
     </message>
     <message>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Obserera:&lt;/b&gt; Ändringar kommer att verkställas efter att qBittorrent har startats om.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Notering för översättare:&lt;/b&gt; Om qBittorrent inte finns tillgänglig på ditt språk, &lt;br/&gt;och du vill översätta det till ditt modersmål, &lt;br/&gt;kontakta mig (chris@qbittorrent.org).</translation>
     </message>
     <message>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa en dialogruta varje gång jag lägger till en torrent-fil</translation>
     </message>
     <message>
         <source>Default save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardsökväg för sparning</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation>Systembrickmeddelanden</translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation>Visa alltid systembrickmeddelanden</translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation>Visa endast systembrickmeddelanden när fönstret är dolt</translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation>Visa aldrig systembrickmeddelanden</translation>
     </message>
 </context>
 <context>
@@ -382,10 +362,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Denna fil är antingen skadad eller så är den inte en torrent-fil.</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete all files in download list?</source>
-        <translation type="obsolete">Är du säker på att du vill ta bort alla filer i hämtningslistan?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -414,10 +390,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>Downloading...</source>
         <translation>Hämtar...</translation>
-    </message>
-    <message>
-        <source>Download list cleared.</source>
-        <translation type="obsolete">Hämtningslista tömd.</translation>
     </message>
     <message>
         <source>All Downloads Paused.</source>
@@ -538,10 +510,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>Are you sure you want to quit? -- qBittorrent</source>
         <translation>Är du säker på att du vill avsluta? -- qBittorrent</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to quit qbittorrent?</source>
-        <translation type="obsolete">Är du säker på att du vill avsluta qbittorrent?</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -671,6 +639,14 @@ Stäng den först.</translation>
         <translation>Överföringar</translation>
     </message>
     <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation>Är du säker på att du vill avsluta qBittorrent?</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation>Är du säker på att du vill ta bort de markerade objekten i hämtningslistan och på hårddisken?</translation>
+    </message>
+    <message>
         <source>Download finished</source>
         <translation type="unfinished"></translation>
     </message>
@@ -681,14 +657,6 @@ Stäng den först.</translation>
     </message>
     <message>
         <source>Search Engine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -763,16 +731,8 @@ Stäng den först.</translation>
         <translation>Dokumentation</translation>
     </message>
     <message>
-        <source>Delete All</source>
-        <translation type="obsolete">Ta bort alla</translation>
-    </message>
-    <message>
         <source>Torrent Properties</source>
         <translation>Egenskaper för torrent</translation>
-    </message>
-    <message>
-        <source>Connection Status</source>
-        <translation type="obsolete">Anslutningsstatus</translation>
     </message>
     <message>
         <source>Search</source>
@@ -844,7 +804,7 @@ Stäng den först.</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort permanent</translation>
     </message>
 </context>
 <context>
@@ -905,51 +865,55 @@ Stäng den först.</translation>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till torrent-fil</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sökväg att spara i:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished"></translation>
+        <translation>Innehåll:</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Filnamn</translation>
     </message>
     <message>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>Filstorlek</translation>
     </message>
     <message>
         <source>Selected</source>
-        <translation type="unfinished">Markerad</translation>
+        <translation>Markerad</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished">Hämta i korrekt ordning (långsammare men bra för förhandsvisning)</translation>
+        <translation>Hämta i korrekt ordning (långsammare men bra för förhandsvisning)</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till i hämtningslistan i pausat tillstånd</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Avbryt</translation>
+        <translation>Avbryt</translation>
+    </message>
+    <message>
+        <source>select</source>
+        <translation type="obsolete">markera</translation>
     </message>
     <message>
         <source>Unselect</source>
-        <translation type="unfinished"></translation>
+        <translation>Avmarkera</translation>
     </message>
     <message>
         <source>Select</source>
@@ -1065,10 +1029,6 @@ Stäng den först.</translation>
         <translation>Sökvägen för indata finns inte</translation>
     </message>
     <message>
-        <source>Please type a correct input path first</source>
-        <translation type="obsolete">Ange en korrekt sökväg för indata</translation>
-    </message>
-    <message>
         <source>Torrent creation</source>
         <translation>Skapa torrent</translation>
     </message>
@@ -1078,7 +1038,7 @@ Stäng den först.</translation>
     </message>
     <message>
         <source>Please type a valid input path first</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange en giltig inmatningssökväg först</translation>
     </message>
 </context>
 <context>
@@ -1200,14 +1160,6 @@ Stäng den först.</translation>
         <translation>Start-IP:</translation>
     </message>
     <message>
-        <source>Incorrect IP</source>
-        <translation type="obsolete">Felaktig IP</translation>
-    </message>
-    <message>
-        <source>This IP is incorrect.</source>
-        <translation type="obsolete">Denna IP-adress är felaktig.</translation>
-    </message>
-    <message>
         <source>Range End IP</source>
         <translation>Omfång slut-IP</translation>
     </message>
@@ -1234,11 +1186,11 @@ Stäng den först.</translation>
     </message>
     <message>
         <source>Invalid IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogiltigt IP</translation>
     </message>
     <message>
         <source>This IP is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Detta IP är ogiltigt.</translation>
     </message>
 </context>
 <context>
@@ -1412,54 +1364,54 @@ Stäng den först.</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sökväg att spara i:</translation>
     </message>
 </context>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
         <source>True</source>
-        <translation type="unfinished">Sant</translation>
+        <translation>Sant</translation>
     </message>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation type="unfinished">Kunde inte avkoda torrent-fil:</translation>
+        <translation>Kunde inte avkoda torrent-fil:</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Denna fil är antingen skadad eller så är den inte en torrent-fil.</translation>
+        <translation>Denna fil är antingen skadad eller så är den inte en torrent-fil.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj sökväg att spara i</translation>
     </message>
     <message>
         <source>False</source>
-        <translation type="unfinished">Falskt</translation>
+        <translation>Falskt</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Tom sökväg för att spara i</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange en sökväg att spara i</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel vid skapandet av sökväg</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte skapa sökväg att spara i</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogiltig filmarkering</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Du måste välja åtminstone en fil i torrent-filen</translation>
     </message>
 </context>
 </TS>

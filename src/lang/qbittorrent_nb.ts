@@ -85,7 +85,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Student in computer science</source>
-        <translation>Datateknologi student</translation>
+        <translation>Datateknologi-student</translation>
     </message>
 </context>
 <context>
@@ -195,15 +195,15 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Enable directory scan (auto add torrent files inside)</source>
-        <translation>Aktiver søk av mapper (legg til torrent filer funnet)</translation>
+        <translation>Aktiver mappesøk (legg til torrent filer funnet)</translation>
     </message>
     <message>
         <source>Connection Settings</source>
-        <translation>Tilkoblings oppsett</translation>
+        <translation>Tilkoblingsoppsett</translation>
     </message>
     <message>
         <source>Share ratio:</source>
-        <translation>Delings forhold:</translation>
+        <translation>Delingsforhold:</translation>
     </message>
     <message>
         <source>Activate IP Filtering</source>
@@ -215,7 +215,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Start IP</source>
-        <translation>Start IP</translation>
+        <translation>Begynnelses IP</translation>
     </message>
     <message>
         <source>End IP</source>
@@ -251,11 +251,11 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Ask for confirmation on exit</source>
-        <translation>Spør etter bekreftelse ved avslutning</translation>
+        <translation>Bekreft ved avslutning</translation>
     </message>
     <message>
         <source>Go to systray when minimizing window</source>
-        <translation>Ved minimering av vinduet, flytt til systemkurven </translation>
+        <translation>Flytt til systemkurven ved minimering</translation>
     </message>
     <message>
         <source>Misc</source>
@@ -299,7 +299,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>KiB UP max.</source>
-        <translation>KiB opplasting max.</translation>
+        <translation>maks KiB opplasting.</translation>
     </message>
     <message>
         <source>DHT (Trackerless):</source>
@@ -311,7 +311,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation>Automatisk fjerning av ferdige nedlastinger</translation>
+        <translation>Automatisk fjerning av fullførte nedlastninger</translation>
     </message>
     <message>
         <source>Preview program</source>
@@ -322,48 +322,48 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
         <translation>Lyd/video avspiller:</translation>
     </message>
     <message>
-        <source>Systray Messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display systray messages only when window is hidden</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Never display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>DHT configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT oppsett</translation>
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT port:</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Språk</translation>
     </message>
     <message>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Merk:&lt;/b&gt; Du må starte om qBittorrent, før endringene trer i kraft.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Oversetting:&lt;/b&gt; Hvis qBittorrent ikke er tilgjengelig i ditt språk, &lt;br/&gt;og du ønsker å oversette programmet, &lt;br/&gt;vennligst kontakt meg (chris@qbittorrent.org).</translation>
     </message>
     <message>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Spør meg hva jeg ønsker å gjøre hver gang jeg legger til en torrent</translation>
     </message>
     <message>
         <source>Default save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard filsti for lagring</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation>Systemkurvmeldinger</translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation>Vis alltid systemkurvmeldinger</translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation>Vis systemkurvmeldingene kun når hovedvinduet er skjult</translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation>Vis ikke systemkurvmeldingene</translation>
     </message>
 </context>
 <context>
@@ -430,7 +430,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Couldn&apos;t create the directory:</source>
-        <translation>Kunne ikke opprette mappen:</translation>
+        <translation>Klarte ikke å opprette mappen:</translation>
     </message>
     <message>
         <source>Torrent Files</source>
@@ -490,7 +490,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
-        <translation>&lt;b&gt;Tilkoblingsstatus:&lt;/b&gt;&lt;br&gt;Brannmur?&lt;br&gt;&lt;i&gt;Ingen innkommende tilkoblinger...&lt;/i&gt;</translation>
+        <translation>&lt;b&gt;Tilkoblingsstatus:&lt;/b&gt;&lt;br&gt;Blokkert av brannmur?&lt;br&gt;&lt;i&gt;Ingen innkommende tilkoblinger...&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
@@ -502,7 +502,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation>Kunne ikke lytte på noen av de oppgitte portene.</translation>
+        <translation>Klarte ikke å lytte på noen av de oppgitte portene.</translation>
     </message>
     <message>
         <source>None</source>
@@ -514,7 +514,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Please type a search pattern first</source>
-        <translation>Vennligst skriv en tekst å søke etter først</translation>
+        <translation>Skriv en tekst å søke etter først</translation>
     </message>
     <message>
         <source>No seach engine selected</source>
@@ -530,7 +530,7 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Are you sure you want to quit? -- qBittorrent</source>
-        <translation>Er du sikker på at du ønsker å avslutte? -- qBittorrent</translation>
+        <translation>Ønsker du å avslutte? -- qBittorrent</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qbittorrent?</source>
@@ -546,11 +546,11 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>An error occured during search...</source>
-        <translation>Det oppsto en feil under søket...</translation>
+        <translation>Det oppstod en feil under søket...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation>Søk avsluttet</translation>
+        <translation>Søket er avbrutt</translation>
     </message>
     <message>
         <source>Search returned no results</source>
@@ -571,7 +571,7 @@ Endringer:</translation>
     </message>
     <message>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation>Beklager, oppdateringstjeneren er midlertidig utilgjengelig.</translation>
+        <translation>Oppdateringstjeneren er midlertidig utilgjengelig.</translation>
     </message>
     <message>
         <source>Your search plugin is already up to date.</source>
@@ -657,11 +657,19 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Please wait...</source>
-        <translation>Vennligst vent...</translation>
+        <translation>Vent litt...</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Overføringer</translation>
+        <translation>Overføringer</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation>Ønsker du å avslutte qBittorrent?</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation>Ønsker du å slette valgte element(er) i nedlastningslisten, og fra lagringsenheten?</translation>
     </message>
     <message>
         <source>Download finished</source>
@@ -674,14 +682,6 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Search Engine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -837,25 +837,25 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>Slett data</translation>
     </message>
 </context>
 <context>
     <name>PropListDelegate</name>
     <message>
         <source>False</source>
-        <translation>Usant</translation>
+        <translation>Nei</translation>
     </message>
     <message>
         <source>True</source>
-        <translation>Sant</translation>
+        <translation>Ja</translation>
     </message>
 </context>
 <context>
     <name>Ui</name>
     <message>
         <source>Please contact me if you would like to translate qBittorrent to your own language.</source>
-        <translation>Vennligst kontakt meg om du skulle ønske å oversette qBittorrent til ditt eget språk.</translation>
+        <translation>Kontakt meg om du skulle ønske å oversette qBittorrent til ditt eget språk.</translation>
     </message>
     <message>
         <source>qBittorrent </source>
@@ -871,7 +871,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Beklager, denne filen kan ikke forhåndsvises</translation>
+        <translation>Denne filen kan ikke forhåndsvises</translation>
     </message>
     <message>
         <source>Name</source>
@@ -887,62 +887,66 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>No URL entered</source>
-        <translation>Ingen nettadresse angitt</translation>
+        <translation>Ingen nettadresse oppgitt</translation>
     </message>
     <message>
         <source>Please type at least one URL.</source>
-        <translation>Vennligst angi minimum en nettadresse.</translation>
+        <translation>Angi minst en nettadresse.</translation>
     </message>
 </context>
 <context>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Legg til torrent</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filsti for nedlasting:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent innhold:</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Filnavn</translation>
     </message>
     <message>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>Filstørrelse</translation>
     </message>
     <message>
         <source>Selected</source>
-        <translation type="unfinished">Valgte</translation>
+        <translation>Valgt for nedlasting</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished">Last ned i riktig rekkefølge (tregere, men bedre for forhåndsvisning)</translation>
+        <translation>Last ned i riktig rekkefølge (tregere, men bedre for forhåndsvisning)</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation type="unfinished"></translation>
+        <translation>Legg til i nedlastningslisten som pauset</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Legg til</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Avbryt</translation>
+        <translation>Avbryt</translation>
+    </message>
+    <message>
+        <source>select</source>
+        <translation type="obsolete">velg</translation>
     </message>
     <message>
         <source>Unselect</source>
-        <translation type="unfinished"></translation>
+        <translation>Fjern markering</translation>
     </message>
     <message>
         <source>Select</source>
@@ -1039,11 +1043,11 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>No destination path set</source>
-        <translation>Ingen målsti angitt</translation>
+        <translation>Ingen målsti er angitt</translation>
     </message>
     <message>
         <source>Please type a destination path first</source>
-        <translation>Vennligst velg en målsti først</translation>
+        <translation>Velg en målsti først</translation>
     </message>
     <message>
         <source>No input path set</source>
@@ -1051,7 +1055,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation>Vennligst velg en filsti for inndata først</translation>
+        <translation>Velg en filsti for inndata først</translation>
     </message>
     <message>
         <source>Input path does not exist</source>
@@ -1071,7 +1075,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Please type a valid input path first</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg en gyldig filsti for inndata først</translation>
     </message>
 </context>
 <context>
@@ -1235,15 +1239,15 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Choose your favourite preview program</source>
-        <translation>Velg ditt favorittprogram for forhåndsvisning</translation>
+        <translation>Velg program for forhåndsvisning</translation>
     </message>
     <message>
         <source>Invalid IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyldig IP</translation>
     </message>
     <message>
         <source>This IP is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Denne IP adressen er ugyldig.</translation>
     </message>
 </context>
 <context>
@@ -1357,7 +1361,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>You can select here precisely which files you want to download in current torrent.</source>
-        <translation>Du kan her velge hvilke filer du ønsker å laste ned fra den gjeldende torrenten.</translation>
+        <translation>Velg hvilke filer du ønsker å laste ned fra den gjeldende torrenten.</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -1417,66 +1421,66 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Seeders:</source>
-        <translation type="unfinished"></translation>
+        <translation>Delere:</translation>
     </message>
     <message>
         <source>Leechers:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedlastere:</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Delingsforhold:</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filsti for nedlastinger:</translation>
     </message>
 </context>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
         <source>True</source>
-        <translation type="unfinished">Sant</translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation type="unfinished">Klarte ikke å dekode torrentfilen:</translation>
+        <translation>Klarte ikke å dekode torrentfilen:</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Denne filen er enten ødelagt, eller det er ikke en torrent.</translation>
+        <translation>Denne filen er enten ødelagt, eller det er ikke en torrent.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg filsti for nedlasting</translation>
     </message>
     <message>
         <source>False</source>
-        <translation type="unfinished">Usant</translation>
+        <translation>Nei</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen filsti oppgitt</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg en filsti for nedlasting</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Feil ved oprettelsen av filsti</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke opprette nedlastingsfilstien</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyldig valg av filer</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Du må velge minst en fil fra torrenten</translation>
     </message>
 </context>
 </TS>

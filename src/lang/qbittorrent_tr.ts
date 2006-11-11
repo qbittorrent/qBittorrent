@@ -168,7 +168,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Save Path:</source>
-        <translation>Kayıt Yeri:</translation>
+        <translation>Kayıt Yolu:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
@@ -248,7 +248,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Dil</translation>
+        <translation>Dil</translation>
     </message>
     <message>
         <source>Please choose your preferred language in the following list:</source>
@@ -443,44 +443,44 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation>Ses/Video oynatıcısı:</translation>
     </message>
     <message>
-        <source>Systray Messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display systray messages only when window is hidden</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Never display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>DHT configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT ayarları</translation>
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT portu:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Not:&lt;/b&gt; Değişiklikler qBittorrent yeniden başlatıldıktan sonra etkili olacaktır.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Çevirmenlerin notu:&lt;/b&gt; Eğer qBittorrent dilinizde mevcut değilse,&lt;br/&gt;ve eğer anadilinize çevirmek istiyorsanız, &lt;br/&gt;lütfen iletişime geçin (chris@qbittorrent.org).</translation>
     </message>
     <message>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Her torrent eklendiğinde torrent ekleme penceresini görüntüle</translation>
     </message>
     <message>
         <source>Default save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Varsayılan kayıt yolu</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation>Systray Mesajları</translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation>Her zaman systray mesajlarını göster</translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation>Systray mesajlarını sadece pencere gizlenmişken göster</translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation>Systray mesajlarını asla gösterme</translation>
     </message>
 </context>
 <context>
@@ -898,6 +898,14 @@ Lütfen önce diğerini kapatın.</translation>
         <translation>Aktarımlar</translation>
     </message>
     <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation>qBittorrent ten çıkmak istediğinize emin misiniz?</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation>Seçilenleri download listesinden ve sabit diskinizden silmek istediğinize emin misiniz?</translation>
+    </message>
+    <message>
         <source>Download finished</source>
         <translation type="unfinished"></translation>
     </message>
@@ -909,14 +917,6 @@ Lütfen önce diğerini kapatın.</translation>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Arama Motoru</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1131,7 +1131,7 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalıcı Olarak Sil</translation>
     </message>
 </context>
 <context>
@@ -1215,51 +1215,55 @@ Lütfen önce diğerini kapatın.</translation>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent ekleme penceresi</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kayıt yolu:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent içeriği:</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya adı</translation>
     </message>
     <message>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya boyutu</translation>
     </message>
     <message>
         <source>Selected</source>
-        <translation type="unfinished">Seçildi</translation>
+        <translation>Seçildi</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished">Doğru düzende download (yavaş ama önizleme için ideal)</translation>
+        <translation>Doğru düzende download (yavaş ama önizleme için ideal)</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation type="unfinished"></translation>
+        <translation>Download listesine duraklatılmış halde ekle</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Ekle</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">İptal</translation>
+        <translation>İptal</translation>
+    </message>
+    <message>
+        <source>select</source>
+        <translation type="obsolete">Seç</translation>
     </message>
     <message>
         <source>Unselect</source>
-        <translation type="unfinished"></translation>
+        <translation>Seçimi Kaldır</translation>
     </message>
     <message>
         <source>Select</source>
@@ -1384,11 +1388,11 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation>Lütfen önce bir girdi yolu seçin</translation>
+        <translation>LLütfen önce bir kayıt yolu seçin</translation>
     </message>
     <message>
         <source>Input path does not exist</source>
-        <translation>Girdi yolu bulunamadı</translation>
+        <translation>Kayıt yolu bulunamadı</translation>
     </message>
     <message>
         <source>Please type a correct input path first</source>
@@ -1404,7 +1408,7 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Please type a valid input path first</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen önce geçerli bir kayıt yolu seçin</translation>
     </message>
 </context>
 <context>
@@ -1577,11 +1581,11 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Invalid IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçersiz IP</translation>
     </message>
     <message>
         <source>This IP is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu IP geçersizdir.</translation>
     </message>
 </context>
 <context>
@@ -1803,54 +1807,54 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kayıt yolu:</translation>
     </message>
 </context>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
         <source>True</source>
-        <translation type="unfinished">Evet</translation>
+        <translation>Evet</translation>
     </message>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation type="unfinished">Torrent dosyası çözülemiyor:</translation>
+        <translation>Torrent dosyası çözülemiyor:</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Bu dosya bozuk ya da torrent dosyası değil.</translation>
+        <translation>Bu dosya bozuk ya da torrent dosyası değil.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kayıt klasörünü seçin</translation>
     </message>
     <message>
         <source>False</source>
-        <translation type="unfinished">Hayır</translation>
+        <translation>Hayır</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Boş kayıt klasörü</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen bir kayıt klasörü seçin</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Kayıt klasörü oluşturulmasında hata</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kayıt klasörü oluşturulamıyor</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçersiz dosya seçimi</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent te en az bir dosya seçmek zorundasınız</translation>
     </message>
 </context>
 </TS>
