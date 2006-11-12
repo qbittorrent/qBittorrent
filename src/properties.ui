@@ -463,114 +463,144 @@
                <number>6</number>
               </property>
               <item>
-               <widget class="QLabel" name="label_5" >
-                <property name="font" >
-                 <font>
-                  <family>Sans Serif</family>
-                  <pointsize>9</pointsize>
-                  <weight>50</weight>
-                  <italic>false</italic>
-                  <bold>false</bold>
-                  <underline>false</underline>
-                  <strikeout>false</strikeout>
-                 </font>
+               <layout class="QHBoxLayout" >
+                <property name="margin" >
+                 <number>0</number>
                 </property>
-                <property name="text" >
-                 <string>Total uploaded:</string>
+                <property name="spacing" >
+                 <number>6</number>
                 </property>
-               </widget>
+                <item>
+                 <widget class="QLabel" name="label_5" >
+                  <property name="font" >
+                   <font>
+                    <family>Sans Serif</family>
+                    <pointsize>9</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                    <underline>false</underline>
+                    <strikeout>false</strikeout>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string>Total uploaded:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="upTotal" >
+                  <property name="text" >
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item>
-               <widget class="QLabel" name="label_6" >
-                <property name="font" >
-                 <font>
-                  <family>Sans Serif</family>
-                  <pointsize>9</pointsize>
-                  <weight>50</weight>
-                  <italic>false</italic>
-                  <bold>false</bold>
-                  <underline>false</underline>
-                  <strikeout>false</strikeout>
-                 </font>
+               <layout class="QHBoxLayout" >
+                <property name="margin" >
+                 <number>0</number>
                 </property>
-                <property name="text" >
-                 <string>Total downloaded:</string>
+                <property name="spacing" >
+                 <number>6</number>
                 </property>
-               </widget>
+                <item>
+                 <widget class="QLabel" name="label_6" >
+                  <property name="font" >
+                   <font>
+                    <family>Sans Serif</family>
+                    <pointsize>9</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                    <underline>false</underline>
+                    <strikeout>false</strikeout>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string>Total downloaded:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="dlTotal" >
+                  <property name="text" >
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item>
-               <widget class="QLabel" name="lbl_ratio" >
-                <property name="font" >
-                 <font>
-                  <family>Sans Serif</family>
-                  <pointsize>9</pointsize>
-                  <weight>50</weight>
-                  <italic>false</italic>
-                  <bold>false</bold>
-                  <underline>false</underline>
-                  <strikeout>false</strikeout>
-                 </font>
+               <layout class="QHBoxLayout" >
+                <property name="margin" >
+                 <number>0</number>
                 </property>
-                <property name="text" >
-                 <string>Share Ratio:</string>
+                <property name="spacing" >
+                 <number>6</number>
                 </property>
-               </widget>
+                <item>
+                 <widget class="QLabel" name="lbl_ratio" >
+                  <property name="font" >
+                   <font>
+                    <family>Sans Serif</family>
+                    <pointsize>9</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                    <underline>false</underline>
+                    <strikeout>false</strikeout>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string>Share Ratio:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="shareRatio" >
+                  <property name="text" >
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item>
-               <widget class="QLabel" name="label_8" >
-                <property name="font" >
-                 <font>
-                  <family>Sans Serif</family>
-                  <pointsize>9</pointsize>
-                  <weight>50</weight>
-                  <italic>false</italic>
-                  <bold>false</bold>
-                  <underline>false</underline>
-                  <strikeout>false</strikeout>
-                 </font>
+               <layout class="QHBoxLayout" >
+                <property name="margin" >
+                 <number>0</number>
                 </property>
-                <property name="text" >
-                 <string>Total failed:</string>
+                <property name="spacing" >
+                 <number>6</number>
                 </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" >
-              <property name="margin" >
-               <number>4</number>
-              </property>
-              <property name="spacing" >
-               <number>6</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="upTotal" >
-                <property name="text" >
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="dlTotal" >
-                <property name="text" >
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="shareRatio" >
-                <property name="text" >
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="failed" >
-                <property name="text" >
-                 <string/>
-                </property>
-               </widget>
+                <item>
+                 <widget class="QLabel" name="label_8" >
+                  <property name="font" >
+                   <font>
+                    <family>Sans Serif</family>
+                    <pointsize>9</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                    <underline>false</underline>
+                    <strikeout>false</strikeout>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string>Total failed:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="failed" >
+                  <property name="text" >
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
              </layout>
             </item>
@@ -593,59 +623,21 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_3" >
-         <property name="minimumSize" >
-          <size>
-           <width>43</width>
-           <height>56</height>
-          </size>
-         </property>
-         <property name="maximumSize" >
-          <size>
-           <width>16777215</width>
-           <height>52</height>
-          </size>
-         </property>
+        <widget class="QCheckBox" name="incrementalDownload" >
          <property name="font" >
           <font>
            <family>Sans Serif</family>
            <pointsize>9</pointsize>
-           <weight>75</weight>
+           <weight>50</weight>
            <italic>false</italic>
-           <bold>true</bold>
+           <bold>false</bold>
            <underline>false</underline>
            <strikeout>false</strikeout>
           </font>
          </property>
-         <property name="title" >
-          <string>Options</string>
+         <property name="text" >
+          <string>Download in correct order (slower but good for previewing)</string>
          </property>
-         <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <item>
-           <widget class="QCheckBox" name="incrementalDownload" >
-            <property name="font" >
-             <font>
-              <family>Sans Serif</family>
-              <pointsize>9</pointsize>
-              <weight>50</weight>
-              <italic>false</italic>
-              <bold>false</bold>
-              <underline>false</underline>
-              <strikeout>false</strikeout>
-             </font>
-            </property>
-            <property name="text" >
-             <string>Download in correct order (slower but good for previewing)</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
         </widget>
        </item>
       </layout>
