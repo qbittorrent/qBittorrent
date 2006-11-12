@@ -490,7 +490,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Listening on port: </source>
-        <translation> Käytetään porttia:</translation>
+        <translation>Käytetään porttia: </translation>
     </message>
     <message>
         <source>Name</source>
@@ -1266,11 +1266,11 @@ Uutta esikatselua ei voi aloittaa.</translation>
     </message>
     <message>
         <source>Current tracker:</source>
-        <translation>Nykyinen seurantapalvelun:</translation>
+        <translation>Nykyinen seurantapalvelin:</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation>Lataa lineaarisesti (hitaampi, mutta mahdollistaa nopeamman esikatselun)</translation>
+        <translation>Lataa lineaarisesti (hitaampi, mutta mahdollistaa aikaisemman esikatselun)</translation>
     </message>
     <message>
         <source>Downloading</source>
@@ -1378,7 +1378,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
     </message>
     <message>
         <source>Tracker</source>
-        <translation>Seurantapalvelun</translation>
+        <translation>Seurantapalvelin</translation>
     </message>
     <message>
         <source>Trackers:</source>
@@ -1386,7 +1386,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>tuntematon</translation>
+        <translation>Tuntematon</translation>
     </message>
     <message>
         <source> Unselect</source>
