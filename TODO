@@ -12,7 +12,6 @@
 - Optimize code to use less memory/cpu
 - Add some transparency (menus,...)
 - Add a column "Tracker status"?
-- Option to shutdown computer when downloads are finished
 - Add upnp port forwarding support
 
 // Harder
@@ -32,4 +31,8 @@
 // In v0.9.0
 - Add Visit qBittorrent website menu entry
 - Add Report a bug in qBittorrent menu entry
-
+- Allow to set upload limit for each torrent
+- Optimize code to use less memory/cpu
+- Check space left on hard drive
+- Option to shutdown computer when downloads are finished
+- Some GUI redesign
