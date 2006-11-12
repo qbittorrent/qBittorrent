@@ -49,6 +49,7 @@ class about : public QDialog, private Ui::AboutDlg{
           - <u>Chinese (Simplified):</u> Chen Wuyang (wuyang@gmail.com)<br>\
           - <u>Chinese (Traditional):</u> Jeff Chen (jeff.cn.chen@gmail.com)<br>\
 	  - <u>Dutch:</u> Luke Niesink (luke@lukeniesink.net)<br>\
+          - <u>Finnish:</u> Niklas Laxström (nikerabbit@users.sourceforge.net)<br>\
           - <u>German:</u> Niels Hoffmann (zentralmaschine@users.sourceforge.net)<br>\
 	  - <u>Greek:</u> Tsvetan Bankov (emerge_life@users.sourceforge.net)<br>\
           - <u>Italian:</u> Maffo (maffo999@users.sourceforge.net)<br>\
