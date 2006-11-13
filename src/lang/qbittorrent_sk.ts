@@ -184,7 +184,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Jazyk</translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
         <source>Please choose your preferred language in the following list:</source>
@@ -347,44 +347,44 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Audio/Video prehrávač:</translation>
     </message>
     <message>
-        <source>Systray Messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display systray messages only when window is hidden</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Never display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>DHT configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurácia DHT</translation>
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port DHT:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Pozn.:&lt;/b&gt; Zmeny sa prejavia po reštarte qBittorrent.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Poznámka pre prekladateľov:&lt;/b&gt; Ak nie je qBittorrent dostupný vo vašom jazyku &lt;br/&gt;a chceli by ste ho preložiť, &lt;br/&gt;kontaktujte ma prosím (chris@qbittorrent.org).</translation>
     </message>
     <message>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraz dialog pre pridanie torrentu zakaždým, keď pridám torrent</translation>
     </message>
     <message>
         <source>Default save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Predvolená cesta pre uloženie</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation>Systray správy</translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation>Vždy zobrazovať systray správy</translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation>Zobrazovať systray správy iba keď je okno skryté</translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation>Nikdy nezobrazovať systray správy</translation>
     </message>
 </context>
 <context>
@@ -399,7 +399,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>Tento súbor je bud poškodenť alebo nie je torrent.</translation>
+        <translation>Tento súbor je buď poškodený alebo to nie je torrent.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
@@ -753,6 +753,14 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Čakajte prosím...</translation>
     </message>
     <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation>Ste si istý, že chcete zatvoriť qBittorrent?</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation>Ste si istý, že chcete zmazať vybrané položky v zozname sťahovaných a na pevnom disku?</translation>
+    </message>
+    <message>
         <source>Download finished</source>
         <translation type="unfinished"></translation>
     </message>
@@ -764,14 +772,6 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Vyhad</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -970,7 +970,7 @@ Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>Trvalo zmazať</translation>
     </message>
 </context>
 <context>
@@ -1046,51 +1046,55 @@ Najskôr ho prosím zatvorte.</translation>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialóg pre pridanie torrentu</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta pre uloženie:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished"></translation>
+        <translation>Obsah torrentu:</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov súboru</translation>
     </message>
     <message>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť súboru</translation>
     </message>
     <message>
         <source>Selected</source>
-        <translation type="unfinished">Vybrané</translation>
+        <translation>Vybrané</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished">Stiahnuť v správnom poradí (pomalšie ale lepšie pre náhľad)</translation>
+        <translation>Stiahnuť v správnom poradí (pomalšie ale lepšie pre náhľad)</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať do zoznamu sťahovaných v stave pozastavený</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Storno</translation>
+        <translation>Storno</translation>
+    </message>
+    <message>
+        <source>select</source>
+        <translation type="obsolete">vybrať</translation>
     </message>
     <message>
         <source>Unselect</source>
-        <translation type="unfinished"></translation>
+        <translation>nevybrať</translation>
     </message>
     <message>
         <source>Select</source>
@@ -1239,7 +1243,7 @@ Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
         <source>Please type a valid input path first</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, najprv napíšte platnú cestu pre vstup</translation>
     </message>
 </context>
 <context>
@@ -1447,11 +1451,11 @@ Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
         <source>Invalid IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatná IP</translation>
     </message>
     <message>
         <source>This IP is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Táto IP je neplatná.</translation>
     </message>
 </context>
 <context>
@@ -1673,54 +1677,54 @@ Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta pre uloženie:</translation>
     </message>
 </context>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
         <source>True</source>
-        <translation type="unfinished"></translation>
+        <translation>Áno</translation>
     </message>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation type="unfinished">Nemohol som dekódovať torrent súbor:</translation>
+        <translation>Nemohol som dekódovať torrent súbor:</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Tento súbor je bud poškodenť alebo nie je torrent.</translation>
+        <translation>Tento súbor je bud poškodený alebo nie je torrent.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvoľte cestu pre uloženie</translation>
     </message>
     <message>
         <source>False</source>
-        <translation type="unfinished">Nie</translation>
+        <translation>Nie</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Prázdna cesta pre uloženie</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, zadajte cestu pre uloženie</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba pri vytváraní cesty pre uloženie</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohol som vytvoriť cestu pre uloženie</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný výber súboru</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Musíte vybrať aspoň jeden súbor z torrentu</translation>
     </message>
 </context>
 </TS>
