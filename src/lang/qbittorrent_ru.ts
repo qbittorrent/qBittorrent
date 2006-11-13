@@ -120,7 +120,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Student in computer science</source>
-        <translation>Student in computer science</translation>
+        <translation>Студент, изучающий программирование</translation>
     </message>
 </context>
 <context>
@@ -226,7 +226,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Язык</translation>
+        <translation>Язык</translation>
     </message>
     <message>
         <source>Please choose your preferred language in the following list:</source>
@@ -250,7 +250,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Enable directory scan (auto add torrent files inside)</source>
-        <translation>Включить сканирование папки (автоматическое добавление torrent файлов внутрь)</translation>
+        <translation>Включить сканирование папок (автоматическое добавление torrent файлов в нее)</translation>
     </message>
     <message>
         <source>Connection Settings</source>
@@ -374,11 +374,11 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Disable DHT (Trackerless) support</source>
-        <translation>Отключить DHT</translation>
+        <translation>Отключить поддержку DHT</translation>
     </message>
     <message>
         <source>Automatically clear finished downloads</source>
-        <translation>Автоматически удалять законченые скачивания</translation>
+        <translation>Автоматически удалять законченные скачивания</translation>
     </message>
     <message>
         <source>Preview program</source>
@@ -386,47 +386,47 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Audio/Video player:</source>
-        <translation>Аудио/Видео проигрователь:</translation>
-    </message>
-    <message>
-        <source>Systray Messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always display systray messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display systray messages only when window is hidden</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Never display systray messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Аудио/Видео проигрыватель:</translation>
     </message>
     <message>
         <source>DHT configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки DHT</translation>
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Порт DHT:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Заметьте:&lt;/b&gt; Изменения вступят в силу только после перезапуска qBittorrent.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Примечание для переводчиков:&lt;/b&gt; Если qBittorrent еще не переведен на ваш язык, &lt;br/&gt;и вы хотите перевести его на свой родной язык, &lt;br/&gt;пожалуйста, свяжитесь со мной (chris@qbittorrent.org).</translation>
     </message>
     <message>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать окно добавления torrent-а каждый раз при добавлении torrent-а</translation>
     </message>
     <message>
         <source>Default save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь сохранения по умолчанию</translation>
+    </message>
+    <message>
+        <source>Systray Messages</source>
+        <translation>Сообщения в трее</translation>
+    </message>
+    <message>
+        <source>Always display systray messages</source>
+        <translation>Всегда показывать сообщения в трее</translation>
+    </message>
+    <message>
+        <source>Display systray messages only when window is hidden</source>
+        <translation>Показывать сообщения в трее только когда окно свернуто</translation>
+    </message>
+    <message>
+        <source>Never display systray messages</source>
+        <translation>Не отображать сообщения в трее</translation>
     </message>
 </context>
 <context>
@@ -820,6 +820,14 @@ Please close the other one first.</source>
         <translation>Передачи</translation>
     </message>
     <message>
+        <source>Are you sure you want to quit qBittorrent?</source>
+        <translation>Вы действительно хотите покинуть qBittorrent?</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <translation>Вы действительно хотите удалить выбранный(-е) элемент(ы) из списка скачек и с жесткого диска?</translation>
+    </message>
+    <message>
         <source>Download finished</source>
         <translation type="unfinished"></translation>
     </message>
@@ -831,14 +839,6 @@ Please close the other one first.</source>
     <message>
         <source>Search Engine</source>
         <translation type="unfinished">Поисковик</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -949,7 +949,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Свойства Torrent</translation>
+        <translation>Свойства потока</translation>
     </message>
     <message>
         <source>Connection Status</source>
@@ -1017,7 +1017,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Create torrent</source>
-        <translation>Создать torrent</translation>
+        <translation>Создать поток</translation>
     </message>
     <message>
         <source>Ratio: </source>
@@ -1045,7 +1045,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить навсегда</translation>
     </message>
 </context>
 <context>
@@ -1125,51 +1125,55 @@ Please close the other one first.</source>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Окно добавления torrentа</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь сохранения:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished"></translation>
+        <translation>Содержимое torrentа:</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя файла</translation>
     </message>
     <message>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>Размер файла</translation>
     </message>
     <message>
         <source>Selected</source>
-        <translation type="unfinished">Выбрано</translation>
+        <translation>Выбрано</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished">Загруить в правильном порядке</translation>
+        <translation>Загрузить в правильном порядке (медленнее, но удобнее для предпросмотра)</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить в список закачек в приостановленном состоянии</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Отмена</translation>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <source>select</source>
+        <translation type="obsolete">выбрать</translation>
     </message>
     <message>
         <source>Unselect</source>
-        <translation type="unfinished"></translation>
+        <translation>Снять выделение</translation>
     </message>
     <message>
         <source>Select</source>
@@ -1302,7 +1306,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Please type a valid input path first</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, введите сначала правильный путь входа</translation>
     </message>
 </context>
 <context>
@@ -1475,11 +1479,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Invalid IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Неверный IP</translation>
     </message>
     <message>
         <source>This IP is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Этот IP неправилен.</translation>
     </message>
 </context>
 <context>
@@ -1681,7 +1685,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Options</source>
-        <translation>Опции</translation>
+        <translation type="obsolete">Опции</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -1701,54 +1705,54 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь сохранения:</translation>
     </message>
 </context>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
         <source>True</source>
-        <translation type="unfinished">Да</translation>
+        <translation>Да</translation>
     </message>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation type="unfinished">Невозможно декодировать torrent файл:</translation>
+        <translation>Невозможно декодировать torrent файл:</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Этот файл либо поврежден, либо не torrent типа.</translation>
+        <translation>Этот файл либо поврежден, либо не torrent типа.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите путь сохранения</translation>
     </message>
     <message>
         <source>False</source>
-        <translation type="unfinished">Нет</translation>
+        <translation>Нет</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистить путь сохранения</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, введите путь сохранения</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка создания пути сохранения</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно создать путь сохранения</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильное выделение файлов</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы должны выбрать по меньшей мере один файл в torrent-е</translation>
     </message>
 </context>
 </TS>

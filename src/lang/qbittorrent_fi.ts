@@ -1318,7 +1318,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Asetukset</translation>
+        <translation type="obsolete">Asetukset</translation>
     </message>
     <message>
         <source>Progress</source>

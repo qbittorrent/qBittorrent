@@ -1779,7 +1779,7 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Opcje</translation>
+        <translation type="obsolete">Opcje</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>

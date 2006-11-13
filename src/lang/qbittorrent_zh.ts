@@ -1674,7 +1674,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Options</source>
-        <translation>选项</translation>
+        <translation type="obsolete">选项</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>

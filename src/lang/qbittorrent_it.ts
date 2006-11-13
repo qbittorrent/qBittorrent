@@ -1421,7 +1421,7 @@ Example: Downloading www.example.com/test.torrent</comment>
     </message>
     <message>
         <source>Options</source>
-        <translation>opzioni</translation>
+        <translation type="obsolete">opzioni</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>

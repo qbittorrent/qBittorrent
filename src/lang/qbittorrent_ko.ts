@@ -1774,7 +1774,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Options</source>
-        <translation>환경설정</translation>
+        <translation type="obsolete">환경설정</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>

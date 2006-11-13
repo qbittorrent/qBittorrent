@@ -1601,7 +1601,7 @@ Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Opţiuni</translation>
+        <translation type="obsolete">Opţiuni</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>

@@ -1744,7 +1744,7 @@ Bitte schliessen Sie diesen zuerst.</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Optionen</translation>
+        <translation type="obsolete">Optionen</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>

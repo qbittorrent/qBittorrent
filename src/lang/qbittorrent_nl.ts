@@ -1731,7 +1731,7 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Instellingen</translation>
+        <translation type="obsolete">Instellingen</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>

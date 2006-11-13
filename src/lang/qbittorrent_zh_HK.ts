@@ -1523,7 +1523,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">選項</translation>
+        <translation type="obsolete">選項</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>

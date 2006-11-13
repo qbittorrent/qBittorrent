@@ -1776,7 +1776,7 @@ Por favor cierra el otro antes.</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Opciones</translation>
+        <translation type="obsolete">Opciones</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>

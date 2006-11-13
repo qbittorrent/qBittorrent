@@ -1348,7 +1348,7 @@ Stäng den först.</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Alternativ</translation>
+        <translation type="obsolete">Alternativ</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>

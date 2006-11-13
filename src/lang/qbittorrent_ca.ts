@@ -1799,7 +1799,7 @@ Si et plau tanca l&apos;altre primer.</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Opcions</translation>
+        <translation type="obsolete">Opcions</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>

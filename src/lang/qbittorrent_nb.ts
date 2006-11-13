@@ -1413,7 +1413,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Innstillinger</translation>
+        <translation type="obsolete">Innstillinger</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>

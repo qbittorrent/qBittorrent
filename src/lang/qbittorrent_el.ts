@@ -1791,7 +1791,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Options</source>
-        <translation>Επιλογές</translation>
+        <translation type="obsolete">Επιλογές</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>

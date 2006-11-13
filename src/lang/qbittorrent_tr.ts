@@ -1787,7 +1787,7 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Ayarlar</translation>
+        <translation type="obsolete">Ayarlar</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>

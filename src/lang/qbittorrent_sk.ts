@@ -1665,7 +1665,7 @@ Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Nastavenia</translation>
+        <translation type="obsolete">Nastavenia</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
