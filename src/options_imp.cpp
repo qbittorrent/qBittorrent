@@ -95,11 +95,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     home += QDir::separator();
   }
   txt_savePath->setText(home+"qBT_dir");
-  // Save Options if options.xml does not exist yet
-  savePath = misc::qBittorrentPath() + "options.xml";
-  if(! QFile::exists(savePath)){
-    saveOptions();
-  }
   // Load options
   loadOptions();
   // Connect signals / slots
