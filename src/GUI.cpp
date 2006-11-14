@@ -795,28 +795,14 @@ bool GUI::hasFilteredFiles(const QString& fileName){
 
 // Save last checked search engines to a file
 void GUI::saveCheckedSearchEngines(int) const{
-  qDebug("Saving checked window size");
-  QFile lastSearchEngines(misc::qBittorrentPath()+"lastSearchEngines.txt");
-  // delete old file
-  lastSearchEngines.remove();
-  if(lastSearchEngines.open(QIODevice::WriteOnly | QIODevice::Text)){
-    if(mininova->isChecked())
-      lastSearchEngines.write(QByteArray("mininova\n"));
-    if(piratebay->isChecked())
-      lastSearchEngines.write(QByteArray("piratebay\n"));
-//     if(reactor->isChecked())
-//       lastSearchEngines.write(QByteArray("reactor\n"));
-    if(isohunt->isChecked())
-      lastSearchEngines.write(QByteArray("isohunt\n"));
-//     if(btjunkie->isChecked())
-//       lastSearchEngines.write(QByteArray("btjunkie\n"));
-    if(meganova->isChecked())
-      lastSearchEngines.write(QByteArray("meganova\n"));
-    lastSearchEngines.close();
-    qDebug("Saved checked search engines");
-  }else{
-    std::cerr << "Error: Could not save last checked search engines\n";
-  }
+  QSettings settings("qBittorrent", "qBittorrent");
+  settings.beginGroup("SearchEngines");
+  settings.setValue("mininova", mininova->isChecked());
+  settings.setValue("piratebay", piratebay->isChecked());
+  settings.setValue("isohunt", isohunt->isChecked());
+  settings.setValue("meganova", meganova->isChecked());
+  settings.endGroup();
+  qDebug("Saved checked search engines");
 }
 
 // Save columns width in a file to remember them
@@ -916,51 +902,14 @@ bool GUI::loadColWidthSearchList(){
 // load last checked search engines from a file
 void GUI::loadCheckedSearchEngines(){
   qDebug("Loading checked search engines");
-  QFile lastSearchEngines(misc::qBittorrentPath()+"lastSearchEngines.txt");
-  QStringList searchEnginesList;
-  if(lastSearchEngines.exists()){
-    if(lastSearchEngines.open(QIODevice::ReadOnly | QIODevice::Text)){
-      QByteArray searchEngine;
-      while(!lastSearchEngines.atEnd()){
-        searchEngine = lastSearchEngines.readLine();
-        searchEnginesList << QString(searchEngine.data());
-      }
-      lastSearchEngines.close();
-      if(searchEnginesList.indexOf("mininova\n") != -1){
-        mininova->setChecked(true);
-      }else{
-        mininova->setChecked(false);
-      }
-      if(searchEnginesList.indexOf("piratebay\n") != -1){
-        piratebay->setChecked(true);
-      }else{
-        piratebay->setChecked(false);
-      }
-//       if(searchEnginesList.indexOf("reactor\n") != -1){
-//         reactor->setChecked(true);
-//       }else{
-//         reactor->setChecked(false);
-//       }
-      if(searchEnginesList.indexOf("isohunt\n") != -1){
-        isohunt->setChecked(true);
-      }else{
-        isohunt->setChecked(false);
-      }
-//       if(searchEnginesList.indexOf("btjunkie\n") != -1){
-//         btjunkie->setChecked(true);
-//       }else{
-//         btjunkie->setChecked(false);
-//       }
-      if(searchEnginesList.indexOf("meganova\n") != -1){
-        meganova->setChecked(true);
-      }else{
-        meganova->setChecked(false);
-      }
-      qDebug("Checked search engines loaded");
-    }else{
-      std::cerr << "Error: Could not load last checked search engines\n";
-    }
-  }
+  QSettings settings("qBittorrent", "qBittorrent");
+  settings.beginGroup("SearchEngines");
+  mininova->setChecked(settings.value("mininova", true).toBool());
+  piratebay->setChecked(settings.value("piratebay", false).toBool());
+  isohunt->setChecked(settings.value("isohunt", false).toBool());
+  meganova->setChecked(settings.value("meganova", false).toBool());
+  settings.endGroup();
+  qDebug("Loaded checked search engines");
 }
 
 // Display About Dialog
@@ -1054,19 +1003,11 @@ void GUI::dragEnterEvent(QDragEnterEvent *event){
 // torrents to download list
 void GUI::askForTorrents(){
   QStringList pathsList;
-  QString lastDir = misc::qBittorrentPath()+"lastDir.txt";
-  QString dirPath=QDir::homePath();
-  QFile lastDirFile(lastDir);
-  // Load remembered last dir
-  if(lastDirFile.exists()){
-    lastDirFile.open(QIODevice::ReadOnly | QIODevice::Text);
-    dirPath=lastDirFile.readLine();
-    lastDirFile.close();
-  }
+  QSettings settings("qBittorrent", "qBittorrent");
   // Open File Open Dialog
   // Note: it is possible to select more than one file
   pathsList = QFileDialog::getOpenFileNames(this,
-                                            tr("Open Torrent Files"), dirPath,
+                                            tr("Open Torrent Files"), settings.value("MainWindowLastDir", QDir::homePath()).toString(),
                                             tr("Torrent Files")+" (*.torrent)");
   if(!pathsList.empty()){
     for(int i=0; i<pathsList.size(); ++i){
@@ -1080,12 +1021,9 @@ void GUI::askForTorrents(){
       }
     }
     // Save last dir to remember it
-    if(lastDirFile.open(QIODevice::WriteOnly | QIODevice::Text)){
-      QStringList top_dir = pathsList.at(0).split(QDir::separator());
-      top_dir.removeLast();
-      lastDirFile.write(top_dir.join(QDir::separator()).toUtf8());
-      lastDirFile.close();
-    }
+    QStringList top_dir = pathsList.at(0).split(QDir::separator());
+    top_dir.removeLast();
+    settings.setValue("MainWindowLastDir", top_dir.join(QDir::separator()));
   }
 }
 

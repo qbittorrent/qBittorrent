@@ -28,6 +28,7 @@
 #include <fstream>
 #include <QMessageBox>
 #include <QMenu>
+#include <QSettings>
 
 #include <libtorrent/session.hpp>
 #include <libtorrent/bencode.hpp>
@@ -66,15 +67,8 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       if(home[home.length()-1] != QDir::separator()){
         home += QDir::separator();
       }
-      QString dirPath = home+"qBT_dir";
-      QFile lastDirFile(misc::qBittorrentPath()+"lastDirTorrentAdd.txt");
-      // Load remembered last dir
-      if(lastDirFile.exists()){
-        lastDirFile.open(QIODevice::ReadOnly | QIODevice::Text);
-        dirPath=lastDirFile.readLine();
-        lastDirFile.close();
-      }
-      savePathTxt->setText(dirPath);
+      QSettings settings("qBittorrent", "qBittorrent");
+      savePathTxt->setText(settings.value("LastDirTorrentAdd", home+"qBT_dir").toString());
     }
 
     void showLoad(QString filePath, bool fromScanDir=false, QString from_url=QString::null){
@@ -248,11 +242,8 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       savepath_file.write(savePath.path().toUtf8());
       savepath_file.close();
       // Save last dir to remember it
-      QFile lastDirFile(misc::qBittorrentPath()+"lastDirTorrentAdd.txt");
-      if(lastDirFile.open(QIODevice::WriteOnly | QIODevice::Text)){
-        lastDirFile.write(savePathTxt->text().toUtf8());
-        lastDirFile.close();
-      }
+      QSettings settings("qBittorrent", "qBittorrent");
+      settings.setValue("LastDirTorrentAdd", savePathTxt->text());
       // Create .incremental file if necessary
       if(checkIncrementalDL->isChecked()){
         QFile incremental_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".incremental");
