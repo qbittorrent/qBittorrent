@@ -268,6 +268,12 @@
             </property>
             <item>
              <widget class="QLabel" name="info_icon" >
+              <property name="minimumSize" >
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
               <property name="text" >
                <string/>
               </property>
