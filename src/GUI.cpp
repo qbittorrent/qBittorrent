@@ -809,94 +809,62 @@ void GUI::saveCheckedSearchEngines(int) const{
 // (download list)
 void GUI::saveColWidthDLList() const{
   qDebug("Saving columns width in download list");
-  QFile lastDLListWidth(misc::qBittorrentPath()+"lastDLListWidth.txt");
-  // delete old file
-  lastDLListWidth.remove();
+  QSettings settings("qBittorrent", "qBittorrent");
   QStringList width_list;
   for(int i=0; i<DLListModel->columnCount(); ++i){
     width_list << QString(misc::toString(downloadList->columnWidth(i)).c_str());
   }
-  if(lastDLListWidth.open(QIODevice::WriteOnly | QIODevice::Text)){
-    lastDLListWidth.write(width_list.join(" ").toAscii());
-    lastDLListWidth.close();
-    qDebug("Columns width saved");
-  }else{
-    std::cerr << "Error: Could not save last columns width in download list\n";
-  }
+  settings.setValue("DownloadListColsWidth", width_list.join(" "));
+  qDebug("Download list columns width saved");
 }
 
 // Load columns width in a file that were saved previously
 // (download list)
 bool GUI::loadColWidthDLList(){
-  qDebug("Loading colums width in download list");
-  QFile lastDLListWidth(misc::qBittorrentPath()+"lastDLListWidth.txt");
-  if(lastDLListWidth.exists()){
-    if(lastDLListWidth.open(QIODevice::ReadOnly | QIODevice::Text)){
-      QByteArray line = lastDLListWidth.readLine();
-      lastDLListWidth.close();
-      line.chop(1);
-      QStringList width_list = QString(line).split(' ');
-      if(width_list.size() != DLListModel-> columnCount()){
-        return false;
-      }
-      for(int i=0; i<width_list.size(); ++i){
+  qDebug("Loading columns width for download list");
+  QSettings settings("qBittorrent", "qBittorrent");
+  QString line = settings.value("DownloadListColsWidth", QString()).toString();
+  if(line.isEmpty())
+    return false;
+  QStringList width_list = line.split(' ');
+  if(width_list.size() != DLListModel->columnCount())
+    return false;
+  for(int i=0; i<width_list.size(); ++i){
         downloadList->header()->resizeSection(i, width_list.at(i).toInt());
-      }
-      qDebug("Loaded columns width in download list");
-      return true;
-    }else{
-      std::cerr << "Error: Could not load last columns width for download list\n";
-      return false;
-    }
   }
-  return false;
+  qDebug("Download list columns width loaded");
+  return true;
 }
 
 // Save columns width in a file to remember them
 // (download list)
 void GUI::saveColWidthSearchList() const{
   qDebug("Saving columns width in search list");
-  QFile lastSearchListWidth(misc::qBittorrentPath()+"lastSearchListWidth.txt");
-  // delete old file
-  lastSearchListWidth.remove();
+  QSettings settings("qBittorrent", "qBittorrent");
   QStringList width_list;
   for(int i=0; i<SearchListModel->columnCount(); ++i){
     width_list << QString(misc::toString(resultsBrowser->columnWidth(i)).c_str());
   }
-  if(lastSearchListWidth.open(QIODevice::WriteOnly | QIODevice::Text)){
-    lastSearchListWidth.write(width_list.join(" ").toAscii());
-    lastSearchListWidth.close();
-    qDebug("Columns width saved in search list");
-  }else{
-    std::cerr << "Error: Could not save last columns width in search results list\n";
-  }
+  settings.setValue("SearchListColsWidth", width_list.join(" "));
+  qDebug("Search list columns width saved");
 }
 
 // Load columns width in a file that were saved previously
 // (search list)
 bool GUI::loadColWidthSearchList(){
-  qDebug("Loading column width in search list");
-  QFile lastSearchListWidth(misc::qBittorrentPath()+"lastSearchListWidth.txt");
-  if(lastSearchListWidth.exists()){
-    if(lastSearchListWidth.open(QIODevice::ReadOnly | QIODevice::Text)){
-      QByteArray line = lastSearchListWidth.readLine();
-      lastSearchListWidth.close();
-      line.chop(1);
-      QStringList width_list = QString(line).split(' ');
-      if(width_list.size() != SearchListModel-> columnCount()){
-        return false;
-      }
-      for(int i=0; i<width_list.size(); ++i){
+  qDebug("Loading columns width for search list");
+  QSettings settings("qBittorrent", "qBittorrent");
+  QString line = settings.value("SearchListColsWidth", QString()).toString();
+  if(line.isEmpty())
+    return false;
+  QStringList width_list = line.split(' ');
+  if(width_list.size() != SearchListModel->columnCount())
+    return false;
+  for(int i=0; i<width_list.size(); ++i){
         resultsBrowser->header()->resizeSection(i, width_list.at(i).toInt());
-      }
-      qDebug("Columns width loaded in search list");
-      return true;
-    }else{
-      std::cerr << "Error: Could not load last columns width for search results list\n";
-      return false;
-    }
   }
-  return false;
+  qDebug("Search list columns width loaded");
+  return true;
 }
 
 // load last checked search engines from a file
