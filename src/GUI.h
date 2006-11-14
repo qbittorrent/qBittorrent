@@ -103,7 +103,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // GUI related slots
     void dropEvent(QDropEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
-    void centerWindow();
     void toggleVisibility(QSystemTrayIcon::ActivationReason e);
     void showAbout();
     void setInfoBar(const QString& info, const QString& color="black");
@@ -118,8 +117,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void loadCheckedSearchEngines();
     bool loadColWidthDLList();
     bool loadColWidthSearchList();
-    void saveWindowSize() const;
-    void loadWindowSize();
     void sortDownloadList(int index);
     void sortDownloadListFloat(int index, Qt::SortOrder sortOrder);
     void sortDownloadListString(int index, Qt::SortOrder sortOrder);
@@ -135,6 +132,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void previewFile(const QString& filePath);
     void cleanTempPreviewFile(int, QProcess::ExitStatus);
     void balloonClicked();
+    void writeSettings();
+    void readSettings();
     // Torrent actions
     void showProperties(const QModelIndex &index);
     void propertiesSelection();
@@ -197,6 +196,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void updateNova() const;
     bool isFilePreviewPossible(const torrent_handle& h) const;
     QString getSavePath(QString fileName);
+    QPoint screenCenter();
 };
 
 #endif

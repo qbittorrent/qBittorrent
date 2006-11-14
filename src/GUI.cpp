@@ -32,6 +32,7 @@
 #include <QModelIndex>
 #include <QHeaderView>
 #include <QScrollBar>
+#include <QSettings>
 
 #include <boost/format.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -59,7 +60,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   setupUi(this);
   setWindowTitle(tr("qBittorrent ")+VERSION);
   QCoreApplication::setApplicationName("qBittorrent");
-  loadWindowSize();
+  readSettings();
   s = new session(fingerprint("qB", 0, 7, 0, 0));
   //s = new session(fingerprint("AZ", 2, 5, 0, 0)); //Azureus fingerprint
   // Setting icons
@@ -165,8 +166,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   refresher = new QTimer(this);
   connect(refresher, SIGNAL(timeout()), this, SLOT(updateDlList()));
   refresher->start(2000);
-  // Center window
-  centerWindow();
   // Tray icon Menu
   myTrayIconMenu = new QMenu(this);
   myTrayIconMenu->addAction(actionOpen);
@@ -265,6 +264,22 @@ GUI::~GUI(){
   delete downloader;
   delete connecStatusLblIcon;
   delete s;
+}
+
+void GUI::writeSettings() {
+  QSettings settings("qBittorrent", "qBittorrent");
+  settings.beginGroup("MainWindow");
+  settings.setValue("size", size());
+  settings.setValue("pos", pos());
+  settings.endGroup();
+}
+
+void GUI::readSettings() {
+  QSettings settings("qBittorrent", "qBittorrent");
+  settings.beginGroup("MainWindow");
+  resize(settings.value("size", size()).toSize());
+  move(settings.value("pos", screenCenter()).toPoint());
+  settings.endGroup();
 }
 
 // Update Info Bar information
@@ -710,7 +725,7 @@ void GUI::toggleVisibility(QSystemTrayIcon::ActivationReason e){
 }
 
 // Center window
-void GUI::centerWindow(){
+QPoint GUI::screenCenter(){
   int scrn = 0;
   QWidget *w = this->topLevelWidget();
 
@@ -722,23 +737,7 @@ void GUI::centerWindow(){
     scrn = QApplication::desktop()->screenNumber(this);
 
   QRect desk(QApplication::desktop()->availableGeometry(scrn));
-
-  this->move((desk.width() - this->frameGeometry().width()) / 2,
-             (desk.height() - this->frameGeometry().height()) / 2);
-}
-
-void GUI::saveWindowSize() const{
-  QFile lastWindowSize(misc::qBittorrentPath()+"lastWindowSize.txt");
-  // delete old file
-  lastWindowSize.remove();
-  if(lastWindowSize.open(QIODevice::WriteOnly | QIODevice::Text)){
-    lastWindowSize.write(QByteArray((misc::toString(this->size().width())+"\n").c_str()));
-    lastWindowSize.write(QByteArray((misc::toString(this->size().height())+"\n").c_str()));
-    lastWindowSize.close();
-    qDebug("Saved window size");
-  }else{
-    std::cerr << "Error: Could not save last windows size\n";
-  }
+  return QPoint((desk.width() - this->frameGeometry().width()) / 2, (desk.height() - this->frameGeometry().height()) / 2);
 }
 
 bool GUI::loadFilteredFiles(torrent_handle &h){
@@ -792,37 +791,6 @@ bool GUI::hasFilteredFiles(const QString& fileName){
     }
   }
   return false;
-}
-
-void GUI::loadWindowSize(){
-  qDebug("Loading window size");
-  QFile lastWindowSize(misc::qBittorrentPath()+"lastWindowSize.txt");
-  if(lastWindowSize.exists()){
-    if(lastWindowSize.open(QIODevice::ReadOnly | QIODevice::Text)){
-      int w, h;
-      QByteArray line;
-      // read width
-      line = lastWindowSize.readLine();
-      // remove '\n'
-      if(line.at(line.size()-1) == '\n'){
-        line.truncate(line.size()-1);
-      }
-      w = line.toInt();
-      // read height
-      line = lastWindowSize.readLine();
-      // remove '\n'
-      if(line.at(line.size()-1) == '\n'){
-        line.truncate(line.size()-1);
-      }
-      h = line.toInt();
-      lastWindowSize.close();
-      // Apply new size
-      if(w && h){
-        this->resize(QSize(w, h));
-        qDebug("Window size loaded");
-      }
-    }
-  }
 }
 
 // Save last checked search engines to a file
@@ -1025,7 +993,7 @@ void GUI::closeEvent(QCloseEvent *e){
     }
   }
   // Save window size, columns size
-  saveWindowSize();
+  writeSettings();
   saveColWidthDLList();
   saveColWidthSearchList();
   // Create fast resume data
