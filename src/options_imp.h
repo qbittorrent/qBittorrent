@@ -42,8 +42,8 @@ class options_imp : public QDialog, private Ui::Dialog{
     options_imp(QWidget *parent=0);
 
     // Methods
-    bool saveOptions();
-    bool loadOptions();
+    void saveOptions();
+    void loadOptions();
     // Main options
     std::pair<unsigned short, unsigned short> getPorts() const;
     QPair<int,int> getLimits() const;

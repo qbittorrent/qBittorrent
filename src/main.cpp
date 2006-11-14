@@ -20,12 +20,12 @@
  */
 
 #include <QApplication>
-#include <QtXml/QDomDocument>
 #include <QLocale>
 #include <QTranslator>
 #include <QFile>
 #include <QSplashScreen>
 #include <QTcpSocket>
+#include <QSettings>
 
 #include <stdlib.h>
 
@@ -34,9 +34,6 @@
 
 // Main
 int main(int argc, char *argv[]){
-  QDomDocument doc("options");
-  QDomElement root;
-  QDomElement tag;
   QFile file;
   QString locale;
   if(argc > 1){
@@ -121,27 +118,12 @@ int main(int argc, char *argv[]){
   QApplication app(argc, argv);
   QSplashScreen *splash = new QSplashScreen(QPixmap(":/Icons/splash.jpg"));
   splash->show();
-  bool isLocalized = false;
   // Open options file to read locale
-  QString optionsPath = misc::qBittorrentPath()+"options.xml";
-  FILE *f = fopen((const char*)optionsPath.toUtf8(), "r");
-  if(f){
-    if (file.open(f, QIODevice::ReadOnly | QIODevice::Text)){
-      if (doc.setContent(&file)) {
-        root = doc.firstChildElement("options");
-        tag = root.firstChildElement("locale");
-        if(!tag.isNull()){
-          locale = tag.text();
-          isLocalized = true;
-        }
-      }
-    }
-    file.close();
-    fclose(f);
-  }
+  QSettings settings("qBittorrent", "qBittorrent");
+  locale = settings.value("Options/Language/Locale", QString()).toString();
 
   QTranslator translator;
-  if(!isLocalized){
+  if(locale.isEmpty()){
     locale = QLocale::system().name();
   }
   if(translator.load(QString(":/lang/qbittorrent_") + locale)){
@@ -156,9 +138,7 @@ int main(int argc, char *argv[]){
   torrentCmdLine.removeFirst();
   GUI window(0, torrentCmdLine);
   // Set locale
-  if(!isLocalized){
-    window.setLocale(locale);
-  }
+  window.setLocale(locale);
   // Show main window
   window.show();
   splash->finish(&window);

@@ -22,8 +22,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QInputDialog>
-#include <QDomDocument>
 #include <QSystemTrayIcon>
+#include <QSettings>
 
 #include "options_imp.h"
 #include "misc.h"
@@ -100,9 +100,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   if(! QFile::exists(savePath)){
     saveOptions();
   }
-  if(!loadOptions()){
-    std::cerr << "Warning: Couldn't load options" << '\n';
-  }
+  // Load options
+  loadOptions();
   // Connect signals / slots
   connect(disableUPLimit, SIGNAL(stateChanged(int)), this, SLOT(disableUpload(int)));
   connect(disableDLLimit,  SIGNAL(stateChanged(int)), this, SLOT(disableDownload(int)));
@@ -161,373 +160,257 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   }
 }
 
-// save options to options.xml file
-bool options_imp::saveOptions(){
-  QString savePath;
-  QDomDocument doc("options");
-  QDomElement root;
-  QDomElement tag, tag2;
-  QDomText optionValue;
-  QString xml;
-  FILE *f;
-  QFile file;
-  // Getting HOME evironment variable
-  savePath = misc::qBittorrentPath() + "options.xml";
+void options_imp::saveOptions(){
+  QSettings settings("qBittorrent", "qBittorrent");
   // Check if min port < max port
   checkPortsLogic();
-  // Generate XML
-  root = doc.createElement("options");
-  doc.appendChild(root);
-  // Main Options
-  tag = doc.createElement("save_path");
-  root.appendChild(tag);
-  optionValue = doc.createTextNode(txt_savePath->text());
-  tag.appendChild(optionValue);
-  tag = doc.createElement("dl_limit");
-  root.appendChild(tag);
-  if(spin_download->isEnabled()){
-    optionValue = doc.createTextNode(misc::toString(spin_download->value()).c_str());
-  }else{
-    optionValue = doc.createTextNode(misc::toString(-1).c_str());
+  settings.beginGroup("Options");
+  // Main options
+  settings.beginGroup("Main");
+  settings.setValue("DLLimit", getLimits().first);
+  settings.setValue("UPLimit", getLimits().second);
+  settings.setValue("MaxConnecs", getMaxConnec());
+  settings.setValue("PortRangeMin", getPorts().first);
+  settings.setValue("PortRangeMax", getPorts().second);
+  settings.setValue("ShareRatio", getRatio());
+  settings.setValue("DHTPort", getDHTPort());
+  settings.setValue("ScanDir", getScanDir());
+  // End Main options
+  settings.endGroup();
+  // Language options
+  settings.beginGroup("Language");
+  settings.setValue("Locale", getLocale());
+  // End Language options
+  settings.endGroup();
+  // IPFilter options
+  settings.beginGroup("IPFilter");
+  bool enabled = isFilteringEnabled();
+  settings.setValue("Enabled", enabled);
+  if(enabled){
+    settings.setValue("File", filterFile->text());
   }
-  tag.appendChild(optionValue);
-  tag = doc.createElement("up_limit");
-  root.appendChild(tag);
-  if(spin_upload->isEnabled()){
-    optionValue = doc.createTextNode(misc::toString(spin_upload->value()).c_str());
-  }else{
-    optionValue = doc.createTextNode(misc::toString(-1).c_str());
-  }
-  tag.appendChild(optionValue);
-  tag = doc.createElement("max_connec");
-  root.appendChild(tag);
-  if(spin_max_connec->isEnabled()){
-    optionValue = doc.createTextNode(misc::toString(spin_max_connec->value()).c_str());
-  }else{
-    optionValue = doc.createTextNode(misc::toString(-1).c_str());
-  }
-  tag.appendChild(optionValue);
-  tag = doc.createElement("port_range");
-  root.appendChild(tag);
-  tag2 = doc.createElement("port_min");
-  tag.appendChild(tag2);
-  optionValue = doc.createTextNode(misc::toString(spin_port_min->value()).c_str());
-  tag2.appendChild(optionValue);
-  tag2 = doc.createElement("port_max");
-  tag.appendChild(tag2);
-  optionValue = doc.createTextNode(misc::toString(spin_port_max->value()).c_str());
-  tag2.appendChild(optionValue);
-  tag = doc.createElement("ratio");
-  root.appendChild(tag);
-  if(spin_ratio->isEnabled()){
-    optionValue = doc.createTextNode(misc::toString(spin_ratio->value()).c_str());
-  }else{
-    optionValue = doc.createTextNode("0");
-  }
-  tag.appendChild(optionValue);
-  tag = doc.createElement("DHT");
-  root.appendChild(tag);
-  if(disableDHT->isChecked()){
-    optionValue = doc.createTextNode("0");
-  }else{
-    optionValue = doc.createTextNode("1");
-  }
-  tag.appendChild(optionValue);
-  tag = doc.createElement("DHTPort");
-  root.appendChild(tag);
-  optionValue = doc.createTextNode(misc::toString(getDHTPort()).c_str());
-  tag.appendChild(optionValue);
-  if(scanDir->isEnabled()){
-    tag = doc.createElement("scan_dir");
-    root.appendChild(tag);
-    optionValue = doc.createTextNode(scanDir->text());
-    tag.appendChild(optionValue);
-  }
-  // IPFilter Settings
-  if(filterGroup->isEnabled()){
-    tag = doc.createElement("ipFilter_File");
-    root.appendChild(tag);
-    optionValue = doc.createTextNode(filterFile->text());
-    tag.appendChild(optionValue);
-  }
-  // Proxy Settings
-  if(groupProxy->isEnabled()){
-    tag = doc.createElement("proxy_settings");
-    root.appendChild(tag);
-    tag2 = doc.createElement("proxy_ip");
-    tag.appendChild(tag2);
-    optionValue = doc.createTextNode(proxy_ip->text());
-    tag2.appendChild(optionValue);
-    tag2 = doc.createElement("proxy_port");
-    tag.appendChild(tag2);
-    optionValue = doc.createTextNode(proxy_port->text());
-    tag2.appendChild(optionValue);
-    // Proxy Authentication
-    if(groupProxyAuth->isEnabled()){
-      tag2 = doc.createElement("proxy_username");
-      tag.appendChild(tag2);
-      optionValue = doc.createTextNode(proxy_username->text());
-      tag2.appendChild(optionValue);
-      tag2 = doc.createElement("proxy_password");
-      tag.appendChild(tag2);
-      optionValue = doc.createTextNode(proxy_password->text());
-      tag2.appendChild(optionValue);
+  // End IPFilter options
+  settings.endGroup();
+  // Proxy options
+  settings.beginGroup("Proxy");
+  enabled = isProxyEnabled();
+  settings.setValue("Enabled", enabled);
+  if(enabled){
+    settings.setValue("IP", getProxyIp());
+    settings.setValue("Port", getProxyPort());
+    enabled = isProxyAuthEnabled();
+    settings.beginGroup("Authentication");
+    settings.setValue("Enabled", enabled);
+    if(enabled){
+      settings.setValue("Username", getProxyUsername());
+      settings.setValue("Password", getProxyPassword());
     }
+    settings.endGroup();
   }
-  // GUI stuff
-  tag =  doc.createElement("gui_settings");
-  root.appendChild(tag);
-  tag2 =  doc.createElement("goToSysTrayOnMinimizing");
-  if(check_goToSysTray->isChecked()){
-    optionValue = doc.createTextNode("true");
-  }else{
-    optionValue = doc.createTextNode("false");
+  // End Proxy options
+  settings.endGroup();
+  // Misc options
+  settings.beginGroup("Misc");
+  settings.beginGroup("TorrentAdditionDialog");
+  enabled = useAdditionDialog();
+  settings.setValue("Enabled", enabled);
+  if(!enabled){
+    settings.setValue("SavePath", getSavePath());
   }
-  tag2.appendChild(optionValue);
-  tag.appendChild(tag2);
-  tag2 =  doc.createElement("clearFinishedOnExit");
-  if(clearFinished_checkBox->isChecked()){
-    optionValue = doc.createTextNode("true");
+  settings.endGroup();
+  settings.beginGroup("Behaviour");
+  settings.setValue("ConfirmOnExit", getConfirmOnExit());
+  settings.setValue("ClearFinishedDownloads", getClearFinishedOnExit());
+  settings.setValue("GoToSystray", getGoToSysTrayOnMinimizingWindow());
+  settings.endGroup();
+  settings.setValue("PreviewProgram", getPreviewProgram());
+  // End Misc options
+  settings.endGroup();
+  if(getUseOSDAlways()){
+    settings.setValue("OSDEnabled", 1);
   }else{
-    optionValue = doc.createTextNode("false");
-  }
-  tag2.appendChild(optionValue);
-  tag.appendChild(tag2);
-  tag2 =  doc.createElement("confirmOnExit");
-  if(confirmExit_checkBox->isChecked()){
-    optionValue = doc.createTextNode("true");
-  }else{
-    optionValue = doc.createTextNode("false");
-  }
-  tag2.appendChild(optionValue);
-  tag.appendChild(tag2);
-  tag2 = doc.createElement("previewing");
-  optionValue = doc.createTextNode(preview_program->text());
-  tag2.appendChild(optionValue);
-  tag.appendChild(tag2);
-  tag2 =  doc.createElement("displayOSD");
-  if(alwaysOSD->isChecked()){
-    optionValue = doc.createTextNode("true");
-  }else{
-    if(someOSD->isChecked()){
-      optionValue = doc.createTextNode("partial");
+    if(getUseOSDWhenHiddenOnly()){
+      settings.setValue("OSDEnabled", 2);
     }else{
-      optionValue = doc.createTextNode("false");
+      settings.setValue("OSDEnabled", 0);
     }
   }
-  tag2.appendChild(optionValue);
-  tag.appendChild(tag2);
-  // Language Settings
-  tag = doc.createElement("locale");
-  root.appendChild(tag);
-  optionValue = doc.createTextNode(getLocale());
-  tag.appendChild(optionValue);
-  xml = doc.toString();
-  // Write XML file to HD
-  f = fopen((const char*)savePath.toUtf8(), "w");
-  if (!f){
-    std::cerr << "Error: Couldn't create file " << (const char*)savePath.toUtf8() << " for saving!" << '\n';
-    return false;
-  }
-  if (!file.open(f, QIODevice::WriteOnly | QIODevice::Text)){
-    std::cerr << "Error: Couldn't open file " << (const char*)savePath.toUtf8() << " for saving!" << '\n';
-    return false;
-  }
-  file.write((const char*)xml.toUtf8(), xml.length());
-  file.close();
-  if(fclose(f) == EOF){
-    std::cerr << "Error: Couldn't close file " << (const char*)savePath.toUtf8() << " after saving!" << '\n';
-    return false;
-  }
+  settings.endGroup();
   // set infobar text
   emit status_changed(tr("Options saved successfully!"));
   // Disable apply Button
   applyButton->setEnabled(false);
-  return true;
 }
 
 bool options_imp::isFilteringEnabled() const{
   return activateFilter->isChecked();
 }
 
-// Load options from options.xml file
-bool options_imp::loadOptions(){
-  QString savePath;
-  QDomDocument doc("options");
-  QDomElement root;
-  QDomElement tag, tag2;
-  QDomText optionValue;
-  QString xml;
-  FILE *f;
-  QFile file;
-  int tmp;
-  float tmpFloat;
-  // Getting savepath for options.xml
-  savePath = misc::qBittorrentPath() + "options.xml";
-  // Read XML file on HD
-  f = fopen((const char*)savePath.toUtf8(), "r");
-  if (!f){
-    return false;
-  }
-  if (!file.open(f, QIODevice::ReadOnly | QIODevice::Text)){
-    return false;
-  }
-  if (!doc.setContent(&file)) {
-    file.close();
-    return false;
-  }
-  file.close();
-  if(fclose(f) == EOF){
-    std::cerr << "Error: Couldn't close file " << (const char*)savePath.toUtf8() << " after reading!" << '\n';
-    return false;
-  }
-  // Loading option from XML
-  root = doc.firstChildElement("options");
-  this->txt_savePath->setText(root.firstChildElement("save_path").text());
-  tmp = root.firstChildElement("dl_limit").text().toInt();
-  if(tmp == -1){
+void options_imp::loadOptions(){
+  int value;
+  float floatValue;
+  QString strValue;
+  QSettings settings("qBittorrent", "qBittorrent");
+  // Check if min port < max port
+  checkPortsLogic();
+  settings.beginGroup("Options");
+  // Main options
+  settings.beginGroup("Main");
+  value = settings.value("DLLimit", -1).toInt();
+  if(value < 0){
     disableDLLimit->setChecked(true);
     spin_download->setEnabled(false);
   }else{
     disableDLLimit->setChecked(false);
     spin_download->setEnabled(true);
-    this->spin_download->setValue(tmp);
+    spin_download->setValue(value);
   }
-  tmp = root.firstChildElement("up_limit").text().toInt();
-  if(tmp == -1){
+  value = settings.value("UPLimit", -1).toInt();
+  if(value < 0){
     disableUPLimit->setChecked(true);
     spin_upload->setEnabled(false);
   }else{
     disableUPLimit->setChecked(false);
     spin_upload->setEnabled(true);
-    this->spin_upload->setValue(tmp);
+    spin_upload->setValue(value);
   }
-  tmpFloat = root.firstChildElement("ratio").text().toFloat();
-  if(tmpFloat == 0){
-    disableRatio->setChecked(true);
-    spin_ratio->setEnabled(false);
-  }else{
-    disableRatio->setChecked(false);
-    spin_ratio->setEnabled(true);
-    this->spin_ratio->setValue(tmpFloat);
-  }
-  tag = root.firstChildElement("DHT");
-  if(!tag.isNull()){
-    if(tag.text().toInt() == 0){
-      disableDHT->setChecked(true);
-      groupDHT->setEnabled(false);
-    }else{
-      disableDHT->setChecked(false);
-      groupDHT->setEnabled(true);
-    }
-  }
-  tag = root.firstChildElement("DHTPort");
-  if(!tag.isNull()){
-    if(tag.text().toInt() < 1000){
-      spin_dht_port->setValue(6881);
-    }else{
-      spin_dht_port->setValue(tag.text().toInt());
-    }
-  }
-  tmp = root.firstChildElement("max_connec").text().toInt();
-  if(tmp == -1){
+  value = settings.value("MaxConnecs", -1).toInt();
+  if(value < 0){
     disableMaxConnec->setChecked(true);
     spin_max_connec->setEnabled(false);
   }else{
     disableMaxConnec->setChecked(false);
     spin_max_connec->setEnabled(true);
-    this->spin_max_connec->setValue(tmp);
+    spin_max_connec->setValue(value);
   }
-  tag = root.firstChildElement("port_range");
-  this->spin_port_min->setValue(tag.firstChildElement("port_min").text().toInt());
-  this->spin_port_max->setValue(tag.firstChildElement("port_max").text().toInt());
-  tag = root.firstChildElement("scan_dir");
-  if(!tag.isNull()){
+  spin_port_min->setValue(settings.value("PortRangeMin", 6881).toInt());
+  spin_port_max->setValue(settings.value("PortRangeMax", 6889).toInt());
+  floatValue = settings.value("ShareRatio", 0).toDouble();
+  if(floatValue == 0){
+    disableRatio->setChecked(true);
+    spin_ratio->setEnabled(false);
+  }else{
+    disableRatio->setChecked(false);
+    spin_ratio->setEnabled(true);
+    spin_ratio->setValue(floatValue);
+  }
+  value = settings.value("DHTPort", 6881).toInt();
+  if(value < 0){
+    disableDHT->setChecked(true);
+    groupDHT->setEnabled(false);
+  }else{
+    disableDHT->setChecked(false);
+    groupDHT->setEnabled(true);
+    if(value < 1000){
+      value = 6881;
+    }
+    spin_dht_port->setValue(value);
+  }
+  strValue = settings.value("ScanDir", QString()).toString();
+  if(!strValue.isEmpty()){
     enableScan_checkBox->setChecked(true);
     scanDir->setEnabled(true);
-    scanDir->setText(tag.text());
+    scanDir->setText(strValue);
   }else{
     enableScan_checkBox->setChecked(false);
     scanDir->setEnabled(false);
   }
-  // Load IPFilter Settings
-  tag = root.firstChildElement("ipFilter_File");
-  if(!tag.isNull()){
-    activateFilter->setChecked(true);
-    filterGroup->setEnabled(true);
-    filterFile->setText(tag.text());
-    processFilterFile(tag.text());
+  // End Main options
+  settings.endGroup();
+  // Language options
+  settings.beginGroup("Language");
+  strValue = settings.value("Locale", "en_GB").toString();
+  setLocale(strValue);
+  // End Language options
+  settings.endGroup();
+  // IPFilter options
+  settings.beginGroup("IPFilter");
+  if(settings.value("Enabled", false).toBool()){
+    strValue = settings.value("File", QString()).toString();
+    if(strValue.isEmpty()){
+      activateFilter->setChecked(false);
+      filterGroup->setEnabled(false);
+    }else{
+      activateFilter->setChecked(true);
+      filterGroup->setEnabled(true);
+      filterFile->setText(strValue);
+      processFilterFile(strValue);
+    }
   }else{
     activateFilter->setChecked(false);
     filterGroup->setEnabled(false);
   }
-  // Load proxy settings
-  tag = root.firstChildElement("proxy_settings");
-  if(!tag.isNull()){
-    enableProxy_checkBox->setChecked(true);
-    groupProxy->setEnabled(true);
-    proxy_ip->setText(tag.firstChildElement("proxy_ip").text());
-    proxy_port->setValue(tag.firstChildElement("proxy_port").text().toInt());
-    tag2 = tag.firstChildElement("proxy_username");
-    if(!tag2.isNull()){
-      enableProxyAuth_checkBox->setChecked(true);
-      groupProxyAuth->setEnabled(true);
-      proxy_username->setText(tag2.text());
-      proxy_password->setText(tag.firstChildElement("proxy_password").text());
+  // End IPFilter options
+  settings.endGroup();
+  // Proxy options
+  settings.beginGroup("Proxy");
+  if(settings.value("Enabled", false).toBool()){
+    strValue = settings.value("IP", QString()).toString();
+    if(strValue.isEmpty()){
+      enableProxy_checkBox->setChecked(false);
+      groupProxy->setEnabled(false);
     }else{
-      enableProxyAuth_checkBox->setChecked(false);
-      groupProxyAuth->setEnabled(false);
+      enableProxy_checkBox->setChecked(true);
+      groupProxy->setEnabled(true);
+      proxy_ip->setText(strValue);
+      proxy_port->setValue(settings.value("Port", 8080).toInt());
+      settings.beginGroup("Authentication");
+      if(settings.value("Enabled", false).toBool()){
+        enableProxyAuth_checkBox->setChecked(true);
+        groupProxyAuth->setEnabled(true);
+        proxy_username->setText(settings.value("Username", QString()).toString());
+        proxy_password->setText(settings.value("Password", QString()).toString());
+      }else{
+        enableProxyAuth_checkBox->setChecked(false);
+        groupProxyAuth->setEnabled(false);
+      }
+      settings.endGroup();
     }
   }else{
-    enableProxyAuth_checkBox->setChecked(false);
     enableProxy_checkBox->setChecked(false);
-    groupProxyAuth->setEnabled(false);
     groupProxy->setEnabled(false);
   }
-  // Locale Settings
-  tag = root.firstChildElement("locale");
-  if(!tag.isNull()){
-      setLocale(tag.text());
+  // End Proxy options
+  settings.endGroup();
+  // Misc options
+  settings.beginGroup("Misc");
+  settings.beginGroup("TorrentAdditionDialog");
+  if(settings.value("Enabled", true).toBool()){
+    checkAdditionDialog->setChecked(true);
+    groupSavePath->setEnabled(false);
+  }else{
+    checkAdditionDialog->setChecked(false);
+    groupSavePath->setEnabled(true);
+    txt_savePath->setText(settings.value("SavePath", QString()).toString());
   }
-  // Gui Settings
-  tag = root.firstChildElement("gui_settings");
-  if(!tag.isNull()){
-    if(tag.firstChildElement("goToSysTrayOnMinimizing").text() == "false"){
-      check_goToSysTray->setChecked(false);
+  settings.endGroup();
+  settings.beginGroup("Behaviour");
+  confirmExit_checkBox->setChecked(settings.value("ConfirmOnExit", true).toBool());
+  clearFinished_checkBox->setChecked(settings.value("ClearFinishedDownloads", true).toBool());
+  check_goToSysTray->setChecked(settings.value("GoToSystray", true).toBool());
+  settings.endGroup();
+  preview_program->setText(settings.value("PreviewProgram", QString()).toString());
+  // End Misc options
+  settings.endGroup();
+  value = settings.value("OSDEnabled", 1).toInt();
+  if(value == 0){
+    neverOSD->setChecked(true);
+  }else{
+    if(value == 2){
+      someOSD->setChecked(true);
     }else{
-      check_goToSysTray->setChecked(true);
-    }
-    if(tag.firstChildElement("clearFinishedOnExit").text() == "false"){
-      clearFinished_checkBox->setChecked(false);
-    }else{
-      clearFinished_checkBox->setChecked(true);
-    }
-    if(tag.firstChildElement("confirmOnExit").text() == "false"){
-      confirmExit_checkBox->setChecked(false);
-    }else{
-      confirmExit_checkBox->setChecked(true);
-    }
-    preview_program->setText(tag.firstChildElement("previewing").text());
-    QString OSDValue = tag.firstChildElement("displayOSD").text();
-    if(OSDValue == "false"){
-      neverOSD->setChecked(true);
-    }else{
-      if(OSDValue == "partial"){
-        someOSD->setChecked(true);
-      }else{
-        alwaysOSD->setChecked(true);
-      }
+      alwaysOSD->setChecked(true);
     }
   }
+  settings.endGroup();
   // Disable apply Button
   applyButton->setEnabled(false);
-  return true;
 }
 
 // return min & max ports
 // [min, max]
 std::pair<unsigned short, unsigned short> options_imp::getPorts() const{
-  return std::make_pair(this->spin_port_min->value(), this->spin_port_min->value());
+  return std::make_pair(this->spin_port_min->value(), this->spin_port_max->value());
 }
 
 int options_imp::getDHTPort() const{
