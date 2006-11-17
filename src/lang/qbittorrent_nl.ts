@@ -612,7 +612,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="246"/>
+        <location filename="../GUI.cpp" line="245"/>
         <source>qBittorrent </source>
         <translation> qBittorrent</translation>
     </message>
@@ -622,7 +622,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> :: Door Christophe Dumez :: Copyright (c) 2006</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="246"/>
+        <location filename="../GUI.cpp" line="245"/>
         <source> started.</source>
         <translation> gestart.</translation>
     </message>
@@ -642,27 +642,27 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">kb/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="469"/>
+        <location filename="../GUI.cpp" line="484"/>
         <source>UP Speed: </source>
         <translation> UP snelheid:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1101"/>
+        <location filename="../GUI.cpp" line="978"/>
         <source>Open Torrent Files</source>
         <translation>Open Torrent bestanden</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1102"/>
+        <location filename="../GUI.cpp" line="979"/>
         <source>Torrent Files</source>
         <translation>Torrent bestanden</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1355"/>
+        <location filename="../GUI.cpp" line="1229"/>
         <source>Couldn&apos;t create the directory:</source>
         <translation>Kon map niet aanmaken:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1380"/>
+        <location filename="../GUI.cpp" line="1254"/>
         <source>already in download list.</source>
         <comment>&lt;file&gt; already in download list.</comment>
         <translation>Staat al in downloadlijst.</translation>
@@ -678,27 +678,27 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Onbekend</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1475"/>
+        <location filename="../GUI.cpp" line="1349"/>
         <source>added to download list.</source>
         <translation>Toegevoegd aan downloadlijst.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1481"/>
+        <location filename="../GUI.cpp" line="1355"/>
         <source>resumed. (fast resume)</source>
         <translation>Hervat. (snel hervatten)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1507"/>
+        <location filename="../GUI.cpp" line="1381"/>
         <source>Unable to decode torrent file:</source>
         <translation>Torrentfile kan niet gedecodeerd worden:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1509"/>
+        <location filename="../GUI.cpp" line="1383"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Dit bestand is corrupt of is geen torrent.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1269"/>
+        <location filename="../GUI.cpp" line="1143"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Weet u het zeker? -- qBittorrent</translation>
     </message>
@@ -708,12 +708,12 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Weet u zeker dat u alle bestanden uit de downloadlijst wilt verwijderen?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2253"/>
+        <location filename="../GUI.cpp" line="2127"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2253"/>
+        <location filename="../GUI.cpp" line="2127"/>
         <source>&amp;No</source>
         <translation>&amp;Nee</translation>
     </message>
@@ -723,18 +723,18 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Downloadlijst leeg gemaakt.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1270"/>
+        <location filename="../GUI.cpp" line="1144"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>Weet u zeker dat u de geselecteerde bestanden uit de downloadlijst wilt verwijderen?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1311"/>
+        <location filename="../GUI.cpp" line="1185"/>
         <source>removed.</source>
         <comment>&lt;file&gt; removed.</comment>
         <translation>verwijderd.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1691"/>
+        <location filename="../GUI.cpp" line="1565"/>
         <source>Listening on port: </source>
         <translation> Aan het luisteren op poort:</translation>
     </message>
@@ -744,7 +744,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">gepauzeerd</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1811"/>
+        <location filename="../GUI.cpp" line="1685"/>
         <source>All Downloads Paused.</source>
         <translation>Alle downloads gepauzeerd.</translation>
     </message>
@@ -754,49 +754,49 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">gestart</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1870"/>
+        <location filename="../GUI.cpp" line="1744"/>
         <source>All Downloads Resumed.</source>
         <translation>Alle downloads hervat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1837"/>
+        <location filename="../GUI.cpp" line="1711"/>
         <source>paused.</source>
         <comment>&lt;file&gt; paused.</comment>
         <translation>gepauzeerd.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1891"/>
+        <location filename="../GUI.cpp" line="1765"/>
         <source>resumed.</source>
         <comment>&lt;file&gt; resumed.</comment>
         <translation>hervat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1944"/>
+        <location filename="../GUI.cpp" line="1818"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Online</source>
         <translation>&lt;b&gt;Verbindingsstatus:&lt;/b&gt;&lt;br&gt;Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1949"/>
+        <location filename="../GUI.cpp" line="1823"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
         <translation>&lt;b&gt;Verbindingsstatus:&lt;/b&gt;&lt;br&gt;Gefirewalled?&lt;br&gt;&lt;i&gt;Geen inkomende verbindingen...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1953"/>
+        <location filename="../GUI.cpp" line="1827"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
         <translation>&lt;b&gt;Verbindingsstatus:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;Geen peers gevonden...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1966"/>
+        <location filename="../GUI.cpp" line="1840"/>
         <source> has finished downloading.</source>
         <translation> is klaar met downloaden.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1987"/>
+        <location filename="../GUI.cpp" line="1861"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Kan niet luisteren op de aangegeven poorten.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="469"/>
+        <location filename="../GUI.cpp" line="484"/>
         <source>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </source>
         <translation> &lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL snelheid:</translation>
     </message>
@@ -807,22 +807,22 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="494"/>
+        <location filename="../GUI.cpp" line="509"/>
         <source>Finished</source>
         <translation>Klaar</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="503"/>
+        <location filename="../GUI.cpp" line="518"/>
         <source>Checking...</source>
         <translation>Controleren...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1890"/>
+        <location filename="../GUI.cpp" line="1764"/>
         <source>Connecting...</source>
         <translation>Verbinding maken...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="528"/>
+        <location filename="../GUI.cpp" line="543"/>
         <source>Downloading...</source>
         <translation>Downloaden...</translation>
     </message>
@@ -845,32 +845,32 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> d</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1662"/>
+        <location filename="../GUI.cpp" line="1536"/>
         <source>None</source>
         <translation>Geen</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2028"/>
+        <location filename="../GUI.cpp" line="1902"/>
         <source>Empty search pattern</source>
         <translation>Leeg zoekpatroon</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2028"/>
+        <location filename="../GUI.cpp" line="1902"/>
         <source>Please type a search pattern first</source>
         <translation>Type alstublieft eerst een zoekpatroon</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2033"/>
+        <location filename="../GUI.cpp" line="1907"/>
         <source>No seach engine selected</source>
         <translation>Geen zoekmachine gekozen</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2033"/>
+        <location filename="../GUI.cpp" line="1907"/>
         <source>You must select at least one search engine.</source>
         <translation>U moet tenminste een zoekmachine kiezen.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2073"/>
+        <location filename="../GUI.cpp" line="1947"/>
         <source>Searching...</source>
         <translation>Zoeken...</translation>
     </message>
@@ -890,7 +890,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Torrent bestand URL:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1008"/>
+        <location filename="../GUI.cpp" line="893"/>
         <source>Are you sure you want to quit? -- qBittorrent</source>
         <translation>Weet u zeker dat u wil afsluiten? -- qBittorrent</translation>
     </message>
@@ -900,7 +900,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Weet u zeker dat u qbittorrent af wil sluiten?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="469"/>
+        <location filename="../GUI.cpp" line="484"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -915,22 +915,22 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Geblokkeerd</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2292"/>
+        <location filename="../GUI.cpp" line="2166"/>
         <source>Search is finished</source>
         <translation>Zoeken is klaar</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2284"/>
+        <location filename="../GUI.cpp" line="2158"/>
         <source>An error occured during search...</source>
         <translation>Een fout trad op tijdens zoeken...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2287"/>
+        <location filename="../GUI.cpp" line="2161"/>
         <source>Search aborted</source>
         <translation>Zoeken afgebroken</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2290"/>
+        <location filename="../GUI.cpp" line="2164"/>
         <source>Search returned no results</source>
         <translation>Zoeken gaf geen resultaten</translation>
     </message>
@@ -940,12 +940,12 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Zoeken is Klaar</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2268"/>
+        <location filename="../GUI.cpp" line="2142"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation>Zoeken plugin update -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2252"/>
+        <location filename="../GUI.cpp" line="2126"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -956,88 +956,88 @@ Changelog:
 </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2266"/>
+        <location filename="../GUI.cpp" line="2140"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Sorry, update server is tijdelijk niet bereikbaar.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2269"/>
+        <location filename="../GUI.cpp" line="2143"/>
         <source>Your search plugin is already up to date.</source>
         <translation>Uw zoeken plugin is al bijgewerkt.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2296"/>
+        <location filename="../GUI.cpp" line="2170"/>
         <source>Results</source>
         <translation>Resultaten</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="196"/>
+        <location filename="../GUI.cpp" line="195"/>
         <source>Name</source>
         <translation>Naam</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="197"/>
+        <location filename="../GUI.cpp" line="196"/>
         <source>Size</source>
         <translation>Grootte</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="99"/>
+        <location filename="../GUI.cpp" line="100"/>
         <source>Progress</source>
         <translation>Voortgang</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="100"/>
+        <location filename="../GUI.cpp" line="101"/>
         <source>DL Speed</source>
         <translation>DL snelheid</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="101"/>
+        <location filename="../GUI.cpp" line="102"/>
         <source>UP Speed</source>
         <translation>UP snelheid</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="102"/>
+        <location filename="../GUI.cpp" line="103"/>
         <source>Status</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="103"/>
+        <location filename="../GUI.cpp" line="104"/>
         <source>ETA</source>
         <translation>Geschatte resterende tijd</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="198"/>
+        <location filename="../GUI.cpp" line="197"/>
         <source>Seeders</source>
         <translation>Uploaders</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="199"/>
+        <location filename="../GUI.cpp" line="198"/>
         <source>Leechers</source>
         <translation>Downloaders</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="200"/>
+        <location filename="../GUI.cpp" line="199"/>
         <source>Search engine</source>
         <translation>Zoekmachine</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="533"/>
+        <location filename="../GUI.cpp" line="548"/>
         <source>Stalled</source>
         <comment>state of a torrent whose DL Speed is 0</comment>
         <translation>Stilstand</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1835"/>
+        <location filename="../GUI.cpp" line="1709"/>
         <source>Paused</source>
         <translation>Gepauzeerd</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="412"/>
+        <location filename="../GUI.cpp" line="427"/>
         <source>Preview process already running</source>
         <translation>Vooruitkijk proccess is al bezig</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="412"/>
+        <location filename="../GUI.cpp" line="427"/>
         <source>There is already another preview process running.
 Please close the other one first.</source>
         <translation>Er is al een ander vooruitkijk proccess actief. 
@@ -1045,56 +1045,56 @@ Stop het eerste proccess eerst.
 </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2427"/>
+        <location filename="../GUI.cpp" line="2301"/>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
         <translation>Kon niet downloaden</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2427"/>
+        <location filename="../GUI.cpp" line="2301"/>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
         <translation>reden:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2446"/>
+        <location filename="../GUI.cpp" line="2320"/>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
         <translation>Downloaden</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2446"/>
+        <location filename="../GUI.cpp" line="2320"/>
         <source>Please wait...</source>
         <translation>Wachten...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1485"/>
+        <location filename="../GUI.cpp" line="1359"/>
         <source>Transfers</source>
         <translation>Overdrachten</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1968"/>
+        <location filename="../GUI.cpp" line="1842"/>
         <source>Download finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1968"/>
+        <location filename="../GUI.cpp" line="1842"/>
         <source> has finished downloading.</source>
         <comment>&lt;filename&gt; has finished downloading.</comment>
         <translation type="unfinished"> is klaar met downloaden.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2281"/>
+        <location filename="../GUI.cpp" line="2155"/>
         <source>Search Engine</source>
         <translation type="unfinished">Zoekmachine</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1009"/>
+        <location filename="../GUI.cpp" line="894"/>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1198"/>
+        <location filename="../GUI.cpp" line="1072"/>
         <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1107,7 +1107,7 @@ Stop het eerste proccess eerst.
         <translation type="obsolete">qBittorrent :: By Christophe Dumez</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="293"/>
+        <location filename="../MainWindow.ui" line="305"/>
         <source>Log:</source>
         <translation>Log:</translation>
     </message>
@@ -1162,72 +1162,72 @@ Stop het eerste proccess eerst.
         <translation type="obsolete">Geschatte resterende tijd</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="752"/>
+        <location filename="../MainWindow.ui" line="764"/>
         <source>&amp;File</source>
         <translation>&amp;Bestand</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="731"/>
+        <location filename="../MainWindow.ui" line="743"/>
         <source>&amp;Options</source>
         <translation>&amp;Opties</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="725"/>
+        <location filename="../MainWindow.ui" line="737"/>
         <source>&amp;Help</source>
         <translation>&amp;Help</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="737"/>
+        <location filename="../MainWindow.ui" line="749"/>
         <source>&amp;Edit</source>
         <translation>&amp;Bewerken</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="803"/>
+        <location filename="../MainWindow.ui" line="815"/>
         <source>Open</source>
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="808"/>
+        <location filename="../MainWindow.ui" line="820"/>
         <source>Exit</source>
         <translation>Afsluiten</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="813"/>
+        <location filename="../MainWindow.ui" line="825"/>
         <source>Preferences</source>
         <translation>Voorkeuren</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="818"/>
+        <location filename="../MainWindow.ui" line="830"/>
         <source>About</source>
         <translation>Over</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="823"/>
+        <location filename="../MainWindow.ui" line="835"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="828"/>
+        <location filename="../MainWindow.ui" line="840"/>
         <source>Pause</source>
         <translation>Pauze</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="833"/>
+        <location filename="../MainWindow.ui" line="845"/>
         <source>Delete</source>
         <translation>Verwijderen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="838"/>
+        <location filename="../MainWindow.ui" line="850"/>
         <source>Pause All</source>
         <translation>Pauzeer alles</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="843"/>
+        <location filename="../MainWindow.ui" line="855"/>
         <source>Start All</source>
         <translation>Start alles</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="848"/>
+        <location filename="../MainWindow.ui" line="860"/>
         <source>Documentation</source>
         <translation>Documentatie</translation>
     </message>
@@ -1242,7 +1242,7 @@ Stop het eerste proccess eerst.
         <translation type="obsolete">Verwijder alles</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="858"/>
+        <location filename="../MainWindow.ui" line="870"/>
         <source>Torrent Properties</source>
         <translation>Torrent eigenschappen</translation>
     </message>
@@ -1257,37 +1257,37 @@ Stop het eerste proccess eerst.
         <translation type="obsolete">Downloads</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="476"/>
+        <location filename="../MainWindow.ui" line="488"/>
         <source>Search</source>
         <translation>Zoeken</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="453"/>
+        <location filename="../MainWindow.ui" line="465"/>
         <source>Search Pattern:</source>
         <translation>Zoekpatroon:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="526"/>
+        <location filename="../MainWindow.ui" line="538"/>
         <source>Status:</source>
         <translation>Status:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="556"/>
+        <location filename="../MainWindow.ui" line="568"/>
         <source>Stopped</source>
         <translation>Gestopt</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="374"/>
+        <location filename="../MainWindow.ui" line="386"/>
         <source>Search Engines</source>
         <translation>Zoekmachines</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="615"/>
+        <location filename="../MainWindow.ui" line="627"/>
         <source>Results:</source>
         <translation>Resultaten:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="492"/>
+        <location filename="../MainWindow.ui" line="504"/>
         <source>Stop</source>
         <translation>Stop</translation>
     </message>
@@ -1307,17 +1307,17 @@ Stop het eerste proccess eerst.
         <translation type="obsolete">Zoekmachine</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="863"/>
+        <location filename="../MainWindow.ui" line="875"/>
         <source>Download from URL</source>
         <translation>Download vanaf URL</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="670"/>
+        <location filename="../MainWindow.ui" line="682"/>
         <source>Download</source>
         <translation>Download</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="680"/>
+        <location filename="../MainWindow.ui" line="692"/>
         <source>Clear</source>
         <translation>Wissen</translation>
     </message>
@@ -1327,7 +1327,7 @@ Stop het eerste proccess eerst.
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="868"/>
+        <location filename="../MainWindow.ui" line="880"/>
         <source>Create torrent</source>
         <translation>Maak torrent</translation>
     </message>
@@ -1337,7 +1337,7 @@ Stop het eerste proccess eerst.
         <translation type="obsolete"> Deelverhouding:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="700"/>
+        <location filename="../MainWindow.ui" line="712"/>
         <source>Update search plugin</source>
         <translation>Zoeken plugin bijwerken</translation>
     </message>
@@ -1352,17 +1352,17 @@ Stop het eerste proccess eerst.
         <translation>Overdrachten</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="873"/>
+        <location filename="../MainWindow.ui" line="885"/>
         <source>Preview file</source>
         <translation>Kijk vooruit op bestand</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="878"/>
+        <location filename="../MainWindow.ui" line="890"/>
         <source>Clear log</source>
         <translation>Wist log</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="853"/>
+        <location filename="../MainWindow.ui" line="865"/>
         <source>Delete Permanently</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1778,37 +1778,37 @@ Stop het eerste proccess eerst.
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="343"/>
+        <location filename="../options_imp.cpp" line="235"/>
         <source>Options saved successfully!</source>
         <translation>Opties succesvol opgeslagen!</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="803"/>
+        <location filename="../options_imp.cpp" line="681"/>
         <source>Choose Scan Directory</source>
         <translation>Kies scanmap</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="810"/>
+        <location filename="../options_imp.cpp" line="688"/>
         <source>Choose ipfilter.dat file</source>
         <translation>Kies ipfilter.dat bestand</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="826"/>
+        <location filename="../options_imp.cpp" line="704"/>
         <source>Choose save Directory</source>
         <translation>Kies opslaan map</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="858"/>
+        <location filename="../options_imp.cpp" line="736"/>
         <source>I/O Error</source>
         <translation>I/O Fout</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="858"/>
+        <location filename="../options_imp.cpp" line="736"/>
         <source>Couldn&apos;t open:</source>
         <translation>Kon niet openen:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="858"/>
+        <location filename="../options_imp.cpp" line="736"/>
         <source>in read mode.</source>
         <translation>in lees stand.</translation>
     </message>
@@ -1828,12 +1828,12 @@ Stop het eerste proccess eerst.
         <translation type="obsolete">is onjuist geformuleerd.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="925"/>
+        <location filename="../options_imp.cpp" line="803"/>
         <source>Range Start IP</source>
         <translation>Reeks Begin IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="926"/>
+        <location filename="../options_imp.cpp" line="804"/>
         <source>Start IP:</source>
         <translation>Begin IP:</translation>
     </message>
@@ -1848,22 +1848,22 @@ Stop het eerste proccess eerst.
         <translation type="obsolete">Dit IP is incorrect.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="942"/>
+        <location filename="../options_imp.cpp" line="820"/>
         <source>Range End IP</source>
         <translation>Reeks Einde IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="943"/>
+        <location filename="../options_imp.cpp" line="821"/>
         <source>End IP:</source>
         <translation>Einde IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="959"/>
+        <location filename="../options_imp.cpp" line="837"/>
         <source>IP Range Comment</source>
         <translation>IP Reeks Opmerkingen</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="960"/>
+        <location filename="../options_imp.cpp" line="838"/>
         <source>Comment:</source>
         <translation>Opmerkingen:</translation>
     </message>
@@ -1874,17 +1874,17 @@ Stop het eerste proccess eerst.
         <translation>naar</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="818"/>
+        <location filename="../options_imp.cpp" line="696"/>
         <source>Choose your favourite preview program</source>
         <translation>Kies uw favoriete vooruitblik programma</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="954"/>
+        <location filename="../options_imp.cpp" line="832"/>
         <source>Invalid IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="954"/>
+        <location filename="../options_imp.cpp" line="832"/>
         <source>This IP is invalid.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2169,57 +2169,57 @@ selecteer alstublieft een er van:</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentAddition.h" line="194"/>
+        <location filename="../torrentAddition.h" line="188"/>
         <source>True</source>
         <translation type="unfinished">Waar</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="126"/>
+        <location filename="../torrentAddition.h" line="120"/>
         <source>Unable to decode torrent file:</source>
         <translation type="unfinished">Torrentfile kan niet gedecodeerd worden:</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="128"/>
+        <location filename="../torrentAddition.h" line="122"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished">Dit bestand is corrupt of is geen torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="150"/>
+        <location filename="../torrentAddition.h" line="144"/>
         <source>Choose save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="190"/>
+        <location filename="../torrentAddition.h" line="184"/>
         <source>False</source>
         <translation type="unfinished">Onwaar</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="235"/>
+        <location filename="../torrentAddition.h" line="229"/>
         <source>Empty save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="235"/>
+        <location filename="../torrentAddition.h" line="229"/>
         <source>Please enter a save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="241"/>
+        <location filename="../torrentAddition.h" line="235"/>
         <source>Save path creation error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="241"/>
+        <location filename="../torrentAddition.h" line="235"/>
         <source>Could not create the save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="281"/>
+        <location filename="../torrentAddition.h" line="272"/>
         <source>Invalid file selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="281"/>
+        <location filename="../torrentAddition.h" line="272"/>
         <source>You must select at least one file in the torrent</source>
         <translation type="unfinished"></translation>
     </message>
