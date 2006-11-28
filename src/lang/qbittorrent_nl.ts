@@ -3,40 +3,40 @@
 <context>
     <name>@default</name>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>b</source>
         <comment> bytes</comment>
         <translation type="obsolete">b</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>KB</source>
         <translation type="obsolete">KB</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>MB</source>
         <translation type="obsolete">MB</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>GB</source>
         <translation type="obsolete">GB</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>KB</source>
         <comment>kilobytes</comment>
         <translation type="obsolete">KB</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>MB</source>
         <comment>megabytes</comment>
         <translation type="obsolete">MB</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>GB</source>
         <comment>gigabytes</comment>
         <translation type="obsolete">GB</translation>
@@ -55,7 +55,7 @@
         <translation>Over</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
 &lt;br&gt;
 Copyright  2006 by Christophe Dumez&lt;br&gt;
@@ -71,7 +71,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>Auteur</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>qBittorrent Author</source>
         <translation type="obsolete">qBittorrent Auteur</translation>
     </message>
@@ -106,12 +106,12 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>Frankrijk</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>chris@dchris.eu</source>
         <translation type="obsolete">chris@dchris.eu</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>http://dchris.eu</source>
         <translation type="obsolete">http://dchris.eu</translation>
     </message>
@@ -136,7 +136,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
@@ -259,7 +259,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>Deelratio:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Kb/s</source>
         <translation type="obsolete">Kb/s</translation>
     </message>
@@ -274,17 +274,17 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>verbindingen</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>to</source>
         <translation type="obsolete">naar</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>1 KB DL = </source>
         <translation type="obsolete"> 1 KB DL =</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>KB UP max.</source>
         <translation type="obsolete">KB UP max.</translation>
     </message>
@@ -319,7 +319,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation> Reeks verwijden</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>ipfilter.dat URL or PATH:</source>
         <translation type="obsolete">ip[filter.dat URL of pad:</translation>
     </message>
@@ -396,50 +396,50 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="653"/>
         <source>Language</source>
-        <translation type="unfinished">Taal</translation>
+        <translation>Taal</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Please choose your preferred language in the following list:</source>
         <translation type="obsolete">Selecteer uw taal in de onderstaande lijst:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Language settings will take effect after restart.</source>
         <translation type="obsolete">Taalinstellingen zullen van effect worden na herstart.</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>English</source>
         <translation type="obsolete">Engels</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>French</source>
         <translation type="obsolete">Frans</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Simplified Chinese</source>
         <translation type="obsolete">Chinese</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Korean</source>
         <translation type="obsolete">Koreaans</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Spanish</source>
         <translation type="obsolete">Spaans</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Catalan</source>
         <translation type="obsolete">Catalaans</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>German</source>
         <translation type="obsolete">Duits</translation>
     </message>
@@ -464,7 +464,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>ipfilter.dat pad:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Clear finished downloads on exit</source>
         <translation type="obsolete">Verwijder voltooide downloads bij afsluiten</translation>
     </message>
@@ -499,22 +499,22 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>Gedrag</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>OSD</source>
         <translation type="obsolete">OSD</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Always display OSD</source>
         <translation type="obsolete">OSD altijd weergeven</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Display OSD only if window is minimized or iconified</source>
         <translation type="obsolete">OSD alleen weergeven indien venster geminimaliseerd of in systeemvak</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Never display OSD</source>
         <translation type="obsolete">OSD nooit weergeven</translation>
     </message>
@@ -534,7 +534,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>KiB UP max.</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>DHT (Trackerless):</source>
         <translation type="obsolete">DHT (Geen Tracker):</translation>
     </message>
@@ -561,52 +561,52 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1313"/>
         <source>Systray Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Systeemvak Berichten</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1325"/>
         <source>Always display systray messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Altijd systeemvak berichten weergeven</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1335"/>
         <source>Display systray messages only when window is hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Systeemvak berichten alleen weergeven als het venster verborgen is</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1342"/>
         <source>Never display systray messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Systeemvak berichten nooit weergeven</translation>
     </message>
     <message>
         <location filename="../options.ui" line="515"/>
         <source>DHT configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT configuratie</translation>
     </message>
     <message>
         <location filename="../options.ui" line="535"/>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT poort:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="733"/>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Let op:&lt;/b&gt; Veranderingen worden toegepast na herstarten van qBittorrent.</translation>
     </message>
     <message>
         <location filename="../options.ui" line="740"/>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Vertalers opmerking:&lt;/b&gt; Wanneer qBittorrent niet beschikbaar is in uw taal,&lt;br/&gt;en u zou willen vertalen in uw eigen taal,&lt;br/&gt;neem alstublieft contact op met chris@qbittorrent.org.</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1154"/>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Geef een torrent toevoegen dialoog weer elke keer als ik een torrent toevoeg</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1167"/>
         <source>Default save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Standaard oplag pad</translation>
     </message>
 </context>
 <context>
@@ -617,7 +617,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation> qBittorrent</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source> :: By Christophe Dumez :: Copyright (c) 2006</source>
         <translation type="obsolete"> :: Door Christophe Dumez :: Copyright (c) 2006</translation>
     </message>
@@ -627,17 +627,17 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation> gestart.</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>qBittorrent</source>
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>DL Speed: </source>
         <translation type="obsolete"> DL snelheid:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>kb/s</source>
         <translation type="obsolete">kb/s</translation>
     </message>
@@ -668,12 +668,12 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>Staat al in downloadlijst.</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source> kb/s</source>
         <translation type="obsolete"> kb/s</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Unknown</source>
         <translation type="obsolete">Onbekend</translation>
     </message>
@@ -703,7 +703,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>Weet u het zeker? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Are you sure you want to delete all files in download list?</source>
         <translation type="obsolete">Weet u zeker dat u alle bestanden uit de downloadlijst wilt verwijderen?</translation>
     </message>
@@ -718,7 +718,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>&amp;Nee</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Download list cleared.</source>
         <translation type="obsolete">Downloadlijst leeg gemaakt.</translation>
     </message>
@@ -739,7 +739,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation> Aan het luisteren op poort:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>paused</source>
         <translation type="obsolete">gepauzeerd</translation>
     </message>
@@ -749,7 +749,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>Alle downloads gepauzeerd.</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>started</source>
         <translation type="obsolete">gestart</translation>
     </message>
@@ -801,7 +801,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation> &lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL snelheid:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>/s</source>
         <comment>&lt;unit&gt;/seconds</comment>
         <translation type="obsolete">/s</translation>
@@ -827,19 +827,19 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>Downloaden...</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>m</source>
         <comment>minutes</comment>
         <translation type="obsolete">m</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>h </source>
         <comment>hours</comment>
         <translation type="obsolete"> u</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>d </source>
         <comment>days</comment>
         <translation type="obsolete"> d</translation>
@@ -875,17 +875,17 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>Zoeken...</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>I/O Error</source>
         <translation type="obsolete">I/O Fout</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Torrent file URL</source>
         <translation type="obsolete">Torrent bestand URL</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Torrent file URL:</source>
         <translation type="obsolete">Torrent bestand URL:</translation>
     </message>
@@ -895,7 +895,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>Weet u zeker dat u wil afsluiten? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Are you sure you want to quit qbittorrent?</source>
         <translation type="obsolete">Weet u zeker dat u qbittorrent af wil sluiten?</translation>
     </message>
@@ -905,12 +905,12 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source> KiB/s</source>
         <translation type="obsolete"> KiB/s</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Stalled</source>
         <translation type="obsolete">Geblokkeerd</translation>
     </message>
@@ -935,7 +935,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>Zoeken gaf geen resultaten</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Search is Finished</source>
         <translation type="obsolete">Zoeken is Klaar</translation>
     </message>
@@ -1075,34 +1075,34 @@ Stop het eerste proccess eerst.
     <message>
         <location filename="../GUI.cpp" line="1842"/>
         <source>Download finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Download afgerond</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1842"/>
         <source> has finished downloading.</source>
         <comment>&lt;filename&gt; has finished downloading.</comment>
-        <translation type="unfinished"> is klaar met downloaden.</translation>
+        <translation> is klaar met downloaden.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="2155"/>
         <source>Search Engine</source>
-        <translation type="unfinished">Zoekmachine</translation>
+        <translation>Zoekmachine</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="894"/>
         <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
+        <translation>Weet u zeker dat u qBittorrent af wil sluiten?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1072"/>
         <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Weet u zeker dat u de geselecteerde onderdelen in de download lijst en van harde schijf wil verwijderen?</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>qBittorrent :: By Christophe Dumez</source>
         <translation type="obsolete">qBittorrent :: By Christophe Dumez</translation>
     </message>
@@ -1117,7 +1117,7 @@ Stop het eerste proccess eerst.
         <translation>Totale DL snelheid:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Kb/s</source>
         <translation type="obsolete">Kb/s</translation>
     </message>
@@ -1127,37 +1127,37 @@ Stop het eerste proccess eerst.
         <translation>Totale UP snelheid:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Name</source>
         <translation type="obsolete">Naam</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Size</source>
         <translation type="obsolete">Grootte</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>% DL</source>
         <translation type="obsolete">% DL</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>DL Speed</source>
         <translation type="obsolete">DL snelheid</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>UP Speed</source>
         <translation type="obsolete">UP snelheid</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Status</source>
         <translation type="obsolete">Status</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>ETA</source>
         <translation type="obsolete">Geschatte resterende tijd</translation>
     </message>
@@ -1232,12 +1232,12 @@ Stop het eerste proccess eerst.
         <translation>Documentatie</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Connexion Status</source>
         <translation type="obsolete">Verbindingsstatus</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Delete All</source>
         <translation type="obsolete">Verwijder alles</translation>
     </message>
@@ -1247,12 +1247,12 @@ Stop het eerste proccess eerst.
         <translation>Torrent eigenschappen</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Connection Status</source>
         <translation type="obsolete">Verbindingsstatus</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Downloads</source>
         <translation type="obsolete">Downloads</translation>
     </message>
@@ -1292,17 +1292,17 @@ Stop het eerste proccess eerst.
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Seeds</source>
         <translation type="obsolete">Uploaders</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Leechers</source>
         <translation type="obsolete">Downloaders</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Search Engine</source>
         <translation type="obsolete">Zoekmachine</translation>
     </message>
@@ -1332,7 +1332,7 @@ Stop het eerste proccess eerst.
         <translation>Maak torrent</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Ratio: </source>
         <translation type="obsolete"> Deelverhouding:</translation>
     </message>
@@ -1364,7 +1364,7 @@ Stop het eerste proccess eerst.
     <message>
         <location filename="../MainWindow.ui" line="865"/>
         <source>Delete Permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>Permanent verwijderen</translation>
     </message>
 </context>
 <context>
@@ -1383,7 +1383,7 @@ Stop het eerste proccess eerst.
 <context>
     <name>QTextEdit</name>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Clear</source>
         <translation type="obsolete">Wissen</translation>
     </message>
@@ -1396,12 +1396,12 @@ Stop het eerste proccess eerst.
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>I would like to thank sourceforge.net for hosting qBittorrent project.</source>
         <translation type="obsolete">Ik wil sourceforge.net graag bedanken voor het hosten van het qBittorrent project.</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>I would like to thank the following people who volonteered to translate qBittorrent:</source>
         <translation type="obsolete">Ik wil de volgende mensen graag bedanken die qBittorrent hebben vertaald:</translation>
     </message>
@@ -1456,67 +1456,67 @@ Stop het eerste proccess eerst.
     <message>
         <location filename="../addTorrentDialog.ui" line="13"/>
         <source>Torrent addition dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent toevoegen dialoog</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="45"/>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opslag pad:</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="63"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="78"/>
         <source>Torrent content:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent inhoud:</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="95"/>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestandsnaam</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="100"/>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestandsgrootte</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="105"/>
         <source>Selected</source>
-        <translation type="unfinished">Geselecteerd</translation>
+        <translation>Geselecteerd</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="113"/>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="unfinished">Download in juiste volgorde (langzamer maar goed voor vooruitblikken)</translation>
+        <translation>Download in juiste volgorde (langzamer maar goed voor vooruitblikken)</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="120"/>
         <source>Add to download list in paused state</source>
-        <translation type="unfinished"></translation>
+        <translation>Aan download lijst toevoegen in pauze stand</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="148"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Toevoegen</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="155"/>
         <source>Cancel</source>
-        <translation type="unfinished">Annuleren</translation>
+        <translation>Annuleren</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="188"/>
         <source>Unselect</source>
-        <translation type="unfinished"></translation>
+        <translation> Deselecteren</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="183"/>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecteren</translation>
     </message>
 </context>
 <context>
@@ -1653,7 +1653,7 @@ Stop het eerste proccess eerst.
         <translation>Bron pad bestaat niet</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Please type a correct input path first</source>
         <translation type="obsolete">Geef alstublieft eerst een geldig bron pad</translation>
     </message>
@@ -1670,7 +1670,7 @@ Stop het eerste proccess eerst.
     <message>
         <location filename="../createtorrent_imp.cpp" line="95"/>
         <source>Please type a valid input path first</source>
-        <translation type="unfinished"></translation>
+        <translation>Geef alstublieft eerst een geldig invoer pad</translation>
     </message>
 </context>
 <context>
@@ -1746,7 +1746,7 @@ Stop het eerste proccess eerst.
         <translation> u</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>d </source>
         <comment>days</comment>
         <translation type="obsolete"> d</translation>
@@ -1813,17 +1813,17 @@ Stop het eerste proccess eerst.
         <translation>in lees stand.</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Invalid Line</source>
         <translation type="obsolete">Ongeldige regel</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Line</source>
         <translation type="obsolete">Regel</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>is malformed.</source>
         <translation type="obsolete">is onjuist geformuleerd.</translation>
     </message>
@@ -1838,12 +1838,12 @@ Stop het eerste proccess eerst.
         <translation>Begin IP:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Incorrect IP</source>
         <translation type="obsolete">Incorrect IP</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>This IP is incorrect.</source>
         <translation type="obsolete">Dit IP is incorrect.</translation>
     </message>
@@ -1881,12 +1881,12 @@ Stop het eerste proccess eerst.
     <message>
         <location filename="../options_imp.cpp" line="832"/>
         <source>Invalid IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Ongeldig IP</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="832"/>
         <source>This IP is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dit IP is ongeldig.</translation>
     </message>
 </context>
 <context>
@@ -1931,7 +1931,7 @@ selecteer alstublieft een er van:</translation>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Main Infos</source>
         <translation type="obsolete">Algemene informatie</translation>
     </message>
@@ -1941,7 +1941,7 @@ selecteer alstublieft een er van:</translation>
         <translation>Download status:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Number of Peers:</source>
         <translation type="obsolete">Aantal peers:</translation>
     </message>
@@ -1951,17 +1951,17 @@ selecteer alstublieft een er van:</translation>
         <translation>Huidige sessie</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Total Uploaded:</source>
         <translation type="obsolete">Totaal geupload:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Total Downloaded:</source>
         <translation type="obsolete">Totaal gedownload:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Total Failed:</source>
         <translation type="obsolete">Totaal mislukt:</translation>
     </message>
@@ -1981,7 +1981,7 @@ selecteer alstublieft een er van:</translation>
         <translation>Trackers:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Current Tracker:</source>
         <translation type="obsolete">Huidige tracker:</translation>
     </message>
@@ -1991,7 +1991,7 @@ selecteer alstublieft een er van:</translation>
         <translation>Fouten:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Torrent Content</source>
         <translation type="obsolete">Torrent inhoud</translation>
     </message>
@@ -2076,22 +2076,22 @@ selecteer alstublieft een er van:</translation>
         <translation>Onbekend</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Complete: </source>
         <translation type="obsolete"> Klaar:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Partial: </source>
         <translation type="obsolete"> Gedeeltelijk:</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>False</source>
         <translation type="obsolete">Onwaar</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>True</source>
         <translation type="obsolete">Waar</translation>
     </message>
@@ -2106,7 +2106,7 @@ selecteer alstublieft een er van:</translation>
         <translation>Hoofdinformatie</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Number of peers:</source>
         <translation type="obsolete">Aantal peers:</translation>
     </message>
@@ -2136,7 +2136,7 @@ selecteer alstublieft een er van:</translation>
         <translation>Torrent inhoud</translation>
     </message>
     <message>
-        <location filename="" line="135068556"/>
+        <location filename="" line="8"/>
         <source>Options</source>
         <translation type="obsolete">Instellingen</translation>
     </message>
@@ -2163,7 +2163,7 @@ selecteer alstublieft een er van:</translation>
     <message>
         <location filename="../properties.ui" line="222"/>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opslag pad:</translation>
     </message>
 </context>
 <context>
@@ -2171,57 +2171,57 @@ selecteer alstublieft een er van:</translation>
     <message>
         <location filename="../torrentAddition.h" line="188"/>
         <source>True</source>
-        <translation type="unfinished">Waar</translation>
+        <translation>Waar</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="120"/>
         <source>Unable to decode torrent file:</source>
-        <translation type="unfinished">Torrentfile kan niet gedecodeerd worden:</translation>
+        <translation>Torrentfile kan niet gedecodeerd worden:</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="122"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Dit bestand is corrupt of is geen torrent.</translation>
+        <translation>Dit bestand is corrupt of is geen torrent.</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="144"/>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kies opslag pad</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="184"/>
         <source>False</source>
-        <translation type="unfinished">Onwaar</translation>
+        <translation>Onwaar</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="229"/>
         <source>Empty save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Leeg opslag pad</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="229"/>
         <source>Please enter a save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Geef alstublieft een opslag pad</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="235"/>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Opslag pad aanmaak fout</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="235"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kon het opslag pad niet aanmaken</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="272"/>
         <source>Invalid file selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Ongeldige bestand selectie</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="272"/>
         <source>You must select at least one file in the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>U moet tenminste een bestand in de torrent selecteren</translation>
     </message>
 </context>
 </TS>
