@@ -52,7 +52,7 @@ class about : public QDialog, private Ui::AboutDlg{
           - <u>Finnish:</u> Niklas Laxström (nikerabbit@users.sourceforge.net)<br>\
           - <u>German:</u> Niels Hoffmann (zentralmaschine@users.sourceforge.net)<br>\
 	  - <u>Greek:</u> Tsvetan Bankov (emerge_life@users.sourceforge.net)<br>\
-          - <u>Italian:</u> Maffo (maffo999@users.sourceforge.net)<br>\
+          - <u>Italian:</u> Ferraro Luciano (luciano.ferraro@gmail.com)<br>\
           - <u>Korean:</u> Jin Woo Sin (jin828sin@users.sourceforge.net)<br>\
           - <u>Norwegian:</u> Lars-Erik Labori (hamil@users.sourceforge.net)<br>\
           - <u>Polish:</u> Adam Babol (a-b@users.sourceforge.net)<br>\
