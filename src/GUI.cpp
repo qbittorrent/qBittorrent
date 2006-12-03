@@ -1093,7 +1093,7 @@ void GUI::deletePermanently(){
         // Delete item from download list
         DLListModel->removeRow(sortedIndex.first);
         // Get handle and remove the torrent
-        QMap<QString, torrent_handle>::iterator it = handles.find(fileName);
+        QHash<QString, torrent_handle>::iterator it = handles.find(fileName);
         if(it != handles.end() && it.key() == fileName) {
           torrent_handle h = it.value();
           savePath = QString::fromUtf8(h.save_path().string().c_str());
@@ -1164,7 +1164,7 @@ void GUI::deleteSelection(){
         // Delete item from download list
         DLListModel->removeRow(sortedIndex.first);
         // Get handle and remove the torrent
-        QMap<QString, torrent_handle>::iterator it = handles.find(fileName);
+        QHash<QString, torrent_handle>::iterator it = handles.find(fileName);
         if(it != handles.end() && it.key() == fileName) {
           torrent_handle h = it.value();
           s->remove_torrent(h);

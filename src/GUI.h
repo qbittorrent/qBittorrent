@@ -23,7 +23,7 @@
 #define GUI_H
 
 #include <QMainWindow>
-#include <QMap>
+#include <QHash>
 #include <QProcess>
 #include <QTcpServer>
 #include <QTcpSocket>
@@ -63,10 +63,10 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // Bittorrent
     session *s;
     std::pair<unsigned short, unsigned short> listenPorts;
-    QMap<QString, torrent_handle> handles;
+    QHash<QString, torrent_handle> handles;
     QTimer *checkConnect;
     QTimer *timerScan;
-    QMap<QString, QStringList> trackerErrors;
+    QHash<QString, QStringList> trackerErrors;
     trackerLogin *tracker_login;
     QList<QPair<torrent_handle,std::string> > unauthenticated_trackers;
     downloadThread *downloader;
@@ -90,7 +90,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     previewSelect *previewSelection;
     QProcess *previewProcess;
     // Search related
-    QMap<QString, QString> searchResultsUrls;
+    QHash<QString, QString> searchResultsUrls;
     QProcess *searchProcess;
     bool search_stopped;
     bool no_search_results;
