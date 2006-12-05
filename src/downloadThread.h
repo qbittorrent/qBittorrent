@@ -89,8 +89,8 @@ class downloadThread : public QThread {
             return;
           }
           // Set url to download
-          curl_easy_setopt(curl, CURLOPT_URL, (const char*)url.toUtf8());
-          qDebug("Url: %s", (const char*)url.toUtf8());
+          curl_easy_setopt(curl, CURLOPT_URL, url.toLocal8Bit().constData());
+          qDebug("Url: %s", url.toLocal8Bit().constData());
           // Define our callback to get called when there's data to be written
           curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, misc::my_fwrite);
           // Set destination file
@@ -102,6 +102,7 @@ class downloadThread : public QThread {
 	  curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1);
 	  // Any kind of authentication
 	  curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+          //curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
 	  // Auto referrer
 	  curl_easy_setopt(curl, CURLOPT_AUTOREFERER, 1);
 	  // Follow redirections
