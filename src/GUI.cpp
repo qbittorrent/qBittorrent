@@ -181,11 +181,11 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(myTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
   myTrayIcon->show();
   // Use a tcp server to allow only one instance of qBittorrent
-  tcpServer = new QTcpServer(this);
-  if (!tcpServer->listen(QHostAddress::LocalHost, 1666)) {
+  if (!tcpServer.listen(QHostAddress::LocalHost, 1666)) {
     std::cerr  << "Couldn't create socket, single instance mode won't work...\n";
   }
-  connect(tcpServer, SIGNAL(newConnection()), this, SLOT(AnotherInstanceConnected()));
+  connect(&tcpServer, SIGNAL(newConnection()), this, SLOT(acceptConnection()));
+//   connect(tcpServer, SIGNAL(bytesWritten(qint64)), this, SLOT(readParamsOnSocket(qint64)));
   // Start connection checking timer
   checkConnect = new QTimer(this);
   connect(checkConnect, SIGNAL(timeout()), this, SLOT(checkConnectionStatus()));
@@ -255,7 +255,6 @@ GUI::~GUI(){
   delete refresher;
   delete myTrayIcon;
   delete myTrayIconMenu;
-  delete tcpServer;
   delete DLDelegate;
   delete DLListModel;
   delete SearchListModel;
@@ -305,41 +304,20 @@ void GUI::balloonClicked(){
       activateWindow();
   }
 }
-// Buggy with Qt 4.1.2 : should try with another version
-// void GUI::readParamsOnSocket(){
-//     QTcpSocket *clientConnection = tcpServer->nextPendingConnection();
-//     if(clientConnection != 0){
-//       connect(clientConnection, SIGNAL(disconnected()), clientConnection, SLOT(deleteLater()));
-//       std::cout << "reading...\n";
-//       while (clientConnection->bytesAvailable() < (int)sizeof(quint16)) {
-//         std::cout << "reading size chunk\n";
-//         if (!clientConnection->waitForReadyRead(5000)) {
-//           std::cout << clientConnection->errorString().toStdString() << '\n';
-//           return;
-//         }
-//       }
-//       quint16 blockSize;
-//       QDataStream in(clientConnection);
-//       in.setVersion(QDataStream::Qt_4_0);
-//       in >> blockSize;
-//       while (clientConnection->bytesAvailable() < blockSize) {
-//         if (!clientConnection->waitForReadyRead(5000)) {
-//           std::cout << clientConnection->errorString().toStdString() << '\n';
-//           return;
-//         }
-//       }
-//       QString params;
-//       in >> params;
-//       std::cout << params.toStdString() << '\n';
-//       clientConnection->disconnectFromHost();
-//     }
-//     std::cout << "end reading\n";
-// }
 
-void GUI::AnotherInstanceConnected(){
-  clientConnection = tcpServer->nextPendingConnection();
+void GUI::acceptConnection(){
+  clientConnection = tcpServer.nextPendingConnection();
+  connect(clientConnection, SIGNAL(disconnected()), this, SLOT(readParamsOnSocket()));
+  qDebug("accepted connection from another instance");
+}
+
+void GUI::readParamsOnSocket(){
   if(clientConnection != 0){
-    connect(clientConnection, SIGNAL(disconnected()), this, SLOT(readParamsInFile()));
+    QByteArray params = clientConnection->readAll();
+    if(!params.isEmpty()){
+      processParams(QString(params.data()).split("\n"));
+      qDebug("Received parameters from another instance");
+    }
   }
 }
 
@@ -433,30 +411,6 @@ void GUI::selectGivenRow(const QModelIndex& index){
   for(int i=0; i<DLListModel->columnCount(); ++i){
     downloadList->selectionModel()->select(DLListModel->index(row, i), QItemSelectionModel::Select);
   }
-}
-
-// Called when the other instance is disconnected
-// Means the file is written
-void GUI::readParamsInFile(){
-  QFile paramsFile(QDir::tempPath()+QDir::separator()+"qBT-params.txt");
-  if (!paramsFile.open(QIODevice::ReadOnly | QIODevice::Text)){
-    paramsFile.remove();
-    return;
-  }
-  QStringList params;
-  while (!paramsFile.atEnd()) {
-    QByteArray line = paramsFile.readLine();
-    if(line.at(line.size()-1) == '\n'){
-      line.truncate(line.size()-1);
-    }
-    params << line;
-  }
-  if(params.size()){
-    qDebug("Received parameters from another instance");
-    processParams(params);
-  }
-  paramsFile.close();
-  paramsFile.remove();
 }
 
 void GUI::clearLog(){

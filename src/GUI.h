@@ -96,7 +96,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     bool no_search_results;
     QByteArray search_result_line_truncated;
     unsigned long nb_search_results;
-    QTcpServer *tcpServer;
+    QTcpServer tcpServer;
     QTcpSocket *clientConnection;
 
   protected slots:
@@ -109,8 +109,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void updateDlList();
     void showCreateWindow();
     void clearLog();
-    void AnotherInstanceConnected();
-    void readParamsInFile();
+    void readParamsOnSocket();
+    void acceptConnection();
     void saveCheckedSearchEngines(int) const;
     void saveColWidthDLList() const;
     void saveColWidthSearchList() const;

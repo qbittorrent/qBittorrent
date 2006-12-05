@@ -53,66 +53,31 @@ int main(int argc, char *argv[]){
   if(putenv("QBITTORRENT="VERSION)){
     std::cerr << "Couldn't set environment variable...\n";
   }
-  // Buggy with Qt 4.1.2 : should try with another version
   //Check if there is another instance running
-//   QTcpSocket *tcpSocket= new QTcpSocket();
-//   tcpSocket->connectToHost(QHostAddress::LocalHost, 1666);
-//   if (tcpSocket->waitForConnected(1000)){
-//     std::cout << "Another qBittorrent instance is already running...\n";
-//     // Send parameters
-//     if(argc > 1){
-//       QByteArray block;
-//       QDataStream out(&block, QIODevice::WriteOnly);
-//       out.setVersion(QDataStream::Qt_4_0);
-//       out << (quint16)0;
-//       std::cout << "deb size: " << block.data() << '\n';
-//       for(int i=1;i<argc;++i){
-//         out << QString(argv[i]);
-//         std::cout << QString(argv[i]).toStdString() << '\n';
-//       }
-//       std::cout << "writting: " << block.data() << '\n';
-//       out.device()->seek(0);
-//       std::cout << "size: " << block.size() << '\n';
-//       out << (quint16)(block.size() - sizeof(quint16));
-//       tcpSocket->write(block);
-//       std::cout << "written: " << block.data() << '\n';
-//       tcpSocket->waitForConnected(5000);
-//       tcpSocket->disconnectFromHost();
-//       std::cout << "disconnected\n";
-//       sleep(5);
-//     }
-//     tcpSocket->close();
-//     delete tcpSocket;
-//     return 0;
-//   }
-  // Check if another instance is running
   QTcpSocket tcpSocket;
   tcpSocket.connectToHost(QHostAddress::LocalHost, 1666);
   if (tcpSocket.waitForConnected(1000)){
-    qDebug("Another qBittorrent instance is already running...");
-    //  Write params to a temporary file
-    QFile paramsFile(QDir::tempPath()+QDir::separator()+"qBT-params.txt");
-    int count = 0;
-    while(paramsFile.exists() && count <10){
-      // If file exists, then the other instance is already reading params
-      // We wait...
-      SleeperThread::msleep(1000);
-      ++count;
+    std::cout << "Another qBittorrent instance is already running...\n";
+    // Send parameters
+    if(argc > 1){
+      QStringList params;
+      for(int i=1;i<argc;++i){
+        params << QString(argv[i]);
+        std::cout << QString(argv[i]).toStdString() << '\n';
+      }
+      QByteArray block = params.join("\n").toUtf8();
+      std::cout << "writting: " << block.data() << '\n';
+      std::cout << "size: " << block.size() << '\n';
+      uint val = tcpSocket.write(block);
+      if(tcpSocket.waitForBytesWritten(5000)){
+        std::cout << "written(" <<val<<"): " << block.data() << '\n';
+      }else{
+        std::cerr << "Writing to the socket timed out\n";
+      }
+      tcpSocket.disconnectFromHost();
+      std::cout << "disconnected\n";
     }
-    paramsFile.remove();
-    // Write params to the file
-    if (!paramsFile.open(QIODevice::WriteOnly | QIODevice::Text)){
-      std:: cerr << "could not pass parameters\n";
-      return 1;
-    }
-    qDebug("Passing parameters");
-    for(int i=1;i<argc;++i){
-      paramsFile.write(QByteArray(argv[i]).append("\n"));
-    }
-    paramsFile.close();
-    tcpSocket.disconnectFromHost();
     tcpSocket.close();
-    qDebug("exiting");
     return 0;
   }
   QApplication app(argc, argv);
