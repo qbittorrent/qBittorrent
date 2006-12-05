@@ -11,7 +11,7 @@
 - Allow to prioritize torrents
 - Optimize code to use less memory/cpu
 - Add some transparency (menus,...)
-- Add a column "Tracker status"?
+- Add a column seeds/leechs
 - Add upnp port forwarding support
 
 // Harder
