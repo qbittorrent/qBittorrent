@@ -33,6 +33,6 @@
 - Add Report a bug in qBittorrent menu entry
 - Allow to set upload limit for each torrent
 - Optimize code to use less memory/cpu
-- Check space left on hard drive
+- Check space left on hard drive and pause all torrents before there is no space left
 - Option to shutdown computer when downloads are finished
 - Some GUI redesign
