@@ -180,7 +180,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>DLListDelegate</name>
     <message>
-        <location filename="../DLListDelegate.h" line="90"/>
+        <location filename="../DLListDelegate.h" line="91"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -611,7 +611,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="245"/>
+        <location filename="../GUI.cpp" line="251"/>
         <source>qBittorrent </source>
         <translation>qBittorrent </translation>
     </message>
@@ -621,7 +621,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> :: By Christophe Dumez :: Copyright (c) 2006</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="245"/>
+        <location filename="../GUI.cpp" line="251"/>
         <source> started.</source>
         <translation> iniciat.</translation>
     </message>
@@ -641,27 +641,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">kb/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="484"/>
+        <location filename="../GUI.cpp" line="452"/>
         <source>UP Speed: </source>
         <translation>Vel. Pujada:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="978"/>
+        <location filename="../GUI.cpp" line="957"/>
         <source>Open Torrent Files</source>
         <translation>Arxius Torrent oberts</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="979"/>
+        <location filename="../GUI.cpp" line="958"/>
         <source>Torrent Files</source>
         <translation>Arxius Torrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1229"/>
+        <location filename="../GUI.cpp" line="1208"/>
         <source>Couldn&apos;t create the directory:</source>
         <translation>No es pot crear el directori:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1254"/>
+        <location filename="../GUI.cpp" line="1233"/>
         <source>already in download list.</source>
         <comment>&lt;file&gt; already in download list.</comment>
         <translation>torna a estar a la llista de descàrregues.</translation>
@@ -677,27 +677,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Desconegut</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1349"/>
+        <location filename="../GUI.cpp" line="1329"/>
         <source>added to download list.</source>
         <translation>agregat a la llista de descàrregues.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1355"/>
+        <location filename="../GUI.cpp" line="1335"/>
         <source>resumed. (fast resume)</source>
         <translation>reanudat (reanudar ràpidament)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1381"/>
+        <location filename="../GUI.cpp" line="1361"/>
         <source>Unable to decode torrent file:</source>
         <translation>Deshabilita el decodificador d&apos; arxius torrent:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1383"/>
+        <location filename="../GUI.cpp" line="1363"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Aquest arxiu està corrupte o no es un arxiu torrent.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1143"/>
+        <location filename="../GUI.cpp" line="1122"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Estàs segur? -- qBittorrent</translation>
     </message>
@@ -707,12 +707,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Estàs segur de que vols buidar la llista de descàrregues?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2127"/>
+        <location filename="../GUI.cpp" line="2123"/>
         <source>&amp;Yes</source>
         <translation>&amp;Yes</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2127"/>
+        <location filename="../GUI.cpp" line="2123"/>
         <source>&amp;No</source>
         <translation>&amp;No</translation>
     </message>
@@ -722,18 +722,18 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Llista de descàrregues buidada.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1144"/>
+        <location filename="../GUI.cpp" line="1123"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>Estàs segur de que vols esborrar les descàrregues seleccionades?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1185"/>
+        <location filename="../GUI.cpp" line="1164"/>
         <source>removed.</source>
         <comment>&lt;file&gt; removed.</comment>
         <translation>esborrat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1565"/>
+        <location filename="../GUI.cpp" line="1546"/>
         <source>Listening on port: </source>
         <translation>Escoltant al port: </translation>
     </message>
@@ -743,7 +743,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">pausat</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1685"/>
+        <location filename="../GUI.cpp" line="1666"/>
         <source>All Downloads Paused.</source>
         <translation>Totes les descàrregues Pausades.</translation>
     </message>
@@ -753,49 +753,49 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">iniciat</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1744"/>
+        <location filename="../GUI.cpp" line="1725"/>
         <source>All Downloads Resumed.</source>
         <translation>Totes les descàrregues reanudades.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1711"/>
+        <location filename="../GUI.cpp" line="1850"/>
         <source>paused.</source>
         <comment>&lt;file&gt; paused.</comment>
         <translation>pausat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1765"/>
+        <location filename="../GUI.cpp" line="1746"/>
         <source>resumed.</source>
         <comment>&lt;file&gt; resumed.</comment>
         <translation>reanudat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1818"/>
+        <location filename="../GUI.cpp" line="1799"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Online</source>
         <translation>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1823"/>
+        <location filename="../GUI.cpp" line="1804"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
         <translation>&lt;b&gt;Estat de conexió:&lt;/b&gt;&lt;br&gt;Tallafocs activat?&lt;br&gt;&lt;i&gt;No entren conexions...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1827"/>
+        <location filename="../GUI.cpp" line="1808"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
         <translation>&lt;b&gt;Estat de conexió:&lt;/b&gt;&lt;br&gt;Desconectat&lt;br&gt;&lt;i&gt;No s&apos;han trobat fonts...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1840"/>
+        <location filename="../GUI.cpp" line="1821"/>
         <source> has finished downloading.</source>
         <translation> ha finalitzat la descàrrega.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1861"/>
+        <location filename="../GUI.cpp" line="1857"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>No es pot obrir el port especificat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="484"/>
+        <location filename="../GUI.cpp" line="452"/>
         <source>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </source>
         <translation>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </translation>
     </message>
@@ -806,22 +806,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="509"/>
+        <location filename="../GUI.cpp" line="477"/>
         <source>Finished</source>
         <translation>Finalitzat</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="518"/>
+        <location filename="../GUI.cpp" line="487"/>
         <source>Checking...</source>
         <translation>Validant...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1764"/>
+        <location filename="../GUI.cpp" line="1745"/>
         <source>Connecting...</source>
         <translation>Conectant...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="543"/>
+        <location filename="../GUI.cpp" line="514"/>
         <source>Downloading...</source>
         <translation>Descàrregant...</translation>
     </message>
@@ -844,32 +844,32 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">d </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1536"/>
+        <location filename="../GUI.cpp" line="1517"/>
         <source>None</source>
         <translation>Res</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1902"/>
+        <location filename="../GUI.cpp" line="1898"/>
         <source>Empty search pattern</source>
         <translation>Busqueda pare buida</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1902"/>
+        <location filename="../GUI.cpp" line="1898"/>
         <source>Please type a search pattern first</source>
         <translation>Si us plau introduïu una busqueda pare primer</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1907"/>
+        <location filename="../GUI.cpp" line="1903"/>
         <source>No seach engine selected</source>
         <translation>No as seleccionat motor per cercar</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1907"/>
+        <location filename="../GUI.cpp" line="1903"/>
         <source>You must select at least one search engine.</source>
         <translation>Has de seleccionar un motor de busqueda.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1947"/>
+        <location filename="../GUI.cpp" line="1943"/>
         <source>Searching...</source>
         <translation>Cercant...</translation>
     </message>
@@ -884,9 +884,9 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Parat</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../GUI.cpp" line="1843"/>
         <source>I/O Error</source>
-        <translation type="obsolete">I/O Error</translation>
+        <translation type="unfinished">I/O Error</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -929,7 +929,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Una descàrrega HTTP ha fallat, raó: </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="893"/>
+        <location filename="../GUI.cpp" line="866"/>
         <source>Are you sure you want to quit? -- qBittorrent</source>
         <translation>Estas segur que vols sortir? -- qBittorrent</translation>
     </message>
@@ -954,7 +954,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Descàrrega fallida:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="484"/>
+        <location filename="../GUI.cpp" line="452"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -974,22 +974,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Lloc</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2166"/>
+        <location filename="../GUI.cpp" line="2162"/>
         <source>Search is finished</source>
         <translation>La Recerca ha finalitzat</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2158"/>
+        <location filename="../GUI.cpp" line="2154"/>
         <source>An error occured during search...</source>
         <translation>Hi ha hagut un error durant la recerca...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2161"/>
+        <location filename="../GUI.cpp" line="2157"/>
         <source>Search aborted</source>
         <translation>Recerca abortada</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2164"/>
+        <location filename="../GUI.cpp" line="2160"/>
         <source>Search returned no results</source>
         <translation>La recerca no ha tornat Resultats</translation>
     </message>
@@ -999,12 +999,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">La recerca a finalitzat</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2142"/>
+        <location filename="../GUI.cpp" line="2138"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation>Actualització plugin de recerca -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2126"/>
+        <location filename="../GUI.cpp" line="2122"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -1015,146 +1015,161 @@ Log:
 </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2140"/>
+        <location filename="../GUI.cpp" line="2136"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Ho sento, el servidor per actualitzar està temporalment no disponible.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2143"/>
+        <location filename="../GUI.cpp" line="2139"/>
         <source>Your search plugin is already up to date.</source>
         <translation>El teu plugin de recerca torna a estar actualitzat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2170"/>
+        <location filename="../GUI.cpp" line="2166"/>
         <source>Results</source>
         <translation>Resultats</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="195"/>
+        <location filename="../GUI.cpp" line="201"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="196"/>
+        <location filename="../GUI.cpp" line="202"/>
         <source>Size</source>
         <translation>Mida</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="100"/>
+        <location filename="../GUI.cpp" line="103"/>
         <source>Progress</source>
         <translation>Progrès</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="101"/>
+        <location filename="../GUI.cpp" line="104"/>
         <source>DL Speed</source>
         <translation>Vel. Desc</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="102"/>
+        <location filename="../GUI.cpp" line="105"/>
         <source>UP Speed</source>
         <translation>Vel. Pujada</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="103"/>
+        <location filename="../GUI.cpp" line="107"/>
         <source>Status</source>
         <translation>Estat</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="104"/>
+        <location filename="../GUI.cpp" line="108"/>
         <source>ETA</source>
         <translation>ETA</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="197"/>
+        <location filename="../GUI.cpp" line="203"/>
         <source>Seeders</source>
         <translation>Seeders</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="198"/>
+        <location filename="../GUI.cpp" line="204"/>
         <source>Leechers</source>
         <translation>Leechers</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="199"/>
+        <location filename="../GUI.cpp" line="205"/>
         <source>Search engine</source>
         <translation>Motor per cercar</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="548"/>
+        <location filename="../GUI.cpp" line="519"/>
         <source>Stalled</source>
         <comment>state of a torrent whose DL Speed is 0</comment>
         <translation>Parat</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1709"/>
+        <location filename="../GUI.cpp" line="1848"/>
         <source>Paused</source>
         <translation>Pausat</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="427"/>
+        <location filename="../GUI.cpp" line="419"/>
         <source>Preview process already running</source>
         <translation>Previsualitzar els processos que corren</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="427"/>
+        <location filename="../GUI.cpp" line="419"/>
         <source>There is already another preview process running.
 Please close the other one first.</source>
         <translation>Hi ha un altre procés corrent.
 Si et plau tanca l&apos;altre primer.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2301"/>
+        <location filename="../GUI.cpp" line="2297"/>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
         <translation>NO es pot descarregar</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2301"/>
+        <location filename="../GUI.cpp" line="2297"/>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
         <translation>Raó:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2320"/>
+        <location filename="../GUI.cpp" line="2316"/>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
         <translation>Descarregant</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2320"/>
+        <location filename="../GUI.cpp" line="2316"/>
         <source>Please wait...</source>
         <translation>Espera ...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1359"/>
+        <location filename="../GUI.cpp" line="1339"/>
         <source>Transfers</source>
         <translation>Transferits</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="894"/>
+        <location filename="../GUI.cpp" line="867"/>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation>Estas segur que vols sortir de qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1072"/>
+        <location filename="../GUI.cpp" line="1051"/>
         <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
         <translation>Estàs segur que vols esborrar els objectes seleccionats de la llista de descàrregues i del disc dur?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1842"/>
+        <location filename="../GUI.cpp" line="1823"/>
         <source>Download finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1842"/>
+        <location filename="../GUI.cpp" line="1823"/>
         <source> has finished downloading.</source>
         <comment>&lt;filename&gt; has finished downloading.</comment>
         <translation type="unfinished"> ha finalitzat la descàrrega.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2155"/>
+        <location filename="../GUI.cpp" line="2151"/>
         <source>Search Engine</source>
         <translation type="unfinished">Motor de Busqueda</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="106"/>
+        <source>Seeds/Leechs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1843"/>
+        <source>An error occured when trying to read or write </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1843"/>
+        <source>The disk is probably full, download has been paused</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1220,74 +1235,74 @@ Si et plau tanca l&apos;altre primer.</translation>
         <translation type="obsolete">ETA</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="764"/>
+        <location filename="../MainWindow.ui" line="758"/>
         <source>&amp;File</source>
         <translation>&amp;Fitxer</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="743"/>
+        <location filename="../MainWindow.ui" line="737"/>
         <source>&amp;Options</source>
         <translation>&amp;Opcions</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="737"/>
+        <location filename="../MainWindow.ui" line="767"/>
         <source>&amp;Help</source>
         <translation>&amp;Ajuda</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="749"/>
+        <location filename="../MainWindow.ui" line="743"/>
         <source>&amp;Edit</source>
         <translation>&amp;Editar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="815"/>
+        <location filename="../MainWindow.ui" line="817"/>
         <source>Open</source>
         <translation>Obre</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="820"/>
+        <location filename="../MainWindow.ui" line="822"/>
         <source>Exit</source>
         <translation>Sortir</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="825"/>
+        <location filename="../MainWindow.ui" line="827"/>
         <source>Preferences</source>
         <translation>Preferències</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="830"/>
+        <location filename="../MainWindow.ui" line="832"/>
         <source>About</source>
         <translation>Sobre</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="835"/>
+        <location filename="../MainWindow.ui" line="837"/>
         <source>Start</source>
         <translation>Comença</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="840"/>
+        <location filename="../MainWindow.ui" line="842"/>
         <source>Pause</source>
         <translation>Pausa</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="845"/>
+        <location filename="../MainWindow.ui" line="847"/>
         <source>Delete</source>
         <translation>Esborra</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="850"/>
+        <location filename="../MainWindow.ui" line="852"/>
         <source>Pause All</source>
         <translation>Pausa Tot</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="855"/>
+        <location filename="../MainWindow.ui" line="857"/>
         <source>Start All</source>
         <translation>Comença totes</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="860"/>
         <source>Documentation</source>
-        <translation>Documentació</translation>
+        <translation type="obsolete">Documentació</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -1300,7 +1315,7 @@ Si et plau tanca l&apos;altre primer.</translation>
         <translation type="obsolete">Esborra Tot</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="870"/>
+        <location filename="../MainWindow.ui" line="872"/>
         <source>Torrent Properties</source>
         <translation>Propietats del Torrent</translation>
     </message>
@@ -1365,7 +1380,7 @@ Si et plau tanca l&apos;altre primer.</translation>
         <translation type="obsolete">Motor de Busqueda</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="875"/>
+        <location filename="../MainWindow.ui" line="877"/>
         <source>Download from URL</source>
         <translation>Descarregant de URL</translation>
     </message>
@@ -1385,7 +1400,7 @@ Si et plau tanca l&apos;altre primer.</translation>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="880"/>
+        <location filename="../MainWindow.ui" line="882"/>
         <source>Create torrent</source>
         <translation>Crear torrent</translation>
     </message>
@@ -1410,19 +1425,29 @@ Si et plau tanca l&apos;altre primer.</translation>
         <translation>Transferits</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="885"/>
+        <location filename="../MainWindow.ui" line="887"/>
         <source>Preview file</source>
         <translation>Previsualitza el fitxer</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="890"/>
+        <location filename="../MainWindow.ui" line="892"/>
         <source>Clear log</source>
         <translation>Neteja el registre</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="865"/>
+        <location filename="../MainWindow.ui" line="867"/>
         <source>Delete Permanently</source>
         <translation>Esborrar Permanentment</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.ui" line="862"/>
+        <source>Visit website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.ui" line="897"/>
+        <source>Report a bug</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1797,43 +1822,43 @@ Si et plau tanca l&apos;altre primer.</translation>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.h" line="70"/>
+        <location filename="../misc.h" line="73"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="70"/>
+        <location filename="../misc.h" line="73"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="70"/>
+        <location filename="../misc.h" line="73"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="70"/>
+        <location filename="../misc.h" line="73"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="79"/>
+        <location filename="../misc.h" line="82"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="189"/>
+        <location filename="../misc.h" line="192"/>
         <source>m</source>
         <comment>minutes</comment>
         <translation>m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="189"/>
+        <location filename="../misc.h" line="192"/>
         <source>h </source>
         <comment>hours</comment>
         <translation>h </translation>
@@ -1845,24 +1870,24 @@ Si et plau tanca l&apos;altre primer.</translation>
         <translation type="obsolete">d </translation>
     </message>
     <message>
-        <location filename="../misc.h" line="191"/>
+        <location filename="../misc.h" line="194"/>
         <source>Unknown</source>
         <translation>Desconegut</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="184"/>
+        <location filename="../misc.h" line="187"/>
         <source>h</source>
         <comment>hours</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../misc.h" line="189"/>
+        <location filename="../misc.h" line="192"/>
         <source>d</source>
         <comment>days</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../misc.h" line="68"/>
+        <location filename="../misc.h" line="71"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Desconegut</translation>

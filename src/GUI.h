@@ -106,9 +106,11 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void toggleVisibility(QSystemTrayIcon::ActivationReason e);
     void showAbout();
     void setInfoBar(const QString& info, const QString& color="black");
-    void updateDlList();
+    void updateDlList(bool force=false);
     void showCreateWindow();
     void clearLog();
+    void openqBTHomepage();
+    void openqBTBugTracker();
     void readParamsOnSocket();
     void acceptConnection();
     void saveCheckedSearchEngines(int) const;
@@ -184,6 +186,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
   protected:
     void closeEvent(QCloseEvent *);
     void hideEvent(QHideEvent *);
+    void showEvent(QHideEvent *);
 
   public:
     // Construct / Destruct

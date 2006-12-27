@@ -7,33 +7,36 @@
 
 // Intermediate
 - Port on MacOS, Windows (and create an installer for Windows) - Progressing
-- Allow to prioritize files within a torrent
-- Allow to prioritize torrents
+- Option to shutdown computer when downloads are finished
 - Optimize code to use less memory/cpu
 - Add some transparency (menus,...)
-- Add a column seeds/leechs
 - Add upnp port forwarding support
 
 // Harder
 - Allow user to organize the downloads into categories/folders
 - Display new searches in new tabs
-- Display a progress bar that really display the pieces we have (like in eMule)
+- Display a progress bar that really displays the pieces we have (like in eMule)
+
+// Waiting for libtorrent
+- Encryption support (waiting for libtorrent)
+- File selection in a torrent in compact mode
+- Allow to prioritize files within a torrent
+- Allow to prioritize torrents
 
 // Unsure
 - Move Speed/ratio to a status bar ?
 - Azureus spoofing to prevent ban from trackers?
 - Download from RSS?
-- Encryption support (waiting for libtorrent)
 - Split kernel from GUI? (would be a lot better but require some deep changes)
 - Web interface?
 - Use downloader class to download search plugin updates
+- Add autocompletion in search engine
+- Allow to set upload limit for each torrent
+- Add a torrent scheduler
 
 // In v0.9.0
-- Add Visit qBittorrent website menu entry
-- Add Report a bug in qBittorrent menu entry
-- Force a refresh of dl list data when window is coming up from the systray
-- Allow to set upload limit for each torrent
-- Optimize code to use less memory/cpu
-- Check space left on hard drive and pause all torrents before there is no space left
-- Option to shutdown computer when downloads are finished
-- Some GUI redesign
+- Some GUI redesign ?
+- base on libtorrent v0.12 (still not released)
+- Peer Exchange (PeX) support in libtorrent v0.12
+- Check deletion from hard drive (bug reported)
+- Should create options dialog only when needed to save up some memory

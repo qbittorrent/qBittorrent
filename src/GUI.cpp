@@ -33,6 +33,7 @@
 #include <QHeaderView>
 #include <QScrollBar>
 #include <QSettings>
+#include <QDesktopServices>
 
 #include <boost/format.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -70,6 +71,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   actionDownload_from_URL->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/url.png")));
   actionOptions->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/settings.png")));
   actionAbout->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/info.png")));
+  actionWebsite->setIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent32.png")));
+  actionBugReport->setIcon(QIcon(QString::fromUtf8(":/Icons/newmsg.png")));
   actionStart->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play.png")));
   actionPause->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")));
   actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")));
@@ -100,6 +103,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   DLListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
   DLListModel->setHeaderData(DLSPEED, Qt::Horizontal, tr("DL Speed"));
   DLListModel->setHeaderData(UPSPEED, Qt::Horizontal, tr("UP Speed"));
+  DLListModel->setHeaderData(SEEDSLEECH, Qt::Horizontal, tr("Seeds/Leechs"));
   DLListModel->setHeaderData(STATUS, Qt::Horizontal, tr("Status"));
   DLListModel->setHeaderData(ETA, Qt::Horizontal, tr("ETA"));
   downloadList->setModel(DLListModel);
@@ -154,6 +158,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(downloadList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(togglePausedState(const QModelIndex&)));
   connect(downloadList->header(), SIGNAL(sectionPressed(int)), this, SLOT(sortDownloadList(int)));
   connect(downloadList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLListMenu(const QPoint&)));
+  connect(actionWebsite, SIGNAL(triggered()), this, SLOT(openqBTHomepage()));
+  connect(actionBugReport, SIGNAL(triggered()), this, SLOT(openqBTBugTracker()));
   connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayGUIMenu(const QPoint&)));
   connect(actionPreview_file, SIGNAL(triggered()), this, SLOT(previewFileSelection()));
   connect(infoBar, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayInfoBarMenu(const QPoint&)));
@@ -263,6 +269,14 @@ GUI::~GUI(){
   delete downloader;
   delete connecStatusLblIcon;
   delete s;
+}
+
+void GUI::openqBTHomepage(){
+   QDesktopServices::openUrl(QUrl("http://www.qbittorrent.org"));
+}
+
+void GUI::openqBTBugTracker(){
+   QDesktopServices::openUrl(QUrl("http://bugs.qbittorrent.org"));
 }
 
 void GUI::writeSettings() {
@@ -427,7 +441,7 @@ void GUI::displayInfoBarMenu(const QPoint& pos){
 
 // get information from torrent handles and
 // update download list accordingly
-void GUI::updateDlList(){
+void GUI::updateDlList(bool force){
   torrent_handle h;
   char tmp[MAX_CHAR_TMP];
   char tmp2[MAX_CHAR_TMP];
@@ -436,7 +450,7 @@ void GUI::updateDlList(){
   snprintf(tmp, MAX_CHAR_TMP, "%.1f", sessionStatus.payload_upload_rate/1024.);
   snprintf(tmp2, MAX_CHAR_TMP, "%.1f", sessionStatus.payload_download_rate/1024.);
   myTrayIcon->setToolTip(tr("<b>qBittorrent</b><br>DL Speed: ")+ QString(tmp2) +tr("KiB/s")+"<br>"+tr("UP Speed: ")+ QString(tmp) + tr("KiB/s")); // tray icon
-  if(isMinimized() || isHidden() || tabs->currentIndex()){
+  if( !force && (isMinimized() || isHidden() || tabs->currentIndex())){
     // No need to update if qBittorrent DL list is hidden
     return;
   }
@@ -462,6 +476,7 @@ void GUI::updateDlList(){
             DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
             DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Finished")));
             DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
+            DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_complete, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_incomplete, true).c_str())));
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
             DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)1.));
@@ -472,6 +487,7 @@ void GUI::updateDlList(){
             DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Checking...")));
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
             setRowColor(row, "grey");
+            DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_complete, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_incomplete, true).c_str())));
             DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
             break;
           case torrent_status::connecting_to_tracker:
@@ -487,6 +503,7 @@ void GUI::updateDlList(){
               DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
               setRowColor(row, "grey");
             }
+            DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_complete, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_incomplete, true).c_str())));
             DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
             DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
             DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
@@ -504,11 +521,13 @@ void GUI::updateDlList(){
               DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
               setRowColor(row, "black");
             }
+            DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_complete, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_incomplete, true).c_str())));
             DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
             DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
             DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
             break;
           default:
+            DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_complete, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_incomplete, true).c_str())));
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
         }
       }
@@ -886,7 +905,13 @@ void GUI::hideEvent(QHideEvent *e){
     // Hide window
     hide();
   }
-  // Accept exit
+  // Accept hiding
+  e->accept();
+}
+
+void GUI::showEvent(QHideEvent *e){
+  updateDlList(true);
+  // Accept showing
   e->accept();
 }
 
@@ -1270,6 +1295,7 @@ void GUI::addTorrent(const QString& path, bool fromScanDir, const QString& from_
     DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)t.total_size()));
     DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
     DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
+    DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
     DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
     // Pause torrent if it was paused last time
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+QString(t.name().c_str())+".paused")){
@@ -1370,7 +1396,8 @@ QString GUI::getSavePath(QString fileName){
 }
 
 void GUI::reloadTorrent(const torrent_handle &h, bool compact_mode){
-  QDir saveDir(options->getSavePath()), torrentBackup(misc::qBittorrentPath() + "BT_backup");
+  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+  fs::path saveDir = h.save_path();
   QString fileName = QString(h.get_torrent_info().name().c_str());
   qDebug("Reloading torrent: %s", (const char*)fileName.toUtf8());
   torrent_handle new_h;
@@ -1412,7 +1439,7 @@ void GUI::reloadTorrent(const torrent_handle &h, bool compact_mode){
     std::cerr << "Error: Couldn't reload the torrent\n";
     return;
   }
-  new_h = s->add_torrent(t, fs::path((const char*)saveDir.path().toUtf8()), resumeData, compact_mode);
+  new_h = s->add_torrent(t, saveDir, resumeData, compact_mode);
   if(compact_mode){
     qDebug("Using compact allocation mode");
   }else{
@@ -1808,6 +1835,21 @@ void GUI::checkConnectionStatus(){
         if(isScanningDir){
           QFile::remove(scan_dir+fileName+".torrent");
         }
+      }
+    }
+    else if (file_error_alert* p = dynamic_cast<file_error_alert*>(a.get())){
+      QString fileName = QString(p->handle.get_torrent_info().name().c_str());
+      if(options->getUseOSDAlways() || (options->getUseOSDWhenHiddenOnly() && (isMinimized() || isHidden()))) {
+        myTrayIcon->showMessage(tr("I/O Error"), tr("An error occured when trying to read or write ")+ fileName+"."+tr("The disk is probably full, download has been paused"), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
+        // Download will be pausedby libtorrent. Updating GUI information accordingly
+        int row = getRowFromName(fileName);
+        DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
+        DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
+        DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Paused")));
+        DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+        setInfoBar("'"+ fileName +"' "+tr("paused.", "<file> paused."));
+        DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
+        setRowColor(row, "red");
       }
     }
     else if (dynamic_cast<listen_failed_alert*>(a.get())){

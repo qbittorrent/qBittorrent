@@ -732,12 +732,6 @@
      <height>29</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_Help" >
-    <property name="title" >
-     <string>&amp;Help</string>
-    </property>
-    <addaction name="actionAbout" />
-   </widget>
    <widget class="QMenu" name="menu_Options" >
     <property name="title" >
      <string>&amp;Options</string>
@@ -767,6 +761,14 @@
     <addaction name="actionDownload_from_URL" />
     <addaction name="actionCreate_torrent" />
     <addaction name="actionExit" />
+   </widget>
+   <widget class="QMenu" name="menu_Help" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout" />
+    <addaction name="actionBugReport" />
+    <addaction name="actionWebsite" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Edit" />
@@ -855,9 +857,9 @@
     <string>Start All</string>
    </property>
   </action>
-  <action name="actionDocumentation" >
+  <action name="actionWebsite" >
    <property name="text" >
-    <string>Documentation</string>
+    <string>Visit website</string>
    </property>
   </action>
   <action name="actionDelete_Permanently" >
@@ -888,6 +890,11 @@
   <action name="actionClearLog" >
    <property name="text" >
     <string>Clear log</string>
+   </property>
+  </action>
+  <action name="actionBugReport" >
+   <property name="text" >
+    <string>Report a bug</string>
    </property>
   </action>
  </widget>

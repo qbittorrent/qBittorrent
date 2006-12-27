@@ -36,8 +36,9 @@
 #define PROGRESS 2
 #define DLSPEED 3
 #define UPSPEED 4
-#define STATUS 5
-#define ETA 6
+#define SEEDSLEECH 5
+#define STATUS 6
+#define ETA 7
 
 class DLListDelegate: public QAbstractItemDelegate {
   Q_OBJECT

@@ -39,11 +39,14 @@ class misc : public QObject{
 
   public:
     // Convert any type of variable to C++ String
-    template <class T> static std::string toString(const T& x){
+    // convert=true will convert -1 to 0
+    template <class T> static std::string toString(const T& x, bool convert=false){
       std::ostringstream o;
       if(!(o<<x)) {
         throw std::runtime_error("::toString()");
       }
+      if(o.str() == "-1" && convert)
+        return "0";
       return o.str();
     }
 
