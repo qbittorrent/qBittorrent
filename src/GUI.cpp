@@ -476,7 +476,6 @@ void GUI::updateDlList(bool force){
             DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
             DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Finished")));
             DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
-            DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_complete, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_incomplete, true).c_str())));
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
             DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)1.));
@@ -487,7 +486,6 @@ void GUI::updateDlList(bool force){
             DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Checking...")));
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
             setRowColor(row, "grey");
-            DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_complete, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_incomplete, true).c_str())));
             DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
             break;
           case torrent_status::connecting_to_tracker:
@@ -503,7 +501,6 @@ void GUI::updateDlList(bool force){
               DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
               setRowColor(row, "grey");
             }
-            DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_complete, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_incomplete, true).c_str())));
             DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
             DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
             DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
@@ -521,7 +518,6 @@ void GUI::updateDlList(bool force){
               DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
               setRowColor(row, "black");
             }
-            DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_complete, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_incomplete, true).c_str())));
             DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
             DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
             DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
@@ -529,6 +525,11 @@ void GUI::updateDlList(bool force){
           default:
             DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_complete, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_incomplete, true).c_str())));
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+        }
+        if(torrentStatus.num_complete == -1 && torrentStatus.num_incomplete == -1){
+          DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(tr("Unknown")));
+        }else{
+          DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_complete, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_incomplete, true).c_str())));
         }
       }
     }catch(invalid_handle e){
@@ -1295,7 +1296,7 @@ void GUI::addTorrent(const QString& path, bool fromScanDir, const QString& from_
     DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)t.total_size()));
     DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
     DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
-    DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
+    DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(tr("Unknown")));
     DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
     // Pause torrent if it was paused last time
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+QString(t.name().c_str())+".paused")){
