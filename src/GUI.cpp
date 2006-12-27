@@ -97,7 +97,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   // Fix Tool bar layout
   toolBar->layout()->setSpacing(7);
   // Set Download list model
-  DLListModel = new QStandardItemModel(0,7);
+  DLListModel = new QStandardItemModel(0,8);
   DLListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));
   DLListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
   DLListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
