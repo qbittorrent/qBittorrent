@@ -277,7 +277,9 @@ void properties::on_select_clicked(){
     }
   }
   // Save filtered pieces to a file to remember them
-  saveFilteredFiles();
+  if(selectedIndexes.size() != 0){
+    saveFilteredFiles();
+  }
 }
 
 void properties::on_okButton_clicked(){
@@ -303,7 +305,9 @@ void properties::on_unselect_clicked(){
     }
   }
   // Save filtered files to a file to remember them
-  saveFilteredFiles();
+  if(selectedIndexes.size() != 0){
+    saveFilteredFiles();
+  }
 }
 
 void properties::saveFilteredFiles(){
