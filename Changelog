@@ -2,7 +2,7 @@
     - FEATURE: Based on libtorrent v0.12
     - FEATURE: Based on Qt 4.2
     - FEATURE: Brand new trayicon from Qt 4.2
-    - FEATURE: Support Peer Exchange (PeX)
+    - FEATURE: Support uTorrent Peer Exchange (PeX - exchanges peers between clients)
     - FEATURE: Added a menu action to visit qBittorrent website
     - FEATURE: Added a menu action to report a bug in qBittorrent
     - FEATURE: Use hashtables for faster lookup
