@@ -40,6 +40,9 @@
 #include <boost/filesystem/exception.hpp>
 #include <curl/curl.h>
 
+#include <libtorrent/extensions/metadata_transfer.hpp>
+#include <libtorrent/extensions/ut_pex.hpp>
+
 #include "GUI.h"
 #include "misc.h"
 #include "createtorrent_imp.h"
@@ -127,7 +130,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   DHTEnabled = false;
   // Configure BT session according to options
   configureSession();
-  s->disable_extensions();
+  s->add_extension(&create_metadata_plugin);
+  s->add_extension(&create_ut_pex_plugin);
   // download thread
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString, int, QString)), this, SLOT(processDownloadedFile(QString, QString, int, QString)));
@@ -523,14 +527,9 @@ void GUI::updateDlList(bool force){
             DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
             break;
           default:
-            DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_complete, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_incomplete, true).c_str())));
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
         }
-        if(torrentStatus.num_complete == -1 && torrentStatus.num_incomplete == -1){
-          DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(tr("Unknown")));
-        }else{
-          DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_complete, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_incomplete, true).c_str())));
-        }
+        DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_seeds, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_peers - torrentStatus.num_seeds, true).c_str())));
       }
     }catch(invalid_handle e){
       continue;
@@ -1296,7 +1295,7 @@ void GUI::addTorrent(const QString& path, bool fromScanDir, const QString& from_
     DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)t.total_size()));
     DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
     DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
-    DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(tr("Unknown")));
+    DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
     DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
     // Pause torrent if it was paused last time
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+QString(t.name().c_str())+".paused")){

@@ -26,12 +26,13 @@
 #include <boost/filesystem/path.hpp>
 #include <boost/filesystem/fstream.hpp>
 
-#include "libtorrent/entry.hpp"
-#include "libtorrent/bencode.hpp"
-#include "libtorrent/torrent_info.hpp"
-#include "libtorrent/file.hpp"
-#include "libtorrent/storage.hpp"
-#include "libtorrent/hasher.hpp"
+#include <libtorrent/entry.hpp>
+#include <libtorrent/bencode.hpp>
+#include <libtorrent/torrent_info.hpp>
+#include <libtorrent/file.hpp>
+#include <libtorrent/storage.hpp>
+#include <libtorrent/hasher.hpp>
+#include <libtorrent/file_pool.hpp>
 
 #include "createtorrent_imp.h"
 
@@ -105,7 +106,8 @@ void createtorrent::on_createButton_clicked(){
     add_files(t, full_path.branch_path(), full_path.leaf());
     t.set_piece_size(piece_size);
 
-    storage st(t, full_path.branch_path());
+    file_pool fp;
+    storage st(t, full_path.branch_path(), fp);
     QStringList trackers = txt_announce->toPlainText().split('\n');
     for(int i=0; i<trackers.size(); ++i){
       t.add_tracker((const char*)trackers.at(i).toUtf8());

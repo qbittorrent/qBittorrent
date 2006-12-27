@@ -46,32 +46,6 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
   torrent_status torrentStatus = h.status();
   torrent_info torrentInfo = h.get_torrent_info();
   fileName->setText(torrentInfo.name().c_str());
-  torrent_status::state_t state = torrentStatus.state;
-  switch(state){
-    case torrent_status::finished:
-      dlState->setText(tr("Finished"));
-      break;
-    case torrent_status::queued_for_checking:
-      dlState->setText(tr("Queued for checking"));
-      break;
-    case torrent_status::checking_files:
-      dlState->setText(tr("Checking files"));
-      break;
-    case torrent_status::connecting_to_tracker:
-      dlState->setText(tr("Connecting to tracker"));
-      break;
-    case torrent_status::downloading_metadata:
-      dlState->setText(tr("Downloading Metadata"));
-      break;
-    case torrent_status::downloading:
-      dlState->setText(tr("Downloading"));
-      break;
-    case torrent_status::seeding:
-      dlState->setText(tr("Seeding"));
-      break;
-    case torrent_status::allocating:
-      dlState->setText(tr("Allocating"));
-  }
   QString tracker = QString(torrentStatus.current_tracker.c_str()).trimmed();
   if(!tracker.isEmpty()){
     trackerURL->setText(tracker);
@@ -98,23 +72,6 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
     snprintf(tmp, MAX_CHAR_TMP, "%.1f", ratio);
     shareRatio->setText(tmp);
   }
-
-  float complete, partial;
-  QString completeStr, partialStr;
-  complete = torrentStatus.num_complete;
-  if(complete == -1){
-    completeStr = tr("Unknown");
-  }else{
-    completeStr = QString(misc::toString(complete).c_str());
-  }
-  partial = torrentStatus.num_incomplete;
-  if(partial == -1){
-    partialStr = tr("Unknown");
-  }else{
-    partialStr = QString(misc::toString(partial).c_str());
-  }
-  nbSeeds->setText(completeStr);
-  nbLeechers->setText(partialStr);
   // Tracker Errors
   for(int i=0; i < trackerErrors.size(); ++i){
     this->trackerErrors->append(trackerErrors.at(i));
