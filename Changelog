@@ -12,6 +12,7 @@
     - BUGFIX: Fixed download from url that would fail sometimes
     - BUGFIX: Save directory was reset to default when filtering files in torrent
     - BUGFIX: Force a refresh of download list when the window is shown (avoid delay)
+    - BUGFIX: Fixed deletion from hard drive (failed for non-empty folders)
     - COSMETIC: Replaced OSD messages by systray messages
 
 * Tue Nov 28 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.8.0

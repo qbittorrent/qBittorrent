@@ -1092,9 +1092,9 @@ void GUI::deletePermanently(){
           torrentBackup.remove(fileName+".savepath");
           // Remove from Hard drive TODO
           qDebug("Removing this on hard drive: %s", qPrintable(savePath+QDir::separator()+fileName));
-          QDir downloadedDir(savePath+QDir::separator()+fileName);
-          downloadedDir.rmpath(savePath+QDir::separator()+fileName);
-          QFile::remove(savePath+QDir::separator()+fileName);
+          if(!misc::removePath(savePath+QDir::separator()+fileName)){
+            qDebug("Couldn't remove the download on the hard drive");
+          }
           // Update info bar
           setInfoBar("'" + fileName +"' "+tr("removed.", "<file> removed."));
           --nbTorrents;
@@ -1261,6 +1261,7 @@ void GUI::addTorrent(const QString& path, bool fromScanDir, const QString& from_
       h = s->add_torrent(t, fs::path((const char*)savePath.toUtf8()), resume_data, true);
       qDebug("Compact allocation mode");
     }
+    // Is this really useful and appropriate ?
     //h.set_max_connections(60);
     h.set_max_uploads(-1);
     // Load filtered files

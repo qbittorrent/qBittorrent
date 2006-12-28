@@ -101,6 +101,33 @@ class misc : public QObject{
       return qBtPath;
     }
 
+    static bool removePath(QString path){
+      if(!QFile::remove(path)){
+        // Probably a folder
+        QDir current_dir(path);
+        if(current_dir.exists()){
+          //Remove sub items
+          QStringList subItems = current_dir.entryList();
+          QString item;
+          foreach(item, subItems){
+            if(item != "." && item != ".."){
+              qDebug("-> Removing "+(path+QDir::separator()+item).toUtf8());
+              removePath(path+QDir::separator()+item);
+            }
+          }
+          // Remove empty folder
+          if(current_dir.rmpath(path)){
+            return true;
+          }else{
+            return false;
+          }
+        }else{
+          return false;
+        }
+      }
+      return true;
+    }
+
     // Function called by curl to write the data to the file
     static int my_fwrite(void *buffer, size_t size, size_t nmemb, void *stream){
       return fwrite(buffer, size, nmemb, (FILE*)stream);
