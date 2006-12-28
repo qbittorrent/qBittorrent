@@ -39,3 +39,4 @@
 - Add an option to disable Peer Exchange (PeX)
 - Move deletion from hard drive to a thread to avoid GUI freezing
 - Should create options dialog only when needed to save up some memory
+- Download from RSS feeds
