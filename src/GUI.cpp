@@ -909,12 +909,6 @@ void GUI::hideEvent(QHideEvent *e){
   e->accept();
 }
 
-void GUI::showEvent(QHideEvent *e){
-  updateDlList(true);
-  // Accept showing
-  e->accept();
-}
-
 // Action executed when a file is dropped
 void GUI::dropEvent(QDropEvent *event){
   event->acceptProposedAction();

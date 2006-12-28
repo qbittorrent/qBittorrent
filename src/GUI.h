@@ -186,7 +186,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
   protected:
     void closeEvent(QCloseEvent *);
     void hideEvent(QHideEvent *);
-    void showEvent(QHideEvent *);
 
   public:
     // Construct / Destruct
