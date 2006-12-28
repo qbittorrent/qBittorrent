@@ -1261,7 +1261,7 @@ void GUI::addTorrent(const QString& path, bool fromScanDir, const QString& from_
       h = s->add_torrent(t, fs::path((const char*)savePath.toUtf8()), resume_data, true);
       qDebug("Compact allocation mode");
     }
-    h.set_max_connections(60);
+    //h.set_max_connections(60);
     h.set_max_uploads(-1);
     // Load filtered files
     loadFilteredFiles(h);
