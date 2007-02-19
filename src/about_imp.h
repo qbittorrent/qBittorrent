@@ -24,6 +24,9 @@
 
 #include "ui_about.h"
 #define VERSION "v0.9.0beta1"
+#define VERSION_MAJOR 0
+#define VERSION_MINOR 9
+#define VERSION_BUGFIX 0
 
 class about : public QDialog, private Ui::AboutDlg{
   Q_OBJECT

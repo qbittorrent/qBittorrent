@@ -65,7 +65,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   setWindowTitle(tr("qBittorrent ")+VERSION);
   QCoreApplication::setApplicationName("qBittorrent");
   readSettings();
-  s = new session(fingerprint("qB", 0, 9, 0, 0));
+  s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0));
   //s = new session(fingerprint("AZ", 2, 5, 0, 0)); //Azureus fingerprint
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent32.png")));
