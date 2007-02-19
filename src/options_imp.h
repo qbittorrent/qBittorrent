@@ -52,6 +52,7 @@ class options_imp : public QDialog, private Ui::Dialog{
     QString getScanDir() const;
     bool isDHTEnabled() const;
     int getDHTPort() const;
+    bool isPeXDisabled() const;
     // Filter Settings
     bool isFilteringEnabled() const;
     ip_filter getFilter() const;

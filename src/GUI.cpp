@@ -66,7 +66,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   QCoreApplication::setApplicationName("qBittorrent");
   readSettings();
   s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0));
-  //s = new session(fingerprint("AZ", 2, 5, 0, 0)); //Azureus fingerprint
+
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent32.png")));
   actionOpen->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/open.png")));
@@ -124,14 +124,11 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(timerScan, SIGNAL(timeout()), this, SLOT(scanDirectory()));
   // Set severity level of libtorrent session
   s->set_severity_level(alert::info);
-  // To avoid some exceptions
-  fs::path::default_name_check(fs::no_check);
   // DHT (Trackerless)
   DHTEnabled = false;
   // Configure BT session according to options
   configureSession();
   s->add_extension(&create_metadata_plugin);
-  s->add_extension(&create_ut_pex_plugin);
   // download thread
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString, int, QString)), this, SLOT(processDownloadedFile(QString, QString, int, QString)));
@@ -1585,6 +1582,12 @@ void GUI::configureSession(){
         qDebug("Disabling DHT Support");
       }
     }
+    if(!options->isPeXDisabled()){
+      qDebug("Enabling Peer eXchange (PeX)");
+      s->add_extension(&create_ut_pex_plugin);
+    }else{
+      qDebug("Peer eXchange (PeX) disabled");
+    }
     int dht_port = options->getDHTPort();
     if(dht_port >= 1000){
       struct dht_settings DHTSettings;
@@ -1610,7 +1613,6 @@ void GUI::configureSession(){
       }
     }
     proxySettings.user_agent = "qBittorrent "VERSION;
-    //proxySettings.user_agent = "Azureus";
     s->set_settings(proxySettings);
     // Scan dir stuff
     if(options->getScanDir().isNull()){

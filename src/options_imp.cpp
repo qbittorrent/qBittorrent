@@ -123,6 +123,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(enableScan_checkBox, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(disableMaxConnec, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(disableDHT, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(disablePeX, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(spin_dht_port, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   // Language
   connect(combo_i18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
@@ -169,6 +170,7 @@ void options_imp::saveOptions(){
   settings.setValue("PortRangeMax", getPorts().second);
   settings.setValue("ShareRatio", getRatio());
   settings.setValue("DHTPort", getDHTPort());
+  settings.setValue("PeXState", isPeXDisabled());
   settings.setValue("ScanDir", getScanDir());
   // End Main options
   settings.endGroup();
@@ -244,6 +246,7 @@ bool options_imp::isFilteringEnabled() const{
 void options_imp::loadOptions(){
   int value;
   float floatValue;
+  bool boolValue;
   QString strValue;
   QSettings settings("qBittorrent", "qBittorrent");
   // Check if min port < max port
@@ -300,6 +303,14 @@ void options_imp::loadOptions(){
       value = 6881;
     }
     spin_dht_port->setValue(value);
+  }
+  boolValue = settings.value("PeXState", 0).toBool();
+  if(value){
+    // Pex disabled
+    disablePeX->setChecked(true);
+  }else{
+    // PeX enabled
+    disablePeX->setChecked(false);
   }
   strValue = settings.value("ScanDir", QString()).toString();
   if(!strValue.isEmpty()){
@@ -434,6 +445,9 @@ bool options_imp::isDHTEnabled() const{
   return !disableDHT->isChecked();
 }
 
+bool options_imp::isPeXDisabled() const{
+  return disablePeX->isChecked();
+}
 // Return Download & Upload limits
 // [download,upload]
 QPair<int,int> options_imp::getLimits() const{
