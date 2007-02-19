@@ -1081,10 +1081,21 @@ void GUI::deletePermanently(){
           torrentBackup.remove(fileName+".incremental");
           torrentBackup.remove(fileName+".pieces");
           torrentBackup.remove(fileName+".savepath");
-          // Remove from Hard drive TODO
+          // Remove from Hard drive
           qDebug("Removing this on hard drive: %s", qPrintable(savePath+QDir::separator()+fileName));
-          if(!misc::removePath(savePath+QDir::separator()+fileName)){
-            qDebug("Couldn't remove the download on the hard drive");
+          // Deleting in a thread to avoid GUI freeze
+          deleteThread *deleter = new deleteThread(savePath+QDir::separator()+fileName);
+          deleters << deleter;
+          int i = 0;
+          while(i < deleters.size()){
+            deleter = deleters.at(i);
+            if(deleter->isFinished()){
+              qDebug("Delete thread has finished, deleting it");
+              deleters.removeAt(i);
+              delete deleter;
+            }else{
+              ++i;
+            }
           }
           // Update info bar
           setInfoBar("'" + fileName +"' "+tr("removed.", "<file> removed."));

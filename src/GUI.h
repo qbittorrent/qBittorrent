@@ -43,6 +43,8 @@
 #include "about_imp.h"
 #include "previewSelect.h"
 #include "trackerLogin.h"
+#include "deleteThread.h"
+
 
 #define TIME_TRAY_BALLOON 5000
 
@@ -72,6 +74,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     downloadThread *downloader;
     downloadFromURL *downloadFromURLDialog;
     bool DHTEnabled;
+    QList<deleteThread*> deleters;
     // GUI related
     options_imp *options;
     createtorrent *createWindow;
