@@ -37,9 +37,11 @@
 // in v1.0.0 (partial) or maybe v0.9.0 depending on next libtorrent release date
 - Should create options dialog only when needed to save up some memory
 - Download from RSS feeds
+- Move finished torrent to another tab and keep on seeding them even after restart
+- Allow to edit the trackers for a torrent
 - UPnP support
 
 // In v0.9.0
-- Two torrents with the same name are not necessarily the same
+- Two torrents with the same name are not necessarily the same (use sha1_hash?)
 - Implement close to systray
 - Wait for libtorrent v0.12 official release
