@@ -35,6 +35,7 @@ class properties : public QDialog, private Ui::properties{
   Q_OBJECT
   private:
     torrent_handle h;
+    QString fileHash;
     PropListDelegate *PropDelegate;
     QStandardItemModel *PropListModel;
     QTimer *updateProgressTimer;

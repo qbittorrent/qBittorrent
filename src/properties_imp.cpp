@@ -43,6 +43,7 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
   connect(filesList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(toggleSelectedState(const QModelIndex&)));
   // get Infos from torrent handle
   save_path->setText(QString(h.save_path().string().c_str()));
+  fileHash = QString(misc::toString(h.info_hash()).c_str());
   torrent_status torrentStatus = h.status();
   torrent_info torrentInfo = h.get_torrent_info();
   fileName->setText(torrentInfo.name().c_str());
@@ -88,7 +89,7 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
   }
   loadFilteredFiles();
   // Incremental download
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+QString(torrentInfo.name().c_str())+".incremental")){
+  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".incremental")){
     incrementalDownload->setChecked(true);
   }else{
     incrementalDownload->setChecked(false);
@@ -107,7 +108,7 @@ properties::~properties(){
 void properties::loadFilteredFiles(){
   torrent_info torrentInfo = h.get_torrent_info();
   QString fileName = QString(torrentInfo.name().c_str());
-  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".pieces");
+  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".pieces");
   has_filtered_files = false;
   qDebug("Loading filtered state of files");
   // Read saved file
@@ -205,12 +206,12 @@ void properties::on_incrementalDownload_stateChanged(int){
   torrent_info torrentInfo = h.get_torrent_info();
   if(incrementalDownload->isChecked()){
     // Create .incremental file
-    QFile incremental_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+QString(torrentInfo.name().c_str())+".incremental");
+    QFile incremental_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".incremental");
     incremental_file.open(QIODevice::WriteOnly | QIODevice::Text);
     incremental_file.close();
     h.set_sequenced_download_threshold(15);
   }else{
-    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+QString(torrentInfo.name().c_str())+".incremental");
+    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".incremental");
     h.set_sequenced_download_threshold(100);
   }
 }
@@ -271,7 +272,7 @@ void properties::saveFilteredFiles(){
   torrent_info torrentInfo = h.get_torrent_info();
   bool hasFilteredFiles = false;
   QString fileName = QString(torrentInfo.name().c_str());
-  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".pieces");
+  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".pieces");
   // First, remove old file
   pieces_file.remove();
   // Write new files

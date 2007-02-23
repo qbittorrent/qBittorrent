@@ -102,6 +102,7 @@ class misc : public QObject{
     }
 
     static bool removePath(QString path){
+      qDebug((QString("file to delete:") + path).toUtf8());
       if(!QFile::remove(path)){
         // Probably a folder
         QDir current_dir(path);

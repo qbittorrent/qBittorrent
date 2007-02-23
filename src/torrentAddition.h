@@ -50,6 +50,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
 
   private:
     QString fileName;
+    QString fileHash;
     QString filePath;
     QList<bool> selection;
     bool fromScanDir;
@@ -84,6 +85,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         torrent_info t(e);
         // Setting file name
         fileName = QString(t.name().c_str());
+        fileHash = QString(misc::toString(t.info_hash()).c_str());
         fileNameLbl->setText("<center><b>"+fileName+"</b></center>");
         // List files in torrent
         for(int i=0; i<t.num_files(); ++i){
@@ -198,7 +200,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
     }
 
     void saveFilteredFiles(){
-      QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".pieces");
+      QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".pieces");
       // First, remove old file
       pieces_file.remove();
       // Write new files
@@ -237,7 +239,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         }
       }
       // Save savepath
-      QFile savepath_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".savepath");
+      QFile savepath_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".savepath");
       savepath_file.open(QIODevice::WriteOnly | QIODevice::Text);
       savepath_file.write(savePath.path().toUtf8());
       savepath_file.close();
@@ -246,19 +248,19 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       settings.setValue("LastDirTorrentAdd", savePathTxt->text());
       // Create .incremental file if necessary
       if(checkIncrementalDL->isChecked()){
-        QFile incremental_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".incremental");
+        QFile incremental_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".incremental");
         incremental_file.open(QIODevice::WriteOnly | QIODevice::Text);
         incremental_file.close();
       }else{
-        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".incremental");
+        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".incremental");
       }
       // Create .paused file if necessary
       if(addInPause->isChecked()){
-        QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".paused");
+        QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
         paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
         paused_file.close();
       }else{
-        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileName+".paused");
+        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
       }
       // Check if there is at least one selected file
       bool selected_file = false;

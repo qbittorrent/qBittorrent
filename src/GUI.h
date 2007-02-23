@@ -195,7 +195,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     GUI(QWidget *parent=0, QStringList torrentCmdLine=QStringList());
     ~GUI();
     // Methods
-    int getRowFromName(const QString& name) const;
+    int getRowFromHash(const QString& name) const;
     float getNovaVersion(const QString& novaPath) const;
     QByteArray getNovaChangelog(const QString& novaPath) const;
     void updateNova() const;

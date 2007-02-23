@@ -39,6 +39,7 @@
 #define SEEDSLEECH 5
 #define STATUS 6
 #define ETA 7
+#define HASH 8
 
 class DLListDelegate: public QAbstractItemDelegate {
   Q_OBJECT
