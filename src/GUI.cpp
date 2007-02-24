@@ -1303,11 +1303,6 @@ void GUI::addTorrent(const QString& path, bool fromScanDir, const QString& from_
       if(scan_dir.at(scan_dir.length()-1) != QDir::separator()){
         scan_dir += QDir::separator();
       }
-      //rename torrent file to match file name and find it easily later
-      dest_file = scan_dir+hash.toUtf8()+".torrent";
-      if(!QFile::exists(dest_file)){
-        QFile::rename(file, dest_file);
-      }
     }
     // Adding torrent to download list
     DLListModel->insertRow(row);
@@ -1340,6 +1335,10 @@ void GUI::addTorrent(const QString& path, bool fromScanDir, const QString& from_
     }
     if(!from_url.isNull()){
       // remove temporary file
+      QFile::remove(file);
+    }
+    // Delete from scan dir to avoid trying to download it again
+    if(fromScanDir){
       QFile::remove(file);
     }
     // Update info Bar

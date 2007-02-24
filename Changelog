@@ -16,6 +16,7 @@
     - BUGFIX: Fixed deletion from hard drive (failed for non-empty folders)
     - BUGFIX: qBittorrent now identifies its version correctly on the network
     - BUGFIX: Preventing GUI from freezing when deleting a download permanently
+    - BUGFIX: Fix directory scanning (stop trying to download the same files several times)
     - COSMETIC: Replaced OSD messages by systray messages
 
 * Tue Nov 28 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.8.0
