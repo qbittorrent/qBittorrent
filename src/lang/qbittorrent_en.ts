@@ -440,17 +440,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1384"/>
+        <location filename="../GUI.cpp" line="1383"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2152"/>
+        <location filename="../GUI.cpp" line="2151"/>
         <source>&amp;Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2152"/>
+        <location filename="../GUI.cpp" line="2151"/>
         <source>&amp;No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -470,7 +470,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1772"/>
+        <location filename="../GUI.cpp" line="1771"/>
         <source>Connecting...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -480,12 +480,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1693"/>
+        <location filename="../GUI.cpp" line="1692"/>
         <source>All Downloads Paused.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1752"/>
+        <location filename="../GUI.cpp" line="1751"/>
         <source>All Downloads Resumed.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -516,17 +516,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1350"/>
+        <location filename="../GUI.cpp" line="1349"/>
         <source>added to download list.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1356"/>
+        <location filename="../GUI.cpp" line="1355"/>
         <source>resumed. (fast resume)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1382"/>
+        <location filename="../GUI.cpp" line="1381"/>
         <source>Unable to decode torrent file:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -537,20 +537,15 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1879"/>
+        <location filename="../GUI.cpp" line="1878"/>
         <source>paused.</source>
         <comment>&lt;file&gt; paused.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1773"/>
+        <location filename="../GUI.cpp" line="1772"/>
         <source>resumed.</source>
         <comment>&lt;file&gt; resumed.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="1568"/>
-        <source>Listening on port: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -569,57 +564,57 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1826"/>
+        <location filename="../GUI.cpp" line="1825"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Online</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1831"/>
+        <location filename="../GUI.cpp" line="1830"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1835"/>
+        <location filename="../GUI.cpp" line="1834"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1849"/>
+        <location filename="../GUI.cpp" line="1848"/>
         <source> has finished downloading.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1886"/>
+        <location filename="../GUI.cpp" line="1885"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1539"/>
+        <location filename="../GUI.cpp" line="1538"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1927"/>
+        <location filename="../GUI.cpp" line="1926"/>
         <source>Empty search pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1927"/>
+        <location filename="../GUI.cpp" line="1926"/>
         <source>Please type a search pattern first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1932"/>
+        <location filename="../GUI.cpp" line="1931"/>
         <source>No seach engine selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1932"/>
+        <location filename="../GUI.cpp" line="1931"/>
         <source>You must select at least one search engine.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1972"/>
+        <location filename="../GUI.cpp" line="1971"/>
         <source>Searching...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -634,32 +629,32 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2191"/>
+        <location filename="../GUI.cpp" line="2190"/>
         <source>Search is finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2183"/>
+        <location filename="../GUI.cpp" line="2182"/>
         <source>An error occured during search...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2186"/>
+        <location filename="../GUI.cpp" line="2185"/>
         <source>Search aborted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2189"/>
+        <location filename="../GUI.cpp" line="2188"/>
         <source>Search returned no results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2167"/>
+        <location filename="../GUI.cpp" line="2166"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2151"/>
+        <location filename="../GUI.cpp" line="2150"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -667,17 +662,17 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2165"/>
+        <location filename="../GUI.cpp" line="2164"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2168"/>
+        <location filename="../GUI.cpp" line="2167"/>
         <source>Your search plugin is already up to date.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2195"/>
+        <location filename="../GUI.cpp" line="2194"/>
         <source>Results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -738,7 +733,7 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1877"/>
+        <location filename="../GUI.cpp" line="1876"/>
         <source>Paused</source>
         <translation type="unfinished"></translation>
     </message>
@@ -754,46 +749,46 @@ Please close the other one first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2326"/>
+        <location filename="../GUI.cpp" line="2325"/>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2326"/>
+        <location filename="../GUI.cpp" line="2325"/>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2345"/>
+        <location filename="../GUI.cpp" line="2344"/>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2345"/>
+        <location filename="../GUI.cpp" line="2344"/>
         <source>Please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1360"/>
+        <location filename="../GUI.cpp" line="1359"/>
         <source>Transfers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1851"/>
+        <location filename="../GUI.cpp" line="1850"/>
         <source>Download finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1851"/>
+        <location filename="../GUI.cpp" line="1850"/>
         <source> has finished downloading.</source>
         <comment>&lt;filename&gt; has finished downloading.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2180"/>
+        <location filename="../GUI.cpp" line="2179"/>
         <source>Search Engine</source>
         <translation type="unfinished"></translation>
     </message>
@@ -813,18 +808,24 @@ Please close the other one first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1872"/>
+        <location filename="../GUI.cpp" line="1871"/>
         <source>I/O Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1872"/>
+        <location filename="../GUI.cpp" line="1871"/>
         <source>An error occured when trying to read or write </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1872"/>
+        <location filename="../GUI.cpp" line="1871"/>
         <source>The disk is probably full, download has been paused</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1567"/>
+        <source>Listening on port</source>
+        <comment>Listening on port &lt;xxxxx&gt;</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

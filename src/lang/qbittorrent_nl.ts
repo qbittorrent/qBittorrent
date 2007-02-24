@@ -688,22 +688,22 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Onbekend</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1350"/>
+        <location filename="../GUI.cpp" line="1349"/>
         <source>added to download list.</source>
         <translation>Toegevoegd aan downloadlijst.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1356"/>
+        <location filename="../GUI.cpp" line="1355"/>
         <source>resumed. (fast resume)</source>
         <translation>Hervat. (snel hervatten)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1382"/>
+        <location filename="../GUI.cpp" line="1381"/>
         <source>Unable to decode torrent file:</source>
         <translation>Torrentfile kan niet gedecodeerd worden:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1384"/>
+        <location filename="../GUI.cpp" line="1383"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Dit bestand is corrupt of is geen torrent.</translation>
     </message>
@@ -718,12 +718,12 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Weet u zeker dat u alle bestanden uit de downloadlijst wilt verwijderen?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2152"/>
+        <location filename="../GUI.cpp" line="2151"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2152"/>
+        <location filename="../GUI.cpp" line="2151"/>
         <source>&amp;No</source>
         <translation>&amp;Nee</translation>
     </message>
@@ -746,7 +746,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../GUI.cpp" line="1568"/>
         <source>Listening on port: </source>
-        <translation> Aan het luisteren op poort:</translation>
+        <translation type="obsolete"> Aan het luisteren op poort:</translation>
     </message>
     <message>
         <location filename="" line="8"/>
@@ -754,7 +754,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">gepauzeerd</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1693"/>
+        <location filename="../GUI.cpp" line="1692"/>
         <source>All Downloads Paused.</source>
         <translation>Alle downloads gepauzeerd.</translation>
     </message>
@@ -764,44 +764,44 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">gestart</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1752"/>
+        <location filename="../GUI.cpp" line="1751"/>
         <source>All Downloads Resumed.</source>
         <translation>Alle downloads hervat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1879"/>
+        <location filename="../GUI.cpp" line="1878"/>
         <source>paused.</source>
         <comment>&lt;file&gt; paused.</comment>
         <translation>gepauzeerd.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1773"/>
+        <location filename="../GUI.cpp" line="1772"/>
         <source>resumed.</source>
         <comment>&lt;file&gt; resumed.</comment>
         <translation>hervat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1826"/>
+        <location filename="../GUI.cpp" line="1825"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Online</source>
         <translation>&lt;b&gt;Verbindingsstatus:&lt;/b&gt;&lt;br&gt;Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1831"/>
+        <location filename="../GUI.cpp" line="1830"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
         <translation>&lt;b&gt;Verbindingsstatus:&lt;/b&gt;&lt;br&gt;Gefirewalled?&lt;br&gt;&lt;i&gt;Geen inkomende verbindingen...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1835"/>
+        <location filename="../GUI.cpp" line="1834"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
         <translation>&lt;b&gt;Verbindingsstatus:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;Geen peers gevonden...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1849"/>
+        <location filename="../GUI.cpp" line="1848"/>
         <source> has finished downloading.</source>
         <translation> is klaar met downloaden.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1886"/>
+        <location filename="../GUI.cpp" line="1885"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Kan niet luisteren op de aangegeven poorten.</translation>
     </message>
@@ -827,7 +827,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>Controleren...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1772"/>
+        <location filename="../GUI.cpp" line="1771"/>
         <source>Connecting...</source>
         <translation>Verbinding maken...</translation>
     </message>
@@ -855,37 +855,37 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> d</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1539"/>
+        <location filename="../GUI.cpp" line="1538"/>
         <source>None</source>
         <translation>Geen</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1927"/>
+        <location filename="../GUI.cpp" line="1926"/>
         <source>Empty search pattern</source>
         <translation>Leeg zoekpatroon</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1927"/>
+        <location filename="../GUI.cpp" line="1926"/>
         <source>Please type a search pattern first</source>
         <translation>Type alstublieft eerst een zoekpatroon</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1932"/>
+        <location filename="../GUI.cpp" line="1931"/>
         <source>No seach engine selected</source>
         <translation>Geen zoekmachine gekozen</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1932"/>
+        <location filename="../GUI.cpp" line="1931"/>
         <source>You must select at least one search engine.</source>
         <translation>U moet tenminste een zoekmachine kiezen.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1972"/>
+        <location filename="../GUI.cpp" line="1971"/>
         <source>Searching...</source>
         <translation>Zoeken...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1872"/>
+        <location filename="../GUI.cpp" line="1871"/>
         <source>I/O Error</source>
         <translation type="unfinished">I/O Fout</translation>
     </message>
@@ -925,22 +925,22 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Geblokkeerd</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2191"/>
+        <location filename="../GUI.cpp" line="2190"/>
         <source>Search is finished</source>
         <translation>Zoeken is klaar</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2183"/>
+        <location filename="../GUI.cpp" line="2182"/>
         <source>An error occured during search...</source>
         <translation>Een fout trad op tijdens zoeken...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2186"/>
+        <location filename="../GUI.cpp" line="2185"/>
         <source>Search aborted</source>
         <translation>Zoeken afgebroken</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2189"/>
+        <location filename="../GUI.cpp" line="2188"/>
         <source>Search returned no results</source>
         <translation>Zoeken gaf geen resultaten</translation>
     </message>
@@ -950,12 +950,12 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Zoeken is Klaar</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2167"/>
+        <location filename="../GUI.cpp" line="2166"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation>Zoeken plugin update -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2151"/>
+        <location filename="../GUI.cpp" line="2150"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -966,17 +966,17 @@ Changelog:
 </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2165"/>
+        <location filename="../GUI.cpp" line="2164"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Sorry, update server is tijdelijk niet bereikbaar.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2168"/>
+        <location filename="../GUI.cpp" line="2167"/>
         <source>Your search plugin is already up to date.</source>
         <translation>Uw zoeken plugin is al bijgewerkt.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2195"/>
+        <location filename="../GUI.cpp" line="2194"/>
         <source>Results</source>
         <translation>Resultaten</translation>
     </message>
@@ -1037,7 +1037,7 @@ Changelog:
         <translation>Stilstand</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1877"/>
+        <location filename="../GUI.cpp" line="1876"/>
         <source>Paused</source>
         <translation>Gepauzeerd</translation>
     </message>
@@ -1055,46 +1055,46 @@ Stop het eerste proccess eerst.
 </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2326"/>
+        <location filename="../GUI.cpp" line="2325"/>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
         <translation>Kon niet downloaden</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2326"/>
+        <location filename="../GUI.cpp" line="2325"/>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
         <translation>reden:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2345"/>
+        <location filename="../GUI.cpp" line="2344"/>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
         <translation>Downloaden</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2345"/>
+        <location filename="../GUI.cpp" line="2344"/>
         <source>Please wait...</source>
         <translation>Wachten...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1360"/>
+        <location filename="../GUI.cpp" line="1359"/>
         <source>Transfers</source>
         <translation>Overdrachten</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1851"/>
+        <location filename="../GUI.cpp" line="1850"/>
         <source>Download finished</source>
         <translation>Download afgerond</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1851"/>
+        <location filename="../GUI.cpp" line="1850"/>
         <source> has finished downloading.</source>
         <comment>&lt;filename&gt; has finished downloading.</comment>
         <translation> is klaar met downloaden.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2180"/>
+        <location filename="../GUI.cpp" line="2179"/>
         <source>Search Engine</source>
         <translation>Zoekmachine</translation>
     </message>
@@ -1114,13 +1114,19 @@ Stop het eerste proccess eerst.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1872"/>
+        <location filename="../GUI.cpp" line="1871"/>
         <source>An error occured when trying to read or write </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1872"/>
+        <location filename="../GUI.cpp" line="1871"/>
         <source>The disk is probably full, download has been paused</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1567"/>
+        <source>Listening on port</source>
+        <comment>Listening on port &lt;xxxxx&gt;</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1564,7 +1564,7 @@ void GUI::configureSession(){
     if(s->is_listening()){
       new_listenPort = s->listen_port();
       if(new_listenPort != old_listenPort){
-        setInfoBar(tr("Listening on port: ")+ QString(misc::toString(new_listenPort).c_str()));
+        setInfoBar(tr("Listening on port", "Listening on port <xxxxx>")+ ": " + QString(misc::toString(new_listenPort).c_str()));
       }
     }
     // Apply max connec limit (-1 if disabled)
