@@ -9,6 +9,7 @@
     - FEATURE: Improved the way parameters are passed between qBT instances (socket)
     - FEATURE: User is warned when hard drive becomes full and downloads are paused
     - FEATURE: Number of complete/incomplete sources are now displayed in download list for each torrent
+    - FEATURE: Implemented close to systray
     - BUGFIX: Two torrents can now have the same name although they are different
     - BUGFIX: Fixed download from url that would fail sometimes
     - BUGFIX: Save directory was reset to default when filtering files in torrent

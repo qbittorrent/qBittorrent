@@ -862,6 +862,11 @@ void GUI::showAbout(){
 
 // Called when we close the program
 void GUI::closeEvent(QCloseEvent *e){
+  if(options->getGoToSysTrayOnExitingWindow() && !this->isHidden()){
+    hide();
+    e->ignore();
+    return;
+  }
   if(options->getConfirmOnExit()){
     if(QMessageBox::question(this,
        tr("Are you sure you want to quit? -- qBittorrent"),

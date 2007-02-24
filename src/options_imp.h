@@ -71,6 +71,7 @@ class options_imp : public QDialog, private Ui::Dialog{
     QString getSavePath() const;
     bool getClearFinishedOnExit() const;
     bool getGoToSysTrayOnMinimizingWindow() const;
+    bool getGoToSysTrayOnExitingWindow() const;
     bool getConfirmOnExit() const;
     QString getPreviewProgram() const;
     bool getUseOSDAlways() const;

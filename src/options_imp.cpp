@@ -141,6 +141,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkAdditionDialog, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(txt_savePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(check_goToSysTray, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(check_closeToSysTray, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(clearFinished_checkBox, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(confirmExit_checkBox, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(preview_program, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -219,6 +220,7 @@ void options_imp::saveOptions(){
   settings.setValue("ConfirmOnExit", getConfirmOnExit());
   settings.setValue("ClearFinishedDownloads", getClearFinishedOnExit());
   settings.setValue("GoToSystray", getGoToSysTrayOnMinimizingWindow());
+  settings.setValue("GoToSystrayOnExit", getGoToSysTrayOnExitingWindow());
   settings.endGroup();
   settings.setValue("PreviewProgram", getPreviewProgram());
   // End Misc options
@@ -394,6 +396,7 @@ void options_imp::loadOptions(){
   confirmExit_checkBox->setChecked(settings.value("ConfirmOnExit", true).toBool());
   clearFinished_checkBox->setChecked(settings.value("ClearFinishedDownloads", true).toBool());
   check_goToSysTray->setChecked(settings.value("GoToSystray", true).toBool());
+  check_closeToSysTray->setChecked(settings.value("GoToSystrayOnExit", true).toBool());
   settings.endGroup();
   preview_program->setText(settings.value("PreviewProgram", QString()).toString());
   // End Misc options
@@ -435,6 +438,10 @@ QString options_imp::getPreviewProgram() const{
 
 bool options_imp::getGoToSysTrayOnMinimizingWindow() const{
   return check_goToSysTray->isChecked();
+}
+
+bool options_imp::getGoToSysTrayOnExitingWindow() const{
+  return check_closeToSysTray->isChecked();
 }
 
 bool options_imp::getConfirmOnExit() const{
