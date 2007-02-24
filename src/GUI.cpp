@@ -562,7 +562,7 @@ void GUI::sortDownloadListFloat(int index, Qt::SortOrder sortOrder){
   for(int row=0; row<nbRows_old; ++row){
     DLListModel->insertRow(DLListModel->rowCount());
     int sourceRow = lines[row].first;
-    for(int col=0; col<7; ++col){
+    for(int col=0; col<DLListModel->columnCount(); ++col){
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col)));
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::TextColorRole), Qt::TextColorRole);
@@ -583,7 +583,7 @@ void GUI::sortDownloadListString(int index, Qt::SortOrder sortOrder){
   for(int row=0; row<nbRows_old; ++row){
     DLListModel->insertRow(DLListModel->rowCount());
     int sourceRow = lines[row].first;
-    for(int col=0; col<7; ++col){
+    for(int col=0; col<DLListModel->columnCount(); ++col){
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col)));
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::TextColorRole), Qt::TextColorRole);
