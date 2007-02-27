@@ -10,12 +10,11 @@ Usage: $0 [OPTION]...
 This script creates necessary configuration files to build/install.
 
 Main options:
-  --prefix=[path]     Base path for build/install.  Default: /usr/local
-  --bindir=[path]     Directory for binaries.  Default: PREFIX/bin
-  --datadir=[path]    Directory for data.  Default: PREFIX/share
-  --qtdir=[path]      Directory where Qt is installed.
-  --verbose           Show extra configure output.
-  --help              This help text.
+  --prefix=[path]    Base path for build/install.  Default: /usr/local
+  --bindir=[path]    Directory for binaries.  Default: PREFIX/bin
+  --qtdir=[path]     Directory where Qt is installed.
+  --verbose          Show extra configure output.
+  --help             This help text.
 
 EOT
 }
@@ -122,11 +121,6 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
-		--datadir=*)
-			DATADIR=$optarg
-			shift
-			;;
-
 		--qtdir=*)
 			EX_QTDIR=$optarg
 			shift
@@ -143,7 +137,6 @@ done
 
 PREFIX=${PREFIX:-/usr/local}
 BINDIR=${BINDIR:-$PREFIX/bin}
-DATADIR=${DATADIR:-$PREFIX/share}
 
 echo "Configuring qbittorrent ..."
 
@@ -151,7 +144,6 @@ if [ "$QC_DEBUG" = "Y" ]; then
 echo
 echo PREFIX=$PREFIX
 echo BINDIR=$BINDIR
-echo DATADIR=$DATADIR
 echo EX_QTDIR=$EX_QTDIR
 echo
 fi
@@ -256,7 +248,7 @@ class qc_libtorrent : public ConfObj
 {
 public:
 	qc_libtorrent(Conf *c) : ConfObj(c) {}
-	QString name() const { return "libtorrent >= 0.11"; }
+	QString name() const { return "libtorrent >= 0.12"; }
 	QString shortname() const { return "libtorrent"; }
 	bool exec(){
           QString s;
@@ -264,8 +256,8 @@ public:
           sl += "/usr/include";
           sl += "/usr/local/include";
           sl += "/sw/include";
-          if(!conf->findHeader("libtorrent/kademlia/node.hpp", sl, &s)) {
-            qWarning("libtorrent v0.11 includes not found!\nYou can download it at http://www.libtorrent.net");
+          if(!conf->findHeader("libtorrent/extensions/ut_pex.hpp", sl, &s)) {
+            qWarning("libtorrent v0.12 includes not found!\nYou can download it at http://www.libtorrent.net");
             return false;
           }
 	  conf->addIncludePath(s);
@@ -1268,7 +1260,6 @@ EOT
 
 export PREFIX
 export BINDIR
-export DATADIR
 export EX_QTDIR
 export QC_DEBUG
 rm -rf .qconftemp
