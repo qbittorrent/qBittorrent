@@ -63,7 +63,6 @@
 GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   setupUi(this);
   setWindowTitle(tr("qBittorrent ")+VERSION);
-  QCoreApplication::setApplicationName("qBittorrent");
   readSettings();
   s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0));
 
@@ -1160,6 +1159,7 @@ void GUI::deleteSelection(){
         QHash<QString, torrent_handle>::iterator it = handles.find(fileHash);
         if(it != handles.end() && it.key() == fileHash) {
           torrent_handle h = it.value();
+          QString fileName = QString(h.name().c_str());
           // Remove torrent from handles
           handles.erase(it);
           s->remove_torrent(h);
@@ -1175,7 +1175,7 @@ void GUI::deleteSelection(){
           torrentBackup.remove(fileHash+".pieces");
           torrentBackup.remove(fileHash+".savepath");
           // Update info bar
-          setInfoBar("'" + QString(h.name().c_str()) +"' "+tr("removed.", "<file> removed."));
+          setInfoBar("'" + fileName +"' "+tr("removed.", "<file> removed."));
           --nbTorrents;
           tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
         }else{

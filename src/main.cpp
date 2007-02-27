@@ -97,6 +97,7 @@ int main(int argc, char *argv[]){
     qDebug("%s locale unrecognized, using default (en_GB).", (const char*)locale.toUtf8());
   }
   app.installTranslator(&translator);
+  app.setApplicationName("qBittorrent");
   // Read torrents given on command line
   QStringList torrentCmdLine = app.arguments();
   // Remove first argument (program name)
