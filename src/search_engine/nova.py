@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# Version: 1.9
+# Changelog:
+# - Various fixes
+
 # Version: 1.8
 # Changelog:
 # - Fixed links from isohunt
@@ -46,14 +50,26 @@ if os.environ.has_key('QBITTORRENT'):
 	STANDALONE = False
 	THREADED = False
 
+best_ratios = []
+
 def prettyPrinter(dictionnary):
 	print "%(link)s|%(name)s|%(size)s|%(seeds)s|%(leech)s|%(engine_url)s"%dictionnary
 
 if STANDALONE:
 	def termPrettyPrinter(dictionnary):
-		dictionnary['size'] = bytesToHuman(dictionnary['size'])
-		print "%(seeds)5s/%(leech)5s | %(size)10s | %(name)s "%dictionnary
-		print "wget '%s'"%dictionnary['link'].replace("'","\\'")
+		if isinstance( dictionnary['size'], int):
+			dictionnary['size'] = bytesToHuman(dictionnary['size'])
+		try:
+			print "%(seeds)5s/%(leech)5s | %(size)10s | %(name)s"%dictionnary
+		except (UnicodeDecodeError, UnicodeEncodeError):
+			print "%(seeds)5s/%(leech)5s | %(size)10s | <unprintable title>"%dictionnary
+		try:
+			print "wget '%s'"%dictionnary['link'].replace("'","\\'")
+		except:
+			pass
+		dictionnary['seeds'] = int(	dictionnary['seeds'] ) or 0.00000001
+		dictionnary['leech'] = int(	dictionnary['leech'] ) or 0.00000001
+		best_ratios.append(dictionnary)
 
 	globals()['prettyPrinter'] = termPrettyPrinter
 
@@ -219,7 +235,7 @@ class BtJunkie(object):
 		# I know it's not very readable, but the SGML parser feels in pain
 		section_re = re.compile('(?s)href="/torrent\?do=download.*?<tr>')
 		torrent_re = re.compile('(?s)href="(?P<link>.*?do=download[^"]+).*?'
-		'<b>(?P<name>.*?)</b>.*?'
+		'class="BlckUnd">(?P<name>.*?)</a>.*?'
 		'>(?P<size>\d+MB)</font>.*?'
 		'>(?P<seeds>\d+)</font>.*?'
 		'>(?P<leech>\d+)</font>')
@@ -228,6 +244,7 @@ class BtJunkie(object):
 			m = torrent_re.search(txt)
 			if m:
 				torrent_infos = m.groupdict()
+				torrent_infos['name'] = re.sub('</?font.*?>', '', torrent_infos['name'])
 				torrent_infos['engine_url'] = self.url
 				torrent_infos['size'] = anySizeToBytes(torrent_infos['size'])
 				torrent_infos['link'] = self.url+torrent_infos['link']
@@ -415,24 +432,48 @@ class EngineLauncher(threading.Thread):
 if __name__ == '__main__':
 	available_engines_list = BtJunkie, MegaNova, Mininova, PirateBay, Reactor, Isohunt
 
-	if len(sys.argv) < 3:
-		raise SystemExit('./nova.py <all|engine1[,engine2]*> <keywords>\navailable engines: %s'%
+	if len(sys.argv) < 2:
+		raise SystemExit('./nova.py [all|engine1[,engine2]*] <keywords>\navailable engines: %s'%
 				(','.join(e.__name__ for e in available_engines_list)))
 
 	engines_list = [e.lower() for e in sys.argv[1].strip().split(',')]
-	what = '+'.join(sys.argv[2:])
 
 	if 'all' in engines_list:
 		engines_list = [e.__name__.lower() for e in available_engines_list]
 
 	selected_engines = set(e for e in available_engines_list if e.__name__.lower() in engines_list)
 
+	if not selected_engines:
+		selected_engines = [BtJunkie]
+		what = '+'.join(sys.argv[1:])
+	else:
+		what = '+'.join(sys.argv[2:])
+
+	threads = []
 	for engine in selected_engines:
 		try:
 			if THREADED:
-				EngineLauncher( engine(), what ).start()
+				l = EngineLauncher( engine(), what )
+				threads.append(l)
+				l.start()
 			else:
 				engine().search(what)
 		except:
 			if STANDALONE:
 				traceback.print_exc()
+	if THREADED:
+		for t in threads:
+			t.join()
+
+	best_ratios.sort(lambda a,b : cmp(a['seeds']-a['leech'], b['seeds']-b['leech']))
+
+	max_results = 10
+
+	print "########## TOP %d RATIOS ##########"%max_results
+
+	for br in best_ratios:
+		if br['seeds'] > 1: # avoid those with 0 leech to be max rated
+			prettyPrinter(br)
+			max_results -= 1
+		if not max_results:
+			break
