@@ -146,7 +146,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   downloadList->header()->setClickable(true);
   downloadList->header()->setSortIndicatorShown(true);
   // Connecting Actions to slots
-  connect(actionExit, SIGNAL(triggered()), this, SLOT(close()));
+  connect(actionExit, SIGNAL(triggered()), this, SLOT(forceExit()));
   connect(actionOpen, SIGNAL(triggered()), this, SLOT(askForTorrents()));
   connect(actionDelete_Permanently, SIGNAL(triggered()), this, SLOT(deletePermanently()));
   connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelection()));
@@ -406,6 +406,13 @@ void GUI::displayDLListMenu(const QPoint& pos){
   // Call menu
   // XXX: why mapToGlobal() is not enough?
   myDLLlistMenu.exec(mapToGlobal(pos)+QPoint(22,180));
+}
+
+// Necessary if we want to close the window
+// in one time if "close to systray" is enabled
+void GUI::forceExit(){
+  hide();
+  close();
 }
 
 void GUI::displayGUIMenu(const QPoint& pos){

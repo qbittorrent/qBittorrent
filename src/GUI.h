@@ -142,6 +142,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void balloonClicked();
     void writeSettings();
     void readSettings();
+    void forceExit();
     // Torrent actions
     void showProperties(const QModelIndex &index);
     void propertiesSelection();
