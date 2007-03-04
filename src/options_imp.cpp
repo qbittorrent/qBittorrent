@@ -396,7 +396,7 @@ void options_imp::loadOptions(){
   confirmExit_checkBox->setChecked(settings.value("ConfirmOnExit", true).toBool());
   clearFinished_checkBox->setChecked(settings.value("ClearFinishedDownloads", true).toBool());
   check_goToSysTray->setChecked(settings.value("GoToSystray", true).toBool());
-  check_closeToSysTray->setChecked(settings.value("GoToSystrayOnExit", true).toBool());
+  check_closeToSysTray->setChecked(settings.value("GoToSystrayOnExit", false).toBool());
   settings.endGroup();
   preview_program->setText(settings.value("PreviewProgram", QString()).toString());
   // End Misc options
