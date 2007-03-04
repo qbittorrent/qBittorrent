@@ -30,7 +30,6 @@
 - Split kernel from GUI? (would be a lot better but require some deep changes)
 - Web interface?
 - Use downloader class to download search plugin updates
-- Add autocompletion in search engine
 - Allow to set upload limit for each torrent
 - Add a torrent scheduler
 

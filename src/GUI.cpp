@@ -34,6 +34,7 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QDesktopServices>
+#include <QCompleter>
 
 #include <boost/format.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -53,6 +54,8 @@
 #include "downloadFromURLImp.h"
 #include "torrentAddition.h"
 
+#define SEARCHHISTORY_MAXSIZE 50
+
 /*****************************************************
  *                                                   *
  *                       GUI                         *
@@ -64,8 +67,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   setupUi(this);
   setWindowTitle(tr("qBittorrent ")+VERSION);
   readSettings();
-  s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0));
 
+  s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0));
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent32.png")));
   actionOpen->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/open.png")));
@@ -215,6 +218,14 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   if(!loadColWidthSearchList()){
     resultsBrowser->header()->resizeSection(0, 275);
   }
+  
+  // new qCompleter to the search pattern
+  startSearchHistory();
+  QCompleter *searchCompleter = new QCompleter(searchHistory, this);
+  searchCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+  search_pattern->setCompleter(searchCompleter);
+  
+  
   // Boolean initialization
   search_stopped = false;
   // Connect signals to slots (search part)
@@ -256,6 +267,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
 
 // Destructor
 GUI::~GUI(){
+  qDebug("GUI destruction");
   delete options;
   delete checkConnect;
   delete timerScan;
@@ -876,6 +888,8 @@ void GUI::closeEvent(QCloseEvent *e){
          return;
     }
   }
+  // save the searchHistory for later uses
+  saveSearchHistory();
   // Save DHT entry
   if(DHTEnabled){
     try{
@@ -1923,6 +1937,23 @@ void GUI::checkConnectionStatus(){
  *                                                   *
  *****************************************************/
 
+// get the last searchs from a QSettings to a QStringList
+void GUI::startSearchHistory(){
+  QSettings settings("qBittorrent", "qBittorrent");
+  settings.beginGroup("Search"); 
+  searchHistory = settings.value("searchHistory",-1).toStringList(); 
+  settings.endGroup();
+}
+
+// Save the history list into the QSettings for the next session
+void GUI::saveSearchHistory()
+{
+  QSettings settings("qBittorrent", "qBittorrent");
+  settings.beginGroup("Search"); 
+  settings.setValue("searchHistory",searchHistory);
+  settings.endGroup();
+}
+
 // Function called when we click on search button
 void GUI::on_search_button_clicked(){
   QString pattern = search_pattern->text().trimmed();
@@ -1931,6 +1962,19 @@ void GUI::on_search_button_clicked(){
     QMessageBox::critical(0, tr("Empty search pattern"), tr("Please type a search pattern first"));
     return;
   }
+  // if the pattern is not in the pattern
+  if(searchHistory.indexOf(pattern) == -1){
+    //update the searchHistory list
+    searchHistory.append(pattern);
+    // verify the max size of the history
+    if(searchHistory.size() > SEARCHHISTORY_MAXSIZE)
+      searchHistory = searchHistory.mid(searchHistory.size()/2,searchHistory.size()/2);
+    searchCompleter = new QCompleter(searchHistory, this);
+    searchCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+    search_pattern->setCompleter(searchCompleter);
+  }
+
+  
   // Getting checked search engines
   if(!mininova->isChecked() && ! piratebay->isChecked()/* && !reactor->isChecked()*/ && !isohunt->isChecked()/* && !btjunkie->isChecked()*/ && !meganova->isChecked()){
     QMessageBox::critical(0, tr("No seach engine selected"), tr("You must select at least one search engine."));

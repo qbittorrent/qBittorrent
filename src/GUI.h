@@ -50,6 +50,7 @@
 
 class createtorrent;
 class QTimer;
+class QCompleter;
 class DLListDelegate;
 class SearchListDelegate;
 class downloadThread;
@@ -101,6 +102,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     unsigned long nb_search_results;
     QTcpServer tcpServer;
     QTcpSocket *clientConnection;
+    QCompleter *searchCompleter;
+    QStringList searchHistory;
 
   protected slots:
     // GUI related slots
@@ -174,6 +177,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void readSearchOutput();
     void searchStarted();
     void downloadSelectedItem(const QModelIndex& index);
+    void startSearchHistory();
+    void saveSearchHistory();
     // Utils slots
     void setRowColor(int row, const QString& color, bool inDLList=true);
     // Options slots
