@@ -44,6 +44,7 @@
 #include "previewSelect.h"
 #include "trackerLogin.h"
 #include "deleteThread.h"
+#include "bittorrent.h"
 
 
 #define TIME_TRAY_BALLOON 5000
@@ -147,8 +148,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void showProperties(const QModelIndex &index);
     void propertiesSelection();
     void addTorrent(const QString& path, bool fromScanDir = false, const QString& from_url = QString());
-    void pauseAll();
-    void startAll();
     void pauseSelection();
     void startSelection();
     void askForTorrents();

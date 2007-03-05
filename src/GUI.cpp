@@ -218,14 +218,14 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   if(!loadColWidthSearchList()){
     resultsBrowser->header()->resizeSection(0, 275);
   }
-  
+
   // new qCompleter to the search pattern
   startSearchHistory();
   QCompleter *searchCompleter = new QCompleter(searchHistory, this);
   searchCompleter->setCaseSensitivity(Qt::CaseInsensitive);
   search_pattern->setCompleter(searchCompleter);
-  
-  
+
+
   // Boolean initialization
   search_stopped = false;
   // Connect signals to slots (search part)
@@ -895,6 +895,18 @@ void GUI::closeEvent(QCloseEvent *e){
          return;
     }
   }
+  //TODO: Clean finished torrents on exit
+//   if(options->getClearFinishedOnExit()){
+//   torrentBackup.remove(fileHash+".torrent");
+//   torrentBackup.remove(fileHash+".fastresume");
+//   torrentBackup.remove(fileHash+".paused");
+//   torrentBackup.remove(fileHash+".incremental");
+//   torrentBackup.remove(fileHash+".pieces");
+//   torrentBackup.remove(fileHash+".savepath");
+//     if(isScanningDir){
+//       QFile::remove(scan_dir+fileHash+".torrent");
+//     }
+//   }
   // save the searchHistory for later uses
   saveSearchHistory();
   // Save DHT entry
@@ -1685,40 +1697,6 @@ void GUI::configureSession(){
   qDebug("Session configured");
 }
 
-// Pause All Downloads in DL list
-void GUI::pauseAll(){
-  QString fileHash;
-  bool changes=false;
-  // Browse Handles to pause all downloads
-  foreach(torrent_handle h, handles){
-    if(!h.is_paused()){
-      fileHash = QString(misc::toString(h.info_hash()).c_str());
-      changes=true;
-      h.pause();
-      // Create .paused file
-      QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
-      paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
-      paused_file.close();
-      // update DL Status
-      int row = getRowFromHash(fileHash);
-      if(row == -1){
-        std::cerr << "Error: Filename could not be found in download list...\n";
-        continue;
-      }
-      DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
-      DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
-      DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Paused")));
-      DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-      DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
-      setRowColor(row, "red");
-    }
-  }
-  //Set Info Bar
-  if(changes){
-    setInfoBar(tr("All Downloads Paused."));
-  }
-}
-
 // pause selected items in the list
 void GUI::pauseSelection(){
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
@@ -1746,35 +1724,6 @@ void GUI::pauseSelection(){
         setRowColor(row, "red");
       }
     }
-  }
-}
-
-// Start All Downloads in DL list
-void GUI::startAll(){
-  QString fileHash;
-  bool changes=false;
-  // Browse Handles to pause all downloads
-  foreach(torrent_handle h, handles){
-    if(h.is_paused()){
-      fileHash = QString(misc::toString(h.info_hash()).c_str());
-      changes=true;
-      h.resume();
-      // Delete .paused file
-      QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
-      // update DL Status
-      int row = getRowFromHash(fileHash);
-      if(row == -1){
-        std::cerr << "Error: Filename could not be found in download list...\n";
-        continue;
-      }
-      DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Connecting...")));
-      DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-      setRowColor(row, "grey");
-    }
-  }
-  //Set Info Bar
-  if(changes){
-    setInfoBar(tr("All Downloads Resumed."));
   }
 }
 
@@ -1947,8 +1896,8 @@ void GUI::checkConnectionStatus(){
 // get the last searchs from a QSettings to a QStringList
 void GUI::startSearchHistory(){
   QSettings settings("qBittorrent", "qBittorrent");
-  settings.beginGroup("Search"); 
-  searchHistory = settings.value("searchHistory",-1).toStringList(); 
+  settings.beginGroup("Search");
+  searchHistory = settings.value("searchHistory",-1).toStringList();
   settings.endGroup();
 }
 
@@ -1956,7 +1905,7 @@ void GUI::startSearchHistory(){
 void GUI::saveSearchHistory()
 {
   QSettings settings("qBittorrent", "qBittorrent");
-  settings.beginGroup("Search"); 
+  settings.beginGroup("Search");
   settings.setValue("searchHistory",searchHistory);
   settings.endGroup();
 }
@@ -1981,7 +1930,7 @@ void GUI::on_search_button_clicked(){
     search_pattern->setCompleter(searchCompleter);
   }
 
-  
+
   // Getting checked search engines
   if(!mininova->isChecked() && ! piratebay->isChecked()/* && !reactor->isChecked()*/ && !isohunt->isChecked()/* && !btjunkie->isChecked()*/ && !meganova->isChecked()){
     QMessageBox::critical(0, tr("No seach engine selected"), tr("You must select at least one search engine."));
