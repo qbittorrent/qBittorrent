@@ -5,7 +5,6 @@
     - FEATURE: Support uTorrent Peer Exchange (PeX - exchanges peers between clients)
     - FEATURE: Added a menu action to visit qBittorrent website
     - FEATURE: Added a menu action to report a bug in qBittorrent
-    - FEATURE: Use hashtables for faster lookup
     - FEATURE: Improved the way parameters are passed between qBT instances (socket)
     - FEATURE: User is warned when hard drive becomes full and downloads are paused
     - FEATURE: Number of complete/incomplete sources are now displayed in download list for each torrent

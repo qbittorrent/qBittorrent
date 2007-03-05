@@ -27,6 +27,7 @@
 #include "misc.h"
 
 class deleteThread : public QThread {
+  Q_OBJECT
 
   private:
     QString path;
@@ -36,9 +37,13 @@ class deleteThread : public QThread {
       start();
     }
 
+  signals:
+    void deletionFinished(deleteThread*) const;
+
   private:
     void run(){
       misc::removePath(path);
+      emit deletionFinished(this);
     }
 };
 

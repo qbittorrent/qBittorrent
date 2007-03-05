@@ -7,8 +7,8 @@
 
 // Intermediate
 - Port on MacOS, Windows (and create an installer for Windows) - Progressing
-- Option to shutdown computer when downloads are finished
 - Optimize code to use less memory/cpu
+- Should create options dialog only when needed to save up some memory
 - Add some transparency (menus,...)
 - Add upnp port forwarding support
 
@@ -31,14 +31,15 @@
 - Web interface?
 - Use downloader class to download search plugin updates
 - Allow to set upload limit for each torrent
+- Option to shutdown computer when downloads are finished
 - Add a torrent scheduler
 
 // in v1.0.0 (partial) or maybe v0.9.0 depending on next libtorrent release date
-- Should create options dialog only when needed to save up some memory
 - Download from RSS feeds
 - Move finished torrent to another tab and keep on seeding them even after restart
 - Allow to edit the trackers for a torrent
-- UPnP support
 
 // In v0.9.0
+- Splitting torrent part from GUI (& remove handles hashtable to save up some memory)
+- Create options object only when necessary to save up some memory
 - Wait for libtorrent v0.12 official release
