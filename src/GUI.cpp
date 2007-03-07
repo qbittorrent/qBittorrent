@@ -67,8 +67,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   setupUi(this);
   setWindowTitle(tr("qBittorrent ")+VERSION);
   readSettings();
-
-  s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0));
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent32.png")));
   actionOpen->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/open.png")));
@@ -120,26 +118,25 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   if(!loadColWidthDLList()){
     downloadList->header()->resizeSection(0, 200);
   }
+  nbTorrents = 0;
+  tabs->setTabText(0, tr("Transfers") +" (0)");
+  connect(&BTSession, SIGNAL(addedTorrent(const QString&, torrent_handle&, bool)), this, SLOT(torrentAdded(const QString&, torrent_handle&, bool)));
+  connect(&BTSession, SIGNAL(duplicateTorrent(const QString&)), this, SLOT(torrentDuplicate(const QString&)));
+  connect(&BTSession, SIGNAL(invalidTorrent(const QString&)), this, SLOT(torrentCorrupted(const QString&)));
+  connect(&BTSession, SIGNAL(finishedTorrent(torrent_handle&)), this, SLOT(finishedTorrent(torrent_handle&)));
+  connect(&BTSession, SIGNAL(fullDiskError(torrent_handle&)), this, SLOT(fullDiskError(torrent_handle&)));
+  connect(&BTSession, SIGNAL(portListeningFailure()), this, SLOT(portListeningFailure()));
+  connect(&BTSession, SIGNAL(trackerError(const QString&, const QString&, const QString&)), this, SLOT(trackerError(const QString&, const QString&, const QString&)));
+  connect(&BTSession, SIGNAL(trackerAuthenticationRequired(torrent_handle&)), this, SLOT(trackerAuthenticationRequired(torrent_handle&)));
+  connect(&BTSession, SIGNAL(scanDirFoundTorrents(const QStringList&)), this, SLOT(processScannedFiles(const QStringList&)));
+  connect(&BTSession, SIGNAL(newDownloadedTorrent(const QString&, const QString&)), this, SLOT(processDownloadedFiles(const QString&, const QString&)));
   // creating options
   options = new options_imp(this);
   connect(options, SIGNAL(status_changed(const QString&)), this, SLOT(OptionsSaved(const QString&)));
-  // Scan Dir
-  timerScan = new QTimer(this);
-  connect(timerScan, SIGNAL(timeout()), this, SLOT(scanDirectory()));
-  // Set severity level of libtorrent session
-  s->set_severity_level(alert::info);
-  // DHT (Trackerless)
-  DHTEnabled = false;
   // Configure BT session according to options
   configureSession();
-  s->add_extension(&create_metadata_plugin);
-  // download thread
-  downloader = new downloadThread(this);
-  connect(downloader, SIGNAL(downloadFinished(QString, QString, int, QString)), this, SLOT(processDownloadedFile(QString, QString, int, QString)));
-  nbTorrents = 0;
-  tabs->setTabText(0, tr("Transfers") +" (0)");
-  //Resume unfinished torrent downloads
-  resumeUnfinished();
+  // Resume unfinished torrents
+  BTSession.resumeUnfinishedTorrents();
   // Add torrent given on command line
   processParams(torrentCmdLine);
   // Make download list header clickable for sorting
@@ -152,8 +149,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelection()));
   connect(actionOptions, SIGNAL(triggered()), this, SLOT(showOptions()));
   connect(actionDownload_from_URL, SIGNAL(triggered()), this, SLOT(askForTorrentUrl()));
-  connect(actionPause_All, SIGNAL(triggered()), this, SLOT(pauseAll()));
-  connect(actionStart_All, SIGNAL(triggered()), this, SLOT(startAll()));
   connect(actionPause, SIGNAL(triggered()), this, SLOT(pauseSelection()));
   connect(actionTorrent_Properties, SIGNAL(triggered()), this, SLOT(propertiesSelection()));
   connect(actionStart, SIGNAL(triggered()), this, SLOT(startSelection()));
@@ -196,7 +191,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
     std::cerr  << "Couldn't create socket, single instance mode won't work...\n";
   }
   connect(&tcpServer, SIGNAL(newConnection()), this, SLOT(acceptConnection()));
-//   connect(tcpServer, SIGNAL(bytesWritten(qint64)), this, SLOT(readParamsOnSocket(qint64)));
   // Start connection checking timer
   checkConnect = new QTimer(this);
   connect(checkConnect, SIGNAL(timeout()), this, SLOT(checkConnectionStatus()));
@@ -225,7 +219,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   searchCompleter->setCaseSensitivity(Qt::CaseInsensitive);
   search_pattern->setCompleter(searchCompleter);
 
-
   // Boolean initialization
   search_stopped = false;
   // Connect signals to slots (search part)
@@ -253,9 +246,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(meganova, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
   // Update nova.py search plugin if necessary
   updateNova();
-  // Supported preview extensions
-  // XXX: might be incomplete
-  supported_preview_extensions<<"AVI"<<"DIVX"<<"MPG"<<"MPEG"<<"MP3"<<"OGG"<<"WMV"<<"WMA"<<"RMV"<<"RMVB"<<"ASF"<<"MOV"<<"WAV"<<"MP2"<<"SWF"<<"AC3";
   previewProcess = new QProcess(this);
   connect(previewProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(cleanTempPreviewFile(int, QProcess::ExitStatus)));
   // Accept drag 'n drops
@@ -270,7 +260,6 @@ GUI::~GUI(){
   qDebug("GUI destruction");
   delete options;
   delete checkConnect;
-  delete timerScan;
   delete searchProcess;
   delete refresher;
   delete myTrayIcon;
@@ -280,9 +269,7 @@ GUI::~GUI(){
   delete SearchListModel;
   delete SearchDelegate;
   delete previewProcess;
-  delete downloader;
   delete connecStatusLblIcon;
-  delete s;
 }
 
 void GUI::openqBTHomepage(){
@@ -349,14 +336,14 @@ void GUI::readParamsOnSocket(){
   }
 }
 
+// Toggle paused state of selected torrent
 void GUI::togglePausedState(const QModelIndex& index){
   int row = index.row();
   QString fileHash = DLListModel->data(DLListModel->index(row, HASH)).toString();
-  torrent_handle h = handles.value(fileHash);
-  if(h.is_paused()){
-    startSelection();
+  if(BTSession.isPaused(fileHash)){
+    BTSession.resumeTorrent(fileHash);
   }else{
-    pauseSelection();
+    BTSession.pauseTorrent(fileHash);
   }
 }
 
@@ -367,7 +354,7 @@ void GUI::previewFileSelection(){
     if(index.column() == NAME){
       // Get the file name
       QString fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
-      torrent_handle h = handles.value(fileHash);
+      torrent_handle h = BTSession.getTorrentHandle(fileHash);
       previewSelection = new previewSelect(this, h);
       break;
     }
@@ -388,7 +375,7 @@ void GUI::displayDLListMenu(const QPoint& pos){
       // Get the file name
       QString fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
       // Get handle and pause the torrent
-      torrent_handle h = handles.value(fileHash);
+      torrent_handle h = BTSession.getTorrentHandle(fileHash);
       if(h.is_paused()){
         myDLLlistMenu.addAction(actionStart);
       }else{
@@ -397,7 +384,7 @@ void GUI::displayDLListMenu(const QPoint& pos){
       myDLLlistMenu.addAction(actionDelete);
       myDLLlistMenu.addAction(actionDelete_Permanently);
       myDLLlistMenu.addAction(actionTorrent_Properties);
-      if(!options->getPreviewProgram().isEmpty() && isFilePreviewPossible(h) && selectedIndexes.size()<=DLListModel->columnCount()){
+      if(!options->getPreviewProgram().isEmpty() && BTSession.isFilePreviewPossible(fileHash) && selectedIndexes.size()<=DLListModel->columnCount()){
          myDLLlistMenu.addAction(actionPreview_file);
       }
       break;
@@ -464,13 +451,11 @@ void GUI::displayInfoBarMenu(const QPoint& pos){
 // update download list accordingly
 void GUI::updateDlList(bool force){
   qDebug("Updating download list");
-  torrent_handle h;
   char tmp[MAX_CHAR_TMP];
   char tmp2[MAX_CHAR_TMP];
   // update global informations
-  session_status sessionStatus = s->status();
-  snprintf(tmp, MAX_CHAR_TMP, "%.1f", sessionStatus.payload_upload_rate/1024.);
-  snprintf(tmp2, MAX_CHAR_TMP, "%.1f", sessionStatus.payload_download_rate/1024.);
+  snprintf(tmp, MAX_CHAR_TMP, "%.1f", BTSession.getPayloadUploadRate()/1024.);
+  snprintf(tmp2, MAX_CHAR_TMP, "%.1f", BTSession.getPayloadDownloadRate()/1024.);
   myTrayIcon->setToolTip(tr("<b>qBittorrent</b><br>DL Speed: ")+ QString(tmp2) +tr("KiB/s")+"<br>"+tr("UP Speed: ")+ QString(tmp) + tr("KiB/s")); // tray icon
   if( !force && (isMinimized() || isHidden() || tabs->currentIndex())){
     // No need to update if qBittorrent DL list is hidden
@@ -479,7 +464,9 @@ void GUI::updateDlList(bool force){
   LCD_UpSpeed->display(tmp); // UP LCD
   LCD_DownSpeed->display(tmp2); // DL LCD
   // browse handles
-  foreach(h, handles.values()){
+  std::vector<torrent_handle> handles = BTSession.getTorrentHandles();
+  for(unsigned int i=0; i<handles.size(); ++i){
+    torrent_handle h = handles[i];
     try{
       torrent_status torrentStatus = h.status();
       QString fileHash = QString(misc::toString(h.info_hash()).c_str());
@@ -554,19 +541,6 @@ void GUI::updateDlList(bool force){
     }
   }
   qDebug("Updated Download list");
-}
-
-bool GUI::isFilePreviewPossible(const torrent_handle& h) const{
-  // See if there are supported files in the torrent
-  torrent_info torrentInfo = h.get_torrent_info();
-  for(int i=0; i<torrentInfo.num_files(); ++i){
-    QString fileName = QString(torrentInfo.file_at(i).path.leaf().c_str());
-    QString extension = fileName.split('.').last().toUpper();
-    if(supported_preview_extensions.indexOf(extension) >= 0){
-      return true;
-    }
-  }
-  return false;
 }
 
 void GUI::sortDownloadListFloat(int index, Qt::SortOrder sortOrder){
@@ -732,59 +706,6 @@ QPoint GUI::screenCenter(){
   return QPoint((desk.width() - this->frameGeometry().width()) / 2, (desk.height() - this->frameGeometry().height()) / 2);
 }
 
-bool GUI::loadFilteredFiles(torrent_handle &h){
-  bool has_filtered_files = false;
-  torrent_info torrentInfo = h.get_torrent_info();
-  QString fileHash = QString(misc::toString(torrentInfo.info_hash()).c_str());
-  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".pieces");
-  // Read saved file
-  if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
-    return has_filtered_files;
-  }
-  QByteArray pieces_selection = pieces_file.readAll();
-  pieces_file.close();
-  QList<QByteArray> pieces_selection_list = pieces_selection.split('\n');
-  if(pieces_selection_list.size() != torrentInfo.num_files()+1){
-    std::cerr << "Error: Corrupted pieces file\n";
-    return has_filtered_files;
-  }
-  std::vector<bool> selectionBitmask;
-  for(int i=0; i<torrentInfo.num_files(); ++i){
-    int isFiltered = pieces_selection_list.at(i).toInt();
-    if( isFiltered < 0 || isFiltered > 1){
-      isFiltered = 0;
-    }
-    selectionBitmask.push_back(isFiltered);
-//     h.filter_piece(i, isFiltered);
-    if(isFiltered){
-      has_filtered_files = true;
-    }
-  }
-  h.filter_files(selectionBitmask);
-  return has_filtered_files;
-}
-
-bool GUI::hasFilteredFiles(const QString& fileHash){
-  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".pieces");
-  // Read saved file
-  if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
-    return false;
-  }
-  QByteArray pieces_selection = pieces_file.readAll();
-  pieces_file.close();
-  QList<QByteArray> pieces_selection_list = pieces_selection.split('\n');
-  for(int i=0; i<pieces_selection_list.size()-1; ++i){
-    int isFiltered = pieces_selection_list.at(i).toInt();
-    if( isFiltered < 0 || isFiltered > 1){
-      isFiltered = 0;
-    }
-    if(isFiltered){
-      return true;
-    }
-  }
-  return false;
-}
-
 // Save last checked search engines to a file
 void GUI::saveCheckedSearchEngines(int) const{
   QSettings settings("qBittorrent", "qBittorrent");
@@ -895,37 +816,31 @@ void GUI::closeEvent(QCloseEvent *e){
          return;
     }
   }
-  //TODO: Clean finished torrents on exit
-//   if(options->getClearFinishedOnExit()){
-//   torrentBackup.remove(fileHash+".torrent");
-//   torrentBackup.remove(fileHash+".fastresume");
-//   torrentBackup.remove(fileHash+".paused");
-//   torrentBackup.remove(fileHash+".incremental");
-//   torrentBackup.remove(fileHash+".pieces");
-//   torrentBackup.remove(fileHash+".savepath");
-//     if(isScanningDir){
-//       QFile::remove(scan_dir+fileHash+".torrent");
-//     }
-//   }
+  // Clean finished torrents on exit if asked for
+  if(options->getClearFinishedOnExit()){
+    torrent_handle h;
+    // XXX: Probably move this to the bittorrent part
+    QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+    foreach(h, BTSession.getFinishedTorrentHandles()){
+      QString fileHash = QString(misc::toString(h.info_hash()).c_str());
+      torrentBackup.remove(fileHash+".torrent");
+      torrentBackup.remove(fileHash+".fastresume");
+      torrentBackup.remove(fileHash+".paused");
+      torrentBackup.remove(fileHash+".incremental");
+      torrentBackup.remove(fileHash+".pieces");
+      torrentBackup.remove(fileHash+".savepath");
+    }
+  }
   // save the searchHistory for later uses
   saveSearchHistory();
   // Save DHT entry
-  if(DHTEnabled){
-    try{
-      entry dht_state = s->dht_state();
-      boost::filesystem::ofstream out((const char*)(misc::qBittorrentPath()+QString("dht_state")).toUtf8(), std::ios_base::binary);
-      out.unsetf(std::ios_base::skipws);
-      bencode(std::ostream_iterator<char>(out), dht_state);
-    }catch (std::exception& e){
-      std::cerr << e.what() << "\n";
-    }
-  }
+  BTSession.saveDHTEntry();
   // Save window size, columns size
   writeSettings();
   saveColWidthDLList();
   saveColWidthSearchList();
   // Create fast resume data
-  saveFastResumeData();
+  BTSession.saveFastResumeData();
   // Hide tray icon
   myTrayIcon->hide();
   // Accept exit
@@ -956,11 +871,11 @@ void GUI::dropEvent(QDropEvent *event){
   foreach(file, files){
     if(options->useAdditionDialog()){
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-      connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
+      connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
       connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
       dialog->showLoad(file.trimmed().replace("file://", ""));
     }else{
-      addTorrent(file.trimmed().replace("file://", ""));
+      BTSession.addTorrent(file.trimmed().replace("file://", ""));
     }
   }
 }
@@ -992,11 +907,11 @@ void GUI::askForTorrents(){
     for(int i=0; i<pathsList.size(); ++i){
       if(options->useAdditionDialog()){
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-        connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
+        connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
         connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
         dialog->showLoad(pathsList.at(i));
       }else{
-        addTorrent(pathsList.at(i));
+        BTSession.addTorrent(pathsList.at(i));
       }
     }
     // Save last dir to remember it
@@ -1006,75 +921,8 @@ void GUI::askForTorrents(){
   }
 }
 
-// Scan the first level of the directory for torrent files
-// and add them to download list
-void GUI::scanDirectory(){
-  QString dirText = options->getScanDir();
-  QString file;
-  if(!dirText.isNull()){
-    QStringList to_add;
-    QDir dir(dirText);
-    QStringList files = dir.entryList(QDir::Files, QDir::Unsorted);
-    foreach(file, files){
-      QString fullPath = dir.path()+QDir::separator()+file;
-      if(fullPath.endsWith(".torrent")){
-        to_add << fullPath;
-      }
-    }
-    foreach(file, to_add){
-      if(options->useAdditionDialog()){
-        torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-        connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
-        connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
-        dialog->showLoad(file, true);
-      }else{
-        addTorrent(file, true);
-      }
-    }
-  }
-}
-
-void GUI::saveFastResumeData() const{
-  qDebug("Saving fast resume data");
-  QString file;
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  // Checking if torrentBackup Dir exists
-  // create it if it is not
-  if(! torrentBackup.exists()){
-    torrentBackup.mkpath(torrentBackup.path());
-  }
-  // Write fast resume data
-  foreach(torrent_handle h, handles.values()){
-    // Pause download (needed before fast resume writing)
-    h.pause();
-    // Extracting resume data
-    if (h.has_metadata()){
-      QString fileHash = QString(misc::toString(h.info_hash()).c_str());
-      if(QFile::exists(torrentBackup.path()+QDir::separator()+fileHash+".torrent")){
-        // Remove old .fastresume data in case it exists
-        QFile::remove(fileHash + ".fastresume");
-        // Write fast resume data
-        entry resumeData = h.write_resume_data();
-        file = fileHash + ".fastresume";
-        boost::filesystem::ofstream out(fs::path((const char*)torrentBackup.path().toUtf8()) / (const char*)file.toUtf8(), std::ios_base::binary);
-        out.unsetf(std::ios_base::skipws);
-        bencode(std::ostream_iterator<char>(out), resumeData);
-      }
-    }
-    // Remove torrent
-    s->remove_torrent(h);
-  }
-  qDebug("Fast resume data saved");
-}
-
 // delete from download list AND from hard drive
 void GUI::deletePermanently(){
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  QString scan_dir = options->getScanDir();
-  bool isScanningDir = !scan_dir.isNull();
-  if(isScanningDir && scan_dir.at(scan_dir.length()-1) != QDir::separator()){
-    scan_dir += QDir::separator();
-  }
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   if(!selectedIndexes.isEmpty()){
     if(QMessageBox::question(
@@ -1099,55 +947,16 @@ void GUI::deletePermanently(){
       foreach(sortedIndex, sortedIndexes){
         qDebug("deleting row: %d, %d, col: %d", sortedIndex.first, sortedIndex.second.row(), sortedIndex.second.column());
         // Get the file name
+        QString fileName = DLListModel->data(DLListModel->index(sortedIndex.second.row(), NAME)).toString();
         QString fileHash = DLListModel->data(DLListModel->index(sortedIndex.second.row(), HASH)).toString();
-        QString savePath;
         // Delete item from download list
         DLListModel->removeRow(sortedIndex.first);
-        // Get handle and remove the torrent
-        QHash<QString, torrent_handle>::iterator it = handles.find(fileHash);
-        if(it != handles.end() && it.key() == fileHash) {
-          torrent_handle h = it.value();
-          QString fileName = QString(h.name().c_str());
-          savePath = QString::fromUtf8(h.save_path().string().c_str());
-          // Remove torrent from handles
-          qDebug(("There are " + misc::toString(handles.size()) + " items in handles").c_str());
-          handles.erase(it);
-          qDebug(("After removing, there are still " + misc::toString(handles.size()) + " items in handles").c_str());
-          s->remove_torrent(h);
-          // remove it from scan dir or it will start again
-          if(isScanningDir){
-            QFile::remove(scan_dir+fileHash+".torrent");
-          }
-          // Remove it from torrent backup directory
-          torrentBackup.remove(fileHash+".torrent");
-          torrentBackup.remove(fileHash+".fastresume");
-          torrentBackup.remove(fileHash+".paused");
-          torrentBackup.remove(fileHash+".incremental");
-          torrentBackup.remove(fileHash+".pieces");
-          torrentBackup.remove(fileHash+".savepath");
-          // Remove from Hard drive
-          qDebug("Removing this on hard drive: %s", qPrintable(savePath+QDir::separator()+fileName));
-          // Deleting in a thread to avoid GUI freeze
-          deleteThread *deleter = new deleteThread(savePath+QDir::separator()+fileName);
-          deleters << deleter;
-          int i = 0;
-          while(i < deleters.size()){
-            deleter = deleters.at(i);
-            if(deleter->isFinished()){
-              qDebug("Delete thread has finished, deleting it");
-              deleters.removeAt(i);
-              delete deleter;
-            }else{
-              ++i;
-            }
-          }
+        // Remove the torrent
+        BTSession.deleteTorrent(fileHash, true);
           // Update info bar
           setInfoBar("'" + fileName +"' "+tr("removed.", "<file> removed."));
           --nbTorrents;
           tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
-        }else{
-          std::cerr << "Error: Could not find the torrent handle supposed to be removed\n";
-        }
       }
     }
   }
@@ -1155,18 +964,12 @@ void GUI::deletePermanently(){
 
 // delete selected items in the list
 void GUI::deleteSelection(){
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  QString scan_dir = options->getScanDir();
-  bool isScanningDir = !scan_dir.isNull();
-  if(isScanningDir && scan_dir.at(scan_dir.length()-1) != QDir::separator()){
-    scan_dir += QDir::separator();
-  }
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   if(!selectedIndexes.isEmpty()){
     if(QMessageBox::question(
           this,
     tr("Are you sure? -- qBittorrent"),
-    tr("Are you sure you want to delete the selected item(s) in download list?"),
+    tr("Are you sure you want to delete the selected item(s) in download list and in hard drive?"),
     tr("&Yes"), tr("&No"),
     QString(), 0, 1) == 0) {
       //User clicked YES
@@ -1185,247 +988,61 @@ void GUI::deleteSelection(){
       foreach(sortedIndex, sortedIndexes){
         qDebug("deleting row: %d, %d, col: %d", sortedIndex.first, sortedIndex.second.row(), sortedIndex.second.column());
         // Get the file name
+        QString fileName = DLListModel->data(DLListModel->index(sortedIndex.second.row(), NAME)).toString();
         QString fileHash = DLListModel->data(DLListModel->index(sortedIndex.second.row(), HASH)).toString();
         // Delete item from download list
         DLListModel->removeRow(sortedIndex.first);
-        // Get handle and remove the torrent
-        QHash<QString, torrent_handle>::iterator it = handles.find(fileHash);
-        if(it != handles.end() && it.key() == fileHash) {
-          torrent_handle h = it.value();
-          QString fileName = QString(h.name().c_str());
-          // Remove torrent from handles
-          handles.erase(it);
-          s->remove_torrent(h);
-          // remove it from scan dir or it will start again
-          if(isScanningDir){
-            QFile::remove(scan_dir+fileHash+".torrent");
-          }
-          // Remove it from torrent backup directory
-          torrentBackup.remove(fileHash+".torrent");
-          torrentBackup.remove(fileHash+".fastresume");
-          torrentBackup.remove(fileHash+".paused");
-          torrentBackup.remove(fileHash+".incremental");
-          torrentBackup.remove(fileHash+".pieces");
-          torrentBackup.remove(fileHash+".savepath");
+        // Remove the torrent
+        BTSession.deleteTorrent(fileHash, false);
           // Update info bar
           setInfoBar("'" + fileName +"' "+tr("removed.", "<file> removed."));
           --nbTorrents;
           tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
-        }else{
-          std::cerr << "Error: Could not find the torrent handle supposed to be removed\n";
-        }
       }
     }
   }
 }
 
-// Will fast resume unfinished torrents in
-// backup directory
-void GUI::resumeUnfinished(){
-  qDebug("Resuming unfinished torrents");
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  QStringList fileNames, filePaths;
-  // Scan torrentBackup directory
-  fileNames = torrentBackup.entryList();
-  QString fileName;
-  foreach(fileName, fileNames){
-    if(fileName.endsWith(".torrent")){
-      filePaths.append(torrentBackup.path()+QDir::separator()+fileName);
-    }
+// Called when a torrent is added
+void GUI::torrentAdded(const QString& path, torrent_handle& h, bool fastResume){
+  int row = DLListModel->rowCount();
+  QString hash = QString(misc::toString(h.info_hash()).c_str());
+  // Adding torrent to download list
+  DLListModel->insertRow(row);
+  DLListModel->setData(DLListModel->index(row, NAME), QVariant(h.name().c_str()));
+  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)h.get_torrent_info().total_size()));
+  DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
+  DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
+  DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
+  DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+  DLListModel->setData(DLListModel->index(row, HASH), QVariant(hash));
+  // Pause torrent if it was paused last time
+  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")){
+    DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Paused")));
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
+    setRowColor(row, "red");
+  }else{
+    DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Connecting...")));
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
+    setRowColor(row, "grey");
   }
-  // Resume downloads
-  foreach(fileName, filePaths){
-    addTorrent(fileName);
+  if(!fastResume){
+    setInfoBar("'" + path + "' "+tr("added to download list."));
+  }else{
+    setInfoBar("'" + path + "' "+tr("resumed. (fast resume)"));
   }
-  qDebug("Unfinished torrents resumed");
+  ++nbTorrents;
+  tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
 }
 
-// Method used to add torrents to download list
-void GUI::addTorrent(const QString& path, bool fromScanDir, const QString& from_url){
-  torrent_handle h;
-  entry resume_data;
-  bool fastResume=false;
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  QString file, dest_file, scan_dir;
+// Called when trying to add a duplicate torrent
+void GUI::torrentDuplicate(const QString& path){
+  setInfoBar("'" + path + "' "+tr("already in download list.", "<file> already in download list."));
+}
 
-  // Checking if BT_backup Dir exists
-  // create it if it is not
-  if(! torrentBackup.exists()){
-    if(! torrentBackup.mkpath(torrentBackup.path())){
-      setInfoBar(tr("Couldn't create the directory:")+" '"+torrentBackup.path()+"'", "red");
-      return;
-    }
-  }
-  // Processing torrents
-  file = path.trimmed().replace("file://", "");
-  if(file.isEmpty()){
-    return;
-  }
-  qDebug("Adding %s to download list", (const char*)file.toUtf8());
-  std::ifstream in((const char*)file.toUtf8(), std::ios_base::binary);
-  in.unsetf(std::ios_base::skipws);
-  try{
-    // Decode torrent file
-    entry e = bdecode(std::istream_iterator<char>(in), std::istream_iterator<char>());
-    // Getting torrent file informations
-    torrent_info t(e);
-    QString hash = QString(misc::toString(t.info_hash()).c_str());
-    if(handles.contains(hash)){
-      // Update info Bar
-      if(!fromScanDir){
-        if(!from_url.isNull()){
-          setInfoBar("'" + from_url + "' "+tr("already in download list.", "<file> already in download list."));
-        }else{
-          setInfoBar("'" + file + "' "+tr("already in download list.", "<file> already in download list."));
-        }
-      }else{
-        // Delete torrent from scan dir
-        QFile::remove(file);
-      }
-      return;
-    }
-    // TODO: Remove this in a few releases
-    if(torrentBackup.exists(QString(t.name().c_str())+".torrent")){
-      QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".torrent", torrentBackup.path()+QDir::separator()+hash+".torrent");
-      QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".fastresume", torrentBackup.path()+QDir::separator()+hash+".fastresume");
-      QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".pieces", torrentBackup.path()+QDir::separator()+hash+".pieces");
-      QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".savepath", torrentBackup.path()+QDir::separator()+hash+".savepath");
-      QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".paused", torrentBackup.path()+QDir::separator()+hash+".paused");
-      QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".incremental", torrentBackup.path()+QDir::separator()+hash+".incremental");
-      file = torrentBackup.path() + QDir::separator() + hash + ".torrent";
-    }
-    //Getting fast resume data if existing
-    if(torrentBackup.exists(hash+".fastresume")){
-      try{
-        std::stringstream strStream;
-        strStream << hash.toStdString() << ".fastresume";
-        boost::filesystem::ifstream resume_file(fs::path((const char*)torrentBackup.path().toUtf8()) / strStream.str(), std::ios_base::binary);
-        resume_file.unsetf(std::ios_base::skipws);
-        resume_data = bdecode(std::istream_iterator<char>(resume_file), std::istream_iterator<char>());
-        fastResume=true;
-      }catch (invalid_encoding&) {}
-      catch (fs::filesystem_error&) {}
-      //qDebug("Got fast resume data");
-    }
-    QString savePath = getSavePath(hash);
-    int row = DLListModel->rowCount();
-    // Adding files to bittorrent session
-    if(hasFilteredFiles(hash)){
-      h = s->add_torrent(t, fs::path((const char*)savePath.toUtf8()), resume_data, false);
-      qDebug("Full allocation mode");
-    }else{
-      h = s->add_torrent(t, fs::path((const char*)savePath.toUtf8()), resume_data, true);
-      qDebug("Compact allocation mode");
-    }
-    // Is this really useful and appropriate ?
-    //h.set_max_connections(60);
-    h.set_max_uploads(-1);
-    qDebug("Torrent hash is " +  hash.toUtf8());
-    // Load filtered files
-    loadFilteredFiles(h);
-    //qDebug("Added to session");
-    torrent_status torrentStatus = h.status();
-    DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
-    handles.insert(hash, h);
-    QString newFile = torrentBackup.path() + QDir::separator() + hash + ".torrent";
-    if(file != newFile){
-      // Delete file from torrentBackup directory in case it exists because
-      // QFile::copy() do not overwrite
-      QFile::remove(newFile);
-      // Copy it to torrentBackup directory
-      QFile::copy(file, newFile);
-    }
-    //qDebug("Copied to torrent backup directory");
-    if(fromScanDir){
-      scan_dir = options->getScanDir();
-      if(scan_dir.at(scan_dir.length()-1) != QDir::separator()){
-        scan_dir += QDir::separator();
-      }
-    }
-    // Adding torrent to download list
-    DLListModel->insertRow(row);
-    DLListModel->setData(DLListModel->index(row, NAME), QVariant(t.name().c_str()));
-    DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)t.total_size()));
-    DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
-    DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
-    DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
-    DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-    DLListModel->setData(DLListModel->index(row, HASH), QVariant(hash));
-    // Pause torrent if it was paused last time
-    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")){
-      DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Paused")));
-      DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
-      setRowColor(row, "red");
-    }else{
-      DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Connecting...")));
-      DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-      setRowColor(row, "grey");
-    }
-    //qDebug("Added to download list");
-    // Pause torrent if it was paused last time
-    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")){
-      h.pause();
-    }
-    // Incremental download
-    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental")){
-      qDebug("Incremental download enabled for %s", t.name().c_str());
-      h.set_sequenced_download_threshold(15);
-    }
-    if(!from_url.isNull()){
-      // remove temporary file
-      QFile::remove(file);
-    }
-    // Delete from scan dir to avoid trying to download it again
-    if(fromScanDir){
-      QFile::remove(file);
-    }
-    // Update info Bar
-    if(!fastResume){
-      if(!from_url.isNull()){
-        setInfoBar("'" + from_url + "' "+tr("added to download list."));
-      }else{
-        setInfoBar("'" + file + "' "+tr("added to download list."));
-      }
-    }else{
-      if(!from_url.isNull()){
-        setInfoBar("'" + from_url + "' "+tr("resumed. (fast resume)"));
-      }else{
-        setInfoBar("'" + file + "' "+tr("resumed. (fast resume)"));
-      }
-    }
-    ++nbTorrents;
-    tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
-  }catch (invalid_encoding& e){ // Raised by bdecode()
-    std::cerr << "Could not decode file, reason: " << e.what() << '\n';
-    // Display warning to tell user we can't decode the torrent file
-    if(!from_url.isNull()){
-      setInfoBar(tr("Unable to decode torrent file:")+" '"+from_url+"'", "red");
-    }else{
-      setInfoBar(tr("Unable to decode torrent file:")+" '"+file+"'", "red");
-    }
-    setInfoBar(tr("This file is either corrupted or this isn't a torrent."),"red");
-    if(fromScanDir){
-      // Remove .corrupt file in case it already exists
-      QFile::remove(file+".corrupt");
-      //Rename file extension so that it won't display error message more than once
-      QFile::rename(file,file+".corrupt");
-    }
-  }
-  catch (invalid_torrent_file&){ // Raised by torrent_info constructor
-    // Display warning to tell user we can't decode the torrent file
-    if(!from_url.isNull()){
-      setInfoBar(tr("Unable to decode torrent file:")+" '"+from_url+"'", "red");
-    }else{
-      setInfoBar(tr("Unable to decode torrent file:")+" '"+file+"'", "red");
-    }
-    setInfoBar(tr("This file is either corrupted or this isn't a torrent."),"red");
-    if(fromScanDir){
-      // Remove .corrupt file in case it already exists
-      QFile::remove(file+".corrupt");
-      //Rename file extension so that it won't display error message more than once
-      QFile::rename(file,file+".corrupt");
-    }
-  }
+void GUI::torrentCorrupted(const QString& path){
+  setInfoBar(tr("Unable to decode torrent file:")+" '"+path+"'", "red");
+  setInfoBar(tr("This file is either corrupted or this isn't a torrent."),"red");
 }
 
 QString GUI::getSavePath(QString hash){
@@ -1453,90 +1070,6 @@ QString GUI::getSavePath(QString hash){
   return savePath;
 }
 
-void GUI::reloadTorrent(const torrent_handle &h, bool compact_mode){
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  fs::path saveDir = h.save_path();
-  QString fileName = QString(h.name().c_str());
-  QString fileHash = QString(misc::toString(h.info_hash()).c_str());
-  qDebug("Reloading torrent: %s", (const char*)fileName.toUtf8());
-  torrent_handle new_h;
-  entry resumeData;
-  torrent_info t = h.get_torrent_info();
-    // Checking if torrentBackup Dir exists
-  // create it if it is not
-  if(! torrentBackup.exists()){
-    torrentBackup.mkpath(torrentBackup.path());
-  }
-  // Write fast resume data
-  // Pause download (needed before fast resume writing)
-  h.pause();
-  // Extracting resume data
-  if (h.has_metadata()){
-    // get fast resume data
-    resumeData = h.write_resume_data();
-  }
-  int row = -1;
-  // Delete item from download list
-  for(int i=0; i<DLListModel->rowCount(); ++i){
-    if(DLListModel->data(DLListModel->index(i, HASH)).toString()==fileHash){
-      row = i;
-      break;
-    }
-  }
-  Q_ASSERT(row != -1);
-  DLListModel->removeRow(row);
-  // Remove torrent
-  s->remove_torrent(h);
-  handles.remove(fileHash);
-  // Add torrent again to session
-  unsigned short timeout = 0;
-  while(h.is_valid() && timeout < 6){
-    SleeperThread::msleep(1000);
-    ++timeout;
-  }
-  if(h.is_valid()){
-    std::cerr << "Error: Couldn't reload the torrent\n";
-    return;
-  }
-  new_h = s->add_torrent(t, saveDir, resumeData, compact_mode);
-  if(compact_mode){
-    qDebug("Using compact allocation mode");
-  }else{
-    qDebug("Using full allocation mode");
-  }
-  handles.insert(fileHash, new_h);
-  new_h.set_max_connections(60);
-  new_h.set_max_uploads(-1);
-  // Load filtered Files
-  loadFilteredFiles(new_h);
-  // Adding torrent to download list
-  DLListModel->insertRow(row);
-  DLListModel->setData(DLListModel->index(row, NAME), QVariant(t.name().c_str()));
-  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)t.total_size()));
-  DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
-  DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
-  DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-  // Pause torrent if it was paused last time
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+QString(t.name().c_str())+".paused")){
-    DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Paused")));
-    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
-    setRowColor(row, "red");
-  }else{
-    DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Connecting...")));
-    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-    setRowColor(row, "grey");
-  }
-  // Pause torrent if it was paused last time
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused")){
-    new_h.pause();
-  }
-  // Incremental download
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".incremental")){
-    qDebug("Incremental download enabled for %s", (const char*)fileName.toUtf8());
-    new_h.set_sequenced_download_threshold(15);
-  }
-}
-
 // As program parameters, we can get paths or urls.
 // This function parse the parameters and call
 // the right addTorrent function, considering
@@ -1546,25 +1079,42 @@ void GUI::processParams(const QStringList& params){
   foreach(param, params){
     param = param.trimmed();
     if(param.startsWith("http://", Qt::CaseInsensitive) || param.startsWith("ftp://", Qt::CaseInsensitive) || param.startsWith("https://", Qt::CaseInsensitive)){
-      downloadFromUrl(param);
+      BTSession.downloadFromUrl(param);
     }else{
       if(options->useAdditionDialog()){
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-        connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
+        connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
         connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
         dialog->showLoad(param);
       }else{
-        addTorrent(param);
+        BTSession.addTorrent(param);
       }
     }
   }
 }
 
-// libtorrent allow to adjust ratio for each torrent
-// This function will apply to same ratio to all torrents
-void GUI::setGlobalRatio(float ratio){
-  foreach(torrent_handle h, handles){
-    h.set_ratio(ratio);
+void GUI::processScannedFiles(const QStringList& params){
+  QString param;
+  foreach(param, params){
+    if(options->useAdditionDialog()){
+      torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
+      connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
+      connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
+      dialog->showLoad(param, true);
+    }else{
+      BTSession.addTorrent(param, true);
+    }
+  }
+}
+
+void GUI::processDownloadedFiles(const QString& path, const QString& url){
+  if(options->useAdditionDialog()){
+    torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
+    connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
+    connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
+    dialog->showLoad(path, false, url);
+  }else{
+    BTSession.addTorrent(path, false, url);
   }
 }
 
@@ -1572,10 +1122,10 @@ void GUI::setGlobalRatio(float ratio){
 void GUI::showProperties(const QModelIndex &index){
   int row = index.row();
   QString fileHash = DLListModel->data(DLListModel->index(row, HASH)).toString();
-  torrent_handle h = handles.value(fileHash);
+  torrent_handle h = BTSession.getTorrentHandle(fileHash);
   QStringList errors = trackerErrors.value(fileHash, QStringList(tr("None")));
   properties *prop = new properties(this, h, errors);
-  connect(prop, SIGNAL(changedFilteredFiles(torrent_handle, bool)), this, SLOT(reloadTorrent(torrent_handle, bool)));
+  connect(prop, SIGNAL(changedFilteredFiles(torrent_handle, bool)), &BTSession, SLOT(reloadTorrent(torrent_handle, bool)));
   prop->show();
 }
 
@@ -1585,114 +1135,71 @@ void GUI::configureSession(){
   QPair<int, int> limits;
   unsigned short old_listenPort, new_listenPort;
   session_settings proxySettings;
-  // creating BT Session & listen
   // Configure session regarding options
-  try {
-    if(s->is_listening()){
-      old_listenPort = s->listen_port();
-    }else{
-      old_listenPort = 0;
+  BTSession.setDefaultSavePath(options->getSavePath());
+  old_listenPort = BTSession.getListenPort();
+  BTSession.setListeningPortsRange(options->getPorts());
+  new_listenPort = BTSession.getListenPort();
+  if(new_listenPort != old_listenPort){
+    setInfoBar(tr("Listening on port", "Listening on port <xxxxx>")+ ": " + QString(misc::toString(new_listenPort).c_str()));
+  }
+  // Apply max connec limit (-1 if disabled)
+  BTSession.setMaxConnections(options->getMaxConnec());
+  limits = options->getLimits();
+  switch(limits.first){
+    case -1: // Download limit disabled
+    case 0:
+      BTSession.setDownloadRateLimit(-1);
+      break;
+    default:
+      BTSession.setDownloadRateLimit(limits.first*1024);
+  }
+  switch(limits.second){
+    case -1: // Upload limit disabled
+    case 0:
+      BTSession.setDownloadRateLimit(-1);
+      break;
+    default:
+      BTSession.setDownloadRateLimit(limits.second*1024);
+  }
+  // Apply ratio (0 if disabled)
+  BTSession.setGlobalRatio(options->getRatio());
+  // DHT (Trackerless)
+  if(options->isDHTEnabled()){
+    BTSession.enableDHT();
+  }else{
+    BTSession.disableDHT();
+  }
+  // Set DHT Port
+  BTSession.setDHTPort(options->getDHTPort());
+  if(!options->isPeXDisabled()){
+    qDebug("Enabling Peer eXchange (PeX)");
+    BTSession.enablePeerExchange();
+  }else{
+    qDebug("Peer eXchange (PeX) disabled");
+  }
+  // Apply filtering settings
+  if(options->isFilteringEnabled()){
+    BTSession.enableIPFilter(options->getFilter());
+  }else{
+    BTSession.disableIPFilter();
+  }
+  // Apply Proxy settings
+  if(options->isProxyEnabled()){
+    proxySettings.proxy_ip = options->getProxyIp().toStdString();
+    proxySettings.proxy_port = options->getProxyPort();
+    if(options->isProxyAuthEnabled()){
+      proxySettings.proxy_login = options->getProxyUsername().toStdString();
+      proxySettings.proxy_password = options->getProxyPassword().toStdString();
     }
-    std::pair<unsigned short, unsigned short> new_listenPorts = options->getPorts();
-    if(listenPorts != new_listenPorts){
-      s->listen_on(new_listenPorts);
-      listenPorts = new_listenPorts;
-    }
-
-    if(s->is_listening()){
-      new_listenPort = s->listen_port();
-      if(new_listenPort != old_listenPort){
-        setInfoBar(tr("Listening on port", "Listening on port <xxxxx>")+ ": " + QString(misc::toString(new_listenPort).c_str()));
-      }
-    }
-    // Apply max connec limit (-1 if disabled)
-    int max_connec = options->getMaxConnec();
-    s->set_max_connections(max_connec);
-
-    limits = options->getLimits();
-    switch(limits.first){
-      case -1: // Download limit disabled
-      case 0:
-        s->set_download_rate_limit(-1);
-        break;
-      default:
-        s->set_download_rate_limit(limits.first*1024);
-    }
-    switch(limits.second){
-      case -1: // Upload limit disabled
-      case 0:
-        s->set_upload_rate_limit(-1);
-        break;
-      default:
-        s->set_upload_rate_limit(limits.second*1024);
-    }
-    // Apply ratio (0 if disabled)
-    setGlobalRatio(options->getRatio());
-    // DHT (Trackerless)
-    if(options->isDHTEnabled() && !DHTEnabled){
-      boost::filesystem::ifstream dht_state_file((const char*)(misc::qBittorrentPath()+QString("dht_state")).toUtf8(), std::ios_base::binary);
-      dht_state_file.unsetf(std::ios_base::skipws);
-      entry dht_state;
-      try{
-        dht_state = bdecode(std::istream_iterator<char>(dht_state_file), std::istream_iterator<char>());
-      }catch (std::exception&) {}
-      s->start_dht(dht_state);
-      s->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
-      s->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
-      s->add_dht_router(std::make_pair(std::string("router.bitcomet.com"), 6881));
-      DHTEnabled = true;
-      qDebug("Enabling DHT Support");
-    }else{
-      if(!options->isDHTEnabled() && DHTEnabled){
-        s->stop_dht();
-        DHTEnabled = false;
-        qDebug("Disabling DHT Support");
-      }
-    }
-    if(!options->isPeXDisabled()){
-      qDebug("Enabling Peer eXchange (PeX)");
-      s->add_extension(&create_ut_pex_plugin);
-    }else{
-      qDebug("Peer eXchange (PeX) disabled");
-    }
-    int dht_port = options->getDHTPort();
-    if(dht_port >= 1000){
-      struct dht_settings DHTSettings;
-      DHTSettings.service_port = dht_port;
-      s->set_dht_settings(DHTSettings);
-      qDebug("Set DHT Port to %d", dht_port);
-    }
-    // Apply filtering settings
-    if(options->isFilteringEnabled()){
-      qDebug("Ip Filter enabled");
-      s->set_ip_filter(options->getFilter());
-    }else{
-      qDebug("Ip Filter disabled");
-      s->set_ip_filter(ip_filter());
-    }
-    // Apply Proxy settings
-    if(options->isProxyEnabled()){
-      proxySettings.proxy_ip = options->getProxyIp().toStdString();
-      proxySettings.proxy_port = options->getProxyPort();
-      if(options->isProxyAuthEnabled()){
-        proxySettings.proxy_login = options->getProxyUsername().toStdString();
-        proxySettings.proxy_password = options->getProxyPassword().toStdString();
-      }
-    }
-    proxySettings.user_agent = "qBittorrent "VERSION;
-    s->set_settings(proxySettings);
-    // Scan dir stuff
-    if(options->getScanDir().isNull()){
-      if(timerScan->isActive()){
-        timerScan->stop();
-      }
-    }else{
-      if(!timerScan->isActive()){
-        timerScan->start(5000);
-      }
-    }
-  }catch(std::exception& e){
-    std::cerr << e.what() << "\n";
+  }
+  proxySettings.user_agent = "qBittorrent "VERSION;
+  BTSession.setSessionSettings(proxySettings);
+  // Scan dir stuff
+  if(options->getScanDir().isNull()){
+    BTSession.disableDirectoryScanning();
+  }else{
+    BTSession.enableDirectoryScanning(options->getScanDir());
   }
   qDebug("Session configured");
 }
@@ -1705,21 +1212,16 @@ void GUI::pauseSelection(){
     if(index.column() == NAME){
       // Get the file name
       QString fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
-      // Get handle and pause the torrent
-      torrent_handle h = handles.value(fileHash);
-      if(!h.is_paused()){
-        h.pause();
-        // Create .paused file
-        QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
-        paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
-        paused_file.close();
+      if(!BTSession.isPaused(fileHash)){
+        // Pause the torrent
+        BTSession.pauseTorrent(fileHash);
         // Update DL status
         int row = index.row();
         DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
         DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
         DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Paused")));
         DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-        setInfoBar("'"+ QString(h.name().c_str()) +"' "+tr("paused.", "<file> paused."));
+        setInfoBar("'"+ QString(BTSession.getTorrentHandle(fileHash).name().c_str()) +"' "+tr("paused.", "<file> paused."));
         DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
         setRowColor(row, "red");
       }
@@ -1735,16 +1237,15 @@ void GUI::startSelection(){
     if(index.column() == NAME){
       // Get the file name
       QString fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
-      // Get handle and pause the torrent
-      torrent_handle h = handles.value(fileHash);
-      if(h.is_paused()){
-        h.resume();
+      if(BTSession.isPaused(fileHash)){
+        // Resume the torrent
+        BTSession.resumeTorrent(fileHash);
         // Delete .paused file
         QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
         // Update DL status
         int row = index.row();
         DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Connecting...")));
-        setInfoBar("'"+ QString(h.name().c_str()) +"' "+tr("resumed.", "<file> resumed."));
+        setInfoBar("'"+ QString(BTSession.getTorrentHandle(fileHash).name().c_str()) +"' "+tr("resumed.", "<file> resumed."));
         DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
         setRowColor(row, "grey");
       }
@@ -1770,11 +1271,61 @@ void GUI::propertiesSelection(){
   }
 }
 
+// called when a torrent has finished
+void GUI::finishedTorrent(torrent_handle& h){
+    QString fileName = QString(h.name().c_str());
+    setInfoBar(fileName+tr(" has finished downloading."));
+    if(options->getUseOSDAlways() || (options->getUseOSDWhenHiddenOnly() && (isMinimized() || isHidden()))) {
+      myTrayIcon->showMessage(tr("Download finished"), fileName+tr(" has finished downloading.", "<filename> has finished downloading."), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
+    }
+}
+
+// Notification when disk is full
+void GUI::fullDiskError(torrent_handle& h){
+  if(options->getUseOSDAlways() || (options->getUseOSDWhenHiddenOnly() && (isMinimized() || isHidden()))) {
+    myTrayIcon->showMessage(tr("I/O Error"), tr("An error occured when trying to read or write ")+ QString(h.name().c_str())+"."+tr("The disk is probably full, download has been paused"), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
+  }
+  // Download will be paused by libtorrent. Updating GUI information accordingly
+  int row = getRowFromHash(QString(misc::toString(h.info_hash()).c_str()));
+  DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
+  DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
+  DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Paused")));
+  DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+  setInfoBar(tr("An error occured (full fisk?)")+", '"+ QString(h.get_torrent_info().name().c_str()) +"' "+tr("paused.", "<file> paused."));
+  DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
+  setRowColor(row, "red");
+}
+
+// Called when we couldn't listen on any port
+// in the given range.
+void GUI::portListeningFailure(){
+  setInfoBar(tr("Couldn't listen on any of the given ports."), "red");
+}
+
+// Called when we receive an error from tracker
+void GUI::trackerError(const QString& hash, const QString& time, const QString& msg){
+  // Check trackerErrors list size and clear it if it is too big
+  if(trackerErrors.size() > 50){
+    trackerErrors.clear();
+  }
+  QStringList errors = trackerErrors.value(hash, QStringList());
+  errors.append("<font color='grey'>"+time+"</font> - <font color='red'>"+msg+"</font>");
+  trackerErrors.insert(hash, errors);
+}
+
+// Called when a tracker requires authentication
+void GUI::trackerAuthenticationRequired(torrent_handle& h){
+  if(unauthenticated_trackers.indexOf(QPair<torrent_handle,std::string>(h, h.status().current_tracker)) < 0){
+    // Tracker login
+    new trackerLogin(this, h);
+  }
+}
+
 // Check connection status and display right icon
 void GUI::checkConnectionStatus(){
   qDebug("Checking connection status");
   char tmp[MAX_CHAR_TMP];
-  session_status sessionStatus = s->status();
+  session_status sessionStatus = BTSession.getSessionStatus();
   // Update ratio info
   float ratio = 1.;
   if(sessionStatus.total_payload_download != 0){
@@ -1808,80 +1359,6 @@ void GUI::checkConnectionStatus(){
       connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/disconnected.png")));
       connecStatusLblIcon->setToolTip(tr("<b>Connection Status:</b><br>Offline<br><i>No peers found...</i>"));
     }
-  }
-  // Check trackerErrors list size and clear it if it is too big
-  if(trackerErrors.size() > 50){
-    trackerErrors.clear();
-  }
-  // look at session alerts and display some infos
-  std::auto_ptr<alert> a = s->pop_alert();
-  while (a.get()){
-    if (torrent_finished_alert* p = dynamic_cast<torrent_finished_alert*>(a.get())){
-      QString fileName = QString(p->handle.get_torrent_info().name().c_str());
-      QString fileHash = QString(misc::toString(p->handle.info_hash()).c_str());
-      // Level: info
-      setInfoBar(fileName+tr(" has finished downloading."));
-      if(options->getUseOSDAlways() || (options->getUseOSDWhenHiddenOnly() && (isMinimized() || isHidden()))) {
-        myTrayIcon->showMessage(tr("Download finished"), fileName+tr(" has finished downloading.", "<filename> has finished downloading."), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
-      }
-      QString scan_dir = options->getScanDir();
-      bool isScanningDir = !scan_dir.isNull();
-      if(isScanningDir && scan_dir.at(scan_dir.length()-1) != QDir::separator()){
-        scan_dir += QDir::separator();
-      }
-      // Remove it from torrentBackup directory
-      // No need to resume it
-      if(options->getClearFinishedOnExit()){
-        QFile::remove(fileHash+".torrent");
-        QFile::remove(fileHash+".fastresume");
-        if(isScanningDir){
-          QFile::remove(scan_dir+fileHash+".torrent");
-        }
-      }
-    }
-    else if (file_error_alert* p = dynamic_cast<file_error_alert*>(a.get())){
-      QString fileName = QString(p->handle.get_torrent_info().name().c_str());
-      QString fileHash = QString(misc::toString(p->handle.info_hash()).c_str());
-      if(options->getUseOSDAlways() || (options->getUseOSDWhenHiddenOnly() && (isMinimized() || isHidden()))) {
-        myTrayIcon->showMessage(tr("I/O Error"), tr("An error occured when trying to read or write ")+ fileName+"."+tr("The disk is probably full, download has been paused"), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
-        // Download will be pausedby libtorrent. Updating GUI information accordingly
-        int row = getRowFromHash(fileHash);
-        DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
-        DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
-        DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Paused")));
-        DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-        setInfoBar("'"+ fileName +"' "+tr("paused.", "<file> paused."));
-        DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
-        setRowColor(row, "red");
-      }
-    }
-    else if (dynamic_cast<listen_failed_alert*>(a.get())){
-      // Level: fatal
-      setInfoBar(tr("Couldn't listen on any of the given ports."), "red");
-    }
-    else if (tracker_alert* p = dynamic_cast<tracker_alert*>(a.get())){
-      // Level: fatal
-      QString fileHash = QString(misc::toString(p->handle.info_hash()).c_str());
-      QStringList errors = trackerErrors.value(fileHash, QStringList());
-      errors.append("<font color='grey'>"+QTime::currentTime().toString("hh:mm:ss")+"</font> - <font color='red'>"+QString(a->msg().c_str())+"</font>");
-      trackerErrors.insert(fileHash, errors);
-      // Authentication
-      if(p->status_code == 401){
-        if(unauthenticated_trackers.indexOf(QPair<torrent_handle,std::string>(p->handle, p->handle.status().current_tracker)) < 0){
-          // Tracker login
-          tracker_login = new trackerLogin(this, p->handle);
-        }
-      }
-    }
-//     else if (peer_error_alert* p = dynamic_cast<peer_error_alert*>(a.get()))
-//     {
-//       events.push_back(identify_client(p->id) + ": " + a->msg());
-//     }
-//     else if (invalid_request_alert* p = dynamic_cast<invalid_request_alert*>(a.get()))
-//     {
-//       events.push_back(identify_client(p->id) + ": " + a->msg());
-//     }
-    a = s->pop_alert();
   }
   qDebug("Connection status updated");
 }
@@ -1989,7 +1466,7 @@ void GUI::downloadSelectedItem(const QModelIndex& index){
   // Get Item url
   QString url = searchResultsUrls.value(SearchListModel->data(SearchListModel->index(row, NAME)).toString());
   // Download from url
-  downloadFromUrl(url);
+  BTSession.downloadFromUrl(url);
   // Set item color to RED
   setRowColor(row, "red", false);
 }
@@ -2254,7 +1731,7 @@ void GUI::on_download_button_clicked(){
     if(index.column() == NAME){
       // Get Item url
       QString url = searchResultsUrls.value(index.data().toString());
-      downloadFromUrl(url);
+      BTSession.downloadFromUrl(url);
       setRowColor(index.row(), "red", false);
     }
   }
@@ -2324,43 +1801,8 @@ void GUI::OptionsSaved(const QString& info){
  *                                                   *
  *****************************************************/
 
-void GUI::processDownloadedFile(QString url, QString file_path, int return_code, QString errorBuffer){
-  if(return_code){
-    // Download failed
-    setInfoBar(tr("Couldn't download", "Couldn't download <file>")+" "+url+", "+tr("reason:", "Reason why the download failed")+" "+errorBuffer, "red");
-    QFile::remove(file_path);
-    return;
-  }
-  // Add file to torrent download list
-  if(options->useAdditionDialog()){
-    torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-    connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), this, SLOT(addTorrent(const QString&, bool, const QString&)));
-    connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
-    dialog->showLoad(file_path, false, url);
-  }else{
-    addTorrent(file_path, false, url);
-  }
-}
-
-// Take an url string to a torrent file,
-// download the torrent file to a tmp location, then
-// add it to download list
-void GUI::downloadFromUrl(const QString& url){
-  setInfoBar(tr("Downloading", "Example: Downloading www.example.com/test.torrent")+" '"+url+"', "+tr("Please wait..."), "black");
-  // Launch downloader thread
-  downloader->downloadUrl(url);
-//   downloader->start();
-}
-
 // Display an input dialog to prompt user for
 // an url
 void GUI::askForTorrentUrl(){
   downloadFromURLDialog = new downloadFromURL(this);
-}
-
-void GUI::downloadFromURLList(const QStringList& url_list){
-  QString url;
-  foreach(url, url_list){
-    downloadFromUrl(url);
-  }
 }

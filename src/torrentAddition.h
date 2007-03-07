@@ -86,7 +86,14 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         // Setting file name
         fileName = QString(t.name().c_str());
         fileHash = QString(misc::toString(t.info_hash()).c_str());
-        fileNameLbl->setText("<center><b>"+fileName+"</b></center>");
+        // Use left() to remove .old extension
+        QString newFileName;
+        if(fileName.endsWith(".old")){
+          newFileName = fileName.left(fileName.size()-4);
+        }else{
+          newFileName = fileName;
+        }
+        fileNameLbl->setText("<center><b>"+newFileName+"</b></center>");
         // List files in torrent
         for(int i=0; i<t.num_files(); ++i){
           QStringList line;

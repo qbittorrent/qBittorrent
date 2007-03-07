@@ -100,6 +100,7 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
 }
 
 properties::~properties(){
+  qDebug("Properties destroyed");
   delete updateProgressTimer;
   delete PropDelegate;
   delete PropListModel;

@@ -42,7 +42,7 @@ class downloadThread : public QThread {
     QWaitCondition condition;
 
   signals:
-    void downloadFinished(QString url, QString file_path, int return_code, QString errorBuffer);
+    void downloadFinished(const QString& url, const QString& file_path, int return_code, const QString& errorBuffer);
 
   public:
     downloadThread(QObject* parent) : QThread(parent){}
@@ -144,6 +144,7 @@ class downloadThread : public QThread {
 	  qDebug("In Download thread RUN, mutex unlocked (no urls) -> stopping");
           break;
         }
+        SleeperThread::msleep(500);
       }
     }
 };

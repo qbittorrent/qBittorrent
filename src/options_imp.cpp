@@ -317,10 +317,14 @@ void options_imp::loadOptions(){
   strValue = settings.value("ScanDir", QString()).toString();
   if(!strValue.isEmpty()){
     enableScan_checkBox->setChecked(true);
+    lbl_scanDir->setEnabled(true);
     scanDir->setEnabled(true);
+    browse_button_scan->setEnabled(true);
     scanDir->setText(strValue);
   }else{
     enableScan_checkBox->setChecked(false);
+    lbl_scanDir->setEnabled(false);
+    browse_button_scan->setEnabled(false);
     scanDir->setEnabled(false);
   }
   // End Main options

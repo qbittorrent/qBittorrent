@@ -43,7 +43,6 @@
 #include "about_imp.h"
 #include "previewSelect.h"
 #include "trackerLogin.h"
-#include "deleteThread.h"
 #include "bittorrent.h"
 
 
@@ -65,18 +64,11 @@ class GUI : public QMainWindow, private Ui::MainWindow{
 
   private:
     // Bittorrent
-    session *s;
-    std::pair<unsigned short, unsigned short> listenPorts;
-    QHash<QString, torrent_handle> handles;
+    bittorrent BTSession;
     QTimer *checkConnect;
-    QTimer *timerScan;
     QHash<QString, QStringList> trackerErrors;
-    trackerLogin *tracker_login;
     QList<QPair<torrent_handle,std::string> > unauthenticated_trackers;
-    downloadThread *downloader;
     downloadFromURL *downloadFromURLDialog;
-    bool DHTEnabled;
-    QList<deleteThread*> deleters;
     // GUI related
     options_imp *options;
     createtorrent *createWindow;
@@ -88,7 +80,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     DLListDelegate *DLDelegate;
     QStandardItemModel *SearchListModel;
     SearchListDelegate *SearchDelegate;
-    QStringList supported_preview_extensions;
     unsigned int nbTorrents;
     QLabel *connecStatusLblIcon;
     // Preview
@@ -147,25 +138,17 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // Torrent actions
     void showProperties(const QModelIndex &index);
     void propertiesSelection();
-    void addTorrent(const QString& path, bool fromScanDir = false, const QString& from_url = QString());
     void pauseSelection();
     void startSelection();
     void askForTorrents();
     void deletePermanently();
     void deleteSelection();
-    void resumeUnfinished();
-    void saveFastResumeData() const;
     void checkConnectionStatus();
-    void scanDirectory();
-    void setGlobalRatio(float ratio);
     void configureSession();
     void processParams(const QStringList& params);
     void addUnauthenticatedTracker(QPair<torrent_handle,std::string> tracker);
-    void processDownloadedFile(QString url, QString file_path, int return_code, QString errorBuffer);
-    void downloadFromURLList(const QStringList& url_list);
-    bool loadFilteredFiles(torrent_handle &h);
-    bool hasFilteredFiles(const QString& fileName);
-    void reloadTorrent(const torrent_handle &h, bool compact_mode = true);
+    void processScannedFiles(const QStringList& params);
+    void processDownloadedFiles(const QString& path, const QString& url);
     // Search slots
     void on_search_button_clicked();
     void on_stop_search_button_clicked();
@@ -185,11 +168,18 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void showOptions() const;
     void OptionsSaved(const QString& info);
     // HTTP slots
-    void downloadFromUrl(const QString& url);
     void askForTorrentUrl();
 
   public slots:
     void setLocale(QString locale);
+    void torrentAdded(const QString& path, torrent_handle& h, bool fastResume);
+    void torrentDuplicate(const QString& path);
+    void torrentCorrupted(const QString& path);
+    void finishedTorrent(torrent_handle& h);
+    void fullDiskError(torrent_handle& h);
+    void portListeningFailure();
+    void trackerError(const QString& hash, const QString& time, const QString& msg);
+    void trackerAuthenticationRequired(torrent_handle& h);
 
   protected:
     void closeEvent(QCloseEvent *);
@@ -204,7 +194,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     float getNovaVersion(const QString& novaPath) const;
     QByteArray getNovaChangelog(const QString& novaPath) const;
     void updateNova() const;
-    bool isFilePreviewPossible(const torrent_handle& h) const;
     QString getSavePath(QString fileName);
     QPoint screenCenter();
 };

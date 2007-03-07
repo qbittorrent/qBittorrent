@@ -1,7 +1,7 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.9.0
     - FEATURE: Based on libtorrent v0.12
-    - FEATURE: Based on Qt 4.2
-    - FEATURE: Brand new trayicon from Qt 4.2
+    - FEATURE: Based on Qt4.2
+    - FEATURE: Brand new trayicon from Qt4.2
     - FEATURE: Support uTorrent Peer Exchange (PeX - exchanges peers between clients)
     - FEATURE: Added a menu action to visit qBittorrent website
     - FEATURE: Added a menu action to report a bug in qBittorrent
@@ -10,15 +10,17 @@
     - FEATURE: Number of complete/incomplete sources are now displayed in download list for each torrent
     - FEATURE: Implemented close to systray
     - FEATURE: Added Autocompletion to search engine
-    - BUGFIX: Two torrents can now have the same name although they are different
+    - FEATURE: Splitted BT & GUI parts (huge code rewriting & optimization)
+    - BUGFIX: Two torrents can now have the same name although they are different (use their hash)
     - BUGFIX: Fixed download from url that would fail sometimes
     - BUGFIX: Save directory was reset to default when filtering files in torrent
     - BUGFIX: Force a refresh of download list when the window is shown (avoid delay)
     - BUGFIX: Fixed deletion from hard drive (failed for non-empty folders)
     - BUGFIX: qBittorrent now identifies its version correctly on the network
     - BUGFIX: Preventing GUI from freezing when deleting a download permanently
-    - BUGFIX: Fix directory scanning (stop trying to download the same files several times)
-    - COSMETIC: Replaced OSD messages by systray messages
+    - BUGFIX: Fixed directory scanning (stop trying to download the same files several times)
+    - BUGFIX: Fixed bad loading of scan dir in option (widgets still disabled)
+    - COSMETIC: Replaced OSD messages by Qt4.2 systray messages
 
 * Tue Nov 28 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.8.0
     - FEATURE: Added a torrent addition dialog
