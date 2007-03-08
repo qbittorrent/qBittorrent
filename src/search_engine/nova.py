@@ -3,6 +3,7 @@
 # Version: 2.0
 # - Fixed ThePirateBay search engine
 # - Fixed Meganova search engine
+# - Fixed Mininova search engine
 
 # Version: 1.9
 # Changelog:
@@ -211,7 +212,8 @@ class Mininova(object):
 				return txt.toxml()
 			else:
 				return ''.join([ get_text(n) for n in txt.childNodes])
-		dat = urllib.urlopen(self.url+'/search/%s/%s'%(what,order)).read().decode('utf-8', 'replace')
+		dat = urllib.urlopen(self.url+'/search/%s/seeds'%(what,)).read().decode('utf-8', 'replace')
+		dat = re.sub("<a href=\"http://www.boardreader.com/index.php.*\"", "<a href=\"plop\"", dat)
 		x = minidom.parseString(dat.encode('utf-8', 'replace'))
 		table = x.getElementsByTagName('table').item(0)
 		if not table: return
