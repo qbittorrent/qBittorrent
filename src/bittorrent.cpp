@@ -672,6 +672,7 @@ QString bittorrent::getSavePath(const QString& hash){
 // download the torrent file to a tmp location, then
 // add it to download list
 void bittorrent::downloadFromUrl(const QString& url){
+  emit aboutToDownloadFromUrl(url);
   // Launch downloader thread
   downloader->downloadUrl(url);
 }

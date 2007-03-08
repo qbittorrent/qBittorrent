@@ -151,6 +151,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void addUnauthenticatedTracker(QPair<torrent_handle,std::string> tracker);
     void processScannedFiles(const QStringList& params);
     void processDownloadedFiles(const QString& path, const QString& url);
+    void downloadFromURLList(const QStringList& urls);
+    void displayDownloadingUrlInfos(const QString& url);
     // Search slots
     void on_search_button_clicked();
     void on_stop_search_button_clicked();

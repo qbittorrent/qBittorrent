@@ -135,6 +135,7 @@ class bittorrent : public QObject{
     void downloadFromUrlFailure(const QString& url, const QString& error);
     void scanDirFoundTorrents(const QStringList& pathList);
     void newDownloadedTorrent(const QString& path, const QString& url);
+    void aboutToDownloadFromUrl(const QString& url);
 };
 
 #endif

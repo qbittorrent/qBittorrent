@@ -130,6 +130,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(&BTSession, SIGNAL(trackerAuthenticationRequired(torrent_handle&)), this, SLOT(trackerAuthenticationRequired(torrent_handle&)));
   connect(&BTSession, SIGNAL(scanDirFoundTorrents(const QStringList&)), this, SLOT(processScannedFiles(const QStringList&)));
   connect(&BTSession, SIGNAL(newDownloadedTorrent(const QString&, const QString&)), this, SLOT(processDownloadedFiles(const QString&, const QString&)));
+  connect(&BTSession, SIGNAL(aboutToDownloadFromUrl(const QString&)), this, SLOT(displayDownloadingUrlInfos(const QString&)));
   // creating options
   options = new options_imp(this);
   connect(options, SIGNAL(status_changed(const QString&)), this, SLOT(OptionsSaved(const QString&)));
@@ -1812,6 +1813,14 @@ int GUI::getRowFromHash(const QString& hash) const{
   return -1;
 }
 
+void GUI::downloadFromURLList(const QStringList& urls){
+  BTSession.downloadFromURLList(urls);
+}
+
+void GUI::displayDownloadingUrlInfos(const QString& url){
+  setInfoBar(tr("Downloading", "Example: Downloading www.example.com/test.torrent")+" '"+url+"', "+tr("Please wait..."), "black");
+}
+
 /*****************************************************
  *                                                   *
  *                     Options                       *
@@ -1848,4 +1857,5 @@ void GUI::OptionsSaved(const QString& info){
 // an url
 void GUI::askForTorrentUrl(){
   downloadFromURLDialog = new downloadFromURL(this);
+  connect(downloadFromURLDialog, SIGNAL(downloadFinished(QString, QString, int, QString)), &BTSession, SLOT(processDownloadedFile(QString, QString, int, QString)));
 }
