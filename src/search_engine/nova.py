@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# Version: 2.0
+# - Fixed ThePirateBay search engine
+
 # Version: 1.9
 # Changelog:
 # - Various fixes
@@ -131,13 +134,16 @@ class PirateBay(object):
 			self.current_item = None
 			self.results = results
 			self.url = url
+			self.code = 0
 
 		def start_a(self, attr):
 			params = dict(attr)
 			if params['href'].startswith('/browse'):
 				self.current_item = {}
 				self.td_counter = 0
-			elif params['href'].startswith('http://torrents.thepiratebay.org/hashtorrent'):
+                        elif params['href'].startswith('/tor'):
+				self.code = params['href'].split('/')[2]
+			elif params['href'].startswith('http://torrents.thepiratebay.org/%s'%self.code):
 				self.current_item['link']=params['href'].strip()
 				self.td_counter = self.td_counter+1
 
@@ -181,7 +187,7 @@ class PirateBay(object):
 		while True:
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
-			dat = urllib.urlopen(self.url+'/search.php?q=%s&orderby=%s&what=search&page=%u' % (what, order, i)).read()
+			dat = urllib.urlopen(self.url+'/search/%s/%u/0/0' % (what, i)).read()
 			parser.feed(dat)
 			parser.close()
 			if len(results) <= 0:
