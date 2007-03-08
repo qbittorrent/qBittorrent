@@ -152,6 +152,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(actionPause, SIGNAL(triggered()), this, SLOT(pauseSelection()));
   connect(actionTorrent_Properties, SIGNAL(triggered()), this, SLOT(propertiesSelection()));
   connect(actionStart, SIGNAL(triggered()), this, SLOT(startSelection()));
+  connect(actionPause_All, SIGNAL(triggered()), this, SLOT(pauseAll()));
+  connect(actionStart_All, SIGNAL(triggered()), this, SLOT(resumeAll()));
   connect(actionAbout, SIGNAL(triggered()), this, SLOT(showAbout()));
   connect(actionCreate_torrent, SIGNAL(triggered()), this, SLOT(showCreateWindow()));
   connect(actionClearLog, SIGNAL(triggered()), this, SLOT(clearLog()));
@@ -1204,6 +1206,29 @@ void GUI::configureSession(){
   qDebug("Session configured");
 }
 
+// Pause All Downloads in DL list
+void GUI::pauseAll(){
+  QString fileHash;
+  // Pause all torrents
+  BTSession.pauseAllTorrents();
+  // update download list
+  for(int i=0; i<DLListModel->rowCount(); ++i){
+    fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
+    // Create .paused file
+    QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
+    paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
+    paused_file.close();
+    // Update DL list items
+    DLListModel->setData(DLListModel->index(i, DLSPEED), QVariant((double)0.));
+    DLListModel->setData(DLListModel->index(i, UPSPEED), QVariant((double)0.));
+    DLListModel->setData(DLListModel->index(i, STATUS), QVariant(tr("Paused")));
+    DLListModel->setData(DLListModel->index(i, ETA), QVariant((qlonglong)-1));
+    DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
+    setRowColor(i, "red");
+    setInfoBar(tr("All downloads paused."));
+  }
+}
+
 // pause selected items in the list
 void GUI::pauseSelection(){
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
@@ -1226,6 +1251,24 @@ void GUI::pauseSelection(){
         setRowColor(row, "red");
       }
     }
+  }
+}
+
+// Resume All Downloads in DL list
+void GUI::resumeAll(){
+  QString fileHash;
+  // Pause all torrents
+  BTSession.resumeAllTorrents();
+  // update download list
+  for(int i=0; i<DLListModel->rowCount(); ++i){
+    fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
+    // Remove .paused file
+    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
+    // Update DL list items
+    DLListModel->setData(DLListModel->index(i, STATUS), QVariant(tr("Connecting...")));
+    DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
+    setRowColor(i, "grey");
+    setInfoBar(tr("All downloads resumed."));
   }
 }
 

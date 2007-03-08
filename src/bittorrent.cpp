@@ -497,6 +497,28 @@ void bittorrent::setGlobalRatio(float ratio){
   }
 }
 
+// Pause all torrents in session
+void bittorrent::pauseAllTorrents(){
+  std::vector<torrent_handle> handles = s->get_torrents();
+  for(unsigned int i=0; i<handles.size(); ++i){
+    torrent_handle h = handles[i];
+    if(h.is_valid() && !h.is_paused()){
+      h.pause();
+    }
+  }
+}
+
+// Resume all torrents in session
+void bittorrent::resumeAllTorrents(){
+  std::vector<torrent_handle> handles = s->get_torrents();
+  for(unsigned int i=0; i<handles.size(); ++i){
+    torrent_handle h = handles[i];
+    if(h.is_valid() && h.is_paused()){
+      h.resume();
+    }
+  }
+}
+
 // Add uT PeX extension to bittorrent session
 void bittorrent::enablePeerExchange(){
   s->add_extension(&create_ut_pex_plugin);

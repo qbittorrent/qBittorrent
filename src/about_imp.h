@@ -23,10 +23,7 @@
 #define ABOUT_H
 
 #include "ui_about.h"
-#define VERSION "v0.9.0beta3"
-#define VERSION_MAJOR 0
-#define VERSION_MINOR 9
-#define VERSION_BUGFIX 0
+#define VERSION "v0.9.0beta4"
 
 class about : public QDialog, private Ui::AboutDlg{
   Q_OBJECT

@@ -43,7 +43,7 @@
 
 #include "deleteThread.h"
 
-#define VERSION "v0.9.0beta3"
+#define VERSION "v0.9.0beta4"
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 9
 #define VERSION_BUGFIX 0
@@ -91,6 +91,8 @@ class bittorrent : public QObject{
     void downloadFromURLList(const QStringList& url_list);
     void deleteTorrent(const QString& hash, bool permanent = false);
     void pauseTorrent(const QString& hash);
+    void pauseAllTorrents();
+    void resumeAllTorrents();
     void resumeTorrent(const QString& hash);
     void enableDHT();
     void disableDHT();

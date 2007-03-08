@@ -139,7 +139,9 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void showProperties(const QModelIndex &index);
     void propertiesSelection();
     void pauseSelection();
+    void pauseAll();
     void startSelection();
+    void resumeAll();
     void askForTorrents();
     void deletePermanently();
     void deleteSelection();
