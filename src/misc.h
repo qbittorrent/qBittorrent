@@ -203,21 +203,21 @@ class misc : public QObject{
         return QString::QString(tr("Unknown"));
       }
       if(seconds < 60){
-        return QString::QString("< 1"+tr("m", "minutes"));
+        return tr("< 1m", "< 1 minute");
       }
       int minutes = seconds / 60;
       if(minutes < 60){
-        return QString::QString(misc::toString(minutes).c_str())+tr("m", "minutes");
+        return tr("%1m","e.g: 10minutes").arg(QString::QString(misc::toString(minutes).c_str()));
       }
       int hours = minutes / 60;
       minutes = minutes - hours*60;
       if(hours < 24){
-        return QString::QString(misc::toString(hours).c_str())+tr("h", "hours")+" "+QString::QString(misc::toString(minutes).c_str())+tr("m", "minutes");
+        return tr("%1h%2m", "e.g: 3hours 5minutes").arg(QString(misc::toString(hours).c_str())).arg(QString(misc::toString(minutes).c_str()));
       }
       int days = hours / 24;
       hours = hours - days * 24;
       if(days < 100){
-        return QString::QString(misc::toString(days).c_str())+tr("d", "days")+" "+QString::QString(misc::toString(hours).c_str())+tr("h ", "hours")+QString::QString(misc::toString(minutes).c_str())+tr("m", "minutes");
+        return tr("%1d%2h%3m", "e.g: 2days 10hours 2minutes").arg(QString(misc::toString(days).c_str())).arg(QString(misc::toString(hours).c_str())).arg(QString(misc::toString(minutes).c_str()));
       }
       return QString::QString(tr("Unknown"));
     }

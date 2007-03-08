@@ -40,10 +40,10 @@
 - Allow to edit the trackers for a torrent
 
 // In v0.9.0
+- Update translations (contact translators)
+- Find a better way to update qBittorrent VERSION
 - Splitting torrent part from GUI (bug squashing + cleanup)
 - Create options object only when necessary to save up some memory
 - Wait for libtorrent v0.12 official release
-- report this to libtorrent:
-  "qbittorrent: kademlia/rpc_manager.cpp:327: void libtorrent::dht::rpc_manager::invoke(int, asio::ip::basic_endpoint<asio::ip::udp>, boost::shared_ptr<libtorrent::dht::observer>):  l'assertion « false » a échoué."
 Info: current TOP output:
     25461 chris     15   0  106m  23m  14m S  0.7  2.4   0:01.60 qbittorrent

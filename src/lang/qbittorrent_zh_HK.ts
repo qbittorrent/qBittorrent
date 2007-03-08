@@ -156,7 +156,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>常規</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1181"/>
+        <location filename="../options.ui" line="1194"/>
         <source>Save Path:</source>
         <translation>保存路徑:</translation>
     </message>
@@ -181,7 +181,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Port範圍:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1295"/>
+        <location filename="../options.ui" line="1315"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -201,57 +201,57 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">到</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="917"/>
+        <location filename="../options.ui" line="930"/>
         <source>Proxy</source>
         <translation>Proxy</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="939"/>
+        <location filename="../options.ui" line="952"/>
         <source>Proxy Settings</source>
         <translation>Proxy設置</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="959"/>
+        <location filename="../options.ui" line="972"/>
         <source>Server IP:</source>
         <translation>伺服器IP:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="966"/>
+        <location filename="../options.ui" line="979"/>
         <source>0.0.0.0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="992"/>
+        <location filename="../options.ui" line="1005"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1024"/>
+        <location filename="../options.ui" line="1037"/>
         <source>Proxy server requires authentication</source>
         <translation>代理伺服器需要身分驗證</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1034"/>
+        <location filename="../options.ui" line="1047"/>
         <source>Authentication</source>
         <translation>驗證</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1062"/>
+        <location filename="../options.ui" line="1075"/>
         <source>User Name:</source>
         <translation>用戶名:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1069"/>
+        <location filename="../options.ui" line="1082"/>
         <source>Password:</source>
         <translation>密碼:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="929"/>
+        <location filename="../options.ui" line="942"/>
         <source>Enable connection through a proxy server</source>
         <translation>可使用代理伺服器連接</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="647"/>
+        <location filename="../options.ui" line="660"/>
         <source>Language</source>
         <translation type="unfinished">語言</translation>
     </message>
@@ -261,12 +261,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">請選擇所需語言:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1371"/>
+        <location filename="../options.ui" line="1391"/>
         <source>OK</source>
         <translation>確認</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1378"/>
+        <location filename="../options.ui" line="1398"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
@@ -306,12 +306,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">KB 上傳最大值.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="767"/>
+        <location filename="../options.ui" line="780"/>
         <source>Activate IP Filtering</source>
         <translation>啟用IP過濾器</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="777"/>
+        <location filename="../options.ui" line="790"/>
         <source>Filter Settings</source>
         <translation>過濾器設置</translation>
     </message>
@@ -321,57 +321,57 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">ipfilter.dat路徑或網址:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="813"/>
+        <location filename="../options.ui" line="826"/>
         <source>Start IP</source>
         <translation>起始IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="818"/>
+        <location filename="../options.ui" line="831"/>
         <source>End IP</source>
         <translation>截止IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="823"/>
+        <location filename="../options.ui" line="836"/>
         <source>Origin</source>
         <translation>來源</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="828"/>
+        <location filename="../options.ui" line="841"/>
         <source>Comment</source>
         <translation>注釋</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1388"/>
+        <location filename="../options.ui" line="1408"/>
         <source>Apply</source>
         <translation>應用</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="755"/>
+        <location filename="../options.ui" line="768"/>
         <source>IP Filter</source>
         <translation>IP過濾器</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="857"/>
+        <location filename="../options.ui" line="870"/>
         <source> Add Range</source>
         <translation> 添加IP列</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="864"/>
+        <location filename="../options.ui" line="877"/>
         <source> Remove Range</source>
         <translation> 刪除IP列</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="894"/>
+        <location filename="../options.ui" line="907"/>
         <source>ipfilter.dat Path:</source>
         <translation>ipfilter.dat路徑:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1136"/>
+        <location filename="../options.ui" line="1149"/>
         <source>Misc</source>
         <translation>其他</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1232"/>
+        <location filename="../options.ui" line="1245"/>
         <source>Ask for confirmation on exit</source>
         <translation>離開時確認</translation>
     </message>
@@ -381,22 +381,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">離開時清除完成的下載</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1252"/>
+        <location filename="../options.ui" line="1265"/>
         <source>Go to systray when minimizing window</source>
         <translation>最小化時移至systray</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="659"/>
+        <location filename="../options.ui" line="672"/>
         <source>Localization</source>
         <translation>地方化</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="686"/>
+        <location filename="../options.ui" line="699"/>
         <source>Language:</source>
         <translation>語言</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1220"/>
+        <location filename="../options.ui" line="1233"/>
         <source>Behaviour</source>
         <translation>行為</translation>
     </message>
@@ -436,37 +436,37 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>最大上傳KB</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1242"/>
+        <location filename="../options.ui" line="1255"/>
         <source>Automatically clear finished downloads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1265"/>
+        <location filename="../options.ui" line="1285"/>
         <source>Preview program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1285"/>
+        <location filename="../options.ui" line="1305"/>
         <source>Audio/Video player:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1307"/>
+        <location filename="../options.ui" line="1327"/>
         <source>Systray Messages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1319"/>
+        <location filename="../options.ui" line="1339"/>
         <source>Always display systray messages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1329"/>
+        <location filename="../options.ui" line="1349"/>
         <source>Display systray messages only when window is hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1336"/>
+        <location filename="../options.ui" line="1356"/>
         <source>Never display systray messages</source>
         <translation type="unfinished"></translation>
     </message>
@@ -481,22 +481,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="727"/>
+        <location filename="../options.ui" line="740"/>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="734"/>
+        <location filename="../options.ui" line="747"/>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1148"/>
+        <location filename="../options.ui" line="1161"/>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1161"/>
+        <location filename="../options.ui" line="1174"/>
         <source>Default save path</source>
         <translation type="unfinished"></translation>
     </message>
@@ -510,11 +510,16 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <source>Disable Peer eXchange (PeX)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../options.ui" line="1275"/>
+        <source>Go to systray when closing main window</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="952"/>
+        <location filename="../GUI.cpp" line="907"/>
         <source>Open Torrent Files</source>
         <translation>打開Torrent文件</translation>
     </message>
@@ -524,7 +529,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">無效</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1383"/>
+        <location filename="../GUI.cpp" line="1048"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>該文件不是torrent文件或已經損壞.</translation>
     </message>
@@ -534,17 +539,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">確定刪除下在列表中的所有文件?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2151"/>
+        <location filename="../GUI.cpp" line="1677"/>
         <source>&amp;Yes</source>
         <translation>&amp;是</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2151"/>
+        <location filename="../GUI.cpp" line="1677"/>
         <source>&amp;No</source>
         <translation>&amp;否</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1132"/>
+        <location filename="../GUI.cpp" line="975"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>確定刪除所選中的文件?</translation>
     </message>
@@ -559,22 +564,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">開始</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="481"/>
+        <location filename="../GUI.cpp" line="489"/>
         <source>Finished</source>
-        <translation>完成</translation>
+        <translation type="obsolete">完成</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="490"/>
+        <location filename="../GUI.cpp" line="498"/>
         <source>Checking...</source>
-        <translation>檢查中...</translation>
+        <translation type="obsolete">檢查中...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1771"/>
+        <location filename="../GUI.cpp" line="1291"/>
         <source>Connecting...</source>
         <translation>連接中...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="515"/>
+        <location filename="../GUI.cpp" line="523"/>
         <source>Downloading...</source>
         <translation>下載中...</translation>
     </message>
@@ -586,12 +591,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../GUI.cpp" line="1692"/>
         <source>All Downloads Paused.</source>
-        <translation>暫停所有下載.</translation>
+        <translation type="obsolete">暫停所有下載.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1751"/>
         <source>All Downloads Resumed.</source>
-        <translation>重新開始所有下載.</translation>
+        <translation type="obsolete">重新開始所有下載.</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -599,63 +604,63 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">下載速度:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="254"/>
+        <location filename="../GUI.cpp" line="257"/>
         <source> started.</source>
-        <translation> 已開始.</translation>
+        <translation type="obsolete"> 已開始.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="456"/>
+        <location filename="../GUI.cpp" line="462"/>
         <source>UP Speed: </source>
-        <translation>上傳速度:</translation>
+        <translation type="obsolete">上傳速度:</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1217"/>
         <source>Couldn&apos;t create the directory:</source>
-        <translation>無法建立目錄:</translation>
+        <translation type="obsolete">無法建立目錄:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="953"/>
+        <location filename="../GUI.cpp" line="908"/>
         <source>Torrent Files</source>
         <translation>Torrent檔案</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1241"/>
+        <location filename="../GUI.cpp" line="1043"/>
         <source>already in download list.</source>
         <comment>&lt;file&gt; already in download list.</comment>
-        <translation>該文件已存在於下載列表中.</translation>
+        <translation type="obsolete">該文件已存在於下載列表中.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1349"/>
+        <location filename="../GUI.cpp" line="1033"/>
         <source>added to download list.</source>
-        <translation>增加到下載列表.</translation>
+        <translation type="obsolete">增加到下載列表.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1355"/>
+        <location filename="../GUI.cpp" line="1035"/>
         <source>resumed. (fast resume)</source>
-        <translation>重新開始. (快速)</translation>
+        <translation type="obsolete">重新開始. (快速)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1381"/>
+        <location filename="../GUI.cpp" line="1047"/>
         <source>Unable to decode torrent file:</source>
-        <translation>無法解碼torrent文件:</translation>
+        <translation type="obsolete">無法解碼torrent文件:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1173"/>
+        <location filename="../GUI.cpp" line="1001"/>
         <source>removed.</source>
         <comment>&lt;file&gt; removed.</comment>
-        <translation>移除.</translation>
+        <translation type="obsolete">移除.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1878"/>
+        <location filename="../GUI.cpp" line="1338"/>
         <source>paused.</source>
         <comment>&lt;file&gt; paused.</comment>
-        <translation>暫停.</translation>
+        <translation type="obsolete">暫停.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1772"/>
+        <location filename="../GUI.cpp" line="1292"/>
         <source>resumed.</source>
         <comment>&lt;file&gt; resumed.</comment>
-        <translation>重新開始.</translation>
+        <translation type="obsolete">重新開始.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1568"/>
@@ -663,72 +668,67 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">使用端口:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="254"/>
-        <source>qBittorrent </source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="1131"/>
+        <location filename="../GUI.cpp" line="974"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>確定? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="456"/>
+        <location filename="../GUI.cpp" line="462"/>
         <source>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </source>
-        <translation> &lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;下載速度:</translation>
+        <translation type="obsolete"> &lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;下載速度:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1825"/>
+        <location filename="../GUI.cpp" line="1395"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Online</source>
-        <translation>&lt;b&gt;連接狀態:&lt;/b&gt;&lt;br&gt;在線上</translation>
+        <translation type="obsolete">&lt;b&gt;連接狀態:&lt;/b&gt;&lt;br&gt;在線上</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1830"/>
+        <location filename="../GUI.cpp" line="1400"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
-        <translation>&lt;b&gt;連接狀態:&lt;/b&gt;&lt;br&gt;有防火牆?&lt;br&gt;&lt;i&gt;無incoming連接...&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;連接狀態:&lt;/b&gt;&lt;br&gt;有防火牆?&lt;br&gt;&lt;i&gt;無incoming連接...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1834"/>
+        <location filename="../GUI.cpp" line="1404"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
-        <translation>&lt;b&gt;連接狀態:&lt;/b&gt;&lt;br&gt;離線&lt;br&gt;&lt;i&gt;無法找到任何資源...&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;連接狀態:&lt;/b&gt;&lt;br&gt;離線&lt;br&gt;&lt;i&gt;無法找到任何資源...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1848"/>
+        <location filename="../GUI.cpp" line="1321"/>
         <source> has finished downloading.</source>
-        <translation> 下載完畢.</translation>
+        <translation type="obsolete"> 下載完畢.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1885"/>
+        <location filename="../GUI.cpp" line="1346"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>所給端口無回應.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1538"/>
+        <location filename="../GUI.cpp" line="1129"/>
         <source>None</source>
-        <translation>無</translation>
+        <translation type="obsolete">無</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1926"/>
+        <location filename="../GUI.cpp" line="1439"/>
         <source>Empty search pattern</source>
         <translation>無關鍵字</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1926"/>
+        <location filename="../GUI.cpp" line="1439"/>
         <source>Please type a search pattern first</source>
         <translation>請輸入關鍵字</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1931"/>
+        <location filename="../GUI.cpp" line="1457"/>
         <source>No seach engine selected</source>
-        <translation>無選中的搜索引擎</translation>
+        <translation type="obsolete">無選中的搜索引擎</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1931"/>
+        <location filename="../GUI.cpp" line="1457"/>
         <source>You must select at least one search engine.</source>
         <translation>至少選擇一個搜索引擎.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1971"/>
+        <location filename="../GUI.cpp" line="1497"/>
         <source>Searching...</source>
         <translation>搜索中...</translation>
     </message>
@@ -743,9 +743,9 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">停止</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1871"/>
+        <location filename="../GUI.cpp" line="1330"/>
         <source>I/O Error</source>
-        <translation type="unfinished">輸入/輸出錯誤</translation>
+        <translation type="obsolete">輸入/輸出錯誤</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -778,9 +778,9 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> http失敗原因:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="867"/>
+        <location filename="../GUI.cpp" line="814"/>
         <source>Are you sure you want to quit? -- qBittorrent</source>
-        <translation>確定要退出嗎? -- qBittorrent</translation>
+        <translation type="obsolete">確定要退出嗎? -- qBittorrent</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -793,27 +793,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">超時</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="456"/>
-        <source>KiB/s</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="2190"/>
+        <location filename="../GUI.cpp" line="1716"/>
         <source>Search is finished</source>
-        <translation>搜尋結束</translation>
+        <translation type="obsolete">搜尋結束</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2182"/>
+        <location filename="../GUI.cpp" line="1708"/>
         <source>An error occured during search...</source>
         <translation>搜尋發生錯誤...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2185"/>
+        <location filename="../GUI.cpp" line="1711"/>
         <source>Search aborted</source>
         <translation>搜尋中斷</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2188"/>
+        <location filename="../GUI.cpp" line="1714"/>
         <source>Search returned no results</source>
         <translation>搜尋無結果</translation>
     </message>
@@ -823,12 +818,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">搜尋結束</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2166"/>
+        <location filename="../GUI.cpp" line="1692"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation>搜尋 plugin 更新 -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2150"/>
+        <location filename="../GUI.cpp" line="1676"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -836,44 +831,44 @@ Changelog:
         <translation>搜尋 plugin 可更新, 是否更新?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2164"/>
+        <location filename="../GUI.cpp" line="1690"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>抱歉, 更新伺服器暫時不能用</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2167"/>
+        <location filename="../GUI.cpp" line="1693"/>
         <source>Your search plugin is already up to date.</source>
         <translation>您的搜尋 plugin 已是最新</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2194"/>
+        <location filename="../GUI.cpp" line="1533"/>
         <source>Results</source>
         <translation>結果</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="204"/>
+        <location filename="../GUI.cpp" line="203"/>
         <source>Name</source>
-        <translation>名稱</translation>
+        <translation type="obsolete">名稱</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="205"/>
+        <location filename="../GUI.cpp" line="204"/>
         <source>Size</source>
-        <translation>大小</translation>
+        <translation type="obsolete">大小</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="106"/>
         <source>Progress</source>
-        <translation>進度</translation>
+        <translation type="obsolete">進度</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="107"/>
         <source>DL Speed</source>
-        <translation>下載速度</translation>
+        <translation type="obsolete">下載速度</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="108"/>
         <source>UP Speed</source>
-        <translation>上傳速度</translation>
+        <translation type="obsolete">上傳速度</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="110"/>
@@ -883,118 +878,331 @@ Changelog:
     <message>
         <location filename="../GUI.cpp" line="111"/>
         <source>ETA</source>
-        <translation>ETA</translation>
+        <translation type="obsolete">ETA</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="205"/>
+        <source>Seeders</source>
+        <translation type="obsolete">種子</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="206"/>
-        <source>Seeders</source>
-        <translation>種子</translation>
+        <source>Leechers</source>
+        <translation type="obsolete">不完整種子</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="207"/>
-        <source>Leechers</source>
-        <translation>不完整種子</translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="208"/>
         <source>Search engine</source>
         <translation>搜尋引擎</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="520"/>
-        <source>Stalled</source>
-        <comment>state of a torrent whose DL Speed is 0</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="1876"/>
+        <location filename="../GUI.cpp" line="1336"/>
         <source>Paused</source>
         <translation>暫停</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="422"/>
+        <location filename="../GUI.cpp" line="430"/>
         <source>Preview process already running</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="422"/>
+        <location filename="../GUI.cpp" line="430"/>
         <source>There is already another preview process running.
 Please close the other one first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2325"/>
-        <source>Couldn&apos;t download</source>
-        <comment>Couldn&apos;t download &lt;file&gt;</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="2325"/>
-        <source>reason:</source>
-        <comment>Reason why the download failed</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="2344"/>
-        <source>Downloading</source>
-        <comment>Example: Downloading www.example.com/test.torrent</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="2344"/>
-        <source>Please wait...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="1359"/>
+        <location filename="../GUI.cpp" line="1038"/>
         <source>Transfers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1850"/>
+        <location filename="../GUI.cpp" line="1323"/>
         <source>Download finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1850"/>
+        <location filename="../GUI.cpp" line="1323"/>
         <source> has finished downloading.</source>
         <comment>&lt;filename&gt; has finished downloading.</comment>
-        <translation type="unfinished"> 下載完畢.</translation>
+        <translation type="obsolete"> 下載完畢.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2179"/>
+        <location filename="../GUI.cpp" line="1705"/>
         <source>Search Engine</source>
         <translation type="unfinished">搜索引擎</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="868"/>
+        <location filename="../GUI.cpp" line="815"/>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1046"/>
+        <location filename="../GUI.cpp" line="934"/>
         <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="68"/>
+        <source>qBittorrent %1</source>
+        <comment>e.g: qBittorrent v0.x</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="90"/>
+        <source>Connection status:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1404"/>
+        <source>Offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1404"/>
+        <source>No peers found...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="203"/>
+        <source>Name</source>
+        <comment>i.e: file name</comment>
+        <translation type="unfinished">名稱</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="204"/>
+        <source>Size</source>
+        <comment>i.e: file size</comment>
+        <translation type="unfinished">大小</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="106"/>
+        <source>Progress</source>
+        <comment>i.e: % downloaded</comment>
+        <translation type="unfinished">進度</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="107"/>
+        <source>DL Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished">下載速度</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="108"/>
+        <source>UP Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished">上傳速度</translation>
+    </message>
+    <message>
         <location filename="../GUI.cpp" line="109"/>
         <source>Seeds/Leechs</source>
+        <comment>i.e: full/partial sources</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1871"/>
-        <source>An error occured when trying to read or write </source>
+        <location filename="../GUI.cpp" line="111"/>
+        <source>ETA</source>
+        <comment>i.e: Estimated Time of Arrival / Time left</comment>
+        <translation type="unfinished">ETA</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="205"/>
+        <source>Seeders</source>
+        <comment>i.e: Number of full sources</comment>
+        <translation type="unfinished">種子</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="206"/>
+        <source>Leechers</source>
+        <comment>i.e: Number of partial sources</comment>
+        <translation type="unfinished">不完整種子</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="257"/>
+        <source>qBittorrent %1 started.</source>
+        <comment>e.g: qBittorrent v0.x started.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1871"/>
-        <source>The disk is probably full, download has been paused</source>
+        <location filename="../GUI.cpp" line="1689"/>
+        <source>qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1567"/>
-        <source>Listening on port</source>
-        <comment>Listening on port &lt;xxxxx&gt;</comment>
+        <location filename="../GUI.cpp" line="462"/>
+        <source>DL speed: %1 KiB/s</source>
+        <comment>e.g: Download speed: 10 KiB/s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="462"/>
+        <source>UP speed: %1 KiB/s</source>
+        <comment>e.g: Upload speed: 10 KiB/s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="489"/>
+        <source>Finished</source>
+        <comment>i.e: Torrent has finished downloading</comment>
+        <translation type="unfinished">完成</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="498"/>
+        <source>Checking...</source>
+        <comment>i.e: Checking already downloaded parts...</comment>
+        <translation type="unfinished">檢查中...</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="528"/>
+        <source>Stalled</source>
+        <comment>i.e: State of a torrent whose download speed is 0kb/s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="814"/>
+        <source>Are you sure you want to quit?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1001"/>
+        <source>&apos;%1&apos; was removed.</source>
+        <comment>&apos;xxx.avi&apos; was removed.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1033"/>
+        <source>&apos;%1&apos; added to download list.</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1035"/>
+        <source>&apos;%1&apos; resumed. (fast resume)</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1043"/>
+        <source>&apos;%1&apos; is already in download list.</source>
+        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1047"/>
+        <source>Unable to decode torrent file: &apos;%1&apos;</source>
+        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1129"/>
+        <source>None</source>
+        <comment>i.e: No error message</comment>
+        <translation type="unfinished">無</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1147"/>
+        <source>Listening on port: %1</source>
+        <comment>e.g: Listening on port: 1666</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1229"/>
+        <source>All downloads were paused.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1250"/>
+        <source>&apos;%1&apos; paused.</source>
+        <comment>xxx.avi paused.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1269"/>
+        <source>Connecting...</source>
+        <comment>i.e: Connecting to the tracker...</comment>
+        <translation type="unfinished">連接中...</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1272"/>
+        <source>All downloads were resumed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1292"/>
+        <source>&apos;%1&apos; resumed.</source>
+        <comment>e.g: xxx.avi resumed.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1323"/>
+        <source>%1 has finished downloading.</source>
+        <comment>e.g: xxx.avi has finished downloading.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1330"/>
+        <source>I/O Error</source>
+        <comment>i.e: Input/Output Error</comment>
+        <translation type="unfinished">輸入/輸出錯誤</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1330"/>
+        <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
+        <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1338"/>
+        <source>An error occured (full fisk?), &apos;%1&apos; paused.</source>
+        <comment>e.g: An error occured (full fisk?), &apos;xxx.avi&apos; paused.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1404"/>
+        <source>Connection Status:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1395"/>
+        <source>Online</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1400"/>
+        <source>Firewalled?</source>
+        <comment>i.e: Behind a firewall/router?</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1400"/>
+        <source>No incoming connections...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1457"/>
+        <source>No search engine selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1689"/>
+        <source>Search plugin update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1716"/>
+        <source>Search has finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1720"/>
+        <source>Results</source>
+        <comment>i.e: Search results</comment>
+        <translation type="unfinished">結果</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1821"/>
+        <source>Downloading &apos;%1&apos;, please wait...</source>
+        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1280,18 +1488,8 @@ Please close the other one first.</source>
 <context>
     <name>Ui</name>
     <message>
-        <location filename="../about_imp.h" line="41"/>
-        <source>qBittorrent </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../about_imp.h" line="48"/>
+        <location filename="../about_imp.h" line="45"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../about_imp.h" line="70"/>
-        <source>Please contact me if you would like to translate qBittorrent to your own language.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1327,6 +1525,16 @@ Please close the other one first.</source>
     <message>
         <location filename="../downloadFromURLImp.h" line="64"/>
         <source>Please type at least one URL.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../about_imp.h" line="38"/>
+        <source>qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../about_imp.h" line="67"/>
+        <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1619,27 +1827,27 @@ Please close the other one first.</source>
         <translation type="unfinished">無效</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="220"/>
-        <source>m</source>
-        <comment>minutes</comment>
+        <location filename="../misc.h" line="206"/>
+        <source>&lt; 1m</source>
+        <comment>&lt; 1 minute</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../misc.h" line="210"/>
+        <source>%1m</source>
+        <comment>e.g: 10minutes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../misc.h" line="215"/>
-        <source>h</source>
-        <comment>hours</comment>
+        <source>%1h%2m</source>
+        <comment>e.g: 3hours 5minutes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../misc.h" line="220"/>
-        <source>d</source>
-        <comment>days</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../misc.h" line="220"/>
-        <source>h </source>
-        <comment>hours</comment>
+        <source>%1d%2h%3m</source>
+        <comment>e.g: 2days 10hours 2minutes</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1652,83 +1860,84 @@ Please close the other one first.</source>
         <translation type="unfinished">到</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="237"/>
-        <source>Options saved successfully!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../options_imp.cpp" line="695"/>
-        <source>Choose Scan Directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../options_imp.cpp" line="702"/>
-        <source>Choose ipfilter.dat file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../options_imp.cpp" line="718"/>
-        <source>Choose save Directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../options_imp.cpp" line="750"/>
+        <location filename="../options_imp.cpp" line="761"/>
         <source>I/O Error</source>
-        <translation type="unfinished">輸入/輸出錯誤</translation>
+        <translation type="obsolete">輸入/輸出錯誤</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="750"/>
-        <source>Couldn&apos;t open:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../options_imp.cpp" line="750"/>
-        <source>in read mode.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../options_imp.cpp" line="817"/>
+        <location filename="../options_imp.cpp" line="828"/>
         <source>Range Start IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="818"/>
+        <location filename="../options_imp.cpp" line="829"/>
         <source>Start IP:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="834"/>
+        <location filename="../options_imp.cpp" line="845"/>
         <source>Range End IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="835"/>
+        <location filename="../options_imp.cpp" line="846"/>
         <source>End IP:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="851"/>
+        <location filename="../options_imp.cpp" line="862"/>
         <source>IP Range Comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="852"/>
+        <location filename="../options_imp.cpp" line="863"/>
         <source>Comment:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="710"/>
+        <location filename="../options_imp.cpp" line="721"/>
         <source>Choose your favourite preview program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="846"/>
+        <location filename="../options_imp.cpp" line="857"/>
         <source>Invalid IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="846"/>
+        <location filename="../options_imp.cpp" line="857"/>
         <source>This IP is invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options_imp.cpp" line="239"/>
+        <source>Options were saved successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options_imp.cpp" line="706"/>
+        <source>Choose scan directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options_imp.cpp" line="713"/>
+        <source>Choose an ipfilter.dat file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options_imp.cpp" line="729"/>
+        <source>Choose a save directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options_imp.cpp" line="761"/>
+        <source>I/O Error</source>
+        <comment>Input/Output Error</comment>
+        <translation type="unfinished">輸入/輸出錯誤</translation>
+    </message>
+    <message>
+        <location filename="../options_imp.cpp" line="761"/>
+        <source>Couldn&apos;t open %1 in read mode.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1901,57 +2110,57 @@ Please close the other one first.</source>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentAddition.h" line="190"/>
+        <location filename="../torrentAddition.h" line="197"/>
         <source>True</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="122"/>
+        <location filename="../torrentAddition.h" line="129"/>
         <source>Unable to decode torrent file:</source>
         <translation type="unfinished">無法解碼torrent文件:</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="124"/>
+        <location filename="../torrentAddition.h" line="131"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished">該文件不是torrent文件或已經損壞.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="146"/>
+        <location filename="../torrentAddition.h" line="153"/>
         <source>Choose save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="186"/>
+        <location filename="../torrentAddition.h" line="193"/>
         <source>False</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="231"/>
+        <location filename="../torrentAddition.h" line="238"/>
         <source>Empty save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="231"/>
+        <location filename="../torrentAddition.h" line="238"/>
         <source>Please enter a save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="237"/>
+        <location filename="../torrentAddition.h" line="244"/>
         <source>Save path creation error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="237"/>
+        <location filename="../torrentAddition.h" line="244"/>
         <source>Could not create the save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="274"/>
+        <location filename="../torrentAddition.h" line="281"/>
         <source>Invalid file selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="274"/>
+        <location filename="../torrentAddition.h" line="281"/>
         <source>You must select at least one file in the torrent</source>
         <translation type="unfinished"></translation>
     </message>

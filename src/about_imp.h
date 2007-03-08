@@ -23,7 +23,7 @@
 #define ABOUT_H
 
 #include "ui_about.h"
-#define VERSION "v0.9.0beta4"
+#define VERSION "v0.9.0beta5"
 
 class about : public QDialog, private Ui::AboutDlg{
   Q_OBJECT
@@ -33,9 +33,9 @@ class about : public QDialog, private Ui::AboutDlg{
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       // Set icons
-      logo->setPixmap(QPixmap(QString::fromUtf8(":/Icons/yinyang32.png")));
+      logo->setPixmap(QPixmap(QString::fromUtf8(":/Icons/qbittorrent32.png")));
       //Title
-      lb_name->setText("<b><h1>"+tr("qBittorrent ")+VERSION"</h1></b>");
+      lb_name->setText("<b><h1>"+tr("qBittorrent")+" "+VERSION"</h1></b>");
       // Thanks
       te_thanks->append("<ul><li>I would like to thank sourceforge.net for hosting qBittorrent project.</li>");
       te_thanks->append("<li>I also want to thank Jeffery Fernandez (jeffery@qbittorrent.org), project consultant, webdevelopper and RPM packager, for his help.</li>");
@@ -64,7 +64,7 @@ class about : public QDialog, private Ui::AboutDlg{
 	  - <u>Swedish:</u> Daniel Nylander (po@danielnylander.se)<br>\
           - <u>Turkish:</u> Erdem Bingöl (erdem84@gmail.com)<br>\
           - <u>Ukrainian:</u> Andrey Shpachenko (masterfix@users.sourceforge.net)<br><br>"));
-      te_translation->append(tr("Please contact me if you would like to translate qBittorrent to your own language."));
+      te_translation->append(tr("Please contact me if you would like to translate qBittorrent into your own language."));
       // License
       te_license->append("<center><b>GNU GENERAL PUBLIC LICENSE</b></center><br>\
           <center>Version 2, June 1991</center><br>\

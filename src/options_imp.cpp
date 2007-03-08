@@ -236,7 +236,7 @@ void options_imp::saveOptions(){
   }
   settings.endGroup();
   // set infobar text
-  emit status_changed(tr("Options saved successfully!"));
+  emit status_changed(tr("Options were saved successfully."));
   // Disable apply Button
   applyButton->setEnabled(false);
 }
@@ -703,14 +703,14 @@ QString options_imp::getScanDir() const{
 
 // Display dialog to choose scan dir
 void options_imp::on_browse_button_scan_clicked(){
-  QString dir = QFileDialog::getExistingDirectory(this, tr("Choose Scan Directory"), QDir::homePath());
+  QString dir = QFileDialog::getExistingDirectory(this, tr("Choose scan directory"), QDir::homePath());
   if(!dir.isNull()){
     scanDir->setText(dir);
   }
 }
 
 void options_imp::on_filterBrowse_clicked(){
-  QString ipfilter = QFileDialog::getOpenFileName(this, tr("Choose ipfilter.dat file"), QDir::homePath());
+  QString ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ipfilter.dat file"), QDir::homePath());
   if(!ipfilter.isNull()){
     filterFile->setText(ipfilter);
     processFilterFile(ipfilter);
@@ -726,7 +726,7 @@ void options_imp::on_browsePreview_clicked(){
 
 // Display dialog to choose save dir
 void options_imp::on_browse_button_clicked(){
-  QString dir = QFileDialog::getExistingDirectory(this, tr("Choose save Directory"), QDir::homePath());
+  QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
   if(!dir.isNull()){
     txt_savePath->setText(dir);
   }
@@ -758,7 +758,7 @@ void options_imp::processFilterFile(const QString& filePath){
     QStringList IP;
     if (file.exists()){
       if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        QMessageBox::critical(0, tr("I/O Error"), tr("Couldn't open:")+" "+filePath+" "+tr("in read mode."));
+        QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("Couldn't open %1 in read mode.").arg(filePath));
         continue;
       }
       unsigned int nbLine = 0;

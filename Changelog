@@ -20,6 +20,7 @@
     - BUGFIX: Preventing GUI from freezing when deleting a download permanently
     - BUGFIX: Fixed directory scanning (stop trying to download the same files several times)
     - BUGFIX: Fixed bad loading of scan dir in option (widgets still disabled)
+    - I18N: Better internationalization thanks to dynamic text support
     - COSMETIC: Replaced OSD messages by Qt4.2 systray messages
 
 * Tue Nov 28 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.8.0
