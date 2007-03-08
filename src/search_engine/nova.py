@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # Version: 2.0
 # - Fixed ThePirateBay search engine
+# - Fixed Meganova search engine
 
 # Version: 1.9
 # Changelog:
@@ -260,10 +261,11 @@ class MegaNova(object):
 	url = 'http://www.meganova.org'
 
 	def search(self, what):
-		dat = urllib.urlopen(self.url+'/search.php?order=5&search=%s'%what).read().decode('utf8', 'replace')
+		dat = urllib.urlopen(self.url+'/find-seeds/%s.html'%what).read().decode('utf8', 'replace')
+		print 'url is ' + self.url+'/find-seeds/%s.html'%what
 		# I know it's not very readable, but the SGML parser feels in pain
 
-		section_re = re.compile('(?s)<td class="added".*?</tr')
+		section_re = re.compile('(?s)<td width="6%">.*?</tr')
 		torrent_re = re.compile('(?s)href="(?P<link>/torrent/.*?)".*?'
 		'<span.*?>(?P<name>.*?)</span>.*?'
 		'>(?P<size>[0-9.]+\s+.B).*?'
