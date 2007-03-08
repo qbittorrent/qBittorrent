@@ -972,7 +972,7 @@ void GUI::deleteSelection(){
     if(QMessageBox::question(
           this,
     tr("Are you sure? -- qBittorrent"),
-    tr("Are you sure you want to delete the selected item(s) in download list and in hard drive?"),
+    tr("Are you sure you want to delete the selected item(s) in download list?"),
     tr("&Yes"), tr("&No"),
     QString(), 0, 1) == 0) {
       //User clicked YES
