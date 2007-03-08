@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Version: 2.0
+# Changelog:
 # - Fixed ThePirateBay search engine
 # - Fixed Meganova search engine
 # - Fixed Mininova search engine
