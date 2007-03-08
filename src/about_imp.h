@@ -23,7 +23,6 @@
 #define ABOUT_H
 
 #include "ui_about.h"
-#define VERSION "v0.9.0beta5"
 
 class about : public QDialog, private Ui::AboutDlg{
   Q_OBJECT
@@ -35,7 +34,7 @@ class about : public QDialog, private Ui::AboutDlg{
       // Set icons
       logo->setPixmap(QPixmap(QString::fromUtf8(":/Icons/qbittorrent32.png")));
       //Title
-      lb_name->setText("<b><h1>"+tr("qBittorrent")+" "+VERSION"</h1></b>");
+      lb_name->setText("<b><h1>"+tr("qBittorrent")+" "VERSION"</h1></b>");
       // Thanks
       te_thanks->append("<ul><li>I would like to thank sourceforge.net for hosting qBittorrent project.</li>");
       te_thanks->append("<li>I also want to thank Jeffery Fernandez (jeffery@qbittorrent.org), project consultant, webdevelopper and RPM packager, for his help.</li>");

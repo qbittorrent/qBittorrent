@@ -43,11 +43,6 @@
 
 #include "deleteThread.h"
 
-#define VERSION "v0.9.0beta5"
-#define VERSION_MAJOR 0
-#define VERSION_MINOR 9
-#define VERSION_BUGFIX 0
-
 using namespace libtorrent;
 namespace fs = boost::filesystem;
 

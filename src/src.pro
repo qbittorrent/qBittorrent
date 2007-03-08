@@ -13,6 +13,12 @@ DEPENDPATH += . trayicon
 INCLUDEPATH += $$TRAYICON_CPP
 CONFIG += qt x11
 
+# Update this VERSION for each release
+DEFINES += VERSION=\\\"v0.9.0beta5\\\"
+DEFINES += VERSION_MAJOR=0
+DEFINES += VERSION_MINOR=9
+DEFINES += VERSION_BUGFIX=0
+
 contains(DEBUG_MODE, 1){
   CONFIG += debug
   message(Debug build!)
