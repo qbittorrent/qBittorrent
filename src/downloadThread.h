@@ -40,27 +40,44 @@ class downloadThread : public QThread {
     QStringList url_list;
     QMutex mutex;
     QWaitCondition condition;
+    bool abort;
 
   signals:
     void downloadFinished(const QString& url, const QString& file_path, int return_code, const QString& errorBuffer);
 
   public:
-    downloadThread(QObject* parent) : QThread(parent){}
+    downloadThread(QObject* parent) : QThread(parent){
+      mutex.lock();
+      abort = false;
+      mutex.unlock();
+    }
+
+    ~downloadThread(){
+      mutex.lock();
+      abort = true;
+      condition.wakeOne();
+      mutex.unlock();
+      wait();
+    }
 
     void downloadUrl(const QString& url){
-      mutex.lock();
+      QMutexLocker locker(&mutex);
       qDebug("In Download thread function, mutex locked");
       url_list << url;
-      mutex.unlock();
       qDebug("In Download thread function, mutex unlocked (url added)");
       if(!isRunning()){
 	qDebug("In Download thread function, Launching thread (was stopped)");
         start();
+      }else{
+        condition.wakeOne();
       }
     }
 
+  protected:
     void run(){
       forever{
+        if(abort)
+          return;
         mutex.lock();
 	qDebug("In Download thread RUN, mutex locked");
         if(url_list.size() != 0){
@@ -76,6 +93,8 @@ class downloadThread : public QThread {
             filePath = tmpfile->fileName();
           }
           delete tmpfile;
+          if(abort)
+            return;
           FILE *file = fopen((const char*)filePath.toUtf8(), "w");
           if(!file){
             std::cerr << "Error: could not open temporary file...\n";
@@ -140,9 +159,10 @@ class downloadThread : public QThread {
           emit downloadFinished(url, filePath, return_code, QString(errorBuffer));
 	  qDebug("In Download thread RUN, signal emitted, ErrorBuffer: %s", errorBuffer);
         }else{
+          qDebug("In Download thread RUN, mutex still locked (no urls) -> sleeping");
+          condition.wait(&mutex);
           mutex.unlock();
-	  qDebug("In Download thread RUN, mutex unlocked (no urls) -> stopping");
-          break;
+          qDebug("In Download thread RUN, woke up, mutex unlocked");
         }
       }
     }

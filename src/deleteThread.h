@@ -37,6 +37,10 @@ class deleteThread : public QThread {
       start();
     }
 
+    ~deleteThread(){
+      wait();
+    }
+
   signals:
     void deletionFinished(deleteThread*) const;
 
