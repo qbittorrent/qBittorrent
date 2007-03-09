@@ -1335,7 +1335,7 @@ void GUI::fullDiskError(torrent_handle& h){
   DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
   DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Paused")));
   DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-  setInfoBar(tr("An error occured (full fisk?), '%1' paused.", "e.g: An error occured (full fisk?), 'xxx.avi' paused.").arg(QString(h.get_torrent_info().name().c_str())));
+  setInfoBar(tr("An error occured (full disk?), '%1' paused.", "e.g: An error occured (full disk?), 'xxx.avi' paused.").arg(QString(h.get_torrent_info().name().c_str())));
   DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
   setRowColor(row, "red");
 }
@@ -1401,7 +1401,7 @@ void GUI::checkConnectionStatus(){
     }else{
       // Disconnected
       connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/disconnected.png")));
-      connecStatusLblIcon->setToolTip("<b>"+tr("Connection Status:")+"</b><br>"+tr("Offline")+"<br><i>"+tr("No peers found...")+"</i>");
+      connecStatusLblIcon->setToolTip("<b>"+tr("Connection status:")+"</b><br>"+tr("Offline")+"<br><i>"+tr("No peers found...")+"</i>");
     }
   }
   qDebug("Connection status updated");

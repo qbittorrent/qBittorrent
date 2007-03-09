@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS><TS version="1.1" language="sv">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -114,7 +114,7 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>En bittorrent-klient som använder Qt4 och libtorrent, programmerad i C++.&lt;br&gt;&lt;br&gt;Copyright © 2006 Christophe Dumez&lt;br&gt;&lt;br&gt; &lt;u&gt;Webbsida:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -624,7 +624,7 @@ Stäng den först.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="90"/>
+        <location filename="../GUI.cpp" line="1404"/>
         <source>Connection status:</source>
         <translation>Anslutningsstatus:</translation>
     </message>
@@ -830,10 +830,10 @@ Stäng den först.</translation>
         <location filename="../GUI.cpp" line="1338"/>
         <source>An error occured (full fisk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full fisk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation>Ett fel inträffade (full disk?), \&quot;%1\&quot; pausad.</translation>
+        <translation type="obsolete">Ett fel inträffade (full disk?), \&quot;%1\&quot; pausad.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1404"/>
+        <location filename="../GUI.cpp" line="1400"/>
         <source>Connection Status:</source>
         <translation>Anslutningsstatus:</translation>
     </message>
@@ -879,6 +879,12 @@ Stäng den först.</translation>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Hämtar \&quot;%1\&quot;, vänta...</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1338"/>
+        <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
+        <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
+        <translation>Ett fel inträffade (full disk?), \&quot;%1\&quot; pausad.</translation>
     </message>
 </context>
 <context>

@@ -1096,7 +1096,7 @@ Por favor cierra el otro antes.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="90"/>
+        <location filename="../GUI.cpp" line="1404"/>
         <source>Connection status:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1294,13 +1294,7 @@ Por favor cierra el otro antes.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1338"/>
-        <source>An error occured (full fisk?), &apos;%1&apos; paused.</source>
-        <comment>e.g: An error occured (full fisk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="1404"/>
+        <location filename="../GUI.cpp" line="1400"/>
         <source>Connection Status:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1345,6 +1339,12 @@ Por favor cierra el otro antes.</translation>
         <location filename="../GUI.cpp" line="1821"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1338"/>
+        <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
+        <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
