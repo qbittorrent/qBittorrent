@@ -1696,7 +1696,7 @@ Please close the other one first.</source>
         <translation type="obsolete">큐비토런트 프로잭트를 호스팅해준 소스포지(Sourceforge.net)에 다시 한번 감사드립니다.</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="45"/>
+        <location filename="../about_imp.h" line="44"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
         <translation>큐비토런트를 번역하는데 도움을 주신 다음 분들에게 다시 한번 감사드립니다:</translation>
     </message>
@@ -1746,12 +1746,12 @@ Please close the other one first.</source>
         <translation>적어도 하나의 주소(URL)를 적어주십시오.</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="38"/>
+        <location filename="../about_imp.h" line="37"/>
         <source>qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="67"/>
+        <location filename="../about_imp.h" line="66"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished"></translation>
     </message>

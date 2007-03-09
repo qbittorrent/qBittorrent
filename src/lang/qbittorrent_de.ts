@@ -1630,7 +1630,7 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation type="obsolete">Bitte kontaktieren Sie mich wenn Sie qBittorrent in Ihre Sprache übersetzen möchten.</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="45"/>
+        <location filename="../about_imp.h" line="44"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
         <translation>Ich möchte folgenden freiwilligen Übersetzern danken:</translation>
     </message>
@@ -1680,12 +1680,12 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation>Bitte geben Sie mindestens eine URL an.</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="38"/>
+        <location filename="../about_imp.h" line="37"/>
         <source>qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="67"/>
+        <location filename="../about_imp.h" line="66"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished"></translation>
     </message>
