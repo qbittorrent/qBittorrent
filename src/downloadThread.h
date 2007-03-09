@@ -144,7 +144,6 @@ class downloadThread : public QThread {
 	  qDebug("In Download thread RUN, mutex unlocked (no urls) -> stopping");
           break;
         }
-        SleeperThread::msleep(500);
       }
     }
 };
