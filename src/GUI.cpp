@@ -1160,10 +1160,10 @@ void GUI::configureSession(){
   switch(limits.second){
     case -1: // Upload limit disabled
     case 0:
-      BTSession.setDownloadRateLimit(-1);
+      BTSession.setUploadRateLimit(-1);
       break;
     default:
-      BTSession.setDownloadRateLimit(limits.second*1024);
+      BTSession.setUploadRateLimit(limits.second*1024);
   }
   // Apply ratio (0 if disabled)
   BTSession.setGlobalRatio(options->getRatio());
