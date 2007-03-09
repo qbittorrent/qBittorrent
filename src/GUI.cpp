@@ -261,9 +261,11 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
 // Destructor
 GUI::~GUI(){
   qDebug("GUI destruction");
+  searchProcess->kill();
+  searchProcess->waitForFinished();
+  delete searchProcess;
   delete options;
   delete checkConnect;
-  delete searchProcess;
   delete refresher;
   delete myTrayIcon;
   delete myTrayIconMenu;

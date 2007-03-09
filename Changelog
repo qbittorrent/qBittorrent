@@ -20,6 +20,7 @@
     - BUGFIX: Preventing GUI from freezing when deleting a download permanently
     - BUGFIX: Fixed directory scanning (stop trying to download the same files several times)
     - BUGFIX: Fixed bad loading of scan dir in option (widgets still disabled)
+    - BUGFIX: Threads are now stopped cleanly before their destruction
     - I18N: Better internationalization thanks to dynamic text support
     - COSMETIC: Replaced OSD messages by Qt4.2 systray messages
 
