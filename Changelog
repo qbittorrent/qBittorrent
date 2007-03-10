@@ -23,6 +23,7 @@
     - BUGFIX: Threads are now stopped cleanly before their destruction
     - BUGFIX: Create Options object only when necessary (to save memory)
     - BUGFIX: Let libtorrent store the torrent handles (save memory)
+    - BUGFIX: Set DHT Port only when DHT is enabled
     - I18N: Better internationalization thanks to dynamic text support
     - COSMETIC: Replaced OSD messages by Qt4.2 systray messages
 

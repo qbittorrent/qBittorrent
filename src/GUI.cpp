@@ -1191,11 +1191,11 @@ void GUI::configureSession(bool deleteOptions){
   // DHT (Trackerless)
   if(options->isDHTEnabled()){
     BTSession.enableDHT();
+    // Set DHT Port
+    BTSession.setDHTPort(options->getDHTPort());
   }else{
     BTSession.disableDHT();
   }
-  // Set DHT Port
-  BTSession.setDHTPort(options->getDHTPort());
   if(!options->isPeXDisabled()){
     qDebug("Enabling Peer eXchange (PeX)");
     BTSession.enablePeerExchange();
