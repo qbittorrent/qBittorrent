@@ -273,6 +273,8 @@ GUI::~GUI(){
   delete DLListModel;
   delete SearchListModel;
   delete SearchDelegate;
+  previewProcess->kill();
+  previewProcess->waitForFinished();
   delete previewProcess;
   delete connecStatusLblIcon;
 }
