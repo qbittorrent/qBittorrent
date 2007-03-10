@@ -86,10 +86,10 @@ int main(int argc, char *argv[]){
   // Open options file to read locale
   QSettings settings("qBittorrent", "qBittorrent");
   locale = settings.value("Options/Language/Locale", QString()).toString();
-
   QTranslator translator;
   if(locale.isEmpty()){
     locale = QLocale::system().name();
+    settings.setValue("Options/Language/Locale", locale);
   }
   if(translator.load(QString(":/lang/qbittorrent_") + locale)){
     qDebug("%s locale recognized, using translation.", (const char*)locale.toUtf8());
@@ -103,10 +103,6 @@ int main(int argc, char *argv[]){
   // Remove first argument (program name)
   torrentCmdLine.removeFirst();
   GUI window(0, torrentCmdLine);
-  // Set locale
-  window.setLocale(locale);
-  // Show main window
-  window.show();
   splash->finish(&window);
   delete splash;
   return app.exec();

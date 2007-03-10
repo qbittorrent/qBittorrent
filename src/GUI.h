@@ -146,7 +146,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void deletePermanently();
     void deleteSelection();
     void checkConnectionStatus();
-    void configureSession();
+    void configureSession(bool deleteOptions);
     void processParams(const QStringList& params);
     void addUnauthenticatedTracker(QPair<torrent_handle,std::string> tracker);
     void processScannedFiles(const QStringList& params);
@@ -169,13 +169,12 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // Utils slots
     void setRowColor(int row, const QString& color, bool inDLList=true);
     // Options slots
-    void showOptions() const;
-    void OptionsSaved(const QString& info);
+    void showOptions();
+    void OptionsSaved(const QString& info, bool deleteOptions);
     // HTTP slots
     void askForTorrentUrl();
 
   public slots:
-    void setLocale(QString locale);
     void torrentAdded(const QString& path, torrent_handle& h, bool fastResume);
     void torrentDuplicate(const QString& path);
     void torrentCorrupted(const QString& path);

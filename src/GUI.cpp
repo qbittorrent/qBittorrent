@@ -133,9 +133,9 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(&BTSession, SIGNAL(aboutToDownloadFromUrl(const QString&)), this, SLOT(displayDownloadingUrlInfos(const QString&)));
   // creating options
   options = new options_imp(this);
-  connect(options, SIGNAL(status_changed(const QString&)), this, SLOT(OptionsSaved(const QString&)));
+  connect(options, SIGNAL(status_changed(const QString&, bool)), this, SLOT(OptionsSaved(const QString&, bool)));
   // Configure BT session according to options
-  configureSession();
+  configureSession(true);
   // Resume unfinished torrents
   BTSession.resumeUnfinishedTorrents();
   // Add torrent given on command line
@@ -255,6 +255,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   setAcceptDrops(true);
   // Set info Bar infos
   setInfoBar(tr("qBittorrent %1 started.", "e.g: qBittorrent v0.x started.").arg(QString(VERSION)));
+  show();
   qDebug("GUI Built");
 }
 
@@ -264,7 +265,6 @@ GUI::~GUI(){
   searchProcess->kill();
   searchProcess->waitForFinished();
   delete searchProcess;
-  delete options;
   delete checkConnect;
   delete refresher;
   delete myTrayIcon;
@@ -375,6 +375,8 @@ void GUI::displayDLListMenu(const QPoint& pos){
   QModelIndex index;
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  QSettings settings("qBittorrent", "qBittorrent");
+  QString previewProgram = settings.value("Options/Misc/PreviewProgram", QString()).toString();
   foreach(index, selectedIndexes){
     if(index.column() == NAME){
       // Get the file name
@@ -389,7 +391,7 @@ void GUI::displayDLListMenu(const QPoint& pos){
       myDLLlistMenu.addAction(actionDelete);
       myDLLlistMenu.addAction(actionDelete_Permanently);
       myDLLlistMenu.addAction(actionTorrent_Properties);
-      if(!options->getPreviewProgram().isEmpty() && BTSession.isFilePreviewPossible(fileHash) && selectedIndexes.size()<=DLListModel->columnCount()){
+      if(!previewProgram.isEmpty() && BTSession.isFilePreviewPossible(fileHash) && selectedIndexes.size()<=DLListModel->columnCount()){
          myDLLlistMenu.addAction(actionPreview_file);
       }
       break;
@@ -427,7 +429,9 @@ void GUI::previewFile(const QString& filePath){
     // Launch program preview
     QStringList params;
     params << tmpPath;
-    previewProcess->start(options->getPreviewProgram(), params, QIODevice::ReadOnly);
+    QSettings settings("qBittorrent", "qBittorrent");
+    QString previewProgram = settings.value("Options/Misc/PreviewProgram", QString()).toString();
+    previewProcess->start(previewProgram, params, QIODevice::ReadOnly);
   }else{
     QMessageBox::critical(0, tr("Preview process already running"), tr("There is already another preview process running.\nPlease close the other one first."));
   }
@@ -806,12 +810,14 @@ void GUI::showAbout(){
 
 // Called when we close the program
 void GUI::closeEvent(QCloseEvent *e){
-  if(options->getGoToSysTrayOnExitingWindow() && !this->isHidden()){
+  QSettings settings("qBittorrent", "qBittorrent");
+  bool goToSystrayOnExit = settings.value("Options/Misc/GoToSystrayOnExit", false).toBool();
+  if(goToSystrayOnExit && !this->isHidden()){
     hide();
     e->ignore();
     return;
   }
-  if(options->getConfirmOnExit()){
+  if(settings.value("Options/Misc/ConfirmOnExit", true).toBool()){
     if(QMessageBox::question(this,
        tr("Are you sure you want to quit?")+" -- "+tr("qBittorrent"),
        tr("Are you sure you want to quit qBittorrent?"),
@@ -822,7 +828,7 @@ void GUI::closeEvent(QCloseEvent *e){
     }
   }
   // Clean finished torrents on exit if asked for
-  if(options->getClearFinishedOnExit()){
+  if(settings.value("Options/Misc/ClearFinishedDownloads", true).toBool()){
     torrent_handle h;
     // XXX: Probably move this to the bittorrent part
     QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
@@ -859,7 +865,9 @@ void GUI::showCreateWindow(){
 
 // Called when we minimize the program
 void GUI::hideEvent(QHideEvent *e){
-  if(options->getGoToSysTrayOnMinimizingWindow()){
+  qDebug("* Receiced hideEvent()");
+  QSettings settings("qBittorrent", "qBittorrent");
+  if(settings.value("Options/Misc/GoToSystray", true).toBool()){
     // Hide window
     hide();
   }
@@ -873,8 +881,10 @@ void GUI::dropEvent(QDropEvent *event){
   QStringList files=event->mimeData()->text().split('\n');
   // Add file to download list
   QString file;
+  QSettings settings("qBittorrent", "qBittorrent");
+  bool useTorrentAdditionDialog = settings.value("Options/Misc/TorrentAdditionDialog/Enabled", true).toBool();
   foreach(file, files){
-    if(options->useAdditionDialog()){
+    if(useTorrentAdditionDialog){
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
       connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
       connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
@@ -909,8 +919,10 @@ void GUI::askForTorrents(){
                                             tr("Open Torrent Files"), settings.value("MainWindowLastDir", QDir::homePath()).toString(),
                                             tr("Torrent Files")+" (*.torrent)");
   if(!pathsList.empty()){
+    QSettings settings("qBittorrent", "qBittorrent");
+    bool useTorrentAdditionDialog = settings.value("Options/Misc/TorrentAdditionDialog/Enabled", true).toBool();
     for(int i=0; i<pathsList.size(); ++i){
-      if(options->useAdditionDialog()){
+      if(useTorrentAdditionDialog){
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
         connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
         connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
@@ -1060,7 +1072,8 @@ QString GUI::getSavePath(QString hash){
     qDebug("Save path: %s", line.data());
     savePath = QString::fromUtf8(line.data());
   }else{
-    savePath = options->getSavePath();
+    QSettings settings("qBittorrent", "qBittorrent");
+    savePath = settings.value("Options/Main/ScanDir",  QString()).toString();
   }
   // Checking if savePath Dir exists
   // create it if it is not
@@ -1081,12 +1094,14 @@ QString GUI::getSavePath(QString hash){
 // the parameter type.
 void GUI::processParams(const QStringList& params){
   QString param;
+  QSettings settings("qBittorrent", "qBittorrent");
+  bool useTorrentAdditionDialog = settings.value("Options/Misc/TorrentAdditionDialog/Enabled", true).toBool();
   foreach(param, params){
     param = param.trimmed();
     if(param.startsWith("http://", Qt::CaseInsensitive) || param.startsWith("ftp://", Qt::CaseInsensitive) || param.startsWith("https://", Qt::CaseInsensitive)){
       BTSession.downloadFromUrl(param);
     }else{
-      if(options->useAdditionDialog()){
+      if(useTorrentAdditionDialog){
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
         connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
         connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
@@ -1100,8 +1115,10 @@ void GUI::processParams(const QStringList& params){
 
 void GUI::processScannedFiles(const QStringList& params){
   QString param;
+  QSettings settings("qBittorrent", "qBittorrent");
+  bool useTorrentAdditionDialog = settings.value("Options/Misc/TorrentAdditionDialog/Enabled", true).toBool();
   foreach(param, params){
-    if(options->useAdditionDialog()){
+    if(useTorrentAdditionDialog){
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
       connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
       connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
@@ -1113,7 +1130,9 @@ void GUI::processScannedFiles(const QStringList& params){
 }
 
 void GUI::processDownloadedFiles(const QString& path, const QString& url){
-  if(options->useAdditionDialog()){
+  QSettings settings("qBittorrent", "qBittorrent");
+  bool useTorrentAdditionDialog = settings.value("Options/Misc/TorrentAdditionDialog/Enabled", true).toBool();
+  if(useTorrentAdditionDialog){
     torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
     connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
     connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
@@ -1135,7 +1154,7 @@ void GUI::showProperties(const QModelIndex &index){
 }
 
 // Set BT session configuration
-void GUI::configureSession(){
+void GUI::configureSession(bool deleteOptions){
   qDebug("Configuring session");
   QPair<int, int> limits;
   unsigned short old_listenPort, new_listenPort;
@@ -1205,6 +1224,9 @@ void GUI::configureSession(){
     BTSession.disableDirectoryScanning();
   }else{
     BTSession.enableDirectoryScanning(options->getScanDir());
+  }
+  if(deleteOptions){
+    delete options;
   }
   qDebug("Session configured");
 }
@@ -1319,16 +1341,20 @@ void GUI::propertiesSelection(){
 
 // called when a torrent has finished
 void GUI::finishedTorrent(torrent_handle& h){
+    QSettings settings("qBittorrent", "qBittorrent");
     QString fileName = QString(h.name().c_str());
     setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
-    if(options->getUseOSDAlways() || (options->getUseOSDWhenHiddenOnly() && (isMinimized() || isHidden()))) {
+    bool useOSD = (settings.value("Options/Misc/OSDEnabled", 1).toInt() > 0);
+    if(useOSD && (isMinimized() || isHidden())) {
       myTrayIcon->showMessage(tr("Download finished"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
     }
 }
 
 // Notification when disk is full
 void GUI::fullDiskError(torrent_handle& h){
-  if(options->getUseOSDAlways() || (options->getUseOSDWhenHiddenOnly() && (isMinimized() || isHidden()))) {
+  QSettings settings("qBittorrent", "qBittorrent");
+  bool useOSD = (settings.value("Options/Misc/OSDEnabled", 1).toInt() > 0);
+  if(useOSD && (isMinimized() || isHidden())) {
     myTrayIcon->showMessage(tr("I/O Error", "i.e: Input/Output Error"), tr("An error occured when trying to read or write %1. The disk is probably full, download has been paused", "e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused").arg(QString(h.name().c_str())), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
   }
   // Download will be paused by libtorrent. Updating GUI information accordingly
@@ -1703,7 +1729,9 @@ void GUI::on_update_nova_button_clicked(){
 // Search can be finished for 3 reasons :
 // Error | Stopped by user | Finished normally
 void GUI::searchFinished(int exitcode,QProcess::ExitStatus){
-  if(options->getUseOSDAlways() || (options->getUseOSDWhenHiddenOnly() && (isMinimized() || isHidden()))) {
+  QSettings settings("qBittorrent", "qBittorrent");
+  bool useOSD = (settings.value("Options/Misc/OSDEnabled", 1).toInt() > 0);
+  if(useOSD && (isMinimized() || isHidden())) {
     myTrayIcon->showMessage(tr("Search Engine"), tr("Search has finished"), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
   }
   if(exitcode){
@@ -1829,24 +1857,19 @@ void GUI::displayDownloadingUrlInfos(const QString& url){
  *                                                   *
  *****************************************************/
 
-// Set locale in options, this is required
-// because main() can set the locale and it
-// can't access options object directly.
-void GUI::setLocale(QString locale){
-  options->setLocale(locale);
-}
-
 // Display Program Options
-void GUI::showOptions() const{
+void GUI::showOptions(){
+  options = new options_imp(this);
+  connect(options, SIGNAL(status_changed(const QString&, bool)), this, SLOT(OptionsSaved(const QString&, bool)));
   options->show();
 }
 
 // Is executed each time options are saved
-void GUI::OptionsSaved(const QString& info){
+void GUI::OptionsSaved(const QString& info, bool deleteOptions){
   // Update info bar
   setInfoBar(info);
   // Update session
-  configureSession();
+  configureSession(deleteOptions);
 }
 
 /*****************************************************

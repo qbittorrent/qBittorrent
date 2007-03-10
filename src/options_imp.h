@@ -38,8 +38,9 @@ class options_imp : public QDialog, private Ui::Dialog{
     QStringList locales;
 
   public:
-    // Contructor
+    // Contructor / Destructor
     options_imp(QWidget *parent=0);
+    ~options_imp();
 
     // Methods
     void saveOptions();
@@ -106,7 +107,9 @@ class options_imp : public QDialog, private Ui::Dialog{
     void setLocale(QString locale);
 
   signals:
-    void status_changed(const QString&) const;
+    void status_changed(const QString&, bool) const;
+    void optionsApplied(const QString&, bool);
+    void exitWithCancel();
 };
 
 #endif

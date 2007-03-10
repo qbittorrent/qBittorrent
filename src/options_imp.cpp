@@ -30,6 +30,7 @@
 
 // Constructor
 options_imp::options_imp(QWidget *parent):QDialog(parent){
+  qDebug("-> Constructing Options");
   QString savePath;
   setupUi(this);
   // Setting icons
@@ -157,6 +158,11 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   }
 }
 
+// Main destructor
+options_imp::~options_imp(){
+  qDebug("-> destructing Options");
+}
+
 void options_imp::saveOptions(){
   QSettings settings("qBittorrent", "qBittorrent");
   // Check if min port < max port
@@ -235,8 +241,6 @@ void options_imp::saveOptions(){
     }
   }
   settings.endGroup();
-  // set infobar text
-  emit status_changed(tr("Options were saved successfully."));
   // Disable apply Button
   applyButton->setEnabled(false);
 }
@@ -516,8 +520,13 @@ void options_imp::on_okButton_clicked(){
   if(applyButton->isEnabled()){
     saveOptions();
     applyButton->setEnabled(false);
+    // set infobar text
+    emit status_changed(tr("Options were saved successfully."), true);
+    this->hide();
+  }else{
+    setAttribute(Qt::WA_DeleteOnClose);
+    accept();
   }
-  this->hide();
 }
 
 bool options_imp::getClearFinishedOnExit() const{
@@ -526,10 +535,12 @@ bool options_imp::getClearFinishedOnExit() const{
 
 void options_imp::on_applyButton_clicked(){
   saveOptions();
+  emit optionsApplied(tr("Options were saved successfully."), false);
 }
 
 void options_imp::on_cancelButton_clicked(){
-  this->hide();
+  setAttribute(Qt::WA_DeleteOnClose);
+  reject();
 }
 
 void options_imp::disableDownload(int checkBoxValue){
