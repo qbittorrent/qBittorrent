@@ -22,6 +22,7 @@
     - BUGFIX: Fixed bad loading of scan dir in option (widgets still disabled)
     - BUGFIX: Threads are now stopped cleanly before their destruction
     - BUGFIX: Create Options object only when necessary (to save memory)
+    - BUGFIX: Let libtorrent store the torrent handles (save memory)
     - I18N: Better internationalization thanks to dynamic text support
     - COSMETIC: Replaced OSD messages by Qt4.2 systray messages
 
