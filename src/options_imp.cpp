@@ -311,7 +311,7 @@ void options_imp::loadOptions(){
     spin_dht_port->setValue(value);
   }
   boolValue = settings.value("PeXState", 0).toBool();
-  if(value){
+  if(boolValue){
     // Pex disabled
     disablePeX->setChecked(true);
   }else{
