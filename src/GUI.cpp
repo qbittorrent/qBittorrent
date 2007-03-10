@@ -218,7 +218,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
 
   // new qCompleter to the search pattern
   startSearchHistory();
-  QCompleter *searchCompleter = new QCompleter(searchHistory, this);
+  searchCompleter = new QCompleter(searchHistory, this);
   searchCompleter->setCaseSensitivity(Qt::CaseInsensitive);
   search_pattern->setCompleter(searchCompleter);
 
@@ -265,6 +265,7 @@ GUI::~GUI(){
   searchProcess->kill();
   searchProcess->waitForFinished();
   delete searchProcess;
+  delete searchCompleter;
   delete checkConnect;
   delete refresher;
   delete myTrayIcon;
@@ -867,7 +868,6 @@ void GUI::showCreateWindow(){
 
 // Called when we minimize the program
 void GUI::hideEvent(QHideEvent *e){
-  qDebug("* Receiced hideEvent()");
   QSettings settings("qBittorrent", "qBittorrent");
   if(settings.value("Options/Misc/GoToSystray", true).toBool()){
     // Hide window
