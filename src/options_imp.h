@@ -108,7 +108,6 @@ class options_imp : public QDialog, private Ui::Dialog{
 
   signals:
     void status_changed(const QString&, bool) const;
-    void optionsApplied(const QString&, bool);
     void exitWithCancel();
 };
 

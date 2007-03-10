@@ -535,7 +535,7 @@ bool options_imp::getClearFinishedOnExit() const{
 
 void options_imp::on_applyButton_clicked(){
   saveOptions();
-  emit optionsApplied(tr("Options were saved successfully."), false);
+  emit status_changed(tr("Options were saved successfully."), false);
 }
 
 void options_imp::on_cancelButton_clicked(){
