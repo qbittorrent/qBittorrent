@@ -814,13 +814,13 @@ void GUI::showAbout(){
 // Called when we close the program
 void GUI::closeEvent(QCloseEvent *e){
   QSettings settings("qBittorrent", "qBittorrent");
-  bool goToSystrayOnExit = settings.value("Options/Misc/GoToSystrayOnExit", false).toBool();
+  bool goToSystrayOnExit = settings.value("Options/Misc/Behaviour/GoToSystrayOnExit", false).toBool();
   if(goToSystrayOnExit && !this->isHidden()){
     hide();
     e->ignore();
     return;
   }
-  if(settings.value("Options/Misc/ConfirmOnExit", true).toBool()){
+  if(settings.value("Options/Misc/Behaviour/ConfirmOnExit", true).toBool()){
     if(QMessageBox::question(this,
        tr("Are you sure you want to quit?")+" -- "+tr("qBittorrent"),
        tr("Are you sure you want to quit qBittorrent?"),
@@ -831,7 +831,7 @@ void GUI::closeEvent(QCloseEvent *e){
     }
   }
   // Clean finished torrents on exit if asked for
-  if(settings.value("Options/Misc/ClearFinishedDownloads", true).toBool()){
+  if(settings.value("Options/Misc/Behaviour/ClearFinishedDownloads", true).toBool()){
     torrent_handle h;
     // XXX: Probably move this to the bittorrent part
     QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
@@ -869,7 +869,7 @@ void GUI::showCreateWindow(){
 // Called when we minimize the program
 void GUI::hideEvent(QHideEvent *e){
   QSettings settings("qBittorrent", "qBittorrent");
-  if(settings.value("Options/Misc/GoToSystray", true).toBool()){
+  if(settings.value("Options/Misc/Behaviour/GoToSystray", true).toBool()){
     // Hide window
     hide();
   }
@@ -1346,7 +1346,7 @@ void GUI::finishedTorrent(torrent_handle& h){
     QSettings settings("qBittorrent", "qBittorrent");
     QString fileName = QString(h.name().c_str());
     setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
-    bool useOSD = (settings.value("Options/Misc/OSDEnabled", 1).toInt() > 0);
+    bool useOSD = (settings.value("Options/OSDEnabled", 1).toInt() > 0);
     if(useOSD && (isMinimized() || isHidden())) {
       myTrayIcon->showMessage(tr("Download finished"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
     }
@@ -1355,7 +1355,7 @@ void GUI::finishedTorrent(torrent_handle& h){
 // Notification when disk is full
 void GUI::fullDiskError(torrent_handle& h){
   QSettings settings("qBittorrent", "qBittorrent");
-  bool useOSD = (settings.value("Options/Misc/OSDEnabled", 1).toInt() > 0);
+  bool useOSD = (settings.value("Options/OSDEnabled", 1).toInt() > 0);
   if(useOSD && (isMinimized() || isHidden())) {
     myTrayIcon->showMessage(tr("I/O Error", "i.e: Input/Output Error"), tr("An error occured when trying to read or write %1. The disk is probably full, download has been paused", "e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused").arg(QString(h.name().c_str())), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
   }
@@ -1732,7 +1732,7 @@ void GUI::on_update_nova_button_clicked(){
 // Error | Stopped by user | Finished normally
 void GUI::searchFinished(int exitcode,QProcess::ExitStatus){
   QSettings settings("qBittorrent", "qBittorrent");
-  bool useOSD = (settings.value("Options/Misc/OSDEnabled", 1).toInt() > 0);
+  bool useOSD = (settings.value("Options/OSDEnabled", 1).toInt() > 0);
   if(useOSD && (isMinimized() || isHidden())) {
     myTrayIcon->showMessage(tr("Search Engine"), tr("Search has finished"), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
   }
