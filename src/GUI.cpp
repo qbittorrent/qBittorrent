@@ -954,10 +954,10 @@ void GUI::deletePermanently(){
         // Get the file name
         QString fileName = DLListModel->data(DLListModel->index(sortedIndex.second.row(), NAME)).toString();
         QString fileHash = DLListModel->data(DLListModel->index(sortedIndex.second.row(), HASH)).toString();
-        // Delete item from download list
-        DLListModel->removeRow(sortedIndex.first);
         // Remove the torrent
         BTSession.deleteTorrent(fileHash, true);
+        // Delete item from download list
+        DLListModel->removeRow(sortedIndex.first);
           // Update info bar
           setInfoBar(tr("'%1' was removed.", "'xxx.avi' was removed.").arg(fileName));
           --nbTorrents;
@@ -995,10 +995,10 @@ void GUI::deleteSelection(){
         // Get the file name
         QString fileName = DLListModel->data(DLListModel->index(sortedIndex.second.row(), NAME)).toString();
         QString fileHash = DLListModel->data(DLListModel->index(sortedIndex.second.row(), HASH)).toString();
-        // Delete item from download list
-        DLListModel->removeRow(sortedIndex.first);
         // Remove the torrent
         BTSession.deleteTorrent(fileHash, false);
+        // Delete item from download list
+        DLListModel->removeRow(sortedIndex.first);
           // Update info bar
           setInfoBar(tr("'%1' was removed.", "'xxx.avi' was removed.").arg(fileName));
           --nbTorrents;
