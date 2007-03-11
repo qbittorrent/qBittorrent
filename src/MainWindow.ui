@@ -651,6 +651,9 @@
               <height>200</height>
              </size>
             </property>
+            <property name="contextMenuPolicy" >
+             <enum>Qt::CustomContextMenu</enum>
+            </property>
             <property name="autoScroll" >
              <bool>true</bool>
             </property>
@@ -753,6 +756,14 @@
     <addaction name="actionDelete" />
     <addaction name="actionDelete_Permanently" />
    </widget>
+   <widget class="QMenu" name="menu_Help" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout" />
+    <addaction name="actionBugReport" />
+    <addaction name="actionWebsite" />
+   </widget>
    <widget class="QMenu" name="menu_File" >
     <property name="title" >
      <string>&amp;File</string>
@@ -761,14 +772,6 @@
     <addaction name="actionDownload_from_URL" />
     <addaction name="actionCreate_torrent" />
     <addaction name="actionExit" />
-   </widget>
-   <widget class="QMenu" name="menu_Help" >
-    <property name="title" >
-     <string>&amp;Help</string>
-    </property>
-    <addaction name="actionAbout" />
-    <addaction name="actionBugReport" />
-    <addaction name="actionWebsite" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Edit" />
