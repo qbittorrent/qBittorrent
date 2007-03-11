@@ -513,7 +513,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="508"/>
         <source>Disable DHT (Trackerless)</source>
-        <translation type="unfinished"></translation>
+        <translation>禁用DHT(分布式Tracker)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="579"/>
@@ -1105,30 +1105,30 @@ Please close the other one first.</source>
         <location filename="../GUI.cpp" line="464"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"> 上传速度: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="491"/>
         <source>Finished</source>
         <comment>i.e: Torrent has finished downloading</comment>
-        <translation type="unfinished">完成</translation>
+        <translation>完成</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="500"/>
         <source>Checking...</source>
         <comment>i.e: Checking already downloaded parts...</comment>
-        <translation type="unfinished">检查中...</translation>
+        <translation>检查中...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="530"/>
         <source>Stalled</source>
         <comment>i.e: State of a torrent whose download speed is 0kb/s</comment>
-        <translation type="unfinished"></translation>
+        <translation>等待中</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="816"/>
         <source>Are you sure you want to quit?</source>
-        <translation type="unfinished"></translation>
+        <translation>确实要退出吗?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1003"/>

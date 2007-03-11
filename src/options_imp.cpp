@@ -521,8 +521,8 @@ void options_imp::on_okButton_clicked(){
     saveOptions();
     applyButton->setEnabled(false);
     // set infobar text
-    emit status_changed(tr("Options were saved successfully."), true);
     this->hide();
+    emit status_changed(tr("Options were saved successfully."), true);
   }else{
     setAttribute(Qt::WA_DeleteOnClose);
     accept();
