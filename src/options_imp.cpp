@@ -504,6 +504,13 @@ float options_imp::getRatio() const{
 
 // Return Save Path
 QString options_imp::getSavePath() const{
+  QString home = QDir::homePath();
+  if(home[home.length()-1] != QDir::separator()){
+    home += QDir::separator();
+  }
+  if(txt_savePath->text().trimmed().isEmpty()){
+    txt_savePath->setText(home+"qBT_dir");
+  }
   return txt_savePath->text();
 }
 
