@@ -462,7 +462,6 @@ void GUI::displayInfoBarMenu(const QPoint& pos){
 // get information from torrent handles and
 // update download list accordingly
 void GUI::updateDlList(bool force){
-  qDebug("Updating download list");
   char tmp[MAX_CHAR_TMP];
   char tmp2[MAX_CHAR_TMP];
   // update global informations
@@ -473,6 +472,7 @@ void GUI::updateDlList(bool force){
     // No need to update if qBittorrent DL list is hidden
     return;
   }
+  qDebug("Updating download list");
   LCD_UpSpeed->display(tmp); // UP LCD
   LCD_DownSpeed->display(tmp2); // DL LCD
   // browse handles
@@ -1346,8 +1346,8 @@ void GUI::finishedTorrent(torrent_handle& h){
     QSettings settings("qBittorrent", "qBittorrent");
     QString fileName = QString(h.name().c_str());
     setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
-    bool useOSD = (settings.value("Options/OSDEnabled", 1).toInt() > 0);
-    if(useOSD && (isMinimized() || isHidden())) {
+    int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
+    if(useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden()))) {
       myTrayIcon->showMessage(tr("Download finished"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
     }
 }
@@ -1355,8 +1355,8 @@ void GUI::finishedTorrent(torrent_handle& h){
 // Notification when disk is full
 void GUI::fullDiskError(torrent_handle& h){
   QSettings settings("qBittorrent", "qBittorrent");
-  bool useOSD = (settings.value("Options/OSDEnabled", 1).toInt() > 0);
-  if(useOSD && (isMinimized() || isHidden())) {
+  int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
+  if(useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden()))) {
     myTrayIcon->showMessage(tr("I/O Error", "i.e: Input/Output Error"), tr("An error occured when trying to read or write %1. The disk is probably full, download has been paused", "e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused").arg(QString(h.name().c_str())), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
   }
   // Download will be paused by libtorrent. Updating GUI information accordingly
@@ -1732,8 +1732,8 @@ void GUI::on_update_nova_button_clicked(){
 // Error | Stopped by user | Finished normally
 void GUI::searchFinished(int exitcode,QProcess::ExitStatus){
   QSettings settings("qBittorrent", "qBittorrent");
-  bool useOSD = (settings.value("Options/OSDEnabled", 1).toInt() > 0);
-  if(useOSD && (isMinimized() || isHidden())) {
+  int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
+  if(useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden()))) {
     myTrayIcon->showMessage(tr("Search Engine"), tr("Search has finished"), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
   }
   if(exitcode){
