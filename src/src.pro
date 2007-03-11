@@ -47,10 +47,6 @@ contains(DEBUG_MODE, 0){
   CONFIG += release
 }
 
-exists(../conf.pri) {
-       include(../conf.pri)
-}
-
 # Install
 unix {
         # Man page
