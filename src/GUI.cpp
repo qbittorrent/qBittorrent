@@ -1251,6 +1251,7 @@ void GUI::pauseAll(){
     DLListModel->setData(DLListModel->index(i, STATUS), QVariant(tr("Paused")));
     DLListModel->setData(DLListModel->index(i, ETA), QVariant((qlonglong)-1));
     DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
+    DLListModel->setData(DLListModel->index(i, SEEDSLEECH), QVariant("0/0"));
     setRowColor(i, "red");
     setInfoBar(tr("All downloads were paused."));
   }
@@ -1275,6 +1276,7 @@ void GUI::pauseSelection(){
         DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
         setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(QString(BTSession.getTorrentHandle(fileHash).name().c_str())));
         DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
+        DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
         setRowColor(row, "red");
       }
     }
