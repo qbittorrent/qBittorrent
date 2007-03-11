@@ -1,7 +1,6 @@
 # Vars
 LANG_PATH = lang
 ICONS_PATH = Icons
-TRAYICON_CPP = trayicon
 
 #Set the following variable to 1 to enable debug
 DEBUG_MODE = 1
@@ -9,8 +8,6 @@ DEBUG_MODE = 1
 # Global
 TEMPLATE = app
 TARGET = qbittorrent
-DEPENDPATH += . trayicon
-INCLUDEPATH += $$TRAYICON_CPP
 CONFIG += qt x11
 
 # Update this VERSION for each release
@@ -33,7 +30,7 @@ QMAKE_CXXFLAGS_DEBUG += -fwrapv
 LIBS += -lcurl
 CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent
-QT += xml network
+QT += network
 
 DEFINES += QT_NO_CAST_TO_ASCII
 
