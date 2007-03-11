@@ -1064,32 +1064,6 @@ void GUI::torrentCorrupted(const QString& path){
   setInfoBar(tr("This file is either corrupted or this isn't a torrent."),"red");
 }
 
-QString GUI::getSavePath(QString hash){
-  QFile savepath_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".savepath");
-  QByteArray line;
-  QString savePath;
-  if(savepath_file.open(QIODevice::ReadOnly | QIODevice::Text)){
-    line = savepath_file.readAll();
-    savepath_file.close();
-    qDebug("Save path: %s", line.data());
-    savePath = QString::fromUtf8(line.data());
-  }else{
-    QSettings settings("qBittorrent", "qBittorrent");
-    savePath = settings.value("Options/Main/ScanDir",  QString()).toString();
-  }
-  // Checking if savePath Dir exists
-  // create it if it is not
-  QDir saveDir(savePath);
-  if(!saveDir.exists()){
-    if(!saveDir.mkpath(saveDir.path())){
-      std::cerr << "Couldn't create the save directory: " << (const char*)saveDir.path().toUtf8() << "\n";
-      // TODO: handle this better
-      return QDir::homePath();
-    }
-  }
-  return savePath;
-}
-
 // As program parameters, we can get paths or urls.
 // This function parse the parameters and call
 // the right addTorrent function, considering

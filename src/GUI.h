@@ -197,7 +197,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     float getNovaVersion(const QString& novaPath) const;
     QByteArray getNovaChangelog(const QString& novaPath) const;
     void updateNova() const;
-    QString getSavePath(QString fileName);
     QPoint screenCenter();
 };
 
