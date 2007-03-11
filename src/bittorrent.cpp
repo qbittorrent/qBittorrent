@@ -69,6 +69,7 @@ torrent_handle bittorrent::getTorrentHandle(const QString& hash) const{
 bool bittorrent::isPaused(const QString& hash) const{
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
   if(!h.is_valid()){
+    qDebug("/!\\ Error: Invalid handle");
     return true;
   }
   return h.is_paused();
@@ -79,6 +80,7 @@ bool bittorrent::isPaused(const QString& hash) const{
 void bittorrent::deleteTorrent(const QString& hash, bool permanent){
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
   if(!h.is_valid()){
+    qDebug("/!\\ Error: Invalid handle");
     return;
   }
   QString savePath = QString::fromUtf8(h.save_path().string().c_str());
@@ -207,6 +209,7 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, const QString
     }
     if(!h.is_valid()){
       // No need to keep on, it failed.
+      qDebug("/!\\ Error: Invalid handle");
       return;
     }
     // Is this really useful and appropriate ?
@@ -346,6 +349,7 @@ void bittorrent::disableDHT(){
 void bittorrent::loadFilteredFiles(torrent_handle &h){
   torrent_info torrentInfo = h.get_torrent_info();
   if(!h.is_valid()){
+    qDebug("/!\\ Error: Invalid handle");
     return;
   }
   QString fileHash = QString(misc::toString(torrentInfo.info_hash()).c_str());
@@ -387,6 +391,10 @@ void bittorrent::saveFastResumeData(){
   std::vector<torrent_handle> handles = s->get_torrents();
   for(unsigned int i=0; i<handles.size(); ++i){
     torrent_handle &h = handles[i];
+    if(!h.is_valid()){
+      qDebug("/!\\ Error: Invalid handle");
+      continue;
+    }
     // Pause download (needed before fast resume writing)
     h.pause();
     // Extracting resume data
@@ -413,6 +421,7 @@ bool bittorrent::isFilePreviewPossible(const QString& hash) const{
   // See if there are supported files in the torrent
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
   if(!h.is_valid()){
+    qDebug("/!\\ Error: Invalid handle");
     return false;
   }
   torrent_info torrentInfo = h.get_torrent_info();
@@ -493,7 +502,12 @@ void bittorrent::setUploadRateLimit(int rate){
 void bittorrent::setGlobalRatio(float ratio){
   std::vector<torrent_handle> handles = s->get_torrents();
   for(unsigned int i=0; i<handles.size(); ++i){
-    handles[i].set_ratio(ratio);
+    torrent_handle h = handles[i];
+    if(!h.is_valid()){
+      qDebug("/!\\ Error: Invalid handle");
+      continue;
+    }
+    h.set_ratio(ratio);
   }
 }
 
@@ -578,6 +592,10 @@ void bittorrent::readAlerts(){
 }
 
 void bittorrent::reloadTorrent(const torrent_handle &h, bool compact_mode){
+  if(!h.is_valid()){
+    qDebug("/!\\ Error: Invalid handle");
+    return;
+  }
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
   fs::path saveDir = h.save_path();
   QString fileName = QString(h.name().c_str());
