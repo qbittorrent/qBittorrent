@@ -50,7 +50,7 @@ contains(DEBUG_MODE, 0){
 # Install
 unix {
         # Man page
-	man.files = doc/qbittorrent.1.gz
+				man.files = ../doc/qbittorrent.1.gz
         man.path = $$PREFIX/share/man/man1/
         INSTALLS += man
 
