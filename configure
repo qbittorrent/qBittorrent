@@ -17,6 +17,9 @@ Main options:
   --verbose           Show extra configure output.
   --help              This help text.
 
+Dependency options:
+  --with-libtorrent-inc=[path]     Path to libtorrent include files
+
 EOT
 }
 
@@ -132,6 +135,11 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
+		--with-libtorrent-inc=*)
+			QC_WITH_LIBTORRENT_INC=$optarg
+			shift
+			;;
+
 		--verbose)
 			QC_DEBUG="Y"
 			shift
@@ -153,6 +161,7 @@ echo PREFIX=$PREFIX
 echo BINDIR=$BINDIR
 echo DATADIR=$DATADIR
 echo EX_QTDIR=$EX_QTDIR
+echo QC_WITH_LIBTORRENT_INC=$QC_WITH_LIBTORRENT_INC
 echo
 fi
 
@@ -250,6 +259,7 @@ public:
 /*
 -----BEGIN QCMOD-----
 name: libtorrent
+arg: with-libtorrent-inc=[path], Path to libtorrent include files
 -----END QCMOD-----
 */
 class qc_libtorrent : public ConfObj
@@ -260,16 +270,26 @@ public:
 	QString shortname() const { return "libtorrent"; }
 	bool exec(){
           QString s;
-          QStringList sl;
-          sl += "/usr/include";
-          sl += "/usr/local/include";
-          sl += "/sw/include";
-          if(!conf->findHeader("libtorrent/extensions/ut_pex.hpp", sl, &s)) {
-            qWarning("libtorrent v0.12 includes not found!\nYou can download it at http://www.libtorrent.net");
-            return false;
-          }
-	  conf->addIncludePath(s);
-          return true;
+					s = conf->getenv("QC_WITH_LIBTORRENT_INC");
+					if(!s.isEmpty()) {
+						if(!conf->checkHeader(s, "libtorrent/extensions/ut_pex.hpp")) {
+        			qWarning("libtorrent v0.12 includes not found!\nYou can download it at http://www.libtorrent.net");
+							return false;
+      			}
+      			conf->addIncludePath(s);
+						return true;
+					}else{
+	          QStringList sl;
+  	        sl += "/usr/include";
+    	      sl += "/usr/local/include";
+      	    sl += "/sw/include";
+        	  if(!conf->findHeader("libtorrent/extensions/ut_pex.hpp", sl, &s)) {
+          	  qWarning("libtorrent v0.12 includes not found!\nYou can download it at http://www.libtorrent.net");
+            	return false;
+          	}
+	  				conf->addIncludePath(s);
+          	return true;
+					}
 	}
 };
 #line 1 "libboost.qcm"
@@ -1303,6 +1323,7 @@ export PREFIX
 export BINDIR
 export DATADIR
 export EX_QTDIR
+export QC_WITH_LIBTORRENT_INC
 export QC_DEBUG
 rm -rf .qconftemp
 (

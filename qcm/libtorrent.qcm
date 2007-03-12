@@ -1,6 +1,7 @@
 /*
 -----BEGIN QCMOD-----
 name: libtorrent
+arg: with-libtorrent-inc=[path], Path to libtorrent include files
 -----END QCMOD-----
 */
 class qc_libtorrent : public ConfObj
@@ -11,15 +12,25 @@ public:
 	QString shortname() const { return "libtorrent"; }
 	bool exec(){
           QString s;
-          QStringList sl;
-          sl += "/usr/include";
-          sl += "/usr/local/include";
-          sl += "/sw/include";
-          if(!conf->findHeader("libtorrent/extensions/ut_pex.hpp", sl, &s)) {
-            qWarning("libtorrent v0.12 includes not found!\nYou can download it at http://www.libtorrent.net");
-            return false;
-          }
-	  conf->addIncludePath(s);
-          return true;
+					s = conf->getenv("QC_WITH_LIBTORRENT_INC");
+					if(!s.isEmpty()) {
+						if(!conf->checkHeader(s, "libtorrent/extensions/ut_pex.hpp")) {
+        			qWarning("libtorrent v0.12 includes not found!\nYou can download it at http://www.libtorrent.net");
+							return false;
+      			}
+      			conf->addIncludePath(s);
+						return true;
+					}else{
+	          QStringList sl;
+  	        sl += "/usr/include";
+    	      sl += "/usr/local/include";
+      	    sl += "/sw/include";
+        	  if(!conf->findHeader("libtorrent/extensions/ut_pex.hpp", sl, &s)) {
+          	  qWarning("libtorrent v0.12 includes not found!\nYou can download it at http://www.libtorrent.net");
+            	return false;
+          	}
+	  				conf->addIncludePath(s);
+          	return true;
+					}
 	}
 };
