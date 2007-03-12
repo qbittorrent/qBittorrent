@@ -21,7 +21,10 @@ public:
       			}
       			conf->addIncludePath(s);
 					}else{
-        	  if(!conf->findHeader("libtorrent/extensions/ut_pex.hpp", QStringList(), &s)) {
+						QStringList sl;
+						sl << "/usr/include/";
+						sl << "/usr/local/include";
+        	  if(!conf->findHeader("libtorrent/extensions/ut_pex.hpp", sl, &s)) {
           	  qWarning("libtorrent v0.12 includes not found!\nYou can download it at http://www.libtorrent.net");
             	return false;
           	}

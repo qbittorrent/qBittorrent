@@ -2,6 +2,7 @@
 -----BEGIN QCMOD-----
 name: libcurl
 arg: with-libcurl-inc=[path], Path to libcurl include files
+arg: with-libcurl-lib=[path], Path to libcurl library files
 -----END QCMOD-----
 */
 class qc_libcurl : public ConfObj
@@ -19,18 +20,35 @@ public:
 							return false;
       			}
       			conf->addIncludePath(s);
-						return true;
 					}else{
 	          QStringList sl;
   	        sl += "/usr/include";
     	      sl += "/usr/local/include";
-      	    sl += "/sw/include";
         	  if(!conf->findHeader("curl/curl.h", sl, &s)) {
           	  qWarning("libcurl includes not found!");
             	return false;
           	}
 	  				conf->addIncludePath(s);
-          	return true;
 					}
+
+					s = conf->getenv("QC_WITH_LIBCURL_LIB");
+          if(!s.isEmpty()) {
+            if(!conf->checkLibrary(s, "curl")) {
+              qWarning("libcurl library not found!");
+              return false;
+            }
+            conf->addLib(QString("-L") + s);
+          }else{
+            if(!conf->findLibrary("curl", &s)) {
+              qWarning("libcurl library not found!");
+              return false;
+            }
+            if (!s.isEmpty())
+              conf->addLib(QString("-L") + s);
+          }
+
+          conf->addLib("-lcurl");
+
+          return true;
 	}
 };
