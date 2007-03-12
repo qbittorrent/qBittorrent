@@ -27,9 +27,9 @@ contains(DEBUG_MODE, 0){
 
 QMAKE_CXXFLAGS_RELEASE += -fwrapv
 QMAKE_CXXFLAGS_DEBUG += -fwrapv
-LIBS += -lcurl
-CONFIG += link_pkgconfig
-PKGCONFIG += libtorrent
+#LIBS += -lcurl
+#CONFIG += link_pkgconfig
+#PKGCONFIG += libtorrent
 QT += network
 
 DEFINES += QT_NO_CAST_TO_ASCII
@@ -50,7 +50,7 @@ contains(DEBUG_MODE, 0){
 # Install
 unix {
         # Man page
-				man.files = ../doc/qbittorrent.1.gz
+	man.files = ../doc/qbittorrent.1.gz
         man.path = $$PREFIX/share/man/man1/
         INSTALLS += man
 
@@ -63,8 +63,12 @@ unix {
         INSTALLS += logos
 }
 
-target.path = $$PREFIX/bin/
-INSTALLS += target
+exists(../conf.pri) {
+  include(../conf.pri)
+  # Target
+  target.path = $$BINDIR
+  INSTALLS += target
+}
 
 RESOURCES = icons.qrc \
             lang.qrc \
