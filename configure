@@ -19,6 +19,7 @@ Main options:
 
 Dependency options:
   --with-libtorrent-inc=[path]     Path to libtorrent include files
+  --with-libtorrent-lib=[path]     Path to libtorrent library files
   --with-libcurl-inc=[path]        Path to libcurl include files
 
 EOT
@@ -141,6 +142,11 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
+		--with-libtorrent-lib=*)
+			QC_WITH_LIBTORRENT_LIB=$optarg
+			shift
+			;;
+
 		--with-libcurl-inc=*)
 			QC_WITH_LIBCURL_INC=$optarg
 			shift
@@ -168,6 +174,7 @@ echo BINDIR=$BINDIR
 echo DATADIR=$DATADIR
 echo EX_QTDIR=$EX_QTDIR
 echo QC_WITH_LIBTORRENT_INC=$QC_WITH_LIBTORRENT_INC
+echo QC_WITH_LIBTORRENT_LIB=$QC_WITH_LIBTORRENT_LIB
 echo QC_WITH_LIBCURL_INC=$QC_WITH_LIBCURL_INC
 echo
 fi
@@ -267,6 +274,7 @@ public:
 -----BEGIN QCMOD-----
 name: libtorrent
 arg: with-libtorrent-inc=[path], Path to libtorrent include files
+arg: with-libtorrent-lib=[path], Path to libtorrent library files
 -----END QCMOD-----
 */
 class qc_libtorrent : public ConfObj
@@ -284,19 +292,33 @@ public:
 							return false;
       			}
       			conf->addIncludePath(s);
-						return true;
 					}else{
-	          QStringList sl;
-  	        sl += "/usr/include";
-    	      sl += "/usr/local/include";
-      	    sl += "/sw/include";
-        	  if(!conf->findHeader("libtorrent/extensions/ut_pex.hpp", sl, &s)) {
+        	  if(!conf->findHeader("libtorrent/extensions/ut_pex.hpp", QStringList(), &s)) {
           	  qWarning("libtorrent v0.12 includes not found!\nYou can download it at http://www.libtorrent.net");
             	return false;
           	}
 	  				conf->addIncludePath(s);
-          	return true;
 					}
+
+					s = conf->getenv("QC_WITH_LIBTORRENT_LIB");
+			    if(!s.isEmpty()) {
+      			if(!conf->checkLibrary(s, "torrent")) {
+			        qWarning("libtorrent library not found!");
+			        return false;
+			      }
+      			conf->addLib(QString("-L") + s);
+			    }else{
+			      if(!conf->findLibrary("torrent", &s)) {
+      			  qWarning("libtorrent library not found!");
+			        return false;
+      			}
+			      if (!s.isEmpty())
+			        conf->addLib(QString("-L") + s);
+			    }
+
+			    conf->addLib("-ltorrent");
+
+					return true;
 	}
 };
 #line 1 "libboost.qcm"
@@ -1342,6 +1364,7 @@ export BINDIR
 export DATADIR
 export EX_QTDIR
 export QC_WITH_LIBTORRENT_INC
+export QC_WITH_LIBTORRENT_LIB
 export QC_WITH_LIBCURL_INC
 export QC_DEBUG
 rm -rf .qconftemp
