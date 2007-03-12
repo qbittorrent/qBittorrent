@@ -48,7 +48,16 @@ contains(DEBUG_MODE, 0){
 }
 
 # Install
-unix {
+
+!win32 {
+        # Binary
+        exists(../conf.pri) {
+          include(../conf.pri)
+          # Target
+          target.path = $$BINDIR
+          INSTALLS += target
+        }
+
         # Man page
 	man.files = ../doc/qbittorrent.1.gz
         man.path = $$PREFIX/share/man/man1/
@@ -63,11 +72,9 @@ unix {
         INSTALLS += logos
 }
 
-exists(../conf.pri) {
-  include(../conf.pri)
-  # Target
-  target.path = $$BINDIR
-  INSTALLS += target
+# Windows
+win32 {
+  LIBS += -lcurl -ltorrent
 }
 
 RESOURCES = icons.qrc \

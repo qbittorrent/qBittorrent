@@ -11,7 +11,7 @@
     - FEATURE: Implemented close to systray
     - FEATURE: Added Autocompletion to search engine
     - FEATURE: Splitted BT & GUI parts (huge code rewriting & optimization)
-    - FEATURE: new parameters for configure file to point to custom locations for libtorrent/libcurl
+    - FEATURE: New parameters for configure file to point to custom locations for libtorrent/libcurl
     - BUGFIX: Two torrents can now have the same name although they are different (use their hash)
     - BUGFIX: Fixed download from url that would fail sometimes
     - BUGFIX: Save directory was reset to default when filtering files in torrent
