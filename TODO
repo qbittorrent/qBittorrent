@@ -3,12 +3,9 @@
 - Translations into as many languages as possible
 - Improve man page
 - Add more keyboard shortcuts
-- Improve torrent creation tool (look & features)
 
 // Intermediate
 - Port on MacOS, Windows (and create an installer for Windows) - Progressing
-- Optimize code to use less memory/cpu
-- Should create options dialog only when needed to save up some memory
 - Add some transparency (menus,...)
 - Add upnp port forwarding support
 
@@ -26,8 +23,6 @@
 // Unsure
 - Move Speed/ratio to a status bar ?
 - Azureus spoofing to prevent ban from trackers?
-- Download from RSS?
-- Split kernel from GUI? (would be a lot better but require some deep changes)
 - Web interface?
 - Use downloader class to download search plugin updates
 - Allow to set upload limit for each torrent
@@ -38,7 +33,7 @@
 - Download from RSS feeds (IN PROGRESS)
 - Move finished torrent to another tab and keep on seeding them even after restart
 - Allow to edit the trackers for a torrent
-- Improve torrent creation dialog
+- Improve torrent creation dialog (look & features)
 
 // In v0.9.0
 - Update translations (FR, SV, NB, PL done)
