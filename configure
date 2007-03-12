@@ -19,6 +19,7 @@ Main options:
 
 Dependency options:
   --with-libtorrent-inc=[path]     Path to libtorrent include files
+  --with-libcurl-inc=[path]        Path to libcurl include files
 
 EOT
 }
@@ -140,6 +141,11 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
+		--with-libcurl-inc=*)
+			QC_WITH_LIBCURL_INC=$optarg
+			shift
+			;;
+
 		--verbose)
 			QC_DEBUG="Y"
 			shift
@@ -162,6 +168,7 @@ echo BINDIR=$BINDIR
 echo DATADIR=$DATADIR
 echo EX_QTDIR=$EX_QTDIR
 echo QC_WITH_LIBTORRENT_INC=$QC_WITH_LIBTORRENT_INC
+echo QC_WITH_LIBCURL_INC=$QC_WITH_LIBCURL_INC
 echo
 fi
 
@@ -337,6 +344,7 @@ public:
 /*
 -----BEGIN QCMOD-----
 name: libcurl
+arg: with-libcurl-inc=[path], Path to libcurl include files
 -----END QCMOD-----
 */
 class qc_libcurl : public ConfObj
@@ -347,16 +355,26 @@ public:
 	QString shortname() const { return "libcurl"; }
 	bool exec(){
           QString s;
-          QStringList sl;
-          sl += "/usr/include";
-          sl += "/usr/local/include";
-          sl += "/sw/include";
-          if(!conf->findHeader("curl/curl.h", sl, &s)) {
-            qWarning("libcurl includes not found!\n");
-            return false;
-          }
-	  conf->addIncludePath(s);
-          return true;
+					s = conf->getenv("QC_WITH_LIBCURL_INC");
+					if(!s.isEmpty()) {
+						if(!conf->checkHeader(s, "curl/curl.h")) {
+        			qWarning("libcurl includes not found!");
+							return false;
+      			}
+      			conf->addIncludePath(s);
+						return true;
+					}else{
+	          QStringList sl;
+  	        sl += "/usr/include";
+    	      sl += "/usr/local/include";
+      	    sl += "/sw/include";
+        	  if(!conf->findHeader("curl/curl.h", sl, &s)) {
+          	  qWarning("libcurl includes not found!");
+            	return false;
+          	}
+	  				conf->addIncludePath(s);
+          	return true;
+					}
 	}
 };
 #line 1 "python.qcm"
@@ -1324,6 +1342,7 @@ export BINDIR
 export DATADIR
 export EX_QTDIR
 export QC_WITH_LIBTORRENT_INC
+export QC_WITH_LIBCURL_INC
 export QC_DEBUG
 rm -rf .qconftemp
 (

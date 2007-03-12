@@ -1,6 +1,7 @@
 /*
 -----BEGIN QCMOD-----
 name: libcurl
+arg: with-libcurl-inc=[path], Path to libcurl include files
 -----END QCMOD-----
 */
 class qc_libcurl : public ConfObj
@@ -11,15 +12,25 @@ public:
 	QString shortname() const { return "libcurl"; }
 	bool exec(){
           QString s;
-          QStringList sl;
-          sl += "/usr/include";
-          sl += "/usr/local/include";
-          sl += "/sw/include";
-          if(!conf->findHeader("curl/curl.h", sl, &s)) {
-            qWarning("libcurl includes not found!\n");
-            return false;
-          }
-	  conf->addIncludePath(s);
-          return true;
+					s = conf->getenv("QC_WITH_LIBCURL_INC");
+					if(!s.isEmpty()) {
+						if(!conf->checkHeader(s, "curl/curl.h")) {
+        			qWarning("libcurl includes not found!");
+							return false;
+      			}
+      			conf->addIncludePath(s);
+						return true;
+					}else{
+	          QStringList sl;
+  	        sl += "/usr/include";
+    	      sl += "/usr/local/include";
+      	    sl += "/sw/include";
+        	  if(!conf->findHeader("curl/curl.h", sl, &s)) {
+          	  qWarning("libcurl includes not found!");
+            	return false;
+          	}
+	  				conf->addIncludePath(s);
+          	return true;
+					}
 	}
 };
