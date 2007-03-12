@@ -1227,8 +1227,8 @@ void GUI::pauseAll(){
     DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
     DLListModel->setData(DLListModel->index(i, SEEDSLEECH), QVariant("0/0"));
     setRowColor(i, "red");
-    setInfoBar(tr("All downloads were paused."));
   }
+  setInfoBar(tr("All downloads were paused."));
 }
 
 // pause selected items in the list
@@ -1271,8 +1271,8 @@ void GUI::resumeAll(){
     DLListModel->setData(DLListModel->index(i, STATUS), QVariant(tr("Connecting...", "i.e: Connecting to the tracker...")));
     DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
     setRowColor(i, "grey");
-    setInfoBar(tr("All downloads were resumed."));
   }
+  setInfoBar(tr("All downloads were resumed."));
 }
 
 // start selected items in the list
