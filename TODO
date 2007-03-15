@@ -15,13 +15,12 @@
 - Display a progress bar that really displays the pieces we have (like in eMule)
 
 // Waiting for libtorrent
-- Encryption support (waiting for libtorrent)
+- Encryption support (v0.13?)
 - File selection in a torrent in compact mode
 - Allow to prioritize files within a torrent
 - Allow to prioritize torrents
 
 // Unsure
-- Move Speed/ratio to a status bar ?
 - Azureus spoofing to prevent ban from trackers?
 - Web interface?
 - Use downloader class to download search plugin updates
@@ -30,10 +29,12 @@
 - Add a torrent scheduler
 
 // in v1.0.0 (partial)
-- Download from RSS feeds (IN PROGRESS)
+- Download from RSS feeds (WIP by gtsoul)
 - Move finished torrent to another tab and keep on seeding them even after restart
 - Allow to edit the trackers for a torrent
 - Improve torrent creation dialog (look & features)
+- Add IPv6 support (at least start working on it)
+- UPnP support?
 
 // In v0.9.0
 - Update translations (FR, SV, NB, PL, RU, DE done)
