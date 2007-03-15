@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS><TS version="1.1" language="sk">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -484,17 +484,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="508"/>
         <source>Disable DHT (Trackerless)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vypnúť DHT (bez trackera)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="579"/>
         <source>Disable Peer eXchange (PeX)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vypnúť Peer eXchange (PeX)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1275"/>
         <source>Go to systray when closing main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimalizovať do systray pri zatvorení hlavného okna</translation>
     </message>
 </context>
 <context>
@@ -652,7 +652,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../GUI.cpp" line="1695"/>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="990"/>
@@ -962,7 +962,7 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <location filename="../GUI.cpp" line="1327"/>
         <source>Download finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Sťahovanie dokončené</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1323"/>
@@ -973,7 +973,7 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <location filename="../GUI.cpp" line="1713"/>
         <source>Search Engine</source>
-        <translation type="unfinished">Vyhad</translation>
+        <translation>Vyhľadávač</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1330"/>
@@ -984,259 +984,265 @@ Najskôr ho prosím zatvorte.</translation>
         <location filename="../GUI.cpp" line="68"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1410"/>
         <source>Connection status:</source>
-        <translation type="unfinished"></translation>
+        <translation>Stav spojenia:</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1410"/>
         <source>Offline</source>
-        <translation type="unfinished"></translation>
+        <translation>Offline</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1410"/>
         <source>No peers found...</source>
-        <translation type="unfinished"></translation>
+        <translation>Neboli nájdení rovesníci...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="203"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="204"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="106"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">Priebeh</translation>
+        <translation>Priebeh</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="107"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rýchlosť sťahovania</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="108"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rýchlosť nahrávania</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="109"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished"></translation>
+        <translation>Seederi/Leecheri</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="111"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished"></translation>
+        <translation>Odhadované</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="205"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation type="unfinished">Seederi</translation>
+        <translation>Seederi</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="206"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation type="unfinished">Leecheri</translation>
+        <translation>Leecheri</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="257"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent %1 spustený.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="470"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rýchlosť sťahovania: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="470"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rýchlosť nahrávania: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="498"/>
         <source>Finished</source>
         <comment>i.e: Torrent has finished downloading</comment>
-        <translation type="unfinished"></translation>
+        <translation>Skončené</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="507"/>
         <source>Checking...</source>
         <comment>i.e: Checking already downloaded parts...</comment>
-        <translation type="unfinished">kontroluje sa...</translation>
+        <translation>kontroluje sa...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="537"/>
         <source>Stalled</source>
         <comment>i.e: State of a torrent whose download speed is 0kb/s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Bez pohybu</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="825"/>
         <source>Are you sure you want to quit?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete skončiť?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1017"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; bol odstránený.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1049"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; bol pridaný do zoznamu na sťahovanie.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1051"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; bol obnovený. (rýchle obnovenie)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1059"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; sa už nachádza v zozname sťahovaných.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1063"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nebol omožné dekodovať torrent súbor: &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1126"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
-        <translation type="unfinished">Žiadny</translation>
+        <translation>Žiadna</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1144"/>
         <source>Listening on port: %1</source>
         <comment>e.g: Listening on port: 1666</comment>
-        <translation type="unfinished"></translation>
+        <translation>Počúvam na porte: %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1231"/>
         <source>All downloads were paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetky sťahovania pozastavené.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1251"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; pozastavené.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1271"/>
         <source>Connecting...</source>
         <comment>i.e: Connecting to the tracker...</comment>
-        <translation type="unfinished">pripája sa...</translation>
+        <translation>pripája sa...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1275"/>
         <source>All downloads were resumed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetky sťahovania obnovené.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1294"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; obnovené.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1327"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 je stiahnutý.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1336"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation type="unfinished">V/V Chyba</translation>
+        <translation>V/V Chyba</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1336"/>
         <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
         <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba pri pokuse o čítanie alebo zapisovanie do %1. Disk je pravdepodobne plný, sťahovanie bolo pozastavené</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1338"/>
+        <source>An error occured (full fisk?), &apos;%1&apos; paused.</source>
+        <comment>e.g: An error occured (full fisk?), &apos;xxx.avi&apos; paused.</comment>
+        <translation type="obsolete">Vyskytla sa chyba (plný disk?), &apos;%1&apos; pozastavené.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1406"/>
         <source>Connection Status:</source>
-        <translation type="unfinished"></translation>
+        <translation>Stav spojenia:</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1401"/>
         <source>Online</source>
-        <translation type="unfinished"></translation>
+        <translation>Online</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1406"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Za firewallom?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1406"/>
         <source>No incoming connections...</source>
-        <translation type="unfinished"></translation>
+        <translation>Žiadne prichádzajúce spojenia...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1463"/>
         <source>No search engine selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebol zvolený žiadny vyhľadávač</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1695"/>
         <source>Search plugin update</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizácia zásuvného modulu vyhľadávača</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1724"/>
         <source>Search has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Hľadanie skončené</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1728"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
-        <translation type="unfinished">Výsledky</translation>
+        <translation>Výsledky</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1829"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sťahuje sa &apos;%1&apos;, čakajte prosím...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1344"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba (plný disk?), &apos;%1&apos; pozastavené.</translation>
     </message>
 </context>
 <context>
@@ -1489,12 +1495,12 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <location filename="../MainWindow.ui" line="865"/>
         <source>Visit website</source>
-        <translation type="unfinished"></translation>
+        <translation>Navštíviť webstránku</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="900"/>
         <source>Report a bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Oznámiť chybu</translation>
     </message>
 </context>
 <context>
@@ -1583,12 +1589,12 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <location filename="../about_imp.h" line="37"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="66"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, kontaktujte ma ak chcete preložiť qBittorrent do vášho jazyka.</translation>
     </message>
 </context>
 <context>
@@ -1661,7 +1667,7 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <location filename="../addTorrentDialog.ui" line="183"/>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrať</translation>
     </message>
 </context>
 <context>
@@ -1987,25 +1993,25 @@ Najskôr ho prosím zatvorte.</translation>
         <location filename="../misc.h" line="206"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt; 1m</translation>
     </message>
     <message>
         <location filename="../misc.h" line="210"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1m</translation>
     </message>
     <message>
         <location filename="../misc.h" line="215"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1h%2m</translation>
     </message>
     <message>
         <location filename="../misc.h" line="220"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1d%2h%3m</translation>
     </message>
 </context>
 <context>
@@ -2129,33 +2135,33 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <location filename="../options_imp.cpp" line="545"/>
         <source>Options were saved successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenia úspešne uložené.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="724"/>
         <source>Choose scan directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvoliť adresár pre prezeranie</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="731"/>
         <source>Choose an ipfilter.dat file</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte súbor ipfilter.dat</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="747"/>
         <source>Choose a save directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte adresár, kde sa bude ukladať</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="779"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
-        <translation type="unfinished">V/V Chyba</translation>
+        <translation>V/V Chyba</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="779"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebolo možné otvoriť %1 v režime pre čítanie.</translation>
     </message>
 </context>
 <context>
