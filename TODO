@@ -28,15 +28,10 @@
 - Option to shutdown computer when downloads are finished
 - Add a torrent scheduler
 
-// in v1.0.0 (partial)
+// in v0.10 (partial)
 - Download from RSS feeds (WIP by gtsoul)
 - Move finished torrent to another tab and keep on seeding them even after restart
 - Allow to edit the trackers for a torrent
 - Improve torrent creation dialog (look & features)
 - Add IPv6 support (at least start working on it)
 - UPnP support?
-
-// In v0.9.0
-- Update translations (FR, SV, NB, PL, RU, DE, SK done)
-- Bug squashing
-- Wait for libtorrent v0.12 official release

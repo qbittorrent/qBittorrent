@@ -11,9 +11,9 @@ TARGET = qbittorrent
 CONFIG += qt x11
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v0.9.0beta7\\\"
+DEFINES += VERSION=\\\"v0.10.0alpha1\\\"
 DEFINES += VERSION_MAJOR=0
-DEFINES += VERSION_MINOR=9
+DEFINES += VERSION_MINOR=10
 DEFINES += VERSION_BUGFIX=0
 
 contains(DEBUG_MODE, 1){
