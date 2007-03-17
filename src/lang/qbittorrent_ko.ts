@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS><TS version="1.1" language="ko">
 <context>
     <name>@default</name>
     <message>
@@ -537,17 +537,17 @@ list:</source>
     <message>
         <location filename="../options.ui" line="508"/>
         <source>Disable DHT (Trackerless)</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT(트렉커 없음) 사용하지 않기</translation>
     </message>
     <message>
         <location filename="../options.ui" line="579"/>
         <source>Disable Peer eXchange (PeX)</source>
-        <translation type="unfinished"></translation>
+        <translation> 피어 익스체인지(Pex) 사용하지 않기</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1275"/>
         <source>Go to systray when closing main window</source>
-        <translation type="unfinished"></translation>
+        <translation>메인 창을 닫을 때 시스템 트레이에 아이템 보여주기</translation>
     </message>
 </context>
 <context>
@@ -779,7 +779,7 @@ download list?</source>
     <message>
         <location filename="../GUI.cpp" line="1695"/>
         <source>qBittorrent</source>
-        <translation type="unfinished">큐비토런트</translation>
+        <translation>큐비토런트</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="990"/>
@@ -1102,7 +1102,7 @@ Please close the other one first.</source>
     <message>
         <location filename="../GUI.cpp" line="1327"/>
         <source>Download finished</source>
-        <translation type="unfinished"></translation>
+        <translation>다운로드 완료</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1323"/>
@@ -1113,265 +1113,271 @@ Please close the other one first.</source>
     <message>
         <location filename="../GUI.cpp" line="1713"/>
         <source>Search Engine</source>
-        <translation type="unfinished">검색 엔진</translation>
+        <translation>검색 엔진</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="68"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="unfinished"></translation>
+        <translation>큐비토런트 %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1410"/>
         <source>Connection status:</source>
-        <translation type="unfinished"></translation>
+        <translation>연결 상태:</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1410"/>
         <source>Offline</source>
-        <translation type="unfinished"></translation>
+        <translation>오프라인</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1410"/>
         <source>No peers found...</source>
-        <translation type="unfinished"></translation>
+        <translation>피어가 없습니다...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="203"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">파일 이름</translation>
+        <translation>파일 이름</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="204"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">크기</translation>
+        <translation>크기</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="106"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">진행상황</translation>
+        <translation>진행상황</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="107"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished">다운로드 속도</translation>
+        <translation>다운로드 속도</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="108"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">업로드 속도</translation>
+        <translation>업로드 속도</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="109"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished"></translation>
+        <translation>완전체 공유/부분 공유</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="111"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished">남은시간</translation>
+        <translation>남은시간</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="205"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation type="unfinished">완전체 공유자</translation>
+        <translation>완전체 공유자</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="206"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation type="unfinished">부분 공유</translation>
+        <translation>부분 공유</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="257"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation type="unfinished"></translation>
+        <translation>큐비토런트 %1가 시작되었습니다.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="470"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="unfinished"></translation>
+        <translation>다운로딩 속도: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="470"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="unfinished"></translation>
+        <translation>업로딩 속도: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="498"/>
         <source>Finished</source>
         <comment>i.e: Torrent has finished downloading</comment>
-        <translation type="unfinished"></translation>
+        <translation>완료되었습니다</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="507"/>
         <source>Checking...</source>
         <comment>i.e: Checking already downloaded parts...</comment>
-        <translation type="unfinished">확인중...</translation>
+        <translation>확인중...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="537"/>
         <source>Stalled</source>
         <comment>i.e: State of a torrent whose download speed is 0kb/s</comment>
-        <translation type="unfinished">대기중</translation>
+        <translation>대기중</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="825"/>
         <source>Are you sure you want to quit?</source>
-        <translation type="unfinished"></translation>
+        <translation>정말로 종료하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1017"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; 가 삭제되었습니다.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1049"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos;가 다운로드 목록에 추가되었습니다.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1051"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos;가 다시 시작되었습니다. (빠른 재개)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1059"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos;는/은 이미 다운로드 목록에 포함되어 있습니다.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1063"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished"></translation>
+        <translation>다음 파일을 디코드할수 없습니다: &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1126"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
-        <translation type="unfinished">없음</translation>
+        <translation>없음</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1144"/>
         <source>Listening on port: %1</source>
         <comment>e.g: Listening on port: 1666</comment>
-        <translation type="unfinished"></translation>
+        <translation>이미 연결 된 포트: %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1231"/>
         <source>All downloads were paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>모든 다운로드가 멈추었습니다.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1251"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos;가 정지 되었습니다.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1271"/>
         <source>Connecting...</source>
         <comment>i.e: Connecting to the tracker...</comment>
-        <translation type="unfinished">연결중...</translation>
+        <translation>연결중...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1275"/>
         <source>All downloads were resumed.</source>
-        <translation type="unfinished"></translation>
+        <translation>모든 다운로드가 다시 시작되었습니다.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1294"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; 가 다운로드를 다시 시작되었습니다.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1327"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1가 다운로드를 완료하였습니다.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1336"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation type="unfinished">I/O 에러</translation>
+        <translation>I/O 에러</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1336"/>
         <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
         <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1을 사용하려고 하던 중 오류가 발생했습니다. 디스크 용량이 꽉찼고 다운로드가 중지되었습니다 </translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1338"/>
+        <source>An error occured (full fisk?), &apos;%1&apos; paused.</source>
+        <comment>e.g: An error occured (full fisk?), &apos;xxx.avi&apos; paused.</comment>
+        <translation type="obsolete">오류 발생 (디스크가 꽉찼습니까?), &apos;%1&apos;가 정지 되었습니다.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1406"/>
         <source>Connection Status:</source>
-        <translation type="unfinished"></translation>
+        <translation>연결 상태:</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1401"/>
         <source>Online</source>
-        <translation type="unfinished"></translation>
+        <translation>온라인</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1406"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
-        <translation type="unfinished"></translation>
+        <translation>방화벽이 설치되어있습니까?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1406"/>
         <source>No incoming connections...</source>
-        <translation type="unfinished"></translation>
+        <translation>받는 연결이 없습니다...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1463"/>
         <source>No search engine selected</source>
-        <translation type="unfinished"></translation>
+        <translation>검색엔진이 선택되지 않았음</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1695"/>
         <source>Search plugin update</source>
-        <translation type="unfinished"></translation>
+        <translation>검색 엔진 플러그인 업데이트</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1724"/>
         <source>Search has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>검색 완료</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1728"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
-        <translation type="unfinished">결과</translation>
+        <translation>결과</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1829"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos;을 다운 중입니다, 잠시 기다려 주세요...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1344"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation type="unfinished"></translation>
+        <translation>오류 발생 (디스크가 꽉찼습니까?), &apos;%1&apos;가 정지 되었습니다.</translation>
     </message>
 </context>
 <context>
@@ -1644,12 +1650,12 @@ Please close the other one first.</source>
     <message>
         <location filename="../MainWindow.ui" line="865"/>
         <source>Visit website</source>
-        <translation type="unfinished"></translation>
+        <translation>웹사이트 방문하기</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="900"/>
         <source>Report a bug</source>
-        <translation type="unfinished"></translation>
+        <translation>버그 신고하기</translation>
     </message>
 </context>
 <context>
@@ -1748,12 +1754,12 @@ Please close the other one first.</source>
     <message>
         <location filename="../about_imp.h" line="37"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>큐비토런트</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="66"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation type="unfinished"></translation>
+        <translation>큐비토런트를 자신이 사용하는 언어로 번역하는데 관심이 있으시가면 제게 연락을 주십시오.</translation>
     </message>
 </context>
 <context>
@@ -1826,7 +1832,7 @@ Please close the other one first.</source>
     <message>
         <location filename="../addTorrentDialog.ui" line="183"/>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>선택</translation>
     </message>
 </context>
 <context>
@@ -2108,25 +2114,25 @@ Please close the other one first.</source>
         <location filename="../misc.h" line="206"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt; 1분</translation>
     </message>
     <message>
         <location filename="../misc.h" line="210"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1분</translation>
     </message>
     <message>
         <location filename="../misc.h" line="215"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1시간%2분</translation>
     </message>
     <message>
         <location filename="../misc.h" line="220"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1일%2시간%3분</translation>
     </message>
 </context>
 <context>
@@ -2245,33 +2251,33 @@ Please close the other one first.</source>
     <message>
         <location filename="../options_imp.cpp" line="545"/>
         <source>Options were saved successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>환경설정이 성공적으로 저장되었습니다.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="724"/>
         <source>Choose scan directory</source>
-        <translation type="unfinished"></translation>
+        <translation>스켄할 곳을 선택해주세요</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="731"/>
         <source>Choose an ipfilter.dat file</source>
-        <translation type="unfinished"></translation>
+        <translation>ipfilter.dat의 경로를 선택해주세요</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="747"/>
         <source>Choose a save directory</source>
-        <translation type="unfinished"></translation>
+        <translation>파일을 저장할 경로를 선택해주세요</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="779"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
-        <translation type="unfinished">I/O 에러</translation>
+        <translation>I/O 에러</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="779"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1을 읽기전용 모드로 열수 없습니다.</translation>
     </message>
 </context>
 <context>
