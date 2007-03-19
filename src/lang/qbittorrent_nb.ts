@@ -1817,12 +1817,12 @@ Vennligst avslutt denne først.</translation>
         <translation type="obsolete">er ugyldig.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="846"/>
+        <location filename="../options_imp.cpp" line="851"/>
         <source>Range Start IP</source>
         <translation>Områdets start IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="847"/>
+        <location filename="../options_imp.cpp" line="852"/>
         <source>Start IP:</source>
         <translation>Start IP:</translation>
     </message>
@@ -1837,22 +1837,22 @@ Vennligst avslutt denne først.</translation>
         <translation type="obsolete">Denne IPen er ugyldig.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="863"/>
+        <location filename="../options_imp.cpp" line="868"/>
         <source>Range End IP</source>
         <translation>Områdets slutt IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="864"/>
+        <location filename="../options_imp.cpp" line="869"/>
         <source>End IP:</source>
         <translation>Slutt IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="880"/>
+        <location filename="../options_imp.cpp" line="885"/>
         <source>IP Range Comment</source>
         <translation>IP område kommentarer</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="881"/>
+        <location filename="../options_imp.cpp" line="886"/>
         <source>Comment:</source>
         <translation>Kommentar:</translation>
     </message>
@@ -1863,17 +1863,17 @@ Vennligst avslutt denne først.</translation>
         <translation>til</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="739"/>
+        <location filename="../options_imp.cpp" line="744"/>
         <source>Choose your favourite preview program</source>
         <translation>Velg program for forhåndsvisning</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="875"/>
+        <location filename="../options_imp.cpp" line="880"/>
         <source>Invalid IP</source>
         <translation>Ugyldig IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="875"/>
+        <location filename="../options_imp.cpp" line="880"/>
         <source>This IP is invalid.</source>
         <translation>Denne IP adressen er ugyldig.</translation>
     </message>
@@ -1883,28 +1883,28 @@ Vennligst avslutt denne først.</translation>
         <translation>Innstillingene ble lagret.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="724"/>
+        <location filename="../options_imp.cpp" line="729"/>
         <source>Choose scan directory</source>
         <translation>Velg mappe for gjennomsøking</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="731"/>
+        <location filename="../options_imp.cpp" line="736"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>Velg en ipfilter.dat fil</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="747"/>
+        <location filename="../options_imp.cpp" line="752"/>
         <source>Choose a save directory</source>
         <translation>Velg mappe for lagring</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="779"/>
+        <location filename="../options_imp.cpp" line="784"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>Lese/Skrive feil</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="779"/>
+        <location filename="../options_imp.cpp" line="784"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>Klarte ikke å åpne %1 i lesemodus.</translation>
     </message>

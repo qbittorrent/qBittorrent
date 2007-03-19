@@ -2215,12 +2215,12 @@ Zamknij najpierw okno podglądu.</translation>
         <translation type="obsolete">is malformed.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="846"/>
+        <location filename="../options_imp.cpp" line="851"/>
         <source>Range Start IP</source>
         <translation>Zakres początkowy IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="847"/>
+        <location filename="../options_imp.cpp" line="852"/>
         <source>Start IP:</source>
         <translation>Początkowe IP:</translation>
     </message>
@@ -2235,22 +2235,22 @@ Zamknij najpierw okno podglądu.</translation>
         <translation type="obsolete">To jest nieprawidłowe IP.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="863"/>
+        <location filename="../options_imp.cpp" line="868"/>
         <source>Range End IP</source>
         <translation>Końcowy zakres IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="864"/>
+        <location filename="../options_imp.cpp" line="869"/>
         <source>End IP:</source>
         <translation>Końcowe IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="880"/>
+        <location filename="../options_imp.cpp" line="885"/>
         <source>IP Range Comment</source>
         <translation>Komentarz zakresu IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="881"/>
+        <location filename="../options_imp.cpp" line="886"/>
         <source>Comment:</source>
         <translation>Komentarz:</translation>
     </message>
@@ -2261,17 +2261,17 @@ Zamknij najpierw okno podglądu.</translation>
         <translation>do</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="739"/>
+        <location filename="../options_imp.cpp" line="744"/>
         <source>Choose your favourite preview program</source>
         <translation>Wybierz program którym zawsze chcesz otwierać dany typ plików</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="875"/>
+        <location filename="../options_imp.cpp" line="880"/>
         <source>Invalid IP</source>
         <translation>Niepoprawny adres IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="875"/>
+        <location filename="../options_imp.cpp" line="880"/>
         <source>This IP is invalid.</source>
         <translation>Ten adres IP jest niepoprawny.</translation>
     </message>
@@ -2281,28 +2281,28 @@ Zamknij najpierw okno podglądu.</translation>
         <translation>Ustawienia zapisane.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="724"/>
+        <location filename="../options_imp.cpp" line="729"/>
         <source>Choose scan directory</source>
         <translation>Wybierz katalog przeszukiwania</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="731"/>
+        <location filename="../options_imp.cpp" line="736"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>Wybierz plik ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="747"/>
+        <location filename="../options_imp.cpp" line="752"/>
         <source>Choose a save directory</source>
         <translation>Wybierz katalog docelowy</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="779"/>
+        <location filename="../options_imp.cpp" line="784"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>Błąd We/Wy</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="779"/>
+        <location filename="../options_imp.cpp" line="784"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>Nie można otworzyć %1 w trybie odczytu.</translation>
     </message>

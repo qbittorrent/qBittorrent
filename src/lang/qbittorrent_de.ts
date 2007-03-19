@@ -2105,12 +2105,12 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation type="obsolete">ist fehlerhaft.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="846"/>
+        <location filename="../options_imp.cpp" line="851"/>
         <source>Range Start IP</source>
         <translation>Bereich Start IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="847"/>
+        <location filename="../options_imp.cpp" line="852"/>
         <source>Start IP:</source>
         <translation>Start IP:</translation>
     </message>
@@ -2125,22 +2125,22 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation type="obsolete">Diese IP ist fehlerhaft.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="863"/>
+        <location filename="../options_imp.cpp" line="868"/>
         <source>Range End IP</source>
         <translation>Bereich End IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="864"/>
+        <location filename="../options_imp.cpp" line="869"/>
         <source>End IP:</source>
         <translation>End IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="880"/>
+        <location filename="../options_imp.cpp" line="885"/>
         <source>IP Range Comment</source>
         <translation>IP Bereich Kommentar</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="881"/>
+        <location filename="../options_imp.cpp" line="886"/>
         <source>Comment:</source>
         <translation>Kommentar:</translation>
     </message>
@@ -2151,17 +2151,17 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation>bis</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="739"/>
+        <location filename="../options_imp.cpp" line="744"/>
         <source>Choose your favourite preview program</source>
         <translation>Wählen Sie ihr bevorzugtes Vorschau Programm</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="875"/>
+        <location filename="../options_imp.cpp" line="880"/>
         <source>Invalid IP</source>
         <translation>Ungültige IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="875"/>
+        <location filename="../options_imp.cpp" line="880"/>
         <source>This IP is invalid.</source>
         <translation>Diese IP ist ungültig.</translation>
     </message>
@@ -2171,28 +2171,28 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation>Optionen wurden erfolgreich gespeichert.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="724"/>
+        <location filename="../options_imp.cpp" line="729"/>
         <source>Choose scan directory</source>
         <translation>Verzeichnis zum scannen auswählen</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="731"/>
+        <location filename="../options_imp.cpp" line="736"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>ipfilter.dat Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="747"/>
+        <location filename="../options_imp.cpp" line="752"/>
         <source>Choose a save directory</source>
         <translation>Verzeichnis zum Speichern auswählen</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="779"/>
+        <location filename="../options_imp.cpp" line="784"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="779"/>
+        <location filename="../options_imp.cpp" line="784"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>Kein Lesezugriff auf %1.</translation>
     </message>

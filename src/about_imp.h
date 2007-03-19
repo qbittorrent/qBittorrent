@@ -45,7 +45,7 @@ class about : public QDialog, private Ui::AboutDlg{
       te_translation->append(QString::fromUtf8(
           "<i>- <u>Bulgarian:</u> Tsvetan & Boiko Bankov (emerge_life@users.sourceforge.net)<br>\
           - <u>Catalan:</u> Gekko Dam Beer (gekko04@users.sourceforge.net)<br>\
-          - <u>Chinese (Simplified):</u> Chen Wuyang (wuyang@gmail.com)<br>\
+          - <u>Chinese (Simplified):</u> Guo Yue (guoyue0418@hotmail.com)<br>\
           - <u>Chinese (Traditional):</u> Jeff Chen (jeff.cn.chen@gmail.com)<br>\
 	  - <u>Dutch:</u> Luke Niesink (luke@lukeniesink.net)<br>\
           - <u>Finnish:</u> Niklas Laxström (nikerabbit@users.sourceforge.net)<br>\
