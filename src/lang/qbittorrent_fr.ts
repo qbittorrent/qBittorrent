@@ -709,12 +709,12 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Etes-vous sûr de vouloir enlever tous les fichiers de la liste de téléchargement ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1683"/>
+        <location filename="../GUI.cpp" line="1688"/>
         <source>&amp;Yes</source>
         <translation>&amp;Oui</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1683"/>
+        <location filename="../GUI.cpp" line="1688"/>
         <source>&amp;No</source>
         <translation>&amp;Non</translation>
     </message>
@@ -754,7 +754,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Vérification...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1293"/>
+        <location filename="../GUI.cpp" line="1298"/>
         <source>Connecting...</source>
         <translation>Connexion...</translation>
     </message>
@@ -916,7 +916,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> a fini de télécharger.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1352"/>
+        <location filename="../GUI.cpp" line="1357"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Impossible d&apos;écouter sur les ports donnés.</translation>
     </message>
@@ -926,12 +926,12 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Aucun</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1445"/>
+        <location filename="../GUI.cpp" line="1450"/>
         <source>Empty search pattern</source>
         <translation>Motif de recherche vide</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1445"/>
+        <location filename="../GUI.cpp" line="1450"/>
         <source>Please type a search pattern first</source>
         <translation>Veuillez entrer un motif de recherche d&apos;abord</translation>
     </message>
@@ -941,12 +941,12 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Aucun moteur de recherche sélectionné</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1463"/>
+        <location filename="../GUI.cpp" line="1468"/>
         <source>You must select at least one search engine.</source>
         <translation>Vous devez sélectionner au moins un moteur de recherche.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1503"/>
+        <location filename="../GUI.cpp" line="1508"/>
         <source>Searching...</source>
         <translation>Recherche en cours...</translation>
     </message>
@@ -1066,17 +1066,17 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">La recherche est terminée</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1716"/>
+        <location filename="../GUI.cpp" line="1721"/>
         <source>An error occured during search...</source>
         <translation>Une erreur s&apos;est produite lors de la recherche...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1719"/>
+        <location filename="../GUI.cpp" line="1724"/>
         <source>Search aborted</source>
         <translation>La recherché a été interrompue</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1722"/>
+        <location filename="../GUI.cpp" line="1727"/>
         <source>Search returned no results</source>
         <translation>La recherche n&apos;a retourné aucun résultat</translation>
     </message>
@@ -1086,12 +1086,12 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">La recherche est terminée</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1698"/>
+        <location filename="../GUI.cpp" line="1703"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation>Mise à jour du greffon de recherche -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1682"/>
+        <location filename="../GUI.cpp" line="1687"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -1102,17 +1102,17 @@ Changemets:
 </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1696"/>
+        <location filename="../GUI.cpp" line="1701"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Désolé, le serveur de mise à jour est temporairement indisponible.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1699"/>
+        <location filename="../GUI.cpp" line="1704"/>
         <source>Your search plugin is already up to date.</source>
         <translation>Votre greffon de recherche est déjà à jour.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1539"/>
+        <location filename="../GUI.cpp" line="1544"/>
         <source>Results</source>
         <translation>Résultats</translation>
     </message>
@@ -1173,7 +1173,7 @@ Changemets:
         <translation type="obsolete">En attente</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1342"/>
+        <location filename="../GUI.cpp" line="1347"/>
         <source>Paused</source>
         <translation>En pause</translation>
     </message>
@@ -1218,7 +1218,7 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation>Transferts</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1327"/>
+        <location filename="../GUI.cpp" line="1332"/>
         <source>Download finished</source>
         <translation>Téléchargement terminé</translation>
     </message>
@@ -1229,7 +1229,7 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete"> est fini de télécharger.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1713"/>
+        <location filename="../GUI.cpp" line="1718"/>
         <source>Search Engine</source>
         <translation>Moteur de recherche</translation>
     </message>
@@ -1250,17 +1250,17 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1410"/>
+        <location filename="../GUI.cpp" line="1415"/>
         <source>Connection status:</source>
         <translation>Statut de la connexion :</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1410"/>
+        <location filename="../GUI.cpp" line="1415"/>
         <source>Offline</source>
         <translation>Déconnecté</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1410"/>
+        <location filename="../GUI.cpp" line="1415"/>
         <source>No peers found...</source>
         <translation>Aucune source trouvée...</translation>
     </message>
@@ -1325,7 +1325,7 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation>qBittorrent %1 démarré.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1695"/>
+        <location filename="../GUI.cpp" line="1700"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1407,47 +1407,47 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation>En écoute sur le port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1231"/>
+        <location filename="../GUI.cpp" line="1236"/>
         <source>All downloads were paused.</source>
         <translation>Tous les téléchargements ont été mis en pause.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1251"/>
+        <location filename="../GUI.cpp" line="1256"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos; a été mis en pause.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1271"/>
+        <location filename="../GUI.cpp" line="1276"/>
         <source>Connecting...</source>
         <comment>i.e: Connecting to the tracker...</comment>
         <translation>Connexion...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1275"/>
+        <location filename="../GUI.cpp" line="1280"/>
         <source>All downloads were resumed.</source>
         <translation>Tous les téléchargements ont été relancés.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1294"/>
+        <location filename="../GUI.cpp" line="1299"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos; a été relancé.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1327"/>
+        <location filename="../GUI.cpp" line="1332"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Le téléchargement de %1 est terminé.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1336"/>
+        <location filename="../GUI.cpp" line="1341"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Erreur E/S</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1336"/>
+        <location filename="../GUI.cpp" line="1341"/>
         <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
         <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
         <translation>Une erreur s&apos;est produite lors de la lecture ou l&apos;écriture de %1. Le disque dur est probablement plein, le téléchargement a été mis en pause</translation>
@@ -1459,55 +1459,55 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Une erreur s&apos;est produite (disque plein ?), &apos;%1&apos; a été mis en pause.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1406"/>
+        <location filename="../GUI.cpp" line="1411"/>
         <source>Connection Status:</source>
         <translation>Etat de la connexion :</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1401"/>
+        <location filename="../GUI.cpp" line="1406"/>
         <source>Online</source>
         <translation>Connecté</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1406"/>
+        <location filename="../GUI.cpp" line="1411"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Derrière un pare-feu ou un routeur ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1406"/>
+        <location filename="../GUI.cpp" line="1411"/>
         <source>No incoming connections...</source>
         <translation>Aucune connexion entrante...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1463"/>
+        <location filename="../GUI.cpp" line="1468"/>
         <source>No search engine selected</source>
         <translation>Aucun moteur de recherche sélectionné</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1695"/>
+        <location filename="../GUI.cpp" line="1700"/>
         <source>Search plugin update</source>
         <translation>Mise à jour du greffon de recherche</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1724"/>
+        <location filename="../GUI.cpp" line="1729"/>
         <source>Search has finished</source>
         <translation>Fin de la recherche</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1728"/>
+        <location filename="../GUI.cpp" line="1733"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Résultats</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1829"/>
+        <location filename="../GUI.cpp" line="1834"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1344"/>
+        <location filename="../GUI.cpp" line="1349"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Une erreur s&apos;est produite (disque plein ?), &apos;%1&apos; a été mis en pause.</translation>
@@ -2311,12 +2311,12 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">est mal formée.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="846"/>
+        <location filename="../options_imp.cpp" line="851"/>
         <source>Range Start IP</source>
         <translation>IP de début dans la rangée</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="847"/>
+        <location filename="../options_imp.cpp" line="852"/>
         <source>Start IP:</source>
         <translation>IP de début :</translation>
     </message>
@@ -2331,22 +2331,22 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Cette IP est incorrecte.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="863"/>
+        <location filename="../options_imp.cpp" line="868"/>
         <source>Range End IP</source>
         <translation>IP de fin dans la rangée</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="864"/>
+        <location filename="../options_imp.cpp" line="869"/>
         <source>End IP:</source>
         <translation>IP de fin :</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="880"/>
+        <location filename="../options_imp.cpp" line="885"/>
         <source>IP Range Comment</source>
         <translation>Commentaire de la rangée</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="881"/>
+        <location filename="../options_imp.cpp" line="886"/>
         <source>Comment:</source>
         <translation>Commentaire :</translation>
     </message>
@@ -2357,17 +2357,17 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation>à</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="739"/>
+        <location filename="../options_imp.cpp" line="744"/>
         <source>Choose your favourite preview program</source>
         <translation>Sélectionner votre logiciel de prévisualisation préféré</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="875"/>
+        <location filename="../options_imp.cpp" line="880"/>
         <source>Invalid IP</source>
         <translation>IP Incorrecte</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="875"/>
+        <location filename="../options_imp.cpp" line="880"/>
         <source>This IP is invalid.</source>
         <translation>Cette adresse IP est incorrecte.</translation>
     </message>
@@ -2377,28 +2377,28 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation>Préférences sauvegardées avec succès.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="724"/>
+        <location filename="../options_imp.cpp" line="729"/>
         <source>Choose scan directory</source>
         <translation>Choisir le dossier à surveiller</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="731"/>
+        <location filename="../options_imp.cpp" line="736"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>Choisir un fichier ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="747"/>
+        <location filename="../options_imp.cpp" line="752"/>
         <source>Choose a save directory</source>
         <translation>Choisir un répertoire de sauvegarde</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="779"/>
+        <location filename="../options_imp.cpp" line="784"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>Erreur E/S</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="779"/>
+        <location filename="../options_imp.cpp" line="784"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>Impossible d&apos;ouvrir %1 en lecture.</translation>
     </message>
