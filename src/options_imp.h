@@ -22,7 +22,7 @@
 #ifndef OPTIONS_IMP_H
 #define OPTIONS_IMP_H
 
-#include <QTranslator>
+#include <QCloseEvent>
 #include "ui_options.h"
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
@@ -66,7 +66,6 @@ class options_imp : public QDialog, private Ui::Dialog{
     QString getProxyPassword() const;
     // Language Settings
     QString getLocale() const;
-    QTranslator translator;
     // Misc Settings
     bool useAdditionDialog() const;
     QString getSavePath() const;
@@ -81,6 +80,7 @@ class options_imp : public QDialog, private Ui::Dialog{
 
   protected slots:
     void on_okButton_clicked();
+    void closeEvent(QCloseEvent *e);
     void on_cancelButton_clicked();
     void on_applyButton_clicked();
     void on_addFilterRange_clicked();

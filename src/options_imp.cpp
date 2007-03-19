@@ -545,6 +545,11 @@ void options_imp::on_applyButton_clicked(){
   emit status_changed(tr("Options were saved successfully."), false);
 }
 
+void options_imp::closeEvent(QCloseEvent *e){
+  setAttribute(Qt::WA_DeleteOnClose);
+  e->accept();
+}
+
 void options_imp::on_cancelButton_clicked(){
   setAttribute(Qt::WA_DeleteOnClose);
   reject();
