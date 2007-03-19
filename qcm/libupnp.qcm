@@ -1,0 +1,61 @@
+/*
+-----BEGIN QCMOD-----
+name: libupnp
+arg: disable-upnp, disable UPnP support
+arg: with-libupnp-inc=[path], Path to libupnp include files
+-----END QCMOD-----
+*/
+class qc_libupnp : public ConfObj
+{
+public:
+	qc_libupnp(Conf *c) : ConfObj(c) {}
+	QString name() const { return "libupnp"; }
+	QString shortname() const { return "libupnp"; }
+	bool exec(){
+          QString s;
+					s = conf->getenv("QC_DISABLE_UPNP");
+					if(!s.isEmpty()){
+					  conf->addDefine("NO_UPNP");
+						return false;
+					}
+					s = conf->getenv("QC_WITH_LIBUPNP_INC");
+					if(!s.isEmpty()) {
+						if(!conf->checkHeader(s, "upnp/upnp.h")) {
+        			//qWarning("libupnp includes not found!");
+							conf->addDefine("NO_UPNP");
+							return false;
+      			}
+      			conf->addIncludePath(s);
+					}else{
+	          QStringList sl;
+  	        sl += "/usr/include";
+    	      sl += "/usr/local/include";
+        	  if(!conf->findHeader("upnp/upnp.h", sl, &s)) {
+          	  //qWarning("libupnp includes not found!");
+							conf->addDefine("NO_UPNP");
+            	return false;
+          	}
+	  				conf->addIncludePath(s);
+					}
+
+					/*s = conf->getenv("QC_WITH_LIBUPNP_LIB");
+          if(!s.isEmpty()) {
+            if(!conf->checkLibrary(s, "upnp")) {
+              qWarning("libupnp library not found!");
+              return false;
+            }
+            conf->addLib(QString("-L") + s);
+          }else{
+            if(!conf->findLibrary("upnp", &s)) {
+              qWarning("libupnp library not found!");
+              return false;
+            }
+            if (!s.isEmpty())
+              conf->addLib(QString("-L") + s);
+          }
+
+          conf->addLib("-lupnp");*/
+
+          return true;
+	}
+};

@@ -8,10 +8,10 @@ DEBUG_MODE = 1
 # Global
 TEMPLATE = app
 TARGET = qbittorrent
-CONFIG += qt thread x11
+CONFIG += qt thread x11 network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v0.10.0alpha1\\\"
+DEFINES += VERSION=\\\"v0.10.0alpha2\\\"
 DEFINES += VERSION_MAJOR=0
 DEFINES += VERSION_MINOR=10
 DEFINES += VERSION_BUGFIX=0
@@ -74,6 +74,7 @@ contains(DEBUG_MODE, 0){
 
 # Windows
 win32 {
+  DEFINES += NO_UPNP
   LIBS += -lcurl -ltorrent
 }
 
@@ -123,4 +124,8 @@ SOURCES += GUI.cpp \
 	   properties_imp.cpp \
 	   createtorrent_imp.cpp \
 	   bittorrent.cpp
+!contains(DEFINES, NO_UPNP){
+  HEADERS += UPnP.h
+  SOURCES += UPnP.cpp
+}
 

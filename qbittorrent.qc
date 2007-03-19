@@ -17,4 +17,7 @@
   <dep type='python'>
     <required/>
   </dep>
+	<dep type='libupnp'>
+		<optional/>
+	</dep>
 </qconf>

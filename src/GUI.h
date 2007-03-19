@@ -45,7 +45,6 @@
 #include "trackerLogin.h"
 #include "bittorrent.h"
 
-
 #define TIME_TRAY_BALLOON 5000
 
 class createtorrent;

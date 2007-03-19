@@ -47,6 +47,10 @@ using namespace libtorrent;
 namespace fs = boost::filesystem;
 
 class downloadThread;
+#ifndef NO_UPNP
+  class CUPnPControlPoint;
+  class CUPnPPortMapping;
+#endif
 
 class bittorrent : public QObject{
   Q_OBJECT
@@ -54,12 +58,19 @@ class bittorrent : public QObject{
   private:
     session *s;
     bool DHTEnabled;
+#ifndef NO_UPNP
+    bool UPnPEnabled;
+#endif
     QString scan_dir;
     QTimer *timerScan;
     QTimer *timerAlerts;
     downloadThread *downloader;
     QStringList supported_preview_extensions;
     QString defaultSavePath;
+#ifndef NO_UPNP
+    CUPnPControlPoint*  m_upnp;
+    std::vector<CUPnPPortMapping> m_upnpMappings;
+#endif
 
   protected:
     QString getSavePath(const QString& hash);
@@ -109,6 +120,10 @@ class bittorrent : public QObject{
     void setDHTPort(int dht_port);
     void setSessionSettings(session_settings sessionSettings);
     void setDefaultSavePath(const QString& savepath);
+#ifndef NO_UPNP
+    void enableUPnP();
+    void disableUPnP();
+#endif
 
   protected slots:
     void cleanDeleter(deleteThread* deleter);

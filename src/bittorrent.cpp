@@ -21,6 +21,7 @@
 #include "bittorrent.h"
 #include "misc.h"
 #include "downloadThread.h"
+#include "UPnP.h"
 
 #include <QDir>
 #include <QTime>
@@ -36,6 +37,9 @@ bittorrent::bittorrent(){
   s->set_severity_level(alert::info);
   // DHT (Trackerless), disabled until told otherwise
   DHTEnabled = false;
+#ifndef NO_UPNP
+  UPnPEnabled = false;
+#endif
   // Enabling metadata plugin
   s->add_extension(&create_metadata_plugin);
   timerAlerts = new QTimer(this);
@@ -54,6 +58,9 @@ void bittorrent::resumeUnfinishedTorrents(){
 // Main destructor
 bittorrent::~bittorrent(){
   disableDirectoryScanning();
+#ifndef NO_UPNP
+  disableUPnP();
+#endif
   delete timerAlerts;
   delete downloader;
   delete s;
@@ -63,6 +70,32 @@ bittorrent::~bittorrent(){
 torrent_handle bittorrent::getTorrentHandle(const QString& hash) const{
   return s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
 }
+
+#ifndef NO_UPNP
+void bittorrent::enableUPnP(){
+  if(!UPnPEnabled){
+    qDebug("Enabling UPnP");
+    UPnPEnabled = true;
+    m_upnpMappings.resize(1);
+    m_upnpMappings[0] = CUPnPPortMapping(
+      getListenPort(),
+      "TCP",
+      true,
+      "qBittorrent");
+    m_upnp = new CUPnPControlPoint(50000);
+    m_upnp->AddPortMappings(m_upnpMappings);
+  }
+}
+
+void bittorrent::disableUPnP(){
+  if(UPnPEnabled){
+    qDebug("Disabling UPnP");
+    UPnPEnabled = false;
+    m_upnp->DeletePortMappings(m_upnpMappings);
+    delete m_upnp;
+  }
+}
+#endif
 
 // Return true if the torrent corresponding to the
 // hash is paused

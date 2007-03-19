@@ -1172,6 +1172,11 @@ void GUI::configureSession(bool deleteOptions){
   }else{
     BTSession.disableDHT();
   }
+#ifndef NO_UPNP
+  // Upnp
+  BTSession.enableUPnP();
+#endif
+  // PeX
   if(!options->isPeXDisabled()){
     qDebug("Enabling Peer eXchange (PeX)");
     BTSession.enablePeerExchange();
