@@ -8,7 +8,7 @@ DEBUG_MODE = 1
 # Global
 TEMPLATE = app
 TARGET = qbittorrent
-CONFIG += qt x11
+CONFIG += qt thread x11
 
 # Update this VERSION for each release
 DEFINES += VERSION=\\\"v0.10.0alpha1\\\"
