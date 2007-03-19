@@ -27,6 +27,14 @@
 #include <QTcpSocket>
 #include <QSettings>
 
+#ifdef Q_WS_WIN
+  #include <QWindowsXPStyle>
+#endif
+
+#ifdef Q_WS_MAC
+  #include <QMacStyle>
+#endif
+
 #include <stdlib.h>
 
 #include "GUI.h"
@@ -81,6 +89,12 @@ int main(int argc, char *argv[]){
     return 0;
   }
   QApplication app(argc, argv);
+#ifdef Q_WS_WIN
+  app.setStyle(new QWindowsXPStyle());
+#endif
+#ifdef Q_WS_MAC
+  app.setStyle(new QMacStyle());
+#endif
   QSplashScreen *splash = new QSplashScreen(QPixmap(":/Icons/splash.jpg"));
   splash->show();
   // Open options file to read locale
