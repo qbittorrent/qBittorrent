@@ -35,3 +35,4 @@
 - Improve torrent creation dialog (look & features)
 - Add IPv6 support (at least start working on it)
 - UPnP support?
+- Allow user to change application style (WinXP, MacOS, CleanLooks...) : app.setStyle(new QCleanlooksStyle());
