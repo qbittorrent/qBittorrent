@@ -83,27 +83,28 @@ RESOURCES = icons.qrc \
 
 # Translations
 TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
-	       $$LANG_PATH/qbittorrent_zh.ts \
-	       $$LANG_PATH/qbittorrent_en.ts \
-               $$LANG_PATH/qbittorrent_ca.ts \
-	       $$LANG_PATH/qbittorrent_es.ts \
-               $$LANG_PATH/qbittorrent_pl.ts \
-	       $$LANG_PATH/qbittorrent_ko.ts \
-               $$LANG_PATH/qbittorrent_de.ts \
-               $$LANG_PATH/qbittorrent_nl.ts \
+	       			 $$LANG_PATH/qbittorrent_zh.ts \
+	       			 $$LANG_PATH/qbittorrent_en.ts \
+         			 $$LANG_PATH/qbittorrent_ca.ts \
+	       			 $$LANG_PATH/qbittorrent_es.ts \
+         			 $$LANG_PATH/qbittorrent_pl.ts \
+	       			 $$LANG_PATH/qbittorrent_ko.ts \
+         			 $$LANG_PATH/qbittorrent_de.ts \
+         			 $$LANG_PATH/qbittorrent_nl.ts \
                $$LANG_PATH/qbittorrent_tr.ts \
                $$LANG_PATH/qbittorrent_sv.ts \
                $$LANG_PATH/qbittorrent_el.ts \
                $$LANG_PATH/qbittorrent_ru.ts \
                $$LANG_PATH/qbittorrent_uk.ts \
                $$LANG_PATH/qbittorrent_bg.ts \
-	       $$LANG_PATH/qbittorrent_it.ts \
-	       $$LANG_PATH/qbittorrent_zh_HK.ts \
-	       $$LANG_PATH/qbittorrent_sk.ts \
+	       			 $$LANG_PATH/qbittorrent_it.ts \
+	       			 $$LANG_PATH/qbittorrent_zh_HK.ts \
+	       			 $$LANG_PATH/qbittorrent_sk.ts \
                $$LANG_PATH/qbittorrent_ro.ts \
                $$LANG_PATH/qbittorrent_pt.ts \
-	       $$LANG_PATH/qbittorrent_nb.ts \
-	       $$LANG_PATH/qbittorrent_fi.ts
+	       			 $$LANG_PATH/qbittorrent_nb.ts \
+	       			 $$LANG_PATH/qbittorrent_fi.ts \
+							 $$LANG_PATH/qbittorrent_da.ts
 
 # Source code
 HEADERS += GUI.h misc.h options_imp.h about_imp.h \
