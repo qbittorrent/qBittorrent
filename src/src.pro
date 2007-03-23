@@ -104,7 +104,8 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
                $$LANG_PATH/qbittorrent_ro.ts \
                $$LANG_PATH/qbittorrent_pt.ts \
 	       $$LANG_PATH/qbittorrent_nb.ts \
-	       $$LANG_PATH/qbittorrent_fi.ts
+	       $$LANG_PATH/qbittorrent_fi.ts \
+	       $$LANG_PATH/qbittorrent_da.ts
 
 # Source code
 HEADERS += GUI.h misc.h options_imp.h about_imp.h \
@@ -125,7 +126,10 @@ SOURCES += GUI.cpp \
 	   createtorrent_imp.cpp \
 	   bittorrent.cpp
 !contains(DEFINES, NO_UPNP){
+  message(UPnP Enabled)
   HEADERS += UPnP.h
   SOURCES += UPnP.cpp
+}else{
+  message(UPnP Disabled)
 }
 
