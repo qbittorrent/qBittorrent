@@ -1757,7 +1757,7 @@ Please close the other one first.</source>
         <translation>큐비토런트</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="66"/>
+        <location filename="../about_imp.h" line="67"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>큐비토런트를 자신이 사용하는 언어로 번역하는데 관심이 있으시가면 제게 연락을 주십시오.</translation>
     </message>
@@ -2188,12 +2188,12 @@ Please close the other one first.</source>
         <translation type="obsolete">이 잘못되었습니다.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="851"/>
+        <location filename="../options_imp.cpp" line="853"/>
         <source>Range Start IP</source>
         <translation>시작하는 IP의 범위</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="852"/>
+        <location filename="../options_imp.cpp" line="854"/>
         <source>Start IP:</source>
         <translation>시작 IP:</translation>
     </message>
@@ -2208,22 +2208,22 @@ Please close the other one first.</source>
         <translation type="obsolete">잘못된 IP입니다. </translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="868"/>
+        <location filename="../options_imp.cpp" line="870"/>
         <source>Range End IP</source>
         <translation>끝나는 IP의 범위</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="869"/>
+        <location filename="../options_imp.cpp" line="871"/>
         <source>End IP:</source>
         <translation>끝 IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="885"/>
+        <location filename="../options_imp.cpp" line="887"/>
         <source>IP Range Comment</source>
         <translation>IP 범위 설명</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="886"/>
+        <location filename="../options_imp.cpp" line="888"/>
         <source>Comment:</source>
         <translation>설명:</translation>
     </message>
@@ -2234,48 +2234,48 @@ Please close the other one first.</source>
         <translation>~</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="744"/>
+        <location filename="../options_imp.cpp" line="746"/>
         <source>Choose your favourite preview program</source>
         <translation>미리보기를 할 프로그램을 선택해 주십시오</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="880"/>
+        <location filename="../options_imp.cpp" line="882"/>
         <source>Invalid IP</source>
         <translation>유효하지 않은 IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="880"/>
+        <location filename="../options_imp.cpp" line="882"/>
         <source>This IP is invalid.</source>
         <translation>유효하지 않은 IP 입니다.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="545"/>
+        <location filename="../options_imp.cpp" line="547"/>
         <source>Options were saved successfully.</source>
         <translation>환경설정이 성공적으로 저장되었습니다.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="729"/>
+        <location filename="../options_imp.cpp" line="731"/>
         <source>Choose scan directory</source>
         <translation>스켄할 곳을 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="736"/>
+        <location filename="../options_imp.cpp" line="738"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>ipfilter.dat의 경로를 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="752"/>
+        <location filename="../options_imp.cpp" line="754"/>
         <source>Choose a save directory</source>
         <translation>파일을 저장할 경로를 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="784"/>
+        <location filename="../options_imp.cpp" line="786"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>I/O 에러</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="784"/>
+        <location filename="../options_imp.cpp" line="786"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>%1을 읽기전용 모드로 열수 없습니다.</translation>
     </message>
