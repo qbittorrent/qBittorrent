@@ -42,11 +42,16 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
   filesList->setItemDelegate(PropDelegate);
   connect(filesList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(toggleSelectedState(const QModelIndex&)));
   // get Infos from torrent handle
-  save_path->setText(QString(h.save_path().string().c_str()));
   fileHash = QString(misc::toString(h.info_hash()).c_str());
   torrent_status torrentStatus = h.status();
   torrent_info torrentInfo = h.get_torrent_info();
   fileName->setText(torrentInfo.name().c_str());
+  // Torrent Infos
+  save_path->setText(QString(h.save_path().string().c_str()));
+  creator->setText(QString(torrentInfo.creator().c_str()));
+  hash_lbl->setText(fileHash);
+  comment_txt->setText(QString(torrentInfo.comment().c_str()));
+  //Trackers
   QString tracker = QString(torrentStatus.current_tracker.c_str()).trimmed();
   if(!tracker.isEmpty()){
     trackerURL->setText(tracker);
@@ -57,6 +62,7 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
   for(unsigned int i=0; i<trackers.size(); ++i){
     trackersURLS->addItem(QString(trackers[i].url.c_str()));
   }
+  // Session infos
   char tmp[MAX_CHAR_TMP];
   failed->setText(misc::friendlyUnit(torrentStatus.total_failed_bytes));
   upTotal->setText(misc::friendlyUnit(torrentStatus.total_payload_upload));
