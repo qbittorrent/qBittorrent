@@ -29,7 +29,10 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
   // set icons
   unselect->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
   select->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
-
+  addTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
+  removeTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
+  lowerTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/downarrow.png")));
+  riseTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/uparrow.png")));
   setAttribute(Qt::WA_DeleteOnClose);
   // Set Properties list model
   PropListModel = new QStandardItemModel(0,4);
