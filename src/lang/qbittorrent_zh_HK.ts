@@ -1533,7 +1533,7 @@ Please close the other one first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="66"/>
+        <location filename="../about_imp.h" line="67"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1865,78 +1865,78 @@ Please close the other one first.</source>
         <translation type="obsolete">輸入/輸出錯誤</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="851"/>
+        <location filename="../options_imp.cpp" line="853"/>
         <source>Range Start IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="852"/>
+        <location filename="../options_imp.cpp" line="854"/>
         <source>Start IP:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="868"/>
+        <location filename="../options_imp.cpp" line="870"/>
         <source>Range End IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="869"/>
+        <location filename="../options_imp.cpp" line="871"/>
         <source>End IP:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="885"/>
+        <location filename="../options_imp.cpp" line="887"/>
         <source>IP Range Comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="886"/>
+        <location filename="../options_imp.cpp" line="888"/>
         <source>Comment:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="744"/>
+        <location filename="../options_imp.cpp" line="746"/>
         <source>Choose your favourite preview program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="880"/>
+        <location filename="../options_imp.cpp" line="882"/>
         <source>Invalid IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="880"/>
+        <location filename="../options_imp.cpp" line="882"/>
         <source>This IP is invalid.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="545"/>
+        <location filename="../options_imp.cpp" line="547"/>
         <source>Options were saved successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="729"/>
+        <location filename="../options_imp.cpp" line="731"/>
         <source>Choose scan directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="736"/>
+        <location filename="../options_imp.cpp" line="738"/>
         <source>Choose an ipfilter.dat file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="752"/>
+        <location filename="../options_imp.cpp" line="754"/>
         <source>Choose a save directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="784"/>
+        <location filename="../options_imp.cpp" line="786"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation type="unfinished">輸入/輸出錯誤</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="784"/>
+        <location filename="../options_imp.cpp" line="786"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation type="unfinished"></translation>
     </message>

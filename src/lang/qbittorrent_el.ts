@@ -1803,7 +1803,7 @@ Please close the other one first.</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="66"/>
+        <location filename="../about_imp.h" line="67"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Παρακαλώ επικοινωνήστε μαζί μου αν θα θέλατε να μεταφράσετε το qBittorrent στη δική σας γλώσσα.</translation>
     </message>
@@ -2234,12 +2234,12 @@ Please close the other one first.</source>
         <translation type="obsolete">είναι κακοσχηματισμένη.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="851"/>
+        <location filename="../options_imp.cpp" line="853"/>
         <source>Range Start IP</source>
         <translation>Εύρος Αρχής ΙΡ</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="852"/>
+        <location filename="../options_imp.cpp" line="854"/>
         <source>Start IP:</source>
         <translation>Αρχή ΙΡ:</translation>
     </message>
@@ -2254,22 +2254,22 @@ Please close the other one first.</source>
         <translation type="obsolete">Η ΙΡ είναι λάθος.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="868"/>
+        <location filename="../options_imp.cpp" line="870"/>
         <source>Range End IP</source>
         <translation>Εύρος Τέλους ΙΡ</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="869"/>
+        <location filename="../options_imp.cpp" line="871"/>
         <source>End IP:</source>
         <translation>Τέλος ΙΡ:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="885"/>
+        <location filename="../options_imp.cpp" line="887"/>
         <source>IP Range Comment</source>
         <translation>Σχόλιο Εύρους ΙΡ</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="886"/>
+        <location filename="../options_imp.cpp" line="888"/>
         <source>Comment:</source>
         <translation>Σχόλιο:</translation>
     </message>
@@ -2280,48 +2280,48 @@ Please close the other one first.</source>
         <translation>έως</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="744"/>
+        <location filename="../options_imp.cpp" line="746"/>
         <source>Choose your favourite preview program</source>
         <translation>Επιλέξτε το αγαπημένο σας πρόγραμμα προεπισκόπησης</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="880"/>
+        <location filename="../options_imp.cpp" line="882"/>
         <source>Invalid IP</source>
         <translation>Άκυρο IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="880"/>
+        <location filename="../options_imp.cpp" line="882"/>
         <source>This IP is invalid.</source>
         <translation>Αυτό το IP είναι άκυρο.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="545"/>
+        <location filename="../options_imp.cpp" line="547"/>
         <source>Options were saved successfully.</source>
         <translation>Οι επιλογές αποθηκεύτηκαν επιτυχώς.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="729"/>
+        <location filename="../options_imp.cpp" line="731"/>
         <source>Choose scan directory</source>
         <translation>Επιλέξτε φάκελο αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="736"/>
+        <location filename="../options_imp.cpp" line="738"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>Επιλέξτε ένα αρχείο ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="752"/>
+        <location filename="../options_imp.cpp" line="754"/>
         <source>Choose a save directory</source>
         <translation>Επιλέξτε φάκελο αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="784"/>
+        <location filename="../options_imp.cpp" line="786"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>I/O Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="784"/>
+        <location filename="../options_imp.cpp" line="786"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>Αδύνατο το άνοιγμα του %1 σε λειτουργία ανάγνωσης.</translation>
     </message>
