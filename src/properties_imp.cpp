@@ -22,6 +22,7 @@
 #include "properties_imp.h"
 #include "misc.h"
 #include "PropListDelegate.h"
+#include <QInputDialog>
 
 // Constructor
 properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErrors): QDialog(parent), h(h){
@@ -44,6 +45,7 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
   PropDelegate = new PropListDelegate();
   filesList->setItemDelegate(PropDelegate);
   connect(filesList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(toggleSelectedState(const QModelIndex&)));
+  connect(addTracker_button, SIGNAL(clicked()), this, SLOT(askForTracker()));
   // get Infos from torrent handle
   fileHash = QString(misc::toString(h.info_hash()).c_str());
   torrent_status torrentStatus = h.status();
@@ -55,16 +57,7 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
   hash_lbl->setText(fileHash);
   comment_txt->setText(QString(torrentInfo.comment().c_str()));
   //Trackers
-  QString tracker = QString(torrentStatus.current_tracker.c_str()).trimmed();
-  if(!tracker.isEmpty()){
-    trackerURL->setText(tracker);
-  }else{
-    trackerURL->setText(tr("None - Unreachable?"));
-  }
-  std::vector<announce_entry> trackers = torrentInfo.trackers();
-  for(unsigned int i=0; i<trackers.size(); ++i){
-    trackersURLS->addItem(QString(trackers[i].url.c_str()));
-  }
+  loadTrackers();
   // Session infos
   char tmp[MAX_CHAR_TMP];
   failed->setText(misc::friendlyUnit(torrentStatus.total_failed_bytes));
@@ -152,6 +145,45 @@ void properties::loadFilteredFiles(){
       setRowColor(i, "green");
     }
   }
+}
+
+void properties::loadTrackers(){
+  torrent_status torrentStatus = h.status();
+  torrent_info torrentInfo = h.get_torrent_info();
+  //Trackers
+  std::vector<announce_entry> trackers = torrentInfo.trackers();
+  trackersURLS->clear();
+  for(unsigned int i=0; i<trackers.size(); ++i){
+    trackersURLS->addItem(QString(trackers[i].url.c_str()));
+  }
+  QString tracker = QString(torrentStatus.current_tracker.c_str()).trimmed();
+  if(!tracker.isEmpty()){
+    trackerURL->setText(tracker);
+  }else{
+    trackerURL->setText(tr("None - Unreachable?"));
+  }
+}
+
+// Ask the user for a new tracker
+// and add it to the download list
+// if it is not already in it
+void properties::askForTracker(){
+  bool ok;
+  // Ask user for a new tracker
+  QString trackerUrl = QInputDialog::getText(this, tr("New tracker"),
+                                       tr("New tracker url:"), QLineEdit::Normal,
+                                       "http://www.", &ok);
+  if(!ok) return;
+  // Checking if it already exists in the list
+  torrent_info torrentInfo = h.get_torrent_info();
+//   std::vector<announce_entry> trackers = torrentInfo.trackers();
+//   for(unsigned int i=0; i<trackers.size(); ++i){
+//     if(QString(trackers[i].url.c_str())
+//   }
+  torrentInfo.add_tracker(trackerUrl.toStdString(), trackersURLS->count());
+  h.force_reannounce();
+  // Reload Trackers
+  loadTrackers();
 }
 
 void properties::updateProgress(){

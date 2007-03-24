@@ -53,6 +53,8 @@ class properties : public QDialog, private Ui::properties{
     void updateProgress();
     void loadFilteredFiles();
     void setAllPiecesState(bool selected);
+    void askForTracker();
+    void loadTrackers();
 
   signals:
     void changedFilteredFiles(torrent_handle h, bool compact_mode);
