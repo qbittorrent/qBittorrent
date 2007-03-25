@@ -251,8 +251,10 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, const QString
     qDebug("Torrent hash is " +  hash.toUtf8());
     // Load filtered files
     loadFilteredFiles(h);
-    torrent_status torrentStatus = h.status();
+    // Load trackers
+    loadTrackerFile(hash);
 
+    torrent_status torrentStatus = h.status();
     QString newFile = torrentBackup.path() + QDir::separator() + hash + ".torrent";
     if(file != newFile){
       // Delete file from torrentBackup directory in case it exists because
@@ -435,7 +437,7 @@ void bittorrent::saveFastResumeData(){
       QString fileHash = QString(misc::toString(h.info_hash()).c_str());
       if(QFile::exists(torrentBackup.path()+QDir::separator()+fileHash+".torrent")){
         // Remove old .fastresume data in case it exists
-        QFile::remove(fileHash + ".fastresume");
+        QFile::remove(torrentBackup.path()+QDir::separator()+fileHash + ".fastresume");
         // Write fast resume data
         entry resumeData = h.write_resume_data();
         file = fileHash + ".fastresume";
@@ -443,6 +445,8 @@ void bittorrent::saveFastResumeData(){
         out.unsetf(std::ios_base::skipws);
         bencode(std::ostream_iterator<char>(out), resumeData);
       }
+      // Save trackers
+      saveTrackerFile(fileHash);
     }
     // Remove torrent
     s->remove_torrent(h);
@@ -542,6 +546,42 @@ void bittorrent::setGlobalRatio(float ratio){
     }
     h.set_ratio(ratio);
   }
+}
+
+void bittorrent::loadTrackerFile(const QString& hash){
+  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+  QFile tracker_file(torrentBackup.path()+QDir::separator()+ hash + ".trackers");
+  if(!tracker_file.exists()) return;
+  tracker_file.open(QIODevice::ReadOnly | QIODevice::Text);
+  QStringList lines = QString(tracker_file.readAll().data()).split("\n");
+  std::vector<announce_entry> trackers;
+  QString line;
+  foreach(line, lines){
+    QStringList parts = line.split("|");
+    if(parts.size() != 2) continue;
+    announce_entry t(parts[0].toStdString());
+    t.tier = parts[1].toInt();
+    trackers.push_back(t);
+  }
+  if(trackers.size() != 0){
+    torrent_handle h = getTorrentHandle(hash);
+    h.replace_trackers(trackers);
+  }
+}
+
+void bittorrent::saveTrackerFile(const QString& hash){
+  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+  QFile tracker_file(torrentBackup.path()+QDir::separator()+ hash + ".trackers");
+  if(tracker_file.exists()){
+    tracker_file.remove();
+  }
+  tracker_file.open(QIODevice::WriteOnly | QIODevice::Text);
+  torrent_handle h = getTorrentHandle(hash);
+  std::vector<announce_entry> trackers = h.trackers();
+  for(unsigned int i=0; i<trackers.size(); ++i){
+    tracker_file.write(QByteArray(trackers[i].url.c_str())+QByteArray("|")+QByteArray(misc::toString(trackers[i].tier).c_str())+QByteArray("\n"));
+  }
+  tracker_file.close();
 }
 
 // Pause all torrents in session

@@ -132,6 +132,8 @@ class bittorrent : public QObject{
     void readAlerts();
     void processDownloadedFile(const QString&, const QString&, int, const QString&);
     void resumeUnfinished();
+    void loadTrackerFile(const QString& hash);
+    void saveTrackerFile(const QString& hash);
 
   signals:
     void invalidTorrent(const QString& path);
