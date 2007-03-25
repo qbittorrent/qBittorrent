@@ -252,8 +252,12 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, const QString
     // Load filtered files
     loadFilteredFiles(h);
     // Load trackers
-    loadTrackerFile(hash);
-
+    bool loaded_trackers = loadTrackerFile(hash);
+    // Doing this to order trackers well
+    if(!loaded_trackers){
+      saveTrackerFile(hash);
+      loadTrackerFile(hash);
+    }
     torrent_status torrentStatus = h.status();
     QString newFile = torrentBackup.path() + QDir::separator() + hash + ".torrent";
     if(file != newFile){
@@ -548,10 +552,10 @@ void bittorrent::setGlobalRatio(float ratio){
   }
 }
 
-void bittorrent::loadTrackerFile(const QString& hash){
+bool bittorrent::loadTrackerFile(const QString& hash){
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
   QFile tracker_file(torrentBackup.path()+QDir::separator()+ hash + ".trackers");
-  if(!tracker_file.exists()) return;
+  if(!tracker_file.exists()) return false;
   tracker_file.open(QIODevice::ReadOnly | QIODevice::Text);
   QStringList lines = QString(tracker_file.readAll().data()).split("\n");
   std::vector<announce_entry> trackers;
@@ -566,6 +570,9 @@ void bittorrent::loadTrackerFile(const QString& hash){
   if(trackers.size() != 0){
     torrent_handle h = getTorrentHandle(hash);
     h.replace_trackers(trackers);
+    return true;
+  }else{
+    return false;
   }
 }
 
@@ -579,7 +586,7 @@ void bittorrent::saveTrackerFile(const QString& hash){
   torrent_handle h = getTorrentHandle(hash);
   std::vector<announce_entry> trackers = h.trackers();
   for(unsigned int i=0; i<trackers.size(); ++i){
-    tracker_file.write(QByteArray(trackers[i].url.c_str())+QByteArray("|")+QByteArray(misc::toString(trackers[i].tier).c_str())+QByteArray("\n"));
+    tracker_file.write(QByteArray(trackers[i].url.c_str())+QByteArray("|")+QByteArray(misc::toString(i).c_str())+QByteArray("\n"));
   }
   tracker_file.close();
 }

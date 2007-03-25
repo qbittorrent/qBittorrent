@@ -56,6 +56,8 @@ class properties : public QDialog, private Ui::properties{
     void askForTracker();
     void loadTrackers();
     void deleteSelectedTrackers();
+    void lowerSelectedTracker();
+    void riseSelectedTracker();
 
   signals:
     void changedFilteredFiles(torrent_handle h, bool compact_mode);

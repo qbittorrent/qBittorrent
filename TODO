@@ -29,9 +29,8 @@
 - Add a torrent scheduler
 
 // in v0.10 (partial)
-- Download from RSS feeds (WIP by gtsoul)
+- Download from RSS feeds (WIP by gtsoul in RSS_SUPPORT branch)
 - Move finished torrent to another tab and keep on seeding them even after restart
-- Allow to edit the trackers for a torrent
 - Improve torrent creation dialog (look & features)
 - Add IPv6 support (at least start working on it)
 - UPnP support (debug, sync with aMule CVS, option entry)

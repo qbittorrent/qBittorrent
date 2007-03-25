@@ -1,7 +1,8 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.10.0 or v1.0.0?
     - FEATURE: Added UPnP port forwarding support
     - FEATURE: Display more infos about the torrent in its properties
-    - FEATURE: Allow the user to edit the torrent trackers list
+    - FEATURE: Allow the user to edit torrents' trackers
+    - COSMETIC: Redesigned torrent properties a little
 
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.9.0
     - FEATURE: Based on libtorrent v0.12
@@ -31,6 +32,7 @@
     - BUGFIX: Create Options object only when necessary (to save memory)
     - BUGFIX: Let libtorrent store the torrent handles (save memory)
     - BUGFIX: Set DHT Port only when DHT is enabled
+    - I18N: Added Danish translation
     - I18N: Better internationalization thanks to dynamic text support
     - COSMETIC: Replaced OSD messages by Qt4.2 systray messages
 

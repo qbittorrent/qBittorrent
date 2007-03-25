@@ -47,6 +47,8 @@ properties::properties(QWidget *parent, torrent_handle &h, QStringList trackerEr
   connect(filesList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(toggleSelectedState(const QModelIndex&)));
   connect(addTracker_button, SIGNAL(clicked()), this, SLOT(askForTracker()));
   connect(removeTracker_button, SIGNAL(clicked()), this, SLOT(deleteSelectedTrackers()));
+  connect(riseTracker_button, SIGNAL(clicked()), this, SLOT(riseSelectedTracker()));
+  connect(lowerTracker_button, SIGNAL(clicked()), this, SLOT(lowerSelectedTracker()));
   // get Infos from torrent handle
   fileHash = QString(misc::toString(h.info_hash()).c_str());
   torrent_status torrentStatus = h.status();
@@ -192,20 +194,79 @@ void properties::deleteSelectedTrackers(){
   QListWidgetItem *item;
   foreach(item, selectedItems){
     QString url = item->text();
-    bool found = false;
     for(unsigned int i=0; i<trackers.size(); ++i){
       if(QString(trackers.at(i).url.c_str()) == url){
         trackers.erase(trackers.begin()+i);
-        found = true;
         break;
       }
     }
-    qDebug("Found: %d", found);
   }
   h.replace_trackers(trackers);
   h.force_reannounce();
   // Reload Trackers
   loadTrackers();
+}
+
+void properties::riseSelectedTracker(){
+  unsigned int i;
+  std::vector<announce_entry> trackers = h.trackers();
+  QList<QListWidgetItem *> selectedItems;
+  selectedItems = trackersURLS->selectedItems();
+  QListWidgetItem *item;
+  bool change = false;
+  foreach(item, selectedItems){
+    QString url = item->text();
+    for(i=0; i<trackers.size(); ++i){
+      if(QString(trackers.at(i).url.c_str()) == url){
+        if(trackers[i].tier>0 && i != 0){
+          trackers[i].tier -= 1;
+          announce_entry tmp = trackers[i];
+          trackers[i] = trackers[i-1];
+          trackers[i-1] = tmp;
+          change = true;
+        }
+        break;
+      }
+    }
+  }
+  if(change){
+    h.replace_trackers(trackers);
+    h.force_reannounce();
+    // Reload Trackers
+    loadTrackers();
+    trackersURLS->item(i-1)->setSelected(true);
+  }
+}
+
+void properties::lowerSelectedTracker(){
+  unsigned int i;
+  std::vector<announce_entry> trackers = h.trackers();
+  QList<QListWidgetItem *> selectedItems;
+  selectedItems = trackersURLS->selectedItems();
+  QListWidgetItem *item;
+  bool change = false;
+  foreach(item, selectedItems){
+    QString url = item->text();
+    for(i=0; i<trackers.size(); ++i){
+      if(QString(trackers.at(i).url.c_str()) == url){
+        if(i != trackers.size()-1){
+          trackers[i].tier += 1;
+          announce_entry tmp = trackers[i];
+          trackers[i] = trackers[i+1];
+          trackers[i+1] = tmp;
+          change = true;
+        }
+        break;
+      }
+    }
+  }
+  if(change){
+    h.replace_trackers(trackers);
+    h.force_reannounce();
+    // Reload Trackers
+    loadTrackers();
+    trackersURLS->item(i+1)->setSelected(true);
+  }
 }
 
 void properties::updateProgress(){
