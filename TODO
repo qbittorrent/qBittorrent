@@ -37,6 +37,7 @@
 - UPnP support?
 
 // In v0.9.0
-- Update translations (FR, SV, NB, PL, RU, DE, SK, KO, ZH_CN, EL, BG, ES, DA, UK done)
+- Update translations (FR, SV, NB, PL, RU, DE, SK, KO, ZH_CN, EL, BG, ES, DA, UK, PT done)
 - Bug squashing
 - Wait for libtorrent v0.12 official release
+- Disable debug mode
