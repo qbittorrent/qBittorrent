@@ -132,6 +132,9 @@ void createtorrent::on_createButton_clicked(){
   }
   catch (std::exception& e){
     std::cerr << e.what() << "\n";
+    QMessageBox::information(0, tr("Torrent creation"), tr("Torrent creation was successfully, reason: %1").arg(QString(e.what())));
+    hide();
+    return;
   }
   hide();
   QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+destination);

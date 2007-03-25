@@ -31,8 +31,12 @@
 // in v0.10 (partial)
 - Download from RSS feeds (WIP by gtsoul in RSS_SUPPORT branch)
 - Move finished torrent to another tab and keep on seeding them even after restart
-- Improve torrent creation dialog (look & features)
+- Improve torrent creation dialog (look & features) :
+    - Add Private combobox (allow to share on DHT or not)
+    - Use a QListWidget to allow multiple input paths
+    - Possibility to add url seeds
 - Add IPv6 support (at least start working on it)
 - UPnP support (debug, sync with aMule CVS, option entry)
 - Allow user to change application style? (WinXP, MacOS, CleanLooks...) : app.setStyle(new QCleanlooksStyle());
 - Update v0.9.0 changelog after its release
+- Display Url seeds in torrent properties and allow to edit them
