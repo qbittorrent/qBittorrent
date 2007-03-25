@@ -402,7 +402,7 @@ void bittorrent::saveFastResumeData(){
       QString fileHash = QString(misc::toString(h.info_hash()).c_str());
       if(QFile::exists(torrentBackup.path()+QDir::separator()+fileHash+".torrent")){
         // Remove old .fastresume data in case it exists
-        QFile::remove(fileHash + ".fastresume");
+        QFile::remove(torrentBackup.path()+QDir::separator()+fileHash + ".fastresume");
         // Write fast resume data
         entry resumeData = h.write_resume_data();
         file = fileHash + ".fastresume";
