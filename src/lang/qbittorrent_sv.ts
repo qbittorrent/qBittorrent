@@ -1575,77 +1575,77 @@ Stäng den först.</translation>
         <translation>Egenskaper om torrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="36"/>
+        <location filename="../properties_imp.cpp" line="40"/>
         <source>File Name</source>
         <translation>Filnamn</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="315"/>
         <source>Current Session</source>
-        <translation>Aktuell session</translation>
+        <translation type="obsolete">Aktuell session</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="667"/>
+        <location filename="../properties.ui" line="966"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="66"/>
+        <location filename="../properties_imp.cpp" line="68"/>
         <source>Unknown</source>
         <translation>Okänd</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="545"/>
+        <location filename="../properties.ui" line="844"/>
         <source>Files contained in current torrent:</source>
         <translation>Filer i aktuell torrent:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="37"/>
+        <location filename="../properties_imp.cpp" line="41"/>
         <source>Size</source>
         <translation>Storlek</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="39"/>
+        <location filename="../properties_imp.cpp" line="43"/>
         <source>Selected</source>
         <translation>Markerad</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="592"/>
+        <location filename="../properties.ui" line="891"/>
         <source> Unselect</source>
         <translation>Avmarkera</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="599"/>
+        <location filename="../properties.ui" line="898"/>
         <source> Select</source>
         <translation>Markera</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="632"/>
+        <location filename="../properties.ui" line="931"/>
         <source>You can select here precisely which files you want to download in current torrent.</source>
         <translation>Här kan du välja precis vilka filer du vill hämta i aktuell torrent.</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="153"/>
+        <location filename="../properties.ui" line="512"/>
         <source>Tracker</source>
         <translation>Tracker</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="192"/>
+        <location filename="../properties.ui" line="543"/>
         <source>Trackers:</source>
         <translation>Trackers:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="54"/>
+        <location filename="../properties_imp.cpp" line="163"/>
         <source>None - Unreachable?</source>
         <translation>Ingen - Ej nåbar?</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="210"/>
+        <location filename="../properties.ui" line="741"/>
         <source>Errors:</source>
         <translation>Fel:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="38"/>
+        <location filename="../properties_imp.cpp" line="42"/>
         <source>Progress</source>
         <translation>Förlopp</translation>
     </message>
@@ -1655,44 +1655,89 @@ Stäng den först.</translation>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="234"/>
+        <location filename="../properties.ui" line="782"/>
         <source>Current tracker:</source>
         <translation>Aktuell bevakare:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="362"/>
+        <location filename="../properties.ui" line="337"/>
         <source>Total uploaded:</source>
         <translation>Totalt skickat:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="397"/>
+        <location filename="../properties.ui" line="355"/>
         <source>Total downloaded:</source>
         <translation>Totalt hämtat:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="467"/>
+        <location filename="../properties.ui" line="391"/>
         <source>Total failed:</source>
         <translation>Totalt misslyckade:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="522"/>
+        <location filename="../properties.ui" line="821"/>
         <source>Torrent content</source>
         <translation>Torrent-innehåll</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="432"/>
         <source>Share Ratio:</source>
-        <translation>Utdelningsratio:</translation>
+        <translation type="obsolete">Utdelningsratio:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="514"/>
+        <location filename="../properties.ui" line="467"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Hämta i korrekt ordning (långsammare men bra för förhandsvisning)</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="97"/>
+        <location filename="../properties.ui" line="115"/>
         <source>Save path:</source>
         <translation>Sökväg att spara i:</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="75"/>
+        <source>Torrent infos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="134"/>
+        <source>Creator:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="153"/>
+        <source>Torrent hash:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="178"/>
+        <source>Comment:</source>
+        <translation type="unfinished">Kommentar:</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="298"/>
+        <source>Current session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="373"/>
+        <source>Share ratio:</source>
+        <translation type="unfinished">Utdelningsratio:</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="475"/>
+        <source>Trackers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="173"/>
+        <source>New tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="174"/>
+        <source>New tracker url:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

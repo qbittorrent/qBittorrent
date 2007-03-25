@@ -2444,14 +2444,14 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Infos Principales</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="36"/>
+        <location filename="../properties_imp.cpp" line="40"/>
         <source>File Name</source>
         <translation>Nom du fichier</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="315"/>
         <source>Current Session</source>
-        <translation>Session Actuelle</translation>
+        <translation type="obsolete">Session Actuelle</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -2484,7 +2484,7 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Contenu du Torrent</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="667"/>
+        <location filename="../properties.ui" line="966"/>
         <source>OK</source>
         <translation></translation>
     </message>
@@ -2549,7 +2549,7 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete"> Mo</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="66"/>
+        <location filename="../properties_imp.cpp" line="68"/>
         <source>Unknown</source>
         <translation>Inconnu</translation>
     </message>
@@ -2564,32 +2564,32 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete"> Partiel :</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="545"/>
+        <location filename="../properties.ui" line="844"/>
         <source>Files contained in current torrent:</source>
         <translation>Fichiers contenus dans le torrent actuel :</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="37"/>
+        <location filename="../properties_imp.cpp" line="41"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="39"/>
+        <location filename="../properties_imp.cpp" line="43"/>
         <source>Selected</source>
         <translation>Sélectionné</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="592"/>
+        <location filename="../properties.ui" line="891"/>
         <source> Unselect</source>
         <translation> Désélectionner</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="599"/>
+        <location filename="../properties.ui" line="898"/>
         <source> Select</source>
         <translation> Selectionner</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="632"/>
+        <location filename="../properties.ui" line="931"/>
         <source>You can select here precisely which files you want to download in current torrent.</source>
         <translation>Vous pouvez sélectionner ici quels fichiers vous désirez télécharger dans le torrent actuel.</translation>
     </message>
@@ -2604,27 +2604,27 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Oui</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="153"/>
+        <location filename="../properties.ui" line="512"/>
         <source>Tracker</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="192"/>
+        <location filename="../properties.ui" line="543"/>
         <source>Trackers:</source>
         <translation>Trackers :</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="54"/>
+        <location filename="../properties_imp.cpp" line="163"/>
         <source>None - Unreachable?</source>
         <translation>Aucun - indisponible ?</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="210"/>
+        <location filename="../properties.ui" line="741"/>
         <source>Errors:</source>
         <translation>Erreurs :</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="38"/>
+        <location filename="../properties_imp.cpp" line="42"/>
         <source>Progress</source>
         <translation>Progression</translation>
     </message>
@@ -2639,27 +2639,27 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Nombre de sources :</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="234"/>
+        <location filename="../properties.ui" line="782"/>
         <source>Current tracker:</source>
         <translation>Tracker actuel :</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="362"/>
+        <location filename="../properties.ui" line="337"/>
         <source>Total uploaded:</source>
         <translation>Total uploadé :</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="397"/>
+        <location filename="../properties.ui" line="355"/>
         <source>Total downloaded:</source>
         <translation>Total téléchargé :</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="467"/>
+        <location filename="../properties.ui" line="391"/>
         <source>Total failed:</source>
         <translation>Total échoué :</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="522"/>
+        <location filename="../properties.ui" line="821"/>
         <source>Torrent content</source>
         <translation>Contenu du torrent</translation>
     </message>
@@ -2669,14 +2669,14 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Options</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="514"/>
+        <location filename="../properties.ui" line="467"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Télécharger dans le bon ordre (plus lent mais bon pour la prévisualisation)</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="432"/>
         <source>Share Ratio:</source>
-        <translation>Ratio de partage :</translation>
+        <translation type="obsolete">Ratio de partage :</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="160"/>
@@ -2689,9 +2689,54 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Sources partielles :</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="97"/>
+        <location filename="../properties.ui" line="115"/>
         <source>Save path:</source>
         <translation>Répertoire de destination :</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="75"/>
+        <source>Torrent infos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="134"/>
+        <source>Creator:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="153"/>
+        <source>Torrent hash:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="178"/>
+        <source>Comment:</source>
+        <translation type="unfinished">Commentaire :</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="298"/>
+        <source>Current session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="373"/>
+        <source>Share ratio:</source>
+        <translation type="unfinished">Ratio Partage :</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="475"/>
+        <source>Trackers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="173"/>
+        <source>New tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="174"/>
+        <source>New tracker url:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

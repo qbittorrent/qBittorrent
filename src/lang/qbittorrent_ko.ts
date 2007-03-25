@@ -2322,14 +2322,14 @@ Please close the other one first.</source>
         <translation type="obsolete">주요 정보</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="36"/>
+        <location filename="../properties_imp.cpp" line="40"/>
         <source>File Name</source>
         <translation>파일 이름</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="315"/>
         <source>Current Session</source>
-        <translation>현재 세션</translation>
+        <translation type="obsolete">현재 세션</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -2362,7 +2362,7 @@ Please close the other one first.</source>
         <translation type="obsolete">토렌트 내용</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="667"/>
+        <location filename="../properties.ui" line="966"/>
         <source>OK</source>
         <translation>확인</translation>
     </message>
@@ -2422,7 +2422,7 @@ Please close the other one first.</source>
         <translation type="obsolete"> MB</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="66"/>
+        <location filename="../properties_imp.cpp" line="68"/>
         <source>Unknown</source>
         <translation>알수 없음</translation>
     </message>
@@ -2437,32 +2437,32 @@ Please close the other one first.</source>
         <translation type="obsolete"> 부분적:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="545"/>
+        <location filename="../properties.ui" line="844"/>
         <source>Files contained in current torrent:</source>
         <translation>현 토렌트에 있는 파일들:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="37"/>
+        <location filename="../properties_imp.cpp" line="41"/>
         <source>Size</source>
         <translation>크기</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="39"/>
+        <location filename="../properties_imp.cpp" line="43"/>
         <source>Selected</source>
         <translation>선택됨</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="592"/>
+        <location filename="../properties.ui" line="891"/>
         <source> Unselect</source>
         <translation> 선택되지 않음</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="599"/>
+        <location filename="../properties.ui" line="898"/>
         <source> Select</source>
         <translation>선택함</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="632"/>
+        <location filename="../properties.ui" line="931"/>
         <source>You can select here precisely which files you want to download in current torrent.</source>
         <translation>여기서 현재 토렌트 중 다운로드 받을 파일을 선택할수 있습니다.</translation>
     </message>
@@ -2477,27 +2477,27 @@ Please close the other one first.</source>
         <translation type="obsolete">맞음</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="153"/>
+        <location filename="../properties.ui" line="512"/>
         <source>Tracker</source>
         <translation>서버</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="192"/>
+        <location filename="../properties.ui" line="543"/>
         <source>Trackers:</source>
         <translation>서버목록:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="54"/>
+        <location filename="../properties_imp.cpp" line="163"/>
         <source>None - Unreachable?</source>
         <translation>없음 - 접근할수 없습니까?</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="210"/>
+        <location filename="../properties.ui" line="741"/>
         <source>Errors:</source>
         <translation>에러:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="38"/>
+        <location filename="../properties_imp.cpp" line="42"/>
         <source>Progress</source>
         <translation>진행상황</translation>
     </message>
@@ -2512,27 +2512,27 @@ Please close the other one first.</source>
         <translation type="obsolete">전송자수:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="234"/>
+        <location filename="../properties.ui" line="782"/>
         <source>Current tracker:</source>
         <translation>현재 트레커:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="362"/>
+        <location filename="../properties.ui" line="337"/>
         <source>Total uploaded:</source>
         <translation>총 업로드양:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="397"/>
+        <location filename="../properties.ui" line="355"/>
         <source>Total downloaded:</source>
         <translation>총 다운로드양:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="467"/>
+        <location filename="../properties.ui" line="391"/>
         <source>Total failed:</source>
         <translation>총 실패수:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="522"/>
+        <location filename="../properties.ui" line="821"/>
         <source>Torrent content</source>
         <translation>토렌트 내용</translation>
     </message>
@@ -2542,14 +2542,14 @@ Please close the other one first.</source>
         <translation type="obsolete">환경설정</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="514"/>
+        <location filename="../properties.ui" line="467"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>순차적으로 다운받기(늘리지만 미리보기하기에 좋음)</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="432"/>
         <source>Share Ratio:</source>
-        <translation>공유 비율:</translation>
+        <translation type="obsolete">공유 비율:</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="160"/>
@@ -2562,9 +2562,54 @@ Please close the other one first.</source>
         <translation type="obsolete">부분 공유:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="97"/>
+        <location filename="../properties.ui" line="115"/>
         <source>Save path:</source>
         <translation>저장 경로:</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="75"/>
+        <source>Torrent infos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="134"/>
+        <source>Creator:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="153"/>
+        <source>Torrent hash:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="178"/>
+        <source>Comment:</source>
+        <translation type="unfinished">설명:</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="298"/>
+        <source>Current session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="373"/>
+        <source>Share ratio:</source>
+        <translation type="unfinished">공유비율:</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="475"/>
+        <source>Trackers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="173"/>
+        <source>New tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="174"/>
+        <source>New tracker url:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

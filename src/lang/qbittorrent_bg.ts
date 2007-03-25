@@ -2318,14 +2318,14 @@ Please close the other one first.</source>
         <translation type="obsolete">Главни Бележки</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="36"/>
+        <location filename="../properties_imp.cpp" line="40"/>
         <source>File Name</source>
         <translation>Име Файл</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="315"/>
         <source>Current Session</source>
-        <translation>Текуща Сесия</translation>
+        <translation type="obsolete">Текуща Сесия</translation>
     </message>
     <message>
         <location filename="" line="1701999215"/>
@@ -2358,7 +2358,7 @@ Please close the other one first.</source>
         <translation type="obsolete">Съдържание на Торента</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="667"/>
+        <location filename="../properties.ui" line="966"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -2408,7 +2408,7 @@ Please close the other one first.</source>
         <translation type="obsolete">Уточняване</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="66"/>
+        <location filename="../properties_imp.cpp" line="68"/>
         <source>Unknown</source>
         <translation>Неизвестен</translation>
     </message>
@@ -2423,32 +2423,32 @@ Please close the other one first.</source>
         <translation type="obsolete"> Частично:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="545"/>
+        <location filename="../properties.ui" line="844"/>
         <source>Files contained in current torrent:</source>
         <translation>Файлове включени в торента:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="37"/>
+        <location filename="../properties_imp.cpp" line="41"/>
         <source>Size</source>
         <translation>Размер</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="39"/>
+        <location filename="../properties_imp.cpp" line="43"/>
         <source>Selected</source>
         <translation>Избран</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="592"/>
+        <location filename="../properties.ui" line="891"/>
         <source> Unselect</source>
         <translation> Неизбран</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="599"/>
+        <location filename="../properties.ui" line="898"/>
         <source> Select</source>
         <translation> Избери</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="632"/>
+        <location filename="../properties.ui" line="931"/>
         <source>You can select here precisely which files you want to download in current torrent.</source>
         <translation>Тук можете да изберете точно кои файлове искате да свалите от торента. </translation>
     </message>
@@ -2463,27 +2463,27 @@ Please close the other one first.</source>
         <translation type="obsolete">Вярно</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="153"/>
+        <location filename="../properties.ui" line="512"/>
         <source>Tracker</source>
         <translation>Тракер</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="192"/>
+        <location filename="../properties.ui" line="543"/>
         <source>Trackers:</source>
         <translation>Тракери:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="54"/>
+        <location filename="../properties_imp.cpp" line="163"/>
         <source>None - Unreachable?</source>
         <translation>Няма - Недостъпни?</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="210"/>
+        <location filename="../properties.ui" line="741"/>
         <source>Errors:</source>
         <translation>Грешки:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="38"/>
+        <location filename="../properties_imp.cpp" line="42"/>
         <source>Progress</source>
         <translation>Изпълнение</translation>
     </message>
@@ -2498,27 +2498,27 @@ Please close the other one first.</source>
         <translation type="obsolete">Брой връзки:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="234"/>
+        <location filename="../properties.ui" line="782"/>
         <source>Current tracker:</source>
         <translation>Текущ тракер:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="362"/>
+        <location filename="../properties.ui" line="337"/>
         <source>Total uploaded:</source>
         <translation>Общо качени:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="397"/>
+        <location filename="../properties.ui" line="355"/>
         <source>Total downloaded:</source>
         <translation>Общо свалени:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="467"/>
+        <location filename="../properties.ui" line="391"/>
         <source>Total failed:</source>
         <translation>Общо неуспешни:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="522"/>
+        <location filename="../properties.ui" line="821"/>
         <source>Torrent content</source>
         <translation>Съдържание на Торента</translation>
     </message>
@@ -2528,14 +2528,14 @@ Please close the other one first.</source>
         <translation type="obsolete">Опции</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="514"/>
+        <location filename="../properties.ui" line="467"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Сваляне в правилен ред (по-бавен, но добър за оглед на файловете)</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="432"/>
         <source>Share Ratio:</source>
-        <translation>Процент на споделяне:</translation>
+        <translation type="obsolete">Процент на споделяне:</translation>
     </message>
     <message>
         <location filename="" line="1701999215"/>
@@ -2548,9 +2548,54 @@ Please close the other one first.</source>
         <translation type="obsolete">Вземащи:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="97"/>
+        <location filename="../properties.ui" line="115"/>
         <source>Save path:</source>
         <translation>Съхрани Път:</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="75"/>
+        <source>Torrent infos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="134"/>
+        <source>Creator:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="153"/>
+        <source>Torrent hash:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="178"/>
+        <source>Comment:</source>
+        <translation type="unfinished">Коментар:</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="298"/>
+        <source>Current session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="373"/>
+        <source>Share ratio:</source>
+        <translation type="unfinished">Процент на споделяне:</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="475"/>
+        <source>Trackers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="173"/>
+        <source>New tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="174"/>
+        <source>New tracker url:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

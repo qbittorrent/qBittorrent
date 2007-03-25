@@ -2367,14 +2367,14 @@ Please close the other one first.</source>
         <translation type="obsolete">Κύριες Πληροφορίες</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="36"/>
+        <location filename="../properties_imp.cpp" line="40"/>
         <source>File Name</source>
         <translation>Όνομα Αρχείου</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="315"/>
         <source>Current Session</source>
-        <translation>Παρούσα Περίοδος</translation>
+        <translation type="obsolete">Παρούσα Περίοδος</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -2407,7 +2407,7 @@ Please close the other one first.</source>
         <translation type="obsolete">Περιεχόμενο τορεντ</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="667"/>
+        <location filename="../properties.ui" line="966"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -2457,7 +2457,7 @@ Please close the other one first.</source>
         <translation type="obsolete">Προσδιορίζει</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="66"/>
+        <location filename="../properties_imp.cpp" line="68"/>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>
@@ -2472,32 +2472,32 @@ Please close the other one first.</source>
         <translation type="obsolete"> Μερικό:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="545"/>
+        <location filename="../properties.ui" line="844"/>
         <source>Files contained in current torrent:</source>
         <translation>Αρχεία που περιέχονται στο παρόν τορεντ:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="37"/>
+        <location filename="../properties_imp.cpp" line="41"/>
         <source>Size</source>
         <translation>Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="39"/>
+        <location filename="../properties_imp.cpp" line="43"/>
         <source>Selected</source>
         <translation>Επιλεγμένο</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="592"/>
+        <location filename="../properties.ui" line="891"/>
         <source> Unselect</source>
         <translation> Απόρριψη</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="599"/>
+        <location filename="../properties.ui" line="898"/>
         <source> Select</source>
         <translation> Επιλογή</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="632"/>
+        <location filename="../properties.ui" line="931"/>
         <source>You can select here precisely which files you want to download in current torrent.</source>
         <translation>Εδώ μπορείτε να επιλέξετε με ακρίβεια ποιά αρχεία θέλετε να κατεβάσετε στο παρόν τορεντ.</translation>
     </message>
@@ -2512,27 +2512,27 @@ Please close the other one first.</source>
         <translation type="obsolete">Σωστό</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="153"/>
+        <location filename="../properties.ui" line="512"/>
         <source>Tracker</source>
         <translation>Ιχνηλάτης</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="192"/>
+        <location filename="../properties.ui" line="543"/>
         <source>Trackers:</source>
         <translation>Ιχνηλάτες:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="54"/>
+        <location filename="../properties_imp.cpp" line="163"/>
         <source>None - Unreachable?</source>
         <translation>Κανένα - Απροσπέλαστο?</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="210"/>
+        <location filename="../properties.ui" line="741"/>
         <source>Errors:</source>
         <translation>Λάθη:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="38"/>
+        <location filename="../properties_imp.cpp" line="42"/>
         <source>Progress</source>
         <translation>Πρόοδος</translation>
     </message>
@@ -2547,27 +2547,27 @@ Please close the other one first.</source>
         <translation type="obsolete">Αριθμός διαμοιραστών:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="234"/>
+        <location filename="../properties.ui" line="782"/>
         <source>Current tracker:</source>
         <translation>Τρέχων ιχνηλάτης:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="362"/>
+        <location filename="../properties.ui" line="337"/>
         <source>Total uploaded:</source>
         <translation>Σύνολο ανεβασμένων:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="397"/>
+        <location filename="../properties.ui" line="355"/>
         <source>Total downloaded:</source>
         <translation>Σύνολο κατεβασμένων:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="467"/>
+        <location filename="../properties.ui" line="391"/>
         <source>Total failed:</source>
         <translation>Σύνολο αποτυχημένων:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="522"/>
+        <location filename="../properties.ui" line="821"/>
         <source>Torrent content</source>
         <translation>Περιεχόμενο τορεντ</translation>
     </message>
@@ -2577,14 +2577,14 @@ Please close the other one first.</source>
         <translation type="obsolete">Επιλογές</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="514"/>
+        <location filename="../properties.ui" line="467"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Κατέβασμα στη σωστή σειρά (πιο αργό αλλα καλό για προεπισκόπηση)</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="432"/>
         <source>Share Ratio:</source>
-        <translation>Ποσοστό μοιράσματος:</translation>
+        <translation type="obsolete">Ποσοστό μοιράσματος:</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -2597,9 +2597,54 @@ Please close the other one first.</source>
         <translation type="obsolete">Συνδέσεις:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="97"/>
+        <location filename="../properties.ui" line="115"/>
         <source>Save path:</source>
         <translation>Αποθήκευση σε:</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="75"/>
+        <source>Torrent infos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="134"/>
+        <source>Creator:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="153"/>
+        <source>Torrent hash:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="178"/>
+        <source>Comment:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="298"/>
+        <source>Current session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="373"/>
+        <source>Share ratio:</source>
+        <translation type="unfinished">Ποσοστό μοιράσματος:</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="475"/>
+        <source>Trackers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="173"/>
+        <source>New tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="174"/>
+        <source>New tracker url:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
