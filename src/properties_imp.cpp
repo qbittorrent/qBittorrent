@@ -25,7 +25,7 @@
 #include <QInputDialog>
 
 // Constructor
-properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErrors): QDialog(parent), h(h){
+properties::properties(QWidget *parent, torrent_handle &h, QStringList trackerErrors): QDialog(parent), h(h){
   setupUi(this);
   // set icons
   unselect->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
@@ -46,6 +46,7 @@ properties::properties(QWidget *parent, torrent_handle h, QStringList trackerErr
   filesList->setItemDelegate(PropDelegate);
   connect(filesList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(toggleSelectedState(const QModelIndex&)));
   connect(addTracker_button, SIGNAL(clicked()), this, SLOT(askForTracker()));
+  connect(removeTracker_button, SIGNAL(clicked()), this, SLOT(deleteSelectedTrackers()));
   // get Infos from torrent handle
   fileHash = QString(misc::toString(h.info_hash()).c_str());
   torrent_status torrentStatus = h.status();
@@ -148,14 +149,13 @@ void properties::loadFilteredFiles(){
 }
 
 void properties::loadTrackers(){
-  torrent_status torrentStatus = h.status();
-  torrent_info torrentInfo = h.get_torrent_info();
   //Trackers
-  std::vector<announce_entry> trackers = torrentInfo.trackers();
+  std::vector<announce_entry> trackers = h.trackers();
   trackersURLS->clear();
   for(unsigned int i=0; i<trackers.size(); ++i){
     trackersURLS->addItem(QString(trackers[i].url.c_str()));
   }
+  torrent_status torrentStatus = h.status();
   QString tracker = QString(torrentStatus.current_tracker.c_str()).trimmed();
   if(!tracker.isEmpty()){
     trackerURL->setText(tracker);
@@ -174,13 +174,35 @@ void properties::askForTracker(){
                                        tr("New tracker url:"), QLineEdit::Normal,
                                        "http://www.", &ok);
   if(!ok) return;
-  // Checking if it already exists in the list
-  torrent_info torrentInfo = h.get_torrent_info();
-//   std::vector<announce_entry> trackers = torrentInfo.trackers();
-//   for(unsigned int i=0; i<trackers.size(); ++i){
-//     if(QString(trackers[i].url.c_str())
-//   }
-  torrentInfo.add_tracker(trackerUrl.toStdString(), trackersURLS->count());
+  // Add the tracker to the list
+  std::vector<announce_entry> trackers = h.trackers();
+  announce_entry new_tracker(trackerUrl.toStdString());
+  new_tracker.tier = trackersURLS->count();
+  trackers.push_back(new_tracker);
+  h.replace_trackers(trackers);
+  h.force_reannounce();
+  // Reload Trackers
+  loadTrackers();
+}
+
+void properties::deleteSelectedTrackers(){
+  std::vector<announce_entry> trackers = h.trackers();
+  QList<QListWidgetItem *> selectedItems;
+  selectedItems = trackersURLS->selectedItems();
+  QListWidgetItem *item;
+  foreach(item, selectedItems){
+    QString url = item->text();
+    bool found = false;
+    for(unsigned int i=0; i<trackers.size(); ++i){
+      if(QString(trackers.at(i).url.c_str()) == url){
+        trackers.erase(trackers.begin()+i);
+        found = true;
+        break;
+      }
+    }
+    qDebug("Found: %d", found);
+  }
+  h.replace_trackers(trackers);
   h.force_reannounce();
   // Reload Trackers
   loadTrackers();

@@ -55,13 +55,14 @@ class properties : public QDialog, private Ui::properties{
     void setAllPiecesState(bool selected);
     void askForTracker();
     void loadTrackers();
+    void deleteSelectedTrackers();
 
   signals:
     void changedFilteredFiles(torrent_handle h, bool compact_mode);
 
   public:
     // Constructor
-    properties(QWidget *parent, torrent_handle h, QStringList trackerErrors = QStringList());
+    properties(QWidget *parent, torrent_handle &h, QStringList trackerErrors = QStringList());
     ~properties();
 };
 
