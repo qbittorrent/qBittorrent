@@ -790,50 +790,54 @@ void options_imp::processFilterFile(const QString& filePath){
       while (!file.atEnd()) {
         ++nbLine;
         QByteArray line = file.readLine();
-        if(!line.startsWith('#') && !line.startsWith("//")){
-          // Line is not commented
-          QList<QByteArray> partsList = line.split(',');
-          unsigned int nbElem = partsList.size();
-          if(nbElem < 2){
-            std::cerr << "Ipfilter.dat: line " << nbLine << " is malformed.\n";
+        if(line.startsWith('#') || line.startsWith("//")) continue;
+        // Line is not commented
+        QList<QByteArray> partsList = line.split(',');
+        unsigned int nbElem = partsList.size();
+        if(nbElem < 2){
+          qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
+          continue;
+        }
+        bool ok;
+        int nbAccess = partsList.at(1).trimmed().toInt(&ok);
+        if(!ok){
+          qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
+          continue;
+        }
+        if(nbAccess <= 127){
+          QString strComment;
+          QString strStartIP = partsList.at(0).split('-').at(0).trimmed();
+          QString strEndIP = partsList.at(0).split('-').at(1).trimmed();
+          if(nbElem > 2){
+            strComment = partsList.at(2).trimmed();
+          }else{
+            strComment = QString();
+          }
+          // Split IP
+          IP = strStartIP.split('.');
+          if(IP.size() != 4){
+            qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
             continue;
           }
-          int nbAccess = partsList.at(1).trimmed().toInt();
-          if(nbAccess <= 127){
-            QString strComment;
-            QString strStartIP = partsList.at(0).split('-').at(0).trimmed();
-            QString strEndIP = partsList.at(0).split('-').at(1).trimmed();
-            if(nbElem > 2){
-              strComment = partsList.at(2).trimmed();
-            }else{
-              strComment = QString();
-            }
-            // Split IP
-            IP = strStartIP.split('.');
-            if(IP.size() != 4){
-              std::cerr << "Ipfilter.dat: line " << nbLine << ", first IP is malformed.\n";
-              continue;
-            }
-            address_v4 start((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
-            IP = strEndIP.split('.');
-            if(IP.size() != 4){
-              std::cerr << "Ipfilter.dat: line " << nbLine << ", second IP is malformed.\n";
-              continue;
-            }
-            address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
-            // add it to list
-            QStringList item(QString(start.to_string().c_str()));
-            item.append(QString(last.to_string().c_str()));
-            if(!i){
-              item.append("Manual");
-            }else{
-              item.append("ipfilter.dat");
-            }
-            item.append(strComment);
-            new QTreeWidgetItem(filtersList, item);
-            // Apply to bittorrent session
-            filter.add_rule(start, last, ip_filter::blocked);
+          address_v4 start((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
+          IP = strEndIP.split('.');
+          if(IP.size() != 4){
+            qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
+            continue;
           }
+          address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
+          // add it to list
+          QStringList item(QString(start.to_string().c_str()));
+          item.append(QString(last.to_string().c_str()));
+          if(!i){
+            item.append("Manual");
+          }else{
+            item.append("ipfilter.dat");
+          }
+          item.append(strComment);
+          new QTreeWidgetItem(filtersList, item);
+          // Apply to bittorrent session
+          filter.add_rule(start, last, ip_filter::blocked);
         }
       }
       file.close();
