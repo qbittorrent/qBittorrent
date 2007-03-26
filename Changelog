@@ -26,6 +26,7 @@
     - BUGFIX: Create Options object only when necessary (to save memory)
     - BUGFIX: Let libtorrent store the torrent handles (save memory)
     - BUGFIX: Set DHT Port only when DHT is enabled
+    - BUGFIX: Made ipfilter.dat parser less sensitive to errors
     - I18N: Added Danish translation
     - I18N: Better internationalization thanks to dynamic text support
     - COSMETIC: Replaced OSD messages by Qt4.2 systray messages
