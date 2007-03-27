@@ -18,13 +18,16 @@
  *
  * Contact : chris@qbittorrent.org
  */
+
+#include <QDir>
+#include <QTime>
+#include <QTimer>
+#include <QString>
+
 #include "bittorrent.h"
 #include "misc.h"
 #include "downloadThread.h"
 #include "UPnP.h"
-
-#include <QDir>
-#include <QTime>
 
 // Main constructor
 bittorrent::bittorrent(){

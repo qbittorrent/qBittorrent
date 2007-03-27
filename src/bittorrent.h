@@ -21,11 +21,6 @@
 #ifndef __BITTORRENT_H__
 #define __BITTORRENT_H__
 
-#include <QHash>
-#include <QString>
-#include <QStringList>
-#include <QTimer>
-
 #include <libtorrent/entry.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/session.hpp>
@@ -42,6 +37,9 @@
 #include <boost/filesystem/exception.hpp>
 
 #include "deleteThread.h"
+
+class QTimer;
+class QString;
 
 using namespace libtorrent;
 namespace fs = boost::filesystem;

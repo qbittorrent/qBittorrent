@@ -11,7 +11,7 @@ TARGET = qbittorrent
 CONFIG += qt thread x11 network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v0.10.0alpha2\\\"
+DEFINES += VERSION=\\\"v0.10.0alpha3\\\"
 DEFINES += VERSION_MAJOR=0
 DEFINES += VERSION_MINOR=10
 DEFINES += VERSION_BUGFIX=0
@@ -115,16 +115,18 @@ HEADERS += GUI.h misc.h options_imp.h about_imp.h \
            PreviewListDelegate.h trackerLogin.h \
            downloadThread.h downloadFromURLImp.h \
            torrentAddition.h deleteThread.h \
-           bittorrent.h
+           bittorrent.h searchEngine.h
 FORMS += MainWindow.ui options.ui about.ui \
          properties.ui createtorrent.ui preview.ui \
-         login.ui downloadFromURL.ui addTorrentDialog.ui
+         login.ui downloadFromURL.ui addTorrentDialog.ui \
+         search.ui
 SOURCES += GUI.cpp \
            main.cpp \
            options_imp.cpp \
 	   properties_imp.cpp \
 	   createtorrent_imp.cpp \
-	   bittorrent.cpp
+	   bittorrent.cpp \
+	   searchEngine.cpp
 !contains(DEFINES, NO_UPNP){
   message(UPnP Enabled)
   HEADERS += UPnP.h

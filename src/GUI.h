@@ -23,11 +23,7 @@
 #define GUI_H
 
 #include <QMainWindow>
-#include <QHash>
 #include <QProcess>
-#include <QTcpServer>
-#include <QTcpSocket>
-#include <QCloseEvent>
 #include <QSystemTrayIcon>
 
 #include <libtorrent/entry.hpp>
@@ -45,15 +41,15 @@
 #include "trackerLogin.h"
 #include "bittorrent.h"
 
-#define TIME_TRAY_BALLOON 5000
-
 class createtorrent;
 class QTimer;
-class QCompleter;
 class DLListDelegate;
-class SearchListDelegate;
 class downloadThread;
 class downloadFromURL;
+class SearchEngine;
+class QTcpServer;
+class QTcpSocket;
+class QCloseEvent;
 
 using namespace libtorrent;
 namespace fs = boost::filesystem;
@@ -77,24 +73,16 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     about *aboutdlg;
     QStandardItemModel *DLListModel;
     DLListDelegate *DLDelegate;
-    QStandardItemModel *SearchListModel;
-    SearchListDelegate *SearchDelegate;
     unsigned int nbTorrents;
     QLabel *connecStatusLblIcon;
     // Preview
     previewSelect *previewSelection;
     QProcess *previewProcess;
-    // Search related
-    QHash<QString, QString> searchResultsUrls;
-    QProcess *searchProcess;
-    bool search_stopped;
-    bool no_search_results;
-    QByteArray search_result_line_truncated;
-    unsigned long nb_search_results;
-    QTcpServer tcpServer;
+    // Search
+    SearchEngine *searchEngine;
+    // Misc
+    QTcpServer *tcpServer;
     QTcpSocket *clientConnection;
-    QCompleter *searchCompleter;
-    QStringList searchHistory;
 
   protected slots:
     // GUI related slots
@@ -110,18 +98,11 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void openqBTBugTracker();
     void readParamsOnSocket();
     void acceptConnection();
-    void saveCheckedSearchEngines(int) const;
     void saveColWidthDLList() const;
-    void saveColWidthSearchList() const;
-    void loadCheckedSearchEngines();
     bool loadColWidthDLList();
-    bool loadColWidthSearchList();
     void sortDownloadList(int index);
     void sortDownloadListFloat(int index, Qt::SortOrder sortOrder);
     void sortDownloadListString(int index, Qt::SortOrder sortOrder);
-    void sortSearchList(int index);
-    void sortSearchListInt(int index, Qt::SortOrder sortOrder);
-    void sortSearchListString(int index, Qt::SortOrder sortOrder);
     void displayDLListMenu(const QPoint& pos);
     void selectGivenRow(const QModelIndex& index);
     void togglePausedState(const QModelIndex& index);
@@ -152,21 +133,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void processDownloadedFiles(const QString& path, const QString& url);
     void downloadFromURLList(const QStringList& urls);
     void displayDownloadingUrlInfos(const QString& url);
-    // Search slots
-    void on_search_button_clicked();
-    void on_stop_search_button_clicked();
-    void on_clear_button_clicked();
-    void on_download_button_clicked();
-    void on_update_nova_button_clicked();
-    void appendSearchResult(const QString& line);
-    void searchFinished(int exitcode,QProcess::ExitStatus);
-    void readSearchOutput();
-    void searchStarted();
-    void downloadSelectedItem(const QModelIndex& index);
-    void startSearchHistory();
-    void saveSearchHistory();
     // Utils slots
-    void setRowColor(int row, const QString& color, bool inDLList=true);
+    void setRowColor(int row, const QString& color);
     // Options slots
     void showOptions();
     void OptionsSaved(const QString& info, bool deleteOptions);
@@ -193,9 +161,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     ~GUI();
     // Methods
     int getRowFromHash(const QString& name) const;
-    float getNovaVersion(const QString& novaPath) const;
-    QByteArray getNovaChangelog(const QString& novaPath) const;
-    void updateNova() const;
     QPoint screenCenter();
 };
 
