@@ -119,7 +119,7 @@ class bittorrent : public QObject{
     void setSessionSettings(session_settings sessionSettings);
     void setDefaultSavePath(const QString& savepath);
 #ifndef NO_UPNP
-    void enableUPnP();
+    void enableUPnP(int port=50000);
     void disableUPnP();
 #endif
 

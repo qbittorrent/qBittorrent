@@ -986,7 +986,11 @@ void GUI::configureSession(bool deleteOptions){
   }
 #ifndef NO_UPNP
   // Upnp
-  BTSession.enableUPnP();
+  if(options->isDHTEnabled()){
+    BTSession.enableUPnP(options->getUPnPPort());
+  }else{
+    BTSession.disableUPnP();
+  }
 #endif
   // PeX
   if(!options->isPeXDisabled()){

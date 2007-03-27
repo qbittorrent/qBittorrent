@@ -43,3 +43,4 @@
 - Improve Ipfilter.dat parser (move to a thread ?)
 - Use tooltips to explain options
 - Exit confirmation only if there are active downloads
+- Support UPnP port edition

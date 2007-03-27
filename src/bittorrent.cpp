@@ -75,7 +75,7 @@ torrent_handle bittorrent::getTorrentHandle(const QString& hash) const{
 }
 
 #ifndef NO_UPNP
-void bittorrent::enableUPnP(){
+void bittorrent::enableUPnP(int port){
   if(!UPnPEnabled){
     qDebug("Enabling UPnP");
     UPnPEnabled = true;
@@ -85,7 +85,7 @@ void bittorrent::enableUPnP(){
       "TCP",
       true,
       "qBittorrent");
-    m_upnp = new CUPnPControlPoint(50000);
+    m_upnp = new CUPnPControlPoint(port);
     m_upnp->AddPortMappings(m_upnpMappings);
   }
 }
