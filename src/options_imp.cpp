@@ -132,8 +132,10 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(enableScan_checkBox, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(disableMaxConnec, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(disableDHT, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(disableUPnP, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(disablePeX, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(spin_dht_port, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(spin_upnp_port, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   // Language
   connect(combo_i18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   // IPFilter
@@ -184,6 +186,9 @@ void options_imp::saveOptions(){
   settings.setValue("PortRangeMax", getPorts().second);
   settings.setValue("ShareRatio", getRatio());
   settings.setValue("DHTPort", getDHTPort());
+#ifndef NO_UPNP
+  settings.setValue("UPnPPort", getUPnPPort());
+#endif
   settings.setValue("PeXState", isPeXDisabled());
   settings.setValue("ScanDir", getScanDir());
   // End Main options
@@ -316,6 +321,20 @@ void options_imp::loadOptions(){
     }
     spin_dht_port->setValue(value);
   }
+#ifndef NO_UPNP
+  value = settings.value("UPnPPort", 50000).toInt();
+  if(value < 0){
+    disableUPnP->setChecked(true);
+    groupUPnP->setEnabled(false);
+  }else{
+    disableUPnP->setChecked(false);
+    groupUPnP->setEnabled(true);
+    if(value < 1000){
+      value = 50000;
+    }
+    spin_upnp_port->setValue(value);
+  }
+#endif
   boolValue = settings.value("PeXState", 0).toBool();
   if(boolValue){
     // Pex disabled
@@ -442,6 +461,20 @@ int options_imp::getDHTPort() const{
     return -1;
   }
 }
+
+#ifndef NO_UPNP
+int options_imp::getUPnPPort() const{
+  if(isUPnPEnabled()){
+    return spin_upnp_port->value();
+  }else{
+    return -1;
+  }
+}
+
+bool options_imp::isUPnPEnabled() const{
+  return !disableUPnP->isChecked();
+}
+#endif
 
 QString options_imp::getPreviewProgram() const{
   QString preview_txt = preview_program->text();

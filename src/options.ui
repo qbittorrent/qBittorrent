@@ -668,7 +668,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spin_UPnP_port" >
+                  <widget class="QSpinBox" name="spin_upnp_port" >
                    <property name="minimumSize" >
                     <size>
                      <width>6</width>
