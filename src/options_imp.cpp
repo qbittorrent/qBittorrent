@@ -45,6 +45,11 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   delFilterRange->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
   enableProxyAuth_checkBox->setIcon(QIcon(QString::fromUtf8(":/Icons/encrypted.png")));
   to_range->setText(tr("to", "<min port> to <max port>"));
+  // If UPnP is not supported then disable it
+#ifdef NO_UPNP
+  groupMainUPnP->setEnabled(false);
+  disableUPnP->setChecked(true);
+#endif
   // Languages supported
   combo_i18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/united_kingdom.png"))), QString::fromUtf8("English"));
   locales << "en_GB";
