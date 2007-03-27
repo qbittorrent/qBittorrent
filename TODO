@@ -41,3 +41,5 @@
 - Update v0.9.0 changelog after its release
 - Display Url seeds in torrent properties and allow to edit them
 - Improve Ipfilter.dat parser (move to a thread ?)
+- Use tooltips to explain options
+- Exit confirmation only if there are active downloads

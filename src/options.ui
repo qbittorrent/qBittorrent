@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>506</width>
-    <height>508</height>
+    <width>545</width>
+    <height>530</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -54,7 +54,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QTabWidget" name="tabWidget" >
+    <widget class="QTabWidget" name="tabOptions" >
      <property name="tabPosition" >
       <enum>QTabWidget::North</enum>
      </property>
@@ -64,9 +64,18 @@
      <property name="currentIndex" >
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab" >
+     <property name="iconSize" >
+      <size>
+       <width>22</width>
+       <height>22</height>
+      </size>
+     </property>
+     <property name="elideMode" >
+      <enum>Qt::ElideLeft</enum>
+     </property>
+     <widget class="QWidget" name="Connection" >
       <attribute name="title" >
-       <string>Main</string>
+       <string>Connection</string>
       </attribute>
       <layout class="QVBoxLayout" >
        <property name="margin" >
@@ -76,15 +85,9 @@
         <number>6</number>
        </property>
        <item>
-        <widget class="QGroupBox" name="groupBox" >
-         <property name="minimumSize" >
-          <size>
-           <width>0</width>
-           <height>191</height>
-          </size>
-         </property>
+        <widget class="QGroupBox" name="groupMainConnec" >
          <property name="title" >
-          <string>Connection Settings</string>
+          <string>Main</string>
          </property>
          <layout class="QVBoxLayout" >
           <property name="margin" >
@@ -123,9 +126,6 @@
                <widget class="QLabel" name="lbl_upload" >
                 <property name="text" >
                  <string>Upload Limit:</string>
-                </property>
-                <property name="buddy" >
-                 <cstring>enableScan_checkBox</cstring>
                 </property>
                </widget>
               </item>
@@ -502,17 +502,268 @@
             </item>
            </layout>
           </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox" >
+         <property name="title" >
+          <string>Peer eXchange (PeX)</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
           <item>
-           <widget class="QCheckBox" name="disableDHT" >
+           <widget class="QCheckBox" name="disablePeX" >
             <property name="text" >
-             <string>Disable DHT (Trackerless)</string>
+             <string>Disable Peer eXchange (PeX)</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item>
+          <widget class="QGroupBox" name="groupMainDHT" >
+           <property name="title" >
+            <string>DHT (trackerless)</string>
+           </property>
+           <layout class="QVBoxLayout" >
+            <property name="margin" >
+             <number>9</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QCheckBox" name="disableDHT" >
+              <property name="text" >
+               <string>Disable DHT (Trackerless)</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupDHT" >
+              <property name="title" >
+               <string>DHT configuration</string>
+              </property>
+              <layout class="QVBoxLayout" >
+               <property name="margin" >
+                <number>9</number>
+               </property>
+               <property name="spacing" >
+                <number>6</number>
+               </property>
+               <item>
+                <layout class="QHBoxLayout" >
+                 <property name="margin" >
+                  <number>0</number>
+                 </property>
+                 <property name="spacing" >
+                  <number>6</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="dhtPort_lbl" >
+                   <property name="text" >
+                    <string>DHT port:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSpinBox" name="spin_dht_port" >
+                   <property name="minimumSize" >
+                    <size>
+                     <width>6</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximum" >
+                    <number>65525</number>
+                   </property>
+                   <property name="minimum" >
+                    <number>1000</number>
+                   </property>
+                   <property name="value" >
+                    <number>6881</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer>
+                   <property name="orientation" >
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" >
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupMainUPnP" >
+           <property name="title" >
+            <string>UPnP port forwarding</string>
+           </property>
+           <layout class="QVBoxLayout" >
+            <property name="margin" >
+             <number>9</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QCheckBox" name="disableUPnP" >
+              <property name="text" >
+               <string>Disable UPnP port forwarding</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupUPnP" >
+              <property name="title" >
+               <string>UPnP configuration</string>
+              </property>
+              <layout class="QVBoxLayout" >
+               <property name="margin" >
+                <number>9</number>
+               </property>
+               <property name="spacing" >
+                <number>6</number>
+               </property>
+               <item>
+                <layout class="QHBoxLayout" >
+                 <property name="margin" >
+                  <number>0</number>
+                 </property>
+                 <property name="spacing" >
+                  <number>6</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="UPnPPort_lbl" >
+                   <property name="text" >
+                    <string>UPnP port:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSpinBox" name="spin_UPnP_port" >
+                   <property name="minimumSize" >
+                    <size>
+                     <width>6</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximum" >
+                    <number>65525</number>
+                   </property>
+                   <property name="minimum" >
+                    <number>1000</number>
+                   </property>
+                   <property name="value" >
+                    <number>50000</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer>
+                   <property name="orientation" >
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" >
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="Behaviour" >
+      <attribute name="title" >
+       <string>Behaviour</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="groupTorrentAddition" >
+         <property name="title" >
+          <string>Torrent addition</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QCheckBox" name="checkAdditionDialog" >
+            <property name="text" >
+             <string>Display a torrent addition dialog everytime I add a torrent</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="groupDHT" >
+           <widget class="QGroupBox" name="groupSavePath" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
             <property name="title" >
-             <string>DHT configuration</string>
+             <string>Default save path</string>
             </property>
             <layout class="QVBoxLayout" >
              <property name="margin" >
@@ -530,53 +781,83 @@
                 <number>6</number>
                </property>
                <item>
-                <widget class="QLabel" name="dhtPort_lbl" >
+                <widget class="QLabel" name="lbl_savePath" >
                  <property name="text" >
-                  <string>DHT port:</string>
+                  <string>Save Path:</string>
+                 </property>
+                 <property name="buddy" >
+                  <cstring>proxy_username</cstring>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QSpinBox" name="spin_dht_port" >
-                 <property name="minimumSize" >
-                  <size>
-                   <width>6</width>
-                   <height>0</height>
-                  </size>
+                <layout class="QHBoxLayout" >
+                 <property name="margin" >
+                  <number>0</number>
                  </property>
-                 <property name="maximum" >
-                  <number>65525</number>
+                 <property name="spacing" >
+                  <number>6</number>
                  </property>
-                 <property name="minimum" >
-                  <number>1000</number>
-                 </property>
-                 <property name="value" >
-                  <number>6881</number>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer>
-                 <property name="orientation" >
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" >
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
+                 <item>
+                  <widget class="QLineEdit" name="txt_savePath" >
+                   <property name="text" >
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="browse_button" >
+                   <property name="text" >
+                    <string>...</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
               </layout>
              </item>
             </layout>
            </widget>
           </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_3" >
+         <property name="title" >
+          <string>Main window</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
           <item>
-           <widget class="QCheckBox" name="disablePeX" >
+           <widget class="QCheckBox" name="confirmExit_checkBox" >
             <property name="text" >
-             <string>Disable Peer eXchange (PeX)</string>
+             <string>Ask for confirmation on exit</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="check_goToSysTray" >
+            <property name="text" >
+             <string>Go to systray when minimizing window</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="check_closeToSysTray" >
+            <property name="text" >
+             <string>Go to systray when closing main window</string>
             </property>
            </widget>
           </item>
@@ -584,61 +865,43 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="enableScan_checkBox" >
-         <property name="text" >
-          <string>Enable directory scan (auto add torrent files inside)</string>
+        <widget class="QGroupBox" name="groupOSD" >
+         <property name="title" >
+          <string>Systray messages</string>
          </property>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QRadioButton" name="alwaysOSD" >
+            <property name="text" >
+             <string>Always display systray messages</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="someOSD" >
+            <property name="text" >
+             <string>Display systray messages only when window is hidden</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="neverOSD" >
+            <property name="text" >
+             <string>Never display systray messages</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="lbl_scanDir" >
-           <property name="enabled" >
-            <bool>false</bool>
-           </property>
-           <property name="text" >
-            <string>Scanned Dir:</string>
-           </property>
-           <property name="buddy" >
-            <cstring>proxy_username</cstring>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" >
-           <property name="margin" >
-            <number>0</number>
-           </property>
-           <property name="spacing" >
-            <number>6</number>
-           </property>
-           <item>
-            <widget class="QLineEdit" name="scanDir" >
-             <property name="enabled" >
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="browse_button_scan" >
-             <property name="enabled" >
-              <bool>false</bool>
-             </property>
-             <property name="text" >
-              <string>...</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
        </item>
        <item>
         <spacer>
@@ -647,8 +910,8 @@
          </property>
          <property name="sizeHint" >
           <size>
-           <width>20</width>
-           <height>40</height>
+           <width>466</width>
+           <height>31</height>
           </size>
          </property>
         </spacer>
@@ -1156,22 +1419,9 @@
         <number>6</number>
        </property>
        <item>
-        <widget class="QCheckBox" name="checkAdditionDialog" >
-         <property name="text" >
-          <string>Display a torrent addition dialog everytime I add a torrent</string>
-         </property>
-         <property name="checked" >
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupSavePath" >
-         <property name="enabled" >
-          <bool>false</bool>
-         </property>
+        <widget class="QGroupBox" name="groupScan" >
          <property name="title" >
-          <string>Default save path</string>
+          <string>Directory scan</string>
          </property>
          <layout class="QVBoxLayout" >
           <property name="margin" >
@@ -1181,6 +1431,13 @@
            <number>6</number>
           </property>
           <item>
+           <widget class="QCheckBox" name="enableScan_checkBox" >
+            <property name="text" >
+             <string>Enable directory scan (auto add torrent files inside)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <layout class="QHBoxLayout" >
             <property name="margin" >
              <number>0</number>
@@ -1189,9 +1446,12 @@
              <number>6</number>
             </property>
             <item>
-             <widget class="QLabel" name="lbl_savePath" >
+             <widget class="QLabel" name="lbl_scanDir" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
               <property name="text" >
-               <string>Save Path:</string>
+               <string>Scanned Dir:</string>
               </property>
               <property name="buddy" >
                <cstring>proxy_username</cstring>
@@ -1207,14 +1467,17 @@
                <number>6</number>
               </property>
               <item>
-               <widget class="QLineEdit" name="txt_savePath" >
-                <property name="text" >
-                 <string/>
+               <widget class="QLineEdit" name="scanDir" >
+                <property name="enabled" >
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QToolButton" name="browse_button" >
+               <widget class="QToolButton" name="browse_button_scan" >
+                <property name="enabled" >
+                 <bool>false</bool>
+                </property>
                 <property name="text" >
                  <string>...</string>
                 </property>
@@ -1223,48 +1486,6 @@
              </layout>
             </item>
            </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_3" >
-         <property name="title" >
-          <string>Behaviour</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <item>
-           <widget class="QCheckBox" name="confirmExit_checkBox" >
-            <property name="text" >
-             <string>Ask for confirmation on exit</string>
-            </property>
-            <property name="checked" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="check_goToSysTray" >
-            <property name="text" >
-             <string>Go to systray when minimizing window</string>
-            </property>
-            <property name="checked" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="check_closeToSysTray" >
-            <property name="text" >
-             <string>Go to systray when closing main window</string>
-            </property>
-           </widget>
           </item>
          </layout>
         </widget>
@@ -1312,43 +1533,17 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupOSD" >
-         <property name="title" >
-          <string>Systray Messages</string>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
          </property>
-         <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <item>
-           <widget class="QRadioButton" name="alwaysOSD" >
-            <property name="text" >
-             <string>Always display systray messages</string>
-            </property>
-            <property name="checked" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="someOSD" >
-            <property name="text" >
-             <string>Display systray messages only when window is hidden</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="neverOSD" >
-            <property name="text" >
-             <string>Never display systray messages</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
+         <property name="sizeHint" >
+          <size>
+           <width>466</width>
+           <height>41</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>

@@ -34,11 +34,12 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   QString savePath;
   setupUi(this);
   // Setting icons
-  tabWidget->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/systemtray.png")));
-  tabWidget->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/locale.png")));
-  tabWidget->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/filter.png")));
-  tabWidget->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/proxy.png")));
-  tabWidget->setTabIcon(4, QIcon(QString::fromUtf8(":/Icons/style.png")));
+  tabOptions->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/connection.png")));
+  tabOptions->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/style.png")));
+  tabOptions->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/locale.png")));
+  tabOptions->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/filter.png")));
+  tabOptions->setTabIcon(4, QIcon(QString::fromUtf8(":/Icons/proxy.png")));
+  tabOptions->setTabIcon(5, QIcon(QString::fromUtf8(":/Icons/wizard.png")));
   lbl_icon_i18n->setPixmap(QPixmap(QString::fromUtf8(":/Icons/locale.png")));
   addFilterRange->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
   delFilterRange->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
