@@ -1250,16 +1250,6 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="clearFinished_checkBox" >
-            <property name="text" >
-             <string>Automatically clear finished downloads</string>
-            </property>
-            <property name="checked" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QCheckBox" name="check_goToSysTray" >
             <property name="text" >
              <string>Go to systray when minimizing window</string>

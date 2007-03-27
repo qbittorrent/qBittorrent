@@ -69,7 +69,6 @@ class options_imp : public QDialog, private Ui::Dialog{
     // Misc Settings
     bool useAdditionDialog() const;
     QString getSavePath() const;
-    bool getClearFinishedOnExit() const;
     bool getGoToSysTrayOnMinimizingWindow() const;
     bool getGoToSysTrayOnExitingWindow() const;
     bool getConfirmOnExit() const;
