@@ -26,6 +26,8 @@
 #include <QSplashScreen>
 #include <QTcpSocket>
 #include <QSettings>
+#include <QTcpServer>
+#include <QTcpSocket>
 
 #ifdef Q_WS_WIN
   #include <QWindowsXPStyle>

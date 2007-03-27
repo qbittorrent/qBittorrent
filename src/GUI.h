@@ -23,11 +23,8 @@
 #define GUI_H
 
 #include <QMainWindow>
-#include <QHash>
 #include <QProcess>
 #include <QTcpServer>
-#include <QTcpSocket>
-#include <QCloseEvent>
 #include <QSystemTrayIcon>
 
 #include <libtorrent/entry.hpp>
@@ -55,6 +52,8 @@ class DLListDelegate;
 class SearchListDelegate;
 class downloadThread;
 class downloadFromURL;
+class QTcpSocket;
+class QCloseEvent;
 
 using namespace libtorrent;
 namespace fs = boost::filesystem;

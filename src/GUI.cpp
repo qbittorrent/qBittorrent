@@ -22,20 +22,13 @@
 #include <QTime>
 #include <QMessageBox>
 #include <QDesktopWidget>
-#include <QTemporaryFile>
-#include <QTextStream>
-#include <QInputDialog>
 #include <QTimer>
-#include <QPainter>
-#include <QToolTip>
-#include <QStandardItemModel>
-#include <QModelIndex>
-#include <QHeaderView>
-#include <QScrollBar>
-#include <QSettings>
+//#include <QSettings>
 #include <QDesktopServices>
 #include <QCompleter>
-
+#include <QTcpServer>
+#include <QTcpSocket>
+#include <QCloseEvent>
 #include <boost/format.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/filesystem/exception.hpp>
