@@ -28,11 +28,6 @@
 #include <QTcpSocket>
 #include <QCloseEvent>
 
-#include <boost/format.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
-#include <boost/filesystem/exception.hpp>
-#include <curl/curl.h>
-
 #include <libtorrent/extensions/metadata_transfer.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
 
