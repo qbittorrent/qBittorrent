@@ -26,23 +26,30 @@
 
 #include <upnp/upnp.h>
 
-#define WAIT_TIMEOUT 5
+class UPnPDevice{
+  private:
+    struct Upnp_Discovery* device;
+    IXML_Document *doc;
 
-// Control point registration callback
+  public:
+    UPnPDevice(struct Upnp_Discovery* device, IXML_Document* doc): device(device), doc(doc){}
+    IXML_Document* getDoc(){ return doc; }
+    struct Upnp_Discovery* getDevice(){ return device;}
+};
 
 class UPnPHandler : public QThread {
   Q_OBJECT
 
   private:
     UpnpClient_Handle UPnPClientHandle;
-    QHash<QString,struct Upnp_Discovery*> UPnPDevices;
+    QHash<QString, UPnPDevice> UPnPDevices;
 
   public:
     UPnPHandler(){}
     ~UPnPHandler(){}
 
   public slots:
-    void addUPnPDevice(struct Upnp_Discovery* device){
+    void addUPnPDevice(struct Upnp_Discovery* device, IXML_Document *){
 
     }
 

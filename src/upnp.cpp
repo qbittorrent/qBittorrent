@@ -1,17 +1,20 @@
 #include "upnp.h"
 
+#define WAIT_TIMEOUT 5
+
+// Control point registration callback
 int callBackCPRegister( Upnp_EventType EventType, void* Event, void* Cookie ){
   switch(EventType){
     case UPNP_DISCOVERY_ADVERTISEMENT_ALIVE:
     case UPNP_DISCOVERY_SEARCH_RESULT:
     {
       struct Upnp_Discovery *d_event = (struct Upnp_Discovery*) Event;
-      IXML_Document *DescDoc=NULL;
+      IXML_Document *DescDoc;
       int ret = UpnpDownloadXmlDoc(d_event->Location, &DescDoc);
       if(ret != UPNP_E_SUCCESS){
         // silently ignore?
       }else{
-        ((UPnPHandler*)Cookie)->addUPnPDevice(d_event);
+        ((UPnPHandler*)Cookie)->addUPnPDevice(d_event, DescDoc);
 //         TvCtrlPointAddDevice(DescDoc, d_event->Location, d_event->Expires);
       }
       if(DescDoc) ixmlDocument_free(DescDoc);
