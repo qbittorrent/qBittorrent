@@ -28,6 +28,7 @@ contains(DEBUG_MODE, 0){
 QMAKE_CXXFLAGS_RELEASE += -fwrapv
 QMAKE_CXXFLAGS_DEBUG += -fwrapv
 #LIBS += -lcurl
+LIBS += -lupnp
 #CONFIG += link_pkgconfig
 #PKGCONFIG += libtorrent
 QT += network
@@ -129,8 +130,8 @@ SOURCES += GUI.cpp \
 	   searchEngine.cpp
 !contains(DEFINES, NO_UPNP){
   message(UPnP Enabled)
-  HEADERS += UPnP.h
-  SOURCES += UPnP.cpp
+  HEADERS += UPnP.h upnp.h
+  SOURCES += UPnP.cpp upnp.cpp
 }else{
   message(UPnP Disabled)
 }

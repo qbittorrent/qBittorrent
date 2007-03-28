@@ -405,7 +405,7 @@ void GUI::updateDlList(bool force){
     // No need to update if qBittorrent DL list is hidden
     return;
   }
-  qDebug("Updating download list");
+//   qDebug("Updating download list");
   LCD_UpSpeed->display(tmp); // UP LCD
   LCD_DownSpeed->display(tmp2); // DL LCD
   // browse handles
@@ -485,7 +485,7 @@ void GUI::updateDlList(bool force){
       continue;
     }
   }
-  qDebug("Updated Download list");
+//   qDebug("Updated Download list");
 }
 
 void GUI::sortDownloadListFloat(int index, Qt::SortOrder sortOrder){
@@ -1195,7 +1195,7 @@ void GUI::trackerAuthenticationRequired(torrent_handle& h){
 
 // Check connection status and display right icon
 void GUI::checkConnectionStatus(){
-  qDebug("Checking connection status");
+//   qDebug("Checking connection status");
   char tmp[MAX_CHAR_TMP];
   session_status sessionStatus = BTSession.getSessionStatus();
   // Update ratio info
@@ -1232,7 +1232,7 @@ void GUI::checkConnectionStatus(){
       connecStatusLblIcon->setToolTip("<b>"+tr("Connection status:")+"</b><br>"+tr("Offline")+"<br><i>"+tr("No peers found...")+"</i>");
     }
   }
-  qDebug("Connection status updated");
+//   qDebug("Connection status updated");
 }
 
 /*****************************************************
