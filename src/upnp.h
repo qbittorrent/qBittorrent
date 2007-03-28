@@ -42,19 +42,19 @@ class UPnPHandler : public QThread {
 
   private:
     UpnpClient_Handle UPnPClientHandle;
-    QHash<QString, UPnPDevice> UPnPDevices;
+    QHash<QString, UPnPDevice*> UPnPDevices;
 
   public:
     UPnPHandler(){}
     ~UPnPHandler(){}
 
   public slots:
-    void addUPnPDevice(struct Upnp_Discovery* device, IXML_Document *){
-
+    void addUPnPDevice(struct Upnp_Discovery* device, IXML_Document *doc){
+      UPnPDevices.insert(QString(device->DeviceId), new UPnPDevice(device, doc));
     }
 
     void removeUPnPDevice(QString device_id){
-
+      UPnPDevices.remove(device_id);
     }
 
   private:
