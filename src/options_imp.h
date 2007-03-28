@@ -79,7 +79,8 @@ class options_imp : public QDialog, private Ui::Dialog{
     QString getPreviewProgram() const;
     bool getUseOSDAlways() const;
     bool getUseOSDWhenHiddenOnly() const;
-
+    QString getStyle() const;
+    void setStyle(QString style);
 
   protected slots:
     void on_okButton_clicked();
@@ -93,6 +94,9 @@ class options_imp : public QDialog, private Ui::Dialog{
     void on_filterBrowse_clicked();
     void disableDownload(int checkBoxValue);
     void disableDHTGroup(int checkBoxValue);
+#ifndef NO_UPNP
+    void disableUPnPGroup(int checkBoxValue);
+#endif
     void disableMaxConnecLimit(int);
     void enableFilter(int checkBoxValue);
     void disableUpload(int checkBoxValue);

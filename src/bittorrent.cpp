@@ -90,6 +90,22 @@ void bittorrent::enableUPnP(int port){
   }
 }
 
+// Set UPnP port (>= 1000)
+void bittorrent::setUPnPPort(int upnp_port){
+  if(!UPnPEnabled){
+    qDebug("Cannot set UPnP port because it is disabled");
+    return;
+  }
+  if(m_upnp->getUPnPPort() != upnp_port){
+    qDebug("Changing UPnP port to %d", upnp_port);
+    delete m_upnp;
+    m_upnp = new CUPnPControlPoint(upnp_port);
+    m_upnp->AddPortMappings(m_upnpMappings);
+  }else{
+    qDebug("UPnP: No need to set the port, it is already listening on this port");
+  }
+}
+
 void bittorrent::disableUPnP(){
   if(UPnPEnabled){
     qDebug("Disabling UPnP");

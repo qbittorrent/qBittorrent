@@ -640,6 +640,7 @@ private:
 	bool m_IGWDeviceDetected;
 	CUPnPService *m_WanService;
 	QMutex m_WaitForSearchTimeout;
+        unsigned short m_UPnPPort;
 
 public:
 	CUPnPControlPoint(unsigned short udpPort);
@@ -650,6 +651,9 @@ public:
 		std::vector<CUPnPPortMapping> &upnpPortMapping);
 	bool DeletePortMappings(
 		std::vector<CUPnPPortMapping> &upnpPortMapping);
+        unsigned short getUPnPPort() const{
+          return m_UPnPPort;
+        }
 
 	UpnpClient_Handle GetUPnPClientHandle()	const
 		{ return m_UPnPClientHandle; }

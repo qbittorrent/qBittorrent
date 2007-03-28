@@ -50,6 +50,12 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   groupMainUPnP->setEnabled(false);
   disableUPnP->setChecked(true);
 #endif
+#ifdef Q_WS_WIN
+  radioWinXPStyle->setEnabled(true);
+#endif
+#ifdef Q_WS_MAC
+  radioMacOSStyle->setEnabled(true);
+#endif
   // Languages supported
   combo_i18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/united_kingdom.png"))), QString::fromUtf8("English"));
   locales << "en_GB";
@@ -110,6 +116,9 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(disableUPLimit, SIGNAL(stateChanged(int)), this, SLOT(disableUpload(int)));
   connect(disableDLLimit,  SIGNAL(stateChanged(int)), this, SLOT(disableDownload(int)));
   connect(disableDHT,  SIGNAL(stateChanged(int)), this, SLOT(disableDHTGroup(int)));
+#ifndef NO_UPNP
+  connect(disableUPnP,  SIGNAL(stateChanged(int)), this, SLOT(disableUPnPGroup(int)));
+#endif
   connect(disableRatio,  SIGNAL(stateChanged(int)), this, SLOT(disableShareRatio(int)));
   connect(activateFilter,  SIGNAL(stateChanged(int)), this, SLOT(enableFilter(int)));
   connect(enableProxy_checkBox,  SIGNAL(stateChanged(int)), this, SLOT(enableProxy(int)));
@@ -158,6 +167,16 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(alwaysOSD, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(someOSD, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(neverOSD, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(radioPlastiqueStyle, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(radioCleanlooksStyle, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(radioMotifStyle, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(radioCDEStyle, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+#ifdef Q_WS_WIN
+  connect(radioWinXPStyle, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+#endif
+#ifdef Q_WS_MAC
+  connect(radioMacOSStyle, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+#endif
   // Disable apply Button
   applyButton->setEnabled(false);
   if(!QSystemTrayIcon::supportsMessages()){
@@ -238,6 +257,7 @@ void options_imp::saveOptions(){
   settings.setValue("ConfirmOnExit", getConfirmOnExit());
   settings.setValue("GoToSystray", getGoToSysTrayOnMinimizingWindow());
   settings.setValue("GoToSystrayOnExit", getGoToSysTrayOnExitingWindow());
+  // End Behaviour group
   settings.endGroup();
   settings.setValue("PreviewProgram", getPreviewProgram());
   // End Misc options
@@ -251,6 +271,8 @@ void options_imp::saveOptions(){
       settings.setValue("OSDEnabled", 0);
     }
   }
+  settings.setValue("Style", getStyle());
+  // End Options group
   settings.endGroup();
   // Disable apply Button
   applyButton->setEnabled(false);
@@ -258,6 +280,46 @@ void options_imp::saveOptions(){
 
 bool options_imp::isFilteringEnabled() const{
   return activateFilter->isChecked();
+}
+
+QString options_imp::getStyle() const{
+  if(radioPlastiqueStyle->isChecked()) return "Plastique";
+  if(radioCleanlooksStyle->isChecked()) return "Cleanlooks";
+  if(radioMotifStyle->isChecked()) return "Motif";
+  if(radioCDEStyle->isChecked()) return "CDE";
+  if(radioMacOSStyle->isChecked()) return "MacOS";
+  if(radioWinXPStyle->isChecked()) return "WinXP";
+#ifdef Q_WS_WIN
+  return "WinXP";
+#endif
+#ifdef Q_WS_MAC
+  return "MacOS";
+#endif
+  return "Plastique";
+}
+
+void options_imp::setStyle(QString style){
+  if(style == "Cleanlooks"){
+    radioCleanlooksStyle->setChecked(true);
+    return;
+  }
+  if(style == "Motif"){
+    radioMotifStyle->setChecked(true);
+    return;
+  }
+  if(style == "CDE"){
+    radioCDEStyle->setChecked(true);
+    return;
+  }
+  if(style == "MacOS"){
+    radioMacOSStyle->setChecked(true);
+    return;
+  }
+  if(style == "WinXP"){
+    radioWinXPStyle->setChecked(true);
+    return;
+  }
+  radioPlastiqueStyle->setChecked(true);
 }
 
 void options_imp::loadOptions(){
@@ -429,9 +491,10 @@ void options_imp::loadOptions(){
   confirmExit_checkBox->setChecked(settings.value("ConfirmOnExit", true).toBool());
   check_goToSysTray->setChecked(settings.value("GoToSystray", true).toBool());
   check_closeToSysTray->setChecked(settings.value("GoToSystrayOnExit", false).toBool());
+  // End Behaviour group
   settings.endGroup();
   preview_program->setText(settings.value("PreviewProgram", QString()).toString());
-  // End Misc options
+  // End Misc group
   settings.endGroup();
   value = settings.value("OSDEnabled", 1).toInt();
   if(value == 0){
@@ -443,6 +506,8 @@ void options_imp::loadOptions(){
       alwaysOSD->setChecked(true);
     }
   }
+  setStyle(settings.value("Style", QString()).toString());
+  // End Options group
   settings.endGroup();
   // Disable apply Button
   applyButton->setEnabled(false);
@@ -606,6 +671,16 @@ void options_imp::disableDHTGroup(int checkBoxValue){
   }else{
     //enable
     groupDHT->setEnabled(true);
+  }
+}
+
+void options_imp::disableUPnPGroup(int checkBoxValue){
+  if(checkBoxValue==2){
+    //Disable
+    groupUPnP->setEnabled(false);
+  }else{
+    //enable
+    groupUPnP->setEnabled(true);
   }
 }
 

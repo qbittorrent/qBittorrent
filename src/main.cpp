@@ -28,7 +28,10 @@
 #include <QSettings>
 #include <QTcpSocket>
 #include <QTcpServer>
-
+#include <QPlastiqueStyle>
+#include <QCleanlooksStyle>
+#include <QMotifStyle>
+#include <QCDEStyle>
 #ifdef Q_WS_WIN
   #include <QWindowsXPStyle>
 #endif
@@ -41,6 +44,35 @@
 
 #include "GUI.h"
 #include "misc.h"
+
+void useStyle(QApplication *app, QString style){
+  std::cout << "* Style: Using " << style.toStdString()  << " style\n";
+  if(style == "Cleanlooks"){
+    app->setStyle(new QCleanlooksStyle());
+    return;
+  }
+  if(style == "Motif"){
+    app->setStyle(new QMotifStyle());
+    return;
+  }
+  if(style == "CDE"){
+    app->setStyle(new QCDEStyle());
+    return;
+  }
+#ifdef Q_WS_MAC
+  if(style == "MacOS"){
+    app->setStyle(new QMacStyle());
+    return;
+  }
+#endif
+#ifdef Q_WS_WIN
+  if(style == "WinXP"){
+    app->setStyle(new QWindowsXPStyle());
+    return;
+  }
+#endif
+  app->setStyle(new QPlastiqueStyle());
+}
 
 // Main
 int main(int argc, char *argv[]){
@@ -91,16 +123,23 @@ int main(int argc, char *argv[]){
     return 0;
   }
   QApplication app(argc, argv);
+  QSettings settings("qBittorrent", "qBittorrent");
+  QString style;
 #ifdef Q_WS_WIN
-  app.setStyle(new QWindowsXPStyle());
+  style = settings.value("Options/Style", "WinXP").toString();
 #endif
 #ifdef Q_WS_MAC
-  app.setStyle(new QMacStyle());
+  style = settings.value("Options/Style", "MacOS").toString();
 #endif
+#ifndef Q_WS_WIN
+  #ifndef Q_WS_MAC
+  style = settings.value("Options/Style", "Plastique").toString();
+  #endif
+#endif
+  useStyle(&app, style);
   QSplashScreen *splash = new QSplashScreen(QPixmap(":/Icons/splash.jpg"));
   splash->show();
   // Open options file to read locale
-  QSettings settings("qBittorrent", "qBittorrent");
   locale = settings.value("Options/Language/Locale", QString()).toString();
   QTranslator translator;
   if(locale.isEmpty()){

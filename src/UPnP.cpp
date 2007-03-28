@@ -979,7 +979,8 @@ m_RootDeviceMap(),
 m_ServiceMap(),
 m_ActivePortMappingsMap(),
 m_IGWDeviceDetected(false),
-m_WanService(NULL)
+m_WanService(NULL),
+m_UPnPPort(udpPort)
 {
 	// Pointer to self
 	s_CtrlPoint = this;

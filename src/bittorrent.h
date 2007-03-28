@@ -121,6 +121,7 @@ class bittorrent : public QObject{
 #ifndef NO_UPNP
     void enableUPnP(int port=50000);
     void disableUPnP();
+    void setUPnPPort(int upnp_port);
 #endif
 
   protected slots:

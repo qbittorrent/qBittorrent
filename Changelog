@@ -2,6 +2,7 @@
     - FEATURE: Added UPnP port forwarding support
     - FEATURE: Display more infos about the torrent in its properties
     - FEATURE: Allow the user to edit torrents' trackers
+    - FEATURE: Allow user to change qBT's style (Plastique, Cleanlooks, Motif, CDE, MacOSX, WinXP)
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
 

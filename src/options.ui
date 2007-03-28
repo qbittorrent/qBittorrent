@@ -1533,6 +1533,72 @@
         </widget>
        </item>
        <item>
+        <widget class="QGroupBox" name="groupStyle" >
+         <property name="title" >
+          <string>Style (Look 'n Feel)</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QRadioButton" name="radioPlastiqueStyle" >
+            <property name="text" >
+             <string>Plastique style (KDE like)</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioCleanlooksStyle" >
+            <property name="text" >
+             <string>Cleanlooks style (GNOME like)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioMotifStyle" >
+            <property name="text" >
+             <string>Motif style (default Qt style on Unix systems)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioCDEStyle" >
+            <property name="text" >
+             <string>CDE style (Common Desktop Environment like)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioMacOSStyle" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
+            <property name="text" >
+             <string>MacOS style (MacOSX only)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioWinXPStyle" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
+            <property name="text" >
+             <string>WindowsXP style (WIndows XP only)</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <spacer>
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
