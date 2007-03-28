@@ -674,6 +674,7 @@ void options_imp::disableDHTGroup(int checkBoxValue){
   }
 }
 
+#ifndef NO_UPNP
 void options_imp::disableUPnPGroup(int checkBoxValue){
   if(checkBoxValue==2){
     //Disable
@@ -683,6 +684,7 @@ void options_imp::disableUPnPGroup(int checkBoxValue){
     groupUPnP->setEnabled(true);
   }
 }
+#endif
 
 void options_imp::enableSavePath(int checkBoxValue){
  if(checkBoxValue==2){

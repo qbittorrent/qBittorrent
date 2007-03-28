@@ -27,7 +27,10 @@
 #include "bittorrent.h"
 #include "misc.h"
 #include "downloadThread.h"
+
+#ifndef NO_UPNP
 #include "UPnP.h"
+#endif
 
 // Main constructor
 bittorrent::bittorrent(){
