@@ -1348,7 +1348,7 @@ upnpDiscovery:
 				// we don't want to spam our logs.
 				if (EventType != UPNP_DISCOVERY_ADVERTISEMENT_ALIVE) {
 					msg.str("Internet Gateway Device Detected.");
-// 					AddLogLineM(true, logUPnP, msg);
+					qDebug("UPnP: %s", msg.str().c_str());
 				}
 				// Add the root device to our list
 				upnpCP->AddRootDevice(rootDevice, urlBase,
@@ -1460,7 +1460,7 @@ upnpEventSubscriptionExpired:
 					es_event->PublisherUrl <<
 					"' with SID == '" <<
 					newSID << "'.";
-// 				AddDebugLogLineM(true, logUPnP, msg);
+                                qDebug("UPnP: %s", msg.str().c_str());
 				// In principle, we should test to see if the
 				// service is the same. But here we only have one
 				// service, so...
@@ -1468,7 +1468,7 @@ upnpEventSubscriptionExpired:
 			} else {
 				msg << "Error: did not find service " <<
 					newSID << " in the service map.";
-// 				AddDebugLogLineM(true, logUPnP, msg);
+                                qDebug("UPnP: %s", msg.str().c_str());
 			}
 		}
 		break;
@@ -1530,7 +1530,7 @@ upnpEventSubscriptionExpired:
 		msg << "error(UPNP_EVENT_SUBSCRIPTION_REQUEST): ";
 eventSubscriptionRequest:
 		msg << "This is not a device, event ignored.";
-// 		AddDebugLogLineM(true, logUPnP, msg);
+                qDebug("UPnP: %s", msg.str().c_str());
 		break;
 	default:
 		// Humm, this is not good, we forgot to handle something...
