@@ -5,6 +5,7 @@
     - FEATURE: Allow user to change qBT's style (Plastique, Cleanlooks, Motif, CDE, MacOSX, WinXP)
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
+    - COSMETIC: Display more logs messages concerning features
 
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.9.0
     - FEATURE: Based on libtorrent v0.12

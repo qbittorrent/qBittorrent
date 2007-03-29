@@ -167,7 +167,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   // RSS tab
   rssWidget = new RSSImp();
   tabs->addTab(rssWidget, tr("RSS"));
-  tabs->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/skin/search.png")));
+  tabs->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/rss.png")));
   // Start download list refresher
   refresher = new QTimer(this);
   connect(refresher, SIGNAL(timeout()), this, SLOT(updateDlList()));
