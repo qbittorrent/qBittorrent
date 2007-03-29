@@ -45,4 +45,3 @@
 - Make use of QNetworkInterface (could be useful ?)
 - Display more info in log (UPnP successful)
 - Possibility to disable the trayicon
-- Bring mainWindow to foreground when asking for exit confirmation
