@@ -130,8 +130,8 @@ SOURCES += GUI.cpp \
 	   searchEngine.cpp
 !contains(DEFINES, NO_UPNP){
   message(UPnP Enabled)
-  HEADERS += UPnP.h upnp.h
-  SOURCES += UPnP.cpp upnp.cpp
+  HEADERS += UPnP.h
+  SOURCES += UPnP.cpp
 }else{
   message(UPnP Disabled)
 }

@@ -26,6 +26,8 @@ Dependencies:
 
 - libcurl
 
+- libupnp (>= 1.2.1)
+
 - python >= 2.3 (previous might work - not tested): needed by search engine.
 
 NOTE FOR GNOME USERS:
