@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Contact : chris@qbittorrent.org
+ * Contact : chris@qbittorrent.org arnaud@qbittorrent.org
  */
 #ifndef __RSS_IMP_H__
 #define __RSS_IMP_H__
@@ -30,8 +30,11 @@ class RSSImp : public QWidget, public Ui::RSS{
   public:
     RSSImp() : QWidget(){
       setupUi(this);
+      addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
+      delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
+      refreshAll_button->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
     }
-    
+
     ~RSSImp(){}
 };
 
