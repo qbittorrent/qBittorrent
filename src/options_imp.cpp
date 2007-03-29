@@ -141,7 +141,9 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(enableScan_checkBox, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(disableMaxConnec, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(disableDHT, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+#ifndef NO_UPNP
   connect(disableUPnP, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+#endif
   connect(disablePeX, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(spin_dht_port, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spin_upnp_port, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
@@ -384,7 +386,7 @@ void options_imp::loadOptions(){
     spin_dht_port->setValue(value);
   }
 #ifndef NO_UPNP
-  value = settings.value("UPnPPort", 50000).toInt();
+  value = settings.value("UPnPPort", -1).toInt();
   if(value < 0){
     disableUPnP->setChecked(true);
     groupUPnP->setEnabled(false);

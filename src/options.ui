@@ -635,13 +635,22 @@
             </property>
             <item>
              <widget class="QCheckBox" name="disableUPnP" >
+              <property name="enabled" >
+               <bool>true</bool>
+              </property>
               <property name="text" >
                <string>Disable UPnP port forwarding</string>
+              </property>
+              <property name="checked" >
+               <bool>true</bool>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QGroupBox" name="groupUPnP" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
               <property name="title" >
                <string>UPnP configuration</string>
               </property>
