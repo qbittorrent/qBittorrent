@@ -76,6 +76,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     DLListDelegate *DLDelegate;
     unsigned int nbTorrents;
     QLabel *connecStatusLblIcon;
+    bool systrayIntegration;
     // Preview
     previewSelect *previewSelection;
     QProcess *previewProcess;
@@ -118,6 +119,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void writeSettings();
     void readSettings();
     void forceExit();
+    void createTrayIcon();
     // Torrent actions
     void showProperties(const QModelIndex &index);
     void propertiesSelection();

@@ -80,7 +80,7 @@ class options_imp : public QDialog, private Ui::Dialog{
     bool getUseOSDAlways() const;
     bool getUseOSDWhenHiddenOnly() const;
     QString getStyle() const;
-    void setStyle(QString style);
+    bool useSystrayIntegration() const;
 
   protected slots:
     void on_okButton_clicked();
@@ -109,6 +109,8 @@ class options_imp : public QDialog, private Ui::Dialog{
     void enableApplyButton();
     void checkPortsLogic();
     void enableSavePath(int checkBoxValue);
+    void setStyle(QString style);
+    void systrayDisabled(int val);
 
   public slots:
     void setLocale(QString locale);

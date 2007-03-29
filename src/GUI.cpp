@@ -156,10 +156,16 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(actionPreview_file, SIGNAL(triggered()), this, SLOT(previewFileSelection()));
   connect(infoBar, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayInfoBarMenu(const QPoint&)));
   // Create tray icon
-  if (!QSystemTrayIcon::isSystemTrayAvailable()){
-    std::cerr << "Error: System tray unavailable\n";
+  if (QSystemTrayIcon::isSystemTrayAvailable()){
+    QSettings settings("qBittorrent", "qBittorrent");
+    systrayIntegration = settings.value("Options/Misc/Behaviour/SystrayIntegration", true).toBool();
+    if(systrayIntegration){
+      createTrayIcon();
+    }
+  }else{
+    systrayIntegration = false;
+    qDebug("Info: System tray unavailable\n");
   }
-  myTrayIcon = new QSystemTrayIcon(QIcon(":/Icons/qbittorrent22.png"), this);
   // Search engine tab
   searchEngine = new SearchEngine(&BTSession, myTrayIcon);
   tabs->addTab(searchEngine, tr("Search"));
@@ -172,20 +178,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   refresher = new QTimer(this);
   connect(refresher, SIGNAL(timeout()), this, SLOT(updateDlList()));
   refresher->start(2000);
-  // Tray icon Menu
-  myTrayIconMenu = new QMenu(this);
-  myTrayIconMenu->addAction(actionOpen);
-  myTrayIconMenu->addAction(actionDownload_from_URL);
-  myTrayIconMenu->addSeparator();
-  myTrayIconMenu->addAction(actionStart_All);
-  myTrayIconMenu->addAction(actionPause_All);
-  myTrayIconMenu->addSeparator();
-  myTrayIconMenu->addAction(actionExit);
-  myTrayIcon->setContextMenu(myTrayIconMenu);
-  connect(myTrayIcon, SIGNAL(messageClicked()), this, SLOT(balloonClicked()));
-  // End of Icon Menu
-  connect(myTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
-  myTrayIcon->show();
   // Use a tcp server to allow only one instance of qBittorrent
   tcpServer = new QTcpServer();
   if (!tcpServer->listen(QHostAddress::LocalHost, 1666)) {
@@ -211,8 +203,10 @@ GUI::~GUI(){
   delete searchEngine;
   delete checkConnect;
   delete refresher;
-  delete myTrayIcon;
-  delete myTrayIconMenu;
+  if(systrayIntegration){
+    delete myTrayIcon;
+    delete myTrayIconMenu;
+  }
   delete DLDelegate;
   delete DLListModel;
   delete tcpServer;
@@ -420,7 +414,9 @@ void GUI::updateDlList(bool force){
   // update global informations
   snprintf(tmp, MAX_CHAR_TMP, "%.1f", BTSession.getPayloadUploadRate()/1024.);
   snprintf(tmp2, MAX_CHAR_TMP, "%.1f", BTSession.getPayloadDownloadRate()/1024.);
-  myTrayIcon->setToolTip("<b>"+tr("qBittorrent")+"</b><br>"+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(tmp2))+"<br>"+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(tmp))); // tray icon
+  if(systrayIntegration){
+    myTrayIcon->setToolTip("<b>"+tr("qBittorrent")+"</b><br>"+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(tmp2))+"<br>"+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(tmp))); // tray icon
+  }
   if( !force && (isMinimized() || isHidden() || tabs->currentIndex())){
     // No need to update if qBittorrent DL list is hidden
     return;
@@ -650,7 +646,7 @@ void GUI::showAbout(){
 void GUI::closeEvent(QCloseEvent *e){
   QSettings settings("qBittorrent", "qBittorrent");
   bool goToSystrayOnExit = settings.value("Options/Misc/Behaviour/GoToSystrayOnExit", false).toBool();
-  if(goToSystrayOnExit && !this->isHidden()){
+  if(systrayIntegration && goToSystrayOnExit && !this->isHidden()){
     hide();
     e->ignore();
     return;
@@ -688,8 +684,10 @@ void GUI::closeEvent(QCloseEvent *e){
   saveColWidthDLList();
   // Create fast resume data
   BTSession.saveFastResumeData();
-  // Hide tray icon
-  myTrayIcon->hide();
+  if(systrayIntegration){
+    // Hide tray icon
+    myTrayIcon->hide();
+  }
   // Accept exit
   e->accept();
 }
@@ -702,7 +700,7 @@ void GUI::showCreateWindow(){
 // Called when we minimize the program
 void GUI::hideEvent(QHideEvent *e){
   QSettings settings("qBittorrent", "qBittorrent");
-  if(settings.value("Options/Misc/Behaviour/GoToSystray", true).toBool()){
+  if(systrayIntegration && settings.value("Options/Misc/Behaviour/GoToSystray", true).toBool()){
     // Hide window
     hide();
   }
@@ -1021,7 +1019,7 @@ void GUI::configureSession(bool deleteOptions){
   // PeX
   if(!options->isPeXDisabled()){
     qDebug("Enabling Peer eXchange (PeX)");
-    setInfoBar(tr("PeX support [OFF]"), "blue");
+    setInfoBar(tr("PeX support [ON]"), "blue");
     BTSession.enablePeerExchange();
   }else{
     setInfoBar(tr("PeX support [OFF]"), "blue");
@@ -1172,7 +1170,7 @@ void GUI::finishedTorrent(torrent_handle& h){
     QString fileName = QString(h.name().c_str());
     setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
     int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
-    if(useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden()))) {
+    if(systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
       myTrayIcon->showMessage(tr("Download finished"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
     }
 }
@@ -1181,7 +1179,7 @@ void GUI::finishedTorrent(torrent_handle& h){
 void GUI::fullDiskError(torrent_handle& h){
   QSettings settings("qBittorrent", "qBittorrent");
   int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
-  if(useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden()))) {
+  if(systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))){
     myTrayIcon->showMessage(tr("I/O Error", "i.e: Input/Output Error"), tr("An error occured when trying to read or write %1. The disk is probably full, download has been paused", "e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused").arg(QString(h.name().c_str())), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
   }
   // Download will be paused by libtorrent. Updating GUI information accordingly
@@ -1300,6 +1298,25 @@ void GUI::displayDownloadingUrlInfos(const QString& url){
  *                                                   *
  *****************************************************/
 
+void GUI::createTrayIcon(){
+  // Tray icon
+  myTrayIcon = new QSystemTrayIcon(QIcon(":/Icons/qbittorrent22.png"), this);
+  // Tray icon Menu
+  myTrayIconMenu = new QMenu(this);
+  myTrayIconMenu->addAction(actionOpen);
+  myTrayIconMenu->addAction(actionDownload_from_URL);
+  myTrayIconMenu->addSeparator();
+  myTrayIconMenu->addAction(actionStart_All);
+  myTrayIconMenu->addAction(actionPause_All);
+  myTrayIconMenu->addSeparator();
+  myTrayIconMenu->addAction(actionExit);
+  myTrayIcon->setContextMenu(myTrayIconMenu);
+  connect(myTrayIcon, SIGNAL(messageClicked()), this, SLOT(balloonClicked()));
+  // End of Icon Menu
+  connect(myTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
+  myTrayIcon->show();
+}
+
 // Display Program Options
 void GUI::showOptions(){
   options = new options_imp(this);
@@ -1309,6 +1326,17 @@ void GUI::showOptions(){
 
 // Is executed each time options are saved
 void GUI::OptionsSaved(const QString& info, bool deleteOptions){
+  bool newSystrayIntegration = options->useSystrayIntegration();
+  if(newSystrayIntegration && !systrayIntegration){
+    // create the trayicon
+    createTrayIcon();
+  }
+  if(!newSystrayIntegration && systrayIntegration){
+    // Destroy trayicon
+    delete myTrayIcon;
+    delete myTrayIconMenu;
+  }
+  systrayIntegration = newSystrayIntegration;
   // Update info bar
   setInfoBar(info);
   // Update session

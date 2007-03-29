@@ -124,6 +124,11 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   txt_savePath->setText(home+"qBT_dir");
   // Load options
   loadOptions();
+  // Disable systray integration if it is not supported by the system
+  if(!QSystemTrayIcon::isSystemTrayAvailable()){
+    systrayDisabled(true);
+    check_disableSystray->setEnabled(false);
+  }
   // Connect signals / slots
   connect(disableUPLimit, SIGNAL(stateChanged(int)), this, SLOT(disableUpload(int)));
   connect(disableDLLimit,  SIGNAL(stateChanged(int)), this, SLOT(disableDownload(int)));
@@ -131,6 +136,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
 #ifndef NO_UPNP
   connect(disableUPnP,  SIGNAL(stateChanged(int)), this, SLOT(disableUPnPGroup(int)));
 #endif
+  connect(check_disableSystray, SIGNAL(stateChanged(int)), this, SLOT(systrayDisabled(int)));
   connect(disableRatio,  SIGNAL(stateChanged(int)), this, SLOT(disableShareRatio(int)));
   connect(activateFilter,  SIGNAL(stateChanged(int)), this, SLOT(enableFilter(int)));
   connect(enableProxy_checkBox,  SIGNAL(stateChanged(int)), this, SLOT(enableProxy(int)));
@@ -185,6 +191,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(radioCleanlooksStyle, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(radioMotifStyle, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(radioCDEStyle, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(check_disableSystray, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
 #ifdef Q_WS_WIN
   connect(radioWinXPStyle, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
@@ -253,7 +260,7 @@ void options_imp::saveOptions(){
 #ifndef NO_UPNP
   settings.setValue("UPnPPort", getUPnPPort());
 #endif
-  settings.setValue("PeXState", isPeXDisabled());
+  settings.setValue("PeXState", !isPeXDisabled());
   settings.setValue("ScanDir", getScanDir());
   // End Main options
   settings.endGroup();
@@ -302,6 +309,7 @@ void options_imp::saveOptions(){
   settings.setValue("ConfirmOnExit", getConfirmOnExit());
   settings.setValue("GoToSystray", getGoToSysTrayOnMinimizingWindow());
   settings.setValue("GoToSystrayOnExit", getGoToSysTrayOnExitingWindow());
+  settings.setValue("SystrayIntegration", useSystrayIntegration());
   // End Behaviour group
   settings.endGroup();
   settings.setValue("PreviewProgram", getPreviewProgram());
@@ -442,13 +450,13 @@ void options_imp::loadOptions(){
     spin_upnp_port->setValue(value);
   }
 #endif
-  boolValue = settings.value("PeXState", 0).toBool();
+  boolValue = settings.value("PeXState", true).toBool();
   if(boolValue){
     // Pex disabled
-    disablePeX->setChecked(true);
+    disablePeX->setChecked(false);
   }else{
     // PeX enabled
-    disablePeX->setChecked(false);
+    disablePeX->setChecked(true);
   }
   strValue = settings.value("ScanDir", QString()).toString();
   if(!strValue.isEmpty()){
@@ -536,6 +544,9 @@ void options_imp::loadOptions(){
   confirmExit_checkBox->setChecked(settings.value("ConfirmOnExit", true).toBool());
   check_goToSysTray->setChecked(settings.value("GoToSystray", true).toBool());
   check_closeToSysTray->setChecked(settings.value("GoToSystrayOnExit", false).toBool());
+  boolValue = settings.value("SystrayIntegration", true).toBool();
+  check_disableSystray->setChecked(!boolValue);
+  systrayDisabled(!boolValue);
   // End Behaviour group
   settings.endGroup();
   preview_program->setText(settings.value("PreviewProgram", QString()).toString());
@@ -556,6 +567,22 @@ void options_imp::loadOptions(){
   settings.endGroup();
   // Disable apply Button
   applyButton->setEnabled(false);
+}
+
+void options_imp::systrayDisabled(int val){
+  if(val){
+    // No SystrayIntegration
+    check_closeToSysTray->setChecked(false);
+    check_closeToSysTray->setEnabled(false);
+    check_goToSysTray->setChecked(false);
+    check_goToSysTray->setEnabled(false);
+    neverOSD->setChecked(true);
+    groupOSD->setEnabled(false);
+  }else{
+    check_closeToSysTray->setEnabled(true);
+    check_goToSysTray->setEnabled(true);
+    groupOSD->setEnabled(true);
+  }
 }
 
 // return min & max ports
@@ -640,6 +667,11 @@ bool options_imp::getUseOSDWhenHiddenOnly() const{
     return false;
   }
   return someOSD->isChecked();
+}
+
+bool options_imp::useSystrayIntegration() const{
+  if (!QSystemTrayIcon::isSystemTrayAvailable()) return false;
+  return (!check_disableSystray->isChecked());
 }
 
 // Return Share ratio
