@@ -77,6 +77,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     unsigned int nbTorrents;
     QLabel *connecStatusLblIcon;
     bool systrayIntegration;
+    bool force_exit;
     // Preview
     previewSelect *previewSelection;
     QProcess *previewProcess;
