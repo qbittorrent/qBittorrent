@@ -90,6 +90,7 @@ void bittorrent::enableUPnP(int port){
       "qBittorrent");
     m_upnp = new CUPnPControlPoint(port);
     connect(m_upnp, SIGNAL(noWanServiceDetected()), this, SLOT(noWanServiceEventHandler()));
+    connect(m_upnp, SIGNAL(yeswanServiceDetected()), this, SLOT(wanServiceEventHandler()));
     m_upnp->AddPortMappings(m_upnpMappings);
   }
 }
@@ -97,6 +98,11 @@ void bittorrent::enableUPnP(int port){
 void bittorrent::noWanServiceEventHandler(){
   // Forward this signal
   emit noWanServiceDetected();
+}
+
+void bittorrent::wanServiceEventHandler(){
+  // Forward this signal
+  emit wanServiceDetected();
 }
 
 // Set UPnP port (>= 1000)

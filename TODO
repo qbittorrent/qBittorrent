@@ -43,5 +43,5 @@
 - Use tooltips to explain options
 - Exit confirmation only if there are active downloads (display number of downloads) - SMARTER
 - Make use of QNetworkInterface (could be useful ?)
-- Display more info in log (PeX, UPnP, DHT w/ ports...)
+- Display more info in log (UPnP successful)
 - Possibility to disable the trayicon

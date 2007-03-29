@@ -106,6 +106,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   tabs->setTabText(0, tr("Transfers") +" (0)");
 #ifndef NO_UPNP
   connect(&BTSession, SIGNAL(noWanServiceDetected()), this, SLOT(displayNoUPnPWanServiceDetected()));
+  connect(&BTSession, SIGNAL(wanServiceDetected()), this, SLOT(displayUPnPWanServiceDetected()));
 #endif
   connect(&BTSession, SIGNAL(addedTorrent(const QString&, torrent_handle&, bool)), this, SLOT(torrentAdded(const QString&, torrent_handle&, bool)));
   connect(&BTSession, SIGNAL(duplicateTorrent(const QString&)), this, SLOT(torrentDuplicate(const QString&)));
@@ -284,6 +285,11 @@ void GUI::readParamsOnSocket(){
 void GUI::displayNoUPnPWanServiceDetected(){
   setInfoBar(tr("UPnP: no WAN service detected..."), "red");
 }
+
+void GUI::displayUPnPWanServiceDetected(){
+  setInfoBar(tr("UPnP: WAN service detected!"), "green");
+}
+
 #endif
 
 // Toggle paused state of selected torrent

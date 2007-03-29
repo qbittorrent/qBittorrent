@@ -142,6 +142,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void askForTorrentUrl();
 #ifndef NO_UPNP
     void displayNoUPnPWanServiceDetected();
+    void displayUPnPWanServiceDetected();
 #endif
 
 

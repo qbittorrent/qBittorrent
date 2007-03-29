@@ -893,7 +893,7 @@ bool CUPnPControlPoint::AddPortMappings(
                 qDebug("UPnP: %s", msg.str().c_str());
 		return false;
 	}
-
+        emit yeswanServiceDetected();
 	int n = upnpPortMapping.size();
 	bool ok = false;
 

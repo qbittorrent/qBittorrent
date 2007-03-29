@@ -135,6 +135,7 @@ class bittorrent : public QObject{
     void saveTrackerFile(const QString& hash);
 #ifndef NO_UPNP
     void noWanServiceEventHandler();
+    void wanServiceEventHandler();
 #endif
 
   signals:
@@ -152,6 +153,7 @@ class bittorrent : public QObject{
     void aboutToDownloadFromUrl(const QString& url);
 #ifndef NO_UPNP
     void noWanServiceDetected();
+    void wanServiceDetected();
 #endif
 };
 

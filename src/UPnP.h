@@ -599,6 +599,7 @@ public:
 
   signals:
     void noWanServiceDetected();
+    void yeswanServiceDetected();
 
 private:
 	void OnEventReceived(
