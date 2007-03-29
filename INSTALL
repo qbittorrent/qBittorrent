@@ -27,6 +27,7 @@ Dependencies:
 - libcurl
 
 - libupnp (>= 1.2.1) *OPTIONAL*
+    -> For Universal Plug 'n Play Port forwarding support
 
 - python >= 2.3 (previous might work - not tested): needed by search engine.
 

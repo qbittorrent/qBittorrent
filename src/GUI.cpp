@@ -104,6 +104,9 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   }
   nbTorrents = 0;
   tabs->setTabText(0, tr("Transfers") +" (0)");
+#ifndef NO_UPNP
+  connect(&BTSession, SIGNAL(noWanServiceDetected()), this, SLOT(displayNoUPnPWanServiceDetected()));
+#endif
   connect(&BTSession, SIGNAL(addedTorrent(const QString&, torrent_handle&, bool)), this, SLOT(torrentAdded(const QString&, torrent_handle&, bool)));
   connect(&BTSession, SIGNAL(duplicateTorrent(const QString&)), this, SLOT(torrentDuplicate(const QString&)));
   connect(&BTSession, SIGNAL(invalidTorrent(const QString&)), this, SLOT(torrentCorrupted(const QString&)));
@@ -276,6 +279,12 @@ void GUI::readParamsOnSocket(){
     }
   }
 }
+
+#ifndef NO_UPNP
+void GUI::displayNoUPnPWanServiceDetected(){
+  setInfoBar(tr("UPnP: no WAN service detected..."), "red");
+}
+#endif
 
 // Toggle paused state of selected torrent
 void GUI::togglePausedState(const QModelIndex& index){
@@ -953,7 +962,7 @@ void GUI::configureSession(bool deleteOptions){
   BTSession.setListeningPortsRange(options->getPorts());
   new_listenPort = BTSession.getListenPort();
   if(new_listenPort != old_listenPort){
-    setInfoBar(tr("Listening on port: %1", "e.g: Listening on port: 1666").arg( QString(misc::toString(new_listenPort).c_str())));
+    setInfoBar(tr("qBittorrent is bind to port: %1", "e.g: qBittorrent is bind to port: 1666").arg( QString(misc::toString(new_listenPort).c_str())));
   }
   // Apply max connec limit (-1 if disabled)
   BTSession.setMaxConnections(options->getMaxConnec());
@@ -978,26 +987,32 @@ void GUI::configureSession(bool deleteOptions){
   BTSession.setGlobalRatio(options->getRatio());
   // DHT (Trackerless)
   if(options->isDHTEnabled()){
+    setInfoBar(tr("DHT support [ON], port: %1").arg(options->getDHTPort()), "blue");
     BTSession.enableDHT();
     // Set DHT Port
     BTSession.setDHTPort(options->getDHTPort());
   }else{
+    setInfoBar(tr("DHT support [OFF]"), "blue");
     BTSession.disableDHT();
   }
 #ifndef NO_UPNP
   // Upnp
   if(options->isUPnPEnabled()){
+    setInfoBar(tr("UPnP support [ON], port: %1").arg(options->getUPnPPort()), "blue");
     BTSession.enableUPnP(options->getUPnPPort());
     BTSession.setUPnPPort(options->getUPnPPort());
   }else{
+    setInfoBar(tr("UPnP support [OFF]"), "blue");
     BTSession.disableUPnP();
   }
 #endif
   // PeX
   if(!options->isPeXDisabled()){
     qDebug("Enabling Peer eXchange (PeX)");
+    setInfoBar(tr("PeX support [OFF]"), "blue");
     BTSession.enablePeerExchange();
   }else{
+    setInfoBar(tr("PeX support [OFF]"), "blue");
     qDebug("Peer eXchange (PeX) disabled");
   }
   // Apply filtering settings

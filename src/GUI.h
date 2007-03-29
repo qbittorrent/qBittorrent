@@ -140,6 +140,10 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void OptionsSaved(const QString& info, bool deleteOptions);
     // HTTP slots
     void askForTorrentUrl();
+#ifndef NO_UPNP
+    void displayNoUPnPWanServiceDetected();
+#endif
+
 
   public slots:
     void torrentAdded(const QString& path, torrent_handle& h, bool fastResume);

@@ -133,6 +133,9 @@ class bittorrent : public QObject{
     void resumeUnfinished();
     bool loadTrackerFile(const QString& hash);
     void saveTrackerFile(const QString& hash);
+#ifndef NO_UPNP
+    void noWanServiceEventHandler();
+#endif
 
   signals:
     void invalidTorrent(const QString& path);
@@ -147,6 +150,9 @@ class bittorrent : public QObject{
     void scanDirFoundTorrents(const QStringList& pathList);
     void newDownloadedTorrent(const QString& path, const QString& url);
     void aboutToDownloadFromUrl(const QString& url);
+#ifndef NO_UPNP
+    void noWanServiceDetected();
+#endif
 };
 
 #endif

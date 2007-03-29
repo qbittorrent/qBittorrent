@@ -89,8 +89,14 @@ void bittorrent::enableUPnP(int port){
       true,
       "qBittorrent");
     m_upnp = new CUPnPControlPoint(port);
+    connect(m_upnp, SIGNAL(noWanServiceDetected()), this, SLOT(noWanServiceEventHandler()));
     m_upnp->AddPortMappings(m_upnpMappings);
   }
+}
+
+void bittorrent::noWanServiceEventHandler(){
+  // Forward this signal
+  emit noWanServiceDetected();
 }
 
 // Set UPnP port (>= 1000)
