@@ -3,6 +3,7 @@
 //
 // Copyright (c) 2006 Marcelo Roberto Jimenez ( phoenix@amule.org )
 // Copyright (c) 2006 aMule Team ( admin@amule.org / http://www.amule.org )
+// Edited by Christophe Dumez for qBittorrent
 //
 // Any parts of this program derived from the xMule, lMule or eMule project,
 // or contributed by third-party developers are copyrighted by their
@@ -663,8 +664,7 @@ bool CUPnPService::Execute(
 	ixmlDocument_free(ActionDoc);
 
 	// Check the response document
-	m_upnpLib.ProcessActionResponse(
-		RespDoc, action.GetName());
+	m_upnpLib.ProcessActionResponse(RespDoc, action.GetName());
 
 	// Free the response document
 	ixmlDocument_free(RespDoc);
@@ -869,6 +869,7 @@ error:
 
 CUPnPControlPoint::~CUPnPControlPoint()
 {
+        qDebug("UPnP: Destroying control point");
 	for(	RootDeviceMap::iterator it = m_RootDeviceMap.begin();
 		it != m_RootDeviceMap.end();
 		++it) {
@@ -876,8 +877,11 @@ CUPnPControlPoint::~CUPnPControlPoint()
 	}
 	// Remove all first
 	// RemoveAll();
+        qDebug("UPnP: Unregistering control point");
 	UpnpUnRegisterClient(m_UPnPClientHandle);
+        qDebug("UPnP: Clean up SDK");
 	UpnpFinish();
+        qDebug("UPnP: Control point destroyed");
 }
 
 
