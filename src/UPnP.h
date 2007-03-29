@@ -147,17 +147,6 @@ public:
 	const std::string Element_GetAttributeByTag(
 		IXML_Element *element,
 		const DOMString tag) const;
-
-	// ixml api
-	IXML_Node *(*m_ixmlNode_getFirstChild)(IXML_Node *nodeptr);
-	IXML_Node *(*m_ixmlNode_getNextSibling)(IXML_Node *nodeptr);
-	const DOMString (*m_ixmlNode_getNodeName)(IXML_Node *nodeptr);
-	const DOMString (*m_ixmlNode_getNodeValue)(IXML_Node *nodeptr);
-	IXML_NamedNodeMap *(*m_ixmlNode_getAttributes)(IXML_Node *nodeptr);
-	void (*m_ixmlDocument_free)(IXML_Document *doc);
-	IXML_Node *(*m_ixmlNamedNodeMap_getNamedItem)(
-		IXML_NamedNodeMap *nnMap, const DOMString name);
-	void (*m_ixmlNamedNodeMap_free)(IXML_NamedNodeMap *nnMap);
 };
 
 

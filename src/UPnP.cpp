@@ -296,7 +296,7 @@ const std::string CUPnPLib::Element_GetAttributeByTag(
 {
 	IXML_NamedNodeMap *NamedNodeMap = ixmlNode_getAttributes(
 		REINTERPRET_CAST(IXML_Node *)(element));
-	IXML_Node *attribute = m_ixmlNamedNodeMap_getNamedItem(NamedNodeMap, tag);
+	IXML_Node *attribute = ixmlNamedNodeMap_getNamedItem(NamedNodeMap, (char*)tag);
 	const DOMString s = ixmlNode_getNodeValue(attribute);
 	std::string ret;
 	if (s) {
@@ -656,8 +656,8 @@ bool CUPnPService::Execute(
 	if (ret != UPNP_E_SUCCESS) {
 		m_upnpLib.processUPnPErrorMessage(
 			"m_UpnpSendAction", ret, NULL, RespDoc);
-		m_upnpLib.m_ixmlDocument_free(ActionDoc);
-		m_upnpLib.m_ixmlDocument_free(RespDoc);
+		ixmlDocument_free(ActionDoc);
+		ixmlDocument_free(RespDoc);
 		return false;
 	}
 	ixmlDocument_free(ActionDoc);
@@ -1175,7 +1175,7 @@ upnpDiscovery:
 					d_event->Location, d_event->Expires);
 			}
 			// Free the XML doc tree
-			upnpCP->m_upnpLib.m_ixmlDocument_free(doc);
+			ixmlDocument_free(doc);
 		}
 		break;
 	}
