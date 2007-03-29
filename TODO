@@ -29,7 +29,7 @@
 - Add a torrent scheduler
 
 // in v0.10 (partial) - WIP
-- Download from RSS feeds (WIP by gtsoul in RSS_SUPPORT branch, clean & finish rss.h, merge with trunk, add a tab in mainWindow, debug)
+- Download from RSS feeds (WIP by gtsoul, clean & finish rss.h, add a tab in mainWindow, debug)
 - Move finished torrent to another tab and keep on seeding them even after restart (better for sharing)
 - Improve torrent creation dialog (look & features) :
     - Add Private combobox (allow to share on DHT or not)
@@ -45,3 +45,4 @@
 - Make use of QNetworkInterface (could be useful ?)
 - Display more info in log (UPnP successful)
 - Possibility to disable the trayicon
+- Bring mainWindow to foreground when asking for exit confirmation

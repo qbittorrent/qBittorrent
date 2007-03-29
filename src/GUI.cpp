@@ -40,6 +40,7 @@
 #include "downloadFromURLImp.h"
 #include "torrentAddition.h"
 #include "searchEngine.h"
+#include "rss_imp.h"
 
 /*****************************************************
  *                                                   *
@@ -163,6 +164,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   searchEngine = new SearchEngine(&BTSession, myTrayIcon);
   tabs->addTab(searchEngine, tr("Search"));
   tabs->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/skin/search.png")));
+  // RSS tab
+  rssWidget = new RSSImp();
+  tabs->addTab(rssWidget, tr("RSS"));
+  tabs->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/skin/search.png")));
   // Start download list refresher
   refresher = new QTimer(this);
   connect(refresher, SIGNAL(timeout()), this, SLOT(updateDlList()));

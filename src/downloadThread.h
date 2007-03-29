@@ -156,6 +156,7 @@ class downloadThread : public QThread {
           curl_easy_cleanup(curl);
           // Close tmp file
           fclose(file);
+	  qDebug("##### chemin "+filePath.toUtf8());
           emit downloadFinished(url, filePath, return_code, QString(errorBuffer));
 	  qDebug("In Download thread RUN, signal emitted, ErrorBuffer: %s", errorBuffer);
         }else{

@@ -30,7 +30,7 @@ QMAKE_CXXFLAGS_DEBUG += -fwrapv
 #LIBS += -lcurl -lupnp
 #CONFIG += link_pkgconfig
 #PKGCONFIG += libtorrent
-QT += network
+QT += network xml
 
 DEFINES += QT_NO_CAST_TO_ASCII
 
@@ -115,11 +115,12 @@ HEADERS += GUI.h misc.h options_imp.h about_imp.h \
            PreviewListDelegate.h trackerLogin.h \
            downloadThread.h downloadFromURLImp.h \
            torrentAddition.h deleteThread.h \
-           bittorrent.h searchEngine.h
+           bittorrent.h searchEngine.h \
+           rss.h rss_imp.h
 FORMS += MainWindow.ui options.ui about.ui \
          properties.ui createtorrent.ui preview.ui \
          login.ui downloadFromURL.ui addTorrentDialog.ui \
-         search.ui
+         search.ui rss.ui
 SOURCES += GUI.cpp \
            main.cpp \
            options_imp.cpp \

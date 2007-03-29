@@ -50,6 +50,7 @@ class SearchEngine;
 class QTcpServer;
 class QTcpSocket;
 class QCloseEvent;
+class RSSImp;
 
 using namespace libtorrent;
 namespace fs = boost::filesystem;
@@ -80,6 +81,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QProcess *previewProcess;
     // Search
     SearchEngine *searchEngine;
+    // RSS
+    RSSImp *rssWidget;
     // Misc
     QTcpServer *tcpServer;
     QTcpSocket *clientConnection;
