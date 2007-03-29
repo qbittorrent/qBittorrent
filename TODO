@@ -36,7 +36,7 @@
     - Use a QListWidget to allow multiple input paths
     - Possibility to add url seeds
 - Add IPv6 support (at least start working on it, libtorrent seems to support it, we should limit our code to IPv4 anymore)
-- UPnP support (debug, sync with next aMule release (or CVS)) : seems to be working!
+- UPnP support (debug, sync with next aMule release) : seems to be working!
 - Update v0.9.0 changelog after its release
 - Display Url seeds in torrent properties and allow to edit them
 - Improve Ipfilter.dat parser (move to a thread ? - too slow to load qBT and more importantly options)

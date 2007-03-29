@@ -35,7 +35,6 @@
 #ifdef Q_WS_WIN
   #include <QWindowsXPStyle>
 #endif
-
 #ifdef Q_WS_MAC
   #include <QMacStyle>
 #endif

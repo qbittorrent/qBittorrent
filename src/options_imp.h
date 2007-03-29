@@ -112,6 +112,7 @@ class options_imp : public QDialog, private Ui::Dialog{
 
   public slots:
     void setLocale(QString locale);
+    void useStyle();
 
   signals:
     void status_changed(const QString&, bool) const;

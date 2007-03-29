@@ -1600,7 +1600,7 @@
              <bool>false</bool>
             </property>
             <property name="text" >
-             <string>WindowsXP style (WIndows XP only)</string>
+             <string>WindowsXP style (Windows XP only)</string>
             </property>
            </widget>
           </item>

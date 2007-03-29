@@ -23,7 +23,19 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QSystemTrayIcon>
+#include <QApplication>
 #include <QSettings>
+#include <QPlastiqueStyle>
+#include <QCleanlooksStyle>
+#include <QMotifStyle>
+#include <QCDEStyle>
+#ifdef Q_WS_WIN
+  #include <QWindowsXPStyle>
+#endif
+
+#ifdef Q_WS_MAC
+  #include <QMacStyle>
+#endif
 
 #include "options_imp.h"
 #include "misc.h"
@@ -193,8 +205,39 @@ options_imp::~options_imp(){
   qDebug("-> destructing Options");
 }
 
+void options_imp::useStyle(){
+  QString style = getStyle();
+  if(style == "Cleanlooks"){
+    QApplication::setStyle(new QCleanlooksStyle());
+    return;
+  }
+  if(style == "Motif"){
+    QApplication::setStyle(new QMotifStyle());
+    return;
+  }
+  if(style == "CDE"){
+    QApplication::setStyle(new QCDEStyle());
+    return;
+  }
+#ifdef Q_WS_MAC
+  if(style == "MacOS"){
+    QApplication::setStyle(new QMacStyle());
+    return;
+  }
+#endif
+#ifdef Q_WS_WIN
+  if(style == "WinXP"){
+    QApplication::setStyle(new QWindowsXPStyle());
+    return;
+  }
+#endif
+  QApplication::setStyle(new QPlastiqueStyle());
+}
+
 void options_imp::saveOptions(){
   QSettings settings("qBittorrent", "qBittorrent");
+  // Apply style
+  useStyle();
   // Check if min port < max port
   checkPortsLogic();
   settings.beginGroup("Options");
