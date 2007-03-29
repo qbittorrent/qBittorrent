@@ -45,6 +45,7 @@
 	extern std::string stdEmptyString;
 #endif // UPNP_C
 
+#include <QWaitCondition>
 
 /**
  * Case insensitive std::string comparison
@@ -640,6 +641,7 @@ private:
 	bool m_IGWDeviceDetected;
 	CUPnPService *m_WanService;
 	QMutex m_WaitForSearchTimeout;
+        QWaitCondition searchTimeoutCondition;
         unsigned short m_UPnPPort;
 
 public:

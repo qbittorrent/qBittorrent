@@ -1033,7 +1033,9 @@ m_UPnPPort(udpPort)
 		// Lock it again, so that we block. Unlocking will only happen
 		// when the UPNP_DISCOVERY_SEARCH_TIMEOUT event occurs at the
 		// callback.
-		QMutexLocker lock(&m_WaitForSearchTimeout);
+                searchTimeoutCondition.wait(&m_WaitForSearchTimeout);
+// 		QMutexLocker lock(&m_WaitForSearchTimeout);s
+                m_WaitForSearchTimeout.unlock();
 	}
 	return;
 
@@ -1364,7 +1366,8 @@ upnpDiscovery:
                 qDebug("UPnP: %s", msg.str().c_str());
 
 		// Unlock the search timeout mutex
-		upnpCP->m_WaitForSearchTimeout.unlock();
+// 		upnpCP->m_WaitForSearchTimeout.unlock();
+                upnpCP->searchTimeoutCondition.wakeOne();
 
 		break;
 	}
