@@ -27,8 +27,7 @@ contains(DEBUG_MODE, 0){
 
 QMAKE_CXXFLAGS_RELEASE += -fwrapv
 QMAKE_CXXFLAGS_DEBUG += -fwrapv
-#LIBS += -lcurl
-LIBS += -lupnp
+#LIBS += -lcurl -lupnp
 #CONFIG += link_pkgconfig
 #PKGCONFIG += libtorrent
 QT += network

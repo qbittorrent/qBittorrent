@@ -25,6 +25,7 @@ Dependency options:
   --disable-libupnp               Disable use of libupnp
   --disable-upnp                   disable UPnP support
   --with-libupnp-inc=[path]        Path to libupnp include files
+  --with-libupnp-lib=[path]        Path to libupnp library files
 
 EOT
 }
@@ -176,6 +177,11 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
+		--with-libupnp-lib=*)
+			QC_WITH_LIBUPNP_LIB=$optarg
+			shift
+			;;
+
 		--verbose)
 			QC_DEBUG="Y"
 			shift
@@ -204,6 +210,7 @@ echo QC_WITH_LIBCURL_LIB=$QC_WITH_LIBCURL_LIB
 echo QC_DISABLE_libupnp=$QC_DISABLE_libupnp
 echo QC_DISABLE_UPNP=$QC_DISABLE_UPNP
 echo QC_WITH_LIBUPNP_INC=$QC_WITH_LIBUPNP_INC
+echo QC_WITH_LIBUPNP_LIB=$QC_WITH_LIBUPNP_LIB
 echo
 fi
 
@@ -474,6 +481,7 @@ public:
 name: libupnp
 arg: disable-upnp, disable UPnP support
 arg: with-libupnp-inc=[path], Path to libupnp include files
+arg: with-libupnp-lib=[path], Path to libupnp library files
 -----END QCMOD-----
 */
 class qc_libupnp : public ConfObj
@@ -509,7 +517,7 @@ public:
 	  				conf->addIncludePath(s);
 					}
 
-					/*s = conf->getenv("QC_WITH_LIBUPNP_LIB");
+					s = conf->getenv("QC_WITH_LIBUPNP_LIB");
           if(!s.isEmpty()) {
             if(!conf->checkLibrary(s, "upnp")) {
               qWarning("libupnp library not found!");
@@ -525,7 +533,7 @@ public:
               conf->addLib(QString("-L") + s);
           }
 
-          conf->addLib("-lupnp");*/
+          conf->addLib("-lupnp");
 
           return true;
 	}
@@ -1484,6 +1492,7 @@ export QC_WITH_LIBCURL_LIB
 export QC_DISABLE_libupnp
 export QC_DISABLE_UPNP
 export QC_WITH_LIBUPNP_INC
+export QC_WITH_LIBUPNP_LIB
 export QC_DEBUG
 rm -rf .qconftemp
 (

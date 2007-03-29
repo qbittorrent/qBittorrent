@@ -35,6 +35,8 @@
 #include <vector>
 
 #include <upnp/upnp.h>
+#include <upnp/upnptools.h>
+#include <upnp/ixml.h>
 
 #include <QMutex>
 
@@ -84,22 +86,6 @@ public:
 		{ return m_key; }
 };
 
-
-class CDynamicLibHandle
-{
-private:
-	std::string m_libname;
-	void *const m_LibraryHandle;
-	CDynamicLibHandle(const CDynamicLibHandle &);
-	CDynamicLibHandle &operator=(const CDynamicLibHandle &);
-
-public:
-	CDynamicLibHandle(const char *libname);
-	~CDynamicLibHandle();
-	void *Get() const { return m_LibraryHandle; }
-};
-
-
 class CUPnPControlPoint;
 
 
@@ -116,15 +102,6 @@ public:
 	static const std::string &UPNP_SERVICE_WAN_IP_CONNECTION;
 	static const std::string &UPNP_SERVICE_WAN_PPP_CONNECTION;
 	CUPnPControlPoint &m_ctrlPoint;
-
-private:
-	// dlopen stuff
-	static const int NUM_LIB_IXML_SYMBOLS = 8;
-	static const char *s_LibIXMLSymbols[NUM_LIB_IXML_SYMBOLS];
-	static const int NUM_LIB_UPNP_SYMBOLS = 17;
-	static const char *s_LibUPnPSymbols[NUM_LIB_UPNP_SYMBOLS];
-	CDynamicLibHandle m_LibIXMLHandle;
-	CDynamicLibHandle m_LibUPnPHandle;
 
 public:
 	CUPnPLib(CUPnPControlPoint &ctrlPoint);
@@ -181,44 +158,6 @@ public:
 	IXML_Node *(*m_ixmlNamedNodeMap_getNamedItem)(
 		IXML_NamedNodeMap *nnMap, const DOMString name);
 	void (*m_ixmlNamedNodeMap_free)(IXML_NamedNodeMap *nnMap);
-
-	// upnp api
-	// 1 - Initialization and Registration
-	int (*m_UpnpInit)(const char *IPAddress, int Port);
-	void (*m_UpnpFinish)();
-	unsigned short (*m_UpnpGetServerPort)();
-	char *(*m_UpnpGetServerIpAddress)();
-	int (*m_UpnpRegisterClient)(Upnp_FunPtr Callback,
-		const void *Cookie, UpnpClient_Handle *Hnd);
-	int (*m_UpnpUnRegisterClient)(UpnpClient_Handle Hnd);
-	// 2 - Discovery
-	int (*m_UpnpSearchAsync)(UpnpClient_Handle Hnd, int Mx,
-		const char *Target, const void *Cookie);
-	// 3 - Control
-	int (*m_UpnpGetServiceVarStatus)(UpnpClient_Handle Hnd, const char *ActionURL,
-		const char *VarName, DOMString *StVarVal);
-	int (*m_UpnpSendAction)(UpnpClient_Handle Hnd, const char *ActionURL,
-		const char *ServiceType, const char *DevUDN, IXML_Document *Action,
-		IXML_Document **RespNode);
-	int (*m_UpnpSendActionAsync)(UpnpClient_Handle Hnd, const char *ActionURL,
-		const char *ServiceType, const char *DevUDN, IXML_Document *Action,
-		Upnp_FunPtr Callback, const void *Cookie);
-	// 4 - Eventing
-	int (*m_UpnpSubscribe)(UpnpClient_Handle Hnd,
-		const char *PublisherUrl, int *TimeOut, Upnp_SID SubsId);
-	int (*m_UpnpUnSubscribe)(UpnpClient_Handle Hnd, Upnp_SID SubsId);
-	// 5 - HTTP
-	int (*m_UpnpDownloadXmlDoc)(const char *url, IXML_Document **xmlDoc);
-	// 6 - Optional Tools API
-	int (*m_UpnpResolveURL)(const char *BaseURL,
-		const char *RelURL, char *AbsURL);
-	IXML_Document *(*m_UpnpMakeAction)(
-		const char *ActionName, const char *ServType, int NumArg,
-		const char *Arg, ...);
-	int (*m_UpnpAddToAction)(
-		IXML_Document **ActionDoc, const char *ActionName,
-		const char *ServType, const char *ArgName, const char *ArgVal);
-	const char *(*m_UpnpGetErrorMessage)(int ErrorCode);
 };
 
 

@@ -3,6 +3,7 @@
 name: libupnp
 arg: disable-upnp, disable UPnP support
 arg: with-libupnp-inc=[path], Path to libupnp include files
+arg: with-libupnp-lib=[path], Path to libupnp library files
 -----END QCMOD-----
 */
 class qc_libupnp : public ConfObj
@@ -38,7 +39,7 @@ public:
 	  				conf->addIncludePath(s);
 					}
 
-					/*s = conf->getenv("QC_WITH_LIBUPNP_LIB");
+					s = conf->getenv("QC_WITH_LIBUPNP_LIB");
           if(!s.isEmpty()) {
             if(!conf->checkLibrary(s, "upnp")) {
               qWarning("libupnp library not found!");
@@ -54,7 +55,7 @@ public:
               conf->addLib(QString("-L") + s);
           }
 
-          conf->addLib("-lupnp");*/
+          conf->addLib("-lupnp");
 
           return true;
 	}
