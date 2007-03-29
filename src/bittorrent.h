@@ -37,7 +37,6 @@
 #include <boost/filesystem/exception.hpp>
 
 #include "deleteThread.h"
-#include "upnp.h"
 
 class QTimer;
 class QString;
