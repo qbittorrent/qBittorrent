@@ -81,6 +81,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     SearchListDelegate *SearchDelegate;
     unsigned int nbTorrents;
     QLabel *connecStatusLblIcon;
+    bool force_exit;
     // Preview
     previewSelect *previewSelection;
     QProcess *previewProcess;

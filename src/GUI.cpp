@@ -129,6 +129,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(options, SIGNAL(status_changed(const QString&, bool)), this, SLOT(OptionsSaved(const QString&, bool)));
   // Configure BT session according to options
   configureSession(true);
+  force_exit = false;
   // Resume unfinished torrents
   BTSession.resumeUnfinishedTorrents();
   // Add torrent given on command line
@@ -401,7 +402,7 @@ void GUI::displayDLListMenu(const QPoint& pos){
 // Necessary if we want to close the window
 // in one time if "close to systray" is enabled
 void GUI::forceExit(){
-  hide();
+  force_exit = true;
   close();
 }
 
@@ -808,13 +809,14 @@ void GUI::showAbout(){
 void GUI::closeEvent(QCloseEvent *e){
   QSettings settings("qBittorrent", "qBittorrent");
   bool goToSystrayOnExit = settings.value("Options/Misc/Behaviour/GoToSystrayOnExit", false).toBool();
-  if(goToSystrayOnExit && !this->isHidden()){
+  if(!force_exit && goToSystrayOnExit && !this->isHidden()){
     hide();
     e->ignore();
     return;
   }
   if(settings.value("Options/Misc/Behaviour/ConfirmOnExit", true).toBool()){
     show();
+    showNormal();
     if(QMessageBox::question(this,
        tr("Are you sure you want to quit?")+" -- "+tr("qBittorrent"),
        tr("Are you sure you want to quit qBittorrent?"),
