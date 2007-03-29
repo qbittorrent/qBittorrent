@@ -33,6 +33,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <QObject>
 
 #include <upnp/upnp.h>
 #include <upnp/upnptools.h>
@@ -48,14 +49,6 @@
 #endif // UPNP_C
 
 #include <QWaitCondition>
-
-/**
- * Case insensitive std::string comparison
- */
-bool stdStringIsEqualCI(
-	const std::string &s1,
-	const std::string &s2);
-
 
 class CUPnPPortMapping
 {
@@ -555,8 +548,9 @@ typedef std::map<const std::string, CUPnPService *> ServiceMap;
 typedef std::map<const std::string, CUPnPPortMapping> PortMappingMap;
 
 
-class CUPnPControlPoint
-{
+class CUPnPControlPoint : public QObject {
+  Q_OBJECT
+
 private:
 	static CUPnPControlPoint *s_CtrlPoint;
 	// upnp stuff
@@ -602,6 +596,9 @@ public:
 		Upnp_EventType EventType,
 		void* Event,
 		void* Cookie);
+
+  signals:
+    void noWanServiceDetected();
 
 private:
 	void OnEventReceived(

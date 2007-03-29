@@ -886,6 +886,7 @@ bool CUPnPControlPoint::AddPortMappings(
 {
 	std::ostringstream msg;
 	if (!WanServiceDetected()) {
+                emit noWanServiceDetected();
 		msg <<  "UPnP Error: "
 			"CUPnPControlPoint::AddPortMapping: "
 			"Wan Service not detected.";
