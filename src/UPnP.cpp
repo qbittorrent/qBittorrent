@@ -30,7 +30,7 @@
 #include "UPnP.h"
 
 #include <QMutexLocker>
-
+#include <QString>
 
 #include <dlfcn.h>		// For dlopen(), dlsym(), dlclose()
 #include <algorithm>		// For transform()
@@ -45,20 +45,6 @@
 	// Let's hope that function pointers are equal in size to data pointers
 	#define REINTERPRET_CAST(x) (x)
 #endif
-
-
-/**
- * Case insensitive std::string comparison
- */
-bool stdStringIsEqualCI(const std::string &s1, const std::string &s2)
-{
-	std::string ns1(s1);
-	std::string ns2(s2);
-	transform(ns1.begin(), ns1.end(), ns1.begin(), tolower);
-	transform(ns2.begin(), ns2.end(), ns2.begin(), tolower);
-	return ns1 == ns2;
-}
-
 
 CUPnPPortMapping::CUPnPPortMapping(
 	int port,
@@ -1336,7 +1322,7 @@ upnpDiscovery:
 			std::string devType(upnpCP->m_upnpLib.
 				Element_GetChildValueByTag(rootDevice, "deviceType"));
 			// Only add device if it is an InternetGatewayDevice
-			if (stdStringIsEqualCI(devType, upnpCP->m_upnpLib.UPNP_DEVICE_IGW)) {
+                        if(QString(devType.c_str()).toUpper() == QString(upnpCP->m_upnpLib.UPNP_DEVICE_IGW.c_str()).toUpper()){
 				// This condition can be used to auto-detect
 				// the UPnP device we are interested in.
 				// Obs.: Don't block the entry here on this
@@ -1384,7 +1370,7 @@ upnpDiscovery:
 		std::string devType = dab_event->DeviceType;
 		// Check for an InternetGatewayDevice and removes it from the list
 		transform(devType.begin(), devType.end(), devType.begin(), tolower);
-		if (stdStringIsEqualCI(devType, upnpCP->m_upnpLib.UPNP_DEVICE_IGW)) {
+		if (QString(devType.c_str()).toUpper() == QString(upnpCP->m_upnpLib.UPNP_DEVICE_IGW.c_str()).toUpper()) {
 			upnpCP->RemoveRootDevice(dab_event->DeviceId);
 		}
 		break;
@@ -1416,13 +1402,6 @@ upnpEventRenewalComplete:
 			msg << "Error in Event Subscribe Callback";
 			upnpCP->m_upnpLib.processUPnPErrorMessage(
 				msg.str(), es_event->ErrCode, NULL, NULL);
-		} else {
-#if 0
-			TvCtrlPointHandleSubscribeUpdate(
-				es_event->PublisherUrl,
-				es_event->Sid,
-				es_event->TimeOut );
-#endif
 		}
 
 		break;
@@ -1503,16 +1482,6 @@ upnpEventSubscriptionExpired:
 			msg << "m_UpnpGetServiceVarStatusAsync";
 			upnpCP->m_upnpLib.processUPnPErrorMessage(
 				msg.str(), sv_event->ErrCode, NULL, NULL);
-		} else {
-#if 0
-			// Warning: The use of UpnpGetServiceVarStatus and
-			// UpnpGetServiceVarStatusAsync is deprecated by the
-			// UPnP forum.
-			TvCtrlPointHandleGetVar(
-				sv_event->CtrlUrl,
-				sv_event->StateVarName,
-				sv_event->CurrentVal );
-#endif
 		}
 		break;
 	}
