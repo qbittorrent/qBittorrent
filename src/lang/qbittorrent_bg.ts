@@ -185,7 +185,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation>Начало</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="786"/>
+        <location filename="../options.ui" line="795"/>
         <source>Save Path:</source>
         <translation>Съхрани Път:</translation>
     </message>
@@ -210,7 +210,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation>Порт Обхват:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1526"/>
+        <location filename="../options.ui" line="1535"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -235,57 +235,57 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">към</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1193"/>
+        <location filename="../options.ui" line="1202"/>
         <source>Proxy</source>
         <translation>Прокси</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1215"/>
+        <location filename="../options.ui" line="1224"/>
         <source>Proxy Settings</source>
         <translation>Прокси Настройки</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1235"/>
+        <location filename="../options.ui" line="1244"/>
         <source>Server IP:</source>
         <translation>Сървър IP:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1242"/>
+        <location filename="../options.ui" line="1251"/>
         <source>0.0.0.0</source>
         <translation>0.0.0.0</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1268"/>
+        <location filename="../options.ui" line="1277"/>
         <source>Port:</source>
         <translation>Порт:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1300"/>
+        <location filename="../options.ui" line="1309"/>
         <source>Proxy server requires authentication</source>
         <translation>Прокси сървъра иска удостоверяване</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1310"/>
+        <location filename="../options.ui" line="1319"/>
         <source>Authentication</source>
         <translation>Удостоверяване</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1338"/>
+        <location filename="../options.ui" line="1347"/>
         <source>User Name:</source>
         <translation>Име на Потребител:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1345"/>
+        <location filename="../options.ui" line="1354"/>
         <source>Password:</source>
         <translation>Парола:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1205"/>
+        <location filename="../options.ui" line="1214"/>
         <source>Enable connection through a proxy server</source>
         <translation>Разрешава връзка през прокси сървър</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="923"/>
+        <location filename="../options.ui" line="932"/>
         <source>Language</source>
         <translation>Език</translation>
     </message>
@@ -310,12 +310,12 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Опростен Китайски</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1642"/>
+        <location filename="../options.ui" line="1651"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1649"/>
+        <location filename="../options.ui" line="1658"/>
         <source>Cancel</source>
         <translation>Прекъсни</translation>
     </message>
@@ -325,12 +325,12 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Езиковите настройки ще работят след рестартиране.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1454"/>
+        <location filename="../options.ui" line="1463"/>
         <source>Scanned Dir:</source>
         <translation>Претърсена Директория:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1436"/>
+        <location filename="../options.ui" line="1445"/>
         <source>Enable directory scan (auto add torrent files inside)</source>
         <translation>Разреши търсене в директория (автоматично добавя намерени торент-файлове)</translation>
     </message>
@@ -370,12 +370,12 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">KB UP max.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1043"/>
+        <location filename="../options.ui" line="1052"/>
         <source>Activate IP Filtering</source>
         <translation>Активирай IP Филтриране</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1053"/>
+        <location filename="../options.ui" line="1062"/>
         <source>Filter Settings</source>
         <translation>Настройки на Филтъра</translation>
     </message>
@@ -385,42 +385,42 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">ipfilter.dat URL или PATH:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1089"/>
+        <location filename="../options.ui" line="1098"/>
         <source>Start IP</source>
         <translation>Начално IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1094"/>
+        <location filename="../options.ui" line="1103"/>
         <source>End IP</source>
         <translation>Крайно IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1099"/>
+        <location filename="../options.ui" line="1108"/>
         <source>Origin</source>
         <translation>Произход</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1104"/>
+        <location filename="../options.ui" line="1113"/>
         <source>Comment</source>
         <translation>Коментар</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1659"/>
+        <location filename="../options.ui" line="1668"/>
         <source>Apply</source>
         <translation>Приложи</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1031"/>
+        <location filename="../options.ui" line="1040"/>
         <source>IP Filter</source>
         <translation>IP Филтър</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1133"/>
+        <location filename="../options.ui" line="1142"/>
         <source> Add Range</source>
         <translation> Добави Обхват</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1140"/>
+        <location filename="../options.ui" line="1149"/>
         <source> Remove Range</source>
         <translation> Премахни Обхват</translation>
     </message>
@@ -430,17 +430,17 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Каталонски</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1170"/>
+        <location filename="../options.ui" line="1179"/>
         <source>ipfilter.dat Path:</source>
         <translation>ipfilter.dat Път:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1412"/>
+        <location filename="../options.ui" line="1421"/>
         <source>Misc</source>
         <translation>Допълнения</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="840"/>
+        <location filename="../options.ui" line="849"/>
         <source>Ask for confirmation on exit</source>
         <translation>Искай потвърждение при изход</translation>
     </message>
@@ -450,22 +450,22 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Изтрий свалените при изход</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="850"/>
+        <location filename="../options.ui" line="859"/>
         <source>Go to systray when minimizing window</source>
         <translation>Отиди в системна папка при минимизиране на прозореца</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="935"/>
+        <location filename="../options.ui" line="944"/>
         <source>Localization</source>
         <translation>Настройка на езика</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="962"/>
+        <location filename="../options.ui" line="971"/>
         <source>Language:</source>
         <translation>Език:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="729"/>
+        <location filename="../options.ui" line="738"/>
         <source>Behaviour</source>
         <translation>Поведение</translation>
     </message>
@@ -520,12 +520,12 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Автоматично изтриване на завършили сваляния</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1496"/>
+        <location filename="../options.ui" line="1505"/>
         <source>Preview program</source>
         <translation>Програма за оглед</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1516"/>
+        <location filename="../options.ui" line="1525"/>
         <source>Audio/Video player:</source>
         <translation>Аудио/Видео плейър:</translation>
     </message>
@@ -540,22 +540,22 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation>DHT порт:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1003"/>
+        <location filename="../options.ui" line="1012"/>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
         <translation>&lt;b&gt;Забележка:&lt;/b&gt; Промените важат след рестарт на qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1010"/>
+        <location filename="../options.ui" line="1019"/>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
         <translation>&lt;b&gt; Бележка за преводачите:&lt;/b&gt; Ако няма qBittorrent на вашия език, &lt;br/&gt;и бихте искали да го преведете, &lt;br/&gt;моля, свържете се с мен (chris@qbittorrent.org).</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="753"/>
+        <location filename="../options.ui" line="762"/>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
         <translation>Покажи допълнителен торент диалог всеки път когато добавям един торент</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="766"/>
+        <location filename="../options.ui" line="775"/>
         <source>Default save path</source>
         <translation>Път за съхранение по подразбиране</translation>
     </message>
@@ -565,17 +565,17 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Съобщения на Системата</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="882"/>
+        <location filename="../options.ui" line="891"/>
         <source>Always display systray messages</source>
         <translation>Винаги показвай системните съобщения</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="892"/>
+        <location filename="../options.ui" line="901"/>
         <source>Display systray messages only when window is hidden</source>
         <translation>Показвай системните съобщения само при скрит прозорец</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="899"/>
+        <location filename="../options.ui" line="908"/>
         <source>Never display systray messages</source>
         <translation>Никога не показвай системните съобщения</translation>
     </message>
@@ -590,7 +590,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation>Изключи Peer eXchange (PeX)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="860"/>
+        <location filename="../options.ui" line="869"/>
         <source>Go to systray when closing main window</source>
         <translation>Отиди в системна папка при затваряне на главния прозорец</translation>
     </message>
@@ -615,72 +615,72 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="639"/>
+        <location filename="../options.ui" line="642"/>
         <source>Disable UPnP port forwarding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="646"/>
+        <location filename="../options.ui" line="655"/>
         <source>UPnP configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="666"/>
+        <location filename="../options.ui" line="675"/>
         <source>UPnP port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="741"/>
+        <location filename="../options.ui" line="750"/>
         <source>Torrent addition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="828"/>
+        <location filename="../options.ui" line="837"/>
         <source>Main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="870"/>
+        <location filename="../options.ui" line="879"/>
         <source>Systray messages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1424"/>
+        <location filename="../options.ui" line="1433"/>
         <source>Directory scan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1538"/>
+        <location filename="../options.ui" line="1547"/>
         <source>Style (Look &apos;n Feel)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1550"/>
+        <location filename="../options.ui" line="1559"/>
         <source>Plastique style (KDE like)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1560"/>
+        <location filename="../options.ui" line="1569"/>
         <source>Cleanlooks style (GNOME like)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1567"/>
+        <location filename="../options.ui" line="1576"/>
         <source>Motif style (default Qt style on Unix systems)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1574"/>
+        <location filename="../options.ui" line="1583"/>
         <source>CDE style (Common Desktop Environment like)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1584"/>
+        <location filename="../options.ui" line="1593"/>
         <source>MacOS style (MacOSX only)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1594"/>
+        <location filename="../options.ui" line="1603"/>
         <source>WindowsXP style (WIndows XP only)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2419,12 +2419,12 @@ Changelog:
         <translation type="obsolete">е повреден.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="964"/>
+        <location filename="../options_imp.cpp" line="968"/>
         <source>Range Start IP</source>
         <translation>IP Стартова Област</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="965"/>
+        <location filename="../options_imp.cpp" line="969"/>
         <source>Start IP:</source>
         <translation>IP на Старт:</translation>
     </message>
@@ -2439,22 +2439,22 @@ Changelog:
         <translation type="obsolete">Това IP е некоректно.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="981"/>
+        <location filename="../options_imp.cpp" line="985"/>
         <source>Range End IP</source>
         <translation>IP Крайна Област </translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="982"/>
+        <location filename="../options_imp.cpp" line="986"/>
         <source>End IP:</source>
         <translation>Крайно IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="998"/>
+        <location filename="../options_imp.cpp" line="1002"/>
         <source>IP Range Comment</source>
         <translation>Коментар IP Област</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="999"/>
+        <location filename="../options_imp.cpp" line="1003"/>
         <source>Comment:</source>
         <translation>Коментар:</translation>
     </message>
@@ -2465,48 +2465,48 @@ Changelog:
         <translation>до</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="853"/>
+        <location filename="../options_imp.cpp" line="857"/>
         <source>Choose your favourite preview program</source>
         <translation>Моля, изберете любима програма за оглед</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="993"/>
+        <location filename="../options_imp.cpp" line="997"/>
         <source>Invalid IP</source>
         <translation>Невалиден IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="993"/>
+        <location filename="../options_imp.cpp" line="997"/>
         <source>This IP is invalid.</source>
         <translation>Този IP е невалиден.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="644"/>
+        <location filename="../options_imp.cpp" line="646"/>
         <source>Options were saved successfully.</source>
         <translation>Опциите бяха съхранени успешно.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="838"/>
+        <location filename="../options_imp.cpp" line="842"/>
         <source>Choose scan directory</source>
         <translation>Изберете директория за сканиране</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="845"/>
+        <location filename="../options_imp.cpp" line="849"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>Изберете ipfilter.dat файл </translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="861"/>
+        <location filename="../options_imp.cpp" line="865"/>
         <source>Choose a save directory</source>
         <translation>Изберете директория за съхранение</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="893"/>
+        <location filename="../options_imp.cpp" line="897"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>В/И Грешка</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="893"/>
+        <location filename="../options_imp.cpp" line="897"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>Не мога да отворя %1 в режим четене.</translation>
     </message>

@@ -166,7 +166,7 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation>Principal</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="786"/>
+        <location filename="../options.ui" line="795"/>
         <source>Save Path:</source>
         <translation>Ruta de Guardado:</translation>
     </message>
@@ -191,7 +191,7 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation>Rango de Puertos:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1526"/>
+        <location filename="../options.ui" line="1535"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -216,57 +216,57 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">hasta</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1193"/>
+        <location filename="../options.ui" line="1202"/>
         <source>Proxy</source>
         <translation>Proxy</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1215"/>
+        <location filename="../options.ui" line="1224"/>
         <source>Proxy Settings</source>
         <translation>Configuración del Proxy</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1235"/>
+        <location filename="../options.ui" line="1244"/>
         <source>Server IP:</source>
         <translation>IP del servidor:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1242"/>
+        <location filename="../options.ui" line="1251"/>
         <source>0.0.0.0</source>
         <translation>0.0.0.0</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1268"/>
+        <location filename="../options.ui" line="1277"/>
         <source>Port:</source>
         <translation>Puerto:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1300"/>
+        <location filename="../options.ui" line="1309"/>
         <source>Proxy server requires authentication</source>
         <translation>El servidor Proxy requiere autentificarse</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1310"/>
+        <location filename="../options.ui" line="1319"/>
         <source>Authentication</source>
         <translation>Autenticación</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1338"/>
+        <location filename="../options.ui" line="1347"/>
         <source>User Name:</source>
         <translation>Nombre de Usuario:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1345"/>
+        <location filename="../options.ui" line="1354"/>
         <source>Password:</source>
         <translation>Contraseña:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1205"/>
+        <location filename="../options.ui" line="1214"/>
         <source>Enable connection through a proxy server</source>
         <translation>Habilitar conexión a través de un Servidor Proxy</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="923"/>
+        <location filename="../options.ui" line="932"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
@@ -281,22 +281,22 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">La configuración del lenguaje tendrá efecto después de reiniciar.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1642"/>
+        <location filename="../options.ui" line="1651"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1649"/>
+        <location filename="../options.ui" line="1658"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1454"/>
+        <location filename="../options.ui" line="1463"/>
         <source>Scanned Dir:</source>
         <translation>Directorio a Explorar:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1436"/>
+        <location filename="../options.ui" line="1445"/>
         <source>Enable directory scan (auto add torrent files inside)</source>
         <translation>Habilitar exploración de directorio (auto agregar archivos torrent dentro)</translation>
     </message>
@@ -321,12 +321,12 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">KB de subida max.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1043"/>
+        <location filename="../options.ui" line="1052"/>
         <source>Activate IP Filtering</source>
         <translation>Activar Filtro de IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1053"/>
+        <location filename="../options.ui" line="1062"/>
         <source>Filter Settings</source>
         <translation>Preferencias del Filtro</translation>
     </message>
@@ -336,42 +336,42 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">URL o Ruta de ipfilter.dat:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1089"/>
+        <location filename="../options.ui" line="1098"/>
         <source>Start IP</source>
         <translation>IP de inicio</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1094"/>
+        <location filename="../options.ui" line="1103"/>
         <source>End IP</source>
         <translation>IP Final</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1099"/>
+        <location filename="../options.ui" line="1108"/>
         <source>Origin</source>
         <translation>Origen</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1104"/>
+        <location filename="../options.ui" line="1113"/>
         <source>Comment</source>
         <translation>Comentario</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1659"/>
+        <location filename="../options.ui" line="1668"/>
         <source>Apply</source>
         <translation>Aplicar</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1031"/>
+        <location filename="../options.ui" line="1040"/>
         <source>IP Filter</source>
         <translation>Filtro de IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1133"/>
+        <location filename="../options.ui" line="1142"/>
         <source> Add Range</source>
         <translation>Agregar Rango</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1140"/>
+        <location filename="../options.ui" line="1149"/>
         <source> Remove Range</source>
         <translation>Eliminar Rango</translation>
     </message>
@@ -381,7 +381,7 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Catalán</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1170"/>
+        <location filename="../options.ui" line="1179"/>
         <source>ipfilter.dat Path:</source>
         <translation>Ruta de ipfilter.dat:</translation>
     </message>
@@ -396,32 +396,32 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Interfaz Gráfica</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="840"/>
+        <location filename="../options.ui" line="849"/>
         <source>Ask for confirmation on exit</source>
         <translation>Pedir confirmación al salir</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="850"/>
+        <location filename="../options.ui" line="859"/>
         <source>Go to systray when minimizing window</source>
         <translation>Mandar a la barra de tareas al minimizar ventana</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1412"/>
+        <location filename="../options.ui" line="1421"/>
         <source>Misc</source>
         <translation>Misceláneos</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="935"/>
+        <location filename="../options.ui" line="944"/>
         <source>Localization</source>
         <translation>Ubicación</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="962"/>
+        <location filename="../options.ui" line="971"/>
         <source>Language:</source>
         <translation>Idioma:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="729"/>
+        <location filename="../options.ui" line="738"/>
         <source>Behaviour</source>
         <translation>Comportamiento</translation>
     </message>
@@ -476,12 +476,12 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Limpiar automáticamente descargas finalizadas</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1496"/>
+        <location filename="../options.ui" line="1505"/>
         <source>Preview program</source>
         <translation>Previsualizar programa</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1516"/>
+        <location filename="../options.ui" line="1525"/>
         <source>Audio/Video player:</source>
         <translation>Reproductor de Audio/Video:</translation>
     </message>
@@ -496,22 +496,22 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation>Puerto DHT:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1003"/>
+        <location filename="../options.ui" line="1012"/>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
         <translation>&lt;b&gt;Nota: &lt;/b&gt; Los cambios se aplicarán después de reiniciar qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1010"/>
+        <location filename="../options.ui" line="1019"/>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
         <translation>&lt;b&gt;Nota de los traductores:&lt;/b&gt; Si qBittorrent no está disponible en tu idioma,&lt;br/&gt;y si quisieras traducirlo a tu lengua natal,&lt;br/&gt;por favor contáctame (chris@qbittorrent.org).</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="753"/>
+        <location filename="../options.ui" line="762"/>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
         <translation>Desplegar un diálogo de agregar torrent cada que agregue un torrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="766"/>
+        <location filename="../options.ui" line="775"/>
         <source>Default save path</source>
         <translation>Ruta de guardado por defecto</translation>
     </message>
@@ -521,17 +521,17 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Mensajes de Systray</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="882"/>
+        <location filename="../options.ui" line="891"/>
         <source>Always display systray messages</source>
         <translation>Siempre mostrar mensajes de bandeja de sistema</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="892"/>
+        <location filename="../options.ui" line="901"/>
         <source>Display systray messages only when window is hidden</source>
         <translation>Desplegar mensajes de la bandeja del sistema sólo cuando la ventana está oculta</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="899"/>
+        <location filename="../options.ui" line="908"/>
         <source>Never display systray messages</source>
         <translation>Nunca desplegar mensajes de la bandeja del sistema</translation>
     </message>
@@ -546,7 +546,7 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation>Desactivar Peer eXchange (PeX)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="860"/>
+        <location filename="../options.ui" line="869"/>
         <source>Go to systray when closing main window</source>
         <translation>Enviar a la bandeja del sistema cuando se cierre la ventana principal</translation>
     </message>
@@ -571,72 +571,72 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="639"/>
+        <location filename="../options.ui" line="642"/>
         <source>Disable UPnP port forwarding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="646"/>
+        <location filename="../options.ui" line="655"/>
         <source>UPnP configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="666"/>
+        <location filename="../options.ui" line="675"/>
         <source>UPnP port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="741"/>
+        <location filename="../options.ui" line="750"/>
         <source>Torrent addition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="828"/>
+        <location filename="../options.ui" line="837"/>
         <source>Main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="870"/>
+        <location filename="../options.ui" line="879"/>
         <source>Systray messages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1424"/>
+        <location filename="../options.ui" line="1433"/>
         <source>Directory scan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1538"/>
+        <location filename="../options.ui" line="1547"/>
         <source>Style (Look &apos;n Feel)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1550"/>
+        <location filename="../options.ui" line="1559"/>
         <source>Plastique style (KDE like)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1560"/>
+        <location filename="../options.ui" line="1569"/>
         <source>Cleanlooks style (GNOME like)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1567"/>
+        <location filename="../options.ui" line="1576"/>
         <source>Motif style (default Qt style on Unix systems)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1574"/>
+        <location filename="../options.ui" line="1583"/>
         <source>CDE style (Common Desktop Environment like)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1584"/>
+        <location filename="../options.ui" line="1593"/>
         <source>MacOS style (MacOSX only)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1594"/>
+        <location filename="../options.ui" line="1603"/>
         <source>WindowsXP style (WIndows XP only)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2401,12 +2401,12 @@ Log:
         <translation type="obsolete">está mal formado.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="964"/>
+        <location filename="../options_imp.cpp" line="968"/>
         <source>Range Start IP</source>
         <translation>IP de inicio de Rango</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="965"/>
+        <location filename="../options_imp.cpp" line="969"/>
         <source>Start IP:</source>
         <translation>IP de inicio:</translation>
     </message>
@@ -2421,22 +2421,22 @@ Log:
         <translation type="obsolete">Esta IP está incorrecta.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="981"/>
+        <location filename="../options_imp.cpp" line="985"/>
         <source>Range End IP</source>
         <translation>IP de fin de Rango</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="982"/>
+        <location filename="../options_imp.cpp" line="986"/>
         <source>End IP:</source>
         <translation>IP Final:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="998"/>
+        <location filename="../options_imp.cpp" line="1002"/>
         <source>IP Range Comment</source>
         <translation>Comentario del rango de IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="999"/>
+        <location filename="../options_imp.cpp" line="1003"/>
         <source>Comment:</source>
         <translation>Comentario:</translation>
     </message>
@@ -2447,48 +2447,48 @@ Log:
         <translation>hasta</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="853"/>
+        <location filename="../options_imp.cpp" line="857"/>
         <source>Choose your favourite preview program</source>
         <translation>Escoge tu programa de previsualización favorito</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="993"/>
+        <location filename="../options_imp.cpp" line="997"/>
         <source>Invalid IP</source>
         <translation>IP inválida</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="993"/>
+        <location filename="../options_imp.cpp" line="997"/>
         <source>This IP is invalid.</source>
         <translation>Esta IP es inválida.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="644"/>
+        <location filename="../options_imp.cpp" line="646"/>
         <source>Options were saved successfully.</source>
         <translation>Opciones guardadas exitosamente.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="838"/>
+        <location filename="../options_imp.cpp" line="842"/>
         <source>Choose scan directory</source>
         <translation>Selecciona un directorio a inspeccionar</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="845"/>
+        <location filename="../options_imp.cpp" line="849"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>Selecciona un archivo ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="861"/>
+        <location filename="../options_imp.cpp" line="865"/>
         <source>Choose a save directory</source>
         <translation>Selecciona un directorio para guardar</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="893"/>
+        <location filename="../options_imp.cpp" line="897"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>Error de Entrada/Salida</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="893"/>
+        <location filename="../options_imp.cpp" line="897"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>No se pudo abrir %1 en modo lectura.</translation>
     </message>

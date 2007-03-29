@@ -156,7 +156,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>常規</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="786"/>
+        <location filename="../options.ui" line="795"/>
         <source>Save Path:</source>
         <translation>保存路徑:</translation>
     </message>
@@ -181,7 +181,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Port範圍:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1526"/>
+        <location filename="../options.ui" line="1535"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -201,57 +201,57 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">到</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1193"/>
+        <location filename="../options.ui" line="1202"/>
         <source>Proxy</source>
         <translation>Proxy</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1215"/>
+        <location filename="../options.ui" line="1224"/>
         <source>Proxy Settings</source>
         <translation>Proxy設置</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1235"/>
+        <location filename="../options.ui" line="1244"/>
         <source>Server IP:</source>
         <translation>伺服器IP:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1242"/>
+        <location filename="../options.ui" line="1251"/>
         <source>0.0.0.0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1268"/>
+        <location filename="../options.ui" line="1277"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1300"/>
+        <location filename="../options.ui" line="1309"/>
         <source>Proxy server requires authentication</source>
         <translation>代理伺服器需要身分驗證</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1310"/>
+        <location filename="../options.ui" line="1319"/>
         <source>Authentication</source>
         <translation>驗證</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1338"/>
+        <location filename="../options.ui" line="1347"/>
         <source>User Name:</source>
         <translation>用戶名:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1345"/>
+        <location filename="../options.ui" line="1354"/>
         <source>Password:</source>
         <translation>密碼:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1205"/>
+        <location filename="../options.ui" line="1214"/>
         <source>Enable connection through a proxy server</source>
         <translation>可使用代理伺服器連接</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="923"/>
+        <location filename="../options.ui" line="932"/>
         <source>Language</source>
         <translation type="unfinished">語言</translation>
     </message>
@@ -261,12 +261,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">請選擇所需語言:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1642"/>
+        <location filename="../options.ui" line="1651"/>
         <source>OK</source>
         <translation>確認</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1649"/>
+        <location filename="../options.ui" line="1658"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
@@ -276,12 +276,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">語言設置將在重新啟動本軟體後生效.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1454"/>
+        <location filename="../options.ui" line="1463"/>
         <source>Scanned Dir:</source>
         <translation>監視目錄:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1436"/>
+        <location filename="../options.ui" line="1445"/>
         <source>Enable directory scan (auto add torrent files inside)</source>
         <translation>可使用目錄監視功能(自動添加torrent文件)</translation>
     </message>
@@ -306,12 +306,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">KB 上傳最大值.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1043"/>
+        <location filename="../options.ui" line="1052"/>
         <source>Activate IP Filtering</source>
         <translation>啟用IP過濾器</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1053"/>
+        <location filename="../options.ui" line="1062"/>
         <source>Filter Settings</source>
         <translation>過濾器設置</translation>
     </message>
@@ -321,57 +321,57 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">ipfilter.dat路徑或網址:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1089"/>
+        <location filename="../options.ui" line="1098"/>
         <source>Start IP</source>
         <translation>起始IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1094"/>
+        <location filename="../options.ui" line="1103"/>
         <source>End IP</source>
         <translation>截止IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1099"/>
+        <location filename="../options.ui" line="1108"/>
         <source>Origin</source>
         <translation>來源</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1104"/>
+        <location filename="../options.ui" line="1113"/>
         <source>Comment</source>
         <translation>注釋</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1659"/>
+        <location filename="../options.ui" line="1668"/>
         <source>Apply</source>
         <translation>應用</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1031"/>
+        <location filename="../options.ui" line="1040"/>
         <source>IP Filter</source>
         <translation>IP過濾器</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1133"/>
+        <location filename="../options.ui" line="1142"/>
         <source> Add Range</source>
         <translation> 添加IP列</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1140"/>
+        <location filename="../options.ui" line="1149"/>
         <source> Remove Range</source>
         <translation> 刪除IP列</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1170"/>
+        <location filename="../options.ui" line="1179"/>
         <source>ipfilter.dat Path:</source>
         <translation>ipfilter.dat路徑:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1412"/>
+        <location filename="../options.ui" line="1421"/>
         <source>Misc</source>
         <translation>其他</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="840"/>
+        <location filename="../options.ui" line="849"/>
         <source>Ask for confirmation on exit</source>
         <translation>離開時確認</translation>
     </message>
@@ -381,22 +381,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">離開時清除完成的下載</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="850"/>
+        <location filename="../options.ui" line="859"/>
         <source>Go to systray when minimizing window</source>
         <translation>最小化時移至systray</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="935"/>
+        <location filename="../options.ui" line="944"/>
         <source>Localization</source>
         <translation>地方化</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="962"/>
+        <location filename="../options.ui" line="971"/>
         <source>Language:</source>
         <translation>語言</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="729"/>
+        <location filename="../options.ui" line="738"/>
         <source>Behaviour</source>
         <translation>行為</translation>
     </message>
@@ -436,27 +436,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>最大上傳KB</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1496"/>
+        <location filename="../options.ui" line="1505"/>
         <source>Preview program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1516"/>
+        <location filename="../options.ui" line="1525"/>
         <source>Audio/Video player:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="882"/>
+        <location filename="../options.ui" line="891"/>
         <source>Always display systray messages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="892"/>
+        <location filename="../options.ui" line="901"/>
         <source>Display systray messages only when window is hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="899"/>
+        <location filename="../options.ui" line="908"/>
         <source>Never display systray messages</source>
         <translation type="unfinished"></translation>
     </message>
@@ -471,22 +471,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1003"/>
+        <location filename="../options.ui" line="1012"/>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1010"/>
+        <location filename="../options.ui" line="1019"/>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="753"/>
+        <location filename="../options.ui" line="762"/>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="766"/>
+        <location filename="../options.ui" line="775"/>
         <source>Default save path</source>
         <translation type="unfinished"></translation>
     </message>
@@ -501,7 +501,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="860"/>
+        <location filename="../options.ui" line="869"/>
         <source>Go to systray when closing main window</source>
         <translation type="unfinished"></translation>
     </message>
@@ -526,72 +526,72 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="639"/>
+        <location filename="../options.ui" line="642"/>
         <source>Disable UPnP port forwarding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="646"/>
+        <location filename="../options.ui" line="655"/>
         <source>UPnP configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="666"/>
+        <location filename="../options.ui" line="675"/>
         <source>UPnP port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="741"/>
+        <location filename="../options.ui" line="750"/>
         <source>Torrent addition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="828"/>
+        <location filename="../options.ui" line="837"/>
         <source>Main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="870"/>
+        <location filename="../options.ui" line="879"/>
         <source>Systray messages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1424"/>
+        <location filename="../options.ui" line="1433"/>
         <source>Directory scan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1538"/>
+        <location filename="../options.ui" line="1547"/>
         <source>Style (Look &apos;n Feel)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1550"/>
+        <location filename="../options.ui" line="1559"/>
         <source>Plastique style (KDE like)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1560"/>
+        <location filename="../options.ui" line="1569"/>
         <source>Cleanlooks style (GNOME like)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1567"/>
+        <location filename="../options.ui" line="1576"/>
         <source>Motif style (default Qt style on Unix systems)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1574"/>
+        <location filename="../options.ui" line="1583"/>
         <source>CDE style (Common Desktop Environment like)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1584"/>
+        <location filename="../options.ui" line="1593"/>
         <source>MacOS style (MacOSX only)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1594"/>
+        <location filename="../options.ui" line="1603"/>
         <source>WindowsXP style (WIndows XP only)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2076,78 +2076,78 @@ Changelog:
         <translation type="obsolete">輸入/輸出錯誤</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="964"/>
+        <location filename="../options_imp.cpp" line="968"/>
         <source>Range Start IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="965"/>
+        <location filename="../options_imp.cpp" line="969"/>
         <source>Start IP:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="981"/>
+        <location filename="../options_imp.cpp" line="985"/>
         <source>Range End IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="982"/>
+        <location filename="../options_imp.cpp" line="986"/>
         <source>End IP:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="998"/>
+        <location filename="../options_imp.cpp" line="1002"/>
         <source>IP Range Comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="999"/>
+        <location filename="../options_imp.cpp" line="1003"/>
         <source>Comment:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="853"/>
+        <location filename="../options_imp.cpp" line="857"/>
         <source>Choose your favourite preview program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="993"/>
+        <location filename="../options_imp.cpp" line="997"/>
         <source>Invalid IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="993"/>
+        <location filename="../options_imp.cpp" line="997"/>
         <source>This IP is invalid.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="644"/>
+        <location filename="../options_imp.cpp" line="646"/>
         <source>Options were saved successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="838"/>
+        <location filename="../options_imp.cpp" line="842"/>
         <source>Choose scan directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="845"/>
+        <location filename="../options_imp.cpp" line="849"/>
         <source>Choose an ipfilter.dat file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="861"/>
+        <location filename="../options_imp.cpp" line="865"/>
         <source>Choose a save directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="893"/>
+        <location filename="../options_imp.cpp" line="897"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation type="unfinished">輸入/輸出錯誤</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="893"/>
+        <location filename="../options_imp.cpp" line="897"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation type="unfinished"></translation>
     </message>
