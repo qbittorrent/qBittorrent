@@ -36,12 +36,13 @@
     - Use a QListWidget to allow multiple input paths
     - Possibility to add url seeds
 - Add IPv6 support (at least start working on it, libtorrent seems to support it, we should limit our code to IPv4 anymore)
-- UPnP support (debug, sync with next aMule release) : seems to be working!
+- UPnP support (debug, sync with next aMule release, move to a thread?) : seems to be working!
 - Update v0.9.0 changelog after its release
 - Display Url seeds in torrent properties and allow to edit them
 - Improve Ipfilter.dat parser (move to a thread ? - too slow to load qBT and more importantly options)
 - Use tooltips to explain options
 - Exit confirmation only if there are active downloads (display number of downloads) - SMARTER
-- Make use of QNetworkInterface (could be useful ?)
 - Display more info in log (UPnP successful)
-- Possibility to disable the trayicon
+- Update to libtorrent SVN (0.13)
+    - Use its UPnP/NAT-PMP built-in support instead of ours
+- Use some Qt4.3 features if detected (optional, only Qt4.2 should be required)
