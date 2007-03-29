@@ -32,7 +32,8 @@ Dependencies:
 - python >= 2.3 (previous might work - not tested): needed by search engine.
 
 NOTE FOR GNOME USERS:
-- qt4-qtconfig package is advised or qBittorrent interface will be ugly
+- qt4-qtconfig package is advised when using Plastique style (default)
+  or just change qBittorrent style to Cleanlooks (GNOME like)
 
 
 ------------------------------------------
