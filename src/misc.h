@@ -64,21 +64,20 @@ class misc : public QObject{
     // use Binary prefix standards from IEC 60027-2
     // see http://en.wikipedia.org/wiki/Kilobyte
     // value must be given in bytes
-    template <class T> static QString friendlyUnit(const T& value){
+    static QString friendlyUnit(float val){
       char tmp[MAX_CHAR_TMP];
-      float val = value;
-      if(val <= 0){
+      if(val < 0){
         return QString(tr("Unknown", "Unknown (size)"));
       }
-      QString units[] = {tr("B", "bytes"), tr("KiB", "kibibytes (1024 bytes)"), tr("MiB", "mebibytes (1024 kibibytes)"), tr("GiB", "gibibytes (1024 mibibytes)")};
-      for(int i=0; i<5; ++i){
+      const QString units[4] = {tr("B", "bytes"), tr("KiB", "kibibytes (1024 bytes)"), tr("MiB", "mebibytes (1024 kibibytes)"), tr("GiB", "gibibytes (1024 mibibytes)")};
+      for(unsigned short i=0; i<5; ++i){
         if (val < 1024.){
-          snprintf(tmp, MAX_CHAR_TMP, "%.1f", (float)val);
+          snprintf(tmp, MAX_CHAR_TMP, "%.1f", val);
           return QString(tmp) + " " + units[i];
         }
         val /= 1024.;
       }
-      snprintf(tmp, MAX_CHAR_TMP, "%.1f", (float)val);
+      snprintf(tmp, MAX_CHAR_TMP, "%.1f", val);
       return  QString(tmp) + " " + tr("TiB", "tebibytes (1024 gibibytes)");
     }
 
@@ -199,7 +198,7 @@ class misc : public QObject{
     // Take a number of seconds and return an user-friendly
     // time duration like "1d 2h 10m".
     static QString userFriendlyDuration(const long int seconds){
-      if(seconds <= 0){
+      if(seconds < 0){
         return QString::QString(tr("Unknown"));
       }
       if(seconds < 60){
