@@ -179,7 +179,7 @@ void options_imp::saveOptions(){
   settings.setValue("PortRangeMax", getPorts().second);
   settings.setValue("ShareRatio", getRatio());
   settings.setValue("DHTPort", getDHTPort());
-  settings.setValue("PeXState", isPeXDisabled());
+  settings.setValue("PeXState", !isPeXDisabled());
   settings.setValue("ScanDir", getScanDir());
   // End Main options
   settings.endGroup();
@@ -313,7 +313,7 @@ void options_imp::loadOptions(){
     spin_dht_port->setValue(value);
   }
   boolValue = settings.value("PeXState", 0).toBool();
-  if(boolValue){
+  if(!boolValue){
     // Pex disabled
     disablePeX->setChecked(true);
   }else{
