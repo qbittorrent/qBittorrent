@@ -71,6 +71,12 @@
        </item>
        <item>
         <widget class="QGroupBox" name="groupTorrentInfos" >
+         <property name="font" >
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="title" >
           <string>Torrent infos</string>
          </property>
