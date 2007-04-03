@@ -372,7 +372,7 @@ float SearchEngine::getNovaVersion(const QString& novaPath) const{
       line = line.split(' ').last();
       line.chop(1); // removes '\n'
       version = line.toFloat();
-      qDebug("Search plugin version: %.1f", version);
+      qDebug("Search plugin version: %.2f", version);
       break;
     }
   }
@@ -470,7 +470,7 @@ void SearchEngine::on_update_nova_button_clicked(){
   qDebug("Version on qbittorrent.org: %f", getNovaVersion(filePath));
   float version_on_server = getNovaVersion(filePath);
   if(version_on_server == 0.0){
-    //First server is down, try mirror
+    //First server is down, try the mirror
     QFile::remove(filePath);
     FILE *file = fopen((const char*)filePath.toUtf8(), "w");
     if(!file){

@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# Version: 2.01
+# Changelog:
+# - Use multiple threads to optimize speed
+
 # Version: 2.0
 # Changelog:
 # - Fixed ThePirateBay search engine
@@ -54,7 +58,6 @@ THREADED = True
 
 if os.environ.has_key('QBITTORRENT'):
 	STANDALONE = False
-	THREADED = False
 
 best_ratios = []
 
