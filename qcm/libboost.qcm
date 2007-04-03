@@ -1,6 +1,7 @@
 /*
 -----BEGIN QCMOD-----
 name: libboost
+arg: with-libboost-inc=[path], Path to libboost include files
 -----END QCMOD-----
 */
 class qc_libboost : public ConfObj
@@ -10,31 +11,46 @@ public:
 	QString name() const { return "libboost"; }
 	QString shortname() const { return "libboost"; }
 	bool exec(){
-          QString s;
-          QStringList sl;
-          sl += "/usr/include";
-          sl += "/usr/local/include";
-          sl += "/sw/include";
-          if(!conf->findHeader("boost/format.hpp", sl, &s)) {
-            qWarning("libboost includes not found!");
-            return false;
-          }
-	  conf->addIncludePath(s);
-          if(!conf->findHeader("boost/date_time/posix_time/posix_time.hpp", sl, &s)) {
-            qWarning("libboost-date-time includes not found!");
-            return false;
-          }
-	  conf->addIncludePath(s);
-          if(!conf->findHeader("boost/filesystem/path.hpp", sl, &s)) {
-            qWarning("libboost-filesystem includes not found!");
-            return false;
-          }
-          if(!conf->findHeader("boost/thread.hpp", sl, &s)) {
-            qWarning("libboost-thread includes not found!");
-            return false;
-          }
-	  conf->addIncludePath(s);
-
-          return true;
+        	QString s;
+		s = conf->getenv("QC_WITH_LIBBOOST_INC");
+		if(!s.isEmpty()) {
+			if(!conf->checkHeader(s, "boost/format.hpp")) {
+				return false;
+      			}
+			if(!conf->checkHeader(s, "boost/date_time/posix_time/posix_time.hpp")) {
+				return false;
+      			}
+			if(!conf->checkHeader(s, "boost/filesystem/path.hpp")) {
+				return false;
+      			}
+			if(!conf->checkHeader(s, "boost/thread.hpp")) {
+				return false;
+      			}
+		}else{
+			QStringList sl;
+			sl << "/usr/include";
+			sl << "/usr/local/include";
+			bool found = false;
+			foreach(s, sl){
+				if(conf->checkHeader(s, "boost/format.hpp")){
+					found = true;
+					break;
+				}
+			}
+			if(!found) {
+				return false;
+          		}
+			if(!conf->checkHeader(s, "boost/date_time/posix_time/posix_time.hpp")) {
+				return false;
+      			}
+			if(!conf->checkHeader(s, "boost/filesystem/path.hpp")) {
+				return false;
+      			}
+			if(!conf->checkHeader(s, "boost/thread.hpp")) {
+				return false;
+      			}
+		}
+		conf->addIncludePath(s);
+		return true;
 	}
 };
