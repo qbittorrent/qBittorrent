@@ -1,3 +1,6 @@
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.9.1
+    - BUGFIX: A lot of fixes in configure file
+
 * Sun Apr 01 2007 - Christophe Dumez <chris@qbittorrent.org> - v0.9.0
     - FEATURE: Based on libtorrent v0.12
     - FEATURE: Based on Qt4.2

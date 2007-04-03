@@ -11,10 +11,10 @@ TARGET = qbittorrent
 CONFIG += qt thread x11
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v0.9.0\\\"
+DEFINES += VERSION=\\\"v0.9.1beta1\\\"
 DEFINES += VERSION_MAJOR=0
 DEFINES += VERSION_MINOR=9
-DEFINES += VERSION_BUGFIX=0
+DEFINES += VERSION_BUGFIX=1
 
 contains(DEBUG_MODE, 1){
   CONFIG += debug
