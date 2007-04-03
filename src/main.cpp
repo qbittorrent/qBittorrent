@@ -136,7 +136,7 @@ int main(int argc, char *argv[]){
   #endif
 #endif
   useStyle(&app, style);
-  QSplashScreen *splash = new QSplashScreen(QPixmap(":/Icons/splash.jpg"));
+  QSplashScreen *splash = new QSplashScreen(QPixmap(":/Icons/splash.png"));
   splash->show();
   // Open options file to read locale
   locale = settings.value("Options/Language/Locale", QString()).toString();
