@@ -20,6 +20,7 @@ Main options:
 Dependency options:
   --with-libtorrent-inc=[path]     Path to libtorrent include files
   --with-libtorrent-lib=[path]     Path to libtorrent library files
+  --with-libboost-inc=[path]       Path to libboost include files
   --with-libcurl-inc=[path]        Path to libcurl include files
   --with-libcurl-lib=[path]        Path to libcurl library files
   --disable-libupnp               Disable use of libupnp
@@ -152,6 +153,11 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
+		--with-libboost-inc=*)
+			QC_WITH_LIBBOOST_INC=$optarg
+			shift
+			;;
+
 		--with-libcurl-inc=*)
 			QC_WITH_LIBCURL_INC=$optarg
 			shift
@@ -205,6 +211,7 @@ echo DATADIR=$DATADIR
 echo EX_QTDIR=$EX_QTDIR
 echo QC_WITH_LIBTORRENT_INC=$QC_WITH_LIBTORRENT_INC
 echo QC_WITH_LIBTORRENT_LIB=$QC_WITH_LIBTORRENT_LIB
+echo QC_WITH_LIBBOOST_INC=$QC_WITH_LIBBOOST_INC
 echo QC_WITH_LIBCURL_INC=$QC_WITH_LIBCURL_INC
 echo QC_WITH_LIBCURL_LIB=$QC_WITH_LIBCURL_LIB
 echo QC_DISABLE_libupnp=$QC_DISABLE_libupnp
@@ -319,50 +326,59 @@ public:
 	QString name() const { return "libtorrent >= 0.12"; }
 	QString shortname() const { return "libtorrent"; }
 	bool exec(){
-          QString s;
-					s = conf->getenv("QC_WITH_LIBTORRENT_INC");
-					if(!s.isEmpty()) {
-						if(!conf->checkHeader(s, "libtorrent/extensions/ut_pex.hpp")) {
-        			qWarning("libtorrent v0.12 includes not found!\nYou can download it at http://www.libtorrent.net");
-							return false;
+        	QString s;
+		s = conf->getenv("QC_WITH_LIBTORRENT_INC");
+		if(!s.isEmpty()) {
+			if(!conf->checkHeader(s, "libtorrent/extensions/ut_pex.hpp")) {
+				return false;
       			}
-      			conf->addIncludePath(s);
-					}else{
-						QStringList sl;
-						sl << "/usr/include/";
-						sl << "/usr/local/include";
-        	  if(!conf->findHeader("libtorrent/extensions/ut_pex.hpp", sl, &s)) {
-          	  qWarning("libtorrent v0.12 includes not found!\nYou can download it at http://www.libtorrent.net");
-            	return false;
-          	}
-	  				conf->addIncludePath(s);
-					}
+		}else{
+			QStringList sl;
+			sl << "/usr/include";
+			sl << "/usr/local/include";
+			bool found = false;
+			foreach(s, sl){
+				if(conf->checkHeader(s, "libtorrent/extensions/ut_pex.hpp")){
+					found = true;
+					break;
+				}
+			}
+			if(!found) {
+				return false;
+          		}
+		}
+		conf->addIncludePath(s);
+		conf->addIncludePath(s+QDir::separator()+"libtorrent");
 
-					s = conf->getenv("QC_WITH_LIBTORRENT_LIB");
-			    if(!s.isEmpty()) {
+		s = conf->getenv("QC_WITH_LIBTORRENT_LIB");
+		if(!s.isEmpty()) {
       			if(!conf->checkLibrary(s, "torrent")) {
-			        qWarning("libtorrent library not found!");
 			        return false;
-			      }
+			}
       			conf->addLib(QString("-L") + s);
-			    }else{
-			      if(!conf->findLibrary("torrent", &s)) {
-      			  qWarning("libtorrent library not found!");
-			        return false;
-      			}
-			      if (!s.isEmpty())
-			        conf->addLib(QString("-L") + s);
-			    }
-
-			    conf->addLib("-ltorrent");
-
-					return true;
+		}else{
+			QStringList sl;
+			sl << "/usr/lib/";
+			sl << "/usr/local/lib/";
+			bool found = false;
+			foreach(s, sl){
+				if(conf->checkLibrary(s, "torrent")){
+					found = true;
+					break;
+				}
+			}
+			if(!found) return false;
+			conf->addLib(QString("-L") + s);
+		}
+		conf->addLib("-ltorrent");
+		return true;
 	}
 };
 #line 1 "libboost.qcm"
 /*
 -----BEGIN QCMOD-----
 name: libboost
+arg: with-libboost-inc=[path], Path to libboost include files
 -----END QCMOD-----
 */
 class qc_libboost : public ConfObj
@@ -372,32 +388,47 @@ public:
 	QString name() const { return "libboost"; }
 	QString shortname() const { return "libboost"; }
 	bool exec(){
-          QString s;
-          QStringList sl;
-          sl += "/usr/include";
-          sl += "/usr/local/include";
-          sl += "/sw/include";
-          if(!conf->findHeader("boost/format.hpp", sl, &s)) {
-            qWarning("libboost includes not found!");
-            return false;
-          }
-	  conf->addIncludePath(s);
-          if(!conf->findHeader("boost/date_time/posix_time/posix_time.hpp", sl, &s)) {
-            qWarning("libboost-date-time includes not found!");
-            return false;
-          }
-	  conf->addIncludePath(s);
-          if(!conf->findHeader("boost/filesystem/path.hpp", sl, &s)) {
-            qWarning("libboost-filesystem includes not found!");
-            return false;
-          }
-          if(!conf->findHeader("boost/thread.hpp", sl, &s)) {
-            qWarning("libboost-thread includes not found!");
-            return false;
-          }
-	  conf->addIncludePath(s);
-
-          return true;
+        	QString s;
+		s = conf->getenv("QC_WITH_LIBBOOST_INC");
+		if(!s.isEmpty()) {
+			if(!conf->checkHeader(s, "boost/format.hpp")) {
+				return false;
+      			}
+			if(!conf->checkHeader(s, "boost/date_time/posix_time/posix_time.hpp")) {
+				return false;
+      			}
+			if(!conf->checkHeader(s, "boost/filesystem/path.hpp")) {
+				return false;
+      			}
+			if(!conf->checkHeader(s, "boost/thread.hpp")) {
+				return false;
+      			}
+		}else{
+			QStringList sl;
+			sl << "/usr/include";
+			sl << "/usr/local/include";
+			bool found = false;
+			foreach(s, sl){
+				if(conf->checkHeader(s, "boost/format.hpp")){
+					found = true;
+					break;
+				}
+			}
+			if(!found) {
+				return false;
+          		}
+			if(!conf->checkHeader(s, "boost/date_time/posix_time/posix_time.hpp")) {
+				return false;
+      			}
+			if(!conf->checkHeader(s, "boost/filesystem/path.hpp")) {
+				return false;
+      			}
+			if(!conf->checkHeader(s, "boost/thread.hpp")) {
+				return false;
+      			}
+		}
+		conf->addIncludePath(s);
+		return true;
 	}
 };
 #line 1 "libcurl.qcm"
@@ -415,44 +446,51 @@ public:
 	QString name() const { return "libcurl"; }
 	QString shortname() const { return "libcurl"; }
 	bool exec(){
-          QString s;
-					s = conf->getenv("QC_WITH_LIBCURL_INC");
-					if(!s.isEmpty()) {
-						if(!conf->checkHeader(s, "curl/curl.h")) {
-        			qWarning("libcurl includes not found!");
-							return false;
+        	QString s;
+		s = conf->getenv("QC_WITH_LIBCURL_INC");
+		if(!s.isEmpty()) {
+			if(!conf->checkHeader(s, "curl/curl.h")) {
+				return false;
       			}
-      			conf->addIncludePath(s);
-					}else{
-	          QStringList sl;
-  	        sl += "/usr/include";
-    	      sl += "/usr/local/include";
-        	  if(!conf->findHeader("curl/curl.h", sl, &s)) {
-          	  qWarning("libcurl includes not found!");
-            	return false;
-          	}
-	  				conf->addIncludePath(s);
-					}
+		}else{
+			QStringList sl;
+			sl << "/usr/include";
+			sl << "/usr/local/include";
+			bool found = false;
+			foreach(s, sl){
+				if(conf->checkHeader(s, "curl/curl.h")){
+					found = true;
+					break;
+				}
+			}
+			if(!found) {
+				return false;
+          		}
+		}
+		conf->addIncludePath(s);
 
-					s = conf->getenv("QC_WITH_LIBCURL_LIB");
-          if(!s.isEmpty()) {
-            if(!conf->checkLibrary(s, "curl")) {
-              qWarning("libcurl library not found!");
-              return false;
-            }
-            conf->addLib(QString("-L") + s);
-          }else{
-            if(!conf->findLibrary("curl", &s)) {
-              qWarning("libcurl library not found!");
-              return false;
-            }
-            if (!s.isEmpty())
-              conf->addLib(QString("-L") + s);
-          }
-
-          conf->addLib("-lcurl");
-
-          return true;
+		s = conf->getenv("QC_WITH_LIBCURL_LIB");
+		if(!s.isEmpty()) {
+      			if(!conf->checkLibrary(s, "curl")) {
+			        return false;
+			}
+      			conf->addLib(QString("-L") + s);
+		}else{
+			QStringList sl;
+			sl << "/usr/lib/";
+			sl << "/usr/local/lib/";
+			bool found = false;
+			foreach(s, sl){
+				if(conf->checkLibrary(s, "curl")){
+					found = true;
+					break;
+				}
+			}
+			if(!found) return false;
+			conf->addLib(QString("-L") + s);
+		}
+		conf->addLib("-lcurl");
+		return true;
 	}
 };
 #line 1 "python.qcm"
@@ -1487,6 +1525,7 @@ export DATADIR
 export EX_QTDIR
 export QC_WITH_LIBTORRENT_INC
 export QC_WITH_LIBTORRENT_LIB
+export QC_WITH_LIBBOOST_INC
 export QC_WITH_LIBCURL_INC
 export QC_WITH_LIBCURL_LIB
 export QC_DISABLE_libupnp
