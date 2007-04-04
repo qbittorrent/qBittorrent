@@ -21,6 +21,7 @@
 
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QInputDialog>
 
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/path.hpp>
@@ -41,6 +42,14 @@ using namespace boost::filesystem;
 
 createtorrent::createtorrent(QWidget *parent): QDialog(parent){
   setupUi(this);
+  addTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
+  removeTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
+  addURLSeed_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
+  removeURLSeed_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
+  removeFolder_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
+  //TODO: Change those two
+  addFolder_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
+  addFile_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
   setAttribute(Qt::WA_DeleteOnClose);
   show();
 }
@@ -48,23 +57,71 @@ createtorrent::createtorrent(QWidget *parent): QDialog(parent){
 void createtorrent::on_browse_destination_clicked(){
   QString destination = QFileDialog::getSaveFileName(this, tr("Select destination torrent file"), QDir::homePath(), tr("Torrent Files")+" (*.torrent)");
   if(!destination.isEmpty()){
+    if(!destination.endsWith(".torrent"))
+      destination += ".torrent";
     txt_destination->setText(destination);
   }
 }
 
-void createtorrent::on_browse_input_clicked(){
-  // Can't use QFileDialog static functions for this because
-  // user can select a file or a directory
-  QFileDialog *fd = new QFileDialog(this, tr("Select input directory or file"), QDir::homePath());
-  if(checkDirectory->isChecked()){
-    fd->setFileMode(QFileDialog::DirectoryOnly);
-  }else{
-    fd->setFileMode(QFileDialog::ExistingFile);
+void createtorrent::on_addFolder_button_clicked(){
+  QString dir = QFileDialog::getExistingDirectory(this, tr("Select a folder to add to the torrent"), QDir::homePath(), QFileDialog::ShowDirsOnly);
+  if(!dir.isEmpty() && input_list->findItems(dir, Qt::MatchCaseSensitive).size() == 0)
+    input_list->addItem(dir);
+}
+
+void createtorrent::on_addFile_button_clicked(){
+  QStringList files = QFileDialog::getOpenFileNames(this, tr("Select files to add to the torrent"), QDir::homePath(), QString(), 0, QFileDialog::ShowDirsOnly);
+  QString file;
+  foreach(file, files){
+    if(input_list->findItems(file, Qt::MatchCaseSensitive).size() == 0){
+      input_list->addItem(file);
+    }
   }
-  QStringList fileNames;
-  if (fd->exec()){
-    fileNames = fd->selectedFiles();
-    txt_input->setText(fileNames.first());
+}
+
+void createtorrent::on_removeFolder_button_clicked(){
+  QModelIndexList selectedIndexes = input_list->selectionModel()->selectedIndexes();
+  for(int i=selectedIndexes.size()-1; i>=0; --i){
+    QListWidgetItem *item = input_list->takeItem(selectedIndexes.at(i).row());
+    delete item;
+  }
+}
+
+void createtorrent::on_removeTracker_button_clicked(){
+  QModelIndexList selectedIndexes = trackers_list->selectionModel()->selectedIndexes();
+  for(int i=selectedIndexes.size()-1; i>=0; --i){
+    QListWidgetItem *item = trackers_list->takeItem(selectedIndexes.at(i).row());
+    delete item;
+  }
+}
+
+void createtorrent::on_addTracker_button_clicked(){
+  bool ok;
+  QString URL = QInputDialog::getText(this, tr("Please type an announce URL"),
+                                       tr("Announce URL:"), QLineEdit::Normal,
+                                       "http://", &ok);
+  if(ok){
+    if(trackers_list->findItems(URL, Qt::MatchFixedString).size() == 0)
+      trackers_list->addItem(URL);
+  }
+}
+
+void createtorrent::on_removeURLSeed_button_clicked(){
+  QModelIndexList selectedIndexes = URLSeeds_list->selectionModel()->selectedIndexes();
+  for(int i=selectedIndexes.size()-1; i>=0; --i){
+    QListWidgetItem *item = URLSeeds_list->takeItem(selectedIndexes.at(i).row());
+    delete item;
+  }
+}
+
+void createtorrent::on_addURLSeed_button_clicked(){
+  bool ok;
+  QString URL = QInputDialog::getText(this, tr("Please type an URL Seed"),
+                                       tr("URL Seed:"), QLineEdit::Normal,
+                                       "http://", &ok);
+  if(ok){
+    if(URLSeeds_list->findItems(URL, Qt::MatchFixedString).size() == 0)
+      URLSeeds_list->addItem(URL);
   }
 }
 
@@ -80,6 +137,15 @@ void add_files(torrent_info& t, path const& p, path const& l){
   }
 }
 
+QStringList createtorrent::allItems(QListWidget *list){
+  QStringList res;
+  unsigned int nbItems = list->count();
+  for(unsigned int i=0; i< nbItems; ++i){
+    res << list->item(i)->text();
+  }
+  return res;
+}
+
 // Main function that create a .torrent file
 void createtorrent::on_createButton_clicked(){
   QString destination = txt_destination->text();
@@ -87,37 +153,40 @@ void createtorrent::on_createButton_clicked(){
     QMessageBox::critical(0, tr("No destination path set"), tr("Please type a destination path first"));
     return;
   }
-  QString input = txt_input->text();
-  if(input.isEmpty()){
+  QStringList input = allItems(input_list);
+  if(input.size() == 0){
     QMessageBox::critical(0, tr("No input path set"), tr("Please type an input path first"));
     return;
   }
-  if(!QFile::exists(input)){
-    QMessageBox::critical(0, tr("Input path does not exist"), tr("Please type a valid input path first"));
-    return;
-  }
-  char const* creator_str = "qBittorrent";
-  int piece_size = 256 * 1024;
+  char const* creator_str = "qBittorrent "VERSION;
   try {
     torrent_info t;
-    path full_path = complete(path((const char*)input.toUtf8()));
+    QString input_path;
+    path full_path;
     ofstream out(complete(path((const char*)destination.toUtf8())), std::ios_base::binary);
-
-    add_files(t, full_path.branch_path(), full_path.leaf());
+    foreach(input_path, input){
+      full_path = complete(path((const char*)input_path.toUtf8()));
+      add_files(t, full_path.branch_path(), full_path.leaf());
+    }
+    int piece_size = 256 * 1024;
     t.set_piece_size(piece_size);
-
-    file_pool fp;
-    storage st(t, full_path.branch_path(), fp);
-    QStringList trackers = txt_announce->toPlainText().split('\n');
+    // Add url seeds
+    QStringList urlSeeds = allItems(URLSeeds_list);
+    QString seed;
+    foreach(seed, urlSeeds){
+      t.add_url_seed((const char*)seed.toUtf8());
+    }
+    QStringList trackers = allItems(trackers_list);
     for(int i=0; i<trackers.size(); ++i){
       t.add_tracker((const char*)trackers.at(i).toUtf8());
     }
 
     // calculate the hash for all pieces
+    file_pool fp;
+    storage st(t, full_path.branch_path(), fp);
     int num = t.num_pieces();
     std::vector<char> buf(piece_size);
-    for (int i = 0; i < num; ++i)
-    {
+    for (int i = 0; i < num; ++i) {
       st.read(&buf[0], i, 0, t.piece_size(i));
       hasher h(&buf[0], t.piece_size(i));
       t.set_hash(i, h.final());
@@ -126,6 +195,10 @@ void createtorrent::on_createButton_clicked(){
     // torrent_info structure
     t.set_creator(creator_str);
     t.set_comment((const char*)txt_comment->toPlainText().toUtf8());
+    // Is private ?
+    if(check_private->isChecked()){
+      t.set_priv(true);
+    }
     // create the torrent and print it to out
     entry e = t.create_torrent();
     libtorrent::bencode(std::ostream_iterator<char>(out), e);

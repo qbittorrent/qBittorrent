@@ -6,6 +6,7 @@
     - FEATURE: Allow user to change qBT's style (Plastique, Cleanlooks, Motif, CDE, MacOSX, WinXP)
     - FEATURE: Allow the user to disable system tray integration
     - FEATURE: Search engine is now using one thread per website for faster results
+    - FEATURE: Improved a lot the torrent creation module
     - FEATURE: Ask for exit confirmation only if download list is not empty
     - BUGFIX: Window can now stay maximized on exit
     - COSMETIC: Redesigned torrent properties a little
