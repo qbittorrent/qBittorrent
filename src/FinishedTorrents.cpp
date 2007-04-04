@@ -139,3 +139,11 @@ void FinishedTorrents::deleteFromFinishedList(QString hash){
   --nbFinished;
   ((GUI*)parent)->setTabText(1, tr("Finished") +" ("+QString(misc::toString(nbFinished).c_str())+")");
 }
+
+QTreeView* FinishedTorrents::getFinishedList(){
+  return finishedList;
+}
+
+QStandardItemModel* FinishedTorrents::getFinishedListModel(){
+  return finishedListModel;
+}

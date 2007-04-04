@@ -47,6 +47,8 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     void addFinishedSHA(QString sha);
     void updateFinishedList();
     void deleteFromFinishedList(QString hash);
+    QTreeView* getFinishedList();
+    QStandardItemModel* getFinishedListModel();
 
   protected slots:
     void setRowColor(int row, const QString& color);
