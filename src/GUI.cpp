@@ -840,14 +840,33 @@ void GUI::deletePermanently(){
 
 // delete selected items in the list
 void GUI::deleteSelection(){
-  QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  if(tabs->currentIndex() > 1) return;
+  QModelIndexList selectedIndexes;
+  bool inDownloadList = true;
+  if(tabs->currentIndex() == 0) {
+    selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  } else {
+    selectedIndexes = finishedTorrentTab->getFinishedList()->selectionModel()->selectedIndexes();
+    inDownloadList = false;
+  }
   if(!selectedIndexes.isEmpty()){
-    if(QMessageBox::question(
-          this,
-    tr("Are you sure? -- qBittorrent"),
-    tr("Are you sure you want to delete the selected item(s) in download list?"),
-    tr("&Yes"), tr("&No"),
-    QString(), 0, 1) == 0) {
+    int ret;
+    if(inDownloadList) {
+      ret = QMessageBox::question(
+              this,
+              tr("Are you sure? -- qBittorrent"),
+              tr("Are you sure you want to delete the selected item(s) in download list?"),
+              tr("&Yes"), tr("&No"),
+              QString(), 0, 1);
+    } else {
+      ret = QMessageBox::question(
+              this,
+              tr("Are you sure? -- qBittorrent"),
+              tr("Are you sure you want to delete the selected item(s) in finished list?"),
+              tr("&Yes"), tr("&No"),
+              QString(), 0, 1);
+    }
+    if(ret == 0) {
       //User clicked YES
       QModelIndex index;
       QList<QPair<int, QModelIndex> > sortedIndexes;
@@ -863,17 +882,28 @@ void GUI::deleteSelection(){
       QPair<int, QModelIndex> sortedIndex;
       foreach(sortedIndex, sortedIndexes){
         qDebug("deleting row: %d, %d, col: %d", sortedIndex.first, sortedIndex.second.row(), sortedIndex.second.column());
-        // Get the file name
-        QString fileName = DLListModel->data(DLListModel->index(sortedIndex.second.row(), NAME)).toString();
-        QString fileHash = DLListModel->data(DLListModel->index(sortedIndex.second.row(), HASH)).toString();
+        // Get the file name & hash
+        QString fileName;
+        QString fileHash;
+        if(inDownloadList){
+          fileName = DLListModel->data(DLListModel->index(sortedIndex.second.row(), NAME)).toString();
+          fileHash = DLListModel->data(DLListModel->index(sortedIndex.second.row(), HASH)).toString();
+        }else{
+          fileName = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(sortedIndex.second.row(), NAME)).toString();
+          fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(sortedIndex.second.row(), HASH)).toString();
+        }
         // Remove the torrent
         BTSession.deleteTorrent(fileHash, false);
-        // Delete item from download list
-        DLListModel->removeRow(sortedIndex.first);
-          // Update info bar
-          setInfoBar(tr("'%1' was removed.", "'xxx.avi' was removed.").arg(fileName));
+        if(inDownloadList) {
+          // Delete item from download list
+          DLListModel->removeRow(sortedIndex.first);
           --nbTorrents;
           tabs->setTabText(0, tr("Downloads") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
+        } else {
+          finishedTorrentTab->deleteFromFinishedList(fileHash);
+        }
+        // Update info bar
+        setInfoBar(tr("'%1' was removed.", "'xxx.avi' was removed.").arg(fileName));
       }
     }
   }
