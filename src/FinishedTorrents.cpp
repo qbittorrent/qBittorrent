@@ -23,6 +23,7 @@
 #include "GUI.h"
 #include "properties_imp.h"
 #include <QFile>
+#include <QSettings>
 
 FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   setupUi(this);
@@ -44,6 +45,19 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   finishedList->hideColumn(HASH);
   finishedListDelegate = new DLListDelegate();
   finishedList->setItemDelegate(finishedListDelegate);
+  connect(finishedList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFinishedListMenu(const QPoint&)));
+  actionStart->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play.png")));
+  actionPause->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")));
+  actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")));
+  actionPreview_file->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")));
+  actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
+  actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
+  connect(actionStart, SIGNAL(triggered()), (GUI*)parent, SLOT(startSelection()));
+  connect(actionPause, SIGNAL(triggered()), (GUI*)parent, SLOT(pauseSelection()));
+  connect(actionDelete, SIGNAL(triggered()), (GUI*)parent, SLOT(deleteSelection()));
+  connect(actionPreview_file, SIGNAL(triggered()), (GUI*)parent, SLOT(startSelection()));
+  connect(actionDelete_Permanently, SIGNAL(triggered()), (GUI*)parent, SLOT(deletePermanently()));
+  connect(actionTorrent_Properties, SIGNAL(triggered()), this, SLOT(propertiesSelection));
 }
 
 FinishedTorrents::~FinishedTorrents(){
@@ -169,4 +183,36 @@ void FinishedTorrents::propertiesSelection(){
       showProperties(index);
     }
   }
+}
+
+void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
+  QMenu myFinishedListMenu(this);
+  QModelIndex index;
+  // Enable/disable pause/start action given the DL state
+  QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
+  QSettings settings("qBittorrent", "qBittorrent");
+  QString previewProgram = settings.value("Options/Misc/PreviewProgram", QString()).toString();
+  foreach(index, selectedIndexes){
+    if(index.column() == NAME){
+      // Get the file name
+      QString fileHash = finishedListModel->data(finishedListModel->index(index.row(), HASH)).toString();
+      // Get handle and pause the torrent
+      torrent_handle h = BTSession->getTorrentHandle(fileHash);
+      if(h.is_paused()){
+        myFinishedListMenu.addAction(actionStart);
+      }else{
+        myFinishedListMenu.addAction(actionPause);
+      }
+      myFinishedListMenu.addAction(actionDelete);
+      myFinishedListMenu.addAction(actionDelete_Permanently);
+      myFinishedListMenu.addAction(actionTorrent_Properties);
+      if(!previewProgram.isEmpty() && BTSession->isFilePreviewPossible(fileHash) && selectedIndexes.size()<=finishedListModel->columnCount()){
+         myFinishedListMenu.addAction(actionPreview_file);
+      }
+      break;
+    }
+  }
+  // Call menu
+  // XXX: why mapToGlobal() is not enough?
+  myFinishedListMenu.exec(mapToGlobal(pos)+QPoint(10,55));
 }

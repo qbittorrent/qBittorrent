@@ -27,7 +27,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QTreeView" name="finishedList" />
+    <widget class="QTreeView" name="finishedList" >
+     <property name="contextMenuPolicy" >
+      <enum>Qt::CustomContextMenu</enum>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QLabel" name="lbl_note" >
@@ -42,6 +46,36 @@
     </widget>
    </item>
   </layout>
+  <action name="actionStart" >
+   <property name="text" >
+    <string>Start</string>
+   </property>
+  </action>
+  <action name="actionPause" >
+   <property name="text" >
+    <string>Pause</string>
+   </property>
+  </action>
+  <action name="actionDelete" >
+   <property name="text" >
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionDelete_Permanently" >
+   <property name="text" >
+    <string>Delete Permanently</string>
+   </property>
+  </action>
+  <action name="actionTorrent_Properties" >
+   <property name="text" >
+    <string>Torrent Properties</string>
+   </property>
+  </action>
+  <action name="actionPreview_file" >
+   <property name="text" >
+    <string>Preview file</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

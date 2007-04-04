@@ -51,6 +51,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     void deleteFromFinishedList(QString hash);
     void showProperties(const QModelIndex &index);
     void propertiesSelection();
+    void displayFinishedListMenu(const QPoint&);
 
   protected slots:
     void setRowColor(int row, const QString& color);
