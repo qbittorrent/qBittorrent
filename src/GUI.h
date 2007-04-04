@@ -59,11 +59,13 @@ namespace fs = boost::filesystem;
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
 
+  public:
+    QHash<QString, QStringList> trackerErrors;
+
   private:
     // Bittorrent
     bittorrent BTSession;
     QTimer *checkConnect;
-    QHash<QString, QStringList> trackerErrors;
     QList<QPair<torrent_handle,std::string> > unauthenticated_trackers;
     downloadFromURL *downloadFromURLDialog;
     // GUI related

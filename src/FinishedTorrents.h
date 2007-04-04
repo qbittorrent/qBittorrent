@@ -42,13 +42,15 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     ~FinishedTorrents();
     // Methods
     QStringList getFinishedSHAs();
+    QTreeView* getFinishedList();
+    QStandardItemModel* getFinishedListModel();
 
   public slots:
     void addFinishedSHA(QString sha);
     void updateFinishedList();
     void deleteFromFinishedList(QString hash);
-    QTreeView* getFinishedList();
-    QStandardItemModel* getFinishedListModel();
+    void showProperties(const QModelIndex &index);
+    void propertiesSelection();
 
   protected slots:
     void setRowColor(int row, const QString& color);

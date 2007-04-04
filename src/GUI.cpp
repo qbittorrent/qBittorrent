@@ -1215,6 +1215,11 @@ void GUI::addUnauthenticatedTracker(QPair<torrent_handle,std::string> tracker){
 
 // display properties of selected items
 void GUI::propertiesSelection(){
+  if(tabs->currentIndex() > 1) return;
+  if(tabs->currentIndex() == 1){
+    finishedTorrentTab->propertiesSelection();
+    return;
+  }
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   QModelIndex index;
   foreach(index, selectedIndexes){

@@ -21,6 +21,7 @@
 #include "FinishedTorrents.h"
 #include "misc.h"
 #include "GUI.h"
+#include "properties_imp.h"
 #include <QFile>
 
 FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
@@ -146,4 +147,26 @@ QTreeView* FinishedTorrents::getFinishedList(){
 
 QStandardItemModel* FinishedTorrents::getFinishedListModel(){
   return finishedListModel;
+}
+
+// Show torrent properties dialog
+void FinishedTorrents::showProperties(const QModelIndex &index){
+  int row = index.row();
+  QString fileHash = finishedListModel->data(finishedListModel->index(row, HASH)).toString();
+  torrent_handle h = BTSession->getTorrentHandle(fileHash);
+  QStringList errors = ((GUI*)parent)->trackerErrors.value(fileHash, QStringList(tr("None", "i.e: No error message")));
+  properties *prop = new properties(this, h, errors);
+  connect(prop, SIGNAL(changedFilteredFiles(torrent_handle, bool)), BTSession, SLOT(reloadTorrent(torrent_handle, bool)));
+  prop->show();
+}
+
+// display properties of selected items
+void FinishedTorrents::propertiesSelection(){
+  QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
+  QModelIndex index;
+  foreach(index, selectedIndexes){
+    if(index.column() == NAME){
+      showProperties(index);
+    }
+  }
 }
