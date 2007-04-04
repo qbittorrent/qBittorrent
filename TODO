@@ -31,7 +31,7 @@
 
 // in v0.10 (partial) - WIP
 - Download from RSS feeds (WIP by gtsoul, clean & finish rss.h, add a tab in mainWindow, debug)
-- Move finished torrent to another tab and keep on seeding them even after restart (better for sharing)
+- Move finished torrent to another tab and keep on seeding them even after restart (finish & debug)
 - Improve torrent creation dialog (look & features) :
     - Add Private combobox (allow to share on DHT or not)
     - Use a QListWidget to allow multiple input paths
