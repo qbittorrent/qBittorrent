@@ -43,6 +43,7 @@
 
 class createtorrent;
 class QTimer;
+class FinishedTorrents;
 class DLListDelegate;
 class downloadThread;
 class downloadFromURL;
@@ -74,6 +75,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     about *aboutdlg;
     QStandardItemModel *DLListModel;
     DLListDelegate *DLDelegate;
+    FinishedTorrents *finishedTorrentTab;
     unsigned int nbTorrents;
     QLabel *connecStatusLblIcon;
     bool systrayIntegration;

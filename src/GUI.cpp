@@ -41,6 +41,7 @@
 #include "torrentAddition.h"
 #include "searchEngine.h"
 #include "rss_imp.h"
+#include "FinishedTorrents.h"
 
 /*****************************************************
  *                                                   *
@@ -79,7 +80,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
   actionCreate_torrent->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/new.png")));
   info_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/log.png")));
-  tabs->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/home.png")));
+  tabs->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
   // Set default ratio
   lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/stare.png")));
   // Fix Tool bar layout
@@ -167,14 +168,18 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
     systrayIntegration = false;
     qDebug("Info: System tray unavailable\n");
   }
+  // Finished torrents tab
+  finishedTorrentTab = new FinishedTorrents(&BTSession);
+  tabs->addTab(finishedTorrentTab, tr("Finished"));
+  tabs->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   // Search engine tab
   searchEngine = new SearchEngine(&BTSession, myTrayIcon);
   tabs->addTab(searchEngine, tr("Search"));
-  tabs->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/skin/search.png")));
+  tabs->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/skin/search.png")));
   // RSS tab
   rssWidget = new RSSImp();
   tabs->addTab(rssWidget, tr("RSS"));
-  tabs->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/rss.png")));
+  tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss.png")));
   // Start download list refresher
   refresher = new QTimer(this);
   connect(refresher, SIGNAL(timeout()), this, SLOT(updateDlList()));
@@ -202,6 +207,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
 // Destructor
 GUI::~GUI(){
   delete searchEngine;
+  delete finishedTorrentTab;
   delete checkConnect;
   delete refresher;
   if(systrayIntegration){

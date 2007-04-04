@@ -27,6 +27,7 @@
 - Allow to set upload limit for each torrent
 - Option to shutdown computer when downloads are finished
 - Add a torrent scheduler
+- Improve Ipfilter.dat parser (move to a thread ? - too slow to load qBT and more importantly options)
 
 // in v0.10 (partial) - WIP
 - Download from RSS feeds (WIP by gtsoul, clean & finish rss.h, add a tab in mainWindow, debug)
@@ -36,11 +37,10 @@
     - Use a QListWidget to allow multiple input paths
     - Possibility to add url seeds
 - Add IPv6 support (at least start working on it, libtorrent seems to support it, we should limit our code to IPv4 anymore)
-- UPnP support (debug, sync with next aMule release, move to a thread?) : seems to be working!
 - Display Url seeds in torrent properties and allow to edit them
-- Improve Ipfilter.dat parser (move to a thread ? - too slow to load qBT and more importantly options)
-- Use tooltips to explain options
+- Use tooltips to explain options?
 - Display more info in log (UPnP)
 - Update to libtorrent SVN (0.13)
     - Use its UPnP/NAT-PMP built-in support instead of ours
     - Use its piece prioritization support
+- Tab support in search (maybe a bit later)

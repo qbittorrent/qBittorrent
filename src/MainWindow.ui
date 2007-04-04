@@ -33,7 +33,7 @@
       </property>
       <widget class="QWidget" name="tab" >
        <attribute name="title" >
-        <string>Transfers</string>
+        <string>Downloads</string>
        </attribute>
        <layout class="QVBoxLayout" >
         <property name="margin" >
