@@ -310,12 +310,24 @@ void GUI::togglePausedState(const QModelIndex& index){
 }
 
 void GUI::previewFileSelection(){
+  if(tabs->currentIndex() > 1) return;
+  bool inDownloadList = true;
+  if(tabs->currentIndex() != 0)
+    inDownloadList = false;
   QModelIndex index;
-  QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  QModelIndexList selectedIndexes;
+  if(inDownloadList)
+    selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  else
+    selectedIndexes = finishedTorrentTab->getFinishedList()->selectionModel()->selectedIndexes();
   foreach(index, selectedIndexes){
     if(index.column() == NAME){
-      // Get the file name
-      QString fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+      // Get the file hash
+      QString fileHash;
+      if(inDownloadList)
+        fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+      else
+        fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), HASH)).toString();
       torrent_handle h = BTSession.getTorrentHandle(fileHash);
       previewSelection = new previewSelect(this, h);
       break;
