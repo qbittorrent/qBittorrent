@@ -816,7 +816,8 @@ void GUI::closeEvent(QCloseEvent *e){
   }
   if(settings.value("Options/Misc/Behaviour/ConfirmOnExit", true).toBool()){
     show();
-    showNormal();
+		if(!isMaximized())
+	    showNormal();
     if(QMessageBox::question(this,
        tr("Are you sure you want to quit?")+" -- "+tr("qBittorrent"),
        tr("Are you sure you want to quit qBittorrent?"),
