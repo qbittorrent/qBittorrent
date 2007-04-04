@@ -7,6 +7,7 @@
     - FEATURE: Allow the user to disable system tray integration
     - FEATURE: Search engine is now using one thread per website for faster results
     - FEATURE: Ask for exit confirmation only if download list is not empty
+    - BUGFIX: Window can now stay maximized on exit
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features

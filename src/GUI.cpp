@@ -675,7 +675,8 @@ void GUI::closeEvent(QCloseEvent *e){
   }
   if(settings.value("Options/Misc/Behaviour/ConfirmOnExit", true).toBool() && nbTorrents != 0){
     show();
-    showNormal();
+    if(!isMaximized())
+      showNormal();
     if(QMessageBox::question(this,
        tr("Are you sure you want to quit?")+" -- "+tr("qBittorrent"),
        tr("The download list is not empty.\nAre you sure you want to quit qBittorrent?"),
