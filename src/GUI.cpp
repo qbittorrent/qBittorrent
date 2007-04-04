@@ -53,6 +53,18 @@
 GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   setupUi(this);
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(VERSION));
+  // Finished torrents tab
+  finishedTorrentTab = new FinishedTorrents(this, &BTSession);
+  tabs->addTab(finishedTorrentTab, tr("Finished"));
+  tabs->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
+  // Search engine tab
+  searchEngine = new SearchEngine(&BTSession, myTrayIcon);
+  tabs->addTab(searchEngine, tr("Search"));
+  tabs->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/skin/search.png")));
+  // RSS tab
+  rssWidget = new RSSImp();
+  tabs->addTab(rssWidget, tr("RSS"));
+  tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss.png")));
   readSettings();
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent32.png")));
@@ -105,7 +117,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
     downloadList->header()->resizeSection(0, 200);
   }
   nbTorrents = 0;
-  tabs->setTabText(0, tr("Transfers") +" (0)");
+  tabs->setTabText(0, tr("Downloads") +" (0)");
 #ifndef NO_UPNP
   connect(&BTSession, SIGNAL(noWanServiceDetected()), this, SLOT(displayNoUPnPWanServiceDetected()));
   connect(&BTSession, SIGNAL(wanServiceDetected()), this, SLOT(displayUPnPWanServiceDetected()));
@@ -168,18 +180,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
     systrayIntegration = false;
     qDebug("Info: System tray unavailable\n");
   }
-  // Finished torrents tab
-  finishedTorrentTab = new FinishedTorrents(&BTSession);
-  tabs->addTab(finishedTorrentTab, tr("Finished"));
-  tabs->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
-  // Search engine tab
-  searchEngine = new SearchEngine(&BTSession, myTrayIcon);
-  tabs->addTab(searchEngine, tr("Search"));
-  tabs->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/skin/search.png")));
-  // RSS tab
-  rssWidget = new RSSImp();
-  tabs->addTab(rssWidget, tr("RSS"));
-  tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss.png")));
   // Start download list refresher
   refresher = new QTimer(this);
   connect(refresher, SIGNAL(timeout()), this, SLOT(updateDlList()));
@@ -424,8 +424,12 @@ void GUI::updateDlList(bool force){
   if(systrayIntegration){
     myTrayIcon->setToolTip("<b>"+tr("qBittorrent")+"</b><br>"+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(tmp2))+"<br>"+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(tmp))); // tray icon
   }
-  if( !force && (isMinimized() || isHidden() || tabs->currentIndex())){
+  if( !force && (isMinimized() || isHidden() || tabs->currentIndex() > 1)){
     // No need to update if qBittorrent DL list is hidden
+    return;
+  }
+  if(tabs->currentIndex()){
+    finishedTorrentTab->updateFinishedList();
     return;
   }
 //   qDebug("Updating download list");
@@ -433,82 +437,81 @@ void GUI::updateDlList(bool force){
   LCD_DownSpeed->display(tmp2); // DL LCD
   // browse handles
   std::vector<torrent_handle> handles = BTSession.getTorrentHandles();
+  QStringList finishedSHAs = finishedTorrentTab->getFinishedSHAs();
   for(unsigned int i=0; i<handles.size(); ++i){
     torrent_handle h = handles[i];
     try{
       torrent_status torrentStatus = h.status();
       QString fileHash = QString(misc::toString(h.info_hash()).c_str());
-      if(!h.is_paused()){
-        int row = getRowFromHash(fileHash);
-        if(row == -1){
-          std::cerr << "Error: Could not find filename in download list..\n";
-          continue;
-        }
-        // Parse download state
-        torrent_info ti = h.get_torrent_info();
-        // Setting download state
-        switch(torrentStatus.state){
-          case torrent_status::finished:
-          case torrent_status::seeding:
-            DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
-            DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Finished", "i.e: Torrent has finished downloading")));
-            DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
+      if(h.is_paused()) continue;
+      if(finishedSHAs.indexOf(fileHash) != -1) continue;
+      int row = getRowFromHash(fileHash);
+      if(row == -1){
+        std::cerr << "Error: Could not find filename in download list..\n";
+        continue;
+      }
+      // Parse download state
+      torrent_info ti = h.get_torrent_info();
+      // Setting download state
+      switch(torrentStatus.state){
+        case torrent_status::finished:
+        case torrent_status::seeding:
+          qDebug("Warning: this shouldn't happen, no finished torrents in download tab...");
+          break;
+        case torrent_status::checking_files:
+        case torrent_status::queued_for_checking:
+          DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Checking...", "i.e: Checking already downloaded parts...")));
+          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
+          setRowColor(row, "grey");
+          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
+          break;
+        case torrent_status::connecting_to_tracker:
+          if(torrentStatus.download_payload_rate > 0){
+            // Display "Downloading" status when connecting if download speed > 0
+            DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Downloading...")));
+            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate)));
+            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
+            setRowColor(row, "green");
+          }else{
+            DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Connecting...")));
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
-            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)1.));
-            setRowColor(row, "orange");
-            break;
-          case torrent_status::checking_files:
-          case torrent_status::queued_for_checking:
-            DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Checking...", "i.e: Checking already downloaded parts...")));
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
             setRowColor(row, "grey");
-            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
-            break;
-          case torrent_status::connecting_to_tracker:
-            if(torrentStatus.download_payload_rate > 0){
-              // Display "Downloading" status when connecting if download speed > 0
-              DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Downloading...")));
-              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate)));
-              DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
-              setRowColor(row, "green");
-            }else{
-              DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Connecting...")));
-              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-              DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-              setRowColor(row, "grey");
-            }
-            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
-            DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
-            DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
-            break;
-          case torrent_status::downloading:
-          case torrent_status::downloading_metadata:
-            if(torrentStatus.download_payload_rate > 0){
-              DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Downloading...")));
-              DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
-              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate)));
-              setRowColor(row, "green");
-            }else{
-              DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Stalled", "i.e: State of a torrent whose download speed is 0kb/s")));
-              DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/stalled.png")), Qt::DecorationRole);
-              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-              setRowColor(row, "black");
-            }
-            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
-            DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
-            DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
-            break;
-          default:
+          }
+          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
+          DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
+          DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
+          break;
+        case torrent_status::downloading:
+        case torrent_status::downloading_metadata:
+          if(torrentStatus.download_payload_rate > 0){
+            DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Downloading...")));
+            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
+            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate)));
+            setRowColor(row, "green");
+          }else{
+            DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Stalled", "i.e: State of a torrent whose download speed is 0kb/s")));
+            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/stalled.png")), Qt::DecorationRole);
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-        }
-        DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_seeds, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_peers - torrentStatus.num_seeds, true).c_str())));
+            setRowColor(row, "black");
+          }
+          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
+          DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
+          DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
+          break;
+        default:
+          DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
       }
+      DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_seeds, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_peers - torrentStatus.num_seeds, true).c_str())));
     }catch(invalid_handle e){
       continue;
     }
   }
 //   qDebug("Updated Download list");
+}
+
+void GUI::setTabText(int index, QString text){
+  tabs->setTabText(index, text);
 }
 
 void GUI::sortDownloadListFloat(int index, Qt::SortOrder sortOrder){
@@ -670,21 +673,6 @@ void GUI::closeEvent(QCloseEvent *e){
          return;
     }
   }
-  // Clean finished torrents on exit if asked for
-  if(settings.value("Options/Misc/Behaviour/ClearFinishedDownloads", true).toBool()){
-    torrent_handle h;
-    // XXX: Probably move this to the bittorrent part
-    QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-    foreach(h, BTSession.getFinishedTorrentHandles()){
-      QString fileHash = QString(misc::toString(h.info_hash()).c_str());
-      torrentBackup.remove(fileHash+".torrent");
-      torrentBackup.remove(fileHash+".fastresume");
-      torrentBackup.remove(fileHash+".paused");
-      torrentBackup.remove(fileHash+".incremental");
-      torrentBackup.remove(fileHash+".pieces");
-      torrentBackup.remove(fileHash+".savepath");
-    }
-  }
   // Save DHT entry
   BTSession.saveDHTEntry();
   // Save window size, columns size
@@ -814,7 +802,7 @@ void GUI::deletePermanently(){
           // Update info bar
           setInfoBar(tr("'%1' was removed.", "'xxx.avi' was removed.").arg(fileName));
           --nbTorrents;
-          tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
+          tabs->setTabText(0, tr("Downloads") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
       }
     }
   }
@@ -855,7 +843,7 @@ void GUI::deleteSelection(){
           // Update info bar
           setInfoBar(tr("'%1' was removed.", "'xxx.avi' was removed.").arg(fileName));
           --nbTorrents;
-          tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
+          tabs->setTabText(0, tr("Downloads") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
       }
     }
   }
@@ -863,8 +851,12 @@ void GUI::deleteSelection(){
 
 // Called when a torrent is added
 void GUI::torrentAdded(const QString& path, torrent_handle& h, bool fastResume){
-  int row = DLListModel->rowCount();
   QString hash = QString(misc::toString(h.info_hash()).c_str());
+  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")){
+    finishedTorrentTab->addFinishedSHA(hash);
+    return;
+  }
+  int row = DLListModel->rowCount();
   // Adding torrent to download list
   DLListModel->insertRow(row);
   DLListModel->setData(DLListModel->index(row, NAME), QVariant(h.name().c_str()));
@@ -890,7 +882,7 @@ void GUI::torrentAdded(const QString& path, torrent_handle& h, bool fastResume){
     setInfoBar(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(path));
   }
   ++nbTorrents;
-  tabs->setTabText(0, tr("Transfers") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
+  tabs->setTabText(0, tr("Downloads") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
 }
 
 // Called when trying to add a duplicate torrent
@@ -1178,6 +1170,18 @@ void GUI::finishedTorrent(torrent_handle& h){
     QString fileName = QString(h.name().c_str());
     setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
     int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
+    // Add it to finished tab
+    QString hash = QString(misc::toString(h.info_hash()).c_str());
+    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")) return;
+    finishedTorrentTab->addFinishedSHA(hash);
+    QList<QStandardItem *> items = DLListModel->findItems(hash, Qt::MatchExactly, HASH );
+    if(items.size() != 1){
+      qDebug("Problem: Can't delete finished torrent from download list");
+      return;
+    }
+    DLListModel->removeRow(DLListModel->indexFromItem(items.at(0)).row());
+    --nbTorrents;
+    tabs->setTabText(0, tr("Downloads") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
     if(systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
       myTrayIcon->showMessage(tr("Download finished"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
     }

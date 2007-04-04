@@ -163,6 +163,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void portListeningFailure();
     void trackerError(const QString& hash, const QString& time, const QString& msg);
     void trackerAuthenticationRequired(torrent_handle& h);
+    void setTabText(int index, QString text);
 
   protected:
     void closeEvent(QCloseEvent *);

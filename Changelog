@@ -1,5 +1,6 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.10.0
     - FEATURE: Added UPnP port forwarding support
+    - FEATURE: Finished torrents are moved to another tab
     - FEATURE: Display more infos about the torrent in its properties
     - FEATURE: Allow the user to edit torrents' trackers
     - FEATURE: Allow user to change qBT's style (Plastique, Cleanlooks, Motif, CDE, MacOSX, WinXP)

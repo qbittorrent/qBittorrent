@@ -30,42 +30,26 @@
 class FinishedTorrents : public QWidget, public Ui::seeding{
   Q_OBJECT
   private:
+    QObject *parent;
     bittorrent *BTSession;
     DLListDelegate *finishedListDelegate;
     QStringList finishedSHAs;
     QStandardItemModel *finishedListModel;
+    unsigned int nbFinished;
 
   public:
-    FinishedTorrents(bittorrent *BTSession){
-      setupUi(this);
-      this->BTSession = BTSession;
-      finishedListModel = new QStandardItemModel(0,9);
-      finishedListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
-      finishedListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
-      finishedListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress", "i.e: % downloaded"));
-      finishedListModel->setHeaderData(DLSPEED, Qt::Horizontal, tr("DL Speed", "i.e: Download speed"));
-      finishedListModel->setHeaderData(UPSPEED, Qt::Horizontal, tr("UP Speed", "i.e: Upload speed"));
-      finishedListModel->setHeaderData(SEEDSLEECH, Qt::Horizontal, tr("Seeds/Leechs", "i.e: full/partial sources"));
-      finishedListModel->setHeaderData(STATUS, Qt::Horizontal, tr("Status"));
-      finishedListModel->setHeaderData(ETA, Qt::Horizontal, tr("ETA", "i.e: Estimated Time of Arrival / Time left"));
-      finishedList->setModel(finishedListModel);
-      // Hide hash column
-      finishedList->hideColumn(HASH);
-      finishedListDelegate = new DLListDelegate();
-      finishedList->setItemDelegate(finishedListDelegate);
-    }
+    FinishedTorrents(QObject *parent, bittorrent *BTSession);
+    ~FinishedTorrents();
+    // Methods
+    QStringList getFinishedSHAs();
 
-    ~FinishedTorrents(){
-      delete finishedListDelegate;
-      delete finishedListModel;
-    }
+  public slots:
+    void addFinishedSHA(QString sha);
+    void updateFinishedList();
+    void deleteFromFinishedList(QString hash);
 
-    void addFinishedSHA(QString sha){
-      if(finishedSHAs.indexOf(sha) == -1)
-        finishedSHAs << sha;
-      else
-        qDebug("Problem: this torrent (%s) has finished twice...", sha.toStdString().c_str());
-    }
+  protected slots:
+    void setRowColor(int row, const QString& color);
 
 };
 

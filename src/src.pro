@@ -127,7 +127,8 @@ SOURCES += GUI.cpp \
 	   properties_imp.cpp \
 	   createtorrent_imp.cpp \
 	   bittorrent.cpp \
-	   searchEngine.cpp
+	   searchEngine.cpp \
+	   FinishedTorrents.cpp
 !contains(DEFINES, NO_UPNP){
   message(UPnP Enabled)
   HEADERS += UPnP.h
