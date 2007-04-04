@@ -467,7 +467,7 @@ void SearchEngine::on_update_nova_button_clicked(){
   curl_easy_cleanup(curl);
   // Close tmp file
   fclose(file);
-  qDebug("Version on qbittorrent.org: %f", getNovaVersion(filePath));
+  qDebug("Version on qbittorrent.org: %.2f", getNovaVersion(filePath));
   float version_on_server = getNovaVersion(filePath);
   if(version_on_server == 0.0){
     //First server is down, try the mirror

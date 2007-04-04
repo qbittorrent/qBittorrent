@@ -40,7 +40,6 @@
 - Display Url seeds in torrent properties and allow to edit them
 - Improve Ipfilter.dat parser (move to a thread ? - too slow to load qBT and more importantly options)
 - Use tooltips to explain options
-- Exit confirmation only if there are active downloads (display number of downloads) - SMARTER
 - Display more info in log (UPnP)
 - Update to libtorrent SVN (0.13)
     - Use its UPnP/NAT-PMP built-in support instead of ours

@@ -62,7 +62,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex" >
-      <number>0</number>
+      <number>1</number>
      </property>
      <property name="iconSize" >
       <size>
@@ -846,7 +846,7 @@
           <item>
            <widget class="QCheckBox" name="confirmExit_checkBox" >
             <property name="text" >
-             <string>Ask for confirmation on exit</string>
+             <string>Exit confirmation when the download list is not empty</string>
             </property>
             <property name="checked" >
              <bool>true</bool>

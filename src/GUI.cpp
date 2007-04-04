@@ -652,12 +652,12 @@ void GUI::closeEvent(QCloseEvent *e){
     e->ignore();
     return;
   }
-  if(settings.value("Options/Misc/Behaviour/ConfirmOnExit", true).toBool()){
+  if(settings.value("Options/Misc/Behaviour/ConfirmOnExit", true).toBool() && nbTorrents != 0){
     show();
     showNormal();
     if(QMessageBox::question(this,
        tr("Are you sure you want to quit?")+" -- "+tr("qBittorrent"),
-       tr("Are you sure you want to quit qBittorrent?"),
+       tr("The download list is not empty.\nAre you sure you want to quit qBittorrent?"),
        tr("&Yes"), tr("&No"),
        QString(), 0, 1)){
          e->ignore();
