@@ -28,8 +28,8 @@ contains(DEBUG_MODE, 0){
 QMAKE_CXXFLAGS_RELEASE += -fwrapv
 QMAKE_CXXFLAGS_DEBUG += -fwrapv
 #LIBS += -lcurl -lupnp
-#CONFIG += link_pkgconfig
-#PKGCONFIG += libtorrent
+CONFIG += link_pkgconfig
+PKGCONFIG += libtorrent
 QT += network xml
 
 DEFINES += QT_NO_CAST_TO_ASCII
