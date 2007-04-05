@@ -250,6 +250,7 @@ class RssStream : public QObject{
 	      image = property.text();
 	    else if(property.tagName() == "item") {
 	      if(getListSize() < STREAM_MAX_ITEM) {
+                //TODO: find a way to break here
 	        //add it to a list
 	        listItem.append(new RssItem(property, this));
 	      }
