@@ -202,11 +202,11 @@ class RssStream : public QObject{
       return filePath;
     }
 
-    RssItem* getItem(unsigned short index) const{
+    RssItem* getItem(unsigned int index) const{
       return listItem.at(index);
     }
 
-    unsigned short getListSize() const{
+    unsigned int getListSize() const{
       return listItem.size();
     }
 
@@ -216,7 +216,8 @@ class RssStream : public QObject{
 
     void displayStream(){
       qDebug("    # "+getTitle().toUtf8()+" - "+getUrl().toUtf8()+" - "+getAlias().toUtf8());
-      for(int i=0; i<listItem.size(); i++){
+      unsigned int listItemSize = listItem.size();
+      for(unsigned int i=0; i<listItemSize; ++i){
 	getItem(i)->displayItem();
       }
     }
@@ -307,7 +308,8 @@ class RssManager{
 
     ~RssManager(){
       saveStreamList();
-      for(unsigned short i=0; i<streamList.size(); ++i){
+      unsigned int streamListSize = streamList.size();
+      for(unsigned int i=0; i<streamListSize; ++i){
 	delete getStream(i);
       }
     }
@@ -319,7 +321,8 @@ class RssManager{
       streamListUrl = settings.value("streamList").toStringList();
       streamListAlias = settings.value("streamAlias").toStringList();
       settings.endGroup();
-      for(unsigned short i=0; i<streamListUrl.size(); ++i){
+      unsigned int streamListUrlSize = streamListUrl.size();
+      for(unsigned int i=0; i<streamListUrlSize; ++i){
 	RssStream *stream = new RssStream(streamListUrl.at(i));
 	stream->setAlias(streamListAlias.at(i));
 	streamList.append(stream);
@@ -367,7 +370,7 @@ class RssManager{
       short index = hasStream(stream);
       if(index != -1){
         unsigned int streamListSize = streamList.size();
-	for(unsigned short i=0; i<streamListSize; ++i){
+	for(unsigned int i=0; i<streamListSize; ++i){
 	  if(getStream(i)->getUrl() == stream->getUrl()){
 	    delete streamList.takeAt(i);
 	  }
@@ -429,7 +432,8 @@ class RssManager{
     }
 
     void displayManager(){
-      for(unsigned short i=0; i<streamList.size(); i++){
+      unsigned int streamListSize = streamList.size();
+      for(unsigned int i=0; i<streamListSize; ++i){
 	getStream(i)->displayStream();
       }
     }
