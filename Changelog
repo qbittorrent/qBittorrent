@@ -1,5 +1,6 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.10.0
-    - FEATURE: Added UPnP port forwarding support
+    - FEATURE: Added UPnP / NAT-PMP port forwarding support
+    - FEATURE: Added RSS support
     - FEATURE: Finished torrents are moved to another tab
     - FEATURE: Display more infos about the torrent in its properties
     - FEATURE: Allow the user to edit torrents' trackers

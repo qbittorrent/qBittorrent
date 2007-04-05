@@ -320,6 +320,8 @@ class RssManager{
       settings.beginGroup("Rss");
       streamListUrl = settings.value("streamList").toStringList();
       streamListAlias = settings.value("streamAlias").toStringList();
+      //XXX: Maybe check that both list have same size?
+      qDebug("NB RSS streams loaded: %d", streamListUrl.size());
       settings.endGroup();
       unsigned int streamListUrlSize = streamListUrl.size();
       for(unsigned int i=0; i<streamListUrlSize; ++i){
@@ -344,13 +346,15 @@ class RssManager{
 	streamList.append(stream);
 	streamListUrl.append(stream->getUrl());
 	streamListAlias.append(stream->getUrl());
+      }else{
+        qDebug("Not adding the Rss stream because it is already in the list");
       }
     }
 
     // add a stream to the manager
     void addStream(QString url){
       // completion of the address
-      if(!url.endsWith(".xml")){
+      if(!url.endsWith(".xml")) {
 	if(url.endsWith("/")) {
 	  url.append("rss.xml");
         } else {
@@ -362,6 +366,8 @@ class RssManager{
 	streamList.append(new RssStream(url));
 	streamListUrl.append(url);
 	streamListAlias.append(url);
+      }else {
+        qDebug("Not adding the Rss stream because it is already in the list");
       }
     }
 
@@ -419,11 +425,11 @@ class RssManager{
     }
 
     // return the position index of a stream, if the manager owns it
-    short hasStream(RssStream* stream) const{
+    int hasStream(RssStream* stream) const{
       return hasStream(stream->getUrl());
     }
 
-    bool hasStream(const QString& url) const{
+    int hasStream(const QString& url) const{
       return streamListUrl.indexOf(url);
     }
 

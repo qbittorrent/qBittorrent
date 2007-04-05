@@ -95,7 +95,7 @@
       }
     }
 
-    //right-clik on stream : give him an alias    
+    //right-clik on stream : give him an alias
     void RSSImp::renameStream() {
       if(rssmanager.getNbStream()==0) {
 	qDebug("no stream selected");
@@ -144,7 +144,7 @@
 	refreshStreamList();
       }
     }
-    
+
     // fills the streamList
     void RSSImp::refreshStreamList() {
       int currentStream = listStreams->currentRow();
@@ -152,7 +152,7 @@
       for(int i=0; i<rssmanager.getNbStream(); i++) {
 	new QListWidgetItem(rssmanager.getStream(i)->getAlias()+" ("+QString::number(rssmanager.getStream(i)->getListSize(),10).toUtf8()+")", listStreams);
       }
-      listStreams->setCurrentRow(currentStream);      
+      listStreams->setCurrentRow(currentStream);
     }
 
     // fills the newsList
@@ -160,7 +160,8 @@
       if(rssmanager.getNbStream()>0) {
 	RssStream* currentstream = rssmanager.getStream(listStreams->currentRow());
 	listNews->clear();
-	for(int i=0; i<currentstream->getListSize(); i++) {
+        unsigned int currentStreamSize = currentstream->getListSize();
+	for(unsigned int i=0; i<currentStreamSize; ++i) {
 	  new QListWidgetItem(currentstream->getItem(i)->getTitle(), listNews);
 	}
       }
@@ -181,7 +182,7 @@
         listStreams->item(i)->setText(rssmanager.getStream(i)->getAlias()+" ("+QString::number(rssmanager.getStream(i)->getListSize(),10).toUtf8()+")");
       }
     }
-    
+
     RSSImp::RSSImp() : QWidget(){
       setupUi(this);
       addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
@@ -205,5 +206,5 @@
       delete timer;
     }
 
-  
+
 
