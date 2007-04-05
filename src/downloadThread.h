@@ -151,7 +151,7 @@ class downloadThread : public QThread {
 	      ++retries;
 	      SleeperThread::msleep(1000);
 	    }
-	  }while(to_many_users && retries < 10);
+	  }while(to_many_users && retries < 10 && response!=0);
           // Cleanup
           curl_easy_cleanup(curl);
           // Close tmp file

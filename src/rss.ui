@@ -49,7 +49,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QListWidget" name="listStreams" />
+        <widget class="QListWidget" name="listStreams" >
+         <property name="contextMenuPolicy" >
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
+        </widget>
        </item>
        <item>
         <layout class="QHBoxLayout" >
@@ -171,7 +175,7 @@
         <widget class="QListWidget" name="listNews" >
          <property name="minimumSize" >
           <size>
-           <width>600</width>
+           <width>520</width>
            <height>0</height>
           </size>
          </property>
@@ -195,6 +199,31 @@
     </layout>
    </item>
   </layout>
+  <action name="actionDelete" >
+   <property name="text" >
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionRename" >
+   <property name="text" >
+    <string>Rename</string>
+   </property>
+  </action>
+  <action name="actionRefresh" >
+   <property name="text" >
+    <string>Refresh</string>
+   </property>
+  </action>
+  <action name="actionCreate" >
+   <property name="text" >
+    <string>Create</string>
+   </property>
+  </action>
+  <action name="actionRefreshAll" >
+   <property name="text" >
+    <string>RefreshAll</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

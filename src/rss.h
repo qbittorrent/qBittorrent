@@ -19,9 +19,9 @@
  * Contact : chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
+#define STREAM_MAX_ITEM 15
+// TODO : not used yet
 #define GLOBAL_MAX_ITEM 150
-#define STREAM_MAX_ITEM 20
-
 
 #ifndef RSS_H
 #define RSS_H
@@ -191,6 +191,7 @@ class RssStream : public QObject{
       return this->alias;
     }
 
+    //prefer the RssManager::setAlias, do not save the changed ones
     void setAlias(const QString& _alias){
       this->alias = _alias;
     }
@@ -319,7 +320,6 @@ class RssManager{
 
   private :
     QList<RssStream*> streamList;
-    QList<RssStream*> ignoredStreamList;
     QStringList streamListUrl;
     QStringList streamListAlias;
 
@@ -332,9 +332,6 @@ class RssManager{
       saveStreamList();
       for(unsigned short i=0; i<streamList.size(); i++){
 	delete getStream(i);
-      }
-      for(unsigned short i=0; i<ignoredStreamList.size(); i++){
-	delete getIgnored(i);
       }
     }
 
@@ -395,12 +392,6 @@ class RssManager{
     void removeStream(RssStream* stream){
       short index = hasStream(stream);
       if(index>=0){
-	for(unsigned short i=0; i<ignoredStreamList.size(); i++){
-	  if(getIgnored(i)->getUrl()==stream->getUrl()){
-	    delete ignoredStreamList.at(i);
-	    this->ignoredStreamList.removeAt(i);
-	  }
-	}
 	for(unsigned short i=0; i<streamList.size(); i++){
 	  if(getStream(i)->getUrl()==stream->getUrl()){
 	    delete streamList.at(i);
@@ -414,35 +405,36 @@ class RssManager{
 
     // remove all the streams in the manager
     void removeAll(){
-      QList<RssStream*> newIgnoredList, newStreamList;
+      QList<RssStream*> newStreamList;
       QStringList newUrlList, newAliasList;
       for(unsigned short i=0; i<streamList.size(); i++){
 	delete getStream(i);
       }
-      for(unsigned short i=0; i<ignoredStreamList.size(); i++){
-	delete getIgnored(i);
-      }
       this->streamList = newStreamList;
-      this->ignoredStreamList = newIgnoredList;
       this->streamListUrl = newUrlList;
       this->streamListAlias = newAliasList;
     }
 
     // reload all the xml files from the web
     void refreshAll(){
-      QList<RssStream*> newIgnoredList, newStreamList;
+      QList<RssStream*> newStreamList;
       for(unsigned short i=0; i<streamList.size(); i++){
 	delete getStream(i);
       }
-      for(unsigned short i=0; i<ignoredStreamList.size(); i++){
-	delete getIgnored(i);
-      }
       this->streamList = newStreamList;
-      this->ignoredStreamList = newIgnoredList;
       for(unsigned short i=0; i<streamListUrl.size(); i++){
 	RssStream *stream = new RssStream(this->streamListUrl.at(i));
 	stream->setAlias(this->streamListAlias.at(i));
 	this->streamList.append(stream);
+      }
+    }
+
+    void refresh(int index) {
+      if(index>=0 && index<getNbStream()) {
+	delete getStream(index);
+	RssStream *stream = new RssStream(this->streamListUrl.at(index));
+	stream->setAlias(this->streamListAlias.at(index));
+	this->streamList.replace(index, stream);
       }
     }
     
@@ -460,22 +452,22 @@ class RssManager{
       return streamList.at(index);
     }
 
-    RssStream* getIgnored(const int& index) const{
-      return ignoredStreamList.at(index);
-    }
-
     void displayManager(){
       for(unsigned short i=0; i<streamList.size(); i++){
 	getStream(i)->displayStream();
-      }
-      qDebug("#### rss ignored streams ####");
-      for(unsigned short i=0; i<ignoredStreamList.size(); i++){
-	qDebug(" _ (ignored) "+getIgnored(i)->getTitle().toUtf8()+" - "+getIgnored(i)->getUrl().toUtf8()+" // "+getIgnored(i)->getAlias().toUtf8());
       }
     }
 
     int getNbStream() {
       return streamList.size();
+    }
+
+    //set an alias to an stream and save it for later
+    void setAlias(int index, QString newAlias) {
+      if(newAlias.length()>=2 && !streamListAlias.contains(newAlias, Qt::CaseInsensitive)) {
+	getStream(index)->setAlias(newAlias);
+	streamListAlias.replace(index, newAlias);
+      }
     }
       
 };

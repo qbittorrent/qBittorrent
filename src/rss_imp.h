@@ -21,8 +21,14 @@
 #ifndef __RSS_IMP_H__
 #define __RSS_IMP_H__
 
+// avoid crash if too many refresh
+#define REFRESH_FREQ_MAX 5000
+
+#include <QTimer>
+#include <QTime>
 #include "ui_rss.h"
 #include "rss.h"
+#include "GUI.h"
 
 class RSSImp : public QWidget, public Ui::RSS{
   Q_OBJECT
@@ -32,6 +38,8 @@ class RSSImp : public QWidget, public Ui::RSS{
     void refreshStreamList();
     void refreshNewsList();
     void refreshTextBrowser();
+    QTimer* timer;
+    QTime lastRefresh;
 
   protected slots:
     void on_addStream_button_clicked();
@@ -40,6 +48,13 @@ class RSSImp : public QWidget, public Ui::RSS{
     void on_listStreams_clicked();
     void on_listNews_clicked();
     void on_listNews_doubleClicked();
+    void displayFinishedListMenu(const QPoint&);
+    void deleteStream();
+    void renameStream();
+    void refreshStream();
+    void createStream();
+    void refreshAllStream();
+    void updateStreamNbNews();
 
   public:
     RSSImp();
