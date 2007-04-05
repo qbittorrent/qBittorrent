@@ -1248,11 +1248,11 @@ void GUI::propertiesSelection(){
 void GUI::finishedTorrent(torrent_handle& h){
     QSettings settings("qBittorrent", "qBittorrent");
     QString fileName = QString(h.name().c_str());
-    setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
     int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
     // Add it to finished tab
     QString hash = QString(misc::toString(h.info_hash()).c_str());
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")) return;
+    setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
     finishedTorrentTab->addFinishedSHA(hash);
     QList<QStandardItem *> items = DLListModel->findItems(hash, Qt::MatchExactly, HASH );
     if(items.size() != 1){
