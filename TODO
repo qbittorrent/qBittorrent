@@ -29,6 +29,9 @@
 - Add a torrent scheduler
 - Improve Ipfilter.dat parser (move to a thread ? - too slow to load qBT and more importantly options)
 
+// in v0.11
+- Tabs support in search
+
 // in v0.10 (partial) - WIP
 - Download from RSS feeds (WIP by gtsoul, clean & finish rss.h, add a tab in mainWindow, debug)
 - Move finished torrent to another tab and keep on seeding them even after restart (debug)
@@ -39,5 +42,4 @@
 - Display more info in log (UPnP)
 - Update to libtorrent SVN (0.13)
     - Use its UPnP/NAT-PMP built-in support instead of ours
-    - Use its piece prioritization support
-- Tab support in search (maybe a bit later)
+    - Use its piece prioritization support (Add comboboxes in properties)

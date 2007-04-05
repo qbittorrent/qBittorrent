@@ -44,7 +44,8 @@ properties::properties(QWidget *parent, torrent_handle &h, QStringList trackerEr
   filesList->setModel(PropListModel);
   PropDelegate = new PropListDelegate();
   filesList->setItemDelegate(PropDelegate);
-  connect(filesList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(toggleSelectedState(const QModelIndex&)));
+//   connect(filesList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(toggleSelectedState(const QModelIndex&)));
+  connect(filesList, SIGNAL(clicked(const QModelIndex&)), filesList, SLOT(edit(const QModelIndex&)));
   connect(addTracker_button, SIGNAL(clicked()), this, SLOT(askForTracker()));
   connect(removeTracker_button, SIGNAL(clicked()), this, SLOT(deleteSelectedTrackers()));
   connect(riseTracker_button, SIGNAL(clicked()), this, SLOT(riseSelectedTracker()));
@@ -304,27 +305,27 @@ void properties::setAllPiecesState(bool selected){
 
 // Toggle the selected state of a file within the torrent when we
 // double click on it.
-void properties::toggleSelectedState(const QModelIndex& index){
-  int row = index.row();
-  if(selectionBitmask.at(row)){
-    // File is selected
-    selectionBitmask.erase(selectionBitmask.begin()+row);
-    selectionBitmask.insert(selectionBitmask.begin()+row, 0);
-    // Update list infos
-    setRowColor(row, "green");
-    PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(true));
-  }else{
-    // File is not selected
-    selectionBitmask.erase(selectionBitmask.begin()+row);
-    selectionBitmask.insert(selectionBitmask.begin()+row, 1);
-    // Update list infos
-    setRowColor(row, "red");
-    PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(false));
-  }
-  h.filter_files(selectionBitmask);
-  // Save filtered pieces to a file to remember them
-  saveFilteredFiles();
-}
+// void properties::toggleSelectedState(const QModelIndex& index){
+//   int row = index.row();
+//   if(selectionBitmask.at(row)){
+//     // File is selected
+//     selectionBitmask.erase(selectionBitmask.begin()+row);
+//     selectionBitmask.insert(selectionBitmask.begin()+row, 0);
+//     // Update list infos
+//     setRowColor(row, "green");
+//     PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(true));
+//   }else{
+//     // File is not selected
+//     selectionBitmask.erase(selectionBitmask.begin()+row);
+//     selectionBitmask.insert(selectionBitmask.begin()+row, 1);
+//     // Update list infos
+//     setRowColor(row, "red");
+//     PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(false));
+//   }
+//   h.filter_files(selectionBitmask);
+//   // Save filtered pieces to a file to remember them
+//   saveFilteredFiles();
+// }
 
 void properties::on_incrementalDownload_stateChanged(int){
   qDebug("Incremental download toggled");

@@ -22,8 +22,10 @@
 #ifndef PROPLISTDELEGATE_H
 #define PROPLISTDELEGATE_H
 
-#include <QAbstractItemDelegate>
+#include <QItemDelegate>
 #include <QStyleOptionProgressBarV2>
+#include <QStyleOptionComboBox>
+#include <QComboBox>
 #include <QModelIndex>
 #include <QPainter>
 #include <QProgressBar>
@@ -36,11 +38,11 @@
 #define PROGRESS 2
 #define SELECTED 3
 
-class PropListDelegate: public QAbstractItemDelegate {
+class PropListDelegate: public QItemDelegate {
   Q_OBJECT
 
   public:
-    PropListDelegate(QObject *parent=0) : QAbstractItemDelegate(parent){}
+    PropListDelegate(QObject *parent=0) : QItemDelegate(parent){}
 
     ~PropListDelegate(){}
 
@@ -101,17 +103,54 @@ class PropListDelegate: public QAbstractItemDelegate {
           painter->drawText(option.rect, Qt::AlignCenter, newopt.text);
           break;
         }
-        case SELECTED:
+        case SELECTED:{
+          QStyleOptionComboBox newopt;
+          newopt.rect = opt.rect;
           if(index.data().toBool()){
-            painter->drawText(option.rect, Qt::AlignCenter, tr("True"));
+//             painter->drawText(option.rect, Qt::AlignCenter, tr("True"));
+            newopt.currentText = tr("True");
           }else{
-            painter->drawText(option.rect, Qt::AlignCenter, tr("False"));
+//             painter->drawText(option.rect, Qt::AlignCenter, tr("False"));
+            newopt.currentText = tr("False");
           }
+          newopt.state |= QStyle::State_Enabled;
+//           newopt.frame = true;
+//           newopt.editable = true;
+          QApplication::style()->drawComplexControl(QStyle::CC_ComboBox, &newopt,
+          painter);
+          opt.palette.setColor(QPalette::Text, QColor("black"));
+          painter->setPen(opt.palette.color(cg, QPalette::Text));
+          painter->drawText(option.rect, Qt::AlignLeft, " "+newopt.currentText);
           break;
+        }
         default:
           painter->drawText(option.rect, Qt::AlignCenter, index.data().toString());
       }
     }
+
+    QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &/* option */, const QModelIndex & index) const {
+      if(index.column() != SELECTED) return 0;
+      QComboBox* editor = new QComboBox(parent);
+      editor->setFocusPolicy(Qt::StrongFocus);
+      editor->addItem(tr("True"));
+      editor->addItem(tr("False"));
+      return editor;
+    }
+
+    void setEditorData(QWidget *editor, const QModelIndex &index) const {
+      bool value = index.model()->data(index, Qt::DisplayRole).toBool();
+      QComboBox *combobox = static_cast<QComboBox*>(editor);
+      if(value) {
+        combobox->setCurrentIndex(0);
+      } else {
+        combobox->setCurrentIndex(1);
+      }
+    }
+
+//     bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index ){
+//       qDebug("Event!!!!");
+//       return false;
+//     }
 
     QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const{
       QVariant value = index.data(Qt::FontRole);
@@ -120,6 +159,29 @@ class PropListDelegate: public QAbstractItemDelegate {
       const QString text = index.data(Qt::DisplayRole).toString();
       QRect textRect = QRect(0, 0, 0, fontMetrics.lineSpacing() * (text.count(QLatin1Char('\n')) + 1));
       return textRect.size();
+    }
+
+    public slots:
+    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const {
+      QComboBox *combobox = static_cast<QComboBox*>(editor);
+//       combobox->interpretText();
+      int value = combobox->currentIndex();
+      qDebug("Setting combobox value in index: %d", value);
+      QString color;
+      if(value == 0) {
+        model->setData(index, true);
+        color = "green";
+      } else {
+        model->setData(index, false);
+        color = "red";
+      }
+      for(int i=0; i<model->columnCount(); ++i){
+        model->setData(model->index(index.row(), i), QVariant(QColor(color)), Qt::TextColorRole);
+      }
+    }
+
+    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &/* index */) const {
+      editor->setGeometry(option.rect);
     }
 };
 
