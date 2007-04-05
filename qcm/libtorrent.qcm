@@ -56,7 +56,7 @@ public:
 			if(!found) return false;
 			conf->addLib(QString("-L") + s);
 		}
-		conf->addLib("-ltorrent");
+		//conf->addLib("-ltorrent");
 		return true;
 	}
 };

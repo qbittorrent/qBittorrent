@@ -1,6 +1,6 @@
 [Desktop Entry]
 Categories=Qt;Application;Network;P2P
-Comment=V0.9.1
+Comment=V0.9.2
 Encoding=UTF-8
 Exec=qbittorrent
 GenericName=Bittorrent client

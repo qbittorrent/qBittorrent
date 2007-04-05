@@ -1,5 +1,6 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.9.2
 		- BUGFIX: Window can now stay maximized on exit
+		- BUGFIX: Use PKGCONFIG again for configuring libtorrent
 
 * Wed Apr 04 2007 - Christophe Dumez <chris@qbittorrent.org> - v0.9.1
     - BUGFIX: A lot of fixes in configure file

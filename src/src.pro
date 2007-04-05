@@ -11,10 +11,10 @@ TARGET = qbittorrent
 CONFIG += qt thread x11
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v0.9.1\\\"
+DEFINES += VERSION=\\\"v0.9.2rc1\\\"
 DEFINES += VERSION_MAJOR=0
 DEFINES += VERSION_MINOR=9
-DEFINES += VERSION_BUGFIX=1
+DEFINES += VERSION_BUGFIX=2
 
 contains(DEBUG_MODE, 1){
   CONFIG += debug
@@ -28,8 +28,8 @@ contains(DEBUG_MODE, 0){
 QMAKE_CXXFLAGS_RELEASE += -fwrapv
 QMAKE_CXXFLAGS_DEBUG += -fwrapv
 #LIBS += -lcurl
-#CONFIG += link_pkgconfig
-#PKGCONFIG += libtorrent
+CONFIG += link_pkgconfig
+PKGCONFIG += libtorrent
 QT += network
 
 DEFINES += QT_NO_CAST_TO_ASCII
