@@ -135,12 +135,17 @@ class RssStream : public QObject{
 
     // read and store the downloaded rss' informations
     void processDownloadedFile(const QString&, const QString& file_path, int return_code, const QString&){
-      QFile::remove(filePath);
+      // delete the former file
+      if(QFile::exists(filePath)) {
+        QFile::remove(filePath);
+      }
       filePath = file_path;
       if(return_code){
         // Download failed
 	qDebug("(download failure) "+file_path.toUtf8());
-	QFile::remove(file_path);
+	if(QFile::exists(filePath)) {
+	  QFile::remove(file_path);
+	}
 	return;
       }
       this->openRss();
@@ -157,19 +162,25 @@ class RssStream : public QObject{
     }
 
     ~RssStream(){
-      for(int i=0; i<listItem.size(); i++){
-	delete getItem(i);
-      }
+      removeAllItem();
       delete downloader;
       if(QFile::exists(filePath))
         QFile::remove(filePath);
     }
 
     int refresh(){
-      downloader = new downloadThread(this);
       connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
       downloader->downloadUrl(url);
       return 1;
+    }
+
+    // delete all the items saved
+    void removeAllItem() {
+      int i=0;
+      while(i<listItem.size()) {
+	delete getItem(i);
+	i++;
+      }
     }
     
     QString getTitle() const{
@@ -258,9 +269,11 @@ class RssStream : public QObject{
 	    // build items
 	    else if(property.tagName() == "item")
 	    {
-	      RssItem* item = new RssItem(property, this);
-	      //add it to a list
-	      this->listItem.append(item);
+	      if(getListSize()<STREAM_MAX_ITEM) {
+	       RssItem* item = new RssItem(property, this);
+	       //add it to a list
+	       this->listItem.append(item);
+	      }
 	    }
 	    property = property.nextSibling().toElement();
 	  }
@@ -276,21 +289,27 @@ class RssStream : public QObject{
       QFile fileRss(filePath);
       if(!fileRss.open(QIODevice::ReadOnly | QIODevice::Text))
       {
-	qDebug("error : open failed, no file or locked");
-	fileRss.remove();
+	qDebug("error : open failed, no file or locked, "+filePath.toUtf8());
+	if(QFile::exists(filePath)) {
+	 fileRss.remove();
+	}
 	return -1;
       }
       if(!doc.setContent(&fileRss))
       {
 	qDebug("can't read temp file, might be empty");
 	fileRss.close();
-	fileRss.remove();
+	if(QFile::exists(filePath)) {
+	 fileRss.remove();
+	}
 	return -1;
       }
       // start reading the xml
       short return_lecture = read(doc);
       fileRss.close();
-      fileRss.remove();
+      if(QFile::exists(filePath)) {
+        fileRss.remove();
+      }
       return return_lecture;
     }
 };
@@ -409,6 +428,24 @@ class RssManager{
       this->streamListAlias = newAliasList;
     }
 
+    // reload all the xml files from the web
+    void refreshAll(){
+      QList<RssStream*> newIgnoredList, newStreamList;
+      for(unsigned short i=0; i<streamList.size(); i++){
+	delete getStream(i);
+      }
+      for(unsigned short i=0; i<ignoredStreamList.size(); i++){
+	delete getIgnored(i);
+      }
+      this->streamList = newStreamList;
+      this->ignoredStreamList = newIgnoredList;
+      for(unsigned short i=0; i<streamListUrl.size(); i++){
+	RssStream *stream = new RssStream(this->streamListUrl.at(i));
+	stream->setAlias(this->streamListAlias.at(i));
+	this->streamList.append(stream);
+      }
+    }
+    
     // return the position index of a stream, if the manager owns it
     short hasStream(RssStream* stream) const{
       QString url = stream->getUrl();
@@ -427,24 +464,6 @@ class RssManager{
       return ignoredStreamList.at(index);
     }
 
-    // reload all the xml files from the web
-    void refreshAll(){
-      // first refresh the ignored ones
-      for(unsigned short i=0; i<ignoredStreamList.size(); i++){
-	if(getIgnored(i)->refresh()==0){
-	  this->streamList.append(getIgnored(i));
-	  this->ignoredStreamList.removeAt(i);
-	}
-      }
-      // then refresh the active ones
-      for(unsigned short i=0; i<streamList.size(); i++){
-	if(getStream(i)->refresh()!=0){
-	  this->ignoredStreamList.append(getStream(i));
-	  this->streamList.removeAt(i);
-	}
-      }
-    }
-
     void displayManager(){
       for(unsigned short i=0; i<streamList.size(); i++){
 	getStream(i)->displayStream();
@@ -455,6 +474,10 @@ class RssManager{
       }
     }
 
+    int getNbStream() {
+      return streamList.size();
+    }
+      
 };
 
 #endif

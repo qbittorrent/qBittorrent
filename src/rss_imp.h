@@ -27,15 +27,23 @@
 class RSSImp : public QWidget, public Ui::RSS{
   Q_OBJECT
 
-  public:
-    RSSImp() : QWidget(){
-      setupUi(this);
-      addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
-      delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
-      refreshAll_button->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
-    }
+  private:
+    RssManager rssmanager;
+    void refreshStreamList();
+    void refreshNewsList();
+    void refreshTextBrowser();
 
-    ~RSSImp(){}
+  protected slots:
+    void on_addStream_button_clicked();
+    void on_delStream_button_clicked();
+    void on_refreshAll_button_clicked();
+    void on_listStreams_clicked();
+    void on_listNews_clicked();
+    void on_viewStream_button_clicked();
+
+  public:
+    RSSImp();
+    ~RSSImp();
 };
 
 #endif
