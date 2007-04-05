@@ -66,6 +66,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   tabs->addTab(rssWidget, tr("RSS"));
   tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss.png")));
   readSettings();
+  // Tabs text
+  nbTorrents = 0;
+  tabs->setTabText(0, tr("Downloads") + " (0)");
+  tabs->setTabText(1, tr("Finished") + " (0)");
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent32.png")));
   actionOpen->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/open.png")));
@@ -116,8 +120,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   if(!loadColWidthDLList()){
     downloadList->header()->resizeSection(0, 200);
   }
-  nbTorrents = 0;
-  tabs->setTabText(0, tr("Downloads") +" (0)");
 #ifndef NO_UPNP
   connect(&BTSession, SIGNAL(noWanServiceDetected()), this, SLOT(displayNoUPnPWanServiceDetected()));
   connect(&BTSession, SIGNAL(wanServiceDetected()), this, SLOT(displayUPnPWanServiceDetected()));

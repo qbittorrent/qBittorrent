@@ -19,12 +19,12 @@
  * Contact : chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
-#define STREAM_MAX_ITEM 15
-// TODO : not used yet
-#define GLOBAL_MAX_ITEM 150
-
 #ifndef RSS_H
 #define RSS_H
+
+#define STREAM_MAX_ITEM 15
+// FIXME: not used yet
+#define GLOBAL_MAX_ITEM 150
 
 #include <QFile>
 #include <QList>
@@ -36,9 +36,7 @@
 #include "misc.h"
 #include "downloadThread.h"
 
-class RssItem;
 class RssStream;
-class RssManager;
 
 // Item of a rss stream, single information
 class RssItem{
@@ -58,9 +56,8 @@ class RssItem{
       read = false;
       parent = _parent;
       downloadLink = "none";
-      QDomElement property=properties.firstChild().toElement();
-      while(!property.isNull())
-      {
+      QDomElement property = properties.firstChild().toElement();
+      while(!property.isNull()) {
 	    // setters
 	if (property.tagName() == "title")
 	  title = property.text();
@@ -182,7 +179,7 @@ class RssStream : public QObject{
 	i++;
       }
     }
-    
+
     QString getTitle() const{
       return this->title;
     }
@@ -379,7 +376,7 @@ class RssManager{
 	  url.append("rss.xml");
 	}
       }
-      
+
       if(hasStream(url)<0){
 	RssStream* stream = new RssStream(url);
 	this->streamList.append(stream);
@@ -437,7 +434,7 @@ class RssManager{
 	this->streamList.replace(index, stream);
       }
     }
-    
+
     // return the position index of a stream, if the manager owns it
     short hasStream(RssStream* stream) const{
       QString url = stream->getUrl();
@@ -469,7 +466,7 @@ class RssManager{
 	streamListAlias.replace(index, newAlias);
       }
     }
-      
+
 };
 
 #endif

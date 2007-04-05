@@ -42,4 +42,4 @@
 - Display more info in log (UPnP)
 - Update to libtorrent SVN (0.13)
     - Use its UPnP/NAT-PMP built-in support instead of ours
-    - Use its piece prioritization support (Add comboboxes in properties)
+    - Use its piece prioritization support

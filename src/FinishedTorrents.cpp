@@ -28,7 +28,6 @@
 FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   setupUi(this);
   nbFinished = 0;
-  ((GUI*)parent)->setTabText(1, tr("Finished") +" (0)");
   this->parent = parent;
   this->BTSession = BTSession;
   finishedListModel = new QStandardItemModel(0,9);

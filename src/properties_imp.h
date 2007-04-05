@@ -48,7 +48,6 @@ class properties : public QDialog, private Ui::properties{
     void on_okButton_clicked();
     void on_incrementalDownload_stateChanged(int);
     void setRowColor(int row, QString color);
-//     void toggleSelectedState(const QModelIndex& index);
     void saveFilteredFiles();
     void updateProgress();
     void loadFilteredFiles();
