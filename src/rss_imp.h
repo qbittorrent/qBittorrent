@@ -39,7 +39,7 @@ class RSSImp : public QWidget, public Ui::RSS{
     void on_refreshAll_button_clicked();
     void on_listStreams_clicked();
     void on_listNews_clicked();
-    void on_viewStream_button_clicked();
+    void on_listNews_doubleClicked();
 
   public:
     RSSImp();
