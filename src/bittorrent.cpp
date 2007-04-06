@@ -27,6 +27,8 @@
 
 // Main constructor
 bittorrent::bittorrent(){
+  // To avoid some exceptions
+	fs::path::default_name_check(fs::no_check);
   // Supported preview extensions
   // XXX: might be incomplete
   supported_preview_extensions << "AVI" << "DIVX" << "MPG" << "MPEG" << "MP3" << "OGG" << "WMV" << "WMA" << "RMV" << "RMVB" << "ASF" << "MOV" << "WAV" << "MP2" << "SWF" << "AC3";
@@ -36,8 +38,10 @@ bittorrent::bittorrent(){
   s->set_severity_level(alert::info);
   // DHT (Trackerless), disabled until told otherwise
   DHTEnabled = false;
+#ifndef NO_PEX
   // Enabling metadata plugin
   s->add_extension(&create_metadata_plugin);
+#endif
   timerAlerts = new QTimer(this);
   connect(timerAlerts, SIGNAL(timeout()), this, SLOT(readAlerts()));
   timerAlerts->start(3000);
@@ -61,13 +65,23 @@ bittorrent::~bittorrent(){
 
 // Return the torrent handle, given its hash
 torrent_handle bittorrent::getTorrentHandle(const QString& hash) const{
+#ifndef NO_PEX
   return s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
+#endif
+#ifdef NO_PEX
+	return torrent_list.value(hash);
+#endif
 }
 
 // Return true if the torrent corresponding to the
 // hash is paused
 bool bittorrent::isPaused(const QString& hash) const{
+#ifndef NO_PEX
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
+#endif
+#ifdef NO_PEX
+	torrent_handle h = torrent_list.value(hash);
+#endif
   if(!h.is_valid()){
     qDebug("/!\\ Error: Invalid handle");
     return true;
@@ -78,13 +92,18 @@ bool bittorrent::isPaused(const QString& hash) const{
 // Delete a torrent from the session, given its hash
 // permanent = true means that the torrent will be removed from the hard-drive too
 void bittorrent::deleteTorrent(const QString& hash, bool permanent){
-  torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
-  if(!h.is_valid()){
+  #ifndef NO_PEX
+	  torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
+	#endif
+	#ifdef NO_PEX
+	  torrent_handle h = torrent_list.value(hash);
+	#endif
+	if(!h.is_valid()){
     qDebug("/!\\ Error: Invalid handle");
     return;
   }
   QString savePath = QString::fromUtf8(h.save_path().string().c_str());
-  QString fileName = QString(h.name().c_str());
+  QString fileName = QString(h.get_torrent_info().name().c_str());
   // Remove it from session
   s->remove_torrent(h);
   // Remove it from torrent backup directory
@@ -112,7 +131,12 @@ void bittorrent::cleanDeleter(deleteThread* deleter){
 
 // Pause a running torrent
 void bittorrent::pauseTorrent(const QString& hash){
+#ifndef NO_PEX
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
+#endif
+#ifdef NO_PEX
+  torrent_handle h = torrent_list.value(hash);
+#endif
   if(h.is_valid() && !h.is_paused()){
     h.pause();
     // Create .paused file
@@ -124,7 +148,12 @@ void bittorrent::pauseTorrent(const QString& hash){
 
 // Resume a torrent in paused state
 void bittorrent::resumeTorrent(const QString& hash){
+#ifndef NO_PEX
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
+#endif
+#ifdef NO_PEX
+  torrent_handle h = torrent_list.value(hash);
+#endif
   if(h.is_valid() && h.is_paused()){
     h.resume();
     // Delete .paused file
@@ -162,7 +191,12 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, const QString
     // Getting torrent file informations
     torrent_info t(e);
     QString hash = QString(misc::toString(t.info_hash()).c_str());
+#ifndef NO_PEX
     if(s->find_torrent(t.info_hash()).is_valid()){
+#endif
+#ifdef NO_PEX
+		if(torrent_list.value(hash, torrent_handle()).is_valid()){
+#endif
       // Update info Bar
       if(!fromScanDir){
         if(!from_url.isNull()){
@@ -212,6 +246,9 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, const QString
       qDebug("/!\\ Error: Invalid handle");
       return;
     }
+#ifdef NO_PEX
+		torrent_list.insert(QString(misc::toString(h.info_hash()).c_str()), h);
+#endif
     // Is this really useful and appropriate ?
     //h.set_max_connections(60);
     h.set_max_uploads(-1);
@@ -320,12 +357,12 @@ bool bittorrent::isDHTEnabled() const{
 // Enable DHT
 void bittorrent::enableDHT(){
   if(!DHTEnabled){
-    boost::filesystem::ifstream dht_state_file((const char*)(misc::qBittorrentPath()+QString("dht_state")).toUtf8(), std::ios_base::binary);
-    dht_state_file.unsetf(std::ios_base::skipws);
-    entry dht_state;
-    try{
-      dht_state = bdecode(std::istream_iterator<char>(dht_state_file), std::istream_iterator<char>());
-    }catch (std::exception&) {}
+	  entry dht_state;
+	  try{
+    	boost::filesystem::ifstream dht_state_file((const char*)(misc::qBittorrentPath()+QString("dht_state")).toUtf8(), std::ios_base::binary);
+			dht_state_file.unsetf(std::ios_base::skipws);
+			dht_state = bdecode(std::istream_iterator<char>(dht_state_file), std::istream_iterator<char>());
+		}catch(std::exception&) {	}
     s->start_dht(dht_state);
     s->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
     s->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
@@ -388,8 +425,13 @@ void bittorrent::saveFastResumeData(){
     torrentBackup.mkpath(torrentBackup.path());
   }
   // Write fast resume data
+#ifndef NO_PEX
   std::vector<torrent_handle> handles = s->get_torrents();
-  for(unsigned int i=0; i<handles.size(); ++i){
+#endif
+#ifdef NO_PEX
+	QList<torrent_handle> handles = torrent_list.values();
+#endif
+  for(unsigned int i=0; i<(unsigned int)handles.size(); ++i){
     torrent_handle &h = handles[i];
     if(!h.is_valid()){
       qDebug("/!\\ Error: Invalid handle");
@@ -419,7 +461,12 @@ void bittorrent::saveFastResumeData(){
 
 bool bittorrent::isFilePreviewPossible(const QString& hash) const{
   // See if there are supported files in the torrent
+#ifndef NO_PEX
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
+#endif
+#ifdef NO_PEX
+  torrent_handle h = torrent_list.value(hash);
+#endif
   if(!h.is_valid()){
     qDebug("/!\\ Error: Invalid handle");
     return false;
@@ -500,8 +547,13 @@ void bittorrent::setUploadRateLimit(int rate){
 // libtorrent allow to adjust ratio for each torrent
 // This function will apply to same ratio to all torrents
 void bittorrent::setGlobalRatio(float ratio){
+#ifndef NO_PEX
   std::vector<torrent_handle> handles = s->get_torrents();
-  for(unsigned int i=0; i<handles.size(); ++i){
+#endif
+#ifdef NO_PEX
+	QList<torrent_handle> handles = torrent_list.values();
+#endif
+  for(unsigned int i=0; i<(unsigned int)handles.size(); ++i){
     torrent_handle h = handles[i];
     if(!h.is_valid()){
       qDebug("/!\\ Error: Invalid handle");
@@ -513,8 +565,13 @@ void bittorrent::setGlobalRatio(float ratio){
 
 // Pause all torrents in session
 void bittorrent::pauseAllTorrents(){
+#ifndef NO_PEX
   std::vector<torrent_handle> handles = s->get_torrents();
-  for(unsigned int i=0; i<handles.size(); ++i){
+#endif
+#ifdef NO_PEX
+  QList<torrent_handle> handles = torrent_list.values();
+#endif
+  for(unsigned int i=0; i<(unsigned int)handles.size(); ++i){
     torrent_handle h = handles[i];
     if(h.is_valid() && !h.is_paused()){
       h.pause();
@@ -524,8 +581,13 @@ void bittorrent::pauseAllTorrents(){
 
 // Resume all torrents in session
 void bittorrent::resumeAllTorrents(){
+#ifndef NO_PEX
   std::vector<torrent_handle> handles = s->get_torrents();
-  for(unsigned int i=0; i<handles.size(); ++i){
+#endif
+#ifdef NO_PEX
+  QList<torrent_handle> handles = torrent_list.values();
+#endif
+  for(unsigned int i=0; i<(unsigned int)handles.size(); ++i){
     torrent_handle h = handles[i];
     if(h.is_valid() && h.is_paused()){
       h.resume();
@@ -533,10 +595,12 @@ void bittorrent::resumeAllTorrents(){
   }
 }
 
+#ifndef NO_PEX
 // Add uT PeX extension to bittorrent session
 void bittorrent::enablePeerExchange(){
   s->add_extension(&create_ut_pex_plugin);
 }
+#endif
 
 // Set DHT port (>= 1000)
 void bittorrent::setDHTPort(int dht_port){
@@ -598,7 +662,7 @@ void bittorrent::reloadTorrent(const torrent_handle &h, bool compact_mode){
   }
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
   fs::path saveDir = h.save_path();
-  QString fileName = QString(h.name().c_str());
+  QString fileName = QString(h.get_torrent_info().name().c_str());
   QString fileHash = QString(misc::toString(h.info_hash()).c_str());
   qDebug("Reloading torrent: %s", (const char*)fileName.toUtf8());
   torrent_handle new_h;
@@ -731,9 +795,16 @@ float bittorrent::getPayloadUploadRate() const{
 }
 
 // Return a vector with all torrent handles in it
+#ifndef NO_PEX
 std::vector<torrent_handle> bittorrent::getTorrentHandles() const{
   return s->get_torrents();
 }
+#endif
+#ifdef NO_PEX
+QList<torrent_handle> bittorrent::getTorrentHandles() const {
+	return torrent_list.values();
+}
+#endif
 
 // Return a vector with all finished torrent handles in it
 QList<torrent_handle> bittorrent::getFinishedTorrentHandles() const{

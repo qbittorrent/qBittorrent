@@ -100,6 +100,10 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   txt_savePath->setText(home+"qBT_dir");
   // Load options
   loadOptions();
+#ifdef NO_PEX
+	disablePeX->setChecked(true);
+	disablePeX->setEnabled(false);
+#endif
   // Connect signals / slots
   connect(disableUPLimit, SIGNAL(stateChanged(int)), this, SLOT(disableUpload(int)));
   connect(disableDLLimit,  SIGNAL(stateChanged(int)), this, SLOT(disableDownload(int)));
@@ -126,7 +130,9 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(enableScan_checkBox, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(disableMaxConnec, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(disableDHT, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+#ifndef NO_PEX
   connect(disablePeX, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+#endif
   connect(spin_dht_port, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   // Language
   connect(combo_i18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
@@ -179,7 +185,9 @@ void options_imp::saveOptions(){
   settings.setValue("PortRangeMax", getPorts().second);
   settings.setValue("ShareRatio", getRatio());
   settings.setValue("DHTPort", getDHTPort());
+#ifndef NO_PEX
   settings.setValue("PeXState", !isPeXDisabled());
+#endif
   settings.setValue("ScanDir", getScanDir());
   // End Main options
   settings.endGroup();
@@ -254,7 +262,9 @@ bool options_imp::isFilteringEnabled() const{
 void options_imp::loadOptions(){
   int value;
   float floatValue;
+#ifndef NO_PEX
   bool boolValue;
+#endif
   QString strValue;
   QSettings settings("qBittorrent", "qBittorrent");
   // Check if min port < max port
@@ -312,6 +322,7 @@ void options_imp::loadOptions(){
     }
     spin_dht_port->setValue(value);
   }
+#ifndef NO_PEX
   boolValue = settings.value("PeXState", 0).toBool();
   if(!boolValue){
     // Pex disabled
@@ -320,6 +331,7 @@ void options_imp::loadOptions(){
     // PeX enabled
     disablePeX->setChecked(false);
   }
+#endif
   strValue = settings.value("ScanDir", QString()).toString();
   if(!strValue.isEmpty()){
     enableScan_checkBox->setChecked(true);
@@ -461,10 +473,11 @@ bool options_imp::getConfirmOnExit() const{
 bool options_imp::isDHTEnabled() const{
   return !disableDHT->isChecked();
 }
-
+#ifndef NO_PEX
 bool options_imp::isPeXDisabled() const{
   return disablePeX->isChecked();
 }
+#endif
 // Return Download & Upload limits
 // [download,upload]
 QPair<int,int> options_imp::getLimits() const{

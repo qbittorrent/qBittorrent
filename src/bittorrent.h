@@ -30,9 +30,15 @@
 #include <libtorrent/session_settings.hpp>
 #include <libtorrent/identify_client.hpp>
 #include <libtorrent/alert_types.hpp>
+#include <libtorrent/ip_filter.hpp>
+
+#ifndef NO_PEX
 #include <libtorrent/extensions/metadata_transfer.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
-#include <libtorrent/ip_filter.hpp>
+#endif
+#ifdef NO_PEX
+#include <QHash>
+#endif
 
 #include <boost/format.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -57,6 +63,9 @@ class bittorrent : public QObject{
     downloadThread *downloader;
     QStringList supported_preview_extensions;
     QString defaultSavePath;
+#ifdef NO_PEX
+		QHash<QString, torrent_handle> torrent_list;
+#endif
 
   protected:
     QString getSavePath(const QString& hash);
@@ -66,7 +75,12 @@ class bittorrent : public QObject{
     bittorrent();
     ~bittorrent();
     torrent_handle getTorrentHandle(const QString& hash) const;
+#ifndef NO_PEX
     std::vector<torrent_handle> getTorrentHandles() const;
+#endif
+#ifdef NO_PEX
+		QList<torrent_handle> getTorrentHandles() const;
+#endif
     bool isPaused(const QString& hash) const;
     bool hasFilteredFiles(const QString& fileHash) const;
     bool isFilePreviewPossible(const QString& fileHash) const;
@@ -92,7 +106,9 @@ class bittorrent : public QObject{
     void saveFastResumeData();
     void enableDirectoryScanning(const QString& scan_dir);
     void disableDirectoryScanning();
+#ifndef NO_PEX
     void enablePeerExchange();
+#endif
     void enableIPFilter(ip_filter filter);
     void disableIPFilter();
     void reloadTorrent(const torrent_handle &h, bool compact_mode = true);

@@ -16,7 +16,7 @@ will install and execute qBittorrent hopefully without any problems.
 Dependencies:
 - Qt >= 4.2 (libqt-devel, libqtgui, libqtcore, libqtnetwork)
 
-- libtorrent by Arvid Norberg (>= v0.12 REQUIRED)
+- libtorrent by Arvid Norberg (>= v0.11 REQUIRED, >= 0.12 ADVISED)
     -> http://libtorrent.sf.net
     Be carefull: another library (the one used by rtorrent) use the same name.
     These are TWO different libraries and qBittorrent will only work with the one provided

@@ -32,7 +32,10 @@
 #include <libtorrent/file.hpp>
 #include <libtorrent/storage.hpp>
 #include <libtorrent/hasher.hpp>
+
+#ifndef NO_PEX
 #include <libtorrent/file_pool.hpp>
+#endif
 
 #include "createtorrent_imp.h"
 
@@ -105,9 +108,13 @@ void createtorrent::on_createButton_clicked(){
 
     add_files(t, full_path.branch_path(), full_path.leaf());
     t.set_piece_size(piece_size);
-
+#ifndef NO_PEX
     file_pool fp;
     storage st(t, full_path.branch_path(), fp);
+#endif
+#ifdef NO_PEX
+		storage st(t, full_path.branch_path());
+#endif
     QStringList trackers = txt_announce->toPlainText().split('\n');
     for(int i=0; i<trackers.size(); ++i){
       t.add_tracker((const char*)trackers.at(i).toUtf8());

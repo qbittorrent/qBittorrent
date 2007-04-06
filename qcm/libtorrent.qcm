@@ -9,14 +9,18 @@ class qc_libtorrent : public ConfObj
 {
 public:
 	qc_libtorrent(Conf *c) : ConfObj(c) {}
-	QString name() const { return "libtorrent >= 0.12"; }
+	QString name() const { return "libtorrent >= 0.11 (>= 0.12 ADVISED)"; }
 	QString shortname() const { return "libtorrent"; }
 	bool exec(){
         	QString s;
 		s = conf->getenv("QC_WITH_LIBTORRENT_INC");
 		if(!s.isEmpty()) {
-			if(!conf->checkHeader(s, "libtorrent/extensions/ut_pex.hpp")) {
+		  if(!conf->checkHeader(s, "libtorrent/kademlia/node.hpp")){
 				return false;
+			}
+			if(!conf->checkHeader(s, "libtorrent/extensions/ut_pex.hpp")) {
+				qWarning("Libtorrent >= v0.12 was not detected, PeX will be disabled.");
+				conf->addDefine("NO_PEX");
       			}
 		}else{
 			QStringList sl;
@@ -24,14 +28,16 @@ public:
 			sl << "/usr/local/include";
 			bool found = false;
 			foreach(s, sl){
-				if(conf->checkHeader(s, "libtorrent/extensions/ut_pex.hpp")){
-					found = true;
-					break;
-				}
+        if(conf->checkHeader(s, "libtorrent/kademlia/node.hpp")){
+          found = true;
+          break;
+       	}
 			}
-			if(!found) {
-				return false;
-          		}
+			if(!found) return false;
+				if(!conf->checkHeader(s, "libtorrent/extensions/ut_pex.hpp")){
+					qWarning("Libtorrent >= v0.12 was not detected, PeX will be disabled.");
+  	      conf->addDefine("NO_PEX");
+				}
 		}
 		conf->addIncludePath(s);
 		conf->addIncludePath(s+QDir::separator()+"libtorrent");

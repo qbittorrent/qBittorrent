@@ -34,8 +34,10 @@
 #include <boost/filesystem/exception.hpp>
 #include <curl/curl.h>
 
+#ifndef NO_PEX
 #include <libtorrent/extensions/metadata_transfer.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
+#endif
 
 #include "GUI.h"
 #include "misc.h"
@@ -470,8 +472,13 @@ void GUI::updateDlList(bool force){
   LCD_UpSpeed->display(tmp); // UP LCD
   LCD_DownSpeed->display(tmp2); // DL LCD
   // browse handles
+#ifndef NO_PEX
   std::vector<torrent_handle> handles = BTSession.getTorrentHandles();
-  for(unsigned int i=0; i<handles.size(); ++i){
+#endif
+#ifdef NO_PEX
+	QList<torrent_handle> handles = BTSession.getTorrentHandles();
+#endif
+  for(unsigned int i=0; i<(unsigned int)handles.size(); ++i){
     torrent_handle h = handles[i];
     try{
       torrent_status torrentStatus = h.status();
@@ -1025,7 +1032,7 @@ void GUI::torrentAdded(const QString& path, torrent_handle& h, bool fastResume){
   QString hash = QString(misc::toString(h.info_hash()).c_str());
   // Adding torrent to download list
   DLListModel->insertRow(row);
-  DLListModel->setData(DLListModel->index(row, NAME), QVariant(h.name().c_str()));
+  DLListModel->setData(DLListModel->index(row, NAME), QVariant(h.get_torrent_info().name().c_str()));
   DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)h.get_torrent_info().total_size()));
   DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
   DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
@@ -1169,12 +1176,14 @@ void GUI::configureSession(bool deleteOptions){
   }else{
     BTSession.disableDHT();
   }
+#ifndef NO_PEX
   if(!options->isPeXDisabled()){
     qDebug("Enabling Peer eXchange (PeX)");
     BTSession.enablePeerExchange();
   }else{
     qDebug("Peer eXchange (PeX) disabled");
   }
+#endif
   // Apply filtering settings
   if(options->isFilteringEnabled()){
     BTSession.enableIPFilter(options->getFilter());
@@ -1245,7 +1254,7 @@ void GUI::pauseSelection(){
         DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
         DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Paused")));
         DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-        setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(QString(BTSession.getTorrentHandle(fileHash).name().c_str())));
+        setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(QString(BTSession.getTorrentHandle(fileHash).get_torrent_info().name().c_str())));
         DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
         DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
         setRowColor(row, "red");
@@ -1288,7 +1297,7 @@ void GUI::startSelection(){
         // Update DL status
         int row = index.row();
         DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Connecting...")));
-        setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(QString(BTSession.getTorrentHandle(fileHash).name().c_str())));
+        setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(QString(BTSession.getTorrentHandle(fileHash).get_torrent_info().name().c_str())));
         DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
         setRowColor(row, "grey");
       }
@@ -1317,7 +1326,7 @@ void GUI::propertiesSelection(){
 // called when a torrent has finished
 void GUI::finishedTorrent(torrent_handle& h){
     QSettings settings("qBittorrent", "qBittorrent");
-    QString fileName = QString(h.name().c_str());
+    QString fileName = QString(h.get_torrent_info().name().c_str());
     setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
     int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
     if(useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden()))) {
@@ -1330,7 +1339,7 @@ void GUI::fullDiskError(torrent_handle& h){
   QSettings settings("qBittorrent", "qBittorrent");
   int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
   if(useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden()))) {
-    myTrayIcon->showMessage(tr("I/O Error", "i.e: Input/Output Error"), tr("An error occured when trying to read or write %1. The disk is probably full, download has been paused", "e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused").arg(QString(h.name().c_str())), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
+    myTrayIcon->showMessage(tr("I/O Error", "i.e: Input/Output Error"), tr("An error occured when trying to read or write %1. The disk is probably full, download has been paused", "e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused").arg(QString(h.get_torrent_info().name().c_str())), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
   }
   // Download will be paused by libtorrent. Updating GUI information accordingly
   int row = getRowFromHash(QString(misc::toString(h.info_hash()).c_str()));
