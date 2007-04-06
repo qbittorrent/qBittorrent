@@ -241,8 +241,11 @@ class RssStream : public QObject{
 	if (channel.tagName() == "channel") {
 	  QDomElement property = channel.firstChild().toElement();
 	  while(!property.isNull()) {
-	    if (property.tagName() == "title")
+	    if (property.tagName() == "title") {
 	      title = property.text();
+              if(alias==getUrl())
+		setAlias(title);
+	    }
 	    else if (property.tagName() == "link")
 	      link = property.text();
 	    else if (property.tagName() == "description")
