@@ -2290,12 +2290,12 @@ Changelog:
 <context>
     <name>createtorrent</name>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="58"/>
+        <location filename="../createtorrent_imp.cpp" line="57"/>
         <source>Select destination torrent file</source>
         <translation>选择torrent文件目的地</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="58"/>
+        <location filename="../createtorrent_imp.cpp" line="57"/>
         <source>Torrent Files</source>
         <translation>Torrent文件</translation>
     </message>
@@ -2305,22 +2305,22 @@ Changelog:
         <translation type="obsolete">选择输入目录或文件</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="153"/>
+        <location filename="../createtorrent_imp.cpp" line="152"/>
         <source>No destination path set</source>
         <translation>未设置目标路径</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="153"/>
+        <location filename="../createtorrent_imp.cpp" line="152"/>
         <source>Please type a destination path first</source>
         <translation>请先给出目标路经</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="158"/>
+        <location filename="../createtorrent_imp.cpp" line="157"/>
         <source>No input path set</source>
         <translation>未设置输入路径</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="158"/>
+        <location filename="../createtorrent_imp.cpp" line="157"/>
         <source>Please type an input path first</source>
         <translation>请先给出输入路径</translation>
     </message>
@@ -2335,12 +2335,12 @@ Changelog:
         <translation type="obsolete">请先给出一个正确的输入路径</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
+        <location filename="../createtorrent_imp.cpp" line="212"/>
         <source>Torrent creation</source>
         <translation>创建Torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
+        <location filename="../createtorrent_imp.cpp" line="212"/>
         <source>Torrent was created successfully:</source>
         <translation>成功创建Torrent:</translation>
     </message>
@@ -2350,37 +2350,37 @@ Changelog:
         <translation type="obsolete">请先输入一个有效的路径</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="208"/>
+        <location filename="../createtorrent_imp.cpp" line="207"/>
         <source>Torrent creation was successfully, reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="67"/>
+        <location filename="../createtorrent_imp.cpp" line="66"/>
         <source>Select a folder to add to the torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="73"/>
+        <location filename="../createtorrent_imp.cpp" line="72"/>
         <source>Select files to add to the torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="100"/>
+        <location filename="../createtorrent_imp.cpp" line="99"/>
         <source>Please type an announce URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="101"/>
+        <location filename="../createtorrent_imp.cpp" line="100"/>
         <source>Announce URL:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="119"/>
+        <location filename="../createtorrent_imp.cpp" line="118"/>
         <source>Please type an URL Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="120"/>
+        <location filename="../createtorrent_imp.cpp" line="119"/>
         <source>URL Seed:</source>
         <translation type="unfinished"></translation>
     </message>

@@ -33,7 +33,7 @@
 - Tabs support in search
 
 // in v0.10 (partial) - WIP
-- Download from RSS feeds (WIP by gtsoul, clean & finish rss.h, add a tab in mainWindow, debug)
+- Download from RSS feeds (WIP by gtsoul, clean & finish rss.h, debug)
 - Move finished torrent to another tab and keep on seeding them even after restart (debug)
 - Check storage st creation + hasher in torrent creation
 - Add IPv6 support (at least start working on it, libtorrent seems to support it, we should limit our code to IPv4 anymore)

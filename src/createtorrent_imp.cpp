@@ -47,9 +47,8 @@ createtorrent::createtorrent(QWidget *parent): QDialog(parent){
   addURLSeed_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
   removeURLSeed_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
   removeFolder_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
-  //TODO: Change those two
-  addFolder_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
-  addFile_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
+  addFolder_button->setIcon(QIcon(QString::fromUtf8(":/Icons/add_folder.png")));
+  addFile_button->setIcon(QIcon(QString::fromUtf8(":/Icons/add_file.png")));
   setAttribute(Qt::WA_DeleteOnClose);
   show();
 }
