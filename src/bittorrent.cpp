@@ -34,6 +34,8 @@
 
 // Main constructor
 bittorrent::bittorrent(){
+  // To avoid some exceptions
+  fs::path::default_name_check(fs::no_check);
   // Supported preview extensions
   // XXX: might be incomplete
   supported_preview_extensions << "AVI" << "DIVX" << "MPG" << "MPEG" << "MP3" << "OGG" << "WMV" << "WMA" << "RMV" << "RMVB" << "ASF" << "MOV" << "WAV" << "MP2" << "SWF" << "AC3";
