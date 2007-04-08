@@ -409,6 +409,9 @@
    <property name="enabled" >
     <bool>true</bool>
    </property>
+   <property name="contextMenuPolicy" >
+    <enum>Qt::NoContextMenu</enum>
+   </property>
    <property name="movable" >
     <bool>false</bool>
    </property>

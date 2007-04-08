@@ -43,3 +43,4 @@
 - Update to libtorrent SVN (0.13)
     - Use its UPnP/NAT-PMP built-in support instead of ours
     - Use its piece prioritization support
+Improve ratio display / calculation / saving / per torrent...
