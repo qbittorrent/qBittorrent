@@ -2,7 +2,7 @@
 		- BUGFIX: Window can now stay maximized on exit
 		- BUGFIX: Use PKGCONFIG again for configuring libtorrent
 		- BUGFIX: Allow to compile with libtorrent v0.11
-		- BUGFIX: Disabled context menu in toolbar (makes no sense)
+		- BUGFIX: Disabled main window context menu (annoying)
 		- I18N: Added Japanese translation
 
 * Wed Apr 04 2007 - Christophe Dumez <chris@qbittorrent.org> - v0.9.1
