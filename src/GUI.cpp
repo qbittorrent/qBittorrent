@@ -393,7 +393,8 @@ void GUI::previewFile(const QString& filePath){
 
 void GUI::selectGivenRow(const QModelIndex& index){
   int row = index.row();
-  for(int i=0; i<DLListModel->columnCount(); ++i){
+  unsigned int nbColumns = DLListModel->columnCount();
+  for(unsigned int i=0; i<nbColumns; ++i){
     downloadList->selectionModel()->select(DLListModel->index(row, i), QItemSelectionModel::Select);
   }
 }
@@ -435,7 +436,8 @@ void GUI::updateDlList(bool force){
   // browse handles
   std::vector<torrent_handle> handles = BTSession.getTorrentHandles();
   QStringList finishedSHAs = finishedTorrentTab->getFinishedSHAs();
-  for(unsigned int i=0; i<handles.size(); ++i){
+  unsigned int handlesSize = handles.size();
+  for(unsigned int i=0; i<handlesSize; ++i){
     torrent_handle h = handles[i];
     try{
       torrent_status torrentStatus = h.status();
@@ -514,15 +516,17 @@ void GUI::setTabText(int index, QString text){
 void GUI::sortDownloadListFloat(int index, Qt::SortOrder sortOrder){
   QList<QPair<int, double> > lines;
   // insertion sorting
-  for(int i=0; i<DLListModel->rowCount(); ++i){
+  unsigned int nbRows = DLListModel->rowCount();
+  for(unsigned int i=0; i<nbRows; ++i){
     misc::insertSort(lines, QPair<int,double>(i, DLListModel->data(DLListModel->index(i, index)).toDouble()), sortOrder);
   }
   // Insert items in new model, in correct order
-  int nbRows_old = lines.size();
-  for(int row=0; row<nbRows_old; ++row){
+  unsigned int nbRows_old = lines.size();
+  for(unsigned int row=0; row<nbRows_old; ++row){
     DLListModel->insertRow(DLListModel->rowCount());
-    int sourceRow = lines[row].first;
-    for(int col=0; col<DLListModel->columnCount(); ++col){
+    unsigned int sourceRow = lines[row].first;
+    unsigned int nbColumns = DLListModel->columnCount();
+    for(unsigned int col=0; col<nbColumns; ++col){
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col)));
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::TextColorRole), Qt::TextColorRole);
@@ -535,15 +539,17 @@ void GUI::sortDownloadListFloat(int index, Qt::SortOrder sortOrder){
 void GUI::sortDownloadListString(int index, Qt::SortOrder sortOrder){
   QList<QPair<int, QString> > lines;
   // Insertion sorting
-  for(int i=0; i<DLListModel->rowCount(); ++i){
+  unsigned int nbRows = DLListModel->rowCount();
+  for(unsigned int i=0; i<nbRows; ++i){
     misc::insertSortString(lines, QPair<int, QString>(i, DLListModel->data(DLListModel->index(i, index)).toString()), sortOrder);
   }
   // Insert items in new model, in correct order
-  int nbRows_old = lines.size();
-  for(int row=0; row<nbRows_old; ++row){
+  unsigned int nbRows_old = lines.size();
+  for(unsigned int row=0; row<nbRows_old; ++row){
     DLListModel->insertRow(DLListModel->rowCount());
-    int sourceRow = lines[row].first;
-    for(int col=0; col<DLListModel->columnCount(); ++col){
+    unsigned int sourceRow = lines[row].first;
+    unsigned int nbColumns = DLListModel->columnCount();
+    for(unsigned int col=0; col<nbColumns; ++col){
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col)));
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::TextColorRole), Qt::TextColorRole);
@@ -618,7 +624,8 @@ void GUI::saveColWidthDLList() const{
   qDebug("Saving columns width in download list");
   QSettings settings("qBittorrent", "qBittorrent");
   QStringList width_list;
-  for(int i=0; i<DLListModel->columnCount(); ++i){
+  unsigned int nbColumns = DLListModel->columnCount();
+  for(unsigned int i=0; i<nbColumns; ++i){
     width_list << QString(misc::toString(downloadList->columnWidth(i)).c_str());
   }
   settings.setValue("DownloadListColsWidth", width_list.join(" "));
@@ -636,7 +643,8 @@ bool GUI::loadColWidthDLList(){
   QStringList width_list = line.split(' ');
   if(width_list.size() != DLListModel->columnCount())
     return false;
-  for(int i=0; i<width_list.size(); ++i){
+  unsigned int listSize = width_list.size();
+  for(unsigned int i=0; i<listSize; ++i){
         downloadList->header()->resizeSection(i, width_list.at(i).toInt());
   }
   qDebug("Download list columns width loaded");
@@ -748,7 +756,8 @@ void GUI::on_actionOpen_triggered(){
   if(!pathsList.empty()){
     QSettings settings("qBittorrent", "qBittorrent");
     bool useTorrentAdditionDialog = settings.value("Options/Misc/TorrentAdditionDialog/Enabled", true).toBool();
-    for(int i=0; i<pathsList.size(); ++i){
+    unsigned int listSize = pathsList.size();
+    for(unsigned int i=0; i<listSize; ++i){
       if(useTorrentAdditionDialog){
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
         connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
@@ -1118,7 +1127,8 @@ void GUI::on_actionPause_All_triggered(){
   // Pause all torrents
   BTSession.pauseAllTorrents();
   // update download list
-  for(int i=0; i<DLListModel->rowCount(); ++i){
+  unsigned int nbRows = DLListModel->rowCount();
+  for(unsigned int i=0; i<nbRows; ++i){
     fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
     // Create .paused file
     QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
@@ -1168,7 +1178,8 @@ void GUI::on_actionStart_All_triggered(){
   // Pause all torrents
   BTSession.resumeAllTorrents();
   // update download list
-  for(int i=0; i<DLListModel->rowCount(); ++i){
+  unsigned int nbRows = DLListModel->rowCount();
+  for(unsigned int i=0; i<nbRows; ++i){
     fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
     // Remove .paused file
     QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
@@ -1343,7 +1354,8 @@ void GUI::checkConnectionStatus(){
 
 // Set the color of a row in data model
 void GUI::setRowColor(int row, const QString& color){
-  for(int i=0; i<DLListModel->columnCount(); ++i){
+  unsigned int nbColumns = DLListModel->columnCount();
+  for(unsigned int i=0; i<nbColumns; ++i){
     DLListModel->setData(DLListModel->index(row, i), QVariant(QColor(color)), Qt::TextColorRole);
   }
 }
@@ -1351,7 +1363,8 @@ void GUI::setRowColor(int row, const QString& color){
 // return the row of in data model
 // corresponding to the given the filehash
 int GUI::getRowFromHash(const QString& hash) const{
-  for(int i=0; i<DLListModel->rowCount(); ++i){
+  unsigned int nbRows = DLListModel->rowCount();
+  for(unsigned int i=0; i<nbRows; ++i){
     if(DLListModel->data(DLListModel->index(i, HASH)) == hash){
       return i;
     }
