@@ -56,6 +56,15 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(VERSION));
   QSettings settings("qBittorrent", "qBittorrent");
   systrayIntegration = settings.value("Options/Misc/Behaviour/SystrayIntegration", true).toBool();
+  // Create tray icon
+  if (QSystemTrayIcon::isSystemTrayAvailable()){
+    if(systrayIntegration){
+      createTrayIcon();
+    }
+  }else{
+    systrayIntegration = false;
+    qDebug("Info: System tray unavailable\n");
+  }
   // Finished torrents tab
   finishedTorrentTab = new FinishedTorrents(this, &BTSession);
   tabs->addTab(finishedTorrentTab, tr("Finished"));
@@ -158,15 +167,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(downloadList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLListMenu(const QPoint&)));
   connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayGUIMenu(const QPoint&)));
   connect(infoBar, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayInfoBarMenu(const QPoint&)));
-  // Create tray icon
-  if (QSystemTrayIcon::isSystemTrayAvailable()){
-    if(systrayIntegration){
-      createTrayIcon();
-    }
-  }else{
-    systrayIntegration = false;
-    qDebug("Info: System tray unavailable\n");
-  }
   // Start download list refresher
   refresher = new QTimer(this);
   connect(refresher, SIGNAL(timeout()), this, SLOT(updateDlList()));
