@@ -23,6 +23,7 @@
 #define BANDWIDTH_ALLOCATION_H
 
 #include <QDialog>
+#include <QList>
 #include "ui_bandwidth_limit.h"
 #include "misc.h"
 #include "bittorrent.h"
@@ -31,7 +32,7 @@ using namespace libtorrent;
 
 class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
   public:
-    BandwidthAllocationDialog(QWidget *parent, bool uploadMode, bittorrent *BTSession, QString hash): QDialog(parent), uploadMode(uploadMode){
+    BandwidthAllocationDialog(QWidget *parent, bool uploadMode, bittorrent *BTSession, QStringList hashes): QDialog(parent), uploadMode(uploadMode){
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       this->BTSession = BTSession;
@@ -40,23 +41,34 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
       else
         lblTitle->setText(tr("Download limit:"));
       connect(bandwidthSlider, SIGNAL(valueChanged(int)), this, SLOT(updateBandwidthLabel(int)));
-      h = BTSession->getTorrentHandle(hash);
-      if(!h.is_valid()){
-        qDebug("Error: Invalid Handle!");
-        close();
+      QString hash;
+      foreach(hash, hashes){
+        torrent_handle h = BTSession->getTorrentHandle(hash);
+        if(!h.is_valid()){
+          qDebug("Error: Invalid Handle!");
+          continue;
+        }else{
+          handles << h;
+        }
       }
+      unsigned int nbTorrents = handles.size();
+      if(!nbTorrents) close();
       // TODO: Uncomment the following lines as soon as we upgrade
       // to libtorrent svn to correctly initialize the bandwidth slider.
-//       if(uploadMode) {
-//         int val = h.upload_limit();
-//         if(val > bandwidthSlider->maximum() || val < bandwidthSlider->minimum())
-//           val = -1;
-//         bandwidthSlider->setValue(val);
-//       } else {
-//         int val = h.download_limit();
-//         if(val > bandwidthSlider->maximum() || val < bandwidthSlider->minimum())
-//           val = -1;
-//         bandwidthSlider->setValue(val);
+//       if(nbTorrents == 1){
+//         if(uploadMode) {
+//           int val = h.upload_limit();
+//           if(val > bandwidthSlider->maximum() || val < bandwidthSlider->minimum())
+//             val = -1;
+//           bandwidthSlider->setValue(val);
+//         } else {
+//           int val = h.download_limit();
+//           if(val > bandwidthSlider->maximum() || val < bandwidthSlider->minimum())
+//             val = -1;
+//           bandwidthSlider->setValue(val);
+//         }
+//       }else{
+//         bandwidthSlider->setValue(-1);
 //       }
        connect(buttonBox, SIGNAL(accepted()), this, SLOT(setBandwidth()));
     }
@@ -78,17 +90,21 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
 
     void setBandwidth(){
       int val = bandwidthSlider->value();
-      if(uploadMode)
-        h.set_upload_limit(val);
-      else
-        h.set_download_limit(val);
+      torrent_handle h;
+      if(uploadMode) {
+        foreach(h, handles)
+          h.set_upload_limit(val);
+      } else {
+        foreach(h, handles)
+          h.set_download_limit(val);
+      }
       close();
     }
 
   private:
     bool uploadMode;
     bittorrent *BTSession;
-    torrent_handle h;
+    QList<torrent_handle> handles;
 };
 
 #endif
