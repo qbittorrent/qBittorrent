@@ -22,6 +22,7 @@
 #include "misc.h"
 #include "GUI.h"
 #include "properties_imp.h"
+#include "allocationDlg.h"
 #include <QFile>
 #include <QSettings>
 
@@ -49,7 +50,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   actionPreview_file->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")));
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
-  // TODO: Set icons for upload limit
+  actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   connect(actionDelete, SIGNAL(triggered()), (GUI*)parent, SLOT(deleteSelection()));
   connect(actionPreview_file, SIGNAL(triggered()), (GUI*)parent, SLOT(previewFileSelection()));
   connect(actionDelete_Permanently, SIGNAL(triggered()), (GUI*)parent, SLOT(deletePermanently()));
@@ -106,16 +107,16 @@ void FinishedTorrents::setRowColor(int row, const QString& color){
 }
 
 void FinishedTorrents::on_actionSet_upload_limit_triggered(){
-  QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
   QModelIndex index;
   QStringList hashes;
   foreach(index, selectedIndexes){
     if(index.column() == NAME){
       // Get the file hash
-      hashes << DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+      hashes << finishedListModel->data(finishedListModel->index(index.row(), HASH)).toString();
     }
   }
-  new BandwidthAllocationDialog(this, true, &BTSession, hashes);
+  new BandwidthAllocationDialog(this, true, BTSession, hashes);
 }
 
 void FinishedTorrents::updateFinishedList(){

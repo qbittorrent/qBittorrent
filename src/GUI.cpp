@@ -98,7 +98,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   actionStart_All->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play_all.png")));
   actionClearLog->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")));
   actionPreview_file->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")));
-  //TODO: set icons for Upload/Download limit actions
+  actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
+  actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
 //   actionDocumentation->setIcon(QIcon(QString::fromUtf8(":/Icons/help.png")));
   connecStatusLblIcon = new QLabel();
   connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
