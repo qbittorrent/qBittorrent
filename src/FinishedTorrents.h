@@ -54,6 +54,9 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     void displayFinishedListMenu(const QPoint&);
     void setRowColor(int row, const QString& color);
 
+  protected slots:
+    void on_actionSet_upload_limit_triggered();
+
 };
 
 #endif

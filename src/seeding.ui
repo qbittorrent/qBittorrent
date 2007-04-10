@@ -76,6 +76,11 @@
     <string>Preview file</string>
    </property>
   </action>
+  <action name="actionSet_upload_limit" >
+   <property name="text" >
+    <string>Set upload limit</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

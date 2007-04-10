@@ -49,6 +49,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   actionPreview_file->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")));
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
+  // TODO: Set icons for upload limit
   connect(actionDelete, SIGNAL(triggered()), (GUI*)parent, SLOT(deleteSelection()));
   connect(actionPreview_file, SIGNAL(triggered()), (GUI*)parent, SLOT(previewFileSelection()));
   connect(actionDelete_Permanently, SIGNAL(triggered()), (GUI*)parent, SLOT(deletePermanently()));
@@ -102,6 +103,19 @@ void FinishedTorrents::setRowColor(int row, const QString& color){
   for(int i=0; i<finishedListModel->columnCount(); ++i){
     finishedListModel->setData(finishedListModel->index(row, i), QVariant(QColor(color)), Qt::TextColorRole);
   }
+}
+
+void FinishedTorrents::on_actionSet_upload_limit_triggered(){
+  QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  QModelIndex index;
+  QStringList hashes;
+  foreach(index, selectedIndexes){
+    if(index.column() == NAME){
+      // Get the file hash
+      hashes << DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+    }
+  }
+  new BandwidthAllocationDialog(this, true, &BTSession, hashes);
 }
 
 void FinishedTorrents::updateFinishedList(){
@@ -195,6 +209,7 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
       torrent_handle h = BTSession->getTorrentHandle(fileHash);
       myFinishedListMenu.addAction(actionDelete);
       myFinishedListMenu.addAction(actionDelete_Permanently);
+      myFinishedListMenu.addAction(actionSet_upload_limit);
       myFinishedListMenu.addAction(actionTorrent_Properties);
       if(!previewProgram.isEmpty() && BTSession->isFilePreviewPossible(fileHash) && selectedIndexes.size()<=finishedListModel->columnCount()){
          myFinishedListMenu.addAction(actionPreview_file);
