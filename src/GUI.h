@@ -98,13 +98,13 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void dropEvent(QDropEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
     void toggleVisibility(QSystemTrayIcon::ActivationReason e);
-    void showAbout();
+    void on_actionAbout_triggered();
     void setInfoBar(const QString& info, const QString& color="black");
     void updateDlList(bool force=false);
-    void showCreateWindow();
-    void clearLog();
-    void openqBTHomepage();
-    void openqBTBugTracker();
+    void on_actionCreate_torrent_triggered();
+    void on_actionClearLog_triggered();
+    void on_actionWebsite_triggered();
+    void on_actionBugReport_triggered();
     void readParamsOnSocket();
     void acceptConnection();
     void saveColWidthDLList() const;
@@ -117,24 +117,24 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void togglePausedState(const QModelIndex& index);
     void displayInfoBarMenu(const QPoint& pos);
     void displayGUIMenu(const QPoint& pos);
-    void previewFileSelection();
+    void on_actionPreview_file_triggered();
     void previewFile(const QString& filePath);
     void cleanTempPreviewFile(int, QProcess::ExitStatus);
     void balloonClicked();
     void writeSettings();
     void readSettings();
-    void forceExit();
+    void on_actionExit_triggered();
     void createTrayIcon();
     // Torrent actions
     void showProperties(const QModelIndex &index);
-    void propertiesSelection();
-    void pauseSelection();
-    void pauseAll();
-    void startSelection();
-    void resumeAll();
-    void askForTorrents();
-    void deletePermanently();
-    void deleteSelection();
+    void on_actionTorrent_Properties_triggered();
+    void on_actionPause_triggered();
+    void on_actionPause_All_triggered();
+    void on_actionStart_triggered();
+    void on_actionStart_All_triggered();
+    void on_actionOpen_triggered();
+    void on_actionDelete_Permanently_triggered();
+    void on_actionDelete_triggered();
     void checkConnectionStatus();
     void configureSession(bool deleteOptions);
     void processParams(const QStringList& params);
@@ -146,10 +146,10 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // Utils slots
     void setRowColor(int row, const QString& color);
     // Options slots
-    void showOptions();
+    void on_actionOptions_triggered();
     void OptionsSaved(const QString& info, bool deleteOptions);
     // HTTP slots
-    void askForTorrentUrl();
+    void on_actionDownload_from_URL_triggered();
 #ifndef NO_UPNP
     void displayNoUPnPWanServiceDetected();
     void displayUPnPWanServiceDetected();

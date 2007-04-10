@@ -149,27 +149,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   downloadList->header()->setClickable(true);
   downloadList->header()->setSortIndicatorShown(true);
   // Connecting Actions to slots
-  connect(actionExit, SIGNAL(triggered()), this, SLOT(forceExit()));
-  connect(actionOpen, SIGNAL(triggered()), this, SLOT(askForTorrents()));
-  connect(actionDelete_Permanently, SIGNAL(triggered()), this, SLOT(deletePermanently()));
-  connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelection()));
-  connect(actionOptions, SIGNAL(triggered()), this, SLOT(showOptions()));
-  connect(actionDownload_from_URL, SIGNAL(triggered()), this, SLOT(askForTorrentUrl()));
-  connect(actionPause, SIGNAL(triggered()), this, SLOT(pauseSelection()));
-  connect(actionTorrent_Properties, SIGNAL(triggered()), this, SLOT(propertiesSelection()));
-  connect(actionStart, SIGNAL(triggered()), this, SLOT(startSelection()));
-  connect(actionPause_All, SIGNAL(triggered()), this, SLOT(pauseAll()));
-  connect(actionStart_All, SIGNAL(triggered()), this, SLOT(resumeAll()));
-  connect(actionAbout, SIGNAL(triggered()), this, SLOT(showAbout()));
-  connect(actionCreate_torrent, SIGNAL(triggered()), this, SLOT(showCreateWindow()));
-  connect(actionClearLog, SIGNAL(triggered()), this, SLOT(clearLog()));
   connect(downloadList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(togglePausedState(const QModelIndex&)));
   connect(downloadList->header(), SIGNAL(sectionPressed(int)), this, SLOT(sortDownloadList(int)));
   connect(downloadList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLListMenu(const QPoint&)));
-  connect(actionWebsite, SIGNAL(triggered()), this, SLOT(openqBTHomepage()));
-  connect(actionBugReport, SIGNAL(triggered()), this, SLOT(openqBTBugTracker()));
   connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayGUIMenu(const QPoint&)));
-  connect(actionPreview_file, SIGNAL(triggered()), this, SLOT(previewFileSelection()));
   connect(infoBar, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayInfoBarMenu(const QPoint&)));
   // Create tray icon
   if (QSystemTrayIcon::isSystemTrayAvailable()){
@@ -225,11 +208,11 @@ GUI::~GUI(){
   delete connecStatusLblIcon;
 }
 
-void GUI::openqBTHomepage(){
+void GUI::on_actionWebsite_triggered(){
    QDesktopServices::openUrl(QUrl("http://www.qbittorrent.org"));
 }
 
-void GUI::openqBTBugTracker(){
+void GUI::on_actionBugReport_triggered(){
    QDesktopServices::openUrl(QUrl("http://bugs.qbittorrent.org"));
 }
 
@@ -311,7 +294,7 @@ void GUI::togglePausedState(const QModelIndex& index){
   }
 }
 
-void GUI::previewFileSelection(){
+void GUI::on_actionPreview_file_triggered(){
   if(tabs->currentIndex() > 1) return;
   bool inDownloadList = true;
   if(tabs->currentIndex() != 0)
@@ -375,7 +358,7 @@ void GUI::displayDLListMenu(const QPoint& pos){
 
 // Necessary if we want to close the window
 // in one time if "close to systray" is enabled
-void GUI::forceExit(){
+void GUI::on_actionExit_triggered(){
   force_exit = true;
   close();
 }
@@ -415,7 +398,7 @@ void GUI::selectGivenRow(const QModelIndex& index){
   }
 }
 
-void GUI::clearLog(){
+void GUI::on_actionClearLog_triggered(){
   infoBar->clear();
 }
 
@@ -661,7 +644,7 @@ bool GUI::loadColWidthDLList(){
 }
 
 // Display About Dialog
-void GUI::showAbout(){
+void GUI::on_actionAbout_triggered(){
   //About dialog
   aboutdlg = new about(this);
 }
@@ -704,7 +687,7 @@ void GUI::closeEvent(QCloseEvent *e){
 }
 
 // Display window to create a torrent
-void GUI::showCreateWindow(){
+void GUI::on_actionCreate_torrent_triggered(){
   createWindow = new createtorrent(this);
 }
 
@@ -754,7 +737,7 @@ void GUI::dragEnterEvent(QDragEnterEvent *event){
 
 // Display a dialog to allow user to add
 // torrents to download list
-void GUI::askForTorrents(){
+void GUI::on_actionOpen_triggered(){
   QStringList pathsList;
   QSettings settings("qBittorrent", "qBittorrent");
   // Open File Open Dialog
@@ -783,7 +766,7 @@ void GUI::askForTorrents(){
 }
 
 // delete from download list AND from hard drive
-void GUI::deletePermanently(){
+void GUI::on_actionDelete_Permanently_triggered(){
   if(tabs->currentIndex() > 1) return;
   QModelIndexList selectedIndexes;
   bool inDownloadList = true;
@@ -854,7 +837,7 @@ void GUI::deletePermanently(){
 }
 
 // delete selected items in the list
-void GUI::deleteSelection(){
+void GUI::on_actionDelete_triggered(){
   if(tabs->currentIndex() > 1) return;
   QModelIndexList selectedIndexes;
   bool inDownloadList = true;
@@ -1130,7 +1113,7 @@ void GUI::configureSession(bool deleteOptions){
 }
 
 // Pause All Downloads in DL list
-void GUI::pauseAll(){
+void GUI::on_actionPause_All_triggered(){
   QString fileHash;
   // Pause all torrents
   BTSession.pauseAllTorrents();
@@ -1154,7 +1137,7 @@ void GUI::pauseAll(){
 }
 
 // pause selected items in the list
-void GUI::pauseSelection(){
+void GUI::on_actionPause_triggered(){
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   QModelIndex index;
   foreach(index, selectedIndexes){
@@ -1180,7 +1163,7 @@ void GUI::pauseSelection(){
 }
 
 // Resume All Downloads in DL list
-void GUI::resumeAll(){
+void GUI::on_actionStart_All_triggered(){
   QString fileHash;
   // Pause all torrents
   BTSession.resumeAllTorrents();
@@ -1198,7 +1181,7 @@ void GUI::resumeAll(){
 }
 
 // start selected items in the list
-void GUI::startSelection(){
+void GUI::on_actionStart_triggered(){
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   QModelIndex index;
   foreach(index, selectedIndexes){
@@ -1229,7 +1212,7 @@ void GUI::addUnauthenticatedTracker(QPair<torrent_handle,std::string> tracker){
 }
 
 // display properties of selected items
-void GUI::propertiesSelection(){
+void GUI::on_actionTorrent_Properties_triggered(){
   if(tabs->currentIndex() > 1) return;
   if(tabs->currentIndex() == 1){
     finishedTorrentTab->propertiesSelection();
@@ -1410,7 +1393,7 @@ void GUI::createTrayIcon(){
 }
 
 // Display Program Options
-void GUI::showOptions(){
+void GUI::on_actionOptions_triggered(){
   options = new options_imp(this);
   connect(options, SIGNAL(status_changed(const QString&, bool)), this, SLOT(OptionsSaved(const QString&, bool)));
   options->show();
@@ -1443,7 +1426,7 @@ void GUI::OptionsSaved(const QString& info, bool deleteOptions){
 
 // Display an input dialog to prompt user for
 // an url
-void GUI::askForTorrentUrl(){
+void GUI::on_actionDownload_from_URL_triggered(){
   downloadFromURLDialog = new downloadFromURL(this);
   connect(downloadFromURLDialog, SIGNAL(downloadFinished(QString, QString, int, QString)), &BTSession, SLOT(processDownloadedFile(QString, QString, int, QString)));
 }
