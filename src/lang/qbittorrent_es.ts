@@ -1437,47 +1437,47 @@ Por favor cierra el otro antes.</translation>
         <translation>&amp;Ayuda</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="820"/>
+        <location filename="../MainWindow.ui" line="823"/>
         <source>Open</source>
         <translation>Abrir</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="825"/>
+        <location filename="../MainWindow.ui" line="828"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="830"/>
+        <location filename="../MainWindow.ui" line="833"/>
         <source>Preferences</source>
         <translation>Preferencias</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="835"/>
+        <location filename="../MainWindow.ui" line="838"/>
         <source>About</source>
         <translation>Acerca de</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="840"/>
+        <location filename="../MainWindow.ui" line="843"/>
         <source>Start</source>
         <translation>Comenzar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="845"/>
+        <location filename="../MainWindow.ui" line="848"/>
         <source>Pause</source>
         <translation>Pausa</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="850"/>
+        <location filename="../MainWindow.ui" line="853"/>
         <source>Delete</source>
         <translation>Borrar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="855"/>
+        <location filename="../MainWindow.ui" line="858"/>
         <source>Pause All</source>
         <translation>Pausa a Todas</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="860"/>
+        <location filename="../MainWindow.ui" line="863"/>
         <source>Start All</source>
         <translation>Comenzar Todas</translation>
     </message>
@@ -1497,7 +1497,7 @@ Por favor cierra el otro antes.</translation>
         <translation type="obsolete">Borrar Todas</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="875"/>
+        <location filename="../MainWindow.ui" line="878"/>
         <source>Torrent Properties</source>
         <translation>Propiedades del Torrent</translation>
     </message>
@@ -1562,7 +1562,7 @@ Por favor cierra el otro antes.</translation>
         <translation type="obsolete">Motor de Búsqueda</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="880"/>
+        <location filename="../MainWindow.ui" line="883"/>
         <source>Download from URL</source>
         <translation>Descargar de URL</translation>
     </message>
@@ -1582,7 +1582,7 @@ Por favor cierra el otro antes.</translation>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="885"/>
+        <location filename="../MainWindow.ui" line="888"/>
         <source>Create torrent</source>
         <translation>Crear torrent</translation>
     </message>
@@ -1607,27 +1607,27 @@ Por favor cierra el otro antes.</translation>
         <translation>Transferidos</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="890"/>
+        <location filename="../MainWindow.ui" line="893"/>
         <source>Preview file</source>
         <translation>Previsualizar archivo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="895"/>
+        <location filename="../MainWindow.ui" line="898"/>
         <source>Clear log</source>
         <translation>Limpiar registro</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="870"/>
+        <location filename="../MainWindow.ui" line="873"/>
         <source>Delete Permanently</source>
         <translation>Borrar permanentemente</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="865"/>
+        <location filename="../MainWindow.ui" line="868"/>
         <source>Visit website</source>
         <translation>Visitar website</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="900"/>
+        <location filename="../MainWindow.ui" line="903"/>
         <source>Report a bug</source>
         <translation>Reportar un bug</translation>
     </message>
@@ -1731,7 +1731,7 @@ Por favor cierra el otro antes.</translation>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="67"/>
+        <location filename="../about_imp.h" line="68"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Por favor contáctame si quieres traducir qBittorrent a tu propio idioma.</translation>
     </message>
@@ -2162,12 +2162,12 @@ Por favor cierra el otro antes.</translation>
         <translation type="obsolete">está mal formado.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="870"/>
+        <location filename="../options_imp.cpp" line="872"/>
         <source>Range Start IP</source>
         <translation>IP de inicio de Rango</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="871"/>
+        <location filename="../options_imp.cpp" line="873"/>
         <source>Start IP:</source>
         <translation>IP de inicio:</translation>
     </message>
@@ -2182,22 +2182,22 @@ Por favor cierra el otro antes.</translation>
         <translation type="obsolete">Esta IP está incorrecta.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="887"/>
+        <location filename="../options_imp.cpp" line="889"/>
         <source>Range End IP</source>
         <translation>IP de fin de Rango</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="888"/>
+        <location filename="../options_imp.cpp" line="890"/>
         <source>End IP:</source>
         <translation>IP Final:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="904"/>
+        <location filename="../options_imp.cpp" line="906"/>
         <source>IP Range Comment</source>
         <translation>Comentario del rango de IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="905"/>
+        <location filename="../options_imp.cpp" line="907"/>
         <source>Comment:</source>
         <translation>Comentario:</translation>
     </message>
@@ -2208,48 +2208,48 @@ Por favor cierra el otro antes.</translation>
         <translation>hasta</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="759"/>
+        <location filename="../options_imp.cpp" line="761"/>
         <source>Choose your favourite preview program</source>
         <translation>Escoge tu programa de previsualización favorito</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="899"/>
+        <location filename="../options_imp.cpp" line="901"/>
         <source>Invalid IP</source>
         <translation>IP inválida</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="899"/>
+        <location filename="../options_imp.cpp" line="901"/>
         <source>This IP is invalid.</source>
         <translation>Esta IP es inválida.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="560"/>
+        <location filename="../options_imp.cpp" line="562"/>
         <source>Options were saved successfully.</source>
         <translation>Opciones guardadas exitosamente.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="744"/>
+        <location filename="../options_imp.cpp" line="746"/>
         <source>Choose scan directory</source>
         <translation>Selecciona un directorio a inspeccionar</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="751"/>
+        <location filename="../options_imp.cpp" line="753"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>Selecciona un archivo ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="767"/>
+        <location filename="../options_imp.cpp" line="769"/>
         <source>Choose a save directory</source>
         <translation>Selecciona un directorio para guardar</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="799"/>
+        <location filename="../options_imp.cpp" line="801"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>Error de Entrada/Salida</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="799"/>
+        <location filename="../options_imp.cpp" line="801"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>No se pudo abrir %1 en modo lectura.</translation>
     </message>

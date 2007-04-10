@@ -1341,47 +1341,47 @@ Please close the other one first.</source>
         <translation>&amp;帮助</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="820"/>
+        <location filename="../MainWindow.ui" line="823"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="825"/>
+        <location filename="../MainWindow.ui" line="828"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="830"/>
+        <location filename="../MainWindow.ui" line="833"/>
         <source>Preferences</source>
         <translation>首选项</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="835"/>
+        <location filename="../MainWindow.ui" line="838"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="840"/>
+        <location filename="../MainWindow.ui" line="843"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="845"/>
+        <location filename="../MainWindow.ui" line="848"/>
         <source>Pause</source>
         <translation>暂停</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="850"/>
+        <location filename="../MainWindow.ui" line="853"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="855"/>
+        <location filename="../MainWindow.ui" line="858"/>
         <source>Pause All</source>
         <translation>暂停所有</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="860"/>
+        <location filename="../MainWindow.ui" line="863"/>
         <source>Start All</source>
         <translation>开始所有</translation>
     </message>
@@ -1401,7 +1401,7 @@ Please close the other one first.</source>
         <translation type="obsolete">删除所有</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="875"/>
+        <location filename="../MainWindow.ui" line="878"/>
         <source>Torrent Properties</source>
         <translation>Torrent所有权</translation>
     </message>
@@ -1466,7 +1466,7 @@ Please close the other one first.</source>
         <translation type="obsolete">搜索引擎</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="880"/>
+        <location filename="../MainWindow.ui" line="883"/>
         <source>Download from URL</source>
         <translation>通过网址下载</translation>
     </message>
@@ -1486,7 +1486,7 @@ Please close the other one first.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="885"/>
+        <location filename="../MainWindow.ui" line="888"/>
         <source>Create torrent</source>
         <translation>创建torrent</translation>
     </message>
@@ -1511,27 +1511,27 @@ Please close the other one first.</source>
         <translation>传输</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="890"/>
+        <location filename="../MainWindow.ui" line="893"/>
         <source>Preview file</source>
         <translation>预览文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="895"/>
+        <location filename="../MainWindow.ui" line="898"/>
         <source>Clear log</source>
         <translation>清除日志</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="870"/>
+        <location filename="../MainWindow.ui" line="873"/>
         <source>Delete Permanently</source>
         <translation>永久删除</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="865"/>
+        <location filename="../MainWindow.ui" line="868"/>
         <source>Visit website</source>
         <translation>浏览网站</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="900"/>
+        <location filename="../MainWindow.ui" line="903"/>
         <source>Report a bug</source>
         <translation>报告错误</translation>
     </message>
@@ -1630,7 +1630,7 @@ Please close the other one first.</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="67"/>
+        <location filename="../about_imp.h" line="68"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>如果你想为qBittorrent提供翻译请与我联系.</translation>
     </message>
@@ -2034,12 +2034,12 @@ Please close the other one first.</source>
         <translation type="obsolete">有残缺.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="870"/>
+        <location filename="../options_imp.cpp" line="872"/>
         <source>Range Start IP</source>
         <translation>IP列起始</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="871"/>
+        <location filename="../options_imp.cpp" line="873"/>
         <source>Start IP:</source>
         <translation>起始IP:</translation>
     </message>
@@ -2054,22 +2054,22 @@ Please close the other one first.</source>
         <translation type="obsolete">此IP有误.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="887"/>
+        <location filename="../options_imp.cpp" line="889"/>
         <source>Range End IP</source>
         <translation>IP列截止</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="888"/>
+        <location filename="../options_imp.cpp" line="890"/>
         <source>End IP:</source>
         <translation>截止IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="904"/>
+        <location filename="../options_imp.cpp" line="906"/>
         <source>IP Range Comment</source>
         <translation>IP列注释</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="905"/>
+        <location filename="../options_imp.cpp" line="907"/>
         <source>Comment:</source>
         <translation>注释:</translation>
     </message>
@@ -2080,48 +2080,48 @@ Please close the other one first.</source>
         <translation>到</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="759"/>
+        <location filename="../options_imp.cpp" line="761"/>
         <source>Choose your favourite preview program</source>
         <translation>选择您想要的程序以便预览文件</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="899"/>
+        <location filename="../options_imp.cpp" line="901"/>
         <source>Invalid IP</source>
         <translation>无效IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="899"/>
+        <location filename="../options_imp.cpp" line="901"/>
         <source>This IP is invalid.</source>
         <translation>此IP无效.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="560"/>
+        <location filename="../options_imp.cpp" line="562"/>
         <source>Options were saved successfully.</source>
         <translation>选项保存成功.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="744"/>
+        <location filename="../options_imp.cpp" line="746"/>
         <source>Choose scan directory</source>
         <translation>选择监视目录</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="751"/>
+        <location filename="../options_imp.cpp" line="753"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>选择ipfilter.dat文件</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="767"/>
+        <location filename="../options_imp.cpp" line="769"/>
         <source>Choose a save directory</source>
         <translation>保存到</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="799"/>
+        <location filename="../options_imp.cpp" line="801"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>输入/输出错误</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="799"/>
+        <location filename="../options_imp.cpp" line="801"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>无法在读状态下打开%1.</translation>
     </message>

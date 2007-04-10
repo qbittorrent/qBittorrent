@@ -1176,47 +1176,47 @@ Vennligst avslutt denne først.</translation>
         <translation>&amp;Hjelp</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="820"/>
+        <location filename="../MainWindow.ui" line="823"/>
         <source>Open</source>
         <translation>Åpne</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="825"/>
+        <location filename="../MainWindow.ui" line="828"/>
         <source>Exit</source>
         <translation>Avslutt</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="830"/>
+        <location filename="../MainWindow.ui" line="833"/>
         <source>Preferences</source>
         <translation>Innstillinger</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="835"/>
+        <location filename="../MainWindow.ui" line="838"/>
         <source>About</source>
         <translation>Om</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="840"/>
+        <location filename="../MainWindow.ui" line="843"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="845"/>
+        <location filename="../MainWindow.ui" line="848"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="850"/>
+        <location filename="../MainWindow.ui" line="853"/>
         <source>Delete</source>
         <translation>Slett</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="855"/>
+        <location filename="../MainWindow.ui" line="858"/>
         <source>Pause All</source>
         <translation>Paus alle</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="860"/>
+        <location filename="../MainWindow.ui" line="863"/>
         <source>Start All</source>
         <translation>Start alle</translation>
     </message>
@@ -1231,7 +1231,7 @@ Vennligst avslutt denne først.</translation>
         <translation type="obsolete">Slett alle</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="875"/>
+        <location filename="../MainWindow.ui" line="878"/>
         <source>Torrent Properties</source>
         <translation>Torrentegenskaper</translation>
     </message>
@@ -1276,7 +1276,7 @@ Vennligst avslutt denne først.</translation>
         <translation>Stopp</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="880"/>
+        <location filename="../MainWindow.ui" line="883"/>
         <source>Download from URL</source>
         <translation>Last ned fra nettadresse</translation>
     </message>
@@ -1296,7 +1296,7 @@ Vennligst avslutt denne først.</translation>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="885"/>
+        <location filename="../MainWindow.ui" line="888"/>
         <source>Create torrent</source>
         <translation>Lag torrent</translation>
     </message>
@@ -1316,27 +1316,27 @@ Vennligst avslutt denne først.</translation>
         <translation>Overføringer</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="890"/>
+        <location filename="../MainWindow.ui" line="893"/>
         <source>Preview file</source>
         <translation>Forhåndsvis filen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="895"/>
+        <location filename="../MainWindow.ui" line="898"/>
         <source>Clear log</source>
         <translation>Nullstill loggen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="870"/>
+        <location filename="../MainWindow.ui" line="873"/>
         <source>Delete Permanently</source>
         <translation>Slett data</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="865"/>
+        <location filename="../MainWindow.ui" line="868"/>
         <source>Visit website</source>
         <translation>Besøk hjemmesiden</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="900"/>
+        <location filename="../MainWindow.ui" line="903"/>
         <source>Report a bug</source>
         <translation>Send en feilrapport</translation>
     </message>
@@ -1412,7 +1412,7 @@ Vennligst avslutt denne først.</translation>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="67"/>
+        <location filename="../about_imp.h" line="68"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Kontakt meg om du ønsker å oversette qBittorrent til ditt eget språk.</translation>
     </message>
@@ -1817,12 +1817,12 @@ Vennligst avslutt denne først.</translation>
         <translation type="obsolete">er ugyldig.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="870"/>
+        <location filename="../options_imp.cpp" line="872"/>
         <source>Range Start IP</source>
         <translation>Områdets start IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="871"/>
+        <location filename="../options_imp.cpp" line="873"/>
         <source>Start IP:</source>
         <translation>Start IP:</translation>
     </message>
@@ -1837,22 +1837,22 @@ Vennligst avslutt denne først.</translation>
         <translation type="obsolete">Denne IPen er ugyldig.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="887"/>
+        <location filename="../options_imp.cpp" line="889"/>
         <source>Range End IP</source>
         <translation>Områdets slutt IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="888"/>
+        <location filename="../options_imp.cpp" line="890"/>
         <source>End IP:</source>
         <translation>Slutt IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="904"/>
+        <location filename="../options_imp.cpp" line="906"/>
         <source>IP Range Comment</source>
         <translation>IP område kommentarer</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="905"/>
+        <location filename="../options_imp.cpp" line="907"/>
         <source>Comment:</source>
         <translation>Kommentar:</translation>
     </message>
@@ -1863,48 +1863,48 @@ Vennligst avslutt denne først.</translation>
         <translation>til</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="759"/>
+        <location filename="../options_imp.cpp" line="761"/>
         <source>Choose your favourite preview program</source>
         <translation>Velg program for forhåndsvisning</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="899"/>
+        <location filename="../options_imp.cpp" line="901"/>
         <source>Invalid IP</source>
         <translation>Ugyldig IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="899"/>
+        <location filename="../options_imp.cpp" line="901"/>
         <source>This IP is invalid.</source>
         <translation>Denne IP adressen er ugyldig.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="560"/>
+        <location filename="../options_imp.cpp" line="562"/>
         <source>Options were saved successfully.</source>
         <translation>Innstillingene ble lagret.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="744"/>
+        <location filename="../options_imp.cpp" line="746"/>
         <source>Choose scan directory</source>
         <translation>Velg mappe for gjennomsøking</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="751"/>
+        <location filename="../options_imp.cpp" line="753"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>Velg en ipfilter.dat fil</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="767"/>
+        <location filename="../options_imp.cpp" line="769"/>
         <source>Choose a save directory</source>
         <translation>Velg mappe for lagring</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="799"/>
+        <location filename="../options_imp.cpp" line="801"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>Lese/Skrive feil</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="799"/>
+        <location filename="../options_imp.cpp" line="801"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>Klarte ikke å åpne %1 i lesemodus.</translation>
     </message>

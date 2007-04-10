@@ -1398,47 +1398,47 @@ Please close the other one first.</source>
         <translation>&amp;Помощь</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="820"/>
+        <location filename="../MainWindow.ui" line="823"/>
         <source>Open</source>
         <translation>Открыть</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="825"/>
+        <location filename="../MainWindow.ui" line="828"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="830"/>
+        <location filename="../MainWindow.ui" line="833"/>
         <source>Preferences</source>
         <translation>Предпочтения</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="835"/>
+        <location filename="../MainWindow.ui" line="838"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="840"/>
+        <location filename="../MainWindow.ui" line="843"/>
         <source>Start</source>
         <translation>Начать</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="845"/>
+        <location filename="../MainWindow.ui" line="848"/>
         <source>Pause</source>
         <translation>Приостановить</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="850"/>
+        <location filename="../MainWindow.ui" line="853"/>
         <source>Delete</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="855"/>
+        <location filename="../MainWindow.ui" line="858"/>
         <source>Pause All</source>
         <translation>Приостановить Все</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="860"/>
+        <location filename="../MainWindow.ui" line="863"/>
         <source>Start All</source>
         <translation>Начать Все</translation>
     </message>
@@ -1453,7 +1453,7 @@ Please close the other one first.</source>
         <translation type="obsolete">Удалить Все</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="875"/>
+        <location filename="../MainWindow.ui" line="878"/>
         <source>Torrent Properties</source>
         <translation>Свойства потока</translation>
     </message>
@@ -1528,7 +1528,7 @@ Please close the other one first.</source>
         <translation>Очистить</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="880"/>
+        <location filename="../MainWindow.ui" line="883"/>
         <source>Download from URL</source>
         <translation>Закачать из URL</translation>
     </message>
@@ -1538,7 +1538,7 @@ Please close the other one first.</source>
         <translation>КиБ/с</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="885"/>
+        <location filename="../MainWindow.ui" line="888"/>
         <source>Create torrent</source>
         <translation>Создать поток</translation>
     </message>
@@ -1563,27 +1563,27 @@ Please close the other one first.</source>
         <translation>Передачи</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="890"/>
+        <location filename="../MainWindow.ui" line="893"/>
         <source>Preview file</source>
         <translation>Фаил предпросмотра</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="895"/>
+        <location filename="../MainWindow.ui" line="898"/>
         <source>Clear log</source>
         <translation>Очистить лог</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="870"/>
+        <location filename="../MainWindow.ui" line="873"/>
         <source>Delete Permanently</source>
         <translation>Удалить навсегда</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="865"/>
+        <location filename="../MainWindow.ui" line="868"/>
         <source>Visit website</source>
         <translation>Посетить веб-сайт</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="900"/>
+        <location filename="../MainWindow.ui" line="903"/>
         <source>Report a bug</source>
         <translation>Сообщить об ошибке</translation>
     </message>
@@ -1682,7 +1682,7 @@ Please close the other one first.</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="67"/>
+        <location filename="../about_imp.h" line="68"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Пожалуйста, свяжитесь со мной, если хотите перевести qBittorrent на свой язык.</translation>
     </message>
@@ -2098,12 +2098,12 @@ Please close the other one first.</source>
         <translation type="obsolete">поврежден.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="870"/>
+        <location filename="../options_imp.cpp" line="872"/>
         <source>Range Start IP</source>
         <translation>Начальный IP диапазона</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="871"/>
+        <location filename="../options_imp.cpp" line="873"/>
         <source>Start IP:</source>
         <translation>Начальный IP:</translation>
     </message>
@@ -2118,22 +2118,22 @@ Please close the other one first.</source>
         <translation type="obsolete">Этот IP некорректен.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="887"/>
+        <location filename="../options_imp.cpp" line="889"/>
         <source>Range End IP</source>
         <translation>Конечный IP диапазона</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="888"/>
+        <location filename="../options_imp.cpp" line="890"/>
         <source>End IP:</source>
         <translation>Конечный IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="904"/>
+        <location filename="../options_imp.cpp" line="906"/>
         <source>IP Range Comment</source>
         <translation>Комментарий к диапазону IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="905"/>
+        <location filename="../options_imp.cpp" line="907"/>
         <source>Comment:</source>
         <translation>Комментарий:</translation>
     </message>
@@ -2144,48 +2144,48 @@ Please close the other one first.</source>
         <translation>кому</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="759"/>
+        <location filename="../options_imp.cpp" line="761"/>
         <source>Choose your favourite preview program</source>
         <translation>Выберите вашу любимую программу для предпросмотра</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="899"/>
+        <location filename="../options_imp.cpp" line="901"/>
         <source>Invalid IP</source>
         <translation>Неверный IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="899"/>
+        <location filename="../options_imp.cpp" line="901"/>
         <source>This IP is invalid.</source>
         <translation>Этот IP неправилен.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="560"/>
+        <location filename="../options_imp.cpp" line="562"/>
         <source>Options were saved successfully.</source>
         <translation>Настройки были успешно сохранены.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="744"/>
+        <location filename="../options_imp.cpp" line="746"/>
         <source>Choose scan directory</source>
         <translation>Выберите директорию для сканирования</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="751"/>
+        <location filename="../options_imp.cpp" line="753"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>Выберите файл ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="767"/>
+        <location filename="../options_imp.cpp" line="769"/>
         <source>Choose a save directory</source>
         <translation>Выберите путь сохранения</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="799"/>
+        <location filename="../options_imp.cpp" line="801"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>Ошибка ввода/вывода</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="799"/>
+        <location filename="../options_imp.cpp" line="801"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>Невозможно открыть %1 в режиме чтения.</translation>
     </message>

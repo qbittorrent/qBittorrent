@@ -4,6 +4,7 @@
 		- BUGFIX: Allow to compile with libtorrent v0.11
 		- BUGFIX: Disabled main window context menu (annoying)
 		- I18N: Added Japanese translation
+		- I18N: Updated Turkish translation
 
 * Wed Apr 04 2007 - Christophe Dumez <chris@qbittorrent.org> - v0.9.1
     - BUGFIX: A lot of fixes in configure file

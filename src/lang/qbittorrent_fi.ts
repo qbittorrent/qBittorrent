@@ -1116,7 +1116,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../MainWindow.ui" line="835"/>
+        <location filename="../MainWindow.ui" line="838"/>
         <source>About</source>
         <translation>Tietoja</translation>
     </message>
@@ -1126,7 +1126,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation>Tyhjennä</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="895"/>
+        <location filename="../MainWindow.ui" line="898"/>
         <source>Clear log</source>
         <translation>Tyhjennä loki</translation>
     </message>
@@ -1136,12 +1136,12 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Yhteyden tila</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="885"/>
+        <location filename="../MainWindow.ui" line="888"/>
         <source>Create torrent</source>
         <translation>Luo torrentti</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="850"/>
+        <location filename="../MainWindow.ui" line="853"/>
         <source>Delete</source>
         <translation>Poista</translation>
     </message>
@@ -1151,7 +1151,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Poista kaikki</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="870"/>
+        <location filename="../MainWindow.ui" line="873"/>
         <source>Delete Permanently</source>
         <translation>Poista pysyvästi</translation>
     </message>
@@ -1166,7 +1166,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation>Lataa</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="880"/>
+        <location filename="../MainWindow.ui" line="883"/>
         <source>Download from URL</source>
         <translation>Lataa URL-osoitteesta</translation>
     </message>
@@ -1176,7 +1176,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation>&amp;Muokkaa</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="825"/>
+        <location filename="../MainWindow.ui" line="828"/>
         <source>Exit</source>
         <translation>Lopeta</translation>
     </message>
@@ -1201,7 +1201,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation>Loki:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="820"/>
+        <location filename="../MainWindow.ui" line="823"/>
         <source>Open</source>
         <translation>Avaa</translation>
     </message>
@@ -1211,22 +1211,22 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation>&amp;Asetukset</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="845"/>
+        <location filename="../MainWindow.ui" line="848"/>
         <source>Pause</source>
         <translation>Pysäytä</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="855"/>
+        <location filename="../MainWindow.ui" line="858"/>
         <source>Pause All</source>
         <translation>Pysäytä kaikki</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="830"/>
+        <location filename="../MainWindow.ui" line="833"/>
         <source>Preferences</source>
         <translation>Asetukset</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="890"/>
+        <location filename="../MainWindow.ui" line="893"/>
         <source>Preview file</source>
         <translation>Esikatsele</translation>
     </message>
@@ -1256,12 +1256,12 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation> Jakosuhde:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="840"/>
+        <location filename="../MainWindow.ui" line="843"/>
         <source>Start</source>
         <translation>Käynnistä</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="860"/>
+        <location filename="../MainWindow.ui" line="863"/>
         <source>Start All</source>
         <translation>Käynnistä kaikki</translation>
     </message>
@@ -1281,7 +1281,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation>Pysäytetty</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="875"/>
+        <location filename="../MainWindow.ui" line="878"/>
         <source>Torrent Properties</source>
         <translation>Torrentin tiedot</translation>
     </message>
@@ -1306,12 +1306,12 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation>Päivitä hakuliitännäinen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="865"/>
+        <location filename="../MainWindow.ui" line="868"/>
         <source>Visit website</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="900"/>
+        <location filename="../MainWindow.ui" line="903"/>
         <source>Report a bug</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1387,7 +1387,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="67"/>
+        <location filename="../about_imp.h" line="68"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1757,12 +1757,12 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Valitse hakukansio</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="759"/>
+        <location filename="../options_imp.cpp" line="761"/>
         <source>Choose your favourite preview program</source>
         <translation>Valitse mieluinen esikatseluohjelma</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="905"/>
+        <location filename="../options_imp.cpp" line="907"/>
         <source>Comment:</source>
         <translation>Kommentti:</translation>
     </message>
@@ -1772,7 +1772,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Avaaminen epäonnistui:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="888"/>
+        <location filename="../options_imp.cpp" line="890"/>
         <source>End IP:</source>
         <translation>Loppu:</translation>
     </message>
@@ -1787,7 +1787,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">lukutilassa.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="899"/>
+        <location filename="../options_imp.cpp" line="901"/>
         <source>Invalid IP</source>
         <translation>Virheellinen IP</translation>
     </message>
@@ -1797,7 +1797,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">I/O-virhe</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="904"/>
+        <location filename="../options_imp.cpp" line="906"/>
         <source>IP Range Comment</source>
         <translation>IP-alueen kommentti</translation>
     </message>
@@ -1807,17 +1807,17 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Asetukset tallennettiin!</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="887"/>
+        <location filename="../options_imp.cpp" line="889"/>
         <source>Range End IP</source>
         <translation>Alueen loppu</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="870"/>
+        <location filename="../options_imp.cpp" line="872"/>
         <source>Range Start IP</source>
         <translation>Alueen alku</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="871"/>
+        <location filename="../options_imp.cpp" line="873"/>
         <source>Start IP:</source>
         <translation>Alku:</translation>
     </message>
@@ -1827,7 +1827,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Tämä IP on virheellinen.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="899"/>
+        <location filename="../options_imp.cpp" line="901"/>
         <source>This IP is invalid.</source>
         <translation>Tämä IP on virheellinen.</translation>
     </message>
@@ -1838,33 +1838,33 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation>–</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="560"/>
+        <location filename="../options_imp.cpp" line="562"/>
         <source>Options were saved successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="744"/>
+        <location filename="../options_imp.cpp" line="746"/>
         <source>Choose scan directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="751"/>
+        <location filename="../options_imp.cpp" line="753"/>
         <source>Choose an ipfilter.dat file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="767"/>
+        <location filename="../options_imp.cpp" line="769"/>
         <source>Choose a save directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="799"/>
+        <location filename="../options_imp.cpp" line="801"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation type="unfinished">I/O-virhe</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="799"/>
+        <location filename="../options_imp.cpp" line="801"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation type="unfinished"></translation>
     </message>
