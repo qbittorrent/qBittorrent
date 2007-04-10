@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>222</width>
-    <height>99</height>
+    <height>129</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -93,22 +93,6 @@
  </widget>
  <resources/>
  <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>bandwidth_dlg</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>212</x>
-     <y>77</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>157</x>
-     <y>98</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>

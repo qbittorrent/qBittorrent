@@ -42,7 +42,7 @@
 
 #define SEARCHHISTORY_MAXSIZE 50
 
-SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon) : QWidget(){
+SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration) : QWidget(), systrayIntegration(systrayIntegration){
   setupUi(this);
   this->BTSession = BTSession;
   this->myTrayIcon = myTrayIcon;
@@ -526,7 +526,7 @@ void SearchEngine::on_update_nova_button_clicked(){
 void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
   QSettings settings("qBittorrent", "qBittorrent");
   int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
-  if(useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden()))) {
+  if(systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
     myTrayIcon->showMessage(tr("Search Engine"), tr("Search has finished"), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
   }
   if(exitcode){

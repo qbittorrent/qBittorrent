@@ -58,6 +58,7 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
 //           val = -1;
 //         bandwidthSlider->setValue(val);
 //       }
+       connect(buttonBox, SIGNAL(accepted()), this, SLOT(setBandwidth()));
     }
 
     ~BandwidthAllocationDialog(){
@@ -73,6 +74,15 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
         limit_lbl->setText(QString(misc::toString(val).c_str()));
         kb_lbl->setText(tr("KiB/s"));
       }
+    }
+
+    void setBandwidth(){
+      int val = bandwidthSlider->value();
+      if(uploadMode)
+        h.set_upload_limit(val);
+      else
+        h.set_download_limit(val);
+      close();
     }
 
   private:

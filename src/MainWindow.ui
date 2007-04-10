@@ -530,6 +530,16 @@
     <string>Report a bug</string>
    </property>
   </action>
+  <action name="actionSet_upload_limit" >
+   <property name="text" >
+    <string>Set upload limit</string>
+   </property>
+  </action>
+  <action name="actionSet_download_limit" >
+   <property name="text" >
+    <string>Set download limit</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

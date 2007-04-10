@@ -54,12 +54,14 @@
 GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   setupUi(this);
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(VERSION));
+  QSettings settings("qBittorrent", "qBittorrent");
+  systrayIntegration = settings.value("Options/Misc/Behaviour/SystrayIntegration", true).toBool();
   // Finished torrents tab
   finishedTorrentTab = new FinishedTorrents(this, &BTSession);
   tabs->addTab(finishedTorrentTab, tr("Finished"));
   tabs->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   // Search engine tab
-  searchEngine = new SearchEngine(&BTSession, myTrayIcon);
+  searchEngine = new SearchEngine(&BTSession, myTrayIcon, systrayIntegration);
   tabs->addTab(searchEngine, tr("Search"));
   tabs->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/skin/search.png")));
   // RSS tab
@@ -87,6 +89,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   actionStart_All->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play_all.png")));
   actionClearLog->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")));
   actionPreview_file->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")));
+  //TODO: set icons for Upload/Download limit actions
 //   actionDocumentation->setIcon(QIcon(QString::fromUtf8(":/Icons/help.png")));
   connecStatusLblIcon = new QLabel();
   connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
@@ -157,8 +160,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(infoBar, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayInfoBarMenu(const QPoint&)));
   // Create tray icon
   if (QSystemTrayIcon::isSystemTrayAvailable()){
-    QSettings settings("qBittorrent", "qBittorrent");
-    systrayIntegration = settings.value("Options/Misc/Behaviour/SystrayIntegration", true).toBool();
     if(systrayIntegration){
       createTrayIcon();
     }
@@ -294,6 +295,10 @@ void GUI::togglePausedState(const QModelIndex& index){
     BTSession.pauseTorrent(fileHash);
   }
 }
+
+// void GUI::on_actionSet_download_limit_triggered(){
+//   new BandwidthAllocationDialog(this,
+// }
 
 void GUI::on_actionPreview_file_triggered(){
   if(tabs->currentIndex() > 1) return;

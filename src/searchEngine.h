@@ -49,9 +49,10 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     SearchListDelegate *SearchDelegate;
     bittorrent *BTSession;
     QSystemTrayIcon *myTrayIcon;
+    bool systrayIntegration;
 
   public:
-    SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon);
+    SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration);
     ~SearchEngine();
     float getNovaVersion(const QString& novaPath) const;
     QByteArray getNovaChangelog(const QString& novaPath) const;
