@@ -296,9 +296,31 @@ void GUI::togglePausedState(const QModelIndex& index){
   }
 }
 
-// void GUI::on_actionSet_download_limit_triggered(){
-//   new BandwidthAllocationDialog(this,
-// }
+void GUI::on_actionSet_download_limit_triggered(){
+  QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  QModelIndex index;
+  QStringList hashes;
+  foreach(index, selectedIndexes){
+    if(index.column() == NAME){
+      // Get the file hash
+      hashes << DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+    }
+  }
+  new BandwidthAllocationDialog(this, false, &BTSession, hashes);
+}
+
+void GUI::on_actionSet_upload_limit_triggered(){
+  QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  QModelIndex index;
+  QStringList hashes;
+  foreach(index, selectedIndexes){
+    if(index.column() == NAME){
+      // Get the file hash
+      hashes << DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+    }
+  }
+  new BandwidthAllocationDialog(this, true, &BTSession, hashes);
+}
 
 void GUI::on_actionPreview_file_triggered(){
   if(tabs->currentIndex() > 1) return;
@@ -350,6 +372,8 @@ void GUI::displayDLListMenu(const QPoint& pos){
       }
       myDLLlistMenu.addAction(actionDelete);
       myDLLlistMenu.addAction(actionDelete_Permanently);
+      myDLLlistMenu.addAction(actionSet_download_limit);
+      myDLLlistMenu.addAction(actionSet_upload_limit);
       myDLLlistMenu.addAction(actionTorrent_Properties);
       if(!previewProgram.isEmpty() && BTSession.isFilePreviewPossible(fileHash) && selectedIndexes.size()<=DLListModel->columnCount()){
          myDLLlistMenu.addAction(actionPreview_file);

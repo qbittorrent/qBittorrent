@@ -135,6 +135,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void on_actionOpen_triggered();
     void on_actionDelete_Permanently_triggered();
     void on_actionDelete_triggered();
+    void on_actionSet_download_limit_triggered();
+    void on_actionSet_upload_limit_triggered();
     void checkConnectionStatus();
     void configureSession(bool deleteOptions);
     void processParams(const QStringList& params);

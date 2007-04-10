@@ -31,6 +31,8 @@
 using namespace libtorrent;
 
 class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
+  Q_OBJECT
+
   public:
     BandwidthAllocationDialog(QWidget *parent, bool uploadMode, bittorrent *BTSession, QStringList hashes): QDialog(parent), uploadMode(uploadMode){
       setupUi(this);
@@ -71,6 +73,7 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
 //         bandwidthSlider->setValue(-1);
 //       }
        connect(buttonBox, SIGNAL(accepted()), this, SLOT(setBandwidth()));
+       show();
     }
 
     ~BandwidthAllocationDialog(){
