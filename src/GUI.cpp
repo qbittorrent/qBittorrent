@@ -42,6 +42,7 @@
 #include "searchEngine.h"
 #include "rss_imp.h"
 #include "FinishedTorrents.h"
+#include "allocationDlg.h"
 
 /*****************************************************
  *                                                   *
