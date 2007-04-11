@@ -43,6 +43,10 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   finishedList->setModel(finishedListModel);
   // Hide hash column
   finishedList->hideColumn(HASH);
+  // Load last columns width for download list
+  if(!loadColWidthFinishedList()){
+    finishedList->header()->resizeSection(0, 200);
+  }
   finishedListDelegate = new DLListDelegate();
   finishedList->setItemDelegate(finishedListDelegate);
   connect(finishedList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFinishedListMenu(const QPoint&)));
@@ -58,6 +62,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
 }
 
 FinishedTorrents::~FinishedTorrents(){
+  saveColWidthFinishedList();
   delete finishedListDelegate;
   delete finishedListModel;
 }
@@ -104,6 +109,39 @@ void FinishedTorrents::setRowColor(int row, const QString& color){
   for(int i=0; i<finishedListModel->columnCount(); ++i){
     finishedListModel->setData(finishedListModel->index(row, i), QVariant(QColor(color)), Qt::TextColorRole);
   }
+}
+
+// Load columns width in a file that were saved previously
+// (finished list)
+bool FinishedTorrents::loadColWidthFinishedList(){
+  qDebug("Loading columns width for finished list");
+  QSettings settings("qBittorrent", "qBittorrent");
+  QString line = settings.value("FinishedListColsWidth", QString()).toString();
+  if(line.isEmpty())
+    return false;
+  QStringList width_list = line.split(' ');
+  if(width_list.size() != finishedListModel->columnCount())
+    return false;
+  unsigned int listSize = width_list.size();
+  for(unsigned int i=0; i<listSize; ++i){
+        finishedList->header()->resizeSection(i, width_list.at(i).toInt());
+  }
+  qDebug("Finished list columns width loaded");
+  return true;
+}
+
+// Save columns width in a file to remember them
+// (finished list)
+void FinishedTorrents::saveColWidthFinishedList() const{
+  qDebug("Saving columns width in finished list");
+  QSettings settings("qBittorrent", "qBittorrent");
+  QStringList width_list;
+  unsigned int nbColumns = finishedListModel->columnCount();
+  for(unsigned int i=0; i<nbColumns; ++i){
+    width_list << QString(misc::toString(finishedList->columnWidth(i)).c_str());
+  }
+  settings.setValue("FinishedListColsWidth", width_list.join(" "));
+  qDebug("Finished list columns width saved");
 }
 
 void FinishedTorrents::on_actionSet_upload_limit_triggered(){

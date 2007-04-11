@@ -44,6 +44,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     QStringList getFinishedSHAs();
     QTreeView* getFinishedList();
     QStandardItemModel* getFinishedListModel();
+    bool loadColWidthFinishedList();
 
   public slots:
     void addFinishedSHA(QString sha);
@@ -53,6 +54,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     void propertiesSelection();
     void displayFinishedListMenu(const QPoint&);
     void setRowColor(int row, const QString& color);
+    void saveColWidthFinishedList() const;
 
   protected slots:
     void on_actionSet_upload_limit_triggered();
