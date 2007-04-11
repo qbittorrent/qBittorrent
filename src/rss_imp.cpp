@@ -59,7 +59,7 @@
 
     // refresh all streams by a button
     void RSSImp::on_refreshAll_button_clicked() {
-      refreshAllStream();
+      refreshAllStreams();
     }
 
     // display the news of a stream when click on it
@@ -125,7 +125,7 @@
     }
 
     //right-click somewhere, refresh all the streams
-    void RSSImp::refreshAllStream() {
+    void RSSImp::refreshAllStreams() {
       if(lastRefresh.elapsed()>REFRESH_FREQ_MAX) {
 	textBrowser->clear();
 	listNews->clear();
@@ -140,8 +140,11 @@
       bool ok;
       QString newUrl = QInputDialog::getText(this, tr("Please type a rss stream url"), tr("Stream URL:"), QLineEdit::Normal, "http://", &ok);
       if(ok) {
-	rssmanager.addStream(newUrl);
-	refreshStreamList();
+        newUrl = newUrl.trimmed();
+        if(!newUrl.isEmpty() && newUrl != "http://"){
+          rssmanager.addStream(newUrl);
+          refreshStreamList();
+        }
       }
     }
 
@@ -193,7 +196,7 @@
       connect(actionRename, SIGNAL(triggered()), this, SLOT(renameStream()));
       connect(actionRefresh, SIGNAL(triggered()), this, SLOT(refreshStream()));
       connect(actionCreate, SIGNAL(triggered()), this, SLOT(createStream()));
-      connect(actionRefreshAll, SIGNAL(triggered()), this, SLOT(refreshAllStream()));
+      connect(actionRefreshAll, SIGNAL(triggered()), this, SLOT(refreshAllStreams()));
       refreshStreamList();
       refreshTextBrowser();
       timer = new QTimer(this);

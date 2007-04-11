@@ -35,9 +35,6 @@ class RSSImp : public QWidget, public Ui::RSS{
 
   private:
     RssManager rssmanager;
-    void refreshStreamList();
-    void refreshNewsList();
-    void refreshTextBrowser();
     QTimer* timer;
     QTime lastRefresh;
 
@@ -53,8 +50,11 @@ class RSSImp : public QWidget, public Ui::RSS{
     void renameStream();
     void refreshStream();
     void createStream();
-    void refreshAllStream();
     void updateStreamNbNews();
+    void refreshAllStreams();
+    void refreshStreamList();
+    void refreshNewsList();
+    void refreshTextBrowser();
 
   public:
     RSSImp();
