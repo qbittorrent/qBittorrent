@@ -114,25 +114,21 @@
 
     //right-clik on stream : refresh it
     void RSSImp::refreshStream() {
-      if(rssmanager.getNbStream()>0 && lastRefresh.elapsed()>REFRESH_FREQ_MAX) {
-	int index = listStreams->currentRow();
+      int index = listStreams->currentRow();
+      if(rssmanager.getNbStream()>0) {
 	textBrowser->clear();
 	listNews->clear();
 	rssmanager.refresh(index);
 	refreshStreamList();
-	lastRefresh.start();
       }
     }
 
     //right-click somewhere, refresh all the streams
     void RSSImp::refreshAllStreams() {
-      if(lastRefresh.elapsed()>REFRESH_FREQ_MAX) {
-	textBrowser->clear();
-	listNews->clear();
-	rssmanager.refreshAll();
-	refreshStreamList();
-	lastRefresh.start();
-      }
+      textBrowser->clear();
+      listNews->clear();
+      rssmanager.refreshAll();
+      refreshStreamList();
     }
 
     //right-click, register a new stream
@@ -180,7 +176,7 @@
     }
 
     // show the number of news for each stream
-    void RSSImp::updateStreamNbNews() {
+    void RSSImp::updateStreamsName() {
       for(int i=0; i<rssmanager.getNbStream(); i++) {
         listStreams->item(i)->setText(rssmanager.getStream(i)->getAlias()+" ("+QString::number(rssmanager.getStream(i)->getListSize(),10).toUtf8()+")");
       }
@@ -200,9 +196,11 @@
       refreshStreamList();
       refreshTextBrowser();
       timer = new QTimer(this);
-      connect(timer, SIGNAL(timeout()), this, SLOT(updateStreamNbNews()));
+      //connect(timer, SIGNAL(timeout()), this, SLOT(updateStreamsName()));
       timer->start(5000);
-      lastRefresh.start();
+      //for(int i=0; i<rssmanager.getNbStream(); i++) {
+      //connect(rssmanager, SIGNAL(streamNeedRefresh()), this, SLOT(updateStreamsName()));
+      //}
     }
 
     RSSImp::~RSSImp(){

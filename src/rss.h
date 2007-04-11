@@ -22,9 +22,12 @@
 #ifndef RSS_H
 #define RSS_H
 
-#define STREAM_MAX_ITEM 15
+// MAX ITEM A STREAM
+#define STREAM_MAX_ITEM 18
 // FIXME: not used yet
 #define GLOBAL_MAX_ITEM 150
+// avoid crash if too many refresh
+#define REFRESH_FREQ_MAX 5000
 
 #include <QFile>
 #include <QList>
@@ -32,11 +35,14 @@
 #include <QTemporaryFile>
 #include <QSettings>
 #include <QDomDocument>
+#include <QTime>
 
 #include "misc.h"
 #include "downloadThread.h"
 
+class RssManager;
 class RssStream;
+class RssItem;
 
 // Item of a rss stream, single information
 class RssItem{
@@ -47,14 +53,12 @@ class RssItem{
     QString description;
     QString image;
     bool read;
-    RssStream* parent;
     QString downloadLink;
 
   public:
     // public constructor
-    RssItem(const QDomElement& properties, RssStream* _parent){
+    RssItem(const QDomElement& properties){
       read = false;
-      parent = _parent;
       downloadLink = "none";
       QDomElement property = properties.firstChild().toElement();
       while(!property.isNull()) {
@@ -68,7 +72,6 @@ class RssItem{
 	  image = property.text();
 	property = property.nextSibling().toElement();
       }
-      //displayItem();
     }
 
     ~RssItem(){
@@ -101,14 +104,6 @@ class RssItem{
     void setRead(){
       read = true;
     }
-
-    RssStream* getParent() const{
-      return parent;
-    }
-
-    void displayItem(){
-      qDebug("        - "+title.toUtf8()+" - "+link.toUtf8());
-    }
 };
 
 // Rss stream, loaded form an xml file
@@ -125,7 +120,11 @@ class RssStream : public QObject{
     QString filePath;
     QList<RssItem*> listItem;
     downloadThread* downloader;
+    QTime lastRefresh;
 
+  signals:
+    void refreshFinished(const QString& msg);
+    
   public slots :
     // read and store the downloaded rss' informations
     void processDownloadedFile(const QString&, const QString& file_path, int return_code, const QString&) {
@@ -143,6 +142,7 @@ class RssStream : public QObject{
 	return;
       }
       openRss();
+      emit refreshFinished("plop");
     }
 
   public:
@@ -152,6 +152,7 @@ class RssStream : public QObject{
       downloader = new downloadThread(this);
       connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
       downloader->downloadUrl(url);
+      lastRefresh.start();
     }
 
     ~RssStream(){
@@ -167,6 +168,12 @@ class RssStream : public QObject{
       for(unsigned int i=0; i<listSize; ++i){
 	delete getItem(i);
       }
+    }
+
+    void refresh() {
+      connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
+      downloader->downloadUrl(url);
+      lastRefresh.start();
     }
 
     QString getTitle() const{
@@ -214,13 +221,9 @@ class RssStream : public QObject{
       return listItem;
     }
 
-    void displayStream(){
-      qDebug("    # "+getTitle().toUtf8()+" - "+getUrl().toUtf8()+" - "+getAlias().toUtf8());
-      unsigned int listItemSize = listItem.size();
-      for(unsigned int i=0; i<listItemSize; ++i){
-	getItem(i)->displayItem();
-      }
-    }
+    int getLastRefreshElapsed() const{
+      return lastRefresh.elapsed();
+    }    
 
   private:
     short read(const QDomDocument& doc) {
@@ -236,6 +239,7 @@ class RssStream : public QObject{
       }
       QDomNode rss = root.firstChild();
       QDomElement channel = root.firstChild().toElement();
+
       while(!channel.isNull()) {
       // we are reading the rss'main info
 	if (channel.tagName() == "channel") {
@@ -253,10 +257,10 @@ class RssStream : public QObject{
 	    else if (property.tagName() == "image")
 	      image = property.text();
 	    else if(property.tagName() == "item") {
-	      if(getListSize() < STREAM_MAX_ITEM) {
+	      if(getListSize() < 3*STREAM_MAX_ITEM) {
                 //TODO: find a way to break here
 	        //add it to a list
-	        listItem.append(new RssItem(property, this));
+	        listItem.append(new RssItem(property));
 	      }
 	    }
 	    property = property.nextSibling().toElement();
@@ -264,7 +268,26 @@ class RssStream : public QObject{
 	}
 	channel = channel.nextSibling().toElement();
       }
+      // resize stream listItem
+      resizeList();
       return 0;
+    }
+
+    void resizeList() {
+      unsigned short lastindex = 0;
+      QString firstTitle = getItem(0)->getTitle();
+      unsigned short listsize = getListSize();
+      for(unsigned short i=0; i<listsize; i++) {
+        if(getItem(i)->getTitle() == firstTitle)
+	  lastindex = i;
+      }
+      for(unsigned short i=0; i<lastindex; i++) {
+	listItem.removeFirst();
+      }
+      while(getListSize()>STREAM_MAX_ITEM) {
+	listItem.removeLast();
+      }
+	
     }
 
     // existing and opening test after download
@@ -297,13 +320,24 @@ class RssStream : public QObject{
 };
 
 // global class, manage the whole rss stream
-class RssManager{
-
+class RssManager : public QObject{
+  Q_OBJECT
+  
   private :
     QList<RssStream*> streamList;
     QStringList streamListUrl;
     QStringList streamListAlias;
 
+  signals:
+    void streamNeedRefresh();
+
+  public slots :
+    // read and store the downloaded rss' informations
+    void refreshFinished(const QString&) {
+
+      qDebug("*******************************************************");
+    }
+    
   public :
     RssManager(){
       loadStreamList();
@@ -331,6 +365,7 @@ class RssManager{
 	RssStream *stream = new RssStream(streamListUrl.at(i));
 	stream->setAlias(streamListAlias.at(i));
 	streamList.append(stream);
+	connect(stream, SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh()));
       }
     }
 
@@ -349,6 +384,7 @@ class RssManager{
 	streamList.append(stream);
 	streamListUrl.append(stream->getUrl());
 	streamListAlias.append(stream->getUrl());
+	connect(stream, SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh()));
       }else{
         qDebug("Not adding the Rss stream because it is already in the list");
       }
@@ -410,15 +446,20 @@ class RssManager{
 	RssStream *stream = new RssStream(streamListUrl.at(i));
 	stream->setAlias(streamListAlias.at(i));
 	streamList.append(stream);
+	connect(stream, SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh()));
       }
     }
 
     void refresh(int index) {
       if(index>=0 && index<getNbStream()) {
-	delete getStream(index);
-	RssStream *stream = new RssStream(streamListUrl.at(index));
-	stream->setAlias(streamListAlias.at(index));
-	streamList.replace(index, stream);
+	if(getStream(index)->getLastRefreshElapsed()>REFRESH_FREQ_MAX) {
+	  //delete getStream(index);
+	  //RssStream *stream = new RssStream(streamListUrl.at(index));
+	  //stream->setAlias(streamListAlias.at(index));
+	  //streamList.replace(index, stream);
+	  getStream(index)->refresh();
+	  connect(getStream(index), SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh()));
+	}
       }
     }
 
@@ -433,13 +474,6 @@ class RssManager{
 
     RssStream* getStream(const int& index) const{
       return streamList.at(index);
-    }
-
-    void displayManager(){
-      unsigned int streamListSize = streamList.size();
-      for(unsigned int i=0; i<streamListSize; ++i){
-	getStream(i)->displayStream();
-      }
     }
 
     int getNbStream() {
