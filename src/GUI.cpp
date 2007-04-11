@@ -292,8 +292,20 @@ void GUI::togglePausedState(const QModelIndex& index){
   QString fileHash = DLListModel->data(DLListModel->index(row, HASH)).toString();
   if(BTSession.isPaused(fileHash)){
     BTSession.resumeTorrent(fileHash);
+    DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Connecting...")));
+    setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(QString(BTSession.getTorrentHandle(fileHash).name().c_str())));
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
+    setRowColor(row, "grey");
   }else{
     BTSession.pauseTorrent(fileHash);
+    DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
+    DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
+    DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Paused")));
+    DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+    setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(QString(BTSession.getTorrentHandle(fileHash).name().c_str())));
+    DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
+    DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
+    setRowColor(row, "red");
   }
 }
 
