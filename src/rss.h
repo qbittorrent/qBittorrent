@@ -378,14 +378,9 @@ class RssManager{
     void removeStream(RssStream* stream){
       short index = hasStream(stream);
       if(index != -1){
-        unsigned int streamListSize = streamList.size();
-	for(unsigned int i=0; i<streamListSize; ++i){
-	  if(getStream(i)->getUrl() == stream->getUrl()){
-	    delete streamList.takeAt(i);
-	  }
-	}
+        delete streamList.takeAt(index);
 	streamListUrl.removeAt(index);
-	streamListAlias.removeAt(index);
+	streamListAlias.removeAt(index);	
       }
     }
 
