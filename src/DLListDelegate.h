@@ -45,7 +45,7 @@ class DLListDelegate: public QAbstractItemDelegate {
   Q_OBJECT
 
   public:
-    DLListDelegate(QObject *parent=0) : QAbstractItemDelegate(parent){}
+    DLListDelegate(QObject *parent) : QAbstractItemDelegate(parent){}
 
     ~DLListDelegate(){}
 

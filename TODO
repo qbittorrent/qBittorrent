@@ -48,4 +48,3 @@
 - Use buttonboxes when possible
 - Display the sum of the size of the selected files in the torrent instead of the whole torrent size in download list
 - Sorting in Download Status column should be smarter than just an alphabetical sort
-- remove ETA from finished list

@@ -126,7 +126,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   DLListModel->setHeaderData(STATUS, Qt::Horizontal, tr("Status"));
   DLListModel->setHeaderData(ETA, Qt::Horizontal, tr("ETA", "i.e: Estimated Time of Arrival / Time left"));
   downloadList->setModel(DLListModel);
-  DLDelegate = new DLListDelegate();
+  DLDelegate = new DLListDelegate(downloadList);
   downloadList->setItemDelegate(DLDelegate);
   // Hide hash column
   downloadList->hideColumn(HASH);

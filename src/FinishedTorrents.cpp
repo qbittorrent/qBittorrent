@@ -41,8 +41,10 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   finishedListModel->setHeaderData(STATUS, Qt::Horizontal, tr("Status"));
   finishedListModel->setHeaderData(ETA, Qt::Horizontal, tr("ETA", "i.e: Estimated Time of Arrival / Time left"));
   finishedList->setModel(finishedListModel);
-  // Hide hash column
+  // Hide ETA & hash column
   finishedList->hideColumn(HASH);
+  finishedList->hideColumn(ETA);
+  finishedList->hideColumn(DLSPEED);
   // Load last columns width for download list
   if(!loadColWidthFinishedList()){
     finishedList->header()->resizeSection(0, 200);
@@ -51,7 +53,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   finishedList->header()->setClickable(true);
   finishedList->header()->setSortIndicatorShown(true);
   connect(finishedList->header(), SIGNAL(sectionPressed(int)), this, SLOT(sortFinishedList(int)));
-  finishedListDelegate = new DLListDelegate();
+  finishedListDelegate = new DLListDelegate(finishedList);
   finishedList->setItemDelegate(finishedListDelegate);
   connect(finishedList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFinishedListMenu(const QPoint&)));
   connect(finishedList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(propertiesSelection()));
