@@ -29,6 +29,7 @@
 #include <QCleanlooksStyle>
 #include <QMotifStyle>
 #include <QCDEStyle>
+#include <QDialogButtonBox>
 #ifdef Q_WS_WIN
   #include <QWindowsXPStyle>
 #endif
@@ -45,6 +46,16 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   qDebug("-> Constructing Options");
   QString savePath;
   setupUi(this);
+  // Get apply button in button box
+  QList<QAbstractButton *> buttons = buttonBox->buttons();
+  QAbstractButton *button;
+  foreach(button, buttons){
+    if(buttonBox->buttonRole(button) == QDialogButtonBox::ApplyRole){
+      applyButton = button;
+      break;
+    }
+  }
+  connect(buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(applySettings(QAbstractButton*)));
   // Setting icons
   tabOptions->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/connection.png")));
   tabOptions->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/style.png")));
@@ -244,6 +255,7 @@ void options_imp::useStyle(){
 }
 
 void options_imp::saveOptions(){
+  applyButton->setEnabled(false);
   QSettings settings("qBittorrent", "qBittorrent");
   // Apply style
   useStyle();
@@ -329,8 +341,6 @@ void options_imp::saveOptions(){
   settings.setValue("Style", getStyle());
   // End Options group
   settings.endGroup();
-  // Disable apply Button
-  applyButton->setEnabled(false);
 }
 
 bool options_imp::isFilteringEnabled() const{
@@ -567,8 +577,6 @@ void options_imp::loadOptions(){
   setStyle(settings.value("Style", QString()).toString());
   // End Options group
   settings.endGroup();
-  // Disable apply Button
-  applyButton->setEnabled(false);
 }
 
 void options_imp::systrayDisabled(int val){
@@ -705,7 +713,7 @@ int options_imp::getMaxConnec() const{
   }
 }
 
-void options_imp::on_okButton_clicked(){
+void options_imp::on_buttonBox_accepted(){
   if(applyButton->isEnabled()){
     saveOptions();
     applyButton->setEnabled(false);
@@ -718,9 +726,11 @@ void options_imp::on_okButton_clicked(){
   }
 }
 
-void options_imp::on_applyButton_clicked(){
-  saveOptions();
-  emit status_changed(tr("Options were saved successfully."), false);
+void options_imp::applySettings(QAbstractButton* button) {
+  if(button == applyButton){
+    saveOptions();
+    emit status_changed(tr("Options were saved successfully."), false);
+  }
 }
 
 void options_imp::closeEvent(QCloseEvent *e){
@@ -728,7 +738,7 @@ void options_imp::closeEvent(QCloseEvent *e){
   e->accept();
 }
 
-void options_imp::on_cancelButton_clicked(){
+void options_imp::on_buttonBox_rejected(){
   setAttribute(Qt::WA_DeleteOnClose);
   reject();
 }

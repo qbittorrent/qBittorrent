@@ -36,6 +36,7 @@ class options_imp : public QDialog, private Ui::Dialog{
     QButtonGroup choiceLanguage;
     ip_filter filter;
     QStringList locales;
+    QAbstractButton *applyButton;
 
   public:
     // Contructor / Destructor
@@ -83,10 +84,10 @@ class options_imp : public QDialog, private Ui::Dialog{
     bool useSystrayIntegration() const;
 
   protected slots:
-    void on_okButton_clicked();
+    void on_buttonBox_accepted();
     void closeEvent(QCloseEvent *e);
-    void on_cancelButton_clicked();
-    void on_applyButton_clicked();
+    void on_buttonBox_rejected();
+    void applySettings(QAbstractButton* button);
     void on_addFilterRange_clicked();
     void on_delFilterRange_clicked();
     void on_browse_button_scan_clicked();

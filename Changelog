@@ -10,6 +10,7 @@
     - FEATURE: Improved a lot the torrent creation module
     - FEATURE: Allow to set upload/download limit per torrent (right click)
     - FEATURE: Ask for exit confirmation only if download list is not empty
+    - FEATURE: Better systems integration (buttons, dialogs...)
     - BUGFIX: Window can now stay maximized on exit
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
