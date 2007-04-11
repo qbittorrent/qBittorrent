@@ -36,7 +36,7 @@
       }
       myFinishedListMenu.addAction(actionCreate);
       myFinishedListMenu.addAction(actionRefreshAll);
-      myFinishedListMenu.exec(mapToGlobal(pos)+QPoint(10,55));
+      myFinishedListMenu.exec(mapToGlobal(pos)+QPoint(10,33));
     }
 
     // add a stream by a button
@@ -103,7 +103,7 @@
       }else {
 	bool ok;
 	int index = listStreams->currentRow();
-	QString newAlias = QInputDialog::getText(this, tr("Please type a rss stream alias"), tr("Stream Alias:"), QLineEdit::Normal, rssmanager.getStream(index)->getAlias(), &ok);
+	QString newAlias = QInputDialog::getText(this, tr("Please choose a new name for this stream"), tr("New stream name:"), QLineEdit::Normal, rssmanager.getStream(index)->getAlias(), &ok);
 	if(ok) {
 	  rssmanager.setAlias(index, newAlias);
 	  refreshStreamList();
