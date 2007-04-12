@@ -62,9 +62,9 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
   actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
-  connect(actionDelete, SIGNAL(triggered()), (GUI*)parent, SLOT(deleteSelection()));
-  connect(actionPreview_file, SIGNAL(triggered()), (GUI*)parent, SLOT(previewFileSelection()));
-  connect(actionDelete_Permanently, SIGNAL(triggered()), (GUI*)parent, SLOT(deletePermanently()));
+  connect(actionDelete, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_triggered()));
+  connect(actionPreview_file, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionPreview_file_triggered()));
+  connect(actionDelete_Permanently, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_Permanently_triggered()));
   connect(actionTorrent_Properties, SIGNAL(triggered()), this, SLOT(propertiesSelection()));
 }
 
