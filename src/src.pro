@@ -16,6 +16,9 @@ DEFINES += VERSION_MAJOR=0
 DEFINES += VERSION_MINOR=10
 DEFINES += VERSION_BUGFIX=0
 
+# Temporary hack
+DEFINES += NO_UPNP
+
 contains(DEBUG_MODE, 1){
   CONFIG += debug
   message(Debug build!)

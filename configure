@@ -23,10 +23,6 @@ Dependency options:
   --with-libboost-inc=[path]       Path to libboost include files
   --with-libcurl-inc=[path]        Path to libcurl include files
   --with-libcurl-lib=[path]        Path to libcurl library files
-  --disable-libupnp               Disable use of libupnp
-  --disable-upnp                   disable UPnP support
-  --with-libupnp-inc=[path]        Path to libupnp include files
-  --with-libupnp-lib=[path]        Path to libupnp library files
 
 EOT
 }
@@ -168,26 +164,6 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
-		--disable-libupnp)
-			QC_DISABLE_libupnp="Y"
-			shift
-			;;
-
-		--disable-upnp)
-			QC_DISABLE_UPNP="Y"
-			shift
-			;;
-
-		--with-libupnp-inc=*)
-			QC_WITH_LIBUPNP_INC=$optarg
-			shift
-			;;
-
-		--with-libupnp-lib=*)
-			QC_WITH_LIBUPNP_LIB=$optarg
-			shift
-			;;
-
 		--verbose)
 			QC_DEBUG="Y"
 			shift
@@ -214,10 +190,6 @@ echo QC_WITH_LIBTORRENT_LIB=$QC_WITH_LIBTORRENT_LIB
 echo QC_WITH_LIBBOOST_INC=$QC_WITH_LIBBOOST_INC
 echo QC_WITH_LIBCURL_INC=$QC_WITH_LIBCURL_INC
 echo QC_WITH_LIBCURL_LIB=$QC_WITH_LIBCURL_LIB
-echo QC_DISABLE_libupnp=$QC_DISABLE_libupnp
-echo QC_DISABLE_UPNP=$QC_DISABLE_UPNP
-echo QC_WITH_LIBUPNP_INC=$QC_WITH_LIBUPNP_INC
-echo QC_WITH_LIBUPNP_LIB=$QC_WITH_LIBUPNP_LIB
 echo
 fi
 
@@ -323,13 +295,13 @@ class qc_libtorrent : public ConfObj
 {
 public:
 	qc_libtorrent(Conf *c) : ConfObj(c) {}
-	QString name() const { return "libtorrent >= 0.12"; }
+	QString name() const { return "libtorrent >= 0.13"; }
 	QString shortname() const { return "libtorrent"; }
 	bool exec(){
         	QString s;
 		s = conf->getenv("QC_WITH_LIBTORRENT_INC");
 		if(!s.isEmpty()) {
-			if(!conf->checkHeader(s, "libtorrent/extensions/ut_pex.hpp")) {
+			if(!conf->checkHeader(s, "libtorrent/lsd.hpp")) {
 				return false;
       			}
 		}else{
@@ -338,7 +310,7 @@ public:
 			sl << "/usr/local/include";
 			bool found = false;
 			foreach(s, sl){
-				if(conf->checkHeader(s, "libtorrent/extensions/ut_pex.hpp")){
+				if(conf->checkHeader(s, "libtorrent/lsd.hpp")){
 					found = true;
 					break;
 				}
@@ -513,69 +485,6 @@ public:
 	    return false;
 	}
 };
-#line 1 "libupnp.qcm"
-/*
------BEGIN QCMOD-----
-name: libupnp
-arg: disable-upnp, disable UPnP support
-arg: with-libupnp-inc=[path], Path to libupnp include files
-arg: with-libupnp-lib=[path], Path to libupnp library files
------END QCMOD-----
-*/
-class qc_libupnp : public ConfObj
-{
-public:
-	qc_libupnp(Conf *c) : ConfObj(c) {}
-	QString name() const { return "libupnp"; }
-	QString shortname() const { return "libupnp"; }
-	bool exec(){
-          QString s;
-					s = conf->getenv("QC_DISABLE_UPNP");
-					if(!s.isEmpty()){
-					  conf->addDefine("NO_UPNP");
-						return false;
-					}
-					s = conf->getenv("QC_WITH_LIBUPNP_INC");
-					if(!s.isEmpty()) {
-						if(!conf->checkHeader(s, "upnp/upnp.h")) {
-        			//qWarning("libupnp includes not found!");
-							conf->addDefine("NO_UPNP");
-							return false;
-      			}
-      			conf->addIncludePath(s);
-					}else{
-	          QStringList sl;
-  	        sl += "/usr/include";
-    	      sl += "/usr/local/include";
-        	  if(!conf->findHeader("upnp/upnp.h", sl, &s)) {
-          	  //qWarning("libupnp includes not found!");
-							conf->addDefine("NO_UPNP");
-            	return false;
-          	}
-	  				conf->addIncludePath(s);
-					}
-
-					s = conf->getenv("QC_WITH_LIBUPNP_LIB");
-          if(!s.isEmpty()) {
-            if(!conf->checkLibrary(s, "upnp")) {
-              qWarning("libupnp library not found!");
-              return false;
-            }
-            conf->addLib(QString("-L") + s);
-          }else{
-            if(!conf->findLibrary("upnp", &s)) {
-              qWarning("libupnp library not found!");
-              return false;
-            }
-            if (!s.isEmpty())
-              conf->addLib(QString("-L") + s);
-          }
-
-          conf->addLib("-lupnp");
-
-          return true;
-	}
-};
 
 EOT
 cat >$1/modules_new.cpp <<EOT
@@ -593,9 +502,6 @@ cat >$1/modules_new.cpp <<EOT
     o->disabled = false;
     o = new qc_python(conf);
     o->required = true;
-    o->disabled = false;
-    o = new qc_libupnp(conf);
-    o->required = false;
     o->disabled = false;
 
 EOT
@@ -1528,10 +1434,6 @@ export QC_WITH_LIBTORRENT_LIB
 export QC_WITH_LIBBOOST_INC
 export QC_WITH_LIBCURL_INC
 export QC_WITH_LIBCURL_LIB
-export QC_DISABLE_libupnp
-export QC_DISABLE_UPNP
-export QC_WITH_LIBUPNP_INC
-export QC_WITH_LIBUPNP_LIB
 export QC_DEBUG
 rm -rf .qconftemp
 (

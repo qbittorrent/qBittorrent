@@ -182,11 +182,11 @@ void createtorrent::on_createButton_clicked(){
 
     // calculate the hash for all pieces
     file_pool fp;
-    storage st(t, full_path.branch_path(), fp);
+    boost::scoped_ptr<storage_interface> st(default_storage_constructor(t, full_path.branch_path(), fp));
     int num = t.num_pieces();
     std::vector<char> buf(piece_size);
     for (int i = 0; i < num; ++i) {
-      st.read(&buf[0], i, 0, t.piece_size(i));
+      st->read(&buf[0], i, 0, t.piece_size(i));
       hasher h(&buf[0], t.piece_size(i));
       t.set_hash(i, h.final());
     }

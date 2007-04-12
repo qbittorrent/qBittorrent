@@ -16,8 +16,8 @@ will install and execute qBittorrent hopefully without any problems.
 Dependencies:
 - Qt >= 4.2 (libqt-devel, libqtgui, libqtcore, libqtnetwork, libqtxml)
 
-- libtorrent by Arvid Norberg (>= v0.12 REQUIRED)
-    -> http://libtorrent.sf.net
+- libtorrent by Arvid Norberg (>= v0.13 REQUIRED)
+    -> http://www.libtorrent.net
     Be carefull: another library (the one used by rtorrent) use the same name.
     These are TWO different libraries and qBittorrent will only work with the one provided
     on sourceforge (created by Arvid Norberg). The two libraries conflicts with each other.
@@ -25,9 +25,6 @@ Dependencies:
 - libboost: libboost-filesystem, libboost-date-time, libboost-thread, libboost-serialization
 
 - libcurl
-
-- libupnp (>= 1.2.1) *OPTIONAL*
-    -> For Universal Plug 'n Play Port forwarding support
 
 - python >= 2.3 (previous might work - not tested): needed by search engine.
 

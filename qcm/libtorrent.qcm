@@ -9,13 +9,13 @@ class qc_libtorrent : public ConfObj
 {
 public:
 	qc_libtorrent(Conf *c) : ConfObj(c) {}
-	QString name() const { return "libtorrent >= 0.12"; }
+	QString name() const { return "libtorrent >= 0.13"; }
 	QString shortname() const { return "libtorrent"; }
 	bool exec(){
         	QString s;
 		s = conf->getenv("QC_WITH_LIBTORRENT_INC");
 		if(!s.isEmpty()) {
-			if(!conf->checkHeader(s, "libtorrent/extensions/ut_pex.hpp")) {
+			if(!conf->checkHeader(s, "libtorrent/lsd.hpp")) {
 				return false;
       			}
 		}else{
@@ -24,7 +24,7 @@ public:
 			sl << "/usr/local/include";
 			bool found = false;
 			foreach(s, sl){
-				if(conf->checkHeader(s, "libtorrent/extensions/ut_pex.hpp")){
+				if(conf->checkHeader(s, "libtorrent/lsd.hpp")){
 					found = true;
 					break;
 				}

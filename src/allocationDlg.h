@@ -55,23 +55,28 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
       }
       unsigned int nbTorrents = handles.size();
       if(!nbTorrents) close();
-      // TODO: Uncomment the following lines as soon as we upgrade
-      // to libtorrent svn to correctly initialize the bandwidth slider.
-//       if(nbTorrents == 1){
-//         if(uploadMode) {
-//           int val = h.upload_limit();
-//           if(val > bandwidthSlider->maximum() || val < bandwidthSlider->minimum())
-//             val = -1;
-//           bandwidthSlider->setValue(val);
-//         } else {
-//           int val = h.download_limit();
-//           if(val > bandwidthSlider->maximum() || val < bandwidthSlider->minimum())
-//             val = -1;
-//           bandwidthSlider->setValue(val);
-//         }
-//       }else{
-//         bandwidthSlider->setValue(-1);
-//       }
+      int val;
+      if(nbTorrents == 1){
+        torrent_handle h = handles[0];
+        if(uploadMode)
+          val = h.upload_limit();
+        else
+          val = h.download_limit();
+        if(val > bandwidthSlider->maximum() || val < bandwidthSlider->minimum())
+            val = -1;
+        bandwidthSlider->setValue(val);
+        if(val == -1) {
+          limit_lbl->setText(tr("Unlimited", "Unlimited (bandwidth)"));
+          kb_lbl->setText("");
+        } else {
+          limit_lbl->setText(QString(misc::toString(val).c_str()));
+        }
+      }else{
+        qDebug("More than one torrent selected, no initilization");
+        bandwidthSlider->setValue(-1);
+        limit_lbl->setText(tr("Unlimited", "Unlimited (bandwidth)"));
+        kb_lbl->setText("");
+      }
        connect(buttonBox, SIGNAL(accepted()), this, SLOT(setBandwidth()));
        show();
     }
@@ -95,11 +100,15 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
       int val = bandwidthSlider->value();
       torrent_handle h;
       if(uploadMode) {
-        foreach(h, handles)
+        foreach(h, handles) {
           h.set_upload_limit(val);
+          qDebug("Setting upload limit");
+        }
       } else {
-        foreach(h, handles)
+        foreach(h, handles) {
           h.set_download_limit(val);
+          qDebug("Setting download limit");
+        }
       }
       close();
     }
