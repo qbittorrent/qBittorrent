@@ -71,7 +71,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // If UPnP is not supported then disable it
 #ifdef NO_UPNP
   groupMainUPnP->setEnabled(false);
-  disableUPnP->setChecked(true);
+  disableUPnP->setChecked(false);
 #endif
 #ifdef Q_WS_WIN
   radioWinXPStyle->setEnabled(true);
