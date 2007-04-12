@@ -135,11 +135,4 @@ SOURCES += GUI.cpp \
 	   searchEngine.cpp \
 	   rss_imp.cpp \
 	   FinishedTorrents.cpp
-!contains(DEFINES, NO_UPNP){
-  message(UPnP Enabled)
-  HEADERS += UPnP.h
-  SOURCES += UPnP.cpp
-}else{
-  message(UPnP Disabled)
-}
 
