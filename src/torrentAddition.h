@@ -30,6 +30,7 @@
 #include <QMenu>
 #include <QSettings>
 #include <QStandardItemModel>
+#include <QHeaderView>
 
 #include <libtorrent/session.hpp>
 #include <libtorrent/bencode.hpp>
@@ -70,6 +71,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       PropDelegate = new PropListDelegate();
       torrentContentList->setItemDelegate(PropDelegate);
       connect(torrentContentList, SIGNAL(clicked(const QModelIndex&)), torrentContentList, SLOT(edit(const QModelIndex&)));
+      torrentContentList->header()->resizeSection(0, 200);
       QString home = QDir::homePath();
       if(home[home.length()-1] != QDir::separator()){
         home += QDir::separator();
