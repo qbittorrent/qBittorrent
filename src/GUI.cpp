@@ -1126,6 +1126,7 @@ void GUI::configureSession(bool deleteOptions){
     BTSession.disableUPnP();
   }
 #endif
+  setInfoBar(tr("UPnP support [ON]"), "blue");
   // PeX
   if(!options->isPeXDisabled()){
     qDebug("Enabling Peer eXchange (PeX)");
