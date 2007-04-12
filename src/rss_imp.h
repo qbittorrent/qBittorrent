@@ -21,6 +21,8 @@
 #ifndef __RSS_IMP_H__
 #define __RSS_IMP_H__
 
+#define REFRESH_MAX_LATENCY 6000
+
 #include <QTimer>
 #include "ui_rss.h"
 #include "rss.h"

@@ -69,6 +69,7 @@
 
     // display the content of a new when clicked on it
     void RSSImp::on_listNews_clicked() {
+      listNews->item(listNews->currentRow())->setData(Qt::ForegroundRole, QVariant(QColor("grey")));
       refreshTextBrowser();
     }
 
@@ -166,6 +167,8 @@
         unsigned int currentStreamSize = currentstream->getListSize();
 	for(unsigned int i=0; i<currentStreamSize; ++i) {
 	  new QListWidgetItem(currentstream->getItem(i)->getTitle(), listNews);
+	  if(currentstream->getItem(i)->isRead())
+	     listNews->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("grey")));
 	}
       }
     }
@@ -181,7 +184,16 @@
 
     // show the number of news for each stream
     void RSSImp::updateStreamsName(const int& i) {
-      listStreams->item(i)->setText(rssmanager.getStream(i)->getAlias()+" ("+QString::number(rssmanager.getStream(i)->getListSize(),10).toUtf8()+")");
+      unsigned short nbitem = rssmanager.getStream(i)->getListSize();
+      listStreams->item(i)->setText(rssmanager.getStream(i)->getAlias()+" ("+QString::number(nbitem,10).toUtf8()+")");
+      // FIXME : the 2st conditions are incorrect
+      if(nbitem==0)
+	listStreams->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("grey")));
+      else if(rssmanager.getStream(i)->getLastRefreshElapsed()>REFRESH_MAX_LATENCY)
+	listStreams->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("red")));
+      else
+	listStreams->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("green")));
+      //qDebug(QString::number(nbitem).toUtf8()+"//"+QString::number(rssmanager.getStream(i)->getLastRefreshElapsed()).toUtf8());
       int currentStream = listStreams->currentRow();
       listStreams->setCurrentRow(currentStream);
       if(currentStream>=0) {
