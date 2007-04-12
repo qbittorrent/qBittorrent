@@ -45,6 +45,5 @@
     - Use its piece prioritization support (debug)
     - Get upload/download limit per torrent (uncomment some code) ALMOST
 - Improve ratio display / calculation / saving / per torrent...
-- Display the sum of the size of the selected files in the torrent instead of the whole torrent size in download list
 - Sorting in Download Status column should be smarter than just an alphabetical sort
 - Windows port : http://www.peerweb.nl/qbittorrent/experimentalbuild/testing.zip

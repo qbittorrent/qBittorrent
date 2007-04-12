@@ -151,6 +151,7 @@ class bittorrent : public QObject{
     void scanDirFoundTorrents(const QStringList& pathList);
     void newDownloadedTorrent(const QString& path, const QString& url);
     void aboutToDownloadFromUrl(const QString& url);
+    void updateFileSize(QString hash);
 #ifndef NO_UPNP
     void noWanServiceDetected();
     void wanServiceDetected();

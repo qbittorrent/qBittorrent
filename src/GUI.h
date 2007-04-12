@@ -126,6 +126,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void on_actionExit_triggered();
     void createTrayIcon();
     // Torrent actions
+    size_type torrentEffectiveSize(QString hash) const;
     void showProperties(const QModelIndex &index);
     void on_actionTorrent_Properties_triggered();
     void on_actionPause_triggered();
@@ -168,6 +169,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void trackerError(const QString& hash, const QString& time, const QString& msg);
     void trackerAuthenticationRequired(torrent_handle& h);
     void setTabText(int index, QString text);
+    void updateFileSize(QString hash);
 
   protected:
     void closeEvent(QCloseEvent *);
@@ -178,7 +180,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     GUI(QWidget *parent=0, QStringList torrentCmdLine=QStringList());
     ~GUI();
     // Methods
-    int getRowFromHash(const QString& name) const;
+    int getRowFromHash(const QString& hash) const;
     QPoint screenCenter();
 };
 
