@@ -148,10 +148,14 @@
     void RSSImp::refreshStreamList() {
       int currentStream = listStreams->currentRow();
       listStreams->clear();
-      for(int i=0; i<rssmanager.getNbStream(); i++) {
+      for(unsigned short i=0; i<rssmanager.getNbStream(); i++) {
 	new QListWidgetItem(rssmanager.getStream(i)->getAlias()+" ("+QString::number(rssmanager.getStream(i)->getListSize(),10).toUtf8()+")", listStreams);
       }
       listStreams->setCurrentRow(currentStream);
+      if(currentStream>=0) {
+	listNews->clear();
+        refreshNewsList();
+      }
     }
 
     // fills the newsList
@@ -176,9 +180,13 @@
     }
 
     // show the number of news for each stream
-    void RSSImp::updateStreamsName() {
-      for(int i=0; i<rssmanager.getNbStream(); i++) {
-        listStreams->item(i)->setText(rssmanager.getStream(i)->getAlias()+" ("+QString::number(rssmanager.getStream(i)->getListSize(),10).toUtf8()+")");
+    void RSSImp::updateStreamsName(const int& i) {
+      listStreams->item(i)->setText(rssmanager.getStream(i)->getAlias()+" ("+QString::number(rssmanager.getStream(i)->getListSize(),10).toUtf8()+")");
+      int currentStream = listStreams->currentRow();
+      listStreams->setCurrentRow(currentStream);
+      if(currentStream>=0) {
+	listNews->clear();
+	refreshNewsList();
       }
     }
 
@@ -193,18 +201,14 @@
       connect(actionRefresh, SIGNAL(triggered()), this, SLOT(refreshStream()));
       connect(actionCreate, SIGNAL(triggered()), this, SLOT(createStream()));
       connect(actionRefreshAll, SIGNAL(triggered()), this, SLOT(refreshAllStreams()));
+      connect(&rssmanager, SIGNAL(streamNeedRefresh(const int&)), this, SLOT(updateStreamsName(const int&)));
       refreshStreamList();
       refreshTextBrowser();
-      timer = new QTimer(this);
-      //connect(timer, SIGNAL(timeout()), this, SLOT(updateStreamsName()));
-      timer->start(5000);
-      //for(int i=0; i<rssmanager.getNbStream(); i++) {
-      //connect(rssmanager, SIGNAL(streamNeedRefresh()), this, SLOT(updateStreamsName()));
-      //}
+      // force the first alias-refresh
+      QTimer::singleShot(10000, this, SLOT(updateStreamsName()));
     }
 
     RSSImp::~RSSImp(){
-      delete timer;
     }
 
 

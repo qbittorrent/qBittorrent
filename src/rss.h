@@ -142,7 +142,7 @@ class RssStream : public QObject{
 	return;
       }
       openRss();
-      emit refreshFinished("plop");
+      emit refreshFinished(url);
     }
 
   public:
@@ -226,6 +226,7 @@ class RssStream : public QObject{
     }    
 
   private:
+    // read and create items from a rss document
     short read(const QDomDocument& doc) {
       // is it a rss file ?
       QDomElement root = doc.documentElement();
@@ -239,7 +240,11 @@ class RssStream : public QObject{
       }
       QDomNode rss = root.firstChild();
       QDomElement channel = root.firstChild().toElement();
-
+      unsigned short listsize = getListSize();
+      for(unsigned short i=0; i<listsize; i++) {
+	listItem.removeLast();
+      }
+      
       while(!channel.isNull()) {
       // we are reading the rss'main info
 	if (channel.tagName() == "channel") {
@@ -257,9 +262,7 @@ class RssStream : public QObject{
 	    else if (property.tagName() == "image")
 	      image = property.text();
 	    else if(property.tagName() == "item") {
-	      if(getListSize() < 3*STREAM_MAX_ITEM) {
-                //TODO: find a way to break here
-	        //add it to a list
+	      if(getListSize() < STREAM_MAX_ITEM) {
 	        listItem.append(new RssItem(property));
 	      }
 	    }
@@ -268,11 +271,10 @@ class RssStream : public QObject{
 	}
 	channel = channel.nextSibling().toElement();
       }
-      // resize stream listItem
-      resizeList();
       return 0;
     }
 
+    // not actually used, it is used to resize the list of item AFTER the update, instead of delete it BEFORE, some troubles
     void resizeList() {
       unsigned short lastindex = 0;
       QString firstTitle = getItem(0)->getTitle();
@@ -285,7 +287,7 @@ class RssStream : public QObject{
 	listItem.removeFirst();
       }
       while(getListSize()>STREAM_MAX_ITEM) {
-	listItem.removeLast();
+	listItem.removeAt(STREAM_MAX_ITEM);
       }
 	
     }
@@ -329,13 +331,11 @@ class RssManager : public QObject{
     QStringList streamListAlias;
 
   signals:
-    void streamNeedRefresh();
+    void streamNeedRefresh(const int&);
 
   public slots :
-    // read and store the downloaded rss' informations
-    void refreshFinished(const QString&) {
-
-      qDebug("*******************************************************");
+    void streamNeedRefresh(const QString& _url) {
+      emit(streamNeedRefresh(hasStream(_url)));
     }
     
   public :
@@ -365,7 +365,7 @@ class RssManager : public QObject{
 	RssStream *stream = new RssStream(streamListUrl.at(i));
 	stream->setAlias(streamListAlias.at(i));
 	streamList.append(stream);
-	connect(stream, SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh()));
+	connect(stream, SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh(const QString&)));
       }
     }
 
@@ -384,7 +384,7 @@ class RssManager : public QObject{
 	streamList.append(stream);
 	streamListUrl.append(stream->getUrl());
 	streamListAlias.append(stream->getUrl());
-	connect(stream, SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh()));
+	connect(stream, SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh(const QString&)));
       }else{
         qDebug("Not adding the Rss stream because it is already in the list");
       }
@@ -402,9 +402,11 @@ class RssManager : public QObject{
       }
 
       if(hasStream(url) < 0) {
-	streamList.append(new RssStream(url));
+	RssStream* stream = new RssStream(url);
+	streamList.append(stream);
 	streamListUrl.append(url);
 	streamListAlias.append(url);
+	connect(stream, SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh(const QString&)));
       }else {
         qDebug("Not adding the Rss stream because it is already in the list");
       }
@@ -435,30 +437,18 @@ class RssManager : public QObject{
 
     // reload all the xml files from the web
     void refreshAll(){
-      QList<RssStream*> newStreamList;
-      unsigned int streamListSize = streamList.size();
-      for(unsigned int i=0; i<streamListSize; ++i){
-	delete getStream(i);
-      }
-      streamList = newStreamList;
       unsigned int streamListUrlSize = streamListUrl.size();
       for(unsigned int i=0; i<streamListUrlSize; ++i){
-	RssStream *stream = new RssStream(streamListUrl.at(i));
-	stream->setAlias(streamListAlias.at(i));
-	streamList.append(stream);
-	connect(stream, SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh()));
+	getStream(i)->refresh();
+	connect(getStream(i), SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh(const QString&)));
       }
     }
 
     void refresh(int index) {
       if(index>=0 && index<getNbStream()) {
 	if(getStream(index)->getLastRefreshElapsed()>REFRESH_FREQ_MAX) {
-	  //delete getStream(index);
-	  //RssStream *stream = new RssStream(streamListUrl.at(index));
-	  //stream->setAlias(streamListAlias.at(index));
-	  //streamList.replace(index, stream);
 	  getStream(index)->refresh();
-	  connect(getStream(index), SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh()));
+	  connect(getStream(index), SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh(const QString&)));
 	}
       }
     }
