@@ -39,19 +39,16 @@ class properties : public QDialog, private Ui::properties{
     PropListDelegate *PropDelegate;
     QStandardItemModel *PropListModel;
     QTimer *updateProgressTimer;
-    std::vector<bool> selectionBitmask;
     bool has_filtered_files;
 
   protected slots:
-    void on_select_clicked();
-    void on_unselect_clicked();
     void on_okButton_clicked();
     void on_incrementalDownload_stateChanged(int);
     void setRowColor(int row, QString color);
-    void saveFilteredFiles();
+    void savePiecesPriorities();
     void updateProgress();
-    void loadFilteredFiles();
-    void setAllPiecesState(bool selected);
+    void loadPiecesPriorities();
+    void setAllPiecesState(unsigned short priority);
     void askForTracker();
     void loadTrackers();
     void deleteSelectedTrackers();

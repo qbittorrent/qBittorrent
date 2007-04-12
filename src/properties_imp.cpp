@@ -27,9 +27,8 @@
 // Constructor
 properties::properties(QWidget *parent, torrent_handle &h, QStringList trackerErrors): QDialog(parent), h(h){
   setupUi(this);
+  lbl_priorities->setText(tr("Priorities:")+"<ul><li>"+tr("Ignored: File is not downloaded at all")+"</li><li>"+tr("Normal: normal priority. Download order is dependent on availability")+"</li><li>"+tr("High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability")+"</li><li>"+tr("Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority")+"</li></ul>");
   // set icons
-  unselect->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
-  select->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
   addTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
   removeTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
   lowerTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/downarrow.png")));
@@ -37,10 +36,10 @@ properties::properties(QWidget *parent, torrent_handle &h, QStringList trackerEr
   setAttribute(Qt::WA_DeleteOnClose);
   // Set Properties list model
   PropListModel = new QStandardItemModel(0,4);
-  PropListModel->setHeaderData(NAME, Qt::Horizontal, tr("File Name"));
+  PropListModel->setHeaderData(NAME, Qt::Horizontal, tr("File name"));
   PropListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
   PropListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
-  PropListModel->setHeaderData(SELECTED, Qt::Horizontal, tr("Selected"));
+  PropListModel->setHeaderData(PRIORITY, Qt::Horizontal, tr("Priority"));
   filesList->setModel(PropListModel);
   PropDelegate = new PropListDelegate();
   filesList->setItemDelegate(PropDelegate);
@@ -92,7 +91,7 @@ properties::properties(QWidget *parent, torrent_handle &h, QStringList trackerEr
     PropListModel->setData(PropListModel->index(row, SIZE), QVariant((qlonglong)torrentInfo.file_at(i).size));
     PropListModel->setData(PropListModel->index(row, PROGRESS), QVariant((double)fp[i]));
   }
-  loadFilteredFiles();
+  loadPiecesPriorities();
   // Incremental download
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".incremental")){
     incrementalDownload->setChecked(true);
@@ -111,42 +110,40 @@ properties::~properties(){
   delete PropListModel;
 }
 
-void properties::loadFilteredFiles(){
+void properties::loadPiecesPriorities(){
   torrent_info torrentInfo = h.get_torrent_info();
+  unsigned int nbFiles = torrentInfo.num_files();
   QString fileName = QString(torrentInfo.name().c_str());
-  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".pieces");
+  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".priorities");
   has_filtered_files = false;
-  qDebug("Loading filtered state of files");
+  qDebug("Loading pieces priorities");
   // Read saved file
   if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
     qDebug("Could not find pieces file");
-    setAllPiecesState(true);
-    selectionBitmask.assign(torrentInfo.num_files(), 0);
+    setAllPiecesState(NORMAL);
     return;
   }
-  QByteArray pieces_selection = pieces_file.readAll();
+  QByteArray pieces_text = pieces_file.readAll();
   pieces_file.close();
-  QList<QByteArray> pieces_selection_list = pieces_selection.split('\n');
-  if(pieces_selection_list.size() != torrentInfo.num_files()+1){
+  QList<QByteArray> pieces_priority_list = pieces_text.split('\n');
+  if((unsigned int)pieces_priority_list.size() != nbFiles+1){
     std::cerr << "Error: Corrupted pieces file\n";
-    setAllPiecesState(true);
-    selectionBitmask.assign(torrentInfo.num_files(), 0);
+    setAllPiecesState(NORMAL);
     return;
   }
-  for(int i=0; i<torrentInfo.num_files(); ++i){
-    int isFiltered = pieces_selection_list.at(i).toInt();
-    if( isFiltered < 0 || isFiltered > 1){
-      isFiltered = 0;
+  for(unsigned int i=0; i<nbFiles; ++i){
+    int priority = pieces_priority_list.at(i).toInt();
+    if( priority < 0 || priority > 7){
+      // Normal priority as default
+      priority = 1;
     }
-    selectionBitmask.push_back(isFiltered);
-    if(isFiltered){
-      PropListModel->setData(PropListModel->index(i, SELECTED), QVariant(false));
+    if(!priority){
       setRowColor(i, "red");
       has_filtered_files = true;
     }else{
-      PropListModel->setData(PropListModel->index(i, SELECTED), QVariant(true));
       setRowColor(i, "green");
     }
+    PropListModel->setData(PropListModel->index(i, PRIORITY), QVariant(priority));
   }
 }
 
@@ -290,15 +287,15 @@ void properties::setRowColor(int row, QString color){
   }
 }
 
-void properties::setAllPiecesState(bool selected){
+void properties::setAllPiecesState(unsigned short priority){
   torrent_info torrentInfo = h.get_torrent_info();
   for(int i=0; i<torrentInfo.num_files(); ++i){
-    if(selected){
+    if(priority){
       setRowColor(i, "green");
     }else{
       setRowColor(i, "red");
     }
-    PropListModel->setData(PropListModel->index(i, SELECTED), QVariant(selected));
+    PropListModel->setData(PropListModel->index(i, PRIORITY), QVariant(priority));
   }
 }
 
@@ -317,77 +314,32 @@ void properties::on_incrementalDownload_stateChanged(int){
   }
 }
 
-// Resume download of specified files of torrent
-void properties::on_select_clicked(){
-  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
-  QModelIndex index;
-  foreach(index, selectedIndexes){
-    if(index.column() == NAME){
-      int row = index.row();
-      if(selectionBitmask.at(row)){
-        // File is selected
-        selectionBitmask.erase(selectionBitmask.begin()+row);
-        selectionBitmask.insert(selectionBitmask.begin()+row, 0);
-        h.filter_files(selectionBitmask);
-        // Update list infos
-        setRowColor(row, "green");
-        PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(true));
-      }
-    }
-  }
-  // Save filtered pieces to a file to remember them
-  if(selectedIndexes.size() != 0){
-    saveFilteredFiles();
-  }
-}
-
 void properties::on_okButton_clicked(){
+  savePiecesPriorities();
   close();
 }
 
-// Cancel download of specified files of torrent
-void properties::on_unselect_clicked(){
-  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
-  QModelIndex index;
-  foreach(index, selectedIndexes){
-    if(index.column() == NAME){
-      int row = index.row();
-      if(!selectionBitmask.at(row)){
-        // File is selected
-        selectionBitmask.erase(selectionBitmask.begin()+row);
-        selectionBitmask.insert(selectionBitmask.begin()+row, 1);
-        h.filter_files(selectionBitmask);
-        // Update list infos
-        setRowColor(row, "red");
-        PropListModel->setData(PropListModel->index(row, SELECTED), QVariant(false));
-      }
-    }
-  }
-  // Save filtered files to a file to remember them
-  if(selectedIndexes.size() != 0){
-    saveFilteredFiles();
-  }
-}
-
-void properties::saveFilteredFiles(){
+void properties::savePiecesPriorities(){
+  qDebug("Saving pieces priorities");
   torrent_info torrentInfo = h.get_torrent_info();
   bool hasFilteredFiles = false;
   QString fileName = QString(torrentInfo.name().c_str());
-  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".pieces");
+  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".priorities");
   // First, remove old file
   pieces_file.remove();
   // Write new files
   if(!pieces_file.open(QIODevice::WriteOnly | QIODevice::Text)){
-    std::cerr << "Error: Could not save filtered pieces\n";
+    std::cerr << "Error: Could not save pieces priorities\n";
     return;
   }
-  for(int i=0; i<torrentInfo.num_files(); ++i){
-    if(selectionBitmask.at(i)){
-      pieces_file.write(QByteArray("1\n"));
-    }else{
-      pieces_file.write(QByteArray("0\n"));
+  unsigned int nbRows = PropListModel->rowCount();
+  for(unsigned int i=0; i<nbRows; ++i){
+    QStandardItem *item = PropListModel->item(i, PRIORITY);
+    unsigned short priority = item->text().toInt();
+    if(!priority) {
       hasFilteredFiles = true;
     }
+    pieces_file.write(QByteArray((misc::toString(priority)+"\n").c_str()));
   }
   pieces_file.close();
   if(!has_filtered_files){

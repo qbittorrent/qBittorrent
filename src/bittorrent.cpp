@@ -162,8 +162,9 @@ void bittorrent::deleteTorrent(const QString& hash, bool permanent){
   torrentBackup.remove(hash+".fastresume");
   torrentBackup.remove(hash+".paused");
   torrentBackup.remove(hash+".incremental");
-  torrentBackup.remove(hash+".pieces");
+  torrentBackup.remove(hash+".priorities");
   torrentBackup.remove(hash+".savepath");
+  torrentBackup.remove(hash+".trackers");
   if(permanent){
     // Remove from Hard drive
     qDebug("Removing this on hard drive: %s", qPrintable(savePath+QDir::separator()+fileName));
@@ -249,11 +250,11 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, const QString
     if(torrentBackup.exists(QString(t.name().c_str())+".torrent")){
       QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".torrent", torrentBackup.path()+QDir::separator()+hash+".torrent");
       QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".fastresume", torrentBackup.path()+QDir::separator()+hash+".fastresume");
-      QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".pieces", torrentBackup.path()+QDir::separator()+hash+".pieces");
       QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".savepath", torrentBackup.path()+QDir::separator()+hash+".savepath");
       QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".paused", torrentBackup.path()+QDir::separator()+hash+".paused");
       QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".incremental", torrentBackup.path()+QDir::separator()+hash+".incremental");
       file = torrentBackup.path() + QDir::separator() + hash + ".torrent";
+
     }
     //Getting fast resume data if existing
     if(torrentBackup.exists(hash+".fastresume")){
@@ -364,23 +365,24 @@ void bittorrent::setMaxConnections(int maxConnec){
   s->set_max_connections(maxConnec);
 }
 
-// Check in .pieces file if the user filtered files
+// Check in .priorities file if the user filtered files
 // in this torrent.
 bool bittorrent::hasFilteredFiles(const QString& fileHash) const{
-  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".pieces");
+  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".priorities");
   // Read saved file
   if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
     return false;
   }
-  QByteArray pieces_selection = pieces_file.readAll();
+  QByteArray pieces_text = pieces_file.readAll();
   pieces_file.close();
-  QList<QByteArray> pieces_selection_list = pieces_selection.split('\n');
-  for(int i=0; i<pieces_selection_list.size()-1; ++i){
-    int isFiltered = pieces_selection_list.at(i).toInt();
-    if( isFiltered < 0 || isFiltered > 1){
-      isFiltered = 0;
+  QList<QByteArray> pieces_priorities_list = pieces_text.split('\n');
+  unsigned int listSize = pieces_priorities_list.size();
+  for(unsigned int i=0; i<listSize-1; ++i){
+    int priority = pieces_priorities_list.at(i).toInt();
+    if( priority < 0 || priority > 7){
+      priority = 1;
     }
-    if(isFiltered){
+    if(!priority){
       return true;
     }
   }
@@ -419,36 +421,35 @@ void bittorrent::disableDHT(){
   }
 }
 
-// Read filtered pieces from .pieces file
-// and ask torrent_handle to filter them
+// Read pieces priorities from .priorities file
+// and ask torrent_handle to consider them
 void bittorrent::loadFilteredFiles(torrent_handle &h){
   torrent_info torrentInfo = h.get_torrent_info();
+  unsigned int nbTorrents = torrentInfo.num_files();
   if(!h.is_valid()){
     qDebug("/!\\ Error: Invalid handle");
     return;
   }
   QString fileHash = QString(misc::toString(torrentInfo.info_hash()).c_str());
-  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".pieces");
+  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".priorities");
   // Read saved file
   if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
     return;
   }
-  QByteArray pieces_selection = pieces_file.readAll();
+  QByteArray pieces_priorities = pieces_file.readAll();
   pieces_file.close();
-  QList<QByteArray> pieces_selection_list = pieces_selection.split('\n');
-  if(pieces_selection_list.size() != torrentInfo.num_files()+1){
+  QList<QByteArray> pieces_priorities_list = pieces_priorities.split('\n');
+  if((unsigned int)pieces_priorities_list.size() != nbTorrents+1){
     std::cerr << "Error: Corrupted pieces file\n";
     return;
   }
-  std::vector<bool> selectionBitmask;
-  for(int i=0; i<torrentInfo.num_files(); ++i){
-    int isFiltered = pieces_selection_list.at(i).toInt();
-    if( isFiltered < 0 || isFiltered > 1){
-      isFiltered = 0;
+  for(unsigned int i=0; i<nbTorrents; ++i){
+    int priority = pieces_priorities_list.at(i).toInt();
+    if( priority < 0 || priority > 7){
+      priority = 1;
     }
-    selectionBitmask.push_back(isFiltered);
+    h.piece_priority(i, priority);
   }
-  h.filter_files(selectionBitmask);
 }
 
 // Save fastresume data for all torrents

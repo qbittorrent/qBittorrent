@@ -36,7 +36,12 @@
 #define NAME 0
 #define SIZE 1
 #define PROGRESS 2
-#define SELECTED 3
+#define PRIORITY 3
+
+#define IGNORED 0
+#define NORMAL 1
+#define HIGH 2
+#define MAXIMUM 7
 
 class PropListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -103,19 +108,27 @@ class PropListDelegate: public QItemDelegate {
           painter->drawText(option.rect, Qt::AlignCenter, newopt.text);
           break;
         }
-        case SELECTED:{
+        case PRIORITY:{
           QStyleOptionComboBox newopt;
           newopt.rect = opt.rect;
-          if(index.data().toBool()){
-//             painter->drawText(option.rect, Qt::AlignCenter, tr("True"));
-            newopt.currentText = tr("True");
-          }else{
-//             painter->drawText(option.rect, Qt::AlignCenter, tr("False"));
-            newopt.currentText = tr("False");
+          switch(index.data().toInt()){
+            case IGNORED:
+              newopt.currentText = tr("Ignored");
+              break;
+            case NORMAL:
+              newopt.currentText = tr("Normal", "Normal (priority)");
+              break;
+            case HIGH:
+              newopt.currentText = tr("High", "High (priority)");
+              break;
+            case MAXIMUM:
+              newopt.currentText = tr("Maximum", "Maximum (priority)");
+              break;
+            default:
+              qDebug("Unhandled priority, setting NORMAL");
+              newopt.currentText = tr("Normal", "Normal (priority)");
           }
           newopt.state |= QStyle::State_Enabled;
-//           newopt.frame = true;
-//           newopt.editable = true;
           QApplication::style()->drawComplexControl(QStyle::CC_ComboBox, &newopt,
           painter);
           opt.palette.setColor(QPalette::Text, QColor("black"));
@@ -129,28 +142,37 @@ class PropListDelegate: public QItemDelegate {
     }
 
     QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &/* option */, const QModelIndex & index) const {
-      if(index.column() != SELECTED) return 0;
+      if(index.column() != PRIORITY) return 0;
       QComboBox* editor = new QComboBox(parent);
       editor->setFocusPolicy(Qt::StrongFocus);
-      editor->addItem(tr("True"));
-      editor->addItem(tr("False"));
+      editor->addItem(tr("Ignored"));
+      editor->addItem(tr("Normal", "Normal (priority)"));
+      editor->addItem(tr("High", "High (priority)"));
+      editor->addItem(tr("Maximum", "Maximum (priority)"));
       return editor;
     }
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const {
-      bool value = index.model()->data(index, Qt::DisplayRole).toBool();
+      unsigned short val = index.model()->data(index, Qt::DisplayRole).toInt();
       QComboBox *combobox = static_cast<QComboBox*>(editor);
-      if(value) {
-        combobox->setCurrentIndex(0);
-      } else {
-        combobox->setCurrentIndex(1);
+      switch(val){
+        case IGNORED:
+          combobox->setCurrentIndex(0);
+          break;
+        case NORMAL:
+          combobox->setCurrentIndex(1);
+          break;
+        case HIGH:
+          combobox->setCurrentIndex(2);
+          break;
+        case MAXIMUM:
+          combobox->setCurrentIndex(3);
+          break;
+        default:
+          qDebug("Unhandled priority, setting to NORMAL");
+          combobox->setCurrentIndex(1);
       }
     }
-
-//     bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index ){
-//       qDebug("Event!!!!");
-//       return false;
-//     }
 
     QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const{
       QVariant value = index.data(Qt::FontRole);
@@ -168,12 +190,26 @@ class PropListDelegate: public QItemDelegate {
       int value = combobox->currentIndex();
       qDebug("Setting combobox value in index: %d", value);
       QString color;
-      if(value == 0) {
-        model->setData(index, true);
+      if(value) {
         color = "green";
       } else {
-        model->setData(index, false);
         color = "red";
+      }
+      switch(value){
+        case 0:
+          model->setData(index, QVariant(IGNORED));
+          break;
+        case 1:
+          model->setData(index, QVariant(NORMAL));
+          break;
+        case 2:
+          model->setData(index, QVariant(HIGH));
+          break;
+        case 3:
+          model->setData(index, QVariant(MAXIMUM));
+          break;
+        default:
+          model->setData(index, QVariant(NORMAL));
       }
       for(int i=0; i<model->columnCount(); ++i){
         model->setData(model->index(index.row(), i), QVariant(QColor(color)), Qt::TextColorRole);
