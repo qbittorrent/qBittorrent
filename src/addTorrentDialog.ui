@@ -80,31 +80,10 @@
     </widget>
    </item>
    <item>
-    <widget class="QTreeWidget" name="torrentContentList" >
-     <property name="contextMenuPolicy" >
-      <enum>Qt::CustomContextMenu</enum>
+    <widget class="QTreeView" name="torrentContentList" >
+     <property name="editTriggers" >
+      <set>QAbstractItemView::AllEditTriggers</set>
      </property>
-     <property name="selectionMode" >
-      <enum>QAbstractItemView::ExtendedSelection</enum>
-     </property>
-     <property name="indentation" >
-      <number>2</number>
-     </property>
-     <column>
-      <property name="text" >
-       <string>File name</string>
-      </property>
-     </column>
-     <column>
-      <property name="text" >
-       <string>File size</string>
-      </property>
-     </column>
-     <column>
-      <property name="text" >
-       <string>Selected</string>
-      </property>
-     </column>
     </widget>
    </item>
    <item>
@@ -172,22 +151,6 @@
     </layout>
    </item>
   </layout>
-  <action name="actionSelect" >
-   <property name="text" >
-    <string>Select</string>
-   </property>
-   <property name="iconText" >
-    <string>Select</string>
-   </property>
-   <property name="toolTip" >
-    <string>Select</string>
-   </property>
-  </action>
-  <action name="actionUnselect" >
-   <property name="text" >
-    <string>Unselect</string>
-   </property>
-  </action>
  </widget>
  <resources/>
  <connections/>

@@ -84,8 +84,9 @@ properties::properties(QWidget *parent, torrent_handle &h, QStringList trackerEr
   std::vector<float> fp;
   h.file_progress(fp);
   // List files in torrent
-  for(int i=0; i<torrentInfo.num_files(); ++i){
-    int row = PropListModel->rowCount();
+  unsigned int nbFiles = torrentInfo.num_files();
+  for(unsigned int i=0; i<nbFiles; ++i){
+    unsigned int row = PropListModel->rowCount();
     PropListModel->insertRow(row);
     PropListModel->setData(PropListModel->index(row, NAME), QVariant(torrentInfo.file_at(i).path.leaf().c_str()));
     PropListModel->setData(PropListModel->index(row, SIZE), QVariant((qlonglong)torrentInfo.file_at(i).size));

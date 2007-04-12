@@ -29,15 +29,13 @@
 #include <QMessageBox>
 #include <QMenu>
 #include <QSettings>
+#include <QStandardItemModel>
 
 #include <libtorrent/session.hpp>
 #include <libtorrent/bencode.hpp>
 #include "misc.h"
+#include "PropListDelegate.h"
 #include "ui_addTorrentDialog.h"
-
-#define NAME 0
-#define SIZE 1
-#define SELECTED 2
 
 using namespace libtorrent;
 
@@ -52,18 +50,26 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
     QString fileName;
     QString fileHash;
     QString filePath;
-    QList<bool> selection;
     bool fromScanDir;
     QString from_url;
+    QStandardItemModel *PropListModel;
+    PropListDelegate *PropDelegate;
 
   public:
     torrentAdditionDialog(QWidget *parent) : QDialog(parent) {
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
-      actionSelect->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
-      actionUnselect->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
-      connect(actionSelect, SIGNAL(triggered()), this, SLOT(selectItems()));
-      connect(actionUnselect, SIGNAL(triggered()), this, SLOT(unselectItems()));
+      // Set Properties list model
+      PropListModel = new QStandardItemModel(0,4);
+      PropListModel->setHeaderData(NAME, Qt::Horizontal, tr("File name"));
+      PropListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
+      PropListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
+      PropListModel->setHeaderData(PRIORITY, Qt::Horizontal, tr("Priority"));
+      torrentContentList->setModel(PropListModel);
+      torrentContentList->hideColumn(PROGRESS);
+      PropDelegate = new PropListDelegate();
+      torrentContentList->setItemDelegate(PropDelegate);
+      connect(torrentContentList, SIGNAL(clicked(const QModelIndex&)), torrentContentList, SLOT(edit(const QModelIndex&)));
       QString home = QDir::homePath();
       if(home[home.length()-1] != QDir::separator()){
         home += QDir::separator();
@@ -95,14 +101,14 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         }
         fileNameLbl->setText("<center><b>"+newFileName+"</b></center>");
         // List files in torrent
-        for(int i=0; i<t.num_files(); ++i){
-          QStringList line;
-          line << QString(t.file_at(i).path.leaf().c_str());
-          line << misc::friendlyUnit((qlonglong)t.file_at(i).size);
-          selection << true;
-          line << tr("True");
-          torrentContentList->addTopLevelItem(new QTreeWidgetItem(line));
-          setLineColor(torrentContentList->topLevelItemCount()-1, "green");
+        unsigned int nbFiles = t.num_files();
+        for(unsigned int i=0; i<nbFiles; ++i){
+          unsigned int row = PropListModel->rowCount();
+          PropListModel->insertRow(row);
+          PropListModel->setData(PropListModel->index(row, NAME), QVariant(t.file_at(i).path.leaf().c_str()));
+          PropListModel->setData(PropListModel->index(row, SIZE), QVariant((qlonglong)t.file_at(i).size));
+          PropListModel->setData(PropListModel->index(i, PRIORITY), QVariant(NORMAL));
+          setRowColor(i, "green");
         }
       }catch (invalid_torrent_file&){ // Raised by torrent_info constructor
         // Display warning to tell user we can't decode the torrent file
@@ -137,9 +143,6 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         }
         close();
       }
-      //Connects
-      connect(torrentContentList, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(toggleSelection(QTreeWidgetItem*, int)));
-      connect(torrentContentList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displaySelectionMenu(const QPoint&)));
       show();
     }
 
@@ -161,75 +164,30 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       close();
     }
 
-    void selectItems(){
-      QList<QTreeWidgetItem *> selectedItems = torrentContentList->selectedItems();
-      QTreeWidgetItem *item;
-      foreach(item, selectedItems){
-        int row = torrentContentList->indexOfTopLevelItem(item);
-        setLineColor(row, "green");
-        item->setText(SELECTED, tr("True"));
-        selection.replace(row, true);
+    // Set the color of a row in data model
+    void setRowColor(int row, QString color){
+      for(int i=0; i<PropListModel->columnCount(); ++i){
+        PropListModel->setData(PropListModel->index(row, i), QVariant(QColor(color)), Qt::TextColorRole);
       }
     }
 
-    void unselectItems(){
-      QList<QTreeWidgetItem *> selectedItems = torrentContentList->selectedItems();
-      QTreeWidgetItem *item;
-      foreach(item, selectedItems){
-        int row = torrentContentList->indexOfTopLevelItem(item);
-        setLineColor(row, "red");
-        item->setText(SELECTED, tr("False"));
-        selection.replace(row, false);
-      }
-    }
-
-    void toggleSelection(QTreeWidgetItem *item, int){
-      int row = torrentContentList->indexOfTopLevelItem(item);
-      if(row == -1){
-        return;
-      }
-      if(selection.at(row)){
-        setLineColor(row, "red");
-        item->setText(SELECTED, tr("False"));
-        selection.replace(row, false);
-      }else{
-        setLineColor(row, "green");
-        item->setText(SELECTED, tr("True"));
-        selection.replace(row, true);
-      }
-    }
-
-    void displaySelectionMenu(const QPoint& pos){
-      QMenu mySelectionMenu(this);
-      mySelectionMenu.addAction(actionSelect);
-      mySelectionMenu.addAction(actionUnselect);
-      mySelectionMenu.exec(mapToGlobal(pos)+QPoint(10, 150));
-    }
-
-    void saveFilteredFiles(){
-      QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".pieces");
+    void savePiecesPriorities(){
+      qDebug("Saving pieces priorities");
+      QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".priorities");
       // First, remove old file
       pieces_file.remove();
       // Write new files
       if(!pieces_file.open(QIODevice::WriteOnly | QIODevice::Text)){
-        std::cerr << "Error: Could not save filtered pieces\n";
+        std::cerr << "Error: Could not save pieces priorities\n";
         return;
       }
-      for(int i=0; i<torrentContentList->topLevelItemCount(); ++i){
-        if(selection.at(i)){
-          pieces_file.write(QByteArray("0\n"));
-        }else{
-          pieces_file.write(QByteArray("1\n"));
-        }
+      unsigned int nbRows = PropListModel->rowCount();
+      for(unsigned int i=0; i<nbRows; ++i){
+        QStandardItem *item = PropListModel->item(i, PRIORITY);
+        unsigned short priority = item->text().toInt();
+        pieces_file.write(QByteArray((misc::toString(priority)+"\n").c_str()));
       }
       pieces_file.close();
-    }
-
-    void setLineColor(int row, QString color){
-      QTreeWidgetItem *item = torrentContentList->topLevelItem(row);
-      for(int i=0; i<item->columnCount(); ++i){
-        item->setData(i, Qt::ForegroundRole, QVariant(QColor(color)));
-      }
     }
 
     void on_OkButton_clicked(){
@@ -270,22 +228,27 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
       }
       // Check if there is at least one selected file
-      bool selected_file = false;
-      for(int i=0; i<torrentContentList->topLevelItemCount(); ++i){
-        if(selection.at(i)){
-          selected_file = true;
-          break;
-        }
-      }
-      if(!selected_file){
+      if(!hasSelectedFiles()){
           QMessageBox::critical(0, tr("Invalid file selection"), tr("You must select at least one file in the torrent"));
           return;
       }
       // save filtered files
-      saveFilteredFiles();
+      savePiecesPriorities();
       // Add to download list
       emit torrentAddition(filePath, fromScanDir, from_url);
       close();
+    }
+
+    bool hasSelectedFiles(){
+      unsigned int nbRows = PropListModel->rowCount();
+      for(unsigned int i=0; i<nbRows; ++i){
+        QStandardItem *item = PropListModel->item(i, PRIORITY);
+        unsigned short priority = item->text().toInt();
+        if(priority) {
+          return true;
+        }
+      }
+      return false;
     }
 };
 
