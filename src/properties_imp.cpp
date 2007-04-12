@@ -290,10 +290,6 @@ void properties::saveFilteredFiles(){
     }
   }
   pieces_file.close();
-  if(!has_filtered_files){
-    // Don't need to reload torrent
-    // if already in full allocation mode
-    emit changedFilteredFiles(h, !hasFilteredFiles);
-  }
+  emit changedFilteredFiles(h, !hasFilteredFiles);
   has_filtered_files = hasFilteredFiles;
 }

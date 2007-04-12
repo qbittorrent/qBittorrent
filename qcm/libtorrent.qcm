@@ -22,6 +22,9 @@ public:
 				qWarning("Libtorrent >= v0.12 was not detected, PeX will be disabled.");
 				conf->addDefine("NO_PEX");
       			}
+			if(conf->checkHeader(s, "libtorrent/lsd.hpp")){
+				conf->addDefine("V_0_13");
+			}
 		}else{
 			QStringList sl;
 			sl << "/usr/include";
@@ -38,6 +41,9 @@ public:
 					qWarning("Libtorrent >= v0.12 was not detected, PeX will be disabled.");
   	      conf->addDefine("NO_PEX");
 				}
+		  if(conf->checkHeader(s, "libtorrent/lsd.hpp")){
+			        conf->addDefine("V_0_13");
+			}
 		}
 		conf->addIncludePath(s);
 		conf->addIncludePath(s+QDir::separator()+"libtorrent");

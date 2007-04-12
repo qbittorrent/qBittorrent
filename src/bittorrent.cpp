@@ -656,6 +656,7 @@ void bittorrent::readAlerts(){
 }
 
 void bittorrent::reloadTorrent(const torrent_handle &h, bool compact_mode){
+  qDebug("** Reloading a torrent");
   if(!h.is_valid()){
     qDebug("/!\\ Error: Invalid handle");
     return;
@@ -714,6 +715,7 @@ void bittorrent::reloadTorrent(const torrent_handle &h, bool compact_mode){
     qDebug("Incremental download enabled for %s", (const char*)fileName.toUtf8());
     new_h.set_sequenced_download_threshold(15);
   }
+  emit updateFileSize(fileHash);
 }
 
 int bittorrent::getListenPort() const{

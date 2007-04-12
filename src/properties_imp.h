@@ -56,6 +56,7 @@ class properties : public QDialog, private Ui::properties{
 
   signals:
     void changedFilteredFiles(torrent_handle h, bool compact_mode);
+    void fileSizeChanged(QString fileHash);
 
   public:
     // Constructor

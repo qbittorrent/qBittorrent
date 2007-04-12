@@ -109,8 +109,13 @@ void createtorrent::on_createButton_clicked(){
     add_files(t, full_path.branch_path(), full_path.leaf());
     t.set_piece_size(piece_size);
 #ifndef NO_PEX
-    file_pool fp;
+	file_pool fp;
+	#ifndef V_0_13
     storage st(t, full_path.branch_path(), fp);
+	#endif
+	#ifdef V_0_13
+		boost::scoped_ptr<storage_interface> st(default_storage_constructor(t, full_path.branch_path(), fp));
+	#endif
 #endif
 #ifdef NO_PEX
 		storage st(t, full_path.branch_path());
@@ -125,7 +130,12 @@ void createtorrent::on_createButton_clicked(){
     std::vector<char> buf(piece_size);
     for (int i = 0; i < num; ++i)
     {
+#ifndef V_0_13
       st.read(&buf[0], i, 0, t.piece_size(i));
+#endif
+#ifdef V_0_13
+			st->read(&buf[0], i, 0, t.piece_size(i));
+#endif
       hasher h(&buf[0], t.piece_size(i));
       t.set_hash(i, h.final());
     }

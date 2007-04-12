@@ -136,6 +136,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void readSettings();
     void forceExit();
     // Torrent actions
+    size_type torrentEffectiveSize(QString hash) const;
     void showProperties(const QModelIndex &index);
     void propertiesSelection();
     void pauseSelection();
@@ -183,6 +184,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void portListeningFailure();
     void trackerError(const QString& hash, const QString& time, const QString& msg);
     void trackerAuthenticationRequired(torrent_handle& h);
+    void updateFileSize(QString hash);
 
   protected:
     void closeEvent(QCloseEvent *);
@@ -193,7 +195,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     GUI(QWidget *parent=0, QStringList torrentCmdLine=QStringList());
     ~GUI();
     // Methods
-    int getRowFromHash(const QString& name) const;
+    int getRowFromHash(const QString& hash) const;
     float getNovaVersion(const QString& novaPath) const;
     QByteArray getNovaChangelog(const QString& novaPath) const;
     void updateNova() const;

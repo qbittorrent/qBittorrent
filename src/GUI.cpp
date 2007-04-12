@@ -132,6 +132,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   // Configure BT session according to options
   configureSession(true);
   force_exit = false;
+  connect(&BTSession, SIGNAL(updateFileSize(QString)), this, SLOT(updateFileSize(QString)));
   // Resume unfinished torrents
   BTSession.resumeUnfinishedTorrents();
   // Add torrent given on command line
@@ -1038,6 +1039,18 @@ void GUI::deleteSelection(){
   }
 }
 
+size_type GUI::torrentEffectiveSize(QString hash) const{
+  torrent_handle h = BTSession.getTorrentHandle(hash);
+  torrent_info t = h.get_torrent_info();
+  unsigned short nbFiles = t.num_files();
+  size_type effective_size = 0;
+  for(unsigned int i=0; i<nbFiles; ++i){
+    if(h.piece_priority(i) != 0)
+      effective_size += t.file_at(i).size;
+  }
+  return effective_size;
+}
+
 // Called when a torrent is added
 void GUI::torrentAdded(const QString& path, torrent_handle& h, bool fastResume){
   int row = DLListModel->rowCount();
@@ -1045,7 +1058,7 @@ void GUI::torrentAdded(const QString& path, torrent_handle& h, bool fastResume){
   // Adding torrent to download list
   DLListModel->insertRow(row);
   DLListModel->setData(DLListModel->index(row, NAME), QVariant(h.get_torrent_info().name().c_str()));
-  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)h.get_torrent_info().total_size()));
+  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)torrentEffectiveSize(hash)));
   DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
   DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
   DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
@@ -1143,6 +1156,11 @@ void GUI::showProperties(const QModelIndex &index){
   properties *prop = new properties(this, h, errors);
   connect(prop, SIGNAL(changedFilteredFiles(torrent_handle, bool)), &BTSession, SLOT(reloadTorrent(torrent_handle, bool)));
   prop->show();
+}
+
+void GUI::updateFileSize(QString hash){
+  int row = getRowFromHash(hash);
+  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)torrentEffectiveSize(hash)));
 }
 
 // Set BT session configuration
