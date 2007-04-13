@@ -21,7 +21,7 @@
 #ifndef __RSS_IMP_H__
 #define __RSS_IMP_H__
 
-#define REFRESH_MAX_LATENCY 6000
+#define REFRESH_MAX_LATENCY 600000
 
 #include <QTimer>
 #include "ui_rss.h"
@@ -46,7 +46,8 @@ class RSSImp : public QWidget, public Ui::RSS{
     void renameStream();
     void refreshStream();
     void createStream();
-    void updateStreamsName(const int&);
+    void updateStreamName(const unsigned short&);
+    void updateAllStreamsName();
     void refreshAllStreams();
     void refreshStreamList();
     void refreshNewsList();

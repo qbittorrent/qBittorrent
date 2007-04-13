@@ -121,6 +121,7 @@ class RssStream : public QObject{
     QList<RssItem*> listItem;
     downloadThread* downloader;
     QTime lastRefresh;
+    bool read;
 
   signals:
     void refreshFinished(const QString& msg);
@@ -139,6 +140,7 @@ class RssStream : public QObject{
 	if(QFile::exists(filePath)) {
 	  QFile::remove(file_path);
 	}
+	emit refreshFinished(url);
 	return;
       }
       openRss();
@@ -149,6 +151,7 @@ class RssStream : public QObject{
     RssStream(const QString& _url) {
       url = _url;
       alias = url;
+      read = true;
       downloader = new downloadThread(this);
       connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
       downloader->downloadUrl(url);
@@ -213,7 +216,7 @@ class RssStream : public QObject{
       return listItem.at(index);
     }
 
-    unsigned int getListSize() const{
+    unsigned short getListSize() const{
       return listItem.size();
     }
 
@@ -221,13 +224,21 @@ class RssStream : public QObject{
       return listItem;
     }
 
-    int getLastRefreshElapsed() const{
+    unsigned int getLastRefreshElapsed() const{
       return lastRefresh.elapsed();
-    }    
+    }
+
+    bool isRead() const {
+      return read;
+    }
+
+    void setRead() {
+      read = true;
+    }
 
   private:
     // read and create items from a rss document
-    short read(const QDomDocument& doc) {
+    short readDoc(const QDomDocument& doc) {
       // is it a rss file ?
       QDomElement root = doc.documentElement();
       if(root.tagName() == "html"){
@@ -268,6 +279,7 @@ class RssStream : public QObject{
 	    }
 	    property = property.nextSibling().toElement();
 	  }
+	  read = false;
 	}
 	channel = channel.nextSibling().toElement();
       }
@@ -312,7 +324,7 @@ class RssStream : public QObject{
 	return -1;
       }
       // start reading the xml
-      short return_lecture = read(doc);
+      short return_lecture = readDoc(doc);
       fileRss.close();
       if(QFile::exists(filePath)) {
         fileRss.remove();
@@ -328,10 +340,9 @@ class RssManager : public QObject{
   private :
     QList<RssStream*> streamList;
     QStringList streamListUrl;
-    QStringList streamListAlias;
 
   signals:
-    void streamNeedRefresh(const int&);
+    void streamNeedRefresh(const unsigned short&);
 
   public slots :
     void streamNeedRefresh(const QString& _url) {
@@ -356,8 +367,12 @@ class RssManager : public QObject{
       QSettings settings("qBittorrent", "qBittorrent");
       settings.beginGroup("Rss");
       streamListUrl = settings.value("streamList").toStringList();
-      streamListAlias = settings.value("streamAlias").toStringList();
-      //XXX: Maybe check that both list have same size?
+      QStringList streamListAlias = settings.value("streamAlias").toStringList();
+      //check that both list have same size
+      while(streamListUrl.size()>streamListAlias.size())
+	streamListUrl.removeLast();
+      while(streamListAlias.size()>streamListUrl.size())
+	streamListAlias.removeLast();
       qDebug("NB RSS streams loaded: %d", streamListUrl.size());
       settings.endGroup();
       unsigned int streamListUrlSize = streamListUrl.size();
@@ -371,6 +386,12 @@ class RssManager : public QObject{
 
     // save the list of the rss stream for the next session
     void saveStreamList(){
+      streamListUrl.clear();
+      QStringList streamListAlias;
+      for(unsigned short i=0; i<getNbStream(); i++) {
+        streamListUrl.append(getStream(i)->getUrl());
+	streamListAlias.append(getStream(i)->getAlias());
+      }
       QSettings settings("qBittorrent", "qBittorrent");
       settings.beginGroup("Rss");
       settings.setValue("streamList", streamListUrl);
@@ -383,7 +404,6 @@ class RssManager : public QObject{
       if(hasStream(stream) < 0){
 	streamList.append(stream);
 	streamListUrl.append(stream->getUrl());
-	streamListAlias.append(stream->getUrl());
 	connect(stream, SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh(const QString&)));
       }else{
         qDebug("Not adding the Rss stream because it is already in the list");
@@ -392,20 +412,20 @@ class RssManager : public QObject{
 
     // add a stream to the manager
     void addStream(QString url){
+      // XXX : is it useful ?
       // completion of the address
-      if(!url.endsWith(".xml")) {
+      /*if(!url.endsWith(".xml")) {
 	if(url.endsWith("/")) {
 	  url.append("rss.xml");
         } else {
 	  url.append("/rss.xml");
 	}
-      }
+      }*/
 
       if(hasStream(url) < 0) {
 	RssStream* stream = new RssStream(url);
 	streamList.append(stream);
 	streamListUrl.append(url);
-	streamListAlias.append(url);
 	connect(stream, SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh(const QString&)));
       }else {
         qDebug("Not adding the Rss stream because it is already in the list");
@@ -418,21 +438,19 @@ class RssManager : public QObject{
       if(index != -1){
         delete streamList.takeAt(index);
 	streamListUrl.removeAt(index);
-	streamListAlias.removeAt(index);	
       }
     }
 
     // remove all the streams in the manager
     void removeAll(){
       QList<RssStream*> newStreamList;
-      QStringList newUrlList, newAliasList;
+      QStringList newUrlList;
       unsigned int streamListSize = streamList.size();
       for(unsigned int i=0; i<streamListSize; ++i){
 	delete getStream(i);
       }
       streamList = newStreamList;
       streamListUrl = newUrlList;
-      streamListAlias = newAliasList;
     }
 
     // reload all the xml files from the web
@@ -454,28 +472,35 @@ class RssManager : public QObject{
     }
 
     // return the position index of a stream, if the manager owns it
-    int hasStream(RssStream* stream) const{
+    short hasStream(RssStream* stream) const{
       return hasStream(stream->getUrl());
     }
 
-    int hasStream(const QString& url) const{
+    short hasStream(const QString& url) const{
       return streamListUrl.indexOf(url);
     }
 
-    RssStream* getStream(const int& index) const{
+    RssStream* getStream(const unsigned short& index) const{
       return streamList.at(index);
     }
 
-    int getNbStream() {
+    unsigned short getNbStream() {
       return streamList.size();
     }
 
     //set an alias to an stream and save it for later
-    void setAlias(int index, QString newAlias) {
-      if(newAlias.length()>=2 && !streamListAlias.contains(newAlias, Qt::CaseInsensitive)) {
+    void setAlias(unsigned short index, QString newAlias) {
+      if(newAlias.length()>=2 && !getListAlias().contains(newAlias, Qt::CaseInsensitive)) {
 	getStream(index)->setAlias(newAlias);
-	streamListAlias.replace(index, newAlias);
       }
+    }
+
+    QStringList getListAlias() {
+      QStringList listAlias;
+      for(unsigned short i=0; i<getNbStream(); i++) {
+        listAlias.append(getStream(i)->getAlias());
+      }
+      return listAlias;
     }
 
 };
