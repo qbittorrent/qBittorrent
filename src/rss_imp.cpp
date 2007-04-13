@@ -171,6 +171,8 @@
 	  new QListWidgetItem(currentstream->getItem(i)->getTitle(), listNews);
 	  if(currentstream->getItem(i)->isRead())
 	     listNews->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("grey")));
+	  if(i%2==0)
+	    listNews->item(i)->setData(Qt::BackgroundRole, QVariant(QColor(0, 255, 255, 20)));
 	}
       }
     }
@@ -179,7 +181,7 @@
     void RSSImp::refreshTextBrowser() {
       if(listStreams->currentRow()>=0 && listNews->currentRow()>=0) {
 	RssItem* currentitem = rssmanager.getStream(listStreams->currentRow())->getItem(listNews->currentRow());
-	textBrowser->setHtml(currentitem->getTitle()+" : \n"+currentitem->getDescription());
+	textBrowser->setHtml(currentitem->getTitle()+" : \n"+currentitem->getDescription()+"\n"+currentitem->getImage());
 	currentitem->setRead();
       }
     }
