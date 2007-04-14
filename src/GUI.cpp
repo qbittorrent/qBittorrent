@@ -499,8 +499,9 @@ void GUI::updateDlList(bool force){
       switch(torrentStatus.state){
         case torrent_status::finished:
         case torrent_status::seeding:
-          qDebug("Warning: this shouldn't happen, no finished torrents in download tab...");
-          break;
+          qDebug("Warning: this shouldn't happen, no finished torrents in download tab, moving it");
+          finishedTorrent(h);
+          continue;
         case torrent_status::checking_files:
         case torrent_status::queued_for_checking:
           DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Checking...", "i.e: Checking already downloaded parts...")));
