@@ -29,6 +29,9 @@
 // avoid crash if too many refresh
 #define REFRESH_FREQ_MAX 5000
 
+#define ICON 0
+#define NEWS 1
+
 #include <QFile>
 #include <QList>
 #include <curl/curl.h>
@@ -36,6 +39,7 @@
 #include <QSettings>
 #include <QDomDocument>
 #include <QTime>
+#include <QUrl>
 
 #include "misc.h"
 #include "downloadThread.h"
@@ -118,14 +122,15 @@ class RssStream : public QObject{
     QString image;
     QString url;
     QString filePath;
+    QString iconPath;
     QList<RssItem*> listItem;
     downloadThread* downloader;
     QTime lastRefresh;
     bool read;
 
   signals:
-    void refreshFinished(const QString& msg);
-    
+    void refreshFinished(const QString& msg, const unsigned short& type);
+
   public slots :
     // read and store the downloaded rss' informations
     void processDownloadedFile(const QString&, const QString& file_path, int return_code, const QString&) {
@@ -138,23 +143,43 @@ class RssStream : public QObject{
         // Download failed
 	qDebug("(download failure) "+file_path.toUtf8());
 	if(QFile::exists(filePath)) {
-	  QFile::remove(file_path);
+	  QFile::remove(filePath);
 	}
-	emit refreshFinished(url);
+	emit refreshFinished(url, NEWS);
 	return;
       }
       openRss();
-      emit refreshFinished(url);
+      emit refreshFinished(url, NEWS);
     }
+
+    void displayIcon(const QString&, const QString& file_path, int return_code, const QString&) {
+      if(QFile::exists(iconPath) && iconPath!=":/Icons/rss.png") {
+	QFile::remove(iconPath);
+      }
+      iconPath = file_path;
+      if(return_code){
+        // Download failed
+	qDebug("(download failure) "+iconPath.toUtf8());
+	if(QFile::exists(iconPath) && iconPath!=":/Icons/rss.png") {
+	  QFile::remove(iconPath);
+	}
+	iconPath = ":/Icons/rss.png";
+	emit refreshFinished(url, ICON);
+	return;
+      }
+      emit refreshFinished(url, ICON);
+    }      
 
   public:
     RssStream(const QString& _url) {
       url = _url;
       alias = url;
       read = true;
+      iconPath = ":/Icons/rss.png";
       downloader = new downloadThread(this);
       connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
       downloader->downloadUrl(url);
+      getIcon();
       lastRefresh.start();
     }
 
@@ -163,6 +188,8 @@ class RssStream : public QObject{
       delete downloader;
       if(QFile::exists(filePath))
         QFile::remove(filePath);
+      if(QFile::exists(iconPath) && iconPath!=":/Icons/rss.png")
+	QFile::remove(iconPath);
     }
 
     // delete all the items saved
@@ -212,6 +239,10 @@ class RssStream : public QObject{
       return filePath;
     }
 
+    QString getIconPath() const{
+      return filePath;
+    }    
+
     RssItem* getItem(unsigned int index) const{
       return listItem.at(index);
     }
@@ -234,6 +265,13 @@ class RssStream : public QObject{
 
     void setRead() {
       read = true;
+    }
+
+    void getIcon() {
+      QUrl siteUrl(url);
+      QString iconUrl = "http://"+siteUrl.host()+"/favicon.ico";
+      connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(displayIcon(const QString&, const QString&, int, const QString&)));
+      downloader->downloadUrl(iconUrl);
     }
 
   private:
@@ -342,11 +380,11 @@ class RssManager : public QObject{
     QStringList streamListUrl;
 
   signals:
-    void streamNeedRefresh(const unsigned short&);
+    void streamNeedRefresh(const unsigned short&, const unsigned short&);
 
   public slots :
-    void streamNeedRefresh(const QString& _url) {
-      emit(streamNeedRefresh(hasStream(_url)));
+    void streamNeedRefresh(const QString& _url, const unsigned short& type) {
+      emit(streamNeedRefresh(hasStream(_url), type));
     }
     
   public :
@@ -380,7 +418,7 @@ class RssManager : public QObject{
 	RssStream *stream = new RssStream(streamListUrl.at(i));
 	stream->setAlias(streamListAlias.at(i));
 	streamList.append(stream);
-	connect(stream, SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh(const QString&)));
+	connect(stream, SIGNAL(refreshFinished(const QString&, const unsigned short&)), this, SLOT(streamNeedRefresh(const QString&, const unsigned short&)));
       }
     }
 
@@ -404,7 +442,7 @@ class RssManager : public QObject{
       if(hasStream(stream) < 0){
 	streamList.append(stream);
 	streamListUrl.append(stream->getUrl());
-	connect(stream, SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh(const QString&)));
+	connect(stream, SIGNAL(refreshFinished(const QString&, const unsigned short&)), this, SLOT(streamNeedRefresh(const QString&, const unsigned short&)));
       }else{
         qDebug("Not adding the Rss stream because it is already in the list");
       }
@@ -426,7 +464,7 @@ class RssManager : public QObject{
 	RssStream* stream = new RssStream(url);
 	streamList.append(stream);
 	streamListUrl.append(url);
-	connect(stream, SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh(const QString&)));
+	connect(stream, SIGNAL(refreshFinished(const QString&, const unsigned short&)), this, SLOT(streamNeedRefresh(const QString&, const unsigned short&)));
       }else {
         qDebug("Not adding the Rss stream because it is already in the list");
       }
@@ -458,7 +496,7 @@ class RssManager : public QObject{
       unsigned int streamListUrlSize = streamListUrl.size();
       for(unsigned int i=0; i<streamListUrlSize; ++i){
 	getStream(i)->refresh();
-	connect(getStream(i), SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh(const QString&)));
+	connect(getStream(i), SIGNAL(refreshFinished(const QString&, const unsigned short&)), this, SLOT(streamNeedRefresh(const QString&, const unsigned short&)));
       }
     }
 
@@ -466,7 +504,7 @@ class RssManager : public QObject{
       if(index>=0 && index<getNbStream()) {
 	if(getStream(index)->getLastRefreshElapsed()>REFRESH_FREQ_MAX) {
 	  getStream(index)->refresh();
-	  connect(getStream(index), SIGNAL(refreshFinished(const QString&)), this, SLOT(streamNeedRefresh(const QString&)));
+	  connect(getStream(index), SIGNAL(refreshFinished(const QString&, const unsigned short&)), this, SLOT(streamNeedRefresh(const QString&, const unsigned short&)));
 	}
       }
     }

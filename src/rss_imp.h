@@ -46,7 +46,7 @@ class RSSImp : public QWidget, public Ui::RSS{
     void renameStream();
     void refreshStream();
     void createStream();
-    void updateStreamName(const unsigned short&);
+    void updateStreamName(const unsigned short&, const unsigned short&);
     //void updateAllStreamsName();
     void refreshAllStreams();
     void refreshStreamList();

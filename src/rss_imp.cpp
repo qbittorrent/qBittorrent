@@ -65,7 +65,6 @@
     // display the news of a stream when click on it
     void RSSImp::on_listStreams_clicked() {
       rssmanager.getStream(listStreams->currentRow())->setRead();
-      //streamNeedRefresh(listStreams->currentRow());
       listStreams->item(listStreams->currentRow())->setData(Qt::BackgroundRole, QVariant(QColor("white")));
       refreshNewsList();
     }
@@ -109,7 +108,7 @@
 	QString newAlias = QInputDialog::getText(this, tr("Please choose a new name for this stream"), tr("New stream name:"), QLineEdit::Normal, rssmanager.getStream(index)->getAlias(), &ok);
 	if(ok) {
 	  rssmanager.setAlias(index, newAlias);
-	  updateStreamName(index);
+	  updateStreamName(index, NEWS);
 	}
       }
 
@@ -121,7 +120,7 @@
       if(rssmanager.getNbStream()>0) {
 	textBrowser->clear();
 	listNews->clear();
-	listStreams->item(index)->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/refresh.png")));
+	listStreams->item(index)->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
 	rssmanager.refresh(index);
       }
     }
@@ -132,7 +131,7 @@
       listNews->clear();
       unsigned short nbstream = rssmanager.getNbStream();
       for(unsigned short i=0; i<nbstream; i++)
-        listStreams->item(i)->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/refresh.png")));
+        listStreams->item(i)->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
       rssmanager.refreshAll();
     }
 
@@ -162,7 +161,6 @@
 	listNews->clear();
         refreshNewsList();
       }
-      //updateAllStreamsName();
     }
 
     // fills the newsList
@@ -191,46 +189,28 @@
     }
 
     // show the number of news for a stream, his status and an icon
-    void RSSImp::updateStreamName(const unsigned short& i) {
-      unsigned short nbitem = rssmanager.getStream(i)->getListSize();      
-      listStreams->item(i)->setText(rssmanager.getStream(i)->getAlias()+" ("+QString::number(nbitem,10).toUtf8()+")");
-      if(nbitem==0)
-	listStreams->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("red")));
-      else if(rssmanager.getStream(i)->getLastRefreshElapsed()>REFRESH_MAX_LATENCY)
-	listStreams->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("orange")));
-      else
-	listStreams->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("green")));
-      if(!rssmanager.getStream(i)->isRead())
-	listStreams->item(i)->setData(Qt::BackgroundRole, QVariant(QColor(0, 255, 0, 20)));
-      listStreams->item(i)->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/rss.png")));
-      if(listStreams->currentRow()==i) {
-	listNews->clear();
-	refreshNewsList();
+    void RSSImp::updateStreamName(const unsigned short& i, const unsigned short& type) {
+      if(type == ICON) {
+	listStreams->item(i)->setData(Qt::DecorationRole, QVariant(QIcon(rssmanager.getStream(i)->getIconPath())));
       }
-    }
-
-    // show the number of news for each stream
-    /*void RSSImp::updateAllStreamsName() {
-      unsigned short nbstream = rssmanager.getNbStream();
-      for(unsigned short i=0; i<nbstream; i++) {
+      else if(type == NEWS) {
 	unsigned short nbitem = rssmanager.getStream(i)->getListSize();
-	listStreams->item(i)->setText(rssmanager.getStream(i)->getAlias()+" ("+QString::number(nbitem,10).toUtf8()+")");
+	listStreams->item(i)->setText(rssmanager.getStream(i)->getAlias().toUtf8()+" "+rssmanager.getStream(i)->getIconPath().toUtf8()+" ("+QString::number(nbitem,10).toUtf8()+")");
 	if(nbitem==0)
 	  listStreams->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("red")));
 	else if(rssmanager.getStream(i)->getLastRefreshElapsed()>REFRESH_MAX_LATENCY)
 	  listStreams->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("orange")));
 	else
 	  listStreams->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("green")));
- 	if(!rssmanager.getStream(i)->isRead())
+	if(!rssmanager.getStream(i)->isRead())
 	  listStreams->item(i)->setData(Qt::BackgroundRole, QVariant(QColor(0, 255, 0, 20)));
+	listStreams->item(i)->setData(Qt::DecorationRole, QVariant(QIcon(rssmanager.getStream(i)->getIconPath())));
+	if(listStreams->currentRow()==i) {
+	  listNews->clear();
+	  refreshNewsList();
+	}
       }
-      int currentStream = listStreams->currentRow();
-      if(currentStream>=0 && currentStream<nbstream) {
-	listStreams->setCurrentRow(currentStream);
-	listNews->clear();
-	refreshNewsList();
-      }
-    }*/
+    }
 
     RSSImp::RSSImp() : QWidget(){
       setupUi(this);
@@ -243,11 +223,14 @@
       connect(actionRefresh, SIGNAL(triggered()), this, SLOT(refreshStream()));
       connect(actionCreate, SIGNAL(triggered()), this, SLOT(createStream()));
       connect(actionRefreshAll, SIGNAL(triggered()), this, SLOT(refreshAllStreams()));
-      connect(&rssmanager, SIGNAL(streamNeedRefresh(const unsigned short&)), this, SLOT(updateStreamName(const unsigned short&)));
+      connect(&rssmanager, SIGNAL(streamNeedRefresh(const unsigned short&, const unsigned short&)), this, SLOT(updateStreamName(const unsigned short&, const unsigned short&)));
       refreshStreamList();
+      unsigned short nbstream = rssmanager.getNbStream();
+      for(unsigned short i=0; i<nbstream; i++) {
+	listStreams->item(i)->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+	listStreams->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("red")));
+      }
       refreshTextBrowser();
-      // force the first alias-refresh
-      //QTimer::singleShot(10000, this, SLOT(updateAllStreamsName()));
     }
 
     RSSImp::~RSSImp(){
