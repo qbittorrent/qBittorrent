@@ -162,12 +162,12 @@
         <widget class="QLabel" name="news_lbl" >
          <property name="font" >
           <font>
-           <weight>75</weight>
-           <bold>true</bold>
+           <weight>50</weight>
+           <bold>false</bold>
           </font>
          </property>
          <property name="text" >
-          <string>News:</string>
+          <string>&lt;b>News:&lt;/b> &lt;i>(double-click to open the link in your web browser)&lt;/i></string>
          </property>
         </widget>
        </item>
