@@ -121,6 +121,7 @@
       if(rssmanager.getNbStream()>0) {
 	textBrowser->clear();
 	listNews->clear();
+	listStreams->item(index)->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/refresh.png")));
 	rssmanager.refresh(index);
       }
     }
@@ -129,6 +130,9 @@
     void RSSImp::refreshAllStreams() {
       textBrowser->clear();
       listNews->clear();
+      unsigned short nbstream = rssmanager.getNbStream();
+      for(unsigned short i=0; i<nbstream; i++)
+        listStreams->item(i)->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/refresh.png")));
       rssmanager.refreshAll();
     }
 
@@ -158,7 +162,7 @@
 	listNews->clear();
         refreshNewsList();
       }
-      updateAllStreamsName();
+      //updateAllStreamsName();
     }
 
     // fills the newsList
@@ -181,12 +185,12 @@
     void RSSImp::refreshTextBrowser() {
       if(listStreams->currentRow()>=0 && listNews->currentRow()>=0) {
 	RssItem* currentitem = rssmanager.getStream(listStreams->currentRow())->getItem(listNews->currentRow());
-	textBrowser->setHtml(currentitem->getTitle()+" : \n"+currentitem->getDescription()+"\n"+currentitem->getImage());
+	textBrowser->setHtml(currentitem->getTitle()+" : \n"+currentitem->getDescription());
 	currentitem->setRead();
       }
     }
 
-    // show the number of news for a stream
+    // show the number of news for a stream, his status and an icon
     void RSSImp::updateStreamName(const unsigned short& i) {
       unsigned short nbitem = rssmanager.getStream(i)->getListSize();      
       listStreams->item(i)->setText(rssmanager.getStream(i)->getAlias()+" ("+QString::number(nbitem,10).toUtf8()+")");
@@ -198,6 +202,7 @@
 	listStreams->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("green")));
       if(!rssmanager.getStream(i)->isRead())
 	listStreams->item(i)->setData(Qt::BackgroundRole, QVariant(QColor(0, 255, 0, 20)));
+      listStreams->item(i)->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/rss.png")));
       if(listStreams->currentRow()==i) {
 	listNews->clear();
 	refreshNewsList();
@@ -205,7 +210,7 @@
     }
 
     // show the number of news for each stream
-    void RSSImp::updateAllStreamsName() {
+    /*void RSSImp::updateAllStreamsName() {
       unsigned short nbstream = rssmanager.getNbStream();
       for(unsigned short i=0; i<nbstream; i++) {
 	unsigned short nbitem = rssmanager.getStream(i)->getListSize();
@@ -225,7 +230,7 @@
 	listNews->clear();
 	refreshNewsList();
       }
-    }
+    }*/
 
     RSSImp::RSSImp() : QWidget(){
       setupUi(this);
@@ -242,7 +247,7 @@
       refreshStreamList();
       refreshTextBrowser();
       // force the first alias-refresh
-      QTimer::singleShot(10000, this, SLOT(updateAllStreamsName()));
+      //QTimer::singleShot(10000, this, SLOT(updateAllStreamsName()));
     }
 
     RSSImp::~RSSImp(){
