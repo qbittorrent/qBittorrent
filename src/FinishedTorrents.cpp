@@ -242,7 +242,10 @@ void FinishedTorrents::updateFinishedList(){
       qDebug("Problem: This torrent is not valid in finished list");
       continue;
     }
-    if(h.is_paused()) continue;
+    if(h.is_paused()){
+      h.resume();
+      continue;
+    }
     torrent_status torrentStatus = h.status();
     if(torrentStatus.state == torrent_status::downloading) {
       // What are you doing here, go back to download tab!
