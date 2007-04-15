@@ -274,6 +274,10 @@ class RssStream : public QObject{
       return lastRefresh.elapsed();
     }
 
+    QString getLastRefresh() const{
+      return QString::number(lastRefresh.hour())+"h"+QString::number(lastRefresh.minute())+"m";
+    }    
+
     bool isRead() const {
       return read;
     }

@@ -71,13 +71,14 @@
 	rssmanager.getStream(getNumStreamSelected())->setRead();
 	// update the color of the stream, is it old ?
 	updateStreamName(getNumStreamSelected(), LATENCY);
-	refreshNewsList();
+        refreshNewsList();
       }
     }
 
     // display the content of a new when clicked on it
     void RSSImp::on_listNews_clicked() {
       listNews->item(listNews->currentRow())->setData(Qt::ForegroundRole, QVariant(QColor("grey")));
+      listNews->item(listNews->currentRow())->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));
       refreshTextBrowser();
     }
 
@@ -176,7 +177,17 @@
       for(unsigned short i=0; i<nbstream; i++) {
 	QTreeWidgetItem* stream = new QTreeWidgetItem(listStreams);
 	QTreeWidgetItem* description = new QTreeWidgetItem(stream);
+	QTreeWidgetItem* url = new QTreeWidgetItem(stream);
+	QTreeWidgetItem* time = new QTreeWidgetItem(stream);
 	description->setText(0, tr("no description avalaible"));
+	url->setText(0, rssmanager.getStream(i)->getUrl());
+	time->setText(0, tr("no refresh"));
+	description->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/description.png")));
+	url->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/url.png")));
+	time->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/time.png")));
+	description->setData(0,Qt::ForegroundRole, QVariant(QColor("grey")));
+	url->setData(0,Qt::ForegroundRole, QVariant(QColor("grey")));
+	time->setData(0,Qt::ForegroundRole, QVariant(QColor("grey")));
 	updateStreamName(i, NEWS);
       }
     }
@@ -189,8 +200,14 @@
         unsigned short currentStreamSize = currentstream->getListSize();
 	for(unsigned short i=0; i<currentStreamSize; ++i) {
 	  new QListWidgetItem(currentstream->getItem(i)->getTitle(), listNews);
-	  if(currentstream->getItem(i)->isRead())
+	  if(currentstream->getItem(i)->isRead()){
 	     listNews->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("grey")));
+	     listNews->item(i)->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));
+	  }
+	  else {
+	    listNews->item(i)->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere2.png")));
+	    listNews->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("blue")));
+	  }
 	  if(i%2==0)
 	    listNews->item(i)->setData(Qt::BackgroundRole, QVariant(QColor(0, 255, 255, 20)));
 	}
@@ -242,15 +259,26 @@
 	  refreshNewsList();
 	}
 	listStreams->topLevelItem(i)->setData(0,Qt::DecorationRole, QVariant(QIcon(rssmanager.getStream(i)->getIconPath())));
-	listStreams->topLevelItem(i)->child(0)->setText(0, rssmanager.getStream(i)->getDescription());
+	// update description and display last refresh
+	if(rssmanager.getStream(i)->getDescription()!="")
+	 listStreams->topLevelItem(i)->child(DESCRIPTION_CHILD)->setText(0, rssmanager.getStream(i)->getDescription());
+	listStreams->topLevelItem(i)->child(TIME_CHILD)->setText(0,  rssmanager.getStream(i)->getLastRefresh());
       }
     }
 
     RSSImp::RSSImp() : QWidget(){
       setupUi(this);
+      // icons of bottom buttons
       addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
       delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
       refreshAll_button->setIcon(QIcon(QString::fromUtf8(":/Icons/exec.png")));
+      // icons of right-click menu
+      actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
+      actionRename->setIcon(QIcon(QString::fromUtf8(":/Icons/log.png")));
+      actionRefresh->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
+      actionCreate->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
+      actionRefreshAll->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
+                  
       connect(listStreams, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRSSListMenu(const QPoint&)));
       connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteStream()));
       connect(actionRename, SIGNAL(triggered()), this, SLOT(renameStream()));

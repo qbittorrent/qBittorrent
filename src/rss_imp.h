@@ -28,6 +28,10 @@
 #include "rss.h"
 #include "GUI.h"
 
+#define DESCRIPTION_CHILD 0
+#define URL_CHILD 1
+#define TIME_CHILD 2
+
 class RSSImp : public QWidget, public Ui::RSS{
   Q_OBJECT
 
