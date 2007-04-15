@@ -26,16 +26,17 @@
 #include <QStandardItemModel>
 
     // display a right-click menu
-    void RSSImp::displayFinishedListMenu(const QPoint& pos){
+    void RSSImp::displayRSSListMenu(const QPoint& pos){
       QMenu myFinishedListMenu(this);
       QListWidgetItem* item = listStreams->itemAt(pos);
       if(item!=NULL) {
 	myFinishedListMenu.addAction(actionDelete);
 	myFinishedListMenu.addAction(actionRename);
 	myFinishedListMenu.addAction(actionRefresh);
+      }else{
+        myFinishedListMenu.addAction(actionCreate);
+        myFinishedListMenu.addAction(actionRefreshAll);
       }
-      myFinishedListMenu.addAction(actionCreate);
-      myFinishedListMenu.addAction(actionRefreshAll);
       myFinishedListMenu.exec(mapToGlobal(pos)+QPoint(10,33));
     }
 
@@ -236,7 +237,7 @@
       addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
       delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
       refreshAll_button->setIcon(QIcon(QString::fromUtf8(":/Icons/exec.png")));
-      connect(listStreams, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFinishedListMenu(const QPoint&)));
+      connect(listStreams, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRSSListMenu(const QPoint&)));
       connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteStream()));
       connect(actionRename, SIGNAL(triggered()), this, SLOT(renameStream()));
       connect(actionRefresh, SIGNAL(triggered()), this, SLOT(refreshStream()));

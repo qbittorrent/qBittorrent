@@ -225,12 +225,12 @@
   </action>
   <action name="actionCreate" >
    <property name="text" >
-    <string>Create</string>
+    <string>Add RSS stream</string>
    </property>
   </action>
   <action name="actionRefreshAll" >
    <property name="text" >
-    <string>RefreshAll</string>
+    <string>Refresh all streams</string>
    </property>
   </action>
  </widget>
