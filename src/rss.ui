@@ -90,6 +90,9 @@
              <height>22</height>
             </size>
            </property>
+           <property name="toolTip" >
+            <string>Delete selected streams</string>
+           </property>
            <property name="text" >
             <string/>
            </property>
@@ -109,6 +112,9 @@
              <height>22</height>
             </size>
            </property>
+           <property name="toolTip" >
+            <string>Refresh RSS streams</string>
+           </property>
            <property name="text" >
             <string/>
            </property>
@@ -127,6 +133,9 @@
              <width>22</width>
              <height>22</height>
             </size>
+           </property>
+           <property name="toolTip" >
+            <string>Add a new RSS stream</string>
            </property>
            <property name="text" >
             <string/>

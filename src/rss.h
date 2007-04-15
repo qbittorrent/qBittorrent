@@ -156,7 +156,7 @@ class RssStream : public QObject{
       emit refreshFinished(url, NEWS);
     }
 
-    void displayIcon(const QString&, const QString& file_path, int return_code, const QString&) {
+    void displayIcon(const QString&, const QString& file_path, int, const QString&) {
       /*if(QFile::exists(iconPath) && iconPath!=":/Icons/rss.png") {
 	QFile::remove(iconPath);
       }
@@ -166,7 +166,7 @@ class RssStream : public QObject{
       //iconPath = ":/Icons/rss.png";
       //iconPath = "/tmp/favicon.gif";
 
-      
+
       if(return_code){
         // Download failed
 	qDebug("(download failure) "+iconPath.toUtf8());
@@ -180,7 +180,7 @@ class RssStream : public QObject{
       openIcon();
       emit refreshFinished(url, ICON);*/
       qDebug("******************Icone downloaded"+file_path.toUtf8());
-    }      
+    }
 
   public:
     RssStream(const QString& _url) {
@@ -192,7 +192,7 @@ class RssStream : public QObject{
       connect(downloaderRss, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
       downloaderRss->downloadUrl(url);
       // XXX: remove it when gif can be displayed
-      iconPath = ":/Icons/rss.png";      
+      iconPath = ":/Icons/rss.png";
       //getIcon();
       lastRefresh.start();
     }
@@ -256,7 +256,7 @@ class RssStream : public QObject{
 
     QString getIconPath() const{
       return iconPath;
-    }    
+    }
 
     RssItem* getItem(unsigned int index) const{
       return listItem.at(index);
@@ -310,7 +310,7 @@ class RssStream : public QObject{
       for(unsigned short i=0; i<listsize; i++) {
 	listItem.removeLast();
       }
-      
+
       while(!channel.isNull()) {
       // we are reading the rss'main info
 	if (channel.tagName() == "channel") {
@@ -356,7 +356,7 @@ class RssStream : public QObject{
       while(getListSize()>STREAM_MAX_ITEM) {
 	listItem.removeAt(STREAM_MAX_ITEM);
       }
-	
+
     }
 
     // existing and opening test after download
@@ -411,7 +411,7 @@ class RssStream : public QObject{
 // global class, manage the whole rss stream
 class RssManager : public QObject{
   Q_OBJECT
-  
+
   private :
     QList<RssStream*> streamList;
     QStringList streamListUrl;
@@ -423,7 +423,7 @@ class RssManager : public QObject{
     void streamNeedRefresh(const QString& _url, const unsigned short& type) {
       emit(streamNeedRefresh(hasStream(_url), type));
     }
-    
+
   public :
     RssManager(){
       loadStreamList();

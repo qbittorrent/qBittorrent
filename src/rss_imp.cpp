@@ -211,7 +211,7 @@
       }
       // when news are refreshed, update all informations
       if(type == NEWS) {
-	//qDebug("###################"+rssmanager.getStream(i)->getIconPath().toUtf8());	
+	//qDebug("###################"+rssmanager.getStream(i)->getIconPath().toUtf8());
 	unsigned short nbitem = rssmanager.getStream(i)->getListSize();
 	listStreams->item(i)->setText(rssmanager.getStream(i)->getAlias().toUtf8()+"  ("+QString::number(nbitem,10).toUtf8()+")");
 	if(nbitem==0)
@@ -220,14 +220,14 @@
 	  listStreams->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("orange")));
 	else
 	  listStreams->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("green")));
-	
+
 	if(!rssmanager.getStream(i)->isRead())
 	  listStreams->item(i)->setData(Qt::BackgroundRole, QVariant(QColor(0, 255, 0, 20)));
 	if(listStreams->currentRow()==i) {
 	  listNews->clear();
 	  refreshNewsList();
 	}
-	listStreams->item(i)->setData(Qt::DecorationRole, QVariant(QIcon(rssmanager.getStream(i)->getIconPath())));	
+	listStreams->item(i)->setData(Qt::DecorationRole, QVariant(QIcon(rssmanager.getStream(i)->getIconPath())));
       }
     }
 
@@ -235,7 +235,7 @@
       setupUi(this);
       addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
       delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
-      refreshAll_button->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
+      refreshAll_button->setIcon(QIcon(QString::fromUtf8(":/Icons/exec.png")));
       connect(listStreams, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFinishedListMenu(const QPoint&)));
       connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteStream()));
       connect(actionRename, SIGNAL(triggered()), this, SLOT(renameStream()));
