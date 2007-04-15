@@ -52,10 +52,15 @@
 	qDebug("no stream selected");
 	return;
       }else {
-	textBrowser->clear();
-	listNews->clear();
-	rssmanager.removeStream(rssmanager.getStream(getNumStreamSelected()));
-	refreshStreamList();
+	int ok = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to delete this stream from the list ?"),
+	      tr("&Yes"), tr("&No"),
+		 QString(), 0, 1);
+	if(ok==0) {	
+	  textBrowser->clear();
+	  listNews->clear();
+	  rssmanager.removeStream(rssmanager.getStream(getNumStreamSelected()));
+	  refreshStreamList();
+	}
       }
     }
 
@@ -108,11 +113,14 @@
 	qDebug("no stream selected");
 	return;
       }else {
-	moveCurrentItem();
-	textBrowser->clear();
-	listNews->clear();
-	rssmanager.removeStream(rssmanager.getStream(getNumStreamSelected()));
-	refreshStreamList();
+	int ok = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to delete this stream from the list ?"), tr("&Yes"), tr("&No"), QString(), 0, 1);
+	if(ok==0) {	
+	  moveCurrentItem();
+	  textBrowser->clear();
+	  listNews->clear();
+	  rssmanager.removeStream(rssmanager.getStream(getNumStreamSelected()));
+	  refreshStreamList();
+	}
       }
     }
 
@@ -271,7 +279,7 @@
       // icons of bottom buttons
       addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
       delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
-      refreshAll_button->setIcon(QIcon(QString::fromUtf8(":/Icons/exec.png")));
+      refreshAll_button->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
       // icons of right-click menu
       actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
       actionRename->setIcon(QIcon(QString::fromUtf8(":/Icons/log.png")));
