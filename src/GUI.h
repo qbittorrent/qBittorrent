@@ -131,6 +131,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void on_actionTorrent_Properties_triggered();
     void on_actionPause_triggered();
     void on_actionPause_All_triggered();
+    void restoreInDownloadList(torrent_handle h);
     void on_actionStart_triggered();
     void on_actionStart_All_triggered();
     void on_actionOpen_triggered();

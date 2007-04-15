@@ -490,8 +490,9 @@ void GUI::updateDlList(bool force){
       if(finishedSHAs.indexOf(fileHash) != -1) continue;
       int row = getRowFromHash(fileHash);
       if(row == -1){
-        std::cerr << "Error: Could not find filename in download list..\n";
-        continue;
+        qDebug("Could not find filename in download list, adding it...");
+        restoreInDownloadList(h);
+        row = getRowFromHash(fileHash);
       }
       // Parse download state
       torrent_info ti = h.get_torrent_info();
@@ -552,6 +553,31 @@ void GUI::updateDlList(bool force){
     }
   }
 //   qDebug("Updated Download list");
+}
+
+void GUI::restoreInDownloadList(torrent_handle h){
+  unsigned int row = DLListModel->rowCount();
+  QString hash = QString(misc::toString(h.info_hash()).c_str());
+  // Adding torrent to download list
+  DLListModel->insertRow(row);
+  DLListModel->setData(DLListModel->index(row, NAME), QVariant(h.name().c_str()));
+  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)torrentEffectiveSize(hash)));
+  DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
+  DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
+  DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
+  DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+  DLListModel->setData(DLListModel->index(row, HASH), QVariant(hash));
+  // Pause torrent if it was paused last time
+  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")){
+    DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Paused")));
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
+    setRowColor(row, "red");
+  }else{
+    DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Connecting...")));
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
+    setRowColor(row, "grey");
+  }
+  ++nbTorrents;
 }
 
 void GUI::setTabText(int index, QString text){
