@@ -29,10 +29,13 @@
 // avoid crash if too many refresh
 #define REFRESH_FREQ_MAX 5000
 
+// type of refresh
 #define ICON 0
 #define NEWS 1
+#define LATENCY 2
 
 #include <QFile>
+#include <QImage>
 #include <QList>
 #include <curl/curl.h>
 #include <QTemporaryFile>
@@ -124,7 +127,8 @@ class RssStream : public QObject{
     QString filePath;
     QString iconPath;
     QList<RssItem*> listItem;
-    downloadThread* downloader;
+    downloadThread* downloaderRss;
+    downloadThread* downloaderIcon;
     QTime lastRefresh;
     bool read;
 
@@ -153,10 +157,16 @@ class RssStream : public QObject{
     }
 
     void displayIcon(const QString&, const QString& file_path, int return_code, const QString&) {
-      if(QFile::exists(iconPath) && iconPath!=":/Icons/rss.png") {
+      /*if(QFile::exists(iconPath) && iconPath!=":/Icons/rss.png") {
 	QFile::remove(iconPath);
       }
       iconPath = file_path;
+
+      // XXX : remove it when we manage to dl the iconPath
+      //iconPath = ":/Icons/rss.png";
+      //iconPath = "/tmp/favicon.gif";
+
+      
       if(return_code){
         // Download failed
 	qDebug("(download failure) "+iconPath.toUtf8());
@@ -167,7 +177,9 @@ class RssStream : public QObject{
 	emit refreshFinished(url, ICON);
 	return;
       }
-      emit refreshFinished(url, ICON);
+      openIcon();
+      emit refreshFinished(url, ICON);*/
+      qDebug("******************Icone downloaded"+file_path.toUtf8());
     }      
 
   public:
@@ -175,21 +187,24 @@ class RssStream : public QObject{
       url = _url;
       alias = url;
       read = true;
-      iconPath = ":/Icons/rss.png";
-      downloader = new downloadThread(this);
-      connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
-      downloader->downloadUrl(url);
-      getIcon();
+      downloaderRss = new downloadThread(this);
+      downloaderIcon = new downloadThread(this);
+      connect(downloaderRss, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
+      downloaderRss->downloadUrl(url);
+      // XXX: remove it when gif can be displayed
+      iconPath = ":/Icons/rss.png";      
+      //getIcon();
       lastRefresh.start();
     }
 
     ~RssStream(){
       removeAllItem();
-      delete downloader;
+      delete downloaderRss;
+      delete downloaderIcon;
       if(QFile::exists(filePath))
         QFile::remove(filePath);
-      if(QFile::exists(iconPath) && iconPath!=":/Icons/rss.png")
-	QFile::remove(iconPath);
+       if(QFile::exists(iconPath) && iconPath!=":/Icons/rss.png")
+ 	QFile::remove(iconPath);
     }
 
     // delete all the items saved
@@ -201,8 +216,8 @@ class RssStream : public QObject{
     }
 
     void refresh() {
-      connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
-      downloader->downloadUrl(url);
+      connect(downloaderRss, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
+      downloaderRss->downloadUrl(url);
       lastRefresh.start();
     }
 
@@ -240,7 +255,7 @@ class RssStream : public QObject{
     }
 
     QString getIconPath() const{
-      return filePath;
+      return iconPath;
     }    
 
     RssItem* getItem(unsigned int index) const{
@@ -267,11 +282,13 @@ class RssStream : public QObject{
       read = true;
     }
 
+    // FIXME : always return an empty file
     void getIcon() {
       QUrl siteUrl(url);
       QString iconUrl = "http://"+siteUrl.host()+"/favicon.ico";
-      connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(displayIcon(const QString&, const QString&, int, const QString&)));
-      downloader->downloadUrl(iconUrl);
+      connect(downloaderIcon, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(displayIcon(const QString&, const QString&, int, const QString&)));
+      downloaderIcon->downloadUrl(iconUrl);
+      qDebug("******************Icone "+iconUrl.toUtf8());
     }
 
   private:
@@ -369,6 +386,26 @@ class RssStream : public QObject{
       }
       return return_lecture;
     }
+
+    void openIcon() {
+      QImage fileIcon(iconPath,0);
+//       if(!fileIcon.open(QIODevice::ReadOnly)) {
+// 	qDebug("error : icon open failed, no file or locked, "+iconPath.toUtf8());
+// 	if(QFile::exists(iconPath)) {
+// 	  fileIcon.remove();
+// 	  iconPath = ":/Icons/rss.png";
+// 	}
+// 	return;
+//       }
+      if(fileIcon.isNull()) {
+	qDebug("error : icon open failed, file empty, "+iconPath.toUtf8());
+	if(QFile::exists(iconPath)) {
+	  //QFile::remove(iconPath);
+	  //iconPath = ":/Icons/rss.png";
+	}
+	return;
+      }
+    }
 };
 
 // global class, manage the whole rss stream
@@ -450,16 +487,6 @@ class RssManager : public QObject{
 
     // add a stream to the manager
     void addStream(QString url){
-      // XXX : is it useful ?
-      // completion of the address
-      /*if(!url.endsWith(".xml")) {
-	if(url.endsWith("/")) {
-	  url.append("rss.xml");
-        } else {
-	  url.append("/rss.xml");
-	}
-      }*/
-
       if(hasStream(url) < 0) {
 	RssStream* stream = new RssStream(url);
 	streamList.append(stream);
