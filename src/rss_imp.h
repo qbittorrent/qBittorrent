@@ -42,16 +42,17 @@ class RSSImp : public QWidget, public Ui::RSS{
     void on_listNews_clicked();
     void on_listNews_doubleClicked();
     void displayRSSListMenu(const QPoint&);
+    void moveCurrentItem();
     void deleteStream();
     void renameStream();
     void refreshStream();
     void createStream();
     void updateStreamName(const unsigned short&, const unsigned short&);
-    //void updateAllStreamsName();
     void refreshAllStreams();
     void refreshStreamList();
     void refreshNewsList();
     void refreshTextBrowser();
+    short getNumStreamSelected();
 
   public:
     RSSImp();

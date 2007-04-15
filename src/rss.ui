@@ -36,23 +36,18 @@
         <number>6</number>
        </property>
        <item>
-        <widget class="QLabel" name="lbl_streams" >
-         <property name="font" >
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text" >
-          <string>RSS streams:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QListWidget" name="listStreams" >
+        <widget class="QTreeWidget" name="listStreams" >
          <property name="contextMenuPolicy" >
           <enum>Qt::CustomContextMenu</enum>
          </property>
+         <property name="columnCount" >
+          <number>1</number>
+         </property>
+         <column>
+          <property name="text" >
+           <string>RSS streams :</string>
+          </property>
+         </column>
         </widget>
        </item>
        <item>
