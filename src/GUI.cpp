@@ -69,6 +69,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   finishedTorrentTab = new FinishedTorrents(this, &BTSession);
   tabs->addTab(finishedTorrentTab, tr("Finished"));
   tabs->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
+  connect(finishedTorrentTab, SIGNAL(torrentMovedFromFinishedList(torrent_handle)), this, SLOT(restoreInDownloadList(torrent_handle)));
   // Search engine tab
   searchEngine = new SearchEngine(&BTSession, myTrayIcon, systrayIntegration);
   tabs->addTab(searchEngine, tr("Search"));
@@ -490,7 +491,7 @@ void GUI::updateDlList(bool force){
       if(finishedSHAs.indexOf(fileHash) != -1) continue;
       int row = getRowFromHash(fileHash);
       if(row == -1){
-        qDebug("Could not find filename in download list, adding it...");
+        qDebug("Info: Could not find filename in download list, adding it...");
         restoreInDownloadList(h);
         row = getRowFromHash(fileHash);
       }

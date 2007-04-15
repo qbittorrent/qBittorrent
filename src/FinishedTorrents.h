@@ -45,6 +45,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     QTreeView* getFinishedList();
     QStandardItemModel* getFinishedListModel();
     bool loadColWidthFinishedList();
+    int getRowFromHash(const QString& hash) const;
 
   public slots:
     void addFinishedSHA(QString sha);
@@ -61,6 +62,9 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
 
   protected slots:
     void on_actionSet_upload_limit_triggered();
+
+  signals:
+    void torrentMovedFromFinishedList(torrent_handle);
 
 };
 

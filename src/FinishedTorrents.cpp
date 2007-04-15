@@ -243,22 +243,21 @@ void FinishedTorrents::updateFinishedList(){
       continue;
     }
     if(h.is_paused()){
-      h.resume();
-      continue;
+      h.resume(); // No paused torrents in finished list
     }
     torrent_status torrentStatus = h.status();
-    if(torrentStatus.state == torrent_status::downloading) {
+    if(torrentStatus.state == torrent_status::downloading || (torrentStatus.state != torrent_status::checking_files && torrentStatus.state != torrent_status::queued_for_checking && torrentStatus.progress != 1.)) {
       // What are you doing here, go back to download tab!
       qDebug("Info: a torrent was moved from finished to download tab");
       deleteFromFinishedList(hash);
+      emit torrentMovedFromFinishedList(h);
       continue;
     }
-    QList<QStandardItem *> items = finishedListModel->findItems(hash, Qt::MatchExactly, HASH );
-    if(items.size() != 1){
-      qDebug("Problem: Can't find torrent in finished list");
+    int row = getRowFromHash(hash);
+    if(row == -1){
+      std::cerr << "ERROR: Can't find torrent in finished list\n";
       continue;
     }
-    int row = items.at(0)->row();
     finishedListModel->setData(finishedListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
     finishedListModel->setData(finishedListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_seeds, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_peers - torrentStatus.num_seeds, true).c_str())));
   }
@@ -266,6 +265,16 @@ void FinishedTorrents::updateFinishedList(){
 
 QStringList FinishedTorrents::getFinishedSHAs(){
   return finishedSHAs;
+}
+
+int FinishedTorrents::getRowFromHash(const QString& hash) const{
+  unsigned int nbRows = finishedListModel->rowCount();
+  for(unsigned int i=0; i<nbRows; ++i){
+    if(finishedListModel->data(finishedListModel->index(i, HASH)) == hash){
+      return i;
+    }
+  }
+  return -1;
 }
 
 // Will move it to download tab
