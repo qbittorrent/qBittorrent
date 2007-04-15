@@ -2,6 +2,7 @@
 		- BUGFIX: Fixed pause toggle on double-click in download
 		- BUGFIX: The torrent size displayed now takes filtered files into consideration
 		- BUGFIX: Fixed compiling errors with libtorrent svn (future v0.13 with	UPnP enabled)
+		- BUGFIX: Small fix in the german translation
 
 * Tue Apr 10 2007 - Christophe Dumez <chris@qbittorrent.org> - v0.9.2
 		- BUGFIX: Window can now stay maximized on exit
