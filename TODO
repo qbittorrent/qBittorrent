@@ -46,3 +46,4 @@
 - Improve ratio display / calculation / saving / per torrent...
 - Sorting in Download Status column should be smarter than just an alphabetical sort
 - Windows port : http://www.peerweb.nl/qbittorrent/experimentalbuild/testing.zip
+- Improve search plugin update (make it automatic, write version/changelog in another file to limit brandwidth usage). Allow to disable this feature in program preferences.
