@@ -675,9 +675,16 @@ void bittorrent::disableIPFilter(){
   s->set_ip_filter(ip_filter());
 }
 
-// Set BT session settings (proxy, user_agent)
+// Set BT session settings (user_agent)
 void bittorrent::setSessionSettings(session_settings sessionSettings){
   s->set_settings(sessionSettings);
+}
+
+// Set Proxy
+void bittorrent::setProxySettings(proxy_settings proxySettings){
+  s->set_peer_proxy(proxySettings);
+  s->set_web_seed_proxy(proxySettings);
+  s->set_tracker_proxy(proxySettings);
 }
 
 // Read alerts sent by the bittorrent session

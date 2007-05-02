@@ -1121,7 +1121,8 @@ void GUI::configureSession(bool deleteOptions){
   qDebug("Configuring session");
   QPair<int, int> limits;
   unsigned short old_listenPort, new_listenPort;
-  session_settings proxySettings;
+  proxy_settings proxySettings;
+  session_settings sessionSettings;
   // Configure session regarding options
   BTSession.setDefaultSavePath(options->getSavePath());
   old_listenPort = BTSession.getListenPort();
@@ -1190,15 +1191,18 @@ void GUI::configureSession(bool deleteOptions){
   }
   // Apply Proxy settings
   if(options->isProxyEnabled()){
-    proxySettings.proxy_ip = options->getProxyIp().toStdString();
-    proxySettings.proxy_port = options->getProxyPort();
+    proxySettings.hostname = options->getProxyIp().toStdString();
+    proxySettings.port = options->getProxyPort();
+    proxySettings.type = proxy_settings::http;
     if(options->isProxyAuthEnabled()){
-      proxySettings.proxy_login = options->getProxyUsername().toStdString();
-      proxySettings.proxy_password = options->getProxyPassword().toStdString();
+      proxySettings.username = options->getProxyUsername().toStdString();
+      proxySettings.password = options->getProxyPassword().toStdString();
+      proxySettings.type = proxy_settings::http_pw;
     }
   }
-  proxySettings.user_agent = "qBittorrent "VERSION;
-  BTSession.setSessionSettings(proxySettings);
+  BTSession.setProxySettings(proxySettings);
+  sessionSettings.user_agent = "qBittorrent "VERSION;
+  BTSession.setSessionSettings(sessionSettings);
   // Scan dir stuff
   if(options->getScanDir().isNull()){
     BTSession.disableDirectoryScanning();
