@@ -121,6 +121,9 @@ class bittorrent : public QObject{
     void setGlobalRatio(float ratio);
     void setDHTPort(int dht_port);
     void setSessionSettings(session_settings sessionSettings);
+#ifdef V_0_13
+		void setProxySettings(proxy_settings proxySettings);
+#endif
     void setDefaultSavePath(const QString& savepath);
 
   protected slots:

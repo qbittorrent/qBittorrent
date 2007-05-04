@@ -229,8 +229,12 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, const QString
         resume_file.unsetf(std::ios_base::skipws);
         resume_data = bdecode(std::istream_iterator<char>(resume_file), std::istream_iterator<char>());
         fastResume=true;
-      }catch (invalid_encoding&) {}
-      catch (fs::filesystem_error&) {}
+      }catch (invalid_encoding&) {
+				std::cerr << "Encoding error while loading fastsume data for " << t.name().c_str() << '\n';
+			}
+      catch (fs::filesystem_error&) {
+				std::cerr << "Filesystem error while loading fastsume data for " << t.name().c_str() << '\n';
+			}
     }
     QString savePath = getSavePath(hash);
     // Adding files to bittorrent session
@@ -627,6 +631,14 @@ void bittorrent::setSessionSettings(session_settings sessionSettings){
   s->set_settings(sessionSettings);
 }
 
+#ifdef V_0_13
+void bittorrent::setProxySettings(proxy_settings proxySettings){
+  s->set_peer_proxy(proxySettings);
+	s->set_web_seed_proxy(proxySettings);
+	s->set_tracker_proxy(proxySettings);
+}
+#endif
+
 // Read alerts sent by the bittorrent session
 void bittorrent::readAlerts(){
   // look at session alerts and display some infos
@@ -651,6 +663,9 @@ void bittorrent::readAlerts(){
         emit trackerAuthenticationRequired(p->handle);
       }
     }
+		else if (fastresume_rejected_alert* p = dynamic_cast<fastresume_rejected_alert*>(a.get())) {
+			std::cerr << "Error while using fastresume data for " << p->handle.name() << ", msg: " << p->msg() << '\n';
+		}
     a = s->pop_alert();
   }
 }

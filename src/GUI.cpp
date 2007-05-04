@@ -1168,7 +1168,10 @@ void GUI::configureSession(bool deleteOptions){
   qDebug("Configuring session");
   QPair<int, int> limits;
   unsigned short old_listenPort, new_listenPort;
-  session_settings proxySettings;
+#ifdef V_0_13
+  proxy_settings proxySettings;
+#endif
+	session_settings sessionSettings;
   // Configure session regarding options
   BTSession.setDefaultSavePath(options->getSavePath());
   old_listenPort = BTSession.getListenPort();
@@ -1222,15 +1225,33 @@ void GUI::configureSession(bool deleteOptions){
   }
   // Apply Proxy settings
   if(options->isProxyEnabled()){
-    proxySettings.proxy_ip = options->getProxyIp().toStdString();
-    proxySettings.proxy_port = options->getProxyPort();
+#ifndef V_0_13
+    sessionSettings.proxy_ip = options->getProxyIp().toStdString();
+    sessionSettings.proxy_port = options->getProxyPort();
+#endif
+#ifdef V_0_13
+ 		proxySettings.hostname = options->getProxyIp().toStdString();
+    proxySettings.port = options->getProxyPort();
+    proxySettings.type = proxy_settings::http;	
+#endif
     if(options->isProxyAuthEnabled()){
-      proxySettings.proxy_login = options->getProxyUsername().toStdString();
-      proxySettings.proxy_password = options->getProxyPassword().toStdString();
+#ifndef V_0_13
+      sessionSettings.proxy_login = options->getProxyUsername().toStdString();
+      sessionSettings.proxy_password = options->getProxyPassword().toStdString();
+#endif
+#ifdef V_0_13
+			proxySettings.username = options->getProxyUsername().toStdString();
+	    proxySettings.password = options->getProxyPassword().toStdString();
+      proxySettings.type = proxy_settings::http_pw;
+#endif
     }
   }
-  proxySettings.user_agent = "qBittorrent "VERSION;
-  BTSession.setSessionSettings(proxySettings);
+#ifdef V_0_13
+	BTSession.setProxySettings(proxySettings);
+#endif
+  sessionSettings.user_agent = "qBittorrent "VERSION;
+  BTSession.setSessionSettings(sessionSettings);
+	
   // Scan dir stuff
   if(options->getScanDir().isNull()){
     BTSession.disableDirectoryScanning();
