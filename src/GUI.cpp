@@ -1044,9 +1044,26 @@ size_type GUI::torrentEffectiveSize(QString hash) const{
   torrent_info t = h.get_torrent_info();
   unsigned short nbFiles = t.num_files();
   size_type effective_size = 0;
+#ifndef V_0_13
+	QList<QByteArray> filteredFiles;
+	QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".pieces");
+	if(pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
+		QByteArray pieces_selection = pieces_file.readAll();
+	  pieces_file.close();
+	  filteredFiles = pieces_selection.split('\n');
+	}
+	bool corrupted_pieces_file = false;
+	if(nbFiles != filteredFiles.size() - 1)
+		corrupted_pieces_file = true;
+#endif
   for(unsigned int i=0; i<nbFiles; ++i){
+#ifndef V_0_13
+		if(!corrupted_pieces_file && !filteredFiles.at(i).toInt())
+#endif
+#ifdef V_0_13
     if(h.piece_priority(i) != 0)
-      effective_size += t.file_at(i).size;
+#endif
+			effective_size += t.file_at(i).size;
   }
   return effective_size;
 }
