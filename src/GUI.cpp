@@ -774,7 +774,7 @@ void GUI::on_actionCreate_torrent_triggered(){
 // Called when we minimize the program
 void GUI::hideEvent(QHideEvent *e){
   QSettings settings("qBittorrent", "qBittorrent");
-  if(systrayIntegration && settings.value("Options/Misc/Behaviour/GoToSystray", true).toBool()){
+  if(systrayIntegration && settings.value("Options/Misc/Behaviour/GoToSystray", true).toBool() && !e->spontaneous()){
     // Hide window
     hide();
   }
