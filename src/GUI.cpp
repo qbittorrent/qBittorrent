@@ -1058,7 +1058,7 @@ size_type GUI::torrentEffectiveSize(QString hash) const{
 #endif
   for(unsigned int i=0; i<nbFiles; ++i){
 #ifndef V_0_13
-		if(!corrupted_pieces_file && !filteredFiles.at(i).toInt())
+		if(corrupted_pieces_file || !filteredFiles.at(i).toInt())
 #endif
 #ifdef V_0_13
     if(h.piece_priority(i) != 0)
