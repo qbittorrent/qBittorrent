@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="sk">
+<!DOCTYPE TS><TS version="1.1">
 <context>
     <name>AboutDlg</name>
     <message>
         <location filename="../about.ui" line="16"/>
         <source>About qBittorrent</source>
-        <translation>O aplikáciii qBittorrent</translation>
+        <translation>O aplikácii qBittorrent</translation>
     </message>
     <message>
         <location filename="../about.ui" line="67"/>
@@ -162,7 +162,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>...</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Kb/s</source>
         <translation type="obsolete">Kb/s</translation>
     </message>
@@ -174,7 +174,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="332"/>
         <source>connections</source>
-        <translation>spojenia</translation>
+        <translation>spojení</translation>
     </message>
     <message>
         <location filename="../options.ui" line="930"/>
@@ -209,7 +209,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1047"/>
         <source>Authentication</source>
-        <translation>autentifikácia</translation>
+        <translation>Autentifikácia</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1075"/>
@@ -232,7 +232,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Please choose your preferred language in the following list:</source>
         <translation type="obsolete">Zvote si preferovan jazyk zo zoznamu:</translation>
     </message>
@@ -247,7 +247,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Storno</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Language settings will take effect after restart.</source>
         <translation type="obsolete">Nastavenia jazyka sa prejavia po retarte programu.</translation>
     </message>
@@ -259,7 +259,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="589"/>
         <source>Enable directory scan (auto add torrent files inside)</source>
-        <translation>Zapni prezeranie adresárov (automatické pridávanie torrent súborov)</translation>
+        <translation>Zapnúť prehľadávanie adresárov (automatické pridávanie torrent súborov)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="87"/>
@@ -272,19 +272,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Pomer zdieľania:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>1 KB DL = </source>
         <translation type="obsolete">1 KB DL = </translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>KB UP max.</source>
         <translation type="obsolete">KB UP max.</translation>
     </message>
     <message>
         <location filename="../options.ui" line="780"/>
         <source>Activate IP Filtering</source>
-        <translation>Aktivuj filtrovanie IP</translation>
+        <translation>Aktivovať filtrovanie IP</translation>
     </message>
     <message>
         <location filename="../options.ui" line="790"/>
@@ -324,12 +324,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="870"/>
         <source> Add Range</source>
-        <translation> Pridaj rozsah</translation>
+        <translation> Pridať rozsah</translation>
     </message>
     <message>
         <location filename="../options.ui" line="877"/>
         <source> Remove Range</source>
-        <translation> Odstráň rozsah</translation>
+        <translation> Odstrániť rozsah</translation>
     </message>
     <message>
         <location filename="../options.ui" line="907"/>
@@ -337,7 +337,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Cesta k ipfilter.dat:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Clear finished downloads on exit</source>
         <translation type="obsolete">Vyčisti dokončené sťahovania pri skončení programu</translation>
     </message>
@@ -372,22 +372,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Správanie</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>OSD</source>
         <translation type="obsolete">OSD</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Always display OSD</source>
         <translation type="obsolete">Vždy zobrazuj OSD</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Display OSD only if window is minimized or iconified</source>
         <translation type="obsolete">Zobrazuj OSD iba keď je okno minimalizované alebo ikonifikované</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Never display OSD</source>
         <translation type="obsolete">Nikdy nezobrazuj OSD</translation>
     </message>
@@ -407,19 +407,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>KiB UP max.</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>DHT (Trackerless):</source>
         <translation type="obsolete">DHT (bez trackera):</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="508"/>
+        <location filename="" line="4"/>
         <source>Disable DHT (Trackerless) support</source>
         <translation type="obsolete">Vypnúť podporu DHT (bez trackera)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1255"/>
         <source>Automatically clear finished downloads</source>
-        <translation>Automaticky vyčisti skončené sťahovania</translation>
+        <translation>Automaticky vyčistiť skončené sťahovania</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1285"/>
@@ -454,7 +454,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1161"/>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
-        <translation>Zobraz dialog pre pridanie torrentu zakaždým, keď pridám torrent</translation>
+        <translation>Zobraziť dialóg pre pridanie torrentu zakaždým, keď pridám torrent</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1174"/>
@@ -505,27 +505,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Otvoriť torrent súbory</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Unknown</source>
         <translation type="obsolete">Nezne</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1093"/>
+        <location filename="../GUI.cpp" line="1110"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Tento súbor je buď poškodený alebo to nie je torrent.</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Are you sure you want to delete all files in download list?</source>
         <translation type="obsolete">Určite chcete zmazať všetky súbory v zozname sťahovaných?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1719"/>
+        <location filename="../GUI.cpp" line="1757"/>
         <source>&amp;Yes</source>
         <translation>&amp;Áno</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1719"/>
+        <location filename="../GUI.cpp" line="1757"/>
         <source>&amp;No</source>
         <translation>&amp;Nie</translation>
     </message>
@@ -535,27 +535,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Určite chcete zmazať vybrané položky v zozname sťahovaných?</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>paused</source>
         <translation type="obsolete">pozastaven</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>started</source>
         <translation type="obsolete">spusten</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="489"/>
+        <location filename="" line="4"/>
         <source>Finished</source>
         <translation type="obsolete">hotovo</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="498"/>
+        <location filename="" line="4"/>
         <source>Checking...</source>
         <translation type="obsolete">kontroluje sa...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1329"/>
+        <location filename="../GUI.cpp" line="1367"/>
         <source>Connecting...</source>
         <translation>pripája sa...</translation>
     </message>
@@ -565,37 +565,37 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>sťahuje sa...</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Download list cleared.</source>
         <translation type="obsolete">Zoznam sťahovanch vyčistený.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1692"/>
+        <location filename="" line="4"/>
         <source>All Downloads Paused.</source>
         <translation type="obsolete">Všetky sťahovania pozastavené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1751"/>
+        <location filename="" line="4"/>
         <source>All Downloads Resumed.</source>
         <translation type="obsolete">Všetky sťahovania znovu spustené.</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>DL Speed: </source>
         <translation type="obsolete">Rchlos sahovania: </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="257"/>
+        <location filename="" line="4"/>
         <source> started.</source>
         <translation type="obsolete"> spustené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="462"/>
+        <location filename="" line="4"/>
         <source>UP Speed: </source>
         <translation type="obsolete">Rýchlosť nahrávania: </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1217"/>
+        <location filename="" line="4"/>
         <source>Couldn&apos;t create the directory:</source>
         <translation type="obsolete">Nebolo možné vytvoriť adresár:</translation>
     </message>
@@ -605,52 +605,52 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Torrent súbory</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>already in download list.</source>
         <translation type="obsolete">u sa nachza v zozname sahovanch.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1033"/>
+        <location filename="" line="4"/>
         <source>added to download list.</source>
         <translation type="obsolete">pridaný do zoznamu sťahovaných.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1035"/>
+        <location filename="" line="4"/>
         <source>resumed. (fast resume)</source>
         <translation type="obsolete">znovu spustené. (rýchle znovuspustenie)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1047"/>
+        <location filename="" line="4"/>
         <source>Unable to decode torrent file:</source>
         <translation type="obsolete">Nemohol som dekódovať torrent súbor:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>removed.</source>
         <translation type="obsolete">odstren.</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>paused.</source>
         <translation type="obsolete">pozastaven.</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>resumed.</source>
         <translation type="obsolete">znovu spusten.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1568"/>
+        <location filename="" line="4"/>
         <source>Listening on port: </source>
         <translation type="obsolete">Počúvam na porte: </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="257"/>
+        <location filename="" line="4"/>
         <source>qBittorrent </source>
         <translation type="obsolete">qBittorrent </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1731"/>
+        <location filename="../GUI.cpp" line="1769"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -660,171 +660,171 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Ste si istý? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="462"/>
+        <location filename="" line="4"/>
         <source>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </source>
         <translation type="obsolete">&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1395"/>
+        <location filename="" line="4"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Online</source>
         <translation type="obsolete">&lt;b&gt;Stav spojenia:&lt;/b&gt;&lt;br&gt;Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1400"/>
+        <location filename="" line="4"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;Stav spojenia:&lt;/b&gt;&lt;br&gt;Za firewallom?&lt;br&gt;&lt;i&gt;Žiadne prichzajúce spojenia...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1404"/>
+        <location filename="" line="4"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;Stav spojenia:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;Neboli nájdení rovesníci...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1321"/>
+        <location filename="" line="4"/>
         <source> has finished downloading.</source>
         <translation type="obsolete"> skončilo sťahovanie.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1388"/>
+        <location filename="../GUI.cpp" line="1426"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Nepodarilo sa počúvať na žiadnom zo zadaných portov.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1129"/>
+        <location filename="" line="4"/>
         <source>None</source>
         <translation type="obsolete">Žiadny</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1481"/>
+        <location filename="../GUI.cpp" line="1519"/>
         <source>Empty search pattern</source>
         <translation>Prázdny vyhľadávací vzor</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1481"/>
+        <location filename="../GUI.cpp" line="1519"/>
         <source>Please type a search pattern first</source>
         <translation>Prosím, najprv zadajte vyhľadávací vzor</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1457"/>
+        <location filename="" line="4"/>
         <source>No seach engine selected</source>
         <translation type="obsolete">Nebol zvolený vyhľadávač</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1499"/>
+        <location filename="../GUI.cpp" line="1537"/>
         <source>You must select at least one search engine.</source>
         <translation>Musíte zvoliť aspoň jeden vyhľadávač.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1539"/>
+        <location filename="../GUI.cpp" line="1577"/>
         <source>Searching...</source>
         <translation>Hľadá sa...</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Could not create search plugin.</source>
         <translation type="obsolete">Nemohol som vytvori plugin pre vyhadanie.</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Stopped</source>
         <translation type="obsolete">Zastaven</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Torrent file URL</source>
         <translation type="obsolete">URL torrent súboru</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Torrent file URL:</source>
         <translation type="obsolete">URL torrent súboru:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="814"/>
+        <location filename="" line="4"/>
         <source>Are you sure you want to quit? -- qBittorrent</source>
         <translation type="obsolete">Určite chcete ukončiť program? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Are you sure you want to quit qbittorrent?</source>
         <translation type="obsolete">Určite chcete ukončiť qBittorrent?</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Timed out</source>
         <translation type="obsolete">as vypral</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Error during search...</source>
         <translation type="obsolete">Chyba pos hadania...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="462"/>
+        <location filename="" line="4"/>
         <source>KiB/s</source>
         <translation type="obsolete">KiB/s</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source> KiB/s</source>
         <translation type="obsolete">KiB/s</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Stalled</source>
         <translation type="obsolete">Zastaven</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1001"/>
+        <location filename="" line="4"/>
         <source>removed.</source>
         <comment>&lt;file&gt; removed.</comment>
         <translation type="obsolete">odstránený.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1043"/>
+        <location filename="" line="4"/>
         <source>already in download list.</source>
         <comment>&lt;file&gt; already in download list.</comment>
         <translation type="obsolete">už sa nacháza v zozname sťahovaných.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1338"/>
+        <location filename="" line="4"/>
         <source>paused.</source>
         <comment>&lt;file&gt; paused.</comment>
         <translation type="obsolete">pozastavené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1292"/>
+        <location filename="" line="4"/>
         <source>resumed.</source>
         <comment>&lt;file&gt; resumed.</comment>
         <translation type="obsolete">znovu spustené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1716"/>
+        <location filename="" line="4"/>
         <source>Search is finished</source>
         <translation type="obsolete">Vyhľadávanie skočilo</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1752"/>
+        <location filename="../GUI.cpp" line="1790"/>
         <source>An error occured during search...</source>
         <translation>Počas vyhľadávania sa vyskytla chyba...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1755"/>
+        <location filename="../GUI.cpp" line="1793"/>
         <source>Search aborted</source>
         <translation>Vyhľadávanie preušené</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1758"/>
+        <location filename="../GUI.cpp" line="1796"/>
         <source>Search returned no results</source>
         <translation>Vyhľadávanie nevrátilo žiadne výsledky</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1734"/>
+        <location filename="../GUI.cpp" line="1772"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation>Aktualizácia zásuvného modulu vyhľadávania -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1718"/>
+        <location filename="../GUI.cpp" line="1756"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -834,62 +834,62 @@ Changelog:
 Záznam zmien:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1732"/>
+        <location filename="../GUI.cpp" line="1770"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Je mi ľúto, aktualizačný server je dočasne nedostupný.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1735"/>
+        <location filename="../GUI.cpp" line="1773"/>
         <source>Your search plugin is already up to date.</source>
         <translation>Váš vyhľadávací zásuvný modul je aktuálny.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1575"/>
+        <location filename="../GUI.cpp" line="1613"/>
         <source>Results</source>
         <translation>Výsledky</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="203"/>
+        <location filename="" line="4"/>
         <source>Name</source>
         <translation type="obsolete">Názov</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="204"/>
+        <location filename="" line="4"/>
         <source>Size</source>
         <translation type="obsolete">Veľkosť</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="106"/>
+        <location filename="" line="4"/>
         <source>Progress</source>
         <translation type="obsolete">Priebeh</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="107"/>
+        <location filename="" line="4"/>
         <source>DL Speed</source>
         <translation type="obsolete">rýchlosť sťahovania</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="108"/>
+        <location filename="" line="4"/>
         <source>UP Speed</source>
         <translation type="obsolete">rýchlosť nahrávania</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="105"/>
         <source>Status</source>
-        <translation>Status</translation>
+        <translation>Stav</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="111"/>
+        <location filename="" line="4"/>
         <source>ETA</source>
         <translation type="obsolete">Odhadovaný čas</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="205"/>
+        <location filename="" line="4"/>
         <source>Seeders</source>
         <translation type="obsolete">Seederi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="206"/>
+        <location filename="" line="4"/>
         <source>Leechers</source>
         <translation type="obsolete">Leecheri</translation>
     </message>
@@ -899,18 +899,18 @@ Záznam zmien:</translation>
         <translation>Vyhľadávač</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="528"/>
+        <location filename="" line="4"/>
         <source>Stalled</source>
         <comment>state of a torrent whose DL Speed is 0</comment>
         <translation type="obsolete">Bez pohybu</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1378"/>
+        <location filename="../GUI.cpp" line="1416"/>
         <source>Paused</source>
         <translation>Pozastavený</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1100"/>
         <source>Transfers</source>
         <translation>Prenosy</translation>
     </message>
@@ -927,25 +927,25 @@ Please close the other one first.</source>
 Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2325"/>
+        <location filename="" line="4"/>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
         <translation type="obsolete">Nemohol som stiahnuť</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2325"/>
+        <location filename="" line="4"/>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
         <translation type="obsolete">dôvod:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2344"/>
+        <location filename="" line="4"/>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
         <translation type="obsolete">Sťahujem</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2344"/>
+        <location filename="" line="4"/>
         <source>Please wait...</source>
         <translation type="obsolete">Čakajte prosím...</translation>
     </message>
@@ -960,23 +960,23 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Ste si istý, že chcete zmazať vybrané položky v zozname sťahovaných a na pevnom disku?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1363"/>
+        <location filename="../GUI.cpp" line="1401"/>
         <source>Download finished</source>
         <translation>Sťahovanie dokončené</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1323"/>
+        <location filename="" line="4"/>
         <source> has finished downloading.</source>
         <comment>&lt;filename&gt; has finished downloading.</comment>
         <translation type="obsolete"> skončilo sťahovanie.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1749"/>
+        <location filename="../GUI.cpp" line="1787"/>
         <source>Search Engine</source>
         <translation>Vyhľadávač</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1330"/>
+        <location filename="" line="4"/>
         <source>I/O Error</source>
         <translation type="obsolete">V/V Chyba</translation>
     </message>
@@ -987,17 +987,17 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1446"/>
+        <location filename="../GUI.cpp" line="1484"/>
         <source>Connection status:</source>
         <translation>Stav spojenia:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1446"/>
+        <location filename="../GUI.cpp" line="1484"/>
         <source>Offline</source>
         <translation>Offline</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1446"/>
+        <location filename="../GUI.cpp" line="1484"/>
         <source>No peers found...</source>
         <translation>Neboli nájdení rovesníci...</translation>
     </message>
@@ -1103,143 +1103,143 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>&apos;%1&apos; bol odstránený.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1078"/>
+        <location filename="../GUI.cpp" line="1095"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; bol pridaný do zoznamu na sťahovanie.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1080"/>
+        <location filename="../GUI.cpp" line="1097"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; bol obnovený. (rýchle obnovenie)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1088"/>
+        <location filename="../GUI.cpp" line="1105"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; sa už nachádza v zozname sťahovaných.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1092"/>
+        <location filename="../GUI.cpp" line="1109"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Nebol omožné dekodovať torrent súbor: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1155"/>
+        <location filename="../GUI.cpp" line="1172"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
         <translation>Žiadna</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1178"/>
+        <location filename="../GUI.cpp" line="1198"/>
         <source>Listening on port: %1</source>
         <comment>e.g: Listening on port: 1666</comment>
         <translation>Počúvam na porte: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1267"/>
+        <location filename="../GUI.cpp" line="1305"/>
         <source>All downloads were paused.</source>
         <translation>Všetky sťahovania pozastavené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1287"/>
+        <location filename="../GUI.cpp" line="1325"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos; pozastavené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1307"/>
+        <location filename="../GUI.cpp" line="1345"/>
         <source>Connecting...</source>
         <comment>i.e: Connecting to the tracker...</comment>
         <translation>pripája sa...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1311"/>
+        <location filename="../GUI.cpp" line="1349"/>
         <source>All downloads were resumed.</source>
         <translation>Všetky sťahovania obnovené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1330"/>
+        <location filename="../GUI.cpp" line="1368"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos; obnovené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1363"/>
+        <location filename="../GUI.cpp" line="1401"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 je stiahnutý.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1372"/>
+        <location filename="../GUI.cpp" line="1410"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>V/V Chyba</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1372"/>
+        <location filename="../GUI.cpp" line="1410"/>
         <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
         <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
         <translation>Vyskytla sa chyba pri pokuse o čítanie alebo zapisovanie do %1. Disk je pravdepodobne plný, sťahovanie bolo pozastavené</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1338"/>
+        <location filename="" line="4"/>
         <source>An error occured (full fisk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full fisk?), &apos;xxx.avi&apos; paused.</comment>
         <translation type="obsolete">Vyskytla sa chyba (plný disk?), &apos;%1&apos; pozastavené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1442"/>
+        <location filename="../GUI.cpp" line="1480"/>
         <source>Connection Status:</source>
         <translation>Stav spojenia:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1437"/>
+        <location filename="../GUI.cpp" line="1475"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1442"/>
+        <location filename="../GUI.cpp" line="1480"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Za firewallom?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1442"/>
+        <location filename="../GUI.cpp" line="1480"/>
         <source>No incoming connections...</source>
         <translation>Žiadne prichádzajúce spojenia...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1499"/>
+        <location filename="../GUI.cpp" line="1537"/>
         <source>No search engine selected</source>
         <translation>Nebol zvolený žiadny vyhľadávač</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1731"/>
+        <location filename="../GUI.cpp" line="1769"/>
         <source>Search plugin update</source>
         <translation>Aktualizácia zásuvného modulu vyhľadávača</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1760"/>
+        <location filename="../GUI.cpp" line="1798"/>
         <source>Search has finished</source>
         <translation>Hľadanie skončené</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1764"/>
+        <location filename="../GUI.cpp" line="1802"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Výsledky</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1865"/>
+        <location filename="../GUI.cpp" line="1903"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Sťahuje sa &apos;%1&apos;, čakajte prosím...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1380"/>
+        <location filename="../GUI.cpp" line="1418"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Vyskytla sa chyba (plný disk?), &apos;%1&apos; pozastavené.</translation>
@@ -1263,37 +1263,37 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Celková rýchlosť nahrávania:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Name</source>
         <translation type="obsolete">Nov</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Size</source>
         <translation type="obsolete">Vekos</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>% DL</source>
         <translation type="obsolete">sahovania</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>DL Speed</source>
         <translation type="obsolete">rchlos sahovania</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>UP Speed</source>
         <translation type="obsolete">rchlos nahrania</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Status</source>
         <translation type="obsolete">Status</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>ETA</source>
         <translation type="obsolete">Odhadovan s</translation>
     </message>
@@ -1363,12 +1363,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Spustiť všetky</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="860"/>
+        <location filename="" line="4"/>
         <source>Documentation</source>
         <translation type="obsolete">Dokumentácia</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Delete All</source>
         <translation type="obsolete">Zmazať všetky</translation>
     </message>
@@ -1378,12 +1378,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Vlastnosti torrentu</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Connection Status</source>
         <translation type="obsolete">Stav spojenia</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Downloads</source>
         <translation type="obsolete">Sťahovania</translation>
     </message>
@@ -1423,17 +1423,17 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Zastaviť</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Seeds</source>
         <translation type="obsolete">Seedy</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Leechers</source>
         <translation type="obsolete">Leecheri</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Search Engine</source>
         <translation type="obsolete">Vyhad</translation>
     </message>
@@ -1519,7 +1519,7 @@ Najskôr ho prosím zatvorte.</translation>
 <context>
     <name>QTextEdit</name>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Clear</source>
         <translation type="obsolete">Vyčisti</translation>
     </message>
@@ -1527,12 +1527,12 @@ Najskôr ho prosím zatvorte.</translation>
 <context>
     <name>Ui</name>
     <message>
-        <location filename="../about_imp.h" line="67"/>
+        <location filename="" line="4"/>
         <source>Please contact me if you would like to translate qBittorrent to your own language.</source>
         <translation type="obsolete">Prosím, kontaktujte ma, ak chcete preložiť qBittorrent do vlastného jazyka.</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="38"/>
+        <location filename="" line="4"/>
         <source>qBittorrent </source>
         <translation type="obsolete">qBittorrent </translation>
     </message>
@@ -1542,12 +1542,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Rád by som poďakoval nasledovným dobrovoľníkom, ktorí preložili qBittorrent:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>&lt;ul&gt;&lt;li&gt;I would like to thank sourceforge.net for hosting qBittorrent project.&lt;/li&gt;</source>
         <translation type="obsolete">lt;ul&gt;&lt;li&gt;R by som pokoval serveru sourceforge.net za hosting projektu qBittorrent.&lt;/li&gt;</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>&lt;li&gt;I also like to thank Jeffery Fernandez (developer@jefferyfernandez.id.au), our RPM packager, for his great work.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation type="obsolete">lt;li&gt;Tie by som r pokoval Jefferymu Fernandezovi (developer@jefferyfernandez.id.au), nu tvorcovi RPM balkov, za jeho skvel pru.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
@@ -1655,7 +1655,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Storno</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>select</source>
         <translation type="obsolete">vybrať</translation>
     </message>
@@ -1711,7 +1711,7 @@ Najskôr ho prosím zatvorte.</translation>
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Dialog</source>
         <translation type="obsolete">Dial</translation>
     </message>
@@ -1721,17 +1721,17 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Vytvoriť Torrent súbor</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Destination torrent file:</source>
         <translation type="obsolete">Cieov torrent sbor:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Input file or directory:</source>
         <translation type="obsolete">Vstupn sbor alebo adres:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Comment:</source>
         <translation type="obsolete">Koment:</translation>
     </message>
@@ -1751,7 +1751,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Storno</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Announce url (Tracker):</source>
         <translation type="obsolete">Announce url (Tracker):</translation>
     </message>
@@ -1829,7 +1829,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Vstupná cesta neexistuje</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Please type a correct input path first</source>
         <translation type="obsolete">Prosím, napíšte správnu vstupnú cestu</translation>
     </message>
@@ -1880,37 +1880,37 @@ Najskôr ho prosím zatvorte.</translation>
 <context>
     <name>misc</name>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>B</source>
         <translation type="obsolete">B</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>KiB</source>
         <translation type="obsolete">KiB</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>MiB</source>
         <translation type="obsolete">MiB</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>GiB</source>
         <translation type="obsolete">GiB</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>TiB</source>
         <translation type="obsolete">TiB</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>m</source>
         <translation type="obsolete">m</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>h </source>
         <translation type="obsolete">h </translation>
     </message>
@@ -1920,12 +1920,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Neznámy</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>h</source>
         <translation type="obsolete">h</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>d</source>
         <translation type="obsolete">d</translation>
     </message>
@@ -1960,25 +1960,25 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="220"/>
+        <location filename="" line="4"/>
         <source>m</source>
         <comment>minutes</comment>
         <translation type="obsolete">m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="215"/>
+        <location filename="" line="4"/>
         <source>h</source>
         <comment>hours</comment>
         <translation type="obsolete">h</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="220"/>
+        <location filename="" line="4"/>
         <source>d</source>
         <comment>days</comment>
         <translation type="obsolete">d</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="220"/>
+        <location filename="" line="4"/>
         <source>h </source>
         <comment>hours</comment>
         <translation type="obsolete">h </translation>
@@ -2017,52 +2017,52 @@ Najskôr ho prosím zatvorte.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="239"/>
+        <location filename="" line="4"/>
         <source>Options saved successfully!</source>
         <translation type="obsolete">Nastavenia úspešne uložené!</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="706"/>
+        <location filename="" line="4"/>
         <source>Choose Scan Directory</source>
         <translation type="obsolete">Vyberte adresár, ktorý sa bude prehliadať</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="729"/>
+        <location filename="" line="4"/>
         <source>Choose save Directory</source>
         <translation type="obsolete">Vyberte adresár, kde sa bude ukladať</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="713"/>
+        <location filename="" line="4"/>
         <source>Choose ipfilter.dat file</source>
         <translation type="obsolete">Vyberte ipfilter.dat súbor</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="761"/>
+        <location filename="" line="4"/>
         <source>I/O Error</source>
         <translation type="obsolete">V/V Chyba</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="761"/>
+        <location filename="" line="4"/>
         <source>Couldn&apos;t open:</source>
         <translation type="obsolete">Nemohol som otvoriť:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="761"/>
+        <location filename="" line="4"/>
         <source>in read mode.</source>
         <translation type="obsolete">na čítanie.</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Invalid Line</source>
         <translation type="obsolete">neplatný riadok</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Line</source>
         <translation type="obsolete">riadok</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>is malformed.</source>
         <translation type="obsolete">je v zlom tvare.</translation>
     </message>
@@ -2077,12 +2077,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Počiatočná IP:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Incorrect IP</source>
         <translation type="obsolete">Nesprávna IP</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>This IP is incorrect.</source>
         <translation type="obsolete">Táto IP je nesprávna.</translation>
     </message>
@@ -2107,7 +2107,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Komentár:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>to</source>
         <translation type="obsolete">a</translation>
     </message>
@@ -2200,7 +2200,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Vlastnosti torrentu</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Main Infos</source>
         <translation type="obsolete">Hlavninfo</translation>
     </message>
@@ -2215,32 +2215,32 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Súčasná relácia</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Total Uploaded:</source>
         <translation type="obsolete">Celkovo nahran:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Total Downloaded:</source>
         <translation type="obsolete">Celkovo stiahnut:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="102"/>
+        <location filename="" line="4"/>
         <source>Download state:</source>
         <translation type="obsolete">Stav sťahovania:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Current Tracker:</source>
         <translation type="obsolete">Ssn tracker:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Number of Peers:</source>
         <translation type="obsolete">Pot rovesnov:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Torrent Content</source>
         <translation type="obsolete">Obsah torrentu</translation>
     </message>
@@ -2250,47 +2250,47 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Total Failed:</source>
         <translation type="obsolete">Celkov pot zlyhan:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="" line="4"/>
         <source>Finished</source>
         <translation type="obsolete">Skončené</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="55"/>
+        <location filename="" line="4"/>
         <source>Queued for checking</source>
         <translation type="obsolete">Zaradené frontu pre kontrolu</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="58"/>
+        <location filename="" line="4"/>
         <source>Checking files</source>
         <translation type="obsolete">Kontrolujem súbory</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="61"/>
+        <location filename="" line="4"/>
         <source>Connecting to tracker</source>
         <translation type="obsolete">Pripájam sa k trackeru</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="64"/>
+        <location filename="" line="4"/>
         <source>Downloading Metadata</source>
         <translation type="obsolete">Sťahujem metadáta</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="67"/>
+        <location filename="" line="4"/>
         <source>Downloading</source>
         <translation type="obsolete">Sťahujem</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="70"/>
+        <location filename="" line="4"/>
         <source>Seeding</source>
         <translation type="obsolete">Seedujem</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="73"/>
+        <location filename="" line="4"/>
         <source>Allocating</source>
         <translation type="obsolete">Alokujem</translation>
     </message>
@@ -2300,12 +2300,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Neznámy</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Complete: </source>
         <translation type="obsolete">Dokončené: </translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Partial: </source>
         <translation type="obsolete">Čiastočne: </translation>
     </message>
@@ -2327,12 +2327,12 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <location filename="../properties.ui" line="592"/>
         <source> Unselect</source>
-        <translation> Odober</translation>
+        <translation> Odobrať</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="599"/>
         <source> Select</source>
-        <translation> Vyber</translation>
+        <translation> Vybrať</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="632"/>
@@ -2340,12 +2340,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Tu môžete presne vybrať, ktoré súbory zo súčasného torrentu chcete stiahnuť.</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>False</source>
         <translation type="obsolete">Nie</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>True</source>
         <translation type="obsolete">no</translation>
     </message>
@@ -2380,7 +2380,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Hlavné info</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Number of peers:</source>
         <translation type="obsolete">Počet rovesníkov:</translation>
     </message>
@@ -2402,7 +2402,7 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <location filename="../properties.ui" line="467"/>
         <source>Total failed:</source>
-        <translation>Celkovo zlyhané:</translation>
+        <translation>Celkovo zlyhalo:</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="522"/>
@@ -2410,12 +2410,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Obsah torrentu</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="160"/>
+        <location filename="" line="4"/>
         <source>Seeders:</source>
         <translation type="obsolete">Seederi:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="185"/>
+        <location filename="" line="4"/>
         <source>Leechers:</source>
         <translation type="obsolete">Leecheri:</translation>
     </message>
@@ -2425,7 +2425,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Pomer zdieľania:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="4"/>
         <source>Options</source>
         <translation type="obsolete">Nastavenia</translation>
     </message>
