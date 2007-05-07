@@ -131,10 +131,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   downloadList->setItemDelegate(DLDelegate);
   // Hide hash column
   downloadList->hideColumn(HASH);
-  // Load last columns width for download list
-  if(!loadColWidthDLList()){
-    downloadList->header()->resizeSection(0, 200);
-  }
+
 #ifndef NO_UPNP
   connect(&BTSession, SIGNAL(noWanServiceDetected()), this, SLOT(displayNoUPnPWanServiceDetected()));
   connect(&BTSession, SIGNAL(wanServiceDetected()), this, SLOT(displayUPnPWanServiceDetected()));
@@ -159,6 +156,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(&BTSession, SIGNAL(updateFileSize(QString)), this, SLOT(updateFileSize(QString)));
   // Resume unfinished torrents
   BTSession.resumeUnfinishedTorrents();
+	// Load last columns width for download list
+  if(!loadColWidthDLList()){
+    downloadList->header()->resizeSection(0, 200);
+  }
   // Add torrent given on command line
   processParams(torrentCmdLine);
   // Make download list header clickable for sorting
@@ -631,16 +632,29 @@ void GUI::sortDownloadListString(int index, Qt::SortOrder sortOrder){
   DLListModel->removeRows(0, nbRows_old);
 }
 
-void GUI::sortDownloadList(int index){
-  static Qt::SortOrder sortOrder = Qt::AscendingOrder;
-  if(downloadList->header()->sortIndicatorSection() == index){
+void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoadColWidth){
+  static Qt::SortOrder sortOrder = startSortOrder;
+  if(!fromLoadColWidth && downloadList->header()->sortIndicatorSection() == index){
     if(sortOrder == Qt::AscendingOrder){
       sortOrder = Qt::DescendingOrder;
     }else{
       sortOrder = Qt::AscendingOrder;
     }
   }
-  downloadList->header()->setSortIndicator(index, sortOrder);
+	QString sortOrderLetter;
+	if(sortOrder == Qt::AscendingOrder)
+		sortOrderLetter = "a";
+	else
+		sortOrderLetter = "d";
+	if(fromLoadColWidth) {
+		// XXX: Why is this needed?
+		if(sortOrder == Qt::DescendingOrder)
+			downloadList->header()->setSortIndicator(index, Qt::AscendingOrder);
+		else
+			downloadList->header()->setSortIndicator(index, Qt::DescendingOrder);
+	} else {
+	  downloadList->header()->setSortIndicator(index, sortOrder);
+	}
   switch(index){
     case SIZE:
     case ETA:
@@ -652,6 +666,8 @@ void GUI::sortDownloadList(int index){
     default:
       sortDownloadListString(index, sortOrder);
   }
+	QSettings settings("qBittorrent", "qBittorrent");
+	settings.setValue("DownloadListSortedCol", QString(misc::toString(index).c_str())+sortOrderLetter);
 }
 
 // Toggle Main window visibility
@@ -719,6 +735,18 @@ bool GUI::loadColWidthDLList(){
   for(unsigned int i=0; i<listSize; ++i){
         downloadList->header()->resizeSection(i, width_list.at(i).toInt());
   }
+	// Loading last sorted column
+	QString sortedCol = settings.value("DownloadListSortedCol", QString()).toString();
+	if(!sortedCol.isEmpty()){
+		Qt::SortOrder sortOrder;
+		if(sortedCol.endsWith("d"))
+			sortOrder = Qt::DescendingOrder;
+		else
+			sortOrder = Qt::AscendingOrder;
+		sortedCol = sortedCol.left(sortedCol.size()-1);
+		int index = sortedCol.toInt();
+		sortDownloadList(index, sortOrder, true);
+	}
   qDebug("Download list columns width loaded");
   return true;
 }

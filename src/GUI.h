@@ -109,7 +109,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void acceptConnection();
     void saveColWidthDLList() const;
     bool loadColWidthDLList();
-    void sortDownloadList(int index);
+    void sortDownloadList(int index, Qt::SortOrder startSortOrder=Qt::AscendingOrder, bool fromLoadColWidth=false);
     void sortDownloadListFloat(int index, Qt::SortOrder sortOrder);
     void sortDownloadListString(int index, Qt::SortOrder sortOrder);
     void displayDLListMenu(const QPoint& pos);
