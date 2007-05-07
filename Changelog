@@ -1,7 +1,8 @@
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.9.3
+* Mon May 07 2007 - Christophe Dumez <chris@qbittorrent.org> - v0.9.3
 		- BUGFIX: Fixed pause toggle on double-click in download list
 		- BUGFIX: The torrent size displayed now only takes unfiltered files into	account
 		- BUGFIX: Fixed compiling errors with libtorrent svn (future v0.13 with	UPnP enabled)
+		- BUGFIX: Remember sorted column in download list on restart
 		- BUGFIX: Small fix in the german translation
 		- BUGFIX: Some fixes in slovak translation
 
