@@ -12,12 +12,21 @@
     - FEATURE: Improved a lot the torrent creation module
     - FEATURE: Allow to set upload/download limit per torrent (right click)
     - FEATURE: Ask for exit confirmation only if download list is not empty
-    - FEATURE: Proxy is now used for tracker / web seeds / peers connections
+    - FEATURE: Allow to use  a proxy for trackers / web seeds / peers / DHT connections
+    - FEATURE: Supports SOCKS5 proxies as well as HTTP ones
     - FEATURE: Better systems integration (buttons, dialogs...)
     - FEATURE: Fileted files are not allocated on the hard-drive anymore (if FS is compatible)
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features
+
+* Mon May 07 2007 - Christophe Dumez <chris@qbittorrent.org> - v0.9.3
+    - BUGFIX: Fixed pause toggle on double-click in download list
+    - BUGFIX: The torrent size displayed now only takes unfiltered files into account
+    - BUGFIX: Fixed compiling errors with libtorrent svn (future v0.13 with UPnP enabled)
+    - BUGFIX: Remember sorted column in download list on restart
+    - BUGFIX: Small fix in the german translation
+    - BUGFIX: Some fixes in slovak translation
 
 * Tue Apr 10 2007 - Christophe Dumez <chris@qbittorrent.org> - v0.9.2
     - BUGFIX: Window can now stay maximized on exit

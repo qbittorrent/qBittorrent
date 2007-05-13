@@ -190,6 +190,11 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(proxy_ip, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(proxy_username, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(proxy_password, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(comboProxyType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkProxyTrackers, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkProxyPeers, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkProxyWebseeds, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkProxyDHT, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   // Misc Settings
   connect(checkAdditionDialog, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(txt_savePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -299,6 +304,16 @@ void options_imp::saveOptions(){
   if(enabled){
     settings.setValue("IP", getProxyIp());
     settings.setValue("Port", getProxyPort());
+    unsigned short val = getProxyType();
+    if(val == HTTP || val == HTTP_PW){
+      settings.setValue("ProxyType", HTTP);
+    }else{
+      settings.setValue("ProxyType", SOCKS5);
+    }
+    settings.setValue("UseProxyForTrackers", useProxyForTrackers());
+    settings.setValue("UseProxyForPeers", useProxyForPeers());
+    settings.setValue("UseProxyForWebseeds", useProxyForWebseeds());
+    settings.setValue("UseProxyForDHT", useProxyForDHT());
     enabled = isProxyAuthEnabled();
     settings.beginGroup("Authentication");
     settings.setValue("Enabled", enabled);
@@ -345,6 +360,38 @@ void options_imp::saveOptions(){
 
 bool options_imp::isFilteringEnabled() const{
   return activateFilter->isChecked();
+}
+
+unsigned short options_imp::getProxyType() const{
+  if(comboProxyType->currentIndex() == HTTP){
+    if(isProxyAuthEnabled()){
+      return HTTP_PW;
+    }else{
+      return HTTP;
+    }
+  }else{
+    if(isProxyAuthEnabled()){
+      return SOCKS5_PW;
+    }else{
+      return SOCKS5;
+    }
+  }
+}
+
+bool options_imp::useProxyForTrackers() const{
+  return checkProxyTrackers->isChecked();
+}
+
+bool options_imp::useProxyForPeers() const{
+  return checkProxyPeers->isChecked();
+}
+
+bool options_imp::useProxyForWebseeds() const{
+  return checkProxyWebseeds->isChecked();
+}
+
+bool options_imp::useProxyForDHT() const{
+  return checkProxyDHT->isChecked();
 }
 
 QString options_imp::getStyle() const{
@@ -522,6 +569,11 @@ void options_imp::loadOptions(){
       groupProxy->setEnabled(true);
       proxy_ip->setText(strValue);
       proxy_port->setValue(settings.value("Port", 8080).toInt());
+      comboProxyType->setCurrentIndex(settings.value("ProxyType", HTTP).toInt());
+      checkProxyTrackers->setChecked(settings.value("useProxyForTrackers", true).toBool());
+      checkProxyPeers->setChecked(settings.value("useProxyForPeers", true).toBool());
+      checkProxyWebseeds->setChecked(settings.value("useProxyForWebseeds", true).toBool());
+      checkProxyDHT->setChecked(settings.value("useProxyForDHT", true).toBool());
       settings.beginGroup("Authentication");
       if(settings.value("Enabled", false).toBool()){
         enableProxyAuth_checkBox->setChecked(true);

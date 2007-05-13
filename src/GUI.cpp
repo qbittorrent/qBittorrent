@@ -1219,16 +1219,27 @@ void GUI::configureSession(bool deleteOptions){
   }
   // Apply Proxy settings
   if(options->isProxyEnabled()){
+    switch(options->getProxyType()){
+      case HTTP_PW:
+        proxySettings.type = proxy_settings::http_pw;
+        break;
+      case SOCKS5:
+        proxySettings.type = proxy_settings::socks5;
+        break;
+      case SOCKS5_PW:
+        proxySettings.type = proxy_settings::socks5_pw;
+        break;
+      default:
+        proxySettings.type = proxy_settings::http;
+    }
     proxySettings.hostname = options->getProxyIp().toStdString();
     proxySettings.port = options->getProxyPort();
-    proxySettings.type = proxy_settings::http;
     if(options->isProxyAuthEnabled()){
       proxySettings.username = options->getProxyUsername().toStdString();
       proxySettings.password = options->getProxyPassword().toStdString();
-      proxySettings.type = proxy_settings::http_pw;
     }
   }
-  BTSession.setProxySettings(proxySettings);
+  BTSession.setProxySettings(proxySettings, options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
   sessionSettings.user_agent = "qBittorrent "VERSION;
   BTSession.setSessionSettings(sessionSettings);
   // Scan dir stuff

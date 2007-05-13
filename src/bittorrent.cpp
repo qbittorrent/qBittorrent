@@ -681,10 +681,16 @@ void bittorrent::setSessionSettings(session_settings sessionSettings){
 }
 
 // Set Proxy
-void bittorrent::setProxySettings(proxy_settings proxySettings){
-  s->set_peer_proxy(proxySettings);
-  s->set_web_seed_proxy(proxySettings);
-  s->set_tracker_proxy(proxySettings);
+void bittorrent::setProxySettings(proxy_settings proxySettings, bool trackers, bool peers, bool web_seeds, bool dht){
+  if(trackers)
+    s->set_tracker_proxy(proxySettings);
+  if(peers)
+    s->set_peer_proxy(proxySettings);
+  if(web_seeds)
+    s->set_web_seed_proxy(proxySettings);
+  if(DHTEnabled && dht){
+    s->set_dht_proxy(proxySettings);
+  }
 }
 
 // Read alerts sent by the bittorrent session

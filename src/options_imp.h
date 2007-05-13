@@ -27,6 +27,11 @@
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
 
+#define HTTP 0
+#define SOCKS5 1
+#define HTTP_PW 2
+#define SOCKS5_PW 3
+
 using namespace libtorrent;
 
 class options_imp : public QDialog, private Ui::Dialog{
@@ -69,6 +74,11 @@ class options_imp : public QDialog, private Ui::Dialog{
     unsigned short getProxyPort() const;
     QString getProxyUsername() const;
     QString getProxyPassword() const;
+    unsigned short getProxyType() const;
+    bool useProxyForTrackers() const;
+    bool useProxyForPeers() const;
+    bool useProxyForWebseeds() const;
+    bool useProxyForDHT() const;
     // Language Settings
     QString getLocale() const;
     // Misc Settings

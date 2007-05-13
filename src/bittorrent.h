@@ -116,7 +116,7 @@ class bittorrent : public QObject{
     void setUploadRateLimit(int rate);
     void setGlobalRatio(float ratio);
     void setDHTPort(int dht_port);
-    void setProxySettings(proxy_settings proxySettings);
+    void setProxySettings(proxy_settings proxySettings, bool trackers=true, bool peers=true, bool web_seeds=true, bool dht=true);
     void setSessionSettings(session_settings sessionSettings);
     void setDefaultSavePath(const QString& savepath);
 #ifndef NO_UPNP

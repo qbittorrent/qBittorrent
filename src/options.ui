@@ -1248,7 +1248,7 @@
             <item>
              <widget class="QLabel" name="lbl_ip" >
               <property name="text" >
-               <string>Server IP:</string>
+               <string>Server IP or url:</string>
               </property>
              </widget>
             </item>
@@ -1293,6 +1293,50 @@
               <property name="value" >
                <number>8080</number>
               </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="serverType_lbl" >
+              <property name="text" >
+               <string>Proxy type:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboProxyType" >
+              <item>
+               <property name="text" >
+                <string>HTTP</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>SOCKS5</string>
+               </property>
+              </item>
              </widget>
             </item>
             <item>
@@ -1403,6 +1447,83 @@
               </layout>
              </item>
             </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupProxyConnec" >
+            <property name="minimumSize" >
+             <size>
+              <width>0</width>
+              <height>110</height>
+             </size>
+            </property>
+            <property name="title" >
+             <string>Affected connections</string>
+            </property>
+            <widget class="QCheckBox" name="checkProxyTrackers" >
+             <property name="geometry" >
+              <rect>
+               <x>10</x>
+               <y>20</y>
+               <width>341</width>
+               <height>22</height>
+              </rect>
+             </property>
+             <property name="text" >
+              <string>Use proxy for connections to trackers</string>
+             </property>
+             <property name="checked" >
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QCheckBox" name="checkProxyPeers" >
+             <property name="geometry" >
+              <rect>
+               <x>10</x>
+               <y>40</y>
+               <width>341</width>
+               <height>22</height>
+              </rect>
+             </property>
+             <property name="text" >
+              <string>Use proxy for connections to regular peers</string>
+             </property>
+             <property name="checked" >
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QCheckBox" name="checkProxyWebseeds" >
+             <property name="geometry" >
+              <rect>
+               <x>10</x>
+               <y>60</y>
+               <width>341</width>
+               <height>22</height>
+              </rect>
+             </property>
+             <property name="text" >
+              <string>Use proxy for connections to web seeds</string>
+             </property>
+             <property name="checked" >
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QCheckBox" name="checkProxyDHT" >
+             <property name="geometry" >
+              <rect>
+               <x>10</x>
+               <y>80</y>
+               <width>341</width>
+               <height>22</height>
+              </rect>
+             </property>
+             <property name="text" >
+              <string>Use proxy for DHT messages</string>
+             </property>
+             <property name="checked" >
+              <bool>true</bool>
+             </property>
+            </widget>
            </widget>
           </item>
           <item>
