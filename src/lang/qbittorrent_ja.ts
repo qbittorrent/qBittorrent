@@ -114,23 +114,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../allocationDlg.h" line="42"/>
         <source>Upload limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>アップロード制限:</translation>
     </message>
     <message>
         <location filename="../allocationDlg.h" line="44"/>
         <source>Download limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>ダウンロード制限:</translation>
     </message>
     <message>
         <location filename="../allocationDlg.h" line="92"/>
         <source>Unlimited</source>
         <comment>Unlimited (bandwidth)</comment>
-        <translation type="unfinished"></translation>
+        <translation>無制限</translation>
     </message>
     <message>
         <location filename="../allocationDlg.h" line="96"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -546,47 +546,47 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1251"/>
         <source>Server IP or url:</source>
-        <translation type="unfinished"></translation>
+        <translation>サーバーの IP または url:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1324"/>
         <source>Proxy type:</source>
-        <translation type="unfinished"></translation>
+        <translation>プロキシの種類:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1332"/>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1337"/>
         <source>SOCKS5</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS5</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1461"/>
         <source>Affected connections</source>
-        <translation type="unfinished"></translation>
+        <translation>影響された接続</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1473"/>
         <source>Use proxy for connections to trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>トラッカへの接続にプロキシを使用する</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1489"/>
         <source>Use proxy for connections to regular peers</source>
-        <translation type="unfinished"></translation>
+        <translation>通常のピアへの接続にプロキシを使用する</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1505"/>
         <source>Use proxy for connections to web seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Web シードへの接続にプロキシを使用する</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1521"/>
         <source>Use proxy for DHT messages</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT メッセージへの接続にプロキシを使用する</translation>
     </message>
 </context>
 <context>
@@ -653,7 +653,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../FinishedTorrents.cpp" line="307"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
-        <translation type="unfinished">なし</translation>
+        <translation>なし</translation>
     </message>
 </context>
 <context>
@@ -681,7 +681,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../GUI.cpp" line="965"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
-        <translation>ダウンロードの一覧の選択されたアイテムを削除してもよろしいですか?</translation>
+        <translation>ダウンロードの一覧にある選択されたアイテムを削除してもよろしいですか?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1342"/>
@@ -738,7 +738,7 @@ Please close the other one first.</source>
     <message>
         <location filename="../GUI.cpp" line="894"/>
         <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
-        <translation>ハード ドライブとダウンロードの一覧にある選択されたアイテムを削除してもよろしいですか?</translation>
+        <translation>ダウンロードの一覧およびハード ドライブにある選択されたアイテムを削除してもよろしいですか?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="56"/>
@@ -1034,17 +1034,17 @@ qBittorrent を終了してもよろしいですか?</translation>
     <message>
         <location filename="../GUI.cpp" line="901"/>
         <source>Are you sure you want to delete the selected item(s) in finished list and in hard drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>完了済みの一覧およびハード ドライブにある選択されたアイテムを削除してもよろしいですか?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="972"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
-        <translation type="unfinished"></translation>
+        <translation>ダウンロードの一覧にある選択されたアイテムを削除してもよろしいですか?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1204"/>
         <source>UPnP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP サポート [オン]</translation>
     </message>
 </context>
 <context>
@@ -1187,12 +1187,12 @@ qBittorrent を終了してもよろしいですか?</translation>
     <message>
         <location filename="../MainWindow.ui" line="535"/>
         <source>Set upload limit</source>
-        <translation type="unfinished"></translation>
+        <translation>アップロード制限の設定</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="540"/>
         <source>Set download limit</source>
-        <translation type="unfinished"></translation>
+        <translation>ダウンロード制限の設定</translation>
     </message>
 </context>
 <context>
@@ -1210,25 +1210,25 @@ qBittorrent を終了してもよろしいですか?</translation>
     <message>
         <location filename="../PropListDelegate.h" line="148"/>
         <source>Ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>無視済み</translation>
     </message>
     <message>
         <location filename="../PropListDelegate.h" line="149"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished"></translation>
+        <translation>通常</translation>
     </message>
     <message>
         <location filename="../PropListDelegate.h" line="150"/>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished"></translation>
+        <translation>高</translation>
     </message>
     <message>
         <location filename="../PropListDelegate.h" line="151"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="unfinished"></translation>
+        <translation>最大</translation>
     </message>
 </context>
 <context>
@@ -1251,17 +1251,17 @@ qBittorrent を終了してもよろしいですか?</translation>
     <message>
         <location filename="../rss.ui" line="208"/>
         <source>Delete</source>
-        <translation type="unfinished">削除</translation>
+        <translation>削除</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="213"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>名前の変更</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="218"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>更新</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="219"/>
@@ -1271,37 +1271,37 @@ qBittorrent を終了してもよろしいですか?</translation>
     <message>
         <location filename="../rss.ui" line="48"/>
         <source>RSS streams :</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS ストリーム :</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="89"/>
         <source>Delete selected streams</source>
-        <translation type="unfinished"></translation>
+        <translation>選択されたストリームを削除します</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="111"/>
         <source>Refresh RSS streams</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS ストリームの更新</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="133"/>
         <source>Add a new RSS stream</source>
-        <translation type="unfinished"></translation>
+        <translation>新しい RSS ストリームを追加します</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="174"/>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;ニュース:&lt;/b&gt; &lt;i&gt;(お使いの web ブラウザでリンクを開くにはダブルクリックします)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="223"/>
         <source>Add RSS stream</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS ストリームの追加</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="228"/>
         <source>Refresh all streams</source>
-        <translation type="unfinished"></translation>
+        <translation>すべてのストリームの更新</translation>
     </message>
 </context>
 <context>
@@ -1309,52 +1309,52 @@ qBittorrent を終了してもよろしいですか?</translation>
     <message>
         <location filename="../rss_imp.cpp" line="170"/>
         <source>Please type a rss stream url</source>
-        <translation type="unfinished"></translation>
+        <translation>rss ストリームの url を入力してください</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="170"/>
         <source>Stream URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>ストリームの URL:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="136"/>
         <source>Please choose a new name for this stream</source>
-        <translation type="unfinished"></translation>
+        <translation>このストリームの新しい名前を選択してください</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="136"/>
         <source>New stream name:</source>
-        <translation type="unfinished"></translation>
+        <translation>新しいストリーム名:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="190"/>
         <source>no description avalaible</source>
-        <translation type="unfinished"></translation>
+        <translation>利用可能な説明がありません</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="116"/>
         <source>Are you sure? -- qBittorrent</source>
-        <translation type="unfinished">よろしいですか? -- qBittorrent</translation>
+        <translation>よろしいですか? -- qBittorrent</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="116"/>
         <source>Are you sure you want to delete this stream from the list ?</source>
-        <translation type="unfinished"></translation>
+        <translation>一覧からこのストリームを削除してもよろしいですか ?</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="116"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished">はい(&amp;Y)</translation>
+        <translation>はい(&amp;Y)</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="116"/>
         <source>&amp;No</source>
-        <translation type="unfinished">いいえ(&amp;N)</translation>
+        <translation>いいえ(&amp;N)</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="192"/>
         <source>no refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>更新なし</translation>
     </message>
 </context>
 <context>
@@ -1660,12 +1660,12 @@ Changelog:
     <message>
         <location filename="../bandwidth_limit.ui" line="13"/>
         <source>Bandwidth allocation</source>
-        <translation type="unfinished"></translation>
+        <translation>大域幅の割り当て</translation>
     </message>
     <message>
         <location filename="../bandwidth_limit.ui" line="47"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -1723,37 +1723,37 @@ Changelog:
     <message>
         <location filename="../createtorrent.ui" line="48"/>
         <source>Torrent file creation</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent ファイルの作成</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="93"/>
         <source>Input files or directories:</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルまたはディレクトリの入力:</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="112"/>
         <source>Announce urls (trackers):</source>
-        <translation type="unfinished"></translation>
+        <translation>アナウンス url (トラッカ):</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="128"/>
         <source>URL seeds (optional):</source>
-        <translation type="unfinished"></translation>
+        <translation>URL シード (オプション):</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="147"/>
         <source>Comment (optional):</source>
-        <translation type="unfinished"></translation>
+        <translation>コメント (オプション):</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="489"/>
         <source>Private (won&apos;t be distributed on trackerless network / DHT if enabled)</source>
-        <translation type="unfinished"></translation>
+        <translation>非公開 (トラッカレス ネットワーク上に配布されません / 有効なら DHT)</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="517"/>
         <source>Destination torrent file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent ファイルの作成先:</translation>
     </message>
 </context>
 <context>
@@ -1821,32 +1821,32 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="66"/>
         <source>Select a folder to add to the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent に追加するフォルダを選択します</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="72"/>
         <source>Select files to add to the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent に追加するファイルを選択します</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="99"/>
         <source>Please type an announce URL</source>
-        <translation type="unfinished"></translation>
+        <translation>アナウンス URL を入力してください</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="100"/>
         <source>Announce URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>アナウンス URL:</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="118"/>
         <source>Please type an URL Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>URL シードを入力してください</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="119"/>
         <source>URL Seed:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL シード:</translation>
     </message>
 </context>
 <context>
@@ -2223,37 +2223,37 @@ Changelog:
     <message>
         <location filename="../properties_imp.cpp" line="30"/>
         <source>Priorities:</source>
-        <translation type="unfinished"></translation>
+        <translation>優先度:</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="30"/>
         <source>Ignored: File is not downloaded at all</source>
-        <translation type="unfinished"></translation>
+        <translation>無視済み: ファイルはとにかくダウンロードされません</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="30"/>
         <source>Normal: normal priority. Download order is dependent on availability</source>
-        <translation type="unfinished"></translation>
+        <translation>通常: 通常の優先度です。ダウンロードの順序は利用性に依存します</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="30"/>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
-        <translation type="unfinished"></translation>
+        <translation>高: 通常より高い優先度です。部分は同じ利用性での部分を超えて優先されますが、より低い利用性での部分は超えません</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="30"/>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
-        <translation type="unfinished"></translation>
+        <translation>最大: 最大の優先度です、利用性は無視され、部分はすべてのより低い優先度でのその他の部分を超えて優先されます</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="39"/>
         <source>File name</source>
-        <translation type="unfinished">ファイル名</translation>
+        <translation>ファイル名</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="42"/>
         <source>Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>優先度</translation>
     </message>
 </context>
 <context>
@@ -2329,37 +2329,37 @@ Changelog:
     <message>
         <location filename="../seeding.ui" line="54"/>
         <source>Start</source>
-        <translation type="unfinished">開始</translation>
+        <translation>開始</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="59"/>
         <source>Pause</source>
-        <translation type="unfinished">一時停止</translation>
+        <translation>一時停止</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="64"/>
         <source>Delete</source>
-        <translation type="unfinished">削除</translation>
+        <translation>削除</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="69"/>
         <source>Delete Permanently</source>
-        <translation type="unfinished">永久に削除</translation>
+        <translation>永久に削除</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="74"/>
         <source>Torrent Properties</source>
-        <translation type="unfinished">Torrent のプロパティ</translation>
+        <translation>Torrent のプロパティ</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="79"/>
         <source>Preview file</source>
-        <translation type="unfinished">ファイルのプレビュー</translation>
+        <translation>ファイルのプレビュー</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="84"/>
         <source>Set upload limit</source>
-        <translation type="unfinished"></translation>
+        <translation>アップロード制限の設定</translation>
     </message>
 </context>
 <context>
@@ -2422,22 +2422,22 @@ Changelog:
     <message>
         <location filename="../torrentAddition.h" line="65"/>
         <source>File name</source>
-        <translation type="unfinished">ファイル名</translation>
+        <translation>ファイル名</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="66"/>
         <source>Size</source>
-        <translation type="unfinished">サイズ</translation>
+        <translation>サイズ</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="67"/>
         <source>Progress</source>
-        <translation type="unfinished">進行状況</translation>
+        <translation>進行状況</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="68"/>
         <source>Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>優先度</translation>
     </message>
 </context>
 </TS>
