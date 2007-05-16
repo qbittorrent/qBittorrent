@@ -23,6 +23,7 @@
 #include "misc.h"
 #include "PropListDelegate.h"
 #include <QInputDialog>
+#include <QMessageBox>
 
 // Constructor
 properties::properties(QWidget *parent, torrent_handle &h, QStringList trackerErrors): QDialog(parent), h(h){
@@ -190,9 +191,16 @@ void properties::deleteSelectedTrackers(){
   QList<QListWidgetItem *> selectedItems;
   selectedItems = trackersURLS->selectedItems();
   QListWidgetItem *item;
+	unsigned int nbTrackers = trackers.size();
+	if(nbTrackers == (unsigned int) selectedItems.size()){
+		QMessageBox::warning(this, tr("qBittorrent"),
+		                   tr("Trackers list can't be empty."),
+												QMessageBox::Ok);
+		return;
+	}
   foreach(item, selectedItems){
     QString url = item->text();
-    for(unsigned int i=0; i<trackers.size(); ++i){
+    for(unsigned int i=0; i<nbTrackers; ++i){
       if(QString(trackers.at(i).url.c_str()) == url){
         trackers.erase(trackers.begin()+i);
         break;
