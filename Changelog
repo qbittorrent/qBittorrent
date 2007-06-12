@@ -1,4 +1,4 @@
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v0.10.0
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.0.0
     - FEATURE: Based on new libtorrent v0.13
     - FEATURE: Added UPnP / NAT-PMP port forwarding support
     - FEATURE: Added RSS support
@@ -15,7 +15,7 @@
     - FEATURE: Allow to use  a proxy for trackers / web seeds / peers / DHT connections
     - FEATURE: Supports SOCKS5 proxies as well as HTTP ones
     - FEATURE: Better systems integration (buttons, dialogs...)
-    - FEATURE: Fileted files are not allocated on the hard-drive anymore (if FS is compatible)
+    - FEATURE: Filtered files are not allocated on the hard-drive anymore (if FS is compatible)
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features
