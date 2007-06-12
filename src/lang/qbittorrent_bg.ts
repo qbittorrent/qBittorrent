@@ -2318,52 +2318,70 @@ Changelog:
     <message>
         <location filename="../about_imp.h" line="44"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation>Бих искал да благодаря на следните доброволци, превели qBittorent:</translation>
+        <translation type="obsolete">Бих искал да благодаря на следните доброволци, превели qBittorent:</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="126"/>
         <source>Preview impossible</source>
-        <translation>Оглед невъзможен</translation>
+        <translation type="obsolete">Оглед невъзможен</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="126"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Съжалявам, не можем да огледаме този файл</translation>
+        <translation type="obsolete">Съжалявам, не можем да огледаме този файл</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="98"/>
         <source>Name</source>
-        <translation>Име</translation>
+        <translation type="obsolete">Име</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="99"/>
         <source>Size</source>
-        <translation>Размер</translation>
+        <translation type="obsolete">Размер</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="100"/>
         <source>Progress</source>
-        <translation>Изпълнение</translation>
+        <translation type="obsolete">Изпълнение</translation>
     </message>
     <message>
         <location filename="../downloadFromURLImp.h" line="64"/>
         <source>No URL entered</source>
-        <translation>Невъведен URL</translation>
+        <translation type="obsolete">Невъведен URL</translation>
     </message>
     <message>
         <location filename="../downloadFromURLImp.h" line="64"/>
         <source>Please type at least one URL.</source>
-        <translation>Моля въведете поне един URL.</translation>
+        <translation type="obsolete">Моля въведете поне един URL.</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="37"/>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="68"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation>Моля, свържете се с мен ако искате да преведете qBittorrent на вашия език.</translation>
+        <translation type="obsolete">Моля, свържете се с мен ако искате да преведете qBittorrent на вашия език.</translation>
+    </message>
+</context>
+<context>
+    <name>about</name>
+    <message>
+        <location filename="../about_imp.h" line="37"/>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <location filename="../about_imp.h" line="44"/>
+        <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
+        <translation type="unfinished">Бих искал да благодаря на следните доброволци, превели qBittorent:</translation>
+    </message>
+    <message>
+        <location filename="../about_imp.h" line="68"/>
+        <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
+        <translation type="unfinished">Моля, свържете се с мен ако искате да преведете qBittorrent на вашия език.</translation>
     </message>
 </context>
 <context>
@@ -2718,6 +2736,16 @@ Changelog:
         <source>Download from urls</source>
         <translation>Свали от url-ове</translation>
     </message>
+    <message>
+        <location filename="../downloadFromURLImp.h" line="64"/>
+        <source>No URL entered</source>
+        <translation type="unfinished">Невъведен URL</translation>
+    </message>
+    <message>
+        <location filename="../downloadFromURLImp.h" line="64"/>
+        <source>Please type at least one URL.</source>
+        <translation type="unfinished">Моля въведете поне един URL.</translation>
+    </message>
 </context>
 <context>
     <name>misc</name>
@@ -2985,6 +3013,34 @@ Changelog:
     </message>
 </context>
 <context>
+    <name>previewSelect</name>
+    <message>
+        <location filename="../previewSelect.h" line="126"/>
+        <source>Preview impossible</source>
+        <translation type="unfinished">Оглед невъзможен</translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="126"/>
+        <source>Sorry, we can&apos;t preview this file</source>
+        <translation type="unfinished">Съжалявам, не можем да огледаме този файл</translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="98"/>
+        <source>Name</source>
+        <translation type="unfinished">Име</translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="99"/>
+        <source>Size</source>
+        <translation type="unfinished">Размер</translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="100"/>
+        <source>Progress</source>
+        <translation type="unfinished">Изпълнение</translation>
+    </message>
+</context>
+<context>
     <name>properties</name>
     <message>
         <location filename="../properties.ui" line="13"/>
@@ -3087,7 +3143,7 @@ Changelog:
         <translation type="obsolete">Уточняване</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="70"/>
+        <location filename="../properties_imp.cpp" line="71"/>
         <source>Unknown</source>
         <translation>Неизвестен</translation>
     </message>
@@ -3107,7 +3163,7 @@ Changelog:
         <translation>Файлове включени в торента:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="40"/>
+        <location filename="../properties_imp.cpp" line="41"/>
         <source>Size</source>
         <translation>Размер</translation>
     </message>
@@ -3152,7 +3208,7 @@ Changelog:
         <translation>Тракери:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="163"/>
+        <location filename="../properties_imp.cpp" line="164"/>
         <source>None - Unreachable?</source>
         <translation>Няма - Недостъпни?</translation>
     </message>
@@ -3162,7 +3218,7 @@ Changelog:
         <translation>Грешки:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="41"/>
+        <location filename="../properties_imp.cpp" line="42"/>
         <source>Progress</source>
         <translation>Изпълнение</translation>
     </message>
@@ -3267,48 +3323,58 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="173"/>
+        <location filename="../properties_imp.cpp" line="174"/>
         <source>New tracker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="174"/>
+        <location filename="../properties_imp.cpp" line="175"/>
         <source>New tracker url:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Priorities:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Ignored: File is not downloaded at all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Normal: normal priority. Download order is dependent on availability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="39"/>
+        <location filename="../properties_imp.cpp" line="40"/>
         <source>File name</source>
         <translation type="unfinished">Име файл</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="42"/>
+        <location filename="../properties_imp.cpp" line="43"/>
         <source>Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="196"/>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="197"/>
+        <source>Trackers list can&apos;t be empty.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

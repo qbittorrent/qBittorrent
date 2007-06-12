@@ -2310,7 +2310,7 @@ Changelog:
     <message>
         <location filename="../about_imp.h" line="44"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation>큐비토런트를 번역하는데 도움을 주신 다음 분들에게 다시 한번 감사드립니다:</translation>
+        <translation type="obsolete">큐비토런트를 번역하는데 도움을 주신 다음 분들에게 다시 한번 감사드립니다:</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -2325,47 +2325,65 @@ Changelog:
     <message>
         <location filename="../previewSelect.h" line="126"/>
         <source>Preview impossible</source>
-        <translation>미리보기 불가</translation>
+        <translation type="obsolete">미리보기 불가</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="126"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>죄송합니다. 이 파일은 미리보기를 할수 없습니다</translation>
+        <translation type="obsolete">죄송합니다. 이 파일은 미리보기를 할수 없습니다</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="98"/>
         <source>Name</source>
-        <translation>파일 이름</translation>
+        <translation type="obsolete">파일 이름</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="99"/>
         <source>Size</source>
-        <translation>크기</translation>
+        <translation type="obsolete">크기</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="100"/>
         <source>Progress</source>
-        <translation>진행상황</translation>
+        <translation type="obsolete">진행상황</translation>
     </message>
     <message>
         <location filename="../downloadFromURLImp.h" line="64"/>
         <source>No URL entered</source>
-        <translation>주소(URL)가 포함되지 않았습니다 </translation>
+        <translation type="obsolete">주소(URL)가 포함되지 않았습니다 </translation>
     </message>
     <message>
         <location filename="../downloadFromURLImp.h" line="64"/>
         <source>Please type at least one URL.</source>
-        <translation>적어도 하나의 주소(URL)를 적어주십시오.</translation>
+        <translation type="obsolete">적어도 하나의 주소(URL)를 적어주십시오.</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="37"/>
         <source>qBittorrent</source>
-        <translation>큐비토런트</translation>
+        <translation type="obsolete">큐비토런트</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="68"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation>큐비토런트를 자신이 사용하는 언어로 번역하는데 관심이 있으시가면 제게 연락을 주십시오.</translation>
+        <translation type="obsolete">큐비토런트를 자신이 사용하는 언어로 번역하는데 관심이 있으시가면 제게 연락을 주십시오.</translation>
+    </message>
+</context>
+<context>
+    <name>about</name>
+    <message>
+        <location filename="../about_imp.h" line="37"/>
+        <source>qBittorrent</source>
+        <translation type="unfinished">큐비토런트</translation>
+    </message>
+    <message>
+        <location filename="../about_imp.h" line="44"/>
+        <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
+        <translation type="unfinished">큐비토런트를 번역하는데 도움을 주신 다음 분들에게 다시 한번 감사드립니다:</translation>
+    </message>
+    <message>
+        <location filename="../about_imp.h" line="68"/>
+        <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
+        <translation type="unfinished">큐비토런트를 자신이 사용하는 언어로 번역하는데 관심이 있으시가면 제게 연락을 주십시오.</translation>
     </message>
 </context>
 <context>
@@ -2720,6 +2738,16 @@ Changelog:
         <source>Download from urls</source>
         <translation>URL로 부터 다운로드 받기</translation>
     </message>
+    <message>
+        <location filename="../downloadFromURLImp.h" line="64"/>
+        <source>No URL entered</source>
+        <translation type="unfinished">주소(URL)가 포함되지 않았습니다 </translation>
+    </message>
+    <message>
+        <location filename="../downloadFromURLImp.h" line="64"/>
+        <source>Please type at least one URL.</source>
+        <translation type="unfinished">적어도 하나의 주소(URL)를 적어주십시오.</translation>
+    </message>
 </context>
 <context>
     <name>misc</name>
@@ -2994,6 +3022,34 @@ Changelog:
     </message>
 </context>
 <context>
+    <name>previewSelect</name>
+    <message>
+        <location filename="../previewSelect.h" line="126"/>
+        <source>Preview impossible</source>
+        <translation type="unfinished">미리보기 불가</translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="126"/>
+        <source>Sorry, we can&apos;t preview this file</source>
+        <translation type="unfinished">죄송합니다. 이 파일은 미리보기를 할수 없습니다</translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="98"/>
+        <source>Name</source>
+        <translation type="unfinished">파일 이름</translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="99"/>
+        <source>Size</source>
+        <translation type="unfinished">크기</translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="100"/>
+        <source>Progress</source>
+        <translation type="unfinished">진행상황</translation>
+    </message>
+</context>
+<context>
     <name>properties</name>
     <message>
         <location filename="../properties.ui" line="13"/>
@@ -3106,7 +3162,7 @@ Changelog:
         <translation type="obsolete"> MB</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="70"/>
+        <location filename="../properties_imp.cpp" line="71"/>
         <source>Unknown</source>
         <translation>알수 없음</translation>
     </message>
@@ -3126,7 +3182,7 @@ Changelog:
         <translation>현 토렌트에 있는 파일들:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="40"/>
+        <location filename="../properties_imp.cpp" line="41"/>
         <source>Size</source>
         <translation>크기</translation>
     </message>
@@ -3171,7 +3227,7 @@ Changelog:
         <translation>서버목록:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="163"/>
+        <location filename="../properties_imp.cpp" line="164"/>
         <source>None - Unreachable?</source>
         <translation>없음 - 접근할수 없습니까?</translation>
     </message>
@@ -3181,7 +3237,7 @@ Changelog:
         <translation>에러:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="41"/>
+        <location filename="../properties_imp.cpp" line="42"/>
         <source>Progress</source>
         <translation>진행상황</translation>
     </message>
@@ -3286,48 +3342,58 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="173"/>
+        <location filename="../properties_imp.cpp" line="174"/>
         <source>New tracker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="174"/>
+        <location filename="../properties_imp.cpp" line="175"/>
         <source>New tracker url:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Priorities:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Ignored: File is not downloaded at all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Normal: normal priority. Download order is dependent on availability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="39"/>
+        <location filename="../properties_imp.cpp" line="40"/>
         <source>File name</source>
         <translation type="unfinished">파일 이름</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="42"/>
+        <location filename="../properties_imp.cpp" line="43"/>
         <source>Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="196"/>
+        <source>qBittorrent</source>
+        <translation type="unfinished">큐비토런트</translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="197"/>
+        <source>Trackers list can&apos;t be empty.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

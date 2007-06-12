@@ -2423,7 +2423,7 @@ Changements:
     <message>
         <location filename="../about_imp.h" line="44"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation>Je tiens à remercier les personnes suivantes pour avoir traduit qBittorrent :</translation>
+        <translation type="obsolete">Je tiens à remercier les personnes suivantes pour avoir traduit qBittorrent :</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -2438,47 +2438,65 @@ Changements:
     <message>
         <location filename="../previewSelect.h" line="126"/>
         <source>Preview impossible</source>
-        <translation>Prévisualisation impossible</translation>
+        <translation type="obsolete">Prévisualisation impossible</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="126"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Désolé, il est impossible de prévisualiser ce fichier</translation>
+        <translation type="obsolete">Désolé, il est impossible de prévisualiser ce fichier</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="98"/>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation type="obsolete">Nom</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="99"/>
         <source>Size</source>
-        <translation>Taille</translation>
+        <translation type="obsolete">Taille</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="100"/>
         <source>Progress</source>
-        <translation>Progression</translation>
+        <translation type="obsolete">Progression</translation>
     </message>
     <message>
         <location filename="../downloadFromURLImp.h" line="64"/>
         <source>No URL entered</source>
-        <translation>Aucune URL entrée</translation>
+        <translation type="obsolete">Aucune URL entrée</translation>
     </message>
     <message>
         <location filename="../downloadFromURLImp.h" line="64"/>
         <source>Please type at least one URL.</source>
-        <translation>Veuillez entrer au moins une URL.</translation>
+        <translation type="obsolete">Veuillez entrer au moins une URL.</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="37"/>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="68"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation>Veuillez me contacter si vous désirez traduire qBittorrent dans votre langue natale.</translation>
+        <translation type="obsolete">Veuillez me contacter si vous désirez traduire qBittorrent dans votre langue natale.</translation>
+    </message>
+</context>
+<context>
+    <name>about</name>
+    <message>
+        <location filename="../about_imp.h" line="37"/>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <location filename="../about_imp.h" line="44"/>
+        <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
+        <translation type="unfinished">Je tiens à remercier les personnes suivantes pour avoir traduit qBittorrent :</translation>
+    </message>
+    <message>
+        <location filename="../about_imp.h" line="68"/>
+        <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
+        <translation type="unfinished">Veuillez me contacter si vous désirez traduire qBittorrent dans votre langue natale.</translation>
     </message>
 </context>
 <context>
@@ -2838,6 +2856,16 @@ Changements:
         <source>Download from urls</source>
         <translation>Téléchargement depuis des urls</translation>
     </message>
+    <message>
+        <location filename="../downloadFromURLImp.h" line="64"/>
+        <source>No URL entered</source>
+        <translation type="unfinished">Aucune URL entrée</translation>
+    </message>
+    <message>
+        <location filename="../downloadFromURLImp.h" line="64"/>
+        <source>Please type at least one URL.</source>
+        <translation type="unfinished">Veuillez entrer au moins une URL.</translation>
+    </message>
 </context>
 <context>
     <name>misc</name>
@@ -3111,6 +3139,34 @@ Changements:
     </message>
 </context>
 <context>
+    <name>previewSelect</name>
+    <message>
+        <location filename="../previewSelect.h" line="126"/>
+        <source>Preview impossible</source>
+        <translation type="unfinished">Prévisualisation impossible</translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="126"/>
+        <source>Sorry, we can&apos;t preview this file</source>
+        <translation type="unfinished">Désolé, il est impossible de prévisualiser ce fichier</translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="98"/>
+        <source>Name</source>
+        <translation type="unfinished">Nom</translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="99"/>
+        <source>Size</source>
+        <translation type="unfinished">Taille</translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="100"/>
+        <source>Progress</source>
+        <translation type="unfinished">Progression</translation>
+    </message>
+</context>
+<context>
     <name>properties</name>
     <message>
         <location filename="../properties.ui" line="13"/>
@@ -3228,7 +3284,7 @@ Changements:
         <translation type="obsolete"> Mo</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="70"/>
+        <location filename="../properties_imp.cpp" line="71"/>
         <source>Unknown</source>
         <translation>Inconnu</translation>
     </message>
@@ -3248,7 +3304,7 @@ Changements:
         <translation>Fichiers contenus dans le torrent actuel :</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="40"/>
+        <location filename="../properties_imp.cpp" line="41"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
@@ -3293,7 +3349,7 @@ Changements:
         <translation>Trackers :</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="163"/>
+        <location filename="../properties_imp.cpp" line="164"/>
         <source>None - Unreachable?</source>
         <translation>Aucun - indisponible ?</translation>
     </message>
@@ -3303,7 +3359,7 @@ Changements:
         <translation>Erreurs :</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="41"/>
+        <location filename="../properties_imp.cpp" line="42"/>
         <source>Progress</source>
         <translation>Progression</translation>
     </message>
@@ -3408,48 +3464,58 @@ Changements:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="173"/>
+        <location filename="../properties_imp.cpp" line="174"/>
         <source>New tracker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="174"/>
+        <location filename="../properties_imp.cpp" line="175"/>
         <source>New tracker url:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Priorities:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Ignored: File is not downloaded at all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Normal: normal priority. Download order is dependent on availability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="39"/>
+        <location filename="../properties_imp.cpp" line="40"/>
         <source>File name</source>
         <translation type="unfinished">Nom</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="42"/>
+        <location filename="../properties_imp.cpp" line="43"/>
         <source>Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="196"/>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="197"/>
+        <source>Trackers list can&apos;t be empty.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

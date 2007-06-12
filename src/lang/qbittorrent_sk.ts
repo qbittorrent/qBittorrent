@@ -2139,7 +2139,7 @@ Záznam zmien:</translation>
     <message>
         <location filename="../about_imp.h" line="44"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation>Rád by som poďakoval nasledovným dobrovoľníkom, ktorí preložili qBittorrent:</translation>
+        <translation type="obsolete">Rád by som poďakoval nasledovným dobrovoľníkom, ktorí preložili qBittorrent:</translation>
     </message>
     <message>
         <location filename="" line="135076380"/>
@@ -2154,47 +2154,65 @@ Záznam zmien:</translation>
     <message>
         <location filename="../previewSelect.h" line="126"/>
         <source>Preview impossible</source>
-        <translation>Náhľad nemožný</translation>
+        <translation type="obsolete">Náhľad nemožný</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="126"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Prepáčte, tento súbor sa nedá otvoriť ako náhľad</translation>
+        <translation type="obsolete">Prepáčte, tento súbor sa nedá otvoriť ako náhľad</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="98"/>
         <source>Name</source>
-        <translation>Názov</translation>
+        <translation type="obsolete">Názov</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="99"/>
         <source>Size</source>
-        <translation>Veľkosť</translation>
+        <translation type="obsolete">Veľkosť</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="100"/>
         <source>Progress</source>
-        <translation>Priebeh</translation>
+        <translation type="obsolete">Priebeh</translation>
     </message>
     <message>
         <location filename="../downloadFromURLImp.h" line="64"/>
         <source>No URL entered</source>
-        <translation>Nebolo zadané URL</translation>
+        <translation type="obsolete">Nebolo zadané URL</translation>
     </message>
     <message>
         <location filename="../downloadFromURLImp.h" line="64"/>
         <source>Please type at least one URL.</source>
-        <translation>Prosím, napíšte aspoň jedno URL.</translation>
+        <translation type="obsolete">Prosím, napíšte aspoň jedno URL.</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="37"/>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="68"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation>Prosím, kontaktujte ma ak chcete preložiť qBittorrent do vášho jazyka.</translation>
+        <translation type="obsolete">Prosím, kontaktujte ma ak chcete preložiť qBittorrent do vášho jazyka.</translation>
+    </message>
+</context>
+<context>
+    <name>about</name>
+    <message>
+        <location filename="../about_imp.h" line="37"/>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <location filename="../about_imp.h" line="44"/>
+        <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
+        <translation type="unfinished">Rád by som poďakoval nasledovným dobrovoľníkom, ktorí preložili qBittorrent:</translation>
+    </message>
+    <message>
+        <location filename="../about_imp.h" line="68"/>
+        <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
+        <translation type="unfinished">Prosím, kontaktujte ma ak chcete preložiť qBittorrent do vášho jazyka.</translation>
     </message>
 </context>
 <context>
@@ -2554,6 +2572,16 @@ Záznam zmien:</translation>
         <source>Cancel</source>
         <translation>Storno</translation>
     </message>
+    <message>
+        <location filename="../downloadFromURLImp.h" line="64"/>
+        <source>No URL entered</source>
+        <translation type="unfinished">Nebolo zadané URL</translation>
+    </message>
+    <message>
+        <location filename="../downloadFromURLImp.h" line="64"/>
+        <source>Please type at least one URL.</source>
+        <translation type="unfinished">Prosím, napíšte aspoň jedno URL.</translation>
+    </message>
 </context>
 <context>
     <name>misc</name>
@@ -2871,6 +2899,34 @@ Záznam zmien:</translation>
     </message>
 </context>
 <context>
+    <name>previewSelect</name>
+    <message>
+        <location filename="../previewSelect.h" line="126"/>
+        <source>Preview impossible</source>
+        <translation type="unfinished">Náhľad nemožný</translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="126"/>
+        <source>Sorry, we can&apos;t preview this file</source>
+        <translation type="unfinished">Prepáčte, tento súbor sa nedá otvoriť ako náhľad</translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="98"/>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="99"/>
+        <source>Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../previewSelect.h" line="100"/>
+        <source>Progress</source>
+        <translation type="unfinished">Priebeh</translation>
+    </message>
+</context>
+<context>
     <name>properties</name>
     <message>
         <location filename="../properties.ui" line="13"/>
@@ -2973,7 +3029,7 @@ Záznam zmien:</translation>
         <translation type="obsolete">Alokujem</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="70"/>
+        <location filename="../properties_imp.cpp" line="71"/>
         <source>Unknown</source>
         <translation>Neznámy</translation>
     </message>
@@ -2993,7 +3049,7 @@ Záznam zmien:</translation>
         <translation>Súbory obsiahnuté v súčasnom torrente:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="40"/>
+        <location filename="../properties_imp.cpp" line="41"/>
         <source>Size</source>
         <translation>Veľkosť</translation>
     </message>
@@ -3038,7 +3094,7 @@ Záznam zmien:</translation>
         <translation>Trackery:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="163"/>
+        <location filename="../properties_imp.cpp" line="164"/>
         <source>None - Unreachable?</source>
         <translation>Žiadne - Nedostupné?</translation>
     </message>
@@ -3048,7 +3104,7 @@ Záznam zmien:</translation>
         <translation>Chyby:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="41"/>
+        <location filename="../properties_imp.cpp" line="42"/>
         <source>Progress</source>
         <translation>Priebeh</translation>
     </message>
@@ -3153,48 +3209,58 @@ Záznam zmien:</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Priorities:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Ignored: File is not downloaded at all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Normal: normal priority. Download order is dependent on availability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="30"/>
+        <location filename="../properties_imp.cpp" line="31"/>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="39"/>
+        <location filename="../properties_imp.cpp" line="40"/>
         <source>File name</source>
         <translation type="unfinished">Názov súboru</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="42"/>
+        <location filename="../properties_imp.cpp" line="43"/>
         <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="173"/>
+        <location filename="../properties_imp.cpp" line="174"/>
         <source>New tracker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="174"/>
+        <location filename="../properties_imp.cpp" line="175"/>
         <source>New tracker url:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="196"/>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="197"/>
+        <source>Trackers list can&apos;t be empty.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
