@@ -15,7 +15,6 @@
 - Display a progress bar that really displays the pieces we have (like in eMule)
 
 // Waiting for libtorrent
-- Encryption support (v0.13?)
 - File selection in a torrent in compact mode
 - Allow to prioritize files within a torrent
 - Allow to prioritize torrents
@@ -40,4 +39,6 @@
 - Use tooltips to explain options?
 - Improve ratio display / calculation / saving / per torrent...
 - Sorting in Download Status column should be smarter than just an alphabetical sort
+- Encryption support!
+- File selection in a torrent in compact mode???
 - Windows port : http://www.peerweb.nl/qbittorrent/experimentalbuild/testing.zip
