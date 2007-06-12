@@ -16,7 +16,6 @@
     - FEATURE: Supports SOCKS5 proxies as well as HTTP ones
     - FEATURE: Better systems integration (buttons, dialogs...)
     - FEATURE: Filtered files are not allocated on the hard-drive anymore (if FS is compatible)
-    - FEATURE: Sorted column in download list is now remembered on restart
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features
