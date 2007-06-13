@@ -42,7 +42,6 @@ class QTimer;
 class QString;
 
 using namespace libtorrent;
-namespace fs = boost::filesystem;
 
 class downloadThread;
 #ifndef NO_UPNP
