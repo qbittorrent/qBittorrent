@@ -1,5 +1,4 @@
 // Easy
-- Write documentation
 - Translations into as many languages as possible
 - Improve man page
 - Add more keyboard shortcuts
@@ -7,7 +6,6 @@
 // Intermediate
 - Port on MacOS, Windows (and create an installer for Windows) - Progressing
 - Add some transparency (menus,...)
-- Add upnp port forwarding support
 
 // Harder
 - Allow user to organize the downloads into categories/folders
@@ -16,7 +14,6 @@
 
 // Waiting for libtorrent
 - File selection in a torrent in compact mode
-- Allow to prioritize files within a torrent
 - Allow to prioritize torrents
 
 // Unsure
@@ -43,3 +40,5 @@
 - File selection in a torrent in compact mode???
 - Windows port : http://www.peerweb.nl/qbittorrent/experimentalbuild/testing.zip
 - Make use of QSessionManager to save application state
+- Make use of dbus on Linux for the single instance instead of socket communication
+- Write documentation
