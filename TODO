@@ -39,6 +39,7 @@
 - Encryption support!
 - File selection in a torrent in compact mode???
 - Windows port : http://www.peerweb.nl/qbittorrent/experimentalbuild/testing.zip
-- Make use of QSessionManager to save application state
+- Make use of QSessionManager to save application state?
 - Make use of dbus on Linux for the single instance instead of socket communication
+  (http://techbase.kde.org/Development/Tutorials/D-Bus/Accessing_Interfaces)
 - Write documentation
