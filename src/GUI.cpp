@@ -1180,7 +1180,8 @@ void GUI::configureSession(bool deleteOptions){
   setInfoBar(tr("UPnP support [ON]"), "blue");
   // Encryption settings
   int encryptionState = options->getEncryptionSetting();
-  encryptionSettings.allowed_enc_level = pe_settings::both;
+  // The most secure, rc4 only so that all streams and encrypted
+  encryptionSettings.allowed_enc_level = pe_settings::rc4;
   encryptionSettings.prefer_rc4 = true;
   switch(encryptionState){
     case 0: //Enabled
