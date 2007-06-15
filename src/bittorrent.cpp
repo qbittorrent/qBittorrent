@@ -588,6 +588,7 @@ void bittorrent::resumeAllTorrents(){
 
 // Add uT PeX extension to bittorrent session
 void bittorrent::enablePeerExchange(){
+  qDebug("Enabling Peer eXchange");
   s->add_extension(&create_ut_pex_plugin);
 }
 
@@ -603,21 +604,26 @@ void bittorrent::setDHTPort(int dht_port){
 
 // Enable IP Filtering
 void bittorrent::enableIPFilter(ip_filter filter){
+  qDebug("Enabling IPFiler");
   s->set_ip_filter(filter);
 }
 
 // Disable IP Filtering
 void bittorrent::disableIPFilter(){
+  qDebug("Disable IPFilter");
   s->set_ip_filter(ip_filter());
+  qDebug("IPFilter disabled");
 }
 
 // Set BT session settings (user_agent)
 void bittorrent::setSessionSettings(session_settings sessionSettings){
+  qDebug("Set session settings");
   s->set_settings(sessionSettings);
 }
 
 // Set Proxy
 void bittorrent::setProxySettings(proxy_settings proxySettings, bool trackers, bool peers, bool web_seeds, bool dht){
+  qDebug("Set Proxy settings");
   if(trackers)
     s->set_tracker_proxy(proxySettings);
   if(peers)
@@ -832,6 +838,7 @@ void bittorrent::saveDHTEntry(){
 }
 
 void bittorrent::applyEncryptionSettings(pe_settings se){
+  qDebug("Applying encryption settings");
   s->set_pe_settings(se);
 }
 

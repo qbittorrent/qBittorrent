@@ -187,6 +187,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   setAcceptDrops(true);
   // Set info Bar infos
   setInfoBar(tr("qBittorrent %1 started.", "e.g: qBittorrent v0.x started.").arg(QString(VERSION)));
+  setInfoBar(tr("Be careful, sharing copyrighted material without permission is against the law."));
   show();
   qDebug("GUI Built");
 }
