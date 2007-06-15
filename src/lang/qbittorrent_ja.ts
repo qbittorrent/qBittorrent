@@ -2365,7 +2365,7 @@ Changelog:
     <message>
         <location filename="../properties_imp.cpp" line="31"/>
         <source>Ignored: File is not downloaded at all</source>
-        <translation>無視済み: ファイルはとにかくダウンロードされません</translation>
+        <translation type="obsolete">無視済み: ファイルはとにかくダウンロードされません</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="31"/>
@@ -2400,6 +2400,11 @@ Changelog:
     <message>
         <location filename="../properties_imp.cpp" line="197"/>
         <source>Trackers list can&apos;t be empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="31"/>
+        <source>Ignored: file is not downloaded at all</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

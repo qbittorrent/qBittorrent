@@ -3236,11 +3236,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="31"/>
-        <source>Ignored: File is not downloaded at all</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../properties_imp.cpp" line="31"/>
         <source>Normal: normal priority. Download order is dependent on availability</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3272,6 +3267,11 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../properties_imp.cpp" line="197"/>
         <source>Trackers list can&apos;t be empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="31"/>
+        <source>Ignored: file is not downloaded at all</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

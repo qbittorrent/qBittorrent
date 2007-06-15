@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr">
+<defaultcodec></defaultcodec>
 <context>
     <name>@default</name>
     <message>
@@ -2842,23 +2843,23 @@ Changements:
     <message>
         <location filename="../createtorrent_imp.cpp" line="207"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>La création du torrent a échoué, raison : %1</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="100"/>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation type="unfinished">URL du tracker :</translation>
+        <translation>URL du tracker :</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="118"/>
         <source>Please type a web seed url</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez entrer l&apos;url de la source web</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="119"/>
         <source>Web seed URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL de la source web :</translation>
     </message>
 </context>
 <context>
@@ -2901,7 +2902,7 @@ Changements:
     <message>
         <location filename="../downloadFromURLImp.h" line="64"/>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished">Veuillez entrer au moins une URL.</translation>
+        <translation>Veuillez entrer au moins une URL.</translation>
     </message>
 </context>
 <context>
@@ -3180,27 +3181,27 @@ Changements:
     <message>
         <location filename="../previewSelect.h" line="126"/>
         <source>Preview impossible</source>
-        <translation type="unfinished">Prévisualisation impossible</translation>
+        <translation>Prévisualisation impossible</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="126"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished">Désolé, il est impossible de prévisualiser ce fichier</translation>
+        <translation>Désolé, il est impossible de prévisualiser ce fichier</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="98"/>
         <source>Name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="99"/>
         <source>Size</source>
-        <translation type="unfinished">Taille</translation>
+        <translation>Taille</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="100"/>
         <source>Progress</source>
-        <translation type="unfinished">Progression</translation>
+        <translation>Progression</translation>
     </message>
 </context>
 <context>
@@ -3468,92 +3469,97 @@ Changements:
     <message>
         <location filename="../properties.ui" line="81"/>
         <source>Torrent infos</source>
-        <translation type="unfinished"></translation>
+        <translation>Infos sur le torrent</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="140"/>
         <source>Creator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Auteur :</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="159"/>
         <source>Torrent hash:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hash du torrent :</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="184"/>
         <source>Comment:</source>
-        <translation type="unfinished">Commentaire :</translation>
+        <translation>Commentaire :</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="304"/>
         <source>Current session</source>
-        <translation type="unfinished"></translation>
+        <translation>Session courante</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="379"/>
         <source>Share ratio:</source>
-        <translation type="unfinished">Ratio Partage :</translation>
+        <translation>Ratio partage :</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="481"/>
         <source>Trackers</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="174"/>
         <source>New tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouveau tracker</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="175"/>
         <source>New tracker url:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouvelle url de tracker :</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="31"/>
         <source>Priorities:</source>
-        <translation type="unfinished"></translation>
+        <translation>Priorités :</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="31"/>
         <source>Ignored: File is not downloaded at all</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Ignoré : Le fichier n&apos;est pas téléchargé du tout</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="31"/>
         <source>Normal: normal priority. Download order is dependent on availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Normale : priorité normale. L&apos;ordre de téléchargement dépend de la disponibilité</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="31"/>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Elevée : Priorité supérieure à la normale. Les morceaux sont préférés aux autres possédant la même disponibilité, mais pas par rapport à ceux qui ont une disponibilité plus faible</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="31"/>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximum: Priorité maximale. La disponibilité n&apos;est pas prise en compte, le morceau est préféré à tous ceux qui ont une priorité inférieure</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="40"/>
         <source>File name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="43"/>
         <source>Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Priorité</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="196"/>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="197"/>
         <source>Trackers list can&apos;t be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>La liste des trackers ne peut pas être vide.</translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="31"/>
+        <source>Ignored: file is not downloaded at all</source>
+        <translation>Ignoré : le fichier n&apos;est pas téléchargé du tout</translation>
     </message>
 </context>
 <context>
@@ -3561,52 +3567,52 @@ Changements:
     <message>
         <location filename="../search.ui" line="147"/>
         <source>Search</source>
-        <translation type="unfinished">Recherche</translation>
+        <translation>Recherche</translation>
     </message>
     <message>
         <location filename="../search.ui" line="45"/>
         <source>Search Engines</source>
-        <translation type="unfinished">Moteur de recherche</translation>
+        <translation>Moteur de recherche</translation>
     </message>
     <message>
         <location filename="../search.ui" line="124"/>
         <source>Search Pattern:</source>
-        <translation type="unfinished">Motif de recherche :</translation>
+        <translation>Motif de recherche :</translation>
     </message>
     <message>
         <location filename="../search.ui" line="163"/>
         <source>Stop</source>
-        <translation type="unfinished">Stopper</translation>
+        <translation>Stopper</translation>
     </message>
     <message>
         <location filename="../search.ui" line="197"/>
         <source>Status:</source>
-        <translation type="unfinished">Statut :</translation>
+        <translation>Statut :</translation>
     </message>
     <message>
         <location filename="../search.ui" line="227"/>
         <source>Stopped</source>
-        <translation type="unfinished">Stoppé</translation>
+        <translation>Stoppé</translation>
     </message>
     <message>
         <location filename="../search.ui" line="286"/>
         <source>Results:</source>
-        <translation type="unfinished">Résultats :</translation>
+        <translation>Résultats :</translation>
     </message>
     <message>
         <location filename="../search.ui" line="344"/>
         <source>Download</source>
-        <translation type="unfinished">Télécharger</translation>
+        <translation>Télécharger</translation>
     </message>
     <message>
         <location filename="../search.ui" line="354"/>
         <source>Clear</source>
-        <translation type="unfinished">Vider</translation>
+        <translation>Vider</translation>
     </message>
     <message>
         <location filename="../search.ui" line="374"/>
         <source>Update search plugin</source>
-        <translation type="unfinished">Mettre à jour le greffon de recherche</translation>
+        <translation>Mettre à jour le greffon de recherche</translation>
     </message>
 </context>
 <context>
@@ -3614,52 +3620,52 @@ Changements:
     <message>
         <location filename="../seeding.ui" line="13"/>
         <source>Search</source>
-        <translation type="unfinished">Recherche</translation>
+        <translation>Recherche</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="25"/>
         <source>The following torrents are finished and shared:</source>
-        <translation type="unfinished"></translation>
+        <translation>Les torrents suivant sont terminés et partagés :</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="47"/>
         <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;u&gt;Remarque :&lt;/u&gt; il est important de continuer à partager vos torrents après que leur téléchargement soit terminé, pour le bien-être du réseau.</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="54"/>
         <source>Start</source>
-        <translation type="unfinished">Démarrer</translation>
+        <translation>Démarrer</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="59"/>
         <source>Pause</source>
-        <translation type="unfinished">Pause</translation>
+        <translation>Pause</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="64"/>
         <source>Delete</source>
-        <translation type="unfinished">Supprimer</translation>
+        <translation>Supprimer</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="69"/>
         <source>Delete Permanently</source>
-        <translation type="unfinished">Supprimer depuis le disque</translation>
+        <translation>Supprimer depuis le disque</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="74"/>
         <source>Torrent Properties</source>
-        <translation type="unfinished">Propriétés du Torrent</translation>
+        <translation>Propriétés du Torrent</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="79"/>
         <source>Preview file</source>
-        <translation type="unfinished">Prévisualiser fichier</translation>
+        <translation>Prévisualiser fichier</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="84"/>
         <source>Set upload limit</source>
-        <translation type="unfinished">Définir limite d&apos;upload</translation>
+        <translation>Définir limite d&apos;upload</translation>
     </message>
 </context>
 <context>
@@ -3722,22 +3728,22 @@ Changements:
     <message>
         <location filename="../torrentAddition.h" line="65"/>
         <source>File name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="66"/>
         <source>Size</source>
-        <translation type="unfinished">Taille</translation>
+        <translation>Taille</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="67"/>
         <source>Progress</source>
-        <translation type="unfinished">Progression</translation>
+        <translation>Progression</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="68"/>
         <source>Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Priorité</translation>
     </message>
 </context>
 </TS>
