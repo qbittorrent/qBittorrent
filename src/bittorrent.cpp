@@ -28,10 +28,6 @@
 #include "misc.h"
 #include "downloadThread.h"
 
-#ifndef NO_UPNP
-#include "UPnP.h"
-#endif
-
 // Main constructor
 bittorrent::bittorrent(){
   // To avoid some exceptions
@@ -45,9 +41,6 @@ bittorrent::bittorrent(){
   s->set_severity_level(alert::info);
   // DHT (Trackerless), disabled until told otherwise
   DHTEnabled = false;
-#ifndef NO_UPNP
-  UPnPEnabled = false;
-#endif
   // Enabling metadata plugin
   s->add_extension(&create_metadata_plugin);
   timerAlerts = new QTimer(this);
@@ -66,9 +59,6 @@ void bittorrent::resumeUnfinishedTorrents(){
 // Main destructor
 bittorrent::~bittorrent(){
   disableDirectoryScanning();
-#ifndef NO_UPNP
-  disableUPnP();
-#endif
   delete timerAlerts;
   delete downloader;
   delete s;
@@ -78,60 +68,6 @@ bittorrent::~bittorrent(){
 torrent_handle bittorrent::getTorrentHandle(const QString& hash) const{
   return s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
 }
-
-#ifndef NO_UPNP
-void bittorrent::enableUPnP(int port){
-  if(!UPnPEnabled){
-    qDebug("Enabling UPnP");
-    UPnPEnabled = true;
-    m_upnpMappings.resize(1);
-    m_upnpMappings[0] = CUPnPPortMapping(
-      getListenPort(),
-      "TCP",
-      true,
-      "qBittorrent");
-    m_upnp = new CUPnPControlPoint(port);
-    connect(m_upnp, SIGNAL(noWanServiceDetected()), this, SLOT(noWanServiceEventHandler()));
-    connect(m_upnp, SIGNAL(yeswanServiceDetected()), this, SLOT(wanServiceEventHandler()));
-    m_upnp->AddPortMappings(m_upnpMappings);
-  }
-}
-
-void bittorrent::noWanServiceEventHandler(){
-  // Forward this signal
-  emit noWanServiceDetected();
-}
-
-void bittorrent::wanServiceEventHandler(){
-  // Forward this signal
-  emit wanServiceDetected();
-}
-
-// Set UPnP port (>= 1000)
-void bittorrent::setUPnPPort(int upnp_port){
-  if(!UPnPEnabled){
-    qDebug("Cannot set UPnP port because it is disabled");
-    return;
-  }
-  if(m_upnp->getUPnPPort() != upnp_port){
-    qDebug("Changing UPnP port to %d", upnp_port);
-    delete m_upnp;
-    m_upnp = new CUPnPControlPoint(upnp_port);
-    m_upnp->AddPortMappings(m_upnpMappings);
-  }else{
-    qDebug("UPnP: No need to set the port, it is already listening on this port");
-  }
-}
-
-void bittorrent::disableUPnP(){
-  if(UPnPEnabled){
-    qDebug("Disabling UPnP");
-    UPnPEnabled = false;
-    m_upnp->DeletePortMappings(m_upnpMappings);
-    delete m_upnp;
-  }
-}
-#endif
 
 // Return true if the torrent corresponding to the
 // hash is paused
@@ -893,6 +829,10 @@ void bittorrent::saveDHTEntry(){
       std::cerr << e.what() << "\n";
     }
   }
+}
+
+void bittorrent::applyEncryptionSettings(pe_settings se){
+  s->set_pe_settings(se);
 }
 
 // Will fast resume unfinished torrents in

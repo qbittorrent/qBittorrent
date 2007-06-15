@@ -59,10 +59,7 @@ class options_imp : public QDialog, private Ui::Dialog{
     QString getScanDir() const;
     bool isDHTEnabled() const;
     int getDHTPort() const;
-#ifndef NO_UPNP
-    bool isUPnPEnabled() const;
-    int getUPnPPort() const;
-#endif
+    int getEncryptionSetting() const;
     bool isPeXDisabled() const;
     // Filter Settings
     bool isFilteringEnabled() const;
@@ -105,9 +102,6 @@ class options_imp : public QDialog, private Ui::Dialog{
     void on_filterBrowse_clicked();
     void disableDownload(int checkBoxValue);
     void disableDHTGroup(int checkBoxValue);
-#ifndef NO_UPNP
-    void disableUPnPGroup(int checkBoxValue);
-#endif
     void disableMaxConnecLimit(int);
     void enableFilter(int checkBoxValue);
     void disableUpload(int checkBoxValue);

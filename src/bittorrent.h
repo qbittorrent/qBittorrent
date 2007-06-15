@@ -44,10 +44,6 @@ class QString;
 using namespace libtorrent;
 
 class downloadThread;
-#ifndef NO_UPNP
-  class CUPnPControlPoint;
-  class CUPnPPortMapping;
-#endif
 
 class bittorrent : public QObject{
   Q_OBJECT
@@ -55,19 +51,12 @@ class bittorrent : public QObject{
   private:
     session *s;
     bool DHTEnabled;
-#ifndef NO_UPNP
-    bool UPnPEnabled;
-#endif
     QString scan_dir;
     QTimer *timerScan;
     QTimer *timerAlerts;
     downloadThread *downloader;
     QStringList supported_preview_extensions;
     QString defaultSavePath;
-#ifndef NO_UPNP
-    CUPnPControlPoint*  m_upnp;
-    std::vector<CUPnPPortMapping> m_upnpMappings;
-#endif
 
   protected:
     QString getSavePath(const QString& hash);
@@ -118,11 +107,7 @@ class bittorrent : public QObject{
     void setProxySettings(proxy_settings proxySettings, bool trackers=true, bool peers=true, bool web_seeds=true, bool dht=true);
     void setSessionSettings(session_settings sessionSettings);
     void setDefaultSavePath(const QString& savepath);
-#ifndef NO_UPNP
-    void enableUPnP(int port=50000);
-    void disableUPnP();
-    void setUPnPPort(int upnp_port);
-#endif
+    void applyEncryptionSettings(pe_settings se);
 
   protected slots:
     void cleanDeleter(deleteThread* deleter);
@@ -133,10 +118,6 @@ class bittorrent : public QObject{
     void resumeUnfinished();
     bool loadTrackerFile(const QString& hash);
     void saveTrackerFile(const QString& hash);
-#ifndef NO_UPNP
-    void noWanServiceEventHandler();
-    void wanServiceEventHandler();
-#endif
 
   signals:
     void invalidTorrent(const QString& path);
@@ -152,10 +133,7 @@ class bittorrent : public QObject{
     void newDownloadedTorrent(const QString& path, const QString& url);
     void aboutToDownloadFromUrl(const QString& url);
     void updateFileSize(QString hash);
-#ifndef NO_UPNP
-    void noWanServiceDetected();
-    void wanServiceDetected();
-#endif
+
 };
 
 #endif

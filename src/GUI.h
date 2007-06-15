@@ -154,10 +154,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void OptionsSaved(const QString& info, bool deleteOptions);
     // HTTP slots
     void on_actionDownload_from_URL_triggered();
-#ifndef NO_UPNP
-    void displayNoUPnPWanServiceDetected();
-    void displayUPnPWanServiceDetected();
-#endif
 
 
   public slots:

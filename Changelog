@@ -1,6 +1,7 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.0.0
     - FEATURE: Based on new libtorrent v0.13
     - FEATURE: Added UPnP / NAT-PMP port forwarding support
+    - FEATURE: Added encryption support (compatible with Azureus)
     - FEATURE: Added RSS support
     - FEATURE: Support files prioritizing in a torrent
     - FEATURE: Finished torrents are now moved to another tab for seeding

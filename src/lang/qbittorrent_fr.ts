@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr">
+<defaultcodec></defaultcodec>
 <context>
     <name>@default</name>
     <message>
@@ -2859,7 +2860,7 @@ Changements:
     <message>
         <location filename="../downloadFromURLImp.h" line="64"/>
         <source>No URL entered</source>
-        <translation type="unfinished">Aucune URL entrée</translation>
+        <translation>Aucune URL entrée</translation>
     </message>
     <message>
         <location filename="../downloadFromURLImp.h" line="64"/>

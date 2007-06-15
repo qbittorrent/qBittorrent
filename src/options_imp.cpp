@@ -68,11 +68,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   delFilterRange->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
   enableProxyAuth_checkBox->setIcon(QIcon(QString::fromUtf8(":/Icons/encrypted.png")));
   to_range->setText(tr("to", "<min port> to <max port>"));
-  // If UPnP is not supported then disable it
-#ifdef NO_UPNP
-  groupMainUPnP->setEnabled(false);
-  disableUPnP->setChecked(false);
-#endif
 #ifdef Q_WS_WIN
   radioWinXPStyle->setEnabled(true);
 #endif
@@ -146,9 +141,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(disableUPLimit, SIGNAL(stateChanged(int)), this, SLOT(disableUpload(int)));
   connect(disableDLLimit,  SIGNAL(stateChanged(int)), this, SLOT(disableDownload(int)));
   connect(disableDHT,  SIGNAL(stateChanged(int)), this, SLOT(disableDHTGroup(int)));
-#ifndef NO_UPNP
-  connect(disableUPnP,  SIGNAL(stateChanged(int)), this, SLOT(disableUPnPGroup(int)));
-#endif
   connect(check_disableSystray, SIGNAL(stateChanged(int)), this, SLOT(systrayDisabled(int)));
   connect(disableRatio,  SIGNAL(stateChanged(int)), this, SLOT(disableShareRatio(int)));
   connect(activateFilter,  SIGNAL(stateChanged(int)), this, SLOT(enableFilter(int)));
@@ -172,12 +164,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(enableScan_checkBox, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(disableMaxConnec, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(disableDHT, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
-#ifndef NO_UPNP
-  connect(disableUPnP, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
-#endif
   connect(disablePeX, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
-  connect(spin_dht_port, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-  connect(spin_upnp_port, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(comboEncryption, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   // Language
   connect(combo_i18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   // IPFilter
@@ -275,10 +263,7 @@ void options_imp::saveOptions(){
   settings.setValue("PortRangeMin", getPorts().first);
   settings.setValue("PortRangeMax", getPorts().second);
   settings.setValue("ShareRatio", getRatio());
-  settings.setValue("DHTPort", getDHTPort());
-#ifndef NO_UPNP
-  settings.setValue("UPnPPort", getUPnPPort());
-#endif
+  settings.setValue("EncryptionState", getEncryptionSetting());
   settings.setValue("PeXState", !isPeXDisabled());
   settings.setValue("ScanDir", getScanDir());
   // End Main options
@@ -495,20 +480,8 @@ void options_imp::loadOptions(){
     }
     spin_dht_port->setValue(value);
   }
-#ifndef NO_UPNP
-  value = settings.value("UPnPPort", -1).toInt();
-  if(value < 0){
-    disableUPnP->setChecked(true);
-    groupUPnP->setEnabled(false);
-  }else{
-    disableUPnP->setChecked(false);
-    groupUPnP->setEnabled(true);
-    if(value < 1000){
-      value = 50000;
-    }
-    spin_upnp_port->setValue(value);
-  }
-#endif
+  value = settings.value("EncryptionState", 0).toInt();
+  comboEncryption->setCurrentIndex(value);
   boolValue = settings.value("PeXState", true).toBool();
   if(boolValue){
     // Pex disabled
@@ -661,19 +634,9 @@ int options_imp::getDHTPort() const{
   }
 }
 
-#ifndef NO_UPNP
-int options_imp::getUPnPPort() const{
-  if(isUPnPEnabled()){
-    return spin_upnp_port->value();
-  }else{
-    return -1;
-  }
+int options_imp::getEncryptionSetting() const{
+  return comboEncryption->currentIndex();
 }
-
-bool options_imp::isUPnPEnabled() const{
-  return !disableUPnP->isChecked();
-}
-#endif
 
 QString options_imp::getPreviewProgram() const{
   QString preview_txt = preview_program->text();
@@ -814,18 +777,6 @@ void options_imp::disableDHTGroup(int checkBoxValue){
     groupDHT->setEnabled(true);
   }
 }
-
-#ifndef NO_UPNP
-void options_imp::disableUPnPGroup(int checkBoxValue){
-  if(checkBoxValue==2){
-    //Disable
-    groupUPnP->setEnabled(false);
-  }else{
-    //enable
-    groupUPnP->setEnabled(true);
-  }
-}
-#endif
 
 void options_imp::enableSavePath(int checkBoxValue){
  if(checkBoxValue==2){

@@ -132,10 +132,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   // Hide hash column
   downloadList->hideColumn(HASH);
 
-#ifndef NO_UPNP
-  connect(&BTSession, SIGNAL(noWanServiceDetected()), this, SLOT(displayNoUPnPWanServiceDetected()));
-  connect(&BTSession, SIGNAL(wanServiceDetected()), this, SLOT(displayUPnPWanServiceDetected()));
-#endif
   connect(&BTSession, SIGNAL(addedTorrent(const QString&, torrent_handle&, bool)), this, SLOT(torrentAdded(const QString&, torrent_handle&, bool)));
   connect(&BTSession, SIGNAL(duplicateTorrent(const QString&)), this, SLOT(torrentDuplicate(const QString&)));
   connect(&BTSession, SIGNAL(invalidTorrent(const QString&)), this, SLOT(torrentCorrupted(const QString&)));
@@ -277,17 +273,6 @@ void GUI::readParamsOnSocket(){
     }
   }
 }
-
-#ifndef NO_UPNP
-void GUI::displayNoUPnPWanServiceDetected(){
-  setInfoBar(tr("UPnP: no WAN service detected..."), "red");
-}
-
-void GUI::displayUPnPWanServiceDetected(){
-  setInfoBar(tr("UPnP: WAN service detected!"), "green");
-}
-
-#endif
 
 // Toggle paused state of selected torrent
 void GUI::togglePausedState(const QModelIndex& index){
@@ -1151,6 +1136,7 @@ void GUI::configureSession(bool deleteOptions){
   unsigned short old_listenPort, new_listenPort;
   proxy_settings proxySettings;
   session_settings sessionSettings;
+  pe_settings encryptionSettings;
   // Configure session regarding options
   BTSession.setDefaultSavePath(options->getSavePath());
   old_listenPort = BTSession.getListenPort();
@@ -1190,18 +1176,29 @@ void GUI::configureSession(bool deleteOptions){
     setInfoBar(tr("DHT support [OFF]"), "blue");
     BTSession.disableDHT();
   }
-#ifndef NO_UPNP
-  // Upnp
-  if(options->isUPnPEnabled()){
-    setInfoBar(tr("UPnP support [ON], port: %1").arg(options->getUPnPPort()), "blue");
-    BTSession.enableUPnP(options->getUPnPPort());
-    BTSession.setUPnPPort(options->getUPnPPort());
-  }else{
-    setInfoBar(tr("UPnP support [OFF]"), "blue");
-    BTSession.disableUPnP();
-  }
-#endif
+  // UPnP can't be disabled
   setInfoBar(tr("UPnP support [ON]"), "blue");
+  // Encryption settings
+  int encryptionState = options->getEncryptionSetting();
+  encryptionSettings.allowed_enc_level = pe_settings::both;
+  encryptionSettings.prefer_rc4 = true;
+  switch(encryptionState){
+    case 0: //Enabled
+      encryptionSettings.out_enc_policy = pe_settings::enabled;
+      encryptionSettings.in_enc_policy = pe_settings::enabled;
+      setInfoBar(tr("Encryption support [ON]"), "blue");
+      break;
+    case 1: // Forced
+      encryptionSettings.out_enc_policy = pe_settings::forced;
+      encryptionSettings.in_enc_policy = pe_settings::forced;
+      setInfoBar(tr("Encryption support [FORCED]"), "blue");
+      break;
+    default: // Disabled
+      encryptionSettings.out_enc_policy = pe_settings::disabled;
+      encryptionSettings.in_enc_policy = pe_settings::disabled;
+      setInfoBar(tr("Encryption support [OFF]"), "blue");
+  }
+  BTSession.applyEncryptionSettings(encryptionSettings);
   // PeX
   if(!options->isPeXDisabled()){
     qDebug("Enabling Peer eXchange (PeX)");

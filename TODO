@@ -36,7 +36,6 @@
 - Use tooltips to explain options?
 - Improve ratio display / calculation / saving / per torrent...
 - Sorting in Download Status column should be smarter than just an alphabetical sort
-- Encryption support!
 - File selection in a torrent in compact mode???
 - Windows port : http://www.peerweb.nl/qbittorrent/experimentalbuild/testing.zip
 - Make use of QSessionManager to save application state?
