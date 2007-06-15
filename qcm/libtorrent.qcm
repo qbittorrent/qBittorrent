@@ -3,6 +3,7 @@
 name: libtorrent
 arg: with-libtorrent-inc=[path], Path to libtorrent include files
 arg: with-libtorrent-lib=[path], Path to libtorrent library files
+arg: with-libtorrent-static-lib=[path], Path to libtorrent .a file
 -----END QCMOD-----
 */
 class qc_libtorrent : public ConfObj
@@ -35,6 +36,12 @@ public:
 		}
 		conf->addIncludePath(s);
 		conf->addIncludePath(s+QDir::separator()+"libtorrent");
+
+		s = conf->getenv("QC_WITH_LIBTORRENT_STATIC_LIB");
+		if(!s.isEmpty() && QFile::exists(s) && s.endsWith(".a")){
+			conf->addLib(s);
+			return true;
+		}
 
 		s = conf->getenv("QC_WITH_LIBTORRENT_LIB");
 		if(!s.isEmpty()) {
