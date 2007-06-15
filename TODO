@@ -42,3 +42,4 @@
 - Make use of dbus on Linux for the single instance instead of socket communication
   (http://techbase.kde.org/Development/Tutorials/D-Bus/Accessing_Interfaces)
 - Write documentation
+- Allow the user to see when peers were blocked thanks to IPFilter. Maybe in a file in order not to spam the GUI.
