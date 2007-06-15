@@ -52,7 +52,7 @@
 	qDebug("no stream selected");
 	return;
       }else {
-	int ok = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to delete this stream from the list ?"),
+	int ok = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to delete this stream from the list?"),
 	      tr("&Yes"), tr("&No"),
 		 QString(), 0, 1);
 	if(ok==0) {	
@@ -187,7 +187,7 @@
 	QTreeWidgetItem* description = new QTreeWidgetItem(stream);
 	QTreeWidgetItem* url = new QTreeWidgetItem(stream);
 	QTreeWidgetItem* time = new QTreeWidgetItem(stream);
-	description->setText(0, tr("no description avalaible"));
+	description->setText(0, tr("no description available"));
 	url->setText(0, rssmanager.getStream(i)->getUrl());
 	time->setText(0, tr("no refresh"));
 	description->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/description.png")));

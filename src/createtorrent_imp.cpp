@@ -97,7 +97,7 @@ void createtorrent::on_removeTracker_button_clicked(){
 void createtorrent::on_addTracker_button_clicked(){
   bool ok;
   QString URL = QInputDialog::getText(this, tr("Please type an announce URL"),
-                                       tr("Announce URL:"), QLineEdit::Normal,
+                                       tr("Announce URL:", "Tracker URL"), QLineEdit::Normal,
                                        "http://", &ok);
   if(ok){
     if(trackers_list->findItems(URL, Qt::MatchFixedString).size() == 0)
@@ -115,8 +115,8 @@ void createtorrent::on_removeURLSeed_button_clicked(){
 
 void createtorrent::on_addURLSeed_button_clicked(){
   bool ok;
-  QString URL = QInputDialog::getText(this, tr("Please type an URL Seed"),
-                                       tr("URL Seed:"), QLineEdit::Normal,
+  QString URL = QInputDialog::getText(this, tr("Please type a web seed url"),
+                                       tr("Web seed URL:"), QLineEdit::Normal,
                                        "http://", &ok);
   if(ok){
     if(URLSeeds_list->findItems(URL, Qt::MatchFixedString).size() == 0)
@@ -204,7 +204,7 @@ void createtorrent::on_createButton_clicked(){
   }
   catch (std::exception& e){
     std::cerr << e.what() << "\n";
-    QMessageBox::information(0, tr("Torrent creation"), tr("Torrent creation was successfully, reason: %1").arg(QString(e.what())));
+    QMessageBox::information(0, tr("Torrent creation"), tr("Torrent creation was unsuccessful, reason: %1").arg(QString(e.what())));
     hide();
     return;
   }
