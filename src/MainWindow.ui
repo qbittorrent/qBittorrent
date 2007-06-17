@@ -17,11 +17,20 @@
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QVBoxLayout" >
-    <property name="margin" >
-     <number>9</number>
-    </property>
     <property name="spacing" >
      <number>6</number>
+    </property>
+    <property name="leftMargin" >
+     <number>9</number>
+    </property>
+    <property name="topMargin" >
+     <number>9</number>
+    </property>
+    <property name="rightMargin" >
+     <number>9</number>
+    </property>
+    <property name="bottomMargin" >
+     <number>9</number>
     </property>
     <item>
      <widget class="QTabWidget" name="tabs" >
@@ -36,27 +45,54 @@
         <string>Downloads</string>
        </attribute>
        <layout class="QVBoxLayout" >
-        <property name="margin" >
-         <number>9</number>
-        </property>
         <property name="spacing" >
          <number>6</number>
         </property>
+        <property name="leftMargin" >
+         <number>9</number>
+        </property>
+        <property name="topMargin" >
+         <number>9</number>
+        </property>
+        <property name="rightMargin" >
+         <number>9</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>9</number>
+        </property>
         <item>
          <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>0</number>
-          </property>
           <property name="spacing" >
            <number>6</number>
           </property>
+          <property name="leftMargin" >
+           <number>0</number>
+          </property>
+          <property name="topMargin" >
+           <number>0</number>
+          </property>
+          <property name="rightMargin" >
+           <number>0</number>
+          </property>
+          <property name="bottomMargin" >
+           <number>0</number>
+          </property>
           <item>
            <layout class="QHBoxLayout" >
-            <property name="margin" >
-             <number>0</number>
-            </property>
             <property name="spacing" >
              <number>6</number>
+            </property>
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>0</number>
             </property>
             <item>
              <spacer>
@@ -252,19 +288,37 @@
         </item>
         <item>
          <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>0</number>
-          </property>
           <property name="spacing" >
            <number>6</number>
           </property>
+          <property name="leftMargin" >
+           <number>0</number>
+          </property>
+          <property name="topMargin" >
+           <number>0</number>
+          </property>
+          <property name="rightMargin" >
+           <number>0</number>
+          </property>
+          <property name="bottomMargin" >
+           <number>0</number>
+          </property>
           <item>
            <layout class="QHBoxLayout" >
-            <property name="margin" >
-             <number>0</number>
-            </property>
             <property name="spacing" >
              <number>6</number>
+            </property>
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>0</number>
             </property>
             <item>
              <widget class="QLabel" name="info_icon" >
@@ -327,9 +381,7 @@
           <item>
            <widget class="QTextBrowser" name="infoBar" >
             <property name="sizePolicy" >
-             <sizepolicy>
-              <hsizetype>7</hsizetype>
-              <vsizetype>0</vsizetype>
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -390,6 +442,7 @@
     <addaction name="actionAbout" />
     <addaction name="actionBugReport" />
     <addaction name="actionWebsite" />
+    <addaction name="actionDocumentation" />
    </widget>
    <widget class="QMenu" name="menu_File" >
     <property name="title" >
@@ -425,7 +478,10 @@
     </size>
    </property>
    <attribute name="toolBarArea" >
-    <number>4</number>
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
    </attribute>
    <addaction name="actionOpen" />
    <addaction name="actionDownload_from_URL" />
@@ -538,6 +594,11 @@
   <action name="actionSet_download_limit" >
    <property name="text" >
     <string>Set download limit</string>
+   </property>
+  </action>
+  <action name="actionDocumentation" >
+   <property name="text" >
+    <string>Documentation</string>
    </property>
   </action>
  </widget>

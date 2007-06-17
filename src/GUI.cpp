@@ -101,7 +101,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   actionPreview_file->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")));
   actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
-//   actionDocumentation->setIcon(QIcon(QString::fromUtf8(":/Icons/help.png")));
+  actionDocumentation->setIcon(QIcon(QString::fromUtf8(":/Icons/help.png")));
   connecStatusLblIcon = new QLabel();
   connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
   connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/disconnected.png")));
@@ -213,6 +213,10 @@ GUI::~GUI(){
 
 void GUI::on_actionWebsite_triggered(){
    QDesktopServices::openUrl(QUrl("http://www.qbittorrent.org"));
+}
+
+void GUI::on_actionDocumentation_triggered(){
+  QDesktopServices::openUrl(QUrl("http://wiki.qbittorrent.org"));
 }
 
 void GUI::on_actionBugReport_triggered(){
