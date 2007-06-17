@@ -45,3 +45,4 @@
 - Allow the user to see when peers were blocked thanks to IPFilter. Maybe in a file in order not to spam the GUI.
 - Allow to scan multiple directories
 - Fix all (or almost all) opened bugs in bug tracker
+- Add an icon for encryption in program preferences

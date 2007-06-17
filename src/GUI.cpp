@@ -864,9 +864,10 @@ void GUI::on_actionOpen_triggered(){
 void GUI::on_actionDelete_Permanently_triggered(){
   if(tabs->currentIndex() > 1) return;
   QModelIndexList selectedIndexes;
-  bool inDownloadList = true;
+  bool inDownloadList;
   if(tabs->currentIndex() == 0) {
     selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+    inDownloadList = true;
   } else {
     selectedIndexes = finishedTorrentTab->getFinishedList()->selectionModel()->selectedIndexes();
     inDownloadList = false;

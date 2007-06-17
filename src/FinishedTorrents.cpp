@@ -279,16 +279,15 @@ int FinishedTorrents::getRowFromHash(const QString& hash) const{
 
 // Will move it to download tab
 void FinishedTorrents::deleteFromFinishedList(QString hash){
-  finishedSHAs.removeAll(hash);
-  QList<QStandardItem *> items = finishedListModel->findItems(hash, Qt::MatchExactly, HASH );
-  if(items.size() != 1){
-    qDebug("Problem: Can't delete torrent from finished list");
-    return;
+  int row = getRowFromHash(hash);
+  if(row == -1){
+    std::cerr << "Error: couldn't find hash in finished list\n";
   }
-  finishedListModel->removeRow(finishedListModel->indexFromItem(items.at(0)).row());
+  finishedListModel->removeRow(row);
   QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
   --nbFinished;
   ((GUI*)parent)->setTabText(1, tr("Finished") +" ("+QString(misc::toString(nbFinished).c_str())+")");
+  finishedSHAs.removeAll(hash);
 }
 
 QTreeView* FinishedTorrents::getFinishedList(){
