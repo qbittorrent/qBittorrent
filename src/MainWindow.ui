@@ -362,12 +362,6 @@
      <height>29</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_Options" >
-    <property name="title" >
-     <string>&amp;Options</string>
-    </property>
-    <addaction name="actionOptions" />
-   </widget>
    <widget class="QMenu" name="menu_Edit" >
     <property name="title" >
      <string>&amp;Edit</string>
@@ -387,10 +381,16 @@
     <property name="title" >
      <string>&amp;Help</string>
     </property>
-    <addaction name="actionAbout" />
     <addaction name="actionBugReport" />
     <addaction name="actionWebsite" />
     <addaction name="actionDocumentation" />
+    <addaction name="actionAbout" />
+   </widget>
+   <widget class="QMenu" name="menu_Options" >
+    <property name="title" >
+     <string>&amp;Options</string>
+    </property>
+    <addaction name="actionOptions" />
    </widget>
    <widget class="QMenu" name="menu_File" >
     <property name="title" >
