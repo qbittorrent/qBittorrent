@@ -20,18 +20,18 @@
   <file>Icons/splash.png</file>
   <file>Icons/home.png</file>
   <file>Icons/uparrow.png</file>
+  <file>Icons/rss.png</file>
   <file>Icons/downarrow.png</file>
   <file>Icons/connection.png</file>
-  <file>Icons/refresh.png</file>
-  <file>Icons/rss.png</file>
-  <file>Icons/add_folder.png</file>
   <file>Icons/add_file.png</file>
+  <file>Icons/refresh.png</file>
+  <file>Icons/add_folder.png</file>
+  <file>Icons/time.png</file>
   <file>Icons/loading.png</file>
   <file>Icons/exec.png</file>
-  <file>Icons/sphere.png</file>
   <file>Icons/url.png</file>
-  <file>Icons/time.png</file>
   <file>Icons/description.png</file>
+  <file>Icons/sphere.png</file>
   <file>Icons/sphere2.png</file>
   <file>Icons/flags/portugal.png</file>
   <file>Icons/flags/france.png</file>
@@ -83,5 +83,6 @@
   <file>Icons/skin/new.png</file>
   <file>Icons/skin/delete_all.png</file>
   <file>Icons/skin/info.png</file>
+  <file>Icons/skin/qb_question.png</file>
 </qresource>
 </RCC>
