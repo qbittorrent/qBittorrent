@@ -46,3 +46,4 @@
 - Allow to scan multiple directories
 - Fix all (or almost all) opened bugs in bug tracker
 - Add an icon for encryption in program preferences
+- Fix sorting with Qt 4.3 - Trolltech!!! :'(
