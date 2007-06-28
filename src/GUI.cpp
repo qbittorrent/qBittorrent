@@ -65,6 +65,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
     systrayIntegration = false;
     qDebug("Info: System tray unavailable\n");
   }
+  delayedSorting = false;
   // Finished torrents tab
   finishedTorrentTab = new FinishedTorrents(this, &BTSession);
   tabs->addTab(finishedTorrentTab, tr("Finished"));
@@ -486,6 +487,8 @@ void GUI::updateDlList(bool force){
           qDebug("Paused torrent finished checking with state: %d", torrentStatus.state);
           DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
           BTSession.pauseTorrent(fileHash);
+          if(delayedSorting)
+            sortDownloadListFloat(PROGRESS, delayedSortingOrder);
           continue;
         }
       }
@@ -661,8 +664,12 @@ void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoa
     case ETA:
     case UPSPEED:
     case DLSPEED:
-    case PROGRESS:
       sortDownloadListFloat(index, sortOrder);
+      break;
+    case PROGRESS:
+      // Progress sorting must be delayed until files are checked
+      delayedSorting = true;
+      delayedSortingOrder = sortOrder;
       break;
     default:
       sortDownloadListString(index, sortOrder);

@@ -82,6 +82,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QLabel *connecStatusLblIcon;
     bool systrayIntegration;
     bool force_exit;
+    bool delayedSorting;
+    Qt::SortOrder delayedSortingOrder;
     // Preview
     previewSelect *previewSelection;
     QProcess *previewProcess;

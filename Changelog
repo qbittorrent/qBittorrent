@@ -19,6 +19,7 @@
     - FEATURE: Filtered files are not allocated on the hard-drive anymore (if FS is compatible)
     - FEATURE: Added a way to link against static libtorrent (useful for deb packages)
     - BUGFIX: Progress of paused torrents is now correct on restart
+    - BUGFIX: Progress column gets sorted on restart it is was during last execution
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features
