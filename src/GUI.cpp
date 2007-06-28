@@ -140,6 +140,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(&BTSession, SIGNAL(fullDiskError(torrent_handle&)), this, SLOT(fullDiskError(torrent_handle&)));
   connect(&BTSession, SIGNAL(portListeningFailure()), this, SLOT(portListeningFailure()));
   connect(&BTSession, SIGNAL(trackerError(const QString&, const QString&, const QString&)), this, SLOT(trackerError(const QString&, const QString&, const QString&)));
+  connect(&BTSession,SIGNAL(allTorrentsFinishedChecking()), this, SLOT(sortProgressColumnDelayed()));
   connect(&BTSession, SIGNAL(trackerAuthenticationRequired(torrent_handle&)), this, SLOT(trackerAuthenticationRequired(torrent_handle&)));
   connect(&BTSession, SIGNAL(scanDirFoundTorrents(const QStringList&)), this, SLOT(processScannedFiles(const QStringList&)));
   connect(&BTSession, SIGNAL(newDownloadedTorrent(const QString&, const QString&)), this, SLOT(processDownloadedFiles(const QString&, const QString&)));
@@ -448,6 +449,14 @@ void GUI::displayInfoBarMenu(const QPoint& pos){
   myLogMenu.exec(mapToGlobal(pos)+QPoint(22,383));
 }
 
+void GUI::sortProgressColumnDelayed() {
+    if(delayedSorting){
+      sortDownloadListFloat(PROGRESS, delayedSortingOrder);
+      qDebug("Delayed sorting of progress column");
+      delayedSorting = false;
+    }
+}
+
 // get information from torrent handles and
 // update download list accordingly
 void GUI::updateDlList(bool force){
@@ -480,6 +489,11 @@ void GUI::updateDlList(bool force){
       torrent_status torrentStatus = h.status();
       QString fileHash = QString(misc::toString(h.info_hash()).c_str());
       int row = getRowFromHash(fileHash);
+      if(delayedSorting && BTSession.getUncheckedTorrentsList().indexOf(fileHash) != -1){
+        if(torrentStatus.state != torrent_status::checking_files && torrentStatus.state != torrent_status::queued_for_checking){
+          BTSession.setTorrentFinishedChecking(fileHash);
+        }
+      }
       if(BTSession.getTorrentsToPauseAfterChecking().indexOf(fileHash) != -1){
         // Pause torrent if it finished checking and it is was supposed to be paused.
         // This is a trick to see the progress of the pause torrents on startup
@@ -487,8 +501,6 @@ void GUI::updateDlList(bool force){
           qDebug("Paused torrent finished checking with state: %d", torrentStatus.state);
           DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
           BTSession.pauseTorrent(fileHash);
-          if(delayedSorting)
-            sortDownloadListFloat(PROGRESS, delayedSortingOrder);
           continue;
         }
       }
@@ -1133,7 +1145,7 @@ void GUI::processDownloadedFiles(const QString& path, const QString& url){
     connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
     dialog->showLoad(path, false, url);
   }else{
-    BTSession.addTorrent(path, false, url);
+    BTSession.addTorrent(path, false, false, url);
   }
 }
 

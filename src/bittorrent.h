@@ -58,6 +58,7 @@ class bittorrent : public QObject{
     QStringList supported_preview_extensions;
     QString defaultSavePath;
     QStringList torrentsToPauseAfterChecking;
+    QStringList torrentsUnchecked;
 
   protected:
     QString getSavePath(const QString& hash);
@@ -78,9 +79,10 @@ class bittorrent : public QObject{
     session_status getSessionStatus() const;
     int getListenPort() const;
     QStringList getTorrentsToPauseAfterChecking() const;
+    QStringList getUncheckedTorrentsList() const;
 
   public slots:
-    void addTorrent(const QString& path, bool fromScanDir = false, const QString& from_url = QString());
+    void addTorrent(const QString& path, bool fromScanDir = false, bool onStartup = false, const QString& from_url = QString());
     void downloadFromUrl(const QString& url);
     void downloadFromURLList(const QStringList& url_list);
     void deleteTorrent(const QString& hash, bool permanent = false);
@@ -98,6 +100,7 @@ class bittorrent : public QObject{
     void enableIPFilter(ip_filter filter);
     void disableIPFilter();
     void reloadTorrent(const torrent_handle &h, bool compact_mode = true);
+    void setTorrentFinishedChecking(QString hash);
     void resumeUnfinishedTorrents();
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
@@ -135,6 +138,7 @@ class bittorrent : public QObject{
     void newDownloadedTorrent(const QString& path, const QString& url);
     void aboutToDownloadFromUrl(const QString& url);
     void updateFileSize(QString hash);
+    void allTorrentsFinishedChecking();
 
 };
 

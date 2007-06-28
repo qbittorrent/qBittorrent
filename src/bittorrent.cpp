@@ -144,7 +144,7 @@ void bittorrent::resumeTorrent(const QString& hash){
 }
 
 // Add a torrent to the bittorrent session
-void bittorrent::addTorrent(const QString& path, bool fromScanDir, const QString& from_url){
+void bittorrent::addTorrent(const QString& path, bool fromScanDir, bool onStartup, const QString& from_url){
   torrent_handle h;
   entry resume_data;
   bool fastResume=false;
@@ -173,6 +173,10 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, const QString
     // Getting torrent file informations
     torrent_info t(e);
     QString hash = QString(misc::toString(t.info_hash()).c_str());
+    if(onStartup){
+      qDebug("Added a hash to the unchecked torrents list");
+      torrentsUnchecked << hash;
+    }
     if(s->find_torrent(t.info_hash()).is_valid()){
       // Update info Bar
       if(!fromScanDir){
@@ -831,6 +835,22 @@ QList<torrent_handle> bittorrent::getFinishedTorrentHandles() const{
   return finished;
 }
 
+QStringList bittorrent::getUncheckedTorrentsList() const{
+  return torrentsUnchecked;
+}
+
+void bittorrent::setTorrentFinishedChecking(QString hash){
+  int index = torrentsUnchecked.indexOf(hash);
+  if(index != -1){
+    qDebug("torrent %s finished checking", (const char*)hash.toUtf8());
+    torrentsUnchecked.removeAt(index);
+    qDebug("Still %d unchecked torrents", torrentsUnchecked.size());
+    if(torrentsUnchecked.size() == 0){
+      emit allTorrentsFinishedChecking();
+    }
+  }
+}
+
 // Save DHT entry to hard drive
 void bittorrent::saveDHTEntry(){
   // Save DHT entry
@@ -867,7 +887,7 @@ void bittorrent::resumeUnfinished(){
   }
   // Resume downloads
   foreach(fileName, filePaths){
-    addTorrent(fileName);
+    addTorrent(fileName, false, true);
   }
   qDebug("Unfinished torrents resumed");
 }

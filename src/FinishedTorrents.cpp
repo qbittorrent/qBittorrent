@@ -75,6 +75,9 @@ FinishedTorrents::~FinishedTorrents(){
 }
 
 void FinishedTorrents::addFinishedSHA(QString hash){
+  if(BTSession->getUncheckedTorrentsList().indexOf(hash) != -1){
+    BTSession->setTorrentFinishedChecking(hash);
+  }
   if(finishedSHAs.indexOf(hash) == -1) {
     finishedSHAs << hash;
     int row = finishedListModel->rowCount();
