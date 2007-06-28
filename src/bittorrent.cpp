@@ -125,6 +125,11 @@ void bittorrent::pauseTorrent(const QString& hash){
     QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
     paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
     paused_file.close();
+    int index = torrentsToPauseAfterChecking.indexOf(hash);
+    if(index != -1) {
+      torrentsToPauseAfterChecking.removeAt(index);
+      qDebug("A torrent was paused just after checking, good");
+    }
   }
 }
 
@@ -240,10 +245,10 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, const QString
       // Copy it to torrentBackup directory
       QFile::copy(file, newFile);
     }
-    //qDebug("Copied to torrent backup directory");
     // Pause torrent if it was paused last time
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")){
-      h.pause();
+      torrentsToPauseAfterChecking << hash;
+      qDebug("Adding a torrent to the torrentsToPauseAfterChecking list");
     }
     // Incremental download
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental")){
@@ -294,6 +299,10 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, const QString
       QFile::rename(file,file+".corrupt");
     }
   }
+}
+
+QStringList bittorrent::getTorrentsToPauseAfterChecking() const{
+  return torrentsToPauseAfterChecking;
 }
 
 // Set the maximum number of opened connections

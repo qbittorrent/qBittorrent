@@ -57,6 +57,7 @@ class bittorrent : public QObject{
     downloadThread *downloader;
     QStringList supported_preview_extensions;
     QString defaultSavePath;
+    QStringList torrentsToPauseAfterChecking;
 
   protected:
     QString getSavePath(const QString& hash);
@@ -76,6 +77,7 @@ class bittorrent : public QObject{
     QList<torrent_handle> getFinishedTorrentHandles() const;
     session_status getSessionStatus() const;
     int getListenPort() const;
+    QStringList getTorrentsToPauseAfterChecking() const;
 
   public slots:
     void addTorrent(const QString& path, bool fromScanDir = false, const QString& from_url = QString());

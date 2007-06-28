@@ -478,9 +478,19 @@ void GUI::updateDlList(bool force){
     try{
       torrent_status torrentStatus = h.status();
       QString fileHash = QString(misc::toString(h.info_hash()).c_str());
+      int row = getRowFromHash(fileHash);
+      if(BTSession.getTorrentsToPauseAfterChecking().indexOf(fileHash) != -1){
+        // Pause torrent if it finished checking and it is was supposed to be paused.
+        // This is a trick to see the progress of the pause torrents on startup
+        if(torrentStatus.state != torrent_status::checking_files && torrentStatus.state != torrent_status::queued_for_checking){
+          qDebug("Paused torrent finished checking with state: %d", torrentStatus.state);
+          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
+          BTSession.pauseTorrent(fileHash);
+          continue;
+        }
+      }
       if(h.is_paused()) continue;
       if(finishedSHAs.indexOf(fileHash) != -1) continue;
-      int row = getRowFromHash(fileHash);
       if(row == -1){
         qDebug("Info: Could not find filename in download list, adding it...");
         restoreInDownloadList(h);
