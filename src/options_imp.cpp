@@ -64,6 +64,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   tabOptions->setTabIcon(4, QIcon(QString::fromUtf8(":/Icons/proxy.png")));
   tabOptions->setTabIcon(5, QIcon(QString::fromUtf8(":/Icons/wizard.png")));
   lbl_icon_i18n->setPixmap(QPixmap(QString::fromUtf8(":/Icons/locale.png")));
+  lblencryption_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/password.png")));
   addFilterRange->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
   delFilterRange->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
   enableProxyAuth_checkBox->setIcon(QIcon(QString::fromUtf8(":/Icons/encrypted.png")));

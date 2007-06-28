@@ -623,6 +623,7 @@ void GUI::sortDownloadListString(int index, Qt::SortOrder sortOrder){
 }
 
 void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoadColWidth){
+  qDebug("Called sort download list");
   static Qt::SortOrder sortOrder = startSortOrder;
   if(!fromLoadColWidth && downloadList->header()->sortIndicatorSection() == index){
     if(sortOrder == Qt::AscendingOrder){
