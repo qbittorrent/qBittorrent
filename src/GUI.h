@@ -25,6 +25,7 @@
 #include <QMainWindow>
 #include <QProcess>
 #include <QSystemTrayIcon>
+#include <QMutex>
 
 #include <libtorrent/entry.hpp>
 #include <libtorrent/bencode.hpp>
@@ -84,6 +85,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     bool force_exit;
     bool delayedSorting;
     Qt::SortOrder delayedSortingOrder;
+    QMutex DLListAccess;
     // Preview
     previewSelect *previewSelection;
     QProcess *previewProcess;

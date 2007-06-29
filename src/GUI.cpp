@@ -27,6 +27,7 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QCloseEvent>
+#include <QMutexLocker>
 
 #include <libtorrent/extensions/metadata_transfer.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
@@ -462,6 +463,7 @@ void GUI::sortProgressColumnDelayed() {
 void GUI::updateDlList(bool force){
   char tmp[MAX_CHAR_TMP];
   char tmp2[MAX_CHAR_TMP];
+  QMutexLocker lock(&DLListAccess);
   // update global informations
   snprintf(tmp, MAX_CHAR_TMP, "%.1f", BTSession.getPayloadUploadRate()/1024.);
   snprintf(tmp2, MAX_CHAR_TMP, "%.1f", BTSession.getPayloadDownloadRate()/1024.);
@@ -648,6 +650,7 @@ void GUI::sortDownloadListString(int index, Qt::SortOrder sortOrder){
 }
 
 void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoadColWidth){
+  QMutexLocker lock(&DLListAccess);
   qDebug("Called sort download list");
   static Qt::SortOrder sortOrder = startSortOrder;
   if(!fromLoadColWidth && downloadList->header()->sortIndicatorSection() == index){

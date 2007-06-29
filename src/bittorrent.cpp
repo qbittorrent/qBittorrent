@@ -841,8 +841,8 @@ QStringList bittorrent::getUncheckedTorrentsList() const{
 
 void bittorrent::setTorrentFinishedChecking(QString hash){
   int index = torrentsUnchecked.indexOf(hash);
+  qDebug("torrent %s finished checking", (const char*)hash.toUtf8());
   if(index != -1){
-    qDebug("torrent %s finished checking", (const char*)hash.toUtf8());
     torrentsUnchecked.removeAt(index);
     qDebug("Still %d unchecked torrents", torrentsUnchecked.size());
     if(torrentsUnchecked.size() == 0){
