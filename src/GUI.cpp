@@ -657,20 +657,20 @@ void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoa
       sortOrder = Qt::AscendingOrder;
     }
   }
-	QString sortOrderLetter;
-	if(sortOrder == Qt::AscendingOrder)
-		sortOrderLetter = "a";
-	else
-		sortOrderLetter = "d";
-	if(fromLoadColWidth) {
-		// XXX: Why is this needed?
-		if(sortOrder == Qt::DescendingOrder)
-			downloadList->header()->setSortIndicator(index, Qt::AscendingOrder);
-		else
-			downloadList->header()->setSortIndicator(index, Qt::DescendingOrder);
-	} else {
-	  downloadList->header()->setSortIndicator(index, sortOrder);
-	}
+  QString sortOrderLetter;
+  if(sortOrder == Qt::AscendingOrder)
+    sortOrderLetter = "a";
+  else
+    sortOrderLetter = "d";
+  if(fromLoadColWidth) {
+    // XXX: Why is this needed?
+    if(sortOrder == Qt::DescendingOrder)
+      downloadList->header()->setSortIndicator(index, Qt::AscendingOrder);
+    else
+      downloadList->header()->setSortIndicator(index, Qt::DescendingOrder);
+  } else {
+    downloadList->header()->setSortIndicator(index, sortOrder);
+  }
   switch(index){
     case SIZE:
     case ETA:
@@ -679,9 +679,13 @@ void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoa
       sortDownloadListFloat(index, sortOrder);
       break;
     case PROGRESS:
-      // Progress sorting must be delayed until files are checked
-      delayedSorting = true;
-      delayedSortingOrder = sortOrder;
+      if(fromLoadColWidth){
+        // Progress sorting must be delayed until files are checked (on startup)
+        delayedSorting = true;
+        delayedSortingOrder = sortOrder;
+      }else{
+        sortDownloadListFloat(index, sortOrder);
+      }
       break;
     default:
       sortDownloadListString(index, sortOrder);
