@@ -22,6 +22,7 @@
 #define __BITTORRENT_H__
 
 #include <QHash>
+#include <QTimer>
 
 #include <libtorrent/entry.hpp>
 #include <libtorrent/bencode.hpp>
@@ -40,9 +41,6 @@
 
 #include "deleteThread.h"
 
-class QTimer;
-class QString;
-
 using namespace libtorrent;
 
 class downloadThread;
@@ -55,7 +53,7 @@ class bittorrent : public QObject{
     bool DHTEnabled;
     QString scan_dir;
     QTimer *timerScan;
-    QTimer *timerAlerts;
+    QTimer timerAlerts;
     downloadThread *downloader;
     QStringList supported_preview_extensions;
     QString defaultSavePath;
@@ -63,6 +61,7 @@ class bittorrent : public QObject{
     QStringList torrentsUnchecked;
     QHash<QString, QList<long> > ETAstats;
     QHash<QString, long> ETAs;
+    QTimer ETARefresher;
 
   protected:
     QString getSavePath(const QString& hash);

@@ -21,14 +21,13 @@
 
 #include <QDir>
 #include <QTime>
-#include <QTimer>
 #include <QString>
 
 #include "bittorrent.h"
 #include "misc.h"
 #include "downloadThread.h"
 
-#define ETAS_MAX_VALUES 5
+#define ETAS_MAX_VALUES 8
 
 // Main constructor
 bittorrent::bittorrent(){
@@ -45,9 +44,10 @@ bittorrent::bittorrent(){
   DHTEnabled = false;
   // Enabling metadata plugin
   s->add_extension(&create_metadata_plugin);
-  timerAlerts = new QTimer(this);
-  connect(timerAlerts, SIGNAL(timeout()), this, SLOT(readAlerts()));
-  timerAlerts->start(3000);
+  connect(&timerAlerts, SIGNAL(timeout()), this, SLOT(readAlerts()));
+  timerAlerts.start(3000);
+  connect(&ETARefresher, SIGNAL(timeout()), this, SLOT(updateETAs()));
+  ETARefresher.start(6000);
   // To download from urls
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
@@ -56,7 +56,6 @@ bittorrent::bittorrent(){
 // Main destructor
 bittorrent::~bittorrent(){
   disableDirectoryScanning();
-  delete timerAlerts;
   delete downloader;
   delete s;
 }
@@ -74,20 +73,19 @@ void bittorrent::updateETAs(){
       QString hash = QString(misc::toString(h.info_hash()).c_str());
       QList<long> listEtas = ETAstats.value(hash, QList<long>());
       if(listEtas.size() == ETAS_MAX_VALUES){
+          listEtas.removeFirst();
+      }
+      torrent_status torrentStatus = h.status();
+      torrent_info ti = h.get_torrent_info();
+      if(torrentStatus.download_payload_rate != 0){
+        listEtas << (long)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate);
+        ETAstats[hash] = listEtas;
         long moy = 0;
         long val;
         foreach(val, listEtas){
           moy += val;
         }
-        ETAs[hash] = (long) ((double)moy/(double)ETAS_MAX_VALUES);
-        ETAstats[hash] = QList<long>();
-      }else{
-        torrent_status torrentStatus = h.status();
-        torrent_info ti = h.get_torrent_info();
-        if(torrentStatus.download_payload_rate != 0){
-          listEtas << (long)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate);
-          ETAstats[hash] = listEtas;
-        }
+        ETAs[hash] = (long) ((double)moy/(double)listEtas.size());
       }
     }
   }
@@ -710,8 +708,6 @@ void bittorrent::readAlerts(){
     }
     a = s->pop_alert();
   }
-  // ETAs
-  updateETAs();
 }
 
 void bittorrent::reloadTorrent(const torrent_handle &h, bool compact_mode){
