@@ -45,7 +45,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
 
   signals:
     void setInfoBarGUI(const QString& info, const QString& color);
-    void torrentAddition(const QString& filePath, bool fromScanDir, const QString& from_url);
+    void torrentAddition(const QString& filePath, bool fromScanDir, bool onStartup, const QString& from_url);
 
   private:
     QString fileName;
@@ -237,7 +237,8 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       // save filtered files
       savePiecesPriorities();
       // Add to download list
-      emit torrentAddition(filePath, fromScanDir, from_url);
+	// TODO : quick fix
+      emit torrentAddition(filePath, fromScanDir, false, from_url);
       close();
     }
 
