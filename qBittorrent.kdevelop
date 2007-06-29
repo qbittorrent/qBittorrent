@@ -99,8 +99,8 @@
       <designerpluginpaths/>
     </qt>
     <references>
-      <pcs>Qt4</pcs>
       <pcs>automatic_%2Fhome%2Fchris%2Fqbittorrent_svn%2Ftrunk</pcs>
+      <pcs>Qt4</pcs>
     </references>
     <codecompletion>
       <automaticCodeCompletion>true</automaticCodeCompletion>

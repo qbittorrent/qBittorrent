@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# Version: 2.02
+# Changelog:
+# - Fixed mininova search engine
+
 # Version: 2.01
 # Changelog:
 # - Use multiple threads to optimize speed
@@ -25,14 +29,6 @@
 # - added btjunkie
 # - added meganova
 # - added multithreaded mode
-
-# Version: 1.6
-# Changelog:
-# - size is now always returned in bytes
-# - seeders/leechers are now always returned as integers
-# - cleaned up code
-# - results are now displayed in real time
-# - fixed piratebay, torrentreactor
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
