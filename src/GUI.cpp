@@ -496,6 +496,7 @@ void GUI::updateDlList(bool force){
           BTSession.setTorrentFinishedChecking(fileHash);
         }
       }
+      row = getRowFromHash(fileHash); // List may have been sorted in the meantime
       if(BTSession.getTorrentsToPauseAfterChecking().indexOf(fileHash) != -1){
         // Pause torrent if it finished checking and it is was supposed to be paused.
         // This is a trick to see the progress of the pause torrents on startup
