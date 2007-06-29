@@ -491,12 +491,6 @@ void GUI::updateDlList(bool force){
       torrent_status torrentStatus = h.status();
       QString fileHash = QString(misc::toString(h.info_hash()).c_str());
       int row = getRowFromHash(fileHash);
-      if(delayedSorting && BTSession.getUncheckedTorrentsList().indexOf(fileHash) != -1){
-        if(torrentStatus.state != torrent_status::checking_files && torrentStatus.state != torrent_status::queued_for_checking){
-          BTSession.setTorrentFinishedChecking(fileHash);
-        }
-      }
-      row = getRowFromHash(fileHash); // List may have been sorted in the meantime
       if(BTSession.getTorrentsToPauseAfterChecking().indexOf(fileHash) != -1){
         // Pause torrent if it finished checking and it is was supposed to be paused.
         // This is a trick to see the progress of the pause torrents on startup
@@ -507,6 +501,12 @@ void GUI::updateDlList(bool force){
           continue;
         }
       }
+      if(delayedSorting && BTSession.getUncheckedTorrentsList().indexOf(fileHash) != -1){
+        if(torrentStatus.state != torrent_status::checking_files && torrentStatus.state != torrent_status::queued_for_checking){
+          BTSession.setTorrentFinishedChecking(fileHash);
+        }
+      }
+      row = getRowFromHash(fileHash); // List may have been sorted in the meantime
       if(h.is_paused()) continue;
       if(finishedSHAs.indexOf(fileHash) != -1) continue;
       if(row == -1){
