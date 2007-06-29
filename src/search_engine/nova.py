@@ -208,8 +208,12 @@ class Mininova(object):
 		order = 'seeds' # must be one in self.table_items
 
 		def get_link(lnk):
-			lnk = lnk.getElementsByTagName('a').item(0)
-			return self.url+lnk.attributes.get('href').value
+                        lnks = lnk.getElementsByTagName('a')
+                        if lnks.item(0).attributes.get('href').value.startswith('/faq'):
+                          if len(lnks) > 1:
+                            return self.url+lnks.item(1).attributes.get('href').value
+                        else:
+			 return self.url+lnks.item(0).attributes.get('href').value
 
 		def get_text(txt):
 			if txt.nodeType == txt.TEXT_NODE:
