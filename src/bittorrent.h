@@ -21,6 +21,8 @@
 #ifndef __BITTORRENT_H__
 #define __BITTORRENT_H__
 
+#include <QHash>
+
 #include <libtorrent/entry.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/session.hpp>
@@ -59,6 +61,8 @@ class bittorrent : public QObject{
     QString defaultSavePath;
     QStringList torrentsToPauseAfterChecking;
     QStringList torrentsUnchecked;
+    QHash<QString, QList<long> > ETAstats;
+    QHash<QString, long> ETAs;
 
   protected:
     QString getSavePath(const QString& hash);
@@ -80,6 +84,7 @@ class bittorrent : public QObject{
     int getListenPort() const;
     QStringList getTorrentsToPauseAfterChecking() const;
     QStringList getUncheckedTorrentsList() const;
+    long getETA(QString hash) const;
 
   public slots:
     void addTorrent(const QString& path, bool fromScanDir = false, bool onStartup = false, const QString& from_url = QString());
@@ -102,6 +107,7 @@ class bittorrent : public QObject{
     void reloadTorrent(const torrent_handle &h, bool compact_mode = true);
     void setTorrentFinishedChecking(QString hash);
     void resumeUnfinishedTorrents();
+    void updateETAs();
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
     void setMaxConnections(int maxConnec);

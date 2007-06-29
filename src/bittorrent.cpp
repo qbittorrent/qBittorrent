@@ -28,6 +28,8 @@
 #include "misc.h"
 #include "downloadThread.h"
 
+#define ETAS_MAX_VALUES 5
+
 // Main constructor
 bittorrent::bittorrent(){
   // To avoid some exceptions
@@ -51,17 +53,46 @@ bittorrent::bittorrent(){
   connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
 }
 
-void bittorrent::resumeUnfinishedTorrents(){
-  // Resume unfinished torrents
-  resumeUnfinished();
-}
-
 // Main destructor
 bittorrent::~bittorrent(){
   disableDirectoryScanning();
   delete timerAlerts;
   delete downloader;
   delete s;
+}
+
+void bittorrent::resumeUnfinishedTorrents(){
+  // Resume unfinished torrents
+  resumeUnfinished();
+}
+
+void bittorrent::updateETAs(){
+  std::vector<torrent_handle> handles = s->get_torrents();
+  for(unsigned int i=0; i<handles.size(); ++i){
+    torrent_handle h = handles[i];
+    if(h.is_valid()){
+      QString hash = QString(misc::toString(h.info_hash()).c_str());
+      QList<long> listEtas = ETAstats.value(hash, QList<long>());
+      if(listEtas.size() == ETAS_MAX_VALUES){
+        long moy = 0;
+        long val;
+        foreach(val, listEtas){
+          moy += val;
+        }
+        ETAs[hash] = (long) ((double)moy/(double)ETAS_MAX_VALUES);
+        ETAstats[hash] = QList<long>();
+      }else{
+        torrent_status torrentStatus = h.status();
+        torrent_info ti = h.get_torrent_info();
+        listEtas << (long)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate);
+        ETAstats[hash] = listEtas;
+      }
+    }
+  }
+}
+
+long bittorrent::getETA(QString hash) const{
+  return ETAs.value(hash, -1);
 }
 
 // Return the torrent handle, given its hash
@@ -101,6 +132,9 @@ void bittorrent::deleteTorrent(const QString& hash, bool permanent){
   torrentBackup.remove(hash+".priorities");
   torrentBackup.remove(hash+".savepath");
   torrentBackup.remove(hash+".trackers");
+  // Remove it fro ETAs hash tables
+  ETAstats.take(hash);
+  ETAs.take(hash);
   if(permanent){
     // Remove from Hard drive
     qDebug("Removing this on hard drive: %s", qPrintable(savePath+QDir::separator()+fileName));
@@ -674,6 +708,8 @@ void bittorrent::readAlerts(){
     }
     a = s->pop_alert();
   }
+  // ETAs
+  updateETAs();
 }
 
 void bittorrent::reloadTorrent(const torrent_handle &h, bool compact_mode){

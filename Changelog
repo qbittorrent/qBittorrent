@@ -20,6 +20,7 @@
     - FEATURE: Added a way to link against static libtorrent (useful for deb packages)
     - BUGFIX: Progress of paused torrents is now correct on restart
     - BUGFIX: Progress column gets sorted on restart it is was during last execution
+    - BUGFIX: Made ETA more reliable using stats instead of instant values
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features

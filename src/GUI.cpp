@@ -534,7 +534,7 @@ void GUI::updateDlList(bool force){
           if(torrentStatus.download_payload_rate > 0){
             // Display "Downloading" status when connecting if download speed > 0
             DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Downloading...")));
-            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate)));
+            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)BTSession.getETA(fileHash)));
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
             setRowColor(row, "green");
           }else{
@@ -552,7 +552,7 @@ void GUI::updateDlList(bool force){
           if(torrentStatus.download_payload_rate > 0){
             DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Downloading...")));
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
-            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate)));
+            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)BTSession.getETA(fileHash)));
             setRowColor(row, "green");
           }else{
             DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Stalled", "i.e: State of a torrent whose download speed is 0kb/s")));
@@ -694,8 +694,8 @@ void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoa
     default:
       sortDownloadListString(index, sortOrder);
   }
-	QSettings settings("qBittorrent", "qBittorrent");
-	settings.setValue("DownloadListSortedCol", QString(misc::toString(index).c_str())+sortOrderLetter);
+  QSettings settings("qBittorrent", "qBittorrent");
+  settings.setValue("DownloadListSortedCol", QString(misc::toString(index).c_str())+sortOrderLetter);
 }
 
 // Toggle Main window visibility
