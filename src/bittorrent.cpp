@@ -84,8 +84,10 @@ void bittorrent::updateETAs(){
       }else{
         torrent_status torrentStatus = h.status();
         torrent_info ti = h.get_torrent_info();
-        listEtas << (long)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate);
-        ETAstats[hash] = listEtas;
+        if(torrentStatus.download_payload_rate != 0){
+          listEtas << (long)((ti.total_size()-torrentStatus.total_done)/(double)torrentStatus.download_payload_rate);
+          ETAstats[hash] = listEtas;
+        }
       }
     }
   }
