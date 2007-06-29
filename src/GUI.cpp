@@ -452,7 +452,6 @@ void GUI::displayInfoBarMenu(const QPoint& pos){
 
 void GUI::sortProgressColumnDelayed() {
     if(delayedSorting){
-      QMutexLocker lock(&DLListAccess);
       sortDownloadListFloat(PROGRESS, delayedSortingOrder);
       qDebug("Delayed sorting of progress column");
       delayedSorting = false;
