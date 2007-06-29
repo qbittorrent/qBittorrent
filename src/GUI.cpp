@@ -884,7 +884,7 @@ void GUI::on_actionOpen_triggered(){
     for(unsigned int i=0; i<listSize; ++i){
       if(useTorrentAdditionDialog){
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-        connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
+        connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, bool, const QString&)));
         connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
         dialog->showLoad(pathsList.at(i));
       }else{
@@ -1114,7 +1114,7 @@ void GUI::processParams(const QStringList& params){
     }else{
       if(useTorrentAdditionDialog){
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-        connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
+        connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, bool, const QString&)));
         connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
         dialog->showLoad(param);
       }else{
@@ -1131,7 +1131,7 @@ void GUI::processScannedFiles(const QStringList& params){
   foreach(param, params){
     if(useTorrentAdditionDialog){
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-      connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
+      connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, bool, const QString&)));
       connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
       dialog->showLoad(param, true);
     }else{
@@ -1145,7 +1145,7 @@ void GUI::processDownloadedFiles(const QString& path, const QString& url){
   bool useTorrentAdditionDialog = settings.value("Options/Misc/TorrentAdditionDialog/Enabled", true).toBool();
   if(useTorrentAdditionDialog){
     torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-    connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, const QString&)));
+    connect(dialog, SIGNAL(torrentAddition(const QString&, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, bool, const QString&)));
     connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
     dialog->showLoad(path, false, url);
   }else{
