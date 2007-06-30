@@ -186,7 +186,6 @@ class PropListDelegate: public QItemDelegate {
     public slots:
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const {
       QComboBox *combobox = static_cast<QComboBox*>(editor);
-//       combobox->interpretText();
       int value = combobox->currentIndex();
       qDebug("Setting combobox value in index: %d", value);
       QString color;

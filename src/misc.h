@@ -116,7 +116,7 @@ class misc : public QObject{
             }
           }
           // Remove empty folder
-          if(current_dir.rmpath(path)){
+          if(current_dir.rmdir(path)){
             return true;
           }else{
             return false;

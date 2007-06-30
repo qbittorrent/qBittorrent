@@ -21,6 +21,7 @@
     - BUGFIX: Progress of paused torrents is now correct on restart
     - BUGFIX: Progress column gets sorted on restart it is was during last execution
     - BUGFIX: Made ETA more reliable using stats instead of instant values
+    - BUGFIX: Remove torrent from hard drive used to delete parent folder if empty
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features
