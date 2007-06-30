@@ -612,25 +612,31 @@ void bittorrent::saveTrackerFile(const QString& hash){
 }
 
 // Pause all torrents in session
-void bittorrent::pauseAllTorrents(){
+bool bittorrent::pauseAllTorrents(){
+  bool paused_torrents = false;
   std::vector<torrent_handle> handles = s->get_torrents();
   for(unsigned int i=0; i<handles.size(); ++i){
     torrent_handle h = handles[i];
     if(h.is_valid() && !h.is_paused()){
       h.pause();
+      paused_torrents = true;
     }
   }
+  return paused_torrents;
 }
 
 // Resume all torrents in session
-void bittorrent::resumeAllTorrents(){
+bool bittorrent::resumeAllTorrents(){
+  bool resumed_torrents = false;
   std::vector<torrent_handle> handles = s->get_torrents();
   for(unsigned int i=0; i<handles.size(); ++i){
     torrent_handle h = handles[i];
     if(h.is_valid() && h.is_paused()){
       h.resume();
+      resumed_torrents = true;
     }
   }
+  return resumed_torrents;
 }
 
 // Add uT PeX extension to bittorrent session

@@ -1300,25 +1300,26 @@ void GUI::configureSession(bool deleteOptions){
 void GUI::on_actionPause_All_triggered(){
   QString fileHash;
   // Pause all torrents
-  BTSession.pauseAllTorrents();
-  // update download list
-  unsigned int nbRows = DLListModel->rowCount();
-  for(unsigned int i=0; i<nbRows; ++i){
-    fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
-    // Create .paused file
-    QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
-    paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
-    paused_file.close();
-    // Update DL list items
-    DLListModel->setData(DLListModel->index(i, DLSPEED), QVariant((double)0.));
-    DLListModel->setData(DLListModel->index(i, UPSPEED), QVariant((double)0.));
-    DLListModel->setData(DLListModel->index(i, STATUS), QVariant(tr("Paused")));
-    DLListModel->setData(DLListModel->index(i, ETA), QVariant((qlonglong)-1));
-    DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
-    DLListModel->setData(DLListModel->index(i, SEEDSLEECH), QVariant("0/0"));
-    setRowColor(i, "red");
+  if(BTSession.pauseAllTorrents()){
+    // update download list
+    unsigned int nbRows = DLListModel->rowCount();
+    for(unsigned int i=0; i<nbRows; ++i){
+      fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
+      // Create .paused file
+      QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
+      paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
+      paused_file.close();
+      // Update DL list items
+      DLListModel->setData(DLListModel->index(i, DLSPEED), QVariant((double)0.));
+      DLListModel->setData(DLListModel->index(i, UPSPEED), QVariant((double)0.));
+      DLListModel->setData(DLListModel->index(i, STATUS), QVariant(tr("Paused")));
+      DLListModel->setData(DLListModel->index(i, ETA), QVariant((qlonglong)-1));
+      DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
+      DLListModel->setData(DLListModel->index(i, SEEDSLEECH), QVariant("0/0"));
+      setRowColor(i, "red");
+    }
+    setInfoBar(tr("All downloads were paused."));
   }
-  setInfoBar(tr("All downloads were paused."));
 }
 
 // pause selected items in the list
@@ -1351,19 +1352,20 @@ void GUI::on_actionPause_triggered(){
 void GUI::on_actionStart_All_triggered(){
   QString fileHash;
   // Pause all torrents
-  BTSession.resumeAllTorrents();
-  // update download list
-  unsigned int nbRows = DLListModel->rowCount();
-  for(unsigned int i=0; i<nbRows; ++i){
-    fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
-    // Remove .paused file
-    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
-    // Update DL list items
-    DLListModel->setData(DLListModel->index(i, STATUS), QVariant(tr("Connecting...", "i.e: Connecting to the tracker...")));
-    DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-    setRowColor(i, "grey");
+  if(BTSession.resumeAllTorrents()){
+    // update download list
+    unsigned int nbRows = DLListModel->rowCount();
+    for(unsigned int i=0; i<nbRows; ++i){
+      fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
+      // Remove .paused file
+      QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
+      // Update DL list items
+      DLListModel->setData(DLListModel->index(i, STATUS), QVariant(tr("Connecting...", "i.e: Connecting to the tracker...")));
+      DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
+      setRowColor(i, "grey");
+    }
+    setInfoBar(tr("All downloads were resumed."));
   }
-  setInfoBar(tr("All downloads were resumed."));
 }
 
 // start selected items in the list

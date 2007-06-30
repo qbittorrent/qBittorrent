@@ -91,8 +91,8 @@ class bittorrent : public QObject{
     void downloadFromURLList(const QStringList& url_list);
     void deleteTorrent(const QString& hash, bool permanent = false);
     void pauseTorrent(const QString& hash);
-    void pauseAllTorrents();
-    void resumeAllTorrents();
+    bool pauseAllTorrents();
+    bool resumeAllTorrents();
     void resumeTorrent(const QString& hash);
     void enableDHT();
     void disableDHT();
