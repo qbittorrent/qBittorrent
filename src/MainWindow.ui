@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>849</width>
-    <height>566</height>
+    <height>563</height>
    </rect>
   </property>
   <property name="contextMenuPolicy" >
@@ -255,7 +255,7 @@
             <property name="minimumSize" >
              <size>
               <width>0</width>
-              <height>238</height>
+              <height>0</height>
              </size>
             </property>
             <property name="contextMenuPolicy" >
@@ -279,6 +279,12 @@
         </item>
         <item>
          <widget class="QTabWidget" name="tabBottom" >
+          <property name="maximumSize" >
+           <size>
+            <width>16777215</width>
+            <height>142</height>
+           </size>
+          </property>
           <property name="tabPosition" >
            <enum>QTabWidget::West</enum>
           </property>
@@ -289,57 +295,44 @@
            <attribute name="title" >
             <string>Log</string>
            </attribute>
-           <widget class="QWidget" name="" >
-            <property name="geometry" >
-             <rect>
-              <x>0</x>
-              <y>-10</y>
-              <width>809</width>
-              <height>153</height>
-             </rect>
-            </property>
-            <layout class="QVBoxLayout" >
-             <property name="spacing" >
-              <number>6</number>
-             </property>
-             <property name="leftMargin" >
-              <number>0</number>
-             </property>
-             <property name="topMargin" >
-              <number>0</number>
-             </property>
-             <property name="rightMargin" >
-              <number>0</number>
-             </property>
-             <property name="bottomMargin" >
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QTextBrowser" name="infoBar" >
-               <property name="sizePolicy" >
-                <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maximumSize" >
-                <size>
-                 <width>16777215</width>
-                 <height>123</height>
-                </size>
-               </property>
-               <property name="contextMenuPolicy" >
-                <enum>Qt::CustomContextMenu</enum>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
+           <layout class="QVBoxLayout" >
+            <item>
+             <widget class="QTextBrowser" name="infoBar" >
+              <property name="sizePolicy" >
+               <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize" >
+               <size>
+                <width>16777215</width>
+                <height>120</height>
+               </size>
+              </property>
+              <property name="contextMenuPolicy" >
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
           <widget class="QWidget" name="filter_tab" >
            <attribute name="title" >
             <string>IP filter</string>
            </attribute>
+           <layout class="QVBoxLayout" >
+            <item>
+             <widget class="QTextBrowser" name="textBlockedUsers" >
+              <property name="maximumSize" >
+               <size>
+                <width>16777215</width>
+                <height>123</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </widget>
         </item>
