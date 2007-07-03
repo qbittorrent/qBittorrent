@@ -1618,5 +1618,5 @@ void GUI::OptionsSaved(const QString& info, bool deleteOptions){
 // an url
 void GUI::on_actionDownload_from_URL_triggered(){
   downloadFromURLDialog = new downloadFromURL(this);
-  connect(downloadFromURLDialog, SIGNAL(downloadFinished(QString, QString, int, QString)), &BTSession, SLOT(processDownloadedFile(QString, QString, int, QString)));
+  connect(downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), &BTSession, SLOT(downloadFromURLList(const QStringList&)));
 }

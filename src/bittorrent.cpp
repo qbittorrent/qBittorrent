@@ -408,7 +408,7 @@ void bittorrent::disableDHT(){
 // and ask torrent_handle to consider them
 void bittorrent::loadFilteredFiles(torrent_handle &h){
   torrent_info torrentInfo = h.get_torrent_info();
-  unsigned int nbTorrents = torrentInfo.num_files();
+  unsigned int nbFiles = torrentInfo.num_files();
   if(!h.is_valid()){
     qDebug("/!\\ Error: Invalid handle");
     return;
@@ -417,20 +417,22 @@ void bittorrent::loadFilteredFiles(torrent_handle &h){
   QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".priorities");
   // Read saved file
   if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
+    qDebug("* Error: Couldn't open priorities file");
     return;
   }
   QByteArray pieces_priorities = pieces_file.readAll();
   pieces_file.close();
   QList<QByteArray> pieces_priorities_list = pieces_priorities.split('\n');
-  if((unsigned int)pieces_priorities_list.size() != nbTorrents+1){
-    std::cerr << "Error: Corrupted pieces file\n";
+  if((unsigned int)pieces_priorities_list.size() != nbFiles+1){
+    std::cerr << "* Error: Corrupted priorities file\n";
     return;
   }
-  for(unsigned int i=0; i<nbTorrents; ++i){
+  for(unsigned int i=0; i<nbFiles; ++i){
     int priority = pieces_priorities_list.at(i).toInt();
     if( priority < 0 || priority > 7){
       priority = 1;
     }
+    qDebug("Setting piece piority to %d", priority);
     h.piece_priority(i, priority);
   }
 }
@@ -836,6 +838,7 @@ void bittorrent::processDownloadedFile(const QString& url, const QString& file_p
 
 void bittorrent::downloadFromURLList(const QStringList& url_list){
   QString url;
+  qDebug("DownloadFromUrlList");
   foreach(url, url_list){
     downloadFromUrl(url);
   }

@@ -37,7 +37,6 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       icon_lbl->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/url.png")));
-      connect(this, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), parent, SLOT(downloadFromURLList(const QStringList&)));
       show();
     }
 
@@ -65,6 +64,7 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
         return;
       }
       emit urlsReadyToBeDownloaded(url_list_cleaned);
+      qDebug("Emitted urlsReadytobedownloaded signal");
       close();
     }
 
