@@ -427,14 +427,16 @@ void bittorrent::loadFilteredFiles(torrent_handle &h){
     std::cerr << "* Error: Corrupted priorities file\n";
     return;
   }
+  std::vector<int> v;
   for(unsigned int i=0; i<nbFiles; ++i){
     int priority = pieces_priorities_list.at(i).toInt();
     if( priority < 0 || priority > 7){
       priority = 1;
     }
     qDebug("Setting piece piority to %d", priority);
-    h.piece_priority(i, priority);
+    v.push_back(priority);
   }
+  h.prioritize_files(v);
 }
 
 // Save fastresume data for all torrents
