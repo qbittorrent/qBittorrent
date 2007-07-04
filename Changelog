@@ -23,6 +23,7 @@
     - BUGFIX: Progress column gets sorted on restart it is was during last execution
     - BUGFIX: Made ETA more reliable using stats instead of instant values
     - BUGFIX: Remove torrent from hard drive used to delete parent folder if empty
+    - BUGFIX: Fixed a crash when filtering all the files in a torrent
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features

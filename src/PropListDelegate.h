@@ -143,6 +143,7 @@ class PropListDelegate: public QItemDelegate {
 
     QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &/* option */, const QModelIndex & index) const {
       if(index.column() != PRIORITY) return 0;
+      if(onlyOneItem(index)) return 0;
       QComboBox* editor = new QComboBox(parent);
       editor->setFocusPolicy(Qt::StrongFocus);
       editor->addItem(tr("Ignored"));
@@ -181,6 +182,17 @@ class PropListDelegate: public QItemDelegate {
       const QString text = index.data(Qt::DisplayRole).toString();
       QRect textRect = QRect(0, 0, 0, fontMetrics.lineSpacing() * (text.count(QLatin1Char('\n')) + 1));
       return textRect.size();
+    }
+
+    bool onlyOneItem(const QModelIndex& index) const  {
+      const QAbstractItemModel *model = index.model();
+      unsigned int nbRows = model->rowCount();
+      if(nbRows == (unsigned int)1) return true;
+      for(unsigned int i=0; i<nbRows; ++i){
+        if((unsigned int)index.row() == i) continue;
+        if(model->data(model->index(i, PRIORITY)).toInt()) return false;
+      }
+      return true;
     }
 
     public slots:
