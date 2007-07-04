@@ -131,7 +131,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void createTrayIcon();
     void addLogPeerBlocked(const QString&);
     // Torrent actions
-    size_type torrentEffectiveSize(QString hash) const;
     void showProperties(const QModelIndex &index);
     void on_actionTorrent_Properties_triggered();
     void on_actionPause_triggered();

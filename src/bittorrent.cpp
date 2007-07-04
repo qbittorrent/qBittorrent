@@ -372,6 +372,40 @@ bool bittorrent::hasFilteredFiles(const QString& fileHash) const{
   return false;
 }
 
+// get the size of the torrent without the filtered files
+size_type bittorrent::torrentEffectiveSize(QString hash) const{
+  torrent_handle h = getTorrentHandle(hash);
+  torrent_info t = h.get_torrent_info();
+  unsigned int nbFiles = t.num_files();
+  if(!h.is_valid()){
+    qDebug("/!\\ Error: Invalid handle");
+    return t.total_size();
+  }
+  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".priorities");
+  // Read saved file
+  if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
+    qDebug("* Error: Couldn't open priorities file");
+    return t.total_size();
+  }
+  QByteArray pieces_priorities = pieces_file.readAll();
+  pieces_file.close();
+  QList<QByteArray> pieces_priorities_list = pieces_priorities.split('\n');
+  if((unsigned int)pieces_priorities_list.size() != nbFiles+1){
+    std::cerr << "* Error: Corrupted priorities file\n";
+    return t.total_size();
+  }
+  size_type effective_size = 0;
+  for(unsigned int i=0; i<nbFiles; ++i){
+    int priority = pieces_priorities_list.at(i).toInt();
+    if( priority < 0 || priority > 7){
+      priority = 1;
+    }
+    if(priority)
+      effective_size += t.file_at(i).size;
+  }
+  return effective_size;
+}
+
 // Return DHT state
 bool bittorrent::isDHTEnabled() const{
   return DHTEnabled;

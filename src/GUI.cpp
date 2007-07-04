@@ -593,7 +593,7 @@ void GUI::restoreInDownloadList(torrent_handle h){
   // Adding torrent to download list
   DLListModel->insertRow(row);
   DLListModel->setData(DLListModel->index(row, NAME), QVariant(h.name().c_str()));
-  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)torrentEffectiveSize(hash)));
+  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)BTSession.torrentEffectiveSize(hash)));
   DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
   DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
   DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
@@ -1057,18 +1057,6 @@ void GUI::on_actionDelete_triggered(){
   }
 }
 
-size_type GUI::torrentEffectiveSize(QString hash) const{
-  torrent_handle h = BTSession.getTorrentHandle(hash);
-  torrent_info t = h.get_torrent_info();
-  unsigned short nbFiles = t.num_files();
-  size_type effective_size = 0;
-  for(unsigned int i=0; i<nbFiles; ++i){
-    if(h.piece_priority(i) != 0)
-      effective_size += t.file_at(i).size;
-  }
-  return effective_size;
-}
-
 // Called when a torrent is added
 void GUI::torrentAdded(const QString& path, torrent_handle& h, bool fastResume){
   QString hash = QString(misc::toString(h.info_hash()).c_str());
@@ -1080,7 +1068,7 @@ void GUI::torrentAdded(const QString& path, torrent_handle& h, bool fastResume){
   // Adding torrent to download list
   DLListModel->insertRow(row);
   DLListModel->setData(DLListModel->index(row, NAME), QVariant(h.name().c_str()));
-  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)torrentEffectiveSize(hash)));
+  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)BTSession.torrentEffectiveSize(hash)));
   DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
   DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
   DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
@@ -1182,7 +1170,7 @@ void GUI::showProperties(const QModelIndex &index){
 
 void GUI::updateFileSize(QString hash){
   int row = getRowFromHash(hash);
-  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)torrentEffectiveSize(hash)));
+  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)BTSession.torrentEffectiveSize(hash)));
 }
 
 // Set BT session configuration

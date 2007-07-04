@@ -47,3 +47,4 @@
 - Fix all (or almost all) opened bugs in bug tracker
 - Fix sorting with Qt 4.3 - Reported to Trolltech, waiting for fix
 - update sorting when a new torrent is added
+- properties: reload torrent only if priorities changed

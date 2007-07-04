@@ -84,6 +84,7 @@ class bittorrent : public QObject{
     QStringList getTorrentsToPauseAfterChecking() const;
     QStringList getUncheckedTorrentsList() const;
     long getETA(QString hash) const;
+    size_type torrentEffectiveSize(QString hash) const;
 
   public slots:
     void addTorrent(const QString& path, bool fromScanDir = false, bool onStartup = false, const QString& from_url = QString());
