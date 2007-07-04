@@ -62,6 +62,7 @@ class bittorrent : public QObject{
     QHash<QString, QList<long> > ETAstats;
     QHash<QString, long> ETAs;
     QTimer ETARefresher;
+    QList<QString> fullAllocationModeList;
 
   protected:
     QString getSavePath(const QString& hash);
@@ -85,6 +86,7 @@ class bittorrent : public QObject{
     QStringList getUncheckedTorrentsList() const;
     long getETA(QString hash) const;
     size_type torrentEffectiveSize(QString hash) const;
+    bool inFullAllocationMode(const QString& hash) const;
 
   public slots:
     void addTorrent(const QString& path, bool fromScanDir = false, bool onStartup = false, const QString& from_url = QString());
@@ -104,7 +106,7 @@ class bittorrent : public QObject{
     void enablePeerExchange();
     void enableIPFilter(ip_filter filter);
     void disableIPFilter();
-    void reloadTorrent(const torrent_handle &h, bool compact_mode = true);
+    void reloadTorrent(const torrent_handle &h);
     void setTorrentFinishedChecking(QString hash);
     void resumeUnfinishedTorrents();
     void updateETAs();
@@ -119,10 +121,10 @@ class bittorrent : public QObject{
     void setSessionSettings(session_settings sessionSettings);
     void setDefaultSavePath(const QString& savepath);
     void applyEncryptionSettings(pe_settings se);
+    void loadFilesPriorities(torrent_handle& h);
 
   protected slots:
     void cleanDeleter(deleteThread* deleter);
-    void loadFilteredFiles(torrent_handle& h);
     void scanDirectory();
     void readAlerts();
     void processDownloadedFile(const QString&, const QString&, int, const QString&);

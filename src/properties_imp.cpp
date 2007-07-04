@@ -26,8 +26,10 @@
 #include <QMessageBox>
 
 // Constructor
-properties::properties(QWidget *parent, torrent_handle &h, QStringList trackerErrors): QDialog(parent), h(h){
+properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h, QStringList trackerErrors): QDialog(parent), h(h){
   setupUi(this);
+  this->BTSession = BTSession;
+  changedFilteredfiles = false;
   lbl_priorities->setText(tr("Priorities:")+"<ul><li>"+tr("Ignored: file is not downloaded at all")+"</li><li>"+tr("Normal: normal priority. Download order is dependent on availability")+"</li><li>"+tr("High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability")+"</li><li>"+tr("Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority")+"</li></ul>");
   // set icons
   addTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
@@ -42,7 +44,7 @@ properties::properties(QWidget *parent, torrent_handle &h, QStringList trackerEr
   PropListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
   PropListModel->setHeaderData(PRIORITY, Qt::Horizontal, tr("Priority"));
   filesList->setModel(PropListModel);
-  PropDelegate = new PropListDelegate();
+  PropDelegate = new PropListDelegate(0, &changedFilteredfiles);
   filesList->setItemDelegate(PropDelegate);
   connect(filesList, SIGNAL(clicked(const QModelIndex&)), filesList, SLOT(edit(const QModelIndex&)));
   connect(addTracker_button, SIGNAL(clicked()), this, SLOT(askForTracker()));
@@ -329,6 +331,7 @@ void properties::on_okButton_clicked(){
 }
 
 void properties::savePiecesPriorities(){
+  if(!changedFilteredfiles) return;
   qDebug("Saving pieces priorities");
   torrent_info torrentInfo = h.get_torrent_info();
   bool hasFilteredFiles = false;
@@ -351,6 +354,10 @@ void properties::savePiecesPriorities(){
     pieces_file.write(QByteArray((misc::toString(priority)+"\n").c_str()));
   }
   pieces_file.close();
-  emit changedFilteredFiles(h, !hasFilteredFiles);
+  if(hasFilteredFiles && !BTSession->inFullAllocationMode(fileHash)){
+    emit mustHaveFullAllocationMode(h);
+  }
+  BTSession->loadFilesPriorities(h);
+  emit filteredFilesChanged(fileHash);
   has_filtered_files = hasFilteredFiles;
 }

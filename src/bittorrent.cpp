@@ -132,9 +132,12 @@ void bittorrent::deleteTorrent(const QString& hash, bool permanent){
   torrentBackup.remove(hash+".priorities");
   torrentBackup.remove(hash+".savepath");
   torrentBackup.remove(hash+".trackers");
-  // Remove it fro ETAs hash tables
+  // Remove it from ETAs hash tables
   ETAstats.take(hash);
   ETAs.take(hash);
+  int index = fullAllocationModeList.indexOf(hash);
+  if(index != -1)
+    fullAllocationModeList.removeAt(index);
   if(permanent){
     // Remove from Hard drive
     qDebug("Removing this on hard drive: %s", qPrintable(savePath+QDir::separator()+fileName));
@@ -266,7 +269,7 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, bool onStartu
     h.set_max_uploads(-1);
     qDebug("Torrent hash is " +  hash.toUtf8());
     // Load filtered files
-    loadFilteredFiles(h);
+    loadFilesPriorities(h);
     // Load trackers
     bool loaded_trackers = loadTrackerFile(hash);
     // Doing this to order trackers well
@@ -440,7 +443,7 @@ void bittorrent::disableDHT(){
 
 // Read pieces priorities from .priorities file
 // and ask torrent_handle to consider them
-void bittorrent::loadFilteredFiles(torrent_handle &h){
+void bittorrent::loadFilesPriorities(torrent_handle &h){
   torrent_info torrentInfo = h.get_torrent_info();
   unsigned int nbFiles = torrentInfo.num_files();
   if(!h.is_valid()){
@@ -757,7 +760,8 @@ void bittorrent::readAlerts(){
   }
 }
 
-void bittorrent::reloadTorrent(const torrent_handle &h, bool compact_mode){
+// Reload a torrent with full allocation mode
+void bittorrent::reloadTorrent(const torrent_handle &h){
   qDebug("** Reloading a torrent");
   if(!h.is_valid()){
     qDebug("/!\\ Error: Invalid handle");
@@ -767,6 +771,10 @@ void bittorrent::reloadTorrent(const torrent_handle &h, bool compact_mode){
   fs::path saveDir = h.save_path();
   QString fileName = QString(h.name().c_str());
   QString fileHash = QString(misc::toString(h.info_hash()).c_str());
+  int index = fullAllocationModeList.indexOf(fileHash);
+  if(index == -1){
+    fullAllocationModeList << fileHash;
+  }
   qDebug("Reloading torrent: %s", (const char*)fileName.toUtf8());
   torrent_handle new_h;
   entry resumeData;
@@ -796,17 +804,13 @@ void bittorrent::reloadTorrent(const torrent_handle &h, bool compact_mode){
     std::cerr << "Error: Couldn't reload the torrent\n";
     return;
   }
-  new_h = s->add_torrent(t, saveDir, resumeData, compact_mode);
-  if(compact_mode){
-    qDebug("Using compact allocation mode");
-  }else{
-    qDebug("Using full allocation mode");
-  }
+  new_h = s->add_torrent(t, saveDir, resumeData, false);
+  qDebug("Using full allocation mode");
 
 //   new_h.set_max_connections(60);
   new_h.set_max_uploads(-1);
   // Load filtered Files
-  loadFilteredFiles(new_h);
+  loadFilesPriorities(new_h);
 
   // Pause torrent if it was paused last time
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused")){
@@ -817,7 +821,6 @@ void bittorrent::reloadTorrent(const torrent_handle &h, bool compact_mode){
     qDebug("Incremental download enabled for %s", (const char*)fileName.toUtf8());
     new_h.set_sequenced_download_threshold(15);
   }
-  emit updateFileSize(fileHash);
 }
 
 int bittorrent::getListenPort() const{
@@ -826,6 +829,12 @@ int bittorrent::getListenPort() const{
 
 session_status bittorrent::getSessionStatus() const{
   return s->status();
+}
+
+bool bittorrent::inFullAllocationMode(const QString& hash) const{
+  if(fullAllocationModeList.indexOf(hash) != -1)
+    return true;
+  return false;
 }
 
 QString bittorrent::getSavePath(const QString& hash){

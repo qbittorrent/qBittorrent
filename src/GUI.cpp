@@ -154,7 +154,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   // Configure BT session according to options
   configureSession(true);
   force_exit = false;
-  connect(&BTSession, SIGNAL(updateFileSize(QString)), this, SLOT(updateFileSize(QString)));
   // Resume unfinished torrents
   BTSession.resumeUnfinishedTorrents();
 	// Load last columns width for download list
@@ -1163,12 +1162,13 @@ void GUI::showProperties(const QModelIndex &index){
   QString fileHash = DLListModel->data(DLListModel->index(row, HASH)).toString();
   torrent_handle h = BTSession.getTorrentHandle(fileHash);
   QStringList errors = trackerErrors.value(fileHash, QStringList(tr("None", "i.e: No error message")));
-  properties *prop = new properties(this, h, errors);
-  connect(prop, SIGNAL(changedFilteredFiles(torrent_handle, bool)), &BTSession, SLOT(reloadTorrent(torrent_handle, bool)));
+  properties *prop = new properties(this, &BTSession, h, errors);
+  connect(prop, SIGNAL(mustHaveFullAllocationMode(torrent_handle)), &BTSession, SLOT(reloadTorrent(torrent_handle)));
+  connect(prop, SIGNAL(filteredFilesChanged(const QString&)), this, SLOT(updateFileSize(const QString&)));
   prop->show();
 }
 
-void GUI::updateFileSize(QString hash){
+void GUI::updateFileSize(const QString& hash){
   int row = getRowFromHash(hash);
   DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)BTSession.torrentEffectiveSize(hash)));
 }

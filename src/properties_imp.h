@@ -23,6 +23,7 @@
 #define PROPERTIES_H
 
 #include "ui_properties.h"
+#include "bittorrent.h"
 #include <libtorrent/session.hpp>
 #include <QStandardItemModel>
 #include <QTimer>
@@ -40,6 +41,8 @@ class properties : public QDialog, private Ui::properties{
     QStandardItemModel *PropListModel;
     QTimer *updateProgressTimer;
     bool has_filtered_files;
+    bool changedFilteredfiles;
+    bittorrent *BTSession;
 
   protected slots:
     void on_okButton_clicked();
@@ -56,12 +59,13 @@ class properties : public QDialog, private Ui::properties{
     void riseSelectedTracker();
 
   signals:
-    void changedFilteredFiles(torrent_handle h, bool compact_mode);
-    void fileSizeChanged(QString fileHash);
+    void filteredFilesChanged(const QString& fileHash);
+    void fileSizeChanged(const QString& fileHash);
+    void mustHaveFullAllocationMode(torrent_handle h);
 
   public:
     // Constructor
-    properties(QWidget *parent, torrent_handle &h, QStringList trackerErrors = QStringList());
+    properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h, QStringList trackerErrors = QStringList());
     ~properties();
 };
 

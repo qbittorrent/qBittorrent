@@ -171,7 +171,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void trackerError(const QString& hash, const QString& time, const QString& msg);
     void trackerAuthenticationRequired(torrent_handle& h);
     void setTabText(int index, QString text);
-    void updateFileSize(QString hash);
+    void updateFileSize(const QString& hash);
     void sortProgressColumnDelayed();
 
   protected:

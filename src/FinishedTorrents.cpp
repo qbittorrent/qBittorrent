@@ -307,7 +307,7 @@ void FinishedTorrents::showProperties(const QModelIndex &index){
   QString fileHash = finishedListModel->data(finishedListModel->index(row, HASH)).toString();
   torrent_handle h = BTSession->getTorrentHandle(fileHash);
   QStringList errors = ((GUI*)parent)->trackerErrors.value(fileHash, QStringList(tr("None", "i.e: No error message")));
-  properties *prop = new properties(this, h, errors);
+  properties *prop = new properties(this, BTSession, h, errors);
   connect(prop, SIGNAL(changedFilteredFiles(torrent_handle, bool)), BTSession, SLOT(reloadTorrent(torrent_handle, bool)));
   prop->show();
 }

@@ -46,8 +46,13 @@
 class PropListDelegate: public QItemDelegate {
   Q_OBJECT
 
+  private:
+    bool* filteredFilesChanged;
+
   public:
-    PropListDelegate(QObject *parent=0) : QItemDelegate(parent){}
+    PropListDelegate(QObject *parent=0, bool* filteredFilesChanged=0) : QItemDelegate(parent){
+      this->filteredFilesChanged = filteredFilesChanged;
+    }
 
     ~PropListDelegate(){}
 
@@ -206,21 +211,42 @@ class PropListDelegate: public QItemDelegate {
       } else {
         color = "red";
       }
+      unsigned short old_val = index.model()->data(index, Qt::DisplayRole).toInt();
       switch(value){
         case 0:
-          model->setData(index, QVariant(IGNORED));
+          if(old_val != IGNORED){
+            model->setData(index, QVariant(IGNORED));
+            if(filteredFilesChanged != 0)
+              *filteredFilesChanged = true;
+          }
           break;
         case 1:
-          model->setData(index, QVariant(NORMAL));
+          if(old_val != NORMAL){
+            model->setData(index, QVariant(NORMAL));
+            if(filteredFilesChanged != 0)
+              *filteredFilesChanged = true;
+          }
           break;
         case 2:
-          model->setData(index, QVariant(HIGH));
+          if(old_val != HIGH){
+            model->setData(index, QVariant(HIGH));
+            if(filteredFilesChanged != 0)
+              *filteredFilesChanged = true;
+          }
           break;
         case 3:
-          model->setData(index, QVariant(MAXIMUM));
+          if(old_val != MAXIMUM){
+            model->setData(index, QVariant(MAXIMUM));
+            if(filteredFilesChanged != 0)
+              *filteredFilesChanged = true;
+          }
           break;
         default:
-          model->setData(index, QVariant(NORMAL));
+          if(old_val != NORMAL){
+            model->setData(index, QVariant(NORMAL));
+            if(filteredFilesChanged != 0)
+              *filteredFilesChanged = true;
+          }
       }
       for(int i=0; i<model->columnCount(); ++i){
         model->setData(model->index(index.row(), i), QVariant(QColor(color)), Qt::TextColorRole);
