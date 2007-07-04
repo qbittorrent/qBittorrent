@@ -112,7 +112,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
   actionCreate_torrent->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/new.png")));
-  tabBottom->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/log.png")));
+//   tabBottom->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/log.png")));
+//   tabBottom->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/filter.png")));
   tabs->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
   // Set default ratio
   lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/stare.png")));
@@ -143,6 +144,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(&BTSession, SIGNAL(trackerError(const QString&, const QString&, const QString&)), this, SLOT(trackerError(const QString&, const QString&, const QString&)));
   connect(&BTSession,SIGNAL(allTorrentsFinishedChecking()), this, SLOT(sortProgressColumnDelayed()));
   connect(&BTSession, SIGNAL(trackerAuthenticationRequired(torrent_handle&)), this, SLOT(trackerAuthenticationRequired(torrent_handle&)));
+  connect(&BTSession, SIGNAL(peerBlocked(const QString&)), this, SLOT(addLogPeerBlocked(const QString)));
   connect(&BTSession, SIGNAL(scanDirFoundTorrents(const QStringList&)), this, SLOT(processScannedFiles(const QStringList&)));
   connect(&BTSession, SIGNAL(newDownloadedTorrent(const QString&, const QString&)), this, SLOT(processDownloadedFiles(const QString&, const QString&)));
   connect(&BTSession, SIGNAL(aboutToDownloadFromUrl(const QString&)), this, SLOT(displayDownloadingUrlInfos(const QString&)));
@@ -240,6 +242,16 @@ void GUI::readSettings() {
   resize(settings.value("size", size()).toSize());
   move(settings.value("pos", screenCenter()).toPoint());
   settings.endGroup();
+}
+
+void GUI::addLogPeerBlocked(const QString& ip){
+  static unsigned short nbLines = 0;
+  ++nbLines;
+  if(nbLines > 200){
+    textBlockedUsers->clear();
+    nbLines = 1;
+  }
+  infoBar->append("<font color='grey'>"+ QTime::currentTime().toString("hh:mm:ss") + "</font> - "+tr("<font color='red'>%1</font> <i> was blocked</i>").arg(ip));
 }
 
 // Update Info Bar information
@@ -1256,8 +1268,11 @@ void GUI::configureSession(bool deleteOptions){
   // Apply filtering settings
   if(options->isFilteringEnabled()){
     BTSession.enableIPFilter(options->getFilter());
+    tabBottom->setTabEnabled(1, true);
   }else{
     BTSession.disableIPFilter();
+    tabBottom->setCurrentIndex(0);
+    tabBottom->setTabEnabled(1, false);
   }
   // Apply Proxy settings
   if(options->isProxyEnabled()){

@@ -716,6 +716,9 @@ void bittorrent::readAlerts(){
         emit trackerAuthenticationRequired(p->handle);
       }
     }
+    else if (peer_blocked_alert* p = dynamic_cast<peer_blocked_alert*>(a.get())){
+      emit peerBlocked(QString(p->ip.to_string().c_str()));
+    }
     a = s->pop_alert();
   }
 }

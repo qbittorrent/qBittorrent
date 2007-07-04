@@ -144,6 +144,7 @@ class bittorrent : public QObject{
     void aboutToDownloadFromUrl(const QString& url);
     void updateFileSize(QString hash);
     void allTorrentsFinishedChecking();
+    void peerBlocked(const QString&);
 
 };
 

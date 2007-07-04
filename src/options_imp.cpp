@@ -516,15 +516,10 @@ void options_imp::loadOptions(){
   settings.beginGroup("IPFilter");
   if(settings.value("Enabled", false).toBool()){
     strValue = settings.value("File", QString()).toString();
-    if(strValue.isEmpty()){
-      activateFilter->setChecked(false);
-      filterGroup->setEnabled(false);
-    }else{
-      activateFilter->setChecked(true);
-      filterGroup->setEnabled(true);
-      filterFile->setText(strValue);
-      processFilterFile(strValue);
-    }
+    activateFilter->setChecked(true);
+    filterGroup->setEnabled(true);
+    filterFile->setText(strValue);
+    processFilterFile(strValue);
   }else{
     activateFilter->setChecked(false);
     filterGroup->setEnabled(false);
