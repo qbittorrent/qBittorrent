@@ -254,6 +254,10 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, bool onStartu
     // Adding files to bittorrent session
     if(hasFilteredFiles(hash)){
       h = s->add_torrent(t, fs::path((const char*)savePath.toUtf8()), resume_data, false);
+      int index = fullAllocationModeList.indexOf(hash);
+      if(index == -1){
+        fullAllocationModeList << hash;
+      }
       qDebug("Full allocation mode");
     }else{
       h = s->add_torrent(t, fs::path((const char*)savePath.toUtf8()), resume_data, true);
