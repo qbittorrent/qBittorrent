@@ -250,7 +250,7 @@ void GUI::addLogPeerBlocked(const QString& ip){
     textBlockedUsers->clear();
     nbLines = 1;
   }
-  infoBar->append("<font color='grey'>"+ QTime::currentTime().toString("hh:mm:ss") + "</font> - "+tr("<font color='red'>%1</font> <i> was blocked</i>").arg(ip));
+  infoBar->append("<font color='grey'>"+ QTime::currentTime().toString("hh:mm:ss") + "</font> - "+tr("<font color='red'>%1</font> <i>was blocked</i>", "x.y.z.w was blocked").arg(ip));
 }
 
 // Update Info Bar information
