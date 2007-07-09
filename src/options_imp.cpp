@@ -1011,30 +1011,53 @@ void options_imp::processFilterFile(const QString& filePath){
             strComment = QString();
           }
           // Split IP
-          IP = strStartIP.split('.');
-          if(IP.size() != 4){
-            qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-            continue;
+
+          QRegExp is_ipv6("^[0-9a-f]{4}(:[0-9a-f]{4}){7}$", Qt::CaseInsensitive, QRegExp::RegExp);
+          QRegExp is_ipv4("^(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}$", Qt::CaseInsensitive, QRegExp::RegExp);
+
+          if(strStartIP.contains(is_ipv4) && strEndIP.contains(is_ipv4)) {
+            // IPv4
+            IP = strStartIP.split('.');
+            address_v4 start((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
+            IP = strEndIP.split('.');
+            address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
+
+            // add it to list
+            QStringList item(QString(start.to_string().c_str()));
+            item.append(QString(last.to_string().c_str()));
+            if(!i){
+              item.append("Manual");
+            }else{
+              item.append("ipfilter.dat");
+            }
+            item.append(strComment);
+            new QTreeWidgetItem(filtersList, item);
+            // Apply to bittorrent session
+            filter.add_rule(start, last, ip_filter::blocked);
+          } else if(strStartIP.contains(is_ipv6) && strEndIP.contains(is_ipv6)) {
+            // IPv6, ex :   1fff:0000:0a88:85a3:0000:0000:ac1f:8001
+            IP = strStartIP.split(':');
+            address_v6 start = address_v6::from_string(strStartIP.remove(':', 0).toUtf8().data());
+            IP = strEndIP.split(':');
+            address_v6 last = address_v6::from_string(strEndIP.remove(':', 0).toUtf8().data());
+            
+            // add it to list
+            QStringList item(QString(start.to_string().c_str()));
+            item.append(QString(last.to_string().c_str()));
+            if(!i){
+              item.append("Manual");
+            }else{
+              item.append("ipfilter.dat");
+            }
+            item.append(strComment);
+            new QTreeWidgetItem(filtersList, item);
+            // Apply to bittorrent session
+            filter.add_rule(start, last, ip_filter::blocked);
+          } else {
+              qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
+              continue;
           }
-          address_v4 start((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
-          IP = strEndIP.split('.');
-          if(IP.size() != 4){
-            qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-            continue;
-          }
-          address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
-          // add it to list
-          QStringList item(QString(start.to_string().c_str()));
-          item.append(QString(last.to_string().c_str()));
-          if(!i){
-            item.append("Manual");
-          }else{
-            item.append("ipfilter.dat");
-          }
-          item.append(strComment);
-          new QTreeWidgetItem(filtersList, item);
-          // Apply to bittorrent session
-          filter.add_rule(start, last, ip_filter::blocked);
+
         }
       }
       file.close();
@@ -1056,34 +1079,35 @@ void options_imp::on_addFilterRange_clicked(){
                                        "0.0.0.0", &ok);
   QStringList IP1 = startIP.split('.');
   // Check IP
-  if (!ok || startIP.isEmpty() || IP1.size() != 4){
+  bool ipv4;
+  QRegExp is_ipv6("^[0-9a-f]{4}(:[0-9a-f]{4}){7}$", Qt::CaseInsensitive, QRegExp::RegExp);
+  QRegExp is_ipv4("^(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}$", Qt::CaseInsensitive, QRegExp::RegExp);
+
+  
+
+  if(!ok || startIP.isEmpty() 
+    || (!startIP.contains(is_ipv4) && !startIP.contains(is_ipv6))){
     QMessageBox::critical(0, tr("Invalid IP"), tr("This IP is invalid."));
     return;
+  } else if(startIP.contains(is_ipv4)) {
+    ipv4 = true;
+  } else if(startIP.contains(is_ipv6)) {
+    ipv4 = false;
   }
-  for(int i=0; i<4; ++i){
-    QString part = IP1.at(i).trimmed();
-    if(part.isEmpty() || part.toInt() < 0 || part.toInt() > 255){
-      QMessageBox::critical(0, tr("Invalid IP"), tr("This IP is invalid."));
-      return;
-    }
-  }
+
   // Ask user for last ip
   QString lastIP = QInputDialog::getText(this, tr("Range End IP"),
                                           tr("End IP:"), QLineEdit::Normal,
                                           startIP, &ok);
-  QStringList IP2 = lastIP.split('.');
   // check IP
-  if (!ok || lastIP.isEmpty() || IP2.size() != 4){
+  if (!ok || lastIP.isEmpty() 
+    || (!lastIP.contains(is_ipv4) && !lastIP.contains(is_ipv6))
+    || (ipv4 == true && !lastIP.contains(is_ipv4))
+    || (ipv4 == false && !lastIP.contains(is_ipv6))){
     QMessageBox::critical(0, tr("Invalid IP"), tr("This IP is invalid."));
     return;
   }
-  for(int i=0; i<4; ++i){
-    QString part = IP2.at(i).trimmed();
-    if(part.isEmpty() || part.toInt() < 0 || part.toInt() > 255){
-      QMessageBox::critical(0, tr("Invalid IP"), tr("This IP is invalid."));
-      return;
-    }
-  }
+
   // Ask user for Comment
   QString comment = QInputDialog::getText(this, tr("IP Range Comment"),
                                          tr("Comment:"), QLineEdit::Normal,
