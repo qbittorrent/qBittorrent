@@ -1085,7 +1085,9 @@ void options_imp::on_addFilterRange_clicked(){
 
   
 
-  if(!ok || startIP.isEmpty() 
+  if(!ok) {
+    return;
+  } else if(startIP.isEmpty() 
     || (!startIP.contains(is_ipv4) && !startIP.contains(is_ipv6))){
     QMessageBox::critical(0, tr("Invalid IP"), tr("This IP is invalid."));
     return;
@@ -1100,7 +1102,9 @@ void options_imp::on_addFilterRange_clicked(){
                                           tr("End IP:"), QLineEdit::Normal,
                                           startIP, &ok);
   // check IP
-  if (!ok || lastIP.isEmpty() 
+  if (!ok) {
+    return;
+  } else if(lastIP.isEmpty() 
     || (!lastIP.contains(is_ipv4) && !lastIP.contains(is_ipv6))
     || (ipv4 == true && !lastIP.contains(is_ipv4))
     || (ipv4 == false && !lastIP.contains(is_ipv6))){
@@ -1114,6 +1118,7 @@ void options_imp::on_addFilterRange_clicked(){
                                          "", &ok);
   if (!ok){
     comment = QString("");
+    return;
   }
   QFile ipfilter(misc::qBittorrentPath() + "ipfilter.dat");
   if (!ipfilter.open(QIODevice::Append | QIODevice::WriteOnly | QIODevice::Text)){
