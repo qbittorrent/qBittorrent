@@ -474,7 +474,7 @@ void bittorrent::loadFilesPriorities(torrent_handle &h){
     if( priority < 0 || priority > 7){
       priority = 1;
     }
-    qDebug("Setting piece piority to %d", priority);
+    //qDebug("Setting piece piority to %d", priority);
     v.push_back(priority);
   }
   h.prioritize_files(v);

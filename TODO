@@ -25,25 +25,22 @@
 - Add a torrent scheduler
 - Improve Ipfilter.dat parser (move to a thread ? - too slow to load qBT and more importantly options)
 - Improve search plugin update (make it automatic, write version/changelog in another file to limit brandwidth usage). Allow to disable this feature in program preferences.
+- Make use of dbus on Linux for the single instance instead of socket communication?
+  (http://techbase.kde.org/Development/Tutorials/D-Bus/Accessing_Interfaces)
 
 // in v1.1.0
 - Tabs support in search
 
 // in v1.0.0 (partial) - WIP
 - Check storage st creation + hasher in torrent creation
-- Add IPv6 support (at least start working on it, libtorrent seems to support it, we should limit our code to IPv4 anymore)
+- test IPv6 support
 - Display Url seeds in torrent properties and allow to edit them
-- Use tooltips to explain options?
-- Improve ratio display / calculation / saving / per torrent...
+- Improve ratio display / calculation / saving / per torrent... (beta2?)
 - Sorting in Download Status column should be smarter than just an alphabetical sort
-- File selection in a torrent in compact mode???
 - Windows port : http://www.peerweb.nl/qbittorrent/experimentalbuild/testing.zip
-- Make use of QSessionManager to save application state?
-- Make use of dbus on Linux for the single instance instead of socket communication?
-  (http://techbase.kde.org/Development/Tutorials/D-Bus/Accessing_Interfaces)
 - Write documentation
-- Allow the user to see when peers were blocked thanks to IPFilter. Maybe in a file in order not to spam the GUI.
 - Allow to scan multiple directories
 - Fix all (or almost all) opened bugs in bug tracker
 - Fix sorting with Qt 4.3 - Reported to Trolltech, waiting for fix
-- update sorting when a new torrent is added
+- update sorting when a new torrent is added?
+- Allow to adjust UP/DL speed limit from tray icon menu
