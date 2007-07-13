@@ -16,7 +16,7 @@
     - FEATURE: Allow to use  a proxy for trackers / web seeds / peers / DHT connections
     - FEATURE: Supports SOCKS5 proxies as well as HTTP ones
     - FEATURE: Better systems integration (buttons, dialogs...)
-    - FEATURE: Filtered files are not allocated on the hard-drive anymore (if FS is compatible)
+    - FEATURE: Filtered files are not allocated on the hard-drive anymore (sparse file support)
     - FEATURE: IPs blocked by filter are now logged in GUI
     - FEATURE: Added a way to link against static libtorrent (useful for deb packages)
     - BUGFIX: Progress of paused torrents is now correct on restart
