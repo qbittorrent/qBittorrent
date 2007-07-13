@@ -24,5 +24,6 @@
   <file>lang/qbittorrent_zh_HK.qm</file>
   <file>lang/qbittorrent_da.qm</file>
   <file>lang/qbittorrent_ja.qm</file>
+  <file>lang/qbittorrent_hu.qm</file>
 </qresource>
 </RCC>
