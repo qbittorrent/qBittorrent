@@ -900,7 +900,7 @@ void GUI::on_actionOpen_triggered(){
       if(useTorrentAdditionDialog){
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
         connect(dialog, SIGNAL(torrentAddition(const QString&, bool, bool, const QString&)), &BTSession, SLOT(addTorrent(const QString&, bool, bool, const QString&)));
-        connect(dialog, SIGNAL(setInfoBarGUI(const QString&, true, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
+        connect(dialog, SIGNAL(setInfoBarGUI(const QString&, const QString&)), this, SLOT(setInfoBar(const QString&, const QString&)));
         dialog->showLoad(pathsList.at(i));
       }else{
         BTSession.addTorrent(pathsList.at(i));
