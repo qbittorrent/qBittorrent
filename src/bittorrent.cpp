@@ -594,6 +594,10 @@ void bittorrent::setDownloadRateLimit(int rate){
   s->set_download_rate_limit(rate);
 }
 
+session* bittorrent::getSession() const{
+  return s;
+}
+
 // Set upload rate limit
 // -1 to disable
 void bittorrent::setUploadRateLimit(int rate){

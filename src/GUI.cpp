@@ -101,6 +101,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   actionPreview_file->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")));
   actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
+  actionSet_global_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
+  actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
   actionDocumentation->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/qb_question.png")));
   connecStatusLblIcon = new QLabel();
   connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
@@ -340,6 +342,16 @@ void GUI::on_actionSet_upload_limit_triggered(){
   new BandwidthAllocationDialog(this, true, &BTSession, hashes);
 }
 
+void GUI::on_actionSet_global_upload_limit_triggered(){
+  qDebug("actionSet_global_upload_limit_triggered");
+  new BandwidthAllocationDialog(this, true, &BTSession, QStringList());
+}
+
+void GUI::on_actionSet_global_download_limit_triggered(){
+  qDebug("actionSet_global_download_limit_triggered");
+  new BandwidthAllocationDialog(this, false, &BTSession, QStringList());
+}
+
 void GUI::on_actionPreview_file_triggered(){
   if(tabs->currentIndex() > 1) return;
   bool inDownloadList = true;
@@ -506,6 +518,9 @@ void GUI::updateDlList(bool force){
         if(torrentStatus.state != torrent_status::checking_files && torrentStatus.state != torrent_status::queued_for_checking){
           qDebug("Paused torrent finished checking with state: %d", torrentStatus.state);
           DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
+          DLListModel->setData(DLListModel->index(row, STATUS), QVariant(tr("Paused")));
+          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
+          setRowColor(row, "red");
           BTSession.pauseTorrent(fileHash);
           continue;
         }
@@ -816,6 +831,7 @@ void GUI::closeEvent(QCloseEvent *e){
          return;
     }
   }
+  hide();
   // Save DHT entry
   BTSession.saveDHTEntry();
   // Save window size, columns size
@@ -1571,6 +1587,9 @@ void GUI::createTrayIcon(){
   myTrayIconMenu = new QMenu(this);
   myTrayIconMenu->addAction(actionOpen);
   myTrayIconMenu->addAction(actionDownload_from_URL);
+  myTrayIconMenu->addSeparator();
+  myTrayIconMenu->addAction(actionSet_global_download_limit);
+  myTrayIconMenu->addAction(actionSet_global_upload_limit);
   myTrayIconMenu->addSeparator();
   myTrayIconMenu->addAction(actionStart_All);
   myTrayIconMenu->addAction(actionPause_All);

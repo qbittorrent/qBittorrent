@@ -85,6 +85,7 @@ class bittorrent : public QObject{
     long getETA(QString hash) const;
     size_type torrentEffectiveSize(QString hash) const;
     bool inFullAllocationMode(const QString& hash) const;
+    session* getSession() const;
 
   public slots:
     void addTorrent(const QString& path, bool fromScanDir = false, bool onStartup = false, const QString& from_url = QString());

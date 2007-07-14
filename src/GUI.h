@@ -140,6 +140,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void on_actionDelete_triggered();
     void on_actionSet_download_limit_triggered();
     void on_actionSet_upload_limit_triggered();
+    void on_actionSet_global_upload_limit_triggered();
+    void on_actionSet_global_download_limit_triggered();
     void on_actionDocumentation_triggered();
     void checkConnectionStatus();
     void configureSession(bool deleteOptions);
