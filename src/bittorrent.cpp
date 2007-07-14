@@ -62,6 +62,19 @@ void bittorrent::resumeUnfinishedTorrents(){
   resumeUnfinished();
 }
 
+void bittorrent::setDownloadLimit(QString hash, int val){
+  torrent_handle h = getTorrentHandle(hash);
+  h.set_download_limit(val);
+  saveTorrentSpeedLimits(hash);
+}
+
+void bittorrent::setUploadLimit(QString hash, int val){
+  qDebug("Set upload limit rate to %d", val);
+  torrent_handle h = getTorrentHandle(hash);
+  h.set_upload_limit(val);
+  saveTorrentSpeedLimits(hash);
+}
+
 void bittorrent::updateETAs(){
   std::vector<torrent_handle> handles = s->get_torrents();
   for(unsigned int i=0; i<handles.size(); ++i){
@@ -129,6 +142,7 @@ void bittorrent::deleteTorrent(const QString& hash, bool permanent){
   torrentBackup.remove(hash+".priorities");
   torrentBackup.remove(hash+".savepath");
   torrentBackup.remove(hash+".trackers");
+  torrentBackup.remove(hash+".speedLimits");
   // Remove it from ETAs hash tables
   ETAstats.take(hash);
   ETAs.take(hash);
@@ -271,6 +285,8 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, bool onStartu
     qDebug("Torrent hash is " +  hash.toUtf8());
     // Load filtered files
     loadFilesPriorities(h);
+    // Load speed limit from hard drive
+    loadTorrentSpeedLimits(hash);
     // Load trackers
     bool loaded_trackers = loadTrackerFile(hash);
     // Doing this to order trackers well
@@ -440,6 +456,38 @@ void bittorrent::disableDHT(){
     s->stop_dht();
     qDebug("DHT disabled");
   }
+}
+
+void bittorrent::saveTorrentSpeedLimits(QString hash){
+  qDebug("Saving speedLimits file for %s", (const char*)hash.toUtf8());
+  torrent_handle h = getTorrentHandle(hash);
+  int download_limit = h.download_limit();
+  int upload_limit = h.upload_limit();
+  QFile speeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".speedLimits");
+  if(!speeds_file.open(QIODevice::WriteOnly | QIODevice::Text)){
+    qDebug("* Error: Couldn't open speed limits file for torrent: %s", (const char*)hash.toUtf8());
+    return;
+  }
+  speeds_file.write(QByteArray(misc::toString(download_limit).c_str())+QByteArray(" ")+QByteArray(misc::toString(upload_limit).c_str()));
+  speeds_file.close();
+}
+
+void bittorrent::loadTorrentSpeedLimits(QString hash){
+  qDebug("Loading speedLimits file for %s", (const char*)hash.toUtf8());
+  torrent_handle h = getTorrentHandle(hash);
+  QFile speeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".speedLimits");
+  if(!speeds_file.open(QIODevice::ReadOnly | QIODevice::Text)){
+    return;
+  }
+  QByteArray speed_limits = speeds_file.readAll();
+  speeds_file.close();
+  QList<QByteArray> speeds = speed_limits.split(' ');
+  if(speeds.size() != 2){
+    std::cerr << "Invalid .speedLimits file for " << hash.toStdString() << '\n';
+    return;
+  }
+  h.set_download_limit(speeds.at(0).toInt());
+  h.set_upload_limit(speeds.at(1).toInt());
 }
 
 // Read pieces priorities from .priorities file
@@ -816,7 +864,8 @@ void bittorrent::reloadTorrent(const torrent_handle &h){
   new_h.set_max_uploads(-1);
   // Load filtered Files
   loadFilesPriorities(new_h);
-
+  // Load speed limit from hard drive
+  loadTorrentSpeedLimits(fileHash);
   // Pause torrent if it was paused last time
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused")){
     new_h.pause();

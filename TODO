@@ -44,4 +44,6 @@
 - Fix sorting with Qt 4.3 - Reported to Trolltech, waiting for fix
 - update sorting when a new torrent is added?
 * beta2
-- Save bandwidth limits per torrent on hard disk
+- Wait for some bug fixes in libtorrent :
+   - upload/download limit per torrent
+   - ipfilter crash

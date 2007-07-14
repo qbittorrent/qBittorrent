@@ -109,6 +109,8 @@ class bittorrent : public QObject{
     void setTorrentFinishedChecking(QString hash);
     void resumeUnfinishedTorrents();
     void updateETAs();
+    void saveTorrentSpeedLimits(QString hash);
+    void loadTorrentSpeedLimits(QString hash);
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
     void setMaxConnections(int maxConnec);
@@ -121,6 +123,8 @@ class bittorrent : public QObject{
     void setDefaultSavePath(const QString& savepath);
     void applyEncryptionSettings(pe_settings se);
     void loadFilesPriorities(torrent_handle& h);
+    void setDownloadLimit(QString hash, int val);
+    void setUploadLimit(QString hash, int val);
 
   protected slots:
     void cleanDeleter(deleteThread* deleter);

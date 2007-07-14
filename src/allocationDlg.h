@@ -32,7 +32,7 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
   Q_OBJECT
 
   public:
-    BandwidthAllocationDialog(QWidget *parent, bool uploadMode, bittorrent *BTSession, QStringList hashes): QDialog(parent), uploadMode(uploadMode){
+    BandwidthAllocationDialog(QWidget *parent, bool uploadMode, bittorrent *BTSession, QStringList hashes): QDialog(parent), uploadMode(uploadMode), hashes(hashes){
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       qDebug("Bandwidth allocation dialog creation");
@@ -47,21 +47,11 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
         lblTitle->setText(tr("Download limit:"));
       connect(bandwidthSlider, SIGNAL(valueChanged(int)), this, SLOT(updateBandwidthLabel(int)));
       if(!global){
-        QString hash;
-        foreach(hash, hashes){
-          torrent_handle h = BTSession->getTorrentHandle(hash);
-          if(!h.is_valid()){
-            qDebug("Error: Invalid Handle!");
-            continue;
-          }else{
-            handles << h;
-          }
-        }
-        unsigned int nbTorrents = handles.size();
+        unsigned int nbTorrents = hashes.size();
         if(!nbTorrents) close();
         int val;
         if(nbTorrents == 1){
-          torrent_handle h = handles.at(0);
+          torrent_handle h = BTSession->getTorrentHandle(hashes.at(0));
           if(uploadMode)
             val = h.upload_limit();
           else
@@ -118,17 +108,18 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
     }
 
     void setBandwidth(){
+      qDebug("setBandwidth called");
       int val = bandwidthSlider->value();
       if(!global){
-        torrent_handle h;
+        QString hash;
         if(uploadMode) {
-          foreach(h, handles) {
-            h.set_upload_limit(val*1024);
+          foreach(hash, hashes) {
+            BTSession->setUploadLimit(hash, val*1024);
             qDebug("Setting upload limit");
           }
         } else {
-          foreach(h, handles) {
-            h.set_download_limit(val*1024);
+          foreach(hash, hashes) {
+            BTSession->setDownloadLimit(hash, val*1024);
             qDebug("Setting download limit");
           }
         }
@@ -150,7 +141,7 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
     bool uploadMode;
     bool global;
     bittorrent *BTSession;
-    QList<torrent_handle> handles;
+    QStringList hashes;
 };
 
 #endif
