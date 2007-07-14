@@ -149,6 +149,7 @@ int main(int argc, char *argv[]){
   }
   app.installTranslator(&translator);
   app.setApplicationName("qBittorrent");
+  app.setQuitOnLastWindowClosed(false);
   // Read torrents given on command line
   QStringList torrentCmdLine = app.arguments();
   // Remove first argument (program name)

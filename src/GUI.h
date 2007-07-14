@@ -62,7 +62,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
 
   private:
     // Bittorrent
-    bittorrent BTSession;
+    bittorrent *BTSession;
     QTimer *checkConnect;
     QList<QPair<torrent_handle,std::string> > unauthenticated_trackers;
     downloadFromURL *downloadFromURLDialog;
