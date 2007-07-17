@@ -56,9 +56,9 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
         if(nbTorrents == 1){
           torrent_handle h = BTSession->getTorrentHandle(hashes.at(0));
           if(uploadMode)
-            val = h.upload_limit();
+            val = (int)(h.upload_limit() / 1024.);
           else
-            val = h.download_limit();
+            val = (int)(h.download_limit() / 1024.);
           qDebug("Bandwidth limit: %d", val);
           if(val > bandwidthSlider->maximum() || val < bandwidthSlider->minimum())
               val = -1;
