@@ -53,14 +53,22 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
         unsigned int nbTorrents = hashes.size();
         if(!nbTorrents) close();
         int val;
+        int max;
         if(nbTorrents == 1){
           torrent_handle h = BTSession->getTorrentHandle(hashes.at(0));
-          if(uploadMode)
+          if(uploadMode){
             val = (int)(h.upload_limit() / 1024.);
-          else
+            max = (int)(BTSession->getSession()->upload_rate_limit() / 1024.);
+          }else{
             val = (int)(h.download_limit() / 1024.);
+            max = (int)(BTSession->getSession()->download_rate_limit() / 1024.);
+          }
+          if(max != -1)
+            bandwidthSlider->setMaximum(max);
           qDebug("Bandwidth limit: %d", val);
-          if(val > bandwidthSlider->maximum() || val < bandwidthSlider->minimum())
+          if(val > bandwidthSlider->maximum())
+            val = bandwidthSlider->maximum();
+          else if(val < bandwidthSlider->minimum())
               val = -1;
           bandwidthSlider->setValue(val);
           if(val == -1) {
