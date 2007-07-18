@@ -61,6 +61,7 @@ class bittorrent : public QObject{
     QStringList torrentsUnchecked;
     QHash<QString, QList<long> > ETAstats;
     QHash<QString, long> ETAs;
+    QHash<QString, QPair<size_type,size_type> > ratioData;
     QTimer ETARefresher;
     QList<QString> fullAllocationModeList;
 
@@ -87,6 +88,7 @@ class bittorrent : public QObject{
     long getETA(QString hash) const;
     size_type torrentEffectiveSize(QString hash) const;
     bool inFullAllocationMode(const QString& hash) const;
+    float getRealRatio(QString hash) const;
     session* getSession() const;
 
   public slots:
@@ -113,6 +115,8 @@ class bittorrent : public QObject{
     void updateETAs();
     void saveTorrentSpeedLimits(QString hash);
     void loadTorrentSpeedLimits(QString hash);
+    void saveDownloadUploadForTorrent(QString hash);
+    void loadDownloadUploadForTorrent(QString hash);
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
     void setMaxConnections(int maxConnec);

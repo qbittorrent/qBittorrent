@@ -69,17 +69,20 @@ properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h
   upTotal->setText(misc::friendlyUnit(torrentStatus.total_payload_upload));
   dlTotal->setText(misc::friendlyUnit(torrentStatus.total_payload_download));
   // Update ratio info
-  if(torrentStatus.total_payload_download <= 0 || torrentStatus.total_payload_upload <= 0){
-    shareRatio->setText(tr("Unknown"));
+  float ratio;
+  if(torrentStatus.total_payload_download == 0){
+    if(torrentStatus.total_payload_upload == 0)
+      ratio = 1.;
+    else
+      ratio = 10.; // Max ratio
   }else{
-    float ratio = 1.;
     ratio = (float)torrentStatus.total_payload_upload/(float)torrentStatus.total_payload_download;
     if(ratio > 10.){
       ratio = 10.;
     }
-    snprintf(tmp, MAX_CHAR_TMP, "%.1f", ratio);
-    shareRatio->setText(tmp);
   }
+  snprintf(tmp, MAX_CHAR_TMP, "%.1f", ratio);
+  shareRatio->setText(tmp);
   // Tracker Errors
   for(int i=0; i < trackerErrors.size(); ++i){
     this->trackerErrors->append(trackerErrors.at(i));

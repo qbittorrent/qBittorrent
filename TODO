@@ -35,7 +35,6 @@
 - Check storage st creation + hasher in torrent creation
 - test IPv6 support
 - Display Url seeds in torrent properties and allow to edit them
-- Improve ratio display / calculation / saving / per torrent... (beta2?)
 - Sorting in Download Status column should be smarter than just an alphabetical sort
 - Windows port : http://www.peerweb.nl/qbittorrent/experimentalbuild/testing.zip
 - Write documentation
@@ -43,6 +42,7 @@
 - Fix all (or almost all) opened bugs in bug tracker
 - Fix sorting with Qt 4.3 - Reported to Trolltech, waiting for fix
 - update sorting when a new torrent is added?
+- Allow to hide columns
 * beta2
 - Wait for some bug fixes in libtorrent :
    - upload/download limit per torrent

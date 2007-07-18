@@ -38,7 +38,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   finishedListModel->setHeaderData(DLSPEED, Qt::Horizontal, tr("DL Speed", "i.e: Download speed"));
   finishedListModel->setHeaderData(UPSPEED, Qt::Horizontal, tr("UP Speed", "i.e: Upload speed"));
   finishedListModel->setHeaderData(SEEDSLEECH, Qt::Horizontal, tr("Seeds/Leechs", "i.e: full/partial sources"));
-  finishedListModel->setHeaderData(STATUS, Qt::Horizontal, tr("Status"));
+  finishedListModel->setHeaderData(RATIO, Qt::Horizontal, tr("Ratio"));
   finishedListModel->setHeaderData(ETA, Qt::Horizontal, tr("ETA", "i.e: Estimated Time of Arrival / Time left"));
   finishedList->setModel(finishedListModel);
   // Hide ETA & hash column
@@ -89,6 +89,7 @@ void FinishedTorrents::addFinishedSHA(QString hash){
     finishedListModel->setData(finishedListModel->index(row, DLSPEED), QVariant((double)0.));
     finishedListModel->setData(finishedListModel->index(row, UPSPEED), QVariant((double)0.));
     finishedListModel->setData(finishedListModel->index(row, SEEDSLEECH), QVariant("0/0"));
+    finishedListModel->setData(finishedListModel->index(row, RATIO), QVariant(QString(misc::toString(BTSession->getRealRatio(hash)).c_str())));
     finishedListModel->setData(finishedListModel->index(row, ETA), QVariant((qlonglong)-1));
     finishedListModel->setData(finishedListModel->index(row, HASH), QVariant(hash));
     finishedListModel->setData(finishedListModel->index(row, PROGRESS), QVariant((double)1.));
@@ -99,7 +100,6 @@ void FinishedTorrents::addFinishedSHA(QString hash){
         QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
       }
     }
-    finishedListModel->setData(finishedListModel->index(row, STATUS), QVariant(tr("Finished", "i.e: Torrent has finished downloading")));
     finishedListModel->setData(finishedListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
     setRowColor(row, "orange");
     // Create .finished file
@@ -263,6 +263,7 @@ void FinishedTorrents::updateFinishedList(){
     }
     finishedListModel->setData(finishedListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
     finishedListModel->setData(finishedListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_seeds, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_peers - torrentStatus.num_seeds, true).c_str())));
+    finishedListModel->setData(finishedListModel->index(row, RATIO), QVariant(QString(misc::toString(BTSession->getRealRatio(hash)).c_str())));
   }
 }
 

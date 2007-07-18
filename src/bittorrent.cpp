@@ -146,9 +146,12 @@ void bittorrent::deleteTorrent(const QString& hash, bool permanent){
   torrentBackup.remove(hash+".savepath");
   torrentBackup.remove(hash+".trackers");
   torrentBackup.remove(hash+".speedLimits");
+  torrentBackup.remove(hash+".ratio");
   // Remove it from ETAs hash tables
   ETAstats.take(hash);
   ETAs.take(hash);
+  // Remove it from ratio table
+  ratioData.take(hash);
   int index = fullAllocationModeList.indexOf(hash);
   if(index != -1)
     fullAllocationModeList.removeAt(index);
@@ -290,6 +293,8 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, bool onStartu
     loadFilesPriorities(h);
     // Load speed limit from hard drive
     loadTorrentSpeedLimits(hash);
+    // Load ratio data
+    loadDownloadUploadForTorrent(hash);
     // Load trackers
     bool loaded_trackers = loadTrackerFile(hash);
     // Doing this to order trackers well
@@ -528,6 +533,61 @@ void bittorrent::loadFilesPriorities(torrent_handle &h){
   h.prioritize_files(v);
 }
 
+void bittorrent::loadDownloadUploadForTorrent(QString hash){
+  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+  // Checking if torrentBackup Dir exists
+  // create it if it is not
+  if(! torrentBackup.exists()){
+    torrentBackup.mkpath(torrentBackup.path());
+  }
+  qDebug("Loading ratio data for %s", (const char*)hash.toUtf8());
+  QFile ratio_file(torrentBackup.path()+QDir::separator()+ hash + ".ratio");
+  if(!ratio_file.open(QIODevice::ReadOnly | QIODevice::Text)){
+    return;
+  }
+  QByteArray data = ratio_file.readAll();
+  QList<QByteArray> data_list = data.split(' ');
+  if(data_list.size() != 2){
+    std::cerr << "Corrupted ratio file for torrent: " << hash.toStdString() << '\n';
+    return;
+  }
+  QPair<size_type,size_type> downUp;
+  downUp.first = (size_type)data_list.at(0).toLong();
+  downUp.second = (size_type)data_list.at(1).toLong();
+  ratioData[hash] = downUp;
+}
+
+// To remember share ratio or a torrent, we must save current
+// total_upload and total_upload and reload them on startup
+void bittorrent::saveDownloadUploadForTorrent(QString hash){
+  qDebug("Saving ratio data");
+  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+  // Checking if torrentBackup Dir exists
+  // create it if it is not
+  if(! torrentBackup.exists()){
+    torrentBackup.mkpath(torrentBackup.path());
+  }
+  torrent_handle h = getTorrentHandle(hash);
+  if(!h.is_valid()){
+    qDebug("/!\\ Error: Invalid handle");
+    return;
+  }
+  torrent_status torrentStatus = h.status();
+  QString fileHash = QString(misc::toString(h.info_hash()).c_str());
+  QPair<size_type,size_type> ratioInfo = ratioData.value(fileHash, QPair<size_type, size_type>(0,0));
+  long download = torrentStatus.total_payload_download;
+  download += ratioInfo.first;
+  long upload = torrentStatus.total_payload_upload;
+  upload += ratioInfo.second;
+  QFile ratio_file(torrentBackup.path()+QDir::separator()+ fileHash + ".ratio");
+  if(!ratio_file.open(QIODevice::WriteOnly | QIODevice::Text)){
+    std::cerr << "Couldn't save ratio data for torrent: " << fileHash.toStdString() << '\n';
+    return;
+  }
+  ratio_file.write(QByteArray(misc::toString(download).c_str()) + QByteArray(" ") + QByteArray(misc::toString(upload).c_str()));
+  ratio_file.close();
+}
+
 // Save fastresume data for all torrents
 // and remove them from the session
 void bittorrent::saveFastResumeData(){
@@ -562,6 +622,8 @@ void bittorrent::saveFastResumeData(){
         out.unsetf(std::ios_base::skipws);
         bencode(std::ostream_iterator<char>(out), resumeData);
       }
+      // Save ratio data
+      saveDownloadUploadForTorrent(fileHash);
       // Save trackers
       saveTrackerFile(fileHash);
     }
@@ -869,6 +931,8 @@ void bittorrent::reloadTorrent(const torrent_handle &h){
   loadFilesPriorities(new_h);
   // Load speed limit from hard drive
   loadTorrentSpeedLimits(fileHash);
+  // Load ratio data
+  loadDownloadUploadForTorrent(fileHash);
   // Pause torrent if it was paused last time
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused")){
     new_h.pause();
@@ -882,6 +946,25 @@ void bittorrent::reloadTorrent(const torrent_handle &h){
 
 int bittorrent::getListenPort() const{
   return s->listen_port();
+}
+
+float bittorrent::getRealRatio(QString hash) const{
+  QPair<size_type,size_type> downUpInfo = ratioData.value(hash, QPair<size_type,size_type>(0,0));
+  size_type download = downUpInfo.first;
+  size_type upload =  downUpInfo.second;
+  torrent_handle h = getTorrentHandle(hash);
+  torrent_status torrentStatus = h.status();
+  download += torrentStatus.total_payload_download;
+  upload += torrentStatus.total_payload_upload;
+  if(download == 0){
+    if(upload == 0)
+      return 1.;
+    return 10.;
+  }
+  float ratio = (float)upload / (float)download;
+  if(ratio > 10.)
+    ratio = 10.;
+  return ratio;
 }
 
 session_status bittorrent::getSessionStatus() const{

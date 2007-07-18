@@ -37,7 +37,7 @@
 #define DLSPEED 3
 #define UPSPEED 4
 #define SEEDSLEECH 5
-#define STATUS 6
+#define RATIO 6
 #define ETA 7
 #define HASH 8
 
@@ -90,6 +90,12 @@ class DLListDelegate: public QAbstractItemDelegate {
           float speed = index.data().toDouble();
           snprintf(tmp, MAX_CHAR_TMP, "%.1f", speed/1024.);
           painter->drawText(option.rect, Qt::AlignCenter, QString(tmp)+" "+tr("KiB/s"));
+          break;
+        }
+        case RATIO:{
+          float ratio = index.data().toDouble();
+          snprintf(tmp, MAX_CHAR_TMP, "%.1f", ratio);
+          painter->drawText(option.rect, Qt::AlignCenter, QString(tmp));
           break;
         }
         case PROGRESS:{
