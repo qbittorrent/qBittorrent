@@ -560,7 +560,7 @@ void bittorrent::loadDownloadUploadForTorrent(QString hash){
 // To remember share ratio or a torrent, we must save current
 // total_upload and total_upload and reload them on startup
 void bittorrent::saveDownloadUploadForTorrent(QString hash){
-  qDebug("Saving ratio data");
+  qDebug("Saving ratio data for torrent %s", (const char*)hash.toUtf8());
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
   // Checking if torrentBackup Dir exists
   // create it if it is not
