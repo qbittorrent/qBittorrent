@@ -43,7 +43,7 @@
 - update sorting when a new torrent is added?
 - Allow to hide columns
 - Allow to set priorities for multiple files at once
-- Document keyboard shortcuts on wiki
+- Complete documentation and english translation
 * beta2
 - Wait for some bug fixes in libtorrent :
    - upload/download limit per torrent
