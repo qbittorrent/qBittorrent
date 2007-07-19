@@ -53,6 +53,7 @@ class QTcpServer;
 class QTcpSocket;
 class QCloseEvent;
 class RSSImp;
+class QShortcut;
 
 using namespace libtorrent;
 namespace fs = boost::filesystem;
@@ -86,6 +87,22 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     bool delayedSorting;
     Qt::SortOrder delayedSortingOrder;
     QMutex DLListAccess;
+    // Keyboard shortcuts
+    QShortcut *createShortcut;
+    QShortcut *openShortcut;
+    QShortcut *quitShortcut;
+    QShortcut *switchSearchShortcut;
+    QShortcut *switchDownShortcut;
+    QShortcut *switchUpShortcut;
+    QShortcut *switchRSSShortcut;
+    QShortcut *propertiesShortcut;
+    QShortcut *optionsShortcut;
+    QShortcut *delShortcut;
+    QShortcut *delPermShortcut;
+    QShortcut *startShortcut;
+    QShortcut *startAllShortcut;
+    QShortcut *pauseShortcut;
+    QShortcut *pauseAllPermShortcut;
     // Preview
     previewSelect *previewSelection;
     QProcess *previewProcess;
@@ -130,6 +147,12 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void on_actionExit_triggered();
     void createTrayIcon();
     void addLogPeerBlocked(const QString&);
+    // Keyboard shortcuts
+    void createKeyboardShortcuts();
+    void displayDownTab();
+    void displayUpTab();
+    void displaySearchTab();
+    void displayRSSTab();
     // Torrent actions
     void showProperties(const QModelIndex &index);
     void on_actionTorrent_Properties_triggered();

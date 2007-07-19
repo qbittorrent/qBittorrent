@@ -28,6 +28,7 @@
 #include <QTcpSocket>
 #include <QCloseEvent>
 #include <QMutexLocker>
+#include <QShortcut>
 
 #include <libtorrent/extensions/metadata_transfer.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
@@ -197,6 +198,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   setInfoBar(tr("qBittorrent %1 started.", "e.g: qBittorrent v0.x started.").arg(QString(VERSION)));
   setInfoBar(tr("Be careful, sharing copyrighted material without permission is against the law."), "red");
   show();
+  createKeyboardShortcuts();
   qDebug("GUI Built");
 }
 
@@ -208,17 +210,33 @@ GUI::~GUI(){
   delete checkConnect;
   delete refresher;
   delete BTSession;
-   if(systrayIntegration){
-     delete myTrayIcon;
-     delete myTrayIconMenu;
-   }
-   delete DLDelegate;
-   delete DLListModel;
-   delete tcpServer;
-   previewProcess->kill();
-   previewProcess->waitForFinished();
-   delete previewProcess;
-   delete connecStatusLblIcon;
+  if(systrayIntegration){
+    delete myTrayIcon;
+    delete myTrayIconMenu;
+  }
+  delete DLDelegate;
+  delete DLListModel;
+  delete tcpServer;
+  previewProcess->kill();
+  previewProcess->waitForFinished();
+  delete previewProcess;
+  delete connecStatusLblIcon;
+  // Keyboard shortcuts
+  delete createShortcut;
+  delete openShortcut;
+  delete quitShortcut;
+  delete switchSearchShortcut;
+  delete switchDownShortcut;
+  delete switchUpShortcut;
+  delete switchRSSShortcut;
+  delete propertiesShortcut;
+  delete optionsShortcut;
+  delete delShortcut;
+  delete delPermShortcut;
+  delete startShortcut;
+  delete startAllShortcut;
+  delete pauseShortcut;
+  delete pauseAllPermShortcut;
 }
 
 void GUI::on_actionWebsite_triggered(){
@@ -240,6 +258,58 @@ void GUI::writeSettings() {
   settings.setValue("pos", pos());
   settings.endGroup();
 }
+
+void GUI::createKeyboardShortcuts(){
+  createShortcut = new QShortcut(QKeySequence("Ctrl+N"), this);
+  connect(createShortcut, SIGNAL(activated()), this, SLOT(on_actionCreate_torrent_triggered()));
+  openShortcut = new QShortcut(QKeySequence("Ctrl+O"), this);
+  connect(openShortcut, SIGNAL(activated()), this, SLOT(on_actionOpen_triggered()));
+  quitShortcut = new QShortcut(QKeySequence("Ctrl+Q"), this);
+  connect(quitShortcut, SIGNAL(activated()), this, SLOT(on_actionExit_triggered()));
+  switchDownShortcut = new QShortcut(QKeySequence(tr("Alt+1", "shortcut to switch to first tab")), this);
+  connect(switchDownShortcut, SIGNAL(activated()), this, SLOT(displayDownTab()));
+  switchUpShortcut = new QShortcut(QKeySequence(tr("Alt+2", "shortcut to switch to second tab")), this);
+  connect(switchUpShortcut, SIGNAL(activated()), this, SLOT(displayUpTab()));
+  switchSearchShortcut = new QShortcut(QKeySequence(tr("Alt+3", "shortcut to switch to third tab")), this);
+  connect(switchSearchShortcut, SIGNAL(activated()), this, SLOT(displaySearchTab()));
+  switchRSSShortcut = new QShortcut(QKeySequence(tr("Alt+4", "shortcut to switch to fourth tab")), this);
+  connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
+  propertiesShortcut = new QShortcut(QKeySequence("Alt+P"), this);
+  connect(propertiesShortcut, SIGNAL(activated()), this, SLOT(on_actionTorrent_Properties_triggered()));
+  optionsShortcut = new QShortcut(QKeySequence("Alt+O"), this);
+  connect(optionsShortcut, SIGNAL(activated()), this, SLOT(on_actionOptions_triggered()));
+  delShortcut = new QShortcut(QKeySequence("Del"), this);
+  connect(delShortcut, SIGNAL(activated()), this, SLOT(on_actionDelete_triggered()));
+  delPermShortcut = new QShortcut(QKeySequence("Shift+Del"), this);
+  connect(delPermShortcut, SIGNAL(activated()), this, SLOT(on_actionDelete_Permanently_triggered()));
+  startShortcut = new QShortcut(QKeySequence("Ctrl+S"), this);
+  connect(startShortcut, SIGNAL(activated()), this, SLOT(on_actionStart_triggered()));
+  startAllShortcut = new QShortcut(QKeySequence("Ctrl+Shift+S"), this);
+  connect(startAllShortcut, SIGNAL(activated()), this, SLOT(on_actionStart_All_triggered()));
+  pauseShortcut = new QShortcut(QKeySequence("Ctrl+P"), this);
+  connect(pauseShortcut, SIGNAL(activated()), this, SLOT(on_actionPause_triggered()));
+  pauseAllPermShortcut = new QShortcut(QKeySequence("Ctrl+Shift+P"), this);
+  connect(pauseAllPermShortcut, SIGNAL(activated()), this, SLOT(on_actionPause_All_triggered()));
+}
+
+// Keyboard shortcuts slots
+void GUI::displayDownTab(){
+  tabs->setCurrentIndex(0);
+}
+
+void GUI::displayUpTab(){
+  tabs->setCurrentIndex(1);
+}
+
+void GUI::displaySearchTab(){
+  tabs->setCurrentIndex(2);
+}
+
+void GUI::displayRSSTab(){
+  tabs->setCurrentIndex(3);
+}
+
+// End of keyboard shortcuts slots
 
 void GUI::readSettings() {
   QSettings settings("qBittorrent", "qBittorrent");

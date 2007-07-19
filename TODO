@@ -1,7 +1,6 @@
 // Easy
 - Translations into as many languages as possible
 - Improve man page
-- Add more keyboard shortcuts
 
 // Intermediate
 - Port on MacOS, Windows (and create an installer for Windows) - Progressing
@@ -43,6 +42,8 @@
 - Fix sorting with Qt 4.3 - Reported to Trolltech, waiting for fix
 - update sorting when a new torrent is added?
 - Allow to hide columns
+- Allow to set priorities for multiple files at once
+- Document keyboard shortcuts on wiki
 * beta2
 - Wait for some bug fixes in libtorrent :
    - upload/download limit per torrent
