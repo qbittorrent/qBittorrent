@@ -270,7 +270,7 @@ void GUI::createKeyboardShortcuts(){
   connect(switchDownShortcut, SIGNAL(activated()), this, SLOT(displayDownTab()));
   switchUpShortcut = new QShortcut(QKeySequence(tr("Alt+2", "shortcut to switch to second tab")), this);
   connect(switchUpShortcut, SIGNAL(activated()), this, SLOT(displayUpTab()));
-  switchSearchShortcut = new QShortcut(QKeySequence(tr("Alt+3", "shortcut to switch to third tab")), this);
+  switchSearchShortcut = new QShortcut(QKeySequence(tr("Alt+3, Ctrl+F", "shortcut to switch to third tab (search)")), this);
   connect(switchSearchShortcut, SIGNAL(activated()), this, SLOT(displaySearchTab()));
   switchRSSShortcut = new QShortcut(QKeySequence(tr("Alt+4", "shortcut to switch to fourth tab")), this);
   connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
