@@ -190,7 +190,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       myFilesLlistMenu.addAction(actionMaximum);
   // Call menu
   // XXX: why mapToGlobal() is not enough?
-      myFilesLlistMenu.exec(mapToGlobal(pos)+QPoint(22,95));
+      myFilesLlistMenu.exec(mapToGlobal(pos)+QPoint(10,145));
     }
 
     void ignoreSelection(){
