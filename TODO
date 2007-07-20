@@ -43,7 +43,6 @@
 - Allow to hide columns (gtsoul)
 - Complete documentation and english translation
 * beta2
-  - Handle downloadFromUrl errors (Display a messagebox to catch user's attention)
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent
     - ipfilter crash

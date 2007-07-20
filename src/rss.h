@@ -189,6 +189,7 @@ class RssStream : public QObject{
       downloaderRss = new downloadThread(this);
       downloaderIcon = new downloadThread(this);
       connect(downloaderRss, SIGNAL(downloadFinished(const QString&, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&)));
+      connect(downloaderRss, SIGNAL(downloadFailure(const QString&, const QString&)), this, SLOT(handleDownloadFailure(const QString&, const QString&)));
       downloaderRss->downloadUrl(url);
       // XXX: remove it when gif can be displayed
       iconPath = ":/Icons/rss.png";
@@ -299,11 +300,11 @@ class RssStream : public QObject{
       // is it a rss file ?
       QDomElement root = doc.documentElement();
       if(root.tagName() == "html"){
-	qDebug("the file is empty, maybe the url is wrong or the server is too busy");
+	qDebug("the file is empty, maybe the url is invalid or the server is too busy");
 	return -1;
       }
       else if(root.tagName() != "rss"){
-	qDebug("the file is not a rss stream, <rss> omitted"+root.tagName().toUtf8());
+	qDebug("the file is not a rss stream, <rss> omitted: %s", (const char*)root.tagName().toUtf8());
 	return -1;
       }
       QDomNode rss = root.firstChild();
@@ -408,6 +409,13 @@ class RssStream : public QObject{
 	return;
       }
     }
+
+    protected slots:
+      void handleDownloadFailure(const QString&, const QString&){
+        // Change the stream icon to a red cross
+        iconPath = ":/Icons/unavailable.png";
+        emit refreshFinished(url, ICON);
+      }
 };
 
 // global class, manage the whole rss stream
