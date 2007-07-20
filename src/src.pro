@@ -2,6 +2,9 @@
 LANG_PATH = lang
 ICONS_PATH = Icons
 
+LIBS += -lccext2 
+LIBS += -lccgnu2
+
 #Set the following variable to 1 to enable debug
 DEBUG_MODE = 1
 

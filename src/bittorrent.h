@@ -136,7 +136,7 @@ class bittorrent : public QObject{
     void cleanDeleter(deleteThread* deleter);
     void scanDirectory();
     void readAlerts();
-    void processDownloadedFile(const QString&, const QString&, int, const QString&);
+    void processDownloadedFile(const QString&, const QString&);
     void resumeUnfinished();
     bool loadTrackerFile(const QString& hash);
     void saveTrackerFile(const QString& hash);

@@ -137,21 +137,21 @@ class RssStream : public QObject{
 
   public slots :
     // read and store the downloaded rss' informations
-    void processDownloadedFile(const QString&, const QString& file_path, int return_code, const QString&) {
+    void processDownloadedFile(const QString&, const QString& file_path) {
       // delete the former file
       if(QFile::exists(filePath)) {
         QFile::remove(filePath);
       }
       filePath = file_path;
-      if(return_code){
-        // Download failed
-	qDebug("(download failure) "+file_path.toUtf8());
-	if(QFile::exists(filePath)) {
-	  QFile::remove(filePath);
-	}
-	emit refreshFinished(url, NEWS);
-	return;
-      }
+//       if(return_code){
+//         // Download failed
+// 	qDebug("(download failure) "+file_path.toUtf8());
+// 	if(QFile::exists(filePath)) {
+// 	  QFile::remove(filePath);
+// 	}
+// 	emit refreshFinished(url, NEWS);
+// 	return;
+//       }
       openRss();
       emit refreshFinished(url, NEWS);
     }
@@ -189,7 +189,7 @@ class RssStream : public QObject{
       read = true;
       downloaderRss = new downloadThread(this);
       downloaderIcon = new downloadThread(this);
-      connect(downloaderRss, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
+      connect(downloaderRss, SIGNAL(downloadFinished(const QString&, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&)));
       downloaderRss->downloadUrl(url);
       // XXX: remove it when gif can be displayed
       iconPath = ":/Icons/rss.png";
@@ -216,7 +216,6 @@ class RssStream : public QObject{
     }
 
     void refresh() {
-      connect(downloaderRss, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
       downloaderRss->downloadUrl(url);
       lastRefresh.start();
     }
@@ -276,7 +275,7 @@ class RssStream : public QObject{
 
     QString getLastRefresh() const{
       return QString::number(lastRefresh.hour())+"h"+QString::number(lastRefresh.minute())+"m";
-    }    
+    }
 
     bool isRead() const {
       return read;

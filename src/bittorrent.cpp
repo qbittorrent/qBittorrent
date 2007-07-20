@@ -50,7 +50,7 @@ bittorrent::bittorrent(){
   ETARefresher.start(6000);
   // To download from urls
   downloader = new downloadThread(this);
-  connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&, int, const QString&)));
+  connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&)));
 }
 
 // Main destructor
@@ -1013,13 +1013,13 @@ void bittorrent::downloadFromUrl(const QString& url){
 }
 
 // Add to bittorrent session the downloaded torrent file
-void bittorrent::processDownloadedFile(const QString& url, const QString& file_path, int return_code, const QString& errorBuffer){
-  if(return_code){
-    // Download failed
-    emit downloadFromUrlFailure(url, errorBuffer);
-    QFile::remove(file_path);
-    return;
-  }
+void bittorrent::processDownloadedFile(const QString& url, const QString& file_path){
+//   if(return_code){
+//     // Download failed
+//     emit downloadFromUrlFailure(url, errorBuffer);
+//     QFile::remove(file_path);
+//     return;
+//   }
   // Add file to torrent download list
   emit newDownloadedTorrent(file_path, url);
 }
