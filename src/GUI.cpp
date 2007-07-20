@@ -249,9 +249,9 @@ void GUI::writeSettings() {
 }
 
 void GUI::createKeyboardShortcuts(){
-  actionCreate_torrent->setShortcut("Ctrl+N");
-  actionOpen->setShortcut("Ctrl+O");
-  actionExit->setShortcut("Ctrl+Q");
+  actionCreate_torrent->setShortcut(QKeySequence("Ctrl+N"));
+  actionOpen->setShortcut(QKeySequence("Ctrl+O"));
+  actionExit->setShortcut(QKeySequence("Ctrl+Q"));
   switchDownShortcut = new QShortcut(QKeySequence(tr("Alt+1", "shortcut to switch to first tab")), this);
   connect(switchDownShortcut, SIGNAL(activated()), this, SLOT(displayDownTab()));
   switchUpShortcut = new QShortcut(QKeySequence(tr("Alt+2", "shortcut to switch to second tab")), this);
@@ -260,14 +260,14 @@ void GUI::createKeyboardShortcuts(){
   connect(switchSearchShortcut, SIGNAL(activated()), this, SLOT(displaySearchTab()));
   switchRSSShortcut = new QShortcut(QKeySequence(tr("Alt+4", "shortcut to switch to fourth tab")), this);
   connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
-  actionTorrent_Properties->setShortcut("Alt+P");
-  actionOptions->setShortcut("Alt+O");
-  actionDelete->setShortcut("Del");
-  actionDelete_Permanently->setShortcut("Shift+Del");
-  actionStart->setShortcut("Ctrl+S");
-  actionStart_All->setShortcut("Ctrl+Shift+S");
-  actionPause->setShortcut("Ctrl+P")
-  actionPause_All->setShortcut("Ctrl+Shift+P");
+  actionTorrent_Properties->setShortcut(QKeySequence("Alt+P"));
+  actionOptions->setShortcut(QKeySequence("Alt+O"));
+  actionDelete->setShortcut(QKeySequence("Del"));
+  actionDelete_Permanently->setShortcut(QKeySequence("Shift+Del"));
+  actionStart->setShortcut(QKeySequence("Ctrl+S"));
+  actionStart_All->setShortcut(QKeySequence("Ctrl+Shift+S"));
+  actionPause->setShortcut(QKeySequence("Ctrl+P"));
+  actionPause_All->setShortcut(QKeySequence("Ctrl+Shift+P"));
 }
 
 // Keyboard shortcuts slots
