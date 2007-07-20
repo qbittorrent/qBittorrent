@@ -36,13 +36,11 @@
 - Display Url seeds in torrent properties and allow to edit them
 - Sorting in Download Status column should be smarter than just an alphabetical sort
 - Windows port : http://www.peerweb.nl/qbittorrent/experimentalbuild/testing.zip
-- Write documentation
-- Allow to scan multiple directories
+- Allow to scan multiple directories?
 - Fix all (or almost all) opened bugs in bug tracker
-- Fix sorting with Qt 4.3 - Reported to Trolltech, waiting for fix
+- Fix column sorting with Qt 4.3 - Reported to Trolltech, waiting for their fix
 - update sorting when a new torrent is added?
-- Allow to hide columns
-- Allow to set priorities for multiple files at once
+- Allow to hide columns (gtsoul)
 - Complete documentation and english translation
 * beta2
 - Wait for some bug fixes in libtorrent :
