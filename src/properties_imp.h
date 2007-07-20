@@ -57,6 +57,11 @@ class properties : public QDialog, private Ui::properties{
     void deleteSelectedTrackers();
     void lowerSelectedTracker();
     void riseSelectedTracker();
+    void displayFilesListMenu(const QPoint& pos);
+    void ignoreSelection();
+    void normalSelection();
+    void highSelection();
+    void maximumSelection();
 
   signals:
     void filteredFilesChanged(const QString& fileHash);

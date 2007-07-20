@@ -24,6 +24,7 @@
 #include "PropListDelegate.h"
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QMenu>
 
 // Constructor
 properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h, QStringList trackerErrors): QDialog(parent), h(h){
@@ -47,10 +48,15 @@ properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h
   PropDelegate = new PropListDelegate(0, &changedFilteredfiles);
   filesList->setItemDelegate(PropDelegate);
   connect(filesList, SIGNAL(clicked(const QModelIndex&)), filesList, SLOT(edit(const QModelIndex&)));
+  connect(filesList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
   connect(addTracker_button, SIGNAL(clicked()), this, SLOT(askForTracker()));
   connect(removeTracker_button, SIGNAL(clicked()), this, SLOT(deleteSelectedTrackers()));
   connect(riseTracker_button, SIGNAL(clicked()), this, SLOT(riseSelectedTracker()));
   connect(lowerTracker_button, SIGNAL(clicked()), this, SLOT(lowerSelectedTracker()));
+  connect(actionIgnored, SIGNAL(triggered()), this, SLOT(ignoreSelection()));
+  connect(actionNormal, SIGNAL(triggered()), this, SLOT(normalSelection()));
+  connect(actionHigh, SIGNAL(triggered()), this, SLOT(highSelection()));
+  connect(actionMaximum, SIGNAL(triggered()), this, SLOT(maximumSelection()));
   // get Infos from torrent handle
   fileHash = QString(misc::toString(h.info_hash()).c_str());
   torrent_status torrentStatus = h.status();
@@ -58,7 +64,10 @@ properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h
   fileName->setText(torrentInfo.name().c_str());
   // Torrent Infos
   save_path->setText(QString(h.save_path().string().c_str()));
-  creator->setText(QString(torrentInfo.creator().c_str()));
+  QString author = QString(torrentInfo.creator().c_str()).trimmed();
+  if(author.isEmpty())
+    author = tr("Unknown");
+  creator->setText(author);
   hash_lbl->setText(fileHash);
   comment_txt->setText(QString(torrentInfo.comment().c_str()));
   //Trackers
@@ -151,6 +160,61 @@ void properties::loadPiecesPriorities(){
       setRowColor(i, "green");
     }
     PropListModel->setData(PropListModel->index(i, PRIORITY), QVariant(priority));
+  }
+}
+
+void properties::displayFilesListMenu(const QPoint& pos){
+  QMenu myFilesLlistMenu(this);
+  QModelIndex index;
+  // Enable/disable pause/start action given the DL state
+  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
+  myFilesLlistMenu.setTitle(tr("Priority"));
+  myFilesLlistMenu.addAction(actionIgnored);
+  myFilesLlistMenu.addAction(actionNormal);
+  myFilesLlistMenu.addAction(actionHigh);
+  myFilesLlistMenu.addAction(actionMaximum);
+  // Call menu
+  // XXX: why mapToGlobal() is not enough?
+  myFilesLlistMenu.exec(mapToGlobal(pos)+QPoint(22,95));
+}
+
+void properties::ignoreSelection(){
+  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
+  QModelIndex index;
+  foreach(index, selectedIndexes){
+    if(index.column() == PRIORITY){
+      PropListModel->setData(index, QVariant(IGNORED));
+    }
+  }
+}
+
+void properties::normalSelection(){
+  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
+  QModelIndex index;
+  foreach(index, selectedIndexes){
+    if(index.column() == PRIORITY){
+      PropListModel->setData(index, QVariant(NORMAL));
+    }
+  }
+}
+
+void properties::highSelection(){
+  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
+  QModelIndex index;
+  foreach(index, selectedIndexes){
+    if(index.column() == PRIORITY){
+      PropListModel->setData(index, QVariant(HIGH));
+    }
+  }
+}
+
+void properties::maximumSelection(){
+  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
+  QModelIndex index;
+  foreach(index, selectedIndexes){
+    if(index.column() == PRIORITY){
+      PropListModel->setData(index, QVariant(MAXIMUM));
+    }
   }
 }
 
