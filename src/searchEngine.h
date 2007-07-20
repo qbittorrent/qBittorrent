@@ -83,6 +83,7 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     void sortSearchListInt(int index, Qt::SortOrder sortOrder);
     void sortSearchListString(int index, Qt::SortOrder sortOrder);
     void novaUpdateDownloaded(const QString& url, const QString& path);
+    void handleNovaDownloadFailure(const QString& url, const QString& reason);
 };
 
 #endif

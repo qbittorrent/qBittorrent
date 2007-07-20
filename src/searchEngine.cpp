@@ -48,6 +48,7 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   this->myTrayIcon = myTrayIcon;
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&)), this, SLOT(novaUpdateDownloaded(const QString&, const QString&)));
+  connect(downloader, SIGNAL(downloadFromUrlFailure(const QString&, const QString&)), this, SLOT(handleNovaDownloadFailure(const QString&, const QString&)));
   // Set Search results list model
   SearchListModel = new QStandardItemModel(0,5);
   SearchListModel->setHeaderData(SEARCH_NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
@@ -431,7 +432,7 @@ void SearchEngine::updateNova() const{
   }
 }
 
-void SearchEngine::novaUpdateDownloaded(const QString&, const QString& filePath){
+void SearchEngine::novaUpdateDownloaded(const QString& url, const QString& filePath){
   float version_on_server = getNovaVersion(filePath);
   qDebug("Version on qbittorrent.org: %.2f", version_on_server);
   if(version_on_server > getNovaVersion(misc::qBittorrentPath()+"nova.py")){
@@ -450,8 +451,13 @@ void SearchEngine::novaUpdateDownloaded(const QString&, const QString& filePath)
                 }
   }else{
     if(version_on_server == 0.0){
-      QMessageBox::information(this, tr("Search plugin update")+" -- "+tr("qBittorrent"),
+      if(url == "http://www.dchris.eu/nova/nova.zip"){
+        qDebug("*Warning: Search plugin update download from primary server failed, trying secondary server...");
+        downloader->downloadUrl("http://hydr0g3n.free.fr/nova/nova.py");
+      }else{
+        QMessageBox::information(this, tr("Search plugin update")+" -- "+tr("qBittorrent"),
                                tr("Sorry, update server is temporarily unavailable."));
+      }
     }else{
       QMessageBox::information(this, tr("Search plugin update -- qBittorrent"),
                                tr("Your search plugin is already up to date."));
@@ -461,13 +467,22 @@ void SearchEngine::novaUpdateDownloaded(const QString&, const QString& filePath)
   QFile::remove(filePath);
 }
 
+void SearchEngine::handleNovaDownloadFailure(const QString& url, const QString& reason){
+  if(url == "http://www.dchris.eu/nova/nova.zip"){
+    qDebug("*Warning: Search plugin update download from primary server failed, trying secondary server...");
+    downloader->downloadUrl("http://hydr0g3n.free.fr/nova/nova.py");
+  }else{
+    // Display a message box
+    QMessageBox::critical(0, tr("Search plugin download error"), tr("Couldn't download search plugin update at url: %1, reason: %2.").arg(url).arg(reason));
+  }
+}
+
 // Download nova.py from qbittorrent.org
 // Check if our nova.py is outdated and
 // ask user for action.
 void SearchEngine::on_update_nova_button_clicked(){
   qDebug("Checking for search plugin updates on qbittorrent.org");
   downloader->downloadUrl("http://www.dchris.eu/nova/nova.zip");
-  //TODO: make use of fallback url: "http://hydr0g3n.free.fr/nova/nova.py"
 }
 
 // Slot called when search is Finished

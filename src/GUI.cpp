@@ -397,7 +397,7 @@ void GUI::on_actionSet_upload_limit_triggered(){
 
 void GUI::handleDownloadFromUrlFailure(const QString& url, const QString& reason){
   // Display a message box
-  QMessageBox::critical(0, tr("Url download error"), tr("Couldn't download url: %1, reason: %2.").arg(url).arg(reason));
+  QMessageBox::critical(0, tr("Url download error"), tr("Couldn't download file at url: %1, reason: %2.").arg(url).arg(reason));
 }
 
 void GUI::on_actionSet_global_upload_limit_triggered(){
