@@ -49,6 +49,7 @@ class downloadThread : public QThread {
 
   signals:
     void downloadFinished(const QString& url, const QString& file_path);
+    void downloadFailure(const QString& url, const QString& reason);
 
   public:
     downloadThread(QObject* parent) : QThread(parent){
@@ -78,6 +79,33 @@ class downloadThread : public QThread {
       }
     }
 
+    QString errorCodeToString(URLStream::Error status){
+      switch(status){
+        case URLStream::errUnreachable:
+          return tr("Host is unreachable");
+        case URLStream::errMissing:
+          return tr("File was not found (404)");
+        case URLStream::errDenied:
+          return tr("Connection was denied");
+        case URLStream::errInvalid:
+          return tr("Url is invalid");
+        case URLStream::errForbidden:
+          return tr("Connection forbidden (403)");
+        case URLStream::errUnauthorized:
+          return tr("Connection was not authorized (401)");
+        case URLStream::errRelocated:
+          return tr("Content has moved (301)");
+        case URLStream::errFailure:
+          return tr("Connection failure");
+        case URLStream::errTimeout:
+          return tr("Connection was timed out");
+        case URLStream::errInterface:
+          return tr("Incorrect network interface");
+        default:
+          return tr("Unknown error");
+      }
+    }
+
   protected:
     void run(){
       forever{
@@ -104,10 +132,10 @@ class downloadThread : public QThread {
           URLStream::Error status = url_stream.get((const char*)url.toUtf8());
           if(status){
             // Failure
-            //TODO: handle this
             QString error_msg = QString(misc::toString(status).c_str());
             qDebug("Download failed for %s, reason: %s", (const char*)url.toUtf8(), (const char*)error_msg.toUtf8());
             url_stream.close();
+            emit downloadFailure(url, errorCodeToString(status));
             continue;
           }
           qDebug("Downloading %s...", (const char*)url.toUtf8());

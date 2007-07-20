@@ -152,6 +152,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(BTSession, SIGNAL(peerBlocked(const QString&)), this, SLOT(addLogPeerBlocked(const QString)));
   connect(BTSession, SIGNAL(scanDirFoundTorrents(const QStringList&)), this, SLOT(processScannedFiles(const QStringList&)));
   connect(BTSession, SIGNAL(newDownloadedTorrent(const QString&, const QString&)), this, SLOT(processDownloadedFiles(const QString&, const QString&)));
+  connect(BTSession, SIGNAL(downloadFromUrlFailure(const QString&, const QString&)), this, SLOT(handleDownloadFromUrlFailure(const QString&, const QString&)));
   connect(BTSession, SIGNAL(aboutToDownloadFromUrl(const QString&)), this, SLOT(displayDownloadingUrlInfos(const QString&)));
   // creating options
   options = new options_imp(this);
@@ -392,6 +393,11 @@ void GUI::on_actionSet_upload_limit_triggered(){
     }
   }
   new BandwidthAllocationDialog(this, true, BTSession, hashes);
+}
+
+void GUI::handleDownloadFromUrlFailure(const QString& url, const QString& reason){
+  // Display a message box
+  QMessageBox::critical(0, tr("Url download error"), tr("Couldn't download url: %1, reason: %2.").arg(url).arg(reason));
 }
 
 void GUI::on_actionSet_global_upload_limit_triggered(){

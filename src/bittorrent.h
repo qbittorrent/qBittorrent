@@ -117,6 +117,7 @@ class bittorrent : public QObject{
     void loadTorrentSpeedLimits(QString hash);
     void saveDownloadUploadForTorrent(QString hash);
     void loadDownloadUploadForTorrent(QString hash);
+    void HandleDownloadFailure(const QString& url, const QString& reason);
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
     void setMaxConnections(int maxConnec);
@@ -150,13 +151,13 @@ class bittorrent : public QObject{
     void trackerError(const QString& hash, const QString& time, const QString& msg);
     void portListeningFailure();
     void trackerAuthenticationRequired(torrent_handle& h);
-    void downloadFromUrlFailure(const QString& url, const QString& error);
     void scanDirFoundTorrents(const QStringList& pathList);
     void newDownloadedTorrent(const QString& path, const QString& url);
     void aboutToDownloadFromUrl(const QString& url);
     void updateFileSize(QString hash);
     void allTorrentsFinishedChecking();
     void peerBlocked(const QString&);
+    void downloadFromUrlFailure(const QString& url, const QString& reason);
 
 };
 

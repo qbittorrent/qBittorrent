@@ -51,6 +51,7 @@ bittorrent::bittorrent(){
   // To download from urls
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&)));
+  connect(downloader, SIGNAL(downloadFailure(const QString&, const QString&)), this, SLOT(HandleDownloadFailure(const QString&, const QString&)));
 }
 
 // Main destructor
@@ -76,6 +77,10 @@ void bittorrent::setUploadLimit(QString hash, int val){
   torrent_handle h = getTorrentHandle(hash);
   h.set_upload_limit(val);
   saveTorrentSpeedLimits(hash);
+}
+
+void bittorrent::HandleDownloadFailure(const QString& url, const QString& reason){
+  emit downloadFromUrlFailure(url, reason);
 }
 
 void bittorrent::updateETAs(){
@@ -1014,12 +1019,6 @@ void bittorrent::downloadFromUrl(const QString& url){
 
 // Add to bittorrent session the downloaded torrent file
 void bittorrent::processDownloadedFile(const QString& url, const QString& file_path){
-//   if(return_code){
-//     // Download failed
-//     emit downloadFromUrlFailure(url, errorBuffer);
-//     QFile::remove(file_path);
-//     return;
-//   }
   // Add file to torrent download list
   emit newDownloadedTorrent(file_path, url);
 }

@@ -153,6 +153,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void displayUpTab();
     void displaySearchTab();
     void displayRSSTab();
+    void handleDownloadFromUrlFailure(const QString&, const QString&);
     // Torrent actions
     void showProperties(const QModelIndex &index);
     void on_actionTorrent_Properties_triggered();

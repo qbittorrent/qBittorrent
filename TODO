@@ -28,6 +28,7 @@
 
 // in v1.1.0
 - Tabs support in search
+- Have a look at libcommoncpp2 to see if it can be useful for other stuff than url downloading
 
 // in v1.0.0 (partial) - WIP
 - Check storage st creation + hasher in torrent creation
