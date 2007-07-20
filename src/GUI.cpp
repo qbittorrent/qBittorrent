@@ -222,21 +222,10 @@ GUI::~GUI(){
   delete previewProcess;
   delete connecStatusLblIcon;
   // Keyboard shortcuts
-  delete createShortcut;
-  delete openShortcut;
-  delete quitShortcut;
   delete switchSearchShortcut;
   delete switchDownShortcut;
   delete switchUpShortcut;
   delete switchRSSShortcut;
-  delete propertiesShortcut;
-  delete optionsShortcut;
-  delete delShortcut;
-  delete delPermShortcut;
-  delete startShortcut;
-  delete startAllShortcut;
-  delete pauseShortcut;
-  delete pauseAllPermShortcut;
 }
 
 void GUI::on_actionWebsite_triggered(){
@@ -260,12 +249,9 @@ void GUI::writeSettings() {
 }
 
 void GUI::createKeyboardShortcuts(){
-  createShortcut = new QShortcut(QKeySequence("Ctrl+N"), this);
-  connect(createShortcut, SIGNAL(activated()), this, SLOT(on_actionCreate_torrent_triggered()));
-  openShortcut = new QShortcut(QKeySequence("Ctrl+O"), this);
-  connect(openShortcut, SIGNAL(activated()), this, SLOT(on_actionOpen_triggered()));
-  quitShortcut = new QShortcut(QKeySequence("Ctrl+Q"), this);
-  connect(quitShortcut, SIGNAL(activated()), this, SLOT(on_actionExit_triggered()));
+  actionCreate_torrent->setShortcut("Ctrl+N");
+  actionOpen->setShortcut("Ctrl+O");
+  actionExit->setShortcut("Ctrl+Q");
   switchDownShortcut = new QShortcut(QKeySequence(tr("Alt+1", "shortcut to switch to first tab")), this);
   connect(switchDownShortcut, SIGNAL(activated()), this, SLOT(displayDownTab()));
   switchUpShortcut = new QShortcut(QKeySequence(tr("Alt+2", "shortcut to switch to second tab")), this);
@@ -274,22 +260,14 @@ void GUI::createKeyboardShortcuts(){
   connect(switchSearchShortcut, SIGNAL(activated()), this, SLOT(displaySearchTab()));
   switchRSSShortcut = new QShortcut(QKeySequence(tr("Alt+4", "shortcut to switch to fourth tab")), this);
   connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
-  propertiesShortcut = new QShortcut(QKeySequence("Alt+P"), this);
-  connect(propertiesShortcut, SIGNAL(activated()), this, SLOT(on_actionTorrent_Properties_triggered()));
-  optionsShortcut = new QShortcut(QKeySequence("Alt+O"), this);
-  connect(optionsShortcut, SIGNAL(activated()), this, SLOT(on_actionOptions_triggered()));
-  delShortcut = new QShortcut(QKeySequence("Del"), this);
-  connect(delShortcut, SIGNAL(activated()), this, SLOT(on_actionDelete_triggered()));
-  delPermShortcut = new QShortcut(QKeySequence("Shift+Del"), this);
-  connect(delPermShortcut, SIGNAL(activated()), this, SLOT(on_actionDelete_Permanently_triggered()));
-  startShortcut = new QShortcut(QKeySequence("Ctrl+S"), this);
-  connect(startShortcut, SIGNAL(activated()), this, SLOT(on_actionStart_triggered()));
-  startAllShortcut = new QShortcut(QKeySequence("Ctrl+Shift+S"), this);
-  connect(startAllShortcut, SIGNAL(activated()), this, SLOT(on_actionStart_All_triggered()));
-  pauseShortcut = new QShortcut(QKeySequence("Ctrl+P"), this);
-  connect(pauseShortcut, SIGNAL(activated()), this, SLOT(on_actionPause_triggered()));
-  pauseAllPermShortcut = new QShortcut(QKeySequence("Ctrl+Shift+P"), this);
-  connect(pauseAllPermShortcut, SIGNAL(activated()), this, SLOT(on_actionPause_All_triggered()));
+  actionTorrent_Properties->setShortcut("Alt+P");
+  actionOptions->setShortcut("Alt+O");
+  actionDelete->setShortcut("Del");
+  actionDelete_Permanently->setShortcut("Shift+Del");
+  actionStart->setShortcut("Ctrl+S");
+  actionStart_All->setShortcut("Ctrl+Shift+S");
+  actionPause->setShortcut("Ctrl+P")
+  actionPause_All->setShortcut("Ctrl+Shift+P");
 }
 
 // Keyboard shortcuts slots
