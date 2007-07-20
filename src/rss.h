@@ -37,7 +37,6 @@
 #include <QFile>
 #include <QImage>
 #include <QList>
-#include <curl/curl.h>
 #include <QTemporaryFile>
 #include <QSettings>
 #include <QDomDocument>

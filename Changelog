@@ -33,6 +33,7 @@
     - BUGFIX: Fixed a crash when filtering all the files in a torrent
     - BUGFIX: Reload torrent only when necessary (properties)
     - BUGFIX: qBittorrent is not exiting anymore when a dialog is closed and main window is hidden
+    - BUGFIX: Search plugin update is not making the GUI freeze anymore (moved to a thread)
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features

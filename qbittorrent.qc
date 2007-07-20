@@ -11,7 +11,7 @@
   <dep type='libboost'>
     <required/>
   </dep>
-  <dep type='libcurl'>
+  <dep type='libcommoncpp2'>
     <required/>
   </dep>
   <dep type='python'>

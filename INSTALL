@@ -24,7 +24,7 @@ Dependencies:
 
 - libboost: libboost-filesystem, libboost-date-time, libboost-thread, libboost-serialization
 
-- libcurl
+- libcommoncpp2
 
 - python >= 2.3 (previous might work - not tested): needed by search engine.
 

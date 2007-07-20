@@ -18,7 +18,6 @@
 // Unsure
 - Azureus spoofing to prevent ban from trackers?
 - Web interface?
-- Use downloader class to download search plugin updates
 - Allow to set upload limit for each torrent
 - Option to shutdown computer when downloads are finished
 - Add a torrent scheduler
@@ -43,7 +42,7 @@
 - Allow to hide columns (gtsoul)
 - Complete documentation and english translation
 * beta2
-  - Fix configure file for libcommoncpp
+  - Handle downloadFromUrl errors (Display a messagebox to catch user's attention)
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent
     - ipfilter crash

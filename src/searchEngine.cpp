@@ -27,12 +27,12 @@
 #include <QSystemTrayIcon>
 #include <QTemporaryFile>
 #include <QSystemTrayIcon>
-#include <curl/curl.h>
 #include <iostream>
 
 #include "SearchListDelegate.h"
 #include "searchEngine.h"
 #include "bittorrent.h"
+#include "downloadThread.h"
 
 #define SEARCH_NAME 0
 #define SEARCH_SIZE 1
@@ -46,6 +46,8 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   setupUi(this);
   this->BTSession = BTSession;
   this->myTrayIcon = myTrayIcon;
+  downloader = new downloadThread(this);
+  connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&)), this, SLOT(novaUpdateDownloaded(const QString&, const QString&)));
   // Set Search results list model
   SearchListModel = new QStandardItemModel(0,5);
   SearchListModel->setHeaderData(SEARCH_NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
@@ -110,6 +112,7 @@ SearchEngine::~SearchEngine(){
   delete searchCompleter;
   delete SearchListModel;
   delete SearchDelegate;
+  delete downloader;
 }
 
 // Set the color of a row in data model
@@ -428,96 +431,43 @@ void SearchEngine::updateNova() const{
   }
 }
 
-// Download nova.py from qbittorrent.org
-// Check if our nova.py is outdated and
-// ask user for action.
-void SearchEngine::on_update_nova_button_clicked(){
-  CURL *curl;
-  QString filePath;
-  qDebug("Checking for search plugin updates on qbittorrent.org");
-  // XXX: Trick to get a unique filename
-  QTemporaryFile *tmpfile = new QTemporaryFile;
-  if (tmpfile->open()) {
-    filePath = tmpfile->fileName();
-  }
-  delete tmpfile;
-  FILE *file = fopen((const char*)filePath.toUtf8(), "w");
-  if(!file){
-    std::cerr << "Error: could not open temporary file...\n";
-  }
-  // Initilization required by libcurl
-  curl = curl_easy_init();
-  if(!curl){
-    std::cerr << "Error: Failed to init curl...\n";
-    fclose(file);
-    return;
-  }
-  // Set url to download
-  curl_easy_setopt(curl, CURLOPT_URL, "http://www.dchris.eu/nova/nova.zip");
-  // Define our callback to get called when there's data to be written
-  curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, misc::my_fwrite);
-  // Set destination file
-  curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
-  // Some SSL mambo jambo
-  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
-  // Perform Download
-  curl_easy_perform(curl); /* ignores error */
-  // Cleanup
-  curl_easy_cleanup(curl);
-  // Close tmp file
-  fclose(file);
-  qDebug("Version on qbittorrent.org: %.2f", getNovaVersion(filePath));
+void SearchEngine::novaUpdateDownloaded(const QString&, const QString& filePath){
   float version_on_server = getNovaVersion(filePath);
-  if(version_on_server == 0.0){
-    //First server is down, try the mirror
-    QFile::remove(filePath);
-    FILE *file = fopen((const char*)filePath.toUtf8(), "w");
-    if(!file){
-      std::cerr << "Error: could not open temporary file...\n";
-    }
-    curl = curl_easy_init();
-    curl_easy_setopt(curl, CURLOPT_URL, "http://hydr0g3n.free.fr/nova/nova.py");
-    // Define our callback to get called when there's data to be written
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, misc::my_fwrite);
-    // Set destination file
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
-    // Some SSL mambo jambo
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
-    // Perform Download
-    curl_easy_perform(curl); /* ignores error */
-    // Cleanup
-    curl_easy_cleanup(curl);
-    // Close tmp file
-    fclose(file);
-    version_on_server = getNovaVersion(filePath);
-  }
+  qDebug("Version on qbittorrent.org: %.2f", version_on_server);
   if(version_on_server > getNovaVersion(misc::qBittorrentPath()+"nova.py")){
     if(QMessageBox::question(this,
-                             tr("Search plugin update -- qBittorrent"),
-                             tr("Search plugin can be updated, do you want to update it?\n\nChangelog:\n")+getNovaChangelog(filePath),
-                             tr("&Yes"), tr("&No"),
-                             QString(), 0, 1)){
-                               return;
-                             }else{
-                               qDebug("Updating search plugin from qbittorrent.org");
-			       QFile::remove(misc::qBittorrentPath()+"nova.py");
-                               QFile::copy(filePath, misc::qBittorrentPath()+"nova.py");
-			       QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;
-			       QFile(misc::qBittorrentPath()+"nova.py").setPermissions(perm);
-                             }
+       tr("Search plugin update -- qBittorrent"),
+          tr("Search plugin can be updated, do you want to update it?\n\nChangelog:\n")+getNovaChangelog(filePath),
+             tr("&Yes"), tr("&No"),
+                QString(), 0, 1)){
+                  return;
+                }else{
+                  qDebug("Updating search plugin from qbittorrent.org");
+                  QFile::remove(misc::qBittorrentPath()+"nova.py");
+                  QFile::copy(filePath, misc::qBittorrentPath()+"nova.py");
+                  QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;
+                  QFile(misc::qBittorrentPath()+"nova.py").setPermissions(perm);
+                }
   }else{
     if(version_on_server == 0.0){
       QMessageBox::information(this, tr("Search plugin update")+" -- "+tr("qBittorrent"),
                                tr("Sorry, update server is temporarily unavailable."));
     }else{
       QMessageBox::information(this, tr("Search plugin update -- qBittorrent"),
-                              tr("Your search plugin is already up to date."));
+                               tr("Your search plugin is already up to date."));
     }
   }
   // Delete tmp file
   QFile::remove(filePath);
+}
+
+// Download nova.py from qbittorrent.org
+// Check if our nova.py is outdated and
+// ask user for action.
+void SearchEngine::on_update_nova_button_clicked(){
+  qDebug("Checking for search plugin updates on qbittorrent.org");
+  downloader->downloadUrl("http://www.dchris.eu/nova/nova.zip");
+  //TODO: make use of fallback url: "http://hydr0g3n.free.fr/nova/nova.py"
 }
 
 // Slot called when search is Finished

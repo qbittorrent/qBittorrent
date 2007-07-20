@@ -10,20 +10,19 @@ Usage: $0 [OPTION]...
 This script creates necessary configuration files to build/install.
 
 Main options:
-  --prefix=[path]     Base path for build/install.  Default: /usr/local
-  --bindir=[path]     Directory for binaries.  Default: PREFIX/bin
-  --datadir=[path]    Directory for data.  Default: PREFIX/share
-  --qtdir=[path]      Directory where Qt is installed.
-  --verbose           Show extra configure output.
-  --help              This help text.
+  --prefix=[path]    Base path for build/install.  Default: /usr/local
+  --bindir=[path]    Directory for binaries.  Default: PREFIX/bin
+  --qtdir=[path]     Directory where Qt is installed.
+  --verbose          Show extra configure output.
+  --help             This help text.
 
 Dependency options:
   --with-libtorrent-inc=[path]            Path to libtorrent include files
   --with-libtorrent-lib=[path]            Path to libtorrent library files
   --with-libtorrent-static-lib=[path]     Path to libtorrent .a file
   --with-libboost-inc=[path]              Path to libboost include files
-  --with-libcurl-inc=[path]               Path to libcurl include files
-  --with-libcurl-lib=[path]               Path to libcurl library files
+  --with-libcommoncpp2-inc=[path]         Path to libcommoncpp2 include files
+  --with-libcommoncpp2-lib=[path]         Path to libcommoncpp2 library files
 
 EOT
 }
@@ -130,11 +129,6 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
-		--datadir=*)
-			DATADIR=$optarg
-			shift
-			;;
-
 		--qtdir=*)
 			EX_QTDIR=$optarg
 			shift
@@ -160,13 +154,13 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
-		--with-libcurl-inc=*)
-			QC_WITH_LIBCURL_INC=$optarg
+		--with-libcommoncpp2-inc=*)
+			QC_WITH_LIBCOMMONCPP2_INC=$optarg
 			shift
 			;;
 
-		--with-libcurl-lib=*)
-			QC_WITH_LIBCURL_LIB=$optarg
+		--with-libcommoncpp2-lib=*)
+			QC_WITH_LIBCOMMONCPP2_LIB=$optarg
 			shift
 			;;
 
@@ -181,7 +175,6 @@ done
 
 PREFIX=${PREFIX:-/usr/local}
 BINDIR=${BINDIR:-$PREFIX/bin}
-DATADIR=${DATADIR:-$PREFIX/share}
 
 echo "Configuring qbittorrent ..."
 
@@ -189,14 +182,13 @@ if [ "$QC_DEBUG" = "Y" ]; then
 echo
 echo PREFIX=$PREFIX
 echo BINDIR=$BINDIR
-echo DATADIR=$DATADIR
 echo EX_QTDIR=$EX_QTDIR
 echo QC_WITH_LIBTORRENT_INC=$QC_WITH_LIBTORRENT_INC
 echo QC_WITH_LIBTORRENT_LIB=$QC_WITH_LIBTORRENT_LIB
 echo QC_WITH_LIBTORRENT_STATIC_LIB=$QC_WITH_LIBTORRENT_STATIC_LIB
 echo QC_WITH_LIBBOOST_INC=$QC_WITH_LIBBOOST_INC
-echo QC_WITH_LIBCURL_INC=$QC_WITH_LIBCURL_INC
-echo QC_WITH_LIBCURL_LIB=$QC_WITH_LIBCURL_LIB
+echo QC_WITH_LIBCOMMONCPP2_INC=$QC_WITH_LIBCOMMONCPP2_INC
+echo QC_WITH_LIBCOMMONCPP2_LIB=$QC_WITH_LIBCOMMONCPP2_LIB
 echo
 fi
 
@@ -417,65 +409,68 @@ public:
 		return true;
 	}
 };
-#line 1 "libcurl.qcm"
+#line 1 "libcommoncpp2.qcm"
 /*
 -----BEGIN QCMOD-----
-name: libcurl
-arg: with-libcurl-inc=[path], Path to libcurl include files
-arg: with-libcurl-lib=[path], Path to libcurl library files
+name: libcommoncpp2
+arg: with-libcommoncpp2-inc=[path], Path to libcommoncpp2 include files
+arg: with-libcommoncpp2-lib=[path], Path to libcommoncpp2 library files
 -----END QCMOD-----
 */
-class qc_libcurl : public ConfObj
+class qc_libcommoncpp2 : public ConfObj
 {
 public:
-	qc_libcurl(Conf *c) : ConfObj(c) {}
-	QString name() const { return "libcurl"; }
-	QString shortname() const { return "libcurl"; }
+	qc_libcommoncpp2(Conf *c) : ConfObj(c) {}
+	QString name() const { return "GNU Common C++"; }
+	QString shortname() const { return "libcommoncpp2"; }
 	bool exec(){
-        	QString s;
-		s = conf->getenv("QC_WITH_LIBCURL_INC");
+    QString s;
+		s = conf->getenv("QC_WITH_LIBCOMMONCPP2_INC");
 		if(!s.isEmpty()) {
-			if(!conf->checkHeader(s, "curl/curl.h")) {
+			if(!conf->checkHeader(s, "cc++/common.h")) {
 				return false;
-      			}
+    	}
 		}else{
 			QStringList sl;
 			sl << "/usr/include";
 			sl << "/usr/local/include";
 			bool found = false;
 			foreach(s, sl){
-				if(conf->checkHeader(s, "curl/curl.h")){
+				if(conf->checkHeader(s, "cc++/common.h")){
 					found = true;
 					break;
 				}
 			}
 			if(!found) {
 				return false;
-          		}
+      }
 		}
 		conf->addIncludePath(s);
 
-		s = conf->getenv("QC_WITH_LIBCURL_LIB");
+		s = conf->getenv("QC_WITH_LIBCOMMONCPP2_LIB");
 		if(!s.isEmpty()) {
-      			if(!conf->checkLibrary(s, "curl")) {
-			        return false;
-			}
-      			conf->addLib(QString("-L") + s);
+			if(!QFile::exists(s+QString("libccext2.so")))
+		    return false;
+			if(!QFile::exists(s+QString("libccgnu2.so")))
+				return false;
+    	conf->addLib(QString("-L") + s);
 		}else{
 			QStringList sl;
 			sl << "/usr/lib/";
 			sl << "/usr/local/lib/";
 			bool found = false;
 			foreach(s, sl){
-				if(conf->checkLibrary(s, "curl")){
-					found = true;
-					break;
+				if(QFile::exists(s+QString("libccext2.so"))){
+				  if(QFile::exists(s+QString("libccgnu2.so"))){
+						found = true;
+						break;
+					}
 				}
 			}
 			if(!found) return false;
 			conf->addLib(QString("-L") + s);
 		}
-		conf->addLib("-lcurl");
+		conf->addLib("-lccext2 -lccgnu2");
 		return true;
 	}
 };
@@ -511,7 +506,7 @@ cat >$1/modules_new.cpp <<EOT
     o = new qc_libboost(conf);
     o->required = true;
     o->disabled = false;
-    o = new qc_libcurl(conf);
+    o = new qc_libcommoncpp2(conf);
     o->required = true;
     o->disabled = false;
     o = new qc_python(conf);
@@ -1441,14 +1436,13 @@ EOT
 
 export PREFIX
 export BINDIR
-export DATADIR
 export EX_QTDIR
 export QC_WITH_LIBTORRENT_INC
 export QC_WITH_LIBTORRENT_LIB
 export QC_WITH_LIBTORRENT_STATIC_LIB
 export QC_WITH_LIBBOOST_INC
-export QC_WITH_LIBCURL_INC
-export QC_WITH_LIBCURL_LIB
+export QC_WITH_LIBCOMMONCPP2_INC
+export QC_WITH_LIBCOMMONCPP2_LIB
 export QC_DEBUG
 rm -rf .qconftemp
 (

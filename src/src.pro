@@ -2,9 +2,6 @@
 LANG_PATH = lang
 ICONS_PATH = Icons
 
-LIBS += -lccext2 
-LIBS += -lccgnu2
-
 #Set the following variable to 1 to enable debug
 DEBUG_MODE = 1
 
@@ -30,7 +27,7 @@ contains(DEBUG_MODE, 0){
 
 QMAKE_CXXFLAGS_RELEASE += -fwrapv
 QMAKE_CXXFLAGS_DEBUG += -fwrapv
-#LIBS += -lcurl -lupnp
+
 CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent
 QT += network xml
@@ -78,7 +75,7 @@ contains(DEBUG_MODE, 0){
 # Windows
 win32 {
   DEFINES += NO_UPNP
-  LIBS += -lcurl -ltorrent
+  LIBS += -ltorrent -lccext2 -lccgnu2
 }
 
 RESOURCES = icons.qrc \

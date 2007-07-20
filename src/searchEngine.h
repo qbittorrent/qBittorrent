@@ -31,6 +31,7 @@ class QStandardItemModel;
 class SearchListDelegate;
 class bittorrent;
 class QSystemTrayIcon;
+class downloadThread;
 
 class SearchEngine : public QWidget, public Ui::search_engine{
   Q_OBJECT
@@ -50,6 +51,7 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     bittorrent *BTSession;
     QSystemTrayIcon *myTrayIcon;
     bool systrayIntegration;
+    downloadThread *downloader;
 
   public:
     SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration);
@@ -80,6 +82,7 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     void sortSearchList(int index);
     void sortSearchListInt(int index, Qt::SortOrder sortOrder);
     void sortSearchListString(int index, Qt::SortOrder sortOrder);
+    void novaUpdateDownloaded(const QString& url, const QString& path);
 };
 
 #endif

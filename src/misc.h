@@ -128,11 +128,6 @@ class misc : public QObject{
       return true;
     }
 
-    // Function called by curl to write the data to the file
-    static int my_fwrite(void *buffer, size_t size, size_t nmemb, void *stream){
-      return fwrite(buffer, size, nmemb, (FILE*)stream);
-    }
-
     static QString findFileInDir(const QString& dir_path, const QString& fileName){
       QDir dir(dir_path);
       if(dir.exists(fileName)){

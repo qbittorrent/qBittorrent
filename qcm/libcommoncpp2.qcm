@@ -1,0 +1,64 @@
+/*
+-----BEGIN QCMOD-----
+name: libcommoncpp2
+arg: with-libcommoncpp2-inc=[path], Path to libcommoncpp2 include files
+arg: with-libcommoncpp2-lib=[path], Path to libcommoncpp2 library files
+-----END QCMOD-----
+*/
+class qc_libcommoncpp2 : public ConfObj
+{
+public:
+	qc_libcommoncpp2(Conf *c) : ConfObj(c) {}
+	QString name() const { return "GNU Common C++"; }
+	QString shortname() const { return "libcommoncpp2"; }
+	bool exec(){
+    QString s;
+		s = conf->getenv("QC_WITH_LIBCOMMONCPP2_INC");
+		if(!s.isEmpty()) {
+			if(!conf->checkHeader(s, "cc++/common.h")) {
+				return false;
+    	}
+		}else{
+			QStringList sl;
+			sl << "/usr/include";
+			sl << "/usr/local/include";
+			bool found = false;
+			foreach(s, sl){
+				if(conf->checkHeader(s, "cc++/common.h")){
+					found = true;
+					break;
+				}
+			}
+			if(!found) {
+				return false;
+      }
+		}
+		conf->addIncludePath(s);
+
+		s = conf->getenv("QC_WITH_LIBCOMMONCPP2_LIB");
+		if(!s.isEmpty()) {
+			if(!QFile::exists(s+QString("libccext2.so")))
+		    return false;
+			if(!QFile::exists(s+QString("libccgnu2.so")))
+				return false;
+    	conf->addLib(QString("-L") + s);
+		}else{
+			QStringList sl;
+			sl << "/usr/lib/";
+			sl << "/usr/local/lib/";
+			bool found = false;
+			foreach(s, sl){
+				if(QFile::exists(s+QString("libccext2.so"))){
+				  if(QFile::exists(s+QString("libccgnu2.so"))){
+						found = true;
+						break;
+					}
+				}
+			}
+			if(!found) return false;
+			conf->addLib(QString("-L") + s);
+		}
+		conf->addLib("-lccext2 -lccgnu2");
+		return true;
+	}
+};
