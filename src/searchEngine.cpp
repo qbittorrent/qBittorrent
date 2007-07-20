@@ -48,7 +48,7 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   this->myTrayIcon = myTrayIcon;
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&)), this, SLOT(novaUpdateDownloaded(const QString&, const QString&)));
-  connect(downloader, SIGNAL(downloadFromUrlFailure(const QString&, const QString&)), this, SLOT(handleNovaDownloadFailure(const QString&, const QString&)));
+  connect(downloader, SIGNAL(downloadFailure(const QString&, const QString&)), this, SLOT(handleNovaDownloadFailure(const QString&, const QString&)));
   // Set Search results list model
   SearchListModel = new QStandardItemModel(0,5);
   SearchListModel->setHeaderData(SEARCH_NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
