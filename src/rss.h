@@ -142,33 +142,15 @@ class RssStream : public QObject{
         QFile::remove(filePath);
       }
       filePath = file_path;
-//       if(return_code){
-//         // Download failed
-// 	qDebug("(download failure) "+file_path.toUtf8());
-// 	if(QFile::exists(filePath)) {
-// 	  QFile::remove(filePath);
-// 	}
-// 	emit refreshFinished(url, NEWS);
-// 	return;
-//       }
       openRss();
       emit refreshFinished(url, NEWS);
     }
 
-    void displayIcon(const QString&, const QString& file_path, int, const QString&) {
-      /*if(QFile::exists(iconPath) && iconPath!=":/Icons/rss.png") {
-	QFile::remove(iconPath);
-      }
+    // display the icon in the rss window
+    void displayIcon(const QString&, const QString& file_path, int return_code, const QString&) {
       iconPath = file_path;
-
-      // XXX : remove it when we manage to dl the iconPath
-      //iconPath = ":/Icons/rss.png";
-      //iconPath = "/tmp/favicon.gif";
-
-
       if(return_code){
         // Download failed
-	qDebug("(download failure) "+iconPath.toUtf8());
 	if(QFile::exists(iconPath) && iconPath!=":/Icons/rss.png") {
 	  QFile::remove(iconPath);
 	}
@@ -177,8 +159,7 @@ class RssStream : public QObject{
 	return;
       }
       openIcon();
-      emit refreshFinished(url, ICON);*/
-      qDebug("******************Icone downloaded"+file_path.toUtf8());
+      emit refreshFinished(url, ICON);
     }
 
   public:
@@ -193,7 +174,7 @@ class RssStream : public QObject{
       downloaderRss->downloadUrl(url);
       // XXX: remove it when gif can be displayed
       iconPath = ":/Icons/rss.png";
-      //getIcon();
+      getIcon();
       lastRefresh.start();
     }
 
@@ -265,6 +246,15 @@ class RssStream : public QObject{
       return listItem.size();
     }
 
+    unsigned short getNbNonRead() const{
+      int i=0, nbnonread=0;
+      for(i=0; i<listItem.size(); i++) {
+	if(!listItem.at(i)->isRead())
+	 nbnonread++;
+      }
+      return nbnonread;
+    }    
+
     QList<RssItem*> getListItem() const{
       return listItem;
     }
@@ -285,13 +275,12 @@ class RssStream : public QObject{
       read = true;
     }
 
-    // FIXME : always return an empty file
+    // download the icon from the adress
     void getIcon() {
       QUrl siteUrl(url);
       QString iconUrl = "http://"+siteUrl.host()+"/favicon.ico";
       connect(downloaderIcon, SIGNAL(downloadFinished(const QString&, const QString&, int, const QString&)), this, SLOT(displayIcon(const QString&, const QString&, int, const QString&)));
       downloaderIcon->downloadUrl(iconUrl);
-      qDebug("******************Icone "+iconUrl.toUtf8());
     }
 
   private:

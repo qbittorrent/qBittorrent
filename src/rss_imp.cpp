@@ -239,7 +239,7 @@
       }
       // on click, show the age of the stream
       if(type == LATENCY) {
-	unsigned short nbitem = rssmanager.getStream(i)->getListSize();
+	unsigned short nbitem = rssmanager.getStream(i)->getNbNonRead();
 	listStreams->topLevelItem(i)->setText(0,rssmanager.getStream(i)->getAlias().toUtf8()+"  ("+QString::number(nbitem,10).toUtf8()+")");
 	if(nbitem==0)
 	  listStreams->topLevelItem(i)->setData(0,Qt::ForegroundRole, QVariant(QColor("red")));
