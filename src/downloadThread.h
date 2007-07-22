@@ -68,11 +68,8 @@ class downloadThread : public QThread {
 
     void downloadUrl(const QString& url){
       QMutexLocker locker(&mutex);
-      qDebug("In Download thread function, mutex locked");
       url_list << url;
-      qDebug("In Download thread function, mutex unlocked (url added)");
       if(!isRunning()){
-	qDebug("In Download thread function, Launching thread (was stopped)");
         start();
       }else{
         condition.wakeOne();
@@ -112,11 +109,9 @@ class downloadThread : public QThread {
         if(abort)
           return;
         mutex.lock();
-	qDebug("In Download thread RUN, mutex locked");
         if(url_list.size() != 0){
           QString url = url_list.takeFirst();
           mutex.unlock();
-	  qDebug("In Download thread RUN, mutex unlocked (got url)");
           // XXX: Trick to get a unique filename
           QString filePath;
           QTemporaryFile *tmpfile = new QTemporaryFile();
@@ -151,12 +146,10 @@ class downloadThread : public QThread {
           dest_file.close();
           url_stream.close();
           emit downloadFinished(url, filePath);
-	  qDebug("In Download thread RUN, signal emitted");
+	  qDebug("download completed here: %s", (const char*)filePath.toUtf8());
         }else{
-          qDebug("In Download thread RUN, mutex still locked (no urls) -> sleeping");
           condition.wait(&mutex);
           mutex.unlock();
-          qDebug("In Download thread RUN, woke up, mutex unlocked");
         }
       }
     }

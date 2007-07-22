@@ -39,10 +39,10 @@
 - Fix all (or almost all) opened bugs in bug tracker
 - Fix column sorting with Qt 4.3 - Reported to Trolltech, waiting for their fix
 - update sorting when a new torrent is added?
-- Allow to hide columns (gtsoul?)
+- Allow to hide columns?
 - Complete documentation and english translation
 * beta3
-  - Windows port (Chris - GTSoul - Peerkoel)
+  - Windows port (Chris - Peerkoel)
   - Translations update
 * beta2
   - Improve RSS code + cleanup (chris)

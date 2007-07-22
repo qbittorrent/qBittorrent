@@ -149,6 +149,7 @@ class RssStream : public QObject{
     // display the icon in the rss window
     void displayIcon(const QString&, const QString& file_path) {
       iconPath = file_path;
+      qDebug("Icon tmp path is %s", (const char*) file_path.toUtf8());
       openIcon();
       emit refreshFinished(url, ICON);
     }
@@ -175,8 +176,8 @@ class RssStream : public QObject{
       delete downloaderIcon;
       if(QFile::exists(filePath))
         QFile::remove(filePath);
-       if(QFile::exists(iconPath) && iconPath!=":/Icons/rss.png")
- 	QFile::remove(iconPath);
+      if(QFile::exists(iconPath) && !iconPath.startsWith(":/"))
+        QFile::remove(iconPath);
     }
 
     // delete all the items saved
