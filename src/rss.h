@@ -130,6 +130,7 @@ class RssStream : public QObject{
     downloadThread* downloaderIcon;
     QTime lastRefresh;
     bool read;
+    bool downloadFailure;
 
   signals:
     void refreshFinished(const QString& msg, const unsigned short& type);
@@ -142,6 +143,7 @@ class RssStream : public QObject{
         QFile::remove(filePath);
       }
       filePath = file_path;
+      downloadFailure = false;
       openRss();
       emit refreshFinished(url, NEWS);
     }
@@ -373,19 +375,14 @@ class RssStream : public QObject{
 
     void openIcon() {
       QImage fileIcon(iconPath,0);
-//       if(!fileIcon.open(QIODevice::ReadOnly)) {
-// 	qDebug("error : icon open failed, no file or locked, "+iconPath.toUtf8());
-// 	if(QFile::exists(iconPath)) {
-// 	  fileIcon.remove();
-// 	  iconPath = ":/Icons/rss.png";
-// 	}
-// 	return;
-//       }
-      if(fileIcon.isNull()) {
-	qDebug("error : icon open failed, file empty, "+iconPath.toUtf8());
+      if(!fileIcon.load(iconPath, 0)) {
+	qDebug("error: icon open failed, no file or empty file at "+iconPath.toUtf8());
 	if(QFile::exists(iconPath)) {
-	  //QFile::remove(iconPath);
-	  //iconPath = ":/Icons/rss.png";
+	  QFile::remove(iconPath);
+          if(downloadFailure)
+            iconPath = ":/Icons/unavailable.png";
+          else
+	   iconPath = ":/Icons/rss.png";
 	}
 	return;
       }
@@ -395,6 +392,7 @@ class RssStream : public QObject{
       void handleDownloadFailure(const QString&, const QString&){
         // Change the stream icon to a red cross
         iconPath = ":/Icons/unavailable.png";
+        downloadFailure = true;
         emit refreshFinished(url, ICON);
       }
 };
