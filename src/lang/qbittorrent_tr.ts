@@ -2201,58 +2201,80 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="170"/>
+        <location filename="../rss_imp.cpp" line="173"/>
         <source>Please type a rss stream url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="170"/>
+        <location filename="../rss_imp.cpp" line="173"/>
         <source>Stream URL:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="136"/>
+        <location filename="../rss_imp.cpp" line="137"/>
         <source>Please choose a new name for this stream</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="136"/>
+        <location filename="../rss_imp.cpp" line="137"/>
         <source>New stream name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="116"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation type="unfinished">Emin misiniz? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="116"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>Are you sure you want to delete this stream from the list ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="116"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>&amp;Yes</source>
         <translation type="unfinished">&amp;Evet</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="116"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>&amp;No</source>
         <translation type="unfinished">&amp;Hayır</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="192"/>
-        <source>no refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../rss_imp.cpp" line="190"/>
-        <source>no description available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../rss_imp.cpp" line="55"/>
+        <location filename="../rss_imp.cpp" line="56"/>
         <source>Are you sure you want to delete this stream from the list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss_imp.cpp" line="269"/>
+        <source>Description:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss_imp.cpp" line="269"/>
+        <source>url:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss_imp.cpp" line="269"/>
+        <source>Last refresh:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RssItem</name>
+    <message>
+        <location filename="../rss.h" line="97"/>
+        <source>No description available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RssStream</name>
+    <message>
+        <location filename="../rss.h" line="261"/>
+        <source>%1 ago</source>
+        <comment>10min ago</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2514,17 +2536,17 @@ Changelog:
         <translation>Torrent ekleme penceresi</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="54"/>
+        <location filename="../addTorrentDialog.ui" line="45"/>
         <source>Save path:</source>
         <translation>Kayıt yolu:</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="81"/>
+        <location filename="../addTorrentDialog.ui" line="63"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="96"/>
+        <location filename="../addTorrentDialog.ui" line="78"/>
         <source>Torrent content:</source>
         <translation>Torrent içeriği:</translation>
     </message>
@@ -2544,22 +2566,22 @@ Changelog:
         <translation type="obsolete">Seçildi</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="116"/>
+        <location filename="../addTorrentDialog.ui" line="98"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Doğru düzende download (yavaş ama önizleme için ideal)</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="123"/>
+        <location filename="../addTorrentDialog.ui" line="105"/>
         <source>Add to download list in paused state</source>
         <translation>Download listesine duraklatılmış halde ekle</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="160"/>
+        <location filename="../addTorrentDialog.ui" line="133"/>
         <source>Add</source>
         <translation>Ekle</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="167"/>
+        <location filename="../addTorrentDialog.ui" line="140"/>
         <source>Cancel</source>
         <translation>İptal</translation>
     </message>
@@ -2579,22 +2601,22 @@ Changelog:
         <translation type="obsolete">Seç</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="189"/>
+        <location filename="../addTorrentDialog.ui" line="162"/>
         <source>Ignored</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="194"/>
+        <location filename="../addTorrentDialog.ui" line="167"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="199"/>
+        <location filename="../addTorrentDialog.ui" line="172"/>
         <source>High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="204"/>
+        <location filename="../addTorrentDialog.ui" line="177"/>
         <source>Maximum</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2893,57 +2915,57 @@ Changelog:
 <context>
     <name>downloadThread</name>
     <message>
-        <location filename="../downloadThread.h" line="85"/>
+        <location filename="../downloadThread.h" line="82"/>
         <source>Host is unreachable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="87"/>
+        <location filename="../downloadThread.h" line="84"/>
         <source>File was not found (404)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="89"/>
+        <location filename="../downloadThread.h" line="86"/>
         <source>Connection was denied</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="91"/>
+        <location filename="../downloadThread.h" line="88"/>
         <source>Url is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="93"/>
+        <location filename="../downloadThread.h" line="90"/>
         <source>Connection forbidden (403)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="95"/>
+        <location filename="../downloadThread.h" line="92"/>
         <source>Connection was not authorized (401)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="97"/>
+        <location filename="../downloadThread.h" line="94"/>
         <source>Content has moved (301)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="99"/>
+        <location filename="../downloadThread.h" line="96"/>
         <source>Connection failure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="101"/>
+        <location filename="../downloadThread.h" line="98"/>
         <source>Connection was timed out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="103"/>
+        <location filename="../downloadThread.h" line="100"/>
         <source>Incorrect network interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="105"/>
+        <location filename="../downloadThread.h" line="102"/>
         <source>Unknown error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3300,7 +3322,7 @@ Changelog:
         <translation type="obsolete">Torrent İçeriği</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1105"/>
+        <location filename="../properties.ui" line="931"/>
         <source>OK</source>
         <translation>TAMAM</translation>
     </message>
@@ -3365,7 +3387,7 @@ Changelog:
         <translation type="obsolete"> Kısmi:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1015"/>
+        <location filename="../properties.ui" line="850"/>
         <source>Files contained in current torrent:</source>
         <translation>Şimdiki torrentteki dosya içeriği:</translation>
     </message>
@@ -3405,12 +3427,12 @@ Changelog:
         <translation type="obsolete">Evet</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="613"/>
+        <location filename="../properties.ui" line="518"/>
         <source>Tracker</source>
         <translation>Tracker</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="662"/>
+        <location filename="../properties.ui" line="549"/>
         <source>Trackers:</source>
         <translation>Trackerlar:</translation>
     </message>
@@ -3420,7 +3442,7 @@ Changelog:
         <translation>Yok - Erişilemez?</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="894"/>
+        <location filename="../properties.ui" line="747"/>
         <source>Errors:</source>
         <translation>Hata(lar):</translation>
     </message>
@@ -3430,7 +3452,7 @@ Changelog:
         <translation>İlerleme</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="38"/>
+        <location filename="../properties.ui" line="29"/>
         <source>Main infos</source>
         <translation>Genel bilgiler</translation>
     </message>
@@ -3440,27 +3462,27 @@ Changelog:
         <translation type="obsolete">Kullanıcı sayısı:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="944"/>
+        <location filename="../properties.ui" line="788"/>
         <source>Current tracker:</source>
         <translation>Şimdiki tracker:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="422"/>
+        <location filename="../properties.ui" line="343"/>
         <source>Total uploaded:</source>
         <translation>Toplam upload:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="440"/>
+        <location filename="../properties.ui" line="361"/>
         <source>Total downloaded:</source>
         <translation>Toplam download:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="476"/>
+        <location filename="../properties.ui" line="397"/>
         <source>Total failed:</source>
         <translation>Toplam başarısız:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="983"/>
+        <location filename="../properties.ui" line="827"/>
         <source>Torrent content</source>
         <translation>Torrent içeriği</translation>
     </message>
@@ -3470,7 +3492,7 @@ Changelog:
         <translation type="obsolete">Ayarlar</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="561"/>
+        <location filename="../properties.ui" line="473"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Doğru düzende download (yavaş ama önizleme için ideal)</translation>
     </message>
@@ -3490,42 +3512,42 @@ Changelog:
         <translation type="obsolete">Leechers:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="166"/>
+        <location filename="../properties.ui" line="121"/>
         <source>Save path:</source>
         <translation>Kayıt yolu:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="99"/>
+        <location filename="../properties.ui" line="81"/>
         <source>Torrent infos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="185"/>
+        <location filename="../properties.ui" line="140"/>
         <source>Creator:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="204"/>
+        <location filename="../properties.ui" line="159"/>
         <source>Torrent hash:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="229"/>
+        <location filename="../properties.ui" line="184"/>
         <source>Comment:</source>
         <translation type="unfinished">Yorum:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="356"/>
+        <location filename="../properties.ui" line="304"/>
         <source>Current session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="458"/>
+        <location filename="../properties.ui" line="379"/>
         <source>Share ratio:</source>
         <translation type="unfinished">Paylaşım oranı:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="569"/>
+        <location filename="../properties.ui" line="481"/>
         <source>Trackers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3585,22 +3607,22 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1127"/>
+        <location filename="../properties.ui" line="953"/>
         <source>Ignored</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1132"/>
+        <location filename="../properties.ui" line="958"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1137"/>
+        <location filename="../properties.ui" line="963"/>
         <source>Maximum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1142"/>
+        <location filename="../properties.ui" line="968"/>
         <source>High</source>
         <translation type="unfinished"></translation>
     </message>
