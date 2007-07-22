@@ -257,7 +257,6 @@ class RssStream : public QObject{
     }
 
     QString getLastRefreshElapsedString() const{
-      // TODO: remove this debug before release
       return tr("%1 ago", "10min ago").arg(misc::userFriendlyDuration((long)(lastRefresh.elapsed()/1000.)).replace("<", "&lt;"));
     }
 
@@ -387,10 +386,13 @@ class RssStream : public QObject{
         qDebug("error: icon open failed, no file or empty file at "+iconPath.toUtf8());
         if(QFile::exists(iconPath)) {
           QFile::remove(iconPath);
-          if(downloadFailure)
+          if(downloadFailure){
             iconPath = ":/Icons/unavailable.png";
-          else
+            qDebug("Could not open favicon nor rss stream, setting icon to unavailable (%s)",(const char*)getAlias().toUtf8());
+          } else {
             iconPath = ":/Icons/rss.png";
+            qDebug("Could not open favicon, setting default icon (%s)",(const char*)getAlias().toUtf8());
+          }
         }
       }
     }
