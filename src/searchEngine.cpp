@@ -260,6 +260,10 @@ void SearchEngine::saveSearchHistory()
 
 // Function called when we click on search button
 void SearchEngine::on_search_button_clicked(){
+  if(searchProcess->state() != QProcess::NotRunning){
+    searchProcess->kill();
+    searchProcess->waitForFinished();
+  }
   QString pattern = search_pattern->text().trimmed();
   // No search pattern entered
   if(pattern.isEmpty()){
@@ -319,8 +323,6 @@ void SearchEngine::on_search_button_clicked(){
 
 void SearchEngine::searchStarted(){
   // Update SearchEngine widgets
-  search_button->setEnabled(false);
-  search_button->repaint();
   search_status->setText(tr("Searching..."));
   search_status->repaint();
   stop_search_button->setEnabled(true);

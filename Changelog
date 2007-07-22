@@ -25,6 +25,7 @@
     - FEATURE: Added keyboard shortcuts for main actions (see wiki)
     - FEATURE: Added a popup menu to set priority for multiple fies at once
     - FEATURE: Improved a lot downloading from urls (using libcommoncpp2 instead of libcurl)
+    - FEATURE: A search request can now be terminated by another
     - I18N: Added Hungarian translation
     - BUGFIX: Progress of paused torrents is now correct on restart
     - BUGFIX: Progress column gets sorted on restart it is was during last execution

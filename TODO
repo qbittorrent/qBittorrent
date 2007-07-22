@@ -44,7 +44,6 @@
 * beta3
   - Windows port (Chris - Peerkoel)
   - Translations update
-  - Allow to abort a search by launching another one
 * beta2
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent
