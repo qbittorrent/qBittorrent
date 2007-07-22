@@ -66,17 +66,17 @@ class bittorrent : public QObject{
     QList<QString> fullAllocationModeList;
 
   protected:
-    QString getSavePath(const QString& hash);
+    QString getSavePath(QString hash);
 
   public:
     // Constructor / Destructor
     bittorrent();
     ~bittorrent();
-    torrent_handle getTorrentHandle(const QString& hash) const;
+    torrent_handle getTorrentHandle(QString hash) const;
     std::vector<torrent_handle> getTorrentHandles() const;
-    bool isPaused(const QString& hash) const;
-    bool hasFilteredFiles(const QString& fileHash) const;
-    bool isFilePreviewPossible(const QString& fileHash) const;
+    bool isPaused(QString hash) const;
+    bool hasFilteredFiles(QString fileHash) const;
+    bool isFilePreviewPossible(QString fileHash) const;
     bool isDHTEnabled() const;
     float getPayloadDownloadRate() const;
     float getPayloadUploadRate() const;
@@ -87,24 +87,24 @@ class bittorrent : public QObject{
     QStringList getUncheckedTorrentsList() const;
     long getETA(QString hash) const;
     size_type torrentEffectiveSize(QString hash) const;
-    bool inFullAllocationMode(const QString& hash) const;
+    bool inFullAllocationMode(QString hash) const;
     float getRealRatio(QString hash) const;
     session* getSession() const;
 
   public slots:
-    void addTorrent(const QString& path, bool fromScanDir = false, bool onStartup = false, const QString& from_url = QString());
-    void downloadFromUrl(const QString& url);
+    void addTorrent(QString path, bool fromScanDir = false, bool onStartup = false, QString from_url = QString());
+    void downloadFromUrl(QString url);
     void downloadFromURLList(const QStringList& url_list);
-    void deleteTorrent(const QString& hash, bool permanent = false);
-    void pauseTorrent(const QString& hash);
+    void deleteTorrent(QString hash, bool permanent = false);
+    void pauseTorrent(QString hash);
     bool pauseAllTorrents();
     bool resumeAllTorrents();
-    void resumeTorrent(const QString& hash);
+    void resumeTorrent(QString hash);
     void enableDHT();
     void disableDHT();
     void saveDHTEntry();
     void saveFastResumeData();
-    void enableDirectoryScanning(const QString& scan_dir);
+    void enableDirectoryScanning(QString scan_dir);
     void disableDirectoryScanning();
     void enablePeerExchange();
     void enableIPFilter(ip_filter filter);
@@ -117,7 +117,7 @@ class bittorrent : public QObject{
     void loadTorrentSpeedLimits(QString hash);
     void saveDownloadUploadForTorrent(QString hash);
     void loadDownloadUploadForTorrent(QString hash);
-    void HandleDownloadFailure(const QString& url, const QString& reason);
+    void HandleDownloadFailure(QString url, QString reason);
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
     void setMaxConnections(int maxConnec);
@@ -127,7 +127,7 @@ class bittorrent : public QObject{
     void setDHTPort(int dht_port);
     void setProxySettings(proxy_settings proxySettings, bool trackers=true, bool peers=true, bool web_seeds=true, bool dht=true);
     void setSessionSettings(session_settings sessionSettings);
-    void setDefaultSavePath(const QString& savepath);
+    void setDefaultSavePath(QString savepath);
     void applyEncryptionSettings(pe_settings se);
     void loadFilesPriorities(torrent_handle& h);
     void setDownloadLimit(QString hash, int val);
@@ -137,27 +137,27 @@ class bittorrent : public QObject{
     void cleanDeleter(deleteThread* deleter);
     void scanDirectory();
     void readAlerts();
-    void processDownloadedFile(const QString&, const QString&);
+    void processDownloadedFile(QString, QString);
     void resumeUnfinished();
-    bool loadTrackerFile(const QString& hash);
-    void saveTrackerFile(const QString& hash);
+    bool loadTrackerFile(QString hash);
+    void saveTrackerFile(QString hash);
 
   signals:
-    void invalidTorrent(const QString& path);
-    void duplicateTorrent(const QString& path);
-    void addedTorrent(const QString& path, torrent_handle& h, bool fastResume);
+    void invalidTorrent(QString path);
+    void duplicateTorrent(QString path);
+    void addedTorrent(QString path, torrent_handle& h, bool fastResume);
     void finishedTorrent(torrent_handle& h);
     void fullDiskError(torrent_handle& h);
-    void trackerError(const QString& hash, const QString& time, const QString& msg);
+    void trackerError(QString hash, QString time, QString msg);
     void portListeningFailure();
     void trackerAuthenticationRequired(torrent_handle& h);
     void scanDirFoundTorrents(const QStringList& pathList);
-    void newDownloadedTorrent(const QString& path, const QString& url);
-    void aboutToDownloadFromUrl(const QString& url);
+    void newDownloadedTorrent(QString path, QString url);
+    void aboutToDownloadFromUrl(QString url);
     void updateFileSize(QString hash);
     void allTorrentsFinishedChecking();
-    void peerBlocked(const QString&);
-    void downloadFromUrlFailure(const QString& url, const QString& reason);
+    void peerBlocked(QString);
+    void downloadFromUrlFailure(QString url, QString reason);
 
 };
 

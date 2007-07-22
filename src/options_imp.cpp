@@ -971,7 +971,7 @@ void options_imp::on_browse_button_clicked(){
 // the rest of the line is ignored
 //
 // Lines may be commented using '#' or '//'
-void options_imp::processFilterFile(const QString& filePath){
+void options_imp::processFilterFile(QString filePath){
   qDebug("Processing filter files");
   filtersList->clear();
   QString manualFilters= misc::qBittorrentPath() + "ipfilter.dat";
@@ -1042,7 +1042,7 @@ void options_imp::processFilterFile(const QString& filePath){
             address_v6 start = address_v6::from_string(strStartIP.remove(':', 0).toUtf8().data());
             IP = strEndIP.split(':');
             address_v6 last = address_v6::from_string(strEndIP.remove(':', 0).toUtf8().data());
-            
+
             // add it to list
             QStringList item(QString(start.to_string().c_str()));
             item.append(QString(last.to_string().c_str()));
@@ -1085,11 +1085,11 @@ void options_imp::on_addFilterRange_clicked(){
   QRegExp is_ipv6("^[0-9a-f]{4}(:[0-9a-f]{4}){7}$", Qt::CaseInsensitive, QRegExp::RegExp);
   QRegExp is_ipv4("^(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}$", Qt::CaseInsensitive, QRegExp::RegExp);
 
-  
+
 
   if(!ok) {
     return;
-  } else if(startIP.isEmpty() 
+  } else if(startIP.isEmpty()
     || (!startIP.contains(is_ipv4) && !startIP.contains(is_ipv6))){
     QMessageBox::critical(0, tr("Invalid IP"), tr("This IP is invalid."));
     return;
@@ -1106,7 +1106,7 @@ void options_imp::on_addFilterRange_clicked(){
   // check IP
   if (!ok) {
     return;
-  } else if(lastIP.isEmpty() 
+  } else if(lastIP.isEmpty()
     || (!lastIP.contains(is_ipv4) && !lastIP.contains(is_ipv6))
     || (ipv4 == true && !lastIP.contains(is_ipv4))
     || (ipv4 == false && !lastIP.contains(is_ipv6))){

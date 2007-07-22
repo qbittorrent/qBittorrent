@@ -56,8 +56,8 @@ class SearchEngine : public QWidget, public Ui::search_engine{
   public:
     SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration);
     ~SearchEngine();
-    float getNovaVersion(const QString& novaPath) const;
-    QByteArray getNovaChangelog(const QString& novaPath) const;
+    float getNovaVersion(QString novaPath) const;
+    QByteArray getNovaChangelog(QString novaPath) const;
     bool loadColWidthSearchList();
 
   public slots:
@@ -67,10 +67,10 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     void on_clear_button_clicked();
     void on_download_button_clicked();
     void on_update_nova_button_clicked();
-    void appendSearchResult(const QString& line);
+    void appendSearchResult(QString line);
     void searchFinished(int exitcode,QProcess::ExitStatus);
     void readSearchOutput();
-    void setRowColor(int row, const QString& color);
+    void setRowColor(int row, QString color);
     void searchStarted();
     void downloadSelectedItem(const QModelIndex& index);
     void startSearchHistory();
@@ -82,8 +82,8 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     void sortSearchList(int index);
     void sortSearchListInt(int index, Qt::SortOrder sortOrder);
     void sortSearchListString(int index, Qt::SortOrder sortOrder);
-    void novaUpdateDownloaded(const QString& url, const QString& path);
-    void handleNovaDownloadFailure(const QString& url, const QString& reason);
+    void novaUpdateDownloaded(QString url, QString path);
+    void handleNovaDownloadFailure(QString url, QString reason);
 };
 
 #endif

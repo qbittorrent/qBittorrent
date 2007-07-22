@@ -115,7 +115,7 @@ void FinishedTorrents::addFinishedSHA(QString hash){
 }
 
 // Set the color of a row in data model
-void FinishedTorrents::setRowColor(int row, const QString& color){
+void FinishedTorrents::setRowColor(int row, QString color){
   for(int i=0; i<finishedListModel->columnCount(); ++i){
     finishedListModel->setData(finishedListModel->index(row, i), QVariant(QColor(color)), Qt::TextColorRole);
   }
@@ -271,7 +271,7 @@ QStringList FinishedTorrents::getFinishedSHAs(){
   return finishedSHAs;
 }
 
-int FinishedTorrents::getRowFromHash(const QString& hash) const{
+int FinishedTorrents::getRowFromHash(QString hash) const{
   unsigned int nbRows = finishedListModel->rowCount();
   for(unsigned int i=0; i<nbRows; ++i){
     if(finishedListModel->data(finishedListModel->index(i, HASH)) == hash){

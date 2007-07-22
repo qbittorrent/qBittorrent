@@ -45,7 +45,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     QTreeView* getFinishedList();
     QStandardItemModel* getFinishedListModel();
     bool loadColWidthFinishedList();
-    int getRowFromHash(const QString& hash) const;
+    int getRowFromHash(QString hash) const;
 
   public slots:
     void addFinishedSHA(QString sha);
@@ -54,7 +54,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     void showProperties(const QModelIndex &index);
     void propertiesSelection();
     void displayFinishedListMenu(const QPoint&);
-    void setRowColor(int row, const QString& color);
+    void setRowColor(int row, QString color);
     void saveColWidthFinishedList() const;
     void sortFinishedList(int index);
     void sortFinishedListFloat(int index, Qt::SortOrder sortOrder);

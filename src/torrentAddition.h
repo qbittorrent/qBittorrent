@@ -44,8 +44,8 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
   Q_OBJECT
 
   signals:
-    void setInfoBarGUI(const QString& info, const QString& color);
-    void torrentAddition(const QString& filePath, bool fromScanDir, bool onStartup, const QString& from_url);
+    void setInfoBarGUI(QString info, QString color);
+    void torrentAddition(QString filePath, bool fromScanDir, bool onStartup, QString from_url);
 
   private:
     QString fileName;

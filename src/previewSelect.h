@@ -47,7 +47,7 @@ class previewSelect: public QDialog, private Ui::preview {
     torrent_handle h;
 
   signals:
-    void readyToPreviewFile(const QString&) const;
+    void readyToPreviewFile(QString) const;
 
   protected slots:
     void on_previewButton_clicked(){
@@ -126,7 +126,7 @@ class previewSelect: public QDialog, private Ui::preview {
         QMessageBox::critical(0, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
         close();
       }
-      connect(this, SIGNAL(readyToPreviewFile(const QString&)), parent, SLOT(previewFile(const QString&)));
+      connect(this, SIGNAL(readyToPreviewFile(QString)), parent, SLOT(previewFile(QString)));
       if(previewListModel->rowCount() == 1){
         // Only one file : no choice
         on_previewButton_clicked();

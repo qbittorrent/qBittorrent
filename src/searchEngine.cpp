@@ -47,8 +47,8 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   this->BTSession = BTSession;
   this->myTrayIcon = myTrayIcon;
   downloader = new downloadThread(this);
-  connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&)), this, SLOT(novaUpdateDownloaded(const QString&, const QString&)));
-  connect(downloader, SIGNAL(downloadFailure(const QString&, const QString&)), this, SLOT(handleNovaDownloadFailure(const QString&, const QString&)));
+  connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(novaUpdateDownloaded(QString, QString)));
+  connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleNovaDownloadFailure(QString, QString)));
   // Set Search results list model
   SearchListModel = new QStandardItemModel(0,5);
   SearchListModel->setHeaderData(SEARCH_NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
@@ -117,7 +117,7 @@ SearchEngine::~SearchEngine(){
 }
 
 // Set the color of a row in data model
-void SearchEngine::setRowColor(int row, const QString& color){
+void SearchEngine::setRowColor(int row, QString color){
   for(int i=0; i<SearchListModel->columnCount(); ++i){
     SearchListModel->setData(SearchListModel->index(row, i), QVariant(QColor(color)), Qt::TextColorRole);
   }
@@ -361,7 +361,7 @@ void SearchEngine::readSearchOutput(){
 }
 
 // Returns version of nova.py search engine
-float SearchEngine::getNovaVersion(const QString& novaPath) const{
+float SearchEngine::getNovaVersion(QString novaPath) const{
   QFile dest_nova(novaPath);
   if(!dest_nova.exists()){
     return 0.0;
@@ -384,7 +384,7 @@ float SearchEngine::getNovaVersion(const QString& novaPath) const{
 }
 
 // Returns changelog of nova.py search engine
-QByteArray SearchEngine::getNovaChangelog(const QString& novaPath) const{
+QByteArray SearchEngine::getNovaChangelog(QString novaPath) const{
   QFile dest_nova(novaPath);
   if(!dest_nova.exists()){
     return QByteArray("None");
@@ -432,7 +432,7 @@ void SearchEngine::updateNova() const{
   }
 }
 
-void SearchEngine::novaUpdateDownloaded(const QString& url, const QString& filePath){
+void SearchEngine::novaUpdateDownloaded(QString url, QString filePath){
   float version_on_server = getNovaVersion(filePath);
   qDebug("Version on qbittorrent.org: %.2f", version_on_server);
   if(version_on_server > getNovaVersion(misc::qBittorrentPath()+"nova.py")){
@@ -467,7 +467,7 @@ void SearchEngine::novaUpdateDownloaded(const QString& url, const QString& fileP
   QFile::remove(filePath);
 }
 
-void SearchEngine::handleNovaDownloadFailure(const QString& url, const QString& reason){
+void SearchEngine::handleNovaDownloadFailure(QString url, QString reason){
   if(url == "http://www.dchris.eu/nova/nova.zip"){
     qDebug("*Warning: Search plugin update download from primary server failed, trying secondary server...");
     downloader->downloadUrl("http://hydr0g3n.free.fr/nova/nova.py");
@@ -515,7 +515,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
 // SLOT to append one line to search results list
 // Line is in the following form :
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
-void SearchEngine::appendSearchResult(const QString& line){
+void SearchEngine::appendSearchResult(QString line){
   QStringList parts = line.split("|");
   if(parts.size() != 6){
     return;

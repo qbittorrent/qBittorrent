@@ -44,6 +44,7 @@
 * beta3
   - Windows port (Chris - Peerkoel)
   - Translations update
+  - Allow to abort a searchby launching another one
 * beta2
   - Improve RSS code + cleanup (chris)
   - Wait for some bug fixes in libtorrent :

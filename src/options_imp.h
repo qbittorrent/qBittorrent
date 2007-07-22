@@ -110,7 +110,7 @@ class options_imp : public QDialog, private Ui::Dialog{
     void enableProxyAuth(int checkBoxValue);
     void enableDirScan(int checkBoxValue);
     void on_browse_button_clicked();
-    void processFilterFile(const QString& filePath=QString());
+    void processFilterFile(QString filePath=QString());
     void enableApplyButton();
     void checkPortsLogic();
     void enableSavePath(int checkBoxValue);
@@ -122,7 +122,7 @@ class options_imp : public QDialog, private Ui::Dialog{
     void useStyle();
 
   signals:
-    void status_changed(const QString&, bool) const;
+    void status_changed(QString, bool) const;
     void exitWithCancel();
 };
 

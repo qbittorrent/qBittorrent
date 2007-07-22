@@ -50,8 +50,8 @@ bittorrent::bittorrent(){
   ETARefresher.start(6000);
   // To download from urls
   downloader = new downloadThread(this);
-  connect(downloader, SIGNAL(downloadFinished(const QString&, const QString&)), this, SLOT(processDownloadedFile(const QString&, const QString&)));
-  connect(downloader, SIGNAL(downloadFailure(const QString&, const QString&)), this, SLOT(HandleDownloadFailure(const QString&, const QString&)));
+  connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
+  connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(HandleDownloadFailure(QString, QString)));
 }
 
 // Main destructor
@@ -79,7 +79,7 @@ void bittorrent::setUploadLimit(QString hash, int val){
   saveTorrentSpeedLimits(hash);
 }
 
-void bittorrent::HandleDownloadFailure(const QString& url, const QString& reason){
+void bittorrent::HandleDownloadFailure(QString url, QString reason){
   emit downloadFromUrlFailure(url, reason);
 }
 
@@ -114,13 +114,13 @@ long bittorrent::getETA(QString hash) const{
 }
 
 // Return the torrent handle, given its hash
-torrent_handle bittorrent::getTorrentHandle(const QString& hash) const{
+torrent_handle bittorrent::getTorrentHandle(QString hash) const{
   return s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
 }
 
 // Return true if the torrent corresponding to the
 // hash is paused
-bool bittorrent::isPaused(const QString& hash) const{
+bool bittorrent::isPaused(QString hash) const{
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
   if(!h.is_valid()){
     qDebug("/!\\ Error: Invalid handle");
@@ -131,7 +131,7 @@ bool bittorrent::isPaused(const QString& hash) const{
 
 // Delete a torrent from the session, given its hash
 // permanent = true means that the torrent will be removed from the hard-drive too
-void bittorrent::deleteTorrent(const QString& hash, bool permanent){
+void bittorrent::deleteTorrent(QString hash, bool permanent){
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
   if(!h.is_valid()){
     qDebug("/!\\ Error: Invalid handle");
@@ -176,7 +176,7 @@ void bittorrent::cleanDeleter(deleteThread* deleter){
 }
 
 // Pause a running torrent
-void bittorrent::pauseTorrent(const QString& hash){
+void bittorrent::pauseTorrent(QString hash){
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
   if(h.is_valid() && !h.is_paused()){
     h.pause();
@@ -193,7 +193,7 @@ void bittorrent::pauseTorrent(const QString& hash){
 }
 
 // Resume a torrent in paused state
-void bittorrent::resumeTorrent(const QString& hash){
+void bittorrent::resumeTorrent(QString hash){
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
   if(h.is_valid() && h.is_paused()){
     h.resume();
@@ -203,7 +203,7 @@ void bittorrent::resumeTorrent(const QString& hash){
 }
 
 // Add a torrent to the bittorrent session
-void bittorrent::addTorrent(const QString& path, bool fromScanDir, bool onStartup, const QString& from_url){
+void bittorrent::addTorrent(QString path, bool fromScanDir, bool onStartup, QString from_url){
   torrent_handle h;
   entry resume_data;
   bool fastResume=false;
@@ -240,6 +240,8 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, bool onStartu
       // Update info Bar
       if(!fromScanDir){
         if(!from_url.isNull()){
+          // If download from url, remove temp file
+           QFile::remove(file);
           emit duplicateTorrent(from_url);
         }else{
           emit duplicateTorrent(file);
@@ -288,6 +290,8 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, bool onStartu
     if(!h.is_valid()){
       // No need to keep on, it failed.
       qDebug("/!\\ Error: Invalid handle");
+      // If download from url, remove temp file
+      if(!from_url.isNull()) QFile::remove(file);
       return;
     }
     // Is this really useful and appropriate ?
@@ -326,11 +330,8 @@ void bittorrent::addTorrent(const QString& path, bool fromScanDir, bool onStartu
       qDebug("Incremental download enabled for %s", t.name().c_str());
       h.set_sequenced_download_threshold(15);
     }
-    // If download from url
-    if(!from_url.isNull()){
-      // remove temporary file
-      QFile::remove(file);
-    }
+    // If download from url, remove temp file
+    if(!from_url.isNull()) QFile::remove(file);
     // Delete from scan dir to avoid trying to download it again
     if(fromScanDir){
       QFile::remove(file);
@@ -383,7 +384,7 @@ void bittorrent::setMaxConnections(int maxConnec){
 
 // Check in .priorities file if the user filtered files
 // in this torrent.
-bool bittorrent::hasFilteredFiles(const QString& fileHash) const{
+bool bittorrent::hasFilteredFiles(QString fileHash) const{
   QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".priorities");
   // Read saved file
   if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -638,7 +639,7 @@ void bittorrent::saveFastResumeData(){
   qDebug("Fast resume data saved");
 }
 
-bool bittorrent::isFilePreviewPossible(const QString& hash) const{
+bool bittorrent::isFilePreviewPossible(QString hash) const{
   // See if there are supported files in the torrent
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
   if(!h.is_valid()){
@@ -675,12 +676,12 @@ void bittorrent::scanDirectory(){
   }
 }
 
-void bittorrent::setDefaultSavePath(const QString& savepath){
+void bittorrent::setDefaultSavePath(QString savepath){
   defaultSavePath = savepath;
 }
 
 // Enable directory scanning
-void bittorrent::enableDirectoryScanning(const QString& _scan_dir){
+void bittorrent::enableDirectoryScanning(QString _scan_dir){
   if(!_scan_dir.isEmpty()){
     scan_dir = _scan_dir;
     timerScan = new QTimer(this);
@@ -736,7 +737,7 @@ void bittorrent::setGlobalRatio(float ratio){
   }
 }
 
-bool bittorrent::loadTrackerFile(const QString& hash){
+bool bittorrent::loadTrackerFile(QString hash){
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
   QFile tracker_file(torrentBackup.path()+QDir::separator()+ hash + ".trackers");
   if(!tracker_file.exists()) return false;
@@ -760,7 +761,7 @@ bool bittorrent::loadTrackerFile(const QString& hash){
   }
 }
 
-void bittorrent::saveTrackerFile(const QString& hash){
+void bittorrent::saveTrackerFile(QString hash){
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
   QFile tracker_file(torrentBackup.path()+QDir::separator()+ hash + ".trackers");
   if(tracker_file.exists()){
@@ -976,13 +977,13 @@ session_status bittorrent::getSessionStatus() const{
   return s->status();
 }
 
-bool bittorrent::inFullAllocationMode(const QString& hash) const{
+bool bittorrent::inFullAllocationMode(QString hash) const{
   if(fullAllocationModeList.indexOf(hash) != -1)
     return true;
   return false;
 }
 
-QString bittorrent::getSavePath(const QString& hash){
+QString bittorrent::getSavePath(QString hash){
   QFile savepath_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".savepath");
   QByteArray line;
   QString savePath;
@@ -1011,14 +1012,14 @@ QString bittorrent::getSavePath(const QString& hash){
 // Take an url string to a torrent file,
 // download the torrent file to a tmp location, then
 // add it to download list
-void bittorrent::downloadFromUrl(const QString& url){
+void bittorrent::downloadFromUrl(QString url){
   emit aboutToDownloadFromUrl(url);
   // Launch downloader thread
   downloader->downloadUrl(url);
 }
 
 // Add to bittorrent session the downloaded torrent file
-void bittorrent::processDownloadedFile(const QString& url, const QString& file_path){
+void bittorrent::processDownloadedFile(QString url, QString file_path){
   // Add file to torrent download list
   emit newDownloadedTorrent(file_path, url);
 }

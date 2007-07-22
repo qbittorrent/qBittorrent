@@ -48,8 +48,8 @@ class downloadThread : public QThread {
     URLStream url_stream;
 
   signals:
-    void downloadFinished(const QString& url, const QString& file_path);
-    void downloadFailure(const QString& url, const QString& reason);
+    void downloadFinished(QString url, QString file_path);
+    void downloadFailure(QString url, QString reason);
 
   public:
     downloadThread(QObject* parent) : QThread(parent){
@@ -66,7 +66,7 @@ class downloadThread : public QThread {
       wait();
     }
 
-    void downloadUrl(const QString& url){
+    void downloadUrl(QString url){
       QMutexLocker locker(&mutex);
       url_list << url;
       if(!isRunning()){

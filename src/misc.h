@@ -128,7 +128,7 @@ class misc : public QObject{
       return true;
     }
 
-    static QString findFileInDir(const QString& dir_path, const QString& fileName){
+    static QString findFileInDir(QString dir_path, QString fileName){
       QDir dir(dir_path);
       if(dir.exists(fileName)){
         return dir.filePath(fileName);
