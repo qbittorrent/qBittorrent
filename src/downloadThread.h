@@ -139,8 +139,12 @@ class downloadThread : public QThread {
           while(!url_stream.eof()) {
             url_stream.read(cbuf, sizeof(cbuf));
             len = url_stream.gcount();
-            if(len > 0){
+            if(len > 0)
               dest_file.write(cbuf, len);
+            if(abort){
+              dest_file.close();
+              url_stream.close();
+              return;
             }
           }
           dest_file.close();
