@@ -45,7 +45,7 @@
   - Windows port (Chris - GTSoul - Peerkoel)
   - Translations update
 * beta2
-  - Display rss streams icons (+ code cleanup) -> GTSoul
+  - Improve RSS code + cleanup (chris)
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent
     - ipfilter crash
