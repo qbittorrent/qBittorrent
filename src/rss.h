@@ -270,7 +270,7 @@ class RssStream : public QObject{
     void getIcon() {
       QUrl siteUrl(url);
       QString iconUrl = "http://"+siteUrl.host()+"/favicon.ico";
-      connect(downloaderIcon, SIGNAL(downloadFinished(const QString&, const QString&), this, SLOT(displayIcon(const QString&, const QString&)));
+      connect(downloaderIcon, SIGNAL(downloadFinished(const QString&, const QString&)), this, SLOT(displayIcon(const QString&, const QString&)));
       downloaderIcon->downloadUrl(iconUrl);
     }
 
