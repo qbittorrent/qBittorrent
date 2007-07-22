@@ -43,6 +43,7 @@
 - Complete documentation and english translation
 * beta3
   - Windows port (Chris - GTSoul - Peerkoel)
+  - Translations update
 * beta2
   - Display rss streams icons (+ code cleanup) -> GTSoul
   - Wait for some bug fixes in libtorrent :

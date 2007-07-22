@@ -28,10 +28,14 @@
 #include <QMutex>
 #include <QMutexLocker>
 #include <QWaitCondition>
-#include <curl/curl.h>
 #include <iostream>
-
+#include <cc++/common.h>
 #include "misc.h"
+
+#ifdef  CCXX_NAMESPACES
+using namespace std;
+using namespace ost;
+#endif
 
 class downloadThread : public QThread {
   Q_OBJECT
@@ -41,9 +45,11 @@ class downloadThread : public QThread {
     QMutex mutex;
     QWaitCondition condition;
     bool abort;
+    URLStream url_stream;
 
   signals:
-    void downloadFinished(const QString& url, const QString& file_path, int return_code, const QString& errorBuffer);
+    void downloadFinished(const QString& url, const QString& file_path);
+    void downloadFailure(const QString& url, const QString& reason);
 
   public:
     downloadThread(QObject* parent) : QThread(parent){
@@ -73,6 +79,33 @@ class downloadThread : public QThread {
       }
     }
 
+    QString errorCodeToString(URLStream::Error status){
+      switch(status){
+        case URLStream::errUnreachable:
+          return tr("Host is unreachable");
+        case URLStream::errMissing:
+          return tr("File was not found (404)");
+        case URLStream::errDenied:
+          return tr("Connection was denied");
+        case URLStream::errInvalid:
+          return tr("Url is invalid");
+        case URLStream::errForbidden:
+          return tr("Connection forbidden (403)");
+        case URLStream::errUnauthorized:
+          return tr("Connection was not authorized (401)");
+        case URLStream::errRelocated:
+          return tr("Content has moved (301)");
+        case URLStream::errFailure:
+          return tr("Connection failure");
+        case URLStream::errTimeout:
+          return tr("Connection was timed out");
+        case URLStream::errInterface:
+          return tr("Incorrect network interface");
+        default:
+          return tr("Unknown error");
+      }
+    }
+
   protected:
     void run(){
       forever{
@@ -84,80 +117,41 @@ class downloadThread : public QThread {
           QString url = url_list.takeFirst();
           mutex.unlock();
 	  qDebug("In Download thread RUN, mutex unlocked (got url)");
-          CURL *curl;
-          QString filePath;
-          int return_code, response;
           // XXX: Trick to get a unique filename
-          QTemporaryFile *tmpfile = new QTemporaryFile;
+          QString filePath;
+          QTemporaryFile *tmpfile = new QTemporaryFile();
           if (tmpfile->open()) {
             filePath = tmpfile->fileName();
           }
           delete tmpfile;
-          if(abort)
-            return;
-          FILE *file = fopen((const char*)filePath.toUtf8(), "w");
-          if(!file){
-            std::cerr << "Error: could not open temporary file...\n";
-            return;
+          QFile dest_file(filePath);
+          if(!dest_file.open(QIODevice::WriteOnly | QIODevice::Text)){
+            std::cerr << "Error: could't create temporary file: " << (const char*)filePath.toUtf8() << '\n';
+            continue;
           }
-          // Initilization required by libcurl
-          curl = curl_easy_init();
-          if(!curl){
-            std::cerr << "Error: Failed to init curl...\n";
-            fclose(file);
-            return;
+          URLStream::Error status = url_stream.get((const char*)url.toUtf8());
+          if(status){
+            // Failure
+            QString error_msg = QString(misc::toString(status).c_str());
+            qDebug("Download failed for %s, reason: %s", (const char*)url.toUtf8(), (const char*)error_msg.toUtf8());
+            url_stream.close();
+            emit downloadFailure(url, errorCodeToString(status));
+            continue;
           }
-          // Set url to download
-          curl_easy_setopt(curl, CURLOPT_URL, url.toLocal8Bit().constData());
-          qDebug("Url: %s", url.toLocal8Bit().constData());
-          // Define our callback to get called when there's data to be written
-          curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, misc::my_fwrite);
-          // Set destination file
-          curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
-          // Some SSL mambo jambo
-          curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-          curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
-	  // Disable progress meter
-	  curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1);
-	  // Any kind of authentication
-	  curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-          //curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
-	  // Auto referrer
-	  curl_easy_setopt(curl, CURLOPT_AUTOREFERER, 1);
-	  // Follow redirections
-	  curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
-	  // Enable cookies
-	  curl_easy_setopt(curl, CURLOPT_COOKIEFILE, "");
-          // We want error message:
-          char errorBuffer[CURL_ERROR_SIZE];
-	  errorBuffer[0]=0; /* prevent junk from being output */
-          return_code = curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);
-          if(return_code){
-            std::cerr << "Error: failed to set error buffer in curl\n";
-            fclose(file);
-            QFile::remove(filePath);
-            return;
+          qDebug("Downloading %s...", (const char*)url.toUtf8());
+          char cbuf[1024];
+          int len;
+          while(!url_stream.eof()) {
+            url_stream.read(cbuf, sizeof(cbuf));
+            len = url_stream.gcount();
+            if(len > 0){
+              dest_file.write(cbuf, len);
+            }
           }
-	  unsigned short retries = 0;
-	  bool to_many_users = false;
-	  do{
-	    // Perform Download
-	    return_code = curl_easy_perform(curl);
-	    // We want HTTP response code
-	    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response);
-            qDebug("HTTP response code: %d", response);
-	    if(response/100 == 5){
-	      to_many_users = true;
-	      ++retries;
-	      SleeperThread::msleep(1000);
-	    }
-	  }while(to_many_users && retries < 10 && response!=0);
-          // Cleanup
-          curl_easy_cleanup(curl);
-          // Close tmp file
-          fclose(file);
-          emit downloadFinished(url, filePath, return_code, QString(errorBuffer));
-	  qDebug("In Download thread RUN, signal emitted, ErrorBuffer: %s", errorBuffer);
+          dest_file.close();
+          url_stream.close();
+          emit downloadFinished(url, filePath);
+	  qDebug("In Download thread RUN, signal emitted");
         }else{
           qDebug("In Download thread RUN, mutex still locked (no urls) -> sleeping");
           condition.wait(&mutex);
