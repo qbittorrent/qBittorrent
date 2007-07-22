@@ -46,16 +46,22 @@ class downloadThread : public QThread {
     QWaitCondition condition;
     bool abort;
     URLStream url_stream;
+    QList<downloadThread*> subThreads;
+    bool subThread;
 
   signals:
     void downloadFinished(QString url, QString file_path);
     void downloadFailure(QString url, QString reason);
+    // For subthreads
+    void downloadFinishedST(downloadThread* st, QString url, QString file_path);
+    void downloadFailureST(downloadThread* st, QString url, QString reason);
 
   public:
-    downloadThread(QObject* parent) : QThread(parent){
+    downloadThread(QObject* parent, bool subThread = false) : QThread(parent){
       mutex.lock();
       abort = false;
       mutex.unlock();
+      this->subThread = subThread;
     }
 
     ~downloadThread(){
@@ -112,6 +118,15 @@ class downloadThread : public QThread {
         if(url_list.size() != 0){
           QString url = url_list.takeFirst();
           mutex.unlock();
+          if(!subThread){
+            downloadThread *st = new downloadThread(0, true);
+            subThreads << st;
+            connect(st, SIGNAL(downloadFinishedST(downloadThread*, QString, QString)), this, SLOT(propagateDownloadedFile(downloadThread*, QString, QString)));
+            connect(st, SIGNAL(downloadFailureST(downloadThread*, QString, QString)), this, SLOT(propagateDownloadFailure(downloadThread*, QString, QString)));
+            st->downloadUrl(url);
+            continue;
+          }
+          // Sub threads code
           // XXX: Trick to get a unique filename
           QString filePath;
           QTemporaryFile *tmpfile = new QTemporaryFile();
@@ -130,7 +145,7 @@ class downloadThread : public QThread {
             QString error_msg = QString(misc::toString(status).c_str());
             qDebug("Download failed for %s, reason: %s", (const char*)url.toUtf8(), (const char*)error_msg.toUtf8());
             url_stream.close();
-            emit downloadFailure(url, errorCodeToString(status));
+            emit downloadFailureST(this, url, errorCodeToString(status));
             continue;
           }
           qDebug("Downloading %s...", (const char*)url.toUtf8());
@@ -149,13 +164,33 @@ class downloadThread : public QThread {
           }
           dest_file.close();
           url_stream.close();
-          emit downloadFinished(url, filePath);
+          emit downloadFinishedST(this, url, filePath);
 	  qDebug("download completed here: %s", (const char*)filePath.toUtf8());
         }else{
           condition.wait(&mutex);
           mutex.unlock();
         }
       }
+    }
+  protected slots:
+    void propagateDownloadedFile(downloadThread* st, QString url, QString path){
+      int index = subThreads.indexOf(st);
+      if(index == -1)
+        std::cerr << "ERROR: Couldn't delete download subThread!\n";
+      else
+        subThreads.takeAt(index);
+      delete st;
+      emit downloadFinished(url, path);
+    }
+
+    void propagateDownloadFailure(downloadThread* st, QString url, QString reason){
+      int index = subThreads.indexOf(st);
+      if(index == -1)
+        std::cerr << "ERROR: Couldn't delete download subThread!\n";
+      else
+        subThreads.takeAt(index);
+      delete st;
+      emit downloadFailure(url, reason);
     }
 };
 

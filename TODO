@@ -45,9 +45,7 @@
   - Windows port (Chris - Peerkoel)
   - Translations update
   - Allow to abort a search by launching another one
-  - Multithread downloadThread
 * beta2
-  - Improve RSS code + cleanup (chris)
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent
     - ipfilter crash
