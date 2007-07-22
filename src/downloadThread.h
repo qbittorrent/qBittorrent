@@ -37,57 +37,24 @@ using namespace std;
 using namespace ost;
 #endif
 
-class downloadThread : public QThread {
+class subDownloadThread : public QThread {
   Q_OBJECT
-
   private:
-    QStringList url_list;
-    QMutex mutex;
-    QWaitCondition condition;
+    QString url;
+    URLStream url_stream;
     bool abort;
-    URLStream *url_stream;
-    QList<downloadThread*> subThreads;
-    bool subThread;
-
-  signals:
-    void downloadFinished(QString url, QString file_path);
-    void downloadFailure(QString url, QString reason);
-    // For subthreads
-    void downloadFinishedST(downloadThread* st, QString url, QString file_path);
-    void downloadFailureST(downloadThread* st, QString url, QString reason);
 
   public:
-    downloadThread(QObject* parent, bool subThread = false) : QThread(parent){
-      qDebug("Creating downloadThread");
+    subDownloadThread(QObject *parent, QString url) : QThread(parent), url(url){
       abort = false;
-      this->subThread = subThread;
-      url_stream = 0;
-      qDebug("downloadThread created");
     }
 
-    ~downloadThread(){
-      mutex.lock();
+    ~subDownloadThread(){
       abort = true;
-      condition.wakeOne();
-      mutex.unlock();
-      if(url_stream != 0)
-        delete url_stream;
       wait();
     }
 
-    void downloadUrl(QString url){
-      if(subThread && url_stream == 0)
-        url_stream = new URLStream();
-      QMutexLocker locker(&mutex);
-      url_list << url;
-      if(!isRunning()){
-        start();
-      }else{
-        condition.wakeOne();
-      }
-    }
-
-    QString errorCodeToString(URLStream::Error status){
+    static QString errorCodeToString(URLStream::Error status){
       switch(status){
         case URLStream::errUnreachable:
           return tr("Host is unreachable");
@@ -114,6 +81,96 @@ class downloadThread : public QThread {
       }
     }
 
+  signals:
+    // For subthreads
+    void downloadFinishedST(subDownloadThread* st, QString url, QString file_path);
+    void downloadFailureST(subDownloadThread* st, QString url, QString reason);
+
+  protected:
+    void run(){
+      // XXX: Trick to get a unique filename
+      QString filePath;
+      QTemporaryFile *tmpfile = new QTemporaryFile();
+      if (tmpfile->open()) {
+        filePath = tmpfile->fileName();
+      }
+      delete tmpfile;
+      QFile dest_file(filePath);
+      if(!dest_file.open(QIODevice::WriteOnly | QIODevice::Text)){
+        std::cerr << "Error: could't create temporary file: " << (const char*)filePath.toUtf8() << '\n';
+        return;
+      }
+      URLStream::Error status = url_stream.get((const char*)url.toUtf8());
+      if(status){
+          // Failure
+        QString error_msg = errorCodeToString(status);
+        qDebug("Download failed for %s, reason: %s", (const char*)url.toUtf8(), (const char*)error_msg.toUtf8());
+        url_stream.close();
+        emit downloadFailureST(this, url, error_msg);
+        return;
+      }
+      qDebug("Downloading %s...", (const char*)url.toUtf8());
+      char cbuf[1024];
+      int len;
+      while(!url_stream.eof()) {
+        url_stream.read(cbuf, sizeof(cbuf));
+        len = url_stream.gcount();
+        if(len > 0)
+          dest_file.write(cbuf, len);
+        if(abort){
+          dest_file.close();
+          url_stream.close();
+          return;
+        }
+      }
+      dest_file.close();
+      url_stream.close();
+      emit downloadFinishedST(this, url, filePath);
+      qDebug("download completed here: %s", (const char*)filePath.toUtf8());
+    }
+};
+
+class downloadThread : public QThread {
+  Q_OBJECT
+
+  private:
+    QStringList url_list;
+    QMutex mutex;
+    QWaitCondition condition;
+    bool abort;
+    QList<subDownloadThread*> subThreads;
+
+  signals:
+    void downloadFinished(QString url, QString file_path);
+    void downloadFailure(QString url, QString reason);
+
+  public:
+    downloadThread(QObject* parent) : QThread(parent){
+      abort = false;
+    }
+
+    ~downloadThread(){
+      mutex.lock();
+      abort = true;
+      condition.wakeOne();
+      mutex.unlock();
+      subDownloadThread *st;
+      foreach(st, subThreads){
+        delete st;
+      }
+      wait();
+    }
+
+    void downloadUrl(QString url){
+      QMutexLocker locker(&mutex);
+      url_list << url;
+      if(!isRunning()){
+        start();
+      }else{
+        condition.wakeOne();
+      }
+    }
+
   protected:
     void run(){
       forever{
@@ -123,54 +180,11 @@ class downloadThread : public QThread {
         if(url_list.size() != 0){
           QString url = url_list.takeFirst();
           mutex.unlock();
-          if(!subThread){
-            downloadThread *st = new downloadThread(0, true);
-            subThreads << st;
-            connect(st, SIGNAL(downloadFinishedST(downloadThread*, QString, QString)), this, SLOT(propagateDownloadedFile(downloadThread*, QString, QString)));
-            connect(st, SIGNAL(downloadFailureST(downloadThread*, QString, QString)), this, SLOT(propagateDownloadFailure(downloadThread*, QString, QString)));
-            st->downloadUrl(url);
-            continue;
-          }
-          // Sub threads code
-          // XXX: Trick to get a unique filename
-          QString filePath;
-          QTemporaryFile *tmpfile = new QTemporaryFile();
-          if (tmpfile->open()) {
-            filePath = tmpfile->fileName();
-          }
-          delete tmpfile;
-          QFile dest_file(filePath);
-          if(!dest_file.open(QIODevice::WriteOnly | QIODevice::Text)){
-            std::cerr << "Error: could't create temporary file: " << (const char*)filePath.toUtf8() << '\n';
-            continue;
-          }
-          URLStream::Error status = url_stream->get((const char*)url.toUtf8());
-          if(status){
-            // Failure
-            QString error_msg = errorCodeToString(status);
-            qDebug("Download failed for %s, reason: %s", (const char*)url.toUtf8(), (const char*)error_msg.toUtf8());
-            url_stream->close();
-            emit downloadFailureST(this, url, error_msg);
-            continue;
-          }
-          qDebug("Downloading %s...", (const char*)url.toUtf8());
-          char cbuf[1024];
-          int len;
-          while(!url_stream->eof()) {
-            url_stream->read(cbuf, sizeof(cbuf));
-            len = url_stream->gcount();
-            if(len > 0)
-              dest_file.write(cbuf, len);
-            if(abort){
-              dest_file.close();
-              url_stream->close();
-              return;
-            }
-          }
-          dest_file.close();
-          url_stream->close();
-          emit downloadFinishedST(this, url, filePath);
-	  qDebug("download completed here: %s", (const char*)filePath.toUtf8());
+          subDownloadThread *st = new subDownloadThread(0, url);
+          subThreads << st;
+          connect(st, SIGNAL(downloadFinishedST(subDownloadThread*, QString, QString)), this, SLOT(propagateDownloadedFile(subDownloadThread*, QString, QString)));
+          connect(st, SIGNAL(downloadFailureST(subDownloadThread*, QString, QString)), this, SLOT(propagateDownloadFailure(subDownloadThread*, QString, QString)));
+          st->start();
         }else{
           condition.wait(&mutex);
           mutex.unlock();
@@ -178,7 +192,7 @@ class downloadThread : public QThread {
       }
     }
   protected slots:
-    void propagateDownloadedFile(downloadThread* st, QString url, QString path){
+    void propagateDownloadedFile(subDownloadThread* st, QString url, QString path){
       int index = subThreads.indexOf(st);
       if(index == -1)
         std::cerr << "ERROR: Couldn't delete download subThread!\n";
@@ -188,7 +202,7 @@ class downloadThread : public QThread {
       emit downloadFinished(url, path);
     }
 
-    void propagateDownloadFailure(downloadThread* st, QString url, QString reason){
+    void propagateDownloadFailure(subDownloadThread* st, QString url, QString reason){
       int index = subThreads.indexOf(st);
       if(index == -1)
         std::cerr << "ERROR: Couldn't delete download subThread!\n";
