@@ -182,6 +182,7 @@
 
     // fills the streamList
     void RSSImp::refreshStreamList() {
+      qDebug("Refreshing stream list");
       unsigned short nbstream = rssmanager.getNbStreams();
       listStreams->clear();
       QList<QTreeWidgetItem *> streams;
@@ -190,6 +191,7 @@
 	updateStreamName(i, NEWS);
         stream->setToolTip(0, QString("<b>")+tr("Description:")+QString("</b> ")+rssmanager.getStream(i)->getDescription()+QString("<br/><b>")+tr("url:")+QString("</b> ")+rssmanager.getStream(i)->getUrl()+QString("<br/><b>")+tr("Last refresh:")+QString("</b> ")+rssmanager.getStream(i)->getLastRefreshElapsedString());
       }
+      qDebug("Stream list refreshed");
     }
 
     // fills the newsList
@@ -294,6 +296,7 @@
       refreshTimeTimer.start(60000); // 1min
       refreshStreamList();
       refreshTextBrowser();
+      qDebug("RSSImp constructed");
     }
 
     RSSImp::~RSSImp(){

@@ -161,18 +161,26 @@ class RssStream : public QObject{
 
   public:
     RssStream(QString _url) {
+      qDebug("New rss stream created");
       url = _url;
       alias = url;
       read = true;
+      qDebug("Creating rss & ico downloadThreads");
       downloaderRss = new downloadThread(this);
       downloaderIcon = new downloadThread(this);
+      qDebug("RSS & ico downloaders created");
       connect(downloaderRss, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
       connect(downloaderRss, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
+      qDebug("RSS is calling  downloadUrl");
       downloaderRss->downloadUrl(url);
+      qDebug("downloadUrl called, ok");
       // XXX: remove it when gif can be displayed
       iconPath = ":/Icons/rss.png";
+      qDebug("Calling getIcon");
       getIcon();
+      qDebug("getIcon called");
       lastRefresh.start();
+      qDebug("RSSStream constructed");
     }
 
     ~RssStream(){
@@ -451,10 +459,13 @@ class RssManager : public QObject{
       unsigned int streamListUrlSize = streamListUrl.size();
       for(unsigned int i=0; i<streamListUrlSize; ++i){
 	RssStream *stream = new RssStream(streamListUrl.at(i));
+        qDebug("Setting rss alias");
 	stream->setAlias(streamListAlias.at(i));
+        qDebug("RSS Alias set");
 	streamList.append(stream);
 	connect(stream, SIGNAL(refreshFinished(QString, const unsigned short&)), this, SLOT(streamNeedRefresh(QString, const unsigned short&)));
       }
+      qDebug("Streams loaded");
     }
 
     // save the list of the rss stream for the next session

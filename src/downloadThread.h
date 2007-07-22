@@ -45,7 +45,7 @@ class downloadThread : public QThread {
     QMutex mutex;
     QWaitCondition condition;
     bool abort;
-    URLStream url_stream;
+    URLStream *url_stream;
     QList<downloadThread*> subThreads;
     bool subThread;
 
@@ -58,10 +58,11 @@ class downloadThread : public QThread {
 
   public:
     downloadThread(QObject* parent, bool subThread = false) : QThread(parent){
-      mutex.lock();
+      qDebug("Creating downloadThread");
       abort = false;
-      mutex.unlock();
       this->subThread = subThread;
+      url_stream = 0;
+      qDebug("downloadThread created");
     }
 
     ~downloadThread(){
@@ -69,10 +70,14 @@ class downloadThread : public QThread {
       abort = true;
       condition.wakeOne();
       mutex.unlock();
+      if(url_stream != 0)
+        delete url_stream;
       wait();
     }
 
     void downloadUrl(QString url){
+      if(url_stream == 0)
+        url_stream = new URLStream();
       QMutexLocker locker(&mutex);
       url_list << url;
       if(!isRunning()){
@@ -139,31 +144,31 @@ class downloadThread : public QThread {
             std::cerr << "Error: could't create temporary file: " << (const char*)filePath.toUtf8() << '\n';
             continue;
           }
-          URLStream::Error status = url_stream.get((const char*)url.toUtf8());
+          URLStream::Error status = url_stream->get((const char*)url.toUtf8());
           if(status){
             // Failure
-            QString error_msg = QString(misc::toString(status).c_str());
+            QString error_msg = errorCodeToString(status);
             qDebug("Download failed for %s, reason: %s", (const char*)url.toUtf8(), (const char*)error_msg.toUtf8());
-            url_stream.close();
-            emit downloadFailureST(this, url, errorCodeToString(status));
+            url_stream->close();
+            emit downloadFailureST(this, url, error_msg);
             continue;
           }
           qDebug("Downloading %s...", (const char*)url.toUtf8());
           char cbuf[1024];
           int len;
-          while(!url_stream.eof()) {
-            url_stream.read(cbuf, sizeof(cbuf));
-            len = url_stream.gcount();
+          while(!url_stream->eof()) {
+            url_stream->read(cbuf, sizeof(cbuf));
+            len = url_stream->gcount();
             if(len > 0)
               dest_file.write(cbuf, len);
             if(abort){
               dest_file.close();
-              url_stream.close();
+              url_stream->close();
               return;
             }
           }
           dest_file.close();
-          url_stream.close();
+          url_stream->close();
           emit downloadFinishedST(this, url, filePath);
 	  qDebug("download completed here: %s", (const char*)filePath.toUtf8());
         }else{
