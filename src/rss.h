@@ -51,7 +51,8 @@ class RssStream;
 class RssItem;
 
 // Item of a rss stream, single information
-class RssItem{
+class RssItem : public QObject {
+  Q_OBJECT
   private:
 
     QString title;
@@ -63,7 +64,7 @@ class RssItem{
 
   public:
     // public constructor
-    RssItem(const QDomElement& properties){
+    RssItem(const QDomElement& properties) {
       read = false;
       downloadLink = "none";
       QDomElement property = properties.firstChild().toElement();
@@ -92,6 +93,8 @@ class RssItem{
     }
 
     QString getDescription() const{
+      if(description.isEmpty())
+        return tr("No description available");
       return description;
     }
 
@@ -242,7 +245,7 @@ class RssStream : public QObject{
 
     unsigned short getNbNonRead() const{
       int i=0, nbnonread=0;
-      for(i=0; i<listItem.size(); i++) {
+      for(i=0; i<listItem.size(); ++i) {
 	if(!listItem.at(i)->isRead())
 	 nbnonread++;
       }
@@ -251,6 +254,11 @@ class RssStream : public QObject{
 
     QList<RssItem*> getListItem() const{
       return listItem;
+    }
+
+    QString getLastRefreshElapsedString() const{
+      // TODO: remove this debug before release
+      return tr("%1 ago", "10min ago").arg(misc::userFriendlyDuration((long)(lastRefresh.elapsed()/1000.)).replace("<", "&lt;"));
     }
 
     unsigned int getLastRefreshElapsed() const{
@@ -293,7 +301,7 @@ class RssStream : public QObject{
       QDomNode rss = root.firstChild();
       QDomElement channel = root.firstChild().toElement();
       unsigned short listsize = getListSize();
-      for(unsigned short i=0; i<listsize; i++) {
+      for(unsigned short i=0; i<listsize; ++i) {
 	listItem.removeLast();
       }
 
@@ -332,11 +340,11 @@ class RssStream : public QObject{
       unsigned short lastindex = 0;
       QString firstTitle = getItem(0)->getTitle();
       unsigned short listsize = getListSize();
-      for(unsigned short i=0; i<listsize; i++) {
+      for(unsigned short i=0; i<listsize; ++i) {
         if(getItem(i)->getTitle() == firstTitle)
 	  lastindex = i;
       }
-      for(unsigned short i=0; i<lastindex; i++) {
+      for(unsigned short i=0; i<lastindex; ++i) {
 	listItem.removeFirst();
       }
       while(getListSize()>STREAM_MAX_ITEM) {
@@ -451,7 +459,8 @@ class RssManager : public QObject{
     void saveStreamList(){
       streamListUrl.clear();
       QStringList streamListAlias;
-      for(unsigned short i=0; i<getNbStream(); i++) {
+      unsigned int nbStreams = getNbStreams();
+      for(unsigned int i=0; i<nbStreams; ++i) {
         streamListUrl.append(getStream(i)->getUrl());
 	streamListAlias.append(getStream(i)->getAlias());
       }
@@ -515,8 +524,8 @@ class RssManager : public QObject{
       }
     }
 
-    void refresh(int index) {
-      if(index>=0 && index<getNbStream()) {
+    void refresh(unsigned int index) {
+      if(index<getNbStreams()) {
 	if(getStream(index)->getLastRefreshElapsed()>REFRESH_FREQ_MAX) {
 	  getStream(index)->refresh();
 	  connect(getStream(index), SIGNAL(refreshFinished(QString, const unsigned short&)), this, SLOT(streamNeedRefresh(QString, const unsigned short&)));
@@ -537,7 +546,7 @@ class RssManager : public QObject{
       return streamList.at(index);
     }
 
-    unsigned short getNbStream() {
+    unsigned int getNbStreams() {
       return streamList.size();
     }
 
@@ -550,7 +559,8 @@ class RssManager : public QObject{
 
     QStringList getListAlias() {
       QStringList listAlias;
-      for(unsigned short i=0; i<getNbStream(); i++) {
+      unsigned int nbStreams = getNbStreams();
+      for(unsigned short i=0; i<nbStreams; ++i) {
         listAlias.append(getStream(i)->getAlias());
       }
       return listAlias;

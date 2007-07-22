@@ -193,7 +193,7 @@ class misc : public QObject{
     // Take a number of seconds and return an user-friendly
     // time duration like "1d 2h 10m".
     static QString userFriendlyDuration(const long int seconds){
-      if(seconds <= 0){
+      if(seconds < 0){
         return QString::QString(tr("Unknown"));
       }
       if(seconds < 60){

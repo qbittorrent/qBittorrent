@@ -37,6 +37,7 @@ class RSSImp : public QWidget, public Ui::RSS{
 
   private:
     RssManager rssmanager;
+    QTimer refreshTimeTimer;
 
   protected slots:
     void on_addStream_button_clicked();
@@ -57,6 +58,7 @@ class RSSImp : public QWidget, public Ui::RSS{
     void refreshNewsList();
     void refreshTextBrowser();
     short getNumStreamSelected();
+    void updateLastRefreshedTimeForStreams();
 
   public:
     RSSImp();

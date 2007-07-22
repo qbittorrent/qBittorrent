@@ -24,6 +24,7 @@
 #include <QInputDialog>
 #include <QMenu>
 #include <QStandardItemModel>
+#include "misc.h"
 
     // display a right-click menu
     void RSSImp::displayRSSListMenu(const QPoint& pos){
@@ -48,14 +49,14 @@
 
     // delete a stream by a button
     void RSSImp::on_delStream_button_clicked() {
-      if(getNumStreamSelected()<0 || rssmanager.getNbStream()==0) {
+      if(getNumStreamSelected()<0 || rssmanager.getNbStreams()==0) {
 	qDebug("no stream selected");
 	return;
       }else {
 	int ok = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to delete this stream from the list?"),
 	      tr("&Yes"), tr("&No"),
 		 QString(), 0, 1);
-	if(ok==0) {	
+	if(ok==0) {
 	  textBrowser->clear();
 	  listNews->clear();
 	  rssmanager.removeStream(rssmanager.getStream(getNumStreamSelected()));
@@ -71,7 +72,7 @@
 
     // display the news of a stream when click on it
     void RSSImp::on_listStreams_clicked() {
-      if(rssmanager.getNbStream()>0) {
+      if(rssmanager.getNbStreams()>0) {
 	moveCurrentItem();
 	rssmanager.getStream(getNumStreamSelected())->setRead();
 	// update the color of the stream, is it old ?
@@ -105,16 +106,16 @@
 	else
 	  listStreams->setCurrentItem(listStreams->topLevelItem(0));
       }
-    }    
+    }
 
     //right-clik on stream : delete it
     void RSSImp::deleteStream() {
-      if(rssmanager.getNbStream()==0) {
+      if(rssmanager.getNbStreams()==0) {
 	qDebug("no stream selected");
 	return;
       }else {
 	int ok = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to delete this stream from the list ?"), tr("&Yes"), tr("&No"), QString(), 0, 1);
-	if(ok==0) {	
+	if(ok==0) {
 	  moveCurrentItem();
 	  textBrowser->clear();
 	  listNews->clear();
@@ -126,7 +127,7 @@
 
     //right-clik on stream : give him an alias
     void RSSImp::renameStream() {
-      if(rssmanager.getNbStream()==0) {
+      if(rssmanager.getNbStreams()==0) {
 	qDebug("no stream selected");
 	return;
       }else {
@@ -144,7 +145,7 @@
 
     //right-clik on stream : refresh it
     void RSSImp::refreshStream() {
-      if(rssmanager.getNbStream()>0) {
+      if(rssmanager.getNbStreams()>0) {
 	moveCurrentItem();
 	short index = getNumStreamSelected();
 	textBrowser->clear();
@@ -152,16 +153,18 @@
 	listStreams->topLevelItem(index)->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
 	rssmanager.refresh(index);
       }
+      updateLastRefreshedTimeForStreams();
     }
 
     //right-click somewhere, refresh all the streams
     void RSSImp::refreshAllStreams() {
       textBrowser->clear();
       listNews->clear();
-      unsigned short nbstream = rssmanager.getNbStream();
-      for(unsigned short i=0; i<nbstream; i++)
+      unsigned short nbstream = rssmanager.getNbStreams();
+      for(unsigned short i=0; i<nbstream; ++i)
 	listStreams->topLevelItem(i)->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
       rssmanager.refreshAll();
+      updateLastRefreshedTimeForStreams();
     }
 
     //right-click, register a new stream
@@ -179,30 +182,19 @@
 
     // fills the streamList
     void RSSImp::refreshStreamList() {
-      unsigned short nbstream = rssmanager.getNbStream();
+      unsigned short nbstream = rssmanager.getNbStreams();
       listStreams->clear();
       QList<QTreeWidgetItem *> streams;
-      for(unsigned short i=0; i<nbstream; i++) {
+      for(unsigned short i=0; i<nbstream; ++i) {
 	QTreeWidgetItem* stream = new QTreeWidgetItem(listStreams);
-	QTreeWidgetItem* description = new QTreeWidgetItem(stream);
-	QTreeWidgetItem* url = new QTreeWidgetItem(stream);
-	QTreeWidgetItem* time = new QTreeWidgetItem(stream);
-	description->setText(0, tr("no description available"));
-	url->setText(0, rssmanager.getStream(i)->getUrl());
-	time->setText(0, tr("no refresh"));
-	description->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/description.png")));
-	url->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/url.png")));
-	time->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/time.png")));
-	description->setData(0,Qt::ForegroundRole, QVariant(QColor("grey")));
-	url->setData(0,Qt::ForegroundRole, QVariant(QColor("grey")));
-	time->setData(0,Qt::ForegroundRole, QVariant(QColor("grey")));
 	updateStreamName(i, NEWS);
+        stream->setToolTip(0, QString("<b>")+tr("Description:")+QString("</b> ")+rssmanager.getStream(i)->getDescription()+QString("<br/><b>")+tr("url:")+QString("</b> ")+rssmanager.getStream(i)->getUrl()+QString("<br/><b>")+tr("Last refresh:")+QString("</b> ")+rssmanager.getStream(i)->getLastRefreshElapsedString());
       }
     }
 
     // fills the newsList
     void RSSImp::refreshNewsList() {
-      if(rssmanager.getNbStream()>0) {
+      if(rssmanager.getNbStreams()>0) {
 	RssStream* currentstream = rssmanager.getStream(getNumStreamSelected());
 	listNews->clear();
         unsigned short currentStreamSize = currentstream->getListSize();
@@ -211,8 +203,7 @@
 	  if(currentstream->getItem(i)->isRead()){
 	     listNews->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("grey")));
 	     listNews->item(i)->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));
-	  }
-	  else {
+	  } else {
 	    listNews->item(i)->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere2.png")));
 	    listNews->item(i)->setData(Qt::ForegroundRole, QVariant(QColor("blue")));
 	  }
@@ -228,6 +219,13 @@
 	RssItem* currentitem = rssmanager.getStream(getNumStreamSelected())->getItem(listNews->currentRow());
 	textBrowser->setHtml(currentitem->getTitle()+" : \n"+currentitem->getDescription());
 	currentitem->setRead();
+      }
+    }
+
+    void RSSImp::updateLastRefreshedTimeForStreams() {
+      unsigned int nbStreams = rssmanager.getNbStreams();
+      for(unsigned int i=0; i<nbStreams; ++i){
+        listStreams->topLevelItem(i)->setToolTip(0, QString("<b>")+tr("Description:")+QString("</b> ")+rssmanager.getStream(i)->getDescription()+QString("<br/><b>")+tr("url:")+QString("</b> ")+rssmanager.getStream(i)->getUrl()+QString("<br/><b>")+tr("Last refresh:")+QString("</b> ")+rssmanager.getStream(i)->getLastRefreshElapsedString());
       }
     }
 
@@ -268,9 +266,7 @@
 	}
 	listStreams->topLevelItem(i)->setData(0,Qt::DecorationRole, QVariant(QIcon(rssmanager.getStream(i)->getIconPath())));
 	// update description and display last refresh
-	if(rssmanager.getStream(i)->getDescription()!="")
-	 listStreams->topLevelItem(i)->child(DESCRIPTION_CHILD)->setText(0, rssmanager.getStream(i)->getDescription());
-	listStreams->topLevelItem(i)->child(TIME_CHILD)->setText(0,  rssmanager.getStream(i)->getLastRefresh());
+        listStreams->topLevelItem(i)->setToolTip(0, QString("<b>")+tr("Description:")+QString("</b> ")+rssmanager.getStream(i)->getDescription()+QString("<br/><b>")+tr("url:")+QString("</b> ")+rssmanager.getStream(i)->getUrl()+QString("<br/><b>")+tr("Last refresh:")+QString("</b> ")+rssmanager.getStream(i)->getLastRefreshElapsedString());
       }
     }
 
@@ -286,14 +282,16 @@
       actionRefresh->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
       actionCreate->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
       actionRefreshAll->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
-                  
+
       connect(listStreams, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRSSListMenu(const QPoint&)));
       connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteStream()));
       connect(actionRename, SIGNAL(triggered()), this, SLOT(renameStream()));
       connect(actionRefresh, SIGNAL(triggered()), this, SLOT(refreshStream()));
       connect(actionCreate, SIGNAL(triggered()), this, SLOT(createStream()));
       connect(actionRefreshAll, SIGNAL(triggered()), this, SLOT(refreshAllStreams()));
+      connect(&refreshTimeTimer, SIGNAL(timeout()), this, SLOT(updateLastRefreshedTimeForStreams()));
       connect(&rssmanager, SIGNAL(streamNeedRefresh(const unsigned short&, const unsigned short&)), this, SLOT(updateStreamName(const unsigned short&, const unsigned short&)));
+      refreshTimeTimer.start(60000); // 1min
       refreshStreamList();
       refreshTextBrowser();
     }
@@ -303,5 +301,5 @@
 
     short RSSImp::getNumStreamSelected(){
       return listStreams->indexOfTopLevelItem(listStreams->currentItem());
-    }    
+    }
 
