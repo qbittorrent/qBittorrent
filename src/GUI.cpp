@@ -75,15 +75,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   tabs->addTab(finishedTorrentTab, tr("Finished"));
   tabs->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   connect(finishedTorrentTab, SIGNAL(torrentMovedFromFinishedList(torrent_handle)), this, SLOT(restoreInDownloadList(torrent_handle)));
-  // Search engine tab
-  searchEngine = new SearchEngine(BTSession, myTrayIcon, systrayIntegration);
-  tabs->addTab(searchEngine, tr("Search"));
-  tabs->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/skin/search.png")));
-  // RSS tab
-  rssWidget = new RSSImp();
-  tabs->addTab(rssWidget, tr("RSS"));
-  tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss.png")));
-  readSettings();
   // Tabs text
   nbTorrents = 0;
   tabs->setTabText(0, tr("Downloads") + " (0)");
@@ -166,6 +157,15 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   if(!loadColWidthDLList()){
     downloadList->header()->resizeSection(0, 200);
   }
+  // Search engine tab
+  searchEngine = new SearchEngine(BTSession, myTrayIcon, systrayIntegration);
+  tabs->addTab(searchEngine, tr("Search"));
+  tabs->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/skin/search.png")));
+  // RSS tab
+  rssWidget = new RSSImp();
+  tabs->addTab(rssWidget, tr("RSS"));
+  tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss.png")));
+  readSettings();
   // Add torrent given on command line
   processParams(torrentCmdLine);
   // Make download list header clickable for sorting
