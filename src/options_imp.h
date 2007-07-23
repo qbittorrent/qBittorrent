@@ -22,9 +22,7 @@
 #ifndef OPTIONS_IMP_H
 #define OPTIONS_IMP_H
 
-#include <QCloseEvent>
 #include "ui_options.h"
-#include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
 
 #define HTTP 0
@@ -33,6 +31,8 @@
 #define SOCKS5_PW 3
 
 using namespace libtorrent;
+
+class QCloseEvent;
 
 class options_imp : public QDialog, private Ui::Dialog{
   Q_OBJECT

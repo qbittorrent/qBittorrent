@@ -22,7 +22,6 @@
 #ifndef CREATE_TORRENT_IMP_H
 #define CREATE_TORRENT_IMP_H
 
-#include <QDialog>
 #include "ui_createtorrent.h"
 
 class createtorrent : public QDialog, private Ui::createTorrentDialog{

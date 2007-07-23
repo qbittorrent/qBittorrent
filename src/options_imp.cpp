@@ -30,6 +30,7 @@
 #include <QMotifStyle>
 #include <QCDEStyle>
 #include <QDialogButtonBox>
+#include <QCloseEvent>
 #ifdef Q_WS_WIN
   #include <QWindowsXPStyle>
 #endif
