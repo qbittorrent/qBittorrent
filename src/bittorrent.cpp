@@ -45,7 +45,7 @@ bittorrent::bittorrent(){
   fs::path::default_name_check(fs::no_check);
   // Supported preview extensions
   // XXX: might be incomplete
-  supported_preview_extensions << "AVI" << "DIVX" << "MPG" << "MPEG" << "MP3" << "OGG" << "WMV" << "WMA" << "RMV" << "RMVB" << "ASF" << "MOV" << "WAV" << "MP2" << "SWF" << "AC3";
+  supported_preview_extensions << "AVI" << "DIVX" << "MPG" << "MPEG" << "MP3" << "OGG" << "WMV" << "WMA" << "RMV" << "RMVB" << "ASF" << "MOV" << "WAV" << "MP2" << "SWF" << "AC3" << "OGM" << "MP4" << "FLV" << "VOB";
   // Creating bittorrent session
   s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0));
   // Set severity level of libtorrent session
