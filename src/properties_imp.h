@@ -23,12 +23,12 @@
 #define PROPERTIES_H
 
 #include "ui_properties.h"
-#include "bittorrent.h"
-#include <libtorrent/session.hpp>
-#include <QStandardItemModel>
-#include <QTimer>
+#include <libtorrent/torrent_handle.hpp>
 
 class PropListDelegate;
+class QTimer;
+class bittorrent;
+class QStandardItemModel;
 
 using namespace libtorrent;
 

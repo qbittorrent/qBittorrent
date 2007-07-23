@@ -22,15 +22,11 @@
 #ifndef GUI_H
 #define GUI_H
 
-#include <QMainWindow>
 #include <QProcess>
 #include <QSystemTrayIcon>
+#include <libtorrent/torrent_handle.hpp>
 
 #include "ui_MainWindow.h"
-#include "options_imp.h"
-#include "about_imp.h"
-#include "previewSelect.h"
-#include "trackerLogin.h"
 
 class bittorrent;
 class createtorrent;
@@ -45,6 +41,10 @@ class QTcpSocket;
 class QCloseEvent;
 class RSSImp;
 class QShortcut;
+class about;
+class previewSelect;
+class options_imp;
+class QStandardItemModel;
 
 using namespace libtorrent;
 namespace fs = boost::filesystem;

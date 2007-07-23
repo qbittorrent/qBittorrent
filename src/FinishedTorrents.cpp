@@ -29,6 +29,7 @@
 #include <QFile>
 #include <QSettings>
 #include <QStandardItemModel>
+#include <QHeaderView>
 
 FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   setupUi(this);

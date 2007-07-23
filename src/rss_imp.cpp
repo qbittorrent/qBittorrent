@@ -25,7 +25,7 @@
 #include <QMenu>
 #include <QStandardItemModel>
 #include <QMessageBox>
-#include "misc.h"
+#include <QTimer>
 
     // display a right-click menu
     void RSSImp::displayRSSListMenu(const QPoint& pos){
@@ -292,9 +292,10 @@
       connect(actionRefresh, SIGNAL(triggered()), this, SLOT(refreshStream()));
       connect(actionCreate, SIGNAL(triggered()), this, SLOT(createStream()));
       connect(actionRefreshAll, SIGNAL(triggered()), this, SLOT(refreshAllStreams()));
-      connect(&refreshTimeTimer, SIGNAL(timeout()), this, SLOT(updateLastRefreshedTimeForStreams()));
       connect(&rssmanager, SIGNAL(streamNeedRefresh(const unsigned short&, const unsigned short&)), this, SLOT(updateStreamName(const unsigned short&, const unsigned short&)));
-      refreshTimeTimer.start(60000); // 1min
+      refreshTimeTimer = new QTimer(this);
+      connect(refreshTimeTimer, SIGNAL(timeout()), this, SLOT(updateLastRefreshedTimeForStreams()));
+      refreshTimeTimer->start(60000); // 1min
       refreshStreamList();
       refreshTextBrowser();
       qDebug("RSSImp constructed");

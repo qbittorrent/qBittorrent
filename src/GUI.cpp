@@ -28,9 +28,7 @@
 #include <QTcpSocket>
 #include <QCloseEvent>
 #include <QShortcut>
-
-#include <libtorrent/extensions/metadata_transfer.hpp>
-#include <libtorrent/extensions/ut_pex.hpp>
+#include <QStandardItemModel>
 
 #include "GUI.h"
 #include "misc.h"
@@ -45,6 +43,10 @@
 #include "FinishedTorrents.h"
 #include "allocationDlg.h"
 #include "bittorrent.h"
+#include "about_imp.h"
+#include "trackerLogin.h"
+#include "previewSelect.h"
+#include "options_imp.h"
 
 /*****************************************************
  *                                                   *

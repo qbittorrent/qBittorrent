@@ -23,9 +23,19 @@
 #include <QTime>
 #include <QString>
 
+#include <libtorrent/extensions/metadata_transfer.hpp>
+#include <libtorrent/extensions/ut_pex.hpp>
+
+#include <libtorrent/entry.hpp>
+#include <libtorrent/bencode.hpp>
+#include <libtorrent/identify_client.hpp>
+#include <libtorrent/alert_types.hpp>
+#include <libtorrent/ip_filter.hpp>
+
 #include "bittorrent.h"
 #include "misc.h"
 #include "downloadThread.h"
+#include "deleteThread.h"
 
 #define ETAS_MAX_VALUES 8
 

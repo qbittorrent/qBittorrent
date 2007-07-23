@@ -22,9 +22,13 @@
 #include "properties_imp.h"
 #include "misc.h"
 #include "PropListDelegate.h"
+#include "bittorrent.h"
+
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QMenu>
+#include <QTimer>
+#include <QStandardItemModel>
 
 // Constructor
 properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h, QStringList trackerErrors): QDialog(parent), h(h){

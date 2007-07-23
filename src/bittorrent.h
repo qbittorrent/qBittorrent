@@ -23,27 +23,15 @@
 
 #include <QHash>
 #include <QTimer>
+#include <QStringList>
 
-#include <libtorrent/entry.hpp>
-#include <libtorrent/bencode.hpp>
+#include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/session.hpp>
-#include <libtorrent/fingerprint.hpp>
-#include <libtorrent/session_settings.hpp>
-#include <libtorrent/identify_client.hpp>
-#include <libtorrent/alert_types.hpp>
-#include <libtorrent/extensions/metadata_transfer.hpp>
-#include <libtorrent/extensions/ut_pex.hpp>
-#include <libtorrent/ip_filter.hpp>
-
-#include <boost/format.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
-#include <boost/filesystem/exception.hpp>
-
-#include "deleteThread.h"
 
 using namespace libtorrent;
 
 class downloadThread;
+class deleteThread;
 
 class bittorrent : public QObject{
   Q_OBJECT
