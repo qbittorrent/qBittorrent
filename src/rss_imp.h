@@ -24,19 +24,19 @@
 #define REFRESH_MAX_LATENCY 600000
 
 #include "ui_rss.h"
-#include "rss.h"
 
 #define DESCRIPTION_CHILD 0
 #define URL_CHILD 1
 #define TIME_CHILD 2
 
 class QTimer;
+class RssManager;
 
 class RSSImp : public QWidget, public Ui::RSS{
   Q_OBJECT
 
   private:
-    RssManager rssmanager;
+    RssManager *rssmanager;
     QTimer *refreshTimeTimer;
 
   protected slots:
