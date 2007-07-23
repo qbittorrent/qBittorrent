@@ -23,9 +23,13 @@
 #define SEEDING_H
 
 #include "ui_seeding.h"
-#include "bittorrent.h"
-#include "FinishedListDelegate.h"
-#include <QStandardItemModel>
+#include <libtorrent/torrent_handle.hpp>
+
+class QStandardItemModel;
+class bittorrent;
+class FinishedListDelegate;
+
+using namespace libtorrent;
 
 class FinishedTorrents : public QWidget, public Ui::seeding{
   Q_OBJECT

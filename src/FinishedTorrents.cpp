@@ -22,9 +22,13 @@
 #include "misc.h"
 #include "GUI.h"
 #include "properties_imp.h"
+#include "bittorrent.h"
 #include "allocationDlg.h"
+#include "FinishedListDelegate.h"
+
 #include <QFile>
 #include <QSettings>
+#include <QStandardItemModel>
 
 FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   setupUi(this);
@@ -113,73 +117,6 @@ void FinishedTorrents::setRowColor(int row, QString color){
   for(int i=0; i<finishedListModel->columnCount(); ++i){
     finishedListModel->setData(finishedListModel->index(row, i), QVariant(QColor(color)), Qt::TextColorRole);
   }
-}
-
-void FinishedTorrents::sortFinishedList(int index){
-  static Qt::SortOrder sortOrder = Qt::AscendingOrder;
-  if(finishedList->header()->sortIndicatorSection() == index){
-    if(sortOrder == Qt::AscendingOrder){
-      sortOrder = Qt::DescendingOrder;
-    }else{
-      sortOrder = Qt::AscendingOrder;
-    }
-  }
-  finishedList->header()->setSortIndicator(index, sortOrder);
-  switch(index){
-    case F_SIZE:
-    case F_UPSPEED:
-    case F_PROGRESS:
-      sortFinishedListFloat(index, sortOrder);
-      break;
-    default:
-      sortFinishedListString(index, sortOrder);
-  }
-}
-
-void FinishedTorrents::sortFinishedListFloat(int index, Qt::SortOrder sortOrder){
-  QList<QPair<int, double> > lines;
-  // insertion sorting
-  unsigned int nbRows = finishedListModel->rowCount();
-  for(unsigned int i=0; i<nbRows; ++i){
-    misc::insertSort(lines, QPair<int,double>(i, finishedListModel->data(finishedListModel->index(i, index)).toDouble()), sortOrder);
-  }
-  // Insert items in new model, in correct order
-  unsigned int nbRows_old = lines.size();
-  for(unsigned int row=0; row<nbRows_old; ++row){
-    finishedListModel->insertRow(finishedListModel->rowCount());
-    unsigned int sourceRow = lines[row].first;
-    unsigned int nbColumns = finishedListModel->columnCount();
-    for(unsigned int col=0; col<nbColumns; ++col){
-      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col)));
-      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
-      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::TextColorRole), Qt::TextColorRole);
-    }
-  }
-  // Remove old rows
-  finishedListModel->removeRows(0, nbRows_old);
-}
-
-void FinishedTorrents::sortFinishedListString(int index, Qt::SortOrder sortOrder){
-  QList<QPair<int, QString> > lines;
-  // Insertion sorting
-  unsigned int nbRows = finishedListModel->rowCount();
-  for(unsigned int i=0; i<nbRows; ++i){
-    misc::insertSortString(lines, QPair<int, QString>(i, finishedListModel->data(finishedListModel->index(i, index)).toString()), sortOrder);
-  }
-  // Insert items in new model, in correct order
-  unsigned int nbRows_old = lines.size();
-  for(unsigned int row=0; row<nbRows_old; ++row){
-    finishedListModel->insertRow(finishedListModel->rowCount());
-    unsigned int sourceRow = lines[row].first;
-    unsigned int nbColumns = finishedListModel->columnCount();
-    for(unsigned int col=0; col<nbColumns; ++col){
-      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col)));
-      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
-      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::TextColorRole), Qt::TextColorRole);
-    }
-  }
-  // Remove old rows
-  finishedListModel->removeRows(0, nbRows_old);
 }
 
 // Load columns width in a file that were saved previously
@@ -349,4 +286,75 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
   // Call menu
   // XXX: why mapToGlobal() is not enough?
   myFinishedListMenu.exec(mapToGlobal(pos)+QPoint(10,55));
+}
+
+/*
+ * Sorting functions
+ */
+
+void FinishedTorrents::sortFinishedList(int index){
+  static Qt::SortOrder sortOrder = Qt::AscendingOrder;
+  if(finishedList->header()->sortIndicatorSection() == index){
+    if(sortOrder == Qt::AscendingOrder){
+      sortOrder = Qt::DescendingOrder;
+    }else{
+      sortOrder = Qt::AscendingOrder;
+    }
+  }
+  finishedList->header()->setSortIndicator(index, sortOrder);
+  switch(index){
+    case F_SIZE:
+    case F_UPSPEED:
+    case F_PROGRESS:
+      sortFinishedListFloat(index, sortOrder);
+      break;
+    default:
+      sortFinishedListString(index, sortOrder);
+  }
+}
+
+void FinishedTorrents::sortFinishedListFloat(int index, Qt::SortOrder sortOrder){
+  QList<QPair<int, double> > lines;
+  // insertion sorting
+  unsigned int nbRows = finishedListModel->rowCount();
+  for(unsigned int i=0; i<nbRows; ++i){
+    misc::insertSort(lines, QPair<int,double>(i, finishedListModel->data(finishedListModel->index(i, index)).toDouble()), sortOrder);
+  }
+  // Insert items in new model, in correct order
+  unsigned int nbRows_old = lines.size();
+  for(unsigned int row=0; row<nbRows_old; ++row){
+    finishedListModel->insertRow(finishedListModel->rowCount());
+    unsigned int sourceRow = lines[row].first;
+    unsigned int nbColumns = finishedListModel->columnCount();
+    for(unsigned int col=0; col<nbColumns; ++col){
+      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col)));
+      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
+      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::TextColorRole), Qt::TextColorRole);
+    }
+  }
+  // Remove old rows
+  finishedListModel->removeRows(0, nbRows_old);
+}
+
+void FinishedTorrents::sortFinishedListString(int index, Qt::SortOrder sortOrder){
+  QList<QPair<int, QString> > lines;
+  // Insertion sorting
+  unsigned int nbRows = finishedListModel->rowCount();
+  for(unsigned int i=0; i<nbRows; ++i){
+    misc::insertSortString(lines, QPair<int, QString>(i, finishedListModel->data(finishedListModel->index(i, index)).toString()), sortOrder);
+  }
+  // Insert items in new model, in correct order
+  unsigned int nbRows_old = lines.size();
+  for(unsigned int row=0; row<nbRows_old; ++row){
+    finishedListModel->insertRow(finishedListModel->rowCount());
+    unsigned int sourceRow = lines[row].first;
+    unsigned int nbColumns = finishedListModel->columnCount();
+    for(unsigned int col=0; col<nbColumns; ++col){
+      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col)));
+      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
+      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::TextColorRole), Qt::TextColorRole);
+    }
+  }
+  // Remove old rows
+  finishedListModel->removeRows(0, nbRows_old);
 }

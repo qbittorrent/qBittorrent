@@ -25,23 +25,14 @@
 #include <QMainWindow>
 #include <QProcess>
 #include <QSystemTrayIcon>
-#include <QMutex>
-
-#include <libtorrent/entry.hpp>
-#include <libtorrent/bencode.hpp>
-#include <libtorrent/session.hpp>
-#include <libtorrent/fingerprint.hpp>
-#include <libtorrent/session_settings.hpp>
-#include <libtorrent/identify_client.hpp>
-#include <libtorrent/alert_types.hpp>
 
 #include "ui_MainWindow.h"
 #include "options_imp.h"
 #include "about_imp.h"
 #include "previewSelect.h"
 #include "trackerLogin.h"
-#include "bittorrent.h"
 
+class bittorrent;
 class createtorrent;
 class QTimer;
 class FinishedTorrents;
@@ -86,7 +77,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     bool force_exit;
     bool delayedSorting;
     Qt::SortOrder delayedSortingOrder;
-    QMutex DLListAccess;
     // Keyboard shortcuts
     QShortcut *createShortcut;
     QShortcut *openShortcut;

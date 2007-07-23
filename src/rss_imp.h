@@ -26,7 +26,6 @@
 #include <QTimer>
 #include "ui_rss.h"
 #include "rss.h"
-#include "GUI.h"
 
 #define DESCRIPTION_CHILD 0
 #define URL_CHILD 1

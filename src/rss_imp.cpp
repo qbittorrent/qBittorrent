@@ -24,6 +24,7 @@
 #include <QInputDialog>
 #include <QMenu>
 #include <QStandardItemModel>
+#include <QMessageBox>
 #include "misc.h"
 
     // display a right-click menu
