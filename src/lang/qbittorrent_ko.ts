@@ -954,7 +954,7 @@ download list?</source>
         <translation type="obsolete">다시 시작됨.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="90"/>
+        <location filename="../GUI.cpp" line="81"/>
         <source>Finished</source>
         <translation type="unfinished">완료</translation>
     </message>
@@ -1377,43 +1377,43 @@ Please close the other one first.</source>
         <translation>피어가 없습니다...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="129"/>
+        <location filename="../GUI.cpp" line="120"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>파일 이름</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="130"/>
+        <location filename="../GUI.cpp" line="121"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>크기</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="131"/>
+        <location filename="../GUI.cpp" line="122"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation>진행상황</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="132"/>
+        <location filename="../GUI.cpp" line="123"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>다운로드 속도</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="133"/>
+        <location filename="../GUI.cpp" line="124"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>업로드 속도</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="134"/>
+        <location filename="../GUI.cpp" line="125"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
         <translation>완전체 공유/부분 공유</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="136"/>
+        <location filename="../GUI.cpp" line="127"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation>남은시간</translation>
@@ -1620,12 +1620,12 @@ Please close the other one first.</source>
         <translation>오류 발생 (디스크가 꽉찼습니까?), &apos;%1&apos;가 정지 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="80"/>
+        <location filename="../GUI.cpp" line="162"/>
         <source>Search</source>
         <translation type="unfinished">검색</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="84"/>
+        <location filename="../GUI.cpp" line="166"/>
         <source>RSS</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1708,7 +1708,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="135"/>
+        <location filename="../GUI.cpp" line="126"/>
         <source>Ratio</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2210,17 +2210,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="269"/>
+        <location filename="../rss_imp.cpp" line="271"/>
         <source>Description:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="269"/>
+        <location filename="../rss_imp.cpp" line="271"/>
         <source>url:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="269"/>
+        <location filename="../rss_imp.cpp" line="271"/>
         <source>Last refresh:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2236,7 +2236,7 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="261"/>
+        <location filename="../rss.h" line="268"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation type="unfinished"></translation>
@@ -2274,42 +2274,42 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished">검색 엔진</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="266"/>
+        <location filename="../searchEngine.cpp" line="270"/>
         <source>Empty search pattern</source>
         <translation type="unfinished">빈 검색 양식</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="266"/>
+        <location filename="../searchEngine.cpp" line="270"/>
         <source>Please type a search pattern first</source>
         <translation type="unfinished">검색 양식을 작성해주십시오</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="284"/>
+        <location filename="../searchEngine.cpp" line="288"/>
         <source>No search engine selected</source>
         <translation type="unfinished">검색엔진이 선택되지 않았음</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="284"/>
+        <location filename="../searchEngine.cpp" line="288"/>
         <source>You must select at least one search engine.</source>
         <translation type="unfinished">적어도 하나 이상의 검색 엔진을 선택해야 합니다.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="360"/>
+        <location filename="../searchEngine.cpp" line="362"/>
         <source>Results</source>
         <translation type="unfinished">결과</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="324"/>
+        <location filename="../searchEngine.cpp" line="326"/>
         <source>Searching...</source>
         <translation type="unfinished">검색중...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="462"/>
+        <location filename="../searchEngine.cpp" line="464"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation type="unfinished">검색 플로그인 업데이트 -- 큐비토런트</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="441"/>
+        <location filename="../searchEngine.cpp" line="443"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -2320,73 +2320,73 @@ Changelog:
 </translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="442"/>
+        <location filename="../searchEngine.cpp" line="444"/>
         <source>&amp;Yes</source>
         <translation type="unfinished">&amp;예</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="442"/>
+        <location filename="../searchEngine.cpp" line="444"/>
         <source>&amp;No</source>
         <translation type="unfinished">&amp;아니요</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="458"/>
+        <location filename="../searchEngine.cpp" line="460"/>
         <source>Search plugin update</source>
         <translation type="unfinished">검색 엔진 플러그인 업데이트</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="458"/>
+        <location filename="../searchEngine.cpp" line="460"/>
         <source>qBittorrent</source>
         <translation type="unfinished">큐비토런트</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="459"/>
+        <location filename="../searchEngine.cpp" line="461"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation type="unfinished">죄송합니다. 현재 임시적으로 업데이트 서버가 접속이 불가능합니다.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="463"/>
+        <location filename="../searchEngine.cpp" line="465"/>
         <source>Your search plugin is already up to date.</source>
         <translation type="unfinished">현재 최신 검색 엔진 플로그인을 사용중에 있습니다.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="495"/>
+        <location filename="../searchEngine.cpp" line="497"/>
         <source>Search Engine</source>
         <translation type="unfinished">검색 엔진</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="506"/>
+        <location filename="../searchEngine.cpp" line="508"/>
         <source>Search has finished</source>
         <translation type="unfinished">검색 완료</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="498"/>
+        <location filename="../searchEngine.cpp" line="500"/>
         <source>An error occured during search...</source>
         <translation type="unfinished">검색 중 오류 발생...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="501"/>
+        <location filename="../searchEngine.cpp" line="503"/>
         <source>Search aborted</source>
         <translation type="unfinished">검색이 중단됨</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="504"/>
+        <location filename="../searchEngine.cpp" line="506"/>
         <source>Search returned no results</source>
         <translation type="unfinished">검색 결과가 없음</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="510"/>
+        <location filename="../searchEngine.cpp" line="512"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation type="unfinished">결과</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="476"/>
+        <location filename="../searchEngine.cpp" line="478"/>
         <source>Search plugin download error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="476"/>
+        <location filename="../searchEngine.cpp" line="478"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2878,61 +2878,6 @@ Changelog:
 </context>
 <context>
     <name>downloadThread</name>
-    <message>
-        <location filename="../downloadThread.h" line="82"/>
-        <source>Host is unreachable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="84"/>
-        <source>File was not found (404)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="86"/>
-        <source>Connection was denied</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="88"/>
-        <source>Url is invalid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="90"/>
-        <source>Connection forbidden (403)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="92"/>
-        <source>Connection was not authorized (401)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="94"/>
-        <source>Content has moved (301)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="96"/>
-        <source>Connection failure</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="98"/>
-        <source>Connection was timed out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="100"/>
-        <source>Incorrect network interface</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="102"/>
-        <source>Unknown error</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>misc</name>
@@ -3085,12 +3030,12 @@ Changelog:
         <translation type="obsolete">이 잘못되었습니다.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1079"/>
+        <location filename="../options_imp.cpp" line="1080"/>
         <source>Range Start IP</source>
         <translation>시작하는 IP의 범위</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1080"/>
+        <location filename="../options_imp.cpp" line="1081"/>
         <source>Start IP:</source>
         <translation>시작 IP:</translation>
     </message>
@@ -3105,22 +3050,22 @@ Changelog:
         <translation type="obsolete">잘못된 IP입니다. </translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1103"/>
+        <location filename="../options_imp.cpp" line="1104"/>
         <source>Range End IP</source>
         <translation>끝나는 IP의 범위</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1104"/>
+        <location filename="../options_imp.cpp" line="1105"/>
         <source>End IP:</source>
         <translation>끝 IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1118"/>
+        <location filename="../options_imp.cpp" line="1119"/>
         <source>IP Range Comment</source>
         <translation>IP 범위 설명</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1119"/>
+        <location filename="../options_imp.cpp" line="1120"/>
         <source>Comment:</source>
         <translation>설명:</translation>
     </message>
@@ -3131,48 +3076,48 @@ Changelog:
         <translation>~</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="945"/>
+        <location filename="../options_imp.cpp" line="946"/>
         <source>Choose your favourite preview program</source>
         <translation>미리보기를 할 프로그램을 선택해 주십시오</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1113"/>
+        <location filename="../options_imp.cpp" line="1114"/>
         <source>Invalid IP</source>
         <translation>유효하지 않은 IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1113"/>
+        <location filename="../options_imp.cpp" line="1114"/>
         <source>This IP is invalid.</source>
         <translation>유효하지 않은 IP 입니다.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="745"/>
+        <location filename="../options_imp.cpp" line="746"/>
         <source>Options were saved successfully.</source>
         <translation>환경설정이 성공적으로 저장되었습니다.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="930"/>
+        <location filename="../options_imp.cpp" line="931"/>
         <source>Choose scan directory</source>
         <translation>스켄할 곳을 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="937"/>
+        <location filename="../options_imp.cpp" line="938"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>ipfilter.dat의 경로를 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="953"/>
+        <location filename="../options_imp.cpp" line="954"/>
         <source>Choose a save directory</source>
         <translation>파일을 저장할 경로를 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="985"/>
+        <location filename="../options_imp.cpp" line="986"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>I/O 에러</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="985"/>
+        <location filename="../options_imp.cpp" line="986"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>%1을 읽기전용 모드로 열수 없습니다.</translation>
     </message>
@@ -3705,6 +3650,64 @@ Changelog:
     <message>
         <location filename="../seeding.ui" line="84"/>
         <source>Set upload limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>subDownloadThread</name>
+    <message>
+        <location filename="../downloadThread.h" line="60"/>
+        <source>Host is unreachable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="62"/>
+        <source>File was not found (404)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="64"/>
+        <source>Connection was denied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="66"/>
+        <source>Url is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="68"/>
+        <source>Connection forbidden (403)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="70"/>
+        <source>Connection was not authorized (401)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="72"/>
+        <source>Content has moved (301)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="74"/>
+        <source>Connection failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="76"/>
+        <source>Connection was timed out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="78"/>
+        <source>Incorrect network interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="80"/>
+        <source>Unknown error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

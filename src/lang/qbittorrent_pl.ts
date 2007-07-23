@@ -1000,7 +1000,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">wznowiony.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="90"/>
+        <location filename="../GUI.cpp" line="81"/>
         <source>Finished</source>
         <translation>Ukończone</translation>
     </message>
@@ -1410,43 +1410,43 @@ Zamknij najpierw okno podglądu.</translation>
         <translation>Nie znaleziono perów...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="129"/>
+        <location filename="../GUI.cpp" line="120"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Nazwa</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="130"/>
+        <location filename="../GUI.cpp" line="121"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Rozmiar</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="131"/>
+        <location filename="../GUI.cpp" line="122"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation>Postęp</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="132"/>
+        <location filename="../GUI.cpp" line="123"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Prędkość DL</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="133"/>
+        <location filename="../GUI.cpp" line="124"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Prędkość UP</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="134"/>
+        <location filename="../GUI.cpp" line="125"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
         <translation>Seeds/Leechs</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="136"/>
+        <location filename="../GUI.cpp" line="127"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation>ETA</translation>
@@ -1653,12 +1653,12 @@ Zamknij najpierw okno podglądu.</translation>
         <translation>Wystąpił błąd (brak miejsca?), &apos;%1&apos; wstrzymany.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="80"/>
+        <location filename="../GUI.cpp" line="162"/>
         <source>Search</source>
         <translation>Szukaj</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="84"/>
+        <location filename="../GUI.cpp" line="166"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
@@ -1742,7 +1742,7 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="135"/>
+        <location filename="../GUI.cpp" line="126"/>
         <source>Ratio</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2254,17 +2254,17 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation>Jesteś pewien że chcesz usunąć ten strumień z listy?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="269"/>
+        <location filename="../rss_imp.cpp" line="271"/>
         <source>Description:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="269"/>
+        <location filename="../rss_imp.cpp" line="271"/>
         <source>url:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="269"/>
+        <location filename="../rss_imp.cpp" line="271"/>
         <source>Last refresh:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2280,7 +2280,7 @@ Czy napewno zamknąć qBittorrent?</translation>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="261"/>
+        <location filename="../rss.h" line="268"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation type="unfinished"></translation>
@@ -2318,42 +2318,42 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation>Wyszukiwarka</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="266"/>
+        <location filename="../searchEngine.cpp" line="270"/>
         <source>Empty search pattern</source>
         <translation>Pusty wzorzec wyszukiwania</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="266"/>
+        <location filename="../searchEngine.cpp" line="270"/>
         <source>Please type a search pattern first</source>
         <translation>Proszę podać wzorzec wyszukiwania</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="284"/>
+        <location filename="../searchEngine.cpp" line="288"/>
         <source>No search engine selected</source>
         <translation>Nie wybrano wyszukiwarki</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="284"/>
+        <location filename="../searchEngine.cpp" line="288"/>
         <source>You must select at least one search engine.</source>
         <translation>Musisz wybrać przynajmniej jedną wyszukiwarkę.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="360"/>
+        <location filename="../searchEngine.cpp" line="362"/>
         <source>Results</source>
         <translation>Wyniki</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="324"/>
+        <location filename="../searchEngine.cpp" line="326"/>
         <source>Searching...</source>
         <translation>Wyszukiwanie...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="462"/>
+        <location filename="../searchEngine.cpp" line="464"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation>Aktualizacja wtyczki wyszukującej -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="441"/>
+        <location filename="../searchEngine.cpp" line="443"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -2365,73 +2365,73 @@ Zmiany:
 </translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="442"/>
+        <location filename="../searchEngine.cpp" line="444"/>
         <source>&amp;Yes</source>
         <translation>&amp;Tak</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="442"/>
+        <location filename="../searchEngine.cpp" line="444"/>
         <source>&amp;No</source>
         <translation>&amp;Nie</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="458"/>
+        <location filename="../searchEngine.cpp" line="460"/>
         <source>Search plugin update</source>
         <translation>Aktualizacja wtyczki wyszukiwania</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="458"/>
+        <location filename="../searchEngine.cpp" line="460"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="459"/>
+        <location filename="../searchEngine.cpp" line="461"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Przepraszamy, serwer aktualizacji jest tymczasowo niedostępny.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="463"/>
+        <location filename="../searchEngine.cpp" line="465"/>
         <source>Your search plugin is already up to date.</source>
         <translation>Posiadasz najnowszą wersję wtyczki wyszukiwania.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="495"/>
+        <location filename="../searchEngine.cpp" line="497"/>
         <source>Search Engine</source>
         <translation>Wyszukiwarka</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="506"/>
+        <location filename="../searchEngine.cpp" line="508"/>
         <source>Search has finished</source>
         <translation>Wyszukiwanie zakończone</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="498"/>
+        <location filename="../searchEngine.cpp" line="500"/>
         <source>An error occured during search...</source>
         <translation>Wystąpił błąd podczas wyszukiwania...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="501"/>
+        <location filename="../searchEngine.cpp" line="503"/>
         <source>Search aborted</source>
         <translation>Wyszukiwanie przerwane</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="504"/>
+        <location filename="../searchEngine.cpp" line="506"/>
         <source>Search returned no results</source>
         <translation>Nic nie znaleziono</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="510"/>
+        <location filename="../searchEngine.cpp" line="512"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Wyniki</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="476"/>
+        <location filename="../searchEngine.cpp" line="478"/>
         <source>Search plugin download error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="476"/>
+        <location filename="../searchEngine.cpp" line="478"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2923,61 +2923,6 @@ Zmiany:
 </context>
 <context>
     <name>downloadThread</name>
-    <message>
-        <location filename="../downloadThread.h" line="82"/>
-        <source>Host is unreachable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="84"/>
-        <source>File was not found (404)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="86"/>
-        <source>Connection was denied</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="88"/>
-        <source>Url is invalid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="90"/>
-        <source>Connection forbidden (403)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="92"/>
-        <source>Connection was not authorized (401)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="94"/>
-        <source>Content has moved (301)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="96"/>
-        <source>Connection failure</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="98"/>
-        <source>Connection was timed out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="100"/>
-        <source>Incorrect network interface</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadThread.h" line="102"/>
-        <source>Unknown error</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>misc</name>
@@ -3130,12 +3075,12 @@ Zmiany:
         <translation type="obsolete">is malformed.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1079"/>
+        <location filename="../options_imp.cpp" line="1080"/>
         <source>Range Start IP</source>
         <translation>Zakres początkowy IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1080"/>
+        <location filename="../options_imp.cpp" line="1081"/>
         <source>Start IP:</source>
         <translation>Początkowe IP:</translation>
     </message>
@@ -3150,22 +3095,22 @@ Zmiany:
         <translation type="obsolete">To jest nieprawidłowe IP.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1103"/>
+        <location filename="../options_imp.cpp" line="1104"/>
         <source>Range End IP</source>
         <translation>Końcowy zakres IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1104"/>
+        <location filename="../options_imp.cpp" line="1105"/>
         <source>End IP:</source>
         <translation>Końcowe IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1118"/>
+        <location filename="../options_imp.cpp" line="1119"/>
         <source>IP Range Comment</source>
         <translation>Komentarz zakresu IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1119"/>
+        <location filename="../options_imp.cpp" line="1120"/>
         <source>Comment:</source>
         <translation>Komentarz:</translation>
     </message>
@@ -3176,48 +3121,48 @@ Zmiany:
         <translation>do</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="945"/>
+        <location filename="../options_imp.cpp" line="946"/>
         <source>Choose your favourite preview program</source>
         <translation>Wybierz program którym zawsze chcesz otwierać dany typ plików</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1113"/>
+        <location filename="../options_imp.cpp" line="1114"/>
         <source>Invalid IP</source>
         <translation>Niepoprawny adres IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1113"/>
+        <location filename="../options_imp.cpp" line="1114"/>
         <source>This IP is invalid.</source>
         <translation>Ten adres IP jest niepoprawny.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="745"/>
+        <location filename="../options_imp.cpp" line="746"/>
         <source>Options were saved successfully.</source>
         <translation>Ustawienia zapisane.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="930"/>
+        <location filename="../options_imp.cpp" line="931"/>
         <source>Choose scan directory</source>
         <translation>Wybierz katalog przeszukiwania</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="937"/>
+        <location filename="../options_imp.cpp" line="938"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>Wybierz plik ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="953"/>
+        <location filename="../options_imp.cpp" line="954"/>
         <source>Choose a save directory</source>
         <translation>Wybierz katalog docelowy</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="985"/>
+        <location filename="../options_imp.cpp" line="986"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>Błąd We/Wy</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="985"/>
+        <location filename="../options_imp.cpp" line="986"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>Nie można otworzyć %1 w trybie odczytu.</translation>
     </message>
@@ -3740,6 +3685,64 @@ Zmiany:
         <location filename="../seeding.ui" line="84"/>
         <source>Set upload limit</source>
         <translation>Ustaw limit wysyłania</translation>
+    </message>
+</context>
+<context>
+    <name>subDownloadThread</name>
+    <message>
+        <location filename="../downloadThread.h" line="60"/>
+        <source>Host is unreachable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="62"/>
+        <source>File was not found (404)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="64"/>
+        <source>Connection was denied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="66"/>
+        <source>Url is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="68"/>
+        <source>Connection forbidden (403)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="70"/>
+        <source>Connection was not authorized (401)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="72"/>
+        <source>Content has moved (301)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="74"/>
+        <source>Connection failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="76"/>
+        <source>Connection was timed out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="78"/>
+        <source>Incorrect network interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.h" line="80"/>
+        <source>Unknown error</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
