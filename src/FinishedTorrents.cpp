@@ -242,7 +242,7 @@ void FinishedTorrents::updateFinishedList(){
     }
     torrent_status torrentStatus = h.status();
     if(torrentStatus.state == torrent_status::downloading || (torrentStatus.state != torrent_status::checking_files && torrentStatus.state != torrent_status::queued_for_checking && torrentStatus.progress != 1.)) {
-      // What are you doing here, go back to download tab!
+      // What are you doing here? go back to download tab!
       qDebug("Info: a torrent was moved from finished to download tab");
       deleteFromFinishedList(hash);
       emit torrentMovedFromFinishedList(h);
@@ -278,6 +278,7 @@ void FinishedTorrents::deleteFromFinishedList(QString hash){
   int row = getRowFromHash(hash);
   if(row == -1){
     std::cerr << "Error: couldn't find hash in finished list\n";
+    return;
   }
   finishedListModel->removeRow(row);
   QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
