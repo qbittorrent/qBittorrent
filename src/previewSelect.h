@@ -101,7 +101,7 @@ class previewSelect: public QDialog, private Ui::preview {
       previewList->setModel(previewListModel);
       listDelegate = new PreviewListDelegate(this);
       previewList->setItemDelegate(listDelegate);
-      supported_preview_extensions<<"AVI"<<"DIVX"<<"MPG"<<"MPEG"<<"MP3"<<"OGG"<<"WMV"<<"WMA"<<"RMV"<<"RMVB"<<"ASF"<<"MOV"<<"WAV"<<"MP2"<<"SWF"<<"AC3";
+      supported_preview_extensions << "AVI" << "DIVX" << "MPG" << "MPEG" << "MPE" << "MP3" << "OGG" << "WMV" << "WMA" << "RMV" << "RMVB" << "ASF" << "MOV" << "WAV" << "MP2" << "SWF" << "AC3" << "OGM" << "MP4" << "FLV" << "VOB" << "QT" << "MKV" << "AIF" << "AIFF" << "AIFC" << "MID" << "MPG" << "RA" << "RAM" << "AU" << "M4A" << "FLAC" << "M4P" << "3GP" << "AAC" << "RM" << "SWA" << "MPC" << "MPP";
       previewList->header()->resizeSection(0, 200);
       // Fill list in
       this->h = h;
