@@ -268,6 +268,7 @@ void options_imp::saveOptions(){
   settings.setValue("ShareRatio", getRatio());
   settings.setValue("EncryptionState", getEncryptionSetting());
   settings.setValue("PeXState", !isPeXDisabled());
+  settings.setValue("DHTPort", getDHTPort());
   settings.setValue("ScanDir", getScanDir());
   // End Main options
   settings.endGroup();
