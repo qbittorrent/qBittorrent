@@ -15,7 +15,7 @@ public:
     QString s;
 		s = conf->getenv("QC_WITH_LIBCOMMONCPP2_INC");
 		if(!s.isEmpty()) {
-			if(!conf->checkHeader(s, "cc++/common.h")) {
+			if(!conf->checkHeader(s, "cc++/url.h")) {
 				return false;
     	}
 		}else{
@@ -24,7 +24,7 @@ public:
 			sl << "/usr/local/include";
 			bool found = false;
 			foreach(s, sl){
-				if(conf->checkHeader(s, "cc++/common.h")){
+				if(conf->checkHeader(s, "cc++/url.h")){
 					found = true;
 					break;
 				}
@@ -58,7 +58,7 @@ public:
 			if(!found) return false;
 			conf->addLib(QString("-L") + s);
 		}
-		conf->addLib("-lccext2 -lccgnu2");
+		//conf->addLib("-lccext2 -lccgnu2");
 		return true;
 	}
 };

@@ -29,7 +29,7 @@ QMAKE_CXXFLAGS_RELEASE += -fwrapv
 QMAKE_CXXFLAGS_DEBUG += -fwrapv
 
 CONFIG += link_pkgconfig
-PKGCONFIG += libtorrent
+PKGCONFIG += libtorrent libccext2 libccgnu2
 QT += network xml
 
 DEFINES += QT_NO_CAST_TO_ASCII
