@@ -165,6 +165,7 @@ class RssStream : public QObject{
       url = _url;
       alias = url;
       read = true;
+      downloadFailure = false;
       qDebug("Creating rss & ico downloadThreads");
       downloaderRss = new downloadThread(this);
       downloaderIcon = new downloadThread(this);
