@@ -24,7 +24,7 @@
 
 #include "ui_seeding.h"
 #include "bittorrent.h"
-#include "DLListDelegate.h"
+#include "FinishedListDelegate.h"
 #include <QStandardItemModel>
 
 class FinishedTorrents : public QWidget, public Ui::seeding{
@@ -32,7 +32,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
   private:
     QObject *parent;
     bittorrent *BTSession;
-    DLListDelegate *finishedListDelegate;
+    FinishedListDelegate *finishedListDelegate;
     QStringList finishedSHAs;
     QStandardItemModel *finishedListModel;
     unsigned int nbFinished;
@@ -59,6 +59,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     void sortFinishedList(int index);
     void sortFinishedListFloat(int index, Qt::SortOrder sortOrder);
     void sortFinishedListString(int index, Qt::SortOrder sortOrder);
+    void updateFileSize(QString hash);
 
   protected slots:
     void on_actionSet_upload_limit_triggered();
