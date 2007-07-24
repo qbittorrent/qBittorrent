@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# Version: 2.03
+# Changelog:
+# - Little fix for mininova search engine when file name contain '<='
+
 # Version: 2.02
 # Changelog:
 # - Fixed mininova search engine
@@ -218,6 +222,7 @@ class Mininova(object):
 				return ''.join([ get_text(n) for n in txt.childNodes])
 		dat = urllib.urlopen(self.url+'/search/%s/seeds'%(what,)).read().decode('utf-8', 'replace')
 		dat = re.sub("<a href=\"http://www.boardreader.com/index.php.*\"", "<a href=\"plop\"", dat)
+                dat = re.sub("<=", "&lt;=", dat)
 		x = minidom.parseString(dat.encode('utf-8', 'replace'))
 		table = x.getElementsByTagName('table').item(0)
 		if not table: return
