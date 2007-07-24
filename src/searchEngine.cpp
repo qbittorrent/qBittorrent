@@ -413,6 +413,7 @@ QByteArray SearchEngine::getNovaChangelog(QString novaPath, float my_version) co
       if(line.startsWith((const char*)end_version.toUtf8())) break;
       if(in_changelog){
         line.remove(0,1);
+        line += "\n";
         changelog.append(line);
       }
     }
