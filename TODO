@@ -45,7 +45,7 @@
   - Windows port (Chris - Peerkoel)
   - Translations update
   - .ico support?
-  - display debug when fastresume data is rejected
+  - improve mininova search engine support
   - Download/Finished lists cleanup
   - Move transfer lists refreshers to threads
   - Wait for some bug fixes in libtorrent :

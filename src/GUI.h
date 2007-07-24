@@ -137,6 +137,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void on_actionExit_triggered();
     void createTrayIcon();
     void addLogPeerBlocked(QString);
+    void addFastResumeRejectedAlert(QString);
     // Keyboard shortcuts
     void createKeyboardShortcuts();
     void displayDownTab();
