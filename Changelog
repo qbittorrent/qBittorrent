@@ -39,6 +39,7 @@
     - BUGFIX: DHT settings were not saved correctly
     - BUGFIX: Workaround to build on Fedora system (pkg-config problem)
     - BUGFIX: search plugin update - do not display only last version changelog
+    - BUGFIX: Search plugin update - fixed missing new lines in changelog
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features
