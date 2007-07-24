@@ -287,7 +287,7 @@ void properties::deleteSelectedTrackers(){
 }
 
 void properties::riseSelectedTracker(){
-  unsigned int i;
+  unsigned int i = 0;
   std::vector<announce_entry> trackers = h.trackers();
   QList<QListWidgetItem *> selectedItems;
   selectedItems = trackersURLS->selectedItems();
@@ -318,7 +318,7 @@ void properties::riseSelectedTracker(){
 }
 
 void properties::lowerSelectedTracker(){
-  unsigned int i;
+  unsigned int i = 0;
   std::vector<announce_entry> trackers = h.trackers();
   QList<QListWidgetItem *> selectedItems;
   selectedItems = trackersURLS->selectedItems();

@@ -890,6 +890,9 @@ void bittorrent::readAlerts(){
     else if (peer_blocked_alert* p = dynamic_cast<peer_blocked_alert*>(a.get())){
       emit peerBlocked(QString(p->ip.to_string().c_str()));
     }
+    else if (fastresume_rejected_alert* p = dynamic_cast<fastresume_rejected_alert*>(a.get())){
+      emit fastResumeDataRejected(QString(p->handle.name().c_str()));
+    }
     a = s->pop_alert();
   }
 }

@@ -47,8 +47,6 @@
   - .ico support?
   - display debug when fastresume data is rejected
   - Download/Finished lists cleanup
-  - Use valgrind to detect memory leaks
-  - optimize includes for compilation speed
   - Move transfer lists refreshers to threads
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent

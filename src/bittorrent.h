@@ -146,6 +146,7 @@ class bittorrent : public QObject{
     void allTorrentsFinishedChecking();
     void peerBlocked(QString);
     void downloadFromUrlFailure(QString url, QString reason);
+    void fastResumeDataRejected(QString name);
 
 };
 
