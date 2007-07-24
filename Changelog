@@ -38,6 +38,7 @@
     - BUGFIX: Search plugin update is not making the GUI freeze anymore (moved to a thread)
     - BUGFIX: DHT settings were not saved correctly
     - BUGFIX: Workaround to build on Fedora system (pkg-config problem)
+    - BUGFIX: search plugin update - do not display only last version changelog
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features

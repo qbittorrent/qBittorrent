@@ -57,7 +57,7 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration);
     ~SearchEngine();
     float getNovaVersion(QString novaPath) const;
-    QByteArray getNovaChangelog(QString novaPath) const;
+    QByteArray getNovaChangelog(QString novaPath, float my_version) const;
     bool loadColWidthSearchList();
 
   public slots:

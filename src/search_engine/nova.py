@@ -12,27 +12,29 @@
 # Changelog:
 # - Use multiple threads to optimize speed
 
-# Version: 2.0
+# Version: 2.00
 # Changelog:
 # - Fixed ThePirateBay search engine
 # - Fixed Meganova search engine
 # - Fixed Mininova search engine
 
-# Version: 1.9
+# Version: 1.90
 # Changelog:
 # - Various fixes
 
-# Version: 1.8
+# Version: 1.80
 # Changelog:
 # - Fixed links from isohunt
 
-# Version: 1.7
+# Version: 1.70
 # Changelog:
 # - merged with qbittorrent branch (code cleanup, indentation mistakes)
 # - separate standalone and slave mode
 # - added btjunkie
 # - added meganova
 # - added multithreaded mode
+
+# End Changelog
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>

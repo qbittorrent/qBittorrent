@@ -386,7 +386,7 @@ float SearchEngine::getNovaVersion(QString novaPath) const{
 }
 
 // Returns changelog of nova.py search engine
-QByteArray SearchEngine::getNovaChangelog(QString novaPath) const{
+QByteArray SearchEngine::getNovaChangelog(QString novaPath, float my_version) const{
   QFile dest_nova(novaPath);
   if(!dest_nova.exists()){
     return QByteArray("None");
@@ -402,10 +402,15 @@ QByteArray SearchEngine::getNovaChangelog(QString novaPath) const{
     if(line.startsWith("# Changelog:")){
       in_changelog = true;
     }else{
-      if(in_changelog && line.isEmpty()){
-        // end of changelog
-        return changelog;
+      if(line.isEmpty()){
+        in_changelog = false;
       }
+      if(line.startsWith("# End Changelog")) break;
+      QString end_version = "# Version: ";
+      char tmp[5];
+      snprintf(tmp, 5, "%.2f", my_version);
+      end_version+=QString(tmp);
+      if(line.startsWith((const char*)end_version.toUtf8())) break;
       if(in_changelog){
         line.remove(0,1);
         changelog.append(line);
@@ -437,10 +442,11 @@ void SearchEngine::updateNova() const{
 void SearchEngine::novaUpdateDownloaded(QString url, QString filePath){
   float version_on_server = getNovaVersion(filePath);
   qDebug("Version on qbittorrent.org: %.2f", version_on_server);
-  if(version_on_server > getNovaVersion(misc::qBittorrentPath()+"nova.py")){
+  float my_version = getNovaVersion(misc::qBittorrentPath()+"nova.py");
+  if(version_on_server > my_version){
     if(QMessageBox::question(this,
        tr("Search plugin update -- qBittorrent"),
-          tr("Search plugin can be updated, do you want to update it?\n\nChangelog:\n")+getNovaChangelog(filePath),
+          tr("Search plugin can be updated, do you want to update it?\n\nChangelog:\n")+getNovaChangelog(filePath, my_version),
              tr("&Yes"), tr("&No"),
                 QString(), 0, 1)){
                   return;
