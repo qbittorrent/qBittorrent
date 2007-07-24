@@ -36,6 +36,7 @@
     - BUGFIX: qBittorrent is not exiting anymore when a dialog is closed and main window is hidden
     - BUGFIX: Search plugin update is not making the GUI freeze anymore (moved to a thread)
     - BUGFIX: DHT settings were not saved correctly
+    - BUGFIX: Workaround to build on Fedora system (pkg-config problem)
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features
