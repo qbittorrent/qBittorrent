@@ -32,6 +32,8 @@ NOTE FOR GNOME USERS:
 - qt4-qtconfig package is advised when using Plastique style (default)
   or just change qBittorrent style to Cleanlooks (GNOME like)
 
+DOCUMENTATION:
+Please note that there is a documentation with a "compiling howto" at http://wiki.qbittorrent.org.
 
 ------------------------------------------
 Christophe Dumez <chris@qbittorrent.org>
