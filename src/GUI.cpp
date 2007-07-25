@@ -29,7 +29,6 @@
 #include <QCloseEvent>
 #include <QShortcut>
 #include <QStandardItemModel>
-#include <QMutexLocker>
 
 #include "GUI.h"
 #include "misc.h"
@@ -180,6 +179,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(downloadList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLListMenu(const QPoint&)));
 //   connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayGUIMenu(const QPoint&)));
   connect(infoBar, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayInfoBarMenu(const QPoint&)));
+  // Start download list refresher
+  refresher = new QTimer(this);
+  connect(refresher, SIGNAL(timeout()), this, SLOT(updateDlList()));
+  refresher->start(2000);
   // Use a tcp server to allow only one instance of qBittorrent
   tcpServer = new QTcpServer();
   if (!tcpServer->listen(QHostAddress::LocalHost, 1666)) {
@@ -192,9 +195,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   checkConnect->start(5000);
   previewProcess = new QProcess(this);
   connect(previewProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(cleanTempPreviewFile(int, QProcess::ExitStatus)));
-  // Download list refresher thread
-  refresher = new DownloadListRefresher(this);
-  refresher->start();
   // Accept drag 'n drops
   setAcceptDrops(true);
   // Set info Bar infos
@@ -229,14 +229,6 @@ GUI::~GUI(){
   delete switchDownShortcut;
   delete switchUpShortcut;
   delete switchRSSShortcut;
-}
-
-int GUI::getCurrentTab() const{
-  if(isHidden() || isMinimized()){
-    return -1;
-  }else{
-    return tabs->currentIndex();
-  }
 }
 
 void GUI::on_actionWebsite_triggered(){
@@ -562,14 +554,17 @@ void GUI::updateDlList(bool force){
   if(systrayIntegration){
     myTrayIcon->setToolTip("<b>"+tr("qBittorrent")+"</b><br>"+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(tmp2))+"<br>"+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(tmp))); // tray icon
   }
-  if( !force && getCurrentTab()){
+  if( !force && (isMinimized() || isHidden() || tabs->currentIndex() > 1)){
     // No need to update if qBittorrent DL list is hidden
+    return;
+  }
+  if(tabs->currentIndex()){
+    finishedTorrentTab->updateFinishedList();
     return;
   }
 //   qDebug("Updating download list");
   LCD_UpSpeed->display(tmp); // UP LCD
   LCD_DownSpeed->display(tmp2); // DL LCD
-  QMutexLocker locker(&DLListAccess);
   // browse handles
   std::vector<torrent_handle> handles = BTSession->getTorrentHandles();
   QStringList finishedSHAs = finishedTorrentTab->getFinishedSHAs();
@@ -612,9 +607,7 @@ void GUI::updateDlList(bool force){
         case torrent_status::finished:
         case torrent_status::seeding:
           qDebug("Warning: this shouldn't happen, no finished torrents in download tab, moving it");
-          DLListAccess.unlock();
           finishedTorrent(h);
-          DLListAccess.lock();
           continue;
         case torrent_status::checking_files:
         case torrent_status::queued_for_checking:
@@ -665,7 +658,6 @@ void GUI::updateDlList(bool force){
 }
 
 void GUI::restoreInDownloadList(torrent_handle h){
-  QMutexLocker locker(&DLListAccess);
   unsigned int row = DLListModel->rowCount();
   QString hash = QString(misc::toString(h.info_hash()).c_str());
   // Adding torrent to download list
@@ -740,7 +732,6 @@ void GUI::sortDownloadListString(int index, Qt::SortOrder sortOrder){
 
 void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoadColWidth){
   qDebug("Called sort download list");
-  QMutexLocker locker(&DLListAccess);
   static Qt::SortOrder sortOrder = startSortOrder;
   if(!fromLoadColWidth && downloadList->header()->sortIndicatorSection() == index){
     if(sortOrder == Qt::AscendingOrder){
@@ -996,7 +987,6 @@ void GUI::on_actionOpen_triggered(){
 // delete from download list AND from hard drive
 void GUI::on_actionDelete_Permanently_triggered(){
   if(tabs->currentIndex() > 1) return;
-  QMutexLocker locker(&DLListAccess);
   QModelIndexList selectedIndexes;
   bool inDownloadList;
   if(tabs->currentIndex() == 0) {
@@ -1068,7 +1058,6 @@ void GUI::on_actionDelete_Permanently_triggered(){
 
 // delete selected items in the list
 void GUI::on_actionDelete_triggered(){
-  QMutexLocker locker(&DLListAccess);
   if(tabs->currentIndex() > 1) return;
   QModelIndexList selectedIndexes;
   bool inDownloadList = true;
@@ -1140,7 +1129,6 @@ void GUI::on_actionDelete_triggered(){
 
 // Called when a torrent is added
 void GUI::torrentAdded(QString path, torrent_handle& h, bool fastResume){
-  QMutexLocker locker(&DLListAccess);
   QString hash = QString(misc::toString(h.info_hash()).c_str());
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")){
     finishedTorrentTab->addFinishedSHA(hash);
@@ -1383,7 +1371,6 @@ void GUI::configureSession(bool deleteOptions){
 
 // Pause All Downloads in DL list
 void GUI::on_actionPause_All_triggered(){
-  QMutexLocker locker(&DLListAccess);
   QString fileHash;
   // Pause all torrents
   if(BTSession->pauseAllTorrents()){
@@ -1409,7 +1396,6 @@ void GUI::on_actionPause_All_triggered(){
 
 // pause selected items in the list
 void GUI::on_actionPause_triggered(){
-  QMutexLocker locker(&DLListAccess);
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   QModelIndex index;
   foreach(index, selectedIndexes){
@@ -1435,7 +1421,6 @@ void GUI::on_actionPause_triggered(){
 
 // Resume All Downloads in DL list
 void GUI::on_actionStart_All_triggered(){
-  QMutexLocker locker(&DLListAccess);
   QString fileHash;
   // Pause all torrents
   if(BTSession->resumeAllTorrents()){
@@ -1455,7 +1440,6 @@ void GUI::on_actionStart_All_triggered(){
 
 // start selected items in the list
 void GUI::on_actionStart_triggered(){
-  QMutexLocker locker(&DLListAccess);
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   QModelIndex index;
   foreach(index, selectedIndexes){
@@ -1502,7 +1486,6 @@ void GUI::on_actionTorrent_Properties_triggered(){
 
 // called when a torrent has finished
 void GUI::finishedTorrent(torrent_handle& h){
-    QMutexLocker locker(&DLListAccess);
     QSettings settings("qBittorrent", "qBittorrent");
     QString fileName = QString(h.name().c_str());
     int useOSD = settings.value("Options/OSDEnabled", 1).toInt();

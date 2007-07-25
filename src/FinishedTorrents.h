@@ -26,13 +26,9 @@
 #include "FinishedListDelegate.h"
 #include <libtorrent/torrent_handle.hpp>
 
-#include <QThread>
-#include <QMutex>
-
 class QStandardItemModel;
 class bittorrent;
 class FinishedListDelegate;
-class FinishedListRefresher;
 
 using namespace libtorrent;
 
@@ -45,8 +41,6 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     QStringList finishedSHAs;
     QStandardItemModel *finishedListModel;
     unsigned int nbFinished;
-    FinishedListRefresher *refresher;
-    QMutex finishedListAccess;
 
   public:
     FinishedTorrents(QObject *parent, bittorrent *BTSession);
@@ -78,29 +72,6 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
   signals:
     void torrentMovedFromFinishedList(torrent_handle);
 
-};
-
-class FinishedListRefresher : public QThread {
-  private:
-    FinishedTorrents* parent;
-    bool abort;
-  public:
-    FinishedListRefresher(FinishedTorrents* parent){
-      this->parent = parent;
-      abort = false;
-    }
-    ~FinishedListRefresher(){
-      abort = true;
-      wait();
-    }
-  protected:
-    void run(){
-      forever{
-        if(abort) return;
-        parent->updateFinishedList();
-        msleep(2000);
-      }
-    }
 };
 
 #endif

@@ -29,7 +29,6 @@
 #include <QSettings>
 #include <QStandardItemModel>
 #include <QHeaderView>
-#include <QMutexLocker>
 
 FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   setupUi(this);
@@ -51,7 +50,6 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
     finishedList->header()->resizeSection(0, 200);
   }
   // Make download list header clickable for sorting
-  qRegisterMetaType<QModelIndex>("QModelIndex");
   finishedList->header()->setClickable(true);
   finishedList->header()->setSortIndicatorShown(true);
   connect(finishedList->header(), SIGNAL(sectionPressed(int)), this, SLOT(sortFinishedList(int)));
@@ -68,15 +66,12 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   connect(actionPreview_file, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionPreview_file_triggered()));
   connect(actionDelete_Permanently, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_Permanently_triggered()));
   connect(actionTorrent_Properties, SIGNAL(triggered()), this, SLOT(propertiesSelection()));
-  refresher = new FinishedListRefresher(this);
-  refresher->start();
 }
 
 FinishedTorrents::~FinishedTorrents(){
   saveColWidthFinishedList();
   delete finishedListDelegate;
   delete finishedListModel;
-  delete refresher;
 }
 
 void FinishedTorrents::addFinishedSHA(QString hash){
@@ -84,7 +79,6 @@ void FinishedTorrents::addFinishedSHA(QString hash){
     BTSession->setTorrentFinishedChecking(hash);
   }
   if(finishedSHAs.indexOf(hash) == -1) {
-    QMutexLocker locker(&finishedListAccess);
     finishedSHAs << hash;
     int row = finishedListModel->rowCount();
     torrent_handle h = BTSession->getTorrentHandle(hash);
@@ -173,8 +167,6 @@ void FinishedTorrents::on_actionSet_upload_limit_triggered(){
 
 void FinishedTorrents::updateFinishedList(){
 //   qDebug("Updating finished list");
-  if(((GUI*)parent)->getCurrentTab() != 1) return;
-  QMutexLocker locker(&finishedListAccess);
   QString hash;
   foreach(hash, finishedSHAs){
     torrent_handle h = BTSession->getTorrentHandle(hash);
@@ -220,7 +212,6 @@ int FinishedTorrents::getRowFromHash(QString hash) const{
 
 // Will move it to download tab
 void FinishedTorrents::deleteFromFinishedList(QString hash){
-  QMutexLocker locker(&finishedListAccess);
   int row = getRowFromHash(hash);
   if(row == -1){
     std::cerr << "Error: couldn't find hash in finished list\n";
@@ -254,7 +245,6 @@ void FinishedTorrents::showProperties(const QModelIndex &index){
 }
 
 void FinishedTorrents::updateFileSize(QString hash){
-  QMutexLocker locker(&finishedListAccess);
   int row = getRowFromHash(hash);
   finishedListModel->setData(finishedListModel->index(row, F_SIZE), QVariant((qlonglong)BTSession->torrentEffectiveSize(hash)));
 }
@@ -303,7 +293,6 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
  */
 
 void FinishedTorrents::sortFinishedList(int index){
-  QMutexLocker locker(&finishedListAccess);
   static Qt::SortOrder sortOrder = Qt::AscendingOrder;
   if(finishedList->header()->sortIndicatorSection() == index){
     if(sortOrder == Qt::AscendingOrder){
