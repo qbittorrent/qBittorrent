@@ -564,6 +564,7 @@ void SearchEngine::on_clear_button_clicked(){
   // Disable clear & download buttons
   clear_button->setEnabled(false);
   download_button->setEnabled(false);
+  results_lbl->setText(tr("Results")+" <i>(0)</i>:");
 }
 
 // Download selected items in search results list
