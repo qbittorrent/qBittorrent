@@ -332,7 +332,7 @@ void GUI::setInfoBar(QString info, QString color){
 }
 
 void GUI::addFastResumeRejectedAlert(QString name){
-  setInfoBar(tr("Fast resume data was rejected for torrent %1").arg(name));
+  setInfoBar(tr("Fast resume data was rejected for torrent %1, checking again...").arg(name));
 }
 
 void GUI::balloonClicked(){
@@ -612,7 +612,9 @@ void GUI::updateDlList(bool force){
         case torrent_status::finished:
         case torrent_status::seeding:
           qDebug("Warning: this shouldn't happen, no finished torrents in download tab, moving it");
+          DLListAccess.unlock();
           finishedTorrent(h);
+          DLListAccess.lock();
           continue;
         case torrent_status::checking_files:
         case torrent_status::queued_for_checking:
@@ -1044,8 +1046,8 @@ void GUI::on_actionDelete_Permanently_triggered(){
           fileName = DLListModel->data(DLListModel->index(sortedIndex.second.row(), NAME)).toString();
           fileHash = DLListModel->data(DLListModel->index(sortedIndex.second.row(), HASH)).toString();
         }else{
-          fileName = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(sortedIndex.second.row(), NAME)).toString();
-          fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(sortedIndex.second.row(), HASH)).toString();
+          fileName = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(sortedIndex.second.row(), F_NAME)).toString();
+          fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(sortedIndex.second.row(), F_HASH)).toString();
         }
         // Remove the torrent
         BTSession->deleteTorrent(fileHash, true);
@@ -1116,8 +1118,8 @@ void GUI::on_actionDelete_triggered(){
           fileName = DLListModel->data(DLListModel->index(sortedIndex.second.row(), NAME)).toString();
           fileHash = DLListModel->data(DLListModel->index(sortedIndex.second.row(), HASH)).toString();
         }else{
-          fileName = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(sortedIndex.second.row(), NAME)).toString();
-          fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(sortedIndex.second.row(), HASH)).toString();
+          fileName = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(sortedIndex.second.row(), F_NAME)).toString();
+          fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(sortedIndex.second.row(), F_HASH)).toString();
         }
         // Remove the torrent
         BTSession->deleteTorrent(fileHash, false);

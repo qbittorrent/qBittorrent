@@ -142,6 +142,7 @@ bool bittorrent::isPaused(QString hash) const{
 // Delete a torrent from the session, given its hash
 // permanent = true means that the torrent will be removed from the hard-drive too
 void bittorrent::deleteTorrent(QString hash, bool permanent){
+  qDebug("Deleting torrent with hash: %s", (const char*)hash.toUtf8());
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
   if(!h.is_valid()){
     qDebug("/!\\ Error: Invalid handle");
