@@ -23,6 +23,7 @@
 #define SEEDING_H
 
 #include "ui_seeding.h"
+#include "FinishedListDelegate.h"
 #include <libtorrent/torrent_handle.hpp>
 
 #include <QThread>

@@ -24,7 +24,6 @@
 #include "properties_imp.h"
 #include "bittorrent.h"
 #include "allocationDlg.h"
-#include "FinishedListDelegate.h"
 
 #include <QFile>
 #include <QSettings>
