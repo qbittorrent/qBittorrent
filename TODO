@@ -10,6 +10,7 @@
 - Allow user to organize the downloads into categories/folders
 - Display new searches in new tabs
 - Display a progress bar that really displays the pieces we have (like in eMule)
+- .ico support (unsupported by Qt4.3 Free edition)
 
 // Waiting for libtorrent
 - File selection in a torrent in compact mode
@@ -18,11 +19,8 @@
 // Unsure
 - Azureus spoofing to prevent ban from trackers?
 - Web interface?
-- Allow to set upload limit for each torrent
 - Option to shutdown computer when downloads are finished
 - Add a torrent scheduler
-- Improve Ipfilter.dat parser (move to a thread ? - too slow to load qBT and more importantly options)
-- Improve search plugin update (make it automatic, write version/changelog in another file to limit brandwidth usage). Allow to disable this feature in program preferences.
 - Make use of dbus on Linux for the single instance instead of socket communication?
   (http://techbase.kde.org/Development/Tutorials/D-Bus/Accessing_Interfaces)
 
@@ -44,9 +42,8 @@
 * beta3
   - Windows port (Chris - Peerkoel)
   - Translations update
-  - .ico support?
-  - Download/Finished lists cleanup
-  - Move transfer lists refreshers to threads
+  - Move transfer lists refreshers to threads?
+  - Optimize and cleanup code
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent
     - ipfilter crash

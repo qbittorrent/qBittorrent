@@ -10,11 +10,12 @@ Usage: $0 [OPTION]...
 This script creates necessary configuration files to build/install.
 
 Main options:
-  --prefix=[path]    Base path for build/install.  Default: /usr/local
-  --bindir=[path]    Directory for binaries.  Default: PREFIX/bin
-  --qtdir=[path]     Directory where Qt is installed.
-  --verbose          Show extra configure output.
-  --help             This help text.
+  --prefix=[path]     Base path for build/install.  Default: /usr/local
+  --bindir=[path]     Directory for binaries.  Default: PREFIX/bin
+  --datadir=[path]    Directory for data.  Default: PREFIX/share
+  --qtdir=[path]      Directory where Qt is installed.
+  --verbose           Show extra configure output.
+  --help              This help text.
 
 Dependency options:
   --with-libtorrent-inc=[path]            Path to libtorrent include files
@@ -129,6 +130,11 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
+		--datadir=*)
+			DATADIR=$optarg
+			shift
+			;;
+
 		--qtdir=*)
 			EX_QTDIR=$optarg
 			shift
@@ -175,6 +181,7 @@ done
 
 PREFIX=${PREFIX:-/usr/local}
 BINDIR=${BINDIR:-$PREFIX/bin}
+DATADIR=${DATADIR:-$PREFIX/share}
 
 echo "Configuring qbittorrent ..."
 
@@ -182,6 +189,7 @@ if [ "$QC_DEBUG" = "Y" ]; then
 echo
 echo PREFIX=$PREFIX
 echo BINDIR=$BINDIR
+echo DATADIR=$DATADIR
 echo EX_QTDIR=$EX_QTDIR
 echo QC_WITH_LIBTORRENT_INC=$QC_WITH_LIBTORRENT_INC
 echo QC_WITH_LIBTORRENT_LIB=$QC_WITH_LIBTORRENT_LIB
@@ -430,7 +438,7 @@ class qc_libcommoncpp2 : public ConfObj
 {
 public:
 	qc_libcommoncpp2(Conf *c) : ConfObj(c) {}
-	QString name() const { return "GNU Common C++"; }
+	QString name() const { return "GNU Common C++ library (libcommoncpp2)"; }
 	QString shortname() const { return "libcommoncpp2"; }
 	bool exec(){
     QString s;
@@ -1454,6 +1462,7 @@ EOT
 
 export PREFIX
 export BINDIR
+export DATADIR
 export EX_QTDIR
 export QC_WITH_LIBTORRENT_INC
 export QC_WITH_LIBTORRENT_LIB

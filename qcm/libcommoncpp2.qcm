@@ -9,7 +9,7 @@ class qc_libcommoncpp2 : public ConfObj
 {
 public:
 	qc_libcommoncpp2(Conf *c) : ConfObj(c) {}
-	QString name() const { return "GNU Common C++"; }
+	QString name() const { return "GNU Common C++ library (libcommoncpp2)"; }
 	QString shortname() const { return "libcommoncpp2"; }
 	bool exec(){
     QString s;
