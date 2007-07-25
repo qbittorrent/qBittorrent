@@ -23,7 +23,9 @@
 #define GUI_H
 
 #include <QProcess>
+#include <QThread>
 #include <QSystemTrayIcon>
+#include <QMutex>
 #include <libtorrent/torrent_handle.hpp>
 
 #include "ui_MainWindow.h"
@@ -45,6 +47,7 @@ class about;
 class previewSelect;
 class options_imp;
 class QStandardItemModel;
+class DownloadListRefresher;
 
 using namespace libtorrent;
 namespace fs = boost::filesystem;
@@ -64,7 +67,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // GUI related
     options_imp *options;
     createtorrent *createWindow;
-    QTimer *refresher;
     QSystemTrayIcon *myTrayIcon;
     QMenu *myTrayIconMenu;
     about *aboutdlg;
@@ -77,6 +79,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     bool force_exit;
     bool delayedSorting;
     Qt::SortOrder delayedSortingOrder;
+    DownloadListRefresher *refresher;
+    QMutex DLListAccess;
     // Keyboard shortcuts
     QShortcut *createShortcut;
     QShortcut *openShortcut;
@@ -111,7 +115,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void toggleVisibility(QSystemTrayIcon::ActivationReason e);
     void on_actionAbout_triggered();
     void setInfoBar(QString info, QString color="black");
-    void updateDlList(bool force=false);
     void on_actionCreate_torrent_triggered();
     void on_actionClearLog_triggered();
     void on_actionWebsite_triggered();
@@ -190,6 +193,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void setTabText(int index, QString text);
     void updateFileSize(QString hash);
     void sortProgressColumnDelayed();
+    void updateDlList(bool force=false);
 
   protected:
     void closeEvent(QCloseEvent *);
@@ -202,6 +206,30 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // Methods
     int getRowFromHash(QString hash) const;
     QPoint screenCenter();
+    int getCurrentTab() const;
+};
+
+class DownloadListRefresher : public QThread {
+  private:
+    GUI* parent;
+    bool abort;
+  public:
+    DownloadListRefresher(GUI* parent){
+      this->parent = parent;
+      abort = false;
+    }
+    ~DownloadListRefresher(){
+      abort = true;
+      wait();
+    }
+  protected:
+    void run(){
+      forever{
+        if(abort) return;
+        ((GUI*)parent)->updateDlList();
+        msleep(1500);
+      }
+    }
 };
 
 #endif
