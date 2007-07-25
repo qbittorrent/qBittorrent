@@ -57,7 +57,6 @@
 // Constructor
 GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   setupUi(this);
-  //setAttribute(Qt::WA_DeleteOnClose);
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(VERSION));
   QSettings settings("qBittorrent", "qBittorrent");
   systrayIntegration = settings.value("Options/Misc/Behaviour/SystrayIntegration", true).toBool();
