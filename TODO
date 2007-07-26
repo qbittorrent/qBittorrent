@@ -45,6 +45,5 @@
   - Optimize and cleanup code
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent
-    - ipfilter crash
     - double free or corruption on exit
     - Crash due to connection_queue

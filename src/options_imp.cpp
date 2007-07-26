@@ -1083,7 +1083,7 @@ void options_imp::on_addFilterRange_clicked(){
                                        "0.0.0.0", &ok);
   QStringList IP1 = startIP.split('.');
   // Check IP
-  bool ipv4;
+  bool ipv4 = true;
   QRegExp is_ipv6("^[0-9a-f]{4}(:[0-9a-f]{4}){7}$", Qt::CaseInsensitive, QRegExp::RegExp);
   QRegExp is_ipv4("^(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}$", Qt::CaseInsensitive, QRegExp::RegExp);
 
