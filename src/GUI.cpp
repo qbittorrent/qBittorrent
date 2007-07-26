@@ -1019,7 +1019,10 @@ void GUI::on_actionDelete_Permanently_triggered(){
       QStringList hashesToDelete;
       foreach(index, selectedIndexes){
         if(index.column() == NAME){
-          hashesToDelete <<  DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+          if(inDownloadList)
+            hashesToDelete <<  DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+          else
+            hashesToDelete << finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), F_HASH)).toString();
         }
       }
       QString fileHash;
@@ -1084,7 +1087,10 @@ void GUI::on_actionDelete_triggered(){
       QStringList hashesToDelete;
       foreach(index, selectedIndexes){
         if(index.column() == NAME){
-          hashesToDelete <<  DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+          if(inDownloadList)
+            hashesToDelete <<  DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+          else
+            hashesToDelete << finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), F_HASH)).toString();
         }
       }
       QString fileHash;
