@@ -264,7 +264,8 @@ void properties::loadTrackers(){
   //Trackers
   std::vector<announce_entry> trackers = h.trackers();
   trackersURLS->clear();
-  for(unsigned int i=0; i<trackers.size(); ++i){
+  unsigned int nbTrackers = trackers.size();
+  for(unsigned int i=0; i<nbTrackers; ++i){
     trackersURLS->addItem(QString(trackers[i].url.c_str()));
   }
   torrent_status torrentStatus = h.status();
@@ -311,8 +312,9 @@ void properties::askForTracker(){
   // Add the tracker to the list
   std::vector<announce_entry> trackers = h.trackers();
   announce_entry new_tracker(trackerUrl.toStdString());
-  new_tracker.tier = trackersURLS->count();
+  new_tracker.tier = 0; // Will be fixed a bit later
   trackers.push_back(new_tracker);
+  misc::fixTrackersTiers(trackers);
   h.replace_trackers(trackers);
   h.force_reannounce();
   // Reload Trackers
@@ -379,12 +381,14 @@ void properties::riseSelectedTracker(){
   selectedItems = trackersURLS->selectedItems();
   QListWidgetItem *item;
   bool change = false;
+  unsigned int nbTrackers = trackers.size();
   foreach(item, selectedItems){
     QString url = item->text();
-    for(i=0; i<trackers.size(); ++i){
+    for(i=0; i<nbTrackers; ++i){
       if(QString(trackers.at(i).url.c_str()) == url){
-        if(trackers[i].tier>0 && i != 0){
-          trackers[i].tier -= 1;
+        qDebug("Asked to rise %s", trackers.at(i).url.c_str());
+        qDebug("its tier was %d and will become %d", trackers[i].tier, trackers[i].tier-1);
+        if(i > 0){
           announce_entry tmp = trackers[i];
           trackers[i] = trackers[i-1];
           trackers[i-1] = tmp;
@@ -395,6 +399,7 @@ void properties::riseSelectedTracker(){
     }
   }
   if(change){
+    misc::fixTrackersTiers(trackers);
     h.replace_trackers(trackers);
     h.force_reannounce();
     // Reload Trackers
@@ -410,12 +415,14 @@ void properties::lowerSelectedTracker(){
   selectedItems = trackersURLS->selectedItems();
   QListWidgetItem *item;
   bool change = false;
+  unsigned int nbTrackers = trackers.size();
   foreach(item, selectedItems){
     QString url = item->text();
-    for(i=0; i<trackers.size(); ++i){
+    for(i=0; i<nbTrackers; ++i){
       if(QString(trackers.at(i).url.c_str()) == url){
-        if(i != trackers.size()-1){
-          trackers[i].tier += 1;
+        qDebug("Asked to lower %s", trackers.at(i).url.c_str());
+        qDebug("its tier was %d and will become %d", trackers[i].tier, trackers[i].tier+1);
+        if(i < nbTrackers-1){
           announce_entry tmp = trackers[i];
           trackers[i] = trackers[i+1];
           trackers[i+1] = tmp;
@@ -426,6 +433,7 @@ void properties::lowerSelectedTracker(){
     }
   }
   if(change){
+    misc::fixTrackersTiers(trackers);
     h.replace_trackers(trackers);
     h.force_reannounce();
     // Reload Trackers
@@ -447,6 +455,14 @@ void properties::updateInfos(){
     close();
   }
   loadTrackersErrors();
+  // Update current tracker
+  torrent_status torrentStatus = h.status();
+  QString tracker = QString(torrentStatus.current_tracker.c_str()).trimmed();
+  if(!tracker.isEmpty()){
+    trackerURL->setText(tracker);
+  }else{
+    trackerURL->setText(tr("None - Unreachable?"));
+  }
 }
 
 // Set the color of a row in data model

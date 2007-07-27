@@ -43,7 +43,6 @@
   - Translations update
   - Optimize and cleanup code
   - document url seeds
-  - Improve trackers edition code
   - check painting problems in dl list
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent

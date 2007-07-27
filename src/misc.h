@@ -31,6 +31,9 @@
 #include <QPair>
 #include <QThread>
 
+#include <libtorrent/torrent_info.hpp>
+using namespace libtorrent;
+
 #define MAX_CHAR_TMP 128
 
 /*  Miscellaneaous functions that can be useful */
@@ -142,6 +145,13 @@ class misc : public QObject{
         }
       }
       return QString();
+    }
+
+    static void fixTrackersTiers(std::vector<announce_entry> trackers){
+      unsigned int nbTrackers = trackers.size();
+      for(unsigned int i=0; i<nbTrackers; ++i){
+        trackers[i].tier = i;
+      }
     }
 
     // Insertion sort, used instead of bubble sort because it is
