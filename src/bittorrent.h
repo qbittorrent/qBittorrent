@@ -106,6 +106,7 @@ class bittorrent : public QObject{
     void saveDownloadUploadForTorrent(QString hash);
     void loadDownloadUploadForTorrent(QString hash);
     void HandleDownloadFailure(QString url, QString reason);
+    void loadWebSeeds(QString fileHash);
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
     void setMaxConnections(int maxConnec);
@@ -147,6 +148,7 @@ class bittorrent : public QObject{
     void peerBlocked(QString);
     void downloadFromUrlFailure(QString url, QString reason);
     void fastResumeDataRejected(QString name);
+    void urlSeedProblem(QString url, QString msg);
 
 };
 

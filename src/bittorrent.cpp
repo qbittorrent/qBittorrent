@@ -163,6 +163,7 @@ void bittorrent::deleteTorrent(QString hash, bool permanent){
   torrentBackup.remove(hash+".trackers");
   torrentBackup.remove(hash+".speedLimits");
   torrentBackup.remove(hash+".ratio");
+  torrentBackup.remove(hash+".urlseeds");
   // Remove it from ETAs hash tables
   ETAstats.take(hash);
   ETAs.take(hash);
@@ -210,6 +211,22 @@ void bittorrent::resumeTorrent(QString hash){
     h.resume();
     // Delete .paused file
     QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
+  }
+}
+
+void bittorrent::loadWebSeeds(QString fileHash){
+  QFile urlseeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".urlseeds");
+  if(!urlseeds_file.open(QIODevice::ReadOnly | QIODevice::Text)) return;
+  QByteArray urlseeds_lines = urlseeds_file.readAll();
+  urlseeds_file.close();
+  QList<QByteArray> url_seeds = urlseeds_lines.split('\n');
+  QByteArray url_seed;
+  torrent_handle h = getTorrentHandle(fileHash);
+  torrent_info torrentInfo = h.get_torrent_info();
+  foreach(url_seed, url_seeds){
+    if(!url_seed.isEmpty())
+      qDebug("Loading custom url seed: %s", (const char*)url_seed.data());
+      torrentInfo.add_url_seed(misc::toString((const char*)url_seed.data()));
   }
 }
 
@@ -311,6 +328,8 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, bool onStartup, QStr
     qDebug("Torrent hash is " +  hash.toUtf8());
     // Load filtered files
     loadFilesPriorities(h);
+    // Load custom url seeds
+    loadWebSeeds(hash);
     // Load speed limit from hard drive
     loadTorrentSpeedLimits(hash);
     // Load ratio data
@@ -894,6 +913,9 @@ void bittorrent::readAlerts(){
     else if (fastresume_rejected_alert* p = dynamic_cast<fastresume_rejected_alert*>(a.get())){
       emit fastResumeDataRejected(QString(p->handle.name().c_str()));
     }
+    else if (url_seed_alert* p = dynamic_cast<url_seed_alert*>(a.get())){
+      emit urlSeedProblem(QString(p->url.c_str()), QString(p->msg().c_str()));
+    }
     a = s->pop_alert();
   }
 }
@@ -951,6 +973,8 @@ void bittorrent::reloadTorrent(const torrent_handle &h){
   loadFilesPriorities(new_h);
   // Load speed limit from hard drive
   loadTorrentSpeedLimits(fileHash);
+  // Load custom url seeds
+  loadWebSeeds(fileHash);
   // Load ratio data
   loadDownloadUploadForTorrent(fileHash);
   // Pause torrent if it was paused last time

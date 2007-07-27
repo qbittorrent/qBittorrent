@@ -190,6 +190,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void setTabText(int index, QString text);
     void updateFileSize(QString hash);
     void sortProgressColumnDelayed();
+    void addUrlSeedError(QString url, QString msg);
 
   protected:
     void closeEvent(QCloseEvent *);

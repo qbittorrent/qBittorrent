@@ -41,6 +41,8 @@ properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h
   removeTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
   lowerTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/downarrow.png")));
   riseTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/uparrow.png")));
+  addWS_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
+  deleteWS_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
   setAttribute(Qt::WA_DeleteOnClose);
   // Set Properties list model
   PropListModel = new QStandardItemModel(0,4);
@@ -61,6 +63,8 @@ properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h
   connect(actionNormal, SIGNAL(triggered()), this, SLOT(normalSelection()));
   connect(actionHigh, SIGNAL(triggered()), this, SLOT(highSelection()));
   connect(actionMaximum, SIGNAL(triggered()), this, SLOT(maximumSelection()));
+  connect(addWS_button, SIGNAL(clicked()), this, SLOT(askWebSeed()));
+  connect(deleteWS_button, SIGNAL(clicked()), this, SLOT(deleteSelectedUrlSeeds()));
   // get Infos from torrent handle
   fileHash = QString(misc::toString(h.info_hash()).c_str());
   torrent_status torrentStatus = h.status();
@@ -112,6 +116,9 @@ properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h
     PropListModel->setData(PropListModel->index(row, PROGRESS), QVariant((double)fp[i]));
   }
   loadPiecesPriorities();
+  // List web seeds
+  loadWebSeedsFromFile();
+  loadWebSeeds();
   // Incremental download
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".incremental")){
     incrementalDownload->setChecked(true);
@@ -128,6 +135,27 @@ properties::~properties(){
   delete updateProgressTimer;
   delete PropDelegate;
   delete PropListModel;
+}
+
+void properties::loadWebSeeds(){
+  QString url_seed;
+  torrent_info torrentInfo = h.get_torrent_info();
+  std::vector<std::string> url_seeds = torrentInfo.url_seeds();
+  unsigned int nbSeeds = url_seeds.size();
+  // Clear url seeds list
+  listWebSeeds->clear();
+  // Add hard coded url seeds
+  for(unsigned int i=0; i<nbSeeds; ++i){
+    url_seed = QString(url_seeds[i].c_str());
+    if(manualUrlSeeds.indexOf(url_seed) == -1)
+      qDebug("Added hard-coded url seed to list: %s", (const char*)url_seed.toUtf8());
+      listWebSeeds->addItem(url_seed);
+  }
+  // Add manually added url seeds
+  foreach(url_seed, manualUrlSeeds){
+    listWebSeeds->addItem(url_seed);
+    qDebug("Added custom url seed to list: %s", (const char*)url_seed.toUtf8());
+  }
 }
 
 void properties::loadPiecesPriorities(){
@@ -238,6 +266,28 @@ void properties::loadTrackers(){
   }
 }
 
+void properties::askWebSeed(){
+  bool ok;
+  // Ask user for a new url seed
+  QString url_seed = QInputDialog::getText(this, tr("New url seed"),
+                                             tr("New url seed:"), QLineEdit::Normal,
+                                                 "http://www.", &ok);
+  if(!ok) return;
+  torrent_info torrentInfo = h.get_torrent_info();
+  qDebug("Adding %s web seed", (const char*)url_seed.toUtf8());
+  if(manualUrlSeeds.indexOf(url_seed) != -1) {
+    QMessageBox::warning(this, tr("qBittorrent"),
+                         tr("This url seed is already in the list."),
+                         QMessageBox::Ok);
+    return;
+  }
+  manualUrlSeeds << url_seed;
+  torrentInfo.add_url_seed(url_seed.toStdString());
+  saveWebSeeds();
+  // Refresh the seeds list
+  loadWebSeeds();
+}
+
 // Ask the user for a new tracker
 // and add it to the download list
 // if it is not already in it
@@ -259,18 +309,44 @@ void properties::askForTracker(){
   loadTrackers();
 }
 
+void properties::deleteSelectedUrlSeeds(){
+  QList<QListWidgetItem *> selectedItems;
+  selectedItems = listWebSeeds->selectedItems();
+  QListWidgetItem *item;
+  bool error = false;
+  foreach(item, selectedItems){
+    QString url_seed = item->text();
+    int index = manualUrlSeeds.indexOf(url_seed);
+    if(index != -1){
+      manualUrlSeeds.removeAt(index);
+      qDebug("Removed an url seeds from manualUrlSeeds list");
+    }else{
+      error = true;
+    }
+  }
+  // Save them to disk
+  saveWebSeeds();
+  // Refresh list
+  loadWebSeeds();
+  if(error){
+    QMessageBox::warning(this, tr("qBittorrent"),
+                         tr("Hard-coded url seeds cannot be deleted."),
+                         QMessageBox::Ok);
+  }
+}
+
 void properties::deleteSelectedTrackers(){
   std::vector<announce_entry> trackers = h.trackers();
   QList<QListWidgetItem *> selectedItems;
   selectedItems = trackersURLS->selectedItems();
   QListWidgetItem *item;
-	unsigned int nbTrackers = trackers.size();
-	if(nbTrackers == (unsigned int) selectedItems.size()){
-		QMessageBox::warning(this, tr("qBittorrent"),
-		                   tr("Trackers list can't be empty."),
-												QMessageBox::Ok);
-		return;
-	}
+  unsigned int nbTrackers = trackers.size();
+  if(nbTrackers == (unsigned int) selectedItems.size()){
+    QMessageBox::warning(this, tr("qBittorrent"),
+                        tr("Trackers list can't be empty."),
+                        QMessageBox::Ok);
+    return;
+  }
   foreach(item, selectedItems){
     QString url = item->text();
     for(unsigned int i=0; i<nbTrackers; ++i){
@@ -399,6 +475,34 @@ void properties::on_incrementalDownload_stateChanged(int){
 void properties::on_okButton_clicked(){
   savePiecesPriorities();
   close();
+}
+
+void properties::loadWebSeedsFromFile(){
+  QFile urlseeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".urlseeds");
+  if(!urlseeds_file.open(QIODevice::ReadOnly | QIODevice::Text)) return;
+  QByteArray urlseeds_lines = urlseeds_file.readAll();
+  urlseeds_file.close();
+  QList<QByteArray> url_seeds = urlseeds_lines.split('\n');
+  manualUrlSeeds.clear();
+  QByteArray url_seed;
+  foreach(url_seed, url_seeds){
+    if(!url_seed.isEmpty())
+      manualUrlSeeds << url_seed;
+  }
+}
+
+void properties::saveWebSeeds(){
+  QFile urlseeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".urlseeds");
+  if(!urlseeds_file.open(QIODevice::WriteOnly | QIODevice::Text)){
+    std::cerr << "Error: Could not save url seeds\n";
+    return;
+  }
+  QString url_seed;
+  foreach(url_seed, manualUrlSeeds){
+    urlseeds_file.write(QByteArray((const char*)(url_seed+"\n").toUtf8()));
+  }
+  urlseeds_file.close();
+  qDebug("url seeds were saved");
 }
 
 void properties::savePiecesPriorities(){

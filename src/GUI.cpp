@@ -147,6 +147,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(BTSession, SIGNAL(newDownloadedTorrent(QString, QString)), this, SLOT(processDownloadedFiles(QString, QString)));
   connect(BTSession, SIGNAL(downloadFromUrlFailure(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
   connect(BTSession, SIGNAL(aboutToDownloadFromUrl(QString)), this, SLOT(displayDownloadingUrlInfos(QString)));
+  connect(BTSession, SIGNAL(urlSeedProblem(QString, QString)), this, SLOT(addUrlSeedError(QString, QString)));
   // creating options
   options = new options_imp(this);
   connect(options, SIGNAL(status_changed(QString, bool)), this, SLOT(OptionsSaved(QString, bool)));
@@ -324,7 +325,11 @@ void GUI::setInfoBar(QString info, QString color){
 }
 
 void GUI::addFastResumeRejectedAlert(QString name){
-  setInfoBar(tr("Fast resume data was rejected for torrent %1, checking again...").arg(name));
+  setInfoBar(tr("Fast resume data was rejected for torrent %1, checking again...").arg(name), "red");
+}
+
+void GUI::addUrlSeedError(QString url, QString msg){
+  setInfoBar(tr("Url seed lookup failed for url: %1, message: %2").arg(url).arg(msg), "red");
 }
 
 void GUI::balloonClicked(){

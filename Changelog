@@ -27,6 +27,7 @@
     - FEATURE: Improved a lot downloading from urls (using libcommoncpp2 instead of libcurl)
     - FEATURE: A search request can now be terminated by another
     - FEATURE: User is now warned when fast resume data was rejected
+    - FEATURE: Url seeds are now displayed in torrent properties and are editable
     - I18N: Added Hungarian translation
     - BUGFIX: Progress of paused torrents is now correct on restart
     - BUGFIX: Progress column gets sorted on restart it is was during last execution
