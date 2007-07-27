@@ -13,20 +13,11 @@
    <string>Torrent Properties</string>
   </property>
   <layout class="QVBoxLayout" >
+   <property name="margin" >
+    <number>9</number>
+   </property>
    <property name="spacing" >
     <number>6</number>
-   </property>
-   <property name="leftMargin" >
-    <number>9</number>
-   </property>
-   <property name="topMargin" >
-    <number>9</number>
-   </property>
-   <property name="rightMargin" >
-    <number>9</number>
-   </property>
-   <property name="bottomMargin" >
-    <number>9</number>
    </property>
    <item>
     <widget class="QTabWidget" name="torrentContent" >
@@ -38,20 +29,11 @@
        <string>Main infos</string>
       </attribute>
       <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
        <property name="spacing" >
         <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
        </property>
        <item>
         <widget class="QLabel" name="fileName" >
@@ -99,54 +81,27 @@
           <string>Torrent infos</string>
          </property>
          <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
           <property name="spacing" >
            <number>6</number>
           </property>
-          <property name="leftMargin" >
-           <number>9</number>
-          </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
           <item>
            <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
             <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
-            </property>
             <item>
              <layout class="QVBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
               <property name="spacing" >
                <number>6</number>
-              </property>
-              <property name="leftMargin" >
-               <number>0</number>
-              </property>
-              <property name="topMargin" >
-               <number>0</number>
-              </property>
-              <property name="rightMargin" >
-               <number>0</number>
-              </property>
-              <property name="bottomMargin" >
-               <number>0</number>
               </property>
               <item>
                <widget class="QLabel" name="savePath_lbl" >
@@ -234,20 +189,11 @@
             </item>
             <item>
              <layout class="QVBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
               <property name="spacing" >
                <number>6</number>
-              </property>
-              <property name="leftMargin" >
-               <number>0</number>
-              </property>
-              <property name="topMargin" >
-               <number>0</number>
-              </property>
-              <property name="rightMargin" >
-               <number>0</number>
-              </property>
-              <property name="bottomMargin" >
-               <number>0</number>
               </property>
               <item>
                <widget class="QLabel" name="save_path" >
@@ -330,7 +276,9 @@
        <item>
         <widget class="QGroupBox" name="groupBox" >
          <property name="sizePolicy" >
-          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+          <sizepolicy>
+           <hsizetype>0</hsizetype>
+           <vsizetype>0</vsizetype>
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -356,54 +304,27 @@
           <string>Current session</string>
          </property>
          <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
           <property name="spacing" >
            <number>6</number>
           </property>
-          <property name="leftMargin" >
-           <number>9</number>
-          </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
           <item>
            <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
             <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
-            </property>
             <item>
              <layout class="QVBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
               <property name="spacing" >
                <number>6</number>
-              </property>
-              <property name="leftMargin" >
-               <number>0</number>
-              </property>
-              <property name="topMargin" >
-               <number>0</number>
-              </property>
-              <property name="rightMargin" >
-               <number>0</number>
-              </property>
-              <property name="bottomMargin" >
-               <number>0</number>
               </property>
               <item>
                <widget class="QLabel" name="label_5" >
@@ -481,20 +402,11 @@
             </item>
             <item>
              <layout class="QVBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
               <property name="spacing" >
                <number>6</number>
-              </property>
-              <property name="leftMargin" >
-               <number>0</number>
-              </property>
-              <property name="topMargin" >
-               <number>0</number>
-              </property>
-              <property name="rightMargin" >
-               <number>0</number>
-              </property>
-              <property name="bottomMargin" >
-               <number>0</number>
               </property>
               <item>
                <widget class="QLabel" name="upTotal" >
@@ -569,25 +481,18 @@
        <string>Trackers</string>
       </attribute>
       <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
        <property name="spacing" >
         <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
        </property>
        <item>
         <widget class="QGroupBox" name="groupBox_2" >
          <property name="sizePolicy" >
-          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+          <sizepolicy>
+           <hsizetype>7</hsizetype>
+           <vsizetype>0</vsizetype>
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -613,37 +518,19 @@
           <string>Tracker</string>
          </property>
          <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
           <property name="spacing" >
            <number>6</number>
           </property>
-          <property name="leftMargin" >
-           <number>9</number>
-          </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
           <item>
            <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
             <property name="spacing" >
              <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
             </property>
             <item>
              <widget class="QLabel" name="label_9" >
@@ -665,25 +552,18 @@
             </item>
             <item>
              <layout class="QVBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
               <property name="spacing" >
                <number>6</number>
-              </property>
-              <property name="leftMargin" >
-               <number>0</number>
-              </property>
-              <property name="topMargin" >
-               <number>0</number>
-              </property>
-              <property name="rightMargin" >
-               <number>0</number>
-              </property>
-              <property name="bottomMargin" >
-               <number>0</number>
               </property>
               <item>
                <widget class="QListWidget" name="trackersURLS" >
                 <property name="sizePolicy" >
-                 <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+                 <sizepolicy>
+                  <hsizetype>7</hsizetype>
+                  <vsizetype>0</vsizetype>
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -692,20 +572,11 @@
               </item>
               <item>
                <layout class="QHBoxLayout" >
+                <property name="margin" >
+                 <number>0</number>
+                </property>
                 <property name="spacing" >
                  <number>6</number>
-                </property>
-                <property name="leftMargin" >
-                 <number>0</number>
-                </property>
-                <property name="topMargin" >
-                 <number>0</number>
-                </property>
-                <property name="rightMargin" >
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin" >
-                 <number>0</number>
                 </property>
                 <item>
                  <spacer>
@@ -777,20 +648,11 @@
             </item>
             <item>
              <layout class="QVBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
               <property name="spacing" >
                <number>6</number>
-              </property>
-              <property name="leftMargin" >
-               <number>0</number>
-              </property>
-              <property name="topMargin" >
-               <number>0</number>
-              </property>
-              <property name="rightMargin" >
-               <number>0</number>
-              </property>
-              <property name="bottomMargin" >
-               <number>0</number>
               </property>
               <item>
                <spacer>
@@ -862,20 +724,11 @@
           </item>
           <item>
            <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
             <property name="spacing" >
              <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
             </property>
             <item>
              <widget class="QLabel" name="label_10" >
@@ -906,20 +759,11 @@
           </item>
           <item>
            <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
             <property name="spacing" >
              <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
             </property>
             <item>
              <widget class="QLabel" name="label_2" >
@@ -983,6 +827,12 @@
        <string>Url seeds</string>
       </attribute>
       <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
        <item>
         <widget class="QLabel" name="webSeeds_lbl" >
          <property name="font" >
@@ -1001,6 +851,12 @@
        </item>
        <item>
         <layout class="QHBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
          <item>
           <spacer>
            <property name="orientation" >
@@ -1075,20 +931,11 @@
        <string>Torrent content</string>
       </attribute>
       <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
        <property name="spacing" >
         <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
        </property>
        <item>
         <widget class="QLabel" name="label_4" >
@@ -1163,20 +1010,11 @@
    </item>
    <item>
     <layout class="QHBoxLayout" >
+     <property name="margin" >
+      <number>0</number>
+     </property>
      <property name="spacing" >
       <number>6</number>
-     </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
-      <number>0</number>
      </property>
      <item>
       <spacer>
