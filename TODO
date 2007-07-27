@@ -42,7 +42,6 @@
   - Windows port (Chris - Peerkoel)
   - Translations update
   - Optimize and cleanup code
-  - check painting problems in dl list
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent
     - double free or corruption on exit

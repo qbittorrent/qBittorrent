@@ -17,11 +17,20 @@
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QVBoxLayout" >
-    <property name="margin" >
-     <number>9</number>
-    </property>
     <property name="spacing" >
      <number>6</number>
+    </property>
+    <property name="leftMargin" >
+     <number>9</number>
+    </property>
+    <property name="topMargin" >
+     <number>9</number>
+    </property>
+    <property name="rightMargin" >
+     <number>9</number>
+    </property>
+    <property name="bottomMargin" >
+     <number>9</number>
     </property>
     <item>
      <widget class="QTabWidget" name="tabs" >
@@ -36,27 +45,54 @@
         <string>Downloads</string>
        </attribute>
        <layout class="QVBoxLayout" >
-        <property name="margin" >
-         <number>9</number>
-        </property>
         <property name="spacing" >
          <number>6</number>
         </property>
+        <property name="leftMargin" >
+         <number>9</number>
+        </property>
+        <property name="topMargin" >
+         <number>9</number>
+        </property>
+        <property name="rightMargin" >
+         <number>9</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>9</number>
+        </property>
         <item>
          <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>0</number>
-          </property>
           <property name="spacing" >
            <number>6</number>
           </property>
+          <property name="leftMargin" >
+           <number>0</number>
+          </property>
+          <property name="topMargin" >
+           <number>0</number>
+          </property>
+          <property name="rightMargin" >
+           <number>0</number>
+          </property>
+          <property name="bottomMargin" >
+           <number>0</number>
+          </property>
           <item>
            <layout class="QHBoxLayout" >
-            <property name="margin" >
-             <number>0</number>
-            </property>
             <property name="spacing" >
              <number>6</number>
+            </property>
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>0</number>
             </property>
             <item>
              <spacer>
@@ -275,18 +311,25 @@
             <string>Log</string>
            </attribute>
            <layout class="QVBoxLayout" >
-            <property name="margin" >
-             <number>9</number>
-            </property>
             <property name="spacing" >
              <number>6</number>
+            </property>
+            <property name="leftMargin" >
+             <number>9</number>
+            </property>
+            <property name="topMargin" >
+             <number>9</number>
+            </property>
+            <property name="rightMargin" >
+             <number>9</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>9</number>
             </property>
             <item>
              <widget class="QTextBrowser" name="infoBar" >
               <property name="sizePolicy" >
-               <sizepolicy>
-                <hsizetype>7</hsizetype>
-                <vsizetype>7</vsizetype>
+               <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -309,11 +352,20 @@
             <string>IP filter</string>
            </attribute>
            <layout class="QVBoxLayout" >
-            <property name="margin" >
-             <number>9</number>
-            </property>
             <property name="spacing" >
              <number>6</number>
+            </property>
+            <property name="leftMargin" >
+             <number>9</number>
+            </property>
+            <property name="topMargin" >
+             <number>9</number>
+            </property>
+            <property name="rightMargin" >
+             <number>9</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>9</number>
             </property>
             <item>
              <widget class="QTextBrowser" name="textBlockedUsers" >
@@ -408,7 +460,10 @@
     </size>
    </property>
    <attribute name="toolBarArea" >
-    <number>4</number>
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
    </attribute>
    <addaction name="actionOpen" />
    <addaction name="actionDownload_from_URL" />

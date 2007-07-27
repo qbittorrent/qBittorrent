@@ -72,10 +72,15 @@ class DLListDelegate: public QAbstractItemDelegate {
           }
           painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Highlight));
         }else{
-          value = index.data(Qt::BackgroundColorRole);
-          if (value.isValid() && qvariant_cast<QColor>(value).isValid()){
-            painter->fillRect(option.rect, qvariant_cast<QColor>(value));
-          }
+          painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Base));
+          // The following should work but is broken (retry with future versions of Qt)
+//           QVariant value = index.data(Qt::BackgroundRole);
+//           if (qVariantCanConvert<QBrush>(value)) {
+//             QPointF oldBO = painter->brushOrigin();
+//             painter->setBrushOrigin(option.rect.topLeft());
+//             painter->fillRect(option.rect, qvariant_cast<QBrush>(value));
+//             painter->setBrushOrigin(oldBO);
+//           }
         }
       }
       switch(index.column()){
