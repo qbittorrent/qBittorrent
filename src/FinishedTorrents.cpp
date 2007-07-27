@@ -237,8 +237,7 @@ void FinishedTorrents::showProperties(const QModelIndex &index){
   int row = index.row();
   QString fileHash = finishedListModel->data(finishedListModel->index(row, F_HASH)).toString();
   torrent_handle h = BTSession->getTorrentHandle(fileHash);
-  QStringList errors = ((GUI*)parent)->trackerErrors.value(fileHash, QStringList(tr("None", "i.e: No error message")));
-  properties *prop = new properties(this, BTSession, h, errors);
+  properties *prop = new properties(this, BTSession, h);
   connect(prop, SIGNAL(mustHaveFullAllocationMode(torrent_handle)), BTSession, SLOT(reloadTorrent(torrent_handle)));
   connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSize(QString)));
   prop->show();

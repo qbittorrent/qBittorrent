@@ -52,9 +52,6 @@ namespace fs = boost::filesystem;
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
 
-  public:
-    QHash<QString, QStringList> trackerErrors;
-
   private:
     // Bittorrent
     bittorrent *BTSession;
@@ -78,21 +75,10 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     bool delayedSorting;
     Qt::SortOrder delayedSortingOrder;
     // Keyboard shortcuts
-    QShortcut *createShortcut;
-    QShortcut *openShortcut;
-    QShortcut *quitShortcut;
     QShortcut *switchSearchShortcut;
     QShortcut *switchDownShortcut;
     QShortcut *switchUpShortcut;
     QShortcut *switchRSSShortcut;
-    QShortcut *propertiesShortcut;
-    QShortcut *optionsShortcut;
-    QShortcut *delShortcut;
-    QShortcut *delPermShortcut;
-    QShortcut *startShortcut;
-    QShortcut *startAllShortcut;
-    QShortcut *pauseShortcut;
-    QShortcut *pauseAllPermShortcut;
     // Preview
     previewSelect *previewSelection;
     QProcess *previewProcess;
@@ -185,7 +171,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void finishedTorrent(torrent_handle& h);
     void fullDiskError(torrent_handle& h);
     void portListeningFailure();
-    void trackerError(QString hash, QString time, QString msg);
     void trackerAuthenticationRequired(torrent_handle& h);
     void setTabText(int index, QString text);
     void updateFileSize(QString hash);

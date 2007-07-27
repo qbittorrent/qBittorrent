@@ -23,6 +23,8 @@
 
 #include <QHash>
 #include <QTimer>
+#include <QList>
+#include <QPair>
 #include <QStringList>
 
 #include <libtorrent/torrent_handle.hpp>
@@ -52,6 +54,7 @@ class bittorrent : public QObject{
     QHash<QString, QPair<size_type,size_type> > ratioData;
     QTimer ETARefresher;
     QList<QString> fullAllocationModeList;
+    QHash<QString, QList<QPair<QString, QString> > > trackersErrors;
 
   protected:
     QString getSavePath(QString hash);
@@ -78,6 +81,7 @@ class bittorrent : public QObject{
     bool inFullAllocationMode(QString hash) const;
     float getRealRatio(QString hash) const;
     session* getSession() const;
+    QList<QPair<QString, QString> > getTrackersErrors(QString hash) const;
 
   public slots:
     void addTorrent(QString path, bool fromScanDir = false, bool onStartup = false, QString from_url = QString());

@@ -39,7 +39,7 @@ class properties : public QDialog, private Ui::properties{
     QString fileHash;
     PropListDelegate *PropDelegate;
     QStandardItemModel *PropListModel;
-    QTimer *updateProgressTimer;
+    QTimer *updateInfosTimer;
     bool has_filtered_files;
     bool changedFilteredfiles;
     bittorrent *BTSession;
@@ -50,7 +50,7 @@ class properties : public QDialog, private Ui::properties{
     void on_incrementalDownload_stateChanged(int);
     void setRowColor(int row, QString color);
     void savePiecesPriorities();
-    void updateProgress();
+    void updateInfos();
     void loadPiecesPriorities();
     void setAllPiecesState(unsigned short priority);
     void askForTracker();
@@ -68,6 +68,7 @@ class properties : public QDialog, private Ui::properties{
     void saveWebSeeds();
     void loadWebSeedsFromFile();
     void deleteSelectedUrlSeeds();
+    void loadTrackersErrors();
 
   signals:
     void filteredFilesChanged(QString fileHash);
@@ -76,7 +77,7 @@ class properties : public QDialog, private Ui::properties{
 
   public:
     // Constructor
-    properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h, QStringList trackerErrors = QStringList());
+    properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h);
     ~properties();
 };
 

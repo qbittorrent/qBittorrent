@@ -27,22 +27,24 @@
 // in v1.1.0
 - Tabs support in search
 - Have a look at libcommoncpp2 to see if it can be useful for other stuff than url downloading
+- Allow to hide columns?
+- Allow to scan multiple directories?
 
 // in v1.0.0 (partial) - WIP
 - Check storage st creation + hasher in torrent creation
 - test IPv6 support (How? Who uses IPv6?)
-- Sorting in Download Status column should be smarter than just an alphabetical sort
-- Allow to scan multiple directories?
 - Fix all (or almost all) opened bugs in bug tracker
 - Fix column sorting with Qt 4.3 - Reported to Trolltech, waiting for their fix
 - update sorting when a new torrent is added?
-- Allow to hide columns?
+- Add a checking icon in dl list to differenciate from connecting.
 - Complete documentation and english translation
 * beta3
   - Windows port (Chris - Peerkoel)
   - Translations update
   - Optimize and cleanup code
+  - document url seeds
   - Improve trackers edition code
+  - check painting problems in dl list
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent
     - double free or corruption on exit

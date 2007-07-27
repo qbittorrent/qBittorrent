@@ -31,7 +31,7 @@
 #include <QStandardItemModel>
 
 // Constructor
-properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h, QStringList trackerErrors): QDialog(parent), h(h){
+properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h): QDialog(parent), h(h){
   setupUi(this);
   this->BTSession = BTSession;
   changedFilteredfiles = false;
@@ -100,10 +100,7 @@ properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h
   }
   snprintf(tmp, MAX_CHAR_TMP, "%.1f", ratio);
   shareRatio->setText(tmp);
-  // Tracker Errors
-  for(int i=0; i < trackerErrors.size(); ++i){
-    this->trackerErrors->append(trackerErrors.at(i));
-  }
+  loadTrackersErrors();
   std::vector<float> fp;
   h.file_progress(fp);
   // List files in torrent
@@ -125,16 +122,29 @@ properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h
   }else{
     incrementalDownload->setChecked(false);
   }
-  updateProgressTimer = new QTimer(this);
-  connect(updateProgressTimer, SIGNAL(timeout()), this, SLOT(updateProgress()));
-  updateProgressTimer->start(2000);
+  updateInfosTimer = new QTimer(this);
+  connect(updateInfosTimer, SIGNAL(timeout()), this, SLOT(updateInfos()));
+  updateInfosTimer->start(2000);
 }
 
 properties::~properties(){
   qDebug("Properties destroyed");
-  delete updateProgressTimer;
+  delete updateInfosTimer;
   delete PropDelegate;
   delete PropListModel;
+}
+
+void properties::loadTrackersErrors(){
+  // Tracker Errors
+  QList<QPair<QString, QString> > errors = BTSession->getTrackersErrors(fileHash);
+  unsigned int nbTrackerErrors = errors.size();
+  trackerErrors->clear();
+  for(unsigned int i=0; i < nbTrackerErrors; ++i){
+    QPair<QString, QString> pair = errors.at(i);
+    trackerErrors->append("<font color='grey'>"+pair.first+"</font> - <font color='red'>"+pair.second+"</font>");
+  }
+  if(!nbTrackerErrors)
+    trackerErrors->append(tr("None", "i.e: No error message"));
 }
 
 void properties::loadWebSeeds(){
@@ -424,7 +434,7 @@ void properties::lowerSelectedTracker(){
   }
 }
 
-void properties::updateProgress(){
+void properties::updateInfos(){
   std::vector<float> fp;
   try{
     h.file_progress(fp);
@@ -436,6 +446,7 @@ void properties::updateProgress(){
     // torrent was removed, closing properties
     close();
   }
+  loadTrackersErrors();
 }
 
 // Set the color of a row in data model

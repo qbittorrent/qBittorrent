@@ -167,6 +167,8 @@ void bittorrent::deleteTorrent(QString hash, bool permanent){
   // Remove it from ETAs hash tables
   ETAstats.take(hash);
   ETAs.take(hash);
+  // Remove tracker errors
+  trackersErrors.take(hash);
   // Remove it from ratio table
   ratioData.take(hash);
   int index = fullAllocationModeList.indexOf(hash);
@@ -900,8 +902,12 @@ void bittorrent::readAlerts(){
     }
     else if (tracker_alert* p = dynamic_cast<tracker_alert*>(a.get())){
       // Level: fatal
-      QString fileHash = QString(misc::toString(p->handle.info_hash()).c_str());
-      emit trackerError(fileHash, QTime::currentTime().toString("hh:mm:ss"), QString(a->msg().c_str()));
+      QString hash = QString(misc::toString(p->handle.info_hash()).c_str());
+      QList<QPair<QString, QString> > errors = trackersErrors.value(hash, QList<QPair<QString, QString> >());
+      if(errors.size() > 5)
+        errors.removeAt(0);
+      errors << QPair<QString,QString>(QTime::currentTime().toString("hh:mm:ss"), QString(a->msg().c_str()));
+      trackersErrors[hash] = errors;
       // Authentication
       if(p->status_code == 401){
         emit trackerAuthenticationRequired(p->handle);
@@ -918,6 +924,10 @@ void bittorrent::readAlerts(){
     }
     a = s->pop_alert();
   }
+}
+
+QList<QPair<QString, QString> > bittorrent::getTrackersErrors(QString hash) const{
+  return trackersErrors.value(hash, QList<QPair<QString, QString> >());
 }
 
 // Reload a torrent with full allocation mode

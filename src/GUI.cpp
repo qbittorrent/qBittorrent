@@ -138,7 +138,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(BTSession, SIGNAL(finishedTorrent(torrent_handle&)), this, SLOT(finishedTorrent(torrent_handle&)));
   connect(BTSession, SIGNAL(fullDiskError(torrent_handle&)), this, SLOT(fullDiskError(torrent_handle&)));
   connect(BTSession, SIGNAL(portListeningFailure()), this, SLOT(portListeningFailure()));
-  connect(BTSession, SIGNAL(trackerError(QString, QString, QString)), this, SLOT(trackerError(QString, QString, QString)));
   connect(BTSession,SIGNAL(allTorrentsFinishedChecking()), this, SLOT(sortProgressColumnDelayed()));
   connect(BTSession, SIGNAL(trackerAuthenticationRequired(torrent_handle&)), this, SLOT(trackerAuthenticationRequired(torrent_handle&)));
   connect(BTSession, SIGNAL(peerBlocked(QString)), this, SLOT(addLogPeerBlocked(const QString)));
@@ -1231,8 +1230,7 @@ void GUI::showProperties(const QModelIndex &index){
   int row = index.row();
   QString fileHash = DLListModel->data(DLListModel->index(row, HASH)).toString();
   torrent_handle h = BTSession->getTorrentHandle(fileHash);
-  QStringList errors = trackerErrors.value(fileHash, QStringList(tr("None", "i.e: No error message")));
-  properties *prop = new properties(this, BTSession, h, errors);
+  properties *prop = new properties(this, BTSession, h);
   connect(prop, SIGNAL(mustHaveFullAllocationMode(torrent_handle)), BTSession, SLOT(reloadTorrent(torrent_handle)));
   connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSize(QString)));
   prop->show();
@@ -1429,10 +1427,10 @@ void GUI::on_actionStart_All_triggered(){
     for(unsigned int i=0; i<nbRows; ++i){
       fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
       // Remove .paused file
-      QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
-      // Update DL list items
-      DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-      setRowColor(i, "grey");
+      if(QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused")){
+        DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
+        setRowColor(i, "grey");
+      }
     }
     setInfoBar(tr("All downloads were resumed."));
   }
@@ -1528,17 +1526,6 @@ void GUI::fullDiskError(torrent_handle& h){
 // in the given range.
 void GUI::portListeningFailure(){
   setInfoBar(tr("Couldn't listen on any of the given ports."), "red");
-}
-
-// Called when we receive an error from tracker
-void GUI::trackerError(QString hash, QString time, QString msg){
-  // Check trackerErrors list size and clear it if it is too big
-  if(trackerErrors.size() > 50){
-    trackerErrors.clear();
-  }
-  QStringList errors = trackerErrors.value(hash, QStringList());
-  errors.append("<font color='grey'>"+time+"</font> - <font color='red'>"+msg+"</font>");
-  trackerErrors.insert(hash, errors);
 }
 
 // Called when a tracker requires authentication
