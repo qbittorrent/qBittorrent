@@ -23,7 +23,7 @@
     - FEATURE: IPv6 is now fully supported
     - FEATURE: Real torrent share ratio is now displayed in transfer list
     - FEATURE: Added keyboard shortcuts for main actions (see wiki)
-    - FEATURE: Added a popup menu to set priority for multiple fies at once
+    - FEATURE: Added a popup menu to set priority for multiple files at once
     - FEATURE: Improved a lot downloading from urls (using libcommoncpp2 instead of libcurl)
     - FEATURE: A search request can now be terminated by another
     - FEATURE: User is now warned when fast resume data was rejected
