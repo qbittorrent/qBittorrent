@@ -39,11 +39,11 @@
 - Fix all (or almost all) opened bugs in bug tracker
 - Fix column sorting with Qt 4.3 - Reported to Trolltech, waiting for their fix
 - update sorting when a new torrent is added?
-- Add a checking icon in dl list to differenciate from connecting.
 - Complete documentation and english translation
+- Windows port (Chris - Peerkoel)
+- Add checking icon to documentation
 * beta3
-  - Windows port (Chris - Peerkoel)
-  - Translations update
+  - Translations update ( IN PROGESS)
   - Optimize and cleanup code
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent

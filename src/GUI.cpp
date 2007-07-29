@@ -617,7 +617,7 @@ void GUI::updateDlList(bool force){
         case torrent_status::checking_files:
         case torrent_status::queued_for_checking:
           if(BTSession->getTorrentsToPauseAfterChecking().indexOf(fileHash) == -1){
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
+            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/time.png")), Qt::DecorationRole);
             setRowColor(row, "grey");
             DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
           }
