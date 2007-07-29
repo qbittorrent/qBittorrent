@@ -842,7 +842,7 @@
           </font>
          </property>
          <property name="text" >
-          <string>The following web seeds are available for this torrent:</string>
+          <string>The following url seeds are available for this torrent:</string>
          </property>
         </widget>
        </item>

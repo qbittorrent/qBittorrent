@@ -167,7 +167,7 @@ Copyright (c) 2006 Christophe Dumez&lt;br&gt;
 <context>
     <name>DLListDelegate</name>
     <message>
-        <location filename="../DLListDelegate.h" line="92"/>
+        <location filename="../DLListDelegate.h" line="97"/>
         <source>KiB/s</source>
         <translation>KB/s</translation>
     </message>
@@ -708,7 +708,7 @@ Copyright (c) 2006 Christophe Dumez&lt;br&gt;
 <context>
     <name>FinishedListDelegate</name>
     <message>
-        <location filename="../FinishedListDelegate.h" line="86"/>
+        <location filename="../FinishedListDelegate.h" line="91"/>
         <source>KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1395,13 +1395,13 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation>qBittorrent %1 gestartet.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="558"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL Geschwindigkeit: %1 KB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="558"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP Geschwindigkeit: %1 KiB/s</translation>
@@ -3146,7 +3146,7 @@ Changelog:
         <translation>Torrent Eigenschaften</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1197"/>
+        <location filename="../properties.ui" line="1035"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -3241,7 +3241,7 @@ Changelog:
         <translation type="obsolete">Torrent Inhalt</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1107"/>
+        <location filename="../properties.ui" line="954"/>
         <source>Files contained in current torrent:</source>
         <translation>Dateien im aktuellen Torrent:</translation>
     </message>
@@ -3311,12 +3311,12 @@ Changelog:
         <translation type="obsolete"> Unvollständig:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="613"/>
+        <location filename="../properties.ui" line="518"/>
         <source>Tracker</source>
         <translation>Tracker</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="662"/>
+        <location filename="../properties.ui" line="549"/>
         <source>Trackers:</source>
         <translation>Tracker:</translation>
     </message>
@@ -3361,7 +3361,7 @@ Changelog:
         <translation type="obsolete">Wahr</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="894"/>
+        <location filename="../properties.ui" line="747"/>
         <source>Errors:</source>
         <translation>Fehler:</translation>
     </message>
@@ -3371,7 +3371,7 @@ Changelog:
         <translation>Fortschritt</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="38"/>
+        <location filename="../properties.ui" line="29"/>
         <source>Main infos</source>
         <translation>Haupt-Informationen</translation>
     </message>
@@ -3381,27 +3381,27 @@ Changelog:
         <translation type="obsolete">Anzahl der Peers:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="944"/>
+        <location filename="../properties.ui" line="788"/>
         <source>Current tracker:</source>
         <translation>Derzeitiger Tracker:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="422"/>
+        <location filename="../properties.ui" line="343"/>
         <source>Total uploaded:</source>
         <translation>Gesamter Upload:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="440"/>
+        <location filename="../properties.ui" line="361"/>
         <source>Total downloaded:</source>
         <translation>Gesamter Download:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="476"/>
+        <location filename="../properties.ui" line="397"/>
         <source>Total failed:</source>
         <translation>Insgesamt fehlgeschlagen:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1075"/>
+        <location filename="../properties.ui" line="931"/>
         <source>Torrent content</source>
         <translation>Torrent Inhalt</translation>
     </message>
@@ -3411,7 +3411,7 @@ Changelog:
         <translation type="obsolete">Optionen</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="561"/>
+        <location filename="../properties.ui" line="473"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>In richtiger Reihenfolge herunterladen (langsamer, aber besser zum Vorschauen)</translation>
     </message>
@@ -3431,42 +3431,42 @@ Changelog:
         <translation type="obsolete">Leecher:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="166"/>
+        <location filename="../properties.ui" line="121"/>
         <source>Save path:</source>
         <translation>Speicher-Pfad:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="99"/>
+        <location filename="../properties.ui" line="81"/>
         <source>Torrent infos</source>
         <translation>Torrent Infos</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="185"/>
+        <location filename="../properties.ui" line="140"/>
         <source>Creator:</source>
         <translation>Ersteller:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="204"/>
+        <location filename="../properties.ui" line="159"/>
         <source>Torrent hash:</source>
         <translation>Torrent Prüfsumme:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="229"/>
+        <location filename="../properties.ui" line="184"/>
         <source>Comment:</source>
         <translation>Kommentar:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="356"/>
+        <location filename="../properties.ui" line="304"/>
         <source>Current session</source>
         <translation>Derzeitige Sitzung</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="458"/>
+        <location filename="../properties.ui" line="379"/>
         <source>Share ratio:</source>
         <translation>Share Verhältnis:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="569"/>
+        <location filename="../properties.ui" line="481"/>
         <source>Trackers</source>
         <translation>Tracker</translation>
     </message>
@@ -3526,38 +3526,28 @@ Changelog:
         <translation>Ignoriert: Datei wird nicht heruntergeladen</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1219"/>
+        <location filename="../properties.ui" line="1057"/>
         <source>Ignored</source>
         <translation type="unfinished">Ignoriert</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1224"/>
+        <location filename="../properties.ui" line="1062"/>
         <source>Normal</source>
         <translation type="unfinished">Normal</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1229"/>
+        <location filename="../properties.ui" line="1067"/>
         <source>Maximum</source>
         <translation type="unfinished">Maximum</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1234"/>
+        <location filename="../properties.ui" line="1072"/>
         <source>High</source>
         <translation type="unfinished">Hoch</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="983"/>
+        <location filename="../properties.ui" line="827"/>
         <source>Url seeds</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../properties.ui" line="995"/>
-        <source>The following web seeds are available for this torrent:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../properties_imp.cpp" line="283"/>
-        <source>New url seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3579,6 +3569,17 @@ Changelog:
         <location filename="../properties_imp.cpp" line="147"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="283"/>
+        <source>New url seed</source>
+        <comment>New HTTP source</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="845"/>
+        <source>The following url seeds are available for this torrent:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

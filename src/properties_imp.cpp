@@ -124,7 +124,7 @@ properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h
   }
   updateInfosTimer = new QTimer(this);
   connect(updateInfosTimer, SIGNAL(timeout()), this, SLOT(updateInfos()));
-  updateInfosTimer->start(2000);
+  updateInfosTimer->start(3000);
 }
 
 properties::~properties(){
@@ -280,7 +280,7 @@ void properties::loadTrackers(){
 void properties::askWebSeed(){
   bool ok;
   // Ask user for a new url seed
-  QString url_seed = QInputDialog::getText(this, tr("New url seed"),
+  QString url_seed = QInputDialog::getText(this, tr("New url seed", "New HTTP source"),
                                              tr("New url seed:"), QLineEdit::Normal,
                                                  "http://www.", &ok);
   if(!ok) return;

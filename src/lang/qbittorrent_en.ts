@@ -133,7 +133,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>DLListDelegate</name>
     <message>
-        <location filename="../DLListDelegate.h" line="92"/>
+        <location filename="../DLListDelegate.h" line="97"/>
         <source>KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -574,7 +574,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>FinishedListDelegate</name>
     <message>
-        <location filename="../FinishedListDelegate.h" line="86"/>
+        <location filename="../FinishedListDelegate.h" line="91"/>
         <source>KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -755,13 +755,13 @@ Please close the other one first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="558"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="558"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation type="unfinished"></translation>
@@ -2030,12 +2030,12 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1197"/>
+        <location filename="../properties.ui" line="1035"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1107"/>
+        <location filename="../properties.ui" line="954"/>
         <source>Files contained in current torrent:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2045,12 +2045,12 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="613"/>
+        <location filename="../properties.ui" line="518"/>
         <source>Tracker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="662"/>
+        <location filename="../properties.ui" line="549"/>
         <source>Trackers:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2060,7 +2060,7 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="894"/>
+        <location filename="../properties.ui" line="747"/>
         <source>Errors:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2070,77 +2070,77 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="38"/>
+        <location filename="../properties.ui" line="29"/>
         <source>Main infos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="944"/>
+        <location filename="../properties.ui" line="788"/>
         <source>Current tracker:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="422"/>
+        <location filename="../properties.ui" line="343"/>
         <source>Total uploaded:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="440"/>
+        <location filename="../properties.ui" line="361"/>
         <source>Total downloaded:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="476"/>
+        <location filename="../properties.ui" line="397"/>
         <source>Total failed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1075"/>
+        <location filename="../properties.ui" line="931"/>
         <source>Torrent content</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="561"/>
+        <location filename="../properties.ui" line="473"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="166"/>
+        <location filename="../properties.ui" line="121"/>
         <source>Save path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="99"/>
+        <location filename="../properties.ui" line="81"/>
         <source>Torrent infos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="185"/>
+        <location filename="../properties.ui" line="140"/>
         <source>Creator:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="204"/>
+        <location filename="../properties.ui" line="159"/>
         <source>Torrent hash:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="229"/>
+        <location filename="../properties.ui" line="184"/>
         <source>Comment:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="356"/>
+        <location filename="../properties.ui" line="304"/>
         <source>Current session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="458"/>
+        <location filename="../properties.ui" line="379"/>
         <source>Share ratio:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="569"/>
+        <location filename="../properties.ui" line="481"/>
         <source>Trackers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2200,22 +2200,22 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1219"/>
+        <location filename="../properties.ui" line="1057"/>
         <source>Ignored</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1224"/>
+        <location filename="../properties.ui" line="1062"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1229"/>
+        <location filename="../properties.ui" line="1067"/>
         <source>Maximum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1234"/>
+        <location filename="../properties.ui" line="1072"/>
         <source>High</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2225,18 +2225,8 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="983"/>
+        <location filename="../properties.ui" line="827"/>
         <source>Url seeds</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../properties.ui" line="995"/>
-        <source>The following web seeds are available for this torrent:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../properties_imp.cpp" line="283"/>
-        <source>New url seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2258,6 +2248,17 @@ Changelog:
         <location filename="../properties_imp.cpp" line="147"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="283"/>
+        <source>New url seed</source>
+        <comment>New HTTP source</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="845"/>
+        <source>The following url seeds are available for this torrent:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

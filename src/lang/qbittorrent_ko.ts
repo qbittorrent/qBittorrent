@@ -165,7 +165,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>DLListDelegate</name>
     <message>
-        <location filename="../DLListDelegate.h" line="92"/>
+        <location filename="../DLListDelegate.h" line="97"/>
         <source>KiB/s</source>
         <translation></translation>
     </message>
@@ -727,7 +727,7 @@ list:</source>
 <context>
     <name>FinishedListDelegate</name>
     <message>
-        <location filename="../FinishedListDelegate.h" line="86"/>
+        <location filename="../FinishedListDelegate.h" line="91"/>
         <source>KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1445,13 +1445,13 @@ Please close the other one first.</source>
         <translation>큐비토런트 %1가 시작되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="558"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>다운로딩 속도: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="558"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>업로딩 속도: %1 KiB/s</translation>
@@ -3258,7 +3258,7 @@ Changelog:
         <translation type="obsolete">토렌트 내용</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1197"/>
+        <location filename="../properties.ui" line="1035"/>
         <source>OK</source>
         <translation>확인</translation>
     </message>
@@ -3333,7 +3333,7 @@ Changelog:
         <translation type="obsolete"> 부분적:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1107"/>
+        <location filename="../properties.ui" line="954"/>
         <source>Files contained in current torrent:</source>
         <translation>현 토렌트에 있는 파일들:</translation>
     </message>
@@ -3373,12 +3373,12 @@ Changelog:
         <translation type="obsolete">맞음</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="613"/>
+        <location filename="../properties.ui" line="518"/>
         <source>Tracker</source>
         <translation>서버</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="662"/>
+        <location filename="../properties.ui" line="549"/>
         <source>Trackers:</source>
         <translation>서버목록:</translation>
     </message>
@@ -3388,7 +3388,7 @@ Changelog:
         <translation>없음 - 접근할수 없습니까?</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="894"/>
+        <location filename="../properties.ui" line="747"/>
         <source>Errors:</source>
         <translation>에러:</translation>
     </message>
@@ -3398,7 +3398,7 @@ Changelog:
         <translation>진행상황</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="38"/>
+        <location filename="../properties.ui" line="29"/>
         <source>Main infos</source>
         <translation>주요 정보</translation>
     </message>
@@ -3408,27 +3408,27 @@ Changelog:
         <translation type="obsolete">전송자수:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="944"/>
+        <location filename="../properties.ui" line="788"/>
         <source>Current tracker:</source>
         <translation>현재 트레커:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="422"/>
+        <location filename="../properties.ui" line="343"/>
         <source>Total uploaded:</source>
         <translation>총 업로드양:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="440"/>
+        <location filename="../properties.ui" line="361"/>
         <source>Total downloaded:</source>
         <translation>총 다운로드양:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="476"/>
+        <location filename="../properties.ui" line="397"/>
         <source>Total failed:</source>
         <translation>총 실패수:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1075"/>
+        <location filename="../properties.ui" line="931"/>
         <source>Torrent content</source>
         <translation>토렌트 내용</translation>
     </message>
@@ -3438,7 +3438,7 @@ Changelog:
         <translation type="obsolete">환경설정</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="561"/>
+        <location filename="../properties.ui" line="473"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>순차적으로 다운받기(늘리지만 미리보기하기에 좋음)</translation>
     </message>
@@ -3458,42 +3458,42 @@ Changelog:
         <translation type="obsolete">부분 공유:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="166"/>
+        <location filename="../properties.ui" line="121"/>
         <source>Save path:</source>
         <translation>저장 경로:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="99"/>
+        <location filename="../properties.ui" line="81"/>
         <source>Torrent infos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="185"/>
+        <location filename="../properties.ui" line="140"/>
         <source>Creator:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="204"/>
+        <location filename="../properties.ui" line="159"/>
         <source>Torrent hash:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="229"/>
+        <location filename="../properties.ui" line="184"/>
         <source>Comment:</source>
         <translation type="unfinished">설명:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="356"/>
+        <location filename="../properties.ui" line="304"/>
         <source>Current session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="458"/>
+        <location filename="../properties.ui" line="379"/>
         <source>Share ratio:</source>
         <translation type="unfinished">공유비율:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="569"/>
+        <location filename="../properties.ui" line="481"/>
         <source>Trackers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3553,38 +3553,28 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1219"/>
+        <location filename="../properties.ui" line="1057"/>
         <source>Ignored</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1224"/>
+        <location filename="../properties.ui" line="1062"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1229"/>
+        <location filename="../properties.ui" line="1067"/>
         <source>Maximum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1234"/>
+        <location filename="../properties.ui" line="1072"/>
         <source>High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="983"/>
+        <location filename="../properties.ui" line="827"/>
         <source>Url seeds</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../properties.ui" line="995"/>
-        <source>The following web seeds are available for this torrent:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../properties_imp.cpp" line="283"/>
-        <source>New url seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3607,6 +3597,17 @@ Changelog:
         <source>None</source>
         <comment>i.e: No error message</comment>
         <translation type="unfinished">없음</translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="283"/>
+        <source>New url seed</source>
+        <comment>New HTTP source</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="845"/>
+        <source>The following url seeds are available for this torrent:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
