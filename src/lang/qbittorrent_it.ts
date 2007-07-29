@@ -2174,7 +2174,7 @@ Changelog:</translation>
         <translation type="unfinished">Vorrei ringraziare le seguenti persone che si sono rese volontarie per tradurre qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="69"/>
+        <location filename="../about_imp.h" line="70"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished">Perpiacere contattami se vorresti tradurre qBittorrent nel tuo linguaggio</translation>
     </message>

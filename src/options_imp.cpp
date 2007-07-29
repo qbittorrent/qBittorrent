@@ -96,6 +96,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   locales << "ca_ES";
   combo_i18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/portugal.png"))), QString::fromUtf8("Português"));
   locales << "pt_PT";
+  combo_i18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/brazil.png"))), QString::fromUtf8("Português brasileiro"));
+  locales << "pt_BR";
   combo_i18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/poland.png"))), QString::fromUtf8("Polski"));
   locales << "pl_PL";
   combo_i18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/slovakia.png"))), QString::fromUtf8("Slovenčina"));

@@ -2126,7 +2126,7 @@ Muutoshistoria:
         <translation type="unfinished">Haluan kiittää seuraavia henkilöitä, jotka ovat vapaaehtoisesti kääntäneet qBittorrentin:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="69"/>
+        <location filename="../about_imp.h" line="70"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished"></translation>
     </message>

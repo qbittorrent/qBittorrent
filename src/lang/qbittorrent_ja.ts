@@ -1763,7 +1763,7 @@ Changelog:
         <translation type="unfinished">qBittorrent の翻訳にボランティアしてくださった以下の方々に感謝したいと思います:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="69"/>
+        <location filename="../about_imp.h" line="70"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished">qBittorrent を自分の言語に翻訳したいとお思いならご連絡ください。</translation>
     </message>

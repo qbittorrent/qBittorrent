@@ -2181,7 +2181,7 @@ Endringer:</translation>
         <translation type="unfinished">Jeg ønsker å takke følgende personer, som frivillig har oversatt qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="69"/>
+        <location filename="../about_imp.h" line="70"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished">Kontakt meg om du ønsker å oversette qBittorrent til ditt eget språk.</translation>
     </message>

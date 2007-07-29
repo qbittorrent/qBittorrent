@@ -2328,7 +2328,7 @@ Záznam zmien:</translation>
         <translation type="unfinished">Rád by som poďakoval nasledovným dobrovoľníkom, ktorí preložili qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="69"/>
+        <location filename="../about_imp.h" line="70"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished">Prosím, kontaktujte ma ak chcete preložiť qBittorrent do vášho jazyka.</translation>
     </message>

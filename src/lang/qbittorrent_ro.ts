@@ -2298,7 +2298,7 @@ Changelog:
         <translation type="unfinished">Eu vreau să mulţumesc voluntarilor care au translat qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="69"/>
+        <location filename="../about_imp.h" line="70"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished"></translation>
     </message>

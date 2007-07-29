@@ -1915,7 +1915,7 @@ Changelog:
         <translation type="unfinished">Jag vill tacka följande personer som bidragit med att översätta qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="69"/>
+        <location filename="../about_imp.h" line="70"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished">Kontakta mig om du vill översätta qBittorrent till ditt språk.</translation>
     </message>

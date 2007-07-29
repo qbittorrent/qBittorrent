@@ -2394,7 +2394,7 @@ Changelog:
         <translation type="unfinished">感谢以下所有qBittorrent的志愿翻译者:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="69"/>
+        <location filename="../about_imp.h" line="70"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished">如果你想为qBittorrent提供翻译请与我联系.</translation>
     </message>

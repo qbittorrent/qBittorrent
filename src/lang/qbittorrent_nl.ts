@@ -2498,7 +2498,7 @@ Changelog:
         <translation type="unfinished">Ik wil de volgende mensen graag bedanken die qBittorrent hebben vertaald:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="69"/>
+        <location filename="../about_imp.h" line="70"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished">Neem contact met me op als u qBittorrent naar uw eigen taal wilt vertalen.</translation>
     </message>

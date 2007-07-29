@@ -2520,7 +2520,7 @@ Changelog:
         <translation type="unfinished">Бих искал да благодаря на следните доброволци, превели qBittorent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="69"/>
+        <location filename="../about_imp.h" line="70"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished">Моля, свържете се с мен ако искате да преведете qBittorrent на вашия език.</translation>
     </message>

@@ -2535,7 +2535,7 @@ Log:
         <translation type="unfinished">Vui agrair a les següents persones la seva voluntat per traduir qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="69"/>
+        <location filename="../about_imp.h" line="70"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished"></translation>
     </message>

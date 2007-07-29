@@ -29,6 +29,7 @@
     - FEATURE: User is now warned when fast resume data was rejected
     - FEATURE: Url seeds are now displayed in torrent properties and are editable
     - I18N: Added Hungarian translation
+    - I18N: Added Brazilian translation
     - BUGFIX: Progress of paused torrents is now correct on restart
     - BUGFIX: Progress column gets sorted on restart it is was during last execution
     - BUGFIX: Made ETA more reliable using stats instead of instant values

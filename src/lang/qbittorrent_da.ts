@@ -1900,7 +1900,7 @@ Changelog:
         <translation type="unfinished">Jeg vil gerne takke disse personer, som meldte sig frivilligt til at oversætte qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="69"/>
+        <location filename="../about_imp.h" line="70"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished">Kontakt mig venligst hvis du kunne tænke dig og oversætte qBittorrent til dit eget sprog.</translation>
     </message>
