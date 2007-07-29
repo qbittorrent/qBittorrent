@@ -107,8 +107,6 @@ void FinishedTorrents::addFinishedSHA(QString hash){
     // Update the number of finished torrents
     ++nbFinished;
     ((GUI*)parent)->setTabText(1, tr("Finished") +" ("+QString(misc::toString(nbFinished).c_str())+")");
-  } else {
-    qDebug("Problem: this torrent (%s) has finished twice...", hash.toStdString().c_str());
   }
 }
 
