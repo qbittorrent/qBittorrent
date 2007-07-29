@@ -198,6 +198,9 @@ void bittorrent::pauseTorrent(QString hash){
     QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
     paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
     paused_file.close();
+    qDebug("Torrent paused successfully");
+  }else{
+    qDebug("Could not pause torrent, invalid or already paused.");
   }
   int index = torrentsToPauseAfterChecking.indexOf(hash);
   if(index != -1) {
