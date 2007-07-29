@@ -588,8 +588,6 @@ void GUI::updateDlList(bool force){
           setRowColor(row, "red");
           BTSession->pauseTorrent(fileHash);
           continue;
-        }else{
-          qDebug("%s should be paused but it hasn't finished checking yet", (const char*)DLListModel->index(row, NAME).data().toString().toUtf8());
         }
       }
       if(delayedSorting && BTSession->getUncheckedTorrentsList().indexOf(fileHash) != -1){
@@ -1478,22 +1476,28 @@ void GUI::on_actionTorrent_Properties_triggered(){
 // called when a torrent has finished
 void GUI::finishedTorrent(torrent_handle& h){
     QSettings settings("qBittorrent", "qBittorrent");
+    bool show_msg = true;
     QString fileName = QString(h.name().c_str());
     int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
     // Add it to finished tab
     QString hash = QString(misc::toString(h.info_hash()).c_str());
-    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")) return;
-    setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
-    finishedTorrentTab->addFinishedSHA(hash);
-    QList<QStandardItem *> items = DLListModel->findItems(hash, Qt::MatchExactly, HASH );
-    if(items.size() != 1){
-      qDebug("Problem: Can't delete finished torrent from download list");
-      return;
+    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")){
+      show_msg = false;
+      qDebug("We received a finished signal for torrent %s, but it already has a .finished file", (const char*)hash.toUtf8());
     }
-    DLListModel->removeRow(DLListModel->indexFromItem(items.at(0)).row());
-    --nbTorrents;
-    tabs->setTabText(0, tr("Downloads") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
-    if(systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
+    if(show_msg)
+      setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
+    finishedTorrentTab->addFinishedSHA(hash);
+    QList<QStandardItem *> items = DLListModel->findItems(hash, Qt::MatchExactly, HASH);
+    Q_ASSERT(items.size() <= 1);
+    if(items.size() != 0){
+      DLListModel->removeRow(DLListModel->indexFromItem(items.at(0)).row());
+      --nbTorrents;
+      tabs->setTabText(0, tr("Downloads") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
+    }else{
+      qDebug("finished torrent %s is not in download list, nothing to do", (const char*)hash.toUtf8());
+    }
+    if(show_msg && systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
       myTrayIcon->showMessage(tr("Download finished"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
     }
 }
@@ -1507,6 +1511,7 @@ void GUI::fullDiskError(torrent_handle& h){
   }
   // Download will be paused by libtorrent. Updating GUI information accordingly
   int row = getRowFromHash(QString(misc::toString(h.info_hash()).c_str()));
+  Q_ASSERT(row != -1);
   DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
   DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
   DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
@@ -1536,11 +1541,15 @@ void GUI::checkConnectionStatus(){
   session_status sessionStatus = BTSession->getSessionStatus();
   // Update ratio info
   float ratio = 1.;
-  if(sessionStatus.total_payload_download != 0){
-    ratio = (float)sessionStatus.total_payload_upload/(float)sessionStatus.total_payload_download;
-  }
-  if(ratio > 10.){
-    ratio = 10.;
+  if(sessionStatus.total_payload_download == 0){
+    if(sessionStatus.total_payload_upload == 0)
+      ratio = 1.;
+    else
+      ratio = 10.;
+  }else{
+    float ratio = (float)sessionStatus.total_payload_upload / (float)sessionStatus.total_payload_download;
+    if(ratio > 10.)
+      ratio = 10.;
   }
   snprintf(tmp, MAX_CHAR_TMP, "%.1f", ratio);
   LCD_Ratio->display(tmp);
@@ -1568,7 +1577,6 @@ void GUI::checkConnectionStatus(){
       connecStatusLblIcon->setToolTip("<b>"+tr("Connection status:")+"</b><br>"+tr("Offline")+"<br><i>"+tr("No peers found...")+"</i>");
     }
   }
-//   qDebug("Connection status updated");
 }
 
 /*****************************************************
