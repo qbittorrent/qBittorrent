@@ -543,7 +543,6 @@ void GUI::sortProgressColumnDelayed() {
     if(delayedSorting){
       sortDownloadListFloat(PROGRESS, delayedSortingOrder);
       qDebug("Delayed sorting of progress column");
-      delayedSorting = false;
     }
 }
 
