@@ -187,6 +187,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     ~GUI();
     // Methods
     int getRowFromHash(QString hash) const;
+    unsigned int getCurrentTabIndex() const;
     QPoint screenCenter();
 };
 

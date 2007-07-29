@@ -565,7 +565,7 @@ void GUI::updateDlList(bool force){
     finishedTorrentTab->updateFinishedList();
     return;
   }
-//   qDebug("Updating download list");
+  Q_ASSERT(tabs->currentIndex() == 0);
   LCD_UpSpeed->display(tmp); // UP LCD
   LCD_DownSpeed->display(tmp2); // DL LCD
   // browse handles
@@ -577,7 +577,15 @@ void GUI::updateDlList(bool force){
     try{
       torrent_status torrentStatus = h.status();
       QString fileHash = QString(misc::toString(h.info_hash()).c_str());
+      // If this is a finished torrent, no need to refresh it here
+      if(finishedSHAs.indexOf(fileHash) != -1) continue;
       int row = getRowFromHash(fileHash);
+      if(row == -1){
+        qDebug("Info: Could not find filename in download list, adding it...");
+        restoreInDownloadList(h);
+        row = getRowFromHash(fileHash);
+      }
+      Q_ASSERT(row != -1);
       if(BTSession->getTorrentsToPauseAfterChecking().indexOf(fileHash) != -1){
         // Pause torrent if it finished checking and it is was supposed to be paused.
         // This is a trick to see the progress of the pause torrents on startup
@@ -595,21 +603,15 @@ void GUI::updateDlList(bool force){
           BTSession->setTorrentFinishedChecking(fileHash);
         }
       }
-      row = getRowFromHash(fileHash); // List may have been sorted in the meantime
+      // No need to update a paused torrent
       if(h.is_paused()) continue;
-      if(finishedSHAs.indexOf(fileHash) != -1) continue;
-      if(row == -1){
-        qDebug("Info: Could not find filename in download list, adding it...");
-        restoreInDownloadList(h);
-        row = getRowFromHash(fileHash);
-      }
       // Parse download state
       torrent_info ti = h.get_torrent_info();
       // Setting download state
       switch(torrentStatus.state){
         case torrent_status::finished:
         case torrent_status::seeding:
-          qDebug("Warning: this shouldn't happen, no finished torrents in download tab, moving it");
+          qDebug("Not good: no finished torrents in download tab, moving it");
           finishedTorrent(h);
           continue;
         case torrent_status::checking_files:
@@ -659,7 +661,10 @@ void GUI::updateDlList(bool force){
       continue;
     }
   }
-//   qDebug("Updated Download list");
+}
+
+unsigned int GUI::getCurrentTabIndex() const{
+  return tabs->currentIndex();
 }
 
 void GUI::restoreInDownloadList(torrent_handle h){

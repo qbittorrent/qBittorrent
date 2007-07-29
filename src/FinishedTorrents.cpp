@@ -164,7 +164,7 @@ void FinishedTorrents::on_actionSet_upload_limit_triggered(){
 }
 
 void FinishedTorrents::updateFinishedList(){
-//   qDebug("Updating finished list");
+  Q_ASSERT((GUI*)parent->getCurrentTabIndex() == 1);
   QString hash;
   foreach(hash, finishedSHAs){
     torrent_handle h = BTSession->getTorrentHandle(hash);
