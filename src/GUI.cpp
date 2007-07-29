@@ -1036,12 +1036,15 @@ void GUI::on_actionDelete_Permanently_triggered(){
       foreach(fileHash, hashesToDelete){
         // Get the file name & hash
         QString fileName;
-        int row = getRowFromHash(fileHash);
+        int row = -1;
         if(inDownloadList){
+          row = getRowFromHash(fileHash);
           fileName = DLListModel->data(DLListModel->index(row, NAME)).toString();
         }else{
+          row = finishedTorrentTab->getRowFromHash(fileHash);
           fileName = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME)).toString();
         }
+        Q_ASSERT(row != -1);
         // Remove the torrent
         BTSession->deleteTorrent(fileHash, true);
         // Delete item from download list
@@ -1104,12 +1107,15 @@ void GUI::on_actionDelete_triggered(){
       foreach(fileHash, hashesToDelete){
         // Get the file name & hash
         QString fileName;
-        int row = getRowFromHash(fileHash);
+        int row = -1;
         if(inDownloadList){
+          row = getRowFromHash(fileHash);
           fileName = DLListModel->data(DLListModel->index(row, NAME)).toString();
         }else{
+          row = finishedTorrentTab->getRowFromHash(fileHash);
           fileName = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME)).toString();
         }
+        Q_ASSERT(row != -1);
         // Remove the torrent
         BTSession->deleteTorrent(fileHash, false);
         // Delete item from download list
@@ -1120,7 +1126,7 @@ void GUI::on_actionDelete_triggered(){
         } else {
           finishedTorrentTab->deleteFromFinishedList(fileHash);
         }
-          // Update info bar
+        // Update info bar
         setInfoBar(tr("'%1' was removed.", "'xxx.avi' was removed.").arg(fileName));
       }
     }
@@ -1239,6 +1245,7 @@ void GUI::showProperties(const QModelIndex &index){
 
 void GUI::updateFileSize(QString hash){
   int row = getRowFromHash(hash);
+  Q_ASSERT(row != -1);
   DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)BTSession->torrentEffectiveSize(hash)));
 }
 
