@@ -675,7 +675,7 @@ void GUI::restoreInDownloadList(torrent_handle h){
   DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
   DLListModel->setData(DLListModel->index(row, HASH), QVariant(hash));
   // Pause torrent if it was paused last time
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")){
+  if(BTSession->isPaused(hash)) {
     DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
     setRowColor(row, "red");
   }else{
@@ -898,13 +898,9 @@ void GUI::closeEvent(QCloseEvent *e){
     // Hide tray icon
     myTrayIcon->hide();
   }
-  // Save DHT entry
-  BTSession->saveDHTEntry();
   // Save window size, columns size
   writeSettings();
   saveColWidthDLList();
-  // Create fast resume data
-  BTSession->saveFastResumeData();
   // Accept exit
   e->accept();
   qApp->exit();

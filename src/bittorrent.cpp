@@ -66,7 +66,12 @@ bittorrent::bittorrent(){
 
 // Main destructor
 bittorrent::~bittorrent(){
+  // Disable directory scanning
   disableDirectoryScanning();
+  // Do some saving
+  saveDHTEntry();
+  saveFastResumeAndRatioData();
+  // Delete our objects
   delete downloader;
   delete s;
 }
@@ -646,8 +651,8 @@ void bittorrent::saveDownloadUploadForTorrent(QString hash){
 
 // Save fastresume data for all torrents
 // and remove them from the session
-void bittorrent::saveFastResumeData(){
-  qDebug("Saving fast resume data");
+void bittorrent::saveFastResumeAndRatioData(){
+  qDebug("Saving fast resume and ratio data");
   QString file;
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
   // Checking if torrentBackup Dir exists
@@ -686,7 +691,7 @@ void bittorrent::saveFastResumeData(){
     // Remove torrent
     s->remove_torrent(h);
   }
-  qDebug("Fast resume data saved");
+  qDebug("Fast resume and ratio data saved");
 }
 
 bool bittorrent::isFilePreviewPossible(QString hash) const{
@@ -1129,6 +1134,7 @@ void bittorrent::saveDHTEntry(){
       boost::filesystem::ofstream out((const char*)(misc::qBittorrentPath()+QString("dht_state")).toUtf8(), std::ios_base::binary);
       out.unsetf(std::ios_base::skipws);
       bencode(std::ostream_iterator<char>(out), dht_state);
+      qDebug("DHT entry saved");
     }catch (std::exception& e){
       std::cerr << e.what() << "\n";
     }

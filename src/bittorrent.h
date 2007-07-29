@@ -93,7 +93,7 @@ class bittorrent : public QObject{
     void enableDHT();
     void disableDHT();
     void saveDHTEntry();
-    void saveFastResumeData();
+    void saveFastResumeAndRatioData();
     void enableDirectoryScanning(QString scan_dir);
     void disableDirectoryScanning();
     void enablePeerExchange();
