@@ -2335,32 +2335,32 @@ Changelog:
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="1081"/>
+        <location filename="../options_imp.cpp" line="1083"/>
         <source>Range Start IP</source>
         <translation>Første IP i rækken</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1082"/>
+        <location filename="../options_imp.cpp" line="1084"/>
         <source>Start IP:</source>
         <translation>Første IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1105"/>
+        <location filename="../options_imp.cpp" line="1107"/>
         <source>Range End IP</source>
         <translation>Sidste IP i rækken</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1106"/>
+        <location filename="../options_imp.cpp" line="1108"/>
         <source>End IP:</source>
         <translation>Sidste IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1120"/>
+        <location filename="../options_imp.cpp" line="1122"/>
         <source>IP Range Comment</source>
         <translation>IP Række Kommentar</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1121"/>
+        <location filename="../options_imp.cpp" line="1123"/>
         <source>Comment:</source>
         <translation>Kommentar:</translation>
     </message>
@@ -2371,48 +2371,48 @@ Changelog:
         <translation>til</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="947"/>
+        <location filename="../options_imp.cpp" line="949"/>
         <source>Choose your favourite preview program</source>
         <translation>Vælg dit foretrukne smugkig program</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1115"/>
+        <location filename="../options_imp.cpp" line="1117"/>
         <source>Invalid IP</source>
         <translation>Ugyldig IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1115"/>
+        <location filename="../options_imp.cpp" line="1117"/>
         <source>This IP is invalid.</source>
         <translation>Denne IP er ugyldig.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="747"/>
+        <location filename="../options_imp.cpp" line="749"/>
         <source>Options were saved successfully.</source>
         <translation>Indstillingerne blev gemt.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="932"/>
+        <location filename="../options_imp.cpp" line="934"/>
         <source>Choose scan directory</source>
         <translation>Vælg mappe til scan</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="939"/>
+        <location filename="../options_imp.cpp" line="941"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>Vælg en ipfilter.dat fil</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="955"/>
+        <location filename="../options_imp.cpp" line="957"/>
         <source>Choose a save directory</source>
         <translation>Vælg en standart mappe</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="987"/>
+        <location filename="../options_imp.cpp" line="989"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>I/O Fejl</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="987"/>
+        <location filename="../options_imp.cpp" line="989"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>Kunne ikke åbne %1 til læsning.</translation>
     </message>
