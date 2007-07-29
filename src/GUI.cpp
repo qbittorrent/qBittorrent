@@ -770,6 +770,7 @@ void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoa
       if(fromLoadColWidth){
         // Progress sorting must be delayed until files are checked (on startup)
         delayedSorting = true;
+        qDebug("Delayed sorting of the progress column");
         delayedSortingOrder = sortOrder;
       }else{
         sortDownloadListFloat(index, sortOrder);
