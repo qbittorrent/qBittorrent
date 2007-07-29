@@ -18,17 +18,18 @@
 
 // Unsure
 - Azureus spoofing to prevent ban from trackers?
-- Web interface?
 - Option to shutdown computer when downloads are finished
 - Add a torrent scheduler
 - Make use of dbus on Linux for the single instance instead of socket communication?
   (http://techbase.kde.org/Development/Tutorials/D-Bus/Accessing_Interfaces)
+- search engines customizing
 
 // in v1.1.0
 - Tabs support in search
 - Have a look at libcommoncpp2 to see if it can be useful for other stuff than url downloading
 - Allow to hide columns?
 - Allow to scan multiple directories?
+- Web interface (turbogears?)
 
 // in v1.0.0 (partial) - WIP
 - Check storage st creation + hasher in torrent creation
@@ -38,10 +39,13 @@
 - update sorting when a new torrent is added?
 - Add a checking icon in dl list to differenciate from connecting.
 - Complete documentation and english translation
+- support zipped torrents?
 * beta3
   - Windows port (Chris - Peerkoel)
   - Translations update
   - Optimize and cleanup code
+  - improve and test tracker authentication code (remember login/pass)
+  - are paused torrents downloaded anyway sometimes? (check this)
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent
     - double free or corruption on exit

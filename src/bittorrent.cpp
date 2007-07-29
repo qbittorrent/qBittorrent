@@ -198,11 +198,11 @@ void bittorrent::pauseTorrent(QString hash){
     QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
     paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
     paused_file.close();
-    int index = torrentsToPauseAfterChecking.indexOf(hash);
-    if(index != -1) {
-      torrentsToPauseAfterChecking.removeAt(index);
-      qDebug("A torrent was paused just after checking, good");
-    }
+  }
+  int index = torrentsToPauseAfterChecking.indexOf(hash);
+  if(index != -1) {
+    torrentsToPauseAfterChecking.removeAt(index);
+    qDebug("A torrent was paused just after checking, good");
   }
 }
 
