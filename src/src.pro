@@ -18,10 +18,12 @@ DEFINES += VERSION_BUGFIX=0
 
 contains(DEBUG_MODE, 1){
   CONFIG += debug
+  CONFIG -= release
   message(Debug build!)
 }
 contains(DEBUG_MODE, 0){
   CONFIG -= debug
+  CONFIG += release
   message(Release build!)
 }
 

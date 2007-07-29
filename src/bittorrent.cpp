@@ -190,33 +190,48 @@ void bittorrent::cleanDeleter(deleteThread* deleter){
 }
 
 // Pause a running torrent
-void bittorrent::pauseTorrent(QString hash){
+bool bittorrent::pauseTorrent(QString hash){
+  bool change = false;
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
   if(h.is_valid() && !h.is_paused()){
     h.pause();
-    // Create .paused file
-    QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
-    paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
-    paused_file.close();
+    change = true;
     qDebug("Torrent paused successfully");
   }else{
     qDebug("Could not pause torrent, invalid or already paused.");
   }
+  // Create .paused file if necessary
+  if(!QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")){
+    QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
+    paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
+    paused_file.close();
+  }
+  // Remove from the list of torrents to pause after checking
   int index = torrentsToPauseAfterChecking.indexOf(hash);
   if(index != -1) {
     torrentsToPauseAfterChecking.removeAt(index);
     qDebug("A torrent was paused just after checking, good");
   }
+  return change;
 }
 
 // Resume a torrent in paused state
-void bittorrent::resumeTorrent(QString hash){
+bool bittorrent::resumeTorrent(QString hash){
+  bool success = false;
   torrent_handle h = s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString())));
   if(h.is_valid() && h.is_paused()){
     h.resume();
-    // Delete .paused file
-    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
+    success = true;
   }
+  // Delete .paused file
+  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused"))
+    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
+  int index = torrentsToPauseAfterChecking.indexOf(hash);
+  if(index != -1){
+    torrentsToPauseAfterChecking.removeAt(index);
+    success = true;
+  }
+  return success;
 }
 
 void bittorrent::loadWebSeeds(QString fileHash){
@@ -809,34 +824,6 @@ void bittorrent::saveTrackerFile(QString hash){
     tracker_file.write(QByteArray(trackers[i].url.c_str())+QByteArray("|")+QByteArray(misc::toString(i).c_str())+QByteArray("\n"));
   }
   tracker_file.close();
-}
-
-// Pause all torrents in session
-bool bittorrent::pauseAllTorrents(){
-  bool paused_torrents = false;
-  std::vector<torrent_handle> handles = s->get_torrents();
-  for(unsigned int i=0; i<handles.size(); ++i){
-    torrent_handle h = handles[i];
-    if(h.is_valid() && !h.is_paused()){
-      h.pause();
-      paused_torrents = true;
-    }
-  }
-  return paused_torrents;
-}
-
-// Resume all torrents in session
-bool bittorrent::resumeAllTorrents(){
-  bool resumed_torrents = false;
-  std::vector<torrent_handle> handles = s->get_torrents();
-  for(unsigned int i=0; i<handles.size(); ++i){
-    torrent_handle h = handles[i];
-    if(h.is_valid() && h.is_paused()){
-      h.resume();
-      resumed_torrents = true;
-    }
-  }
-  return resumed_torrents;
 }
 
 // Add uT PeX extension to bittorrent session

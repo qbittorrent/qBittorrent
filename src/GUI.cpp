@@ -588,6 +588,8 @@ void GUI::updateDlList(bool force){
           setRowColor(row, "red");
           BTSession->pauseTorrent(fileHash);
           continue;
+        }else{
+          qDebug("%s should be paused but it hasn't finished checking yet", (const char*)DLListModel->index(row, NAME).data().toString().toUtf8());
         }
       }
       if(delayedSorting && BTSession->getUncheckedTorrentsList().indexOf(fileHash) != -1){
@@ -1370,16 +1372,12 @@ void GUI::configureSession(bool deleteOptions){
 // Pause All Downloads in DL list
 void GUI::on_actionPause_All_triggered(){
   QString fileHash;
-  // Pause all torrents
-  if(BTSession->pauseAllTorrents()){
-    // update download list
-    unsigned int nbRows = DLListModel->rowCount();
-    for(unsigned int i=0; i<nbRows; ++i){
-      fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
-      // Create .paused file
-      QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
-      paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
-      paused_file.close();
+  bool change = false;
+  // update download list
+  unsigned int nbRows = DLListModel->rowCount();
+  for(unsigned int i=0; i<nbRows; ++i){
+    fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
+    if(BTSession->pauseTorrent(fileHash)){
       // Update DL list items
       DLListModel->setData(DLListModel->index(i, DLSPEED), QVariant((double)0.));
       DLListModel->setData(DLListModel->index(i, UPSPEED), QVariant((double)0.));
@@ -1387,9 +1385,11 @@ void GUI::on_actionPause_All_triggered(){
       DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
       DLListModel->setData(DLListModel->index(i, SEEDSLEECH), QVariant("0/0"));
       setRowColor(i, "red");
+      change = true;
     }
-    setInfoBar(tr("All downloads were paused."));
   }
+  if(change)
+    setInfoBar(tr("All downloads were paused."));
 }
 
 // pause selected items in the list
@@ -1400,9 +1400,7 @@ void GUI::on_actionPause_triggered(){
     if(index.column() == NAME){
       // Get the file name
       QString fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
-      if(!BTSession->isPaused(fileHash)){
-        // Pause the torrent
-        BTSession->pauseTorrent(fileHash);
+      if(BTSession->pauseTorrent(fileHash)){
         // Update DL status
         int row = index.row();
         DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
@@ -1420,20 +1418,19 @@ void GUI::on_actionPause_triggered(){
 // Resume All Downloads in DL list
 void GUI::on_actionStart_All_triggered(){
   QString fileHash;
-  // Pause all torrents
-  if(BTSession->resumeAllTorrents()){
-    // update download list
-    unsigned int nbRows = DLListModel->rowCount();
-    for(unsigned int i=0; i<nbRows; ++i){
-      fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
-      // Remove .paused file
-      if(QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused")){
-        DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-        setRowColor(i, "grey");
-      }
+  unsigned int nbRows = DLListModel->rowCount();
+  bool change = false;
+  for(unsigned int i=0; i<nbRows; ++i){
+    fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
+    // Remove .paused file
+    if(BTSession->resumeTorrent(fileHash)){
+      DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
+      setRowColor(i, "grey");
+      change = true;
     }
-    setInfoBar(tr("All downloads were resumed."));
   }
+  if(change)
+    setInfoBar(tr("All downloads were resumed."));
 }
 
 // start selected items in the list
@@ -1444,11 +1441,7 @@ void GUI::on_actionStart_triggered(){
     if(index.column() == NAME){
       // Get the file name
       QString fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
-      if(BTSession->isPaused(fileHash)){
-        // Resume the torrent
-        BTSession->resumeTorrent(fileHash);
-        // Delete .paused file
-        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
+      if(BTSession->resumeTorrent(fileHash)){
         // Update DL status
         int row = index.row();
         setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(QString(BTSession->getTorrentHandle(fileHash).name().c_str())));

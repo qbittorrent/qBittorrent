@@ -88,10 +88,8 @@ class bittorrent : public QObject{
     void downloadFromUrl(QString url);
     void downloadFromURLList(const QStringList& url_list);
     void deleteTorrent(QString hash, bool permanent = false);
-    void pauseTorrent(QString hash);
-    bool pauseAllTorrents();
-    bool resumeAllTorrents();
-    void resumeTorrent(QString hash);
+    bool pauseTorrent(QString hash);
+    bool resumeTorrent(QString hash);
     void enableDHT();
     void disableDHT();
     void saveDHTEntry();
