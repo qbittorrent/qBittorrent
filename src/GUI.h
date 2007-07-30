@@ -130,7 +130,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void displayUpTab();
     void displaySearchTab();
     void displayRSSTab();
-    void handleDownloadFromUrlFailure(QString, QString);
+    void handleDownloadFromUrlFailure(QString, QString) const;
     // Torrent actions
     void showProperties(const QModelIndex &index);
     void on_actionTorrent_Properties_triggered();
@@ -188,7 +188,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // Methods
     int getRowFromHash(QString hash) const;
     unsigned int getCurrentTabIndex() const;
-    QPoint screenCenter();
+    QPoint screenCenter() const;
 };
 
 #endif

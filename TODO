@@ -32,6 +32,7 @@
 - Web interface (turbogears?)
 - improve and test tracker authentication code (remember login/pass)
 - support zipped torrents?
+- Split Download list / GUI code
 
 // in v1.0.0 (partial) - WIP
 - Check storage st creation + hasher in torrent creation

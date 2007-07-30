@@ -389,6 +389,7 @@ void GUI::on_actionSet_download_limit_triggered(){
       hashes << DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
     }
   }
+  Q_ASSERT(hashes.size() > 0);
   new BandwidthAllocationDialog(this, false, BTSession, hashes);
 }
 
@@ -402,10 +403,11 @@ void GUI::on_actionSet_upload_limit_triggered(){
       hashes << DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
     }
   }
+  Q_ASSERT(hashes.size() > 0);
   new BandwidthAllocationDialog(this, true, BTSession, hashes);
 }
 
-void GUI::handleDownloadFromUrlFailure(QString url, QString reason){
+void GUI::handleDownloadFromUrlFailure(QString url, QString reason) const{
   // Display a message box
   QMessageBox::critical(0, tr("Url download error"), tr("Couldn't download file at url: %1, reason: %2.").arg(url).arg(reason));
 }
@@ -423,7 +425,7 @@ void GUI::on_actionSet_global_download_limit_triggered(){
 void GUI::on_actionPreview_file_triggered(){
   if(tabs->currentIndex() > 1) return;
   bool inDownloadList = true;
-  if(tabs->currentIndex() != 0)
+  if(tabs->currentIndex())
     inDownloadList = false;
   QModelIndex index;
   QModelIndexList selectedIndexes;
@@ -447,7 +449,9 @@ void GUI::on_actionPreview_file_triggered(){
 }
 
 void GUI::cleanTempPreviewFile(int, QProcess::ExitStatus){
-  QFile::remove(QDir::tempPath()+QDir::separator()+"qBT_preview.tmp");
+  if(!QFile::remove(QDir::tempPath()+QDir::separator()+"qBT_preview.tmp")){
+    std::cerr << "Couldn't remove temporary file: " << (const char*)(QDir::tempPath()+QDir::separator()+"qBT_preview.tmp").toUtf8() << "\n";
+  }
 }
 
 void GUI::displayDLListMenu(const QPoint& pos){
@@ -457,28 +461,37 @@ void GUI::displayDLListMenu(const QPoint& pos){
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   QSettings settings("qBittorrent", "qBittorrent");
   QString previewProgram = settings.value("Options/Misc/PreviewProgram", QString()).toString();
+  bool has_pause = false, has_start = false, has_preview = false;
   foreach(index, selectedIndexes){
     if(index.column() == NAME){
       // Get the file name
       QString fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
       // Get handle and pause the torrent
       torrent_handle h = BTSession->getTorrentHandle(fileHash);
+      if(!h.is_valid()) continue;
       if(h.is_paused()){
-        myDLLlistMenu.addAction(actionStart);
+        if(!has_start){
+          myDLLlistMenu.addAction(actionStart);
+          has_start = true;
+        }
       }else{
-        myDLLlistMenu.addAction(actionPause);
+        if(!has_pause){
+          myDLLlistMenu.addAction(actionPause);
+          has_pause = true;
+        }
       }
-      myDLLlistMenu.addAction(actionDelete);
-      myDLLlistMenu.addAction(actionDelete_Permanently);
-      myDLLlistMenu.addAction(actionSet_download_limit);
-      myDLLlistMenu.addAction(actionSet_upload_limit);
-      myDLLlistMenu.addAction(actionTorrent_Properties);
-      if(!previewProgram.isEmpty() && BTSession->isFilePreviewPossible(fileHash) && selectedIndexes.size()<=DLListModel->columnCount()){
+      if(!previewProgram.isEmpty() && BTSession->isFilePreviewPossible(fileHash) && !has_preview){
          myDLLlistMenu.addAction(actionPreview_file);
+         has_preview = true;
       }
-      break;
+      if(has_pause && has_start && has_preview) break;
     }
   }
+  myDLLlistMenu.addAction(actionDelete);
+  myDLLlistMenu.addAction(actionDelete_Permanently);
+  myDLLlistMenu.addAction(actionSet_download_limit);
+  myDLLlistMenu.addAction(actionSet_upload_limit);
+  myDLLlistMenu.addAction(actionTorrent_Properties);
   // Call menu
   // XXX: why mapToGlobal() is not enough?
   myDLLlistMenu.exec(mapToGlobal(pos)+QPoint(22,180));
@@ -809,7 +822,7 @@ void GUI::toggleVisibility(QSystemTrayIcon::ActivationReason e){
 }
 
 // Center window
-QPoint GUI::screenCenter(){
+QPoint GUI::screenCenter() const{
   int scrn = 0;
   QWidget *w = this->topLevelWidget();
 
