@@ -486,10 +486,13 @@ void GUI::displayDLListMenu(const QPoint& pos){
       if(has_pause && has_start && has_preview) break;
     }
   }
+  myDLLlistMenu.addSeparator();
   myDLLlistMenu.addAction(actionDelete);
   myDLLlistMenu.addAction(actionDelete_Permanently);
+  myDLLlistMenu.addSeparator();
   myDLLlistMenu.addAction(actionSet_download_limit);
   myDLLlistMenu.addAction(actionSet_upload_limit);
+  myDLLlistMenu.addSeparator();
   myDLLlistMenu.addAction(actionTorrent_Properties);
   // Call menu
   // XXX: why mapToGlobal() is not enough?
@@ -848,18 +851,18 @@ bool GUI::loadColWidthDLList(){
   for(unsigned int i=0; i<listSize; ++i){
         downloadList->header()->resizeSection(i, width_list.at(i).toInt());
   }
-	// Loading last sorted column
-	QString sortedCol = settings.value("DownloadListSortedCol", QString()).toString();
-	if(!sortedCol.isEmpty()){
-		Qt::SortOrder sortOrder;
-		if(sortedCol.endsWith("d"))
-			sortOrder = Qt::DescendingOrder;
-		else
-			sortOrder = Qt::AscendingOrder;
-		sortedCol = sortedCol.left(sortedCol.size()-1);
-		int index = sortedCol.toInt();
-		sortDownloadList(index, sortOrder, true);
-	}
+  // Loading last sorted column
+  QString sortedCol = settings.value("DownloadListSortedCol", QString()).toString();
+  if(!sortedCol.isEmpty()){
+    Qt::SortOrder sortOrder;
+    if(sortedCol.endsWith("d"))
+      sortOrder = Qt::DescendingOrder;
+    else
+      sortOrder = Qt::AscendingOrder;
+    sortedCol = sortedCol.left(sortedCol.size()-1);
+    int index = sortedCol.toInt();
+    sortDownloadList(index, sortOrder, true);
+  }
   qDebug("Download list columns width loaded");
   return true;
 }
@@ -1152,7 +1155,7 @@ void GUI::torrentAdded(QString path, torrent_handle& h, bool fastResume){
   DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
   DLListModel->setData(DLListModel->index(row, HASH), QVariant(hash));
   // Pause torrent if it was paused last time
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")){
+  if(BTSession->isPaused(hash)) {
     DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
     setRowColor(row, "red");
   }else{
