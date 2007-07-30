@@ -22,6 +22,7 @@
 #include <QDir>
 #include <QTime>
 #include <QString>
+#include <QTimer>
 
 #include <libtorrent/extensions/metadata_transfer.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
@@ -43,6 +44,7 @@
 bittorrent::bittorrent(){
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
+  timerScan = 0;
   // Supported preview extensions
   // XXX: A bit dirty to do it this way (use mime types?)
   supported_preview_extensions << "AVI" << "DIVX" << "MPG" << "MPEG" << "MPE" << "MP3" << "OGG" << "WMV" << "WMA" << "RMV" << "RMVB" << "ASF" << "MOV" << "WAV" << "MP2" << "SWF" << "AC3" << "OGM" << "MP4" << "FLV" << "VOB" << "QT" << "MKV" << "AIF" << "AIFF" << "AIFC" << "MID" << "MPG" << "RA" << "RAM" << "AU" << "M4A" << "FLAC" << "M4P" << "3GP" << "AAC" << "RM" << "SWA" << "MPC" << "MPP";
@@ -54,10 +56,12 @@ bittorrent::bittorrent(){
   DHTEnabled = false;
   // Enabling metadata plugin
   s->add_extension(&create_metadata_plugin);
-  connect(&timerAlerts, SIGNAL(timeout()), this, SLOT(readAlerts()));
-  timerAlerts.start(3000);
-  connect(&ETARefresher, SIGNAL(timeout()), this, SLOT(updateETAs()));
-  ETARefresher.start(6000);
+  timerAlerts = new QTimer();
+  connect(timerAlerts, SIGNAL(timeout()), this, SLOT(readAlerts()));
+  timerAlerts->start(3000);
+  ETARefresher = new QTimer();
+  connect(ETARefresher, SIGNAL(timeout()), this, SLOT(updateETAs()));
+  ETARefresher->start(6000);
   // To download from urls
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
@@ -72,6 +76,8 @@ bittorrent::~bittorrent(){
   saveDHTEntry();
   saveFastResumeAndRatioData();
   // Delete our objects
+  delete timerAlerts;
+  delete ETARefresher;
   delete downloader;
   delete s;
 }
@@ -752,8 +758,9 @@ void bittorrent::disableDirectoryScanning(){
     if(timerScan->isActive()){
       timerScan->stop();
     }
-    delete timerScan;
   }
+  if(timerScan != 0)
+    delete timerScan;
 }
 
 // Set the ports range in which is chosen the port the bittorrent

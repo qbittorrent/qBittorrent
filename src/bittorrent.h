@@ -22,7 +22,6 @@
 #define __BITTORRENT_H__
 
 #include <QHash>
-#include <QTimer>
 #include <QList>
 #include <QPair>
 #include <QStringList>
@@ -34,6 +33,7 @@ using namespace libtorrent;
 
 class downloadThread;
 class deleteThread;
+class QTimer;
 
 class bittorrent : public QObject{
   Q_OBJECT
@@ -43,7 +43,7 @@ class bittorrent : public QObject{
     bool DHTEnabled;
     QString scan_dir;
     QTimer *timerScan;
-    QTimer timerAlerts;
+    QTimer *timerAlerts;
     downloadThread *downloader;
     QStringList supported_preview_extensions;
     QString defaultSavePath;
@@ -52,7 +52,7 @@ class bittorrent : public QObject{
     QHash<QString, QList<long> > ETAstats;
     QHash<QString, long> ETAs;
     QHash<QString, QPair<size_type,size_type> > ratioData;
-    QTimer ETARefresher;
+    QTimer *ETARefresher;
     QList<QString> fullAllocationModeList;
     QHash<QString, QList<QPair<QString, QString> > > trackersErrors;
 
