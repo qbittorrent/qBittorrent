@@ -225,7 +225,10 @@ void properties::ignoreSelection(){
   QModelIndex index;
   foreach(index, selectedIndexes){
     if(index.column() == PRIORITY){
-      PropListModel->setData(index, QVariant(IGNORED));
+      if(PropListModel->data(index) != QVariant(IGNORED)){
+        PropListModel->setData(index, QVariant(IGNORED));
+        changedFilteredfiles = true;
+      }
     }
   }
 }
@@ -235,7 +238,10 @@ void properties::normalSelection(){
   QModelIndex index;
   foreach(index, selectedIndexes){
     if(index.column() == PRIORITY){
-      PropListModel->setData(index, QVariant(NORMAL));
+      if(PropListModel->data(index) != QVariant(NORMAL)){
+        PropListModel->setData(index, QVariant(NORMAL));
+        changedFilteredfiles = true;
+      }
     }
   }
 }
@@ -245,7 +251,10 @@ void properties::highSelection(){
   QModelIndex index;
   foreach(index, selectedIndexes){
     if(index.column() == PRIORITY){
-      PropListModel->setData(index, QVariant(HIGH));
+      if(PropListModel->data(index) != QVariant(HIGH)){
+        PropListModel->setData(index, QVariant(HIGH));
+        changedFilteredfiles = true;
+      }
     }
   }
 }
@@ -255,7 +264,10 @@ void properties::maximumSelection(){
   QModelIndex index;
   foreach(index, selectedIndexes){
     if(index.column() == PRIORITY){
-      PropListModel->setData(index, QVariant(MAXIMUM));
+      if(PropListModel->data(index) != QVariant(MAXIMUM)){
+        PropListModel->setData(index, QVariant(MAXIMUM));
+        changedFilteredfiles = true;
+      }
     }
   }
 }
