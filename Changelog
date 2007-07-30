@@ -28,6 +28,7 @@
     - FEATURE: A search request can now be terminated by another
     - FEATURE: User is now warned when fast resume data was rejected
     - FEATURE: Url seeds are now displayed in torrent properties and are editable
+    - FEATURE: Allow to drag 'n drop urls on the main window
     - I18N: Added Hungarian translation
     - I18N: Added Brazilian translation
     - BUGFIX: Progress of paused torrents is now correct on restart

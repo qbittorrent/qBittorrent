@@ -936,13 +936,18 @@ void GUI::dropEvent(QDropEvent *event){
   QSettings settings("qBittorrent", "qBittorrent");
   bool useTorrentAdditionDialog = settings.value("Options/Misc/TorrentAdditionDialog/Enabled", true).toBool();
   foreach(file, files){
+    file = file.trimmed().replace("file://", "");
+    if(file.startsWith("http://", Qt::CaseInsensitive) || file.startsWith("ftp://", Qt::CaseInsensitive) || file.startsWith("https://", Qt::CaseInsensitive)){
+      BTSession->downloadFromUrl(file);
+      continue;
+    }
     if(useTorrentAdditionDialog){
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
       connect(dialog, SIGNAL(torrentAddition(QString, bool, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, bool, QString)));
       connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), this, SLOT(setInfoBar(QString, QString)));
-      dialog->showLoad(file.trimmed().replace("file://", ""));
+      dialog->showLoad(file);
     }else{
-      BTSession->addTorrent(file.trimmed().replace("file://", ""));
+      BTSession->addTorrent(file);
     }
   }
 }
