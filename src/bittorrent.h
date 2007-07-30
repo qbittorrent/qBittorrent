@@ -129,7 +129,6 @@ class bittorrent : public QObject{
     void scanDirectory();
     void readAlerts();
     void processDownloadedFile(QString, QString);
-    void resumeUnfinished();
     bool loadTrackerFile(QString hash);
     void saveTrackerFile(QString hash);
 

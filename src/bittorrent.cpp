@@ -82,11 +82,6 @@ bittorrent::~bittorrent(){
   delete s;
 }
 
-void bittorrent::resumeUnfinishedTorrents(){
-  // Resume unfinished torrents
-  resumeUnfinished();
-}
-
 void bittorrent::setDownloadLimit(QString hash, int val){
   torrent_handle h = getTorrentHandle(hash);
   h.set_download_limit(val);
@@ -1155,7 +1150,7 @@ void bittorrent::applyEncryptionSettings(pe_settings se){
 
 // Will fast resume unfinished torrents in
 // backup directory
-void bittorrent::resumeUnfinished(){
+void bittorrent::resumeUnfinishedTorrents(){
   qDebug("Resuming unfinished torrents");
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
   QStringList fileNames, filePaths;
