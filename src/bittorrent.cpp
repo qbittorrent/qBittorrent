@@ -84,14 +84,16 @@ bittorrent::~bittorrent(){
 
 void bittorrent::setDownloadLimit(QString hash, int val){
   torrent_handle h = getTorrentHandle(hash);
-  h.set_download_limit(val);
+  if(h.is_valid())
+    h.set_download_limit(val);
   saveTorrentSpeedLimits(hash);
 }
 
 void bittorrent::setUploadLimit(QString hash, int val){
   qDebug("Set upload limit rate to %d", val);
   torrent_handle h = getTorrentHandle(hash);
-  h.set_upload_limit(val);
+  if(h.is_valid())
+    h.set_upload_limit(val);
   saveTorrentSpeedLimits(hash);
 }
 
@@ -101,7 +103,8 @@ void bittorrent::HandleDownloadFailure(QString url, QString reason){
 
 void bittorrent::updateETAs(){
   std::vector<torrent_handle> handles = s->get_torrents();
-  for(unsigned int i=0; i<handles.size(); ++i){
+  unsigned int nbHandles = handles.size();
+  for(unsigned int i=0; i<nbHandles; ++i){
     torrent_handle h = handles[i];
     if(h.is_valid()){
       QString hash = QString(misc::toString(h.info_hash()).c_str());
@@ -171,12 +174,12 @@ void bittorrent::deleteTorrent(QString hash, bool permanent){
   torrentBackup.remove(hash+".ratio");
   torrentBackup.remove(hash+".urlseeds");
   // Remove it from ETAs hash tables
-  ETAstats.take(hash);
-  ETAs.take(hash);
+  ETAstats.remove(hash);
+  ETAs.remove(hash);
   // Remove tracker errors
-  trackersErrors.take(hash);
+  trackersErrors.remove(hash);
   // Remove it from ratio table
-  ratioData.take(hash);
+  ratioData.remove(hash);
   int index = fullAllocationModeList.indexOf(hash);
   if(index != -1)
     fullAllocationModeList.removeAt(index);
@@ -277,6 +280,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, bool onStartup, QStr
   if(file.isEmpty()){
     return;
   }
+  Q_ASSERT(!file.startsWith("http://") && !file.startsWith("https://") && !file.startsWith("ftp://"));
   qDebug("Adding %s to download list", (const char*)file.toUtf8());
   std::ifstream in((const char*)file.toUtf8(), std::ios_base::binary);
   in.unsetf(std::ios_base::skipws);
@@ -305,16 +309,6 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, bool onStartup, QStr
         QFile::remove(file);
       }
       return;
-    }
-    // TODO: Remove this in a few releases (just for backward compatibility)
-    if(torrentBackup.exists(QString(t.name().c_str())+".torrent")){
-      QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".torrent", torrentBackup.path()+QDir::separator()+hash+".torrent");
-      QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".fastresume", torrentBackup.path()+QDir::separator()+hash+".fastresume");
-      QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".savepath", torrentBackup.path()+QDir::separator()+hash+".savepath");
-      QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".paused", torrentBackup.path()+QDir::separator()+hash+".paused");
-      QFile::rename(torrentBackup.path()+QDir::separator()+QString(t.name().c_str())+".incremental", torrentBackup.path()+QDir::separator()+hash+".incremental");
-      file = torrentBackup.path() + QDir::separator() + hash + ".torrent";
-
     }
     //Getting fast resume data if existing
     if(torrentBackup.exists(hash+".fastresume")){
