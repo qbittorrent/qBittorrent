@@ -177,7 +177,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connect(downloadList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(togglePausedState(const QModelIndex&)));
   connect(downloadList->header(), SIGNAL(sectionPressed(int)), this, SLOT(sortDownloadList(int)));
   connect(downloadList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLListMenu(const QPoint&)));
-//   connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayGUIMenu(const QPoint&)));
   connect(infoBar, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayInfoBarMenu(const QPoint&)));
   // Start download list refresher
   refresher = new QTimer(this);
@@ -502,16 +501,6 @@ void GUI::displayDLListMenu(const QPoint& pos){
 void GUI::on_actionExit_triggered(){
   force_exit = true;
   close();
-}
-
-void GUI::displayGUIMenu(const QPoint& pos){
-  QMenu myGUIMenu(this);
-  myGUIMenu.addAction(actionOpen);
-  myGUIMenu.addAction(actionDownload_from_URL);
-  myGUIMenu.addAction(actionStart_All);
-  myGUIMenu.addAction(actionPause_All);
-  myGUIMenu.addAction(actionExit);
-  myGUIMenu.exec(mapToGlobal(pos));
 }
 
 void GUI::previewFile(QString filePath){

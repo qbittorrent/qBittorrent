@@ -113,7 +113,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void selectGivenRow(const QModelIndex& index);
     void togglePausedState(const QModelIndex& index);
     void displayInfoBarMenu(const QPoint& pos);
-    void displayGUIMenu(const QPoint& pos);
     void on_actionPreview_file_triggered();
     void previewFile(QString filePath);
     void cleanTempPreviewFile(int, QProcess::ExitStatus);
