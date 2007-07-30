@@ -611,7 +611,7 @@ void GUI::updateDlList(bool force){
       switch(torrentStatus.state){
         case torrent_status::finished:
         case torrent_status::seeding:
-          qDebug("Not good: no finished torrents in download tab, moving it");
+          qDebug("A torrent that was in download tab just finished, moving it to finished tab");
           finishedTorrent(h);
           continue;
         case torrent_status::checking_files:

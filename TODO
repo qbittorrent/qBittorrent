@@ -43,7 +43,7 @@
 - Windows port (Chris - Peerkoel)
 - Add checking icon to documentation
 * beta3
-  - Translations update ( IN PROGESS)
+  - Translations update (IN PROGESS)
   - Optimize and cleanup code
   - add asserts to squash remaining bugs
   - Wait for some bug fixes in libtorrent :
@@ -55,3 +55,4 @@ LANGUAGES UPDATED:
 - English
 - Japanese
 - Swedish
+- Slovak
