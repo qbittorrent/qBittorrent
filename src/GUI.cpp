@@ -551,15 +551,14 @@ void GUI::updateDlList(bool force){
   if(systrayIntegration){
     myTrayIcon->setToolTip("<b>"+tr("qBittorrent")+"</b><br>"+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(tmp2))+"<br>"+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(tmp))); // tray icon
   }
-  if( !force && (isMinimized() || isHidden() || tabs->currentIndex() > 1)){
-    // No need to update if qBittorrent DL list is hidden
-    return;
-  }
-  if(tabs->currentIndex()){
+  if(tabs->currentIndex() == 1){
     finishedTorrentTab->updateFinishedList();
     return;
   }
-  Q_ASSERT(tabs->currentIndex() == 0);
+  if(!force && getCurrentTabIndex() != 0){
+    // No need to update if qBittorrent DL list is hidden
+    return;
+  }
   LCD_UpSpeed->display(tmp); // UP LCD
   LCD_DownSpeed->display(tmp2); // DL LCD
   // browse handles
@@ -658,6 +657,8 @@ void GUI::updateDlList(bool force){
 }
 
 unsigned int GUI::getCurrentTabIndex() const{
+  if(isMinimized() || isHidden())
+    return -1;
   return tabs->currentIndex();
 }
 
