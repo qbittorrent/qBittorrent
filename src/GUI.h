@@ -110,7 +110,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void sortDownloadListFloat(int index, Qt::SortOrder sortOrder);
     void sortDownloadListString(int index, Qt::SortOrder sortOrder);
     void displayDLListMenu(const QPoint& pos);
-    void selectGivenRow(const QModelIndex& index);
     void togglePausedState(const QModelIndex& index);
     void displayInfoBarMenu(const QPoint& pos);
     void on_actionPreview_file_triggered();

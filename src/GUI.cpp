@@ -521,14 +521,6 @@ void GUI::previewFile(QString filePath){
   }
 }
 
-void GUI::selectGivenRow(const QModelIndex& index){
-  int row = index.row();
-  unsigned int nbColumns = DLListModel->columnCount();
-  for(unsigned int i=0; i<nbColumns; ++i){
-    downloadList->selectionModel()->select(DLListModel->index(row, i), QItemSelectionModel::Select);
-  }
-}
-
 void GUI::on_actionClearLog_triggered(){
   infoBar->clear();
 }
