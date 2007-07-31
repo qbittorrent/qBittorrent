@@ -1146,12 +1146,12 @@ void bittorrent::resumeUnfinishedTorrents(){
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
   QStringList fileNames, filePaths;
   // Scan torrentBackup directory
-  fileNames = torrentBackup.entryList();
+  QStringList filters;
+  filters << "*.torrent";
+  fileNames = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
   QString fileName;
   foreach(fileName, fileNames){
-    if(fileName.endsWith(".torrent")){
-      filePaths.append(torrentBackup.path()+QDir::separator()+fileName);
-    }
+    filePaths.append(torrentBackup.path()+QDir::separator()+fileName);
   }
   // Resume downloads
   foreach(fileName, filePaths){
