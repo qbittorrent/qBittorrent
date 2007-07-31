@@ -66,6 +66,8 @@ bittorrent::bittorrent(){
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(HandleDownloadFailure(QString, QString)));
+  // File deleter (thread)
+  deleter = new deleteThread(this);
 }
 
 // Main destructor
@@ -76,6 +78,7 @@ bittorrent::~bittorrent(){
   saveDHTEntry();
   saveFastResumeAndRatioData();
   // Delete our objects
+  delete deleter;
   delete timerAlerts;
   delete ETARefresher;
   delete downloader;
@@ -184,15 +187,8 @@ void bittorrent::deleteTorrent(QString hash, bool permanent){
     // Remove from Hard drive
     qDebug("Removing this on hard drive: %s", qPrintable(savePath+QDir::separator()+fileName));
     // Deleting in a thread to avoid GUI freeze
-    deleteThread *deleter = new deleteThread(savePath+QDir::separator()+fileName);
-    connect(deleter, SIGNAL(deletionFinished(deleteThread*)), this, SLOT(cleanDeleter(deleteThread*)));
+    deleter->deletePath(savePath+QDir::separator()+fileName);
   }
-}
-
-// slot to destroy a deleteThread once it finished deletion
-void bittorrent::cleanDeleter(deleteThread* deleter){
-  qDebug("Deleting deleteThread because it finished deletion");
-  delete deleter;
 }
 
 // Pause a running torrent

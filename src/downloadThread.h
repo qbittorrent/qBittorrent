@@ -194,20 +194,16 @@ class downloadThread : public QThread {
   protected slots:
     void propagateDownloadedFile(subDownloadThread* st, QString url, QString path){
       int index = subThreads.indexOf(st);
-      if(index == -1)
-        std::cerr << "ERROR: Couldn't delete download subThread!\n";
-      else
-        subThreads.takeAt(index);
+      Q_ASSERT(index != -1);
+      subThreads.removeAt(index);
       delete st;
       emit downloadFinished(url, path);
     }
 
     void propagateDownloadFailure(subDownloadThread* st, QString url, QString reason){
       int index = subThreads.indexOf(st);
-      if(index == -1)
-        std::cerr << "ERROR: Couldn't delete download subThread!\n";
-      else
-        subThreads.takeAt(index);
+      Q_ASSERT(index != -1);
+      subThreads.removeAt(index);
       delete st;
       emit downloadFailure(url, reason);
     }

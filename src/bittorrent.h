@@ -55,6 +55,7 @@ class bittorrent : public QObject{
     QTimer *ETARefresher;
     QList<QString> fullAllocationModeList;
     QHash<QString, QList<QPair<QString, QString> > > trackersErrors;
+    deleteThread *deleter;
 
   protected:
     QString getSavePath(QString hash);
@@ -125,7 +126,6 @@ class bittorrent : public QObject{
     void setUploadLimit(QString hash, int val);
 
   protected slots:
-    void cleanDeleter(deleteThread* deleter);
     void scanDirectory();
     void readAlerts();
     void processDownloadedFile(QString, QString);
