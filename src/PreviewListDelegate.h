@@ -35,56 +35,28 @@
 #define SIZE 1
 #define PROGRESS 2
 
-class PreviewListDelegate: public QAbstractItemDelegate {
+class PreviewListDelegate: public QItemDelegate {
   Q_OBJECT
 
   public:
-    PreviewListDelegate(QObject *parent=0) : QAbstractItemDelegate(parent){}
+    PreviewListDelegate(QObject *parent=0) : QItemDelegate(parent){}
 
     ~PreviewListDelegate(){}
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
-      QItemDelegate delegate;
-      QStyleOptionViewItem opt = option;
-      QStyleOptionProgressBarV2 newopt;
+      QStyleOptionViewItemV3 opt = QItemDelegate::setOptions(index, option);
       char tmp[MAX_CHAR_TMP];
-      float progress;
-      // set text color
-      QVariant value = index.data(Qt::ForegroundRole);
-      if (value.isValid() && qvariant_cast<QColor>(value).isValid()){
-          opt.palette.setColor(QPalette::Text, qvariant_cast<QColor>(value));
-      }
-      QPalette::ColorGroup cg = option.state & QStyle::State_Enabled
-                              ? QPalette::Normal : QPalette::Disabled;
-      if (option.state & QStyle::State_Selected){
-        painter->setPen(opt.palette.color(cg, QPalette::HighlightedText));
-      }else{
-        painter->setPen(opt.palette.color(cg, QPalette::Text));
-      }
-      // draw the background color
-      if(index.column() != PROGRESS){
-        if (option.showDecorationSelected && (option.state & QStyle::State_Selected)){
-          if (cg == QPalette::Normal && !(option.state & QStyle::State_Active)){
-              cg = QPalette::Inactive;
-          }
-          painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Highlight));
-        }else{
-          value = index.data(Qt::BackgroundColorRole);
-          if (value.isValid() && qvariant_cast<QColor>(value).isValid()){
-            painter->fillRect(option.rect, qvariant_cast<QColor>(value));
-          }
-        }
-      }
+
       switch(index.column()){
         case SIZE:
-          painter->drawText(option.rect, Qt::AlignCenter, misc::friendlyUnit(index.data().toLongLong()));
+          QItemDelegate::drawBackground(painter, opt, index);
+          QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
           break;
-        case NAME:
-          painter->drawText(option.rect, Qt::AlignLeft, index.data().toString());
-          break;
-        case PROGRESS:
-          progress = index.data().toDouble()*100.;
+        case PROGRESS:{
+          QPalette::ColorGroup cg = option.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
+          float progress = index.data().toDouble()*100.;
           snprintf(tmp, MAX_CHAR_TMP, "%.1f", progress);
+          QStyleOptionProgressBarV2 newopt;
           newopt.rect = opt.rect;
           newopt.text = QString(tmp)+"%";
           newopt.progress = (int)progress;
@@ -101,14 +73,15 @@ class PreviewListDelegate: public QAbstractItemDelegate {
           }
           painter->drawText(option.rect, Qt::AlignCenter, newopt.text);
           break;
+        }
         default:
-          painter->drawText(option.rect, Qt::AlignCenter, index.data().toString());
+          QItemDelegate::paint(painter, option, index);
       }
     }
 
-    QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const{
-      QItemDelegate delegate;
-      return delegate.sizeHint(option, index);
+    QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const {
+      // No editor here
+      return 0;
     }
 };
 

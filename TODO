@@ -46,7 +46,6 @@
 * beta3
   - Translations update (IN PROGRESS)
   - Optimize and cleanup code
-  - Improve delegates
   - Check that there is no problem with right click menu in torrent content (all files filtered for example)
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent
