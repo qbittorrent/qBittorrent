@@ -47,6 +47,8 @@
   - Translations update (IN PROGESS)
   - Optimize and cleanup code
   - add asserts to squash remaining bugs
+  - Update progress (as well as size) when a torrent's content hash changed (filtered files)
+  - Check that there is no problem with right click menu in torrent content (all files filtered for example)
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent
     - double free or corruption on exit

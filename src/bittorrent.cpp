@@ -163,16 +163,13 @@ void bittorrent::deleteTorrent(QString hash, bool permanent){
   s->remove_torrent(h);
   // Remove it from torrent backup directory
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  torrentBackup.remove(hash+".torrent");
-  torrentBackup.remove(hash+".fastresume");
-  torrentBackup.remove(hash+".paused");
-  torrentBackup.remove(hash+".incremental");
-  torrentBackup.remove(hash+".priorities");
-  torrentBackup.remove(hash+".savepath");
-  torrentBackup.remove(hash+".trackers");
-  torrentBackup.remove(hash+".speedLimits");
-  torrentBackup.remove(hash+".ratio");
-  torrentBackup.remove(hash+".urlseeds");
+  QStringList filters;
+  filters << hash+".*";
+  QStringList files = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
+  QString file;
+  foreach(file, files){
+    torrentBackup.remove(file);
+  }
   // Remove it from ETAs hash tables
   ETAstats.remove(hash);
   ETAs.remove(hash);
@@ -714,13 +711,13 @@ void bittorrent::scanDirectory(){
   if(!scan_dir.isNull()){
     QStringList to_add;
     QDir dir(scan_dir);
-    QStringList files = dir.entryList(QDir::Files, QDir::Unsorted);
+    QStringList filters;
+    filters << "*.torrent";
+    QStringList files = dir.entryList(filters, QDir::Files, QDir::Unsorted);
     foreach(file, files){
       QString fullPath = dir.path()+QDir::separator()+file;
-      if(fullPath.endsWith(".torrent")){
-        QFile::rename(fullPath, fullPath+QString(".old"));
-        to_add << fullPath+QString(".old");
-      }
+      QFile::rename(fullPath, fullPath+QString(".old"));
+      to_add << fullPath+QString(".old");
     }
     emit scanDirFoundTorrents(to_add);
   }
