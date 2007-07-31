@@ -22,7 +22,7 @@
 #ifndef SEARCHLISTDELEGATE_H
 #define SEARCHLISTDELEGATE_H
 
-#include <QAbstractItemDelegate>
+#include <QItemDelegate>
 #include <QStyleOptionProgressBarV2>
 #include <QModelIndex>
 #include <QPainter>
@@ -36,59 +36,29 @@
 #define LEECHERS 3
 #define ENGINE 4
 
-class SearchListDelegate: public QAbstractItemDelegate {
+class SearchListDelegate: public QItemDelegate {
   Q_OBJECT
 
   public:
-    SearchListDelegate(QObject *parent=0) : QAbstractItemDelegate(parent){}
+    SearchListDelegate(QObject *parent=0) : QItemDelegate(parent){}
 
     ~SearchListDelegate(){}
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
-      QStyleOptionViewItem opt = option;
-      // set text color
-      QVariant value = index.data(Qt::ForegroundRole);
-      if (value.isValid() && qvariant_cast<QColor>(value).isValid()){
-          opt.palette.setColor(QPalette::Text, qvariant_cast<QColor>(value));
-      }
-      QPalette::ColorGroup cg = option.state & QStyle::State_Enabled
-                              ? QPalette::Normal : QPalette::Disabled;
-      if (option.state & QStyle::State_Selected){
-        painter->setPen(opt.palette.color(cg, QPalette::HighlightedText));
-      }else{
-        painter->setPen(opt.palette.color(cg, QPalette::Text));
-      }
-      // draw the background color
-      if (option.showDecorationSelected && (option.state & QStyle::State_Selected)){
-        if (cg == QPalette::Normal && !(option.state & QStyle::State_Active)){
-            cg = QPalette::Inactive;
-        }
-        painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Highlight));
-      }else{
-        value = index.data(Qt::BackgroundColorRole);
-        if (value.isValid() && qvariant_cast<QColor>(value).isValid()){
-          painter->fillRect(option.rect, qvariant_cast<QColor>(value));
-        }
-      }
+      QStyleOptionViewItemV3 opt = QItemDelegate::setOptions(index, option);
       switch(index.column()){
         case SIZE:
-          painter->drawText(option.rect, Qt::AlignCenter, misc::friendlyUnit(index.data().toLongLong()));
-          break;
-        case NAME:
-          painter->drawText(option.rect, Qt::AlignLeft, index.data().toString());
+          QItemDelegate::drawBackground(painter, opt, index);
+          QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
           break;
         default:
-          painter->drawText(option.rect, Qt::AlignCenter, index.data().toString());
+          QItemDelegate::paint(painter, option, index);
       }
     }
 
-    QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const{
-      QVariant value = index.data(Qt::FontRole);
-      QFont fnt = value.isValid() ? qvariant_cast<QFont>(value) : option.font;
-      QFontMetrics fontMetrics(fnt);
-      const QString text = index.data(Qt::DisplayRole).toString();
-      QRect textRect = QRect(0, 0, 0, fontMetrics.lineSpacing() * (text.count(QLatin1Char('\n')) + 1));
-      return textRect.size();
+    QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const {
+      // No editor here
+      return 0;
     }
 };
 
