@@ -171,7 +171,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void portListeningFailure();
     void trackerAuthenticationRequired(torrent_handle& h);
     void setTabText(int index, QString text);
-    void updateFileSize(QString hash);
+    void updateFileSizeAndProgress(QString hash);
     void sortProgressColumnDelayed();
     void addUrlSeedError(QString url, QString msg);
 

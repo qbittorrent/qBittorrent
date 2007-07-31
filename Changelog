@@ -44,6 +44,7 @@
     - BUGFIX: search plugin update - do not display only last version changelog
     - BUGFIX: Search plugin update - fixed missing new lines in changelog
     - BUGFIX: The number of search results was not reset when clicking on 'Clear' button
+    - BUGFIX: Update torrent progress when its content changed (filtered files)
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features

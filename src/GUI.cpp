@@ -1243,14 +1243,17 @@ void GUI::showProperties(const QModelIndex &index){
   torrent_handle h = BTSession->getTorrentHandle(fileHash);
   properties *prop = new properties(this, BTSession, h);
   connect(prop, SIGNAL(mustHaveFullAllocationMode(torrent_handle)), BTSession, SLOT(reloadTorrent(torrent_handle)));
-  connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSize(QString)));
+  connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSizeAndProgress(QString)));
   prop->show();
 }
 
-void GUI::updateFileSize(QString hash){
+void GUI::updateFileSizeAndProgress(QString hash){
   int row = getRowFromHash(hash);
   Q_ASSERT(row != -1);
   DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)BTSession->torrentEffectiveSize(hash)));
+  torrent_handle h = BTSession->getTorrentHandle(hash);
+  torrent_status torrentStatus = h.status();
+  DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
 }
 
 // Set BT session configuration
