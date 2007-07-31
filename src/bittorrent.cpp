@@ -200,7 +200,11 @@ bool bittorrent::pauseTorrent(QString hash){
     change = true;
     qDebug("Torrent paused successfully");
   }else{
-    qDebug("Could not pause torrent, invalid or already paused.");
+    if(!h.is_valid()){
+      qDebug("Could not pause torrent %s, reason: invalid", (const char*)hash.toUtf8());
+    }else{
+      qDebug("Could not pause torrent %s, reason: already paused", (const char*)hash.toUtf8());
+    }
   }
   // Create .paused file if necessary
   if(!QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")){
