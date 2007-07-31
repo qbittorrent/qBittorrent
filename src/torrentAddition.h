@@ -174,7 +174,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
     // Set the color of a row in data model
     void setRowColor(int row, QString color){
       for(int i=0; i<PropListModel->columnCount(); ++i){
-        PropListModel->setData(PropListModel->index(row, i), QVariant(QColor(color)), Qt::TextColorRole);
+        PropListModel->setData(PropListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
       }
     }
 

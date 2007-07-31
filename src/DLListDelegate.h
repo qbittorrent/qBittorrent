@@ -50,61 +50,35 @@ class DLListDelegate: public QItemDelegate {
     ~DLListDelegate(){}
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
-      QStyleOptionViewItem opt = option;
       char tmp[MAX_CHAR_TMP];
-      // set text color
-      QVariant value = index.data(Qt::TextColorRole);
-      if (value.isValid() && qvariant_cast<QColor>(value).isValid()){
-          opt.palette.setColor(QPalette::Text, qvariant_cast<QColor>(value));
-      }
-      QPalette::ColorGroup cg = option.state & QStyle::State_Enabled
-                              ? QPalette::Normal : QPalette::Disabled;
-      if (option.state & QStyle::State_Selected){
-        painter->setPen(opt.palette.color(cg, QPalette::HighlightedText));
-      }else{
-        painter->setPen(opt.palette.color(cg, QPalette::Text));
-      }
-      // draw the background color
-      if(index.column() != PROGRESS){
-        if (option.showDecorationSelected && (option.state & QStyle::State_Selected)){
-          if (cg == QPalette::Normal && !(option.state & QStyle::State_Active)){
-              cg = QPalette::Inactive;
-          }
-          painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Highlight));
-        }else{
-//           painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Base));
-          // The following should work but is broken (retry with future versions of Qt)
-          QVariant value = index.data(Qt::BackgroundRole);
-          if (qVariantCanConvert<QBrush>(value)) {
-            QPointF oldBO = painter->brushOrigin();
-            painter->setBrushOrigin(option.rect.topLeft());
-            painter->fillRect(option.rect, qvariant_cast<QBrush>(value));
-            painter->setBrushOrigin(oldBO);
-          }
-        }
-      }
+      QStyleOptionViewItemV3 opt = QItemDelegate::setOptions(index, option);
       switch(index.column()){
         case SIZE:
-          painter->drawText(option.rect, Qt::AlignCenter, misc::friendlyUnit(index.data().toLongLong()));
+          QItemDelegate::drawBackground(painter, opt, index);
+          QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
           break;
         case ETA:
-          painter->drawText(option.rect, Qt::AlignCenter, misc::userFriendlyDuration(index.data().toLongLong()));
+          QItemDelegate::drawBackground(painter, opt, index);
+          QItemDelegate::drawDisplay(painter, opt, option.rect, misc::userFriendlyDuration(index.data().toLongLong()));
           break;
         case UPSPEED:
         case DLSPEED:{
+          QItemDelegate::drawBackground(painter, opt, index);
           float speed = index.data().toDouble();
           snprintf(tmp, MAX_CHAR_TMP, "%.1f", speed/1024.);
-          painter->drawText(option.rect, Qt::AlignCenter, QString(tmp)+" "+tr("KiB/s"));
+          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString(tmp)+" "+tr("KiB/s"));
           break;
         }
         case RATIO:{
+          QItemDelegate::drawBackground(painter, opt, index);
           float ratio = index.data().toDouble();
           snprintf(tmp, MAX_CHAR_TMP, "%.1f", ratio);
-          painter->drawText(option.rect, Qt::AlignCenter, QString(tmp));
+          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString(tmp));
           break;
         }
         case PROGRESS:{
           QStyleOptionProgressBarV2 newopt;
+          QPalette::ColorGroup cg = option.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
           float progress;
           progress = index.data().toDouble()*100.;
           snprintf(tmp, MAX_CHAR_TMP, "%.1f", progress);
@@ -122,7 +96,7 @@ class DLListDelegate: public QItemDelegate {
             opt.palette.setColor(QPalette::Text, QColor("grey"));
             painter->setPen(opt.palette.color(cg, QPalette::Text));
           }
-          painter->drawText(option.rect, Qt::AlignCenter, newopt.text);
+          painter->drawText(opt.rect, Qt::AlignCenter, newopt.text);
           break;
         }
         default:
@@ -137,6 +111,11 @@ class DLListDelegate: public QItemDelegate {
       const QString text = index.data(Qt::DisplayRole).toString();
       QRect textRect = QRect(0, 0, 0, fontMetrics.lineSpacing() * (text.count(QLatin1Char('\n')) + 1));
       return textRect.size();
+    }
+
+    QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const {
+      // No editor here
+      return 0;
     }
 
 };

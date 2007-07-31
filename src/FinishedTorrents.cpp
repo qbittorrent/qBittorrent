@@ -113,7 +113,7 @@ void FinishedTorrents::addFinishedSHA(QString hash){
 // Set the color of a row in data model
 void FinishedTorrents::setRowColor(int row, QString color){
   for(int i=0; i<finishedListModel->columnCount(); ++i){
-    finishedListModel->setData(finishedListModel->index(row, i), QVariant(QColor(color)), Qt::TextColorRole);
+    finishedListModel->setData(finishedListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
   }
 }
 
@@ -326,7 +326,7 @@ void FinishedTorrents::sortFinishedListFloat(int index, Qt::SortOrder sortOrder)
     for(unsigned int col=0; col<nbColumns; ++col){
       finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col)));
       finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
-      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::TextColorRole), Qt::TextColorRole);
+      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::ForegroundRole), Qt::ForegroundRole);
     }
   }
   // Remove old rows
@@ -349,7 +349,7 @@ void FinishedTorrents::sortFinishedListString(int index, Qt::SortOrder sortOrder
     for(unsigned int col=0; col<nbColumns; ++col){
       finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col)));
       finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
-      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::TextColorRole), Qt::TextColorRole);
+      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::ForegroundRole), Qt::ForegroundRole);
     }
   }
   // Remove old rows

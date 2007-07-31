@@ -47,7 +47,7 @@ class SearchListDelegate: public QAbstractItemDelegate {
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
       QStyleOptionViewItem opt = option;
       // set text color
-      QVariant value = index.data(Qt::TextColorRole);
+      QVariant value = index.data(Qt::ForegroundRole);
       if (value.isValid() && qvariant_cast<QColor>(value).isValid()){
           opt.palette.setColor(QPalette::Text, qvariant_cast<QColor>(value));
       }

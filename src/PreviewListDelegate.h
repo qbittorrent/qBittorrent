@@ -50,7 +50,7 @@ class PreviewListDelegate: public QAbstractItemDelegate {
       char tmp[MAX_CHAR_TMP];
       float progress;
       // set text color
-      QVariant value = index.data(Qt::TextColorRole);
+      QVariant value = index.data(Qt::ForegroundRole);
       if (value.isValid() && qvariant_cast<QColor>(value).isValid()){
           opt.palette.setColor(QPalette::Text, qvariant_cast<QColor>(value));
       }

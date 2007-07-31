@@ -708,7 +708,7 @@ void GUI::sortDownloadListFloat(int index, Qt::SortOrder sortOrder){
     for(unsigned int col=0; col<nbColumns; ++col){
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col)));
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
-      DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::TextColorRole), Qt::TextColorRole);
+      DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::ForegroundRole), Qt::ForegroundRole);
     }
   }
   // Remove old rows
@@ -731,7 +731,7 @@ void GUI::sortDownloadListString(int index, Qt::SortOrder sortOrder){
     for(unsigned int col=0; col<nbColumns; ++col){
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col)));
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
-      DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::TextColorRole), Qt::TextColorRole);
+      DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::ForegroundRole), Qt::ForegroundRole);
     }
   }
   // Remove old rows
@@ -1604,7 +1604,7 @@ void GUI::checkConnectionStatus(){
 void GUI::setRowColor(int row, QString color){
   unsigned int nbColumns = DLListModel->columnCount();
   for(unsigned int i=0; i<nbColumns; ++i){
-    DLListModel->setData(DLListModel->index(row, i), QVariant(QColor(color)), Qt::TextColorRole);
+    DLListModel->setData(DLListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
   }
 }
 

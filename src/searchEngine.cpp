@@ -119,7 +119,7 @@ SearchEngine::~SearchEngine(){
 // Set the color of a row in data model
 void SearchEngine::setRowColor(int row, QString color){
   for(int i=0; i<SearchListModel->columnCount(); ++i){
-    SearchListModel->setData(SearchListModel->index(row, i), QVariant(QColor(color)), Qt::TextColorRole);
+    SearchListModel->setData(SearchListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
   }
 }
 
@@ -158,7 +158,7 @@ void SearchEngine::sortSearchListInt(int index, Qt::SortOrder sortOrder){
     int sourceRow = lines[row].first;
     for(int col=0; col<5; ++col){
       SearchListModel->setData(SearchListModel->index(nbRows_old+row, col), SearchListModel->data(SearchListModel->index(sourceRow, col)));
-      SearchListModel->setData(SearchListModel->index(nbRows_old+row, col), SearchListModel->data(SearchListModel->index(sourceRow, col), Qt::TextColorRole), Qt::TextColorRole);
+      SearchListModel->setData(SearchListModel->index(nbRows_old+row, col), SearchListModel->data(SearchListModel->index(sourceRow, col), Qt::ForegroundRole), Qt::ForegroundRole);
     }
   }
   // Remove old rows
@@ -178,7 +178,7 @@ void SearchEngine::sortSearchListString(int index, Qt::SortOrder sortOrder){
     int sourceRow = lines[row].first;
     for(int col=0; col<5; ++col){
       SearchListModel->setData(SearchListModel->index(nbRows_old+row, col), SearchListModel->data(SearchListModel->index(sourceRow, col)));
-      SearchListModel->setData(SearchListModel->index(nbRows_old+row, col), SearchListModel->data(SearchListModel->index(sourceRow, col), Qt::TextColorRole), Qt::TextColorRole);
+      SearchListModel->setData(SearchListModel->index(nbRows_old+row, col), SearchListModel->data(SearchListModel->index(sourceRow, col), Qt::ForegroundRole), Qt::ForegroundRole);
     }
   }
   // Remove old rows

@@ -60,7 +60,7 @@ class PropListDelegate: public QItemDelegate {
       QStyleOptionViewItem opt = option;
       char tmp[MAX_CHAR_TMP];
       // set text color
-      QVariant value = index.data(Qt::TextColorRole);
+      QVariant value = index.data(Qt::ForegroundRole);
       if (value.isValid() && qvariant_cast<QColor>(value).isValid()){
           opt.palette.setColor(QPalette::Text, qvariant_cast<QColor>(value));
       }
@@ -249,7 +249,7 @@ class PropListDelegate: public QItemDelegate {
           }
       }
       for(int i=0; i<model->columnCount(); ++i){
-        model->setData(model->index(index.row(), i), QVariant(QColor(color)), Qt::TextColorRole);
+        model->setData(model->index(index.row(), i), QVariant(QColor(color)), Qt::ForegroundRole);
       }
     }
 

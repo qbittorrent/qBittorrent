@@ -51,7 +51,7 @@ class FinishedListDelegate: public QItemDelegate {
       QStyleOptionViewItem opt = option;
       char tmp[MAX_CHAR_TMP];
       // set text color
-      QVariant value = index.data(Qt::TextColorRole);
+      QVariant value = index.data(Qt::ForegroundRole);
       if (value.isValid() && qvariant_cast<QColor>(value).isValid()){
           opt.palette.setColor(QPalette::Text, qvariant_cast<QColor>(value));
       }
