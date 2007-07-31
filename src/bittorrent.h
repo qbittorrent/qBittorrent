@@ -72,7 +72,6 @@ class bittorrent : public QObject{
     bool isDHTEnabled() const;
     float getPayloadDownloadRate() const;
     float getPayloadUploadRate() const;
-    QList<torrent_handle> getFinishedTorrentHandles() const;
     session_status getSessionStatus() const;
     int getListenPort() const;
     QStringList getTorrentsToPauseAfterChecking() const;

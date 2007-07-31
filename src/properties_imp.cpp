@@ -466,7 +466,6 @@ void properties::updateInfos(){
     // torrent was removed, closing properties
     close();
   }
-  loadTrackersErrors();
   // Update current tracker
   torrent_status torrentStatus = h.status();
   QString tracker = QString(torrentStatus.current_tracker.c_str()).trimmed();

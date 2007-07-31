@@ -771,7 +771,8 @@ void bittorrent::setUploadRateLimit(int rate){
 // This function will apply to same ratio to all torrents
 void bittorrent::setGlobalRatio(float ratio){
   std::vector<torrent_handle> handles = s->get_torrents();
-  for(unsigned int i=0; i<handles.size(); ++i){
+  unsigned int nbHandles = handles.size();
+  for(unsigned int i=0; i<nbHandles; ++i){
     torrent_handle h = handles[i];
     if(!h.is_valid()){
       qDebug("/!\\ Error: Invalid handle");
@@ -1083,19 +1084,6 @@ float bittorrent::getPayloadUploadRate() const{
 // Return a vector with all torrent handles in it
 std::vector<torrent_handle> bittorrent::getTorrentHandles() const{
   return s->get_torrents();
-}
-
-// Return a vector with all finished torrent handles in it
-QList<torrent_handle> bittorrent::getFinishedTorrentHandles() const{
-  QList<torrent_handle> finished;
-  std::vector<torrent_handle> handles;
-  for(unsigned int i=0; i<handles.size(); ++i){
-    torrent_handle h = handles[i];
-    if(h.is_seed()){
-      finished << h;
-    }
-  }
-  return finished;
 }
 
 QStringList bittorrent::getUncheckedTorrentsList() const{
