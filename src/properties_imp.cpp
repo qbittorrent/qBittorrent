@@ -205,13 +205,39 @@ void properties::loadPiecesPriorities(){
   }
 }
 
+bool properties::onlyOneItem() const {
+  unsigned int nbRows = PropListModel->rowCount();
+  if(nbRows == 1) return true;
+  unsigned int nb_unfiltered = 0;
+  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
+  QModelIndex index;
+  unsigned int to_be_filtered = 0;
+  foreach(index, selectedIndexes){
+    if(index.column() == PRIORITY){
+      if(index.data().toInt() != IGNORED)
+        ++to_be_filtered;
+    }
+  }
+  for(unsigned int i=0; i<nbRows; ++i){
+    if(PropListModel->data(PropListModel->index(i, PRIORITY)).toInt() != IGNORED){
+      ++nb_unfiltered;
+    }
+  }
+  if(nb_unfiltered-to_be_filtered == 0)
+    return true;
+  return false;
+}
+
 void properties::displayFilesListMenu(const QPoint& pos){
+  unsigned int nbRows = PropListModel->rowCount();
+  if(nbRows == 1) return;
   QMenu myFilesLlistMenu(this);
   QModelIndex index;
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
   myFilesLlistMenu.setTitle(tr("Priority"));
-  myFilesLlistMenu.addAction(actionIgnored);
+  if(!onlyOneItem())
+    myFilesLlistMenu.addAction(actionIgnored);
   myFilesLlistMenu.addAction(actionNormal);
   myFilesLlistMenu.addAction(actionHigh);
   myFilesLlistMenu.addAction(actionMaximum);

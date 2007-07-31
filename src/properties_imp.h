@@ -79,6 +79,7 @@ class properties : public QDialog, private Ui::properties{
     // Constructor
     properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h);
     ~properties();
+    bool onlyOneItem() const;
 };
 
 #endif

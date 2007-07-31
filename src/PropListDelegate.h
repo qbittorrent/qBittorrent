@@ -165,7 +165,7 @@ class PropListDelegate: public QItemDelegate {
     bool onlyOneItem(const QModelIndex& index) const  {
       const QAbstractItemModel *model = index.model();
       unsigned int nbRows = model->rowCount();
-      if(nbRows == (unsigned int)1) return true;
+      if(nbRows == 1) return true;
       for(unsigned int i=0; i<nbRows; ++i){
         if((unsigned int)index.row() == i) continue;
         if(model->data(model->index(i, PRIORITY)).toInt()) return false;
