@@ -228,6 +228,9 @@ void properties::ignoreSelection(){
       if(PropListModel->data(index) != QVariant(IGNORED)){
         PropListModel->setData(index, QVariant(IGNORED));
         changedFilteredfiles = true;
+        for(int i=0; i<PropListModel->columnCount(); ++i){
+          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("red")), Qt::ForegroundRole);
+        }
       }
     }
   }
@@ -241,6 +244,9 @@ void properties::normalSelection(){
       if(PropListModel->data(index) != QVariant(NORMAL)){
         PropListModel->setData(index, QVariant(NORMAL));
         changedFilteredfiles = true;
+        for(int i=0; i<PropListModel->columnCount(); ++i){
+          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("green")), Qt::ForegroundRole);
+        }
       }
     }
   }
@@ -254,6 +260,9 @@ void properties::highSelection(){
       if(PropListModel->data(index) != QVariant(HIGH)){
         PropListModel->setData(index, QVariant(HIGH));
         changedFilteredfiles = true;
+        for(int i=0; i<PropListModel->columnCount(); ++i){
+          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("green")), Qt::ForegroundRole);
+        }
       }
     }
   }
@@ -267,6 +276,9 @@ void properties::maximumSelection(){
       if(PropListModel->data(index) != QVariant(MAXIMUM)){
         PropListModel->setData(index, QVariant(MAXIMUM));
         changedFilteredfiles = true;
+        for(int i=0; i<PropListModel->columnCount(); ++i){
+          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("green")), Qt::ForegroundRole);
+        }
       }
     }
   }

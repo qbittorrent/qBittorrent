@@ -200,6 +200,9 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         if(index.column() == PRIORITY){
           PropListModel->setData(index, QVariant(IGNORED));
         }
+        for(int i=0; i<PropListModel->columnCount(); ++i){
+          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("red")), Qt::ForegroundRole);
+        }
       }
     }
 
@@ -209,6 +212,9 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       foreach(index, selectedIndexes){
         if(index.column() == PRIORITY){
           PropListModel->setData(index, QVariant(NORMAL));
+        }
+        for(int i=0; i<PropListModel->columnCount(); ++i){
+          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("green")), Qt::ForegroundRole);
         }
       }
     }
@@ -220,6 +226,9 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         if(index.column() == PRIORITY){
           PropListModel->setData(index, QVariant(HIGH));
         }
+        for(int i=0; i<PropListModel->columnCount(); ++i){
+          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("green")), Qt::ForegroundRole);
+        }
       }
     }
 
@@ -229,6 +238,9 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       foreach(index, selectedIndexes){
         if(index.column() == PRIORITY){
           PropListModel->setData(index, QVariant(MAXIMUM));
+        }
+        for(int i=0; i<PropListModel->columnCount(); ++i){
+          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("green")), Qt::ForegroundRole);
         }
       }
     }
