@@ -133,6 +133,11 @@ class FinishedListDelegate: public QItemDelegate {
       return textRect.size();
     }
 
+    QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const {
+      // No editor here
+      return 0;
+    }
+
 };
 
 #endif
