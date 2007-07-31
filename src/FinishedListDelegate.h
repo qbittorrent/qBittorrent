@@ -22,7 +22,7 @@
 #ifndef FINISHEDLISTDELEGATE_H
 #define FINISHEDLISTDELEGATE_H
 
-#include <QAbstractItemDelegate>
+#include <QItemDelegate>
 #include <QModelIndex>
 #include <QPainter>
 #include <QStyleOptionProgressBarV2>
@@ -39,11 +39,11 @@
 #define F_RATIO 5
 #define F_HASH 6
 
-class FinishedListDelegate: public QAbstractItemDelegate {
+class FinishedListDelegate: public QItemDelegate {
   Q_OBJECT
 
   public:
-    FinishedListDelegate(QObject *parent) : QAbstractItemDelegate(parent){}
+    FinishedListDelegate(QObject *parent) : QItemDelegate(parent){}
 
     ~FinishedListDelegate(){}
 
@@ -70,15 +70,15 @@ class FinishedListDelegate: public QAbstractItemDelegate {
           }
           painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Highlight));
         }else{
-          painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Base));
+//           painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Base));
           // The following should work but is broken (retry with future versions of Qt)
-//           QVariant value = index.data(Qt::BackgroundRole);
-//           if (qVariantCanConvert<QBrush>(value)) {
-//             QPointF oldBO = painter->brushOrigin();
-//             painter->setBrushOrigin(option.rect.topLeft());
-//             painter->fillRect(option.rect, qvariant_cast<QBrush>(value));
-//             painter->setBrushOrigin(oldBO);
-//           }
+          QVariant value = index.data(Qt::BackgroundRole);
+          if (qVariantCanConvert<QBrush>(value)) {
+            QPointF oldBO = painter->brushOrigin();
+            painter->setBrushOrigin(option.rect.topLeft());
+            painter->fillRect(option.rect, qvariant_cast<QBrush>(value));
+            painter->setBrushOrigin(oldBO);
+          }
         }
       }
       switch(index.column()){
@@ -119,20 +119,8 @@ class FinishedListDelegate: public QAbstractItemDelegate {
           painter->drawText(option.rect, Qt::AlignCenter, newopt.text);
           break;
         }
-        case F_NAME:{
-          // decoration
-          value = index.data(Qt::DecorationRole);
-          QPixmap pixmap = qvariant_cast<QIcon>(value).pixmap(option.decorationSize, option.state & QStyle::State_Enabled ? QIcon::Normal : QIcon::Disabled, option.state & QStyle::State_Open ? QIcon::On : QIcon::Off);
-          QRect pixmapRect = (pixmap.isNull() ? QRect(0, 0, 0, 0): QRect(QPoint(0, 0), option.decorationSize));
-          if (pixmapRect.isValid()){
-            QPoint p = QStyle::alignedRect(option.direction, Qt::AlignLeft, pixmap.size(), option.rect).topLeft();
-            painter->drawPixmap(p, pixmap);
-          }
-          painter->drawText(option.rect.translated(pixmap.size().width(), 0), Qt::AlignLeft, index.data().toString());
-          break;
-        }
         default:
-          painter->drawText(option.rect, Qt::AlignCenter, index.data().toString());
+          QItemDelegate::paint(painter, option, index);
       }
     }
 
