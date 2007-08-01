@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="uk">
+<!DOCTYPE TS><TS version="1.1">
 <context>
     <name>@default</name>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>b</source>
         <comment> bytes</comment>
         <translation type="obsolete">б</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>KB</source>
         <translation type="obsolete">КБ</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>MB</source>
         <translation type="obsolete">МБ</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>GB</source>
         <translation type="obsolete">ГБ</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>KB</source>
         <comment>kilobytes</comment>
         <translation type="obsolete">КБ</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>MB</source>
         <comment>megabytes</comment>
         <translation type="obsolete">МБ</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>GB</source>
         <comment>gigabytes</comment>
         <translation type="obsolete">ГБ</translation>
@@ -156,23 +156,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../allocationDlg.h" line="48"/>
         <source>Upload limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ліміт віддачі:</translation>
     </message>
     <message>
         <location filename="../allocationDlg.h" line="50"/>
         <source>Download limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ліміт прийому:</translation>
     </message>
     <message>
         <location filename="../allocationDlg.h" line="113"/>
         <source>Unlimited</source>
         <comment>Unlimited (bandwidth)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Необмежено</translation>
     </message>
     <message>
         <location filename="../allocationDlg.h" line="117"/>
         <source>KiB/s</source>
-        <translation type="unfinished">КіБ/с</translation>
+        <translation>КіБ/с</translation>
     </message>
 </context>
 <context>
@@ -231,7 +231,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>...</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Kb/s</source>
         <translation type="obsolete">Кб/с</translation>
     </message>
@@ -256,7 +256,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Налаштування проксі</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1251"/>
+        <location filename="" line="7471221"/>
         <source>Server IP:</source>
         <translation type="obsolete">IP сервера:</translation>
     </message>
@@ -301,22 +301,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Мова</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Please choose your preferred language in the following list:</source>
         <translation type="obsolete">Будь-ласка виберіть бажану мову з наступного списку:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1658"/>
+        <location filename="" line="7471221"/>
         <source>OK</source>
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1665"/>
+        <location filename="" line="7471221"/>
         <source>Cancel</source>
         <translation type="obsolete">Відміна</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Language settings will take effect after restart.</source>
         <translation type="obsolete">Налаштування мови вступлять у дію після перезапуску.</translation>
     </message>
@@ -331,7 +331,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Дозволити сканування директорії (автоматично додавати torrent-файли, що знаходяться всередині)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="87"/>
+        <location filename="" line="7471221"/>
         <source>Connection Settings</source>
         <translation type="obsolete">Налаштування з&apos;єднання</translation>
     </message>
@@ -341,12 +341,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Коефіцієнт розподілу:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>1 KB DL = </source>
         <translation type="obsolete">1 КБ DL = </translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>KB UP max.</source>
         <translation type="obsolete">КБ UP макс.</translation>
     </message>
@@ -381,7 +381,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Коментарій</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1675"/>
+        <location filename="" line="7471221"/>
         <source>Apply</source>
         <translation type="obsolete">Примінити</translation>
     </message>
@@ -406,12 +406,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Шлях до ipfilter.dat:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Clear finished downloads on exit</source>
         <translation type="obsolete">Очищати закінчені завантаження при виході</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="849"/>
+        <location filename="" line="7471221"/>
         <source>Ask for confirmation on exit</source>
         <translation type="obsolete">Питати підтвердження при виході</translation>
     </message>
@@ -441,22 +441,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Поведінка</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>OSD</source>
         <translation type="obsolete">OSD</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Always display OSD</source>
         <translation type="obsolete">Завжди показувати OSD</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Display OSD only if window is minimized or iconified</source>
         <translation type="obsolete">Показувати OSD лише коли вікно мінімізовано</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Never display OSD</source>
         <translation type="obsolete">Ніколи не показувати OSD</translation>
     </message>
@@ -476,17 +476,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>КіБ UP макс.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>DHT (Trackerless):</source>
         <translation type="obsolete">DHT (Безтрекерний):</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Disable DHT (Trackerless) support</source>
         <translation type="obsolete">Відключити підтримку DHT (Безтрекерний)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1255"/>
+        <location filename="" line="7471221"/>
         <source>Automatically clear finished downloads</source>
         <translation type="obsolete">Автоматично очищати закінчені завантаження</translation>
     </message>
@@ -531,7 +531,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Шлях збереження за замовчанням</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1327"/>
+        <location filename="" line="7471221"/>
         <source>Systray Messages</source>
         <translation type="obsolete">Повідомлення в системному треї</translation>
     </message>
@@ -563,157 +563,157 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="855"/>
         <source>Go to systray when closing main window</source>
-        <translation>Звертати до системного трею при закритті головного вікна</translation>
+        <translation>Згортати до системного трею при закритті головного вікна</translation>
     </message>
     <message>
         <location filename="../options.ui" line="78"/>
         <source>Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>З&apos;єднання</translation>
     </message>
     <message>
         <location filename="../options.ui" line="511"/>
         <source>Peer eXchange (PeX)</source>
-        <translation type="unfinished"></translation>
+        <translation>Peer eXchange (PeX)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="541"/>
         <source>DHT (trackerless)</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT (безтрекерний)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="736"/>
         <source>Torrent addition</source>
-        <translation type="unfinished"></translation>
+        <translation>Додавання торренту</translation>
     </message>
     <message>
         <location filename="../options.ui" line="823"/>
         <source>Main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Головне вікно</translation>
     </message>
     <message>
         <location filename="../options.ui" line="872"/>
         <source>Systray messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Повідомлення системного трею</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1547"/>
         <source>Directory scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Сканування директорії</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1661"/>
         <source>Style (Look &apos;n Feel)</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль (зовнішній вигляд)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1673"/>
         <source>Plastique style (KDE like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль Plastique (KDE-подібний)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1683"/>
         <source>Cleanlooks style (GNOME like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль Cleanlooks (GNOME-подібний)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1690"/>
         <source>Motif style (default Qt style on Unix systems)</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль Motif (Стиль Qt по замовчанню на системах Unix)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1697"/>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль CDE (Common Desktop Environment-подібний)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1707"/>
         <source>MacOS style (MacOSX only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль MacOS (лише MacOSX)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="835"/>
         <source>Exit confirmation when the download list is not empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтвердження виходу якщо список завантажень не порожній</translation>
     </message>
     <message>
         <location filename="../options.ui" line="862"/>
         <source>Disable systray integration</source>
-        <translation type="unfinished"></translation>
+        <translation>Відключити інтеграцію до системного трею</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1717"/>
         <source>WindowsXP style (Windows XP only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль WindowsXP (лише Windows XP)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1237"/>
         <source>Server IP or url:</source>
-        <translation type="unfinished"></translation>
+        <translation>IP сервера або url:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1310"/>
         <source>Proxy type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип проксі:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1318"/>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1323"/>
         <source>SOCKS5</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS5</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1447"/>
         <source>Affected connections</source>
-        <translation type="unfinished"></translation>
+        <translation>З&apos;єднання, на які це вплине</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1459"/>
         <source>Use proxy for connections to trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>Використовувати проксі при з&apos;єднанні з трекерами</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1475"/>
         <source>Use proxy for connections to regular peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Використовувати проксі при з&apos;єднанні із звичайними пірами</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1491"/>
         <source>Use proxy for connections to web seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Використовувати проксі при з&apos;єднанні з web-роздачами</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1507"/>
         <source>Use proxy for DHT messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Використовувати проксі для DHT повідомлень</translation>
     </message>
     <message>
         <location filename="../options.ui" line="627"/>
         <source>Encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Шифрування</translation>
     </message>
     <message>
         <location filename="../options.ui" line="655"/>
         <source>Encryption state:</source>
-        <translation type="unfinished"></translation>
+        <translation>Стан шифрування:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="663"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Увімкнено</translation>
     </message>
     <message>
         <location filename="../options.ui" line="668"/>
         <source>Forced</source>
-        <translation type="unfinished"></translation>
+        <translation>Примусовий</translation>
     </message>
     <message>
         <location filename="../options.ui" line="673"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Вимкнено</translation>
     </message>
 </context>
 <context>
@@ -721,7 +721,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedListDelegate.h" line="63"/>
         <source>KiB/s</source>
-        <translation type="unfinished">КіБ/с</translation>
+        <translation>КіБ/с</translation>
     </message>
 </context>
 <context>
@@ -729,57 +729,57 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedTorrents.cpp" line="226"/>
         <source>Finished</source>
-        <translation type="unfinished">Закінчено</translation>
+        <translation>Закінчено</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="39"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">Ім&apos;я</translation>
+        <translation>Ім&apos;я</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="40"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">Розмір</translation>
+        <translation>Розмір</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="41"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">Прогрес</translation>
+        <translation>Прогрес</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="42"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Швидкість віддачі</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="43"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished">Сідерів/Лічерів</translation>
+        <translation>Сідерів/Лічерів</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="41"/>
+        <location filename="" line="7471221"/>
         <source>Status</source>
         <translation type="obsolete">Статус</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="42"/>
+        <location filename="" line="7471221"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation type="obsolete">ETA</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="102"/>
+        <location filename="" line="7471221"/>
         <source>Finished</source>
         <comment>i.e: Torrent has finished downloading</comment>
         <translation type="obsolete">Закінчено</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="240"/>
+        <location filename="" line="7471221"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
         <translation type="obsolete">Немає</translation>
@@ -787,7 +787,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedTorrents.cpp" line="44"/>
         <source>Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Коефіціент</translation>
     </message>
 </context>
 <context>
@@ -798,7 +798,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Відкрити Torrent-файли</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Unknown</source>
         <translation type="obsolete">Невідомо</translation>
     </message>
@@ -808,7 +808,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Цей файл пошкоджено, або він не є torrent-файлом.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Are you sure you want to delete all files in download list?</source>
         <translation type="obsolete">Ви впевнені що хочете видалити всі файли зі списку завантажень?</translation>
     </message>
@@ -828,67 +828,67 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Ви впевнені що хочете видалити вибрані файли зі списку завантажень?</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>paused</source>
         <translation type="obsolete">зупинено</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>started</source>
         <translation type="obsolete">почато</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="82"/>
         <source>Finished</source>
-        <translation type="unfinished">Закінчено</translation>
+        <translation>Закінчено</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Checking...</source>
         <translation type="obsolete">Перевіряю...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1411"/>
+        <location filename="" line="7471221"/>
         <source>Connecting...</source>
         <translation type="obsolete">З&apos;єднуюсь...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="583"/>
+        <location filename="" line="7471221"/>
         <source>Downloading...</source>
         <translation type="obsolete">Завантажую...</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Download list cleared.</source>
         <translation type="obsolete">Список завантажень очищено.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>All Downloads Paused.</source>
         <translation type="obsolete">Всі завантаження зупинено.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>All Downloads Resumed.</source>
         <translation type="obsolete">Всі завантаження відновлено.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>DL Speed: </source>
         <translation type="obsolete">DL швидкість:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source> started.</source>
         <translation type="obsolete">почато.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>UP Speed: </source>
         <translation type="obsolete">UP швидкість:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Couldn&apos;t create the directory:</source>
         <translation type="obsolete">Неможливо створити директорію:</translation>
     </message>
@@ -898,69 +898,69 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Torrent файли</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>already in download list.</source>
         <comment>&lt;file&gt; already in download list.</comment>
         <translation type="obsolete">вже в списку завантажень.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>added to download list.</source>
         <translation type="obsolete">додано до списку завантажень.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>resumed. (fast resume)</source>
         <translation type="obsolete">відновлено. (швидке відновлення)</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Unable to decode torrent file:</source>
         <translation type="obsolete">Неможливо декодувати torrent-файл:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>removed.</source>
         <comment>&lt;file&gt; removed.</comment>
         <translation type="obsolete">видалено.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>paused.</source>
         <comment>&lt;file&gt; paused.</comment>
         <translation type="obsolete">зупинено.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>resumed.</source>
         <comment>&lt;file&gt; resumed.</comment>
         <translation type="obsolete">відновлено.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>m</source>
         <comment>minutes</comment>
         <translation type="obsolete">хв</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>h </source>
         <comment>hours</comment>
         <translation type="obsolete">г</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>d </source>
         <comment>days</comment>
         <translation type="obsolete">д</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Listening on port: </source>
         <translation type="obsolete">Слухаю порт:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>qBittorrent </source>
         <translation type="obsolete">qBittorrent</translation>
     </message>
@@ -975,33 +975,33 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Ви впевнені? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </source>
         <translation type="obsolete">&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL швидкість: </translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Online</source>
         <translation type="obsolete">&lt;b&gt;Статус з&apos;єднання:&lt;/b&gt;&lt;br&gt;Онлайн</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;Статус з&apos;єднання:&lt;/b&gt;&lt;br&gt;Заборонено файерволом?&lt;br&gt;&lt;i&gt;Немає вхідних з&apos;єднаннь...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;Статус з&apos;єднання:&lt;/b&gt;&lt;br&gt;Оффлайн&lt;br&gt;&lt;i&gt;Не знайдено пірів...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>/s</source>
         <comment>&lt;unit&gt;/seconds</comment>
         <translation type="obsolete">/с</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source> has finished downloading.</source>
         <translation type="obsolete">завантажено.</translation>
     </message>
@@ -1011,157 +1011,157 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Не можу слухати по жодному з вказаних портів.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>None</source>
         <translation type="obsolete">Немає</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1450"/>
+        <location filename="" line="7471221"/>
         <source>Empty search pattern</source>
         <translation type="obsolete">Пустий шаблон пошуку</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1450"/>
+        <location filename="" line="7471221"/>
         <source>Please type a search pattern first</source>
         <translation type="obsolete">Будь-ласка спочатку введіть шаблон пошуку</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>No seach engine selected</source>
         <translation type="obsolete">Не вибрано пошуковика</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1468"/>
+        <location filename="" line="7471221"/>
         <source>You must select at least one search engine.</source>
         <translation type="obsolete">Ви повинні вибрати хоча б один пошуковик.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1508"/>
+        <location filename="" line="7471221"/>
         <source>Searching...</source>
         <translation type="obsolete">Шукаю...</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Could not create search plugin.</source>
         <translation type="obsolete">Неможливо створити плагін пошуку.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Stopped</source>
         <translation type="obsolete">Зупинено</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>I/O Error</source>
         <translation type="obsolete">Помилка I/O</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Couldn&apos;t create temporary file on hard drive.</source>
         <translation type="obsolete">Неможливо створити тимчасовий файл на диску.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Torrent file URL</source>
         <translation type="obsolete">URL torrent-файлу</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>KB/s</source>
         <translation type="obsolete">КБ/с</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source> KB/s</source>
         <translation type="obsolete">КБ/с</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Downloading using HTTP: </source>
         <translation type="obsolete">Завантажую використовуючи HTTP:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Torrent file URL:</source>
         <translation type="obsolete">URL torrent-файлу:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>A http download failed...</source>
         <translation type="obsolete">http завантаження невдале...</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>A http download failed, reason: </source>
         <translation type="obsolete">http завантаження невдале, причина:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Are you sure you want to quit? -- qBittorrent</source>
         <translation type="obsolete">Ви впевнені що хочете вийти? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Are you sure you want to quit qbittorrent?</source>
         <translation type="obsolete">Ви впевнені що хочете вийти з qbittorrent?</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Timed out</source>
         <translation type="obsolete">Вичерпано час</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Error during search...</source>
         <translation type="obsolete">Помилка при пошуку...</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>KiB/s</source>
         <translation type="obsolete">КіБ/с</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source> KiB/s</source>
         <translation type="obsolete">КіБ/с</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Stalled</source>
         <translation type="obsolete">Заглохло</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Search is finished</source>
         <translation type="obsolete">Пошук завершено</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1721"/>
+        <location filename="" line="7471221"/>
         <source>An error occured during search...</source>
         <translation type="obsolete">Під час пошуку сталася помилка...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1724"/>
+        <location filename="" line="7471221"/>
         <source>Search aborted</source>
         <translation type="obsolete">Пошук скасовано</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1727"/>
+        <location filename="" line="7471221"/>
         <source>Search returned no results</source>
         <translation type="obsolete">Пошук не дав результів</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Search is Finished</source>
         <translation type="obsolete">Пошук завершено</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1703"/>
+        <location filename="" line="7471221"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation type="obsolete">Оновлення пошукового плагіну -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1687"/>
+        <location filename="" line="7471221"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -1172,78 +1172,78 @@ Changelog:
 </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1701"/>
+        <location filename="" line="7471221"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation type="obsolete">Пробачте, сервер оновлень тимчасово недоступний.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1704"/>
+        <location filename="" line="7471221"/>
         <source>Your search plugin is already up to date.</source>
         <translation type="obsolete">Ви вже маєте останню версію пошукового плагіну.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1544"/>
+        <location filename="" line="7471221"/>
         <source>Results</source>
         <translation type="obsolete">Результати</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Name</source>
         <translation type="obsolete">Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Size</source>
         <translation type="obsolete">Розмір</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Progress</source>
         <translation type="obsolete">Прогрес</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>DL Speed</source>
         <translation type="obsolete">DL швидкість</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>UP Speed</source>
         <translation type="obsolete">UP швидкість</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="134"/>
+        <location filename="" line="7471221"/>
         <source>Status</source>
         <translation type="obsolete">Статус</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>ETA</source>
         <translation type="obsolete">ETA</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Seeders</source>
         <translation type="obsolete">Сідери</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Leechers</source>
         <translation type="obsolete">Лічери</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="207"/>
+        <location filename="" line="7471221"/>
         <source>Search engine</source>
         <translation type="obsolete">Пошуковик</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Stalled</source>
         <comment>state of a torrent whose DL Speed is 0</comment>
         <translation type="obsolete">Заглохло</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1477"/>
+        <location filename="" line="7471221"/>
         <source>Paused</source>
         <translation type="obsolete">Призупинено</translation>
     </message>
@@ -1260,40 +1260,40 @@ Please close the other one first.</source>
 Будь-ласка, спочатку закрийте його.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
         <translation type="obsolete">Не зміг завантажити</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
         <translation type="obsolete">причина:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
         <translation type="obsolete">Завантажую</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Please wait...</source>
         <translation type="obsolete">Будь-ласка, зачекайте...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="887"/>
+        <location filename="" line="7471221"/>
         <source>Transfers</source>
         <translation type="obsolete">Трансфери</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="660"/>
+        <location filename="" line="7471221"/>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Ви впевнені, що хочете вийти з qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1005"/>
+        <location filename="" line="7471221"/>
         <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
         <translation type="obsolete">Ви впевнені, що хочете видалити вибрані завантаження зі списку та з вінчестера?</translation>
     </message>
@@ -1303,13 +1303,13 @@ Please close the other one first.</source>
         <translation>Завантаження завершено</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source> has finished downloading.</source>
         <comment>&lt;filename&gt; has finished downloading.</comment>
         <translation type="obsolete">завантажено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1718"/>
+        <location filename="" line="7471221"/>
         <source>Search Engine</source>
         <translation type="obsolete">Пошуковик</translation>
     </message>
@@ -1377,13 +1377,13 @@ Please close the other one first.</source>
         <translation>ETA</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="205"/>
+        <location filename="" line="7471221"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation type="obsolete">Сідери</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="206"/>
+        <location filename="" line="7471221"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
         <translation type="obsolete">Лічери</translation>
@@ -1407,19 +1407,19 @@ Please close the other one first.</source>
         <translation>Швидкість віддачі: %1 КіБ/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="448"/>
+        <location filename="" line="7471221"/>
         <source>Finished</source>
         <comment>i.e: Torrent has finished downloading</comment>
         <translation type="obsolete">Закінчено</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="558"/>
+        <location filename="" line="7471221"/>
         <source>Checking...</source>
         <comment>i.e: Checking already downloaded parts...</comment>
         <translation type="obsolete">Перевіряю...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="588"/>
+        <location filename="" line="7471221"/>
         <source>Stalled</source>
         <comment>i.e: State of a torrent whose download speed is 0kb/s</comment>
         <translation type="obsolete">Заглохло</translation>
@@ -1460,13 +1460,13 @@ Please close the other one first.</source>
         <translation>Неможливо декодувати торрент-файл: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1234"/>
+        <location filename="" line="7471221"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
         <translation type="obsolete">Немає</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="956"/>
+        <location filename="" line="7471221"/>
         <source>Listening on port: %1</source>
         <comment>e.g: Listening on port: 1666</comment>
         <translation type="obsolete">Прослуховую порт: %1</translation>
@@ -1483,7 +1483,7 @@ Please close the other one first.</source>
         <translation>&apos;%1&apos; призупинено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1388"/>
+        <location filename="" line="7471221"/>
         <source>Connecting...</source>
         <comment>i.e: Connecting to the tracker...</comment>
         <translation type="obsolete">З&apos;єднуюсь...</translation>
@@ -1518,7 +1518,7 @@ Please close the other one first.</source>
         <translation>Сталася помилка під час запису чи зчитування %1. Можливо диск заповнено, завантаження було призупинено</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>An error occured (full fisk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full fisk?), &apos;xxx.avi&apos; paused.</comment>
         <translation type="obsolete">Сталася помилка (заповнено диск?), &apos;%1&apos; призупинено.</translation>
@@ -1545,22 +1545,22 @@ Please close the other one first.</source>
         <translation>Немає вхідних з&apos;єднань...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1468"/>
+        <location filename="" line="7471221"/>
         <source>No search engine selected</source>
         <translation type="obsolete">Не вибрано пошуковик</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1700"/>
+        <location filename="" line="7471221"/>
         <source>Search plugin update</source>
         <translation type="obsolete">Оновити пошуковий плагін</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1729"/>
+        <location filename="" line="7471221"/>
         <source>Search has finished</source>
         <translation type="obsolete">Пошук закінчено</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1733"/>
+        <location filename="" line="7471221"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation type="obsolete">Результати</translation>
@@ -1580,156 +1580,157 @@ Please close the other one first.</source>
     <message>
         <location filename="../GUI.cpp" line="164"/>
         <source>Search</source>
-        <translation type="unfinished">Пошук</translation>
+        <translation>Пошук</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="168"/>
         <source>RSS</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1252"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent прив&apos;язаний до порту: %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1277"/>
         <source>DHT support [ON], port: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтримка DHT (Увімкнена), порт: %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1282"/>
         <source>DHT support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтримка DHT (Вимкнена)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1312"/>
         <source>PeX support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтримка PeX (Увімкнена)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1315"/>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтримка PeX (Вимкнена)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="871"/>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
+        <translation>Список завантажень не порожній.
+Ви впевнені, що хочете вийти з qBittorrent?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1601"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Завантаження</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1072"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ви впевнені що хочете видалити вибрані пункти зі списку завершених завантажень?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1286"/>
         <source>UPnP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтримка UNnP (Увімкнена)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="201"/>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
-        <translation type="unfinished"></translation>
+        <translation>Будьте обережні, ділення захищеним матеріалом без дозволу є протизаконним.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1296"/>
         <source>Encryption support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтримка шифрування (Увімкнена)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1301"/>
         <source>Encryption support [FORCED]</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтримка шифрування (Примусова)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1306"/>
         <source>Encryption support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтримка шифрування (Вимкнена)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="309"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;було заблоковано&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="127"/>
         <source>Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>КоеКоефіціент</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="257"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alt+1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="259"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alt+2</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="261"/>
         <source>Alt+3, Ctrl+F</source>
         <comment>shortcut to switch to third tab (search)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alt+3, Ctrl+F</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="263"/>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alt+4</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="390"/>
         <source>Url download error</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка завантаження url</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="390"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неможливо завантажити файл з url: %1, причина: %2.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="326"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished"></translation>
+        <translation>Було відмовлено у швидкому відновленні данних для torrent&apos;у %1, перевіряю знову...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="994"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ви впевнені що хочете видалити вибрані пункти зі списку завантажень та зі жорсткого диску?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1001"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ви впевнені що хочете видалити вибрані пункти зі списку завершених завантажень та зі жорсткого диску?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1041"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; було назавжди видалено.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="330"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Пошук url роздачі невдалий для url: %1, повідомлення: %2</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../MainWindow.ui" line="305"/>
+        <location filename="" line="7471221"/>
         <source>Log:</source>
         <translation type="obsolete">Лог:</translation>
     </message>
@@ -1739,7 +1740,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Загальна DL швидкість:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Kb/s</source>
         <translation type="obsolete">Кб/с</translation>
     </message>
@@ -1749,37 +1750,37 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Загальна UP швидкість:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Name</source>
         <translation type="obsolete">Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Size</source>
         <translation type="obsolete">Розмір</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>% DL</source>
         <translation type="obsolete">% DL</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>DL Speed</source>
         <translation type="obsolete">DL швидкість</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>UP Speed</source>
         <translation type="obsolete">UP швидкість</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Status</source>
         <translation type="obsolete">Статус</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>ETA</source>
         <translation type="obsolete">ETA</translation>
     </message>
@@ -1851,10 +1852,10 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../MainWindow.ui" line="528"/>
         <source>Documentation</source>
-        <translation type="unfinished">Документація</translation>
+        <translation>Документація</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Delete All</source>
         <translation type="obsolete">Видалити всі</translation>
     </message>
@@ -1864,62 +1865,62 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Властивості Torrent</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Connection Status</source>
         <translation type="obsolete">Статус з&apos;єднання</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="36"/>
         <source>Downloads</source>
-        <translation type="unfinished">Завантаження</translation>
+        <translation>Завантаження</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="488"/>
+        <location filename="" line="7471221"/>
         <source>Search</source>
         <translation type="obsolete">Пошук</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="465"/>
+        <location filename="" line="7471221"/>
         <source>Search Pattern:</source>
         <translation type="obsolete">Шаблон пошуку:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="538"/>
+        <location filename="" line="7471221"/>
         <source>Status:</source>
         <translation type="obsolete">Статус:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="568"/>
+        <location filename="" line="7471221"/>
         <source>Stopped</source>
         <translation type="obsolete">Зупинено</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="386"/>
+        <location filename="" line="7471221"/>
         <source>Search Engines</source>
         <translation type="obsolete">Пошуковики</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="627"/>
+        <location filename="" line="7471221"/>
         <source>Results:</source>
         <translation type="obsolete">Результати:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="504"/>
+        <location filename="" line="7471221"/>
         <source>Stop</source>
         <translation type="obsolete">Зупинити</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Seeds</source>
         <translation type="obsolete">Роздачі</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Leechers</source>
         <translation type="obsolete">Лічери</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Search Engine</source>
         <translation type="obsolete">Пошуковик</translation>
     </message>
@@ -1929,12 +1930,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Завантажити з URL</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="685"/>
+        <location filename="" line="7471221"/>
         <source>Download</source>
         <translation type="obsolete">Завантажити</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="695"/>
+        <location filename="" line="7471221"/>
         <source>Clear</source>
         <translation type="obsolete">Очистити</translation>
     </message>
@@ -1949,12 +1950,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Створити torrent</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Ratio: </source>
         <translation type="obsolete">Коефіціент:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="715"/>
+        <location filename="" line="7471221"/>
         <source>Update search plugin</source>
         <translation type="obsolete">Оновити пошуковий плагін</translation>
     </message>
@@ -1964,7 +1965,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Коефіціент сесії:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="36"/>
+        <location filename="" line="7471221"/>
         <source>Transfers</source>
         <translation type="obsolete">Трансфери</translation>
     </message>
@@ -1996,74 +1997,74 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../MainWindow.ui" line="518"/>
         <source>Set upload limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Встановити ліміт віддачі</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="523"/>
         <source>Set download limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Встановити ліміт прийому</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="275"/>
         <source>Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Лог</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="309"/>
         <source>IP filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Фільтер IP</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="533"/>
         <source>Set global download limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Встановити глобальний ліміт прийому</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="538"/>
         <source>Set global upload limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Встановити глобальний ліміт віддачі</translation>
     </message>
 </context>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../PropListDelegate.h" line="136"/>
+        <location filename="" line="7471221"/>
         <source>False</source>
         <translation type="obsolete">Ні</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="135"/>
+        <location filename="" line="7471221"/>
         <source>True</source>
         <translation type="obsolete">Так</translation>
     </message>
     <message>
         <location filename="../PropListDelegate.h" line="128"/>
         <source>Ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>Ігнорувати</translation>
     </message>
     <message>
         <location filename="../PropListDelegate.h" line="129"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Нормальний</translation>
     </message>
     <message>
         <location filename="../PropListDelegate.h" line="130"/>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Високий</translation>
     </message>
     <message>
         <location filename="../PropListDelegate.h" line="131"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Максимальний</translation>
     </message>
 </context>
 <context>
     <name>QTextEdit</name>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Clear</source>
         <translation type="obsolete">Очистити</translation>
     </message>
@@ -2073,62 +2074,62 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../rss.ui" line="13"/>
         <source>Search</source>
-        <translation type="unfinished">Пошук</translation>
+        <translation>Пошук</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="208"/>
         <source>Delete</source>
-        <translation type="unfinished">Видалити</translation>
+        <translation>Видалити</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="213"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Переіменувати</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="218"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновити</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="219"/>
+        <location filename="" line="7471221"/>
         <source>Create</source>
         <translation type="obsolete">Створити</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="89"/>
         <source>Delete selected streams</source>
-        <translation type="unfinished"></translation>
+        <translation>Видалити вибрані потоки</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="111"/>
         <source>Refresh RSS streams</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновити потоки RSS</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="133"/>
         <source>Add a new RSS stream</source>
-        <translation type="unfinished"></translation>
+        <translation>Додати новий потік RSS</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="174"/>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Новини:&lt;/b&gt; &lt;i&gt;(подвійний клік відкриє посилання у вашому броузері)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="223"/>
         <source>Add RSS stream</source>
-        <translation type="unfinished"></translation>
+        <translation>Додать потік RSS</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="228"/>
         <source>Refresh all streams</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновити всі потоки</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="48"/>
         <source>RSS streams:</source>
-        <translation type="unfinished"></translation>
+        <translation>Потоки RSS:</translation>
     </message>
 </context>
 <context>
@@ -2136,62 +2137,62 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../rss_imp.cpp" line="176"/>
         <source>Please type a rss stream url</source>
-        <translation type="unfinished"></translation>
+        <translation>Будь-ласка, введіть url потоку rss</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="176"/>
         <source>Stream URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL потоку:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="140"/>
         <source>Please choose a new name for this stream</source>
-        <translation type="unfinished"></translation>
+        <translation>Будь-ласка, виберіть нове ім&apos;я для цього потоку</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="140"/>
         <source>New stream name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Нове ім&apos;я потоку:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="120"/>
         <source>Are you sure? -- qBittorrent</source>
-        <translation type="unfinished">Ви впевнені? -- qBittorrent</translation>
+        <translation>Ви впевнені? -- qBittorrent</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="120"/>
         <source>Are you sure you want to delete this stream from the list ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ви впевнені що хочете видалити цей потік зі списку?</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="120"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Так</translation>
+        <translation>&amp;Так</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="120"/>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;Ні</translation>
+        <translation>&amp;Ні</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="59"/>
         <source>Are you sure you want to delete this stream from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ви впевнені що хочете видалити цей потік зі списку?</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="274"/>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>Опис:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="274"/>
         <source>url:</source>
-        <translation type="unfinished"></translation>
+        <translation>url:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="274"/>
         <source>Last refresh:</source>
-        <translation type="unfinished"></translation>
+        <translation>Останнє обновлення:</translation>
     </message>
 </context>
 <context>
@@ -2199,7 +2200,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../rss.h" line="97"/>
         <source>No description available</source>
-        <translation type="unfinished"></translation>
+        <translation>Опис відсутній</translation>
     </message>
 </context>
 <context>
@@ -2208,7 +2209,7 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../rss.h" line="261"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 тому</translation>
     </message>
 </context>
 <context>
@@ -2217,65 +2218,65 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../searchEngine.cpp" line="54"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">Ім&apos;я</translation>
+        <translation>Ім&apos;я</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="55"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">Розмір</translation>
+        <translation>Розмір</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="56"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation type="unfinished">Сідери</translation>
+        <translation>Сідери</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="57"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation type="unfinished">Лічери</translation>
+        <translation>Лічери</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="58"/>
         <source>Search engine</source>
-        <translation type="unfinished">Пошуковик</translation>
+        <translation>Пошуковик</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="270"/>
         <source>Empty search pattern</source>
-        <translation type="unfinished">Пустий шаблон пошуку</translation>
+        <translation>Пустий шаблон пошуку</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="270"/>
         <source>Please type a search pattern first</source>
-        <translation type="unfinished">Будь-ласка спочатку введіть шаблон пошуку</translation>
+        <translation>Будь-ласка, спочатку введіть шаблон пошуку</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="288"/>
         <source>No search engine selected</source>
-        <translation type="unfinished">Не вибрано пошуковик</translation>
+        <translation>Не вибрано пошуковик</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="288"/>
         <source>You must select at least one search engine.</source>
-        <translation type="unfinished">Ви повинні вибрати хоча б один пошуковик.</translation>
+        <translation>Ви повинні вибрати хоча б один пошуковик.</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="567"/>
         <source>Results</source>
-        <translation type="unfinished">Результати</translation>
+        <translation>Результати</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="326"/>
         <source>Searching...</source>
-        <translation type="unfinished">Шукаю...</translation>
+        <translation>Шукаю...</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="471"/>
         <source>Search plugin update -- qBittorrent</source>
-        <translation type="unfinished">Оновлення пошукового плагіну -- qBittorrent</translation>
+        <translation>Оновлення пошукового плагіну -- qBittorrent</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="450"/>
@@ -2283,7 +2284,7 @@ Are you sure you want to quit qBittorrent?</source>
 
 Changelog:
 </source>
-        <translation type="unfinished">Пошуковий плагін може бути оновлений, ви хочете його оновити?
+        <translation>Пошуковий плагін може бути оновлений, ви хочете його оновити?
 
 Список змін:
 </translation>
@@ -2291,144 +2292,144 @@ Changelog:
     <message>
         <location filename="../searchEngine.cpp" line="451"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Так</translation>
+        <translation>&amp;Так</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="451"/>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;Ні</translation>
+        <translation>&amp;Ні</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="467"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">Оновити пошуковий плагін</translation>
+        <translation>Оновити пошуковий плагін</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="467"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="468"/>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation type="unfinished">Пробачте, сервер оновлень тимчасово недоступний.</translation>
+        <translation>Пробачте, сервер оновлень тимчасово недоступний.</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="472"/>
         <source>Your search plugin is already up to date.</source>
-        <translation type="unfinished">Ви вже маєте останню версію пошукового плагіну.</translation>
+        <translation>Ви вже маєте останню версію пошукового плагіну.</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="504"/>
         <source>Search Engine</source>
-        <translation type="unfinished">Пошуковик</translation>
+        <translation>Пошуковик</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="515"/>
         <source>Search has finished</source>
-        <translation type="unfinished">Пошук закінчено</translation>
+        <translation>Пошук закінчено</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="507"/>
         <source>An error occured during search...</source>
-        <translation type="unfinished">Під час пошуку сталася помилка...</translation>
+        <translation>Під час пошуку сталася помилка...</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="510"/>
         <source>Search aborted</source>
-        <translation type="unfinished">Пошук скасовано</translation>
+        <translation>Пошук скасовано</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="513"/>
         <source>Search returned no results</source>
-        <translation type="unfinished">Пошук не дав результів</translation>
+        <translation>Пошук не дав результів</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="519"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
-        <translation type="unfinished">Результати</translation>
+        <translation>Результати</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="485"/>
         <source>Search plugin download error</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка при завантаженні пошукового плагіну</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="485"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неможливо завантажити пошуковий плагін з url: %1, причина: %2.</translation>
     </message>
 </context>
 <context>
     <name>Ui</name>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Please contact me if you would like to translate qBittorrent to your own language.</source>
         <translation type="obsolete">Бідь-ласка зв&apos;яжіться зі мною якщо ви бажаєте перекласти qBittorrent на вашу мову.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>qBittorrent </source>
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="44"/>
+        <location filename="" line="7471221"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
         <translation type="obsolete">Я хотів би подякувати наступним людям, які переклали qBittorrent на власні мови:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>&lt;ul&gt;&lt;li&gt;I would like to thank sourceforge.net for hosting qBittorrent project.&lt;/li&gt;</source>
         <translation type="obsolete">&lt;ul&gt;&lt;li&gt;Я хотів би подякувати sourceforge.net за розміщення проекту qBittorrent.&lt;/li&gt;</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>&lt;li&gt;I also like to thank Jeffery Fernandez (developer@jefferyfernandez.id.au), our RPM packager, for his great work.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation type="obsolete">&lt;li&gt;І також я хотів би подякувати Джефрі Фернандезу (developer@jefferyfernandez.id.au), нашому RPM-пакувальнику, за його чудову роботу.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
+        <location filename="" line="7471221"/>
         <source>Preview impossible</source>
         <translation type="obsolete">Перегляд неможливий</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
+        <location filename="" line="7471221"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation type="obsolete">Пробачте, неможливо переглянути цей файл</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="98"/>
+        <location filename="" line="7471221"/>
         <source>Name</source>
         <translation type="obsolete">Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="99"/>
+        <location filename="" line="7471221"/>
         <source>Size</source>
         <translation type="obsolete">Розмір</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="100"/>
+        <location filename="" line="7471221"/>
         <source>Progress</source>
         <translation type="obsolete">Прогрес</translation>
     </message>
     <message>
-        <location filename="../downloadFromURLImp.h" line="64"/>
+        <location filename="" line="7471221"/>
         <source>No URL entered</source>
         <translation type="obsolete">Не введено URL</translation>
     </message>
     <message>
-        <location filename="../downloadFromURLImp.h" line="64"/>
+        <location filename="" line="7471221"/>
         <source>Please type at least one URL.</source>
         <translation type="obsolete">Буд-ласка, введіть хоча б один URL.</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="37"/>
+        <location filename="" line="7471221"/>
         <source>qBittorrent</source>
         <translation type="obsolete">qBitorrent</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="68"/>
+        <location filename="" line="7471221"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="obsolete">Будь-ласка зв&apos;яжітся зі мною, якщо ви бажаєте перекласти qBittorrent на вашу мову.</translation>
     </message>
@@ -2438,17 +2439,17 @@ Changelog:
     <message>
         <location filename="../about_imp.h" line="37"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="44"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation type="unfinished">Я хотів би подякувати наступним людям, які переклали qBittorrent на власні мови:</translation>
+        <translation>Я хотів би подякувати наступним людям, які переклали qBittorrent на власні мови:</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="70"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation type="unfinished">Будь-ласка зв&apos;яжітся зі мною, якщо ви бажаєте перекласти qBittorrent на вашу мову.</translation>
+        <translation>Будь-ласка зв&apos;яжітся зі мною, якщо ви бажаєте перекласти qBittorrent на вашу мову.</translation>
     </message>
 </context>
 <context>
@@ -2474,17 +2475,17 @@ Changelog:
         <translation>Вміст торренту:</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="95"/>
+        <location filename="" line="7471221"/>
         <source>File name</source>
         <translation type="obsolete">Ім&apos;я файлу</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="100"/>
+        <location filename="" line="7471221"/>
         <source>File size</source>
         <translation type="obsolete">Розмір файлу</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="105"/>
+        <location filename="" line="7471221"/>
         <source>Selected</source>
         <translation type="obsolete">Вибрано</translation>
     </message>
@@ -2509,39 +2510,39 @@ Changelog:
         <translation>Відміна</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>select</source>
         <translation type="obsolete">вибрати</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="188"/>
+        <location filename="" line="7471221"/>
         <source>Unselect</source>
         <translation type="obsolete">Зняти вибір</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="183"/>
+        <location filename="" line="7471221"/>
         <source>Select</source>
         <translation type="obsolete">Вибрати</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="162"/>
         <source>Ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>Проігноровано</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="167"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Нормально</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="172"/>
         <source>High</source>
-        <translation type="unfinished"></translation>
+        <translation>Високий</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="177"/>
         <source>Maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальний</translation>
     </message>
 </context>
 <context>
@@ -2587,33 +2588,33 @@ Changelog:
     <message>
         <location filename="../bandwidth_limit.ui" line="13"/>
         <source>Bandwidth allocation</source>
-        <translation type="unfinished"></translation>
+        <translation>Виділена пропускна здатність</translation>
     </message>
     <message>
         <location filename="../bandwidth_limit.ui" line="47"/>
         <source>KiB/s</source>
-        <translation type="unfinished">КіБ/с</translation>
+        <translation>КіБ/с</translation>
     </message>
 </context>
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../createtorrent.ui" line="51"/>
+        <location filename="" line="7471221"/>
         <source>Create Torrent file</source>
         <translation type="obsolete">Створити torrent-файл</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="517"/>
         <source>Destination torrent file:</source>
-        <translation type="unfinished">Цільовий torrent-файл:</translation>
+        <translation>Цільовий torrent-файл:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Input file or directory:</source>
         <translation type="obsolete">Вхідний файл чи директорія:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Comment:</source>
         <translation type="obsolete">Коментарій:</translation>
     </message>
@@ -2633,12 +2634,12 @@ Changelog:
         <translation>Відміна</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Announce url (Tracker):</source>
         <translation type="obsolete">url оповіщення (Трекер):</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="176"/>
+        <location filename="" line="7471221"/>
         <source>Directory</source>
         <translation type="obsolete">Директорія</translation>
     </message>
@@ -2648,54 +2649,54 @@ Changelog:
         <translation>Інструмент для створення Torrent&apos;ів</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="83"/>
+        <location filename="" line="7471221"/>
         <source>&lt;center&gt;Destination torrent file:&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Цільовий torrent-файл:&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="99"/>
+        <location filename="" line="7471221"/>
         <source>&lt;center&gt;Input file or directory:&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Вхідний файл чи директорія:&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="115"/>
+        <location filename="" line="7471221"/>
         <source>&lt;center&gt;Announce url:&lt;br&gt;(One per line)&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Оповістити url:&lt;br&gt;(Одна на лінію)&lt;center&gt;</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="125"/>
+        <location filename="" line="7471221"/>
         <source>&lt;center&gt;Comment:&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Комментарій:&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="48"/>
         <source>Torrent file creation</source>
-        <translation type="unfinished"></translation>
+        <translation>Створення torrent-файлу</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="93"/>
         <source>Input files or directories:</source>
-        <translation type="unfinished"></translation>
+        <translation>Вхідні файли чи директорії:</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="112"/>
         <source>Announce urls (trackers):</source>
-        <translation type="unfinished"></translation>
+        <translation>urls анонсу (трекери):</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="147"/>
         <source>Comment (optional):</source>
-        <translation type="unfinished"></translation>
+        <translation>Коментарій (необов&apos;язково):</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="489"/>
         <source>Private (won&apos;t be distributed on trackerless network / DHT if enabled)</source>
-        <translation type="unfinished"></translation>
+        <translation>Приватно (якщо увімкнено, не буде передаватись через безтрекерну мережу / DHT)</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="128"/>
         <source>Web seeds urls (optional):</source>
-        <translation type="unfinished"></translation>
+        <translation>Urls web-роздачі (необов&apos;язково):</translation>
     </message>
 </context>
 <context>
@@ -2711,7 +2712,7 @@ Changelog:
         <translation>Torrent файли</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="58"/>
+        <location filename="" line="7471221"/>
         <source>Select input directory or file</source>
         <translation type="obsolete">Виберіть вхідну директорію чи файл</translation>
     </message>
@@ -2736,12 +2737,12 @@ Changelog:
         <translation>Будь-ласка, спочатку введіть вхідний шлях</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="96"/>
+        <location filename="" line="7471221"/>
         <source>Input path does not exist</source>
         <translation type="obsolete">Вхідний шлях не існує</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Please type a correct input path first</source>
         <translation type="obsolete">Будь-ласка, спочатку введіть правильний вхідний шлях</translation>
     </message>
@@ -2756,45 +2757,45 @@ Changelog:
         <translation>Торрент було успішно створено:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="96"/>
+        <location filename="" line="7471221"/>
         <source>Please type a valid input path first</source>
         <translation type="obsolete">Будь-ласка, спочатку введіть правильний вхідний шлях</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="66"/>
         <source>Select a folder to add to the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Виберіть папку для додавання в torrent</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="72"/>
         <source>Select files to add to the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Виберіть файли для додавання в torrent</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="99"/>
         <source>Please type an announce URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Будб-ласка, введіть URL анонсу</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="207"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Створення torrent&apos;у було невдалим, причина: %1</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="100"/>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation type="unfinished"></translation>
+        <translation>URL анонсу:</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="118"/>
         <source>Please type a web seed url</source>
-        <translation type="unfinished"></translation>
+        <translation>Будб-ласка, введіть url web-роздачі</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="119"/>
         <source>Web seed URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL web-роздачі:</translation>
     </message>
 </context>
 <context>
@@ -2827,12 +2828,12 @@ Changelog:
     <message>
         <location filename="../downloadFromURLImp.h" line="63"/>
         <source>No URL entered</source>
-        <translation type="unfinished">Не введено URL</translation>
+        <translation>Не введено URL</translation>
     </message>
     <message>
         <location filename="../downloadFromURLImp.h" line="63"/>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished">Буд-ласка, введіть хоча б один URL.</translation>
+        <translation>Буд-ласка, введіть хоча б один URL.</translation>
     </message>
 </context>
 <context>
@@ -2868,19 +2869,19 @@ Changelog:
         <translation>ТіБ</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>m</source>
         <comment>minutes</comment>
         <translation type="obsolete">хв</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>h </source>
         <comment>hours</comment>
         <translation type="obsolete">г</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>d </source>
         <comment>days</comment>
         <translation type="obsolete">д</translation>
@@ -2891,13 +2892,13 @@ Changelog:
         <translation>Невідомо</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>h</source>
         <comment>hours</comment>
         <translation type="obsolete">г</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>d</source>
         <comment>days</comment>
         <translation type="obsolete">д</translation>
@@ -2936,52 +2937,52 @@ Changelog:
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Options saved successfully!</source>
         <translation type="obsolete">Опції успішно збережено!</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Choose Scan Directory</source>
         <translation type="obsolete">Виберіть директорію сканування</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Choose save Directory</source>
         <translation type="obsolete">Виберіть директорію збереження</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Choose ipfilter.dat file</source>
         <translation type="obsolete">Виберіть файл ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>I/O Error</source>
         <translation type="obsolete">Помилка I/O</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Couldn&apos;t open:</source>
         <translation type="obsolete">Не можу відкрити:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>in read mode.</source>
         <translation type="obsolete">в режимі читання.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Invalid Line</source>
         <translation type="obsolete">Неправильна лінія</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Line</source>
         <translation type="obsolete">Лінія</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>is malformed.</source>
         <translation type="obsolete">сформована неправильно.</translation>
     </message>
@@ -2996,12 +2997,12 @@ Changelog:
         <translation>Початкова IP-адреса:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Incorrect IP</source>
         <translation type="obsolete">Невірний IP</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>This IP is incorrect.</source>
         <translation type="obsolete">Цей IP невірний.</translation>
     </message>
@@ -3111,27 +3112,27 @@ Changelog:
     <message>
         <location filename="../previewSelect.h" line="126"/>
         <source>Preview impossible</source>
-        <translation type="unfinished">Перегляд неможливий</translation>
+        <translation>Перегляд неможливий</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="126"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished">Пробачте, неможливо переглянути цей файл</translation>
+        <translation>Пробачте, неможливо переглянути цей файл</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="98"/>
         <source>Name</source>
-        <translation type="unfinished">Ім&apos;я</translation>
+        <translation>Ім&apos;я</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="99"/>
         <source>Size</source>
-        <translation type="unfinished">Розмір</translation>
+        <translation>Розмір</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="100"/>
         <source>Progress</source>
-        <translation type="unfinished">Прогрес</translation>
+        <translation>Прогрес</translation>
     </message>
 </context>
 <context>
@@ -3142,47 +3143,47 @@ Changelog:
         <translation>Властивості Torrent</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Main Infos</source>
         <translation type="obsolete">Головна інформація</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="40"/>
+        <location filename="" line="7471221"/>
         <source>File Name</source>
         <translation type="obsolete">Ім&apos;я файлу</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="315"/>
+        <location filename="" line="7471221"/>
         <source>Current Session</source>
         <translation type="obsolete">Поточна сесія</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Total Uploaded:</source>
         <translation type="obsolete">Загалом віддано:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Total Downloaded:</source>
         <translation type="obsolete">Загалом прийнято:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Download state:</source>
         <translation type="obsolete">Стан завантаження:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Current Tracker:</source>
         <translation type="obsolete">Поточний трекер:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Number of Peers:</source>
         <translation type="obsolete">Кількість пірів:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Torrent Content</source>
         <translation type="obsolete">Вміст Torrent&apos;у</translation>
     </message>
@@ -3192,62 +3193,62 @@ Changelog:
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Total Failed:</source>
         <translation type="obsolete">Загалом невдалих:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Finished</source>
         <translation type="obsolete">Закінчено</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Queued for checking</source>
         <translation type="obsolete">Поставлено в чергу для перевірки</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Checking files</source>
         <translation type="obsolete">Перевірка файлів</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Connecting to tracker</source>
         <translation type="obsolete">З&apos;єднуюсь з трекером</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Downloading Metadata</source>
         <translation type="obsolete">Завантажую метадані</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Downloading</source>
         <translation type="obsolete">Завантажую</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Seeding</source>
         <translation type="obsolete">Роздаю</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Allocating</source>
         <translation type="obsolete">Виділяю</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="77"/>
         <source>Unknown</source>
-        <translation type="unfinished">Невідомо</translation>
+        <translation>Невідомо</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Complete: </source>
         <translation type="obsolete">Завершено:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Partial: </source>
         <translation type="obsolete">Частково:</translation>
     </message>
@@ -3262,32 +3263,32 @@ Changelog:
         <translation>Розмір</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="43"/>
+        <location filename="" line="7471221"/>
         <source>Selected</source>
         <translation type="obsolete">Вибрано</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="900"/>
+        <location filename="" line="7471221"/>
         <source> Unselect</source>
         <translation type="obsolete">Відмінити вибір</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="907"/>
+        <location filename="" line="7471221"/>
         <source> Select</source>
         <translation type="obsolete">Вибрати</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="940"/>
+        <location filename="" line="7471221"/>
         <source>You can select here precisely which files you want to download in current torrent.</source>
         <translation type="obsolete">Тут ви можете вибрати окремі файли для завантаження в поточному torrent&apos;і.</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>False</source>
         <translation type="obsolete">Ні</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>True</source>
         <translation type="obsolete">Так</translation>
     </message>
@@ -3322,7 +3323,7 @@ Changelog:
         <translation>Головна інформація</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Number of peers:</source>
         <translation type="obsolete">Кількість пірів:</translation>
     </message>
@@ -3352,7 +3353,7 @@ Changelog:
         <translation>Вміст Torrent&apos;у</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Options</source>
         <translation type="obsolete">Опції</translation>
     </message>
@@ -3362,17 +3363,17 @@ Changelog:
         <translation>Завантажувати в правильному порядку (повільніше, але краще для перегляду)</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="432"/>
+        <location filename="" line="7471221"/>
         <source>Share Ratio:</source>
         <translation type="obsolete">Коефіціент розподілення:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Seeders:</source>
         <translation type="obsolete">Сідери:</translation>
     </message>
     <message>
-        <location filename="" line="135068684"/>
+        <location filename="" line="7471221"/>
         <source>Leechers:</source>
         <translation type="obsolete">Лічери:</translation>
     </message>
@@ -3384,149 +3385,149 @@ Changelog:
     <message>
         <location filename="../properties.ui" line="81"/>
         <source>Torrent infos</source>
-        <translation type="unfinished"></translation>
+        <translation>Інформація torrent&apos;у</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="140"/>
         <source>Creator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Автор:</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="159"/>
         <source>Torrent hash:</source>
-        <translation type="unfinished"></translation>
+        <translation>Хеш torrent&apos;у:</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="184"/>
         <source>Comment:</source>
-        <translation type="unfinished">Коментарій:</translation>
+        <translation>Коментарій:</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="304"/>
         <source>Current session</source>
-        <translation type="unfinished"></translation>
+        <translation>Поточна сесія</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="379"/>
         <source>Share ratio:</source>
-        <translation type="unfinished">Коефіцієнт розподілу:</translation>
+        <translation>Коефіцієнт розподілу:</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="481"/>
         <source>Trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>Трекери</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="358"/>
         <source>New tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Новий трекер</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="359"/>
         <source>New tracker url:</source>
-        <translation type="unfinished"></translation>
+        <translation>Url нового трекера:</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="38"/>
         <source>Priorities:</source>
-        <translation type="unfinished"></translation>
+        <translation>Пріорітети:</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="38"/>
         <source>Normal: normal priority. Download order is dependent on availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Нормальний: нормальний пріорітет. Порядок завантажень залежить від доступності</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="38"/>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Високий: вище, ніж нормальний пріорітет. Ці частини переважають над частинами з такою ж доступністю, але не над менш доступними частинами</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="38"/>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальний: максимальний пріоритет, доступність нехтується, ця частина переважає над будь-якою іншою з нижчим пріоритетом</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="49"/>
         <source>File name</source>
-        <translation type="unfinished">Ім&apos;я файлу</translation>
+        <translation>Ім&apos;я файлу</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="238"/>
         <source>Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Пріоритет</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="407"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="408"/>
         <source>Trackers list can&apos;t be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Список трекерів не може бути порожнім.</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="38"/>
         <source>Ignored: file is not downloaded at all</source>
-        <translation type="unfinished"></translation>
+        <translation>Ігнорувати: файл взагалі не завантажується</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1057"/>
         <source>Ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>Ігнорувати</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1062"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Нормальний</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1067"/>
         <source>Maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальний</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1072"/>
         <source>High</source>
-        <translation type="unfinished"></translation>
+        <translation>Високий</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="827"/>
         <source>Url seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Url роздачі</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="334"/>
         <source>New url seed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Новий url роздачі:</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="341"/>
         <source>This url seed is already in the list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Цей url роздачі вже існує в списку.</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="395"/>
         <source>Hard-coded url seeds cannot be deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Жорстко запрограмовані url роздачі не можуть бути видалені.</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="147"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
-        <translation type="unfinished">Немає</translation>
+        <translation>Немає</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="333"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
-        <translation type="unfinished"></translation>
+        <translation>Новий url роздачі</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="845"/>
         <source>The following url seeds are available for this torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Наступні url роздачі доступні для цього torrent&apos;а:</translation>
     </message>
 </context>
 <context>
@@ -3534,52 +3535,52 @@ Changelog:
     <message>
         <location filename="../search.ui" line="147"/>
         <source>Search</source>
-        <translation type="unfinished">Пошук</translation>
+        <translation>Пошук</translation>
     </message>
     <message>
         <location filename="../search.ui" line="45"/>
         <source>Search Engines</source>
-        <translation type="unfinished">Пошуковики</translation>
+        <translation>Пошуковики</translation>
     </message>
     <message>
         <location filename="../search.ui" line="124"/>
         <source>Search Pattern:</source>
-        <translation type="unfinished">Шаблон пошуку:</translation>
+        <translation>Шаблон пошуку:</translation>
     </message>
     <message>
         <location filename="../search.ui" line="163"/>
         <source>Stop</source>
-        <translation type="unfinished">Зупинити</translation>
+        <translation>Зупинити</translation>
     </message>
     <message>
         <location filename="../search.ui" line="197"/>
         <source>Status:</source>
-        <translation type="unfinished">Статус:</translation>
+        <translation>Статус:</translation>
     </message>
     <message>
         <location filename="../search.ui" line="227"/>
         <source>Stopped</source>
-        <translation type="unfinished">Зупинено</translation>
+        <translation>Зупинено</translation>
     </message>
     <message>
         <location filename="../search.ui" line="286"/>
         <source>Results:</source>
-        <translation type="unfinished">Результати:</translation>
+        <translation>Результати:</translation>
     </message>
     <message>
         <location filename="../search.ui" line="344"/>
         <source>Download</source>
-        <translation type="unfinished">Завантажити</translation>
+        <translation>Завантажити</translation>
     </message>
     <message>
         <location filename="../search.ui" line="354"/>
         <source>Clear</source>
-        <translation type="unfinished">Очистити</translation>
+        <translation>Очистити</translation>
     </message>
     <message>
         <location filename="../search.ui" line="374"/>
         <source>Update search plugin</source>
-        <translation type="unfinished">Оновити пошуковий плагін</translation>
+        <translation>Оновити пошуковий плагін</translation>
     </message>
 </context>
 <context>
@@ -3587,52 +3588,52 @@ Changelog:
     <message>
         <location filename="../seeding.ui" line="13"/>
         <source>Search</source>
-        <translation type="unfinished">Пошук</translation>
+        <translation>Пошук</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="25"/>
         <source>The following torrents are finished and shared:</source>
-        <translation type="unfinished"></translation>
+        <translation>Наступні torrent&apos;и закінчені і є загально використовувані:</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="47"/>
         <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;u&gt;Примітка:&lt;/u&gt; Важливо, щоб ви зберігали загальний доступ до закінчених torrent&apos;ів доки існує з&apos;єднання.</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="54"/>
         <source>Start</source>
-        <translation type="unfinished">Почати</translation>
+        <translation>Почати</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="59"/>
         <source>Pause</source>
-        <translation type="unfinished">Призупинити</translation>
+        <translation>Призупинити</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="64"/>
         <source>Delete</source>
-        <translation type="unfinished">Видалити</translation>
+        <translation>Видалити</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="69"/>
         <source>Delete Permanently</source>
-        <translation type="unfinished">Видалити назовсім</translation>
+        <translation>Видалити назавжди</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="74"/>
         <source>Torrent Properties</source>
-        <translation type="unfinished">Властивості Torrent</translation>
+        <translation>Властивості torrent&apos;у</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="79"/>
         <source>Preview file</source>
-        <translation type="unfinished">Файл перегляду</translation>
+        <translation>Переглянути файл</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="84"/>
         <source>Set upload limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Встановити ліміт віддачі</translation>
     </message>
 </context>
 <context>
@@ -3640,63 +3641,63 @@ Changelog:
     <message>
         <location filename="../downloadThread.h" line="60"/>
         <source>Host is unreachable</source>
-        <translation type="unfinished"></translation>
+        <translation>Хост недоступний</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="62"/>
         <source>File was not found (404)</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл не знайдено (404)</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="64"/>
         <source>Connection was denied</source>
-        <translation type="unfinished"></translation>
+        <translation>Відмовлено у з&apos;єднанні</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="66"/>
         <source>Url is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильний URL</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="68"/>
         <source>Connection forbidden (403)</source>
-        <translation type="unfinished"></translation>
+        <translation>З&apos;єднання заборонено (403)</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="70"/>
         <source>Connection was not authorized (401)</source>
-        <translation type="unfinished"></translation>
+        <translation>З&apos;єднання не авторизовано (401)</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="72"/>
         <source>Content has moved (301)</source>
-        <translation type="unfinished"></translation>
+        <translation>Контент переміщено (301)</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="74"/>
         <source>Connection failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Відмовлено у з&apos;єднанні</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="76"/>
         <source>Connection was timed out</source>
-        <translation type="unfinished"></translation>
+        <translation>Вичерпано час на з&apos;єднання</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="78"/>
         <source>Incorrect network interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильний мережевий інтерфейс</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="80"/>
         <source>Unknown error</source>
-        <translation type="unfinished"></translation>
+        <translation>Невідома помилка</translation>
     </message>
 </context>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentAddition.h" line="197"/>
+        <location filename="" line="7471221"/>
         <source>True</source>
         <translation type="obsolete">Так</translation>
     </message>
@@ -3716,7 +3717,7 @@ Changelog:
         <translation>Виберіть шлях збереження</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="193"/>
+        <location filename="" line="7471221"/>
         <source>False</source>
         <translation type="obsolete">Ні</translation>
     </message>
@@ -3753,22 +3754,22 @@ Changelog:
     <message>
         <location filename="../torrentAddition.h" line="65"/>
         <source>File name</source>
-        <translation type="unfinished">Ім&apos;я файлу</translation>
+        <translation>Ім&apos;я файлу</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="66"/>
         <source>Size</source>
-        <translation type="unfinished">Розмір</translation>
+        <translation>Розмір</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="67"/>
         <source>Progress</source>
-        <translation type="unfinished">Прогрес</translation>
+        <translation>Прогрес</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="211"/>
         <source>Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Пріоритет</translation>
     </message>
 </context>
 </TS>
