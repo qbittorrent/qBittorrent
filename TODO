@@ -38,7 +38,6 @@
 - Check storage st creation + hasher in torrent creation
 - test IPv6 support (How? Who uses IPv6?)
 - Fix all (or almost all) opened bugs in bug tracker
-- Fix column sorting with Qt 4.3 - Reported to Trolltech, waiting for their fix
 - update sorting when a new torrent is added?
 - Complete documentation and english translation
 - Windows port (Chris - Peerkoel)

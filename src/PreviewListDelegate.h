@@ -24,6 +24,7 @@
 
 #include <QItemDelegate>
 #include <QStyleOptionProgressBarV2>
+#include <QStyleOptionViewItemV2>
 #include <QModelIndex>
 #include <QPainter>
 #include <QProgressBar>
@@ -44,7 +45,7 @@ class PreviewListDelegate: public QItemDelegate {
     ~PreviewListDelegate(){}
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
-      QStyleOptionViewItemV3 opt = QItemDelegate::setOptions(index, option);
+      QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
       char tmp[MAX_CHAR_TMP];
 
       switch(index.column()){

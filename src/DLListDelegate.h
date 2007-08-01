@@ -26,6 +26,7 @@
 #include <QModelIndex>
 #include <QPainter>
 #include <QStyleOptionProgressBarV2>
+#include <QStyleOptionViewItemV2>
 #include <QProgressBar>
 #include <QApplication>
 #include "misc.h"
@@ -51,7 +52,7 @@ class DLListDelegate: public QItemDelegate {
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
       char tmp[MAX_CHAR_TMP];
-      QStyleOptionViewItemV3 opt = QItemDelegate::setOptions(index, option);
+      QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
       switch(index.column()){
         case SIZE:
           QItemDelegate::drawBackground(painter, opt, index);

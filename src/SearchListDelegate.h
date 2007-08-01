@@ -24,6 +24,7 @@
 
 #include <QItemDelegate>
 #include <QStyleOptionProgressBarV2>
+#include <QStyleOptionViewItemV2>
 #include <QModelIndex>
 #include <QPainter>
 #include <QProgressBar>
@@ -45,7 +46,7 @@ class SearchListDelegate: public QItemDelegate {
     ~SearchListDelegate(){}
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
-      QStyleOptionViewItemV3 opt = QItemDelegate::setOptions(index, option);
+      QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
       switch(index.column()){
         case SIZE:
           QItemDelegate::drawBackground(painter, opt, index);
