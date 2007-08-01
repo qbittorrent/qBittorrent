@@ -24,6 +24,7 @@
 
 #include <QItemDelegate>
 #include <QStyleOptionProgressBarV2>
+#include <QStyleOptionViewItemV2>
 #include <QStyleOptionComboBox>
 #include <QComboBox>
 #include <QModelIndex>
@@ -58,7 +59,7 @@ class PropListDelegate: public QItemDelegate {
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
       char tmp[MAX_CHAR_TMP];
-      QStyleOptionViewItemV3 opt = QItemDelegate::setOptions(index, option);
+      QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
       QPalette::ColorGroup cg = option.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
       switch(index.column()){
         case SIZE:
