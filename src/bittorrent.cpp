@@ -32,6 +32,7 @@
 #include <libtorrent/identify_client.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/ip_filter.hpp>
+#include <boost/filesystem/exception.hpp>
 
 #include "bittorrent.h"
 #include "misc.h"
