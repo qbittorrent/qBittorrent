@@ -110,11 +110,15 @@ class deleteThread : public QThread {
         if(path_list.size() != 0){
           QString path = path_list.takeFirst();
           mutex.unlock();
-          subDeleteThread *st = new subDeleteThread(0, path);
-          subThreads << st;
-          connect(st, SIGNAL(deletionSuccessST(subDeleteThread*, QString)), this, SLOT(propagateDeletionSuccess(subDeleteThread*, QString)));
-          connect(st, SIGNAL(deletionFailureST(subDeleteThread*, QString)), this, SLOT(propagateDeletionFailure(subDeleteThread*, QString)));
-          st->start();
+          if(QFile::exists(path)){
+            subDeleteThread *st = new subDeleteThread(0, path);
+            subThreads << st;
+            connect(st, SIGNAL(deletionSuccessST(subDeleteThread*, QString)), this, SLOT(propagateDeletionSuccess(subDeleteThread*, QString)));
+            connect(st, SIGNAL(deletionFailureST(subDeleteThread*, QString)), this, SLOT(propagateDeletionFailure(subDeleteThread*, QString)));
+            st->start();
+          }else{
+            qDebug("%s does not exist, nothing to delete", (const char*)path.toUtf8());
+          }
         }else{
           condition.wait(&mutex);
           mutex.unlock();
