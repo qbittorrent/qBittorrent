@@ -357,27 +357,6 @@ void GUI::readParamsOnSocket(){
   }
 }
 
-// Toggle paused state of selected torrent
-void GUI::togglePausedState(const QModelIndex& index){
-  int row = index.row();
-  QString fileHash = DLListModel->data(DLListModel->index(row, HASH)).toString();
-  if(BTSession->isPaused(fileHash)){
-    BTSession->resumeTorrent(fileHash);
-    setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(QString(BTSession->getTorrentHandle(fileHash).name().c_str())));
-    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-    setRowColor(row, "grey");
-  }else{
-    BTSession->pauseTorrent(fileHash);
-    DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
-    DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
-    DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-    setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(QString(BTSession->getTorrentHandle(fileHash).name().c_str())));
-    DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
-    DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
-    setRowColor(row, "red");
-  }
-}
-
 void GUI::on_actionSet_download_limit_triggered(){
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   QModelIndex index;
@@ -1382,22 +1361,81 @@ void GUI::configureSession(bool deleteOptions){
   qDebug("Session configured");
 }
 
+// Toggle paused state of selected torrent
+void GUI::togglePausedState(const QModelIndex& index){
+  int row = index.row();
+  bool inDownloadList = true;
+  if(tabs->currentIndex() > 1) return;
+  if(tabs->currentIndex() == 1)
+    inDownloadList = false;
+  QString fileHash;
+  if(inDownloadList)
+    fileHash = DLListModel->data(DLListModel->index(row, HASH)).toString();
+  else
+    fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(row, F_HASH)).toString();
+  if(BTSession->isPaused(fileHash)){
+    BTSession->resumeTorrent(fileHash);
+    setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(QString(BTSession->getTorrentHandle(fileHash).name().c_str())));
+    if(inDownloadList){
+      DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
+      setRowColor(row, "grey");
+    }else{
+    finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
+    finishedTorrentTab->setRowColor(row, "orange");
+    }
+  }else{
+    BTSession->pauseTorrent(fileHash);
+    if(inDownloadList){
+      DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
+      DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
+      DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+      DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
+      DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
+      setRowColor(row, "red");
+    }else{
+      finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_UPSPEED), QVariant((double)0.0));
+      finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
+      finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_SEEDSLEECH), QVariant("0/0"));
+      setRowColor(row, "red");
+    }
+    setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(QString(BTSession->getTorrentHandle(fileHash).name().c_str())));
+  }
+}
+
 // Pause All Downloads in DL list
 void GUI::on_actionPause_All_triggered(){
   QString fileHash;
   bool change = false;
-  // update download list
-  unsigned int nbRows = DLListModel->rowCount();
+  bool inDownloadList = true;
+  if(tabs->currentIndex() > 1) return;
+  if(tabs->currentIndex() == 1)
+    inDownloadList = false;
+  unsigned int nbRows;
+  if(inDownloadList)
+    nbRows = DLListModel->rowCount();
+  else
+    nbRows = finishedTorrentTab->getFinishedListModel()->rowCount();
   for(unsigned int i=0; i<nbRows; ++i){
-    fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
+    if(inDownloadList)
+      fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
+    else
+      fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(i, F_HASH)).toString();
     if(BTSession->pauseTorrent(fileHash)){
-      // Update DL list items
-      DLListModel->setData(DLListModel->index(i, DLSPEED), QVariant((double)0.));
-      DLListModel->setData(DLListModel->index(i, UPSPEED), QVariant((double)0.));
-      DLListModel->setData(DLListModel->index(i, ETA), QVariant((qlonglong)-1));
-      DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
-      DLListModel->setData(DLListModel->index(i, SEEDSLEECH), QVariant("0/0"));
-      setRowColor(i, "red");
+      if(inDownloadList){
+        // Update DL list items
+        DLListModel->setData(DLListModel->index(i, DLSPEED), QVariant((double)0.));
+        DLListModel->setData(DLListModel->index(i, UPSPEED), QVariant((double)0.));
+        DLListModel->setData(DLListModel->index(i, ETA), QVariant((qlonglong)-1));
+        DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
+        DLListModel->setData(DLListModel->index(i, SEEDSLEECH), QVariant("0/0"));
+        setRowColor(i, "red");
+      }else{
+        // Update finished list items
+        finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(i, F_UPSPEED), QVariant((double)0.));
+        finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(i, F_NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
+        finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(i, F_SEEDSLEECH), QVariant("0/0"));
+        finishedTorrentTab->setRowColor(i, "red");
+      }
       change = true;
     }
   }
@@ -1407,22 +1445,41 @@ void GUI::on_actionPause_All_triggered(){
 
 // pause selected items in the list
 void GUI::on_actionPause_triggered(){
-  QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  QModelIndexList selectedIndexes;
+  bool inDownloadList = true;
+  if(tabs->currentIndex() > 1) return;
+  if(tabs->currentIndex() == 1)
+    inDownloadList = false;
+  if (inDownloadList)
+    selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  else
+    selectedIndexes = finishedTorrentTab->getFinishedList()->selectionModel()->selectedIndexes();
   QModelIndex index;
   foreach(index, selectedIndexes){
     if(index.column() == NAME){
       // Get the file name
-      QString fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+      QString fileHash;
+      if(inDownloadList) 
+        fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+      else
+        fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), F_HASH)).toString();
       if(BTSession->pauseTorrent(fileHash)){
         // Update DL status
         int row = index.row();
-        DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
-        DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
-        DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+        if(inDownloadList){
+          DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
+          DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
+          DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+          DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
+          DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
+          setRowColor(row, "red");
+        }else{
+          finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_UPSPEED), QVariant((double)0.0));
+          finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
+          finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_SEEDSLEECH), QVariant("0/0"));
+          finishedTorrentTab->setRowColor(row, "red");
+        }
         setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(QString(BTSession->getTorrentHandle(fileHash).name().c_str())));
-        DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
-        DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
-        setRowColor(row, "red");
       }
     }
   }
@@ -1431,14 +1488,30 @@ void GUI::on_actionPause_triggered(){
 // Resume All Downloads in DL list
 void GUI::on_actionStart_All_triggered(){
   QString fileHash;
-  unsigned int nbRows = DLListModel->rowCount();
   bool change = false;
+  bool inDownloadList = true;
+  if(tabs->currentIndex() > 1) return;
+  if(tabs->currentIndex() == 1)
+    inDownloadList = false;
+  unsigned int nbRows;
+  if(inDownloadList)
+    nbRows = DLListModel->rowCount();
+  else
+    nbRows = finishedTorrentTab->getFinishedListModel()->rowCount();
   for(unsigned int i=0; i<nbRows; ++i){
-    fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
+    if(inDownloadList)
+      fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
+    else
+      fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(i, F_HASH)).toString();
     // Remove .paused file
     if(BTSession->resumeTorrent(fileHash)){
-      DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-      setRowColor(i, "grey");
+      if(inDownloadList){
+        DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
+        setRowColor(i, "grey");
+      }else{
+        finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(i, F_NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
+        finishedTorrentTab->setRowColor(i, "orange");
+      }
       change = true;
     }
   }
@@ -1448,18 +1521,35 @@ void GUI::on_actionStart_All_triggered(){
 
 // start selected items in the list
 void GUI::on_actionStart_triggered(){
-  QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  QModelIndexList selectedIndexes;
+  bool inDownloadList = true;
+  if(tabs->currentIndex() > 1) return;
+  if(tabs->currentIndex() == 1)
+    inDownloadList = false;
+  if (inDownloadList)
+    selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  else
+    selectedIndexes = finishedTorrentTab->getFinishedList()->selectionModel()->selectedIndexes();
   QModelIndex index;
   foreach(index, selectedIndexes){
     if(index.column() == NAME){
       // Get the file name
-      QString fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+      QString fileHash;
+      if(inDownloadList)
+       fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+      else
+        fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), F_HASH)).toString();
       if(BTSession->resumeTorrent(fileHash)){
         // Update DL status
         int row = index.row();
+        if(inDownloadList){
+          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
+          setRowColor(row, "grey");
+        }else{
+          finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
+          finishedTorrentTab->setRowColor(row, "orange");
+        }
         setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(QString(BTSession->getTorrentHandle(fileHash).name().c_str())));
-        DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-        setRowColor(row, "grey");
       }
     }
   }

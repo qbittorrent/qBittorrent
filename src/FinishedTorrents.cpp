@@ -56,7 +56,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   finishedListDelegate = new FinishedListDelegate(finishedList);
   finishedList->setItemDelegate(finishedListDelegate);
   connect(finishedList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFinishedListMenu(const QPoint&)));
-  connect(finishedList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(propertiesSelection()));
+  connect(finishedList, SIGNAL(doubleClicked(const QModelIndex&)), parent, SLOT(togglePausedState(const QModelIndex&)));
   actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")));
   actionPreview_file->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")));
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
@@ -75,9 +75,6 @@ FinishedTorrents::~FinishedTorrents(){
 }
 
 void FinishedTorrents::addFinishedSHA(QString hash){
-  if(BTSession->getUncheckedTorrentsList().indexOf(hash) != -1){
-    BTSession->setTorrentFinishedChecking(hash);
-  }
   if(finishedSHAs.indexOf(hash) == -1) {
     finishedSHAs << hash;
     int row = finishedListModel->rowCount();
@@ -91,15 +88,13 @@ void FinishedTorrents::addFinishedSHA(QString hash){
     finishedListModel->setData(finishedListModel->index(row, F_RATIO), QVariant(QString(misc::toString(BTSession->getRealRatio(hash)).c_str())));
     finishedListModel->setData(finishedListModel->index(row, F_HASH), QVariant(hash));
     finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)1.));
-    // Start the torrent if it was paused
     if(h.is_paused()) {
-      h.resume();
-      if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")) {
-        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
-      }
+      finishedListModel->setData(finishedListModel->index(row, F_NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
+      setRowColor(row, "red");
+    }else{
+      finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
+      setRowColor(row, "orange");
     }
-    finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
-    setRowColor(row, "orange");
     // Create .finished file
     QFile finished_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
     finished_file.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -172,20 +167,30 @@ void FinishedTorrents::updateFinishedList(){
       qDebug("Problem: This torrent is not valid in finished list");
       continue;
     }
-    if(h.is_paused()){
-      h.resume(); // No paused torrents in finished list
-    }
     torrent_status torrentStatus = h.status();
+    int row = getRowFromHash(hash);
+    if(row == -1){
+      std::cerr << "ERROR: Can't find torrent in finished list\n";
+      continue;
+    }
+    if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) != -1){
+      // Pause torrent if it finished checking and it is was supposed to be paused.
+      // This is a trick to see the progress of the pause torrents on startup
+      if(torrentStatus.state != torrent_status::checking_files && torrentStatus.state != torrent_status::queued_for_checking){
+        qDebug("Paused torrent finished checking with state: %d", torrentStatus.state);
+        finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)torrentStatus.progress));
+        finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
+        setRowColor(row, "red");
+        BTSession->pauseTorrent(hash);
+        continue;
+      }
+    }
+    if(h.is_paused()) continue;
     if(torrentStatus.state == torrent_status::downloading || (torrentStatus.state != torrent_status::checking_files && torrentStatus.state != torrent_status::queued_for_checking && torrentStatus.progress != 1.)) {
       // What are you doing here? go back to download tab!
       qDebug("Info: a torrent was moved from finished to download tab");
       deleteFromFinishedList(hash);
       emit torrentMovedFromFinishedList(h);
-      continue;
-    }
-    int row = getRowFromHash(hash);
-    if(row == -1){
-      std::cerr << "ERROR: Can't find torrent in finished list\n";
       continue;
     }
     finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
@@ -268,7 +273,6 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
     if(index.column() == F_NAME){
       // Get the file name
       QString fileHash = finishedListModel->data(finishedListModel->index(index.row(), F_HASH)).toString();
-      // Get handle and pause the torrent
       torrent_handle h = BTSession->getTorrentHandle(fileHash);
       myFinishedListMenu.addAction(actionDelete);
       myFinishedListMenu.addAction(actionDelete_Permanently);
