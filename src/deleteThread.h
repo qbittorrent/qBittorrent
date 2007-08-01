@@ -112,8 +112,8 @@ class deleteThread : public QThread {
           mutex.unlock();
           subDeleteThread *st = new subDeleteThread(0, path);
           subThreads << st;
-          connect(st, SIGNAL(deletionSuccessST(subDownloadThread*, QString)), this, SLOT(propagateDeletionSuccess(subDeleteThread*, QString)));
-          connect(st, SIGNAL(deletionFailureST(subDownloadThread*, QString)), this, SLOT(propagateDeletionFailure(subDeleteThread*, QString)));
+          connect(st, SIGNAL(deletionSuccessST(subDeleteThread*, QString)), this, SLOT(propagateDeletionSuccess(subDeleteThread*, QString)));
+          connect(st, SIGNAL(deletionFailureST(subDeleteThread*, QString)), this, SLOT(propagateDeletionFailure(subDeleteThread*, QString)));
           st->start();
         }else{
           condition.wait(&mutex);
