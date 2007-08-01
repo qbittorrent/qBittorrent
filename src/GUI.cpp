@@ -533,7 +533,7 @@ void GUI::updateDlList(bool force){
   if(systrayIntegration){
     myTrayIcon->setToolTip("<b>"+tr("qBittorrent")+"</b><br>"+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(tmp2))+"<br>"+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(tmp))); // tray icon
   }
-  if(tabs->currentIndex() == 1){
+  if(getCurrentTabIndex() == 1){
     finishedTorrentTab->updateFinishedList();
     return;
   }
