@@ -52,6 +52,10 @@ bittorrent::bittorrent(){
   s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0));
   // Set severity level of libtorrent session
   s->set_severity_level(alert::info);
+  // Enable LSD/UPnP/NAT-PMP
+  s->start_lsd();
+  s->start_natpmp();
+  s->start_upnp();
   // DHT (Trackerless), disabled until told otherwise
   DHTEnabled = false;
   // Enabling metadata plugin
