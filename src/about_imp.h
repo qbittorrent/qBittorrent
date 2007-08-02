@@ -40,7 +40,7 @@ class about : public QDialog, private Ui::AboutDlg{
       // Thanks
       te_thanks->append("<ul><li>I would like to thank sourceforge.net for hosting qBittorrent project.</li>");
       te_thanks->append("<li>I also want to thank Jeffery Fernandez (jeffery@qbittorrent.org), project consultant, webdevelopper and RPM packager, for his help.</li>");
-      te_thanks->append("<li>I am gratefull to Peter Koeleman (peter@qbittorrent.org) and Johnny Mast (rave@qbittorrent.org) who helped me port qBittorrent to Windows.</li>");
+      te_thanks->append("<li>I am gratefull to Peter Koeleman (peter@qbittorrent.org) who is helping port qBittorrent to Windows.</li>");
       te_thanks->append(QString::fromUtf8("<li>Thanks a lot to our graphist Mateusz Toboła (tobejodok@qbittorrent.org) for his great work.</li></ul>"));
       // Translation
       te_translation->append("<a name='top'></a>");
