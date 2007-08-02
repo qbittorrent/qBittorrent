@@ -23,6 +23,7 @@
 #define ABOUT_H
 
 #include "ui_about.h"
+#include <QScrollBar>
 
 class about : public QDialog, private Ui::AboutDlg{
   Q_OBJECT
@@ -41,6 +42,7 @@ class about : public QDialog, private Ui::AboutDlg{
       te_thanks->append("<li>I am gratefull to Peter Koeleman (peter@qbittorrent.org) and Johnny Mast (rave@qbittorrent.org) who helped me port qBittorrent to Windows.</li>");
       te_thanks->append(QString::fromUtf8("<li>Thanks a lot to our graphist Mateusz Toboła (tobejodok@qbittorrent.org) for his great work.</li></ul>"));
       // Translation
+      te_translation->append("<a name='top'></a>");
       te_translation->append(tr("I would like to thank the following people who volunteered to translate qBittorrent:")+"<br>");
       te_translation->append(QString::fromUtf8(
           "<i>- <u>Brazilian:</u> Nick Marinho (nickmarinho@gmail.com)<br>\
@@ -68,7 +70,9 @@ class about : public QDialog, private Ui::AboutDlg{
           - <u>Turkish:</u> Erdem Bingöl (erdem84@gmail.com)<br>\
           - <u>Ukrainian:</u> Andrey Shpachenko (masterfix@users.sourceforge.net)<br><br>"));
       te_translation->append(tr("Please contact me if you would like to translate qBittorrent into your own language."));
+      te_translation->scrollToAnchor("top");
       // License
+      te_license->append("<a name='top'></a>");
       te_license->append("<center><b>GNU GENERAL PUBLIC LICENSE</b></center><br>\
           <center>Version 2, June 1991</center><br>\
           Copyright (C) 1989, 1991 Free Software Foundation, Inc.<br>\
@@ -403,6 +407,7 @@ class about : public QDialog, private Ui::AboutDlg{
           consider it more useful to permit linking proprietary applications with the<br>\
           library.  If this is what you want to do, use the GNU Library General<br>\
           Public License instead of this License.<br>");
+          te_license->scrollToAnchor("top");
           show();
     }
 };
