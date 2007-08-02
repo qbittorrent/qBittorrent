@@ -121,7 +121,7 @@ bool FinishedTorrents::loadColWidthFinishedList(){
   if(line.isEmpty())
     return false;
   QStringList width_list = line.split(' ');
-  if(width_list.size() != finishedListModel->columnCount())
+  if(width_list.size() != finishedListModel->columnCount()-1)
     return false;
   unsigned int listSize = width_list.size();
   for(unsigned int i=0; i<listSize; ++i){
@@ -137,7 +137,7 @@ void FinishedTorrents::saveColWidthFinishedList() const{
   qDebug("Saving columns width in finished list");
   QSettings settings("qBittorrent", "qBittorrent");
   QStringList width_list;
-  unsigned int nbColumns = finishedListModel->columnCount();
+  unsigned int nbColumns = finishedListModel->columnCount()-1;
   for(unsigned int i=0; i<nbColumns; ++i){
     width_list << QString(misc::toString(finishedList->columnWidth(i)).c_str());
   }

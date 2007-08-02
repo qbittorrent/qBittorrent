@@ -807,7 +807,7 @@ void GUI::saveColWidthDLList() const{
   qDebug("Saving columns width in download list");
   QSettings settings("qBittorrent", "qBittorrent");
   QStringList width_list;
-  unsigned int nbColumns = DLListModel->columnCount();
+  unsigned int nbColumns = DLListModel->columnCount()-1;
   for(unsigned int i=0; i<nbColumns; ++i){
     width_list << QString(misc::toString(downloadList->columnWidth(i)).c_str());
   }
@@ -824,8 +824,10 @@ bool GUI::loadColWidthDLList(){
   if(line.isEmpty())
     return false;
   QStringList width_list = line.split(' ');
-  if(width_list.size() != DLListModel->columnCount())
+  if(width_list.size() != DLListModel->columnCount()-1){
+    qDebug("Corrupted values for download list columns sizes");
     return false;
+  }
   unsigned int listSize = width_list.size();
   for(unsigned int i=0; i<listSize; ++i){
         downloadList->header()->resizeSection(i, width_list.at(i).toInt());
