@@ -26,37 +26,19 @@
    <string>About qBittorrent</string>
   </property>
   <layout class="QVBoxLayout" >
+   <property name="margin" >
+    <number>11</number>
+   </property>
    <property name="spacing" >
     <number>6</number>
    </property>
-   <property name="leftMargin" >
-    <number>9</number>
-   </property>
-   <property name="topMargin" >
-    <number>9</number>
-   </property>
-   <property name="rightMargin" >
-    <number>9</number>
-   </property>
-   <property name="bottomMargin" >
-    <number>9</number>
-   </property>
    <item>
     <layout class="QHBoxLayout" >
+     <property name="margin" >
+      <number>11</number>
+     </property>
      <property name="spacing" >
       <number>6</number>
-     </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
-      <number>0</number>
      </property>
      <item>
       <widget class="QLabel" name="logo" >
@@ -68,7 +50,9 @@
      <item>
       <widget class="QLabel" name="lb_name" >
        <property name="sizePolicy" >
-        <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+        <sizepolicy>
+         <hsizetype>0</hsizetype>
+         <vsizetype>0</vsizetype>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -115,7 +99,9 @@
         </rect>
        </property>
        <property name="sizePolicy" >
-        <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+        <sizepolicy>
+         <hsizetype>0</hsizetype>
+         <vsizetype>0</vsizetype>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -139,24 +125,21 @@ Copyright © 2006 by Christophe Dumez&lt;br>
        <string>Author</string>
       </attribute>
       <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>11</number>
+       </property>
        <property name="spacing" >
         <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
        </property>
        <item>
         <widget class="QFrame" name="te_authors" >
          <layout class="QHBoxLayout" >
+          <property name="margin" >
+           <number>11</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
           <item>
            <spacer>
             <property name="orientation" >
@@ -175,20 +158,11 @@ Copyright © 2006 by Christophe Dumez&lt;br>
           </item>
           <item>
            <layout class="QVBoxLayout" >
+            <property name="margin" >
+             <number>11</number>
+            </property>
             <property name="spacing" >
              <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
             </property>
             <item>
              <widget class="QLabel" name="label_3" >
@@ -318,20 +292,11 @@ Copyright © 2006 by Christophe Dumez&lt;br>
           </item>
           <item>
            <layout class="QVBoxLayout" >
+            <property name="margin" >
+             <number>11</number>
+            </property>
             <property name="spacing" >
              <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
             </property>
             <item>
              <widget class="QLabel" name="label_2" >
@@ -400,20 +365,11 @@ Copyright © 2006 by Christophe Dumez&lt;br>
        <string>Thanks To</string>
       </attribute>
       <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>11</number>
+       </property>
        <property name="spacing" >
         <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
        </property>
        <item>
         <widget class="QTextBrowser" name="te_thanks" />
@@ -425,20 +381,11 @@ Copyright © 2006 by Christophe Dumez&lt;br>
        <string>Translation</string>
       </attribute>
       <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>11</number>
+       </property>
        <property name="spacing" >
         <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
        </property>
        <item>
         <widget class="QTextBrowser" name="te_translation" >
@@ -454,20 +401,11 @@ Copyright © 2006 by Christophe Dumez&lt;br>
        <string>License</string>
       </attribute>
       <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>11</number>
+       </property>
        <property name="spacing" >
         <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
        </property>
        <item>
         <widget class="QTextBrowser" name="te_license" />
