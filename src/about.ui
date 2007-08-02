@@ -26,22 +26,22 @@
    <string>About qBittorrent</string>
   </property>
   <layout class="QVBoxLayout" >
-   <property name="margin" >
-    <number>11</number>
-   </property>
-   <property name="spacing" >
-    <number>6</number>
-   </property>
    <item>
     <layout class="QHBoxLayout" >
-     <property name="margin" >
-      <number>11</number>
-     </property>
-     <property name="spacing" >
-      <number>6</number>
-     </property>
      <item>
       <widget class="QLabel" name="logo" >
+       <property name="minimumSize" >
+        <size>
+         <width>22</width>
+         <height>22</height>
+        </size>
+       </property>
+       <property name="maximumSize" >
+        <size>
+         <width>22</width>
+         <height>22</height>
+        </size>
+       </property>
        <property name="text" >
         <string/>
        </property>
@@ -50,9 +50,7 @@
      <item>
       <widget class="QLabel" name="lb_name" >
        <property name="sizePolicy" >
-        <sizepolicy>
-         <hsizetype>0</hsizetype>
-         <vsizetype>0</vsizetype>
+        <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -64,6 +62,19 @@
         <enum>Qt::RichText</enum>
        </property>
       </widget>
+     </item>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>
@@ -99,9 +110,7 @@
         </rect>
        </property>
        <property name="sizePolicy" >
-        <sizepolicy>
-         <hsizetype>0</hsizetype>
-         <vsizetype>0</vsizetype>
+        <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -125,18 +134,12 @@ Copyright © 2006 by Christophe Dumez&lt;br>
        <string>Author</string>
       </attribute>
       <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>11</number>
-       </property>
        <property name="spacing" >
         <number>6</number>
        </property>
        <item>
         <widget class="QFrame" name="te_authors" >
          <layout class="QHBoxLayout" >
-          <property name="margin" >
-           <number>11</number>
-          </property>
           <property name="spacing" >
            <number>6</number>
           </property>
@@ -158,9 +161,6 @@ Copyright © 2006 by Christophe Dumez&lt;br>
           </item>
           <item>
            <layout class="QVBoxLayout" >
-            <property name="margin" >
-             <number>11</number>
-            </property>
             <property name="spacing" >
              <number>6</number>
             </property>
@@ -292,9 +292,6 @@ Copyright © 2006 by Christophe Dumez&lt;br>
           </item>
           <item>
            <layout class="QVBoxLayout" >
-            <property name="margin" >
-             <number>11</number>
-            </property>
             <property name="spacing" >
              <number>6</number>
             </property>
@@ -365,9 +362,6 @@ Copyright © 2006 by Christophe Dumez&lt;br>
        <string>Thanks To</string>
       </attribute>
       <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>11</number>
-       </property>
        <property name="spacing" >
         <number>6</number>
        </property>
@@ -381,9 +375,6 @@ Copyright © 2006 by Christophe Dumez&lt;br>
        <string>Translation</string>
       </attribute>
       <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>11</number>
-       </property>
        <property name="spacing" >
         <number>6</number>
        </property>
@@ -401,9 +392,6 @@ Copyright © 2006 by Christophe Dumez&lt;br>
        <string>License</string>
       </attribute>
       <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>11</number>
-       </property>
        <property name="spacing" >
         <number>6</number>
        </property>
