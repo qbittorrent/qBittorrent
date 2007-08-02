@@ -34,6 +34,7 @@
   <file>Icons/sphere.png</file>
   <file>Icons/sphere2.png</file>
   <file>Icons/password.png</file>
+  <file>Icons/mascot.png</file>
   <file>Icons/unavailable.png</file>
   <file>Icons/flags/portugal.png</file>
   <file>Icons/flags/france.png</file>
@@ -60,6 +61,7 @@
   <file>Icons/flags/denmark.png</file>
   <file>Icons/flags/japan.png</file>
   <file>Icons/flags/hungary.png</file>
+  <file>Icons/flags/brazil.png</file>
   <file>Icons/skin/properties.png</file>
   <file>Icons/skin/play_all.png</file>
   <file>Icons/skin/remove.png</file>

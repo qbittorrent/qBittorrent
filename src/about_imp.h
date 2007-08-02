@@ -34,6 +34,7 @@ class about : public QDialog, private Ui::AboutDlg{
       setAttribute(Qt::WA_DeleteOnClose);
       // Set icons
       logo->setPixmap(QPixmap(QString::fromUtf8(":/Icons/qbittorrent32.png")));
+      mascot_lbl->setPixmap(QPixmap(QString::fromUtf8(":/Icons/mascot.png")));
       //Title
       lb_name->setText("<b><h1>"+tr("qBittorrent")+" "VERSION"</h1></b>");
       // Thanks
