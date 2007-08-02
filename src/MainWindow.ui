@@ -370,7 +370,7 @@
    </widget>
    <widget class="QMenu" name="menu_Options" >
     <property name="title" >
-     <string>&amp;Options</string>
+     <string>Options</string>
     </property>
     <addaction name="actionOptions" />
    </widget>
