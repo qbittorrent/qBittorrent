@@ -438,6 +438,7 @@ class RssManager : public QObject{
       stream->setLoading(false);
       qDebug("Could not download Rss at %s, reason: %s", (const char*)url.toUtf8(), (const char*)reason.toUtf8());
       stream->setDownloadFailed();
+      emit feedInfosChanged(url, stream->getAliasOrUrl(), stream->getNbUnRead());
     }
 
   public :

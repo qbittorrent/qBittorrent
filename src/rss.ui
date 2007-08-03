@@ -40,12 +40,20 @@
          <property name="contextMenuPolicy" >
           <enum>Qt::CustomContextMenu</enum>
          </property>
+         <property name="selectionMode" >
+          <enum>QAbstractItemView::ExtendedSelection</enum>
+         </property>
          <property name="columnCount" >
           <number>2</number>
          </property>
          <column>
           <property name="text" >
            <string>RSS streams:</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>2</string>
           </property>
          </column>
         </widget>
