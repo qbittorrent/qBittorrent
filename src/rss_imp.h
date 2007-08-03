@@ -25,10 +25,6 @@
 
 #include "ui_rss.h"
 
-#define DESCRIPTION_CHILD 0
-#define URL_CHILD 1
-#define TIME_CHILD 2
-
 class QTimer;
 class RssManager;
 
@@ -38,31 +34,32 @@ class RSSImp : public QWidget, public Ui::RSS{
   private:
     RssManager *rssmanager;
     QTimer *refreshTimeTimer;
+    QString selectedFeedUrl;
 
   protected slots:
     void on_addStream_button_clicked();
     void on_delStream_button_clicked();
     void on_refreshAll_button_clicked();
-    void on_listStreams_clicked();
-    void on_listNews_clicked();
-    void on_listNews_doubleClicked();
     void displayRSSListMenu(const QPoint&);
-    void moveCurrentItem();
-    void deleteStream();
     void renameStream();
-    void refreshStream();
+    void refreshSelectedStreams();
     void createStream();
-    void updateStreamName(const unsigned short&, const unsigned short&);
     void refreshAllStreams();
-    void refreshStreamList();
-    void refreshNewsList();
-    void refreshTextBrowser();
-    short getNumStreamSelected();
+    void refreshNewsList(QTreeWidgetItem* item, int);
+    void refreshTextBrowser(QListWidgetItem *);
     void updateLastRefreshedTimeForStreams();
+    void updateFeedIcon(QString url, QString icon_path);
+    void updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnread);
+    void openInBrowser(QListWidgetItem *);
+    void fillFeedsList();
+    void selectFirstFeed();
+    void selectFirstNews();
+    void updateFeedNbNews(QString url);
 
   public:
     RSSImp();
     ~RSSImp();
+    QTreeWidgetItem* getTreeItemFromUrl(QString url) const;
 };
 
 #endif
