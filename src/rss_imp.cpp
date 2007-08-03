@@ -170,7 +170,6 @@
     }
 
     void RSSImp::updateLastRefreshedTimeForStreams() {
-      qDebug("Refreshing last refresh time in rss list");
       unsigned int nbFeeds = listStreams->topLevelItemCount();
       for(unsigned int i=0; i<nbFeeds; ++i){
 	QTreeWidgetItem* item = listStreams->topLevelItem(i);

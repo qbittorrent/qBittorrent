@@ -23,20 +23,19 @@
 #define RSS_H
 
 // MAX ITEM A STREAM
-#define STREAM_MAX_ITEM 18
-// FIXME: not used yet
-#define GLOBAL_MAX_ITEM 150
-// avoid crash if too many refresh
-#define REFRESH_FREQ_MAX 5000
+#define STREAM_MAX_ITEM 50
+// 10min
+#define STREAM_REFRESH_INTERVAL 600000
 
 #include <QFile>
-#include <QImage>
 #include <QList>
 #include <QTemporaryFile>
 #include <QSettings>
 #include <QDomDocument>
 #include <QTime>
 #include <QUrl>
+#include <QTimer>
+#include <QImage>
 #include <QHash>
 
 #include "misc.h"
@@ -134,7 +133,7 @@ class RssStream : public QObject{
   public slots :
     // read and store the downloaded rss' informations
     void processDownloadedFile(QString file_path) {
-      // delete the former file
+      // delete the old file
       if(QFile::exists(filePath)) {
         QFile::remove(filePath);
       }
@@ -146,7 +145,6 @@ class RssStream : public QObject{
     }
 
     void setDownloadFailed(){
-      // Change the stream icon to a red cross
       downloadFailure = true;
       lastRefresh.start();
     }
@@ -158,7 +156,6 @@ class RssStream : public QObject{
       refreshed = false;
       downloadFailure = false;
       currently_loading = false;
-      // XXX: remove it when gif can be displayed
       iconPath = ":/Icons/rss.png";
       qDebug("RSSStream constructed");
     }
@@ -195,7 +192,6 @@ class RssStream : public QObject{
       return alias;
     }
 
-    // Prefer the RssManager::setAlias to save the changed ones
     void setAlias(QString _alias){
       alias = _alias;
     }
@@ -272,6 +268,8 @@ class RssStream : public QObject{
     }
 
     unsigned int getLastRefreshElapsed() const{
+      if(!refreshed)
+        return STREAM_REFRESH_INTERVAL+1;
       return lastRefresh.elapsed();
     }
 
@@ -302,7 +300,7 @@ class RssStream : public QObject{
       }
 
       while(!channel.isNull()) {
-      // we are reading the rss'main info
+        // we are reading the rss'main info
 	if (channel.tagName() == "channel") {
 	  QDomElement property = channel.firstChild().toElement();
 	  while(!property.isNull()) {
@@ -384,6 +382,7 @@ class RssManager : public QObject{
   private :
     QHash<QString, RssStream*> streams;
     downloadThread *downloader;
+    QTimer newsRefresher;
 
   signals:
     void feedInfosChanged(QString url, QString aliasOrUrl, unsigned int nbUnread);
@@ -441,12 +440,30 @@ class RssManager : public QObject{
       emit feedInfosChanged(url, stream->getAliasOrUrl(), stream->getNbUnRead());
     }
 
+    void refreshOldFeeds(){
+      qDebug("Refreshing old rss feeds");
+      RssStream *stream;
+      foreach(stream, streams){
+        QString url = stream->getUrl();
+        if(stream->isLoading()) return;
+        if(stream->getLastRefreshElapsed() < STREAM_REFRESH_INTERVAL) return;
+        qDebug("Refreshing feed: %s...", (const char*)url.toUtf8());
+        stream->setLoading(true);
+        downloader->downloadUrl(url);
+        if(!stream->hasCustomIcon()){
+          downloader->downloadUrl(stream->getIconUrl());
+        }
+      }
+    }
+
   public :
     RssManager(){
       downloader = new downloadThread(this);
       connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processFinishedDownload(QString, QString)));
       connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
       loadStreamList();
+      connect(&newsRefresher, SIGNAL(timeout()), this, SLOT(refreshOldFeeds()));
+      newsRefresher.start(60000);
     }
 
     ~RssManager(){
