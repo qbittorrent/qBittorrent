@@ -359,7 +359,7 @@ Copyright © 2006 by Christophe Dumez&lt;br>
      </widget>
      <widget class="QWidget" name="tab4" >
       <attribute name="title" >
-       <string>Thanks To</string>
+       <string>Thanks to</string>
       </attribute>
       <layout class="QVBoxLayout" >
        <property name="spacing" >
