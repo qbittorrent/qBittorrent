@@ -441,13 +441,12 @@ class RssManager : public QObject{
     }
 
     void refreshOldFeeds(){
-      qDebug("Refreshing old rss feeds");
       RssStream *stream;
       foreach(stream, streams){
         QString url = stream->getUrl();
         if(stream->isLoading()) return;
         if(stream->getLastRefreshElapsed() < STREAM_REFRESH_INTERVAL) return;
-        qDebug("Refreshing feed: %s...", (const char*)url.toUtf8());
+        qDebug("Refreshing old feed: %s...", (const char*)url.toUtf8());
         stream->setLoading(true);
         downloader->downloadUrl(url);
         if(!stream->hasCustomIcon()){
