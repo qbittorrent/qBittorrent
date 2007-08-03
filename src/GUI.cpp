@@ -1048,7 +1048,11 @@ void GUI::on_actionDelete_Permanently_triggered(){
 
 // delete selected items in the list
 void GUI::on_actionDelete_triggered(){
-  if(tabs->currentIndex() > 1) return;
+  if(tabs->currentIndex() == 2) return; // No deletion in search tab
+  if(tabs->currentIndex() == 3){
+    rssWidget->on_delStream_button_clicked();
+    return;
+  }
   QModelIndexList selectedIndexes;
   bool inDownloadList;
   if(tabs->currentIndex() == 0) {

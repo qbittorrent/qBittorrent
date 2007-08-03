@@ -36,9 +36,11 @@ class RSSImp : public QWidget, public Ui::RSS{
     QTimer *refreshTimeTimer;
     QString selectedFeedUrl;
 
+  public slots:
+    void on_delStream_button_clicked();
+
   protected slots:
     void on_addStream_button_clicked();
-    void on_delStream_button_clicked();
     void on_refreshAll_button_clicked();
     void displayRSSListMenu(const QPoint&);
     void renameStream();

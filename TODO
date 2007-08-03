@@ -47,8 +47,8 @@
   - make use of finishedChecking alert if hydri implements it
   - Clean up delayed progress column sorting code
   - Clean up pause after checking code
-  - add delete hotkey for rss feeds
   - Test rss now that it has been rewritten
+  - Refresh rss feeds periodically
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent (Ticket #83)
     - double free or corruption on exit (Ticket #84)
