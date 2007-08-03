@@ -63,7 +63,7 @@ LANGUAGES UPDATED:
 - Hungarian *BETA4*
 
 beta3->beta4 changelog:
-- BUGFIX: RSS code totally rewritten (Many bugs fixed, optimized cpu and memory usage)
+- BUGFIX: RSS code totally rewritten (Many bugs fixed, improved usability, optimized cpu and memory usage)
 - BUGFIX: Fixed a compiling error when using boost 1.33.1
 - BUGFIX: Fixed a memory leak in deleteThread
 - BUGFIX: Fixed scrolling problems in about dialog
