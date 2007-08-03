@@ -61,3 +61,15 @@ LANGUAGES UPDATED:
 - Ukrainian *BETA3*
 - Chinese (simplified) *BETA4*
 - Hungarian *BETA4*
+
+beta3->beta4 changelog:
+- BUGFIX: RSS code totally rewritten (Many bugs fixed, optimized cpu and memory usage)
+- BUGFIX: Fixed a compiling error when using boost 1.33.1
+- BUGFIX: Fixed a memory leak in deleteThread
+- BUGFIX: Fixed scrolling problems in about dialog
+- BUGFIX: Fixed ambiguous hotkey (Alt+O) for Options
+- BUGFIX: Fixed columns width problems in transfers lists due to hidden columns with non null size
+- BUGFIX: The deleteThread now check if the path exists before trying to delete it
+- BUGFIX: Finished list was refreshed even when main window was hidden (Hitted an assert)
+- I18N: Updated Chinese, Hungarian and Italian translations
+- COSMETIC: Added our new baby mascot ("Draqoo") to About dialog
