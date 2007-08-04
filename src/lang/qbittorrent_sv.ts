@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="sv">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDlg</name>
     <message>
@@ -136,13 +135,13 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
         <translation>Hämtningsgräns:</translation>
     </message>
     <message>
-        <location filename="../allocationDlg.h" line="113"/>
+        <location filename="../allocationDlg.h" line="122"/>
         <source>Unlimited</source>
         <comment>Unlimited (bandwidth)</comment>
         <translation>Obegränsat</translation>
     </message>
     <message>
-        <location filename="../allocationDlg.h" line="117"/>
+        <location filename="../allocationDlg.h" line="126"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>

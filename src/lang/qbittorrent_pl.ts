@@ -194,13 +194,13 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
         <translation>Limit pobierania:</translation>
     </message>
     <message>
-        <location filename="../allocationDlg.h" line="113"/>
+        <location filename="../allocationDlg.h" line="122"/>
         <source>Unlimited</source>
         <comment>Unlimited (bandwidth)</comment>
         <translation>Bez limitu (przepustowość łącza)</translation>
     </message>
     <message>
-        <location filename="../allocationDlg.h" line="117"/>
+        <location filename="../allocationDlg.h" line="126"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
