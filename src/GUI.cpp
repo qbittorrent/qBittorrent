@@ -1621,14 +1621,25 @@ void GUI::fullDiskError(torrent_handle& h){
     myTrayIcon->showMessage(tr("I/O Error", "i.e: Input/Output Error"), tr("An error occured when trying to read or write %1. The disk is probably full, download has been paused", "e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused").arg(QString(h.name().c_str())), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
   }
   // Download will be paused by libtorrent. Updating GUI information accordingly
-  int row = getRowFromHash(QString(misc::toString(h.info_hash()).c_str()));
-  Q_ASSERT(row != -1);
-  DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
-  DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
-  DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+  QString hash = QString(misc::toString(h.info_hash()).c_str());
+  qDebug("Full disk error, pausing torrent %s", (const char*)hash.toUtf8());
+  if(finishedTorrentTab->getFinishedSHAs().indexOf(hash) != -1){
+    // In finished list
+    qDebug("Automatically paused torrent was in finished list");
+    int row = finishedTorrentTab->getRowFromHash(hash);
+    finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_UPSPEED), QVariant((double)0.0));
+    finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
+    finishedTorrentTab->setRowColor(row, "red");
+  }else{
+    // In download list
+    int row = getRowFromHash(hash);
+    DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
+    DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
+    DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+    DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
+    setRowColor(row, "red");
+  }
   setInfoBar(tr("An error occured (full disk?), '%1' paused.", "e.g: An error occured (full disk?), 'xxx.avi' paused.").arg(QString(h.get_torrent_info().name().c_str())));
-  DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
-  setRowColor(row, "red");
 }
 
 // Called when we couldn't listen on any port
