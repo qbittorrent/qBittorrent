@@ -52,16 +52,22 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
       if(!global){
         unsigned int nbTorrents = hashes.size();
         if(!nbTorrents) close();
-        int val;
-        int max;
+        int val = 0;
+        int max = -1;
         if(nbTorrents == 1){
           torrent_handle h = BTSession->getTorrentHandle(hashes.at(0));
           if(uploadMode){
-            val = (int)(h.upload_limit() / 1024.);
-            max = (int)(BTSession->getSession()->upload_rate_limit() / 1024.);
+            if(h.upload_limit() > 0)
+              val = (int)(h.upload_limit() / 1024.);
+            if(BTSession->getSession()->upload_rate_limit() > 0)
+              max = (int)(BTSession->getSession()->upload_rate_limit() / 1024.);
           }else{
-            val = (int)(h.download_limit() / 1024.);
-            max = (int)(BTSession->getSession()->download_rate_limit() / 1024.);
+            if(h.download_limit() > 0)
+              val = (int)(h.download_limit() / 1024.);
+            if(BTSession->getSession()->download_rate_limit() > 0){
+              qDebug("there is a global download rate limit at: %d kb/s", (int)(BTSession->getSession()->download_rate_limit() / 1024.));
+              max = (int)(BTSession->getSession()->download_rate_limit() / 1024.);
+            }
           }
           if(max != -1)
             bandwidthSlider->setMaximum(max);
@@ -69,9 +75,9 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
           if(val > bandwidthSlider->maximum())
             val = bandwidthSlider->maximum();
           else if(val < bandwidthSlider->minimum())
-              val = -1;
+              val = 0;
           bandwidthSlider->setValue(val);
-          if(val == -1) {
+          if(val == 0) {
             limit_lbl->setText(tr("Unlimited", "Unlimited (bandwidth)"));
             kb_lbl->setText("");
           } else {
@@ -79,20 +85,23 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
           }
         }else{
           qDebug("More than one torrent selected, no initilization");
-          bandwidthSlider->setValue(-1);
+          bandwidthSlider->setValue(0);
           limit_lbl->setText(tr("Unlimited", "Unlimited (bandwidth)"));
           kb_lbl->setText("");
         }
       }else{
         // Global limit
-        int val;
+        int val = 0;
         session *s = BTSession->getSession();
-        if(uploadMode)
-          val = (int)(s->upload_rate_limit()/1024.);
-        else
-          val = (int)(s->download_rate_limit()/1024.);
-        if(val == -1){
-          bandwidthSlider->setValue(-1);
+        if(uploadMode){
+          if(s->upload_rate_limit() > 0)
+            val = (int)(s->upload_rate_limit()/1024.);
+        }else{
+          if(s->download_rate_limit() > 0)
+            val = (int)(s->download_rate_limit()/1024.);
+        }
+        if(val == 0){
+          bandwidthSlider->setValue(0);
           limit_lbl->setText(tr("Unlimited", "Unlimited (bandwidth)"));
           kb_lbl->setText("");
         }else{
@@ -109,7 +118,7 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
 
   protected slots:
     void updateBandwidthLabel(int val){
-      if(val == -1){
+      if(val == 0){
         limit_lbl->setText(tr("Unlimited", "Unlimited (bandwidth)"));
         kb_lbl->setText("");
       }else{
@@ -125,12 +134,18 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
         QString hash;
         if(uploadMode) {
           foreach(hash, hashes) {
-            BTSession->setUploadLimit(hash, val*1024);
+            if(!val)
+              BTSession->setUploadLimit(hash, -1);
+            else
+              BTSession->setUploadLimit(hash, val*1024);
             qDebug("Setting upload limit");
           }
         } else {
           foreach(hash, hashes) {
-            BTSession->setDownloadLimit(hash, val*1024);
+            if(!val)
+              BTSession->setDownloadLimit(hash, -1);
+            else
+              BTSession->setDownloadLimit(hash, val*1024);
             qDebug("Setting download limit");
           }
         }
@@ -138,10 +153,16 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
         QSettings settings("qBittorrent", "qBittorrent");
         session *s = BTSession->getSession();
         if(uploadMode){
-          s->set_upload_rate_limit(val*1024);
+          if(!val)
+            s->set_upload_rate_limit(-1);
+          else
+            s->set_upload_rate_limit(val*1024);
           settings.setValue("Options/Main/UPLimit", val);
         }else{
-          s->set_download_rate_limit(val*1024);
+          if(!val)
+            s->set_download_rate_limit(-1);
+          else
+            s->set_download_rate_limit(val*1024);
           settings.setValue("Options/Main/DLLimit", val);
         }
       }

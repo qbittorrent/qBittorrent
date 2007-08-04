@@ -48,6 +48,7 @@
   - Clean up delayed progress column sorting code
   - Clean up pause after checking code
   - Test rss now that it has been rewritten
+  - Review speed allocation dialog : BTSession->getSession()->download_rate_limit() value is wrong
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent (Ticket #83)
     - double free or corruption on exit (Ticket #84)
@@ -71,5 +72,6 @@ beta3->beta4 changelog:
 - BUGFIX: Fixed columns width problems in transfers lists due to hidden columns with non null size
 - BUGFIX: The deleteThread now check if the path exists before trying to delete it
 - BUGFIX: Finished list was refreshed even when main window was hidden (Hitted an assert)
+- BUGFIX: Some fixes in bandwidth limiting per torrent
 - I18N: Updated Chinese, Hungarian and Italian translations
 - COSMETIC: Added our new baby mascot ("Draqoo") to About dialog

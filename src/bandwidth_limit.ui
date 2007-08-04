@@ -66,13 +66,13 @@
    <item>
     <widget class="QSlider" name="bandwidthSlider" >
      <property name="minimum" >
-      <number>-1</number>
+      <number>0</number>
      </property>
      <property name="maximum" >
       <number>1000</number>
      </property>
      <property name="sliderPosition" >
-      <number>-1</number>
+      <number>0</number>
      </property>
      <property name="orientation" >
       <enum>Qt::Horizontal</enum>
