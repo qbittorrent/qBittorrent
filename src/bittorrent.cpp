@@ -90,15 +90,15 @@ bittorrent::~bittorrent(){
   delete s;
 }
 
-void bittorrent::setDownloadLimit(QString hash, int val){
+void bittorrent::setDownloadLimit(QString hash, long val){
   torrent_handle h = getTorrentHandle(hash);
   if(h.is_valid())
     h.set_download_limit(val);
   saveTorrentSpeedLimits(hash);
 }
 
-void bittorrent::setUploadLimit(QString hash, int val){
-  qDebug("Set upload limit rate to %d", val);
+void bittorrent::setUploadLimit(QString hash, long val){
+  qDebug("Set upload limit rate to %ld", val);
   torrent_handle h = getTorrentHandle(hash);
   if(h.is_valid())
     h.set_upload_limit(val);
@@ -762,7 +762,8 @@ void bittorrent::setListeningPortsRange(std::pair<unsigned short, unsigned short
 
 // Set download rate limit
 // -1 to disable
-void bittorrent::setDownloadRateLimit(int rate){
+void bittorrent::setDownloadRateLimit(long rate){
+  qDebug("Setting a global download rate limit at %ld", rate);
   s->set_download_rate_limit(rate);
 }
 
@@ -772,7 +773,7 @@ session* bittorrent::getSession() const{
 
 // Set upload rate limit
 // -1 to disable
-void bittorrent::setUploadRateLimit(int rate){
+void bittorrent::setUploadRateLimit(long rate){
   s->set_upload_rate_limit(rate);
 }
 

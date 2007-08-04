@@ -112,8 +112,8 @@ class bittorrent : public QObject{
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
     void setMaxConnections(int maxConnec);
-    void setDownloadRateLimit(int rate);
-    void setUploadRateLimit(int rate);
+    void setDownloadRateLimit(long rate);
+    void setUploadRateLimit(long rate);
     void setGlobalRatio(float ratio);
     void setDHTPort(int dht_port);
     void setProxySettings(proxy_settings proxySettings, bool trackers=true, bool peers=true, bool web_seeds=true, bool dht=true);
@@ -121,8 +121,8 @@ class bittorrent : public QObject{
     void setDefaultSavePath(QString savepath);
     void applyEncryptionSettings(pe_settings se);
     void loadFilesPriorities(torrent_handle& h);
-    void setDownloadLimit(QString hash, int val);
-    void setUploadLimit(QString hash, int val);
+    void setDownloadLimit(QString hash, long val);
+    void setUploadLimit(QString hash, long val);
 
   protected slots:
     void scanDirectory();

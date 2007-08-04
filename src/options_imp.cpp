@@ -665,7 +665,7 @@ bool options_imp::isDHTEnabled() const{
 bool options_imp::isPeXDisabled() const{
   return disablePeX->isChecked();
 }
-// Return Download & Upload limits
+// Return Download & Upload limits in kbps
 // [download,upload]
 QPair<int,int> options_imp::getLimits() const{
   int DL = -1, UP = -1;
