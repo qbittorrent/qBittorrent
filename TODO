@@ -69,3 +69,4 @@ LANGUAGES UPDATED:
 beta4->beta5 changelog:
 - BUGFIX: Finished torrents were still displayed as checking when paused by libtorrent on full disk (hit an assert)
 - I18N: Updated Italian translation
+- COSMETIC: Changed the way progress bars are rendered

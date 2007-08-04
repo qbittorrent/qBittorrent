@@ -76,15 +76,9 @@ class PropListDelegate: public QItemDelegate {
           newopt.maximum = 100;
           newopt.minimum = 0;
           newopt.state |= QStyle::State_Enabled;
-          newopt.textVisible = false;
+          newopt.textVisible = true;
           QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt,
           painter);
-          //We prefer to display text manually to control color/font/boldness
-          if (option.state & QStyle::State_Selected){
-            opt.palette.setColor(QPalette::Text, QColor("grey"));
-            painter->setPen(opt.palette.color(cg, QPalette::Text));
-          }
-          painter->drawText(option.rect, Qt::AlignCenter, newopt.text);
           break;
         }
         case PRIORITY:{

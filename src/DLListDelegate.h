@@ -79,7 +79,6 @@ class DLListDelegate: public QItemDelegate {
         }
         case PROGRESS:{
           QStyleOptionProgressBarV2 newopt;
-          QPalette::ColorGroup cg = option.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
           float progress;
           progress = index.data().toDouble()*100.;
           snprintf(tmp, MAX_CHAR_TMP, "%.1f", progress);
@@ -89,15 +88,9 @@ class DLListDelegate: public QItemDelegate {
           newopt.maximum = 100;
           newopt.minimum = 0;
           newopt.state |= QStyle::State_Enabled;
-          newopt.textVisible = false;
+          newopt.textVisible = true;
           QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt,
           painter);
-          //We prefer to display text manually to control color/font/boldness
-          if (option.state & QStyle::State_Selected){
-            opt.palette.setColor(QPalette::Text, QColor("grey"));
-            painter->setPen(opt.palette.color(cg, QPalette::Text));
-          }
-          painter->drawText(opt.rect, Qt::AlignCenter, newopt.text);
           break;
         }
         default:
