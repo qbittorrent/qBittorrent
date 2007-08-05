@@ -967,7 +967,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> 下载完毕.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1637"/>
+        <location filename="../GUI.cpp" line="1648"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>所给端口无响应.</translation>
     </message>
@@ -1275,17 +1275,17 @@ Please close the other one first.</source>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>Connection status:</source>
         <translation>连接状态:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>Offline</source>
         <translation>离线</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>No peers found...</source>
         <translation>找不到资源...</translation>
     </message>
@@ -1478,23 +1478,23 @@ Please close the other one first.</source>
         <translation>读或写%1过程中出现错误.磁盘已满,下载被暂停</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>Connection Status:</source>
         <translation>连接状态:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1679"/>
+        <location filename="../GUI.cpp" line="1690"/>
         <source>Online</source>
         <translation>联机</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>存在防火墙?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>No incoming connections...</source>
         <translation>无对内连接...</translation>
     </message>
@@ -1520,13 +1520,13 @@ Please close the other one first.</source>
         <translation type="obsolete">结果</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1724"/>
+        <location filename="../GUI.cpp" line="1735"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;下载中,请等待...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1629"/>
+        <location filename="../GUI.cpp" line="1642"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>出现错误(磁盘已满?),&apos;%1&apos;暂停.</translation>
@@ -1992,24 +1992,24 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">是</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="128"/>
+        <location filename="../PropListDelegate.h" line="122"/>
         <source>Ignored</source>
         <translation>忽略</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="129"/>
+        <location filename="../PropListDelegate.h" line="123"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>正常</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="130"/>
+        <location filename="../PropListDelegate.h" line="124"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>高</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="131"/>
+        <location filename="../PropListDelegate.h" line="125"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>最大</translation>

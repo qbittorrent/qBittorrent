@@ -1102,7 +1102,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> zakończył sciąganie.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1637"/>
+        <location filename="../GUI.cpp" line="1648"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Nie można nasłuchiwać na żadnym z podanych portów.</translation>
     </message>
@@ -1408,17 +1408,17 @@ Zamknij najpierw okno podglądu.</translation>
         <translation>qBittorent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>Connection status:</source>
         <translation>Status połączenia:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>Offline</source>
         <translation>Niepołączony</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>No peers found...</source>
         <translation>Nie znaleziono peerów...</translation>
     </message>
@@ -1612,23 +1612,23 @@ Zamknij najpierw okno podglądu.</translation>
         <translation type="obsolete">Wystąpił błąd (brak miejsca?), &apos;%1&apos; wstrzymany.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>Connection Status:</source>
         <translation>Status połączenia:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1679"/>
+        <location filename="../GUI.cpp" line="1690"/>
         <source>Online</source>
         <translation>Połączony</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Zablokowany?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>No incoming connections...</source>
         <translation>Brak połączeń przychodzących...</translation>
     </message>
@@ -1654,13 +1654,13 @@ Zamknij najpierw okno podglądu.</translation>
         <translation type="obsolete">Wyniki</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1724"/>
+        <location filename="../GUI.cpp" line="1735"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Pobieranie &apos;%1&apos;, proszę czekać...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1629"/>
+        <location filename="../GUI.cpp" line="1642"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Wystąpił błąd (brak miejsca?), &apos;%1&apos; wstrzymany.</translation>
@@ -2146,24 +2146,24 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation type="obsolete">Tak</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="128"/>
+        <location filename="../PropListDelegate.h" line="122"/>
         <source>Ignored</source>
         <translation>Ignorowany</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="129"/>
+        <location filename="../PropListDelegate.h" line="123"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normalny</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="130"/>
+        <location filename="../PropListDelegate.h" line="124"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Wysoki</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="131"/>
+        <location filename="../PropListDelegate.h" line="125"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maksymalny</translation>

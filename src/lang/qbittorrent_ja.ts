@@ -747,7 +747,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>よろしいですか? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1637"/>
+        <location filename="../GUI.cpp" line="1648"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>所定のポートで記入できませんでした。</translation>
     </message>
@@ -790,17 +790,17 @@ Please close the other one first.</source>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>Connection status:</source>
         <translation>接続状態:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>Offline</source>
         <translation>オフライン</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>No peers found...</source>
         <translation>ピアが見つかりません...</translation>
     </message>
@@ -969,34 +969,34 @@ Please close the other one first.</source>
         <translation>%1 の読み込みまたは書き込みを試行にエラーが発生しました。ディスクはおそらくいっぱいです、ダウンロードは一時停止されました</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>Connection Status:</source>
         <translation>接続状態:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1679"/>
+        <location filename="../GUI.cpp" line="1690"/>
         <source>Online</source>
         <translation>オンライン</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>ファイアウォールされましたか?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>No incoming connections...</source>
         <translation>次期接続がありません...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1724"/>
+        <location filename="../GUI.cpp" line="1735"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos; をダウンロードしています、お待ちください...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1629"/>
+        <location filename="../GUI.cpp" line="1642"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>エラーが発生しました (ディスクいっぱい?)、&apos;%1&apos; が停止されました。</translation>
@@ -1372,24 +1372,24 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">True</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="128"/>
+        <location filename="../PropListDelegate.h" line="122"/>
         <source>Ignored</source>
         <translation>無視済み</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="129"/>
+        <location filename="../PropListDelegate.h" line="123"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>通常</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="130"/>
+        <location filename="../PropListDelegate.h" line="124"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>高</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="131"/>
+        <location filename="../PropListDelegate.h" line="125"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>最大</translation>

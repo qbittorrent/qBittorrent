@@ -921,7 +921,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> skončilo sťahovanie.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1637"/>
+        <location filename="../GUI.cpp" line="1648"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Nepodarilo sa počúvať na žiadnom zo zadaných portov.</translation>
     </message>
@@ -1223,17 +1223,17 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>Connection status:</source>
         <translation>Stav spojenia:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>Offline</source>
         <translation>Offline</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>No peers found...</source>
         <translation>Neboli nájdení rovesníci...</translation>
     </message>
@@ -1427,23 +1427,23 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">Vyskytla sa chyba (plný disk?), &apos;%1&apos; pozastavené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>Connection Status:</source>
         <translation>Stav spojenia:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1679"/>
+        <location filename="../GUI.cpp" line="1690"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Za firewallom?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>No incoming connections...</source>
         <translation>Žiadne prichádzajúce spojenia...</translation>
     </message>
@@ -1469,13 +1469,13 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">Výsledky</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1724"/>
+        <location filename="../GUI.cpp" line="1735"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Sťahuje sa &apos;%1&apos;, čakajte prosím...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1629"/>
+        <location filename="../GUI.cpp" line="1642"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Vyskytla sa chyba (plný disk?), &apos;%1&apos; pozastavené.</translation>
@@ -1936,24 +1936,24 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Áno</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="128"/>
+        <location filename="../PropListDelegate.h" line="122"/>
         <source>Ignored</source>
         <translation>Ignorovaný</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="129"/>
+        <location filename="../PropListDelegate.h" line="123"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normálna</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="130"/>
+        <location filename="../PropListDelegate.h" line="124"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Vysoká</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="131"/>
+        <location filename="../PropListDelegate.h" line="125"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maximálna</translation>

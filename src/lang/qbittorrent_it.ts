@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="it">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDlg</name>
     <message>
@@ -50,7 +51,7 @@
     <message>
         <location filename="../about.ui" line="400"/>
         <source>Thanks To</source>
-        <translation type="obsolete">Grazie a</translation>
+        <translation type="obsolete">Ringraziamenti</translation>
     </message>
     <message>
         <location filename="../about.ui" line="375"/>
@@ -122,7 +123,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../about.ui" line="362"/>
         <source>Thanks to</source>
-        <translation type="unfinished"></translation>
+        <translation>Ringraziamenti</translation>
     </message>
 </context>
 <context>
@@ -177,7 +178,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="781"/>
         <source>Save Path:</source>
-        <translation>Percorso di salvataggio:</translation>
+        <translation>Directory di salvataggio:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="118"/>
@@ -889,7 +890,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> ha finito il dowload.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1637"/>
+        <location filename="../GUI.cpp" line="1648"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Impossibile mettersi in ascolto sulle porte scelte.</translation>
     </message>
@@ -1134,17 +1135,17 @@ Example: Downloading www.example.com/test.torrent</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>Connection status:</source>
         <translation>Stato della connessione:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>Offline</source>
         <translation>Offline</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
+        <location filename="../GUI.cpp" line="1699"/>
         <source>No peers found...</source>
         <translation>Nessun peer trovato...</translation>
     </message>
@@ -1337,23 +1338,23 @@ Example: Downloading www.example.com/test.torrent</comment>
         <translation>Errore di scrittura o di lettura con %1. Probabilmente il disco è pieno, il download è stato fermato</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>Connection Status:</source>
         <translation>Stato della connessione:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1679"/>
+        <location filename="../GUI.cpp" line="1690"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Dietro firewall?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1684"/>
+        <location filename="../GUI.cpp" line="1695"/>
         <source>No incoming connections...</source>
         <translation>Nessuna connession in entrata...</translation>
     </message>
@@ -1379,13 +1380,13 @@ Example: Downloading www.example.com/test.torrent</comment>
         <translation type="obsolete">Risultati</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1724"/>
+        <location filename="../GUI.cpp" line="1735"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Download di &apos;%1&apos; in corso...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1629"/>
+        <location filename="../GUI.cpp" line="1642"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>C&apos;è stato un errore (disco pieno?), &apos;%1&apos; fermato.</translation>
@@ -1615,12 +1616,12 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
     <message>
         <location filename="../MainWindow.ui" line="468"/>
         <source>Pause All</source>
-        <translation>Ferma Tutti</translation>
+        <translation>Ferma tutti</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="473"/>
         <source>Start All</source>
-        <translation>Inizia Tutti</translation>
+        <translation>Inizia tutti</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="528"/>
@@ -1730,7 +1731,7 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
     <message>
         <location filename="../MainWindow.ui" line="483"/>
         <source>Delete Permanently</source>
-        <translation>Cancella Permanentemente</translation>
+        <translation>Cancella permanentemente</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="478"/>
@@ -1775,7 +1776,7 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
     <message>
         <location filename="../MainWindow.ui" line="538"/>
         <source>Set global upload limit</source>
-        <translation>Imposta limite di upload totale</translation>
+        <translation>Imposta limite di upload globale</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="373"/>
@@ -1796,24 +1797,24 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
         <translation type="obsolete">Vero</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="128"/>
+        <location filename="../PropListDelegate.h" line="122"/>
         <source>Ignored</source>
         <translation>Ignorata</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="129"/>
+        <location filename="../PropListDelegate.h" line="123"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normale</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="130"/>
+        <location filename="../PropListDelegate.h" line="124"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Alta</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="131"/>
+        <location filename="../PropListDelegate.h" line="125"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Massima</translation>
@@ -1884,7 +1885,7 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
     <message>
         <location filename="../rss.ui" line="56"/>
         <source>2</source>
-        <translation type="unfinished">2</translation>
+        <translation>2</translation>
     </message>
 </context>
 <context>
@@ -1917,7 +1918,7 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
     <message>
         <location filename="../rss_imp.cpp" line="120"/>
         <source>Are you sure you want to delete this stream from the list ?</source>
-        <translation type="obsolete">Sei sicuro di voler cancellare questo flusso dalla lista?</translation>
+        <translation type="obsolete">Sei sicuro di voler cancellare questo flusso dalla lista ?</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="60"/>
@@ -1952,7 +1953,7 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
     <message>
         <location filename="../rss_imp.cpp" line="154"/>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="155"/>
@@ -2041,7 +2042,7 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
     <message>
         <location filename="../searchEngine.cpp" line="326"/>
         <source>Searching...</source>
-        <translation>Ricerca...</translation>
+        <translation>Ricerca in corso...</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="471"/>
@@ -2232,7 +2233,7 @@ Changelog:
     <message>
         <location filename="../addTorrentDialog.ui" line="78"/>
         <source>Torrent content:</source>
-        <translation>Contenuti del Torrent:</translation>
+        <translation>Contenuti del torrent:</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="95"/>
@@ -2449,7 +2450,7 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="57"/>
         <source>Torrent Files</source>
-        <translation>Files torrent</translation>
+        <translation>File torrent</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="58"/>
@@ -2459,22 +2460,22 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="152"/>
         <source>No destination path set</source>
-        <translation>Nessun percorso di salvataggio definito</translation>
+        <translation>Nessuna directory di salvataggio definita</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="152"/>
         <source>Please type a destination path first</source>
-        <translation>Per favore inserire un percorso di destinazione</translation>
+        <translation>Per favore inserire prima una directory di salvataggio</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="157"/>
         <source>No input path set</source>
-        <translation>Nessun percorso da aggiungere specificata</translation>
+        <translation>Nessuna percorso da inserire definito</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="157"/>
         <source>Please type an input path first</source>
-        <translation>Per favore inserire un percorso da aggiungere</translation>
+        <translation>Per favore scegliere prima un percorso da inserire</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="96"/>
@@ -2538,7 +2539,7 @@ Changelog:
     <message>
         <location filename="../downloadFromURL.ui" line="66"/>
         <source>Download Torrents from URLs</source>
-        <translation>Scarica Torrent da URL</translation>
+        <translation>Scarica torrent da URL</translation>
     </message>
     <message>
         <location filename="../downloadFromURL.ui" line="99"/>
@@ -2718,7 +2719,7 @@ Changelog:
     <message>
         <location filename="../options_imp.cpp" line="1083"/>
         <source>Range Start IP</source>
-        <translation>Inizio range IP</translation>
+        <translation>Inizio intervallo IP</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1084"/>
@@ -2738,7 +2739,7 @@ Changelog:
     <message>
         <location filename="../options_imp.cpp" line="1107"/>
         <source>Range End IP</source>
-        <translation>Fine range IP:</translation>
+        <translation>Fine intervallo IP</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1108"/>
@@ -2748,7 +2749,7 @@ Changelog:
     <message>
         <location filename="../options_imp.cpp" line="1122"/>
         <source>IP Range Comment</source>
-        <translation>Commento range IP</translation>
+        <translation>Commento intervallo IP</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1123"/>
@@ -2779,7 +2780,7 @@ Changelog:
     <message>
         <location filename="../options_imp.cpp" line="749"/>
         <source>Options were saved successfully.</source>
-        <translation>Le Opzioni sono state salvate.</translation>
+        <translation>Le opzioni sono state salvate.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="934"/>
@@ -2789,12 +2790,12 @@ Changelog:
     <message>
         <location filename="../options_imp.cpp" line="941"/>
         <source>Choose an ipfilter.dat file</source>
-        <translation>Scegli un file ipfilter.dat</translation>
+        <translation>Scegliere un file ipfilter.dat</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="957"/>
         <source>Choose a save directory</source>
-        <translation>Scegli una directory di salvataggio</translation>
+        <translation>Scegliere una directory di salvataggio</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="989"/>
@@ -3302,7 +3303,7 @@ Changelog:
     <message>
         <location filename="../seeding.ui" line="69"/>
         <source>Delete Permanently</source>
-        <translation>Cancella Permanentemente</translation>
+        <translation>Cancella permanentemente</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="74"/>
@@ -3408,7 +3409,7 @@ Changelog:
     <message>
         <location filename="../torrentAddition.h" line="296"/>
         <source>Empty save path</source>
-        <translation>Svuotare la directory di salvataggio</translation>
+        <translation>Directory di salvataggio vuota</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="296"/>
@@ -3418,7 +3419,7 @@ Changelog:
     <message>
         <location filename="../torrentAddition.h" line="302"/>
         <source>Save path creation error</source>
-        <translation>Impossibile creare la directory di salvataggio</translation>
+        <translation>Errore nella creazione della directory di salvataggio</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="302"/>
