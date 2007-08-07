@@ -28,7 +28,7 @@
 #include <QMutex>
 #include <QMutexLocker>
 #include <QWaitCondition>
-#include <QList>
+#include <QStringList>
 #include <iostream>
 #include <cc++/common.h>
 
