@@ -30,7 +30,6 @@
 #include <QWaitCondition>
 #include <iostream>
 #include <cc++/common.h>
-#include "misc.h"
 
 #ifdef  CCXX_NAMESPACES
 using namespace std;
