@@ -185,6 +185,11 @@ void FinishedTorrents::updateFinishedList(){
         continue;
       }
     }
+    if(BTSession->getUncheckedTorrentsList().indexOf(hash) != -1){
+      if(torrentStatus.state != torrent_status::checking_files && torrentStatus.state != torrent_status::queued_for_checking){
+        BTSession->setTorrentFinishedChecking(hash);
+      }
+    }
     if(h.is_paused()) continue;
     if(torrentStatus.state == torrent_status::downloading || (torrentStatus.state != torrent_status::checking_files && torrentStatus.state != torrent_status::queued_for_checking && torrentStatus.progress != 1.)) {
       // What are you doing here? go back to download tab!

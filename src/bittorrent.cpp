@@ -79,14 +79,15 @@ bittorrent::bittorrent(){
 bittorrent::~bittorrent(){
   // Disable directory scanning
   disableDirectoryScanning();
-  // Do some saving
-  saveDHTEntry();
-  saveFastResumeAndRatioData();
   // Delete our objects
   delete deleter;
   delete timerAlerts;
   delete ETARefresher;
   delete downloader;
+  // Do some saving
+  saveDHTEntry();
+  saveFastResumeAndRatioData();
+  // Delete BT session
   delete s;
 }
 
