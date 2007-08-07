@@ -100,7 +100,7 @@
         <translation type="obsolete">http://dchris.eu</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="362"/>
+        <location filename="" line="7471221"/>
         <source>Thanks To</source>
         <translation type="obsolete">Podziękowania dla</translation>
     </message>
@@ -178,7 +178,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../about.ui" line="362"/>
         <source>Thanks to</source>
-        <translation type="unfinished"></translation>
+        <translation>Podziękowania dla</translation>
     </message>
 </context>
 <context>
@@ -796,7 +796,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedListDelegate.h" line="63"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -860,7 +860,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Zakończono</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="240"/>
+        <location filename="" line="7471221"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
         <translation type="obsolete">Brak</translation>
@@ -1381,7 +1381,7 @@ Zamknij najpierw okno podglądu.</translation>
         <translation type="obsolete">Czy na pewno chcesz zakończyć aplikację qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1005"/>
+        <location filename="" line="7471221"/>
         <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
         <translation type="obsolete">Czy na pewno chcesz usunąć wybrany element z listy i z dysku?</translation>
     </message>
@@ -1548,7 +1548,7 @@ Zamknij najpierw okno podglądu.</translation>
         <translation>Problem z odczytem pliku torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1234"/>
+        <location filename="" line="7471221"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
         <translation type="obsolete">Brak</translation>
@@ -1714,7 +1714,7 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation>Pobieranie</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1012"/>
+        <location filename="" line="7471221"/>
         <source>Are you sure you want to delete the selected item(s) in finished list and in hard drive?</source>
         <translation type="obsolete">Czy napewno usunąć wybrane pozycje z listy zakończonych z twardego dysku?</translation>
     </message>
@@ -1796,28 +1796,28 @@ Czy napewno zamknąć qBittorrent?</translation>
     <message>
         <location filename="../GUI.cpp" line="326"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished"></translation>
+        <translation>Szybkie wznowienie danych zostało odrzucone przez torrent %1, sprawdzam ponownie...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="996"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy chcesz usunąć wybrane elementy z listy pobierania i z twardego dysku?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1003"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy chcesz usunąć wybrane elementy z listy ukończonych i z twardego dysku?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1043"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; został całkowicie usunięty.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="330"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd wyszukiwania url seeda dla url:%1, wiadomość: %2</translation>
     </message>
 </context>
 <context>
@@ -1883,7 +1883,7 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation type="obsolete">ETA</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="373"/>
+        <location filename="" line="7471221"/>
         <source>&amp;Options</source>
         <translation type="obsolete">&amp;Opcje</translation>
     </message>
@@ -2130,7 +2130,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     <message>
         <location filename="../MainWindow.ui" line="373"/>
         <source>Options</source>
-        <translation type="unfinished">Opcje</translation>
+        <translation>Opcje</translation>
     </message>
 </context>
 <context>
@@ -2242,7 +2242,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     <message>
         <location filename="../rss.ui" line="56"/>
         <source>2</source>
-        <translation type="unfinished">2</translation>
+        <translation>2</translation>
     </message>
 </context>
 <context>
@@ -2273,7 +2273,7 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation>Jesteś pewny? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="120"/>
+        <location filename="" line="7471221"/>
         <source>Are you sure you want to delete this stream from the list ?</source>
         <translation type="obsolete">Jesteś pewien że chcesz usunąć ten strumień z listy?</translation>
     </message>
@@ -2320,12 +2320,12 @@ Czy napewno zamknąć qBittorrent?</translation>
     <message>
         <location filename="../rss_imp.cpp" line="154"/>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="155"/>
         <source>This rss feed is already in the list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ten kanał informacyjny rss feed już jest na liście.</translation>
     </message>
 </context>
 <context>
@@ -2347,7 +2347,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     <message>
         <location filename="../rss.h" line="266"/>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Nigdy</translation>
     </message>
 </context>
 <context>
@@ -3644,39 +3644,39 @@ Zmiany:
     <message>
         <location filename="../properties.ui" line="827"/>
         <source>Url seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Url seeda</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="334"/>
         <source>New url seed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowy url seeda:</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="341"/>
         <source>This url seed is already in the list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ten url seeda już jest na liście.</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="395"/>
         <source>Hard-coded url seeds cannot be deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można usunąć ustalony url seeda.</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="147"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
-        <translation type="unfinished">Brak</translation>
+        <translation>Brak</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="333"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nowy url seeda</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="845"/>
         <source>The following url seeds are available for this torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dla tego torrenta dostępne są następujące url seeda:</translation>
     </message>
 </context>
 <context>

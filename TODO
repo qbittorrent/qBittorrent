@@ -65,6 +65,7 @@ LANGUAGES UPDATED:
 - Chinese (simplified) *BETA4*
 - Hungarian *BETA4*
 - Italian *BETA5*
+- Polish *BETA5*
 
 beta4->beta5 changelog:
 - BUGFIX: Finished torrents were still displayed as checking when paused by libtorrent on full disk (hit an assert)
