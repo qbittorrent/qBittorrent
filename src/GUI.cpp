@@ -211,7 +211,6 @@ GUI::~GUI(){
   delete finishedTorrentTab;
   delete checkConnect;
   delete refresher;
-  delete BTSession;
   if(systrayIntegration){
     delete myTrayIcon;
     delete myTrayIconMenu;
@@ -228,6 +227,7 @@ GUI::~GUI(){
   delete switchDownShortcut;
   delete switchUpShortcut;
   delete switchRSSShortcut;
+  delete BTSession;
 }
 
 void GUI::on_actionWebsite_triggered(){

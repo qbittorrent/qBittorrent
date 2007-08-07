@@ -188,6 +188,10 @@ void bittorrent::deleteTorrent(QString hash, bool permanent){
   int index = fullAllocationModeList.indexOf(hash);
   if(index != -1)
     fullAllocationModeList.removeAt(index);
+  // Remove it from pausedTorrents list
+  index = pausedTorrents.indexOf(hash);
+  if(index != -1)
+    pausedTorrents.removeAt(index);
   if(permanent){
     // Remove from Hard drive
     qDebug("Removing this on hard drive: %s", qPrintable(savePath+QDir::separator()+fileName));
@@ -242,6 +246,10 @@ bool bittorrent::resumeTorrent(QString hash){
     torrentsToPauseAfterChecking.removeAt(index);
     success = true;
   }
+  // Remove it from pausedTorrents list
+  index = pausedTorrents.indexOf(hash);
+  if(index != -1)
+    pausedTorrents.removeAt(index);
   return success;
 }
 
@@ -646,6 +654,10 @@ void bittorrent::saveDownloadUploadForTorrent(QString hash){
   ratio_file.close();
 }
 
+bool bittorrent::receivedPausedAlert(QString hash) const{
+  return (pausedTorrents.indexOf(hash) != -1);
+}
+
 // Save fastresume data for all torrents
 // and remove them from the session
 void bittorrent::saveFastResumeAndRatioData(){
@@ -667,9 +679,13 @@ void bittorrent::saveFastResumeAndRatioData(){
     }
     // Pause download (needed before fast resume writing)
     h.pause();
+    QString fileHash = QString(misc::toString(h.info_hash()).c_str());
+    while(!receivedPausedAlert(fileHash)){
+      SleeperThread::msleep(500);
+      readAlerts();
+    }
     // Extracting resume data
     if (h.has_metadata()){
-      QString fileHash = QString(misc::toString(h.info_hash()).c_str());
       if(QFile::exists(torrentBackup.path()+QDir::separator()+fileHash+".torrent")){
         // Remove old .fastresume data in case it exists
         QFile::remove(torrentBackup.path()+QDir::separator()+fileHash + ".fastresume");
@@ -908,10 +924,17 @@ void bittorrent::readAlerts(){
         emit trackerAuthenticationRequired(p->handle);
       }
     }
+    else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())){
+      QString hash = QString(misc::toString(p->handle.info_hash()).c_str());
+      qDebug("Received torrent_paused_alert for %s", (const char*)hash.toUtf8());
+      Q_ASSERT(!pausedTorrents.contains(hash));
+      pausedTorrents << hash;
+    }
     else if (peer_blocked_alert* p = dynamic_cast<peer_blocked_alert*>(a.get())){
       emit peerBlocked(QString(p->ip.to_string().c_str()));
     }
     else if (fastresume_rejected_alert* p = dynamic_cast<fastresume_rejected_alert*>(a.get())){
+      qDebug("/!\\ Fast resume failed for %s, reason: %s", p->handle.name().c_str(), p->msg().c_str());
       emit fastResumeDataRejected(QString(p->handle.name().c_str()));
     }
     else if (url_seed_alert* p = dynamic_cast<url_seed_alert*>(a.get())){

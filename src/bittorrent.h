@@ -56,6 +56,7 @@ class bittorrent : public QObject{
     QList<QString> fullAllocationModeList;
     QHash<QString, QList<QPair<QString, QString> > > trackersErrors;
     deleteThread *deleter;
+    QList<QString> pausedTorrents;
 
   protected:
     QString getSavePath(QString hash);
@@ -82,6 +83,7 @@ class bittorrent : public QObject{
     float getRealRatio(QString hash) const;
     session* getSession() const;
     QList<QPair<QString, QString> > getTrackersErrors(QString hash) const;
+    bool receivedPausedAlert(QString hash) const;
 
   public slots:
     void addTorrent(QString path, bool fromScanDir = false, bool onStartup = false, QString from_url = QString());
