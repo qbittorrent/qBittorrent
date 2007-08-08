@@ -682,6 +682,7 @@ void bittorrent::saveFastResumeAndRatioData(){
     h.pause();
     QString fileHash = QString(misc::toString(h.info_hash()).c_str());
     while(!receivedPausedAlert(fileHash)){
+      qDebug("Sleeping while waiting that %s is paused", misc::toString(h.info_hash()).c_str());
       SleeperThread::msleep(500);
       readAlerts();
     }
@@ -791,6 +792,7 @@ session* bittorrent::getSession() const{
 // Set upload rate limit
 // -1 to disable
 void bittorrent::setUploadRateLimit(long rate){
+  qDebug("set upload_limit to %fkb/s", rate/1024.);
   s->set_upload_rate_limit(rate);
 }
 
