@@ -934,12 +934,15 @@ void bittorrent::readAlerts(){
     else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())){
       QString hash = QString(misc::toString(p->handle.info_hash()).c_str());
       qDebug("Received torrent_paused_alert for %s", (const char*)hash.toUtf8());
-      Q_ASSERT(!pausedTorrents.contains(hash));
-      torrent_handle h = p->handle;
-      if(h.is_valid() && h.is_paused()){
-        pausedTorrents << hash;
+      if(!pausedTorrents.contains(hash)){
+        torrent_handle h = p->handle;
+        if(h.is_valid() && h.is_paused()){
+          pausedTorrents << hash;
+        }else{
+          qDebug("Not adding torrent no pausedList, it is invalid or resumed");
+        }
       }else{
-        qDebug("Not adding torrent no pausedList, it is invalid or resumed");
+        qDebug("Received alert for already paused torrent");
       }
     }
     else if (peer_blocked_alert* p = dynamic_cast<peer_blocked_alert*>(a.get())){
