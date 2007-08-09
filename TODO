@@ -51,9 +51,7 @@
   - Clean up delayed progress column sorting code
   - Clean up pause after checking code
   - Test rss now that it has been rewritten
-  - check that negative ratio (overflow) is fixed
   - Paused ratio=0??
-  - b0b14 didn't pause before fastresume (pause toggle problem)
   - Update italian translator
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent (Ticket #83)
