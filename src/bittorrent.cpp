@@ -251,6 +251,8 @@ bool bittorrent::resumeTorrent(QString hash){
   index = pausedTorrents.indexOf(hash);
   if(index != -1)
     pausedTorrents.removeAt(index);
+  else
+    qDebug("Resumed Torrent was not in paused list");
   return success;
 }
 
@@ -619,8 +621,9 @@ void bittorrent::loadDownloadUploadForTorrent(QString hash){
     return;
   }
   QPair<size_type,size_type> downUp;
-  downUp.first = (size_type)data_list.at(0).toLong();
-  downUp.second = (size_type)data_list.at(1).toLong();
+  downUp.first = (size_type)data_list.at(0).toLongLong();
+  downUp.second = (size_type)data_list.at(1).toLongLong();
+  Q_ASSERT(downUp.first >= 0 && downUp.second >= 0);
   ratioData[hash] = downUp;
 }
 
@@ -642,10 +645,11 @@ void bittorrent::saveDownloadUploadForTorrent(QString hash){
   torrent_status torrentStatus = h.status();
   QString fileHash = QString(misc::toString(h.info_hash()).c_str());
   QPair<size_type,size_type> ratioInfo = ratioData.value(fileHash, QPair<size_type, size_type>(0,0));
-  long download = torrentStatus.total_payload_download;
+  size_type download = torrentStatus.total_payload_download;
   download += ratioInfo.first;
-  long upload = torrentStatus.total_payload_upload;
+  size_type upload = torrentStatus.total_payload_upload;
   upload += ratioInfo.second;
+  Q_ASSERT(download >= 0 && upload >= 0);
   QFile ratio_file(torrentBackup.path()+QDir::separator()+ fileHash + ".ratio");
   if(!ratio_file.open(QIODevice::WriteOnly | QIODevice::Text)){
     std::cerr << "Couldn't save ratio data for torrent: " << fileHash.toStdString() << '\n';
@@ -931,7 +935,12 @@ void bittorrent::readAlerts(){
       QString hash = QString(misc::toString(p->handle.info_hash()).c_str());
       qDebug("Received torrent_paused_alert for %s", (const char*)hash.toUtf8());
       Q_ASSERT(!pausedTorrents.contains(hash));
-      pausedTorrents << hash;
+      torrent_handle h = p->handle;
+      if(h.is_valid() && h.is_paused()){
+        pausedTorrents << hash;
+      }else{
+        qDebug("Not adding torrent no pausedList, it is invalid or resumed");
+      }
     }
     else if (peer_blocked_alert* p = dynamic_cast<peer_blocked_alert*>(a.get())){
       emit peerBlocked(QString(p->ip.to_string().c_str()));
@@ -1036,7 +1045,8 @@ float bittorrent::getRealRatio(QString hash) const{
       return 1.;
     return 10.;
   }
-  float ratio = (float)upload / (float)download;
+  float ratio = (double)upload / (double)download;
+  Q_ASSERT(ratio >= 0.);
   if(ratio > 10.)
     ratio = 10.;
   return ratio;

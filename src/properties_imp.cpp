@@ -93,7 +93,7 @@ properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h
     else
       ratio = 10.; // Max ratio
   }else{
-    ratio = (float)torrentStatus.total_payload_upload/(float)torrentStatus.total_payload_download;
+    ratio = (double)torrentStatus.total_payload_upload/(double)torrentStatus.total_payload_download;
     if(ratio > 10.){
       ratio = 10.;
     }
