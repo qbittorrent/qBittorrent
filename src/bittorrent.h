@@ -84,6 +84,7 @@ class bittorrent : public QObject{
     session* getSession() const;
     QList<QPair<QString, QString> > getTrackersErrors(QString hash) const;
     bool receivedPausedAlert(QString hash) const;
+    void printPausedTorrents();
 
   public slots:
     void addTorrent(QString path, bool fromScanDir = false, bool onStartup = false, QString from_url = QString());

@@ -50,6 +50,7 @@
   - make use of finishedChecking alert if hydri applies my patch for this
   - Clean up delayed progress column sorting code
   - Clean up pause after checking code
+  - Fix fast resume problems
   - Test rss now that it has been rewritten
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent (Ticket #83)

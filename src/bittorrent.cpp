@@ -469,6 +469,14 @@ bool bittorrent::hasFilteredFiles(QString fileHash) const{
   return false;
 }
 
+void bittorrent::printPausedTorrents(){
+  QString hash;
+  qDebug("Paused Torrents:");
+  foreach(hash, pausedTorrents){
+    qDebug("%s ", (const char*)hash.toUtf8());
+  }
+}
+
 // get the size of the torrent without the filtered files
 size_type bittorrent::torrentEffectiveSize(QString hash) const{
   torrent_handle h = getTorrentHandle(hash);
@@ -687,6 +695,7 @@ void bittorrent::saveFastResumeAndRatioData(){
     QString fileHash = QString(misc::toString(h.info_hash()).c_str());
     while(!receivedPausedAlert(fileHash)){
       qDebug("Sleeping while waiting that %s is paused", misc::toString(h.info_hash()).c_str());
+      printPausedTorrents();
       SleeperThread::msleep(500);
       readAlerts();
     }
