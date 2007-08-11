@@ -616,7 +616,7 @@ void GUI::updateDlList(bool force){
         case torrent_status::downloading:
         case torrent_status::downloading_metadata:
           if(torrentStatus.download_payload_rate > 0){
-            qDebug("%s is downloading", (const char*)fileHash.toUtf8());
+            //qDebug("%s is downloading", (const char*)fileHash.toUtf8());
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)BTSession->getETA(fileHash)));
             setRowColor(row, "green");

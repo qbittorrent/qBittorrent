@@ -469,6 +469,7 @@ bool bittorrent::hasFilteredFiles(QString fileHash) const{
   return false;
 }
 
+// For debug only
 void bittorrent::printPausedTorrents(){
   QString hash;
   qDebug("Paused Torrents:");
@@ -695,7 +696,7 @@ void bittorrent::saveFastResumeAndRatioData(){
     QString fileHash = QString(misc::toString(h.info_hash()).c_str());
     while(!receivedPausedAlert(fileHash)){
       qDebug("Sleeping while waiting that %s is paused", misc::toString(h.info_hash()).c_str());
-      printPausedTorrents();
+      //printPausedTorrents();
       SleeperThread::msleep(500);
       readAlerts();
     }
