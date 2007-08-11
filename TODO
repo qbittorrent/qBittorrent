@@ -74,5 +74,7 @@ beta4->beta5 changelog:
 - BUFFIG: Fixed overflow causing ratio data to be negative
 - BUGFIX: Fixed progress column delayed sorting (after torrent finished checking)
 - BUGFIX: Finished torrents were still displayed as checking when paused by libtorrent on full disk (hit an assert)
+- BUGFIX: Fixed the way icons are installed to avoid problems on some systems
+- BUGFIX: Fixed qBittorrent version in .desktop file
 - I18N: Updated Italian translation
 - COSMETIC: Changed the way progress bars are rendered
