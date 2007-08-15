@@ -541,7 +541,7 @@ void GUI::updateDlList(bool force){
     // No need to update if qBittorrent DL list is hidden
     return;
   }
-  BTSession->printPausedTorrents();
+  //BTSession->printPausedTorrents();
   LCD_UpSpeed->display(tmp); // UP LCD
   LCD_DownSpeed->display(tmp2); // DL LCD
   // browse handles

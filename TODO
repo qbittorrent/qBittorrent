@@ -70,6 +70,7 @@ LANGUAGES UPDATED:
 - Polish *BETA5*
 
 beta4->beta5 changelog:
+- FEATURE: Supports Bittorrent FAST extension
 - BUGFIX: Wait for torrent_paused_alert before saving fast resume data
 - BUFFIG: Fixed overflow causing ratio data to be negative
 - BUGFIX: Fixed progress column delayed sorting (after torrent finished checking)
