@@ -948,6 +948,9 @@ void bittorrent::readAlerts(){
         torrent_handle h = p->handle;
         if(h.is_valid() && h.is_paused()){
           pausedTorrents << hash;
+          if(reloadingTorrents.indexOf(hash) != -1){
+            reloadTorrent(h);
+          }
         }else{
           qDebug("Not adding torrent no pausedList, it is invalid or resumed");
         }
@@ -971,6 +974,22 @@ void bittorrent::readAlerts(){
 
 QList<QPair<QString, QString> > bittorrent::getTrackersErrors(QString hash) const{
   return trackersErrors.value(hash, QList<QPair<QString, QString> >());
+}
+
+// Function to reload the torrent async after the torrent is actually
+// paused so that we can get fastresume data
+void bittorrent::pauseAndReloadTorrent(const torrent_handle &h){
+  if(!h.is_valid()){
+    std::cerr << "/!\\ Error: Invalid handle\n";
+    return;
+  }
+  // ask to pause the torrent (async)
+  h.pause();
+  QString hash = QString(misc::toString(h.info_hash()).c_str());
+  // Add it to reloadingTorrents list so that we now we
+  // we should reload the torrent once we receive the
+  // torrent_paused_alert. pause() is async now...
+  reloadingTorrents << hash;
 }
 
 // Reload a torrent with full allocation mode
@@ -998,8 +1017,8 @@ void bittorrent::reloadTorrent(const torrent_handle &h){
     torrentBackup.mkpath(torrentBackup.path());
   }
   // Write fast resume data
-  // Pause download (needed before fast resume writing)
-  h.pause();
+  // Torrent is already paused
+  Q_ASSERT(pausedTorrents.indexOf(fileHash) != 1);
   // Extracting resume data
   if (h.has_metadata()){
     // get fast resume data
@@ -1040,6 +1059,8 @@ void bittorrent::reloadTorrent(const torrent_handle &h){
     new_h.set_sequenced_download_threshold(15);
   }
 }
+
+
 
 int bittorrent::getListenPort() const{
   return s->listen_port();

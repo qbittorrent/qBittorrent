@@ -73,7 +73,6 @@ class properties : public QDialog, private Ui::properties{
   signals:
     void filteredFilesChanged(QString fileHash);
     void fileSizeChanged(QString fileHash);
-    void mustHaveFullAllocationMode(torrent_handle h);
 
   public:
     // Constructor

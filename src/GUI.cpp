@@ -1229,7 +1229,6 @@ void GUI::showProperties(const QModelIndex &index){
   QString fileHash = DLListModel->data(DLListModel->index(row, HASH)).toString();
   torrent_handle h = BTSession->getTorrentHandle(fileHash);
   properties *prop = new properties(this, BTSession, h);
-  connect(prop, SIGNAL(mustHaveFullAllocationMode(torrent_handle)), BTSession, SLOT(reloadTorrent(torrent_handle)));
   connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSizeAndProgress(QString)));
   prop->show();
 }

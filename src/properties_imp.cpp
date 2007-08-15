@@ -606,7 +606,7 @@ void properties::savePiecesPriorities(){
   }
   pieces_file.close();
   if(hasFilteredFiles && !BTSession->inFullAllocationMode(fileHash)){
-    emit mustHaveFullAllocationMode(h);
+    BTSession->pauseAndReloadTorrent(h);
   }
   BTSession->loadFilesPriorities(h);
   emit filteredFilesChanged(fileHash);

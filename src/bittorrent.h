@@ -49,6 +49,7 @@ class bittorrent : public QObject{
     QString defaultSavePath;
     QStringList torrentsToPauseAfterChecking;
     QStringList torrentsUnchecked;
+    QStringList reloadingTorrents;
     QHash<QString, QList<long> > ETAstats;
     QHash<QString, long> ETAs;
     QHash<QString, QPair<size_type,size_type> > ratioData;
@@ -102,7 +103,7 @@ class bittorrent : public QObject{
     void enablePeerExchange();
     void enableIPFilter(ip_filter filter);
     void disableIPFilter();
-    void reloadTorrent(const torrent_handle &h);
+    void pauseAndReloadTorrent(const torrent_handle &h);
     void setTorrentFinishedChecking(QString hash);
     void resumeUnfinishedTorrents();
     void updateETAs();
@@ -133,6 +134,7 @@ class bittorrent : public QObject{
     void processDownloadedFile(QString, QString);
     bool loadTrackerFile(QString hash);
     void saveTrackerFile(QString hash);
+    void reloadTorrent(const torrent_handle &h); // This is protected now, call pauseAndReloadTorrent() instead
 
   signals:
     void invalidTorrent(QString path);
