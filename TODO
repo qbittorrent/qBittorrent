@@ -49,6 +49,7 @@
   - make use of finishedChecking alert if hydri applies my patch for this
   - Clean up delayed progress column sorting code
   - Clean up pause after checking code
+  - Check incremental download (looks broken)
   - Wait for some bug fixes in libtorrent :
     - upload/download limit per torrent (Ticket #83)
 
@@ -75,5 +76,6 @@ beta4->beta5 changelog:
 - BUGFIX: Finished torrents were still displayed as checking when paused by libtorrent on full disk (hit an assert)
 - BUGFIX: Fixed the way icons are installed to avoid problems on some systems
 - BUGFIX: Fixed qBittorrent version in .desktop file
+- BUGFIX: Fixed session ratio value (was either 10. or 1.)
 - I18N: Updated Italian, Polish, Portuguese, Brazilian translations
 - COSMETIC: Changed the way progress bars are rendered

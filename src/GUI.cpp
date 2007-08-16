@@ -1670,7 +1670,7 @@ void GUI::checkConnectionStatus(){
     else
       ratio = 10.;
   }else{
-    float ratio = (float)sessionStatus.total_payload_upload / (float)sessionStatus.total_payload_download;
+    ratio = (double)sessionStatus.total_payload_upload / (double)sessionStatus.total_payload_download;
     if(ratio > 10.)
       ratio = 10.;
   }
