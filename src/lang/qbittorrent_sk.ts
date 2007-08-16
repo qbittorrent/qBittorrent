@@ -2100,7 +2100,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <location filename="../rss_imp.cpp" line="155"/>
         <source>This rss feed is already in the list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento RSS feed už je v zozname.</translation>
     </message>
 </context>
 <context>
@@ -2122,7 +2122,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <location filename="../rss.h" line="266"/>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Nikdy</translation>
     </message>
 </context>
 <context>
