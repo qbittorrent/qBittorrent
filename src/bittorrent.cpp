@@ -386,7 +386,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url){
     // Incremental download
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental")){
       qDebug("Incremental download enabled for %s", t.name().c_str());
-      h.set_sequenced_download_threshold(15);
+      h.set_sequenced_download_threshold(1);
     }
     // If download from url, remove temp file
     if(!from_url.isNull()) QFile::remove(file);
@@ -1062,7 +1062,7 @@ void bittorrent::reloadTorrent(const torrent_handle &h){
   // Incremental download
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".incremental")){
     qDebug("Incremental download enabled for %s", (const char*)fileName.toUtf8());
-    new_h.set_sequenced_download_threshold(15);
+    new_h.set_sequenced_download_threshold(1);
   }
 }
 
