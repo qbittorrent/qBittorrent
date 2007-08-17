@@ -5,11 +5,9 @@
 
 // Intermediate
 - Port on MacOS, Windows (and create an installer for Windows) - Progressing slowly
-- Add some transparency (menus,...)
+- Add some transparency (menus,...), improve look
 
 // Harder
-- Allow user to organize the downloads into categories/folders
-- Display new searches in new tabs
 - Display a progress bar that really displays the pieces we have (like in eMule)
 - .ico support (unsupported by Qt4.3 Free edition)
 
@@ -25,17 +23,21 @@
   (http://techbase.kde.org/Development/Tutorials/D-Bus/Accessing_Interfaces)
 - search engines customizing
 
+// in v1.2.0
+- Allow user to organize the downloads into categories/folders
+
 // in v1.1.0
 - Tabs support in search
 - Have a look at libcommoncpp2 to see if it can be useful for other stuff than url downloading
 - Allow to hide columns?
-- Allow to scan multiple directories?
-- Web interface (turbogears?)
-- improve and test tracker authentication code (remember login/pass)
-- support zipped torrents?
-- Split Download list / GUI code
+- Allow to scan multiple directories? (useful?)
+- Web interface (turbogears? php?)
+- improve and test tracker authentication code (remember login/pass) (need a tracker to test this)
+- support zipped torrents? (useful?)
+- Split Download list / GUI code : a bit difficult
 - Add option for RSS customization (refresh interval, max news per RSS...)
-- Allow to disable UPnP in options?
+- Allow to disable UPnP/NAT-PMP/LSD in options?
+- Allow to automatically delete torrents when they reach a given ratio (in options) : easy
 
 // in v1.0.0 (partial) - WIP
 - Check storage st creation + hasher in torrent creation
@@ -46,7 +48,7 @@
 - wait for fastresume data on exit should be in a thread?
 * beta5
   - Translations update (IN PROGRESS)
-  - Check incremental download (looks broken)
+  - Fix preview in finished list
   - Wait for some bug fixes in libtorrent :
     - Mutex invalid argument on exit (Ticket #126)
     - Number of seeds non null for finished torrent (Ticket #122)
