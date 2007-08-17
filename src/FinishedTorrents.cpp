@@ -173,23 +173,6 @@ void FinishedTorrents::updateFinishedList(){
       std::cerr << "ERROR: Can't find torrent in finished list\n";
       continue;
     }
-    if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) != -1){
-      // Pause torrent if it finished checking and it is was supposed to be paused.
-      // This is a trick to see the progress of the pause torrents on startup
-      if(torrentStatus.state != torrent_status::checking_files && torrentStatus.state != torrent_status::queued_for_checking){
-        qDebug("Paused torrent finished checking with state: %d", torrentStatus.state);
-        finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)torrentStatus.progress));
-        finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
-        setRowColor(row, "red");
-        BTSession->pauseTorrent(hash);
-        continue;
-      }
-    }
-    if(BTSession->getUncheckedTorrentsList().indexOf(hash) != -1){
-      if(torrentStatus.state != torrent_status::checking_files && torrentStatus.state != torrent_status::queued_for_checking){
-        BTSession->setTorrentFinishedChecking(hash);
-      }
-    }
     if(h.is_paused()) continue;
     if(torrentStatus.state == torrent_status::downloading || (torrentStatus.state != torrent_status::checking_files && torrentStatus.state != torrent_status::queued_for_checking && torrentStatus.progress != 1.)) {
       // What are you doing here? go back to download tab!

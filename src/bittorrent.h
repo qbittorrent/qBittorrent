@@ -48,7 +48,6 @@ class bittorrent : public QObject{
     QStringList supported_preview_extensions;
     QString defaultSavePath;
     QStringList torrentsToPauseAfterChecking;
-    QStringList torrentsUnchecked;
     QStringList reloadingTorrents;
     QHash<QString, QList<long> > ETAstats;
     QHash<QString, long> ETAs;
@@ -77,7 +76,6 @@ class bittorrent : public QObject{
     session_status getSessionStatus() const;
     int getListenPort() const;
     QStringList getTorrentsToPauseAfterChecking() const;
-    QStringList getUncheckedTorrentsList() const;
     long getETA(QString hash) const;
     size_type torrentEffectiveSize(QString hash) const;
     bool inFullAllocationMode(QString hash) const;
@@ -88,7 +86,7 @@ class bittorrent : public QObject{
     void printPausedTorrents();
 
   public slots:
-    void addTorrent(QString path, bool fromScanDir = false, bool onStartup = false, QString from_url = QString());
+    void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString());
     void downloadFromUrl(QString url);
     void downloadFromURLList(const QStringList& url_list);
     void deleteTorrent(QString hash, bool permanent = false);
@@ -104,7 +102,6 @@ class bittorrent : public QObject{
     void enableIPFilter(ip_filter filter);
     void disableIPFilter();
     void pauseAndReloadTorrent(const torrent_handle &h);
-    void setTorrentFinishedChecking(QString hash);
     void resumeUnfinishedTorrents();
     void updateETAs();
     void saveTorrentSpeedLimits(QString hash);
@@ -149,11 +146,11 @@ class bittorrent : public QObject{
     void newDownloadedTorrent(QString path, QString url);
     void aboutToDownloadFromUrl(QString url);
     void updateFileSize(QString hash);
-    void allTorrentsFinishedChecking();
     void peerBlocked(QString);
     void downloadFromUrlFailure(QString url, QString reason);
     void fastResumeDataRejected(QString name);
     void urlSeedProblem(QString url, QString msg);
+    void torrentFinishedChecking(QString hash);
 
 };
 

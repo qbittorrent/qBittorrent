@@ -153,6 +153,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void processDownloadedFiles(QString path, QString url);
     void downloadFromURLList(const QStringList& urls);
     void displayDownloadingUrlInfos(QString url);
+    void torrentChecked(QString hash);
     // Utils slots
     void setRowColor(int row, QString color);
     // Options slots

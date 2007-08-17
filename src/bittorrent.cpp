@@ -226,7 +226,6 @@ bool bittorrent::pauseTorrent(QString hash){
   int index = torrentsToPauseAfterChecking.indexOf(hash);
   if(index != -1) {
     torrentsToPauseAfterChecking.removeAt(index);
-    qDebug("A torrent was paused just after checking, good");
   }
   return change;
 }
@@ -273,7 +272,7 @@ void bittorrent::loadWebSeeds(QString fileHash){
 }
 
 // Add a torrent to the bittorrent session
-void bittorrent::addTorrent(QString path, bool fromScanDir, bool onStartup, QString from_url){
+void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url){
   torrent_handle h;
   entry resume_data;
   bool fastResume=false;
@@ -303,10 +302,6 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, bool onStartup, QStr
     // Getting torrent file informations
     torrent_info t(e);
     QString hash = QString(misc::toString(t.info_hash()).c_str());
-    if(onStartup){
-      qDebug("Added a hash to the unchecked torrents list");
-      torrentsUnchecked << hash;
-    }
     if(s->find_torrent(t.info_hash()).is_valid()){
       // Update info Bar
       if(!fromScanDir){
@@ -434,10 +429,6 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, bool onStartup, QStr
       QFile::rename(file,file+".corrupt");
     }
   }
-}
-
-QStringList bittorrent::getTorrentsToPauseAfterChecking() const{
-  return torrentsToPauseAfterChecking;
 }
 
 // Set the maximum number of opened connections
@@ -695,7 +686,7 @@ void bittorrent::saveFastResumeAndRatioData(){
     h.pause();
     QString fileHash = QString(misc::toString(h.info_hash()).c_str());
     while(!receivedPausedAlert(fileHash)){
-      qDebug("Sleeping while waiting that %s is paused", misc::toString(h.info_hash()).c_str());
+      //qDebug("Sleeping while waiting that %s is paused", misc::toString(h.info_hash()).c_str());
       //printPausedTorrents();
       SleeperThread::msleep(500);
       readAlerts();
@@ -968,12 +959,27 @@ void bittorrent::readAlerts(){
     else if (url_seed_alert* p = dynamic_cast<url_seed_alert*>(a.get())){
       emit urlSeedProblem(QString(p->url.c_str()), QString(p->msg().c_str()));
     }
+    else if (torrent_checked_alert* p = dynamic_cast<torrent_checked_alert*>(a.get())){
+      QString hash = QString(misc::toString(p->handle.info_hash()).c_str());
+      qDebug("%s have just finished checking", (const char*)hash.toUtf8());
+      int index = torrentsToPauseAfterChecking.indexOf(hash);
+      if(index != -1){
+        // Pause torrent
+        pauseTorrent(hash);
+        qDebug("%s was paused after checking", (const char*)hash.toUtf8());
+      }
+      emit torrentFinishedChecking(hash);
+    }
     a = s->pop_alert();
   }
 }
 
 QList<QPair<QString, QString> > bittorrent::getTrackersErrors(QString hash) const{
   return trackersErrors.value(hash, QList<QPair<QString, QString> >());
+}
+
+QStringList bittorrent::getTorrentsToPauseAfterChecking() const{
+  return torrentsToPauseAfterChecking;
 }
 
 // Function to reload the torrent async after the torrent is actually
@@ -1166,22 +1172,6 @@ std::vector<torrent_handle> bittorrent::getTorrentHandles() const{
   return s->get_torrents();
 }
 
-QStringList bittorrent::getUncheckedTorrentsList() const{
-  return torrentsUnchecked;
-}
-
-void bittorrent::setTorrentFinishedChecking(QString hash){
-  int index = torrentsUnchecked.indexOf(hash);
-  qDebug("torrent %s finished checking", (const char*)hash.toUtf8());
-  if(index != -1){
-    torrentsUnchecked.removeAt(index);
-    qDebug("Still %d unchecked torrents", torrentsUnchecked.size());
-    if(torrentsUnchecked.size() == 0){
-      emit allTorrentsFinishedChecking();
-    }
-  }
-}
-
 // Save DHT entry to hard drive
 void bittorrent::saveDHTEntry(){
   // Save DHT entry
@@ -1219,7 +1209,7 @@ void bittorrent::resumeUnfinishedTorrents(){
   }
   // Resume downloads
   foreach(fileName, filePaths){
-    addTorrent(fileName, false, true);
+    addTorrent(fileName, false);
   }
   qDebug("Unfinished torrents resumed");
 }
