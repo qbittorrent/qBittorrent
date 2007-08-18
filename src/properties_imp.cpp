@@ -149,20 +149,10 @@ void properties::loadTrackersErrors(){
 
 void properties::loadWebSeeds(){
   QString url_seed;
-  torrent_info torrentInfo = h.get_torrent_info();
-  std::vector<std::string> url_seeds = torrentInfo.url_seeds();
-  unsigned int nbSeeds = url_seeds.size();
   // Clear url seeds list
   listWebSeeds->clear();
-  // Add hard coded url seeds
-  for(unsigned int i=0; i<nbSeeds; ++i){
-    url_seed = QString(url_seeds[i].c_str());
-    if(manualUrlSeeds.indexOf(url_seed) == -1)
-      qDebug("Added hard-coded url seed to list: %s", (const char*)url_seed.toUtf8());
-      listWebSeeds->addItem(url_seed);
-  }
   // Add manually added url seeds
-  foreach(url_seed, manualUrlSeeds){
+  foreach(url_seed, urlSeeds){
     listWebSeeds->addItem(url_seed);
     qDebug("Added custom url seed to list: %s", (const char*)url_seed.toUtf8());
   }
@@ -336,13 +326,13 @@ void properties::askWebSeed(){
   if(!ok) return;
   torrent_info torrentInfo = h.get_torrent_info();
   qDebug("Adding %s web seed", (const char*)url_seed.toUtf8());
-  if(manualUrlSeeds.indexOf(url_seed) != -1) {
+  if(urlSeeds.indexOf(url_seed) != -1) {
     QMessageBox::warning(this, tr("qBittorrent"),
                          tr("This url seed is already in the list."),
                          QMessageBox::Ok);
     return;
   }
-  manualUrlSeeds << url_seed;
+  urlSeeds << url_seed;
   torrentInfo.add_url_seed(url_seed.toStdString());
   saveWebSeeds();
   // Refresh the seeds list
@@ -375,26 +365,17 @@ void properties::deleteSelectedUrlSeeds(){
   QList<QListWidgetItem *> selectedItems;
   selectedItems = listWebSeeds->selectedItems();
   QListWidgetItem *item;
-  bool error = false;
   foreach(item, selectedItems){
     QString url_seed = item->text();
-    int index = manualUrlSeeds.indexOf(url_seed);
-    if(index != -1){
-      manualUrlSeeds.removeAt(index);
-      qDebug("Removed an url seeds from manualUrlSeeds list");
-    }else{
-      error = true;
-    }
+    int index = urlSeeds.indexOf(url_seed);
+    Q_ASSERT(index != -1);
+    urlSeeds.removeAt(index);
+    h.remove_url_seed(misc::toString((const char*)url_seed.toUtf8()));
   }
   // Save them to disk
   saveWebSeeds();
   // Refresh list
   loadWebSeeds();
-  if(error){
-    QMessageBox::warning(this, tr("qBittorrent"),
-                         tr("Hard-coded url seeds cannot be deleted."),
-                         QMessageBox::Ok);
-  }
 }
 
 void properties::deleteSelectedTrackers(){
@@ -559,11 +540,23 @@ void properties::loadWebSeedsFromFile(){
   QByteArray urlseeds_lines = urlseeds_file.readAll();
   urlseeds_file.close();
   QList<QByteArray> url_seeds = urlseeds_lines.split('\n');
-  manualUrlSeeds.clear();
+  urlSeeds.clear();
   QByteArray url_seed;
   foreach(url_seed, url_seeds){
     if(!url_seed.isEmpty())
-      manualUrlSeeds << url_seed;
+      urlSeeds << url_seed;
+  }
+  // Load the hard-coded url seeds
+  torrent_info torrentInfo = h.get_torrent_info();
+  std::vector<std::string> hc_seeds = torrentInfo.url_seeds();
+  unsigned int nbSeeds = hc_seeds.size();
+  QString hc_seed;
+  // Add hard coded url seeds
+  for(unsigned int i=0; i<nbSeeds; ++i){
+    hc_seed = QString(hc_seeds[i].c_str());
+    if(urlSeeds.indexOf(hc_seed) == -1){
+      urlSeeds << hc_seed;
+    }
   }
 }
 
@@ -574,7 +567,7 @@ void properties::saveWebSeeds(){
     return;
   }
   QString url_seed;
-  foreach(url_seed, manualUrlSeeds){
+  foreach(url_seed, urlSeeds){
     urlseeds_file.write(QByteArray((const char*)(url_seed+"\n").toUtf8()));
   }
   urlseeds_file.close();

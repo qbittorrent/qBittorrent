@@ -264,10 +264,28 @@ void bittorrent::loadWebSeeds(QString fileHash){
   QByteArray url_seed;
   torrent_handle h = getTorrentHandle(fileHash);
   torrent_info torrentInfo = h.get_torrent_info();
+  // First remove from the torrent the url seeds that were deleted
+  // in a previous session
+  QStringList seeds_to_delete;
+  std::vector<std::string> existing_seeds = torrentInfo.url_seeds();
+  unsigned int nbSeeds = existing_seeds.size();
+  QString existing_seed;
+  for(unsigned int i=0; i<nbSeeds; ++i){
+    existing_seed = QString(existing_seeds[i].c_str());
+    if(!url_seeds.contains(QByteArray((const char*)existing_seed.toUtf8()))){
+      seeds_to_delete << existing_seed;
+    }
+  }
+  foreach(existing_seed, seeds_to_delete){
+    h.remove_url_seed(misc::toString((const char*) existing_seed.toUtf8()));
+  }
+  // Add the ones that were added in a previous session
   foreach(url_seed, url_seeds){
-    if(!url_seed.isEmpty())
-      qDebug("Loading custom url seed: %s", (const char*)url_seed.data());
+    if(!url_seed.isEmpty()){
+      // XXX: Should we check if it is already in the list before adding it
+      // or is libtorrent clever enough to know
       torrentInfo.add_url_seed(misc::toString((const char*)url_seed.data()));
+    }
   }
 }
 

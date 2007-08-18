@@ -43,7 +43,7 @@ class properties : public QDialog, private Ui::properties{
     bool has_filtered_files;
     bool changedFilteredfiles;
     bittorrent *BTSession;
-    QStringList manualUrlSeeds;
+    QStringList urlSeeds;
 
   protected slots:
     void on_okButton_clicked();

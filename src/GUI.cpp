@@ -418,7 +418,7 @@ void GUI::on_actionPreview_file_triggered(){
       if(inDownloadList)
         fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
       else
-        fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), HASH)).toString();
+        fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), F_HASH)).toString();
       torrent_handle h = BTSession->getTorrentHandle(fileHash);
       previewSelection = new previewSelect(this, h);
       break;
