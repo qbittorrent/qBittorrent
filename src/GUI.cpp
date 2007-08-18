@@ -224,6 +224,7 @@ GUI::~GUI(){
   delete connecStatusLblIcon;
   // Keyboard shortcuts
   delete switchSearchShortcut;
+  delete switchSearchShortcut2;
   delete switchDownShortcut;
   delete switchUpShortcut;
   delete switchRSSShortcut;
@@ -258,8 +259,10 @@ void GUI::createKeyboardShortcuts(){
   connect(switchDownShortcut, SIGNAL(activated()), this, SLOT(displayDownTab()));
   switchUpShortcut = new QShortcut(QKeySequence(tr("Alt+2", "shortcut to switch to second tab")), this);
   connect(switchUpShortcut, SIGNAL(activated()), this, SLOT(displayUpTab()));
-  switchSearchShortcut = new QShortcut(QKeySequence(tr("Alt+3, Ctrl+F", "shortcut to switch to third tab (search)")), this);
+  switchSearchShortcut = new QShortcut(QKeySequence(tr("Alt+3", "shortcut to switch to third tab")), this);
   connect(switchSearchShortcut, SIGNAL(activated()), this, SLOT(displaySearchTab()));
+  switchSearchShortcut2 = new QShortcut(QKeySequence(tr("Ctrl+F", "shortcut to switch to search tab")), this);
+  connect(switchSearchShortcut2, SIGNAL(activated()), this, SLOT(displaySearchTab()));
   switchRSSShortcut = new QShortcut(QKeySequence(tr("Alt+4", "shortcut to switch to fourth tab")), this);
   connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
   actionTorrent_Properties->setShortcut(QKeySequence("Alt+P"));

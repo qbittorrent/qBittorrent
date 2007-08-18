@@ -76,6 +76,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     Qt::SortOrder delayedSortingOrder;
     // Keyboard shortcuts
     QShortcut *switchSearchShortcut;
+    QShortcut *switchSearchShortcut2;
     QShortcut *switchDownShortcut;
     QShortcut *switchUpShortcut;
     QShortcut *switchRSSShortcut;
