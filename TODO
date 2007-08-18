@@ -38,6 +38,7 @@
 - Add option for RSS customization (refresh interval, max news per RSS...)
 - Allow to disable UPnP/NAT-PMP/LSD in options?
 - Allow to automatically delete torrents when they reach a given ratio (in options) : easy
+- Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
 
 // in v1.0.0 (partial) - WIP
 - Check storage st creation + hasher in torrent creation
@@ -67,11 +68,13 @@ LANGUAGES UPDATED:
 - Polish *BETA5*
 - Portuguese *BETA5*
 - Brazilian *BETA5*
+- Spanish *BETA5*
 
 beta4->beta5 changelog:
 - FEATURE: Supports Bittorrent FAST extension
 - FEATURE: Improved code handling torrents that have just finished checking
 - FEATURE: Improved progress column sorting code
+- FEATURE: Allow to remove url seeds, even hard coded ones
 - BUGFIX: Wait for torrent_paused_alert before saving fast resume data on exit
 - BUGFIX: Wait for torrent_paused_alert before reloading a torrent for full allocation mode
 - BUFFIG: Fixed overflow causing ratio data to be negative
@@ -81,5 +84,6 @@ beta4->beta5 changelog:
 - BUGFIX: Fixed qBittorrent version in .desktop file
 - BUGFIX: Fixed session ratio value (was either 10. or 1.)
 - BUGFIX: Improved incremental download
-- I18N: Updated Italian, Polish, Portuguese, Brazilian translations
+- BUGFIX: Fixed preview from seeding list
+- I18N: Updated Italian, Polish, Portuguese, Brazilian and Spanish translations
 - COSMETIC: Changed the way progress bars are rendered
