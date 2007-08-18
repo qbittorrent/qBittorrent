@@ -49,7 +49,6 @@
 - wait for fastresume data on exit should be in a thread?
 * beta5
   - Translations update (IN PROGRESS)
-  - Fix preview in finished list
   - Wait for some bug fixes in libtorrent :
     - Mutex invalid argument on exit (Ticket #126)
     - Number of seeds non null for finished torrent (Ticket #122)
@@ -74,7 +73,7 @@ beta4->beta5 changelog:
 - FEATURE: Supports Bittorrent FAST extension
 - FEATURE: Improved code handling torrents that have just finished checking
 - FEATURE: Improved progress column sorting code
-- FEATURE: Allow to remove url seeds, even hard coded ones
+- FEATURE: Allow to remove url seeds, even hard-coded ones
 - BUGFIX: Wait for torrent_paused_alert before saving fast resume data on exit
 - BUGFIX: Wait for torrent_paused_alert before reloading a torrent for full allocation mode
 - BUFFIG: Fixed overflow causing ratio data to be negative
