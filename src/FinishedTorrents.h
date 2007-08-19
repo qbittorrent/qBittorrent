@@ -38,7 +38,6 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     QObject *parent;
     bittorrent *BTSession;
     FinishedListDelegate *finishedListDelegate;
-    QStringList finishedSHAs;
     QStandardItemModel *finishedListModel;
     unsigned int nbFinished;
 
@@ -46,14 +45,13 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     FinishedTorrents(QObject *parent, bittorrent *BTSession);
     ~FinishedTorrents();
     // Methods
-    QStringList getFinishedSHAs();
     QTreeView* getFinishedList();
     QStandardItemModel* getFinishedListModel();
     bool loadColWidthFinishedList();
     int getRowFromHash(QString hash) const;
 
   public slots:
-    void addFinishedSHA(QString sha);
+    void addFinishedTorrent(QString hash);
     void updateFinishedList();
     void deleteFromFinishedList(QString hash);
     void showProperties(const QModelIndex &index);

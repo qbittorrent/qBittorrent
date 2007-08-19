@@ -187,17 +187,65 @@ void bittorrent::deleteTorrent(QString hash, bool permanent){
   // Remove it from ratio table
   ratioData.remove(hash);
   int index = fullAllocationModeList.indexOf(hash);
-  if(index != -1)
+  if(index != -1){
     fullAllocationModeList.removeAt(index);
+  }
   // Remove it from pausedTorrents list
   index = pausedTorrents.indexOf(hash);
-  if(index != -1)
+  if(index != -1){
     pausedTorrents.removeAt(index);
+  }
+  index = finishedTorrents.indexOf(hash);
+  if(index != -1){
+    finishedTorrents.removeAt(index);
+  }else{
+    index = unfinishedTorrents.indexOf(hash);
+    if(index != -1){
+      unfinishedTorrents.removeAt(index);
+    }else{
+      std::cerr << "Error: Torrent " << hash.toStdString() << " is neither in finished or unfinished list\n";
+    }
+  }
   if(permanent){
     // Remove from Hard drive
     qDebug("Removing this on hard drive: %s", qPrintable(savePath+QDir::separator()+fileName));
     // Deleting in a thread to avoid GUI freeze
     deleter->deletePath(savePath+QDir::separator()+fileName);
+  }
+}
+
+// Return a list of hashes for the finished torrents
+QStringList bittorrent::getFinishedTorrents() const {
+  return finishedTorrents;
+}
+
+QStringList bittorrent::getUnfinishedTorrents() const {
+  return unfinishedTorrents;
+}
+
+bool bittorrent::isFinished(QString hash) const {
+  return finishedTorrents.contains(hash);
+}
+
+// Remove the given hash from the list of finished torrents
+void bittorrent::setUnfinishedTorrent(QString hash) {
+  int index = finishedTorrents.indexOf(hash);
+  if(index != -1){
+    finishedTorrents.removeAt(index);
+  }
+  if(!unfinishedTorrents.contains(hash)){
+    unfinishedTorrents << hash;
+  }
+}
+
+// Add the given hash to the list of finished torrents
+void bittorrent::setFinishedTorrent(QString hash){
+  if(!finishedTorrents.contains(hash)){
+    finishedTorrents << hash;
+  }
+  int index = unfinishedTorrents.indexOf(hash);
+  if(index != -1){
+    unfinishedTorrents.removeAt(index);
   }
 }
 
@@ -405,6 +453,11 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url){
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental")){
       qDebug("Incremental download enabled for %s", t.name().c_str());
       h.set_sequenced_download_threshold(1);
+    }
+    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")){
+      finishedTorrents << hash;
+    }else{
+      unfinishedTorrents << hash;
     }
     // If download from url, remove temp file
     if(!from_url.isNull()) QFile::remove(file);
@@ -936,6 +989,8 @@ void bittorrent::readAlerts(){
   std::auto_ptr<alert> a = s->pop_alert();
   while (a.get()){
     if (torrent_finished_alert* p = dynamic_cast<torrent_finished_alert*>(a.get())){
+      QString hash = QString(misc::toString(p->handle.info_hash()).c_str());
+      setFinishedTorrent(hash);
       emit finishedTorrent(p->handle);
     }
     else if (file_error_alert* p = dynamic_cast<file_error_alert*>(a.get())){

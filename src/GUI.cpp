@@ -314,7 +314,6 @@ void GUI::addLogPeerBlocked(QString ip){
 
 // Update Info Bar information
 void GUI::setInfoBar(QString info, QString color){
-  qDebug("setInfoBar called");
   static unsigned short nbLines = 0;
   ++nbLines;
   // Check log size, clear it if too big
@@ -548,16 +547,13 @@ void GUI::updateDlList(bool force){
   LCD_UpSpeed->display(tmp); // UP LCD
   LCD_DownSpeed->display(tmp2); // DL LCD
   // browse handles
-  std::vector<torrent_handle> handles = BTSession->getTorrentHandles();
-  QStringList finishedSHAs = finishedTorrentTab->getFinishedSHAs();
-  unsigned int handlesSize = handles.size();
-  for(unsigned int i=0; i<handlesSize; ++i){
-    torrent_handle h = handles[i];
+  QStringList unfinishedTorrents = BTSession->getUnfinishedTorrents();
+  QString hash;
+  foreach(hash, unfinishedTorrents){
+    torrent_handle h = BTSession->getTorrentHandle(hash);
     try{
       torrent_status torrentStatus = h.status();
       QString fileHash = QString(misc::toString(h.info_hash()).c_str());
-      // If this is a finished torrent, no need to refresh it here
-      if(finishedSHAs.indexOf(fileHash) != -1) continue;
       int row = getRowFromHash(fileHash);
       if(row == -1){
         qDebug("Info: Could not find filename in download list, adding it...");
@@ -574,6 +570,7 @@ void GUI::updateDlList(bool force){
         case torrent_status::finished:
         case torrent_status::seeding:
           qDebug("A torrent that was in download tab just finished, moving it to finished tab");
+          BTSession->setFinishedTorrent(fileHash);
           finishedTorrent(h);
           continue;
         case torrent_status::checking_files:
@@ -1112,8 +1109,8 @@ void GUI::on_actionDelete_triggered(){
 // Called when a torrent is added
 void GUI::torrentAdded(QString path, torrent_handle& h, bool fastResume){
   QString hash = QString(misc::toString(h.info_hash()).c_str());
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")){
-    finishedTorrentTab->addFinishedSHA(hash);
+  if(BTSession->isFinished(hash)) {
+    finishedTorrentTab->addFinishedTorrent(hash);
     return;
   }
   int row = DLListModel->rowCount();
@@ -1585,7 +1582,6 @@ void GUI::finishedTorrent(torrent_handle& h){
     }
     if(show_msg)
       setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
-    finishedTorrentTab->addFinishedSHA(hash);
     QList<QStandardItem *> items = DLListModel->findItems(hash, Qt::MatchExactly, HASH);
     Q_ASSERT(items.size() <= 1);
     if(items.size() != 0){
@@ -1605,31 +1601,38 @@ void GUI::torrentChecked(QString hash){
   // Check if the torrent was paused after checking
   if(BTSession->isPaused(hash)){
     // Was paused, change its icon/color
-    if(finishedTorrentTab->getFinishedSHAs().indexOf(hash) != -1){
+    if(BTSession->isFinished(hash)){
       // In finished list
       qDebug("Automatically paused torrent was in finished list");
       int row = finishedTorrentTab->getRowFromHash(hash);
+      if(row == -1){
+        finishedTorrentTab->addFinishedTorrent(hash);
+        row = finishedTorrentTab->getRowFromHash(hash);
+      }
+      Q_ASSERT(row != -1);
       finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_UPSPEED), QVariant((double)0.0));
       finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
       finishedTorrentTab->setRowColor(row, "red");
     }else{
       // In download list
       int row = getRowFromHash(hash);
+      torrent_handle h = BTSession->getTorrentHandle(hash);
+      torrent_status torrentStatus = h.status();
+      if(row ==-1){
+        restoreInDownloadList(h);
+        row = getRowFromHash(hash);
+      }
+      Q_ASSERT(row != -1);
       DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
       DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
       DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
       DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
       setRowColor(row, "red");
+      // Update progress in download list
+      DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
+      // Delayed Sorting
+      sortProgressColumnDelayed();
     }
-  }
-  if(finishedTorrentTab->getFinishedSHAs().indexOf(hash) == -1) {
-    // Update progress in download list
-    torrent_handle h = BTSession->getTorrentHandle(hash);
-    torrent_status torrentStatus = h.status();
-    int row = getRowFromHash(hash);
-    DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
-    // Delayed Sorting
-    sortProgressColumnDelayed();
   }
 }
 
@@ -1643,16 +1646,26 @@ void GUI::fullDiskError(torrent_handle& h){
   // Download will be paused by libtorrent. Updating GUI information accordingly
   QString hash = QString(misc::toString(h.info_hash()).c_str());
   qDebug("Full disk error, pausing torrent %s", (const char*)hash.toUtf8());
-  if(finishedTorrentTab->getFinishedSHAs().indexOf(hash) != -1){
+  if(BTSession->isFinished(hash)){
     // In finished list
     qDebug("Automatically paused torrent was in finished list");
     int row = finishedTorrentTab->getRowFromHash(hash);
+    if(row == -1){
+      finishedTorrentTab->addFinishedTorrent(hash);
+      row = finishedTorrentTab->getRowFromHash(hash);
+    }
+    Q_ASSERT(row != -1);
     finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_UPSPEED), QVariant((double)0.0));
     finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
     finishedTorrentTab->setRowColor(row, "red");
   }else{
     // In download list
     int row = getRowFromHash(hash);
+    if(row == -1){
+      restoreInDownloadList(BTSession->getTorrentHandle(hash));
+      row = getRowFromHash(hash);
+    }
+    Q_ASSERT(row != -1);
     DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
     DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
     DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));

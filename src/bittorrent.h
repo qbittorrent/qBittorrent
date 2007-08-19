@@ -53,10 +53,12 @@ class bittorrent : public QObject{
     QHash<QString, long> ETAs;
     QHash<QString, QPair<size_type,size_type> > ratioData;
     QTimer *ETARefresher;
-    QList<QString> fullAllocationModeList;
+    QStringList fullAllocationModeList;
     QHash<QString, QList<QPair<QString, QString> > > trackersErrors;
     deleteThread *deleter;
-    QList<QString> pausedTorrents;
+    QStringList pausedTorrents;
+    QStringList finishedTorrents;
+    QStringList unfinishedTorrents;
 
   protected:
     QString getSavePath(QString hash);
@@ -84,6 +86,9 @@ class bittorrent : public QObject{
     QList<QPair<QString, QString> > getTrackersErrors(QString hash) const;
     bool receivedPausedAlert(QString hash) const;
     void printPausedTorrents();
+    QStringList getFinishedTorrents() const;
+    QStringList getUnfinishedTorrents() const;
+    bool isFinished(QString hash) const;
 
   public slots:
     void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString());
@@ -124,6 +129,8 @@ class bittorrent : public QObject{
     void loadFilesPriorities(torrent_handle& h);
     void setDownloadLimit(QString hash, long val);
     void setUploadLimit(QString hash, long val);
+    void setUnfinishedTorrent(QString hash);
+    void setFinishedTorrent(QString hash);
 
   protected slots:
     void scanDirectory();
