@@ -1586,15 +1586,15 @@ void GUI::finishedTorrent(torrent_handle& h){
     }
     if(show_msg)
       setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
-    QList<QStandardItem *> items = DLListModel->findItems(hash, Qt::MatchExactly, HASH);
-    Q_ASSERT(items.size() <= 1);
-    if(items.size() != 0){
-      DLListModel->removeRow(DLListModel->indexFromItem(items.at(0)).row());
+    int row = getRowFromHash(hash);
+    if(row != -1){
+      DLListModel->removeRow(row);
       --nbTorrents;
       tabs->setTabText(0, tr("Downloads") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
     }else{
       qDebug("finished torrent %s is not in download list, nothing to do", (const char*)hash.toUtf8());
     }
+    finishedTorrentTab->addFinishedTorrent(hash);
     if(show_msg && systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
       myTrayIcon->showMessage(tr("Download finished"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
     }
