@@ -84,10 +84,7 @@ class deleteThread : public QThread {
       abort = true;
       condition.wakeOne();
       mutex.unlock();
-      subDeleteThread *st;
-      foreach(st, subThreads){
-        delete st;
-      }
+      qDeleteAll(subThreads);
       wait();
     }
 

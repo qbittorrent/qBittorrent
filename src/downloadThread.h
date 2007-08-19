@@ -154,10 +154,7 @@ class downloadThread : public QThread {
       abort = true;
       condition.wakeOne();
       mutex.unlock();
-      subDownloadThread *st;
-      foreach(st, subThreads){
-        delete st;
-      }
+      qDeleteAll(subThreads);
       wait();
     }
 

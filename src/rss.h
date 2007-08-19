@@ -170,10 +170,8 @@ class RssStream : public QObject{
 
     // delete all the items saved
     void removeAllItems() {
-      unsigned int listSize = listItem.size();
-      for(unsigned int i=0; i<listSize; ++i){
-	delete listItem.at(i);
-      }
+      qDeleteAll(listItem);
+      listItem.clear();
     }
 
     void setLoading(bool val) {
@@ -466,10 +464,7 @@ class RssManager : public QObject{
     }
 
     ~RssManager(){
-      RssStream *stream;
-      foreach(stream, streams){
-	delete stream;
-      }
+      qDeleteAll(streams);
       delete downloader;
     }
 
@@ -560,10 +555,7 @@ class RssManager : public QObject{
 
     // remove all the streams in the manager
     void removeAll(){
-      RssStream *stream;
-      foreach(stream, streams){
-        delete stream;
-      }
+      qDeleteAll(streams);
       streams.clear();
     }
 
