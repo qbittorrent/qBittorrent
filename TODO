@@ -74,6 +74,8 @@ beta4->beta5 changelog:
 - FEATURE: Improved code handling torrents that have just finished checking
 - FEATURE: Improved progress column sorting code
 - FEATURE: Allow to remove url seeds, even hard-coded ones
+- FEATURE: Improved code for handling of finished torrents
+- FEATURE: Optimized download list refreshing a little
 - BUGFIX: Wait for torrent_paused_alert before saving fast resume data on exit
 - BUGFIX: Wait for torrent_paused_alert before reloading a torrent for full allocation mode
 - BUFFIG: Fixed overflow causing ratio data to be negative
