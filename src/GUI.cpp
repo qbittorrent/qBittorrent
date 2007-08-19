@@ -578,7 +578,7 @@ void GUI::updateDlList(bool force){
           if(BTSession->getTorrentsToPauseAfterChecking().indexOf(fileHash) == -1){
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/time.png")), Qt::DecorationRole);
             setRowColor(row, "grey");
-            Q_ASSERT(torrentStatus.progress <= 1.);
+            Q_ASSERT(torrentStatus.progress <= 1. && torrentStatus.progress >= 0.);
             DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
           }
           break;
@@ -593,7 +593,7 @@ void GUI::updateDlList(bool force){
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
             setRowColor(row, "grey");
           }
-          Q_ASSERT(torrentStatus.progress <= 1.);
+          Q_ASSERT(torrentStatus.progress <= 1. && torrentStatus.progress >= 0.);
           DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
           DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
           DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
@@ -610,7 +610,7 @@ void GUI::updateDlList(bool force){
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
             setRowColor(row, "black");
           }
-          Q_ASSERT(torrentStatus.progress <= 1.);
+          Q_ASSERT(torrentStatus.progress <= 1. && torrentStatus.progress >= 0.);
           DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
           DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
           DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
@@ -1633,7 +1633,7 @@ void GUI::torrentChecked(QString hash){
       DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
       setRowColor(row, "red");
       // Update progress in download list
-      Q_ASSERT(torrentStatus.progress <= 1.);
+      Q_ASSERT(torrentStatus.progress <= 1. && torrentStatus.progress >= 0.);
       DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
       // Delayed Sorting
       sortProgressColumnDelayed();
