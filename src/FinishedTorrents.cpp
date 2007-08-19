@@ -75,7 +75,9 @@ FinishedTorrents::~FinishedTorrents(){
 }
 
 void FinishedTorrents::addFinishedTorrent(QString hash){
-  int row = finishedListModel->rowCount();
+  int row = getRowFromHash(hash);
+  if(row != -1) return;
+  row = finishedListModel->rowCount();
   torrent_handle h = BTSession->getTorrentHandle(hash);
   // Adding torrent to download list
   finishedListModel->insertRow(row);

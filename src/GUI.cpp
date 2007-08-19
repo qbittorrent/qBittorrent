@@ -633,8 +633,10 @@ unsigned int GUI::getCurrentTabIndex() const{
 }
 
 void GUI::restoreInDownloadList(torrent_handle h){
-  unsigned int row = DLListModel->rowCount();
   QString hash = QString(misc::toString(h.info_hash()).c_str());
+  int row = getRowFromHash(hash);
+  if(row != -1) return;
+  row = DLListModel->rowCount();
   // Adding torrent to download list
   DLListModel->insertRow(row);
   DLListModel->setData(DLListModel->index(row, NAME), QVariant(h.name().c_str()));
