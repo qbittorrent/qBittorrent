@@ -365,17 +365,21 @@ void properties::deleteSelectedUrlSeeds(){
   QList<QListWidgetItem *> selectedItems;
   selectedItems = listWebSeeds->selectedItems();
   QListWidgetItem *item;
+  bool change = false;
   foreach(item, selectedItems){
     QString url_seed = item->text();
     int index = urlSeeds.indexOf(url_seed);
     Q_ASSERT(index != -1);
     urlSeeds.removeAt(index);
     h.remove_url_seed(misc::toString((const char*)url_seed.toUtf8()));
+    change = true;
   }
-  // Save them to disk
-  saveWebSeeds();
-  // Refresh list
-  loadWebSeeds();
+  if(change){
+    // Save them to disk
+    saveWebSeeds();
+    // Refresh list
+    loadWebSeeds();
+  }
 }
 
 void properties::deleteSelectedTrackers(){

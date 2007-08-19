@@ -692,7 +692,7 @@ void bittorrent::saveFastResumeAndRatioData(){
   if(! torrentBackup.exists()){
     torrentBackup.mkpath(torrentBackup.path());
   }
-  // Write fast resume data
+  // Pause torrents
   std::vector<torrent_handle> handles = s->get_torrents();
   for(unsigned int i=0; i<handles.size(); ++i){
     torrent_handle &h = handles[i];
@@ -702,11 +702,19 @@ void bittorrent::saveFastResumeAndRatioData(){
     }
     // Pause download (needed before fast resume writing)
     h.pause();
+  }
+  // Write fast resume data
+  for(unsigned int i=0; i<handles.size(); ++i){
+    torrent_handle &h = handles[i];
+    if(!h.is_valid()){
+      qDebug("/!\\ Error: Invalid handle");
+      continue;
+    }
     QString fileHash = QString(misc::toString(h.info_hash()).c_str());
     while(!receivedPausedAlert(fileHash)){
       //qDebug("Sleeping while waiting that %s is paused", misc::toString(h.info_hash()).c_str());
       //printPausedTorrents();
-      SleeperThread::msleep(500);
+      SleeperThread::msleep(300);
       readAlerts();
     }
     // Extracting resume data
@@ -1042,7 +1050,7 @@ void bittorrent::reloadTorrent(const torrent_handle &h){
   }
   // Write fast resume data
   // Torrent is already paused
-  Q_ASSERT(pausedTorrents.indexOf(fileHash) != 1);
+  Q_ASSERT(pausedTorrents.indexOf(fileHash) != -1);
   // Extracting resume data
   if (h.has_metadata()){
     // get fast resume data
