@@ -204,7 +204,7 @@ void SearchEngine::saveColWidthSearchList() const{
   QSettings settings("qBittorrent", "qBittorrent");
   QStringList width_list;
   for(int i=0; i<SearchListModel->columnCount(); ++i){
-    width_list << QString(misc::toString(resultsBrowser->columnWidth(i)).c_str());
+    width_list << misc::toQString(resultsBrowser->columnWidth(i));
   }
   settings.setValue("SearchListColsWidth", width_list.join(" "));
   qDebug("Search list columns width saved");
@@ -359,7 +359,7 @@ void SearchEngine::readSearchOutput(){
   foreach(line, lines_list){
     appendSearchResult(QString(line));
   }
-  results_lbl->setText(tr("Results")+" <i>("+QString(misc::toString(nb_search_results).c_str())+")</i>:");
+  results_lbl->setText(tr("Results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
 }
 
 // Returns version of nova.py search engine
@@ -409,7 +409,7 @@ QByteArray SearchEngine::getNovaChangelog(QString novaPath, float my_version) co
       QString end_version = "# Version: ";
       char tmp[5];
       snprintf(tmp, 5, "%.2f", my_version);
-      end_version+=QString(tmp);
+      end_version+=QString::fromUtf8(tmp);
       if(line.startsWith((const char*)end_version.toUtf8())) break;
       if(in_changelog){
         line.remove(0,1);
@@ -516,7 +516,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
       }
     }
   }
-  results_lbl->setText(tr("Results", "i.e: Search results")+" <i>("+QString(misc::toString(nb_search_results).c_str())+")</i>:");
+  results_lbl->setText(tr("Results", "i.e: Search results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
   search_button->setEnabled(true);
   stop_search_button->setEnabled(false);
 }

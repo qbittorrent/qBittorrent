@@ -134,10 +134,10 @@
       RssStream* stream;
       foreach(stream, feeds){
         QTreeWidgetItem* item = new QTreeWidgetItem(listStreams);
-        item->setData(0, Qt::DisplayRole, stream->getAliasOrUrl()+ QString("  (0)"));
-        item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+        item->setData(0, Qt::DisplayRole, stream->getAliasOrUrl()+ QString::fromUtf8("  (0)"));
+        item->setData(0,Qt::DecorationRole, QVariant(QIcon(QString::fromUtf8(":/Icons/loading.png"))));
         item->setData(1, Qt::DisplayRole, stream->getUrl());
-        item->setToolTip(0, QString("<b>")+tr("Description:")+QString("</b> ")+stream->getDescription()+QString("<br/><b>")+tr("url:")+QString("</b> ")+stream->getUrl()+QString("<br/><b>")+tr("Last refresh:")+QString("</b> ")+stream->getLastRefreshElapsedString());
+        item->setToolTip(0, QString::fromUtf8("<b>")+tr("Description:")+QString::fromUtf8("</b> ")+stream->getDescription()+QString::fromUtf8("<br/><b>")+tr("url:")+QString::fromUtf8("</b> ")+stream->getUrl()+QString::fromUtf8("<br/><b>")+tr("Last refresh:")+QString::fromUtf8("</b> ")+stream->getLastRefreshElapsedString());
       }
     }
 
@@ -157,10 +157,10 @@
             return;
           }
           QTreeWidgetItem* item = new QTreeWidgetItem(listStreams);
-          item->setText(0, stream->getAliasOrUrl() + QString("  (0)"));
+          item->setText(0, stream->getAliasOrUrl() + QString::fromUtf8("  (0)"));
           item->setText(1, stream->getUrl());
           item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
-          item->setToolTip(0, QString("<b>")+tr("Description:")+QString("</b> ")+stream->getDescription()+QString("<br/><b>")+tr("url:")+QString("</b> ")+stream->getUrl()+QString("<br/><b>")+tr("Last refresh:")+QString("</b> ")+stream->getLastRefreshElapsedString());
+          item->setToolTip(0, QString::fromUtf8("<b>")+tr("Description:")+QString::fromUtf8("</b> ")+stream->getDescription()+QString::fromUtf8("<br/><b>")+tr("url:")+QString::fromUtf8("</b> ")+stream->getUrl()+QString::fromUtf8("<br/><b>")+tr("Last refresh:")+QString::fromUtf8("</b> ")+stream->getLastRefreshElapsedString());
           if(listStreams->topLevelItemCount() == 1)
             selectFirstFeed();
           rssmanager->refresh(newUrl);
@@ -174,7 +174,7 @@
       for(unsigned int i=0; i<nbFeeds; ++i){
 	QTreeWidgetItem* item = listStreams->topLevelItem(i);
         RssStream* stream = rssmanager->getFeed(item->data(1, Qt::DisplayRole).toString());
-        item->setToolTip(0, QString("<b>")+tr("Description:")+QString("</b> ")+stream->getDescription()+QString("<br/><b>")+tr("url:")+QString("</b> ")+stream->getUrl()+QString("<br/><b>")+tr("Last refresh:")+QString("</b> ")+stream->getLastRefreshElapsedString());
+        item->setToolTip(0, QString::fromUtf8("<b>")+tr("Description:")+QString::fromUtf8("</b> ")+stream->getDescription()+QString::fromUtf8("<br/><b>")+tr("url:")+QString::fromUtf8("</b> ")+stream->getUrl()+QString::fromUtf8("<br/><b>")+tr("Last refresh:")+QString::fromUtf8("</b> ")+stream->getLastRefreshElapsedString());
       }
     }
 
@@ -232,15 +232,15 @@
     void RSSImp::updateFeedNbNews(QString url){
       QTreeWidgetItem *item = getTreeItemFromUrl(url);
       RssStream *stream = rssmanager->getFeed(url);
-      item->setText(0, stream->getAliasOrUrl() + QString("  (") + QString::number(stream->getNbUnRead(), 10)+ String(")"));
+      item->setText(0, stream->getAliasOrUrl() + QString::fromUtf8("  (") + QString::number(stream->getNbUnRead(), 10)+ String(")"));
     }
 
     void RSSImp::updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnread){
       QTreeWidgetItem *item = getTreeItemFromUrl(url);
       RssStream *stream = rssmanager->getFeed(url);
-      item->setText(0, aliasOrUrl + QString("  (") + QString::number(nbUnread, 10)+ String(")"));
+      item->setText(0, aliasOrUrl + QString::fromUtf8("  (") + QString::number(nbUnread, 10)+ String(")"));
       item->setData(0,Qt::DecorationRole, QVariant(QIcon(stream->getIconPath())));
-      item->setToolTip(0, QString("<b>")+tr("Description:")+QString("</b> ")+stream->getDescription()+QString("<br/><b>")+tr("url:")+QString("</b> ")+stream->getUrl()+QString("<br/><b>")+tr("Last refresh:")+QString("</b> ")+stream->getLastRefreshElapsedString());
+      item->setToolTip(0, QString::fromUtf8("<b>")+tr("Description:")+QString::fromUtf8("</b> ")+stream->getDescription()+QString::fromUtf8("<br/><b>")+tr("url:")+QString::fromUtf8("</b> ")+stream->getUrl()+QString::fromUtf8("<br/><b>")+tr("Last refresh:")+QString::fromUtf8("</b> ")+stream->getLastRefreshElapsedString());
       // If the feed is selected, update the displayed news
       if(selectedFeedUrl == url){
         refreshNewsList(getTreeItemFromUrl(url), 0);

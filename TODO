@@ -88,5 +88,6 @@ beta4->beta5 changelog:
 - BUGFIX: Improved incremental download
 - BUGFIX: Fixed preview from seeding list
 - BUGFIX: Fixed Alt+3 & Ctrl+F keyboard shortcuts for third tab
+- BUGFIX: Improved unicode support
 - I18N: Updated Italian, Polish, Portuguese, Brazilian and Spanish translations
 - COSMETIC: Changed the way progress bars are rendered

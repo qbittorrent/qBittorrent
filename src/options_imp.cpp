@@ -1029,8 +1029,8 @@ void options_imp::processFilterFile(QString filePath){
             address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
 
             // add it to list
-            QStringList item(QString(start.to_string().c_str()));
-            item.append(QString(last.to_string().c_str()));
+            QStringList item(QString::fromUtf8(start.to_string().c_str()));
+            item.append(QString::fromUtf8(last.to_string().c_str()));
             if(!i){
               item.append(QString::fromUtf8("Manual"));
             }else{
@@ -1048,8 +1048,8 @@ void options_imp::processFilterFile(QString filePath){
             address_v6 last = address_v6::from_string(strEndIP.remove(':', 0).toUtf8().data());
 
             // add it to list
-            QStringList item(QString(start.to_string().c_str()));
-            item.append(QString(last.to_string().c_str()));
+            QStringList item(QString::fromUtf8(start.to_string().c_str()));
+            item.append(QString::fromUtf8(last.to_string().c_str()));
             if(!i){
               item.append(QString::fromUtf8("Manual"));
             }else{

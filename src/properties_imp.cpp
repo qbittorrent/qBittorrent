@@ -303,7 +303,7 @@ void properties::loadTrackers(){
   trackersURLS->clear();
   unsigned int nbTrackers = trackers.size();
   for(unsigned int i=0; i<nbTrackers; ++i){
-    trackersURLS->addItem(QString(trackers[i].url.c_str()));
+    trackersURLS->addItem(misc::toQString(trackers[i].url));
   }
   QString tracker = h.current_tracker().trimmed();
   if(!tracker.isEmpty()){
@@ -449,7 +449,7 @@ void properties::lowerSelectedTracker(){
   foreach(item, selectedItems){
     QString url = item->text();
     for(i=0; i<nbTrackers; ++i){
-      if(QString(trackers.at(i).url.c_str()) == url){
+      if(misc::toQString(trackers.at(i).url) == url){
         qDebug("Asked to lower %s", trackers.at(i).url.c_str());
         qDebug("its tier was %d and will become %d", trackers[i].tier, trackers[i].tier+1);
         if(i < nbTrackers-1){

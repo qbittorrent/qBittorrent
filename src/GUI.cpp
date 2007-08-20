@@ -1248,7 +1248,7 @@ void GUI::configureSession(bool deleteOptions) {
   BTSession->setListeningPortsRange(options->getPorts());
   new_listenPort = BTSession->getListenPort();
   if(new_listenPort != old_listenPort) {
-    setInfoBar(tr("qBittorrent is bind to port: %1", "e.g: qBittorrent is bind to port: 1666").arg( QString(misc::toString(new_listenPort).c_str())));
+    setInfoBar(tr("qBittorrent is bind to port: %1", "e.g: qBittorrent is bind to port: 1666").arg( misc::toQString(new_listenPort)));
   }
   // Apply max connec limit (-1 if disabled)
   BTSession->setMaxConnections(options->getMaxConnec());

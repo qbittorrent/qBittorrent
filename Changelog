@@ -48,6 +48,7 @@
     - BUGFIX: Update torrent progress when its content changed (filtered files)
     - BUGFIX: Improved the way menu icons are installed to avoid problems on some systems
     - BUGFIX: Improved incremental download
+    - BUGFIX: Improved unicode support
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features

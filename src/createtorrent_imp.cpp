@@ -54,10 +54,10 @@ createtorrent::createtorrent(QWidget *parent): QDialog(parent){
 }
 
 void createtorrent::on_browse_destination_clicked(){
-  QString destination = QFileDialog::getSaveFileName(this, tr("Select destination torrent file"), QDir::homePath(), tr("Torrent Files")+" (*.torrent)");
+  QString destination = QFileDialog::getSaveFileName(this, tr("Select destination torrent file"), QDir::homePath(), tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if(!destination.isEmpty()){
-    if(!destination.endsWith(".torrent"))
-      destination += ".torrent";
+    if(!destination.endsWith(QString::fromUtf8(".torrent")))
+      destination += QString::fromUtf8(".torrent");
     txt_destination->setText(destination);
   }
 }
@@ -204,7 +204,7 @@ void createtorrent::on_createButton_clicked(){
   }
   catch (std::exception& e){
     std::cerr << e.what() << "\n";
-    QMessageBox::information(0, tr("Torrent creation"), tr("Torrent creation was unsuccessful, reason: %1").arg(QString(e.what())));
+    QMessageBox::information(0, tr("Torrent creation"), tr("Torrent creation was unsuccessful, reason: %1").arg(QString::fromUtf8(e.what())));
     hide();
     return;
   }

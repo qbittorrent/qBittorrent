@@ -274,7 +274,7 @@ class RssStream : public QObject{
     // download the icon from the adress
     QString getIconUrl() {
       QUrl siteUrl(url);
-      return QString("http://"+siteUrl.host()+"/favicon.ico");
+      return QString::fromUtf8("http://")+siteUrl.host()+QString::fromUtf8("/favicon.ico");
     }
 
   private:
@@ -282,12 +282,12 @@ class RssStream : public QObject{
     short readDoc(const QDomDocument& doc) {
       // is it a rss file ?
       QDomElement root = doc.documentElement();
-      if(root.tagName() == "html"){
+      if(root.tagName() == QString::fromUtf8("html")){
 	qDebug("the file is empty, maybe the url is invalid or the server is too busy");
 	return -1;
       }
-      else if(root.tagName() != "rss"){
-	qDebug("the file is not a rss stream, <rss> omitted: %s", (const char*)root.tagName().toUtf8());
+      else if(root.tagName() != QString::fromUtf8("rss")){
+	qDebug("the file is not a rss stream, <rss> omitted: %s", root.tagName().toUtf8().data());
 	return -1;
       }
       QDomNode rss = root.firstChild();

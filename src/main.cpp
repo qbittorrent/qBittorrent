@@ -46,26 +46,26 @@
 
 void useStyle(QApplication *app, QString style){
   std::cout << "* Style: Using " << style.toStdString()  << " style\n";
-  if(style == "Cleanlooks"){
+  if(style == QString::fromUtf8("Cleanlooks")){
     app->setStyle(new QCleanlooksStyle());
     return;
   }
-  if(style == "Motif"){
+  if(style == QString::fromUtf8("Motif")){
     app->setStyle(new QMotifStyle());
     return;
   }
-  if(style == "CDE"){
+  if(style == QString::fromUtf8("CDE")){
     app->setStyle(new QCDEStyle());
     return;
   }
 #ifdef Q_WS_MAC
-  if(style == "MacOS"){
+  if(style == QString::fromUtf8("MacOS")){
     app->setStyle(new QMacStyle());
     return;
   }
 #endif
 #ifdef Q_WS_WIN
-  if(style == "WinXP"){
+  if(style == QString::fromUtf8("WinXP")){
     app->setStyle(new QWindowsXPStyle());
     return;
   }
@@ -78,11 +78,11 @@ int main(int argc, char *argv[]){
   QFile file;
   QString locale;
   if(argc > 1){
-    if(QString(argv[1])=="--version"){
+    if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--version")){
       std::cout << "qBittorrent " << VERSION << '\n';
       return 0;
     }
-    if(QString(argv[1])=="--help"){
+    if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--help")){
       std::cout << "Usage: \n";
       std::cout << '\t' << argv[0] << " --version : displays program version\n";
       std::cout << '\t' << argv[0] << " --help : displays this help message\n";
@@ -103,8 +103,8 @@ int main(int argc, char *argv[]){
     if(argc > 1){
       QStringList params;
       for(int i=1;i<argc;++i){
-        params << QString(argv[i]);
-        std::cout << QString(argv[i]).toStdString() << '\n';
+        params << QString::fromUtf8(argv[i]);
+        std::cout << argv[i] << '\n';
       }
       QByteArray block = params.join("\n").toUtf8();
       std::cout << "writting: " << block.data() << '\n';
@@ -122,36 +122,36 @@ int main(int argc, char *argv[]){
     return 0;
   }
   QApplication app(argc, argv);
-  QSettings settings("qBittorrent", "qBittorrent");
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QString style;
 #ifdef Q_WS_WIN
-  style = settings.value("Options/Style", "WinXP").toString();
+  style = settings.value(QString::fromUtf8("Options/Style"), QString::fromUtf8("WinXP")).toString();
 #endif
 #ifdef Q_WS_MAC
-  style = settings.value("Options/Style", "MacOS").toString();
+  style = settings.value(QString::fromUtf8("Options/Style"), QString::fromUtf8("MacOS")).toString();
 #endif
 #ifndef Q_WS_WIN
   #ifndef Q_WS_MAC
-  style = settings.value("Options/Style", "Plastique").toString();
+  style = settings.value(QString::fromUtf8("Options/Style"), QString::fromUtf8("Plastique")).toString();
   #endif
 #endif
   useStyle(&app, style);
-  QSplashScreen *splash = new QSplashScreen(QPixmap(":/Icons/splash.png"));
+  QSplashScreen *splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/splash.png")));
   splash->show();
   // Open options file to read locale
-  locale = settings.value("Options/Language/Locale", QString()).toString();
+  locale = settings.value(QString::fromUtf8("Options/Language/Locale"), QString()).toString();
   QTranslator translator;
   if(locale.isEmpty()){
     locale = QLocale::system().name();
-    settings.setValue("Options/Language/Locale", locale);
+    settings.setValue(QString::fromUtf8("Options/Language/Locale"), locale);
   }
-  if(translator.load(QString(":/lang/qbittorrent_") + locale)){
+  if(translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
     qDebug("%s locale recognized, using translation.", (const char*)locale.toUtf8());
   }else{
     qDebug("%s locale unrecognized, using default (en_GB).", (const char*)locale.toUtf8());
   }
   app.installTranslator(&translator);
-  app.setApplicationName("qBittorrent");
+  app.setApplicationName(QString::fromUtf8("qBittorrent"));
   app.setQuitOnLastWindowClosed(false);
   // Read torrents given on command line
   QStringList torrentCmdLine = app.arguments();
