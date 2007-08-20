@@ -26,8 +26,8 @@
 #include <QPair>
 #include <QStringList>
 
-#include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/session.hpp>
+#include "qtorrenthandle.h"
 
 using namespace libtorrent;
 
@@ -67,10 +67,8 @@ class bittorrent : public QObject{
     // Constructor / Destructor
     bittorrent();
     ~bittorrent();
-    torrent_handle getTorrentHandle(QString hash) const;
-    std::vector<torrent_handle> getTorrentHandles() const;
+    QTorrentHandle getTorrentHandle(QString hash) const;
     bool isPaused(QString hash) const;
-    bool hasFilteredFiles(QString fileHash) const;
     bool isFilePreviewPossible(QString fileHash) const;
     bool isDHTEnabled() const;
     float getPayloadDownloadRate() const;
@@ -79,7 +77,6 @@ class bittorrent : public QObject{
     int getListenPort() const;
     QStringList getTorrentsToPauseAfterChecking() const;
     long getETA(QString hash) const;
-    size_type torrentEffectiveSize(QString hash) const;
     bool inFullAllocationMode(QString hash) const;
     float getRealRatio(QString hash) const;
     session* getSession() const;
@@ -89,6 +86,7 @@ class bittorrent : public QObject{
     QStringList getFinishedTorrents() const;
     QStringList getUnfinishedTorrents() const;
     bool isFinished(QString hash) const;
+    bool has_filtered_files(QString hash) const;
 
   public slots:
     void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString());
@@ -106,7 +104,7 @@ class bittorrent : public QObject{
     void enablePeerExchange();
     void enableIPFilter(ip_filter filter);
     void disableIPFilter();
-    void pauseAndReloadTorrent(const torrent_handle &h);
+    void pauseAndReloadTorrent(QTorrentHandle h);
     void resumeUnfinishedTorrents();
     void updateETAs();
     void saveTorrentSpeedLimits(QString hash);
@@ -126,7 +124,7 @@ class bittorrent : public QObject{
     void setSessionSettings(session_settings sessionSettings);
     void setDefaultSavePath(QString savepath);
     void applyEncryptionSettings(pe_settings se);
-    void loadFilesPriorities(torrent_handle& h);
+    void loadFilesPriorities(QTorrentHandle& h);
     void setDownloadLimit(QString hash, long val);
     void setUploadLimit(QString hash, long val);
     void setUnfinishedTorrent(QString hash);
@@ -138,17 +136,17 @@ class bittorrent : public QObject{
     void processDownloadedFile(QString, QString);
     bool loadTrackerFile(QString hash);
     void saveTrackerFile(QString hash);
-    void reloadTorrent(const torrent_handle &h); // This is protected now, call pauseAndReloadTorrent() instead
+    void reloadTorrent(const QTorrentHandle &h); // This is protected now, call pauseAndReloadTorrent() instead
 
   signals:
     void invalidTorrent(QString path);
     void duplicateTorrent(QString path);
-    void addedTorrent(QString path, torrent_handle& h, bool fastResume);
-    void finishedTorrent(torrent_handle& h);
-    void fullDiskError(torrent_handle& h);
+    void addedTorrent(QString path, QTorrentHandle& h, bool fastResume);
+    void finishedTorrent(QTorrentHandle& h);
+    void fullDiskError(QTorrentHandle& h);
     void trackerError(QString hash, QString time, QString msg);
     void portListeningFailure();
-    void trackerAuthenticationRequired(torrent_handle& h);
+    void trackerAuthenticationRequired(QTorrentHandle& h);
     void scanDirFoundTorrents(const QStringList& pathList);
     void newDownloadedTorrent(QString path, QString url);
     void aboutToDownloadFromUrl(QString url);

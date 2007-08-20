@@ -49,7 +49,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
 
   private:
     QString fileName;
-    QString fileHash;
+    QString hash;
     QString filePath;
     bool fromScanDir;
     QString from_url;
@@ -81,15 +81,15 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       if(home[home.length()-1] != QDir::separator()){
         home += QDir::separator();
       }
-      QSettings settings("qBittorrent", "qBittorrent");
-      savePathTxt->setText(settings.value("LastDirTorrentAdd", home+"qBT_dir").toString());
+      QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+      savePathTxt->setText(settings.value(QString::fromUtf8("LastDirTorrentAdd"), home+QString::fromUtf8("qBT_dir")).toString());
     }
 
     void showLoad(QString filePath, bool fromScanDir=false, QString from_url=QString::null){
       this->filePath = filePath;
       this->fromScanDir = fromScanDir;
       this->from_url = from_url;
-      std::ifstream in((const char*)filePath.toUtf8(), std::ios_base::binary);
+      std::ifstream in(filePath.toUtf8().data(), std::ios_base::binary);
       in.unsetf(std::ios_base::skipws);
       try{
         // Decode torrent file
@@ -97,39 +97,39 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         // Getting torrent file informations
         torrent_info t(e);
         // Setting file name
-        fileName = QString(t.name().c_str());
-        fileHash = QString(misc::toString(t.info_hash()).c_str());
+        fileName = misc::toQString(t.name());
+        hash = misc::toQString(t.info_hash());
         // Use left() to remove .old extension
         QString newFileName;
-        if(fileName.endsWith(".old")){
+        if(fileName.endsWith(QString::fromUtf8(".old"))){
           newFileName = fileName.left(fileName.size()-4);
         }else{
           newFileName = fileName;
         }
-        fileNameLbl->setText("<center><b>"+newFileName+"</b></center>");
+        fileNameLbl->setText(QString::fromUtf8("<center><b>")+newFileName+QString::fromUtf8("</b></center>"));
         // List files in torrent
         unsigned int nbFiles = t.num_files();
         for(unsigned int i=0; i<nbFiles; ++i){
           unsigned int row = PropListModel->rowCount();
           PropListModel->insertRow(row);
-          PropListModel->setData(PropListModel->index(row, NAME), QVariant(t.file_at(i).path.leaf().c_str()));
+          PropListModel->setData(PropListModel->index(row, NAME), QVariant(misc::toQString(t.file_at(i).path.leaf())));
           PropListModel->setData(PropListModel->index(row, SIZE), QVariant((qlonglong)t.file_at(i).size));
           PropListModel->setData(PropListModel->index(i, PRIORITY), QVariant(NORMAL));
-          setRowColor(i, "green");
+          setRowColor(i, QString::fromUtf8("green"));
         }
       }catch (invalid_torrent_file&){ // Raised by torrent_info constructor
         // Display warning to tell user we can't decode the torrent file
         if(!from_url.isNull()){
-          emit setInfoBarGUI(tr("Unable to decode torrent file:")+" '"+from_url+"'", "red");
+          emit setInfoBarGUI(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
         }else{
-          emit setInfoBarGUI(tr("Unable to decode torrent file:")+" '"+filePath+"'", "red");
+          emit setInfoBarGUI(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+filePath+QString::fromUtf8("'"), QString::fromUtf8("red"));
         }
-        emit setInfoBarGUI(tr("This file is either corrupted or this isn't a torrent."), "red");
+        emit setInfoBarGUI(tr("This file is either corrupted or this isn't a torrent."), QString::fromUtf8("red"));
         if(fromScanDir){
           // Remove .corrupt file in case it already exists
-          QFile::remove(filePath+".corrupt");
+          QFile::remove(filePath+QString::fromUtf8(".corrupt"));
           //Rename file extension so that it won't display error message more than once
-          QFile::rename(filePath,filePath+".corrupt");
+          QFile::rename(filePath,filePath+QString::fromUtf8(".corrupt"));
         }
         close();
       }
@@ -137,16 +137,16 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         std::cerr << "Could not decode file, reason: " << e.what() << '\n';
         // Display warning to tell user we can't decode the torrent file
         if(!from_url.isNull()){
-          emit setInfoBarGUI(tr("Unable to decode torrent file:")+" '"+from_url+"'", "red");
+          emit setInfoBarGUI(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
         }else{
-          emit setInfoBarGUI(tr("Unable to decode torrent file:")+" '"+filePath+"'", "red");
+          emit setInfoBarGUI(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+filePath+QString::fromUtf8("'"), QString::fromUtf8("red"));
         }
-        emit setInfoBarGUI(tr("This file is either corrupted or this isn't a torrent."), "red");
+        emit setInfoBarGUI(tr("This file is either corrupted or this isn't a torrent."), QString::fromUtf8("red"));
         if(fromScanDir){
           // Remove .corrupt file in case it already exists
-          QFile::remove(filePath+".corrupt");
+          QFile::remove(filePath+QString::fromUtf8(".corrupt"));
           //Rename file extension so that it won't display error message more than once
-          QFile::rename(filePath,filePath+".corrupt");
+          QFile::rename(filePath,filePath+QString::fromUtf8(".corrupt"));
         }
         close();
       }
@@ -227,7 +227,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
           PropListModel->setData(index, QVariant(IGNORED));
         }
         for(int i=0; i<PropListModel->columnCount(); ++i){
-          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("red")), Qt::ForegroundRole);
+          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor(QString::fromUtf8("red"))), Qt::ForegroundRole);
         }
       }
     }
@@ -240,7 +240,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
           PropListModel->setData(index, QVariant(NORMAL));
         }
         for(int i=0; i<PropListModel->columnCount(); ++i){
-          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("green")), Qt::ForegroundRole);
+          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor(QString::fromUtf8("green"))), Qt::ForegroundRole);
         }
       }
     }
@@ -266,14 +266,14 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
           PropListModel->setData(index, QVariant(MAXIMUM));
         }
         for(int i=0; i<PropListModel->columnCount(); ++i){
-          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("green")), Qt::ForegroundRole);
+          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor(QString::fromUtf8("green"))), Qt::ForegroundRole);
         }
       }
     }
 
     void savePiecesPriorities(){
       qDebug("Saving pieces priorities");
-      QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".priorities");
+      QFile pieces_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".priorities"));
       // First, remove old file
       pieces_file.remove();
       // Write new files
@@ -285,7 +285,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       for(unsigned int i=0; i<nbRows; ++i){
         QStandardItem *item = PropListModel->item(i, PRIORITY);
         unsigned short priority = item->text().toInt();
-        pieces_file.write(QByteArray((misc::toString(priority)+"\n").c_str()));
+        pieces_file.write((misc::toQByteArray(priority)+misc::toQByteArray("\n")));
       }
       pieces_file.close();
     }
@@ -304,28 +304,28 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         }
       }
       // Save savepath
-      QFile savepath_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".savepath");
+      QFile savepath_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".savepath"));
       savepath_file.open(QIODevice::WriteOnly | QIODevice::Text);
       savepath_file.write(savePath.path().toUtf8());
       savepath_file.close();
       // Save last dir to remember it
-      QSettings settings("qBittorrent", "qBittorrent");
-      settings.setValue("LastDirTorrentAdd", savePathTxt->text());
+      QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+      settings.setValue(QString::fromUtf8("LastDirTorrentAdd"), savePathTxt->text());
       // Create .incremental file if necessary
       if(checkIncrementalDL->isChecked()){
-        QFile incremental_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".incremental");
+        QFile incremental_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".incremental"));
         incremental_file.open(QIODevice::WriteOnly | QIODevice::Text);
         incremental_file.close();
       }else{
-        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".incremental");
+        QFile::remove(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".incremental"));
       }
       // Create .paused file if necessary
       if(addInPause->isChecked()){
-        QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
+        QFile paused_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".paused"));
         paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
         paused_file.close();
       }else{
-        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".paused");
+        QFile::remove(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".paused"));
       }
       // Check if there is at least one selected file
       if(!hasSelectedFiles()){

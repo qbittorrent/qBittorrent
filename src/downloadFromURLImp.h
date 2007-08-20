@@ -48,7 +48,7 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
   public slots:
     void on_downloadButton_clicked(){
       QString urls = textUrls->toPlainText();
-      QStringList url_list = urls.split("\n");
+      QStringList url_list = urls.split(QString::fromUtf8("\n"));
       QString url;
       QStringList url_list_cleaned;
       foreach(url, url_list){

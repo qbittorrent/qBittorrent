@@ -23,7 +23,7 @@
 #define PROPERTIES_H
 
 #include "ui_properties.h"
-#include <libtorrent/torrent_handle.hpp>
+#include "qtorrenthandle.h"
 
 class PropListDelegate;
 class QTimer;
@@ -35,8 +35,8 @@ using namespace libtorrent;
 class properties : public QDialog, private Ui::properties{
   Q_OBJECT
   private:
-    torrent_handle h;
-    QString fileHash;
+    QTorrentHandle h;
+    QString hash;
     PropListDelegate *PropDelegate;
     QStandardItemModel *PropListModel;
     QTimer *updateInfosTimer;
@@ -71,12 +71,12 @@ class properties : public QDialog, private Ui::properties{
     void loadTrackersErrors();
 
   signals:
-    void filteredFilesChanged(QString fileHash);
-    void fileSizeChanged(QString fileHash);
+    void filteredFilesChanged(QString hash);
+    void fileSizeChanged(QString hash);
 
   public:
     // Constructor
-    properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h);
+    properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h);
     ~properties();
     bool onlyOneItem() const;
 };

@@ -67,14 +67,14 @@ class DLListDelegate: public QItemDelegate {
           QItemDelegate::drawBackground(painter, opt, index);
           float speed = index.data().toDouble();
           snprintf(tmp, MAX_CHAR_TMP, "%.1f", speed/1024.);
-          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString(tmp)+" "+tr("KiB/s"));
+          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8(tmp)+QString::fromUtf8(" ")+tr("KiB/s"));
           break;
         }
         case RATIO:{
           QItemDelegate::drawBackground(painter, opt, index);
           float ratio = index.data().toDouble();
           snprintf(tmp, MAX_CHAR_TMP, "%.1f", ratio);
-          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString(tmp));
+          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8(tmp));
           break;
         }
         case PROGRESS:{
@@ -83,7 +83,7 @@ class DLListDelegate: public QItemDelegate {
           progress = index.data().toDouble()*100.;
           snprintf(tmp, MAX_CHAR_TMP, "%.1f", progress);
           newopt.rect = opt.rect;
-          newopt.text = QString(tmp)+"%";
+          newopt.text = QString::fromUtf8(tmp)+QString::fromUtf8("%");
           newopt.progress = (int)progress;
           newopt.maximum = 100;
           newopt.minimum = 0;

@@ -263,89 +263,89 @@ void options_imp::saveOptions(){
   settings.beginGroup("Options");
   // Main options
   settings.beginGroup("Main");
-  settings.setValue("DLLimit", getLimits().first);
-  settings.setValue("UPLimit", getLimits().second);
-  settings.setValue("MaxConnecs", getMaxConnec());
-  settings.setValue("PortRangeMin", getPorts().first);
-  settings.setValue("PortRangeMax", getPorts().second);
-  settings.setValue("ShareRatio", getRatio());
-  settings.setValue("EncryptionState", getEncryptionSetting());
-  settings.setValue("PeXState", !isPeXDisabled());
-  settings.setValue("DHTPort", getDHTPort());
-  settings.setValue("ScanDir", getScanDir());
+  settings.setValue(QString::fromUtf8("DLLimit"), getLimits().first);
+  settings.setValue(QString::fromUtf8("UPLimit"), getLimits().second);
+  settings.setValue(QString::fromUtf8("MaxConnecs"), getMaxConnec());
+  settings.setValue(QString::fromUtf8("PortRangeMin"), getPorts().first);
+  settings.setValue(QString::fromUtf8("PortRangeMax"), getPorts().second);
+  settings.setValue(QString::fromUtf8("ShareRatio"), getRatio());
+  settings.setValue(QString::fromUtf8("EncryptionState"), getEncryptionSetting());
+  settings.setValue(QString::fromUtf8("PeXState"), !isPeXDisabled());
+  settings.setValue(QString::fromUtf8("DHTPort"), getDHTPort());
+  settings.setValue(QString::fromUtf8("ScanDir"), getScanDir());
   // End Main options
   settings.endGroup();
   // Language options
-  settings.beginGroup("Language");
-  settings.setValue("Locale", getLocale());
+  settings.beginGroup(QString::fromUtf8("Language"));
+  settings.setValue(QString::fromUtf8("Locale"), getLocale());
   // End Language options
   settings.endGroup();
   // IPFilter options
-  settings.beginGroup("IPFilter");
+  settings.beginGroup(QString::fromUtf8("IPFilter"));
   bool enabled = isFilteringEnabled();
-  settings.setValue("Enabled", enabled);
+  settings.setValue(QString::fromUtf8("Enabled"), enabled);
   if(enabled){
-    settings.setValue("File", filterFile->text());
+    settings.setValue(QString::fromUtf8("File"), filterFile->text());
   }
   // End IPFilter options
   settings.endGroup();
   // Proxy options
-  settings.beginGroup("Proxy");
+  settings.beginGroup(QString::fromUtf8("Proxy"));
   enabled = isProxyEnabled();
-  settings.setValue("Enabled", enabled);
+  settings.setValue(QString::fromUtf8("Enabled"), enabled);
   if(enabled){
-    settings.setValue("IP", getProxyIp());
-    settings.setValue("Port", getProxyPort());
+    settings.setValue(QString::fromUtf8("IP"), getProxyIp());
+    settings.setValue(QString::fromUtf8("Port"), getProxyPort());
     unsigned short val = getProxyType();
     if(val == HTTP || val == HTTP_PW){
-      settings.setValue("ProxyType", HTTP);
+      settings.setValue(QString::fromUtf8("ProxyType"), HTTP);
     }else{
-      settings.setValue("ProxyType", SOCKS5);
+      settings.setValue(QString::fromUtf8("ProxyType"), SOCKS5);
     }
-    settings.setValue("UseProxyForTrackers", useProxyForTrackers());
-    settings.setValue("UseProxyForPeers", useProxyForPeers());
-    settings.setValue("UseProxyForWebseeds", useProxyForWebseeds());
-    settings.setValue("UseProxyForDHT", useProxyForDHT());
+    settings.setValue(QString::fromUtf8("UseProxyForTrackers"), useProxyForTrackers());
+    settings.setValue(QString::fromUtf8("UseProxyForPeers"), useProxyForPeers());
+    settings.setValue(QString::fromUtf8("UseProxyForWebseeds"), useProxyForWebseeds());
+    settings.setValue(QString::fromUtf8("UseProxyForDHT"), useProxyForDHT());
     enabled = isProxyAuthEnabled();
-    settings.beginGroup("Authentication");
-    settings.setValue("Enabled", enabled);
+    settings.beginGroup(QString::fromUtf8("Authentication"));
+    settings.setValue(QString::fromUtf8("Enabled"), enabled);
     if(enabled){
-      settings.setValue("Username", getProxyUsername());
-      settings.setValue("Password", getProxyPassword());
+      settings.setValue(QString::fromUtf8("Username"), getProxyUsername());
+      settings.setValue(QString::fromUtf8("Password"), getProxyPassword());
     }
     settings.endGroup();
   }
   // End Proxy options
   settings.endGroup();
   // Misc options
-  settings.beginGroup("Misc");
-  settings.beginGroup("TorrentAdditionDialog");
+  settings.beginGroup(QString::fromUtf8("Misc"));
+  settings.beginGroup(QString::fromUtf8("TorrentAdditionDialog"));
   enabled = useAdditionDialog();
-  settings.setValue("Enabled", enabled);
+  settings.setValue(QString::fromUtf8("Enabled"), enabled);
   if(!enabled){
-    settings.setValue("SavePath", getSavePath());
+    settings.setValue(QString::fromUtf8("SavePath"), getSavePath());
   }
   settings.endGroup();
-  settings.beginGroup("Behaviour");
-  settings.setValue("ConfirmOnExit", getConfirmOnExit());
-  settings.setValue("GoToSystray", getGoToSysTrayOnMinimizingWindow());
-  settings.setValue("GoToSystrayOnExit", getGoToSysTrayOnExitingWindow());
-  settings.setValue("SystrayIntegration", useSystrayIntegration());
+  settings.beginGroup(QString::fromUtf8("Behaviour"));
+  settings.setValue(QString::fromUtf8("ConfirmOnExit"), getConfirmOnExit());
+  settings.setValue(QString::fromUtf8("GoToSystray"), getGoToSysTrayOnMinimizingWindow());
+  settings.setValue(QString::fromUtf8("GoToSystrayOnExit"), getGoToSysTrayOnExitingWindow());
+  settings.setValue(QString::fromUtf8("SystrayIntegration"), useSystrayIntegration());
   // End Behaviour group
   settings.endGroup();
-  settings.setValue("PreviewProgram", getPreviewProgram());
+  settings.setValue(QString::fromUtf8("PreviewProgram"), getPreviewProgram());
   // End Misc options
   settings.endGroup();
   if(getUseOSDAlways()){
-    settings.setValue("OSDEnabled", 1);
+    settings.setValue(QString::fromUtf8("OSDEnabled"), 1);
   }else{
     if(getUseOSDWhenHiddenOnly()){
-      settings.setValue("OSDEnabled", 2);
+      settings.setValue(QString::fromUtf8("OSDEnabled"), 2);
     }else{
-      settings.setValue("OSDEnabled", 0);
+      settings.setValue(QString::fromUtf8("OSDEnabled"), 0);
     }
   }
-  settings.setValue("Style", getStyle());
+  settings.setValue(QString::fromUtf8("Style"), getStyle());
   // End Options group
   settings.endGroup();
 }
@@ -387,39 +387,39 @@ bool options_imp::useProxyForDHT() const{
 }
 
 QString options_imp::getStyle() const{
-  if(radioPlastiqueStyle->isChecked()) return "Plastique";
-  if(radioCleanlooksStyle->isChecked()) return "Cleanlooks";
-  if(radioMotifStyle->isChecked()) return "Motif";
-  if(radioCDEStyle->isChecked()) return "CDE";
-  if(radioMacOSStyle->isChecked()) return "MacOS";
-  if(radioWinXPStyle->isChecked()) return "WinXP";
+  if(radioPlastiqueStyle->isChecked()) return QString::fromUtf8("Plastique");
+  if(radioCleanlooksStyle->isChecked()) return QString::fromUtf8("Cleanlooks");
+  if(radioMotifStyle->isChecked()) return QString::fromUtf8("Motif");
+  if(radioCDEStyle->isChecked()) return QString::fromUtf8("CDE");
+  if(radioMacOSStyle->isChecked()) return QString::fromUtf8("MacOS");
+  if(radioWinXPStyle->isChecked()) return QString::fromUtf8("WinXP");
 #ifdef Q_WS_WIN
-  return "WinXP";
+  return QString::fromUtf8("WinXP");
 #endif
 #ifdef Q_WS_MAC
-  return "MacOS";
+  return QString::fromUtf8("MacOS");
 #endif
-  return "Plastique";
+  return QString::fromUtf8("Plastique");
 }
 
 void options_imp::setStyle(QString style){
-  if(style == "Cleanlooks"){
+  if(style == QString::fromUtf8("Cleanlooks")){
     radioCleanlooksStyle->setChecked(true);
     return;
   }
-  if(style == "Motif"){
+  if(style == QString::fromUtf8("Motif")){
     radioMotifStyle->setChecked(true);
     return;
   }
-  if(style == "CDE"){
+  if(style == QString::fromUtf8("CDE")){
     radioCDEStyle->setChecked(true);
     return;
   }
-  if(style == "MacOS"){
+  if(style == QString::fromUtf8("MacOS")){
     radioMacOSStyle->setChecked(true);
     return;
   }
-  if(style == "WinXP"){
+  if(style == QString::fromUtf8("WinXP")){
     radioWinXPStyle->setChecked(true);
     return;
   }
@@ -434,10 +434,10 @@ void options_imp::loadOptions(){
   QSettings settings("qBittorrent", "qBittorrent");
   // Check if min port < max port
   checkPortsLogic();
-  settings.beginGroup("Options");
+  settings.beginGroup(QString::fromUtf8("Options"));
   // Main options
-  settings.beginGroup("Main");
-  value = settings.value("DLLimit", -1).toInt();
+  settings.beginGroup(QString::fromUtf8("Main"));
+  value = settings.value(QString::fromUtf8("DLLimit"), -1).toInt();
   if(value < 0){
     disableDLLimit->setChecked(true);
     spin_download->setEnabled(false);
@@ -446,7 +446,7 @@ void options_imp::loadOptions(){
     spin_download->setEnabled(true);
     spin_download->setValue(value);
   }
-  value = settings.value("UPLimit", -1).toInt();
+  value = settings.value(QString::fromUtf8("UPLimit"), -1).toInt();
   if(value < 0){
     disableUPLimit->setChecked(true);
     spin_upload->setEnabled(false);
@@ -455,7 +455,7 @@ void options_imp::loadOptions(){
     spin_upload->setEnabled(true);
     spin_upload->setValue(value);
   }
-  value = settings.value("MaxConnecs", -1).toInt();
+  value = settings.value(QString::fromUtf8("MaxConnecs"), -1).toInt();
   if(value < 0){
     disableMaxConnec->setChecked(true);
     spin_max_connec->setEnabled(false);
@@ -464,9 +464,9 @@ void options_imp::loadOptions(){
     spin_max_connec->setEnabled(true);
     spin_max_connec->setValue(value);
   }
-  spin_port_min->setValue(settings.value("PortRangeMin", 6881).toInt());
-  spin_port_max->setValue(settings.value("PortRangeMax", 6889).toInt());
-  floatValue = settings.value("ShareRatio", 0).toDouble();
+  spin_port_min->setValue(settings.value(QString::fromUtf8("PortRangeMin"), 6881).toInt());
+  spin_port_max->setValue(settings.value(QString::fromUtf8("PortRangeMax"), 6889).toInt());
+  floatValue = settings.value(QString::fromUtf8("ShareRatio"), 0).toDouble();
   if(floatValue == 0){
     disableRatio->setChecked(true);
     spin_ratio->setEnabled(false);
@@ -475,7 +475,7 @@ void options_imp::loadOptions(){
     spin_ratio->setEnabled(true);
     spin_ratio->setValue(floatValue);
   }
-  value = settings.value("DHTPort", 6881).toInt();
+  value = settings.value(QString::fromUtf8("DHTPort"), 6881).toInt();
   if(value < 0){
     disableDHT->setChecked(true);
     groupDHT->setEnabled(false);
@@ -487,9 +487,9 @@ void options_imp::loadOptions(){
     }
     spin_dht_port->setValue(value);
   }
-  value = settings.value("EncryptionState", 0).toInt();
+  value = settings.value(QString::fromUtf8("EncryptionState"), 0).toInt();
   comboEncryption->setCurrentIndex(value);
-  boolValue = settings.value("PeXState", true).toBool();
+  boolValue = settings.value(QString::fromUtf8("PeXState"), true).toBool();
   if(boolValue){
     // Pex disabled
     disablePeX->setChecked(false);
@@ -497,7 +497,7 @@ void options_imp::loadOptions(){
     // PeX enabled
     disablePeX->setChecked(true);
   }
-  strValue = settings.value("ScanDir", QString()).toString();
+  strValue = settings.value(QString::fromUtf8("ScanDir"), QString()).toString();
   if(!strValue.isEmpty()){
     enableScan_checkBox->setChecked(true);
     lbl_scanDir->setEnabled(true);
@@ -513,15 +513,15 @@ void options_imp::loadOptions(){
   // End Main options
   settings.endGroup();
   // Language options
-  settings.beginGroup("Language");
-  strValue = settings.value("Locale", "en_GB").toString();
+  settings.beginGroup(QString::fromUtf8("Language"));
+  strValue = settings.value(QString::fromUtf8("Locale"), QString::fromUtf8("en_GB")).toString();
   setLocale(strValue);
   // End Language options
   settings.endGroup();
   // IPFilter options
-  settings.beginGroup("IPFilter");
-  if(settings.value("Enabled", false).toBool()){
-    strValue = settings.value("File", QString()).toString();
+  settings.beginGroup(QString::fromUtf8("IPFilter"));
+  if(settings.value(QString::fromUtf8("Enabled"), false).toBool()){
+    strValue = settings.value(QString::fromUtf8("File"), QString()).toString();
     activateFilter->setChecked(true);
     filterGroup->setEnabled(true);
     filterFile->setText(strValue);
@@ -533,9 +533,9 @@ void options_imp::loadOptions(){
   // End IPFilter options
   settings.endGroup();
   // Proxy options
-  settings.beginGroup("Proxy");
-  if(settings.value("Enabled", false).toBool()){
-    strValue = settings.value("IP", QString()).toString();
+  settings.beginGroup(QString::fromUtf8("Proxy"));
+  if(settings.value(QString::fromUtf8("Enabled"), false).toBool()){
+    strValue = settings.value(QString::fromUtf8("IP"), QString()).toString();
     if(strValue.isEmpty()){
       enableProxy_checkBox->setChecked(false);
       groupProxy->setEnabled(false);
@@ -543,18 +543,18 @@ void options_imp::loadOptions(){
       enableProxy_checkBox->setChecked(true);
       groupProxy->setEnabled(true);
       proxy_ip->setText(strValue);
-      proxy_port->setValue(settings.value("Port", 8080).toInt());
-      comboProxyType->setCurrentIndex(settings.value("ProxyType", HTTP).toInt());
-      checkProxyTrackers->setChecked(settings.value("useProxyForTrackers", true).toBool());
-      checkProxyPeers->setChecked(settings.value("useProxyForPeers", true).toBool());
-      checkProxyWebseeds->setChecked(settings.value("useProxyForWebseeds", true).toBool());
-      checkProxyDHT->setChecked(settings.value("useProxyForDHT", true).toBool());
-      settings.beginGroup("Authentication");
-      if(settings.value("Enabled", false).toBool()){
+      proxy_port->setValue(settings.value(QString::fromUtf8("Port"), 8080).toInt());
+      comboProxyType->setCurrentIndex(settings.value(QString::fromUtf8("ProxyType"), HTTP).toInt());
+      checkProxyTrackers->setChecked(settings.value(QString::fromUtf8("useProxyForTrackers"), true).toBool());
+      checkProxyPeers->setChecked(settings.value(QString::fromUtf8("useProxyForPeers"), true).toBool());
+      checkProxyWebseeds->setChecked(settings.value(QString::fromUtf8("useProxyForWebseeds"), true).toBool());
+      checkProxyDHT->setChecked(settings.value(QString::fromUtf8("useProxyForDHT"), true).toBool());
+      settings.beginGroup(QString::fromUtf8("Authentication"));
+      if(settings.value(QString::fromUtf8("Enabled"), false).toBool()){
         enableProxyAuth_checkBox->setChecked(true);
         groupProxyAuth->setEnabled(true);
-        proxy_username->setText(settings.value("Username", QString()).toString());
-        proxy_password->setText(settings.value("Password", QString()).toString());
+        proxy_username->setText(settings.value(QString::fromUtf8("Username"), QString()).toString());
+        proxy_password->setText(settings.value(QString::fromUtf8("Password"), QString()).toString());
       }else{
         enableProxyAuth_checkBox->setChecked(false);
         groupProxyAuth->setEnabled(false);
@@ -568,30 +568,30 @@ void options_imp::loadOptions(){
   // End Proxy options
   settings.endGroup();
   // Misc options
-  settings.beginGroup("Misc");
-  settings.beginGroup("TorrentAdditionDialog");
-  if(settings.value("Enabled", true).toBool()){
+  settings.beginGroup(QString::fromUtf8("Misc"));
+  settings.beginGroup(QString::fromUtf8("TorrentAdditionDialog"));
+  if(settings.value(QString::fromUtf8("Enabled"), true).toBool()){
     checkAdditionDialog->setChecked(true);
     groupSavePath->setEnabled(false);
   }else{
     checkAdditionDialog->setChecked(false);
     groupSavePath->setEnabled(true);
-    txt_savePath->setText(settings.value("SavePath", QString()).toString());
+    txt_savePath->setText(settings.value(QString::fromUtf8("SavePath"), QString()).toString());
   }
   settings.endGroup();
-  settings.beginGroup("Behaviour");
-  confirmExit_checkBox->setChecked(settings.value("ConfirmOnExit", true).toBool());
-  check_goToSysTray->setChecked(settings.value("GoToSystray", true).toBool());
-  check_closeToSysTray->setChecked(settings.value("GoToSystrayOnExit", false).toBool());
-  boolValue = settings.value("SystrayIntegration", true).toBool();
+  settings.beginGroup(QString::fromUtf8("Behaviour"));
+  confirmExit_checkBox->setChecked(settings.value(QString::fromUtf8("ConfirmOnExit"), true).toBool());
+  check_goToSysTray->setChecked(settings.value(QString::fromUtf8("GoToSystray"), true).toBool());
+  check_closeToSysTray->setChecked(settings.value(QString::fromUtf8("GoToSystrayOnExit"), false).toBool());
+  boolValue = settings.value(QString::fromUtf8("SystrayIntegration"), true).toBool();
   check_disableSystray->setChecked(!boolValue);
   systrayDisabled(!boolValue);
   // End Behaviour group
   settings.endGroup();
-  preview_program->setText(settings.value("PreviewProgram", QString()).toString());
+  preview_program->setText(settings.value(QString::fromUtf8("PreviewProgram"), QString()).toString());
   // End Misc group
   settings.endGroup();
-  value = settings.value("OSDEnabled", 1).toInt();
+  value = settings.value(QString::fromUtf8("OSDEnabled"), 1).toInt();
   if(value == 0){
     neverOSD->setChecked(true);
   }else{
@@ -601,7 +601,7 @@ void options_imp::loadOptions(){
       alwaysOSD->setChecked(true);
     }
   }
-  setStyle(settings.value("Style", QString()).toString());
+  setStyle(settings.value(QString::fromUtf8("Style"), QString()).toString());
   // End Options group
   settings.endGroup();
 }
@@ -716,7 +716,7 @@ QString options_imp::getSavePath() const{
     home += QDir::separator();
   }
   if(txt_savePath->text().trimmed().isEmpty()){
-    txt_savePath->setText(home+"qBT_dir");
+    txt_savePath->setText(home+QString::fromUtf8("qBT_dir"));
   }
   return txt_savePath->text();
 }
@@ -978,7 +978,7 @@ void options_imp::on_browse_button_clicked(){
 void options_imp::processFilterFile(QString filePath){
   qDebug("Processing filter files");
   filtersList->clear();
-  QString manualFilters= misc::qBittorrentPath() + "ipfilter.dat";
+  QString manualFilters= misc::qBittorrentPath() + QString::fromUtf8("ipfilter.dat");
   QStringList filterFiles(manualFilters);
   filterFiles.append(filePath);
   for(int i=0; i<2; ++i){
@@ -1018,8 +1018,8 @@ void options_imp::processFilterFile(QString filePath){
           }
           // Split IP
 
-          QRegExp is_ipv6("^[0-9a-f]{4}(:[0-9a-f]{4}){7}$", Qt::CaseInsensitive, QRegExp::RegExp);
-          QRegExp is_ipv4("^(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}$", Qt::CaseInsensitive, QRegExp::RegExp);
+          QRegExp is_ipv6(QString::fromUtf8("^[0-9a-f]{4}(:[0-9a-f]{4}){7}$"), Qt::CaseInsensitive, QRegExp::RegExp);
+          QRegExp is_ipv4(QString::fromUtf8("^(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}$"), Qt::CaseInsensitive, QRegExp::RegExp);
 
           if(strStartIP.contains(is_ipv4) && strEndIP.contains(is_ipv4)) {
             // IPv4
@@ -1032,9 +1032,9 @@ void options_imp::processFilterFile(QString filePath){
             QStringList item(QString(start.to_string().c_str()));
             item.append(QString(last.to_string().c_str()));
             if(!i){
-              item.append("Manual");
+              item.append(QString::fromUtf8("Manual"));
             }else{
-              item.append("ipfilter.dat");
+              item.append(QString::fromUtf8("ipfilter.dat"));
             }
             item.append(strComment);
             new QTreeWidgetItem(filtersList, item);
@@ -1051,9 +1051,9 @@ void options_imp::processFilterFile(QString filePath){
             QStringList item(QString(start.to_string().c_str()));
             item.append(QString(last.to_string().c_str()));
             if(!i){
-              item.append("Manual");
+              item.append(QString::fromUtf8("Manual"));
             }else{
-              item.append("ipfilter.dat");
+              item.append(QString::fromUtf8("ipfilter.dat"));
             }
             item.append(strComment);
             new QTreeWidgetItem(filtersList, item);
@@ -1082,12 +1082,12 @@ void options_imp::on_addFilterRange_clicked(){
   // Ask user for start ip
   QString startIP = QInputDialog::getText(this, tr("Range Start IP"),
                                        tr("Start IP:"), QLineEdit::Normal,
-                                       "0.0.0.0", &ok);
+                                       QString::fromUtf8("0.0.0.0"), &ok);
   QStringList IP1 = startIP.split('.');
   // Check IP
   bool ipv4 = true;
-  QRegExp is_ipv6("^[0-9a-f]{4}(:[0-9a-f]{4}){7}$", Qt::CaseInsensitive, QRegExp::RegExp);
-  QRegExp is_ipv4("^(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}$", Qt::CaseInsensitive, QRegExp::RegExp);
+  QRegExp is_ipv6(QString::fromUtf8("^[0-9a-f]{4}(:[0-9a-f]{4}){7}$"), Qt::CaseInsensitive, QRegExp::RegExp);
+  QRegExp is_ipv4(QString::fromUtf8("^(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}$"), Qt::CaseInsensitive, QRegExp::RegExp);
 
 
 
@@ -1121,12 +1121,12 @@ void options_imp::on_addFilterRange_clicked(){
   // Ask user for Comment
   QString comment = QInputDialog::getText(this, tr("IP Range Comment"),
                                          tr("Comment:"), QLineEdit::Normal,
-                                         "", &ok);
+                                         QString::fromUtf8(""), &ok);
   if (!ok){
-    comment = QString("");
+    comment = QString::fromUtf8("");
     return;
   }
-  QFile ipfilter(misc::qBittorrentPath() + "ipfilter.dat");
+  QFile ipfilter(misc::qBittorrentPath() + QString::fromUtf8("ipfilter.dat"));
   if (!ipfilter.open(QIODevice::Append | QIODevice::WriteOnly | QIODevice::Text)){
     std::cerr << "Error: Couldn't write in ipfilter.dat";
     return;
@@ -1146,7 +1146,7 @@ void options_imp::on_delFilterRange_clicked(){
   // Delete from list
   for(int i=0;i<selectedItems.size();++i){
     QTreeWidgetItem *item = selectedItems.at(i);
-    if(item->text(2) == "Manual"){
+    if(item->text(2) == QString::fromUtf8("Manual")){
       delete item;
       changed = true;
     }
@@ -1155,7 +1155,7 @@ void options_imp::on_delFilterRange_clicked(){
     }
   }
   // Update ipfilter.dat
-  QFile ipfilter(misc::qBittorrentPath() + "ipfilter.dat");
+  QFile ipfilter(misc::qBittorrentPath() + QString::fromUtf8("ipfilter.dat"));
   if (!ipfilter.open(QIODevice::WriteOnly | QIODevice::Text)){
     std::cerr << "Error: Couldn't write in ipfilter.dat";
     return;
@@ -1163,7 +1163,7 @@ void options_imp::on_delFilterRange_clicked(){
   QTextStream out(&ipfilter);
   for(int i=0; i<filtersList->topLevelItemCount();++i){
     QTreeWidgetItem *item = filtersList->topLevelItem(i);
-    if(item->text(2) == "Manual"){
+    if(item->text(2) == QString::fromUtf8("Manual")){
       out << item->text(0) << " - " << item->text(1) << ", 0, " << item->text(3) << "\n";
     }
   }

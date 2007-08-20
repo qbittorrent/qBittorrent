@@ -26,6 +26,7 @@
 #include <QMessageBox>
 #include <libtorrent/session.hpp>
 #include "ui_login.h"
+#include "qtorrenthandle.h"
 
 using namespace libtorrent;
 
@@ -33,34 +34,34 @@ class trackerLogin : public QDialog, private Ui::authentication{
   Q_OBJECT
 
   private:
-    torrent_handle h;
+    QTorrentHandle h;
 
   public:
-    trackerLogin(QWidget *parent, torrent_handle h): QDialog(parent){
+    trackerLogin(QWidget *parent, QTorrentHandle h): QDialog(parent){
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       login_logo->setPixmap(QPixmap(QString::fromUtf8(":/Icons/encrypted.png")));
       this->h = h;
-      tracker_url->setText(QString(h.status().current_tracker.c_str()));
-      connect(this, SIGNAL(trackerLoginCancelled(QPair<torrent_handle,std::string>)), parent, SLOT(addUnauthenticatedTracker(QPair<torrent_handle,std::string>)));
+      tracker_url->setText(h.current_tracker());
+      connect(this, SIGNAL(trackerLoginCancelled(QPair<QTorrentHandle,QString>)), parent, SLOT(addUnauthenticatedTracker(QPair<QTorrentHandle,QString>)));
       show();
     }
 
     ~trackerLogin(){}
 
   signals:
-    void trackerLoginCancelled(QPair<torrent_handle,std::string> tracker);
+    void trackerLoginCancelled(QPair<QTorrentHandle,QString> tracker);
 
   public slots:
     void on_loginButton_clicked(){
       // login
-      h.set_tracker_login(std::string((const char*)lineUsername->text().toUtf8()), std::string((const char*)linePasswd->text().toUtf8()));
+      h.set_tracker_login(lineUsername->text(), linePasswd->text());
       close();
     }
 
     void on_cancelButton_clicked(){
       // Emit a signal to GUI to stop asking for authentication
-      emit trackerLoginCancelled(QPair<torrent_handle,std::string>(h, h.status().current_tracker));
+      emit trackerLoginCancelled(QPair<QTorrentHandle,QString>(h, h.current_tracker()));
       close();
     }
 };

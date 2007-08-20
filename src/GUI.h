@@ -24,9 +24,9 @@
 
 #include <QProcess>
 #include <QSystemTrayIcon>
-#include <libtorrent/torrent_handle.hpp>
 
 #include "ui_MainWindow.h"
+#include "qtorrenthandle.h"
 
 class bittorrent;
 class createtorrent;
@@ -46,9 +46,6 @@ class previewSelect;
 class options_imp;
 class QStandardItemModel;
 
-using namespace libtorrent;
-namespace fs = boost::filesystem;
-
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
 
@@ -56,7 +53,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // Bittorrent
     bittorrent *BTSession;
     QTimer *checkConnect;
-    QList<QPair<torrent_handle,std::string> > unauthenticated_trackers;
+    QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers;
     downloadFromURL *downloadFromURLDialog;
     // GUI related
     options_imp *options;
@@ -135,7 +132,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void on_actionTorrent_Properties_triggered();
     void on_actionPause_triggered();
     void on_actionPause_All_triggered();
-    void restoreInDownloadList(torrent_handle h);
+    void restoreInDownloadList(QTorrentHandle h);
     void on_actionStart_triggered();
     void on_actionStart_All_triggered();
     void on_actionOpen_triggered();
@@ -149,7 +146,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void checkConnectionStatus();
     void configureSession(bool deleteOptions);
     void processParams(const QStringList& params);
-    void addUnauthenticatedTracker(QPair<torrent_handle,std::string> tracker);
+    void addUnauthenticatedTracker(QPair<QTorrentHandle,QString> tracker);
     void processScannedFiles(const QStringList& params);
     void processDownloadedFiles(QString path, QString url);
     void downloadFromURLList(const QStringList& urls);
@@ -165,13 +162,13 @@ class GUI : public QMainWindow, private Ui::MainWindow{
 
 
   public slots:
-    void torrentAdded(QString path, torrent_handle& h, bool fastResume);
+    void torrentAdded(QString path, QTorrentHandle& h, bool fastResume);
     void torrentDuplicate(QString path);
     void torrentCorrupted(QString path);
-    void finishedTorrent(torrent_handle& h);
-    void fullDiskError(torrent_handle& h);
+    void finishedTorrent(QTorrentHandle& h);
+    void fullDiskError(QTorrentHandle& h);
     void portListeningFailure();
-    void trackerAuthenticationRequired(torrent_handle& h);
+    void trackerAuthenticationRequired(QTorrentHandle& h);
     void setTabText(int index, QString text);
     void updateFileSizeAndProgress(QString hash);
     void sortProgressColumnDelayed();

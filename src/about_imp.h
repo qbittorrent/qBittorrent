@@ -36,18 +36,18 @@ class about : public QDialog, private Ui::AboutDlg{
       logo->setPixmap(QPixmap(QString::fromUtf8(":/Icons/qbittorrent22.png")));
       mascot_lbl->setPixmap(QPixmap(QString::fromUtf8(":/Icons/mascot.png")));
       //Title
-      lb_name->setText("<b><h1>"+tr("qBittorrent")+" "VERSION"</h1></b>");
+      lb_name->setText(QString::fromUtf8("<b><h1>")+tr("qBittorrent")+QString::fromUtf8(" "VERSION"</h1></b>"));
       // Thanks
-      te_thanks->append("<a name='top'></a>");
-      te_thanks->append("<ul><li>I would like to thank sourceforge.net for hosting qBittorrent project.</li>");
+      te_thanks->append(QString::fromUtf8("<a name='top'></a>"));
+      te_thanks->append(QString::fromUtf8("<ul><li>I would like to thank sourceforge.net for hosting qBittorrent project.</li>"));
       te_thanks->append(QString::fromUtf8("<li>I am happy that Arnaud Demaizière joined the project as a programmer. His help is greatly appreciated</li>"));
-      te_thanks->append("<li>I also want to thank Jeffery Fernandez (jeffery@qbittorrent.org), project consultant, webdevelopper and RPM packager, for his help.</li>");
-      te_thanks->append("<li>I am gratefull to Peter Koeleman (peter@qbittorrent.org) who is helping port qBittorrent to Windows.</li>");
+      te_thanks->append(QString::fromUtf8("<li>I also want to thank Jeffery Fernandez (jeffery@qbittorrent.org), project consultant, webdevelopper and RPM packager, for his help.</li>"));
+      te_thanks->append(QString::fromUtf8("<li>I am gratefull to Peter Koeleman (peter@qbittorrent.org) who is helping port qBittorrent to Windows.</li>"));
       te_thanks->append(QString::fromUtf8("<li>Thanks a lot to our graphist Mateusz Toboła (tobejodok@qbittorrent.org) for his great work.</li></ul><br><br>"));
-      te_thanks->scrollToAnchor("top");
+      te_thanks->scrollToAnchor(QString::fromUtf8("top"));
       // Translation
-      te_translation->append("<a name='top'></a>");
-      te_translation->append(tr("I would like to thank the following people who volunteered to translate qBittorrent:")+"<br>");
+      te_translation->append(QString::fromUtf8("<a name='top'></a>"));
+      te_translation->append(tr("I would like to thank the following people who volunteered to translate qBittorrent:")+QString::fromUtf8("<br>"));
       te_translation->append(QString::fromUtf8(
           "<i>- <u>Brazilian:</u> Nick Marinho (nickmarinho@gmail.com)<br>\
           - <u>Bulgarian:</u> Tsvetan & Boiko Bankov (emerge_life@users.sourceforge.net)<br>\
@@ -74,10 +74,10 @@ class about : public QDialog, private Ui::AboutDlg{
           - <u>Turkish:</u> Erdem Bingöl (erdem84@gmail.com)<br>\
           - <u>Ukrainian:</u> Andrey Shpachenko (masterfix@users.sourceforge.net)<br><br>"));
       te_translation->append(tr("Please contact me if you would like to translate qBittorrent into your own language."));
-      te_translation->scrollToAnchor("top");
+      te_translation->scrollToAnchor(QString::fromUtf8("top"));
       // License
-      te_license->append("<a name='top'></a>");
-      te_license->append("<center><b>GNU GENERAL PUBLIC LICENSE</b></center><br>\
+      te_license->append(QString::fromUtf8("<a name='top'></a>"));
+      te_license->append(QString::fromUtf8("<center><b>GNU GENERAL PUBLIC LICENSE</b></center><br>\
           <center>Version 2, June 1991</center><br>\
           Copyright (C) 1989, 1991 Free Software Foundation, Inc.<br>\
           51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA<br>\
@@ -410,8 +410,8 @@ class about : public QDialog, private Ui::AboutDlg{
           proprietary programs.  If your program is a subroutine library, you may<br>\
           consider it more useful to permit linking proprietary applications with the<br>\
           library.  If this is what you want to do, use the GNU Library General<br>\
-          Public License instead of this License.<br>");
-          te_license->scrollToAnchor("top");
+          Public License instead of this License.<br>"));
+          te_license->scrollToAnchor(QString::fromUtf8("top"));
           show();
     }
 };

@@ -35,6 +35,7 @@ PKGCONFIG += libtorrent libccext2 libccgnu2
 QT += network xml
 
 DEFINES += QT_NO_CAST_TO_ASCII
+#QT_NO_CAST_FROM_ASCII
 
 contains(DEBUG_MODE, 0){
   contains(QT_VERSION, 4.2.0) {
@@ -142,7 +143,8 @@ HEADERS += GUI.h misc.h options_imp.h about_imp.h \
            torrentAddition.h deleteThread.h \
            bittorrent.h searchEngine.h \
            rss.h rss_imp.h FinishedTorrents.h \
-           allocationDlg.h FinishedListDelegate.h
+           allocationDlg.h FinishedListDelegate.h \
+           qtorrenthandle.h
 FORMS += MainWindow.ui options.ui about.ui \
          properties.ui createtorrent.ui preview.ui \
          login.ui downloadFromURL.ui addTorrentDialog.ui \
@@ -155,5 +157,6 @@ SOURCES += GUI.cpp \
 	   bittorrent.cpp \
 	   searchEngine.cpp \
 	   rss_imp.cpp \
-	   FinishedTorrents.cpp
+	   FinishedTorrents.cpp \
+           qtorrenthandle.cpp
 

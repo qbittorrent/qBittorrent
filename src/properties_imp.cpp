@@ -31,7 +31,7 @@
 #include <QStandardItemModel>
 
 // Constructor
-properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h): QDialog(parent), h(h){
+properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h): QDialog(parent), h(h){
   setupUi(this);
   this->BTSession = BTSession;
   changedFilteredfiles = false;
@@ -66,34 +66,32 @@ properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h
   connect(addWS_button, SIGNAL(clicked()), this, SLOT(askWebSeed()));
   connect(deleteWS_button, SIGNAL(clicked()), this, SLOT(deleteSelectedUrlSeeds()));
   // get Infos from torrent handle
-  fileHash = QString(misc::toString(h.info_hash()).c_str());
-  torrent_status torrentStatus = h.status();
-  torrent_info torrentInfo = h.get_torrent_info();
-  fileName->setText(torrentInfo.name().c_str());
+  hash = h.hash();
+  fileName->setText(h.name());
   // Torrent Infos
-  save_path->setText(QString(h.save_path().string().c_str()));
-  QString author = QString(torrentInfo.creator().c_str()).trimmed();
+  save_path->setText(h.save_path());
+  QString author = h.creator().trimmed();
   if(author.isEmpty())
     author = tr("Unknown");
   creator->setText(author);
-  hash_lbl->setText(fileHash);
-  comment_txt->setText(QString(torrentInfo.comment().c_str()));
+  hash_lbl->setText(hash);
+  comment_txt->setText(h.comment());
   //Trackers
   loadTrackers();
   // Session infos
   char tmp[MAX_CHAR_TMP];
-  failed->setText(misc::friendlyUnit(torrentStatus.total_failed_bytes));
-  upTotal->setText(misc::friendlyUnit(torrentStatus.total_payload_upload));
-  dlTotal->setText(misc::friendlyUnit(torrentStatus.total_payload_download));
+  failed->setText(misc::friendlyUnit(h.total_failed_bytes()));
+  upTotal->setText(misc::friendlyUnit(h.total_payload_upload()));
+  dlTotal->setText(misc::friendlyUnit(h.total_payload_download()));
   // Update ratio info
   float ratio;
-  if(torrentStatus.total_payload_download == 0){
-    if(torrentStatus.total_payload_upload == 0)
+  if(h.total_payload_download() == 0){
+    if(h.total_payload_upload() == 0)
       ratio = 1.;
     else
       ratio = 10.; // Max ratio
   }else{
-    ratio = (double)torrentStatus.total_payload_upload/(double)torrentStatus.total_payload_download;
+    ratio = (double)h.total_payload_upload()/(double)h.total_payload_download();
     if(ratio > 10.){
       ratio = 10.;
     }
@@ -104,12 +102,12 @@ properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h
   std::vector<float> fp;
   h.file_progress(fp);
   // List files in torrent
-  unsigned int nbFiles = torrentInfo.num_files();
+  unsigned int nbFiles = h.num_files();
   for(unsigned int i=0; i<nbFiles; ++i){
     unsigned int row = PropListModel->rowCount();
     PropListModel->insertRow(row);
-    PropListModel->setData(PropListModel->index(row, NAME), QVariant(torrentInfo.file_at(i).path.leaf().c_str()));
-    PropListModel->setData(PropListModel->index(row, SIZE), QVariant((qlonglong)torrentInfo.file_at(i).size));
+    PropListModel->setData(PropListModel->index(row, NAME), QVariant(h.file_at(i)));
+    PropListModel->setData(PropListModel->index(row, SIZE), QVariant((qlonglong)h.filesize_at(i)));
     PropListModel->setData(PropListModel->index(row, PROGRESS), QVariant((double)fp[i]));
   }
   loadPiecesPriorities();
@@ -117,7 +115,7 @@ properties::properties(QWidget *parent, bittorrent *BTSession, torrent_handle &h
   loadWebSeedsFromFile();
   loadWebSeeds();
   // Incremental download
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".incremental")){
+  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental")){
     incrementalDownload->setChecked(true);
   }else{
     incrementalDownload->setChecked(false);
@@ -136,12 +134,12 @@ properties::~properties(){
 
 void properties::loadTrackersErrors(){
   // Tracker Errors
-  QList<QPair<QString, QString> > errors = BTSession->getTrackersErrors(fileHash);
+  QList<QPair<QString, QString> > errors = BTSession->getTrackersErrors(hash);
   unsigned int nbTrackerErrors = errors.size();
   trackerErrors->clear();
   for(unsigned int i=0; i < nbTrackerErrors; ++i){
     QPair<QString, QString> pair = errors.at(i);
-    trackerErrors->append("<font color='grey'>"+pair.first+"</font> - <font color='red'>"+pair.second+"</font>");
+    trackerErrors->append(QString::fromUtf8("<font color='grey'>")+pair.first+QString::fromUtf8("</font> - <font color='red'>")+pair.second+QString::fromUtf8("</font>"));
   }
   if(!nbTrackerErrors)
     trackerErrors->append(tr("None", "i.e: No error message"));
@@ -154,15 +152,14 @@ void properties::loadWebSeeds(){
   // Add manually added url seeds
   foreach(url_seed, urlSeeds){
     listWebSeeds->addItem(url_seed);
-    qDebug("Added custom url seed to list: %s", (const char*)url_seed.toUtf8());
+    qDebug("Added custom url seed to list: %s", url_seed.toUtf8().data());
   }
 }
 
 void properties::loadPiecesPriorities(){
-  torrent_info torrentInfo = h.get_torrent_info();
-  unsigned int nbFiles = torrentInfo.num_files();
-  QString fileName = QString(torrentInfo.name().c_str());
-  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".priorities");
+  unsigned int nbFiles = h.num_files();
+  QString fileName = h.name();
+  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".priorities");
   has_filtered_files = false;
   qDebug("Loading pieces priorities");
   // Read saved file
@@ -308,8 +305,7 @@ void properties::loadTrackers(){
   for(unsigned int i=0; i<nbTrackers; ++i){
     trackersURLS->addItem(QString(trackers[i].url.c_str()));
   }
-  torrent_status torrentStatus = h.status();
-  QString tracker = QString(torrentStatus.current_tracker.c_str()).trimmed();
+  QString tracker = h.current_tracker().trimmed();
   if(!tracker.isEmpty()){
     trackerURL->setText(tracker);
   }else{
@@ -322,10 +318,9 @@ void properties::askWebSeed(){
   // Ask user for a new url seed
   QString url_seed = QInputDialog::getText(this, tr("New url seed", "New HTTP source"),
                                              tr("New url seed:"), QLineEdit::Normal,
-                                                 "http://www.", &ok);
+                                                 QString::fromUtf8("http://www."), &ok);
   if(!ok) return;
-  torrent_info torrentInfo = h.get_torrent_info();
-  qDebug("Adding %s web seed", (const char*)url_seed.toUtf8());
+  qDebug("Adding %s web seed", url_seed.toUtf8().data());
   if(urlSeeds.indexOf(url_seed) != -1) {
     QMessageBox::warning(this, tr("qBittorrent"),
                          tr("This url seed is already in the list."),
@@ -333,7 +328,7 @@ void properties::askWebSeed(){
     return;
   }
   urlSeeds << url_seed;
-  torrentInfo.add_url_seed(url_seed.toStdString());
+  h.add_url_seed(url_seed);
   saveWebSeeds();
   // Refresh the seeds list
   loadWebSeeds();
@@ -351,7 +346,7 @@ void properties::askForTracker(){
   if(!ok) return;
   // Add the tracker to the list
   std::vector<announce_entry> trackers = h.trackers();
-  announce_entry new_tracker(trackerUrl.toStdString());
+  announce_entry new_tracker(misc::toString(trackerUrl.toUtf8().data()));
   new_tracker.tier = 0; // Will be fixed a bit later
   trackers.push_back(new_tracker);
   misc::fixTrackersTiers(trackers);
@@ -371,7 +366,7 @@ void properties::deleteSelectedUrlSeeds(){
     int index = urlSeeds.indexOf(url_seed);
     Q_ASSERT(index != -1);
     urlSeeds.removeAt(index);
-    h.remove_url_seed(misc::toString((const char*)url_seed.toUtf8()));
+    h.remove_url_seed(url_seed);
     change = true;
   }
   if(change){
@@ -397,7 +392,7 @@ void properties::deleteSelectedTrackers(){
   foreach(item, selectedItems){
     QString url = item->text();
     for(unsigned int i=0; i<nbTrackers; ++i){
-      if(QString(trackers.at(i).url.c_str()) == url){
+      if(misc::toQString(trackers.at(i).url) == url){
         trackers.erase(trackers.begin()+i);
         break;
       }
@@ -420,7 +415,7 @@ void properties::riseSelectedTracker(){
   foreach(item, selectedItems){
     QString url = item->text();
     for(i=0; i<nbTrackers; ++i){
-      if(QString(trackers.at(i).url.c_str()) == url){
+      if(misc::toQString(trackers.at(i).url) == url){
         qDebug("Asked to rise %s", trackers.at(i).url.c_str());
         qDebug("its tier was %d and will become %d", trackers[i].tier, trackers[i].tier-1);
         if(i > 0){
@@ -481,8 +476,8 @@ void properties::updateInfos(){
   std::vector<float> fp;
   try{
     h.file_progress(fp);
-    torrent_info torrentInfo = h.get_torrent_info();
-    for(int i=0; i<torrentInfo.num_files(); ++i){
+    unsigned int nbFiles = h.num_files();
+    for(unsigned int i=0; i<nbFiles; ++i){
       PropListModel->setData(PropListModel->index(i, PROGRESS), QVariant((double)fp[i]));
     }
   }catch(invalid_handle e){
@@ -490,8 +485,7 @@ void properties::updateInfos(){
     close();
   }
   // Update current tracker
-  torrent_status torrentStatus = h.status();
-  QString tracker = QString(torrentStatus.current_tracker.c_str()).trimmed();
+  QString tracker = h.current_tracker().trimmed();
   if(!tracker.isEmpty()){
     trackerURL->setText(tracker);
   }else{
@@ -501,14 +495,15 @@ void properties::updateInfos(){
 
 // Set the color of a row in data model
 void properties::setRowColor(int row, QString color){
-  for(int i=0; i<PropListModel->columnCount(); ++i){
+  unsigned int nbCol = PropListModel->columnCount();
+  for(unsigned int i=0; i<nbCol; ++i){
     PropListModel->setData(PropListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
   }
 }
 
 void properties::setAllPiecesState(unsigned short priority){
-  torrent_info torrentInfo = h.get_torrent_info();
-  for(int i=0; i<torrentInfo.num_files(); ++i){
+  unsigned int nbFiles = h.num_files();
+  for(unsigned int i=0; i<nbFiles; ++i){
     if(priority){
       setRowColor(i, "green");
     }else{
@@ -520,16 +515,17 @@ void properties::setAllPiecesState(unsigned short priority){
 
 void properties::on_incrementalDownload_stateChanged(int){
   qDebug("Incremental download toggled");
-  torrent_info torrentInfo = h.get_torrent_info();
   if(incrementalDownload->isChecked()){
-    // Create .incremental file
-    QFile incremental_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".incremental");
-    incremental_file.open(QIODevice::WriteOnly | QIODevice::Text);
-    incremental_file.close();
-    h.set_sequenced_download_threshold(15);
+    if(!QFile::exists(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".incremental"))) {
+      // Create .incremental file
+      QFile incremental_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".incremental"));
+      incremental_file.open(QIODevice::WriteOnly | QIODevice::Text);
+      incremental_file.close();
+      h.set_sequenced_download_threshold(1);
+    }
   }else{
-    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".incremental");
-    h.set_sequenced_download_threshold(100);
+    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental");
+    h.set_sequenced_download_threshold(100); // Disabled
   }
 }
 
@@ -539,7 +535,7 @@ void properties::on_okButton_clicked(){
 }
 
 void properties::loadWebSeedsFromFile(){
-  QFile urlseeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".urlseeds");
+  QFile urlseeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".urlseeds");
   if(!urlseeds_file.open(QIODevice::ReadOnly | QIODevice::Text)) return;
   QByteArray urlseeds_lines = urlseeds_file.readAll();
   urlseeds_file.close();
@@ -551,13 +547,10 @@ void properties::loadWebSeedsFromFile(){
       urlSeeds << url_seed;
   }
   // Load the hard-coded url seeds
-  torrent_info torrentInfo = h.get_torrent_info();
-  std::vector<std::string> hc_seeds = torrentInfo.url_seeds();
-  unsigned int nbSeeds = hc_seeds.size();
+  QStringList hc_seeds = h.url_seeds();
   QString hc_seed;
   // Add hard coded url seeds
-  for(unsigned int i=0; i<nbSeeds; ++i){
-    hc_seed = QString(hc_seeds[i].c_str());
+  foreach(hc_seed, hc_seeds){
     if(urlSeeds.indexOf(hc_seed) == -1){
       urlSeeds << hc_seed;
     }
@@ -565,14 +558,14 @@ void properties::loadWebSeedsFromFile(){
 }
 
 void properties::saveWebSeeds(){
-  QFile urlseeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".urlseeds");
+  QFile urlseeds_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".urlseeds"));
   if(!urlseeds_file.open(QIODevice::WriteOnly | QIODevice::Text)){
     std::cerr << "Error: Could not save url seeds\n";
     return;
   }
   QString url_seed;
   foreach(url_seed, urlSeeds){
-    urlseeds_file.write(QByteArray((const char*)(url_seed+"\n").toUtf8()));
+    urlseeds_file.write((url_seed+"\n").toUtf8());
   }
   urlseeds_file.close();
   qDebug("url seeds were saved");
@@ -581,10 +574,9 @@ void properties::saveWebSeeds(){
 void properties::savePiecesPriorities(){
   if(!changedFilteredfiles) return;
   qDebug("Saving pieces priorities");
-  torrent_info torrentInfo = h.get_torrent_info();
   bool hasFilteredFiles = false;
-  QString fileName = QString(torrentInfo.name().c_str());
-  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+fileHash+".priorities");
+  QString fileName = h.name();
+  QFile pieces_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".priorities"));
   // First, remove old file
   pieces_file.remove();
   // Write new files
@@ -599,13 +591,13 @@ void properties::savePiecesPriorities(){
     if(!priority) {
       hasFilteredFiles = true;
     }
-    pieces_file.write(QByteArray((misc::toString(priority)+"\n").c_str()));
+    pieces_file.write(misc::toQByteArray(priority)+"\n");
   }
   pieces_file.close();
-  if(hasFilteredFiles && !BTSession->inFullAllocationMode(fileHash)){
+  if(hasFilteredFiles && !BTSession->inFullAllocationMode(hash)){
     BTSession->pauseAndReloadTorrent(h);
   }
   BTSession->loadFilesPriorities(h);
-  emit filteredFilesChanged(fileHash);
+  emit filteredFilesChanged(hash);
   has_filtered_files = hasFilteredFiles;
 }

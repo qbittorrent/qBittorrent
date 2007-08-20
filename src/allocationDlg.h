@@ -55,7 +55,7 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
         int val = 0;
         int max = -1;
         if(nbTorrents == 1){
-          torrent_handle h = BTSession->getTorrentHandle(hashes.at(0));
+          QTorrentHandle h = BTSession->getTorrentHandle(hashes.at(0));
           if(uploadMode){
             if(h.upload_limit() > 0)
               val = (int)(h.upload_limit() / 1024.);
@@ -79,15 +79,15 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
           bandwidthSlider->setValue(val);
           if(val == 0) {
             limit_lbl->setText(tr("Unlimited", "Unlimited (bandwidth)"));
-            kb_lbl->setText("");
+            kb_lbl->setText(QString::fromUtf8(""));
           } else {
-            limit_lbl->setText(QString(misc::toString(val).c_str()));
+            limit_lbl->setText(misc::toQString(val));
           }
         }else{
           qDebug("More than one torrent selected, no initilization");
           bandwidthSlider->setValue(0);
           limit_lbl->setText(tr("Unlimited", "Unlimited (bandwidth)"));
-          kb_lbl->setText("");
+          kb_lbl->setText(QString::fromUtf8(""));
         }
       }else{
         // Global limit
@@ -103,7 +103,7 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
         if(val == 0){
           bandwidthSlider->setValue(0);
           limit_lbl->setText(tr("Unlimited", "Unlimited (bandwidth)"));
-          kb_lbl->setText("");
+          kb_lbl->setText(QString::fromUtf8(""));
         }else{
           bandwidthSlider->setValue(val);
         }
@@ -120,9 +120,9 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
     void updateBandwidthLabel(int val){
       if(val == 0){
         limit_lbl->setText(tr("Unlimited", "Unlimited (bandwidth)"));
-        kb_lbl->setText("");
+        kb_lbl->setText(QString::fromUtf8(""));
       }else{
-        limit_lbl->setText(QString(misc::toString(val).c_str()));
+        limit_lbl->setText(misc::toQString(val));
         kb_lbl->setText(tr("KiB/s"));
       }
     }
@@ -150,20 +150,20 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
           }
         }
       }else{
-        QSettings settings("qBittorrent", "qBittorrent");
+        QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
         session *s = BTSession->getSession();
         if(uploadMode){
           if(!val)
             s->set_upload_rate_limit(-1);
           else
             s->set_upload_rate_limit(val*1024);
-          settings.setValue("Options/Main/UPLimit", val);
+          settings.setValue(QString::fromUtf8("Options/Main/UPLimit"), val);
         }else{
           if(!val)
             s->set_download_rate_limit(-1);
           else
             s->set_download_rate_limit(val*1024);
-          settings.setValue("Options/Main/DLLimit", val);
+          settings.setValue(QString::fromUtf8("Options/Main/DLLimit"), val);
         }
       }
       close();

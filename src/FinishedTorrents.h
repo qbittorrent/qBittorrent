@@ -24,7 +24,7 @@
 
 #include "ui_seeding.h"
 #include "FinishedListDelegate.h"
-#include <libtorrent/torrent_handle.hpp>
+#include "qtorrenthandle.h"
 
 class QStandardItemModel;
 class bittorrent;
@@ -68,7 +68,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     void on_actionSet_upload_limit_triggered();
 
   signals:
-    void torrentMovedFromFinishedList(torrent_handle);
+    void torrentMovedFromFinishedList(QTorrentHandle);
 
 };
 

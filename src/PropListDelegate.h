@@ -71,7 +71,7 @@ class PropListDelegate: public QItemDelegate {
           float progress = index.data().toDouble()*100.;
           snprintf(tmp, MAX_CHAR_TMP, "%.1f", progress);
           newopt.rect = opt.rect;
-          newopt.text = QString(tmp)+"%";
+          newopt.text = QString::fromUtf8(tmp)+QString::fromUtf8("%");
           newopt.progress = (int)progress;
           newopt.maximum = 100;
           newopt.minimum = 0;
@@ -106,7 +106,7 @@ class PropListDelegate: public QItemDelegate {
           painter);
           opt.palette.setColor(QPalette::Text, QColor("black"));
           painter->setPen(opt.palette.color(cg, QPalette::Text));
-          painter->drawText(option.rect, Qt::AlignLeft, " "+newopt.currentText);
+          painter->drawText(option.rect, Qt::AlignLeft, QString::fromUtf8(" ")+newopt.currentText);
           break;
         }
         default:
@@ -175,9 +175,9 @@ class PropListDelegate: public QItemDelegate {
       qDebug("Setting combobox value in index: %d", value);
       QString color;
       if(value) {
-        color = "green";
+        color = QString::fromUtf8("green");
       } else {
-        color = "red";
+        color = QString::fromUtf8("red");
       }
       unsigned short old_val = index.model()->data(index, Qt::DisplayRole).toInt();
       switch(value){

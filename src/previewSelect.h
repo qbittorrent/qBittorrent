@@ -30,6 +30,7 @@
 #include "ui_preview.h"
 #include "PreviewListDelegate.h"
 #include "misc.h"
+#include "qtorrenthandle.h"
 
 #define NAME 0
 #define SIZE 1
@@ -44,7 +45,7 @@ class previewSelect: public QDialog, private Ui::preview {
     QStandardItemModel *previewListModel;
     PreviewListDelegate *listDelegate;
     QStringList supported_preview_extensions;
-    torrent_handle h;
+    QTorrentHandle h;
 
   signals:
     void readyToPreviewFile(QString) const;
@@ -56,9 +57,9 @@ class previewSelect: public QDialog, private Ui::preview {
       QModelIndexList selectedIndexes = previewList->selectionModel()->selectedIndexes();
       foreach(index, selectedIndexes){
         if(index.column() == NAME){
-          QString root_path = QString(h.save_path().string().c_str());
+          QString root_path = h.save_path();
           if(root_path.at(root_path.length()-1) != QDir::separator()){
-            root_path += '/';
+            root_path += QString::fromUtf8("/");
           }
           // Get the file name
           QString fileName = index.data().toString();
@@ -68,7 +69,7 @@ class previewSelect: public QDialog, private Ui::preview {
             found = true;
           }else{
             // Folder
-            QString folder_name = QString(h.get_torrent_info().name().c_str());
+            QString folder_name = h.name();
             // Will find the file even if it is in a sub directory
             QString result = misc::findFileInDir(root_path+folder_name, fileName);
             if(!result.isNull()){
@@ -90,7 +91,7 @@ class previewSelect: public QDialog, private Ui::preview {
     }
 
   public:
-    previewSelect(QWidget* parent, torrent_handle h): QDialog(parent){
+    previewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent){
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       // Preview list
@@ -101,21 +102,21 @@ class previewSelect: public QDialog, private Ui::preview {
       previewList->setModel(previewListModel);
       listDelegate = new PreviewListDelegate(this);
       previewList->setItemDelegate(listDelegate);
-      supported_preview_extensions << "AVI" << "DIVX" << "MPG" << "MPEG" << "MPE" << "MP3" << "OGG" << "WMV" << "WMA" << "RMV" << "RMVB" << "ASF" << "MOV" << "WAV" << "MP2" << "SWF" << "AC3" << "OGM" << "MP4" << "FLV" << "VOB" << "QT" << "MKV" << "AIF" << "AIFF" << "AIFC" << "MID" << "MPG" << "RA" << "RAM" << "AU" << "M4A" << "FLAC" << "M4P" << "3GP" << "AAC" << "RM" << "SWA" << "MPC" << "MPP";
+      supported_preview_extensions << QString::fromUtf8("AVI") << QString::fromUtf8("DIVX") << QString::fromUtf8("MPG") << QString::fromUtf8("MPEG") << QString::fromUtf8("MPE") << QString::fromUtf8("MP3") << QString::fromUtf8("OGG") << QString::fromUtf8("WMV") << QString::fromUtf8("WMA") << QString::fromUtf8("RMV") << QString::fromUtf8("RMVB") << QString::fromUtf8("ASF") << QString::fromUtf8("MOV") << QString::fromUtf8("WAV") << QString::fromUtf8("MP2") << QString::fromUtf8("SWF") << QString::fromUtf8("AC3") << QString::fromUtf8("OGM") << QString::fromUtf8("MP4") << QString::fromUtf8("FLV") << QString::fromUtf8("VOB") << QString::fromUtf8("QT") << QString::fromUtf8("MKV") << QString::fromUtf8("AIF") << QString::fromUtf8("AIFF") << QString::fromUtf8("AIFC") << QString::fromUtf8("MID") << QString::fromUtf8("MPG") << QString::fromUtf8("RA") << QString::fromUtf8("RAM") << QString::fromUtf8("AU") << QString::fromUtf8("M4A") << QString::fromUtf8("FLAC") << QString::fromUtf8("M4P") << QString::fromUtf8("3GP") << QString::fromUtf8("AAC") << QString::fromUtf8("RM") << QString::fromUtf8("SWA") << QString::fromUtf8("MPC") << QString::fromUtf8("MPP");
       previewList->header()->resizeSection(0, 200);
       // Fill list in
       this->h = h;
-      torrent_info torrentInfo = h.get_torrent_info();
       std::vector<float> fp;
       h.file_progress(fp);
-      for(int i=0; i<torrentInfo.num_files(); ++i){
-        QString fileName = QString(torrentInfo.file_at(i).path.leaf().c_str());
-        QString extension = fileName.split('.').last().toUpper();
+      unsigned int nbFiles = h.num_files();
+      for(unsigned int i=0; i<nbFiles; ++i){
+        QString fileName = h.file_at(i);
+        QString extension = fileName.split(QString::fromUtf8(".")).last().toUpper();
         if(supported_preview_extensions.indexOf(extension) >= 0){
           int row = previewListModel->rowCount();
           previewListModel->insertRow(row);
           previewListModel->setData(previewListModel->index(row, NAME), QVariant(fileName));
-          previewListModel->setData(previewListModel->index(row, SIZE), QVariant((qlonglong)torrentInfo.file_at(i).size));
+          previewListModel->setData(previewListModel->index(row, SIZE), QVariant((qlonglong)h.filesize_at(i)));
           previewListModel->setData(previewListModel->index(row, PROGRESS), QVariant((double)fp[i]));
         }
       }

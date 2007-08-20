@@ -48,6 +48,9 @@
 #include "previewSelect.h"
 #include "options_imp.h"
 
+using namespace libtorrent;
+namespace fs = boost::filesystem;
+
 /*****************************************************
  *                                                   *
  *                       GUI                         *
@@ -55,14 +58,14 @@
  *****************************************************/
 
 // Constructor
-GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
+GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent) {
   setupUi(this);
-  setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(VERSION));
-  QSettings settings("qBittorrent", "qBittorrent");
-  systrayIntegration = settings.value("Options/Misc/Behaviour/SystrayIntegration", true).toBool();
+  setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  systrayIntegration = settings.value(QString::fromUtf8("Options/Misc/Behaviour/SystrayIntegration"), true).toBool();
   // Create tray icon
-  if (QSystemTrayIcon::isSystemTrayAvailable()){
-    if(systrayIntegration){
+  if (QSystemTrayIcon::isSystemTrayAvailable()) {
+    if(systrayIntegration) {
       createTrayIcon();
     }
   }else{
@@ -75,11 +78,11 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   finishedTorrentTab = new FinishedTorrents(this, BTSession);
   tabs->addTab(finishedTorrentTab, tr("Finished"));
   tabs->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
-  connect(finishedTorrentTab, SIGNAL(torrentMovedFromFinishedList(torrent_handle)), this, SLOT(restoreInDownloadList(torrent_handle)));
+  connect(finishedTorrentTab, SIGNAL(torrentMovedFromFinishedList(QTorrentHandle)), this, SLOT(restoreInDownloadList(QTorrentHandle)));
   // Tabs text
   nbTorrents = 0;
-  tabs->setTabText(0, tr("Downloads") + " (0)");
-  tabs->setTabText(1, tr("Finished") + " (0)");
+  tabs->setTabText(0, tr("Downloads") + QString::fromUtf8(" (0)"));
+  tabs->setTabText(1, tr("Finished") + QString::fromUtf8(" (0)"));
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent32.png")));
   actionOpen->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/open.png")));
@@ -104,7 +107,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   connecStatusLblIcon = new QLabel();
   connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
   connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/disconnected.png")));
-  connecStatusLblIcon->setToolTip("<b>"+tr("Connection status:")+"</b><br>"+tr("Offline")+"<br><i>"+tr("No peers found...")+"</i>");
+  connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+tr("Offline")+QString::fromUtf8("<br><i>")+tr("No peers found...")+QString::fromUtf8("</i>"));
   toolBar->addWidget(connecStatusLblIcon);
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
@@ -132,13 +135,13 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   // Hide hash column
   downloadList->hideColumn(HASH);
 
-  connect(BTSession, SIGNAL(addedTorrent(QString, torrent_handle&, bool)), this, SLOT(torrentAdded(QString, torrent_handle&, bool)));
+  connect(BTSession, SIGNAL(addedTorrent(QString, QTorrentHandle&, bool)), this, SLOT(torrentAdded(QString, QTorrentHandle&, bool)));
   connect(BTSession, SIGNAL(duplicateTorrent(QString)), this, SLOT(torrentDuplicate(QString)));
   connect(BTSession, SIGNAL(invalidTorrent(QString)), this, SLOT(torrentCorrupted(QString)));
-  connect(BTSession, SIGNAL(finishedTorrent(torrent_handle&)), this, SLOT(finishedTorrent(torrent_handle&)));
-  connect(BTSession, SIGNAL(fullDiskError(torrent_handle&)), this, SLOT(fullDiskError(torrent_handle&)));
+  connect(BTSession, SIGNAL(finishedTorrent(QTorrentHandle&)), this, SLOT(finishedTorrent(QTorrentHandle&)));
+  connect(BTSession, SIGNAL(fullDiskError(QTorrentHandle&)), this, SLOT(fullDiskError(QTorrentHandle&)));
   connect(BTSession, SIGNAL(portListeningFailure()), this, SLOT(portListeningFailure()));
-  connect(BTSession, SIGNAL(trackerAuthenticationRequired(torrent_handle&)), this, SLOT(trackerAuthenticationRequired(torrent_handle&)));
+  connect(BTSession, SIGNAL(trackerAuthenticationRequired(QTorrentHandle&)), this, SLOT(trackerAuthenticationRequired(QTorrentHandle&)));
   connect(BTSession, SIGNAL(peerBlocked(QString)), this, SLOT(addLogPeerBlocked(const QString)));
   connect(BTSession, SIGNAL(fastResumeDataRejected(QString)), this, SLOT(addFastResumeRejectedAlert(QString)));
   connect(BTSession, SIGNAL(scanDirFoundTorrents(const QStringList&)), this, SLOT(processScannedFiles(const QStringList&)));
@@ -156,7 +159,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   // Resume unfinished torrents
   BTSession->resumeUnfinishedTorrents();
 	// Load last columns width for download list
-  if(!loadColWidthDLList()){
+  if(!loadColWidthDLList()) {
     downloadList->header()->resizeSection(0, 200);
   }
   // Search engine tab
@@ -197,21 +200,21 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent){
   // Accept drag 'n drops
   setAcceptDrops(true);
   // Set info Bar infos
-  setInfoBar(tr("qBittorrent %1 started.", "e.g: qBittorrent v0.x started.").arg(QString(VERSION)));
-  setInfoBar(tr("Be careful, sharing copyrighted material without permission is against the law."), "red");
+  setInfoBar(tr("qBittorrent %1 started.", "e.g: qBittorrent v0.x started.").arg(QString::fromUtf8(""VERSION)));
+  setInfoBar(tr("Be careful, sharing copyrighted material without permission is against the law."), QString::fromUtf8("red"));
   show();
   createKeyboardShortcuts();
   qDebug("GUI Built");
 }
 
 // Destructor
-GUI::~GUI(){
+GUI::~GUI() {
   qDebug("GUI destruction");
   delete searchEngine;
   delete finishedTorrentTab;
   delete checkConnect;
   delete refresher;
-  if(systrayIntegration){
+  if(systrayIntegration) {
     delete myTrayIcon;
     delete myTrayIconMenu;
   }
@@ -231,30 +234,30 @@ GUI::~GUI(){
   delete BTSession;
 }
 
-void GUI::on_actionWebsite_triggered(){
-   QDesktopServices::openUrl(QUrl("http://www.qbittorrent.org"));
+void GUI::on_actionWebsite_triggered() {
+   QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://www.qbittorrent.org")));
 }
 
-void GUI::on_actionDocumentation_triggered(){
-  QDesktopServices::openUrl(QUrl("http://wiki.qbittorrent.org"));
+void GUI::on_actionDocumentation_triggered() {
+  QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://wiki.qbittorrent.org")));
 }
 
-void GUI::on_actionBugReport_triggered(){
-   QDesktopServices::openUrl(QUrl("http://bugs.qbittorrent.org"));
+void GUI::on_actionBugReport_triggered() {
+   QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://bugs.qbittorrent.org")));
 }
 
 void GUI::writeSettings() {
-  QSettings settings("qBittorrent", "qBittorrent");
-  settings.beginGroup("MainWindow");
-  settings.setValue("size", size());
-  settings.setValue("pos", pos());
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.beginGroup(QString::fromUtf8("MainWindow"));
+  settings.setValue(QString::fromUtf8("size"), size());
+  settings.setValue(QString::fromUtf8("pos"), pos());
   settings.endGroup();
 }
 
-void GUI::createKeyboardShortcuts(){
-  actionCreate_torrent->setShortcut(QKeySequence("Ctrl+N"));
-  actionOpen->setShortcut(QKeySequence("Ctrl+O"));
-  actionExit->setShortcut(QKeySequence("Ctrl+Q"));
+void GUI::createKeyboardShortcuts() {
+  actionCreate_torrent->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+N")));
+  actionOpen->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+O")));
+  actionExit->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Q")));
   switchDownShortcut = new QShortcut(QKeySequence(tr("Alt+1", "shortcut to switch to first tab")), this);
   connect(switchDownShortcut, SIGNAL(activated()), this, SLOT(displayDownTab()));
   switchUpShortcut = new QShortcut(QKeySequence(tr("Alt+2", "shortcut to switch to second tab")), this);
@@ -265,77 +268,77 @@ void GUI::createKeyboardShortcuts(){
   connect(switchSearchShortcut2, SIGNAL(activated()), this, SLOT(displaySearchTab()));
   switchRSSShortcut = new QShortcut(QKeySequence(tr("Alt+4", "shortcut to switch to fourth tab")), this);
   connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
-  actionTorrent_Properties->setShortcut(QKeySequence("Alt+P"));
-  actionOptions->setShortcut(QKeySequence("Alt+O"));
-  actionDelete->setShortcut(QKeySequence("Del"));
-  actionDelete_Permanently->setShortcut(QKeySequence("Shift+Del"));
-  actionStart->setShortcut(QKeySequence("Ctrl+S"));
-  actionStart_All->setShortcut(QKeySequence("Ctrl+Shift+S"));
-  actionPause->setShortcut(QKeySequence("Ctrl+P"));
-  actionPause_All->setShortcut(QKeySequence("Ctrl+Shift+P"));
+  actionTorrent_Properties->setShortcut(QKeySequence(QString::fromUtf8("Alt+P")));
+  actionOptions->setShortcut(QKeySequence(QString::fromUtf8("Alt+O")));
+  actionDelete->setShortcut(QKeySequence(QString::fromUtf8("Del")));
+  actionDelete_Permanently->setShortcut(QKeySequence(QString::fromUtf8("Shift+Del")));
+  actionStart->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+S")));
+  actionStart_All->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift+S")));
+  actionPause->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+P")));
+  actionPause_All->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift+P")));
 }
 
 // Keyboard shortcuts slots
-void GUI::displayDownTab(){
+void GUI::displayDownTab() {
   tabs->setCurrentIndex(0);
 }
 
-void GUI::displayUpTab(){
+void GUI::displayUpTab() {
   tabs->setCurrentIndex(1);
 }
 
-void GUI::displaySearchTab(){
+void GUI::displaySearchTab() {
   tabs->setCurrentIndex(2);
 }
 
-void GUI::displayRSSTab(){
+void GUI::displayRSSTab() {
   tabs->setCurrentIndex(3);
 }
 
 // End of keyboard shortcuts slots
 
 void GUI::readSettings() {
-  QSettings settings("qBittorrent", "qBittorrent");
-  settings.beginGroup("MainWindow");
-  resize(settings.value("size", size()).toSize());
-  move(settings.value("pos", screenCenter()).toPoint());
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.beginGroup(QString::fromUtf8("MainWindow"));
+  resize(settings.value(QString::fromUtf8("size"), size()).toSize());
+  move(settings.value(QString::fromUtf8("pos"), screenCenter()).toPoint());
   settings.endGroup();
 }
 
-void GUI::addLogPeerBlocked(QString ip){
+void GUI::addLogPeerBlocked(QString ip) {
   static unsigned short nbLines = 0;
   ++nbLines;
-  if(nbLines > 200){
+  if(nbLines > 200) {
     textBlockedUsers->clear();
     nbLines = 1;
   }
-  textBlockedUsers->append("<font color='grey'>"+ QTime::currentTime().toString("hh:mm:ss") + "</font> - "+tr("<font color='red'>%1</font> <i>was blocked</i>", "x.y.z.w was blocked").arg(ip));
+  textBlockedUsers->append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - ")+tr("<font color='red'>%1</font> <i>was blocked</i>", "x.y.z.w was blocked").arg(ip));
 }
 
 // Update Info Bar information
-void GUI::setInfoBar(QString info, QString color){
+void GUI::setInfoBar(QString info, QString color) {
   static unsigned short nbLines = 0;
   ++nbLines;
   // Check log size, clear it if too big
-  if(nbLines > 200){
+  if(nbLines > 200) {
     infoBar->clear();
     nbLines = 1;
   }
-  infoBar->append("<font color='grey'>"+ QTime::currentTime().toString("hh:mm:ss") + "</font> - <font color='" + color +"'><i>" + info + "</i></font>");
+  infoBar->append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color +QString::fromUtf8("'><i>") + info + QString::fromUtf8("</i></font>"));
 }
 
-void GUI::addFastResumeRejectedAlert(QString name){
-  setInfoBar(tr("Fast resume data was rejected for torrent %1, checking again...").arg(name), "red");
+void GUI::addFastResumeRejectedAlert(QString name) {
+  setInfoBar(tr("Fast resume data was rejected for torrent %1, checking again...").arg(name), QString::fromUtf8("red"));
 }
 
-void GUI::addUrlSeedError(QString url, QString msg){
-  setInfoBar(tr("Url seed lookup failed for url: %1, message: %2").arg(url).arg(msg), "red");
+void GUI::addUrlSeedError(QString url, QString msg) {
+  setInfoBar(tr("Url seed lookup failed for url: %1, message: %2").arg(url).arg(msg), QString::fromUtf8("red"));
 }
 
-void GUI::balloonClicked(){
-  if(isHidden()){
+void GUI::balloonClicked() {
+  if(isHidden()) {
       show();
-      if(isMinimized()){
+      if(isMinimized()) {
         showNormal();
       }
       raise();
@@ -343,28 +346,28 @@ void GUI::balloonClicked(){
   }
 }
 
-void GUI::acceptConnection(){
+void GUI::acceptConnection() {
   clientConnection = tcpServer->nextPendingConnection();
   connect(clientConnection, SIGNAL(disconnected()), this, SLOT(readParamsOnSocket()));
   qDebug("accepted connection from another instance");
 }
 
-void GUI::readParamsOnSocket(){
-  if(clientConnection != 0){
+void GUI::readParamsOnSocket() {
+  if(clientConnection != 0) {
     QByteArray params = clientConnection->readAll();
-    if(!params.isEmpty()){
-      processParams(QString(params.data()).split("\n"));
+    if(!params.isEmpty()) {
+      processParams(QString::fromUtf8(params.data()).split(QString::fromUtf8("\n")));
       qDebug("Received parameters from another instance");
     }
   }
 }
 
-void GUI::on_actionSet_download_limit_triggered(){
+void GUI::on_actionSet_download_limit_triggered() {
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   QModelIndex index;
   QStringList hashes;
-  foreach(index, selectedIndexes){
-    if(index.column() == NAME){
+  foreach(index, selectedIndexes) {
+    if(index.column() == NAME) {
       // Get the file hash
       hashes << DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
     }
@@ -373,12 +376,12 @@ void GUI::on_actionSet_download_limit_triggered(){
   new BandwidthAllocationDialog(this, false, BTSession, hashes);
 }
 
-void GUI::on_actionSet_upload_limit_triggered(){
+void GUI::on_actionSet_upload_limit_triggered() {
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   QModelIndex index;
   QStringList hashes;
-  foreach(index, selectedIndexes){
-    if(index.column() == NAME){
+  foreach(index, selectedIndexes) {
+    if(index.column() == NAME) {
       // Get the file hash
       hashes << DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
     }
@@ -392,17 +395,17 @@ void GUI::handleDownloadFromUrlFailure(QString url, QString reason) const{
   QMessageBox::critical(0, tr("Url download error"), tr("Couldn't download file at url: %1, reason: %2.").arg(url).arg(reason));
 }
 
-void GUI::on_actionSet_global_upload_limit_triggered(){
+void GUI::on_actionSet_global_upload_limit_triggered() {
   qDebug("actionSet_global_upload_limit_triggered");
   new BandwidthAllocationDialog(this, true, BTSession, QStringList());
 }
 
-void GUI::on_actionSet_global_download_limit_triggered(){
+void GUI::on_actionSet_global_download_limit_triggered() {
   qDebug("actionSet_global_download_limit_triggered");
   new BandwidthAllocationDialog(this, false, BTSession, QStringList());
 }
 
-void GUI::on_actionPreview_file_triggered(){
+void GUI::on_actionPreview_file_triggered() {
   if(tabs->currentIndex() > 1) return;
   bool inDownloadList = true;
   if(tabs->currentIndex())
@@ -413,54 +416,54 @@ void GUI::on_actionPreview_file_triggered(){
     selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   else
     selectedIndexes = finishedTorrentTab->getFinishedList()->selectionModel()->selectedIndexes();
-  foreach(index, selectedIndexes){
-    if(index.column() == NAME){
+  foreach(index, selectedIndexes) {
+    if(index.column() == NAME) {
       // Get the file hash
-      QString fileHash;
+      QString hash;
       if(inDownloadList)
-        fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+        hash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
       else
-        fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), F_HASH)).toString();
-      torrent_handle h = BTSession->getTorrentHandle(fileHash);
+        hash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), F_HASH)).toString();
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
       previewSelection = new previewSelect(this, h);
       break;
     }
   }
 }
 
-void GUI::cleanTempPreviewFile(int, QProcess::ExitStatus){
-  if(!QFile::remove(QDir::tempPath()+QDir::separator()+"qBT_preview.tmp")){
-    std::cerr << "Couldn't remove temporary file: " << (const char*)(QDir::tempPath()+QDir::separator()+"qBT_preview.tmp").toUtf8() << "\n";
+void GUI::cleanTempPreviewFile(int, QProcess::ExitStatus) {
+  if(!QFile::remove(QDir::tempPath()+QDir::separator()+QString::fromUtf8("qBT_preview.tmp"))) {
+    std::cerr << "Couldn't remove temporary file: " << (QDir::tempPath()+QDir::separator()+QString::fromUtf8("qBT_preview.tmp")).toUtf8().data() << "\n";
   }
 }
 
-void GUI::displayDLListMenu(const QPoint& pos){
+void GUI::displayDLListMenu(const QPoint& pos) {
   QMenu myDLLlistMenu(this);
   QModelIndex index;
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
-  QSettings settings("qBittorrent", "qBittorrent");
-  QString previewProgram = settings.value("Options/Misc/PreviewProgram", QString()).toString();
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QString previewProgram = settings.value(QString::fromUtf8("Options/Misc/PreviewProgram"), QString()).toString();
   bool has_pause = false, has_start = false, has_preview = false;
-  foreach(index, selectedIndexes){
-    if(index.column() == NAME){
+  foreach(index, selectedIndexes) {
+    if(index.column() == NAME) {
       // Get the file name
-      QString fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+      QString hash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
       // Get handle and pause the torrent
-      torrent_handle h = BTSession->getTorrentHandle(fileHash);
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
       if(!h.is_valid()) continue;
-      if(h.is_paused()){
-        if(!has_start){
+      if(h.is_paused()) {
+        if(!has_start) {
           myDLLlistMenu.addAction(actionStart);
           has_start = true;
         }
       }else{
-        if(!has_pause){
+        if(!has_pause) {
           myDLLlistMenu.addAction(actionPause);
           has_pause = true;
         }
       }
-      if(!previewProgram.isEmpty() && BTSession->isFilePreviewPossible(fileHash) && !has_preview){
+      if(!previewProgram.isEmpty() && BTSession->isFilePreviewPossible(hash) && !has_preview) {
          myDLLlistMenu.addAction(actionPreview_file);
          has_preview = true;
       }
@@ -482,34 +485,34 @@ void GUI::displayDLListMenu(const QPoint& pos){
 
 // Necessary if we want to close the window
 // in one time if "close to systray" is enabled
-void GUI::on_actionExit_triggered(){
+void GUI::on_actionExit_triggered() {
   force_exit = true;
   close();
 }
 
-void GUI::previewFile(QString filePath){
+void GUI::previewFile(QString filePath) {
   // Check if there is already one preview running
-  if(previewProcess->state() == QProcess::NotRunning){
+  if(previewProcess->state() == QProcess::NotRunning) {
     // First copy temporarily
-    QString tmpPath = QDir::tempPath()+QDir::separator()+"qBT_preview.tmp";
+    QString tmpPath = QDir::tempPath()+QDir::separator()+QString::fromUtf8("qBT_preview.tmp");
     QFile::remove(tmpPath);
     QFile::copy(filePath, tmpPath);
     // Launch program preview
     QStringList params;
     params << tmpPath;
-    QSettings settings("qBittorrent", "qBittorrent");
-    QString previewProgram = settings.value("Options/Misc/PreviewProgram", QString()).toString();
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QString previewProgram = settings.value(QString::fromUtf8("Options/Misc/PreviewProgram"), QString()).toString();
     previewProcess->start(previewProgram, params, QIODevice::ReadOnly);
   }else{
     QMessageBox::critical(0, tr("Preview process already running"), tr("There is already another preview process running.\nPlease close the other one first."));
   }
 }
 
-void GUI::on_actionClearLog_triggered(){
+void GUI::on_actionClearLog_triggered() {
   infoBar->clear();
 }
 
-void GUI::displayInfoBarMenu(const QPoint& pos){
+void GUI::displayInfoBarMenu(const QPoint& pos) {
   // Log Menu
   QMenu myLogMenu(this);
   myLogMenu.addAction(actionClearLog);
@@ -518,7 +521,7 @@ void GUI::displayInfoBarMenu(const QPoint& pos){
 }
 
 void GUI::sortProgressColumnDelayed() {
-    if(delayedSorting){
+    if(delayedSorting) {
       sortDownloadListFloat(PROGRESS, delayedSortingOrder);
       qDebug("Delayed sorting of progress column");
     }
@@ -526,101 +529,98 @@ void GUI::sortProgressColumnDelayed() {
 
 // get information from torrent handles and
 // update download list accordingly
-void GUI::updateDlList(bool force){
+void GUI::updateDlList(bool force) {
   char tmp[MAX_CHAR_TMP];
   char tmp2[MAX_CHAR_TMP];
   // update global informations
   snprintf(tmp, MAX_CHAR_TMP, "%.1f", BTSession->getPayloadUploadRate()/1024.);
   snprintf(tmp2, MAX_CHAR_TMP, "%.1f", BTSession->getPayloadDownloadRate()/1024.);
-  if(systrayIntegration){
-    myTrayIcon->setToolTip("<b>"+tr("qBittorrent")+"</b><br>"+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(tmp2))+"<br>"+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(tmp))); // tray icon
+  if(systrayIntegration) {
+    myTrayIcon->setToolTip(QString::fromUtf8("<b>")+tr("qBittorrent")+QString::fromUtf8("</b><br>")+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString::fromUtf8(tmp2))+QString::fromUtf8("<br>")+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString::fromUtf8(tmp))); // tray icon
   }
-  if(getCurrentTabIndex() == 1){
+  if(getCurrentTabIndex() == 1) {
     finishedTorrentTab->updateFinishedList();
     return;
   }
-  if(!force && getCurrentTabIndex() != 0){
+  if(!force && getCurrentTabIndex() != 0) {
     // No need to update if qBittorrent DL list is hidden
     return;
   }
   //BTSession->printPausedTorrents();
-  LCD_UpSpeed->display(tmp); // UP LCD
-  LCD_DownSpeed->display(tmp2); // DL LCD
+  LCD_UpSpeed->display(QString::fromUtf8(tmp)); // UP LCD
+  LCD_DownSpeed->display(QString::fromUtf8(tmp2)); // DL LCD
   // browse handles
   QStringList unfinishedTorrents = BTSession->getUnfinishedTorrents();
   QString hash;
-  foreach(hash, unfinishedTorrents){
-    torrent_handle h = BTSession->getTorrentHandle(hash);
+  foreach(hash, unfinishedTorrents) {
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
     try{
-      torrent_status torrentStatus = h.status();
-      QString fileHash = QString(misc::toString(h.info_hash()).c_str());
-      int row = getRowFromHash(fileHash);
-      if(row == -1){
+      QString hash = h.hash();
+      int row = getRowFromHash(hash);
+      if(row == -1) {
         qDebug("Info: Could not find filename in download list, adding it...");
         restoreInDownloadList(h);
-        row = getRowFromHash(fileHash);
+        row = getRowFromHash(hash);
       }
       Q_ASSERT(row != -1);
       // No need to update a paused torrent
       if(h.is_paused()) continue;
       // Parse download state
-      torrent_info ti = h.get_torrent_info();
       // Setting download state
-      switch(torrentStatus.state){
+      switch(h.state()) {
         case torrent_status::finished:
         case torrent_status::seeding:
           qDebug("A torrent that was in download tab just finished, moving it to finished tab");
-          BTSession->setFinishedTorrent(fileHash);
+          BTSession->setFinishedTorrent(hash);
           finishedTorrent(h);
           continue;
         case torrent_status::checking_files:
         case torrent_status::queued_for_checking:
-          if(BTSession->getTorrentsToPauseAfterChecking().indexOf(fileHash) == -1){
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/time.png")), Qt::DecorationRole);
-            setRowColor(row, "grey");
-            Q_ASSERT(torrentStatus.progress <= 1. && torrentStatus.progress >= 0.);
-            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
+          if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) == -1) {
+            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
+            setRowColor(row, QString::fromUtf8("grey"));
+            Q_ASSERT(h.progress() <= 1. && h.progress() >= 0.);
+            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
           }
           break;
         case torrent_status::connecting_to_tracker:
-          if(torrentStatus.download_payload_rate > 0){
+          if(h.download_payload_rate() > 0) {
             // Display "Downloading" status when connecting if download speed > 0
-            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)BTSession->getETA(fileHash)));
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
-            setRowColor(row, "green");
+            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)BTSession->getETA(hash)));
+            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png"))), Qt::DecorationRole);
+            setRowColor(row, QString::fromUtf8("green"));
           }else{
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-            setRowColor(row, "grey");
+            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/connecting.png"))), Qt::DecorationRole);
+            setRowColor(row, QString::fromUtf8("grey"));
           }
-          Q_ASSERT(torrentStatus.progress <= 1. && torrentStatus.progress >= 0.);
-          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
-          DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
-          DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
+          Q_ASSERT(h.progress() <= 1. && h.progress() >= 0.);
+          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+          DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
+          DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
           break;
         case torrent_status::downloading:
         case torrent_status::downloading_metadata:
-          if(torrentStatus.download_payload_rate > 0){
-            //qDebug("%s is downloading", (const char*)fileHash.toUtf8());
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/downloading.png")), Qt::DecorationRole);
-            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)BTSession->getETA(fileHash)));
-            setRowColor(row, "green");
+          if(h.download_payload_rate() > 0) {
+            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png"))), Qt::DecorationRole);
+            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)BTSession->getETA(hash)));
+            setRowColor(row, QString::fromUtf8("green"));
           }else{
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/stalled.png")), Qt::DecorationRole);
+            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-            setRowColor(row, "black");
+            setRowColor(row, QString::fromUtf8("black"));
           }
-          Q_ASSERT(torrentStatus.progress <= 1. && torrentStatus.progress >= 0.);
-          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
-          DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)torrentStatus.download_payload_rate));
-          DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)torrentStatus.upload_payload_rate));
+          Q_ASSERT(h.progress() <= 1. && h.progress() >= 0.);
+          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+          DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
+          DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
           break;
         default:
           DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
       }
-      DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString(misc::toString(torrentStatus.num_seeds, true).c_str())+"/"+QString(misc::toString(torrentStatus.num_peers - torrentStatus.num_seeds, true).c_str())));
-      DLListModel->setData(DLListModel->index(row, RATIO), QVariant(QString(misc::toString(BTSession->getRealRatio(fileHash)).c_str())));
-    }catch(invalid_handle e){
+      DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(misc::toQString(h.num_seeds(), true)+QString::fromUtf8("/")+misc::toQString(h.num_peers() - h.num_seeds(), true)));
+      DLListModel->setData(DLListModel->index(row, RATIO), QVariant(misc::toQString(BTSession->getRealRatio(hash))));
+    }catch(invalid_handle e) {
       continue;
     }
   }
@@ -632,49 +632,49 @@ unsigned int GUI::getCurrentTabIndex() const{
   return tabs->currentIndex();
 }
 
-void GUI::restoreInDownloadList(torrent_handle h){
-  QString hash = QString(misc::toString(h.info_hash()).c_str());
+void GUI::restoreInDownloadList(QTorrentHandle h) {
+  QString hash = h.hash();
   int row = getRowFromHash(hash);
   if(row != -1) return;
   row = DLListModel->rowCount();
   // Adding torrent to download list
   DLListModel->insertRow(row);
-  DLListModel->setData(DLListModel->index(row, NAME), QVariant(h.name().c_str()));
-  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)BTSession->torrentEffectiveSize(hash)));
+  DLListModel->setData(DLListModel->index(row, NAME), QVariant(h.name()));
+  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)h.actual_size()));
   DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
   DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
-  DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
+  DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
   DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
   DLListModel->setData(DLListModel->index(row, HASH), QVariant(hash));
   // Pause torrent if it was paused last time
   if(BTSession->isPaused(hash)) {
-    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
-    setRowColor(row, "red");
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/paused.png"))), Qt::DecorationRole);
+    setRowColor(row, QString::fromUtf8("red"));
   }else{
-    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-    setRowColor(row, "grey");
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/connecting.png"))), Qt::DecorationRole);
+    setRowColor(row, QString::fromUtf8("grey"));
   }
   ++nbTorrents;
 }
 
-void GUI::setTabText(int index, QString text){
+void GUI::setTabText(int index, QString text) {
   tabs->setTabText(index, text);
 }
 
-void GUI::sortDownloadListFloat(int index, Qt::SortOrder sortOrder){
+void GUI::sortDownloadListFloat(int index, Qt::SortOrder sortOrder) {
   QList<QPair<int, double> > lines;
   // insertion sorting
   unsigned int nbRows = DLListModel->rowCount();
-  for(unsigned int i=0; i<nbRows; ++i){
+  for(unsigned int i=0; i<nbRows; ++i) {
     misc::insertSort(lines, QPair<int,double>(i, DLListModel->data(DLListModel->index(i, index)).toDouble()), sortOrder);
   }
   // Insert items in new model, in correct order
   unsigned int nbRows_old = lines.size();
-  for(unsigned int row=0; row<nbRows_old; ++row){
+  for(unsigned int row=0; row<nbRows_old; ++row) {
     DLListModel->insertRow(DLListModel->rowCount());
     unsigned int sourceRow = lines[row].first;
     unsigned int nbColumns = DLListModel->columnCount();
-    for(unsigned int col=0; col<nbColumns; ++col){
+    for(unsigned int col=0; col<nbColumns; ++col) {
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col)));
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::ForegroundRole), Qt::ForegroundRole);
@@ -684,20 +684,20 @@ void GUI::sortDownloadListFloat(int index, Qt::SortOrder sortOrder){
   DLListModel->removeRows(0, nbRows_old);
 }
 
-void GUI::sortDownloadListString(int index, Qt::SortOrder sortOrder){
+void GUI::sortDownloadListString(int index, Qt::SortOrder sortOrder) {
   QList<QPair<int, QString> > lines;
   // Insertion sorting
   unsigned int nbRows = DLListModel->rowCount();
-  for(unsigned int i=0; i<nbRows; ++i){
+  for(unsigned int i=0; i<nbRows; ++i) {
     misc::insertSortString(lines, QPair<int, QString>(i, DLListModel->data(DLListModel->index(i, index)).toString()), sortOrder);
   }
   // Insert items in new model, in correct order
   unsigned int nbRows_old = lines.size();
-  for(unsigned int row=0; row<nbRows_old; ++row){
+  for(unsigned int row=0; row<nbRows_old; ++row) {
     DLListModel->insertRow(DLListModel->rowCount());
     unsigned int sourceRow = lines[row].first;
     unsigned int nbColumns = DLListModel->columnCount();
-    for(unsigned int col=0; col<nbColumns; ++col){
+    for(unsigned int col=0; col<nbColumns; ++col) {
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col)));
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
       DLListModel->setData(DLListModel->index(nbRows_old+row, col), DLListModel->data(DLListModel->index(sourceRow, col), Qt::ForegroundRole), Qt::ForegroundRole);
@@ -707,11 +707,11 @@ void GUI::sortDownloadListString(int index, Qt::SortOrder sortOrder){
   DLListModel->removeRows(0, nbRows_old);
 }
 
-void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoadColWidth){
+void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoadColWidth) {
   qDebug("Called sort download list");
   static Qt::SortOrder sortOrder = startSortOrder;
-  if(!fromLoadColWidth && downloadList->header()->sortIndicatorSection() == index){
-    if(sortOrder == Qt::AscendingOrder){
+  if(!fromLoadColWidth && downloadList->header()->sortIndicatorSection() == index) {
+    if(sortOrder == Qt::AscendingOrder) {
       sortOrder = Qt::DescendingOrder;
     }else{
       sortOrder = Qt::AscendingOrder;
@@ -719,9 +719,9 @@ void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoa
   }
   QString sortOrderLetter;
   if(sortOrder == Qt::AscendingOrder)
-    sortOrderLetter = "a";
+    sortOrderLetter = QString::fromUtf8("a");
   else
-    sortOrderLetter = "d";
+    sortOrderLetter = QString::fromUtf8("d");
   if(fromLoadColWidth) {
     // XXX: Why is this needed?
     if(sortOrder == Qt::DescendingOrder)
@@ -731,7 +731,7 @@ void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoa
   } else {
     downloadList->header()->setSortIndicator(index, sortOrder);
   }
-  switch(index){
+  switch(index) {
     case SIZE:
     case ETA:
     case UPSPEED:
@@ -739,7 +739,7 @@ void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoa
       sortDownloadListFloat(index, sortOrder);
       break;
     case PROGRESS:
-      if(fromLoadColWidth){
+      if(fromLoadColWidth) {
         // Progress sorting must be delayed until files are checked (on startup)
         delayedSorting = true;
         qDebug("Delayed sorting of the progress column");
@@ -751,17 +751,17 @@ void GUI::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoa
     default:
       sortDownloadListString(index, sortOrder);
   }
-  QSettings settings("qBittorrent", "qBittorrent");
-  settings.setValue("DownloadListSortedCol", QString(misc::toString(index).c_str())+sortOrderLetter);
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.setValue(QString::fromUtf8("DownloadListSortedCol"), misc::toQString(index)+sortOrderLetter);
 }
 
 // Toggle Main window visibility
-void GUI::toggleVisibility(QSystemTrayIcon::ActivationReason e){
-  if(e == QSystemTrayIcon::Trigger || e == QSystemTrayIcon::DoubleClick){
-    if(isHidden()){
+void GUI::toggleVisibility(QSystemTrayIcon::ActivationReason e) {
+  if(e == QSystemTrayIcon::Trigger || e == QSystemTrayIcon::DoubleClick) {
+    if(isHidden()) {
       show();
-      if(isMinimized()){
-        if(isMaximized()){
+      if(isMinimized()) {
+        if(isMaximized()) {
           showMaximized();
         }else{
           showNormal();
@@ -795,38 +795,38 @@ QPoint GUI::screenCenter() const{
 // (download list)
 void GUI::saveColWidthDLList() const{
   qDebug("Saving columns width in download list");
-  QSettings settings("qBittorrent", "qBittorrent");
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QStringList width_list;
   unsigned int nbColumns = DLListModel->columnCount()-1;
-  for(unsigned int i=0; i<nbColumns; ++i){
-    width_list << QString(misc::toString(downloadList->columnWidth(i)).c_str());
+  for(unsigned int i=0; i<nbColumns; ++i) {
+    width_list << misc::toQString(downloadList->columnWidth(i));
   }
-  settings.setValue("DownloadListColsWidth", width_list.join(" "));
+  settings.setValue(QString::fromUtf8("DownloadListColsWidth"), width_list.join(QString::fromUtf8(" ")));
   qDebug("Download list columns width saved");
 }
 
 // Load columns width in a file that were saved previously
 // (download list)
-bool GUI::loadColWidthDLList(){
+bool GUI::loadColWidthDLList() {
   qDebug("Loading columns width for download list");
-  QSettings settings("qBittorrent", "qBittorrent");
-  QString line = settings.value("DownloadListColsWidth", QString()).toString();
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QString line = settings.value(QString::fromUtf8("DownloadListColsWidth"), QString()).toString();
   if(line.isEmpty())
     return false;
-  QStringList width_list = line.split(' ');
-  if(width_list.size() != DLListModel->columnCount()-1){
+  QStringList width_list = line.split(QString::fromUtf8(" "));
+  if(width_list.size() != DLListModel->columnCount()-1) {
     qDebug("Corrupted values for download list columns sizes");
     return false;
   }
   unsigned int listSize = width_list.size();
-  for(unsigned int i=0; i<listSize; ++i){
+  for(unsigned int i=0; i<listSize; ++i) {
         downloadList->header()->resizeSection(i, width_list.at(i).toInt());
   }
   // Loading last sorted column
-  QString sortedCol = settings.value("DownloadListSortedCol", QString()).toString();
-  if(!sortedCol.isEmpty()){
+  QString sortedCol = settings.value(QString::fromUtf8("DownloadListSortedCol"), QString()).toString();
+  if(!sortedCol.isEmpty()) {
     Qt::SortOrder sortOrder;
-    if(sortedCol.endsWith("d"))
+    if(sortedCol.endsWith(QString::fromUtf8("d")))
       sortOrder = Qt::DescendingOrder;
     else
       sortOrder = Qt::AscendingOrder;
@@ -839,36 +839,36 @@ bool GUI::loadColWidthDLList(){
 }
 
 // Display About Dialog
-void GUI::on_actionAbout_triggered(){
+void GUI::on_actionAbout_triggered() {
   //About dialog
   aboutdlg = new about(this);
 }
 
 // Called when we close the program
-void GUI::closeEvent(QCloseEvent *e){
+void GUI::closeEvent(QCloseEvent *e) {
   qDebug("Mainwindow received closeEvent");
-  QSettings settings("qBittorrent", "qBittorrent");
-  bool goToSystrayOnExit = settings.value("Options/Misc/Behaviour/GoToSystrayOnExit", false).toBool();
-  if(!force_exit && systrayIntegration && goToSystrayOnExit && !this->isHidden()){
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  bool goToSystrayOnExit = settings.value(QString::fromUtf8("Options/Misc/Behaviour/GoToSystrayOnExit"), false).toBool();
+  if(!force_exit && systrayIntegration && goToSystrayOnExit && !this->isHidden()) {
     hide();
     e->ignore();
     return;
   }
-  if(settings.value("Options/Misc/Behaviour/ConfirmOnExit", true).toBool() && nbTorrents != 0){
+  if(settings.value(QString::fromUtf8("Options/Misc/Behaviour/ConfirmOnExit"), true).toBool() && nbTorrents != 0) {
     show();
     if(!isMaximized())
       showNormal();
     if(QMessageBox::question(this,
-       tr("Are you sure you want to quit?")+" -- "+tr("qBittorrent"),
+       tr("Are you sure you want to quit?")+QString::fromUtf8(" -- ")+tr("qBittorrent"),
        tr("The download list is not empty.\nAre you sure you want to quit qBittorrent?"),
        tr("&Yes"), tr("&No"),
-       QString(), 0, 1)){
+       QString(), 0, 1)) {
          e->ignore();
          return;
     }
   }
   hide();
-  if(systrayIntegration){
+  if(systrayIntegration) {
     // Hide tray icon
     myTrayIcon->hide();
   }
@@ -881,14 +881,14 @@ void GUI::closeEvent(QCloseEvent *e){
 }
 
 // Display window to create a torrent
-void GUI::on_actionCreate_torrent_triggered(){
+void GUI::on_actionCreate_torrent_triggered() {
   createWindow = new createtorrent(this);
 }
 
 // Called when we minimize the program
-void GUI::hideEvent(QHideEvent *e){
-  QSettings settings("qBittorrent", "qBittorrent");
-  if(systrayIntegration && settings.value("Options/Misc/Behaviour/GoToSystray", true).toBool() && !e->spontaneous()){
+void GUI::hideEvent(QHideEvent *e) {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  if(systrayIntegration && settings.value(QString::fromUtf8("Options/Misc/Behaviour/GoToSystray"), true).toBool() && !e->spontaneous()) {
     // Hide window
     hide();
   }
@@ -897,20 +897,20 @@ void GUI::hideEvent(QHideEvent *e){
 }
 
 // Action executed when a file is dropped
-void GUI::dropEvent(QDropEvent *event){
+void GUI::dropEvent(QDropEvent *event) {
   event->acceptProposedAction();
-  QStringList files=event->mimeData()->text().split('\n');
+  QStringList files=event->mimeData()->text().split(QString::fromUtf8("\n"));
   // Add file to download list
   QString file;
-  QSettings settings("qBittorrent", "qBittorrent");
-  bool useTorrentAdditionDialog = settings.value("Options/Misc/TorrentAdditionDialog/Enabled", true).toBool();
-  foreach(file, files){
-    file = file.trimmed().replace("file://", "");
-    if(file.startsWith("http://", Qt::CaseInsensitive) || file.startsWith("ftp://", Qt::CaseInsensitive) || file.startsWith("https://", Qt::CaseInsensitive)){
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Options/Misc/TorrentAdditionDialog/Enabled"), true).toBool();
+  foreach(file, files) {
+    file = file.trimmed().replace(QString::fromUtf8("file://"), QString::fromUtf8(""));
+    if(file.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || file.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || file.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
       BTSession->downloadFromUrl(file);
       continue;
     }
-    if(useTorrentAdditionDialog){
+    if(useTorrentAdditionDialog) {
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
       connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
       connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), this, SLOT(setInfoBar(QString, QString)));
@@ -922,8 +922,8 @@ void GUI::dropEvent(QDropEvent *event){
 }
 
 // Decode if we accept drag 'n drop or not
-void GUI::dragEnterEvent(QDragEnterEvent *event){
-  if (event->mimeData()->hasFormat("text/plain")){
+void GUI::dragEnterEvent(QDragEnterEvent *event) {
+  if (event->mimeData()->hasFormat(QString::fromUtf8("text/plain"))) {
     event->acceptProposedAction();
   }
 }
@@ -936,20 +936,20 @@ void GUI::dragEnterEvent(QDragEnterEvent *event){
 
 // Display a dialog to allow user to add
 // torrents to download list
-void GUI::on_actionOpen_triggered(){
+void GUI::on_actionOpen_triggered() {
   QStringList pathsList;
-  QSettings settings("qBittorrent", "qBittorrent");
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   // Open File Open Dialog
   // Note: it is possible to select more than one file
   pathsList = QFileDialog::getOpenFileNames(0,
-                                            tr("Open Torrent Files"), settings.value("MainWindowLastDir", QDir::homePath()).toString(),
-                                            tr("Torrent Files")+" (*.torrent)");
-  if(!pathsList.empty()){
-    QSettings settings("qBittorrent", "qBittorrent");
-    bool useTorrentAdditionDialog = settings.value("Options/Misc/TorrentAdditionDialog/Enabled", true).toBool();
+                                            tr("Open Torrent Files"), settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString(),
+                                            tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
+  if(!pathsList.empty()) {
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Options/Misc/TorrentAdditionDialog/Enabled"), true).toBool();
     unsigned int listSize = pathsList.size();
-    for(unsigned int i=0; i<listSize; ++i){
-      if(useTorrentAdditionDialog){
+    for(unsigned int i=0; i<listSize; ++i) {
+      if(useTorrentAdditionDialog) {
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
         connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
         connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), this, SLOT(setInfoBar(QString, QString)));
@@ -961,12 +961,12 @@ void GUI::on_actionOpen_triggered(){
     // Save last dir to remember it
     QStringList top_dir = pathsList.at(0).split(QDir::separator());
     top_dir.removeLast();
-    settings.setValue("MainWindowLastDir", top_dir.join(QDir::separator()));
+    settings.setValue(QString::fromUtf8("MainWindowLastDir"), top_dir.join(QDir::separator()));
   }
 }
 
 // delete from download list AND from hard drive
-void GUI::on_actionDelete_Permanently_triggered(){
+void GUI::on_actionDelete_Permanently_triggered() {
   if(tabs->currentIndex() > 1) return;
   QModelIndexList selectedIndexes;
   bool inDownloadList;
@@ -977,7 +977,7 @@ void GUI::on_actionDelete_Permanently_triggered(){
     selectedIndexes = finishedTorrentTab->getFinishedList()->selectionModel()->selectedIndexes();
     inDownloadList = false;
   }
-  if(!selectedIndexes.isEmpty()){
+  if(!selectedIndexes.isEmpty()) {
     int ret;
     if(inDownloadList) {
       ret = QMessageBox::question(
@@ -998,36 +998,36 @@ void GUI::on_actionDelete_Permanently_triggered(){
       //User clicked YES
       QModelIndex index;
       QStringList hashesToDelete;
-      foreach(index, selectedIndexes){
-        if(index.column() == NAME){
+      foreach(index, selectedIndexes) {
+        if(index.column() == NAME) {
           if(inDownloadList)
             hashesToDelete <<  DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
           else
             hashesToDelete << finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), F_HASH)).toString();
         }
       }
-      QString fileHash;
-      foreach(fileHash, hashesToDelete){
+      QString hash;
+      foreach(hash, hashesToDelete) {
         // Get the file name & hash
         QString fileName;
         int row = -1;
-        if(inDownloadList){
-          row = getRowFromHash(fileHash);
+        if(inDownloadList) {
+          row = getRowFromHash(hash);
           fileName = DLListModel->data(DLListModel->index(row, NAME)).toString();
         }else{
-          row = finishedTorrentTab->getRowFromHash(fileHash);
+          row = finishedTorrentTab->getRowFromHash(hash);
           fileName = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME)).toString();
         }
         Q_ASSERT(row != -1);
         // Remove the torrent
-        BTSession->deleteTorrent(fileHash, true);
+        BTSession->deleteTorrent(hash, true);
         // Delete item from download list
         if(inDownloadList) {
           DLListModel->removeRow(row);
           --nbTorrents;
-          tabs->setTabText(0, tr("Downloads") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
+          tabs->setTabText(0, tr("Downloads") +QString::fromUtf8(" (")+misc::toQString(nbTorrents)+QString::fromUtf8(")"));
         } else {
-          finishedTorrentTab->deleteFromFinishedList(fileHash);
+          finishedTorrentTab->deleteFromFinishedList(hash);
         }
           // Update info bar
           setInfoBar(tr("'%1' was removed permanently.", "'xxx.avi' was removed permanently.").arg(fileName));
@@ -1037,9 +1037,9 @@ void GUI::on_actionDelete_Permanently_triggered(){
 }
 
 // delete selected items in the list
-void GUI::on_actionDelete_triggered(){
+void GUI::on_actionDelete_triggered() {
   if(tabs->currentIndex() == 2) return; // No deletion in search tab
-  if(tabs->currentIndex() == 3){
+  if(tabs->currentIndex() == 3) {
     rssWidget->on_delStream_button_clicked();
     return;
   }
@@ -1052,7 +1052,7 @@ void GUI::on_actionDelete_triggered(){
     selectedIndexes = finishedTorrentTab->getFinishedList()->selectionModel()->selectedIndexes();
     inDownloadList = false;
   }
-  if(!selectedIndexes.isEmpty()){
+  if(!selectedIndexes.isEmpty()) {
     int ret;
     if(inDownloadList) {
       ret = QMessageBox::question(
@@ -1073,36 +1073,36 @@ void GUI::on_actionDelete_triggered(){
       //User clicked YES
       QModelIndex index;
       QStringList hashesToDelete;
-      foreach(index, selectedIndexes){
-        if(index.column() == NAME){
+      foreach(index, selectedIndexes) {
+        if(index.column() == NAME) {
           if(inDownloadList)
             hashesToDelete <<  DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
           else
             hashesToDelete << finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), F_HASH)).toString();
         }
       }
-      QString fileHash;
-      foreach(fileHash, hashesToDelete){
+      QString hash;
+      foreach(hash, hashesToDelete) {
         // Get the file name & hash
         QString fileName;
         int row = -1;
-        if(inDownloadList){
-          row = getRowFromHash(fileHash);
+        if(inDownloadList) {
+          row = getRowFromHash(hash);
           fileName = DLListModel->data(DLListModel->index(row, NAME)).toString();
         }else{
-          row = finishedTorrentTab->getRowFromHash(fileHash);
+          row = finishedTorrentTab->getRowFromHash(hash);
           fileName = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME)).toString();
         }
         Q_ASSERT(row != -1);
         // Remove the torrent
-        BTSession->deleteTorrent(fileHash, false);
+        BTSession->deleteTorrent(hash, false);
         // Delete item from download list
         if(inDownloadList) {
           DLListModel->removeRow(row);
           --nbTorrents;
-          tabs->setTabText(0, tr("Downloads") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
+          tabs->setTabText(0, tr("Downloads") +QString::fromUtf8(" (")+misc::toQString(nbTorrents)+QString::fromUtf8(")"));
         } else {
-          finishedTorrentTab->deleteFromFinishedList(fileHash);
+          finishedTorrentTab->deleteFromFinishedList(hash);
         }
         // Update info bar
         setInfoBar(tr("'%1' was removed.", "'xxx.avi' was removed.").arg(fileName));
@@ -1112,8 +1112,8 @@ void GUI::on_actionDelete_triggered(){
 }
 
 // Called when a torrent is added
-void GUI::torrentAdded(QString path, torrent_handle& h, bool fastResume){
-  QString hash = QString(misc::toString(h.info_hash()).c_str());
+void GUI::torrentAdded(QString path, QTorrentHandle& h, bool fastResume) {
+  QString hash = h.hash();
   if(BTSession->isFinished(hash)) {
     finishedTorrentTab->addFinishedTorrent(hash);
     return;
@@ -1121,56 +1121,56 @@ void GUI::torrentAdded(QString path, torrent_handle& h, bool fastResume){
   int row = DLListModel->rowCount();
   // Adding torrent to download list
   DLListModel->insertRow(row);
-  DLListModel->setData(DLListModel->index(row, NAME), QVariant(h.name().c_str()));
-  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)BTSession->torrentEffectiveSize(hash)));
+  DLListModel->setData(DLListModel->index(row, NAME), QVariant(h.name()));
+  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)h.actual_size()));
   DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
   DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
-  DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
-  DLListModel->setData(DLListModel->index(row, RATIO), QVariant(QString(misc::toString(BTSession->getRealRatio(hash)).c_str())));
+  DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
+  DLListModel->setData(DLListModel->index(row, RATIO), QVariant(misc::toQString(BTSession->getRealRatio(hash))));
   DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
   DLListModel->setData(DLListModel->index(row, HASH), QVariant(hash));
   // Pause torrent if it was paused last time
   // Not using isPaused function because torrents are paused after checking now
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")) {
-    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
-    setRowColor(row, "red");
+  if(QFile::exists(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".paused"))) {
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/paused.png"))), Qt::DecorationRole);
+    setRowColor(row, QString::fromUtf8("red"));
   }else{
-    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-    setRowColor(row, "grey");
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/connecting.png"))), Qt::DecorationRole);
+    setRowColor(row, QString::fromUtf8("grey"));
   }
-  if(!fastResume){
+  if(!fastResume) {
     setInfoBar(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(path));
   }else{
     setInfoBar(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(path));
   }
   ++nbTorrents;
-  tabs->setTabText(0, tr("Downloads") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
+  tabs->setTabText(0, tr("Downloads") +QString::fromUtf8(" (")+misc::toQString(nbTorrents)+QString::fromUtf8(")"));
 }
 
 // Called when trying to add a duplicate torrent
-void GUI::torrentDuplicate(QString path){
+void GUI::torrentDuplicate(QString path) {
   setInfoBar(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(path));
 }
 
-void GUI::torrentCorrupted(QString path){
-  setInfoBar(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(path), "red");
-  setInfoBar(tr("This file is either corrupted or this isn't a torrent."),"red");
+void GUI::torrentCorrupted(QString path) {
+  setInfoBar(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(path), QString::fromUtf8("red"));
+  setInfoBar(tr("This file is either corrupted or this isn't a torrent."),QString::fromUtf8("red"));
 }
 
 // As program parameters, we can get paths or urls.
 // This function parse the parameters and call
 // the right addTorrent function, considering
 // the parameter type.
-void GUI::processParams(const QStringList& params){
+void GUI::processParams(const QStringList& params) {
   QString param;
-  QSettings settings("qBittorrent", "qBittorrent");
-  bool useTorrentAdditionDialog = settings.value("Options/Misc/TorrentAdditionDialog/Enabled", true).toBool();
-  foreach(param, params){
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Options/Misc/TorrentAdditionDialog/Enabled"), true).toBool();
+  foreach(param, params) {
     param = param.trimmed();
-    if(param.startsWith("http://", Qt::CaseInsensitive) || param.startsWith("ftp://", Qt::CaseInsensitive) || param.startsWith("https://", Qt::CaseInsensitive)){
+    if(param.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
       BTSession->downloadFromUrl(param);
     }else{
-      if(useTorrentAdditionDialog){
+      if(useTorrentAdditionDialog) {
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
         connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
         connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), this, SLOT(setInfoBar(QString, QString)));
@@ -1182,12 +1182,12 @@ void GUI::processParams(const QStringList& params){
   }
 }
 
-void GUI::processScannedFiles(const QStringList& params){
+void GUI::processScannedFiles(const QStringList& params) {
   QString param;
-  QSettings settings("qBittorrent", "qBittorrent");
-  bool useTorrentAdditionDialog = settings.value("Options/Misc/TorrentAdditionDialog/Enabled", true).toBool();
-  foreach(param, params){
-    if(useTorrentAdditionDialog){
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Options/Misc/TorrentAdditionDialog/Enabled"), true).toBool();
+  foreach(param, params) {
+    if(useTorrentAdditionDialog) {
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
       connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
       connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), this, SLOT(setInfoBar(QString, QString)));
@@ -1198,10 +1198,10 @@ void GUI::processScannedFiles(const QStringList& params){
   }
 }
 
-void GUI::processDownloadedFiles(QString path, QString url){
-  QSettings settings("qBittorrent", "qBittorrent");
-  bool useTorrentAdditionDialog = settings.value("Options/Misc/TorrentAdditionDialog/Enabled", true).toBool();
-  if(useTorrentAdditionDialog){
+void GUI::processDownloadedFiles(QString path, QString url) {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Options/Misc/TorrentAdditionDialog/Enabled"), true).toBool();
+  if(useTorrentAdditionDialog) {
     torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
     connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
     connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), this, SLOT(setInfoBar(QString, QString)));
@@ -1212,27 +1212,26 @@ void GUI::processDownloadedFiles(QString path, QString url){
 }
 
 // Show torrent properties dialog
-void GUI::showProperties(const QModelIndex &index){
+void GUI::showProperties(const QModelIndex &index) {
   int row = index.row();
-  QString fileHash = DLListModel->data(DLListModel->index(row, HASH)).toString();
-  torrent_handle h = BTSession->getTorrentHandle(fileHash);
+  QString hash = DLListModel->data(DLListModel->index(row, HASH)).toString();
+  QTorrentHandle h = BTSession->getTorrentHandle(hash);
   properties *prop = new properties(this, BTSession, h);
   connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSizeAndProgress(QString)));
   prop->show();
 }
 
-void GUI::updateFileSizeAndProgress(QString hash){
+void GUI::updateFileSizeAndProgress(QString hash) {
   int row = getRowFromHash(hash);
   Q_ASSERT(row != -1);
-  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)BTSession->torrentEffectiveSize(hash)));
-  torrent_handle h = BTSession->getTorrentHandle(hash);
-  torrent_status torrentStatus = h.status();
-  Q_ASSERT(torrentStatus.progress <= 1.);
-  DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
+  QTorrentHandle h = BTSession->getTorrentHandle(hash);
+  DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)h.actual_size()));
+  Q_ASSERT(h.progress() <= 1.);
+  DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
 }
 
 // Set BT session configuration
-void GUI::configureSession(bool deleteOptions){
+void GUI::configureSession(bool deleteOptions) {
   qDebug("Configuring session");
   QPair<int, int> limits;
   unsigned short old_listenPort, new_listenPort;
@@ -1244,13 +1243,13 @@ void GUI::configureSession(bool deleteOptions){
   old_listenPort = BTSession->getListenPort();
   BTSession->setListeningPortsRange(options->getPorts());
   new_listenPort = BTSession->getListenPort();
-  if(new_listenPort != old_listenPort){
+  if(new_listenPort != old_listenPort) {
     setInfoBar(tr("qBittorrent is bind to port: %1", "e.g: qBittorrent is bind to port: 1666").arg( QString(misc::toString(new_listenPort).c_str())));
   }
   // Apply max connec limit (-1 if disabled)
   BTSession->setMaxConnections(options->getMaxConnec());
   limits = options->getLimits();
-  switch(limits.first){
+  switch(limits.first) {
     case -1: // Download limit disabled
     case 0:
       BTSession->setDownloadRateLimit(-1);
@@ -1258,7 +1257,7 @@ void GUI::configureSession(bool deleteOptions){
     default:
       BTSession->setDownloadRateLimit(limits.first*1024);
   }
-  switch(limits.second){
+  switch(limits.second) {
     case -1: // Upload limit disabled
     case 0:
       BTSession->setUploadRateLimit(-1);
@@ -1269,50 +1268,50 @@ void GUI::configureSession(bool deleteOptions){
   // Apply ratio (0 if disabled)
   BTSession->setGlobalRatio(options->getRatio());
   // DHT (Trackerless)
-  if(options->isDHTEnabled()){
-    setInfoBar(tr("DHT support [ON], port: %1").arg(options->getDHTPort()), "blue");
+  if(options->isDHTEnabled()) {
+    setInfoBar(tr("DHT support [ON], port: %1").arg(options->getDHTPort()), QString::fromUtf8("blue"));
     BTSession->enableDHT();
     // Set DHT Port
     BTSession->setDHTPort(options->getDHTPort());
   }else{
-    setInfoBar(tr("DHT support [OFF]"), "blue");
+    setInfoBar(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
     BTSession->disableDHT();
   }
   // UPnP can't be disabled
-  setInfoBar(tr("UPnP support [ON]"), "blue");
+  setInfoBar(tr("UPnP support [ON]"), QString::fromUtf8("blue"));
   // Encryption settings
   int encryptionState = options->getEncryptionSetting();
   // The most secure, rc4 only so that all streams and encrypted
   encryptionSettings.allowed_enc_level = pe_settings::rc4;
   encryptionSettings.prefer_rc4 = true;
-  switch(encryptionState){
+  switch(encryptionState) {
     case 0: //Enabled
       encryptionSettings.out_enc_policy = pe_settings::enabled;
       encryptionSettings.in_enc_policy = pe_settings::enabled;
-      setInfoBar(tr("Encryption support [ON]"), "blue");
+      setInfoBar(tr("Encryption support [ON]"), QString::fromUtf8("blue"));
       break;
     case 1: // Forced
       encryptionSettings.out_enc_policy = pe_settings::forced;
       encryptionSettings.in_enc_policy = pe_settings::forced;
-      setInfoBar(tr("Encryption support [FORCED]"), "blue");
+      setInfoBar(tr("Encryption support [FORCED]"), QString::fromUtf8("blue"));
       break;
     default: // Disabled
       encryptionSettings.out_enc_policy = pe_settings::disabled;
       encryptionSettings.in_enc_policy = pe_settings::disabled;
-      setInfoBar(tr("Encryption support [OFF]"), "blue");
+      setInfoBar(tr("Encryption support [OFF]"), QString::fromUtf8("blue"));
   }
   BTSession->applyEncryptionSettings(encryptionSettings);
   // PeX
-  if(!options->isPeXDisabled()){
+  if(!options->isPeXDisabled()) {
     qDebug("Enabling Peer eXchange (PeX)");
-    setInfoBar(tr("PeX support [ON]"), "blue");
+    setInfoBar(tr("PeX support [ON]"), QString::fromUtf8("blue"));
     BTSession->enablePeerExchange();
   }else{
-    setInfoBar(tr("PeX support [OFF]"), "blue");
+    setInfoBar(tr("PeX support [OFF]"), QString::fromUtf8("blue"));
     qDebug("Peer eXchange (PeX) disabled");
   }
   // Apply filtering settings
-  if(options->isFilteringEnabled()){
+  if(options->isFilteringEnabled()) {
     BTSession->enableIPFilter(options->getFilter());
     tabBottom->setTabEnabled(1, true);
   }else{
@@ -1321,8 +1320,8 @@ void GUI::configureSession(bool deleteOptions){
     tabBottom->setTabEnabled(1, false);
   }
   // Apply Proxy settings
-  if(options->isProxyEnabled()){
-    switch(options->getProxyType()){
+  if(options->isProxyEnabled()) {
+    switch(options->getProxyType()) {
       case HTTP_PW:
         proxySettings.type = proxy_settings::http_pw;
         break;
@@ -1337,7 +1336,7 @@ void GUI::configureSession(bool deleteOptions){
     }
     proxySettings.hostname = options->getProxyIp().toStdString();
     proxySettings.port = options->getProxyPort();
-    if(options->isProxyAuthEnabled()){
+    if(options->isProxyAuthEnabled()) {
       proxySettings.username = options->getProxyUsername().toStdString();
       proxySettings.password = options->getProxyPassword().toStdString();
     }
@@ -1346,61 +1345,61 @@ void GUI::configureSession(bool deleteOptions){
   sessionSettings.user_agent = "qBittorrent "VERSION;
   BTSession->setSessionSettings(sessionSettings);
   // Scan dir stuff
-  if(options->getScanDir().isNull()){
+  if(options->getScanDir().isNull()) {
     BTSession->disableDirectoryScanning();
   }else{
     BTSession->enableDirectoryScanning(options->getScanDir());
   }
-  if(deleteOptions){
+  if(deleteOptions) {
     delete options;
   }
   qDebug("Session configured");
 }
 
 // Toggle paused state of selected torrent
-void GUI::togglePausedState(const QModelIndex& index){
+void GUI::togglePausedState(const QModelIndex& index) {
   int row = index.row();
   bool inDownloadList = true;
   if(tabs->currentIndex() > 1) return;
   if(tabs->currentIndex() == 1)
     inDownloadList = false;
-  QString fileHash;
+  QString hash;
   if(inDownloadList)
-    fileHash = DLListModel->data(DLListModel->index(row, HASH)).toString();
+    hash = DLListModel->data(DLListModel->index(row, HASH)).toString();
   else
-    fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(row, F_HASH)).toString();
-  if(BTSession->isPaused(fileHash)){
-    BTSession->resumeTorrent(fileHash);
-    setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(QString(BTSession->getTorrentHandle(fileHash).name().c_str())));
-    if(inDownloadList){
-      DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-      setRowColor(row, "grey");
+    hash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(row, F_HASH)).toString();
+  if(BTSession->isPaused(hash)) {
+    BTSession->resumeTorrent(hash);
+    setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(BTSession->getTorrentHandle(hash).name()));
+    if(inDownloadList) {
+      DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/connecting.png"))), Qt::DecorationRole);
+      setRowColor(row, QString::fromUtf8("grey"));
     }else{
-    finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
-    finishedTorrentTab->setRowColor(row, "orange");
+    finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png"))), Qt::DecorationRole);
+    finishedTorrentTab->setRowColor(row, QString::fromUtf8("orange"));
     }
   }else{
-    BTSession->pauseTorrent(fileHash);
-    if(inDownloadList){
+    BTSession->pauseTorrent(hash);
+    if(inDownloadList) {
       DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
       DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
       DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-      DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
-      DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
-      setRowColor(row, "red");
+      DLListModel->setData(DLListModel->index(row, NAME), QIcon(QString::fromUtf8(":/Icons/skin/paused.png")), Qt::DecorationRole);
+      DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
+      setRowColor(row, QString::fromUtf8("red"));
     }else{
       finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_UPSPEED), QVariant((double)0.0));
-      finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
-      finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_SEEDSLEECH), QVariant("0/0"));
-      setRowColor(row, "red");
+      finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QIcon(QString::fromUtf8(":/Icons/skin/paused.png")), Qt::DecorationRole);
+      finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
+      setRowColor(row, QString::fromUtf8("red"));
     }
-    setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(QString(BTSession->getTorrentHandle(fileHash).name().c_str())));
+    setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(BTSession->getTorrentHandle(hash).name()));
   }
 }
 
 // Pause All Downloads in DL list
-void GUI::on_actionPause_All_triggered(){
-  QString fileHash;
+void GUI::on_actionPause_All_triggered() {
+  QString hash;
   bool change = false;
   bool inDownloadList = true;
   if(tabs->currentIndex() > 1) return;
@@ -1411,26 +1410,26 @@ void GUI::on_actionPause_All_triggered(){
     nbRows = DLListModel->rowCount();
   else
     nbRows = finishedTorrentTab->getFinishedListModel()->rowCount();
-  for(unsigned int i=0; i<nbRows; ++i){
+  for(unsigned int i=0; i<nbRows; ++i) {
     if(inDownloadList)
-      fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
+      hash = DLListModel->data(DLListModel->index(i, HASH)).toString();
     else
-      fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(i, F_HASH)).toString();
-    if(BTSession->pauseTorrent(fileHash)){
-      if(inDownloadList){
+      hash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(i, F_HASH)).toString();
+    if(BTSession->pauseTorrent(hash)) {
+      if(inDownloadList) {
         // Update DL list items
         DLListModel->setData(DLListModel->index(i, DLSPEED), QVariant((double)0.));
         DLListModel->setData(DLListModel->index(i, UPSPEED), QVariant((double)0.));
         DLListModel->setData(DLListModel->index(i, ETA), QVariant((qlonglong)-1));
-        DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
-        DLListModel->setData(DLListModel->index(i, SEEDSLEECH), QVariant("0/0"));
-        setRowColor(i, "red");
+        DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/paused.png"))), Qt::DecorationRole);
+        DLListModel->setData(DLListModel->index(i, SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
+        setRowColor(i, QString::fromUtf8("red"));
       }else{
         // Update finished list items
         finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(i, F_UPSPEED), QVariant((double)0.));
-        finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(i, F_NAME), QVariant(QIcon(":/Icons/skin/paused.png")), Qt::DecorationRole);
-        finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(i, F_SEEDSLEECH), QVariant("0/0"));
-        finishedTorrentTab->setRowColor(i, "red");
+        finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(i, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/paused.png"))), Qt::DecorationRole);
+        finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(i, F_SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
+        finishedTorrentTab->setRowColor(i, QString::fromUtf8("red"));
       }
       change = true;
     }
@@ -1440,7 +1439,7 @@ void GUI::on_actionPause_All_triggered(){
 }
 
 // pause selected items in the list
-void GUI::on_actionPause_triggered(){
+void GUI::on_actionPause_triggered() {
   QModelIndexList selectedIndexes;
   bool inDownloadList = true;
   if(tabs->currentIndex() > 1) return;
@@ -1451,39 +1450,39 @@ void GUI::on_actionPause_triggered(){
   else
     selectedIndexes = finishedTorrentTab->getFinishedList()->selectionModel()->selectedIndexes();
   QModelIndex index;
-  foreach(index, selectedIndexes){
-    if(index.column() == NAME){
+  foreach(index, selectedIndexes) {
+    if(index.column() == NAME) {
       // Get the file name
-      QString fileHash;
+      QString hash;
       if(inDownloadList) 
-        fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+        hash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
       else
-        fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), F_HASH)).toString();
-      if(BTSession->pauseTorrent(fileHash)){
+        hash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), F_HASH)).toString();
+      if(BTSession->pauseTorrent(hash)) {
         // Update DL status
         int row = index.row();
-        if(inDownloadList){
+        if(inDownloadList) {
           DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
           DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
           DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-          DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
-          DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
-          setRowColor(row, "red");
+          DLListModel->setData(DLListModel->index(row, NAME), QIcon(QString::fromUtf8(":/Icons/skin/paused.png")), Qt::DecorationRole);
+          DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
+          setRowColor(row, QString::fromUtf8("red"));
         }else{
           finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_UPSPEED), QVariant((double)0.0));
-          finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
-          finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_SEEDSLEECH), QVariant("0/0"));
-          finishedTorrentTab->setRowColor(row, "red");
+          finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QIcon(QString::fromUtf8(":/Icons/skin/paused.png")), Qt::DecorationRole);
+          finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
+          finishedTorrentTab->setRowColor(row, QString::fromUtf8("red"));
         }
-        setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(QString(BTSession->getTorrentHandle(fileHash).name().c_str())));
+        setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(BTSession->getTorrentHandle(hash).name()));
       }
     }
   }
 }
 
 // Resume All Downloads in DL list
-void GUI::on_actionStart_All_triggered(){
-  QString fileHash;
+void GUI::on_actionStart_All_triggered() {
+  QString hash;
   bool change = false;
   bool inDownloadList = true;
   if(tabs->currentIndex() > 1) return;
@@ -1494,19 +1493,19 @@ void GUI::on_actionStart_All_triggered(){
     nbRows = DLListModel->rowCount();
   else
     nbRows = finishedTorrentTab->getFinishedListModel()->rowCount();
-  for(unsigned int i=0; i<nbRows; ++i){
+  for(unsigned int i=0; i<nbRows; ++i) {
     if(inDownloadList)
-      fileHash = DLListModel->data(DLListModel->index(i, HASH)).toString();
+      hash = DLListModel->data(DLListModel->index(i, HASH)).toString();
     else
-      fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(i, F_HASH)).toString();
+      hash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(i, F_HASH)).toString();
     // Remove .paused file
-    if(BTSession->resumeTorrent(fileHash)){
-      if(inDownloadList){
-        DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-        setRowColor(i, "grey");
+    if(BTSession->resumeTorrent(hash)) {
+      if(inDownloadList) {
+        DLListModel->setData(DLListModel->index(i, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/connecting.png"))), Qt::DecorationRole);
+        setRowColor(i, QString::fromUtf8("grey"));
       }else{
-        finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(i, F_NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
-        finishedTorrentTab->setRowColor(i, "orange");
+        finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(i, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png"))), Qt::DecorationRole);
+        finishedTorrentTab->setRowColor(i, QString::fromUtf8("orange"));
       }
       change = true;
     }
@@ -1516,7 +1515,7 @@ void GUI::on_actionStart_All_triggered(){
 }
 
 // start selected items in the list
-void GUI::on_actionStart_triggered(){
+void GUI::on_actionStart_triggered() {
   QModelIndexList selectedIndexes;
   bool inDownloadList = true;
   if(tabs->currentIndex() > 1) return;
@@ -1527,74 +1526,74 @@ void GUI::on_actionStart_triggered(){
   else
     selectedIndexes = finishedTorrentTab->getFinishedList()->selectionModel()->selectedIndexes();
   QModelIndex index;
-  foreach(index, selectedIndexes){
-    if(index.column() == NAME){
+  foreach(index, selectedIndexes) {
+    if(index.column() == NAME) {
       // Get the file name
-      QString fileHash;
+      QString hash;
       if(inDownloadList)
-       fileHash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+       hash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
       else
-        fileHash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), F_HASH)).toString();
-      if(BTSession->resumeTorrent(fileHash)){
+        hash = finishedTorrentTab->getFinishedListModel()->data(finishedTorrentTab->getFinishedListModel()->index(index.row(), F_HASH)).toString();
+      if(BTSession->resumeTorrent(hash)) {
         // Update DL status
         int row = index.row();
-        if(inDownloadList){
-          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/connecting.png")), Qt::DecorationRole);
-          setRowColor(row, "grey");
+        if(inDownloadList) {
+          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/connecting.png"))), Qt::DecorationRole);
+          setRowColor(row, QString::fromUtf8("grey"));
         }else{
-          finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
-          finishedTorrentTab->setRowColor(row, "orange");
+          finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png"))), Qt::DecorationRole);
+          finishedTorrentTab->setRowColor(row, QString::fromUtf8("orange"));
         }
-        setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(QString(BTSession->getTorrentHandle(fileHash).name().c_str())));
+        setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(BTSession->getTorrentHandle(hash).name()));
       }
     }
   }
 }
 
-void GUI::addUnauthenticatedTracker(QPair<torrent_handle,std::string> tracker){
+void GUI::addUnauthenticatedTracker(QPair<QTorrentHandle,QString> tracker) {
   // Trackers whose authentication was cancelled
-  if(unauthenticated_trackers.indexOf(tracker) < 0){
+  if(unauthenticated_trackers.indexOf(tracker) < 0) {
     unauthenticated_trackers << tracker;
   }
 }
 
 // display properties of selected items
-void GUI::on_actionTorrent_Properties_triggered(){
+void GUI::on_actionTorrent_Properties_triggered() {
   if(tabs->currentIndex() > 1) return;
-  if(tabs->currentIndex() == 1){
+  if(tabs->currentIndex() == 1) {
     finishedTorrentTab->propertiesSelection();
     return;
   }
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   QModelIndex index;
-  foreach(index, selectedIndexes){
-    if(index.column() == NAME){
+  foreach(index, selectedIndexes) {
+    if(index.column() == NAME) {
       showProperties(index);
     }
   }
 }
 
 // called when a torrent has finished
-void GUI::finishedTorrent(torrent_handle& h){
-    QSettings settings("qBittorrent", "qBittorrent");
+void GUI::finishedTorrent(QTorrentHandle& h) {
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     bool show_msg = true;
-    QString fileName = QString(h.name().c_str());
-    int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
+    QString fileName = h.name();
+    int useOSD = settings.value(QString::fromUtf8("Options/OSDEnabled"), 1).toInt();
     // Add it to finished tab
-    QString hash = QString(misc::toString(h.info_hash()).c_str());
-    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")){
+    QString hash = h.hash();
+    if(QFile::exists(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".finished"))) {
       show_msg = false;
-      qDebug("We received a finished signal for torrent %s, but it already has a .finished file", (const char*)hash.toUtf8());
+      qDebug("We received a finished signal for torrent %s, but it already has a .finished file", hash.toUtf8().data());
     }
     if(show_msg)
       setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
     int row = getRowFromHash(hash);
-    if(row != -1){
+    if(row != -1) {
       DLListModel->removeRow(row);
       --nbTorrents;
-      tabs->setTabText(0, tr("Downloads") +" ("+QString(misc::toString(nbTorrents).c_str())+")");
+      tabs->setTabText(0, tr("Downloads") +QString::fromUtf8(" (")+misc::toQString(nbTorrents)+QString::fromUtf8(")"));
     }else{
-      qDebug("finished torrent %s is not in download list, nothing to do", (const char*)hash.toUtf8());
+      qDebug("finished torrent %s is not in download list, nothing to do", hash.toUtf8().data());
     }
     finishedTorrentTab->addFinishedTorrent(hash);
     if(show_msg && systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
@@ -1603,28 +1602,27 @@ void GUI::finishedTorrent(torrent_handle& h){
 }
 
 // Called when a torrent finished checking
-void GUI::torrentChecked(QString hash){
+void GUI::torrentChecked(QString hash) {
   // Check if the torrent was paused after checking
-  if(BTSession->isPaused(hash)){
+  if(BTSession->isPaused(hash)) {
     // Was paused, change its icon/color
-    if(BTSession->isFinished(hash)){
+    if(BTSession->isFinished(hash)) {
       // In finished list
       qDebug("Automatically paused torrent was in finished list");
       int row = finishedTorrentTab->getRowFromHash(hash);
-      if(row == -1){
+      if(row == -1) {
         finishedTorrentTab->addFinishedTorrent(hash);
         row = finishedTorrentTab->getRowFromHash(hash);
       }
       Q_ASSERT(row != -1);
       finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_UPSPEED), QVariant((double)0.0));
-      finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
-      finishedTorrentTab->setRowColor(row, "red");
+      finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QIcon(QString::fromUtf8(":/Icons/skin/paused.png")), Qt::DecorationRole);
+      finishedTorrentTab->setRowColor(row, QString::fromUtf8("red"));
     }else{
       // In download list
       int row = getRowFromHash(hash);
-      torrent_handle h = BTSession->getTorrentHandle(hash);
-      torrent_status torrentStatus = h.status();
-      if(row ==-1){
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
+      if(row ==-1) {
         restoreInDownloadList(h);
         row = getRowFromHash(hash);
       }
@@ -1632,11 +1630,11 @@ void GUI::torrentChecked(QString hash){
       DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
       DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
       DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-      DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
-      setRowColor(row, "red");
+      DLListModel->setData(DLListModel->index(row, NAME), QIcon(QString::fromUtf8(":/Icons/skin/paused.png")), Qt::DecorationRole);
+      setRowColor(row, QString::fromUtf8("red"));
       // Update progress in download list
-      Q_ASSERT(torrentStatus.progress <= 1. && torrentStatus.progress >= 0.);
-      DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)torrentStatus.progress));
+      Q_ASSERT(h.progress() <= 1. && h.progress() >= 0.);
+      DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
       // Delayed Sorting
       sortProgressColumnDelayed();
     }
@@ -1644,31 +1642,31 @@ void GUI::torrentChecked(QString hash){
 }
 
 // Notification when disk is full
-void GUI::fullDiskError(torrent_handle& h){
-  QSettings settings("qBittorrent", "qBittorrent");
-  int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
-  if(systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))){
-    myTrayIcon->showMessage(tr("I/O Error", "i.e: Input/Output Error"), tr("An error occured when trying to read or write %1. The disk is probably full, download has been paused", "e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused").arg(QString(h.name().c_str())), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
+void GUI::fullDiskError(QTorrentHandle& h) {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  int useOSD = settings.value(QString::fromUtf8("Options/OSDEnabled"), 1).toInt();
+  if(systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
+    myTrayIcon->showMessage(tr("I/O Error", "i.e: Input/Output Error"), tr("An error occured when trying to read or write %1. The disk is probably full, download has been paused", "e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused").arg(h.name()), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
   }
   // Download will be paused by libtorrent. Updating GUI information accordingly
-  QString hash = QString(misc::toString(h.info_hash()).c_str());
-  qDebug("Full disk error, pausing torrent %s", (const char*)hash.toUtf8());
-  if(BTSession->isFinished(hash)){
+  QString hash = h.hash();
+  qDebug("Full disk error, pausing torrent %s", hash.toUtf8().data());
+  if(BTSession->isFinished(hash)) {
     // In finished list
     qDebug("Automatically paused torrent was in finished list");
     int row = finishedTorrentTab->getRowFromHash(hash);
-    if(row == -1){
+    if(row == -1) {
       finishedTorrentTab->addFinishedTorrent(hash);
       row = finishedTorrentTab->getRowFromHash(hash);
     }
     Q_ASSERT(row != -1);
     finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_UPSPEED), QVariant((double)0.0));
-    finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
-    finishedTorrentTab->setRowColor(row, "red");
+    finishedTorrentTab->getFinishedListModel()->setData(finishedTorrentTab->getFinishedListModel()->index(row, F_NAME), QIcon(QString::fromUtf8(":/Icons/skin/paused.png")), Qt::DecorationRole);
+    finishedTorrentTab->setRowColor(row, QString::fromUtf8("red"));
   }else{
     // In download list
     int row = getRowFromHash(hash);
-    if(row == -1){
+    if(row == -1) {
       restoreInDownloadList(BTSession->getTorrentHandle(hash));
       row = getRowFromHash(hash);
     }
@@ -1676,34 +1674,34 @@ void GUI::fullDiskError(torrent_handle& h){
     DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
     DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
     DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-    DLListModel->setData(DLListModel->index(row, NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
-    setRowColor(row, "red");
+    DLListModel->setData(DLListModel->index(row, NAME), QIcon(QString::fromUtf8(":/Icons/skin/paused.png")), Qt::DecorationRole);
+    setRowColor(row, QString::fromUtf8("red"));
   }
-  setInfoBar(tr("An error occured (full disk?), '%1' paused.", "e.g: An error occured (full disk?), 'xxx.avi' paused.").arg(QString(h.get_torrent_info().name().c_str())));
+  setInfoBar(tr("An error occured (full disk?), '%1' paused.", "e.g: An error occured (full disk?), 'xxx.avi' paused.").arg(h.name()));
 }
 
 // Called when we couldn't listen on any port
 // in the given range.
-void GUI::portListeningFailure(){
-  setInfoBar(tr("Couldn't listen on any of the given ports."), "red");
+void GUI::portListeningFailure() {
+  setInfoBar(tr("Couldn't listen on any of the given ports."), QString::fromUtf8("red"));
 }
 
 // Called when a tracker requires authentication
-void GUI::trackerAuthenticationRequired(torrent_handle& h){
-  if(unauthenticated_trackers.indexOf(QPair<torrent_handle,std::string>(h, h.status().current_tracker)) < 0){
+void GUI::trackerAuthenticationRequired(QTorrentHandle& h) {
+  if(unauthenticated_trackers.indexOf(QPair<QTorrentHandle,QString>(h, h.current_tracker())) < 0) {
     // Tracker login
     new trackerLogin(this, h);
   }
 }
 
 // Check connection status and display right icon
-void GUI::checkConnectionStatus(){
+void GUI::checkConnectionStatus() {
 //   qDebug("Checking connection status");
   char tmp[MAX_CHAR_TMP];
   session_status sessionStatus = BTSession->getSessionStatus();
   // Update ratio info
   float ratio = 1.;
-  if(sessionStatus.total_payload_download == 0){
+  if(sessionStatus.total_payload_download == 0) {
     if(sessionStatus.total_payload_upload == 0)
       ratio = 1.;
     else
@@ -1715,28 +1713,28 @@ void GUI::checkConnectionStatus(){
   }
   snprintf(tmp, MAX_CHAR_TMP, "%.1f", ratio);
   LCD_Ratio->display(tmp);
-  if(ratio < 0.5){
+  if(ratio < 0.5) {
     lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/unhappy.png")));
   }else{
-    if(ratio > 1.0){
+    if(ratio > 1.0) {
       lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/smile.png")));
     }else{
       lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/stare.png")));
     }
   }
-  if(sessionStatus.has_incoming_connections){
+  if(sessionStatus.has_incoming_connections) {
     // Connection OK
     connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/connected.png")));
-    connecStatusLblIcon->setToolTip("<b>"+tr("Connection Status:")+"</b><br>"+tr("Online"));
+    connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection Status:")+QString::fromUtf8("</b><br>")+tr("Online"));
   }else{
-    if(sessionStatus.num_peers){
+    if(sessionStatus.num_peers) {
       // Firewalled ?
       connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/firewalled.png")));
-      connecStatusLblIcon->setToolTip("<b>"+tr("Connection Status:")+"</b><br>"+tr("Firewalled?", "i.e: Behind a firewall/router?")+"<br><i>"+tr("No incoming connections...")+"</i>");
+      connecStatusLblIcon->setToolTip("<b>"+tr("Connection Status:")+QString::fromUtf8("</b><br>")+tr("Firewalled?", "i.e: Behind a firewall/router?")+QString::fromUtf8("<br><i>")+tr("No incoming connections...")+QString::fromUtf8("</i>"));
     }else{
       // Disconnected
       connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/disconnected.png")));
-      connecStatusLblIcon->setToolTip("<b>"+tr("Connection status:")+"</b><br>"+tr("Offline")+"<br><i>"+tr("No peers found...")+"</i>");
+      connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+tr("Offline")+QString::fromUtf8("<br><i>")+tr("No peers found...")+QString::fromUtf8("</i>"));
     }
   }
 }
@@ -1748,31 +1746,31 @@ void GUI::checkConnectionStatus(){
  *****************************************************/
 
 // Set the color of a row in data model
-void GUI::setRowColor(int row, QString color){
+void GUI::setRowColor(int row, QString color) {
   unsigned int nbColumns = DLListModel->columnCount();
-  for(unsigned int i=0; i<nbColumns; ++i){
+  for(unsigned int i=0; i<nbColumns; ++i) {
     DLListModel->setData(DLListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
   }
 }
 
 // return the row of in data model
-// corresponding to the given the filehash
+// corresponding to the given the hash
 int GUI::getRowFromHash(QString hash) const{
   unsigned int nbRows = DLListModel->rowCount();
-  for(unsigned int i=0; i<nbRows; ++i){
-    if(DLListModel->data(DLListModel->index(i, HASH)) == hash){
+  for(unsigned int i=0; i<nbRows; ++i) {
+    if(DLListModel->data(DLListModel->index(i, HASH)) == hash) {
       return i;
     }
   }
   return -1;
 }
 
-void GUI::downloadFromURLList(const QStringList& urls){
+void GUI::downloadFromURLList(const QStringList& urls) {
   BTSession->downloadFromURLList(urls);
 }
 
-void GUI::displayDownloadingUrlInfos(QString url){
-  setInfoBar(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(url), "black");
+void GUI::displayDownloadingUrlInfos(QString url) {
+  setInfoBar(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(url), QString::fromUtf8("black"));
 }
 
 /*****************************************************
@@ -1781,9 +1779,9 @@ void GUI::displayDownloadingUrlInfos(QString url){
  *                                                   *
  *****************************************************/
 
-void GUI::createTrayIcon(){
+void GUI::createTrayIcon() {
   // Tray icon
-  myTrayIcon = new QSystemTrayIcon(QIcon(":/Icons/qbittorrent22.png"), this);
+  myTrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent22.png")), this);
   // Tray icon Menu
   myTrayIconMenu = new QMenu(this);
   myTrayIconMenu->addAction(actionOpen);
@@ -1804,20 +1802,20 @@ void GUI::createTrayIcon(){
 }
 
 // Display Program Options
-void GUI::on_actionOptions_triggered(){
+void GUI::on_actionOptions_triggered() {
   options = new options_imp(this);
   connect(options, SIGNAL(status_changed(QString, bool)), this, SLOT(OptionsSaved(QString, bool)));
   options->show();
 }
 
 // Is executed each time options are saved
-void GUI::OptionsSaved(QString info, bool deleteOptions){
+void GUI::OptionsSaved(QString info, bool deleteOptions) {
   bool newSystrayIntegration = options->useSystrayIntegration();
-  if(newSystrayIntegration && !systrayIntegration){
+  if(newSystrayIntegration && !systrayIntegration) {
     // create the trayicon
     createTrayIcon();
   }
-  if(!newSystrayIntegration && systrayIntegration){
+  if(!newSystrayIntegration && systrayIntegration) {
     // Destroy trayicon
     delete myTrayIcon;
     delete myTrayIconMenu;
@@ -1837,7 +1835,7 @@ void GUI::OptionsSaved(QString info, bool deleteOptions){
 
 // Display an input dialog to prompt user for
 // an url
-void GUI::on_actionDownload_from_URL_triggered(){
+void GUI::on_actionDownload_from_URL_triggered() {
   downloadFromURLDialog = new downloadFromURL(this);
   connect(downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), BTSession, SLOT(downloadFromURLList(const QStringList&)));
 }
