@@ -178,7 +178,7 @@ void FinishedTorrents::updateFinishedList(){
     if(h.state() == torrent_status::downloading || (h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking && h.progress() < 1.)) {
       // What are you doing here? go back to download tab!
       qDebug("Info: a torrent was moved from finished to download tab");
-      deleteFromFinishedList(hash);
+      deleteFromFinishedList(hash, true);
       BTSession->setFinishedTorrent(hash);
       emit torrentMovedFromFinishedList(h);
       continue;
@@ -200,14 +200,15 @@ int FinishedTorrents::getRowFromHash(QString hash) const{
 }
 
 // Will move it to download tab
-void FinishedTorrents::deleteFromFinishedList(QString hash){
+void FinishedTorrents::deleteFromFinishedList(QString hash, bool switchTab){
   int row = getRowFromHash(hash);
   Q_ASSERT(row != -1);
   finishedListModel->removeRow(row);
   QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
   --nbFinished;
   ((GUI*)parent)->setTabText(1, tr("Finished") +" ("+QString::fromUtf8(misc::toString(nbFinished).c_str())+")");
-  BTSession->setUnfinishedTorrent(hash);
+  if(switchTab)
+    BTSession->setUnfinishedTorrent(hash);
 }
 
 QTreeView* FinishedTorrents::getFinishedList(){

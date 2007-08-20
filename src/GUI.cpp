@@ -554,6 +554,10 @@ void GUI::updateDlList(bool force) {
   QString hash;
   foreach(hash, unfinishedTorrents) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(!h.is_valid()){
+      qDebug("We have an invalid handle for: %s", qPrintable(hash));
+      continue;
+    }
     try{
       QString hash = h.hash();
       int row = getRowFromHash(hash);
@@ -1027,7 +1031,7 @@ void GUI::on_actionDelete_Permanently_triggered() {
           --nbTorrents;
           tabs->setTabText(0, tr("Downloads") +QString::fromUtf8(" (")+misc::toQString(nbTorrents)+QString::fromUtf8(")"));
         } else {
-          finishedTorrentTab->deleteFromFinishedList(hash);
+          finishedTorrentTab->deleteFromFinishedList(hash, false);
         }
           // Update info bar
           setInfoBar(tr("'%1' was removed permanently.", "'xxx.avi' was removed permanently.").arg(fileName));
@@ -1102,7 +1106,7 @@ void GUI::on_actionDelete_triggered() {
           --nbTorrents;
           tabs->setTabText(0, tr("Downloads") +QString::fromUtf8(" (")+misc::toQString(nbTorrents)+QString::fromUtf8(")"));
         } else {
-          finishedTorrentTab->deleteFromFinishedList(hash);
+          finishedTorrentTab->deleteFromFinishedList(hash, false);
         }
         // Update info bar
         setInfoBar(tr("'%1' was removed.", "'xxx.avi' was removed.").arg(fileName));

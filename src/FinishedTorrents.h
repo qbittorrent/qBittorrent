@@ -53,7 +53,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
   public slots:
     void addFinishedTorrent(QString hash);
     void updateFinishedList();
-    void deleteFromFinishedList(QString hash);
+    void deleteFromFinishedList(QString hash, bool switchTab=false);
     void showProperties(const QModelIndex &index);
     void propertiesSelection();
     void displayFinishedListMenu(const QPoint&);
