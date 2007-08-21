@@ -158,7 +158,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent) {
   force_exit = false;
   // Resume unfinished torrents
   BTSession->resumeUnfinishedTorrents();
-	// Load last columns width for download list
+  // Load last columns width for download list
   if(!loadColWidthDLList()) {
     downloadList->header()->resizeSection(0, 200);
   }
