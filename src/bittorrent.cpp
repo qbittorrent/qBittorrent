@@ -966,6 +966,7 @@ void bittorrent::readAlerts() {
     if (torrent_finished_alert* p = dynamic_cast<torrent_finished_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
       QString hash = h.hash();
+      qDebug("Received finished alert for %s", h.name().toUtf8().data());
       setFinishedTorrent(hash);
       emit finishedTorrent(h);
     }

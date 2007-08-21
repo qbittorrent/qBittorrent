@@ -1579,30 +1579,31 @@ void GUI::on_actionTorrent_Properties_triggered() {
 
 // called when a torrent has finished
 void GUI::finishedTorrent(QTorrentHandle& h) {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    bool show_msg = true;
-    QString fileName = h.name();
-    int useOSD = settings.value(QString::fromUtf8("Options/OSDEnabled"), 1).toInt();
-    // Add it to finished tab
-    QString hash = h.hash();
-    if(QFile::exists(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".finished"))) {
-      show_msg = false;
-      qDebug("We received a finished signal for torrent %s, but it already has a .finished file", hash.toUtf8().data());
-    }
-    if(show_msg)
-      setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
-    int row = getRowFromHash(hash);
-    if(row != -1) {
-      DLListModel->removeRow(row);
-      --nbTorrents;
-      tabs->setTabText(0, tr("Downloads") +QString::fromUtf8(" (")+misc::toQString(nbTorrents)+QString::fromUtf8(")"));
-    }else{
-      qDebug("finished torrent %s is not in download list, nothing to do", hash.toUtf8().data());
-    }
-    finishedTorrentTab->addFinishedTorrent(hash);
-    if(show_msg && systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
-      myTrayIcon->showMessage(tr("Download finished"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
-    }
+  qDebug("In GUI, a torrent has finished");
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  bool show_msg = true;
+  QString fileName = h.name();
+  int useOSD = settings.value(QString::fromUtf8("Options/OSDEnabled"), 1).toInt();
+  // Add it to finished tab
+  QString hash = h.hash();
+  if(QFile::exists(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".finished"))) {
+    show_msg = false;
+    qDebug("We received a finished signal for torrent %s, but it already has a .finished file", hash.toUtf8().data());
+  }
+  if(show_msg)
+    setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
+  int row = getRowFromHash(hash);
+  if(row != -1) {
+    DLListModel->removeRow(row);
+    --nbTorrents;
+    tabs->setTabText(0, tr("Downloads") +QString::fromUtf8(" (")+misc::toQString(nbTorrents)+QString::fromUtf8(")"));
+  }else{
+    qDebug("finished torrent %s is not in download list, nothing to do", hash.toUtf8().data());
+  }
+  finishedTorrentTab->addFinishedTorrent(hash);
+  if(show_msg && systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
+    myTrayIcon->showMessage(tr("Download finished"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
+  }
 }
 
 // Called when a torrent finished checking
