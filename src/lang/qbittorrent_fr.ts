@@ -2254,24 +2254,24 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Oui</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="122"/>
+        <location filename="../PropListDelegate.h" line="123"/>
         <source>Ignored</source>
         <translation>Ignoré</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="123"/>
+        <location filename="../PropListDelegate.h" line="124"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normale</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="124"/>
+        <location filename="../PropListDelegate.h" line="125"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Haute</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="125"/>
+        <location filename="../PropListDelegate.h" line="126"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maximale</translation>

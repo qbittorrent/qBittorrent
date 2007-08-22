@@ -70,6 +70,7 @@ LANGUAGES UPDATED:
 - Spanish *BETA5*
 - German *BETA5*
 - Russian *BETA5*
+- Korean *BETA5*
 
 beta4->beta5 changelog:
 - FEATURE: Supports Bittorrent FAST extension
@@ -91,5 +92,5 @@ beta4->beta5 changelog:
 - BUGFIX: Fixed preview from seeding list
 - BUGFIX: Fixed Alt+3 & Ctrl+F keyboard shortcuts for third tab
 - BUGFIX: Improved unicode support
-- I18N: Updated Italian, Polish, Portuguese, Brazilian, German, Russian and Spanish translations
+- I18N: Updated Italian, Polish, Portuguese, Brazilian, German, Russian, Korean and Spanish translations
 - COSMETIC: Changed the way progress bars are rendered
