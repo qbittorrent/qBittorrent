@@ -394,14 +394,14 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
     QString savePath = getSavePath(hash);
     // Adding files to bittorrent session
     if(has_filtered_files(hash)) {
-      h = s->add_torrent(t, fs::path(savePath.toUtf8().data()), resume_data, false);
+      h = s->add_torrent(t, fs::path(savePath.toUtf8().data()), resume_data, false, true);
       int index = fullAllocationModeList.indexOf(hash);
       if(index == -1) {
         fullAllocationModeList << hash;
       }
       qDebug("Full allocation mode");
     }else{
-      h = s->add_torrent(t, fs::path(savePath.toUtf8().data()), resume_data, true);
+      h = s->add_torrent(t, fs::path(savePath.toUtf8().data()), resume_data, true, true);
       qDebug("Compact allocation mode");
     }
     if(!h.is_valid()) {
@@ -448,6 +448,8 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
       qDebug("Incremental download enabled for %s", t.name().c_str());
       h.set_sequenced_download_threshold(1);
     }
+    // Start torrent because it was added in paused state
+    h.resume();
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")) {
       finishedTorrents << hash;
     }else{

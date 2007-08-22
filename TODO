@@ -92,5 +92,6 @@ beta4->beta5 changelog:
 - BUGFIX: Fixed preview from seeding list
 - BUGFIX: Fixed Alt+3 & Ctrl+F keyboard shortcuts for third tab
 - BUGFIX: Improved unicode support
+- BUGFIX: Add torrents in pause before applying settings to avoid race conditions
 - I18N: Updated Italian, Polish, Portuguese, Brazilian, German, Russian, Korean and Spanish translations
 - COSMETIC: Changed the way progress bars are rendered
