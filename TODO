@@ -71,26 +71,5 @@ LANGUAGES UPDATED:
 - Russian *BETA5*
 - Korean *BETA5*
 
-beta4->beta5 changelog:
-- FEATURE: Supports Bittorrent FAST extension
-- FEATURE: Improved code handling torrents that have just finished checking
-- FEATURE: Improved progress column sorting code
-- FEATURE: Allow to remove url seeds, even hard-coded ones
-- FEATURE: Improved code for handling of finished torrents
-- FEATURE: Optimized download list refreshing a little
-- FEATURE: Big code cleanup
-- BUGFIX: Wait for torrent_paused_alert before saving fast resume data on exit
-- BUGFIX: Wait for torrent_paused_alert before reloading a torrent for full allocation mode
-- BUFFIG: Fixed overflow causing ratio data to be negative
-- BUGFIX: Fixed progress column delayed sorting (after torrent finished checking)
-- BUGFIX: Finished torrents were still displayed as checking when paused by libtorrent on full disk (hitted an assert)
-- BUGFIX: Fixed the way icons are installed to avoid problems on some systems
-- BUGFIX: Fixed qBittorrent version in .desktop file
-- BUGFIX: Fixed session ratio value (was either 10. or 1.)
-- BUGFIX: Improved incremental download
-- BUGFIX: Fixed preview from seeding list
-- BUGFIX: Fixed Alt+3 & Ctrl+F keyboard shortcuts for third tab
-- BUGFIX: Improved unicode support
-- BUGFIX: Add torrents in pause before applying settings to avoid race conditions
-- I18N: Updated Italian, Polish, Portuguese, Brazilian, German, Russian, Korean and Spanish translations
-- COSMETIC: Improved the way progress bars are rendered
+beta5->beta6 changelog:
+- BUGFIX: Made torrent deletion from hard-drive safer

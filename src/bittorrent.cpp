@@ -166,6 +166,10 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   }
   QString savePath = h.save_path();
   QString fileName = h.name();
+  QStringList files_path;
+  if(permanent){
+    files_path = h.files_path();
+  }
   // Remove it from session
   s->remove_torrent(h.get_torrent_handle());
   // Remove it from torrent backup directory
@@ -208,7 +212,7 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
     // Remove from Hard drive
     qDebug("Removing this on hard drive: %s", qPrintable(savePath+QDir::separator()+fileName));
     // Deleting in a thread to avoid GUI freeze
-    deleter->deletePath(savePath+QDir::separator()+fileName);
+    deleter->deleteTorrent(savePath, files_path);
   }
 }
 

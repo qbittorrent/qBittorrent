@@ -23,9 +23,11 @@
 #define QTORRENTHANDLE_H
 
 #include <libtorrent/torrent_handle.hpp>
+#include <libtorrent/torrent_info.hpp>
 using namespace libtorrent;
 
 class QString;
+class QStringList;
 
 // A wrapper for torrent_handle in libtorrent
 // to interact well with Qt types
@@ -81,6 +83,7 @@ class QTorrentHandle {
     void file_progress(std::vector<float>& fp);
     size_type total_payload_download();
     size_type total_payload_upload();
+    QStringList files_path() const;
 
     //
     // Setters

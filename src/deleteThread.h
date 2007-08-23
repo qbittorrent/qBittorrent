@@ -26,17 +26,19 @@
 #include <QMutex>
 #include <QWaitCondition>
 #include <QMutexLocker>
+#include <QPair>
 
 #include "misc.h"
 
 class subDeleteThread : public QThread {
   Q_OBJECT
   private:
-    QString path;
+    QString save_path;
+    QStringList files_path;
     bool abort;
 
   public:
-    subDeleteThread(QObject *parent, QString path) : QThread(parent), path(path){
+    subDeleteThread(QObject *parent, QString save_path, QStringList files_path) : QThread(parent), save_path(save_path), files_path(files_path){
       abort = false;
     }
 
@@ -47,16 +49,15 @@ class subDeleteThread : public QThread {
 
   signals:
     // For subthreads
-    void deletionSuccessST(subDeleteThread* st, QString path);
-    void deletionFailureST(subDeleteThread* st, QString path);
+    void deletionSuccessST(subDeleteThread* st);
+    void deletionFailureST(subDeleteThread* st);
 
   protected:
     void run(){
-      if(misc::removePath(path))
-        emit deletionSuccessST(this, path);
+      if(misc::removeTorrentSavePath(save_path, files_path))
+        emit deletionSuccessST(this);
       else
-        emit deletionFailureST(this, path);
-      qDebug("deletion completed for %s", (const char*)path.toUtf8());
+        emit deletionFailureST(this);
     }
 };
 
@@ -64,15 +65,11 @@ class deleteThread : public QThread {
   Q_OBJECT
 
   private:
-    QStringList path_list;
+    QList<QPair<QString, QStringList> > torrents_list;
     QMutex mutex;
     QWaitCondition condition;
     bool abort;
     QList<subDeleteThread*> subThreads;
-
-  signals:
-    void deletionSuccess(QString path);
-    void deletionFailure(QString path);
 
   public:
     deleteThread(QObject* parent) : QThread(parent){
@@ -88,9 +85,9 @@ class deleteThread : public QThread {
       wait();
     }
 
-    void deletePath(QString path){
+    void deleteTorrent(QString save_path, QStringList files_path){
       QMutexLocker locker(&mutex);
-      path_list << path;
+      torrents_list << QPair<QString, QStringList>(save_path, files_path);
       if(!isRunning()){
         start();
       }else{
@@ -104,18 +101,14 @@ class deleteThread : public QThread {
         if(abort)
           return;
         mutex.lock();
-        if(path_list.size() != 0){
-          QString path = path_list.takeFirst();
+        if(torrents_list.size() != 0){
+          QPair<QString, QStringList> torrent = torrents_list.takeFirst();
           mutex.unlock();
-          if(QFile::exists(path)){
-            subDeleteThread *st = new subDeleteThread(0, path);
-            subThreads << st;
-            connect(st, SIGNAL(deletionSuccessST(subDeleteThread*, QString)), this, SLOT(propagateDeletionSuccess(subDeleteThread*, QString)));
-            connect(st, SIGNAL(deletionFailureST(subDeleteThread*, QString)), this, SLOT(propagateDeletionFailure(subDeleteThread*, QString)));
-            st->start();
-          }else{
-            qDebug("%s does not exist, nothing to delete", (const char*)path.toUtf8());
-          }
+          subDeleteThread *st = new subDeleteThread(0, torrent.first, torrent.second);
+          subThreads << st;
+          connect(st, SIGNAL(deletionSuccessST(subDeleteThread*)), this, SLOT(deleteSubThread(subDeleteThread*)));
+          connect(st, SIGNAL(deletionFailureST(subDeleteThread*)), this, SLOT(deleteSubThread(subDeleteThread*)));
+          st->start();
         }else{
           condition.wait(&mutex);
           mutex.unlock();
@@ -123,22 +116,11 @@ class deleteThread : public QThread {
       }
     }
   protected slots:
-    void propagateDeletionSuccess(subDeleteThread* st, QString path){
+    void deleteSubThread(subDeleteThread* st){
       int index = subThreads.indexOf(st);
       Q_ASSERT(index != -1);
       subThreads.removeAt(index);
       delete st;
-      emit deletionSuccess(path);
-      qDebug("%s was successfully deleted", (const char*)path.toUtf8());
-    }
-
-    void propagateDeletionFailure(subDeleteThread* st, QString path){
-      int index = subThreads.indexOf(st);
-      Q_ASSERT(index != -1);
-      subThreads.removeAt(index);
-      delete st;
-      emit deletionFailure(path);
-      std::cerr << "Could not delete path: " << (const char*)path.toUtf8() << ". Check if qBittorrent has the required rights.\n";
     }
 };
 

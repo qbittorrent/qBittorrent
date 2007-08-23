@@ -20,7 +20,9 @@
  */
 
 #include <QString>
+#include <QStringList>
 #include <QFile>
+#include <QDir>
 #include <QByteArray>
 #include "misc.h"
 #include "qtorrenthandle.h"
@@ -200,6 +202,19 @@ size_type QTorrentHandle::total_payload_download() {
 
 size_type QTorrentHandle::total_payload_upload() {
   return s.total_payload_upload;
+}
+
+// Return a list of absolute paths corresponding
+// to all files in a torrent
+QStringList QTorrentHandle::files_path() const {
+  QString saveDir = misc::toQString(h.save_path().string()) + QDir::separator();
+  QStringList res;
+  torrent_info::file_iterator fi = t.begin_files();
+  while(fi != t.end_files()) {
+    res << QDir::cleanPath(saveDir + misc::toQString(fi->path.string()));
+    fi++;
+  }
+  return res;
 }
 
 //
