@@ -140,9 +140,9 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation>Klient sieci bittorrent, wykorzystuje biblioteki Qt4 i libtorrent, implementacja w C++.&lt;br&gt;
+        <translation>Klient sieci bittorrent, korzysta z bibliotek Qt4 i libtorrent, implementacja w C++.&lt;br&gt;
 &lt;br&gt;
-Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;
+Wszystkie prawa zastrzeżone © 2006 Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Strona domowa:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
@@ -1533,7 +1533,7 @@ Zamknij najpierw okno podglądu.</translation>
         <location filename="../GUI.cpp" line="1148"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation>&apos;%1&apos; wzniowiony. (szybkie wznawianie)</translation>
+        <translation>&apos;%1&apos; wznowiony. (szybkie wznawianie)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1156"/>
@@ -1772,7 +1772,7 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="261"/>
+        <location filename="" line="7471221"/>
         <source>Alt+3, Ctrl+F</source>
         <comment>shortcut to switch to third tab (search)</comment>
         <translation type="obsolete">Alt+3, Ctrl+F</translation>
@@ -1823,13 +1823,13 @@ Czy napewno zamknąć qBittorrent?</translation>
         <location filename="../GUI.cpp" line="265"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation type="unfinished">Alt+3</translation>
+        <translation>Alt+3</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="267"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+F</translation>
     </message>
 </context>
 <context>
@@ -2434,7 +2434,7 @@ Czy napewno zamknąć qBittorrent?</translation>
 
 Changelog:
 </source>
-        <translation>Dostępna jest nowa wersja wtyczki wyszukiwania, czy chcesz zaktualizować? 
+        <translation>Dostępna jest nowa wersja wtyczki wyszukiwania, czy chcesz ją zaktualizować? 
 
 Zmiany: 
 
@@ -2940,7 +2940,7 @@ Zmiany:
     <message>
         <location filename="../createtorrent_imp.cpp" line="207"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation>Nieudało się stworzyć torrenta , powód: %1</translation>
+        <translation>Nie udało się stworzyć torrenta , powód: %1</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="100"/>
@@ -3000,31 +3000,31 @@ Zmiany:
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.h" line="114"/>
+        <location filename="../misc.h" line="116"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="114"/>
+        <location filename="../misc.h" line="116"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="114"/>
+        <location filename="../misc.h" line="116"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="114"/>
+        <location filename="../misc.h" line="116"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="123"/>
+        <location filename="../misc.h" line="125"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
@@ -3048,7 +3048,7 @@ Zmiany:
         <translation type="obsolete">d</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="265"/>
+        <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
         <translation>Nieznany</translation>
     </message>
@@ -3065,31 +3065,31 @@ Zmiany:
         <translation type="obsolete">d</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="112"/>
+        <location filename="../misc.h" line="114"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Nieznany</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="249"/>
+        <location filename="../misc.h" line="306"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="253"/>
+        <location filename="../misc.h" line="310"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="258"/>
+        <location filename="../misc.h" line="315"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="263"/>
+        <location filename="../misc.h" line="320"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1d%2h%3m</translation>
@@ -3669,7 +3669,7 @@ Zmiany:
         <translation>Ten url seeda już jest na liście.</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="395"/>
+        <location filename="" line="7471221"/>
         <source>Hard-coded url seeds cannot be deleted.</source>
         <translation type="obsolete">Nie można usunąć ustalony url seeda.</translation>
     </message>

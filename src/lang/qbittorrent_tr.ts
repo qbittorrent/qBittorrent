@@ -2975,31 +2975,31 @@ Changelog:
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.h" line="114"/>
+        <location filename="../misc.h" line="116"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="114"/>
+        <location filename="../misc.h" line="116"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="114"/>
+        <location filename="../misc.h" line="116"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="114"/>
+        <location filename="../misc.h" line="116"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="123"/>
+        <location filename="../misc.h" line="125"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
@@ -3023,7 +3023,7 @@ Changelog:
         <translation type="obsolete">g</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="265"/>
+        <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
         <translation>Bilinmeyen</translation>
     </message>
@@ -3040,31 +3040,31 @@ Changelog:
         <translation type="obsolete">g</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="112"/>
+        <location filename="../misc.h" line="114"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Bilinmeyen</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="249"/>
+        <location filename="../misc.h" line="306"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1d</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="253"/>
+        <location filename="../misc.h" line="310"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1d</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="258"/>
+        <location filename="../misc.h" line="315"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1sa%2d</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="263"/>
+        <location filename="../misc.h" line="320"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1gü%2sa%3d</translation>
