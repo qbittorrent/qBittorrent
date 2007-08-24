@@ -217,6 +217,10 @@ QStringList QTorrentHandle::files_path() const {
   return res;
 }
 
+int QTorrentHandle::num_uploads() const {
+  return s.num_uploads;
+}
+
 //
 // Setters
 //
