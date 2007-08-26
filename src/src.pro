@@ -19,16 +19,17 @@ DEFINES += VERSION_BUGFIX=0
 contains(DEBUG_MODE, 1){
   CONFIG += debug
   CONFIG -= release
+  QMAKE_CXXFLAGS_RELEASE += -O1
+  QMAKE_CXXFLAGS_DEBUG += -O1
   message(Debug build!)
 }
 contains(DEBUG_MODE, 0){
   CONFIG -= debug
   CONFIG += release
+  QMAKE_CXXFLAGS_RELEASE += -O2
+  QMAKE_CXXFLAGS_DEBUG += -O2
   message(Release build!)
 }
-
-QMAKE_CXXFLAGS_RELEASE += -fwrapv -O2
-QMAKE_CXXFLAGS_DEBUG += -fwrapv -O2
 
 CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent libccext2 libccgnu2
