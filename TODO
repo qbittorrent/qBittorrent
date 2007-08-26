@@ -34,7 +34,6 @@
 - Web interface (turbogears? php?)
 - improve and test tracker authentication code (remember login/pass) (need a tracker to test this)
 - support zipped torrents? (useful?)
-- Split Download list / GUI code : a bit difficult
 - Add option for RSS customization (refresh interval, max news per RSS...)
 - Allow to disable UPnP/NAT-PMP/LSD in options?
 - Allow to automatically delete torrents when they reach a given ratio (in options) : easy
