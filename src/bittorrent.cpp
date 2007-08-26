@@ -370,27 +370,26 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
     qDebug(" -> Hash: %s", misc::toString(t.info_hash()).c_str());
     qDebug(" -> Name: %s", t.name().c_str());
     QString hash = misc::toQString(t.info_hash());
+    if(file.startsWith(torrentBackup.path())) {
+      QFileInfo fi(file);
+      QString old_hash = fi.baseName();
+      if(old_hash != hash){
+        qDebug("* ERROR: Strange, hash changed from %s to %s", old_hash.toUtf8().data(), hash.toUtf8().data());
+        QStringList filters;
+        filters << old_hash+".*";
+        QStringList files = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
+        QString my_f;
+        foreach(my_f, files) {
+          qDebug("* deleting %s", my_f.toUtf8().data());
+          torrentBackup.remove(my_f);
+        }
+        return;
+      }
+    }
     if(s->find_torrent(t.info_hash()).is_valid()) {
       qDebug("/!\\ Torrent is already in download list");
       // Update info Bar
       if(!fromScanDir) {
-        if(file.startsWith(torrentBackup.path())){
-          // Torrent hash has changed. This should not be possible but...
-          // XXX: Why does this happen sometimes?
-          QFileInfo fi(file);
-          QString old_hash = fi.baseName();
-          qDebug("Strange, hash changed from %s to %s", old_hash.toUtf8().data(), hash.toUtf8().data());
-          Q_ASSERT(old_hash != hash);
-          QStringList filters;
-          filters << old_hash+".*";
-          QStringList files = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
-          QString my_f;
-          foreach(my_f, files) {
-            qDebug("* deleting %s", my_f.toUtf8().data());
-            torrentBackup.remove(my_f);
-          }
-          return;
-        }
         if(!from_url.isNull()) {
           // If download from url, remove temp file
            QFile::remove(file);
