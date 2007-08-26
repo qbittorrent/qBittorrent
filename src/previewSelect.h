@@ -91,7 +91,7 @@ class previewSelect: public QDialog, private Ui::preview {
     }
 
   public:
-    previewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent){
+    previewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent), h(h){
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       // Preview list
@@ -105,7 +105,6 @@ class previewSelect: public QDialog, private Ui::preview {
       supported_preview_extensions << QString::fromUtf8("AVI") << QString::fromUtf8("DIVX") << QString::fromUtf8("MPG") << QString::fromUtf8("MPEG") << QString::fromUtf8("MPE") << QString::fromUtf8("MP3") << QString::fromUtf8("OGG") << QString::fromUtf8("WMV") << QString::fromUtf8("WMA") << QString::fromUtf8("RMV") << QString::fromUtf8("RMVB") << QString::fromUtf8("ASF") << QString::fromUtf8("MOV") << QString::fromUtf8("WAV") << QString::fromUtf8("MP2") << QString::fromUtf8("SWF") << QString::fromUtf8("AC3") << QString::fromUtf8("OGM") << QString::fromUtf8("MP4") << QString::fromUtf8("FLV") << QString::fromUtf8("VOB") << QString::fromUtf8("QT") << QString::fromUtf8("MKV") << QString::fromUtf8("AIF") << QString::fromUtf8("AIFF") << QString::fromUtf8("AIFC") << QString::fromUtf8("MID") << QString::fromUtf8("MPG") << QString::fromUtf8("RA") << QString::fromUtf8("RAM") << QString::fromUtf8("AU") << QString::fromUtf8("M4A") << QString::fromUtf8("FLAC") << QString::fromUtf8("M4P") << QString::fromUtf8("3GP") << QString::fromUtf8("AAC") << QString::fromUtf8("RM") << QString::fromUtf8("SWA") << QString::fromUtf8("MPC") << QString::fromUtf8("MPP");
       previewList->header()->resizeSection(0, 200);
       // Fill list in
-      this->h = h;
       std::vector<float> fp;
       h.file_progress(fp);
       unsigned int nbFiles = h.num_files();

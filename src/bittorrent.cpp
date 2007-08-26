@@ -367,9 +367,11 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
     entry e = bdecode(std::istream_iterator<char>(in), std::istream_iterator<char>());
     // Getting torrent file informations
     torrent_info t(e);
-    std::cout << t.info_hash() << "\n";
-    QString hash = QString::fromUtf8(misc::toString(t.info_hash()).c_str());
+    qDebug(" -> Hash: %s", misc::toString(t.info_hash()).c_str());
+    qDebug(" -> Name: %s", t.name().c_str());
+    QString hash = misc::toQString(t.info_hash());
     if(s->find_torrent(t.info_hash()).is_valid()) {
+      qDebug("/!\\ Torrent is already in download list");
       // Update info Bar
       if(!fromScanDir) {
         if(file.startsWith(torrentBackup.path())){
@@ -377,7 +379,8 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
           // XXX: Why does this happen sometimes?
           QFileInfo fi(file);
           QString old_hash = fi.baseName();
-          qDebug("Strange, hash changed to %s", old_hash.toUtf8().data());
+          qDebug("Strange, hash changed from %s to %s", old_hash.toUtf8().data(), hash.toUtf8().data());
+          Q_ASSERT(old_hash != hash);
           QStringList filters;
           filters << old_hash+".*";
           QStringList files = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
@@ -421,10 +424,10 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
       if(index == -1) {
         fullAllocationModeList << hash;
       }
-      qDebug("Full allocation mode");
+      qDebug(" -> Full allocation mode");
     }else{
       h = s->add_torrent(t, fs::path(savePath.toUtf8().data()), resume_data, true, true);
-      qDebug("Compact allocation mode");
+      qDebug(" -> Compact allocation mode");
     }
     if(!h.is_valid()) {
       // No need to keep on, it failed.
@@ -436,7 +439,6 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
     // Is this really useful and appropriate ?
     //h.set_max_connections(60);
     h.set_max_uploads(-1);
-    qDebug("Torrent hash is " +  hash.toUtf8());
     // Load filtered files
     loadFilesPriorities(h);
     // Load custom url seeds
@@ -605,7 +607,7 @@ void bittorrent::saveTorrentSpeedLimits(QString hash) {
 }
 
 void bittorrent::loadTorrentSpeedLimits(QString hash) {
-  qDebug("Loading speedLimits file for %s", hash.toUtf8().data());
+//   qDebug("Loading speedLimits file for %s", hash.toUtf8().data());
   QTorrentHandle h = getTorrentHandle(hash);
   QFile speeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".speedLimits");
   if(!speeds_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -633,12 +635,11 @@ void bittorrent::loadFilesPriorities(QTorrentHandle &h) {
   QString hash = h.hash();
   QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".priorities");
   if(!pieces_file.exists()){
-    qDebug("Info: priorities file does not exist for %s", hash.toUtf8().data());
     return;
   }
   // Read saved file
   if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-    qDebug("* Error: Couldn't open priorities file: %s");
+    qDebug("* Error: Couldn't open priorities file: %s", hash.toUtf8().data());
     return;
   }
   QByteArray pieces_priorities = pieces_file.readAll();
@@ -667,9 +668,9 @@ void bittorrent::loadDownloadUploadForTorrent(QString hash) {
   if(! torrentBackup.exists()) {
     torrentBackup.mkpath(torrentBackup.path());
   }
-  qDebug("Loading ratio data for %s", hash.toUtf8().data());
+//   qDebug("Loading ratio data for %s", hash.toUtf8().data());
   QFile ratio_file(torrentBackup.path()+QDir::separator()+ hash + ".ratio");
-  if(!ratio_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+  if(!ratio_file.exists() || !ratio_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
     return;
   }
   QByteArray data = ratio_file.readAll();
@@ -1105,7 +1106,6 @@ void bittorrent::reloadTorrent(const QTorrentHandle &h) {
     fullAllocationModeList << hash;
   }
   qDebug("Reloading torrent: %s", fileName.toUtf8().data());
-  QTorrentHandle new_h;
   entry resumeData;
     // Checking if torrentBackup Dir exists
   // create it if it is not
@@ -1128,7 +1128,7 @@ void bittorrent::reloadTorrent(const QTorrentHandle &h) {
     SleeperThread::msleep(1000);
     ++timeout;
   }
-  new_h = s->add_torrent(t, saveDir, resumeData, false);
+  QTorrentHandle new_h = s->add_torrent(t, saveDir, resumeData, false);
   qDebug("Using full allocation mode");
 
   new_h.set_max_uploads(-1);
@@ -1174,7 +1174,7 @@ QString bittorrent::getSavePath(QString hash) {
   if(savepath_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
     line = savepath_file.readAll();
     savepath_file.close();
-    qDebug("Save path: %s", line.data());
+    qDebug(" -> Save path: %s", line.data());
     savePath = QString::fromUtf8(line.data());
   }else{
     // use default save path

@@ -37,11 +37,10 @@ class trackerLogin : public QDialog, private Ui::authentication{
     QTorrentHandle h;
 
   public:
-    trackerLogin(QWidget *parent, QTorrentHandle h): QDialog(parent){
+    trackerLogin(QWidget *parent, QTorrentHandle h): QDialog(parent), h(h){
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       login_logo->setPixmap(QPixmap(QString::fromUtf8(":/Icons/encrypted.png")));
-      this->h = h;
       tracker_url->setText(h.current_tracker());
       connect(this, SIGNAL(trackerLoginCancelled(QPair<QTorrentHandle,QString>)), parent, SLOT(addUnauthenticatedTracker(QPair<QTorrentHandle,QString>)));
       show();

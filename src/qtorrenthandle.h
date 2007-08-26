@@ -34,8 +34,6 @@ class QStringList;
 class QTorrentHandle {
   private:
     torrent_handle h;
-    torrent_info t;
-    torrent_status s;
 
   public:
 
@@ -107,7 +105,6 @@ class QTorrentHandle {
     //
     // Operators
     //
-
     QTorrentHandle& operator =(const torrent_handle& new_h);
     bool operator ==(const QTorrentHandle& new_h) const;
 };
