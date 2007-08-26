@@ -398,9 +398,9 @@ void DownloadingTorrents::updateDlList() {
           if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) == -1) {
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
             setRowColor(row, QString::fromUtf8("grey"));
-            Q_ASSERT(h.progress() <= 1. && h.progress() >= 0.);
-            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
           }
+          Q_ASSERT(h.progress() <= 1. && h.progress() >= 0.);
+          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
           break;
         case torrent_status::connecting_to_tracker:
           if(h.download_payload_rate() > 0) {
