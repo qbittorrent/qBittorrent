@@ -232,6 +232,9 @@ bool bittorrent::isFinished(QString hash) const {
 
 // Remove the given hash from the list of finished torrents
 void bittorrent::setUnfinishedTorrent(QString hash) {
+  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")){
+    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
+  }
   int index = finishedTorrents.indexOf(hash);
   if(index != -1) {
     finishedTorrents.removeAt(index);
@@ -243,6 +246,11 @@ void bittorrent::setUnfinishedTorrent(QString hash) {
 
 // Add the given hash to the list of finished torrents
 void bittorrent::setFinishedTorrent(QString hash) {
+  if(!QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")) {
+    QFile finished_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
+    finished_file.open(QIODevice::WriteOnly | QIODevice::Text);
+    finished_file.close();
+  }
   if(!finishedTorrents.contains(hash)) {
     finishedTorrents << hash;
   }

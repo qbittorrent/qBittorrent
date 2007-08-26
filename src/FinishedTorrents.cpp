@@ -107,10 +107,6 @@ void FinishedTorrents::addTorrent(QString hash){
     finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
     setRowColor(row, "orange");
   }
-  // Create .finished file
-  QFile finished_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
-  finished_file.open(QIODevice::WriteOnly | QIODevice::Text);
-  finished_file.close();
   // Update the number of finished torrents
   ++nbFinished;
   emit finishedTorrentsNumberChanged(nbFinished);
@@ -267,7 +263,6 @@ void FinishedTorrents::deleteTorrent(QString hash){
     return;
   }
   finishedListModel->removeRow(row);
-  QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
   --nbFinished;
   emit finishedTorrentsNumberChanged(nbFinished);
 }

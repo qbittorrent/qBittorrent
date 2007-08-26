@@ -75,7 +75,7 @@ LANGUAGES UPDATED:
 - Korean *BETA5*
 
 beta5->beta6 changelog:
-- FEATURE: Split GUI class from download tab
+- FEATURE: Split download tab from GUI class and cleaned up code
 - BUGFIX: Made torrent deletion from hard-drive safer
 - BUGFIX: Fixed a bug when switching from finished to downloading list
 - BUGFIX: Showing checking progress for paused torrents too
