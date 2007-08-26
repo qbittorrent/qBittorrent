@@ -85,9 +85,6 @@ bittorrent::~bittorrent() {
   delete timerAlerts;
   delete ETARefresher;
   delete downloader;
-  // Do some saving
-  saveDHTEntry();
-  saveFastResumeAndRatioData();
   // Delete BT session
   delete s;
 }
@@ -383,15 +380,15 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
       QString old_hash = fi.baseName();
       if(old_hash != hash){
         qDebug("* ERROR: Strange, hash changed from %s to %s", old_hash.toUtf8().data(), hash.toUtf8().data());
-        QStringList filters;
-        filters << old_hash+".*";
-        QStringList files = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
-        QString my_f;
-        foreach(my_f, files) {
-          qDebug("* deleting %s", my_f.toUtf8().data());
-          torrentBackup.remove(my_f);
-        }
-        return;
+//         QStringList filters;
+//         filters << old_hash+".*";
+//         QStringList files = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
+//         QString my_f;
+//         foreach(my_f, files) {
+//           qDebug("* deleting %s", my_f.toUtf8().data());
+//           torrentBackup.remove(my_f);
+//         }
+//         return;
       }
     }
     if(s->find_torrent(t.info_hash()).is_valid()) {
