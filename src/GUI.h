@@ -31,6 +31,7 @@
 class bittorrent;
 class createtorrent;
 class QTimer;
+class DownloadingTorrents;
 class FinishedTorrents;
 class DLListDelegate;
 class downloadThread;
@@ -45,6 +46,9 @@ class about;
 class previewSelect;
 class options_imp;
 class QStandardItemModel;
+class QTabWidget;
+class QLabel;
+class QModelIndex;
 
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -54,23 +58,17 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     bittorrent *BTSession;
     QTimer *checkConnect;
     QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers;
-    downloadFromURL *downloadFromURLDialog;
     // GUI related
+    QTabWidget *tabs;
     options_imp *options;
-    createtorrent *createWindow;
-    QTimer *refresher;
     QSystemTrayIcon *myTrayIcon;
     QMenu *myTrayIconMenu;
-    about *aboutdlg;
-    QStandardItemModel *DLListModel;
-    DLListDelegate *DLDelegate;
+    DownloadingTorrents *downloadingTorrentTab;
     FinishedTorrents *finishedTorrentTab;
-    unsigned int nbTorrents;
     QLabel *connecStatusLblIcon;
     bool systrayIntegration;
     bool force_exit;
-    bool delayedSorting;
-    Qt::SortOrder delayedSortingOrder;
+    QTimer *refresher;
     // Keyboard shortcuts
     QShortcut *switchSearchShortcut;
     QShortcut *switchSearchShortcut2;
@@ -78,7 +76,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QShortcut *switchUpShortcut;
     QShortcut *switchRSSShortcut;
     // Preview
-    previewSelect *previewSelection;
     QProcess *previewProcess;
     // Search
     SearchEngine *searchEngine;
@@ -94,22 +91,12 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void dragEnterEvent(QDragEnterEvent *event);
     void toggleVisibility(QSystemTrayIcon::ActivationReason e);
     void on_actionAbout_triggered();
-    void setInfoBar(QString info, QString color="black");
-    void updateDlList(bool force=false);
     void on_actionCreate_torrent_triggered();
-    void on_actionClearLog_triggered();
     void on_actionWebsite_triggered();
     void on_actionBugReport_triggered();
     void readParamsOnSocket();
     void acceptConnection();
-    void saveColWidthDLList() const;
-    bool loadColWidthDLList();
-    void sortDownloadList(int index, Qt::SortOrder startSortOrder=Qt::AscendingOrder, bool fromLoadColWidth=false);
-    void sortDownloadListFloat(int index, Qt::SortOrder sortOrder);
-    void sortDownloadListString(int index, Qt::SortOrder sortOrder);
-    void displayDLListMenu(const QPoint& pos);
-    void togglePausedState(const QModelIndex& index);
-    void displayInfoBarMenu(const QPoint& pos);
+    void togglePausedState(QString hash);
     void on_actionPreview_file_triggered();
     void previewFile(QString filePath);
     void cleanTempPreviewFile(int, QProcess::ExitStatus);
@@ -118,28 +105,25 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void readSettings();
     void on_actionExit_triggered();
     void createTrayIcon();
-    void addLogPeerBlocked(QString);
-    void addFastResumeRejectedAlert(QString);
+    void updateUnfinishedTorrentNumber(unsigned int nb);
+    void updateFinishedTorrentNumber(unsigned int nb);
+    void fullDiskError(QTorrentHandle& h);
+    void handleDownloadFromUrlFailure(QString, QString) const;
     // Keyboard shortcuts
     void createKeyboardShortcuts();
     void displayDownTab();
     void displayUpTab();
     void displaySearchTab();
     void displayRSSTab();
-    void handleDownloadFromUrlFailure(QString, QString) const;
     // Torrent actions
-    void showProperties(const QModelIndex &index);
     void on_actionTorrent_Properties_triggered();
     void on_actionPause_triggered();
     void on_actionPause_All_triggered();
-    void restoreInDownloadList(QTorrentHandle h);
     void on_actionStart_triggered();
     void on_actionStart_All_triggered();
     void on_actionOpen_triggered();
     void on_actionDelete_Permanently_triggered();
     void on_actionDelete_triggered();
-    void on_actionSet_download_limit_triggered();
-    void on_actionSet_upload_limit_triggered();
     void on_actionSet_global_upload_limit_triggered();
     void on_actionSet_global_download_limit_triggered();
     void on_actionDocumentation_triggered();
@@ -150,10 +134,9 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void processScannedFiles(const QStringList& params);
     void processDownloadedFiles(QString path, QString url);
     void downloadFromURLList(const QStringList& urls);
-    void displayDownloadingUrlInfos(QString url);
+    void finishedTorrent(QTorrentHandle& h);
     void torrentChecked(QString hash);
-    // Utils slots
-    void setRowColor(int row, QString color);
+    void updateLists();
     // Options slots
     void on_actionOptions_triggered();
     void OptionsSaved(QString info, bool deleteOptions);
@@ -162,17 +145,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
 
 
   public slots:
-    void torrentAdded(QString path, QTorrentHandle& h, bool fastResume);
-    void torrentDuplicate(QString path);
-    void torrentCorrupted(QString path);
-    void finishedTorrent(QTorrentHandle& h);
-    void fullDiskError(QTorrentHandle& h);
-    void portListeningFailure();
     void trackerAuthenticationRequired(QTorrentHandle& h);
     void setTabText(int index, QString text);
-    void updateFileSizeAndProgress(QString hash);
-    void sortProgressColumnDelayed();
-    void addUrlSeedError(QString url, QString msg);
 
   protected:
     void closeEvent(QCloseEvent *);
@@ -183,7 +157,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     GUI(QWidget *parent=0, QStringList torrentCmdLine=QStringList());
     ~GUI();
     // Methods
-    int getRowFromHash(QString hash) const;
     unsigned int getCurrentTabIndex() const;
     QPoint screenCenter() const;
 };

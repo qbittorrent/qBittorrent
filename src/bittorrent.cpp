@@ -26,12 +26,12 @@
 
 #include <libtorrent/extensions/metadata_transfer.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
-
 #include <libtorrent/entry.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/identify_client.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/ip_filter.hpp>
+#include <libtorrent/torrent_info.hpp>
 #include <boost/filesystem/exception.hpp>
 
 #include "bittorrent.h"
@@ -70,9 +70,10 @@ bittorrent::bittorrent() {
   // To download from urls
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
-  connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(HandleDownloadFailure(QString, QString)));
+  connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
   // File deleter (thread)
   deleter = new deleteThread(this);
+  qDebug("* BTSession constructed");
 }
 
 // Main destructor
@@ -106,7 +107,7 @@ void bittorrent::setUploadLimit(QString hash, long val) {
   saveTorrentSpeedLimits(hash);
 }
 
-void bittorrent::HandleDownloadFailure(QString url, QString reason) {
+void bittorrent::handleDownloadFailure(QString url, QString reason) {
   emit downloadFromUrlFailure(url, reason);
 }
 
@@ -366,10 +367,27 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
     entry e = bdecode(std::istream_iterator<char>(in), std::istream_iterator<char>());
     // Getting torrent file informations
     torrent_info t(e);
+    std::cout << t.info_hash() << "\n";
     QString hash = QString::fromUtf8(misc::toString(t.info_hash()).c_str());
     if(s->find_torrent(t.info_hash()).is_valid()) {
       // Update info Bar
       if(!fromScanDir) {
+        if(file.startsWith(torrentBackup.path())){
+          // Torrent hash has changed. This should not be possible but...
+          // XXX: Why does this happen sometimes?
+          QFileInfo fi(file);
+          QString old_hash = fi.baseName();
+          qDebug("Strange, hash changed to %s", old_hash.toUtf8().data());
+          QStringList filters;
+          filters << old_hash+".*";
+          QStringList files = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
+          QString my_f;
+          foreach(my_f, files) {
+            qDebug("* deleting %s", my_f.toUtf8().data());
+            torrentBackup.remove(my_f);
+          }
+          return;
+        }
         if(!from_url.isNull()) {
           // If download from url, remove temp file
            QFile::remove(file);

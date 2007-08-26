@@ -111,7 +111,7 @@ class bittorrent : public QObject{
     void loadTorrentSpeedLimits(QString hash);
     void saveDownloadUploadForTorrent(QString hash);
     void loadDownloadUploadForTorrent(QString hash);
-    void HandleDownloadFailure(QString url, QString reason);
+    void handleDownloadFailure(QString url, QString reason);
     void loadWebSeeds(QString fileHash);
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);

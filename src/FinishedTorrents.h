@@ -23,7 +23,6 @@
 #define SEEDING_H
 
 #include "ui_seeding.h"
-#include "FinishedListDelegate.h"
 #include "qtorrenthandle.h"
 
 class QStandardItemModel;
@@ -32,30 +31,27 @@ class FinishedListDelegate;
 
 using namespace libtorrent;
 
-class FinishedTorrents : public QWidget, public Ui::seeding{
+class FinishedTorrents : public QWidget, public Ui::seeding {
   Q_OBJECT
   private:
-    QObject *parent;
     bittorrent *BTSession;
     FinishedListDelegate *finishedListDelegate;
     QStandardItemModel *finishedListModel;
     unsigned int nbFinished;
+    QObject *parent;
 
   public:
     FinishedTorrents(QObject *parent, bittorrent *BTSession);
     ~FinishedTorrents();
     // Methods
-    QTreeView* getFinishedList();
-    QStandardItemModel* getFinishedListModel();
     bool loadColWidthFinishedList();
     int getRowFromHash(QString hash) const;
+    QStringList getSelectedTorrents(bool only_one=false) const;
+    unsigned int getNbTorrentsInList() const;
+    QString getHashFromRow(unsigned int row) const;
 
-  public slots:
-    void addFinishedTorrent(QString hash);
-    void updateFinishedList();
-    void deleteFromFinishedList(QString hash, bool switchTab=false);
+  protected slots:
     void showProperties(const QModelIndex &index);
-    void propertiesSelection();
     void displayFinishedListMenu(const QPoint&);
     void setRowColor(int row, QString color);
     void saveColWidthFinishedList() const;
@@ -63,12 +59,22 @@ class FinishedTorrents : public QWidget, public Ui::seeding{
     void sortFinishedListFloat(int index, Qt::SortOrder sortOrder);
     void sortFinishedListString(int index, Qt::SortOrder sortOrder);
     void updateFileSize(QString hash);
-
-  protected slots:
+    void torrentAdded(QString path, QTorrentHandle& h, bool fastResume);
     void on_actionSet_upload_limit_triggered();
+    void notifyTorrentDoubleClicked(const QModelIndex& index);
+
+  public slots:
+    void addTorrent(QString hash);
+    void updateFinishedList();
+    void pauseTorrent(QString hash);
+    void resumeTorrent(QString hash);
+    void propertiesSelection();
+    void deleteTorrent(QString hash);
 
   signals:
-    void torrentMovedFromFinishedList(QTorrentHandle);
+    void torrentMovedFromFinishedList(QString);
+    void torrentDoubleClicked(QString hash);
+    void finishedTorrentsNumberChanged(unsigned int);
 
 };
 
