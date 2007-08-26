@@ -632,9 +632,13 @@ void bittorrent::loadFilesPriorities(QTorrentHandle &h) {
   unsigned int nbFiles = h.num_files();
   QString hash = h.hash();
   QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".priorities");
+  if(!pieces_file.exists()){
+    qDebug("Info: priorities file does not exist for %s", hash.toUtf8().data());
+    return;
+  }
   // Read saved file
   if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-    qDebug("* Error: Couldn't open priorities file");
+    qDebug("* Error: Couldn't open priorities file: %s");
     return;
   }
   QByteArray pieces_priorities = pieces_file.readAll();
