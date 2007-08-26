@@ -262,7 +262,10 @@ QString FinishedTorrents::getHashFromRow(unsigned int row) const {
 // Will move it to download tab
 void FinishedTorrents::deleteTorrent(QString hash){
   int row = getRowFromHash(hash);
-  Q_ASSERT(row != -1);
+  if(row == -1){
+    qDebug("Torrent is not in finished list, nothing to delete");
+    return;
+  }
   finishedListModel->removeRow(row);
   QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
   --nbFinished;

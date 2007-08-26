@@ -176,7 +176,10 @@ void DownloadingTorrents::resumeTorrent(QString hash){
 // Remove a torrent from the download list but NOT from the BT Session
 void DownloadingTorrents::deleteTorrent(QString hash) {
   int row = getRowFromHash(hash);
-  Q_ASSERT(row != -1);
+  if(row == -1){
+    qDebug("torrent is not in download list, nothing to delete");
+    return;
+  }
   DLListModel->removeRow(row);
   --nbTorrents;
   emit unfinishedTorrentsNumberChanged(nbTorrents);

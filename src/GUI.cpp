@@ -251,11 +251,7 @@ void GUI::finishedTorrent(QTorrentHandle& h) {
   }
   if(show_msg)
     downloadingTorrentTab->setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
-  if(BTSession->getUnfinishedTorrents().contains(hash)) {
-    downloadingTorrentTab->deleteTorrent(hash);
-  }else{
-    qDebug("finished torrent %s is not in download list, nothing to do", hash.toUtf8().data());
-  }
+  downloadingTorrentTab->deleteTorrent(hash);
   finishedTorrentTab->addTorrent(hash);
   if(show_msg && systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
     myTrayIcon->showMessage(tr("Download finished"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
