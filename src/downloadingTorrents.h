@@ -75,7 +75,6 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void torrentAdded(QString path, QTorrentHandle& h, bool fastResume);
     void torrentDuplicate(QString path);
     void torrentCorrupted(QString path);
-    void updateFileSizeAndProgress(QString hash);
     void portListeningFailure();
     void setRowColor(int row, QString color);
     void displayDownloadingUrlInfos(QString url);
@@ -91,6 +90,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void setBottomTabEnabled(unsigned int index, bool b);
     void propertiesSelection();
     void sortProgressColumnDelayed();
+    void updateFileSizeAndProgress(QString hash);
 
 };
 

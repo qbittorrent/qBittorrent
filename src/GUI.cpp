@@ -234,6 +234,7 @@ void GUI::torrentChecked(QString hash) {
   }
   if(!BTSession->isFinished(hash)){
     // Delayed Sorting
+    downloadingTorrentTab->updateFileSizeAndProgress(hash);
     downloadingTorrentTab->sortProgressColumnDelayed();
   }
 }

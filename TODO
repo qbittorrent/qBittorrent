@@ -79,3 +79,4 @@ beta5->beta6 changelog:
 - BUGFIX: Made torrent deletion from hard-drive safer
 - BUGFIX: Fixed a bug when switching from finished to downloading list
 - BUGFIX: Showing checking progress for paused torrents too
+- BUGFIX: Fixed progress column sorting on startup
