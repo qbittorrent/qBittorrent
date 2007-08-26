@@ -47,8 +47,12 @@
 - Keep documention up to date
 - Windows port (Chris - Peerkoel)
 - write a patch for file_priority(int index);
+- strace -p `pidof yourbtclient`
+- valgrind --tool=memcheck --leak-check=full src/qbittorrent (parameter socket?)
 * beta 6
   - Translations update (IN PROGRESS)
+	- dllist and seeding lists context menus should be more similar
+	- dllist and seeding list shouldn't need a pointer to GUI (use signals/slots)
   - Wait for some bug fixes in libtorrent :
     - Mutex invalid argument on exit (Ticket #126) - FIXED?
     - Number of seeds non null for finished torrent (Ticket #122)
