@@ -230,9 +230,11 @@ void GUI::torrentChecked(QString hash) {
     }else{
       // In download list
       downloadingTorrentTab->pauseTorrent(hash);
-      // Delayed Sorting
-      downloadingTorrentTab->sortProgressColumnDelayed();
     }
+  }
+  if(!BTSession->isFinished(hash)){
+    // Delayed Sorting
+    downloadingTorrentTab->sortProgressColumnDelayed();
   }
 }
 
