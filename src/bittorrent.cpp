@@ -998,14 +998,17 @@ void bittorrent::readAlerts() {
   while (a.get()) {
     if (torrent_finished_alert* p = dynamic_cast<torrent_finished_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
-      QString hash = h.hash();
-      qDebug("Received finished alert for %s", h.name().toUtf8().data());
-      setFinishedTorrent(hash);
-      emit finishedTorrent(h);
+      if(h.is_valid()){
+        QString hash = h.hash();
+        qDebug("Received finished alert for %s", h.name().toUtf8().data());
+        setFinishedTorrent(hash);
+        emit finishedTorrent(h);
+      }
     }
     else if (file_error_alert* p = dynamic_cast<file_error_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
-      emit fullDiskError(h);
+      if(h.is_valid())
+        emit fullDiskError(h);
     }
     else if (dynamic_cast<listen_failed_alert*>(a.get())) {
       // Level: fatal
@@ -1014,32 +1017,36 @@ void bittorrent::readAlerts() {
     else if (tracker_alert* p = dynamic_cast<tracker_alert*>(a.get())) {
       // Level: fatal
       QTorrentHandle h(p->handle);
-      QString hash = h.hash();
-      QList<QPair<QString, QString> > errors = trackersErrors.value(hash, QList<QPair<QString, QString> >());
-      if(errors.size() > 5)
-        errors.removeAt(0);
-      errors << QPair<QString,QString>(QTime::currentTime().toString("hh:mm:ss"), QString::fromUtf8(a->msg().c_str()));
-      trackersErrors[hash] = errors;
-      // Authentication
-      if(p->status_code == 401) {
-        emit trackerAuthenticationRequired(h);
+      if(h.is_valid()){
+        QString hash = h.hash();
+        QList<QPair<QString, QString> > errors = trackersErrors.value(hash, QList<QPair<QString, QString> >());
+        if(errors.size() > 5)
+          errors.removeAt(0);
+        errors << QPair<QString,QString>(QTime::currentTime().toString("hh:mm:ss"), QString::fromUtf8(a->msg().c_str()));
+        trackersErrors[hash] = errors;
+        // Authentication
+        if(p->status_code == 401) {
+          emit trackerAuthenticationRequired(h);
+        }
       }
     }
     else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
-      QString hash = h.hash();
-      qDebug("Received torrent_paused_alert for %s", hash.toUtf8().data());
-      if(!pausedTorrents.contains(hash)) {
-        if(h.is_valid() && h.is_paused()) {
-          pausedTorrents << hash;
-          if(reloadingTorrents.indexOf(hash) != -1) {
-            reloadTorrent(h);
+      if(h.is_valid()){
+        QString hash = h.hash();
+        qDebug("Received torrent_paused_alert for %s", hash.toUtf8().data());
+        if(!pausedTorrents.contains(hash)) {
+          if(h.is_valid() && h.is_paused()) {
+            pausedTorrents << hash;
+            if(reloadingTorrents.indexOf(hash) != -1) {
+              reloadTorrent(h);
+            }
+          }else{
+            qDebug("Not adding torrent no pausedList, it is invalid or resumed");
           }
         }else{
-          qDebug("Not adding torrent no pausedList, it is invalid or resumed");
+          qDebug("Received alert for already paused torrent");
         }
-      }else{
-        qDebug("Received alert for already paused torrent");
       }
     }
     else if (peer_blocked_alert* p = dynamic_cast<peer_blocked_alert*>(a.get())) {
@@ -1047,23 +1054,27 @@ void bittorrent::readAlerts() {
     }
     else if (fastresume_rejected_alert* p = dynamic_cast<fastresume_rejected_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
-      qDebug("/!\\ Fast resume failed for %s, reason: %s", h.name().toUtf8().data(), p->msg().c_str());
-      emit fastResumeDataRejected(QString::fromUtf8(p->handle.name().c_str()));
+      if(h.is_valid()){
+        qDebug("/!\\ Fast resume failed for %s, reason: %s", h.name().toUtf8().data(), p->msg().c_str());
+        emit fastResumeDataRejected(h.name());
+      }
     }
     else if (url_seed_alert* p = dynamic_cast<url_seed_alert*>(a.get())) {
       emit urlSeedProblem(QString::fromUtf8(p->url.c_str()), QString::fromUtf8(p->msg().c_str()));
     }
     else if (torrent_checked_alert* p = dynamic_cast<torrent_checked_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
-      QString hash = h.hash();
-      qDebug("%s have just finished checking", hash.toUtf8().data());
-      int index = torrentsToPauseAfterChecking.indexOf(hash);
-      if(index != -1) {
-        // Pause torrent
-        pauseTorrent(hash);
-        qDebug("%s was paused after checking", hash.toUtf8().data());
+      if(h.is_valid()){
+        QString hash = h.hash();
+        qDebug("%s have just finished checking", hash.toUtf8().data());
+        int index = torrentsToPauseAfterChecking.indexOf(hash);
+        if(index != -1) {
+          // Pause torrent
+          pauseTorrent(hash);
+          qDebug("%s was paused after checking", hash.toUtf8().data());
+        }
+        emit torrentFinishedChecking(hash);
       }
-      emit torrentFinishedChecking(hash);
     }
     a = s->pop_alert();
   }
