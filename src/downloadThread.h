@@ -135,6 +135,7 @@ class downloadThread : public QThread {
 
   private:
     QStringList url_list;
+    QStringList downloading_list;
     QMutex mutex;
     QWaitCondition condition;
     bool abort;
@@ -160,7 +161,9 @@ class downloadThread : public QThread {
 
     void downloadUrl(QString url){
       QMutexLocker locker(&mutex);
+      if(downloading_list.contains(url)) return;
       url_list << url;
+      downloading_list << url;
       if(!isRunning()){
         start();
       }else{
@@ -195,6 +198,11 @@ class downloadThread : public QThread {
       subThreads.removeAt(index);
       delete st;
       emit downloadFinished(url, path);
+      mutex.lock();
+      index = downloading_list.indexOf(url);
+      Q_ASSERT(index != -1);
+      downloading_list.removeAt(index);
+      mutex.unlock();
     }
 
     void propagateDownloadFailure(subDownloadThread* st, QString url, QString reason){
@@ -203,6 +211,11 @@ class downloadThread : public QThread {
       subThreads.removeAt(index);
       delete st;
       emit downloadFailure(url, reason);
+      mutex.lock();
+      index = downloading_list.indexOf(url);
+      Q_ASSERT(index != -1);
+      downloading_list.removeAt(index);
+      mutex.unlock();
     }
 };
 

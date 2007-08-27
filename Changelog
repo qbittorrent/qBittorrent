@@ -50,6 +50,7 @@
     - BUGFIX: Improved incremental download
     - BUGFIX: Improved unicode support
     - BUGFIX: Made torrent deletion from hard-drive safer
+    - BUGFIX: Prevent downloadFromUrl flooding
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features

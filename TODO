@@ -80,3 +80,4 @@ beta5->beta6 changelog:
 - BUGFIX: Fixed a bug when switching from finished to downloading list
 - BUGFIX: Showing checking progress for paused torrents too
 - BUGFIX: Fixed progress column sorting on startup
+- BUGFIX: Prevent downloadFromUrl flooding
