@@ -24,7 +24,6 @@
 #include "bittorrent.h"
 #include "allocationDlg.h"
 #include "DLListDelegate.h"
-#include "previewSelect.h"
 #include "GUI.h"
 
 #include <QFile>

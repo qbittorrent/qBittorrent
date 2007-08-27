@@ -34,19 +34,17 @@
 #include "downloadingTorrents.h"
 #include "misc.h"
 #include "createtorrent_imp.h"
-#include "properties_imp.h"
-#include "downloadThread.h"
 #include "downloadFromURLImp.h"
 #include "torrentAddition.h"
 #include "searchEngine.h"
 #include "rss_imp.h"
 #include "FinishedTorrents.h"
-#include "allocationDlg.h"
 #include "bittorrent.h"
 #include "about_imp.h"
 #include "trackerLogin.h"
 #include "options_imp.h"
 #include "previewSelect.h"
+#include "allocationDlg.h"
 
 using namespace libtorrent;
 namespace fs = boost::filesystem;
