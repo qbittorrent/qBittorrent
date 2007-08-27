@@ -64,7 +64,6 @@ QString QTorrentHandle::current_tracker() const {
 }
 
 bool QTorrentHandle::is_valid() const {
-  Q_ASSERT(h.is_valid());
   return h.is_valid();
 }
 
