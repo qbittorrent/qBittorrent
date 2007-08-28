@@ -81,5 +81,6 @@ beta5->beta6 changelog:
 - BUGFIX: Prevent downloadFromUrl flooding
 - BUGFIX: Made finished list context menu more similar to the download list one
 - BUGFIX: Fixed Pause/Start action in lists context menus
+- BUGFIX: Improved ETA calculation
 - BUGFIX: Display the torrent that are being checked as 'checking' in seeding list
 - I18N: Removed no longer maintained Traditional chinese translation

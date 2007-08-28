@@ -112,19 +112,22 @@ void bittorrent::updateETAs() {
     QTorrentHandle h = handles[i];
     if(h.is_valid()) {
       QString hash = h.hash();
-      QList<long> listEtas = ETAstats.value(hash, QList<long>());
+      QList<qlonglong> listEtas = ETAstats.value(hash, QList<qlonglong>());
       if(listEtas.size() == ETAS_MAX_VALUES) {
           listEtas.removeFirst();
       }
-      if(h.download_payload_rate() != 0) {
-        listEtas << (long)((h.total_size()-h.total_done())/(double)h.download_payload_rate());
+      if(h.download_payload_rate()) {
+        listEtas << (qlonglong)((h.total_size()-h.total_done())/(double)h.download_payload_rate());
         ETAstats[hash] = listEtas;
         long moy = 0;
         long val;
+        unsigned int nbETAs = listEtas.size();
+        Q_ASSERT(nbETAs);
         foreach(val, listEtas) {
-          moy += val;
+          moy += (qlonglong)((double)val/(double)nbETAs);
+          Q_ASSERT(moy >= 0);
         }
-        ETAs[hash] = (long) ((double)moy/(double)listEtas.size());
+        ETAs[hash] = moy;
       }
     }
   }

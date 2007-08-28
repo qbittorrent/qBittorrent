@@ -285,28 +285,36 @@ class misc : public QObject{
 
     // Take a number of seconds and return an user-friendly
     // time duration like "1d 2h 10m".
-    static QString userFriendlyDuration(const long int seconds) {
-      if(seconds < 0) {
+    static QString userFriendlyDuration(qlonglong seconds) {
+      if(seconds < 0 or seconds > 8640000) {
         return tr("Unknown");
       }
-      if(seconds < 60) {
-        return tr("< 1m", "< 1 minute");
+      int level = 0;
+      int days = int(seconds / 86400.);
+      if(!days)
+        level = 1;
+      else
+        seconds -= days * 86400;
+      int hours = int(seconds / 3600.);
+      if(!hours)
+        level = 2;
+      else
+        seconds -= hours * 3600;
+      int minutes = int(seconds / 60.0);
+      if(!minutes)
+        level = 3;
+      else
+        seconds -= minutes * 60;
+      switch(level){
+        case 3:
+          return tr("< 1m", "< 1 minute");
+        case 2:
+          return tr("%1m","e.g: 10minutes").arg(QString::QString::fromUtf8(misc::toString(minutes).c_str()));
+        case 1:
+          return tr("%1h%2m", "e.g: 3hours 5minutes").arg(QString::fromUtf8(misc::toString(hours).c_str())).arg(QString::fromUtf8(misc::toString(minutes).c_str()));
+        default:
+          return tr("%1d%2h%3m", "e.g: 2days 10hours 2minutes").arg(QString::fromUtf8(misc::toString(days).c_str())).arg(QString::fromUtf8(misc::toString(hours).c_str())).arg(QString::fromUtf8(misc::toString(minutes).c_str()));
       }
-      int minutes = seconds / 60;
-      if(minutes < 60) {
-        return tr("%1m","e.g: 10minutes").arg(QString::QString::fromUtf8(misc::toString(minutes).c_str()));
-      }
-      int hours = minutes / 60;
-      minutes = minutes - hours*60;
-      if(hours < 24) {
-        return tr("%1h%2m", "e.g: 3hours 5minutes").arg(QString::fromUtf8(misc::toString(hours).c_str())).arg(QString::fromUtf8(misc::toString(minutes).c_str()));
-      }
-      int days = hours / 24;
-      hours = hours - days * 24;
-      if(days < 100) {
-        return tr("%1d%2h%3m", "e.g: 2days 10hours 2minutes").arg(QString::fromUtf8(misc::toString(days).c_str())).arg(QString::fromUtf8(misc::toString(hours).c_str())).arg(QString::fromUtf8(misc::toString(minutes).c_str()));
-      }
-      return tr("Unknown");
     }
 };
 

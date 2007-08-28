@@ -49,8 +49,8 @@ class bittorrent : public QObject{
     QString defaultSavePath;
     QStringList torrentsToPauseAfterChecking;
     QStringList reloadingTorrents;
-    QHash<QString, QList<long> > ETAstats;
-    QHash<QString, long> ETAs;
+    QHash<QString, QList<qlonglong> > ETAstats;
+    QHash<QString, qlonglong> ETAs;
     QHash<QString, QPair<size_type,size_type> > ratioData;
     QTimer *ETARefresher;
     QStringList fullAllocationModeList;
