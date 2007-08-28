@@ -96,7 +96,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void togglePausedState(QString hash);
     void on_actionPreview_file_triggered();
     void previewFile(QString filePath);
-    void cleanTempPreviewFile(int, QProcess::ExitStatus);
+    void cleanTempPreviewFile(int, QProcess::ExitStatus) const;
     void balloonClicked();
     void writeSettings();
     void readSettings();
@@ -104,14 +104,14 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void createTrayIcon();
     void updateUnfinishedTorrentNumber(unsigned int nb);
     void updateFinishedTorrentNumber(unsigned int nb);
-    void fullDiskError(QTorrentHandle& h);
+    void fullDiskError(QTorrentHandle& h) const;
     void handleDownloadFromUrlFailure(QString, QString) const;
     // Keyboard shortcuts
     void createKeyboardShortcuts();
-    void displayDownTab();
-    void displayUpTab();
-    void displaySearchTab();
-    void displayRSSTab();
+    void displayDownTab() const;
+    void displayUpTab() const;
+    void displaySearchTab() const;
+    void displayRSSTab() const;
     // Torrent actions
     void on_actionTorrent_Properties_triggered();
     void on_actionPause_triggered();
@@ -131,8 +131,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void processScannedFiles(const QStringList& params);
     void processDownloadedFiles(QString path, QString url);
     void downloadFromURLList(const QStringList& urls);
-    void finishedTorrent(QTorrentHandle& h);
-    void torrentChecked(QString hash);
+    void finishedTorrent(QTorrentHandle& h) const;
+    void torrentChecked(QString hash) const;
     void updateLists();
     // Options slots
     void on_actionOptions_triggered();
@@ -143,7 +143,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
 
   public slots:
     void trackerAuthenticationRequired(QTorrentHandle& h);
-    void setTabText(int index, QString text);
+    void setTabText(int index, QString text) const;
 
   protected:
     void closeEvent(QCloseEvent *);

@@ -116,29 +116,21 @@ class misc : public QObject{
       const QString units[4] = {tr("B", "bytes"), tr("KiB", "kibibytes (1024 bytes)"), tr("MiB", "mebibytes (1024 kibibytes)"), tr("GiB", "gibibytes (1024 mibibytes)")};
       for(unsigned int i=0; i<5; ++i) {
         if (val < 1024.) {
-          snprintf(tmp, MAX_CHAR_TMP, "%.1f", val);
-          return QString::fromUtf8(tmp) + QString::fromUtf8(" ") + units[i];
+          snprintf(tmp, MAX_CHAR_TMP, "%.1f ", val);
+          return QString::fromUtf8(tmp) + units[i];
         }
         val /= 1024.;
       }
-      snprintf(tmp, MAX_CHAR_TMP, "%.1f", val);
-      return  QString::fromUtf8(tmp) + QString::fromUtf8(" ") + tr("TiB", "tebibytes (1024 gibibytes)");
+      snprintf(tmp, MAX_CHAR_TMP, "%.1f ", val);
+      return  QString::fromUtf8(tmp) + tr("TiB", "tebibytes (1024 gibibytes)");
     }
 
     // return qBittorrent config path
     static QString qBittorrentPath() {
-      QString qBtPath = QDir::homePath();
-      if(qBtPath.isNull()) {
-        return QString();
-      }
-      if(qBtPath[qBtPath.length()-1] == QDir::separator()) {
-        qBtPath = qBtPath + QString::fromUtf8(".qbittorrent") + QDir::separator();
-      }else{
-        qBtPath = qBtPath + QDir::separator() + QString::fromUtf8(".qbittorrent") + QDir::separator();
-      }
+      QString qBtPath = QDir::cleanPath(QDir::homePath()+QDir::separator()+QString::fromUtf8(".qbittorrent") + QDir::separator());
       // Create dir if it does not exist
-      QDir dir(qBtPath);
-      if(!dir.exists()) {
+      if(!QFile::exists(qBtPath)){
+        QDir dir(qBtPath);
         dir.mkpath(qBtPath);
       }
       return qBtPath;

@@ -216,7 +216,7 @@ void GUI::writeSettings() {
 }
 
 // Called when a torrent finished checking
-void GUI::torrentChecked(QString hash) {
+void GUI::torrentChecked(QString hash) const {
   // Check if the torrent was paused after checking
   if(BTSession->isPaused(hash)) {
     // Was paused, change its icon/color
@@ -237,7 +237,7 @@ void GUI::torrentChecked(QString hash) {
 }
 
 // called when a torrent has finished
-void GUI::finishedTorrent(QTorrentHandle& h) {
+void GUI::finishedTorrent(QTorrentHandle& h) const {
   qDebug("In GUI, a torrent has finished");
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   bool show_msg = true;
@@ -259,7 +259,7 @@ void GUI::finishedTorrent(QTorrentHandle& h) {
 }
 
 // Notification when disk is full
-void GUI::fullDiskError(QTorrentHandle& h) {
+void GUI::fullDiskError(QTorrentHandle& h) const {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   int useOSD = settings.value(QString::fromUtf8("Options/OSDEnabled"), 1).toInt();
   if(systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
@@ -303,19 +303,19 @@ void GUI::createKeyboardShortcuts() {
 }
 
 // Keyboard shortcuts slots
-void GUI::displayDownTab() {
+void GUI::displayDownTab() const {
   tabs->setCurrentIndex(0);
 }
 
-void GUI::displayUpTab() {
+void GUI::displayUpTab() const {
   tabs->setCurrentIndex(1);
 }
 
-void GUI::displaySearchTab() {
+void GUI::displaySearchTab() const {
   tabs->setCurrentIndex(2);
 }
 
-void GUI::displayRSSTab() {
+void GUI::displayRSSTab() const {
   tabs->setCurrentIndex(3);
 }
 
@@ -387,7 +387,7 @@ void GUI::on_actionPreview_file_triggered() {
   new previewSelect(this, h);
 }
 
-void GUI::cleanTempPreviewFile(int, QProcess::ExitStatus) {
+void GUI::cleanTempPreviewFile(int, QProcess::ExitStatus) const {
   if(!QFile::remove(QDir::tempPath()+QDir::separator()+QString::fromUtf8("qBT_preview.tmp"))) {
     std::cerr << "Couldn't remove temporary file: " << (QDir::tempPath()+QDir::separator()+QString::fromUtf8("qBT_preview.tmp")).toUtf8().data() << "\n";
   }
@@ -424,7 +424,7 @@ unsigned int GUI::getCurrentTabIndex() const{
   return tabs->currentIndex();
 }
 
-void GUI::setTabText(int index, QString text) {
+void GUI::setTabText(int index, QString text) const {
   tabs->setTabText(index, text);
 }
 
@@ -534,6 +534,7 @@ void GUI::dropEvent(QDropEvent *event) {
   bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Options/Misc/TorrentAdditionDialog/Enabled"), true).toBool();
   foreach(file, files) {
     file = file.trimmed().replace(QString::fromUtf8("file://"), QString::fromUtf8(""));
+    qDebug("Dropped file %s on download list", file.toUtf8().data());
     if(file.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || file.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || file.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
       BTSession->downloadFromUrl(file);
       continue;
@@ -649,9 +650,6 @@ void GUI::on_actionDelete_triggered() {
   QStringList hashes;
   bool inDownloadList = true;
   switch(tabs->currentIndex()){
-    case 3: //RSSImp
-      rssWidget->on_delStream_button_clicked();
-      return;
     case 0: // DL
       hashes = downloadingTorrentTab->getSelectedTorrents();
       break;
@@ -659,6 +657,9 @@ void GUI::on_actionDelete_triggered() {
       hashes = finishedTorrentTab->getSelectedTorrents();
       inDownloadList = false;
       break;
+    case 3: //RSSImp
+      rssWidget->on_delStream_button_clicked();
+      return;
     default:
       return;
   }
@@ -844,17 +845,18 @@ void GUI::configureSession(bool deleteOptions) {
   // Apply Proxy settings
   if(options->isProxyEnabled()) {
     switch(options->getProxyType()) {
+      case HTTP:
+        proxySettings.type = proxy_settings::http;
+        break;
       case HTTP_PW:
         proxySettings.type = proxy_settings::http_pw;
         break;
       case SOCKS5:
         proxySettings.type = proxy_settings::socks5;
         break;
-      case SOCKS5_PW:
+      default:
         proxySettings.type = proxy_settings::socks5_pw;
         break;
-      default:
-        proxySettings.type = proxy_settings::http;
     }
     proxySettings.hostname = options->getProxyIp().toStdString();
     proxySettings.port = options->getProxyPort();
