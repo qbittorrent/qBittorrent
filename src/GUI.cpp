@@ -195,15 +195,15 @@ GUI::~GUI() {
   delete BTSession;
 }
 
-void GUI::on_actionWebsite_triggered() {
+void GUI::on_actionWebsite_triggered() const {
    QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://www.qbittorrent.org")));
 }
 
-void GUI::on_actionDocumentation_triggered() {
+void GUI::on_actionDocumentation_triggered() const {
   QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://wiki.qbittorrent.org")));
 }
 
-void GUI::on_actionBugReport_triggered() {
+void GUI::on_actionBugReport_triggered() const {
    QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://bugs.qbittorrent.org")));
 }
 

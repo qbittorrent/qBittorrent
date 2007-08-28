@@ -89,8 +89,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void toggleVisibility(QSystemTrayIcon::ActivationReason e);
     void on_actionAbout_triggered();
     void on_actionCreate_torrent_triggered();
-    void on_actionWebsite_triggered();
-    void on_actionBugReport_triggered();
+    void on_actionWebsite_triggered() const;
+    void on_actionBugReport_triggered() const;
     void readParamsOnSocket();
     void acceptConnection();
     void togglePausedState(QString hash);
@@ -123,7 +123,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void on_actionDelete_triggered();
     void on_actionSet_global_upload_limit_triggered();
     void on_actionSet_global_download_limit_triggered();
-    void on_actionDocumentation_triggered();
+    void on_actionDocumentation_triggered() const;
     void checkConnectionStatus();
     void configureSession(bool deleteOptions);
     void processParams(const QStringList& params);
