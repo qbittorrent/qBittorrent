@@ -46,9 +46,9 @@
 - Keep documention up to date
 - Windows port (Chris - Peerkoel)
 - write a patch for file_priority(int index);
-- strace -p `pidof yourbtclient`
-- valgrind --tool=memcheck --leak-check=full src/qbittorrent
+- valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
 * beta 6
+  - Use gprof to check if we can optimize some stuff (compile with -pg)
   - Translations update (IN PROGRESS)
   - Wait for some bug fixes in libtorrent :
     - Number of seeds non null for finished torrent (Ticket #122)
