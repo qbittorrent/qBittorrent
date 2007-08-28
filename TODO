@@ -51,7 +51,6 @@
 * beta 6
   - Translations update (IN PROGRESS)
   - Wait for some bug fixes in libtorrent :
-    - Mutex invalid argument on exit (Ticket #126) - FIXED?
     - Number of seeds non null for finished torrent (Ticket #122)
 
 LANGUAGES UPDATED:
