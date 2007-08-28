@@ -58,7 +58,6 @@ class PropListDelegate: public QItemDelegate {
     ~PropListDelegate(){}
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
-      char tmp[MAX_CHAR_TMP];
       QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
       QPalette::ColorGroup cg = option.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
       switch(index.column()){
@@ -69,9 +68,8 @@ class PropListDelegate: public QItemDelegate {
         case PROGRESS:{
           QStyleOptionProgressBarV2 newopt;
           float progress = index.data().toDouble()*100.;
-          snprintf(tmp, MAX_CHAR_TMP, "%.1f", progress);
           newopt.rect = opt.rect;
-          newopt.text = QString::fromUtf8(tmp)+QString::fromUtf8("%");
+          newopt.text = QString(QByteArray::number(progress, 'f', 1))+QString::fromUtf8("%");
           newopt.progress = (int)progress;
           newopt.maximum = 100;
           newopt.minimum = 0;

@@ -76,7 +76,6 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   //Trackers
   loadTrackers();
   // Session infos
-  char tmp[MAX_CHAR_TMP];
   failed->setText(misc::friendlyUnit(h.total_failed_bytes()));
   upTotal->setText(misc::friendlyUnit(h.total_payload_upload()));
   dlTotal->setText(misc::friendlyUnit(h.total_payload_download()));
@@ -93,8 +92,7 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
       ratio = 10.;
     }
   }
-  snprintf(tmp, MAX_CHAR_TMP, "%.1f", ratio);
-  shareRatio->setText(tmp);
+  shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
   loadTrackersErrors();
   std::vector<float> fp;
   h.file_progress(fp);

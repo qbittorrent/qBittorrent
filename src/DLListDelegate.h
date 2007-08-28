@@ -51,7 +51,6 @@ class DLListDelegate: public QItemDelegate {
     ~DLListDelegate(){}
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
-      char tmp[MAX_CHAR_TMP];
       QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
       switch(index.column()){
         case SIZE:
@@ -65,25 +64,21 @@ class DLListDelegate: public QItemDelegate {
         case UPSPEED:
         case DLSPEED:{
           QItemDelegate::drawBackground(painter, opt, index);
-          float speed = index.data().toDouble();
-          snprintf(tmp, MAX_CHAR_TMP, "%.1f", speed/1024.);
-          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8(tmp)+QString::fromUtf8(" ")+tr("KiB/s"));
+          double speed = index.data().toDouble();
+          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString(QByteArray::number(speed/1024., 'f', 1))+QString::fromUtf8(" ")+tr("KiB/s"));
           break;
         }
         case RATIO:{
           QItemDelegate::drawBackground(painter, opt, index);
-          float ratio = index.data().toDouble();
-          snprintf(tmp, MAX_CHAR_TMP, "%.1f", ratio);
-          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8(tmp));
+          double ratio = index.data().toDouble();
+          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString(QByteArray::number(ratio, 'f', 1)));
           break;
         }
         case PROGRESS:{
           QStyleOptionProgressBarV2 newopt;
-          float progress;
-          progress = index.data().toDouble()*100.;
-          snprintf(tmp, MAX_CHAR_TMP, "%.1f", progress);
+          double progress = index.data().toDouble()*100.;
           newopt.rect = opt.rect;
-          newopt.text = QString::fromUtf8(tmp)+QString::fromUtf8("%");
+          newopt.text = QString(QByteArray::number(progress, 'f', 1))+QString::fromUtf8("%");
           newopt.progress = (int)progress;
           newopt.maximum = 100;
           newopt.minimum = 0;

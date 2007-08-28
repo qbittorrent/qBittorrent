@@ -307,7 +307,6 @@ QStringList DownloadingTorrents::getSelectedTorrents(bool only_one) const{
 }
 
 void DownloadingTorrents::updateRatio() {
-  char tmp[MAX_CHAR_TMP];
   // Update ratio info
   float ratio = 1.;
   session_status sessionStatus = BTSession->getSessionStatus();
@@ -321,8 +320,7 @@ void DownloadingTorrents::updateRatio() {
     if(ratio > 10.)
       ratio = 10.;
   }
-  snprintf(tmp, MAX_CHAR_TMP, "%.1f", ratio);
-  LCD_Ratio->display(tmp);
+  LCD_Ratio->display(QString(QByteArray::number(ratio, 'f', 1)));
   if(ratio < 0.5) {
     lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/unhappy.png")));
   }else{
@@ -352,14 +350,9 @@ void DownloadingTorrents::sortProgressColumnDelayed() {
 // get information from torrent handles and
 // update download list accordingly
 void DownloadingTorrents::updateDlList() {
-  char tmp[MAX_CHAR_TMP];
-  char tmp2[MAX_CHAR_TMP];
   // update global informations
-  snprintf(tmp, MAX_CHAR_TMP, "%.1f", BTSession->getPayloadUploadRate()/1024.);
-  snprintf(tmp2, MAX_CHAR_TMP, "%.1f", BTSession->getPayloadDownloadRate()/1024.);
-  //BTSession->printPausedTorrents();
-  LCD_UpSpeed->display(QString::fromUtf8(tmp)); // UP LCD
-  LCD_DownSpeed->display(QString::fromUtf8(tmp2)); // DL LCD
+  LCD_UpSpeed->display(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1))); // UP LCD
+  LCD_DownSpeed->display(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1))); // DL LCD
   // browse handles
   QStringList unfinishedTorrents = BTSession->getUnfinishedTorrents();
   QString hash;

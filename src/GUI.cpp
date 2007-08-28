@@ -1063,14 +1063,9 @@ void GUI::checkConnectionStatus() {
 //   qDebug("Checking connection status");
   // Update Ratio
   downloadingTorrentTab->updateRatio();
-  // Update systemTray
-  char tmp[MAX_CHAR_TMP];
-  char tmp2[MAX_CHAR_TMP];
   // update global informations
-  snprintf(tmp, MAX_CHAR_TMP, "%.1f", BTSession->getPayloadUploadRate()/1024.);
-  snprintf(tmp2, MAX_CHAR_TMP, "%.1f", BTSession->getPayloadDownloadRate()/1024.);
   if(systrayIntegration) {
-    myTrayIcon->setToolTip(QString::fromUtf8("<b>")+tr("qBittorrent")+QString::fromUtf8("</b><br>")+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString::fromUtf8(tmp2))+QString::fromUtf8("<br>")+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString::fromUtf8(tmp))); // tray icon
+    myTrayIcon->setToolTip(QString::fromUtf8("<b>")+tr("qBittorrent")+QString::fromUtf8("</b><br>")+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1)))+QString::fromUtf8("<br>")+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1)))); // tray icon
   }
   session_status sessionStatus = BTSession->getSessionStatus();
   if(sessionStatus.has_incoming_connections) {

@@ -46,7 +46,6 @@ class PreviewListDelegate: public QItemDelegate {
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
       QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
-      char tmp[MAX_CHAR_TMP];
 
       switch(index.column()){
         case SIZE:
@@ -55,10 +54,9 @@ class PreviewListDelegate: public QItemDelegate {
           break;
         case PROGRESS:{
           float progress = index.data().toDouble()*100.;
-          snprintf(tmp, MAX_CHAR_TMP, "%.1f", progress);
           QStyleOptionProgressBarV2 newopt;
           newopt.rect = opt.rect;
-          newopt.text = QString::fromUtf8(tmp)+QString::fromUtf8("%");
+          newopt.text = QString(QByteArray::number(progress, 'f', 1))+QString::fromUtf8("%");
           newopt.progress = (int)progress;
           newopt.maximum = 100;
           newopt.minimum = 0;
