@@ -51,6 +51,7 @@
     - BUGFIX: Improved unicode support
     - BUGFIX: Made torrent deletion from hard-drive safer
     - BUGFIX: Prevent downloadFromUrl flooding
+    - BUGFIX: ETA was wrong for torrents with filtered files
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features
