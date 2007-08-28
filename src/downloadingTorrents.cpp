@@ -114,7 +114,7 @@ void DownloadingTorrents::notifyTorrentDoubleClicked(const QModelIndex& index) {
 }
 
 void DownloadingTorrents::addLogPeerBlocked(QString ip) {
-  static unsigned short nbLines = 0;
+  static unsigned int nbLines = 0;
   ++nbLines;
   if(nbLines > 200) {
     textBlockedUsers->clear();
@@ -184,7 +184,7 @@ void DownloadingTorrents::deleteTorrent(QString hash) {
 
 // Update Info Bar information
 void DownloadingTorrents::setInfoBar(QString info, QString color) {
-  static unsigned short nbLines = 0;
+  static unsigned int nbLines = 0;
   ++nbLines;
   // Check log size, clear it if too big
   if(nbLines > 200) {

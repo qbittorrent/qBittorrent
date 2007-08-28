@@ -1135,7 +1135,7 @@ void bittorrent::reloadTorrent(const QTorrentHandle &h) {
   // Remove torrent
   s->remove_torrent(h.get_torrent_handle());
   // Add torrent again to session
-  unsigned short timeout = 0;
+  unsigned int timeout = 0;
   while(h.is_valid() && timeout < 6) {
     SleeperThread::msleep(1000);
     ++timeout;

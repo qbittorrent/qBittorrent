@@ -114,7 +114,7 @@ class misc : public QObject{
         return tr("Unknown", "Unknown (size)");
       }
       const QString units[4] = {tr("B", "bytes"), tr("KiB", "kibibytes (1024 bytes)"), tr("MiB", "mebibytes (1024 kibibytes)"), tr("GiB", "gibibytes (1024 mibibytes)")};
-      for(unsigned short i=0; i<5; ++i) {
+      for(unsigned int i=0; i<5; ++i) {
         if (val < 1024.) {
           snprintf(tmp, MAX_CHAR_TMP, "%.1f", val);
           return QString::fromUtf8(tmp) + QString::fromUtf8(" ") + units[i];
