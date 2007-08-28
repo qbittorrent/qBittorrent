@@ -56,7 +56,7 @@ namespace fs = boost::filesystem;
  *****************************************************/
 
 // Constructor
-GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent) {
+GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), force_exit(false) {
   setupUi(this);
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
@@ -104,7 +104,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent) {
   // creating options
   options = new options_imp(this);
   connect(options, SIGNAL(status_changed(QString, bool)), this, SLOT(OptionsSaved(QString, bool)));
-  force_exit = false;
   BTSession = new bittorrent();
   connect(BTSession, SIGNAL(fullDiskError(QTorrentHandle&)), this, SLOT(fullDiskError(QTorrentHandle&)));
   connect(BTSession, SIGNAL(finishedTorrent(QTorrentHandle&)), this, SLOT(finishedTorrent(QTorrentHandle&)));

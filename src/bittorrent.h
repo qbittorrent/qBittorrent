@@ -40,10 +40,10 @@ class bittorrent : public QObject{
 
   private:
     session *s;
-    bool DHTEnabled;
     QString scan_dir;
     QTimer *timerScan;
     QTimer *timerAlerts;
+    bool DHTEnabled;
     downloadThread *downloader;
     QStringList supported_preview_extensions;
     QString defaultSavePath;

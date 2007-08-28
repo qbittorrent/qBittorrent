@@ -45,9 +45,7 @@ class subDownloadThread : public QThread {
     bool abort;
 
   public:
-    subDownloadThread(QObject *parent, QString url) : QThread(parent), url(url){
-      abort = false;
-    }
+    subDownloadThread(QObject *parent, QString url) : QThread(parent), url(url), abort(false){}
 
     ~subDownloadThread(){
       abort = true;
@@ -146,9 +144,7 @@ class downloadThread : public QThread {
     void downloadFailure(QString url, QString reason);
 
   public:
-    downloadThread(QObject* parent) : QThread(parent){
-      abort = false;
-    }
+    downloadThread(QObject* parent) : QThread(parent), abort(false){}
 
     ~downloadThread(){
       mutex.lock();

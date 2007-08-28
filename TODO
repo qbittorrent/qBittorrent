@@ -73,6 +73,7 @@ LANGUAGES UPDATED:
 
 beta5->beta6 changelog:
 - FEATURE: Split download tab from GUI class and cleaned up code
+- FEATURE: A lot of code optimization
 - BUGFIX: Made torrent deletion from hard-drive safer
 - BUGFIX: Fixed a bug when switching from finished to downloading list
 - BUGFIX: Showing checking progress for paused torrents too
@@ -81,3 +82,4 @@ beta5->beta6 changelog:
 - BUGFIX: Made finished list context menu more similar to the download list one
 - BUGFIX: Fixed Pause/Start action in lists context menus
 - BUGFIX: Display the torrent that are being checked as 'checking' in seeding list
+- I18N: Removed no longer maintained Traditional chinese translation

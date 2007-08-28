@@ -33,12 +33,8 @@
 #include <QTime>
 #include <QMenu>
 
-DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession) {
+DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession) : parent(parent), BTSession(BTSession), delayedSorting(false), nbTorrents(0) {
   setupUi(this);
-  this->BTSession = BTSession;
-  this->parent = parent;
-  delayedSorting = false;
-  nbTorrents = 0;
   // Setting icons
   actionStart->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play.png")));
   actionPause->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")));

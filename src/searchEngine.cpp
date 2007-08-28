@@ -42,10 +42,8 @@
 
 #define SEARCHHISTORY_MAXSIZE 50
 
-SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration) : QWidget(), systrayIntegration(systrayIntegration){
+SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration) : QWidget(), BTSession(BTSession), myTrayIcon(myTrayIcon), systrayIntegration(systrayIntegration){
   setupUi(this);
-  this->BTSession = BTSession;
-  this->myTrayIcon = myTrayIcon;
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(novaUpdateDownloaded(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleNovaDownloadFailure(QString, QString)));

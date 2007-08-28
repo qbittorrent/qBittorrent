@@ -31,10 +31,8 @@
 #include <QStandardItemModel>
 
 // Constructor
-properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h): QDialog(parent), h(h){
+properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h): QDialog(parent), h(h), BTSession(BTSession), changedFilteredfiles(false), hash(h.hash()) {
   setupUi(this);
-  this->BTSession = BTSession;
-  changedFilteredfiles = false;
   lbl_priorities->setText(tr("Priorities:")+"<ul><li>"+tr("Ignored: file is not downloaded at all")+"</li><li>"+tr("Normal: normal priority. Download order is dependent on availability")+"</li><li>"+tr("High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability")+"</li><li>"+tr("Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority")+"</li></ul>");
   // set icons
   addTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
@@ -66,7 +64,6 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   connect(addWS_button, SIGNAL(clicked()), this, SLOT(askWebSeed()));
   connect(deleteWS_button, SIGNAL(clicked()), this, SLOT(deleteSelectedUrlSeeds()));
   // get Infos from torrent handle
-  hash = h.hash();
   fileName->setText(h.name());
   // Torrent Infos
   save_path->setText(h.save_path());

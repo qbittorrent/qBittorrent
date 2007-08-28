@@ -32,13 +32,10 @@
 #include <QHeaderView>
 #include <QMenu>
 
-FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
+FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : parent(parent), BTSession(BTSession), nbFinished(0){
   setupUi(this);
   actionStart->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play.png")));
   actionPause->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")));
-  nbFinished = 0;
-  this->BTSession = BTSession;
-  this->parent = parent;
   connect(BTSession, SIGNAL(addedTorrent(QString, QTorrentHandle&, bool)), this, SLOT(torrentAdded(QString, QTorrentHandle&, bool)));
   finishedListModel = new QStandardItemModel(0,7);
   finishedListModel->setHeaderData(F_NAME, Qt::Horizontal, tr("Name", "i.e: file name"));

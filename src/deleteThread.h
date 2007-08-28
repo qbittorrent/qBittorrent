@@ -38,9 +38,7 @@ class subDeleteThread : public QThread {
     bool abort;
 
   public:
-    subDeleteThread(QObject *parent, QString save_path, QStringList files_path) : QThread(parent), save_path(save_path), files_path(files_path){
-      abort = false;
-    }
+    subDeleteThread(QObject *parent, QString save_path, QStringList files_path) : QThread(parent), save_path(save_path), files_path(files_path), abort(false){}
 
     ~subDeleteThread(){
       abort = true;
@@ -72,9 +70,7 @@ class deleteThread : public QThread {
     QList<subDeleteThread*> subThreads;
 
   public:
-    deleteThread(QObject* parent) : QThread(parent){
-      abort = false;
-    }
+    deleteThread(QObject* parent) : QThread(parent), abort(false){}
 
     ~deleteThread(){
       mutex.lock();

@@ -59,9 +59,7 @@ class RssItem : public QObject {
 
   public:
     // public constructor
-    RssItem(const QDomElement& properties) {
-      read = false;
-      downloadLink = "none";
+    RssItem(const QDomElement& properties) : read(false), downloadLink("none") {
       QDomElement property = properties.firstChild().toElement();
       while(!property.isNull()) {
 	if (property.tagName() == "title")
@@ -116,18 +114,18 @@ class RssStream : public QObject{
 
   private:
     QString title;
-    QString alias;
     QString link;
     QString description;
     QString image;
     QString url;
+    QString alias;
     QString filePath;
     QString iconPath;
     QList<RssItem*> listItem;
     QTime lastRefresh;
     bool read;
-    bool downloadFailure;
     bool refreshed;
+    bool downloadFailure;
     bool currently_loading;
 
   public slots :
@@ -150,13 +148,7 @@ class RssStream : public QObject{
     }
 
   public:
-    RssStream(QString _url) {
-      url = _url;
-      alias = "";
-      refreshed = false;
-      downloadFailure = false;
-      currently_loading = false;
-      iconPath = ":/Icons/rss.png";
+    RssStream(QString _url): url(_url), alias(""), iconPath(":/Icons/rss.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
       qDebug("RSSStream constructed");
     }
 

@@ -42,10 +42,9 @@
 #define ETAS_MAX_VALUES 8
 
 // Main constructor
-bittorrent::bittorrent() {
+bittorrent::bittorrent() : timerScan(0), DHTEnabled(false){
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
-  timerScan = 0;
   // Supported preview extensions
   // XXX: A bit dirty to do it this way (use mime types?)
   supported_preview_extensions << "AVI" << "DIVX" << "MPG" << "MPEG" << "MPE" << "MP3" << "OGG" << "WMV" << "WMA" << "RMV" << "RMVB" << "ASF" << "MOV" << "WAV" << "MP2" << "SWF" << "AC3" << "OGM" << "MP4" << "FLV" << "VOB" << "QT" << "MKV" << "AIF" << "AIFF" << "AIFC" << "MID" << "MPG" << "RA" << "RAM" << "AU" << "M4A" << "FLAC" << "M4P" << "3GP" << "AAC" << "RM" << "SWA" << "MPC" << "MPP";
@@ -57,8 +56,6 @@ bittorrent::bittorrent() {
   s->start_lsd();
   s->start_natpmp();
   s->start_upnp();
-  // DHT (Trackerless), disabled until told otherwise
-  DHTEnabled = false;
   // Enabling metadata plugin
   s->add_extension(&create_metadata_plugin);
   timerAlerts = new QTimer();

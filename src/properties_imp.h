@@ -36,13 +36,13 @@ class properties : public QDialog, private Ui::properties{
   Q_OBJECT
   private:
     QTorrentHandle h;
+    bittorrent *BTSession;
+    bool changedFilteredfiles;
     QString hash;
     PropListDelegate *PropDelegate;
     QStandardItemModel *PropListModel;
     QTimer *updateInfosTimer;
     bool has_filtered_files;
-    bool changedFilteredfiles;
-    bittorrent *BTSession;
     QStringList urlSeeds;
 
   protected slots:

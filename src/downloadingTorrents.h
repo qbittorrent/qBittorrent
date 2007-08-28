@@ -34,13 +34,13 @@ using namespace libtorrent;
 class DownloadingTorrents : public QWidget, public Ui::downloading{
   Q_OBJECT
   private:
+    QObject *parent;
     bittorrent *BTSession;
     DLListDelegate *DLDelegate;
     QStandardItemModel *DLListModel;
-    unsigned int nbTorrents;
     bool delayedSorting;
+    unsigned int nbTorrents;
     Qt::SortOrder delayedSortingOrder;
-    QObject *parent;
 
   public:
     DownloadingTorrents(QObject *parent, bittorrent *BTSession);

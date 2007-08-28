@@ -34,11 +34,11 @@ using namespace libtorrent;
 class FinishedTorrents : public QWidget, public Ui::seeding {
   Q_OBJECT
   private:
+    QObject *parent;
     bittorrent *BTSession;
     FinishedListDelegate *finishedListDelegate;
     QStandardItemModel *finishedListModel;
     unsigned int nbFinished;
-    QObject *parent;
 
   public:
     FinishedTorrents(QObject *parent, bittorrent *BTSession);

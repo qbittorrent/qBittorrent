@@ -123,7 +123,6 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
                $$LANG_PATH/qbittorrent_uk.ts \
                $$LANG_PATH/qbittorrent_bg.ts \
 	       $$LANG_PATH/qbittorrent_it.ts \
-	       $$LANG_PATH/qbittorrent_zh_HK.ts \
 	       $$LANG_PATH/qbittorrent_sk.ts \
                $$LANG_PATH/qbittorrent_ro.ts \
                $$LANG_PATH/qbittorrent_pt.ts \

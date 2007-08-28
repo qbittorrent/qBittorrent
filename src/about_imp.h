@@ -57,12 +57,11 @@ class about : public QDialog, private Ui::AboutDlg{
           - <u>Bulgarian:</u> Tsvetan & Boiko Bankov (emerge_life@users.sourceforge.net)<br>\
           - <u>Catalan:</u> Gekko Dam Beer (gekko04@users.sourceforge.net)<br>\
           - <u>Chinese (Simplified):</u> Guo Yue (guoyue0418@hotmail.com)<br>\
-          - <u>Chinese (Traditional):</u> Jeff Chen (jeff.cn.chen@gmail.com)<br>\
           - <u>Danish:</u> Mathias Nielsen (comoneo@gmail.com)<br>\
-	  - <u>Dutch:</u> Luke Niesink (luke@lukeniesink.net)<br>\
+          - <u>Dutch:</u> Luke Niesink (luke@lukeniesink.net)<br>\
           - <u>Finnish:</u> Niklas Laxström (nikerabbit@users.sourceforge.net)<br>\
           - <u>German:</u> Niels Hoffmann (zentralmaschine@users.sourceforge.net)<br>\
-	  - <u>Greek:</u> Tsvetan Bankov (emerge_life@users.sourceforge.net)<br>\
+          - <u>Greek:</u> Tsvetan Bankov (emerge_life@users.sourceforge.net)<br>\
           - <u>Hungarian:</u> Majoros Péter (majoros.j.p@t-online.hu)<br>\
           - <u>Italian:</u> Mirko Ferrari (mirkoferrari@gmail.com) and Ferraro Luciano (luciano.ferraro@gmail.com)<br>\
           - <u>Japanese:</u> Nardog (nardog@e2umail.com)<br>\
@@ -74,7 +73,7 @@ class about : public QDialog, private Ui::AboutDlg{
           - <u>Russian:</u> Nick Khazov (m2k3d0n at users.sourceforge.net)<br>\
           - <u>Slovak:</u>  helix84<br>\
           - <u>Spanish:</u> Vicente Raul Plata Fonseca (silverxnt@users.sourceforge.net)<br>\
-	  - <u>Swedish:</u> Daniel Nylander (po@danielnylander.se)<br>\
+          - <u>Swedish:</u> Daniel Nylander (po@danielnylander.se)<br>\
           - <u>Turkish:</u> Erdem Bingöl (erdem84@gmail.com)<br>\
           - <u>Ukrainian:</u> Andrey Shpachenko (masterfix@users.sourceforge.net)<br><br>"));
       te_translation->append(tr("Please contact me if you would like to translate qBittorrent into your own language."));
