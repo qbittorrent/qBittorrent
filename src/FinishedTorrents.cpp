@@ -34,6 +34,8 @@
 
 FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   setupUi(this);
+  actionStart->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play.png")));
+  actionPause->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")));
   nbFinished = 0;
   this->BTSession = BTSession;
   this->parent = parent;
@@ -65,6 +67,8 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession){
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
   actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
+  connect(actionPause, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionPause_triggered()));
+  connect(actionStart, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionStart_triggered()));
   connect(actionDelete, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_triggered()));
   connect(actionPreview_file, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionPreview_file_triggered()));
   connect(actionDelete_Permanently, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_Permanently_triggered()));
@@ -301,21 +305,39 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
   QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
   QSettings settings("qBittorrent", "qBittorrent");
   QString previewProgram = settings.value("Options/Misc/PreviewProgram", QString()).toString();
-  foreach(index, selectedIndexes){
-    if(index.column() == F_NAME){
+  bool has_pause = false, has_start = false, has_preview = false;
+  foreach(index, selectedIndexes) {
+    if(index.column() == F_NAME) {
       // Get the file name
       QString hash = finishedListModel->data(finishedListModel->index(index.row(), F_HASH)).toString();
+      // Get handle and pause the torrent
       QTorrentHandle h = BTSession->getTorrentHandle(hash);
-      myFinishedListMenu.addAction(actionDelete);
-      myFinishedListMenu.addAction(actionDelete_Permanently);
-      myFinishedListMenu.addAction(actionSet_upload_limit);
-      myFinishedListMenu.addAction(actionTorrent_Properties);
-      if(!previewProgram.isEmpty() && BTSession->isFilePreviewPossible(hash) && selectedIndexes.size()<=finishedListModel->columnCount()){
-         myFinishedListMenu.addAction(actionPreview_file);
+      if(!h.is_valid()) continue;
+      if(h.is_paused()) {
+        if(!has_start) {
+          myFinishedListMenu.addAction(actionStart);
+          has_start = true;
+        }
+      }else{
+        if(!has_pause) {
+          myFinishedListMenu.addAction(actionPause);
+          has_pause = true;
+        }
       }
-      break;
+      if(!previewProgram.isEmpty() && BTSession->isFilePreviewPossible(hash) && !has_preview) {
+         myFinishedListMenu.addAction(actionPreview_file);
+         has_preview = true;
+      }
+      if(has_pause && has_start && has_preview) break;
     }
   }
+  myFinishedListMenu.addSeparator();
+  myFinishedListMenu.addAction(actionDelete);
+  myFinishedListMenu.addAction(actionDelete_Permanently);
+  myFinishedListMenu.addSeparator();
+  myFinishedListMenu.addAction(actionSet_upload_limit);
+  myFinishedListMenu.addSeparator();
+  myFinishedListMenu.addAction(actionTorrent_Properties);
   // Call menu
   // XXX: why mapToGlobal() is not enough?
   myFinishedListMenu.exec(mapToGlobal(pos)+QPoint(10,55));
