@@ -56,7 +56,7 @@ class QTorrentHandle {
     QString current_tracker() const;
     bool is_valid() const;
     bool is_paused() const;
-    size_type total_size() const;
+//     size_type total_size() const;
     size_type total_done() const;
     float download_payload_rate() const;
     float upload_payload_rate() const;

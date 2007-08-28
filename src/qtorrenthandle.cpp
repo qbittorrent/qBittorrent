@@ -72,10 +72,10 @@ bool QTorrentHandle::is_paused() const {
   return h.is_paused();
 }
 
-size_type QTorrentHandle::total_size() const {
-  Q_ASSERT(h.is_valid());
-  return h.get_torrent_info().total_size();
-}
+// size_type QTorrentHandle::total_size() const {
+//   Q_ASSERT(h.is_valid());
+//   return h.get_torrent_info().total_size();
+// }
 
 size_type QTorrentHandle::total_done() const {
   Q_ASSERT(h.is_valid());
@@ -127,34 +127,14 @@ QStringList QTorrentHandle::url_seeds() const {
 // get the size of the torrent without the filtered files
 size_type QTorrentHandle::actual_size() const{
   Q_ASSERT(h.is_valid());
-  unsigned int nbFiles = h.get_torrent_info().num_files();
-  if(!h.is_valid()){
-    qDebug("/!\\ Error: Invalid handle");
-    return h.get_torrent_info().total_size();
+  size_type size = 0;
+  std::vector<int> piece_priorities = h.piece_priorities();
+  for(unsigned int i = 0; i<piece_priorities.size(); ++i){
+    if(piece_priorities[i])
+      size += h.get_torrent_info().piece_size(i);
   }
-  QString hash = misc::toQString(h.get_torrent_info().info_hash());
-  QFile pieces_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".priorities"));
-  // Read saved file
-  if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
-    return h.get_torrent_info().total_size();
-  }
-  QByteArray pieces_priorities = pieces_file.readAll();
-  pieces_file.close();
-  QList<QByteArray> pieces_priorities_list = pieces_priorities.split('\n');
-  if((unsigned int)pieces_priorities_list.size() != nbFiles+1){
-    std::cerr << "* Error: Corrupted priorities file\n";
-    return h.get_torrent_info().total_size();
-  }
-  size_type effective_size = 0;
-  for(unsigned int i=0; i<nbFiles; ++i){
-    int priority = pieces_priorities_list.at(i).toInt();
-    if( priority < 0 || priority > 7){
-      priority = 1;
-    }
-    if(priority)
-      effective_size += h.get_torrent_info().file_at(i).size;
-  }
-  return effective_size;
+  Q_ASSERT(size >= 0 && size <= h.get_torrent_info().total_size());
+  return size;
 }
 
 int QTorrentHandle::download_limit() const {

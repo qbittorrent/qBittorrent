@@ -95,7 +95,7 @@ void FinishedTorrents::addTorrent(QString hash){
   // Adding torrent to download list
   finishedListModel->insertRow(row);
   finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(h.name()));
-  finishedListModel->setData(finishedListModel->index(row, F_SIZE), QVariant((qlonglong)h.total_size()));
+  finishedListModel->setData(finishedListModel->index(row, F_SIZE), QVariant((qlonglong)h.actual_size()));
   finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), QVariant((double)0.));
   finishedListModel->setData(finishedListModel->index(row, F_SEEDSLEECH), QVariant("0/0"));
   finishedListModel->setData(finishedListModel->index(row, F_RATIO), QVariant(QString::fromUtf8(misc::toString(BTSession->getRealRatio(hash)).c_str())));
