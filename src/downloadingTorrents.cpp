@@ -137,7 +137,6 @@ void DownloadingTorrents::pauseTorrent(QString hash) {
   DLListModel->setData(DLListModel->index(row, NAME), QIcon(QString::fromUtf8(":/Icons/skin/paused.png")), Qt::DecorationRole);
   DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
-  Q_ASSERT(h.progress() <= 1. && h.progress() >= 0.);
   DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
   setRowColor(row, QString::fromUtf8("red"));
 }
@@ -389,7 +388,6 @@ void DownloadingTorrents::updateDlList() {
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
             setRowColor(row, QString::fromUtf8("grey"));
           }
-          Q_ASSERT(h.progress() <= 1. && h.progress() >= 0.);
           DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
           break;
         case torrent_status::connecting_to_tracker:
@@ -403,7 +401,6 @@ void DownloadingTorrents::updateDlList() {
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/connecting.png"))), Qt::DecorationRole);
             setRowColor(row, QString::fromUtf8("grey"));
           }
-          Q_ASSERT(h.progress() <= 1. && h.progress() >= 0.);
           DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
           DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
           DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
@@ -419,7 +416,6 @@ void DownloadingTorrents::updateDlList() {
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
             setRowColor(row, QString::fromUtf8("black"));
           }
-          Q_ASSERT(h.progress() <= 1. && h.progress() >= 0.);
           DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
           DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
           DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
@@ -655,7 +651,6 @@ void DownloadingTorrents::updateFileSizeAndProgress(QString hash) {
   Q_ASSERT(row != -1);
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)h.actual_size()));
-  Q_ASSERT(h.progress() <= 1.);
   DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
 }
 
