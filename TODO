@@ -47,8 +47,8 @@
 - Windows port (Chris - Peerkoel)
 - write a patch for file_priority(int index), actual_size();
 - valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
+- 134m  35m  16m S  0.3  3.5   4:04.77 qbittorrent
 * beta 6
-  - clean rss icons on exit
   - Translations update (IN PROGRESS)
   - Wait for some bug fixes in libtorrent :
     - Number of seeds non null for finished torrent (Ticket #122)

@@ -395,6 +395,8 @@ class RssManager : public QObject{
           Image image(QDir::cleanPath(path+".ico").toUtf8().data());
           // Convert to PNG since we can't read ICO format
           image.magick("PNG");
+          // Resize to 16x16px
+          image.sample(Geometry(16, 16));
           image.write(path.toUtf8().data());
           QFile::remove(path+".ico");
         }catch(Magick::Exception &error_){

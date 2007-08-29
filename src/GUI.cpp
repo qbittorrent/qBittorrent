@@ -1062,7 +1062,8 @@ void GUI::trackerAuthenticationRequired(QTorrentHandle& h) {
 void GUI::checkConnectionStatus() {
 //   qDebug("Checking connection status");
   // Update Ratio
-  downloadingTorrentTab->updateRatio();
+  if(getCurrentTabIndex() == 0)
+    downloadingTorrentTab->updateRatio();
   // update global informations
   if(systrayIntegration) {
     myTrayIcon->setToolTip(QString::fromUtf8("<b>")+tr("qBittorrent")+QString::fromUtf8("</b><br>")+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1)))+QString::fromUtf8("<br>")+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1)))); // tray icon
