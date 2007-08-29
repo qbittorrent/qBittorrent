@@ -11,13 +11,20 @@ public:
 	qc_libmagick(Conf *c) : ConfObj(c) {}
 	QString name() const { return "ImageMagick library (libmagick++)"; }
 	QString shortname() const { return "libmagick++"; }
+	QString checkString() const {
+		if(!conf->getenv("QC_DISABLE_libmagick").isEmpty())
+			return "";
+		return ConfObj::checkString();
+	}
 	bool exec(){
-    QString s;
+		if(!conf->getenv("QC_DISABLE_libmagick").isEmpty())
+			return false;
+		QString s;
 		s = conf->getenv("QC_WITH_LIBMAGICK_INC");
 		if(!s.isEmpty()) {
 			if(!conf->checkHeader(s, "Magick++.h")) {
 				return false;
-    	}
+    			}
 		}else{
 			QStringList sl;
 			sl << "/usr/include";
@@ -29,17 +36,17 @@ public:
 					break;
 				}
 			}
-			if(!found) {
+			if(!found)
 				return false;
-      }
 		}
 		conf->addIncludePath(s);
 
 		s = conf->getenv("QC_WITH_LIBMAGICK_LIB");
 		if(!s.isEmpty()) {
-			if(!QFile::exists(s+QString("libMagick++.so")))
-		    return false;
-    	conf->addLib(QString("-L") + s);
+			if(!QFile::exists(s+QString("libMagick++.so"))){
+                          return false;
+                        }
+    			conf->addLib(QString("-L") + s);
 		}else{
 			QStringList sl;
 			sl << "/usr/lib/";
@@ -48,11 +55,14 @@ public:
 			foreach(s, sl){
 				if(QFile::exists(s+QString("libMagick++.so"))){
 					found = true;
+					break;
 				}
 			}
-			if(!found) return false;
+			if(!found)
+                         	return false;
 			conf->addLib(QString("-L") + s);
 		}
+		conf->addDefine("HAVE_MAGICK");
 		return true;
 	}
 };

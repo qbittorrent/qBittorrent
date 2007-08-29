@@ -27,29 +27,6 @@ contains(DEBUG_MODE, 0){
   message(Release build!)
 }
 
-QMAKE_CXXFLAGS_RELEASE += -fwrapv -O2
-QMAKE_CXXFLAGS_DEBUG += -fwrapv -O1
-
-CONFIG += link_pkgconfig
-PKGCONFIG += libtorrent libccext2 libccgnu2 ImageMagick++
-QT += network xml
-
-DEFINES += QT_NO_CAST_TO_ASCII
-#QT_NO_CAST_FROM_ASCII
-
-contains(DEBUG_MODE, 0){
-  contains(QT_VERSION, 4.2.0) {
-    message(Qt 4.2.0 detected : enabling debug output because of a bug in this version of Qt)
-  }else{
-    contains(QT_VERSION, 4.2.1) {
-      message(Qt 4.2.1 detected : enabling debug output because of a bug in this version of Qt)
-    }else{
-      DEFINES += QT_NO_DEBUG_OUTPUT
-    }
-  }
-  CONFIG += release
-}
-
 # Install
 
 !win32 {
@@ -93,6 +70,36 @@ contains(DEBUG_MODE, 0){
         icon192.files = menuicons/192x192/apps/qbittorrent.png
         icon192.path = $$PREFIX/share/icons/hicolor/192x192/apps/
         INSTALLS += icon16 icon22 icon24 icon32 icon36 icon48 icon64 icon72 icon96 icon128 icon192
+}
+
+QMAKE_CXXFLAGS_RELEASE += -fwrapv -O2
+QMAKE_CXXFLAGS_DEBUG += -fwrapv -O1
+
+CONFIG += link_pkgconfig
+PKGCONFIG += libtorrent libccext2 libccgnu2
+
+contains(DEFINES, HAVE_MAGICK){
+  PKGCONFIG += ImageMagick++
+}else{
+  message(ImageMagick disabled)
+}
+
+QT += network xml
+
+DEFINES += QT_NO_CAST_TO_ASCII
+#QT_NO_CAST_FROM_ASCII
+
+contains(DEBUG_MODE, 0){
+  contains(QT_VERSION, 4.2.0) {
+    message(Qt 4.2.0 detected : enabling debug output because of a bug in this version of Qt)
+  }else{
+    contains(QT_VERSION, 4.2.1) {
+      message(Qt 4.2.1 detected : enabling debug output because of a bug in this version of Qt)
+    }else{
+      DEFINES += QT_NO_DEBUG_OUTPUT
+    }
+  }
+  CONFIG += release
 }
 
 # Windows

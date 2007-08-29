@@ -41,7 +41,7 @@
 #include "misc.h"
 #include "downloadThread.h"
 
-#ifndef NO_MAGICK
+#ifdef HAVE_MAGICK
   #include <Magick++.h>
   using namespace Magick;
 #endif
@@ -389,7 +389,7 @@ class RssManager : public QObject{
       if(url.endsWith("favicon.ico")){
         // Icon downloaded
        QImage fileIcon;
-#ifndef NO_MAGICK
+#ifdef HAVE_MAGICK
         try{
           QFile::copy(path, path+".ico");
           Image image(QDir::cleanPath(path+".ico").toUtf8().data());
