@@ -186,12 +186,7 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   trackersErrors.remove(hash);
   // Remove it from ratio table
   ratioData.remove(hash);
-  // Remove it from pausedTorrents list
-  int index = pausedTorrents.indexOf(hash);
-  if(index != -1) {
-    pausedTorrents.removeAt(index);
-  }
-  index = finishedTorrents.indexOf(hash);
+  int index = finishedTorrents.indexOf(hash);
   if(index != -1) {
     finishedTorrents.removeAt(index);
   }else{
@@ -298,12 +293,6 @@ bool bittorrent::resumeTorrent(QString hash) {
     torrentsToPauseAfterChecking.removeAt(index);
     success = true;
   }
-  // Remove it from pausedTorrents list
-  index = pausedTorrents.indexOf(hash);
-  if(index != -1)
-    pausedTorrents.removeAt(index);
-  else
-    qDebug("Resumed Torrent was not in paused list");
   return success;
 }
 
@@ -724,10 +713,6 @@ void bittorrent::saveDownloadUploadForTorrent(QString hash) {
   ratio_file.close();
 }
 
-bool bittorrent::receivedPausedAlert(QString hash) const{
-  return (pausedTorrents.indexOf(hash) != -1);
-}
-
 // Save fastresume data for all torrents
 // and remove them from the session
 void bittorrent::saveFastResumeAndRatioData() {
@@ -748,7 +733,10 @@ void bittorrent::saveFastResumeAndRatioData() {
       continue;
     }
     // Pause download (needed before fast resume writing)
-    h.pause();
+    if(!h.is_paused()){
+      waitingForPause << h.hash();
+      h.pause();
+    }
   }
   // Write fast resume data
   for(unsigned int i=0; i<handles.size(); ++i) {
@@ -758,9 +746,8 @@ void bittorrent::saveFastResumeAndRatioData() {
       continue;
     }
     QString hash = h.hash();
-    while(!receivedPausedAlert(hash)) {
+    while(waitingForPause.contains(hash)) {
       //qDebug("Sleeping while waiting that %s is paused", misc::toString(h.info_hash()).c_str());
-      //printPausedTorrents();
       SleeperThread::msleep(300);
       readAlerts();
     }
@@ -1020,17 +1007,14 @@ void bittorrent::readAlerts() {
       if(h.is_valid()){
         QString hash = h.hash();
         qDebug("Received torrent_paused_alert for %s", hash.toUtf8().data());
-        if(!pausedTorrents.contains(hash)) {
-          if(h.is_valid() && h.is_paused()) {
-            pausedTorrents << hash;
-            if(reloadingTorrents.indexOf(hash) != -1) {
-              reloadTorrent(h);
-            }
-          }else{
-            qDebug("Not adding torrent no pausedList, it is invalid or resumed");
-          }
-        }else{
-          qDebug("Received alert for already paused torrent");
+        int index = waitingForPause.indexOf(hash);
+        if(index != -1){
+          waitingForPause.removeAt(index);
+        }
+        index = reloadingTorrents.indexOf(hash);
+        if(index != -1) {
+          reloadingTorrents.removeAt(index);
+          reloadTorrent(h);
         }
       }
     }
@@ -1108,9 +1092,6 @@ void bittorrent::reloadTorrent(const QTorrentHandle &h) {
   if(! torrentBackup.exists()) {
     torrentBackup.mkpath(torrentBackup.path());
   }
-  // Write fast resume data
-  // Torrent is already paused
-  Q_ASSERT(pausedTorrents.indexOf(hash) != -1);
   // Extracting resume data
   if (h.has_metadata()) {
     // get fast resume data

@@ -55,7 +55,7 @@ class bittorrent : public QObject{
     QTimer *ETARefresher;
     QHash<QString, QList<QPair<QString, QString> > > trackersErrors;
     deleteThread *deleter;
-    QStringList pausedTorrents;
+    QStringList waitingForPause;
     QStringList finishedTorrents;
     QStringList unfinishedTorrents;
 
@@ -79,7 +79,6 @@ class bittorrent : public QObject{
     float getRealRatio(QString hash) const;
     session* getSession() const;
     QList<QPair<QString, QString> > getTrackersErrors(QString hash) const;
-    bool receivedPausedAlert(QString hash) const;
     QStringList getFinishedTorrents() const;
     QStringList getUnfinishedTorrents() const;
     bool isFinished(QString hash) const;
