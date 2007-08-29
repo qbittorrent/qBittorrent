@@ -555,15 +555,6 @@ void bittorrent::setMaxConnections(int maxConnec) {
   s->set_max_connections(maxConnec);
 }
 
-// For debug only
-void bittorrent::printPausedTorrents() {
-  QString hash;
-  qDebug("Paused Torrents:");
-  foreach(hash, pausedTorrents) {
-    qDebug("%s ", hash.toUtf8().data());
-  }
-}
-
 // Return DHT state
 bool bittorrent::isDHTEnabled() const{
   return DHTEnabled;
@@ -696,7 +687,9 @@ float bittorrent::getRealRatio(QString hash) const{
   size_type upload =  downUpInfo.second;
   QTorrentHandle h = getTorrentHandle(hash);
   download += h.total_payload_download();
+  Q_ASSERT(download >= 0);
   upload += h.total_payload_upload();
+  Q_ASSERT(upload >= 0);
   if(download == 0){
     if(upload == 0)
       return 1.;

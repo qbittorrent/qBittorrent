@@ -82,7 +82,6 @@ class bittorrent : public QObject{
     session* getSession() const;
     QList<QPair<QString, QString> > getTrackersErrors(QString hash) const;
     bool receivedPausedAlert(QString hash) const;
-    void printPausedTorrents();
     QStringList getFinishedTorrents() const;
     QStringList getUnfinishedTorrents() const;
     bool isFinished(QString hash) const;

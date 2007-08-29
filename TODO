@@ -45,10 +45,9 @@
 - update sorting when a new torrent is added?
 - Keep documention up to date
 - Windows port (Chris - Peerkoel)
-- write a patch for file_priority(int index);
+- write a patch for file_priority(int index), actual_size();
 - valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
 * beta 6
-  - Use gprof to check if we can optimize some stuff (compile with -pg)
   - Translations update (IN PROGRESS)
   - Wait for some bug fixes in libtorrent :
     - Number of seeds non null for finished torrent (Ticket #122)

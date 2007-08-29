@@ -489,7 +489,7 @@
     <string>Private (won't be distributed on trackerless network / DHT if enabled)</string>
    </property>
   </widget>
-  <widget class="QWidget" name="layoutWidget" >
+  <widget class="QWidget" name="layoutWidget2" >
    <property name="geometry" >
     <rect>
      <x>9</x>
@@ -543,7 +543,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="layoutWidget" >
+  <widget class="QWidget" name="layoutWidget3" >
    <property name="geometry" >
     <rect>
      <x>9</x>
