@@ -40,6 +40,7 @@
 #include "deleteThread.h"
 
 #define ETAS_MAX_VALUES 8
+#define MAX_TRACKER_ERRORS 2
 
 // Main constructor
 bittorrent::bittorrent() : timerScan(0), DHTEnabled(false){
@@ -989,7 +990,7 @@ void bittorrent::readAlerts() {
       if(h.is_valid()){
         QString hash = h.hash();
         QList<QPair<QString, QString> > errors = trackersErrors.value(hash, QList<QPair<QString, QString> >());
-        if(errors.size() > 5)
+        if(errors.size() > MAX_TRACKER_ERRORS)
           errors.removeAt(0);
         errors << QPair<QString,QString>(QTime::currentTime().toString("hh:mm:ss"), QString::fromUtf8(a->msg().c_str()));
         trackersErrors[hash] = errors;

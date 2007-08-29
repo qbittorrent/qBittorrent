@@ -38,6 +38,7 @@
 - Allow to automatically delete torrents when they reach a given ratio (in options) : easy
 - Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
 - Add "Mark all as read" feature for RSS
+- Allow to customize lists refreshing interval (in options)
 
 // in v1.0.0 (partial) - WIP
 - Check storage st creation + hasher in torrent creation
@@ -47,7 +48,7 @@
 - Windows port (Chris - Peerkoel)
 - write a patch for file_priority(int index), actual_size();
 - valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
-- 134m  35m  16m S  0.3  3.5   4:04.77 qbittorrent
+- 129m  30m  16m S  5.8  3.0   0:04.36 qbittorrent
 * beta 6
   - Translations update (IN PROGRESS)
   - Wait for some bug fixes in libtorrent :
