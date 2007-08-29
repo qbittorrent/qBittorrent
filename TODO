@@ -82,6 +82,7 @@ beta5->beta6 changelog:
 - BUGFIX: Showing checking progress for paused torrents too
 - BUGFIX: Fixed progress column sorting on startup
 - BUGFIX: Prevent downloadFromUrl flooding
+- BUGFIX: Fixed pause state toggle for paused and checking torrents
 - BUGFIX: Made finished list context menu more similar to the download list one
 - BUGFIX: Fixed Pause/Start action in lists context menus
 - BUGFIX: Improved ETA calculation

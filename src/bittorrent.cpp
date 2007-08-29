@@ -150,6 +150,8 @@ bool bittorrent::isPaused(QString hash) const{
     qDebug("/!\\ Error: Invalid handle");
     return true;
   }
+  if(torrentsToPauseAfterChecking.contains(hash))
+    return true;
   return h.is_paused();
 }
 
