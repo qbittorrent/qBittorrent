@@ -75,7 +75,7 @@ LANGUAGES UPDATED:
 
 beta5->beta6 changelog:
 - FEATURE: Split download tab from GUI class and cleaned up code
-- FEATURE: A lot of code optimization
+- FEATURE: A lot of code optimization (CPU & memory usage)
 - FEATURE: Added support for .ico format (useful for RSS favicons)
 - I18N: Updated Greek translation
 - BUGFIX: Made torrent deletion from hard-drive safer
@@ -90,4 +90,5 @@ beta5->beta6 changelog:
 - BUGFIX: ETA was wrong for torrents with filtered files
 - BUGFIX: Display the torrent that are being checked as 'checking' in seeding list
 - BUGFIX: Fixed file preview and improved previewable files detection
+- BUGFIX: Do not store and calculate ETA values for finished torrents
 - I18N: Removed no longer maintained Traditional chinese translation

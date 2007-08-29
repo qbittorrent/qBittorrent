@@ -105,10 +105,9 @@ void bittorrent::handleDownloadFailure(QString url, QString reason) {
 }
 
 void bittorrent::updateETAs() {
-  std::vector<torrent_handle> handles = s->get_torrents();
-  unsigned int nbHandles = handles.size();
-  for(unsigned int i=0; i<nbHandles; ++i) {
-    QTorrentHandle h = handles[i];
+  QString hash;
+  foreach(hash, unfinishedTorrents) {
+    QTorrentHandle h = getTorrentHandle(hash);
     if(h.is_valid()) {
       QString hash = h.hash();
       QList<qlonglong> listEtas = ETAstats.value(hash, QList<qlonglong>());
@@ -247,6 +246,9 @@ void bittorrent::setFinishedTorrent(QString hash) {
   if(index != -1) {
     unfinishedTorrents.removeAt(index);
   }
+  // Remove it from ETAs hash tables
+  ETAstats.remove(hash);
+  ETAs.remove(hash);
 }
 
 // Pause a running torrent
