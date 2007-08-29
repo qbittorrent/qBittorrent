@@ -70,11 +70,13 @@ LANGUAGES UPDATED:
 - German *BETA5*
 - Russian *BETA5*
 - Korean *BETA5*
+- Greek *BETA6*
 
 beta5->beta6 changelog:
 - FEATURE: Split download tab from GUI class and cleaned up code
 - FEATURE: A lot of code optimization
 - FEATURE: Added support for .ico format (useful for RSS favicons)
+- I18N: Updated Greek translation
 - BUGFIX: Made torrent deletion from hard-drive safer
 - BUGFIX: Fixed a bug when switching from finished to downloading list
 - BUGFIX: Showing checking progress for paused torrents too
