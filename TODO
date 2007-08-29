@@ -46,7 +46,7 @@
 - update sorting when a new torrent is added?
 - Keep documention up to date
 - Windows port (Chris - Peerkoel)
-- write a patch for file_priority(int index), actual_size();
+- write patches libtorrent for file_priority(int index), actual_size() ?
 - valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
 - 129m  30m  16m S  5.8  3.0   0:04.36 qbittorrent
 * beta 6
@@ -90,5 +90,5 @@ beta5->beta6 changelog:
 - BUGFIX: ETA was wrong for torrents with filtered files
 - BUGFIX: Display the torrent that are being checked as 'checking' in seeding list
 - BUGFIX: Fixed file preview and improved previewable files detection
-- BUGFIX: Do not store and calculate ETA values for finished torrents
+- BUGFIX: Do not store and calculate ETA values for finished/paused torrents
 - I18N: Removed no longer maintained Traditional chinese translation

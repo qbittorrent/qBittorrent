@@ -109,6 +109,7 @@ void bittorrent::updateETAs() {
   foreach(hash, unfinishedTorrents) {
     QTorrentHandle h = getTorrentHandle(hash);
     if(h.is_valid()) {
+      if(h.is_paused()) continue;
       QString hash = h.hash();
       QList<qlonglong> listEtas = ETAstats.value(hash, QList<qlonglong>());
       if(listEtas.size() == ETAS_MAX_VALUES) {
@@ -272,6 +273,9 @@ bool bittorrent::pauseTorrent(QString hash) {
     paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
     paused_file.close();
   }
+  // Remove it from ETAs hash tables
+  ETAstats.remove(hash);
+  ETAs.remove(hash);
   return change;
 }
 
