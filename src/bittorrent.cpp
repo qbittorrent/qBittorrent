@@ -39,7 +39,8 @@
 #include "downloadThread.h"
 #include "deleteThread.h"
 
-#define ETAS_MAX_VALUES 8
+#define ETAS_MAX_VALUES 3
+#define ETA_REFRESH_INTERVAL 10000
 #define MAX_TRACKER_ERRORS 2
 
 // Main constructor
@@ -61,7 +62,7 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false){
   timerAlerts->start(3000);
   ETARefresher = new QTimer();
   connect(ETARefresher, SIGNAL(timeout()), this, SLOT(updateETAs()));
-  ETARefresher->start(6000);
+  ETARefresher->start(ETA_REFRESH_INTERVAL);
   // To download from urls
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
