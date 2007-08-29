@@ -173,13 +173,15 @@ entry QTorrentHandle::write_resume_data() const {
   return h.write_resume_data();
 }
 
-QString QTorrentHandle::file_at(int index) const {
+QString QTorrentHandle::file_at(unsigned int index) const {
   Q_ASSERT(h.is_valid());
+  Q_ASSERT(index < (unsigned int)h.get_torrent_info().num_files());
   return misc::toQString(h.get_torrent_info().file_at(index).path.leaf());
 }
 
-size_type QTorrentHandle::filesize_at(int index) const {
+size_type QTorrentHandle::filesize_at(unsigned int index) const {
   Q_ASSERT(h.is_valid());
+  Q_ASSERT(index < (unsigned int)h.get_torrent_info().num_files());
   return h.get_torrent_info().file_at(index).size;
 }
 

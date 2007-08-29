@@ -44,7 +44,6 @@ class previewSelect: public QDialog, private Ui::preview {
   private:
     QStandardItemModel *previewListModel;
     PreviewListDelegate *listDelegate;
-    QStringList supported_preview_extensions;
     QTorrentHandle h;
 
   signals:
@@ -53,36 +52,22 @@ class previewSelect: public QDialog, private Ui::preview {
   protected slots:
     void on_previewButton_clicked(){
       QModelIndex index;
-      bool found = false;
       QModelIndexList selectedIndexes = previewList->selectionModel()->selectedIndexes();
+      if(selectedIndexes.size() == 0) return;
+      QString path;
       foreach(index, selectedIndexes){
         if(index.column() == NAME){
-          QString root_path = h.save_path();
-          if(root_path.at(root_path.length()-1) != QDir::separator()){
-            root_path += QString::fromUtf8("/");
-          }
-          // Get the file name
-          QString fileName = index.data().toString();
+          path = h.files_path().at(index.row());
           // File
-          if(QFile::exists(root_path+fileName)){
-            emit readyToPreviewFile(root_path+fileName);
-            found = true;
-          }else{
-            // Folder
-            QString folder_name = h.name();
-            // Will find the file even if it is in a sub directory
-            QString result = misc::findFileInDir(root_path+folder_name, fileName);
-            if(!result.isNull()){
-              emit readyToPreviewFile(result);
-              found = true;
-            }
+          if(QFile::exists(path)){
+            emit readyToPreviewFile(path);
           }
-          break;
+          close();
+          return;
         }
       }
-      if(!found){
-        QMessageBox::critical(0, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
-      }
+      qDebug("Cannot find file: %s", path.toUtf8().data());
+      QMessageBox::critical(0, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
       close();
     }
 
@@ -102,7 +87,6 @@ class previewSelect: public QDialog, private Ui::preview {
       previewList->setModel(previewListModel);
       listDelegate = new PreviewListDelegate(this);
       previewList->setItemDelegate(listDelegate);
-      supported_preview_extensions << QString::fromUtf8("AVI") << QString::fromUtf8("DIVX") << QString::fromUtf8("MPG") << QString::fromUtf8("MPEG") << QString::fromUtf8("MPE") << QString::fromUtf8("MP3") << QString::fromUtf8("OGG") << QString::fromUtf8("WMV") << QString::fromUtf8("WMA") << QString::fromUtf8("RMV") << QString::fromUtf8("RMVB") << QString::fromUtf8("ASF") << QString::fromUtf8("MOV") << QString::fromUtf8("WAV") << QString::fromUtf8("MP2") << QString::fromUtf8("SWF") << QString::fromUtf8("AC3") << QString::fromUtf8("OGM") << QString::fromUtf8("MP4") << QString::fromUtf8("FLV") << QString::fromUtf8("VOB") << QString::fromUtf8("QT") << QString::fromUtf8("MKV") << QString::fromUtf8("AIF") << QString::fromUtf8("AIFF") << QString::fromUtf8("AIFC") << QString::fromUtf8("MID") << QString::fromUtf8("MPG") << QString::fromUtf8("RA") << QString::fromUtf8("RAM") << QString::fromUtf8("AU") << QString::fromUtf8("M4A") << QString::fromUtf8("FLAC") << QString::fromUtf8("M4P") << QString::fromUtf8("3GP") << QString::fromUtf8("AAC") << QString::fromUtf8("RM") << QString::fromUtf8("SWA") << QString::fromUtf8("MPC") << QString::fromUtf8("MPP");
       previewList->header()->resizeSection(0, 200);
       // Fill list in
       std::vector<float> fp;
@@ -111,7 +95,7 @@ class previewSelect: public QDialog, private Ui::preview {
       for(unsigned int i=0; i<nbFiles; ++i){
         QString fileName = h.file_at(i);
         QString extension = fileName.split(QString::fromUtf8(".")).last().toUpper();
-        if(supported_preview_extensions.indexOf(extension) >= 0){
+        if(misc::isPreviewable(extension)) {
           int row = previewListModel->rowCount();
           previewListModel->insertRow(row);
           previewListModel->setData(previewListModel->index(row, NAME), QVariant(fileName));

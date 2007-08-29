@@ -120,6 +120,51 @@ class misc : public QObject{
       return  QString(QByteArray::number(val, 'f', 1)) + tr("TiB", "tebibytes (1024 gibibytes)");
     }
 
+    static bool isPreviewable(QString extension){
+      extension = extension.toUpper();
+      if(extension == "AVI") return true;
+      if(extension == "MP3") return true;
+      if(extension == "OGG") return true;
+      if(extension == "OGM") return true;
+      if(extension == "WMV") return true;
+      if(extension == "WMA") return true;
+      if(extension == "MPEG") return true;
+      if(extension == "MPG") return true;
+      if(extension == "ASF") return true;
+      if(extension == "QT") return true;
+      if(extension == "RM") return true;
+      if(extension == "RMVB") return true;
+      if(extension == "RMV") return true;
+      if(extension == "SWF") return true;
+      if(extension == "FLV") return true;
+      if(extension == "WAV") return true;
+      if(extension == "MOV") return true;
+      if(extension == "VOB") return true;
+      if(extension == "MID") return true;
+      if(extension == "AC3") return true;
+      if(extension == "MP4") return true;
+      if(extension == "MP2") return true;
+      if(extension == "AVI") return true;
+      if(extension == "FLAC") return true;
+      if(extension == "AU") return true;
+      if(extension == "MPE") return true;
+      if(extension == "MOV") return true;
+      if(extension == "MKV") return true;
+      if(extension == "AIF") return true;
+      if(extension == "AIFF") return true;
+      if(extension == "AIFC") return true;
+      if(extension == "RA") return true;
+      if(extension == "RAM") return true;
+      if(extension == "M4P") return true;
+      if(extension == "M4A") return true;
+      if(extension == "3GP") return true;
+      if(extension == "AAC") return true;
+      if(extension == "SWA") return true;
+      if(extension == "MPC") return true;
+      if(extension == "MPP") return true;
+      return false;
+    }
+
     // return qBittorrent config path
     static QString qBittorrentPath() {
       QString qBtPath = QDir::homePath()+QDir::separator()+QString::fromUtf8(".qbittorrent") + QDir::separator();

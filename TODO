@@ -89,4 +89,5 @@ beta5->beta6 changelog:
 - BUGFIX: Improved ETA calculation
 - BUGFIX: ETA was wrong for torrents with filtered files
 - BUGFIX: Display the torrent that are being checked as 'checking' in seeding list
+- BUGFIX: Fixed file preview and improved previewable files detection
 - I18N: Removed no longer maintained Traditional chinese translation

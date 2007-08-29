@@ -72,8 +72,8 @@ class QTorrentHandle {
     int num_files() const;
     bool has_metadata() const;
     entry write_resume_data() const;
-    QString file_at(int index) const;
-    size_type filesize_at(int index) const;
+    QString file_at(unsigned int index) const;
+    size_type filesize_at(unsigned int index) const;
     std::vector<announce_entry> const& trackers() const;
     torrent_status::state_t state() const;
     QString creator() const;

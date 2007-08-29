@@ -45,7 +45,6 @@ class bittorrent : public QObject{
     QTimer *timerAlerts;
     bool DHTEnabled;
     downloadThread *downloader;
-    QStringList supported_preview_extensions;
     QString defaultSavePath;
     QStringList torrentsToPauseAfterChecking;
     QStringList reloadingTorrents;

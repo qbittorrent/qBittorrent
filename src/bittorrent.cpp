@@ -46,9 +46,6 @@
 bittorrent::bittorrent() : timerScan(0), DHTEnabled(false){
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
-  // Supported preview extensions
-  // XXX: A bit dirty to do it this way (use mime types?)
-  supported_preview_extensions << "AVI" << "DIVX" << "MPG" << "MPEG" << "MPE" << "MP3" << "OGG" << "WMV" << "WMA" << "RMV" << "RMVB" << "ASF" << "MOV" << "WAV" << "MP2" << "SWF" << "AC3" << "OGM" << "MP4" << "FLV" << "VOB" << "QT" << "MKV" << "AIF" << "AIFF" << "AIFC" << "MID" << "MPG" << "RA" << "RAM" << "AU" << "M4A" << "FLAC" << "M4P" << "3GP" << "AAC" << "RM" << "SWA" << "MPC" << "MPP";
   // Creating bittorrent session
   s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0));
   // Set severity level of libtorrent session
@@ -782,10 +779,9 @@ bool bittorrent::isFilePreviewPossible(QString hash) const{
   unsigned int nbFiles = h.num_files();
   for(unsigned int i=0; i<nbFiles; ++i) {
     QString fileName = h.file_at(i);
-    QString extension = fileName.split('.').last().toUpper();
-    if(supported_preview_extensions.indexOf(extension) >= 0) {
+    QString extension = fileName.split('.').last();
+    if(misc::isPreviewable(extension))
       return true;
-    }
   }
   return false;
 }
