@@ -269,11 +269,6 @@ bool bittorrent::pauseTorrent(QString hash) {
     paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
     paused_file.close();
   }
-  // Remove from the list of torrents to pause after checking
-  int index = torrentsToPauseAfterChecking.indexOf(hash);
-  if(index != -1) {
-    torrentsToPauseAfterChecking.removeAt(index);
-  }
   return change;
 }
 
@@ -1038,6 +1033,7 @@ void bittorrent::readAlerts() {
         qDebug("%s have just finished checking", hash.toUtf8().data());
         int index = torrentsToPauseAfterChecking.indexOf(hash);
         if(index != -1) {
+          torrentsToPauseAfterChecking.removeAt(index);
           // Pause torrent
           pauseTorrent(hash);
           qDebug("%s was paused after checking", hash.toUtf8().data());
