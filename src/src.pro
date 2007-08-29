@@ -97,7 +97,6 @@ contains(DEBUG_MODE, 0){
 
 # Windows
 win32 {
-  DEFINES += NO_UPNP
   LIBS += -ltorrent -lccext2 -lccgnu2
 }
 
