@@ -48,7 +48,7 @@
 - Windows port (Chris - Peerkoel)
 - write patches libtorrent for file_priority(int index), actual_size() ?
 - valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
-- 129m  30m  16m S  5.8  3.0   0:04.36 qbittorrent
+- 128m  29m  16m S  4.8  2.9   0:02.28 qbittorrent
 * beta 6
   - Translations update (IN PROGRESS)
   - Wait for some bug fixes in libtorrent :
