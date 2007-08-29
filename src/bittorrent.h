@@ -53,7 +53,6 @@ class bittorrent : public QObject{
     QHash<QString, qlonglong> ETAs;
     QHash<QString, QPair<size_type,size_type> > ratioData;
     QTimer *ETARefresher;
-    QStringList fullAllocationModeList;
     QHash<QString, QList<QPair<QString, QString> > > trackersErrors;
     deleteThread *deleter;
     QStringList pausedTorrents;
@@ -77,7 +76,6 @@ class bittorrent : public QObject{
     int getListenPort() const;
     QStringList getTorrentsToPauseAfterChecking() const;
     long getETA(QString hash) const;
-    bool inFullAllocationMode(QString hash) const;
     float getRealRatio(QString hash) const;
     session* getSession() const;
     QList<QPair<QString, QString> > getTrackersErrors(QString hash) const;

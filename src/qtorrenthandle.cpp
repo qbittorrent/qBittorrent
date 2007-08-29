@@ -131,12 +131,21 @@ size_type QTorrentHandle::actual_size() const{
   Q_ASSERT(h.is_valid());
   size_type size = 0;
   std::vector<int> piece_priorities = h.piece_priorities();
-  for(unsigned int i = 0; i<piece_priorities.size(); ++i){
+  for(unsigned int i = 0; i<piece_priorities.size(); ++i) {
     if(piece_priorities[i])
       size += h.get_torrent_info().piece_size(i);
   }
   Q_ASSERT(size >= 0 && size <= h.get_torrent_info().total_size());
   return size;
+}
+
+bool QTorrentHandle::has_filtered_pieces() const {
+  Q_ASSERT(h.is_valid());
+  std::vector<int> piece_priorities = h.piece_priorities();
+  for(unsigned int i = 0; i<piece_priorities.size(); ++i) {
+    if(!piece_priorities[i]) return true;
+  }
+  return false;
 }
 
 int QTorrentHandle::download_limit() const {

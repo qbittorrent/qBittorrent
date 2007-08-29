@@ -589,10 +589,12 @@ void properties::savePiecesPriorities(){
     pieces_file.write(misc::toQByteArray(priority)+"\n");
   }
   pieces_file.close();
-  if(hasFilteredFiles && !BTSession->inFullAllocationMode(hash)){
+  // If h.has_filtered_pieces() s true, then the torrent
+  // is already in full allocation mode, no need to
+  // reload it.
+  if(hasFilteredFiles && !h.has_filtered_pieces()){
     BTSession->pauseAndReloadTorrent(h);
   }
-  BTSession->loadFilesPriorities(h);
   emit filteredFilesChanged(hash);
   has_filtered_files = hasFilteredFiles;
 }

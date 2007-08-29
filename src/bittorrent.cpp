@@ -186,12 +186,8 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   trackersErrors.remove(hash);
   // Remove it from ratio table
   ratioData.remove(hash);
-  int index = fullAllocationModeList.indexOf(hash);
-  if(index != -1) {
-    fullAllocationModeList.removeAt(index);
-  }
   // Remove it from pausedTorrents list
-  index = pausedTorrents.indexOf(hash);
+  int index = pausedTorrents.indexOf(hash);
   if(index != -1) {
     pausedTorrents.removeAt(index);
   }
@@ -424,10 +420,6 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
     // Adding files to bittorrent session
     if(has_filtered_files(hash)) {
       h = s->add_torrent(t, fs::path(savePath.toUtf8().data()), resume_data, false, true);
-      int index = fullAllocationModeList.indexOf(hash);
-      if(index == -1) {
-        fullAllocationModeList << hash;
-      }
       qDebug(" -> Full allocation mode");
     }else{
       h = s->add_torrent(t, fs::path(savePath.toUtf8().data()), resume_data, true, true);
@@ -1109,10 +1101,6 @@ void bittorrent::reloadTorrent(const QTorrentHandle &h) {
   QString fileName = h.name();
   QString hash = h.hash();
   torrent_info t = h.get_torrent_info();
-  int index = fullAllocationModeList.indexOf(hash);
-  if(index == -1) {
-    fullAllocationModeList << hash;
-  }
   qDebug("Reloading torrent: %s", fileName.toUtf8().data());
   entry resumeData;
     // Checking if torrentBackup Dir exists
@@ -1167,12 +1155,6 @@ int bittorrent::getListenPort() const{
 
 session_status bittorrent::getSessionStatus() const{
   return s->status();
-}
-
-bool bittorrent::inFullAllocationMode(QString hash) const{
-  if(fullAllocationModeList.indexOf(hash) != -1)
-    return true;
-  return false;
 }
 
 QString bittorrent::getSavePath(QString hash) {
