@@ -41,6 +41,11 @@
 #include "misc.h"
 #include "downloadThread.h"
 
+#ifndef NO_MAGICK
+  #include <Magick++.h>
+  using namespace Magick;
+#endif
+
 class RssManager;
 class RssStream;
 class RssItem;
@@ -384,6 +389,18 @@ class RssManager : public QObject{
       if(url.endsWith("favicon.ico")){
         // Icon downloaded
        QImage fileIcon;
+#ifndef NO_MAGICK
+        try{
+          QFile::copy(path, path+".ico");
+          Image image(QDir::cleanPath(path+".ico").toUtf8().data());
+          // Convert to PNG since we can't read ICO format
+          image.magick("PNG");
+          image.write(path.toUtf8().data());
+          QFile::remove(path+".ico");
+        }catch(Magick::Exception &error_){
+          qDebug("favicon conversion to PNG failure: %s", error_.what());
+        }
+#endif
         if(fileIcon.load(path)) {
           QList<RssStream*> res = findFeedsWithIcon(url);
           RssStream* stream;

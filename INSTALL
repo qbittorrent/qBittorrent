@@ -28,6 +28,8 @@ Dependencies:
 
 - python >= 2.3 (previous might work - not tested): needed by search engine.
 
+- libmagick++ (advised, not required)
+
 NOTE FOR GNOME USERS:
 - qt4-qtconfig package is advised when using Plastique style (default)
   or just change qBittorrent style to Cleanlooks (GNOME like)

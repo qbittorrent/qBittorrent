@@ -1,0 +1,58 @@
+/*
+-----BEGIN QCMOD-----
+name: libmagick
+arg: with-libmagick-inc=[path], Path to libmagick++ include files
+arg: with-libmagick-lib=[path], Path to libmagick++ library files
+-----END QCMOD-----
+*/
+class qc_libmagick : public ConfObj
+{
+public:
+	qc_libmagick(Conf *c) : ConfObj(c) {}
+	QString name() const { return "ImageMagick library (libmagick++)"; }
+	QString shortname() const { return "libmagick++"; }
+	bool exec(){
+    QString s;
+		s = conf->getenv("QC_WITH_LIBMAGICK_INC");
+		if(!s.isEmpty()) {
+			if(!conf->checkHeader(s, "Magick++.h")) {
+				return false;
+    	}
+		}else{
+			QStringList sl;
+			sl << "/usr/include";
+			sl << "/usr/local/include";
+			bool found = false;
+			foreach(s, sl){
+				if(conf->checkHeader(s, "Magick++.h")){
+					found = true;
+					break;
+				}
+			}
+			if(!found) {
+				return false;
+      }
+		}
+		conf->addIncludePath(s);
+
+		s = conf->getenv("QC_WITH_LIBMAGICK_LIB");
+		if(!s.isEmpty()) {
+			if(!QFile::exists(s+QString("libMagick++.so")))
+		    return false;
+    	conf->addLib(QString("-L") + s);
+		}else{
+			QStringList sl;
+			sl << "/usr/lib/";
+			sl << "/usr/local/lib/";
+			bool found = false;
+			foreach(s, sl){
+				if(QFile::exists(s+QString("libMagick++.so"))){
+					found = true;
+				}
+			}
+			if(!found) return false;
+			conf->addLib(QString("-L") + s);
+		}
+		return true;
+	}
+};

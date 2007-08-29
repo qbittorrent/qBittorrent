@@ -9,7 +9,6 @@
 
 // Harder
 - Display a progress bar that really displays the pieces we have (like in eMule)
-- .ico support (unsupported by Qt4.3 Free edition)
 
 // Waiting for libtorrent
 - File selection in a torrent in compact mode
@@ -38,6 +37,7 @@
 - Allow to disable UPnP/NAT-PMP/LSD in options?
 - Allow to automatically delete torrents when they reach a given ratio (in options) : easy
 - Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
+- Add "Mark all as read" feature for RSS
 
 // in v1.0.0 (partial) - WIP
 - Check storage st creation + hasher in torrent creation
@@ -48,6 +48,7 @@
 - write a patch for file_priority(int index), actual_size();
 - valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
 * beta 6
+  - clean rss icons on exit
   - Translations update (IN PROGRESS)
   - Wait for some bug fixes in libtorrent :
     - Number of seeds non null for finished torrent (Ticket #122)
@@ -73,6 +74,7 @@ LANGUAGES UPDATED:
 beta5->beta6 changelog:
 - FEATURE: Split download tab from GUI class and cleaned up code
 - FEATURE: A lot of code optimization
+- FEATURE: Added support for .ico format (useful for RSS favicons)
 - BUGFIX: Made torrent deletion from hard-drive safer
 - BUGFIX: Fixed a bug when switching from finished to downloading list
 - BUGFIX: Showing checking progress for paused torrents too
