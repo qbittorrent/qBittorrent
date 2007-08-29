@@ -5,6 +5,7 @@ arg: with-libmagick-inc=[path], Path to libmagick++ include files
 arg: with-libmagick-lib=[path], Path to libmagick++ library files
 -----END QCMOD-----
 */
+#include <QProcess>
 class qc_libmagick : public ConfObj
 {
 public:
@@ -46,7 +47,6 @@ public:
 			if(!QFile::exists(s+QString("libMagick++.so"))){
                           return false;
                         }
-    			conf->addLib(QString("-L") + s);
 		}else{
 			QStringList sl;
 			sl << "/usr/lib/";
@@ -60,8 +60,16 @@ public:
 			}
 			if(!found)
                          	return false;
-			conf->addLib(QString("-L") + s);
 		}
+		conf->addLib(QString("-L") + s);
+		QProcess magickConfig;
+		QStringList params;
+		params << "--libs";
+		magickConfig.start("Magick++-config", params, QIODevice::ReadOnly);
+		magickConfig.waitForStarted();
+		magickConfig.waitForFinished();
+		QByteArray result = magickConfig.readAll();
+		conf->addLib(result.data());
 		conf->addDefine("HAVE_MAGICK");
 		return true;
 	}

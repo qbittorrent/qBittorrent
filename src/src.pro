@@ -79,7 +79,7 @@ CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent libccext2 libccgnu2
 
 contains(DEFINES, HAVE_MAGICK){
-  PKGCONFIG += ImageMagick++
+  #PKGCONFIG += ImageMagick++
 }else{
   message(ImageMagick disabled)
 }
