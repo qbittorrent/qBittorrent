@@ -20,6 +20,9 @@
     <property name="spacing" >
      <number>6</number>
     </property>
+    <property name="margin" >
+     <number>9</number>
+    </property>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar" >

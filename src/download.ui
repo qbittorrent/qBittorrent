@@ -18,10 +18,16 @@
      <property name="spacing" >
       <number>6</number>
      </property>
+     <property name="margin" >
+      <number>0</number>
+     </property>
      <item>
       <layout class="QHBoxLayout" >
        <property name="spacing" >
         <number>6</number>
+       </property>
+       <property name="margin" >
+        <number>0</number>
        </property>
        <item>
         <spacer>
@@ -243,6 +249,9 @@
        <property name="spacing" >
         <number>6</number>
        </property>
+       <property name="margin" >
+        <number>9</number>
+       </property>
        <item>
         <widget class="QTextBrowser" name="infoBar" >
          <property name="sizePolicy" >
@@ -271,6 +280,9 @@
       <layout class="QVBoxLayout" >
        <property name="spacing" >
         <number>6</number>
+       </property>
+       <property name="margin" >
+        <number>9</number>
        </property>
        <item>
         <widget class="QTextBrowser" name="textBlockedUsers" >
