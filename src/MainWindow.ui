@@ -98,7 +98,7 @@
     </size>
    </property>
    <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
+    <number>4</number>
    </attribute>
    <attribute name="toolBarBreak" >
     <bool>false</bool>
