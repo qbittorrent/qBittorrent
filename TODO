@@ -50,7 +50,7 @@
 - valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
 - 128m  29m  16m S  4.8  2.9   0:02.28 qbittorrent
 * beta 6
-  - Fix Qt4.2 compatibility (download.ui)
+  - Fix Qt4.2 compatibility (toolbar)
   - Fix meganova search engine
   - Translations update (IN PROGRESS)
   - Wait for some bug fixes in libtorrent :
@@ -79,6 +79,7 @@ beta5->beta6 changelog:
 - FEATURE: Split download tab from GUI class and cleaned up code
 - FEATURE: A lot of code optimization (CPU & memory usage)
 - FEATURE: Added support for .ico format (useful for RSS favicons)
+- FEATURE: Replaced Meganova search engine by TorrentReactor
 - I18N: Updated Greek translation
 - BUGFIX: Made torrent deletion from hard-drive safer
 - BUGFIX: Fixed a bug when switching from finished to downloading list

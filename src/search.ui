@@ -76,7 +76,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="meganova" >
+         <widget class="QCheckBox" name="reactor" >
           <property name="text" >
            <string/>
           </property>

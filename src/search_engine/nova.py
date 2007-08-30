@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# Version: 2.04
+# Changelog:
+# - Fixed TorrentReactor search engine
+
 # Version: 2.03
 # Changelog:
 # - Little fix for mininova search engine when file name contain '<='
@@ -55,7 +59,7 @@ import cgi
 import traceback
 import threading
 
-STANDALONE = True
+STANDALONE = False
 THREADED = True
 
 if os.environ.has_key('QBITTORRENT'):
@@ -274,11 +278,11 @@ class MegaNova(object):
 	url = 'http://www.meganova.org'
 
 	def search(self, what):
-		dat = urllib.urlopen(self.url+'/find-seeds/%s.html'%what).read().decode('utf8', 'replace')
-		print 'url is ' + self.url+'/find-seeds/%s.html'%what
+		dat = urllib.urlopen(self.url+'/find/%s/4/1.html'%what).read().decode('utf8', 'replace')
+		print 'url is ' + self.url+'/find/%s/4/1.html'%what
 		# I know it's not very readable, but the SGML parser feels in pain
 
-		section_re = re.compile('(?s)<td width="6%">.*?</tr')
+		section_re = re.compile('(?s)<td><a class="name".*?</tr')
 		torrent_re = re.compile('(?s)href="(?P<link>/torrent/.*?)".*?'
 		'<span.*?>(?P<name>.*?)</span>.*?'
 		'>(?P<size>[0-9.]+\s+.B).*?'
@@ -296,7 +300,7 @@ class MegaNova(object):
 				prettyPrinter(torrent_infos)
 
 class Reactor(object):
-	url = 'http://tr.searching.com'
+	url = 'http://www.torrentreactor.net'
 
 	class SimpleSGMLParser(sgmllib.SGMLParser):
 		def __init__(self, results, url, *args):
@@ -309,13 +313,12 @@ class Reactor(object):
 
 		def start_a(self, attr):
 			params = dict(attr)
-			if params['href'].startswith('view.php'):
+			if params['href'].startswith('http://dl.torrentreactor.net/download.php'):
 				self.current_item = {}
 				self.td_counter = 0
-				# extract the torrent id
-				#I save it in a global variable for after create the link string
 				equal = params['href'].find("=")
-				self.id = str(int(params['href'][equal+1:]))
+				amp = params['href'].find("&", equal+1)
+				self.id = str(int(params['href'][equal+1:amp]))
 
 		def handle_data(self, data):
 			if self.td_counter == 0:
@@ -342,7 +345,7 @@ class Reactor(object):
 					self.td_counter = None
 					# add item to results
 					if self.current_item:
-						self.current_item['link']='http://download.torrentreactor.net/download.php?name=%s&id=%s'%(cgi.escape(self.current_item['name']),self.id)
+						self.current_item['link']='http://download.torrentreactor.net/download.php?id=%s&name=%s'%(self.id, urllib.quote(self.current_item['name']))
 						self.current_item['engine_url'] = self.url
 						self.current_item['size']= anySizeToBytes(self.current_item['size'])
 						if not self.current_item['seeds'].isdigit():
@@ -362,7 +365,7 @@ class Reactor(object):
 		while True:
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
-			dat = urllib.urlopen(self.url+'/search.php?search=&words=%s&skip=%s'%(what,(i*50))).read().decode('utf-8', 'replace')
+			dat = urllib.urlopen(self.url+'/search.php?search=&words=%s&cid=&sid=&type=2&orderby=a.seeds&asc=0&skip=%s'%(what,(i*35))).read().decode('utf-8', 'replace')
 			parser.feed(dat)
 			parser.close()
 			if len(results) <= 0:

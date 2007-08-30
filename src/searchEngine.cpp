@@ -87,7 +87,7 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
 //   reactor->setText("TorrentReactor");
   isohunt->setText("Isohunt");
 //   btjunkie->setText("BTJunkie");
-  meganova->setText("Meganova");
+  reactor->setText("TorrentReactor");
   // Check last checked search engines
   loadCheckedSearchEngines();
   connect(mininova, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
@@ -95,7 +95,7 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
 //   connect(reactor, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
   connect(isohunt, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
 //   connect(btjunkie, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
-  connect(meganova, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
+  connect(reactor, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
   // Update nova.py search plugin if necessary
   updateNova();
 }
@@ -190,7 +190,7 @@ void SearchEngine::saveCheckedSearchEngines(int) const{
   settings.setValue("mininova", mininova->isChecked());
   settings.setValue("piratebay", piratebay->isChecked());
   settings.setValue("isohunt", isohunt->isChecked());
-  settings.setValue("meganova", meganova->isChecked());
+  settings.setValue("reactor", reactor->isChecked());
   settings.endGroup();
   qDebug("Saved checked search engines");
 }
@@ -234,7 +234,7 @@ void SearchEngine::loadCheckedSearchEngines(){
   mininova->setChecked(settings.value("mininova", true).toBool());
   piratebay->setChecked(settings.value("piratebay", false).toBool());
   isohunt->setChecked(settings.value("isohunt", false).toBool());
-  meganova->setChecked(settings.value("meganova", false).toBool());
+  reactor->setChecked(settings.value("reactor", false).toBool());
   settings.endGroup();
   qDebug("Loaded checked search engines");
 }
@@ -282,7 +282,7 @@ void SearchEngine::on_search_button_clicked(){
 
 
   // Getting checked search engines
-  if(!mininova->isChecked() && ! piratebay->isChecked()/* && !reactor->isChecked()*/ && !isohunt->isChecked()/* && !btjunkie->isChecked()*/ && !meganova->isChecked()){
+  if(!mininova->isChecked() && ! piratebay->isChecked() && !reactor->isChecked() && !isohunt->isChecked()/* && !btjunkie->isChecked()*/ /*&& !meganova->isChecked()*/){
     QMessageBox::critical(0, tr("No search engine selected"), tr("You must select at least one search engine."));
     return;
   }
@@ -305,8 +305,8 @@ void SearchEngine::on_search_button_clicked(){
 //   if(btjunkie->isChecked()){
 //     engineNames << "btjunkie";
 //   }
-  if(meganova->isChecked()){
-    engineNames << "meganova";
+  if(reactor->isChecked()){
+    engineNames << "reactor";
   }
   params << engineNames.join(",");
   params << pattern.split(" ");
