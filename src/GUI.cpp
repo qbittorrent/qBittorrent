@@ -171,6 +171,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
 // Destructor
 GUI::~GUI() {
   qDebug("GUI destruction");
+  delete rssWidget;
   delete searchEngine;
   delete refresher;
   delete downloadingTorrentTab;
