@@ -48,7 +48,7 @@
         <translation>Franţa</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="362"/>
+        <location filename="" line="7471221"/>
         <source>Thanks To</source>
         <translation type="obsolete">Mulţumim pentru</translation>
     </message>
@@ -111,7 +111,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../about.ui" line="362"/>
         <source>Thanks to</source>
-        <translation type="unfinished"></translation>
+        <translation>Mulţumesc lui</translation>
     </message>
 </context>
 <context>
@@ -119,23 +119,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../allocationDlg.h" line="48"/>
         <source>Upload limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Limita de Upload:</translation>
     </message>
     <message>
         <location filename="../allocationDlg.h" line="50"/>
         <source>Download limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Limita de Download:</translation>
     </message>
     <message>
         <location filename="../allocationDlg.h" line="122"/>
         <source>Unlimited</source>
         <comment>Unlimited (bandwidth)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nelimitat</translation>
     </message>
     <message>
         <location filename="../allocationDlg.h" line="126"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -219,7 +219,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Setările Proxy</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1251"/>
+        <location filename="" line="7471221"/>
         <source>Server IP:</source>
         <translation type="obsolete">IP-ul Serverului:</translation>
     </message>
@@ -259,12 +259,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Activarea conectării prin Proxy Server</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1658"/>
+        <location filename="" line="7471221"/>
         <source>OK</source>
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1665"/>
+        <location filename="" line="7471221"/>
         <source>Cancel</source>
         <translation type="obsolete">Anulare</translation>
     </message>
@@ -279,7 +279,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Activarea Scanarea Direcoriului(Automat adauga torrentele din directoriu)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="87"/>
+        <location filename="" line="7471221"/>
         <source>Connection Settings</source>
         <translation type="obsolete">Setările conectării</translation>
     </message>
@@ -329,7 +329,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Comentarii</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1675"/>
+        <location filename="" line="7471221"/>
         <source>Apply</source>
         <translation type="obsolete">Aplicare</translation>
     </message>
@@ -359,7 +359,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Sgerge descarcările terminate la eşire</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="849"/>
+        <location filename="" line="7471221"/>
         <source>Ask for confirmation on exit</source>
         <translation type="obsolete">Intreabă confirmare la eşire</translation>
     </message>
@@ -429,12 +429,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">DHT(Tracker-uri):</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="508"/>
+        <location filename="" line="7471221"/>
         <source>Disable DHT (Trackerless) support</source>
         <translation type="obsolete">Anulează suport de DHT</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1255"/>
+        <location filename="" line="7471221"/>
         <source>Automatically clear finished downloads</source>
         <translation type="obsolete">Automat şterge descărcările finişate</translation>
     </message>
@@ -484,7 +484,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Calea de salvare</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1327"/>
+        <location filename="" line="7471221"/>
         <source>Systray Messages</source>
         <translation type="obsolete">Mesajele din systray</translation>
     </message>
@@ -506,167 +506,167 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="553"/>
         <source>Disable DHT (Trackerless)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dezactiveaza DHT</translation>
     </message>
     <message>
         <location filename="../options.ui" line="523"/>
         <source>Disable Peer eXchange (PeX)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dezactiveaza Peer eXchange (PeX)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="855"/>
         <source>Go to systray when closing main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Trec in systray la inchiderea ferestrei</translation>
     </message>
     <message>
         <location filename="../options.ui" line="78"/>
         <source>Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectare</translation>
     </message>
     <message>
         <location filename="../options.ui" line="511"/>
         <source>Peer eXchange (PeX)</source>
-        <translation type="unfinished"></translation>
+        <translation>Peer eXchange (PeX)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="541"/>
         <source>DHT (trackerless)</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT (trackerless)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="736"/>
         <source>Torrent addition</source>
-        <translation type="unfinished"></translation>
+        <translation>Adaugarea torrentului</translation>
     </message>
     <message>
         <location filename="../options.ui" line="823"/>
         <source>Main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Fereastra principala</translation>
     </message>
     <message>
         <location filename="../options.ui" line="872"/>
         <source>Systray messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Mesage din systray</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1547"/>
         <source>Directory scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Scanarea directoriului</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1661"/>
         <source>Style (Look &apos;n Feel)</source>
-        <translation type="unfinished"></translation>
+        <translation>Stilul</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1673"/>
         <source>Plastique style (KDE like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Stil plastic (ca in KDE)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1683"/>
         <source>Cleanlooks style (GNOME like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Stril cleanlooks (ca în GNOME)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1690"/>
         <source>Motif style (default Qt style on Unix systems)</source>
-        <translation type="unfinished"></translation>
+        <translation>Stil motif ( stil Qt pe alte UNIX sisteme)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1697"/>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Stil CDE (Common Desktop Environment like)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1707"/>
         <source>MacOS style (MacOSX only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Stil MacOS (disponibil numai pentru MacOSX)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="835"/>
         <source>Exit confirmation when the download list is not empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmare la eşire cînd lista de descărcare nu este vidă</translation>
     </message>
     <message>
         <location filename="../options.ui" line="862"/>
         <source>Disable systray integration</source>
-        <translation type="unfinished"></translation>
+        <translation>Dezactiverea integrării in systray</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1717"/>
         <source>WindowsXP style (Windows XP only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Stil WindowsXP (numai pentru WindowsXP)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1237"/>
         <source>Server IP or url:</source>
-        <translation type="unfinished"></translation>
+        <translation>IP-ul Serverului sau URL:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1310"/>
         <source>Proxy type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipul de proxy:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1318"/>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1323"/>
         <source>SOCKS5</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS5</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1447"/>
         <source>Affected connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectări afectate</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1459"/>
         <source>Use proxy for connections to trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>Foloseşte proxy pentru conectare la tracker-i</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1475"/>
         <source>Use proxy for connections to regular peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Foloseşte proxy pentru conectare la peer-i</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1491"/>
         <source>Use proxy for connections to web seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Foloseşte proxy la conectare cu web seeds</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1507"/>
         <source>Use proxy for DHT messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Foloseşte proxy pentru DHT mesage</translation>
     </message>
     <message>
         <location filename="../options.ui" line="627"/>
         <source>Encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Criptare</translation>
     </message>
     <message>
         <location filename="../options.ui" line="655"/>
         <source>Encryption state:</source>
-        <translation type="unfinished"></translation>
+        <translation>Starea codificării:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="663"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Activată</translation>
     </message>
     <message>
         <location filename="../options.ui" line="668"/>
         <source>Forced</source>
-        <translation type="unfinished"></translation>
+        <translation>Forţată</translation>
     </message>
     <message>
         <location filename="../options.ui" line="673"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Dezactivată</translation>
     </message>
 </context>
 <context>
@@ -675,115 +675,115 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../downloadingTorrents.cpp" line="55"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">Nume</translation>
+        <translation>Nume</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="56"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">Capacitate</translation>
+        <translation>Capacitate</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="57"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">Progress</translation>
+        <translation>Progress</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="58"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished">Viteză DL</translation>
+        <translation>Viteză DL</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="59"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">Viteză UP</translation>
+        <translation>Viteză UP</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="60"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sideri/Licheri</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="61"/>
         <source>Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Rata</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="62"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished">ETA</translation>
+        <translation>ETA</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="98"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent %1 startat.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="99"/>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
-        <translation type="unfinished"></translation>
+        <translation>Atenţie ! Încălcarea drepturilor de autor se pedepseşte in toate ţările.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="123"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a fost blocat&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="197"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished"></translation>
+        <translation>Resumarea rapidă a fost respinsă pentru torrent-ul %1, verific încă o dată...</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="201"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectarea la seed a eşuat pentru : %1, mesajul : %2</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="631"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; adăugat la lista de descărcare.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="633"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; resumat. (resumare rapidă)</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="641"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; este de acum in lista de descărcare.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="645"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nu pot decodifica torrent-ul : &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="646"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Acest fişier este deteriorat sau nu este torrent.</translation>
+        <translation>Acest fişier este deteriorat sau nu este torrent.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="660"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="unfinished">Nu pot asculta pe orice port dat.</translation>
+        <translation>Nu pot asculta pe orice port dat.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="684"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Descarc &apos;%1&apos;, vă rugăm să aşteptaţi...</translation>
     </message>
 </context>
 <context>
@@ -791,13 +791,13 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedListDelegate.h" line="61"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
     <name>FinishedTorrents</name>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="209"/>
+        <location filename="" line="7471221"/>
         <source>Finished</source>
         <translation type="obsolete">Finişat</translation>
     </message>
@@ -805,22 +805,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../FinishedTorrents.cpp" line="41"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">Nume</translation>
+        <translation>Nume</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="42"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">Capacitate</translation>
+        <translation>Capacitate</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="43"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">Progress</translation>
+        <translation>Progress</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="38"/>
+        <location filename="" line="7471221"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
         <translation type="obsolete">Viteză DL</translation>
@@ -829,33 +829,33 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../FinishedTorrents.cpp" line="44"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">Viteză UP</translation>
+        <translation>Viteză UP</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="45"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sideri/Licheri</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="41"/>
+        <location filename="" line="7471221"/>
         <source>Status</source>
         <translation type="obsolete">Stare</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="42"/>
+        <location filename="" line="7471221"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation type="obsolete">ETA</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="102"/>
+        <location filename="" line="7471221"/>
         <source>Finished</source>
         <comment>i.e: Torrent has finished downloading</comment>
         <translation type="obsolete">Finişat</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="240"/>
+        <location filename="" line="7471221"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
         <translation type="obsolete">Nimic</translation>
@@ -863,7 +863,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedTorrents.cpp" line="46"/>
         <source>Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Rata</translation>
     </message>
 </context>
 <context>
@@ -879,7 +879,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Necunoscut</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1161"/>
+        <location filename="" line="7471221"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="obsolete">Acest fişier este deteriorat sau nu este torrent.</translation>
     </message>
@@ -916,20 +916,20 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../GUI.cpp" line="888"/>
         <source>Finished</source>
-        <translation type="unfinished">Finişat</translation>
+        <translation>Finişat</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="498"/>
+        <location filename="" line="7471221"/>
         <source>Checking...</source>
         <translation type="obsolete">Verificare...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1411"/>
+        <location filename="" line="7471221"/>
         <source>Connecting...</source>
         <translation type="obsolete">Conectare...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="583"/>
+        <location filename="" line="7471221"/>
         <source>Downloading...</source>
         <translation type="obsolete">Downloading...</translation>
     </message>
@@ -939,12 +939,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Lista Download curăţită.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1692"/>
+        <location filename="" line="7471221"/>
         <source>All Downloads Paused.</source>
         <translation type="obsolete">Toate descărcările sunt Pausate.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1751"/>
+        <location filename="" line="7471221"/>
         <source>All Downloads Resumed.</source>
         <translation type="obsolete">Toate descărcările sunt Resumate.</translation>
     </message>
@@ -954,17 +954,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">DL viteză: </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="257"/>
+        <location filename="" line="7471221"/>
         <source> started.</source>
         <translation type="obsolete"> început.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="462"/>
+        <location filename="" line="7471221"/>
         <source>UP Speed: </source>
         <translation type="obsolete">UP viteză: </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1217"/>
+        <location filename="" line="7471221"/>
         <source>Couldn&apos;t create the directory:</source>
         <translation type="obsolete">Nu pot crea directoriul:</translation>
     </message>
@@ -974,58 +974,58 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Fişiere Torrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1043"/>
+        <location filename="" line="7471221"/>
         <source>already in download list.</source>
         <comment>&lt;file&gt; already in download list.</comment>
         <translation type="obsolete">deacum în lista download.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1033"/>
+        <location filename="" line="7471221"/>
         <source>added to download list.</source>
         <translation type="obsolete">adăugat la download list.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1035"/>
+        <location filename="" line="7471221"/>
         <source>resumed. (fast resume)</source>
         <translation type="obsolete">resumat.(resumare rapidă)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1047"/>
+        <location filename="" line="7471221"/>
         <source>Unable to decode torrent file:</source>
         <translation type="obsolete">Nu pot decoda fişierul torrent:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1001"/>
+        <location filename="" line="7471221"/>
         <source>removed.</source>
         <comment>&lt;file&gt; removed.</comment>
         <translation type="obsolete">şters.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1338"/>
+        <location filename="" line="7471221"/>
         <source>paused.</source>
         <comment>&lt;file&gt; paused.</comment>
         <translation type="obsolete">pausă.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1292"/>
+        <location filename="" line="7471221"/>
         <source>resumed.</source>
         <comment>&lt;file&gt; resumed.</comment>
         <translation type="obsolete">resumat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1568"/>
+        <location filename="" line="7471221"/>
         <source>Listening on port: </source>
         <translation type="obsolete">Ascult portul: </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="257"/>
+        <location filename="" line="7471221"/>
         <source>qBittorrent </source>
         <translation type="obsolete">qBittorrent </translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1069"/>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="678"/>
@@ -1033,62 +1033,62 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Sunteţi siguri? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="462"/>
+        <location filename="" line="7471221"/>
         <source>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </source>
         <translation type="obsolete">&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL viteză: </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1395"/>
+        <location filename="" line="7471221"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Online</source>
         <translation type="obsolete">&lt;b&gt;Starea conectării:&lt;/b&gt;&lt;br&gt;Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1400"/>
+        <location filename="" line="7471221"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;Starea conectării:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;Nu sunt conectări externe...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1404"/>
+        <location filename="" line="7471221"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;Starea conectării:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;Nu sunt găsiţi peers...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1321"/>
+        <location filename="" line="7471221"/>
         <source> has finished downloading.</source>
         <translation type="obsolete"> am terminat descărcarea.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1691"/>
+        <location filename="" line="7471221"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="obsolete">Nu pot asculta pe orice port dat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1129"/>
+        <location filename="" line="7471221"/>
         <source>None</source>
         <translation type="obsolete">Nimic</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1450"/>
+        <location filename="" line="7471221"/>
         <source>Empty search pattern</source>
         <translation type="obsolete">Şablonul de căutat este vid</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1450"/>
+        <location filename="" line="7471221"/>
         <source>Please type a search pattern first</source>
         <translation type="obsolete">Vă rugăm să completaţi şablonul de căutare</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1457"/>
+        <location filename="" line="7471221"/>
         <source>No seach engine selected</source>
         <translation type="obsolete">Nu aţi selectat motorul de căutare</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1468"/>
+        <location filename="" line="7471221"/>
         <source>You must select at least one search engine.</source>
         <translation type="obsolete">Trebuie să selectaţi cel puţin un motor de căutare.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1508"/>
+        <location filename="" line="7471221"/>
         <source>Searching...</source>
         <translation type="obsolete">Căutare...</translation>
     </message>
@@ -1113,7 +1113,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">URL către fişierul Torrent:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="814"/>
+        <location filename="" line="7471221"/>
         <source>Are you sure you want to quit? -- qBittorrent</source>
         <translation type="obsolete">Sunteţi siguri să ieşiţi? -- qBittorrent</translation>
     </message>
@@ -1133,7 +1133,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Eroare în timpul căutării...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="462"/>
+        <location filename="" line="7471221"/>
         <source>KiB/s</source>
         <translation type="obsolete">KiB/s</translation>
     </message>
@@ -1148,22 +1148,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Oprit</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1716"/>
+        <location filename="" line="7471221"/>
         <source>Search is finished</source>
         <translation type="obsolete">Cautarea este terminata</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1721"/>
+        <location filename="" line="7471221"/>
         <source>An error occured during search...</source>
         <translation type="obsolete">Eroare în timpul căutării...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1724"/>
+        <location filename="" line="7471221"/>
         <source>Search aborted</source>
         <translation type="obsolete">Cautarea abordată</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1727"/>
+        <location filename="" line="7471221"/>
         <source>Search returned no results</source>
         <translation type="obsolete">Cautarea nu a returnat rezultate</translation>
     </message>
@@ -1173,12 +1173,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Cautarea terminata</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1703"/>
+        <location filename="" line="7471221"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation type="obsolete">Cautarea plugin înoire -- qBittorent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1687"/>
+        <location filename="" line="7471221"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -1189,78 +1189,78 @@ Changelog:
 </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1701"/>
+        <location filename="" line="7471221"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation type="obsolete">Ne cerem ertare, serverul este temporar inaccesibil.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1704"/>
+        <location filename="" line="7471221"/>
         <source>Your search plugin is already up to date.</source>
         <translation type="obsolete">Plugin-ul cautat este de acum înnoit.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1544"/>
+        <location filename="" line="7471221"/>
         <source>Results</source>
         <translation type="obsolete">Rezultate</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="203"/>
+        <location filename="" line="7471221"/>
         <source>Name</source>
         <translation type="obsolete">Nume</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="204"/>
+        <location filename="" line="7471221"/>
         <source>Size</source>
         <translation type="obsolete">Capacitate</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="106"/>
+        <location filename="" line="7471221"/>
         <source>Progress</source>
         <translation type="obsolete">Progress</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="107"/>
+        <location filename="" line="7471221"/>
         <source>DL Speed</source>
         <translation type="obsolete">Viteză DL</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="108"/>
+        <location filename="" line="7471221"/>
         <source>UP Speed</source>
         <translation type="obsolete">Viteză UP</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="134"/>
+        <location filename="" line="7471221"/>
         <source>Status</source>
         <translation type="obsolete">Stare</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="111"/>
+        <location filename="" line="7471221"/>
         <source>ETA</source>
         <translation type="obsolete">ETA</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="205"/>
+        <location filename="" line="7471221"/>
         <source>Seeders</source>
         <translation type="obsolete">Seederi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="206"/>
+        <location filename="" line="7471221"/>
         <source>Leechers</source>
         <translation type="obsolete">Leecheri</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="207"/>
+        <location filename="" line="7471221"/>
         <source>Search engine</source>
         <translation type="obsolete">Motorul de căutare</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="528"/>
+        <location filename="" line="7471221"/>
         <source>Stalled</source>
         <comment>state of a torrent whose DL Speed is 0</comment>
         <translation type="obsolete">Oprit</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1477"/>
+        <location filename="" line="7471221"/>
         <source>Paused</source>
         <translation type="obsolete">Pauzat</translation>
     </message>
@@ -1277,61 +1277,61 @@ Please close the other one first.</source>
 Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2325"/>
+        <location filename="" line="7471221"/>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
         <translation type="obsolete">Nu pot descărca</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2325"/>
+        <location filename="" line="7471221"/>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
         <translation type="obsolete">reason:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2344"/>
+        <location filename="" line="7471221"/>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
         <translation type="obsolete">Descărcarea</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2344"/>
+        <location filename="" line="7471221"/>
         <source>Please wait...</source>
         <translation type="obsolete">Vă rugăm să aşteptaţi...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="887"/>
+        <location filename="" line="7471221"/>
         <source>Transfers</source>
         <translation type="obsolete">Transferuri</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="660"/>
+        <location filename="" line="7471221"/>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Doriti să eşiţi din qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1005"/>
+        <location filename="" line="7471221"/>
         <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
         <translation type="obsolete">Doriti să ştergeţi item(ii) selectaţi?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="257"/>
         <source>Download finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Descărcarea terminată</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1323"/>
+        <location filename="" line="7471221"/>
         <source> has finished downloading.</source>
         <comment>&lt;filename&gt; has finished downloading.</comment>
         <translation type="obsolete"> am terminat descărcarea.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1718"/>
+        <location filename="" line="7471221"/>
         <source>Search Engine</source>
         <translation type="obsolete">Motor de Căutare</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1330"/>
+        <location filename="" line="7471221"/>
         <source>I/O Error</source>
         <translation type="obsolete">Eroare de intrare/eşire</translation>
     </message>
@@ -1339,61 +1339,61 @@ Vă rugăm să-l opriţi.</translation>
         <location filename="../GUI.cpp" line="61"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1084"/>
         <source>Connection status:</source>
-        <translation type="unfinished"></translation>
+        <translation>Starea conectării:</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1084"/>
         <source>Offline</source>
-        <translation type="unfinished"></translation>
+        <translation>Deconectat</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1084"/>
         <source>No peers found...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nici un peer nu a fost găsit...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="124"/>
+        <location filename="" line="7471221"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation type="obsolete">Nume</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="125"/>
+        <location filename="" line="7471221"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation type="obsolete">Capacitate</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="126"/>
+        <location filename="" line="7471221"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation type="obsolete">Progress</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="127"/>
+        <location filename="" line="7471221"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
         <translation type="obsolete">Viteză DL</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="128"/>
+        <location filename="" line="7471221"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation type="obsolete">Viteză UP</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="131"/>
+        <location filename="" line="7471221"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation type="obsolete">ETA</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="205"/>
+        <location filename="" line="7471221"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation type="obsolete">Seederi</translation>
@@ -1402,28 +1402,28 @@ Vă rugăm să-l opriţi.</translation>
         <location filename="../GUI.cpp" line="1069"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Viteza DL: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1069"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Viteza IP: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="448"/>
+        <location filename="" line="7471221"/>
         <source>Finished</source>
         <comment>i.e: Torrent has finished downloading</comment>
         <translation type="obsolete">Finişat</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="558"/>
+        <location filename="" line="7471221"/>
         <source>Checking...</source>
         <comment>i.e: Checking already downloaded parts...</comment>
         <translation type="obsolete">Verificare...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="588"/>
+        <location filename="" line="7471221"/>
         <source>Stalled</source>
         <comment>i.e: State of a torrent whose download speed is 0kb/s</comment>
         <translation type="obsolete">Oprit</translation>
@@ -1431,16 +1431,16 @@ Vă rugăm să-l opriţi.</translation>
     <message>
         <location filename="../GUI.cpp" line="488"/>
         <source>Are you sure you want to quit?</source>
-        <translation type="unfinished"></translation>
+        <translation>Doriti să ieşiţi ?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="699"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; a fost şters.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1234"/>
+        <location filename="" line="7471221"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
         <translation type="obsolete">Nimic</translation>
@@ -1448,16 +1448,16 @@ Vă rugăm să-l opriţi.</translation>
     <message>
         <location filename="../GUI.cpp" line="941"/>
         <source>All downloads were paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toate descărcările au fost pauzate.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="964"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; pauzat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1388"/>
+        <location filename="" line="7471221"/>
         <source>Connecting...</source>
         <comment>i.e: Connecting to the tracker...</comment>
         <translation type="obsolete">Conectare...</translation>
@@ -1465,55 +1465,55 @@ Vă rugăm să-l opriţi.</translation>
     <message>
         <location filename="../GUI.cpp" line="993"/>
         <source>All downloads were resumed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toate descărcările au fost reluate.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1016"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; reluat.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="257"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 a fost terminat de descărcat.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="266"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation type="unfinished">Eroare de intrare/eşire</translation>
+        <translation>Eroare de intrare/eşire</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="266"/>
         <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
         <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
-        <translation type="unfinished"></translation>
+        <translation>O eroare a fost detectată la citire sau scriere în %1. Discul probabil este plin, descărcarea a fost pauzată</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1080"/>
         <source>Connection Status:</source>
-        <translation type="unfinished"></translation>
+        <translation>Starea conectării:</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1075"/>
         <source>Online</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectat</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1080"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Firewalled?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1080"/>
         <source>No incoming connections...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu sunt conectări din exterior...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1733"/>
+        <location filename="" line="7471221"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation type="obsolete">Rezultate</translation>
@@ -1522,151 +1522,152 @@ Vă rugăm să-l opriţi.</translation>
         <location filename="../GUI.cpp" line="278"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Eroare a fost detectată(discul plin?), &apos;%1&apos;  pauzad.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="139"/>
         <source>Search</source>
-        <translation type="unfinished">Caută</translation>
+        <translation>Caută</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="143"/>
         <source>RSS</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="771"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent foloseşte portul: %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="796"/>
         <source>DHT support [ON], port: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Suport DHT[Activat], port: %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="801"/>
         <source>DHT support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Suport DHT[Dezactivat]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="831"/>
         <source>PeX support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Suport PeX[Activat]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="834"/>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Suport PeX[Dezactivat]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="489"/>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de descărcare nu este vidă.
+Doriţi să ieşiţi din qBittorrent?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="884"/>
         <source>Downloads</source>
-        <translation type="unfinished">Descărcări</translation>
+        <translation>Descărcări</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="679"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Doriţi să ştergeţi itemii selectaţi ?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="805"/>
         <source>UPnP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Suport UPnP[Activat]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="815"/>
         <source>Encryption support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Suport de codificate[Activat]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="820"/>
         <source>Encryption support [FORCED]</source>
-        <translation type="unfinished"></translation>
+        <translation>Suport de codificare[Forţat]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="825"/>
         <source>Encryption support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Suport de codificare [Dezactivat]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="285"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alt+1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="287"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alt+2</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="293"/>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alt+4</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="361"/>
         <source>Url download error</source>
-        <translation type="unfinished"></translation>
+        <translation>Eroare la descărcare URL</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="361"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu pot descărca fisierul de pe url: %1, motivul: %2.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="617"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Doriţi să ştergeţi itemii selectaţi din listă si de pe hard disk ?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="624"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Doriţi să ştergeţi itemii selectaţi din listă si de pe hard disk ?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="644"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; a fost şters pentru totdeauna.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="289"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alt+3</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="291"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+F</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../MainWindow.ui" line="305"/>
+        <location filename="" line="7471221"/>
         <source>Log:</source>
         <translation type="obsolete">Log:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="77"/>
+        <location filename="" line="7471221"/>
         <source>Total DL Speed:</source>
         <translation type="obsolete">Viteza totală DL:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="181"/>
+        <location filename="" line="7471221"/>
         <source>Total UP Speed:</source>
         <translation type="obsolete">Viteza totală UP:</translation>
     </message>
@@ -1706,7 +1707,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">ETA</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="373"/>
+        <location filename="" line="7471221"/>
         <source>&amp;Options</source>
         <translation type="obsolete">&amp;Opţiuni</translation>
     </message>
@@ -1773,7 +1774,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../MainWindow.ui" line="221"/>
         <source>Documentation</source>
-        <translation type="unfinished">Documentaţie</translation>
+        <translation>Documentaţie</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -1791,42 +1792,42 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Starea Conectării</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="36"/>
+        <location filename="" line="7471221"/>
         <source>Downloads</source>
         <translation type="obsolete">Descărcări</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="488"/>
+        <location filename="" line="7471221"/>
         <source>Search</source>
         <translation type="obsolete">Caută</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="465"/>
+        <location filename="" line="7471221"/>
         <source>Search Pattern:</source>
         <translation type="obsolete">Şablonul Căutării:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="538"/>
+        <location filename="" line="7471221"/>
         <source>Status:</source>
         <translation type="obsolete">Stare:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="568"/>
+        <location filename="" line="7471221"/>
         <source>Stopped</source>
         <translation type="obsolete">Oprit</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="386"/>
+        <location filename="" line="7471221"/>
         <source>Search Engines</source>
         <translation type="obsolete">Motoare de Căutare</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="627"/>
+        <location filename="" line="7471221"/>
         <source>Results:</source>
         <translation type="obsolete">Rezultate:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="504"/>
+        <location filename="" line="7471221"/>
         <source>Stop</source>
         <translation type="obsolete">Oprit</translation>
     </message>
@@ -1851,17 +1852,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Descarcă din URL</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="685"/>
+        <location filename="" line="7471221"/>
         <source>Download</source>
         <translation type="obsolete">Descarcă</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="695"/>
+        <location filename="" line="7471221"/>
         <source>Clear</source>
         <translation type="obsolete">Curăţă</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="210"/>
+        <location filename="" line="7471221"/>
         <source>KiB/s</source>
         <translation type="obsolete">KiB/s</translation>
     </message>
@@ -1876,17 +1877,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Rata: </translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="715"/>
+        <location filename="" line="7471221"/>
         <source>Update search plugin</source>
         <translation type="obsolete">Înnoirea plugin-ului cautat</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="135"/>
+        <location filename="" line="7471221"/>
         <source>Session ratio: </source>
         <translation type="obsolete">Rata de sessiune: </translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="36"/>
+        <location filename="" line="7471221"/>
         <source>Transfers</source>
         <translation type="obsolete">Transferuri</translation>
     </message>
@@ -1908,73 +1909,73 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../MainWindow.ui" line="171"/>
         <source>Visit website</source>
-        <translation type="unfinished"></translation>
+        <translation>Vizitaţi web site-ul</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="206"/>
         <source>Report a bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Raportaţi despre bug-uri</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="211"/>
         <source>Set upload limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Setaţi limita de upload</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="216"/>
         <source>Set download limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Setaţi limita de download</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="226"/>
         <source>Set global download limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Setaţi limita globală de download</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="231"/>
         <source>Set global upload limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Setaţi limita globală de upload</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="63"/>
         <source>Options</source>
-        <translation type="unfinished">Opţiuni</translation>
+        <translation>Opţiuni</translation>
     </message>
 </context>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../PropListDelegate.h" line="136"/>
+        <location filename="" line="7471221"/>
         <source>False</source>
         <translation type="obsolete">Fals</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="135"/>
+        <location filename="" line="7471221"/>
         <source>True</source>
         <translation type="obsolete">Adevărat</translation>
     </message>
     <message>
         <location filename="../PropListDelegate.h" line="121"/>
         <source>Ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorat</translation>
     </message>
     <message>
         <location filename="../PropListDelegate.h" line="122"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../PropListDelegate.h" line="123"/>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Înaltă</translation>
     </message>
     <message>
         <location filename="../PropListDelegate.h" line="124"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Maximală</translation>
     </message>
 </context>
 <context>
@@ -1990,67 +1991,67 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../rss.ui" line="13"/>
         <source>Search</source>
-        <translation type="unfinished">Caută</translation>
+        <translation>Caută</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="216"/>
         <source>Delete</source>
-        <translation type="unfinished">Şterge</translation>
+        <translation>Şterge</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="221"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Redenumeşte</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="226"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Reînnoieşte</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="219"/>
+        <location filename="" line="7471221"/>
         <source>Create</source>
         <translation type="obsolete">Crează</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="97"/>
         <source>Delete selected streams</source>
-        <translation type="unfinished"></translation>
+        <translation>Şterge itemul selectat</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="119"/>
         <source>Refresh RSS streams</source>
-        <translation type="unfinished"></translation>
+        <translation>Reînnoieşte firul RSS</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="141"/>
         <source>Add a new RSS stream</source>
-        <translation type="unfinished"></translation>
+        <translation>Adaugă un nou fir RSS</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="182"/>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Noutăţi:&lt;/b&gt; &lt;i&gt;(dubli click pentru a deschide)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="231"/>
         <source>Add RSS stream</source>
-        <translation type="unfinished"></translation>
+        <translation>Adaugă RSS fir</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="236"/>
         <source>Refresh all streams</source>
-        <translation type="unfinished"></translation>
+        <translation>Reînnoieşte toate firele</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="51"/>
         <source>RSS streams:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fire RSS:</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="56"/>
         <source>2</source>
-        <translation type="unfinished">2</translation>
+        <translation>2</translation>
     </message>
 </context>
 <context>
@@ -2058,67 +2059,67 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../rss_imp.cpp" line="147"/>
         <source>Please type a rss stream url</source>
-        <translation type="unfinished"></translation>
+        <translation>Introduceţi adresa URL la RSS fir</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="147"/>
         <source>Stream URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresa URL:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="102"/>
         <source>Please choose a new name for this stream</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeţi un nume nou la acest fir</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="102"/>
         <source>New stream name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numele nou:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="59"/>
         <source>Are you sure? -- qBittorrent</source>
-        <translation type="unfinished">Sunteţi siguri? -- qBittorrent</translation>
+        <translation>Sunteţi siguri? -- qBittorrent</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="60"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Yes</translation>
+        <translation>&amp;Yes</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="60"/>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;No</translation>
+        <translation>&amp;No</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="59"/>
         <source>Are you sure you want to delete this stream from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Doriţi să ştergeţi acest fir din listă ?</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="243"/>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>Descriere:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="243"/>
         <source>url:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="243"/>
         <source>Last refresh:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ultima reînnoire:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="154"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="155"/>
         <source>This rss feed is already in the list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Acest RSS este deacum în listă.</translation>
     </message>
 </context>
 <context>
@@ -2126,7 +2127,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../rss.h" line="95"/>
         <source>No description available</source>
-        <translation type="unfinished"></translation>
+        <translation>Descrierea nu este disponobilă</translation>
     </message>
 </context>
 <context>
@@ -2135,12 +2136,12 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../rss.h" line="262"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 în urmă</translation>
     </message>
     <message>
         <location filename="../rss.h" line="261"/>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Niciodată</translation>
     </message>
 </context>
 <context>
@@ -2149,65 +2150,65 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../searchEngine.cpp" line="52"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">Nume</translation>
+        <translation>Nume</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="53"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">Capacitate</translation>
+        <translation>Capacitate</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="54"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation type="unfinished">Seederi</translation>
+        <translation>Seederi</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="55"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation type="unfinished"></translation>
+        <translation>Licheri</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="56"/>
         <source>Search engine</source>
-        <translation type="unfinished">Motorul de căutare</translation>
+        <translation>Motorul de căutare</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="268"/>
         <source>Empty search pattern</source>
-        <translation type="unfinished">Şablonul de căutat este vid</translation>
+        <translation>Şablonul de căutat este vid</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="268"/>
         <source>Please type a search pattern first</source>
-        <translation type="unfinished">Vă rugăm să completaţi şablonul de căutare</translation>
+        <translation>Vă rugăm să completaţi şablonul de căutare</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="286"/>
         <source>No search engine selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Nici un motor de căutare nu este selectat</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="286"/>
         <source>You must select at least one search engine.</source>
-        <translation type="unfinished">Trebuie să selectaţi cel puţin un motor de căutare.</translation>
+        <translation>Trebuie să selectaţi cel puţin un motor de căutare.</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="565"/>
         <source>Results</source>
-        <translation type="unfinished">Rezultate</translation>
+        <translation>Rezultate</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="324"/>
         <source>Searching...</source>
-        <translation type="unfinished">Căutare...</translation>
+        <translation>Căutare...</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="469"/>
         <source>Search plugin update -- qBittorrent</source>
-        <translation type="unfinished">Cautarea plugin înoire -- qBittorent</translation>
+        <translation>Cautarea plugin înoire -- qBittorent</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="448"/>
@@ -2215,7 +2216,7 @@ Are you sure you want to quit qBittorrent?</source>
 
 Changelog:
 </source>
-        <translation type="unfinished">Cautarea plugin pentru înoire, doriţi să înoiţi?
+        <translation>Cautarea plugin pentru înoire, doriţi să înoiţi?
 
 Changelog:
 </translation>
@@ -2223,89 +2224,89 @@ Changelog:
     <message>
         <location filename="../searchEngine.cpp" line="449"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Yes</translation>
+        <translation>&amp;Yes</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="449"/>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;No</translation>
+        <translation>&amp;No</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="465"/>
         <source>Search plugin update</source>
-        <translation type="unfinished"></translation>
+        <translation>Reînnoirea plugin-ului de căutare</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="465"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="466"/>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation type="unfinished">Ne cerem ertare, serverul este temporar inaccesibil.</translation>
+        <translation>Ne cerem ertare, serverul este temporar inaccesibil.</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="470"/>
         <source>Your search plugin is already up to date.</source>
-        <translation type="unfinished">Plugin-ul cautat este de acum înnoit.</translation>
+        <translation>Plugin-ul cautat este de acum înnoit.</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="502"/>
         <source>Search Engine</source>
-        <translation type="unfinished">Motor de Căutare</translation>
+        <translation>Motor de Căutare</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="513"/>
         <source>Search has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Căutarea a fost terminată</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="505"/>
         <source>An error occured during search...</source>
-        <translation type="unfinished">Eroare în timpul căutării...</translation>
+        <translation>Eroare în timpul căutării...</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="508"/>
         <source>Search aborted</source>
-        <translation type="unfinished">Cautarea abordată</translation>
+        <translation>Cautarea abordată</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="511"/>
         <source>Search returned no results</source>
-        <translation type="unfinished">Cautarea nu a returnat rezultate</translation>
+        <translation>Cautarea nu a returnat rezultate</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="517"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
-        <translation type="unfinished">Rezultate</translation>
+        <translation>Rezultate</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Search plugin download error</source>
-        <translation type="unfinished"></translation>
+        <translation>Eroare la descărcarea plugin-ului de căutare</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu pot descărca plugin-ul de căutare reînoit prin url: %1, motivul: %2.</translation>
     </message>
 </context>
 <context>
     <name>Ui</name>
     <message>
-        <location filename="../about_imp.h" line="67"/>
+        <location filename="" line="7471221"/>
         <source>Please contact me if you would like to translate qBittorrent to your own language.</source>
         <translation type="obsolete">Vă rog contactaţimă dacă doriţi să traslaţi qBittorrent în limba dvs.</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="38"/>
+        <location filename="" line="7471221"/>
         <source>qBittorrent </source>
         <translation type="obsolete">qBittorrent </translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="44"/>
+        <location filename="" line="7471221"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
         <translation type="obsolete">Eu vreau să mulţumesc voluntarilor care au translat qBittorrent:</translation>
     </message>
@@ -2320,37 +2321,37 @@ Changelog:
         <translation type="obsolete">&lt;li&gt;Eu mulţumesc lui Jeffery Fernandez (developer@jefferyfernandez.id.au), funcţia de RPM packager, pentru lucrul lui mare.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
+        <location filename="" line="7471221"/>
         <source>Preview impossible</source>
         <translation type="obsolete">Preview imposibil</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
+        <location filename="" line="7471221"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation type="obsolete">Nu putem face preview pentru acest fişier</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="98"/>
+        <location filename="" line="7471221"/>
         <source>Name</source>
         <translation type="obsolete">Nume</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="99"/>
+        <location filename="" line="7471221"/>
         <source>Size</source>
         <translation type="obsolete">Capacitate</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="100"/>
+        <location filename="" line="7471221"/>
         <source>Progress</source>
         <translation type="obsolete">Progress</translation>
     </message>
     <message>
-        <location filename="../downloadFromURLImp.h" line="64"/>
+        <location filename="" line="7471221"/>
         <source>No URL entered</source>
         <translation type="obsolete">Nu este introdus URL-ul</translation>
     </message>
     <message>
-        <location filename="../downloadFromURLImp.h" line="64"/>
+        <location filename="" line="7471221"/>
         <source>Please type at least one URL.</source>
         <translation type="obsolete">Vă rugăm să introduceţi cel puţin un URL.</translation>
     </message>
@@ -2360,17 +2361,17 @@ Changelog:
     <message>
         <location filename="../about_imp.h" line="43"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="54"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation type="unfinished">Eu vreau să mulţumesc voluntarilor care au translat qBittorrent:</translation>
+        <translation>Eu vreau să mulţumesc voluntarilor care au translat qBittorrent:</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="79"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation type="unfinished"></translation>
+        <translation>Contactaţimă dacă doriţi să traduceţi qBittorrent in limba dumneavoastră.</translation>
     </message>
 </context>
 <context>
@@ -2396,17 +2397,17 @@ Changelog:
         <translation>Conţinutul torrent-ului:</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="95"/>
+        <location filename="" line="7471221"/>
         <source>File name</source>
         <translation type="obsolete">Numele fişierului</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="100"/>
+        <location filename="" line="7471221"/>
         <source>File size</source>
         <translation type="obsolete">Dimensiunea fişierului</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="105"/>
+        <location filename="" line="7471221"/>
         <source>Selected</source>
         <translation type="obsolete">Selectat</translation>
     </message>
@@ -2436,29 +2437,29 @@ Changelog:
         <translation type="obsolete">selectează</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="188"/>
+        <location filename="" line="7471221"/>
         <source>Unselect</source>
         <translation type="obsolete">Deselectează</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="162"/>
         <source>Ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorat</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="167"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="172"/>
         <source>High</source>
-        <translation type="unfinished"></translation>
+        <translation>Înalt</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="177"/>
         <source>Maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximal</translation>
     </message>
 </context>
 <context>
@@ -2504,25 +2505,25 @@ Changelog:
     <message>
         <location filename="../bandwidth_limit.ui" line="13"/>
         <source>Bandwidth allocation</source>
-        <translation type="unfinished"></translation>
+        <translation>Alocare bandwidth</translation>
     </message>
     <message>
         <location filename="../bandwidth_limit.ui" line="47"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../createtorrent.ui" line="51"/>
+        <location filename="" line="7471221"/>
         <source>Create Torrent file</source>
         <translation type="obsolete">Crează fişier Torrent</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="517"/>
         <source>Destination torrent file:</source>
-        <translation type="unfinished">Destinaţia fişierului torrent:</translation>
+        <translation>Destinaţia fişierului torrent:</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -2555,7 +2556,7 @@ Changelog:
         <translation type="obsolete">Anunţă URL(Tracker):</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="176"/>
+        <location filename="" line="7471221"/>
         <source>Directory</source>
         <translation type="obsolete">Directoriul</translation>
     </message>
@@ -2565,54 +2566,54 @@ Changelog:
         <translation>Crearea Torrentului</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="83"/>
+        <location filename="" line="7471221"/>
         <source>&lt;center&gt;Destination torrent file:&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Destinaţia fişierului torrent:&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="99"/>
+        <location filename="" line="7471221"/>
         <source>&lt;center&gt;Input file or directory:&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Fişier de intrare sau directoriu:&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="115"/>
+        <location filename="" line="7471221"/>
         <source>&lt;center&gt;Announce url:&lt;br&gt;(One per line)&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Anunţă url:&lt;br&gt;(unu pe o linie)&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="125"/>
+        <location filename="" line="7471221"/>
         <source>&lt;center&gt;Comment:&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Comentariu:&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="48"/>
         <source>Torrent file creation</source>
-        <translation type="unfinished"></translation>
+        <translation>Locaţia de creare a torrent-ului</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="93"/>
         <source>Input files or directories:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fişiere sau directorii de intrare:</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="112"/>
         <source>Announce urls (trackers):</source>
-        <translation type="unfinished"></translation>
+        <translation>URL-uri de anunţare (tracke-ri):</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="147"/>
         <source>Comment (optional):</source>
-        <translation type="unfinished"></translation>
+        <translation>Comentariu(opţional):</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="489"/>
         <source>Private (won&apos;t be distributed on trackerless network / DHT if enabled)</source>
-        <translation type="unfinished"></translation>
+        <translation>Privat (nu va fi distribui prin reţea DHT daca este activată)</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="128"/>
         <source>Web seeds urls (optional):</source>
-        <translation type="unfinished"></translation>
+        <translation>Web sedări(opţional):</translation>
     </message>
 </context>
 <context>
@@ -2628,7 +2629,7 @@ Changelog:
         <translation>Fişiere Torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="58"/>
+        <location filename="" line="7471221"/>
         <source>Select input directory or file</source>
         <translation type="obsolete">Selectează directoriul sau fişierul de intrare</translation>
     </message>
@@ -2653,7 +2654,7 @@ Changelog:
         <translation>Vă rugăm să arătaţi calea de intrare</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="96"/>
+        <location filename="" line="7471221"/>
         <source>Input path does not exist</source>
         <translation type="obsolete">Calea de intrare nu există</translation>
     </message>
@@ -2673,45 +2674,45 @@ Changelog:
         <translation>Torrentul a fost creat cu success:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="96"/>
+        <location filename="" line="7471221"/>
         <source>Please type a valid input path first</source>
         <translation type="obsolete">Introduceţi o cale validă</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="66"/>
         <source>Select a folder to add to the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Seletaţi directoriul pentru a fi adăugat în torrent fişier</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="72"/>
         <source>Select files to add to the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Selectaţi fişierele pentru a fi adăugate în torrent</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="99"/>
         <source>Please type an announce URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Introduceţi URL-ul de anunţare</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="207"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Crearea torrent-ului a eşuat, motivul: %1</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="100"/>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation type="unfinished"></translation>
+        <translation>URL-ul de anunţare:</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="118"/>
         <source>Please type a web seed url</source>
-        <translation type="unfinished"></translation>
+        <translation>Introduceţi URL-ul de web seed</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="119"/>
         <source>Web seed URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Web seed URL:</translation>
     </message>
 </context>
 <context>
@@ -2744,12 +2745,12 @@ Changelog:
     <message>
         <location filename="../downloadFromURLImp.h" line="63"/>
         <source>No URL entered</source>
-        <translation type="unfinished">Nu este introdus URL-ul</translation>
+        <translation>Nu este introdus URL-ul</translation>
     </message>
     <message>
         <location filename="../downloadFromURLImp.h" line="63"/>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished">Vă rugăm să introduceţi cel puţin un URL.</translation>
+        <translation>Vă rugăm să introduceţi cel puţin un URL.</translation>
     </message>
 </context>
 <context>
@@ -2757,82 +2758,82 @@ Changelog:
     <message>
         <location filename="../download.ui" line="13"/>
         <source>Search</source>
-        <translation type="unfinished">Caută</translation>
+        <translation>Caută</translation>
     </message>
     <message>
         <location filename="../download.ui" line="48"/>
         <source>Total DL Speed:</source>
-        <translation type="unfinished">Viteza totală DL:</translation>
+        <translation>Viteza totală DL:</translation>
     </message>
     <message>
         <location filename="../download.ui" line="181"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <location filename="../download.ui" line="106"/>
         <source>Session ratio: </source>
-        <translation type="unfinished">Rata de sessiune: </translation>
+        <translation>Rata de sessiune: </translation>
     </message>
     <message>
         <location filename="../download.ui" line="152"/>
         <source>Total UP Speed:</source>
-        <translation type="unfinished">Viteza totală UP:</translation>
+        <translation>Viteza totală UP:</translation>
     </message>
     <message>
         <location filename="../download.ui" line="246"/>
         <source>Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Lof</translation>
     </message>
     <message>
         <location filename="../download.ui" line="280"/>
         <source>IP filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtru IP</translation>
     </message>
     <message>
         <location filename="../download.ui" line="306"/>
         <source>Start</source>
-        <translation type="unfinished">Start</translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="../download.ui" line="311"/>
         <source>Pause</source>
-        <translation type="unfinished">Pauză</translation>
+        <translation>Pauză</translation>
     </message>
     <message>
         <location filename="../download.ui" line="316"/>
         <source>Delete</source>
-        <translation type="unfinished">Şterge</translation>
+        <translation>Şterge</translation>
     </message>
     <message>
         <location filename="../download.ui" line="321"/>
         <source>Clear</source>
-        <translation type="unfinished">Curăţă</translation>
+        <translation>Curăţă</translation>
     </message>
     <message>
         <location filename="../download.ui" line="326"/>
         <source>Preview file</source>
-        <translation type="unfinished">Preview fişier</translation>
+        <translation>Preview fişier</translation>
     </message>
     <message>
         <location filename="../download.ui" line="331"/>
         <source>Set upload limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Setează limita de upload</translation>
     </message>
     <message>
         <location filename="../download.ui" line="336"/>
         <source>Set download limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Setează limita de download</translation>
     </message>
     <message>
         <location filename="../download.ui" line="341"/>
         <source>Delete Permanently</source>
-        <translation type="unfinished">Şterge permanent</translation>
+        <translation>Şterge permanent</translation>
     </message>
     <message>
         <location filename="../download.ui" line="346"/>
         <source>Torrent Properties</source>
-        <translation type="unfinished">Proprietăţile Torrentului</translation>
+        <translation>Proprietăţile Torrentului</translation>
     </message>
 </context>
 <context>
@@ -2868,13 +2869,13 @@ Changelog:
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="220"/>
+        <location filename="" line="7471221"/>
         <source>m</source>
         <comment>minutes</comment>
         <translation type="obsolete">m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="220"/>
+        <location filename="" line="7471221"/>
         <source>h </source>
         <comment>hours</comment>
         <translation type="obsolete">h</translation>
@@ -2885,13 +2886,13 @@ Changelog:
         <translation>Necunoscut</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="215"/>
+        <location filename="" line="7471221"/>
         <source>h</source>
         <comment>hours</comment>
         <translation type="obsolete">h</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="220"/>
+        <location filename="" line="7471221"/>
         <source>d</source>
         <comment>days</comment>
         <translation type="obsolete">d</translation>
@@ -2906,61 +2907,61 @@ Changelog:
         <location filename="../misc.h" line="355"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt; 1m</translation>
     </message>
     <message>
         <location filename="../misc.h" line="357"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1m</translation>
     </message>
     <message>
         <location filename="../misc.h" line="359"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1ore %2m</translation>
     </message>
     <message>
         <location filename="../misc.h" line="361"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 zile %2 ore %3m</translation>
     </message>
 </context>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="239"/>
+        <location filename="" line="7471221"/>
         <source>Options saved successfully!</source>
         <translation type="obsolete">Opţiunile salvate!</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="706"/>
+        <location filename="" line="7471221"/>
         <source>Choose Scan Directory</source>
         <translation type="obsolete">Alegeţi Directoriul pentru Scanare</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="729"/>
+        <location filename="" line="7471221"/>
         <source>Choose save Directory</source>
         <translation type="obsolete">Selectaţi Directoriul pentru Salvare</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="713"/>
+        <location filename="" line="7471221"/>
         <source>Choose ipfilter.dat file</source>
         <translation type="obsolete">Selectaţi fişierul : ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="761"/>
+        <location filename="" line="7471221"/>
         <source>I/O Error</source>
         <translation type="obsolete">Eroare de intrare/eşire</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="761"/>
+        <location filename="" line="7471221"/>
         <source>Couldn&apos;t open:</source>
         <translation type="obsolete">Nu pot deschide:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="761"/>
+        <location filename="" line="7471221"/>
         <source>in read mode.</source>
         <translation type="obsolete">in mod de citire.</translation>
     </message>
@@ -3043,33 +3044,33 @@ Changelog:
     <message>
         <location filename="../options_imp.cpp" line="747"/>
         <source>Options were saved successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Opţiunile salvate cu success.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="932"/>
         <source>Choose scan directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Selectează directoriul de scanare</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="939"/>
         <source>Choose an ipfilter.dat file</source>
-        <translation type="unfinished"></translation>
+        <translation>Selectează fişierul ipfilter.dat</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="955"/>
         <source>Choose a save directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Selectează directoriul de salvare</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="987"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
-        <translation type="unfinished">Eroare de intrare/eşire</translation>
+        <translation>Eroare de intrare/eşire</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="987"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu pot deschide %1 în mod de citire.</translation>
     </message>
 </context>
 <context>
@@ -3105,27 +3106,27 @@ Changelog:
     <message>
         <location filename="../previewSelect.h" line="110"/>
         <source>Preview impossible</source>
-        <translation type="unfinished">Preview imposibil</translation>
+        <translation>Preview imposibil</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="110"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished">Nu putem face preview pentru acest fişier</translation>
+        <translation>Nu putem face preview pentru acest fişier</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="84"/>
         <source>Name</source>
-        <translation type="unfinished">Nume</translation>
+        <translation>Nume</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="85"/>
         <source>Size</source>
-        <translation type="unfinished">Capacitate</translation>
+        <translation>Capacitate</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="86"/>
         <source>Progress</source>
-        <translation type="unfinished">Progress</translation>
+        <translation>Progress</translation>
     </message>
 </context>
 <context>
@@ -3141,12 +3142,12 @@ Changelog:
         <translation type="obsolete">Informaţia principală</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="40"/>
+        <location filename="" line="7471221"/>
         <source>File Name</source>
         <translation type="obsolete">Numele fişierului</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="315"/>
+        <location filename="" line="7471221"/>
         <source>Current Session</source>
         <translation type="obsolete">Sesiunea curentă</translation>
     </message>
@@ -3161,7 +3162,7 @@ Changelog:
         <translation type="obsolete">Total Descărcat:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="102"/>
+        <location filename="" line="7471221"/>
         <source>Download state:</source>
         <translation type="obsolete">Starea Descărcării:</translation>
     </message>
@@ -3191,49 +3192,49 @@ Changelog:
         <translation type="obsolete">Total Eşuat:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="" line="7471221"/>
         <source>Finished</source>
         <translation type="obsolete">Finişat</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="55"/>
+        <location filename="" line="7471221"/>
         <source>Queued for checking</source>
         <translation type="obsolete">In coadă pentru verificare</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="58"/>
+        <location filename="" line="7471221"/>
         <source>Checking files</source>
         <translation type="obsolete">Verificarea fişierelor</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="61"/>
+        <location filename="" line="7471221"/>
         <source>Connecting to tracker</source>
         <translation type="obsolete">Conectarea la tracker</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="64"/>
+        <location filename="" line="7471221"/>
         <source>Downloading Metadata</source>
         <translation type="obsolete">Descărcarea Metadata</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="67"/>
+        <location filename="" line="7471221"/>
         <source>Downloading</source>
         <translation type="obsolete">Descărcarea</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="70"/>
+        <location filename="" line="7471221"/>
         <source>Seeding</source>
         <translation type="obsolete">Sedarea</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="73"/>
+        <location filename="" line="7471221"/>
         <source>Allocating</source>
         <translation type="obsolete">Alocarea</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="72"/>
         <source>Unknown</source>
-        <translation type="unfinished">Necunoscut</translation>
+        <translation>Necunoscut</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -3256,22 +3257,22 @@ Changelog:
         <translation>Capacitate</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="43"/>
+        <location filename="" line="7471221"/>
         <source>Selected</source>
         <translation type="obsolete">Selectat</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="900"/>
+        <location filename="" line="7471221"/>
         <source> Unselect</source>
         <translation type="obsolete"> Deselectare</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="907"/>
+        <location filename="" line="7471221"/>
         <source> Select</source>
         <translation type="obsolete"> Selectare</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="940"/>
+        <location filename="" line="7471221"/>
         <source>You can select here precisely which files you want to download in current torrent.</source>
         <translation type="obsolete">Puteţi selecta unde precis unde fiecare fişier va fi descărcat în torrentul curent.</translation>
     </message>
@@ -3356,17 +3357,17 @@ Changelog:
         <translation>Descarcă în ordine corectă (mai încet dar bun pentru preview)</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="432"/>
+        <location filename="" line="7471221"/>
         <source>Share Ratio:</source>
         <translation type="obsolete">Rata de Share:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="160"/>
+        <location filename="" line="7471221"/>
         <source>Seeders:</source>
         <translation type="obsolete">Seederi:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="185"/>
+        <location filename="" line="7471221"/>
         <source>Leechers:</source>
         <translation type="obsolete">Leecheri:</translation>
     </message>
@@ -3378,144 +3379,144 @@ Changelog:
     <message>
         <location filename="../properties.ui" line="81"/>
         <source>Torrent infos</source>
-        <translation type="unfinished"></translation>
+        <translation>Informaţie despre torrent</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="140"/>
         <source>Creator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Creator:</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="159"/>
         <source>Torrent hash:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hash-ul torrentului:</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="184"/>
         <source>Comment:</source>
-        <translation type="unfinished">Comentarii:</translation>
+        <translation>Comentarii:</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="304"/>
         <source>Current session</source>
-        <translation type="unfinished"></translation>
+        <translation>Sesiunea curentă</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="379"/>
         <source>Share ratio:</source>
-        <translation type="unfinished">Raţia de Share:</translation>
+        <translation>Raţia de Share:</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="481"/>
         <source>Trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>Trackeri</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="338"/>
         <source>New tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker nou</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="339"/>
         <source>New tracker url:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL-ul trackerului nou:</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="36"/>
         <source>Priorities:</source>
-        <translation type="unfinished"></translation>
+        <translation>Priorităţi:</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="36"/>
         <source>Normal: normal priority. Download order is dependent on availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Normal: prioritate normală. Ordinea de descărcare depinde de avaibilitate</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="36"/>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Inaltă: mai sus ca prioritatea normală</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="36"/>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximală: prioritatea maximală</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="47"/>
         <source>File name</source>
-        <translation type="unfinished">Numele fişierului</translation>
+        <translation>Numele fişierului</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="220"/>
         <source>Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Prioritate</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="382"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="383"/>
         <source>Trackers list can&apos;t be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de trackeri nu poate fi vidă.</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="36"/>
         <source>Ignored: file is not downloaded at all</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorat: fişierul nu este descărcat tot</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1057"/>
         <source>Ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorat</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1062"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1067"/>
         <source>Maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximum</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1072"/>
         <source>High</source>
-        <translation type="unfinished"></translation>
+        <translation>Înaltă</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="827"/>
         <source>Url seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Sedări URL</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="315"/>
         <source>New url seed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nou URL de sedări:</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="321"/>
         <source>This url seed is already in the list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Acest URL este deacum în listă.</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="140"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
-        <translation type="unfinished">Nimic</translation>
+        <translation>Nimic</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="314"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nou URL de sedări</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="845"/>
         <source>The following url seeds are available for this torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Următoarele sedări URL sunt accesibile pentru acest torrent:</translation>
     </message>
 </context>
 <context>
@@ -3523,52 +3524,52 @@ Changelog:
     <message>
         <location filename="../search.ui" line="147"/>
         <source>Search</source>
-        <translation type="unfinished">Caută</translation>
+        <translation>Caută</translation>
     </message>
     <message>
         <location filename="../search.ui" line="45"/>
         <source>Search Engines</source>
-        <translation type="unfinished">Motoare de Căutare</translation>
+        <translation>Motoare de Căutare</translation>
     </message>
     <message>
         <location filename="../search.ui" line="124"/>
         <source>Search Pattern:</source>
-        <translation type="unfinished">Şablonul Căutării:</translation>
+        <translation>Şablonul Căutării:</translation>
     </message>
     <message>
         <location filename="../search.ui" line="163"/>
         <source>Stop</source>
-        <translation type="unfinished">Oprit</translation>
+        <translation>Oprit</translation>
     </message>
     <message>
         <location filename="../search.ui" line="197"/>
         <source>Status:</source>
-        <translation type="unfinished">Stare:</translation>
+        <translation>Stare:</translation>
     </message>
     <message>
         <location filename="../search.ui" line="227"/>
         <source>Stopped</source>
-        <translation type="unfinished">Oprit</translation>
+        <translation>Oprit</translation>
     </message>
     <message>
         <location filename="../search.ui" line="286"/>
         <source>Results:</source>
-        <translation type="unfinished">Rezultate:</translation>
+        <translation>Rezultate:</translation>
     </message>
     <message>
         <location filename="../search.ui" line="344"/>
         <source>Download</source>
-        <translation type="unfinished">Descarcă</translation>
+        <translation>Descarcă</translation>
     </message>
     <message>
         <location filename="../search.ui" line="354"/>
         <source>Clear</source>
-        <translation type="unfinished">Curăţă</translation>
+        <translation>Curăţă</translation>
     </message>
     <message>
         <location filename="../search.ui" line="374"/>
         <source>Update search plugin</source>
-        <translation type="unfinished">Înnoirea plugin-ului cautat</translation>
+        <translation>Înnoirea plugin-ului cautat</translation>
     </message>
 </context>
 <context>
@@ -3576,52 +3577,52 @@ Changelog:
     <message>
         <location filename="../seeding.ui" line="13"/>
         <source>Search</source>
-        <translation type="unfinished">Caută</translation>
+        <translation>Caută</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="25"/>
         <source>The following torrents are finished and shared:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aceste torrente sunt terminate şi distribuite:</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="47"/>
         <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;u&gt;Notă:&lt;/u&gt; Este important să distribuiţi torentele dvs. după ce leaţi descărcat pentru ca alţi utilizatori sa le poată lua.</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="54"/>
         <source>Start</source>
-        <translation type="unfinished">Start</translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="59"/>
         <source>Pause</source>
-        <translation type="unfinished">Pauză</translation>
+        <translation>Pauză</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="64"/>
         <source>Delete</source>
-        <translation type="unfinished">Şterge</translation>
+        <translation>Şterge</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="69"/>
         <source>Delete Permanently</source>
-        <translation type="unfinished">Şterge permanent</translation>
+        <translation>Şterge permanent</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="74"/>
         <source>Torrent Properties</source>
-        <translation type="unfinished">Proprietăţile Torrentului</translation>
+        <translation>Proprietăţile Torrentului</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="79"/>
         <source>Preview file</source>
-        <translation type="unfinished">Preview fişier</translation>
+        <translation>Preview fişier</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="84"/>
         <source>Set upload limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Setaţi limita de upload</translation>
     </message>
 </context>
 <context>
@@ -3629,63 +3630,63 @@ Changelog:
     <message>
         <location filename="../downloadThread.h" line="58"/>
         <source>Host is unreachable</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculatorul nu poate fi accesat</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="60"/>
         <source>File was not found (404)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fişierul nu a fost găsit(404)</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="62"/>
         <source>Connection was denied</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectarea a fost interzisă</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="64"/>
         <source>Url is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresa URL nu este validă</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="66"/>
         <source>Connection forbidden (403)</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectarea respinsă(403)</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="68"/>
         <source>Connection was not authorized (401)</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectare neautorizată(401)</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="70"/>
         <source>Content has moved (301)</source>
-        <translation type="unfinished"></translation>
+        <translation>Conţinutul a fost mutat(301)</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="72"/>
         <source>Connection failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectarea eşuată</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="74"/>
         <source>Connection was timed out</source>
-        <translation type="unfinished"></translation>
+        <translation>Timpul de conectare expirat</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="76"/>
         <source>Incorrect network interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfaţa de reţea incorectă</translation>
     </message>
     <message>
         <location filename="../downloadThread.h" line="78"/>
         <source>Unknown error</source>
-        <translation type="unfinished"></translation>
+        <translation>Eroare necunoscută</translation>
     </message>
 </context>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentAddition.h" line="197"/>
+        <location filename="" line="7471221"/>
         <source>True</source>
         <translation type="obsolete">Adevărat</translation>
     </message>
@@ -3705,7 +3706,7 @@ Changelog:
         <translation>Alegeţi calea de salvare</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="193"/>
+        <location filename="" line="7471221"/>
         <source>False</source>
         <translation type="obsolete">Fals</translation>
     </message>
@@ -3742,22 +3743,22 @@ Changelog:
     <message>
         <location filename="../torrentAddition.h" line="65"/>
         <source>File name</source>
-        <translation type="unfinished">Numele fişierului</translation>
+        <translation>Numele fişierului</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="66"/>
         <source>Size</source>
-        <translation type="unfinished">Capacitate</translation>
+        <translation>Capacitate</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="67"/>
         <source>Progress</source>
-        <translation type="unfinished">Progress</translation>
+        <translation>Progress</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="211"/>
         <source>Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Prioritate</translation>
     </message>
 </context>
 </TS>
