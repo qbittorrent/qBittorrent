@@ -907,17 +907,17 @@ Please close the other one first.</source>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1084"/>
         <source>Connection status:</source>
         <translation>接続状態:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1084"/>
         <source>Offline</source>
         <translation>オフライン</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1084"/>
         <source>No peers found...</source>
         <translation>ピアが見つかりません...</translation>
     </message>
@@ -970,18 +970,18 @@ Please close the other one first.</source>
         <translation type="obsolete">qBittorrent %1 が開始されました。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1068"/>
+        <location filename="../GUI.cpp" line="1069"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1068"/>
+        <location filename="../GUI.cpp" line="1069"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL 速度: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1068"/>
+        <location filename="../GUI.cpp" line="1069"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP 速度: %1 KiB/s</translation>
@@ -1086,23 +1086,23 @@ Please close the other one first.</source>
         <translation>%1 の読み込みまたは書き込みを試行にエラーが発生しました。ディスクはおそらくいっぱいです、ダウンロードは一時停止されました</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>Connection Status:</source>
         <translation>接続状態:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1075"/>
         <source>Online</source>
         <translation>オンライン</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>ファイアウォールされましたか?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>No incoming connections...</source>
         <translation>次期接続がありません...</translation>
     </message>
@@ -2344,52 +2344,52 @@ Changelog:
         <translation type="unfinished">ログ</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="278"/>
+        <location filename="../download.ui" line="280"/>
         <source>IP filter</source>
         <translation type="unfinished">IP フィルタ</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="304"/>
+        <location filename="../download.ui" line="306"/>
         <source>Start</source>
         <translation type="unfinished">開始</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="309"/>
+        <location filename="../download.ui" line="311"/>
         <source>Pause</source>
         <translation type="unfinished">一時停止</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="314"/>
+        <location filename="../download.ui" line="316"/>
         <source>Delete</source>
         <translation type="unfinished">削除</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="319"/>
+        <location filename="../download.ui" line="321"/>
         <source>Clear</source>
         <translation type="unfinished">クリア</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="324"/>
+        <location filename="../download.ui" line="326"/>
         <source>Preview file</source>
         <translation type="unfinished">ファイルのプレビュー</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="329"/>
+        <location filename="../download.ui" line="331"/>
         <source>Set upload limit</source>
         <translation type="unfinished">アップロード制限の設定</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="334"/>
+        <location filename="../download.ui" line="336"/>
         <source>Set download limit</source>
         <translation type="unfinished">ダウンロード制限の設定</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="339"/>
+        <location filename="../download.ui" line="341"/>
         <source>Delete Permanently</source>
         <translation type="unfinished">永久に削除</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="344"/>
+        <location filename="../download.ui" line="346"/>
         <source>Torrent Properties</source>
         <translation type="unfinished">Torrent のプロパティ</translation>
     </message>
@@ -2427,7 +2427,7 @@ Changelog:
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="290"/>
+        <location filename="../misc.h" line="335"/>
         <source>Unknown</source>
         <translation>不明</translation>
     </message>
@@ -2438,25 +2438,25 @@ Changelog:
         <translation>不明</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="310"/>
+        <location filename="../misc.h" line="355"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 分</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="312"/>
+        <location filename="../misc.h" line="357"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 分</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="314"/>
+        <location filename="../misc.h" line="359"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1 時間 %2 分</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="316"/>
+        <location filename="../misc.h" line="361"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1 日 %2 時間 %3 分</translation>
@@ -2578,27 +2578,27 @@ Changelog:
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
+        <location filename="../previewSelect.h" line="110"/>
         <source>Preview impossible</source>
         <translation>プレビューが不可能です</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
+        <location filename="../previewSelect.h" line="110"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>すみません、このファイルをプレビューできません</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="99"/>
+        <location filename="../previewSelect.h" line="84"/>
         <source>Name</source>
         <translation>名前</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="100"/>
+        <location filename="../previewSelect.h" line="85"/>
         <source>Size</source>
         <translation>サイズ</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="101"/>
+        <location filename="../previewSelect.h" line="86"/>
         <source>Progress</source>
         <translation>進行状況</translation>
     </message>

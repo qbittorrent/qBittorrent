@@ -1087,7 +1087,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1068"/>
+        <location filename="../GUI.cpp" line="1069"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1442,17 +1442,17 @@ Please close the other one first.</source>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1084"/>
         <source>Connection status:</source>
         <translation>Статус з&apos;єднання:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1084"/>
         <source>Offline</source>
         <translation>Офлайн</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1084"/>
         <source>No peers found...</source>
         <translation>Не знайдено пірів...</translation>
     </message>
@@ -1517,13 +1517,13 @@ Please close the other one first.</source>
         <translation type="obsolete">qBittorrent %1 запущено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1068"/>
+        <location filename="../GUI.cpp" line="1069"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Швидкість прийому: %1 КіБ/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1068"/>
+        <location filename="../GUI.cpp" line="1069"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Швидкість віддачі: %1 КіБ/с</translation>
@@ -1646,23 +1646,23 @@ Please close the other one first.</source>
         <translation type="obsolete">Сталася помилка (заповнено диск?), &apos;%1&apos; призупинено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>Connection Status:</source>
         <translation>Статус з&apos;єднання:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1075"/>
         <source>Online</source>
         <translation>Онлайн</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Захищено фаєрволом?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>No incoming connections...</source>
         <translation>Немає вхідних з&apos;єднань...</translation>
     </message>
@@ -3028,52 +3028,52 @@ Changelog:
         <translation type="unfinished">Лог</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="278"/>
+        <location filename="../download.ui" line="280"/>
         <source>IP filter</source>
         <translation type="unfinished">Фільтер IP</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="304"/>
+        <location filename="../download.ui" line="306"/>
         <source>Start</source>
         <translation type="unfinished">Почати</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="309"/>
+        <location filename="../download.ui" line="311"/>
         <source>Pause</source>
         <translation type="unfinished">Призупинити</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="314"/>
+        <location filename="../download.ui" line="316"/>
         <source>Delete</source>
         <translation type="unfinished">Видалити</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="319"/>
+        <location filename="../download.ui" line="321"/>
         <source>Clear</source>
         <translation type="unfinished">Очистити</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="324"/>
+        <location filename="../download.ui" line="326"/>
         <source>Preview file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../download.ui" line="329"/>
+        <location filename="../download.ui" line="331"/>
         <source>Set upload limit</source>
         <translation type="unfinished">Встановити ліміт віддачі</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="334"/>
+        <location filename="../download.ui" line="336"/>
         <source>Set download limit</source>
         <translation type="unfinished">Встановити ліміт прийому</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="339"/>
+        <location filename="../download.ui" line="341"/>
         <source>Delete Permanently</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../download.ui" line="344"/>
+        <location filename="../download.ui" line="346"/>
         <source>Torrent Properties</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3129,7 +3129,7 @@ Changelog:
         <translation type="obsolete">д</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="290"/>
+        <location filename="../misc.h" line="335"/>
         <source>Unknown</source>
         <translation>Невідомо</translation>
     </message>
@@ -3152,25 +3152,25 @@ Changelog:
         <translation>Невідомо</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="310"/>
+        <location filename="../misc.h" line="355"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1хв</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="312"/>
+        <location filename="../misc.h" line="357"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1хв</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="314"/>
+        <location filename="../misc.h" line="359"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1г%2хв</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="316"/>
+        <location filename="../misc.h" line="361"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1д%2г%3хв</translation>
@@ -3352,27 +3352,27 @@ Changelog:
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
+        <location filename="../previewSelect.h" line="110"/>
         <source>Preview impossible</source>
         <translation>Перегляд неможливий</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
+        <location filename="../previewSelect.h" line="110"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Пробачте, неможливо переглянути цей файл</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="99"/>
+        <location filename="../previewSelect.h" line="84"/>
         <source>Name</source>
         <translation>Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="100"/>
+        <location filename="../previewSelect.h" line="85"/>
         <source>Size</source>
         <translation>Розмір</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="101"/>
+        <location filename="../previewSelect.h" line="86"/>
         <source>Progress</source>
         <translation>Прогрес</translation>
     </message>

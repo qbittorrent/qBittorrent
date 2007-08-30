@@ -1013,7 +1013,7 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1068"/>
+        <location filename="../GUI.cpp" line="1069"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1309,17 +1309,17 @@ Por favor feche o outro primeiro.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1084"/>
         <source>Connection status:</source>
         <translation>Estado da conexão:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1084"/>
         <source>Offline</source>
         <translation>Offline</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1084"/>
         <source>No peers found...</source>
         <translation>Peers não encontrados...</translation>
     </message>
@@ -1384,13 +1384,13 @@ Por favor feche o outro primeiro.</translation>
         <translation type="obsolete">qBittorrent %1 iniciado.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1068"/>
+        <location filename="../GUI.cpp" line="1069"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Velocidade de download: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1068"/>
+        <location filename="../GUI.cpp" line="1069"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Velocidade de Upload: %1 KiB/s</translation>
@@ -1513,23 +1513,23 @@ Por favor feche o outro primeiro.</translation>
         <translation type="obsolete">Ocorreu um erro (disco cheio?), &apos;%1&apos; pausado.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>Connection Status:</source>
         <translation>Estado da conexão:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1075"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Sob firewall?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>No incoming connections...</source>
         <translation>Sem conexão...</translation>
     </message>
@@ -2993,52 +2993,52 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="unfinished">Log</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="278"/>
+        <location filename="../download.ui" line="280"/>
         <source>IP filter</source>
         <translation type="unfinished">Filtro IP</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="304"/>
+        <location filename="../download.ui" line="306"/>
         <source>Start</source>
         <translation type="unfinished">Iniciar</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="309"/>
+        <location filename="../download.ui" line="311"/>
         <source>Pause</source>
         <translation type="unfinished">Pausar</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="314"/>
+        <location filename="../download.ui" line="316"/>
         <source>Delete</source>
         <translation type="unfinished">Apagar</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="319"/>
+        <location filename="../download.ui" line="321"/>
         <source>Clear</source>
         <translation type="unfinished">Limpar</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="324"/>
+        <location filename="../download.ui" line="326"/>
         <source>Preview file</source>
         <translation type="unfinished">Arquivo de pré-visualização</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="329"/>
+        <location filename="../download.ui" line="331"/>
         <source>Set upload limit</source>
         <translation type="unfinished">Setar limite de upload</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="334"/>
+        <location filename="../download.ui" line="336"/>
         <source>Set download limit</source>
         <translation type="unfinished">Setar limite de download</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="339"/>
+        <location filename="../download.ui" line="341"/>
         <source>Delete Permanently</source>
         <translation type="unfinished">Apagar permanentemente</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="344"/>
+        <location filename="../download.ui" line="346"/>
         <source>Torrent Properties</source>
         <translation type="unfinished">Propriedades do Torrent</translation>
     </message>
@@ -3088,7 +3088,7 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">h</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="290"/>
+        <location filename="../misc.h" line="335"/>
         <source>Unknown</source>
         <translation>Desconhecido</translation>
     </message>
@@ -3111,25 +3111,25 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation>Desconhecido</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="310"/>
+        <location filename="../misc.h" line="355"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 minuto</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="312"/>
+        <location filename="../misc.h" line="357"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="314"/>
+        <location filename="../misc.h" line="359"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="316"/>
+        <location filename="../misc.h" line="361"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1d%2h%3m</translation>
@@ -3311,27 +3311,27 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
+        <location filename="../previewSelect.h" line="110"/>
         <source>Preview impossible</source>
         <translation>Pré-visualização impossível</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
+        <location filename="../previewSelect.h" line="110"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Arquivo sem possível pré-visualização</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="99"/>
+        <location filename="../previewSelect.h" line="84"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="100"/>
+        <location filename="../previewSelect.h" line="85"/>
         <source>Size</source>
         <translation>Tamanho</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="101"/>
+        <location filename="../previewSelect.h" line="86"/>
         <source>Progress</source>
         <translation>Progresso</translation>
     </message>

@@ -1168,7 +1168,7 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1068"/>
+        <location filename="../GUI.cpp" line="1069"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1538,17 +1538,17 @@ Please close the other one first.</source>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1084"/>
         <source>Connection status:</source>
         <translation>Κατάσταση Σύνδεσης:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1084"/>
         <source>Offline</source>
         <translation>Offline</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1084"/>
         <source>No peers found...</source>
         <translation>Δεν βρέθηκαν συνδέσεις...</translation>
     </message>
@@ -1613,13 +1613,13 @@ Please close the other one first.</source>
         <translation type="obsolete">Εκκινήθηκε το qBittorrent %1.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1068"/>
+        <location filename="../GUI.cpp" line="1069"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Ταχύτητα Κατεβάσματος: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1068"/>
+        <location filename="../GUI.cpp" line="1069"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Ταχύτητα Ανεβάσματος: %1 KiB/s</translation>
@@ -1742,23 +1742,23 @@ Please close the other one first.</source>
         <translation type="obsolete">Ένα σφάλμα προέκυψε (δίσκος πλήρης?), το &apos;%1&apos; είναι σε παύση.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>Connection Status:</source>
         <translation>Κατάσταση Σύνδεσης:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1075"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Σε τοίχο προστασίας (firewall)?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>No incoming connections...</source>
         <translation>Καμία εισερχόμενη σύνδεση...</translation>
     </message>
@@ -3139,52 +3139,52 @@ Changelog:
         <translation type="unfinished">Αρχείο</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="278"/>
+        <location filename="../download.ui" line="280"/>
         <source>IP filter</source>
         <translation type="unfinished">Φίλτρο ΙΡ</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="304"/>
+        <location filename="../download.ui" line="306"/>
         <source>Start</source>
         <translation type="unfinished">Έναρξη</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="309"/>
+        <location filename="../download.ui" line="311"/>
         <source>Pause</source>
         <translation type="unfinished">Παύση</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="314"/>
+        <location filename="../download.ui" line="316"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../download.ui" line="319"/>
+        <location filename="../download.ui" line="321"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../download.ui" line="324"/>
+        <location filename="../download.ui" line="326"/>
         <source>Preview file</source>
         <translation type="unfinished">Προεπισκόπηση αρχείου</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="329"/>
+        <location filename="../download.ui" line="331"/>
         <source>Set upload limit</source>
         <translation type="unfinished">Ρύθμιση ορίου ανεβάσματος</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="334"/>
+        <location filename="../download.ui" line="336"/>
         <source>Set download limit</source>
         <translation type="unfinished">Ρύθμιση ορίου κατεβάσματος</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="339"/>
+        <location filename="../download.ui" line="341"/>
         <source>Delete Permanently</source>
         <translation type="unfinished">Οριστική Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="344"/>
+        <location filename="../download.ui" line="346"/>
         <source>Torrent Properties</source>
         <translation type="unfinished">Ιδιότητες τορεντ</translation>
     </message>
@@ -3240,7 +3240,7 @@ Changelog:
         <translation type="obsolete"> μ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="290"/>
+        <location filename="../misc.h" line="335"/>
         <source>Unknown</source>
         <translation>Άγνωστος</translation>
     </message>
@@ -3263,25 +3263,25 @@ Changelog:
         <translation>Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="310"/>
+        <location filename="../misc.h" line="355"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1λ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="312"/>
+        <location filename="../misc.h" line="357"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1λ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="314"/>
+        <location filename="../misc.h" line="359"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1ώ%2λ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="316"/>
+        <location filename="../misc.h" line="361"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1μ%2ώ%3λ</translation>
@@ -3463,27 +3463,27 @@ Changelog:
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
+        <location filename="../previewSelect.h" line="110"/>
         <source>Preview impossible</source>
         <translation>Αδύνατη η προεπισκόπηση</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
+        <location filename="../previewSelect.h" line="110"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Λυπούμαστε, δεν μπορεί να προεσκοπηθεί αυτό το αρχείο</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="99"/>
+        <location filename="../previewSelect.h" line="84"/>
         <source>Name</source>
         <translation>Όνομα</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="100"/>
+        <location filename="../previewSelect.h" line="85"/>
         <source>Size</source>
         <translation>Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="101"/>
+        <location filename="../previewSelect.h" line="86"/>
         <source>Progress</source>
         <translation>Πρόοδος</translation>
     </message>

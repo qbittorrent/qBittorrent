@@ -72,13 +72,15 @@ LANGUAGES UPDATED:
 - Russian *BETA5*
 - Korean *BETA5*
 - Greek *BETA6*
+- Dutch *BETA6*
 
 beta5->beta6 changelog:
 - FEATURE: Split download tab from GUI class and cleaned up code
 - FEATURE: A lot of code optimization (CPU & memory usage)
 - FEATURE: Added support for .ico format (useful for RSS favicons)
 - FEATURE: Replaced Meganova search engine by TorrentReactor
-- I18N: Updated Greek translation
+- I18N: Updated Greek, Dutch translation
+- I18N: Removed no longer maintained Traditional chinese translation
 - BUGFIX: Made torrent deletion from hard-drive safer
 - BUGFIX: Fixed a bug when switching from finished to downloading list
 - BUGFIX: Showing checking progress for paused torrents too
@@ -92,4 +94,3 @@ beta5->beta6 changelog:
 - BUGFIX: Display the torrent that are being checked as 'checking' in seeding list
 - BUGFIX: Fixed file preview and improved previewable files detection
 - BUGFIX: Do not store and calculate ETA values for finished/paused torrents
-- I18N: Removed no longer maintained Traditional chinese translation
