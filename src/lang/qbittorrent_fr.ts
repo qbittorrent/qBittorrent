@@ -1035,7 +1035,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Impossible de trouver le dossier : &apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="574"/>
+        <location filename="../GUI.cpp" line="575"/>
         <source>Open Torrent Files</source>
         <translation>Ouvrir fichiers torrent</translation>
     </message>
@@ -1070,7 +1070,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Ce fichier est corrompu ou il ne s&apos;agit pas d&apos;un torrent.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="678"/>
+        <location filename="../GUI.cpp" line="679"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Etes vous sûr ? -- qBittorrent</translation>
     </message>
@@ -1080,17 +1080,17 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Etes-vous sûr de vouloir enlever tous les fichiers de la liste de téléchargement ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="680"/>
+        <location filename="../GUI.cpp" line="681"/>
         <source>&amp;Yes</source>
         <translation>&amp;Oui</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="680"/>
+        <location filename="../GUI.cpp" line="681"/>
         <source>&amp;No</source>
         <translation>&amp;Non</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="672"/>
+        <location filename="../GUI.cpp" line="673"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>Etes-vous sûr de vouloir enlever tous les fichiers sélectionnés de la liste de téléchargement ?</translation>
     </message>
@@ -1115,7 +1115,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">ko/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="888"/>
+        <location filename="../GUI.cpp" line="889"/>
         <source>Finished</source>
         <translation>Terminé</translation>
     </message>
@@ -1170,7 +1170,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Impossible de créer le dossier :</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="575"/>
+        <location filename="../GUI.cpp" line="576"/>
         <source>Torrent Files</source>
         <translation>Fichiers Torrent</translation>
     </message>
@@ -1549,12 +1549,12 @@ Changemets:
         <translation type="obsolete">En pause</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="417"/>
+        <location filename="../GUI.cpp" line="418"/>
         <source>Preview process already running</source>
         <translation>Processus de prévisualisation inachevé</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="417"/>
+        <location filename="../GUI.cpp" line="418"/>
         <source>There is already another preview process running.
 Please close the other one first.</source>
         <translation>Il y a déjà un processus de prévisualisation en cours d&apos;exécution.
@@ -1589,7 +1589,7 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Transferts</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="257"/>
+        <location filename="../GUI.cpp" line="258"/>
         <source>Download finished</source>
         <translation>Téléchargement terminé</translation>
     </message>
@@ -1621,17 +1621,17 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1084"/>
+        <location filename="../GUI.cpp" line="1085"/>
         <source>Connection status:</source>
         <translation>Statut de la connexion :</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1084"/>
+        <location filename="../GUI.cpp" line="1085"/>
         <source>Offline</source>
         <translation>Déconnecté</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1084"/>
+        <location filename="../GUI.cpp" line="1085"/>
         <source>No peers found...</source>
         <translation>Aucune source trouvée...</translation>
     </message>
@@ -1696,18 +1696,18 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">qBittorrent %1 démarré.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1069"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1069"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Vitesse DL : %1 Ko/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1069"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Vitesse UP : %1 Ko/s</translation>
@@ -1731,12 +1731,12 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">En attente</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="488"/>
+        <location filename="../GUI.cpp" line="489"/>
         <source>Are you sure you want to quit?</source>
         <translation>Etes vous certain de vouloir quitter ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="699"/>
+        <location filename="../GUI.cpp" line="700"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; a été supprimé.</translation>
@@ -1778,12 +1778,12 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">En écoute sur le port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="941"/>
+        <location filename="../GUI.cpp" line="942"/>
         <source>All downloads were paused.</source>
         <translation>Tous les téléchargements ont été mis en pause.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="964"/>
+        <location filename="../GUI.cpp" line="965"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos; a été mis en pause.</translation>
@@ -1795,30 +1795,30 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Connexion...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="993"/>
+        <location filename="../GUI.cpp" line="994"/>
         <source>All downloads were resumed.</source>
         <translation>Tous les téléchargements ont été relancés.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1016"/>
+        <location filename="../GUI.cpp" line="1017"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos; a été relancé.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="257"/>
+        <location filename="../GUI.cpp" line="258"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Le téléchargement de %1 est terminé.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="266"/>
+        <location filename="../GUI.cpp" line="267"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Erreur E/S</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="266"/>
+        <location filename="../GUI.cpp" line="267"/>
         <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
         <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
         <translation>Une erreur s&apos;est produite lors de la lecture ou l&apos;écriture de %1. Le disque dur est probablement plein, le téléchargement a été mis en pause</translation>
@@ -1830,23 +1830,23 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Une erreur s&apos;est produite (disque plein ?), &apos;%1&apos; a été mis en pause.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1080"/>
+        <location filename="../GUI.cpp" line="1081"/>
         <source>Connection Status:</source>
         <translation>Etat de la connexion :</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1075"/>
+        <location filename="../GUI.cpp" line="1076"/>
         <source>Online</source>
         <translation>Connecté</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1080"/>
+        <location filename="../GUI.cpp" line="1081"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Derrière un pare-feu ou un routeur ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1080"/>
+        <location filename="../GUI.cpp" line="1081"/>
         <source>No incoming connections...</source>
         <translation>Aucune connexion entrante...</translation>
     </message>
@@ -1878,7 +1878,7 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="278"/>
+        <location filename="../GUI.cpp" line="279"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Une erreur s&apos;est produite (disque plein ?), &apos;%1&apos; a été mis en pause.</translation>
@@ -1894,40 +1894,40 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="771"/>
+        <location filename="../GUI.cpp" line="772"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent écoute sur le port : %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="796"/>
+        <location filename="../GUI.cpp" line="797"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Support DHT [ON], port : %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="801"/>
+        <location filename="../GUI.cpp" line="802"/>
         <source>DHT support [OFF]</source>
         <translation>Support DHT [OFF]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="831"/>
+        <location filename="../GUI.cpp" line="832"/>
         <source>PeX support [ON]</source>
         <translation>Support PeX [ON]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="834"/>
+        <location filename="../GUI.cpp" line="835"/>
         <source>PeX support [OFF]</source>
         <translation>Support PeX [OFF]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="489"/>
+        <location filename="../GUI.cpp" line="490"/>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
         <translation>La liste de téléchargement n&apos;est pas vide.
 Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="884"/>
+        <location filename="../GUI.cpp" line="885"/>
         <source>Downloads</source>
         <translation>Téléchargements</translation>
     </message>
@@ -1937,12 +1937,12 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Etes-vous certain de vouloir supprimer les torrents sélectionnés dans la liste de partage et sur le disque dur ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="679"/>
+        <location filename="../GUI.cpp" line="680"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
         <translation>Etes-vous certain de vouloir supprimer les torrents sélectionnés de la liste de partage ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="805"/>
+        <location filename="../GUI.cpp" line="806"/>
         <source>UPnP support [ON]</source>
         <translation>Support UPnP [ON]</translation>
     </message>
@@ -1952,17 +1952,17 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Attention, partager des oeuvres sous copyright sans en avoir la permission est illégal.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="815"/>
+        <location filename="../GUI.cpp" line="816"/>
         <source>Encryption support [ON]</source>
         <translation>Support cryptage [ON]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="820"/>
+        <location filename="../GUI.cpp" line="821"/>
         <source>Encryption support [FORCED]</source>
         <translation>Support cryptage [Forcé]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="825"/>
+        <location filename="../GUI.cpp" line="826"/>
         <source>Encryption support [OFF]</source>
         <translation>Support cryptage [OFF]</translation>
     </message>
@@ -1978,13 +1978,13 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Ratio</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="285"/>
+        <location filename="../GUI.cpp" line="286"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation type="unfinished">Alt+&amp;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="287"/>
+        <location filename="../GUI.cpp" line="288"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
         <translation>Alt+é</translation>
@@ -1996,18 +1996,18 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Qt::CTRL+Qt::Key_F, Qt::Alt+Qt::Key_QuoteDbl</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="293"/>
+        <location filename="../GUI.cpp" line="294"/>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+&apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="361"/>
+        <location filename="../GUI.cpp" line="362"/>
         <source>Url download error</source>
         <translation>Erreur téléchargement url</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="361"/>
+        <location filename="../GUI.cpp" line="362"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Impossible de télécharger le fichier à l&apos;url : %1, raison : %2.</translation>
     </message>
@@ -2017,17 +2017,17 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Le relancement rapide a échoué pour le torrent %1, revérification...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="617"/>
+        <location filename="../GUI.cpp" line="618"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
         <translation>Etes-vous certain de vouloir supprimer les fichiers sélectionnés depuis la liste de téléchargement ainsi que le disque dur ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="624"/>
+        <location filename="../GUI.cpp" line="625"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
         <translation>Etes-vous certain de vouloir supprimer les torrents sélectionnés dans la liste de partage et sur le disque dur ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="644"/>
+        <location filename="../GUI.cpp" line="645"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos; a été supprimé de manière permanente.</translation>
@@ -2038,13 +2038,13 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Le contact de la source HTTP a échoué à l&apos;url : %1, message : %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="289"/>
+        <location filename="../GUI.cpp" line="290"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+&quot;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="291"/>
+        <location filename="../GUI.cpp" line="292"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation></translation>
@@ -2588,68 +2588,68 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
 <context>
     <name>SearchEngine</name>
     <message>
-        <location filename="../searchEngine.cpp" line="52"/>
+        <location filename="../searchEngine.cpp" line="50"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="53"/>
+        <location filename="../searchEngine.cpp" line="51"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Taille</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="54"/>
+        <location filename="../searchEngine.cpp" line="52"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation>Sources complètes</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="55"/>
+        <location filename="../searchEngine.cpp" line="53"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
         <translation>Sources partielles</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="56"/>
+        <location filename="../searchEngine.cpp" line="54"/>
         <source>Search engine</source>
         <translation>Moteur de recherche</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="268"/>
+        <location filename="../searchEngine.cpp" line="251"/>
         <source>Empty search pattern</source>
         <translation>Motif de recherche vide</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="268"/>
+        <location filename="../searchEngine.cpp" line="251"/>
         <source>Please type a search pattern first</source>
         <translation>Veuillez entrer un motif de recherche d&apos;abord</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="286"/>
         <source>No search engine selected</source>
-        <translation>Aucun moteur de recherche sélectionné</translation>
+        <translation type="obsolete">Aucun moteur de recherche sélectionné</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="286"/>
         <source>You must select at least one search engine.</source>
-        <translation>Vous devez sélectionner au moins un moteur de recherche.</translation>
+        <translation type="obsolete">Vous devez sélectionner au moins un moteur de recherche.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="565"/>
+        <location filename="../searchEngine.cpp" line="495"/>
         <source>Results</source>
         <translation>Résultats</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="324"/>
+        <location filename="../searchEngine.cpp" line="286"/>
         <source>Searching...</source>
         <translation>Recherche en cours...</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="469"/>
         <source>Search plugin update -- qBittorrent</source>
-        <translation>Mise à jour du greffon de recherche -- qBittorrent</translation>
+        <translation type="obsolete">Mise à jour du greffon de recherche -- qBittorrent</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="448"/>
@@ -2657,7 +2657,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
 
 Changelog:
 </source>
-        <translation>Le greffon de recherche est ancien, voulez-vous procéder à la mise à jour ?
+        <translation type="obsolete">Le greffon de recherche est ancien, voulez-vous procéder à la mise à jour ?
 
 Changements:
 </translation>
@@ -2665,60 +2665,60 @@ Changements:
     <message>
         <location filename="../searchEngine.cpp" line="449"/>
         <source>&amp;Yes</source>
-        <translation>&amp;Oui</translation>
+        <translation type="obsolete">&amp;Oui</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="449"/>
         <source>&amp;No</source>
-        <translation>&amp;Non</translation>
+        <translation type="obsolete">&amp;Non</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="465"/>
         <source>Search plugin update</source>
-        <translation>Mise à jour du greffon de recherche</translation>
+        <translation type="obsolete">Mise à jour du greffon de recherche</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="465"/>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="466"/>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation>Désolé, le serveur de mise à jour est temporairement indisponible.</translation>
+        <translation type="obsolete">Désolé, le serveur de mise à jour est temporairement indisponible.</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="470"/>
         <source>Your search plugin is already up to date.</source>
-        <translation>Votre greffon de recherche est déjà à jour.</translation>
+        <translation type="obsolete">Votre greffon de recherche est déjà à jour.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="502"/>
+        <location filename="../searchEngine.cpp" line="432"/>
         <source>Search Engine</source>
         <translation>Moteur de recherche</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="513"/>
+        <location filename="../searchEngine.cpp" line="443"/>
         <source>Search has finished</source>
         <translation>Fin de la recherche</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="505"/>
+        <location filename="../searchEngine.cpp" line="435"/>
         <source>An error occured during search...</source>
         <translation>Une erreur s&apos;est produite lors de la recherche...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="508"/>
+        <location filename="../searchEngine.cpp" line="438"/>
         <source>Search aborted</source>
         <translation>La recherché a été interrompue</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="511"/>
+        <location filename="../searchEngine.cpp" line="441"/>
         <source>Search returned no results</source>
         <translation>La recherche n&apos;a retourné aucun résultat</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="517"/>
+        <location filename="../searchEngine.cpp" line="447"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Résultats</translation>
@@ -2726,12 +2726,12 @@ Changements:
     <message>
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Search plugin download error</source>
-        <translation>Erreur téléchargement du greffon de recherche</translation>
+        <translation type="obsolete">Erreur téléchargement du greffon de recherche</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
-        <translation>Impossible de télécharger la mise à jour du greffon de recherche à l&apos;url : %1, raison : %2.</translation>
+        <translation type="obsolete">Impossible de télécharger la mise à jour du greffon de recherche à l&apos;url : %1, raison : %2.</translation>
     </message>
 </context>
 <context>
@@ -3318,6 +3318,164 @@ Changements:
     </message>
 </context>
 <context>
+    <name>engineSelect</name>
+    <message>
+        <location filename="../engineSelect.ui" line="13"/>
+        <source>Search plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="26"/>
+        <source>Installed search engines:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="46"/>
+        <source>Name</source>
+        <translation type="unfinished">Nom</translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="51"/>
+        <source>Url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="56"/>
+        <source>Enabled</source>
+        <translation type="unfinished">Activé</translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="69"/>
+        <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="78"/>
+        <source>Install a new one</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="85"/>
+        <source>Check for updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="92"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="101"/>
+        <source>Enable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="106"/>
+        <source>Disable</source>
+        <translation type="unfinished">Désactiver</translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="111"/>
+        <source>Uninstall</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>engineSelectDlg</name>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="243"/>
+        <source>True</source>
+        <translation type="unfinished">Oui</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="245"/>
+        <source>False</source>
+        <translation type="unfinished">Non</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="165"/>
+        <source>Uninstall warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="165"/>
+        <source>Some plugins could not be uninstalled because they are included in qBittorrent.
+ Only the ones you added yourself can be uninstalled.
+However, those plugins were disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="167"/>
+        <source>Uninstall success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="167"/>
+        <source>All selected plugins were uninstalled successfuly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="282"/>
+        <source>Select search plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="283"/>
+        <source>qBittorrent search plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="310"/>
+        <source>Search plugin install</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="441"/>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="291"/>
+        <source>A more recent version of %1 search engine plugin is already installed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="307"/>
+        <source>%1 search engine plugin was successfuly updated.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="310"/>
+        <source>%1 search engine plugin was successfuly installed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="441"/>
+        <source>Search plugin update</source>
+        <translation type="unfinished">Mise à jour du greffon de recherche</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="434"/>
+        <source>Sorry, update server is temporarily unavailable.</source>
+        <translation type="unfinished">Désolé, le serveur de mise à jour est temporairement indisponible.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="418"/>
+        <source>%1 search plugin was successfuly updated.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="441"/>
+        <source>Sorry, %1 search plugin update failed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>misc</name>
     <message>
         <location filename="../misc.h" line="113"/>
@@ -3368,7 +3526,7 @@ Changements:
         <translation type="obsolete"> j</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="335"/>
+        <location filename="../misc.h" line="357"/>
         <source>Unknown</source>
         <translation>Inconnu</translation>
     </message>
@@ -3391,25 +3549,25 @@ Changements:
         <translation>Inconnue</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="355"/>
+        <location filename="../misc.h" line="377"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="357"/>
+        <location filename="../misc.h" line="379"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="359"/>
+        <location filename="../misc.h" line="381"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="361"/>
+        <location filename="../misc.h" line="383"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1j%2h%3min</translation>
@@ -4039,54 +4197,59 @@ Changements:
 <context>
     <name>search_engine</name>
     <message>
-        <location filename="../search.ui" line="147"/>
+        <location filename="../search.ui" line="76"/>
         <source>Search</source>
         <translation>Recherche</translation>
     </message>
     <message>
         <location filename="../search.ui" line="45"/>
         <source>Search Engines</source>
-        <translation>Moteur de recherche</translation>
+        <translation type="obsolete">Moteur de recherche</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="124"/>
+        <location filename="../search.ui" line="53"/>
         <source>Search Pattern:</source>
         <translation>Motif de recherche :</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="163"/>
+        <location filename="../search.ui" line="92"/>
         <source>Stop</source>
         <translation>Stopper</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="197"/>
+        <location filename="../search.ui" line="127"/>
         <source>Status:</source>
         <translation>Statut :</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="227"/>
+        <location filename="../search.ui" line="157"/>
         <source>Stopped</source>
         <translation>Stoppé</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="286"/>
+        <location filename="../search.ui" line="230"/>
         <source>Results:</source>
         <translation>Résultats :</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="344"/>
+        <location filename="../search.ui" line="297"/>
         <source>Download</source>
         <translation>Télécharger</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="354"/>
+        <location filename="../search.ui" line="307"/>
         <source>Clear</source>
         <translation>Vider</translation>
     </message>
     <message>
         <location filename="../search.ui" line="374"/>
         <source>Update search plugin</source>
-        <translation>Mettre à jour le greffon de recherche</translation>
+        <translation type="obsolete">Mettre à jour le greffon de recherche</translation>
+    </message>
+    <message>
+        <location filename="../search.ui" line="99"/>
+        <source>Search engines...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

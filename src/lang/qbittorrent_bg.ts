@@ -974,7 +974,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="574"/>
+        <location filename="../GUI.cpp" line="575"/>
         <source>Open Torrent Files</source>
         <translation>Отвори Торент Файлове </translation>
     </message>
@@ -999,17 +999,17 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Сигурни ли сте че искате да изтриете всички файлове от списъка за сваляне?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="680"/>
+        <location filename="../GUI.cpp" line="681"/>
         <source>&amp;Yes</source>
         <translation>&amp;Да</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="680"/>
+        <location filename="../GUI.cpp" line="681"/>
         <source>&amp;No</source>
         <translation>&amp;Не</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="672"/>
+        <location filename="../GUI.cpp" line="673"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>Сигурни ли сте че искате да изтриете избраните файлове от списъка за сваляне?</translation>
     </message>
@@ -1029,7 +1029,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">kb/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="888"/>
+        <location filename="../GUI.cpp" line="889"/>
         <source>Finished</source>
         <translation type="unfinished">Завършен</translation>
     </message>
@@ -1084,7 +1084,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Не мога да създам директория:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="575"/>
+        <location filename="../GUI.cpp" line="576"/>
         <source>Torrent Files</source>
         <translation>Торент Файлове</translation>
     </message>
@@ -1156,12 +1156,12 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1069"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="678"/>
+        <location filename="../GUI.cpp" line="679"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Сигурни ли сте? -- qBittorrent</translation>
     </message>
@@ -1424,12 +1424,12 @@ Changelog:
         <translation type="obsolete">Пауза</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="417"/>
+        <location filename="../GUI.cpp" line="418"/>
         <source>Preview process already running</source>
         <translation>Процеса на оглед се изпълнява </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="417"/>
+        <location filename="../GUI.cpp" line="418"/>
         <source>There is already another preview process running.
 Please close the other one first.</source>
         <translation>Вече се изпълнява друг процес на оглед.
@@ -1474,7 +1474,7 @@ Please close the other one first.</source>
         <translation type="obsolete">Сигурни ли сте че искате да изтриете избраните файлове от списъка за сваляне и от твърдия диск?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="257"/>
+        <location filename="../GUI.cpp" line="258"/>
         <source>Download finished</source>
         <translation>Свалянето завърши</translation>
     </message>
@@ -1496,17 +1496,17 @@ Please close the other one first.</source>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1084"/>
+        <location filename="../GUI.cpp" line="1085"/>
         <source>Connection status:</source>
         <translation>Състояние на връзката:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1084"/>
+        <location filename="../GUI.cpp" line="1085"/>
         <source>Offline</source>
         <translation>Извън мрежата</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1084"/>
+        <location filename="../GUI.cpp" line="1085"/>
         <source>No peers found...</source>
         <translation>Няма връзки...</translation>
     </message>
@@ -1571,13 +1571,13 @@ Please close the other one first.</source>
         <translation type="obsolete">qBittorrent %1 стартиран.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1069"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL Скорост %1 KB/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1069"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UL Скорост %1 KB/с</translation>
@@ -1601,12 +1601,12 @@ Please close the other one first.</source>
         <translation type="obsolete">Отложен</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="488"/>
+        <location filename="../GUI.cpp" line="489"/>
         <source>Are you sure you want to quit?</source>
         <translation>Сигурни ли сте че искате да напуснете?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="699"/>
+        <location filename="../GUI.cpp" line="700"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; бе премахнат.</translation>
@@ -1648,12 +1648,12 @@ Please close the other one first.</source>
         <translation type="obsolete">Прослушване на порт: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="941"/>
+        <location filename="../GUI.cpp" line="942"/>
         <source>All downloads were paused.</source>
         <translation>Всички сваляния са в пауза.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="964"/>
+        <location filename="../GUI.cpp" line="965"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos; е в пауза.</translation>
@@ -1665,30 +1665,30 @@ Please close the other one first.</source>
         <translation type="obsolete">Свързване...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="993"/>
+        <location filename="../GUI.cpp" line="994"/>
         <source>All downloads were resumed.</source>
         <translation>Всички сваляния са възстановени.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1016"/>
+        <location filename="../GUI.cpp" line="1017"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos; бе възстановен.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="257"/>
+        <location filename="../GUI.cpp" line="258"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>&apos;%1&apos; завърши свалянето.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="266"/>
+        <location filename="../GUI.cpp" line="267"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>В/И Грешка</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="266"/>
+        <location filename="../GUI.cpp" line="267"/>
         <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
         <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
         <translation>Намерена грешка при четене или записване на %1. Вероятно диска е пълен, свалянето е в пауза</translation>
@@ -1700,23 +1700,23 @@ Please close the other one first.</source>
         <translation type="obsolete">Намерена грешка (пълен диск?), &apos;%1&apos; е в пауза.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1080"/>
+        <location filename="../GUI.cpp" line="1081"/>
         <source>Connection Status:</source>
         <translation>Състояние на връзката:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1075"/>
+        <location filename="../GUI.cpp" line="1076"/>
         <source>Online</source>
         <translation>Свързан</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1080"/>
+        <location filename="../GUI.cpp" line="1081"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Проблем с Firewall-а?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1080"/>
+        <location filename="../GUI.cpp" line="1081"/>
         <source>No incoming connections...</source>
         <translation>Няма входящи връзки...</translation>
     </message>
@@ -1748,7 +1748,7 @@ Please close the other one first.</source>
         <translation type="obsolete">Сваляне на &apos;%1&apos;, моля изчакайте...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="278"/>
+        <location filename="../GUI.cpp" line="279"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Намерена грешка (пълен диск?), &apos;%1&apos; е в пауза.</translation>
@@ -1764,119 +1764,119 @@ Please close the other one first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="771"/>
+        <location filename="../GUI.cpp" line="772"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="796"/>
+        <location filename="../GUI.cpp" line="797"/>
         <source>DHT support [ON], port: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="801"/>
+        <location filename="../GUI.cpp" line="802"/>
         <source>DHT support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="831"/>
+        <location filename="../GUI.cpp" line="832"/>
         <source>PeX support [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="834"/>
+        <location filename="../GUI.cpp" line="835"/>
         <source>PeX support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="489"/>
+        <location filename="../GUI.cpp" line="490"/>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="884"/>
+        <location filename="../GUI.cpp" line="885"/>
         <source>Downloads</source>
         <translation type="unfinished">Сваляне</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="679"/>
+        <location filename="../GUI.cpp" line="680"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="805"/>
+        <location filename="../GUI.cpp" line="806"/>
         <source>UPnP support [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="815"/>
+        <location filename="../GUI.cpp" line="816"/>
         <source>Encryption support [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="820"/>
+        <location filename="../GUI.cpp" line="821"/>
         <source>Encryption support [FORCED]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="825"/>
+        <location filename="../GUI.cpp" line="826"/>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="285"/>
+        <location filename="../GUI.cpp" line="286"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="287"/>
+        <location filename="../GUI.cpp" line="288"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="293"/>
+        <location filename="../GUI.cpp" line="294"/>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="361"/>
+        <location filename="../GUI.cpp" line="362"/>
         <source>Url download error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="361"/>
+        <location filename="../GUI.cpp" line="362"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="617"/>
+        <location filename="../GUI.cpp" line="618"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="624"/>
+        <location filename="../GUI.cpp" line="625"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="644"/>
+        <location filename="../GUI.cpp" line="645"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="289"/>
+        <location filename="../GUI.cpp" line="290"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="291"/>
+        <location filename="../GUI.cpp" line="292"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation type="unfinished"></translation>
@@ -2390,68 +2390,68 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>SearchEngine</name>
     <message>
-        <location filename="../searchEngine.cpp" line="52"/>
+        <location filename="../searchEngine.cpp" line="50"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation type="unfinished">Име</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="53"/>
+        <location filename="../searchEngine.cpp" line="51"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation type="unfinished">Размер</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="54"/>
+        <location filename="../searchEngine.cpp" line="52"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation type="unfinished">Даващи</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="55"/>
+        <location filename="../searchEngine.cpp" line="53"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
         <translation type="unfinished">Вземащи</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="56"/>
+        <location filename="../searchEngine.cpp" line="54"/>
         <source>Search engine</source>
         <translation type="unfinished">Програма за търсене</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="268"/>
+        <location filename="../searchEngine.cpp" line="251"/>
         <source>Empty search pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="268"/>
+        <location filename="../searchEngine.cpp" line="251"/>
         <source>Please type a search pattern first</source>
         <translation type="unfinished">Моля първо изберете тип на търсене</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="286"/>
         <source>No search engine selected</source>
-        <translation type="unfinished">Не е избрана търсачка</translation>
+        <translation type="obsolete">Не е избрана търсачка</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="286"/>
         <source>You must select at least one search engine.</source>
-        <translation type="unfinished">Трябва да изберете поне една търсачка.</translation>
+        <translation type="obsolete">Трябва да изберете поне една търсачка.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="565"/>
+        <location filename="../searchEngine.cpp" line="495"/>
         <source>Results</source>
         <translation type="unfinished">Резултати</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="324"/>
+        <location filename="../searchEngine.cpp" line="286"/>
         <source>Searching...</source>
         <translation type="unfinished">Търсене...</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="469"/>
         <source>Search plugin update -- qBittorrent</source>
-        <translation type="unfinished">Обновяване на добавката за търсене -- qBittorrent</translation>
+        <translation type="obsolete">Обновяване на добавката за търсене -- qBittorrent</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="448"/>
@@ -2459,7 +2459,7 @@ Are you sure you want to quit qBittorrent?</source>
 
 Changelog:
 </source>
-        <translation type="unfinished">Добавката за търсене може да се обнови, искате ли обновяване?
+        <translation type="obsolete">Добавката за търсене може да се обнови, искате ли обновяване?
 
 Промяна на лог-а:
 </translation>
@@ -2467,73 +2467,63 @@ Changelog:
     <message>
         <location filename="../searchEngine.cpp" line="449"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Да</translation>
+        <translation type="obsolete">&amp;Да</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="449"/>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;Не</translation>
+        <translation type="obsolete">&amp;Не</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="465"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">Допълнението за търсене е обновено</translation>
+        <translation type="obsolete">Допълнението за търсене е обновено</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="465"/>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="466"/>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation type="unfinished">Съжалявам, сървъра за обновяване е временно недостъпен.</translation>
+        <translation type="obsolete">Съжалявам, сървъра за обновяване е временно недостъпен.</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="470"/>
         <source>Your search plugin is already up to date.</source>
-        <translation type="unfinished">Вашата добавка за търсене е вече обновена.</translation>
+        <translation type="obsolete">Вашата добавка за търсене е вече обновена.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="502"/>
+        <location filename="../searchEngine.cpp" line="432"/>
         <source>Search Engine</source>
         <translation type="unfinished">Търсачка</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="513"/>
+        <location filename="../searchEngine.cpp" line="443"/>
         <source>Search has finished</source>
         <translation type="unfinished">Търсенето завърши</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="505"/>
+        <location filename="../searchEngine.cpp" line="435"/>
         <source>An error occured during search...</source>
         <translation type="unfinished">Намерена грешка при търсенето...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="508"/>
+        <location filename="../searchEngine.cpp" line="438"/>
         <source>Search aborted</source>
         <translation type="unfinished">Търсенето е прекъснато</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="511"/>
+        <location filename="../searchEngine.cpp" line="441"/>
         <source>Search returned no results</source>
         <translation type="unfinished">Търсене без резултат</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="517"/>
+        <location filename="../searchEngine.cpp" line="447"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation type="unfinished">Резултати</translation>
-    </message>
-    <message>
-        <location filename="../searchEngine.cpp" line="483"/>
-        <source>Search plugin download error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../searchEngine.cpp" line="483"/>
-        <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3105,6 +3095,164 @@ Changelog:
     </message>
 </context>
 <context>
+    <name>engineSelect</name>
+    <message>
+        <location filename="../engineSelect.ui" line="13"/>
+        <source>Search plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="26"/>
+        <source>Installed search engines:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="46"/>
+        <source>Name</source>
+        <translation type="unfinished">Име</translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="51"/>
+        <source>Url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="56"/>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="69"/>
+        <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="78"/>
+        <source>Install a new one</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="85"/>
+        <source>Check for updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="92"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="101"/>
+        <source>Enable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="106"/>
+        <source>Disable</source>
+        <translation type="unfinished">Изключи</translation>
+    </message>
+    <message>
+        <location filename="../engineSelect.ui" line="111"/>
+        <source>Uninstall</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>engineSelectDlg</name>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="243"/>
+        <source>True</source>
+        <translation type="unfinished">Вярно</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="245"/>
+        <source>False</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="165"/>
+        <source>Uninstall warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="165"/>
+        <source>Some plugins could not be uninstalled because they are included in qBittorrent.
+ Only the ones you added yourself can be uninstalled.
+However, those plugins were disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="167"/>
+        <source>Uninstall success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="167"/>
+        <source>All selected plugins were uninstalled successfuly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="282"/>
+        <source>Select search plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="283"/>
+        <source>qBittorrent search plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="310"/>
+        <source>Search plugin install</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="441"/>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="291"/>
+        <source>A more recent version of %1 search engine plugin is already installed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="307"/>
+        <source>%1 search engine plugin was successfuly updated.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="310"/>
+        <source>%1 search engine plugin was successfuly installed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="441"/>
+        <source>Search plugin update</source>
+        <translation type="unfinished">Допълнението за търсене е обновено</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="434"/>
+        <source>Sorry, update server is temporarily unavailable.</source>
+        <translation type="unfinished">Съжалявам, сървъра за обновяване е временно недостъпен.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="418"/>
+        <source>%1 search plugin was successfuly updated.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="441"/>
+        <source>Sorry, %1 search plugin update failed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>misc</name>
     <message>
         <location filename="../misc.h" line="113"/>
@@ -3161,7 +3309,7 @@ Changelog:
         <translation type="obsolete"> ч</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="335"/>
+        <location filename="../misc.h" line="357"/>
         <source>Unknown</source>
         <translation>Неизвестно</translation>
     </message>
@@ -3172,25 +3320,25 @@ Changelog:
         <translation>Неизвестен</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="355"/>
+        <location filename="../misc.h" line="377"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1мин</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="357"/>
+        <location filename="../misc.h" line="379"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1мин</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="359"/>
+        <location filename="../misc.h" line="381"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1ч%2мин</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="361"/>
+        <location filename="../misc.h" line="383"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1д%2ч%3мин</translation>
@@ -3790,54 +3938,59 @@ Changelog:
 <context>
     <name>search_engine</name>
     <message>
-        <location filename="../search.ui" line="147"/>
+        <location filename="../search.ui" line="76"/>
         <source>Search</source>
         <translation type="unfinished">Търси</translation>
     </message>
     <message>
         <location filename="../search.ui" line="45"/>
         <source>Search Engines</source>
-        <translation type="unfinished">Търсачки</translation>
+        <translation type="obsolete">Търсачки</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="124"/>
+        <location filename="../search.ui" line="53"/>
         <source>Search Pattern:</source>
         <translation type="unfinished">Тип на търсене:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="163"/>
+        <location filename="../search.ui" line="92"/>
         <source>Stop</source>
         <translation type="unfinished">Спри</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="197"/>
+        <location filename="../search.ui" line="127"/>
         <source>Status:</source>
         <translation type="unfinished">Състояние:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="227"/>
+        <location filename="../search.ui" line="157"/>
         <source>Stopped</source>
         <translation type="unfinished">Спрян</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="286"/>
+        <location filename="../search.ui" line="230"/>
         <source>Results:</source>
         <translation type="unfinished">Резултати:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="344"/>
+        <location filename="../search.ui" line="297"/>
         <source>Download</source>
         <translation type="unfinished">Свали</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="354"/>
+        <location filename="../search.ui" line="307"/>
         <source>Clear</source>
         <translation type="unfinished">Изтрий</translation>
     </message>
     <message>
         <location filename="../search.ui" line="374"/>
         <source>Update search plugin</source>
-        <translation type="unfinished">Обнови допълнението за търсене</translation>
+        <translation type="obsolete">Обнови допълнението за търсене</translation>
+    </message>
+    <message>
+        <location filename="../search.ui" line="99"/>
+        <source>Search engines...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
