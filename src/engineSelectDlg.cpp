@@ -393,6 +393,7 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
   }
   if(url == "http://www.dchris.eu/search_engine/versions.txt") {
     if(!parseVersionsFile(filePath, "http://www.dchris.eu/search_engine/")) {
+      qDebug("Primary update server failed, try secondary");
       downloader->downloadUrl("http://hydr0g3n.free.fr/search_engine/versions.txt");
       return;
     }
