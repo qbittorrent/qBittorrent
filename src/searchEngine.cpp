@@ -352,75 +352,33 @@ void SearchEngine::updateNova() {
   if(!QFile::exists(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"novaprinter.py")){
     QFile::copy(":/search_engine/novaprinter.py", misc::qBittorrentPath()+"search_engine"+QDir::separator()+"novaprinter.py");
   }
-  QString subDir = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator();
-  QDir search_subDir(":/search_engine/engines");
-  QStringList files = search_subDir.entryList();
+  QString destDir = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator();
+  QDir shipped_subDir(":/search_engine/engines/");
+  QStringList files = shipped_subDir.entryList();
   QString file;
   foreach(file, files){
-    filePath = search_subDir.path()+QDir::separator()+file;
+    QString shipped_file = shipped_subDir.path()+QDir::separator()+file;
     // Copy python classes
     if(file.endsWith(".py")) {
-      if(misc::getPluginVersion(filePath) > misc::getPluginVersion(subDir+file) ) {
-        if(QFile::exists(filePath))
-          QFile::remove(filePath);
-        QFile::copy(filePath, subDir+file);
+      if(misc::getPluginVersion(shipped_file) > misc::getPluginVersion(destDir+file) ) {
+        qDebug("shippped %s is more recent then local plugin, updating", file.toUtf8().data());
+        if(QFile::exists(destDir+file)) {
+          qDebug("Removing old %s", (destDir+file).toUtf8().data());
+          QFile::remove(destDir+file);
+        }
+        qDebug("%s copied to %s", shipped_file.toUtf8().data(), (destDir+file).toUtf8().data());
+        QFile::copy(shipped_file, destDir+file);
       }
     } else {
       // Copy icons
       if(file.endsWith(".png")) {
-        if(!QFile::exists(subDir+file)) {
-          QFile::copy(filePath, subDir+file);
+        if(!QFile::exists(destDir+file)) {
+          QFile::copy(shipped_file, destDir+file);
         }
       }
     }
   }
 }
-
-// void SearchEngine::novaUpdateDownloaded(QString url, QString filePath){
-//   float version_on_server = getNovaVersion(filePath);
-//   qDebug("Version on qbittorrent.org: %.2f", version_on_server);
-//   float my_version = getNovaVersion(misc::qBittorrentPath()+"nova.py");
-//   if(version_on_server > my_version){
-//     if(QMessageBox::question(this,
-//        tr("Search plugin update -- qBittorrent"),
-//           tr("Search plugin can be updated, do you want to update it?\n\nChangelog:\n")+getNovaChangelog(filePath, my_version),
-//              tr("&Yes"), tr("&No"),
-//                 QString(), 0, 1)){
-//                   return;
-//                 }else{
-//                   qDebug("Updating search plugin from qbittorrent.org");
-//                   QFile::remove(misc::qBittorrentPath()+"nova.py");
-//                   QFile::copy(filePath, misc::qBittorrentPath()+"nova.py");
-//                   QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;
-//                   QFile(misc::qBittorrentPath()+"nova.py").setPermissions(perm);
-//                 }
-//   }else{
-//     if(version_on_server == 0.0){
-//       if(url == "http://www.dchris.eu/nova/nova.zip"){
-//         qDebug("*Warning: Search plugin update download from primary server failed, trying secondary server...");
-//         downloader->downloadUrl("http://hydr0g3n.free.fr/nova/nova.py");
-//       }else{
-//         QMessageBox::information(this, tr("Search plugin update")+" -- "+tr("qBittorrent"),
-//                                tr("Sorry, update server is temporarily unavailable."));
-//       }
-//     }else{
-//       QMessageBox::information(this, tr("Search plugin update -- qBittorrent"),
-//                                tr("Your search plugin is already up to date."));
-//     }
-//   }
-//   // Delete tmp file
-//   QFile::remove(filePath);
-// }
-// 
-// void SearchEngine::handleNovaDownloadFailure(QString url, QString reason){
-//   if(url == "http://www.dchris.eu/nova/nova.zip"){
-//     qDebug("*Warning: Search plugin update download from primary server failed, trying secondary server...");
-//     downloader->downloadUrl("http://hydr0g3n.free.fr/nova/nova.py");
-//   }else{
-//     // Display a message box
-//     QMessageBox::critical(0, tr("Search plugin download error"), tr("Couldn't download search plugin update at url: %1, reason: %2.").arg(url).arg(reason));
-//   }
-// }
 
 // Slot called when search is Finished
 // Search can be finished for 3 reasons :

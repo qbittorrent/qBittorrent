@@ -1,4 +1,4 @@
-#VERSION: 1.00
+#VERSION: 1.01
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 from novaprinter import prettyPrinter
 import urllib
@@ -10,10 +10,10 @@ class btjunkie(object):
 	name = 'btjunkie'
 
 	def search(self, what):
-		dat = urllib.urlopen(self.url+'/search?q=%s'%what).read().decode('utf8', 'replace')
+		dat = urllib.urlopen(self.url+'/search?q=%s&o=52'%what).read().decode('utf8', 'replace')
 		# I know it's not very readable, but the SGML parser feels in pain
-		section_re = re.compile('(?s)href="/torrent\?do=download.*?<tr>')
-		torrent_re = re.compile('(?s)href="(?P<link>.*?do=download[^"]+).*?'
+		section_re = re.compile('(?s)href="/torrent.*?<tr>')
+		torrent_re = re.compile('(?s)href="(?P<link>.*?[^"]+).*?'
 		'class="BlckUnd">(?P<name>.*?)</a>.*?'
 		'>(?P<size>\d+MB)</font>.*?'
 		'>(?P<seeds>\d+)</font>.*?'

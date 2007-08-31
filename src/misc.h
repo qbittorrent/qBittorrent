@@ -331,6 +331,7 @@ class misc : public QObject{
     static float getPluginVersion(QString filePath) {
       QFile plugin(filePath);
       if(!plugin.exists()){
+        qDebug("%s plugin does not exist, returning 0.0", filePath.toUtf8().data());
         return 0.0;
       }
       if(!plugin.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -343,7 +344,7 @@ class misc : public QObject{
           line = line.split(' ').last();
           line.replace("\n", "");
           version = line.toFloat();
-          qDebug("plugin version: %.2f", version);
+          qDebug("plugin %s version: %.2f", filePath.toUtf8().data(), version);
           break;
         }
       }
