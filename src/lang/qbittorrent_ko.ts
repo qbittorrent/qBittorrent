@@ -2467,7 +2467,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">적어도 하나 이상의 검색 엔진을 선택해야 합니다.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="495"/>
+        <location filename="../searchEngine.cpp" line="453"/>
         <source>Results</source>
         <translation>결과</translation>
     </message>
@@ -2523,32 +2523,32 @@ Changelog:
         <translation type="obsolete">님은 현재 최신 검색 엔진 플로그인을 사용중입니다.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="432"/>
+        <location filename="../searchEngine.cpp" line="390"/>
         <source>Search Engine</source>
         <translation>검색 엔진</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="443"/>
+        <location filename="../searchEngine.cpp" line="401"/>
         <source>Search has finished</source>
         <translation>검색 완료</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="435"/>
+        <location filename="../searchEngine.cpp" line="393"/>
         <source>An error occured during search...</source>
         <translation>검색 중 오류 발생...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="438"/>
+        <location filename="../searchEngine.cpp" line="396"/>
         <source>Search aborted</source>
         <translation>검색이 중단됨</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="441"/>
+        <location filename="../searchEngine.cpp" line="399"/>
         <source>Search returned no results</source>
         <translation>검색 결과가 없음</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="447"/>
+        <location filename="../searchEngine.cpp" line="405"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>결과</translation>
@@ -3346,7 +3346,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">일</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="357"/>
+        <location filename="../misc.h" line="358"/>
         <source>Unknown</source>
         <translation>알수 없음</translation>
     </message>
@@ -3369,25 +3369,25 @@ However, those plugins were disabled.</source>
         <translation>알수 없음</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="377"/>
+        <location filename="../misc.h" line="378"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1분</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="379"/>
+        <location filename="../misc.h" line="380"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1분</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="381"/>
+        <location filename="../misc.h" line="382"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1시간%2분</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="383"/>
+        <location filename="../misc.h" line="384"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1일%2시간%3분</translation>

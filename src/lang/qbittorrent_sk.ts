@@ -48,7 +48,7 @@
         <translation>Francúzsko</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="362"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/about.ui" line="362"/>
         <source>Thanks To</source>
         <translation type="obsolete">Poďakovanie</translation>
     </message>
@@ -191,7 +191,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>...</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Kb/s</source>
         <translation type="obsolete">Kb/s</translation>
     </message>
@@ -216,7 +216,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Nastavenia proxy</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1251"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/options.ui" line="1251"/>
         <source>Server IP:</source>
         <translation type="obsolete">IP servera:</translation>
     </message>
@@ -261,22 +261,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Please choose your preferred language in the following list:</source>
         <translation type="obsolete">Zvote si preferovan jazyk zo zoznamu:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>OK</source>
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Cancel</source>
         <translation type="obsolete">Storno</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Language settings will take effect after restart.</source>
         <translation type="obsolete">Nastavenia jazyka sa prejavia po retarte programu.</translation>
     </message>
@@ -291,7 +291,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Zapnúť prehľadávanie adresárov (automatické pridávanie torrent súborov)</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Connection Settings</source>
         <translation type="obsolete">Nastavenia spojenia</translation>
     </message>
@@ -301,12 +301,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Pomer zdieľania:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>1 KB DL = </source>
         <translation type="obsolete">1 KB DL = </translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>KB UP max.</source>
         <translation type="obsolete">KB UP max.</translation>
     </message>
@@ -341,7 +341,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Komentár</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Apply</source>
         <translation type="obsolete">Použi</translation>
     </message>
@@ -366,12 +366,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Cesta k ipfilter.dat:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Clear finished downloads on exit</source>
         <translation type="obsolete">Vyčisti dokončené sťahovania pri skončení programu</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Ask for confirmation on exit</source>
         <translation type="obsolete">Potvrdenie skončenia programu</translation>
     </message>
@@ -401,22 +401,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Správanie</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>OSD</source>
         <translation type="obsolete">OSD</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Always display OSD</source>
         <translation type="obsolete">Vždy zobrazuj OSD</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Display OSD only if window is minimized or iconified</source>
         <translation type="obsolete">Zobrazuj OSD iba keď je okno minimalizované alebo ikonifikované</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Never display OSD</source>
         <translation type="obsolete">Nikdy nezobrazuj OSD</translation>
     </message>
@@ -436,17 +436,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>KiB UP max.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>DHT (Trackerless):</source>
         <translation type="obsolete">DHT (bez trackera):</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Disable DHT (Trackerless) support</source>
         <translation type="obsolete">Vypnúť podporu DHT (bez trackera)</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Automatically clear finished downloads</source>
         <translation type="obsolete">Automaticky vyčistiť skončené sťahovania</translation>
     </message>
@@ -491,7 +491,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Predvolená cesta pre uloženie</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Systray Messages</source>
         <translation type="obsolete">Systray správy</translation>
     </message>
@@ -682,115 +682,115 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../downloadingTorrents.cpp" line="55"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="56"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="57"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">Priebeh</translation>
+        <translation>Priebeh</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="58"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rýchlosť sťahovania</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="59"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rýchlosť nahrávania</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="60"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished">Seederi/Leecheri</translation>
+        <translation>Seederi/Leecheri</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="61"/>
         <source>Ratio</source>
-        <translation type="unfinished">Pomer</translation>
+        <translation>Pomer</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="62"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished"></translation>
+        <translation>Odh. čas</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="98"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation type="unfinished">qBittorrent %1 spustený.</translation>
+        <translation>qBittorrent %1 spustený.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="99"/>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
-        <translation type="unfinished">Buďte opatrní, zdieľanie materiálu chráneného autorskými právami bez povolenia je protizákonné.</translation>
+        <translation>Buďte opatrní, zdieľanie materiálu chráneného autorskými právami bez povolenia je protizákonné.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="123"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;bol zablokovaný&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;bol zablokovaný&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="197"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Rýchle obnovenie torrentu torrent %1 bolo odmietnuté, skúšam znova...</translation>
+        <translation>Rýchle obnovenie torrentu torrent %1 bolo odmietnuté, skúšam znova...</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="201"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
+        <translation>Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="631"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; bol pridaný do zoznamu na sťahovanie.</translation>
+        <translation>„%1“ bol pridaný do zoznamu na sťahovanie.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="633"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">&apos;%1&apos; bol obnovený. (rýchle obnovenie)</translation>
+        <translation>„%1“ bol obnovený. (rýchle obnovenie)</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="641"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; sa už nachádza v zozname sťahovaných.</translation>
+        <translation>„%1“ sa už nachádza v zozname sťahovaných.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="645"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">Nebol omožné dekodovať torrent súbor: &apos;%1&apos;</translation>
+        <translation>Nebol omožné dekodovať torrent súbor: „%1“</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="646"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento súbor je buď poškodený alebo to nie je torrent.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="660"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="unfinished">Nepodarilo sa počúvať na žiadnom zo zadaných portov.</translation>
+        <translation>Nepodarilo sa počúvať na žiadnom zo zadaných portov.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="684"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished">Sťahuje sa &apos;%1&apos;, čakajte prosím...</translation>
+        <translation>Sťahuje sa „%1“, čakajte prosím...</translation>
     </message>
 </context>
 <context>
@@ -834,13 +834,13 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Seederi/Leecheri</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="102"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/FinishedTorrents.cpp" line="102"/>
         <source>Finished</source>
         <comment>i.e: Torrent has finished downloading</comment>
         <translation type="obsolete">Skončené</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="209"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/FinishedTorrents.cpp" line="209"/>
         <source>Finished</source>
         <translation type="obsolete">Skončené</translation>
     </message>
@@ -858,17 +858,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Otvoriť torrent súbory</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Unknown</source>
         <translation type="obsolete">Nezne</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1161"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1161"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="obsolete">Tento súbor je buď poškodený alebo to nie je torrent.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Are you sure you want to delete all files in download list?</source>
         <translation type="obsolete">Určite chcete zmazať všetky súbory v zozname sťahovaných?</translation>
     </message>
@@ -888,12 +888,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Určite chcete zmazať vybrané položky v zozname sťahovaných?</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>paused</source>
         <translation type="obsolete">pozastaven</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>started</source>
         <translation type="obsolete">spusten</translation>
     </message>
@@ -903,52 +903,52 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>hotovo</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Checking...</source>
         <translation type="obsolete">kontroluje sa...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1411"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1411"/>
         <source>Connecting...</source>
         <translation type="obsolete">pripája sa...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="583"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="583"/>
         <source>Downloading...</source>
         <translation type="obsolete">sťahuje sa...</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Download list cleared.</source>
         <translation type="obsolete">Zoznam sťahovanch vyčistený.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>All Downloads Paused.</source>
         <translation type="obsolete">Všetky sťahovania pozastavené.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>All Downloads Resumed.</source>
         <translation type="obsolete">Všetky sťahovania znovu spustené.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>DL Speed: </source>
         <translation type="obsolete">Rchlos sahovania: </translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source> started.</source>
         <translation type="obsolete"> spustené.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>UP Speed: </source>
         <translation type="obsolete">Rýchlosť nahrávania: </translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Couldn&apos;t create the directory:</source>
         <translation type="obsolete">Nebolo možné vytvoriť adresár:</translation>
     </message>
@@ -958,47 +958,47 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Torrent súbory</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>already in download list.</source>
         <translation type="obsolete">u sa nachza v zozname sahovanch.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>added to download list.</source>
         <translation type="obsolete">pridaný do zoznamu sťahovaných.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>resumed. (fast resume)</source>
         <translation type="obsolete">znovu spustené. (rýchle znovuspustenie)</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Unable to decode torrent file:</source>
         <translation type="obsolete">Nemohol som dekódovať torrent súbor:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>removed.</source>
         <translation type="obsolete">odstren.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>paused.</source>
         <translation type="obsolete">pozastaven.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>resumed.</source>
         <translation type="obsolete">znovu spusten.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Listening on port: </source>
         <translation type="obsolete">Počúvam na porte: </translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>qBittorrent </source>
         <translation type="obsolete">qBittorrent </translation>
     </message>
@@ -1013,171 +1013,171 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Ste si istý? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </source>
         <translation type="obsolete">&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Online</source>
         <translation type="obsolete">&lt;b&gt;Stav spojenia:&lt;/b&gt;&lt;br&gt;Online</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;Stav spojenia:&lt;/b&gt;&lt;br&gt;Za firewallom?&lt;br&gt;&lt;i&gt;Žiadne prichzajúce spojenia...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;Stav spojenia:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;Neboli nájdení rovesníci...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source> has finished downloading.</source>
         <translation type="obsolete"> skončilo sťahovanie.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1691"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1691"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="obsolete">Nepodarilo sa počúvať na žiadnom zo zadaných portov.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>None</source>
         <translation type="obsolete">Žiadny</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Empty search pattern</source>
         <translation type="obsolete">Prázdny vyhľadávací vzor</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Please type a search pattern first</source>
         <translation type="obsolete">Prosím, najprv zadajte vyhľadávací vzor</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>No seach engine selected</source>
         <translation type="obsolete">Nebol zvolený vyhľadávač</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>You must select at least one search engine.</source>
         <translation type="obsolete">Musíte zvoliť aspoň jeden vyhľadávač.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Searching...</source>
         <translation type="obsolete">Hľadá sa...</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Could not create search plugin.</source>
         <translation type="obsolete">Nemohol som vytvori plugin pre vyhadanie.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Stopped</source>
         <translation type="obsolete">Zastaven</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Torrent file URL</source>
         <translation type="obsolete">URL torrent súboru</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Torrent file URL:</source>
         <translation type="obsolete">URL torrent súboru:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Are you sure you want to quit? -- qBittorrent</source>
         <translation type="obsolete">Určite chcete ukončiť program? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Are you sure you want to quit qbittorrent?</source>
         <translation type="obsolete">Určite chcete ukončiť qBittorrent?</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Timed out</source>
         <translation type="obsolete">as vypral</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Error during search...</source>
         <translation type="obsolete">Chyba pos hadania...</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>KiB/s</source>
         <translation type="obsolete">KiB/s</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source> KiB/s</source>
         <translation type="obsolete">KiB/s</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Stalled</source>
         <translation type="obsolete">Zastaven</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>removed.</source>
         <comment>&lt;file&gt; removed.</comment>
         <translation type="obsolete">odstránený.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>already in download list.</source>
         <comment>&lt;file&gt; already in download list.</comment>
         <translation type="obsolete">už sa nacháza v zozname sťahovaných.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>paused.</source>
         <comment>&lt;file&gt; paused.</comment>
         <translation type="obsolete">pozastavené.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>resumed.</source>
         <comment>&lt;file&gt; resumed.</comment>
         <translation type="obsolete">znovu spustené.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Search is finished</source>
         <translation type="obsolete">Vyhľadávanie skočilo</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>An error occured during search...</source>
         <translation type="obsolete">Počas vyhľadávania sa vyskytla chyba...</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Search aborted</source>
         <translation type="obsolete">Vyhľadávanie preušené</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Search returned no results</source>
         <translation type="obsolete">Vyhľadávanie nevrátilo žiadne výsledky</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation type="obsolete">Aktualizácia zásuvného modulu vyhľadávania -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -1187,83 +1187,83 @@ Changelog:
 Záznam zmien:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation type="obsolete">Je mi ľúto, aktualizačný server je dočasne nedostupný.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Your search plugin is already up to date.</source>
         <translation type="obsolete">Váš vyhľadávací zásuvný modul je aktuálny.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Results</source>
         <translation type="obsolete">Výsledky</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Name</source>
         <translation type="obsolete">Názov</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Size</source>
         <translation type="obsolete">Veľkosť</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Progress</source>
         <translation type="obsolete">Priebeh</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>DL Speed</source>
         <translation type="obsolete">rýchlosť sťahovania</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>UP Speed</source>
         <translation type="obsolete">rýchlosť nahrávania</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="134"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="134"/>
         <source>Status</source>
         <translation type="obsolete">Stav</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>ETA</source>
         <translation type="obsolete">Odhadovaný čas</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Seeders</source>
         <translation type="obsolete">Seederi</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Leechers</source>
         <translation type="obsolete">Leecheri</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Search engine</source>
         <translation type="obsolete">Vyhľadávač</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Stalled</source>
         <comment>state of a torrent whose DL Speed is 0</comment>
         <translation type="obsolete">Bez pohybu</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1477"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1477"/>
         <source>Paused</source>
         <translation type="obsolete">Pozastavený</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Transfers</source>
         <translation type="obsolete">Prenosy</translation>
     </message>
@@ -1280,35 +1280,35 @@ Please close the other one first.</source>
 Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
         <translation type="obsolete">Nemohol som stiahnuť</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
         <translation type="obsolete">dôvod:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
         <translation type="obsolete">Sťahujem</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Please wait...</source>
         <translation type="obsolete">Čakajte prosím...</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Ste si istý, že chcete zatvoriť qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1005"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1005"/>
         <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
         <translation type="obsolete">Ste si istý, že chcete zmazať vybrané položky v zozname sťahovaných a na pevnom disku?</translation>
     </message>
@@ -1318,18 +1318,18 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Sťahovanie dokončené</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source> has finished downloading.</source>
         <comment>&lt;filename&gt; has finished downloading.</comment>
         <translation type="obsolete"> skončilo sťahovanie.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Search Engine</source>
         <translation type="obsolete">Vyhľadávač</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>I/O Error</source>
         <translation type="obsolete">V/V Chyba</translation>
     </message>
@@ -1355,61 +1355,61 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Neboli nájdení rovesníci...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="124"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="124"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation type="obsolete">Názov</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="125"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="125"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation type="obsolete">Veľkosť</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="126"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="126"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation type="obsolete">Priebeh</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="127"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="127"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
         <translation type="obsolete">Rýchlosť sťahovania</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="128"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="128"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation type="obsolete">Rýchlosť nahrávania</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="129"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="129"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
         <translation type="obsolete">Seederi/Leecheri</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="131"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="131"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation type="obsolete">Odhadované</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation type="obsolete">Seederi</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
         <translation type="obsolete">Leecheri</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="203"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="203"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
         <translation type="obsolete">qBittorrent %1 spustený.</translation>
@@ -1427,19 +1427,19 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Rýchlosť nahrávania: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Finished</source>
         <comment>i.e: Torrent has finished downloading</comment>
         <translation type="obsolete">Skončené</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="558"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="558"/>
         <source>Checking...</source>
         <comment>i.e: Checking already downloaded parts...</comment>
         <translation type="obsolete">kontroluje sa...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="588"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="588"/>
         <source>Stalled</source>
         <comment>i.e: State of a torrent whose download speed is 0kb/s</comment>
         <translation type="obsolete">Bez pohybu</translation>
@@ -1456,37 +1456,37 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>&apos;%1&apos; bol odstránený.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1146"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1146"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="obsolete">&apos;%1&apos; bol pridaný do zoznamu na sťahovanie.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1148"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1148"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="obsolete">&apos;%1&apos; bol obnovený. (rýchle obnovenie)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1156"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1156"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="obsolete">&apos;%1&apos; sa už nachádza v zozname sťahovaných.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1160"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1160"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="obsolete">Nebol omožné dekodovať torrent súbor: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1234"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1234"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
         <translation type="obsolete">Žiadna</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Listening on port: %1</source>
         <comment>e.g: Listening on port: 1666</comment>
         <translation type="obsolete">Počúvam na porte: %1</translation>
@@ -1503,7 +1503,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>&apos;%1&apos; pozastavené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1388"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1388"/>
         <source>Connecting...</source>
         <comment>i.e: Connecting to the tracker...</comment>
         <translation type="obsolete">pripája sa...</translation>
@@ -1538,7 +1538,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Vyskytla sa chyba pri pokuse o čítanie alebo zapisovanie do %1. Disk je pravdepodobne plný, sťahovanie bolo pozastavené</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>An error occured (full fisk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full fisk?), &apos;xxx.avi&apos; paused.</comment>
         <translation type="obsolete">Vyskytla sa chyba (plný disk?), &apos;%1&apos; pozastavené.</translation>
@@ -1565,28 +1565,28 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Žiadne prichádzajúce spojenia...</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>No search engine selected</source>
         <translation type="obsolete">Nebol zvolený žiadny vyhľadávač</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Search plugin update</source>
         <translation type="obsolete">Aktualizácia zásuvného modulu vyhľadávača</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Search has finished</source>
         <translation type="obsolete">Hľadanie skončené</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation type="obsolete">Výsledky</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1778"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1778"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="obsolete">Sťahuje sa &apos;%1&apos;, čakajte prosím...</translation>
@@ -1656,7 +1656,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Podpora PeX [vypnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="204"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="204"/>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
         <translation type="obsolete">Buďte opatrní, zdieľanie materiálu chráneného autorskými právami bez povolenia je protizákonné.</translation>
     </message>
@@ -1676,13 +1676,13 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Podpora kryptovania [vypnuté]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="315"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="315"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;bol zablokovaný&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="130"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="130"/>
         <source>Ratio</source>
         <translation type="obsolete">Pomer</translation>
     </message>
@@ -1699,7 +1699,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="261"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="261"/>
         <source>Alt+3, Ctrl+F</source>
         <comment>shortcut to switch to third tab (search)</comment>
         <translation type="obsolete">Alt+3, Ctrl+F</translation>
@@ -1721,7 +1721,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Nebolo možné stiahnuť súbor z url: %1, dôvod: %2.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="331"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="331"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="obsolete">Rýchle obnovenie torrentu torrent %1 bolo odmietnuté, skúšam znova...</translation>
     </message>
@@ -1742,7 +1742,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>&apos;%1&apos; bol permanentne odstránený.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="335"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="335"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="obsolete">Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
     </message>
@@ -1750,69 +1750,69 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <location filename="../GUI.cpp" line="290"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation type="unfinished">Alt+3</translation>
+        <translation>Alt+3</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="292"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+F</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../MainWindow.ui" line="305"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/MainWindow.ui" line="305"/>
         <source>Log:</source>
         <translation type="obsolete">Záznam:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="77"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/MainWindow.ui" line="77"/>
         <source>Total DL Speed:</source>
         <translation type="obsolete">Celková rýchlosť sťahovania:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="181"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/MainWindow.ui" line="181"/>
         <source>Total UP Speed:</source>
         <translation type="obsolete">Celková rýchlosť nahrávania:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Name</source>
         <translation type="obsolete">Nov</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Size</source>
         <translation type="obsolete">Vekos</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>% DL</source>
         <translation type="obsolete">sahovania</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>DL Speed</source>
         <translation type="obsolete">rchlos sahovania</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>UP Speed</source>
         <translation type="obsolete">rchlos nahrania</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Status</source>
         <translation type="obsolete">Status</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>ETA</source>
         <translation type="obsolete">Odhadovan s</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="373"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/MainWindow.ui" line="373"/>
         <source>&amp;Options</source>
         <translation type="obsolete">&amp;Nastavenia</translation>
     </message>
@@ -1882,7 +1882,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Dokumentácia</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Delete All</source>
         <translation type="obsolete">Zmazať všetky</translation>
     </message>
@@ -1892,62 +1892,62 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Vlastnosti torrentu</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Connection Status</source>
         <translation type="obsolete">Stav spojenia</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="36"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/MainWindow.ui" line="36"/>
         <source>Downloads</source>
         <translation type="obsolete">Sťahovania</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Search</source>
         <translation type="obsolete">Vyhľadávanie</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Search Pattern:</source>
         <translation type="obsolete">Vyhľadávací vzor:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Status:</source>
         <translation type="obsolete">Stav:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Stopped</source>
         <translation type="obsolete">Zastavený</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Search Engines</source>
         <translation type="obsolete">Vyhľadávače</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Results:</source>
         <translation type="obsolete">Výsledky:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Stop</source>
         <translation type="obsolete">Zastaviť</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Seeds</source>
         <translation type="obsolete">Seedy</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Leechers</source>
         <translation type="obsolete">Leecheri</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Search Engine</source>
         <translation type="obsolete">Vyhad</translation>
     </message>
@@ -1957,17 +1957,17 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Stiahnuť z URL</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Download</source>
         <translation type="obsolete">Stiahnuť</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Clear</source>
         <translation type="obsolete">Vyčistiť</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="210"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/MainWindow.ui" line="210"/>
         <source>KiB/s</source>
         <translation type="obsolete">KiB/s</translation>
     </message>
@@ -1977,17 +1977,17 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Vytvoriť torrent</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Update search plugin</source>
         <translation type="obsolete">Aktualizovať vyhľadávací zásuvný modul</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="135"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/MainWindow.ui" line="135"/>
         <source>Session ratio: </source>
         <translation type="obsolete">Pomer: </translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Transfers</source>
         <translation type="obsolete">Prenosy</translation>
     </message>
@@ -2027,12 +2027,12 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Nastaviť limit sťahovania</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="275"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/MainWindow.ui" line="275"/>
         <source>Log</source>
         <translation type="obsolete">Záznam</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="309"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/MainWindow.ui" line="309"/>
         <source>IP filter</source>
         <translation type="obsolete">IP filter</translation>
     </message>
@@ -2055,12 +2055,12 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>False</source>
         <translation type="obsolete">Nie</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>True</source>
         <translation type="obsolete">Áno</translation>
     </message>
@@ -2091,7 +2091,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
 <context>
     <name>QTextEdit</name>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Clear</source>
         <translation type="obsolete">Vyčisti</translation>
     </message>
@@ -2167,7 +2167,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Ste si istý? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="120"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/rss_imp.cpp" line="120"/>
         <source>Are you sure you want to delete this stream from the list ?</source>
         <translation type="obsolete">Ste si istý, že chcete zmazať tento stream zo zoznamu?</translation>
     </message>
@@ -2296,17 +2296,17 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Prosím, najprv zadajte vyhľadávací vzor</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="286"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/searchEngine.cpp" line="286"/>
         <source>No search engine selected</source>
         <translation type="obsolete">Nebol zvolený žiadny vyhľadávač</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="286"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/searchEngine.cpp" line="286"/>
         <source>You must select at least one search engine.</source>
         <translation type="obsolete">Musíte zvoliť aspoň jeden vyhľadávač.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="495"/>
+        <location filename="../searchEngine.cpp" line="453"/>
         <source>Results</source>
         <translation>Výsledky</translation>
     </message>
@@ -2316,12 +2316,12 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Hľadá sa...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="469"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/searchEngine.cpp" line="469"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation type="obsolete">Aktualizácia zásuvného modulu vyhľadávania -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="448"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/searchEngine.cpp" line="448"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -2331,73 +2331,73 @@ Changelog:
 Záznam zmien:</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="449"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/searchEngine.cpp" line="449"/>
         <source>&amp;Yes</source>
         <translation type="obsolete">&amp;Áno</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="449"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/searchEngine.cpp" line="449"/>
         <source>&amp;No</source>
         <translation type="obsolete">&amp;Nie</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="465"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/searchEngine.cpp" line="465"/>
         <source>Search plugin update</source>
         <translation type="obsolete">Aktualizácia zásuvného modulu vyhľadávača</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="465"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/searchEngine.cpp" line="465"/>
         <source>qBittorrent</source>
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="466"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/searchEngine.cpp" line="466"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation type="obsolete">Je mi ľúto, aktualizačný server je dočasne nedostupný.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="470"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/searchEngine.cpp" line="470"/>
         <source>Your search plugin is already up to date.</source>
         <translation type="obsolete">Váš vyhľadávací zásuvný modul je aktuálny.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="432"/>
+        <location filename="../searchEngine.cpp" line="390"/>
         <source>Search Engine</source>
         <translation>Vyhľadávač</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="443"/>
+        <location filename="../searchEngine.cpp" line="401"/>
         <source>Search has finished</source>
         <translation>Hľadanie skončené</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="435"/>
+        <location filename="../searchEngine.cpp" line="393"/>
         <source>An error occured during search...</source>
         <translation>Počas vyhľadávania sa vyskytla chyba...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="438"/>
+        <location filename="../searchEngine.cpp" line="396"/>
         <source>Search aborted</source>
         <translation>Vyhľadávanie preušené</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="441"/>
+        <location filename="../searchEngine.cpp" line="399"/>
         <source>Search returned no results</source>
         <translation>Vyhľadávanie nevrátilo žiadne výsledky</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="447"/>
+        <location filename="../searchEngine.cpp" line="405"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Výsledky</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="483"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/searchEngine.cpp" line="483"/>
         <source>Search plugin download error</source>
         <translation type="obsolete">Chyba pri sťahovaní zásuvného modulu vyhľadávania</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="483"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">Nebolo možné stiahnuť zásuvný modul vyhľadávania z url: %1, dôvod: %2.</translation>
     </message>
@@ -2405,72 +2405,72 @@ Záznam zmien:</translation>
 <context>
     <name>Ui</name>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Please contact me if you would like to translate qBittorrent to your own language.</source>
         <translation type="obsolete">Prosím, kontaktujte ma, ak chcete preložiť qBittorrent do vlastného jazyka.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>qBittorrent </source>
         <translation type="obsolete">qBittorrent </translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="44"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/about_imp.h" line="44"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
         <translation type="obsolete">Rád by som poďakoval nasledovným dobrovoľníkom, ktorí preložili qBittorrent:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>&lt;ul&gt;&lt;li&gt;I would like to thank sourceforge.net for hosting qBittorrent project.&lt;/li&gt;</source>
         <translation type="obsolete">lt;ul&gt;&lt;li&gt;R by som pokoval serveru sourceforge.net za hosting projektu qBittorrent.&lt;/li&gt;</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>&lt;li&gt;I also like to thank Jeffery Fernandez (developer@jefferyfernandez.id.au), our RPM packager, for his great work.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation type="obsolete">lt;li&gt;Tie by som r pokoval Jefferymu Fernandezovi (developer@jefferyfernandez.id.au), nu tvorcovi RPM balkov, za jeho skvel pru.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/previewSelect.h" line="126"/>
         <source>Preview impossible</source>
         <translation type="obsolete">Náhľad nemožný</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/previewSelect.h" line="126"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation type="obsolete">Prepáčte, tento súbor sa nedá otvoriť ako náhľad</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="98"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/previewSelect.h" line="98"/>
         <source>Name</source>
         <translation type="obsolete">Názov</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="99"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/previewSelect.h" line="99"/>
         <source>Size</source>
         <translation type="obsolete">Veľkosť</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="100"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/previewSelect.h" line="100"/>
         <source>Progress</source>
         <translation type="obsolete">Priebeh</translation>
     </message>
     <message>
-        <location filename="../downloadFromURLImp.h" line="64"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/downloadFromURLImp.h" line="64"/>
         <source>No URL entered</source>
         <translation type="obsolete">Nebolo zadané URL</translation>
     </message>
     <message>
-        <location filename="../downloadFromURLImp.h" line="64"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/downloadFromURLImp.h" line="64"/>
         <source>Please type at least one URL.</source>
         <translation type="obsolete">Prosím, napíšte aspoň jedno URL.</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="37"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/about_imp.h" line="37"/>
         <source>qBittorrent</source>
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="68"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/about_imp.h" line="68"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="obsolete">Prosím, kontaktujte ma ak chcete preložiť qBittorrent do vášho jazyka.</translation>
     </message>
@@ -2516,17 +2516,17 @@ Záznam zmien:</translation>
         <translation>Obsah torrentu:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>File name</source>
         <translation type="obsolete">Názov súboru</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>File size</source>
         <translation type="obsolete">Veľkosť súboru</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Selected</source>
         <translation type="obsolete">Vybrané</translation>
     </message>
@@ -2551,17 +2551,17 @@ Záznam zmien:</translation>
         <translation>Storno</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>select</source>
         <translation type="obsolete">vybrať</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Unselect</source>
         <translation type="obsolete">nevybrať</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Select</source>
         <translation type="obsolete">Vybrať</translation>
     </message>
@@ -2640,12 +2640,12 @@ Záznam zmien:</translation>
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Dialog</source>
         <translation type="obsolete">Dial</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Create Torrent file</source>
         <translation type="obsolete">Vytvoriť Torrent súbor</translation>
     </message>
@@ -2655,12 +2655,12 @@ Záznam zmien:</translation>
         <translation>Cieľový torrent sbor:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Input file or directory:</source>
         <translation type="obsolete">Vstupn sbor alebo adres:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Comment:</source>
         <translation type="obsolete">Koment:</translation>
     </message>
@@ -2680,12 +2680,12 @@ Záznam zmien:</translation>
         <translation>Storno</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Announce url (Tracker):</source>
         <translation type="obsolete">Announce url (Tracker):</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Directory</source>
         <translation type="obsolete">Adresár</translation>
     </message>
@@ -2695,22 +2695,22 @@ Záznam zmien:</translation>
         <translation>Nástroj na vytvorenie Torrentu</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>&lt;center&gt;Destination torrent file:&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Cieľový torrent súbor:&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>&lt;center&gt;Input file or directory:&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Vstupný súbor alebo adresár:&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>&lt;center&gt;Announce url:&lt;br&gt;(One per line)&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Oznamujúce url:&lt;br&gt;(jedna na riadok)&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>&lt;center&gt;Comment:&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Komentár:&lt;/center&gt;</translation>
     </message>
@@ -2758,7 +2758,7 @@ Záznam zmien:</translation>
         <translation>Torrent súbory</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Select input directory or file</source>
         <translation type="obsolete">Vyberte vstupný adresár alebo súbor</translation>
     </message>
@@ -2783,12 +2783,12 @@ Záznam zmien:</translation>
         <translation>Napíšte prosím najprv vstupnú cestu</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Input path does not exist</source>
         <translation type="obsolete">Vstupná cesta neexistuje</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Please type a correct input path first</source>
         <translation type="obsolete">Prosím, napíšte správnu vstupnú cestu</translation>
     </message>
@@ -2803,7 +2803,7 @@ Záznam zmien:</translation>
         <translation>Torrent bol úspešne vytvorený:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Please type a valid input path first</source>
         <translation type="obsolete">Prosím, najprv napíšte platnú cestu pre vstup</translation>
     </message>
@@ -2887,82 +2887,82 @@ Záznam zmien:</translation>
     <message>
         <location filename="../download.ui" line="13"/>
         <source>Search</source>
-        <translation type="unfinished">Vyhľadávanie</translation>
+        <translation>Vyhľadávanie</translation>
     </message>
     <message>
         <location filename="../download.ui" line="48"/>
         <source>Total DL Speed:</source>
-        <translation type="unfinished">Celková rýchlosť sťahovania:</translation>
+        <translation>Celková rýchlosť sťahovania:</translation>
     </message>
     <message>
         <location filename="../download.ui" line="181"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <location filename="../download.ui" line="106"/>
         <source>Session ratio: </source>
-        <translation type="unfinished">Pomer: </translation>
+        <translation>Pomer relácie: </translation>
     </message>
     <message>
         <location filename="../download.ui" line="152"/>
         <source>Total UP Speed:</source>
-        <translation type="unfinished">Celková rýchlosť nahrávania:</translation>
+        <translation>Celková rýchlosť nahrávania:</translation>
     </message>
     <message>
         <location filename="../download.ui" line="246"/>
         <source>Log</source>
-        <translation type="unfinished">Záznam</translation>
+        <translation>Záznam</translation>
     </message>
     <message>
         <location filename="../download.ui" line="280"/>
         <source>IP filter</source>
-        <translation type="unfinished">IP filter</translation>
+        <translation>IP filter</translation>
     </message>
     <message>
         <location filename="../download.ui" line="306"/>
         <source>Start</source>
-        <translation type="unfinished">Spustiť</translation>
+        <translation>Spustiť</translation>
     </message>
     <message>
         <location filename="../download.ui" line="311"/>
         <source>Pause</source>
-        <translation type="unfinished">Pozastaviť</translation>
+        <translation>Pozastaviť</translation>
     </message>
     <message>
         <location filename="../download.ui" line="316"/>
         <source>Delete</source>
-        <translation type="unfinished">Zmazať</translation>
+        <translation>Zmazať</translation>
     </message>
     <message>
         <location filename="../download.ui" line="321"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistiť</translation>
     </message>
     <message>
         <location filename="../download.ui" line="326"/>
         <source>Preview file</source>
-        <translation type="unfinished">Náhľad súboru</translation>
+        <translation>Náhľad súboru</translation>
     </message>
     <message>
         <location filename="../download.ui" line="331"/>
         <source>Set upload limit</source>
-        <translation type="unfinished">Nastaviť limit nahrávania</translation>
+        <translation>Nastaviť limit nahrávania</translation>
     </message>
     <message>
         <location filename="../download.ui" line="336"/>
         <source>Set download limit</source>
-        <translation type="unfinished">Nastaviť limit sťahovania</translation>
+        <translation>Nastaviť limit sťahovania</translation>
     </message>
     <message>
         <location filename="../download.ui" line="341"/>
         <source>Delete Permanently</source>
-        <translation type="unfinished">Trvalo zmazať</translation>
+        <translation>Trvalo zmazať</translation>
     </message>
     <message>
         <location filename="../download.ui" line="346"/>
         <source>Torrent Properties</source>
-        <translation type="unfinished">Vlastnosti torrentu</translation>
+        <translation>Vlastnosti torrentu</translation>
     </message>
 </context>
 <context>
@@ -2970,62 +2970,62 @@ Záznam zmien:</translation>
     <message>
         <location filename="../engineSelect.ui" line="13"/>
         <source>Search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Zásuvné moduly vyhľadávania</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="26"/>
         <source>Installed search engines:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nainštalované vyhľadávače:</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="46"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="51"/>
         <source>Url</source>
-        <translation type="unfinished"></translation>
+        <translation>Url</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="56"/>
         <source>Enabled</source>
-        <translation type="unfinished">Zapnuté</translation>
+        <translation>Zapnuté</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="69"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové vyhľadávače môžete získať tu: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="78"/>
         <source>Install a new one</source>
-        <translation type="unfinished"></translation>
+        <translation>Nainštalovať nový</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="85"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Skontrolovať aktualizácie</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="92"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatvoriť</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="101"/>
         <source>Enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnúť</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="106"/>
         <source>Disable</source>
-        <translation type="unfinished">Vypnúť</translation>
+        <translation>Vypnúť</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="111"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Odinštalovať</translation>
     </message>
 </context>
 <context>
@@ -3033,150 +3033,152 @@ Záznam zmien:</translation>
     <message>
         <location filename="../engineSelectDlg.cpp" line="243"/>
         <source>True</source>
-        <translation type="unfinished"></translation>
+        <translation>Pravda</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="245"/>
         <source>False</source>
-        <translation type="unfinished">Nie</translation>
+        <translation>Nepravda</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="165"/>
         <source>Uninstall warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Upozornenie o odstránení</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="165"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niektoré zásuvné moduly nebolo možné odstrániť, pretože sú súčasťou aplikácie qBittorrent.
+ Iba tie, ktoré ste sami pridali je možné odstrániť.
+Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="167"/>
         <source>Uninstall success</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstránenie prebehlo úspešne</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="167"/>
         <source>All selected plugins were uninstalled successfuly</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetky zvolené zásuvné moduly boli úspešne odstránené</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="282"/>
         <source>Select search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvoliť zásuvné moduly vyhľadávačov</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="283"/>
         <source>qBittorrent search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Zásuvné moduly vyhľadávania qBittorrent</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="310"/>
         <source>Search plugin install</source>
-        <translation type="unfinished"></translation>
+        <translation>Inštalácia zásuvného modulu vyhľadávača</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="449"/>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="291"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Novšia verzia zásuvného modulu vyhľadávača %1 je už nainštalovaná.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="307"/>
         <source>%1 search engine plugin was successfuly updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zásuvný modul vyhľadávača %1 bol úspešne aktualizovaný.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="310"/>
         <source>%1 search engine plugin was successfuly installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zásuvný modul vyhľadávača %1 bol úspešne nainštalovaný.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="449"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">Aktualizácia zásuvného modulu vyhľadávača</translation>
+        <translation>Aktualizácia zásuvného modulu vyhľadávača</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="442"/>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation type="unfinished">Je mi ľúto, aktualizačný server je dočasne nedostupný.</translation>
+        <translation>Je mi ľúto, aktualizačný server je dočasne nedostupný.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="426"/>
         <source>%1 search plugin was successfuly updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zásuvný modul vyhľadávača %1 bol úspešne aktualizovaný.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="449"/>
         <source>Sorry, %1 search plugin update failed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Je mi ľúto, aktualizácia zásuvného modulu vyhľadávača %1 zlyhala.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="356"/>
         <source>All your plugins are already up to date.</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetky vaše vyhľadávacie zásuvné moduly sú už aktuálne.</translation>
     </message>
 </context>
 <context>
     <name>misc</name>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>B</source>
         <translation type="obsolete">B</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>KiB</source>
         <translation type="obsolete">KiB</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>MiB</source>
         <translation type="obsolete">MiB</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>GiB</source>
         <translation type="obsolete">GiB</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>TiB</source>
         <translation type="obsolete">TiB</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>m</source>
         <translation type="obsolete">m</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>h </source>
         <translation type="obsolete">h </translation>
     </message>
     <message>
-        <location filename="../misc.h" line="357"/>
+        <location filename="../misc.h" line="358"/>
         <source>Unknown</source>
         <translation>Neznámy</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>h</source>
         <translation type="obsolete">h</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>d</source>
         <translation type="obsolete">d</translation>
     </message>
@@ -3211,25 +3213,25 @@ However, those plugins were disabled.</source>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>m</source>
         <comment>minutes</comment>
         <translation type="obsolete">m</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>h</source>
         <comment>hours</comment>
         <translation type="obsolete">h</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>d</source>
         <comment>days</comment>
         <translation type="obsolete">d</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>h </source>
         <comment>hours</comment>
         <translation type="obsolete">h </translation>
@@ -3241,25 +3243,25 @@ However, those plugins were disabled.</source>
         <translation>Neznáma</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="377"/>
+        <location filename="../misc.h" line="378"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="379"/>
+        <location filename="../misc.h" line="380"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="381"/>
+        <location filename="../misc.h" line="382"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="383"/>
+        <location filename="../misc.h" line="384"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1d%2h%3m</translation>
@@ -3268,52 +3270,52 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Options saved successfully!</source>
         <translation type="obsolete">Nastavenia úspešne uložené!</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Choose Scan Directory</source>
         <translation type="obsolete">Vyberte adresár, ktorý sa bude prehliadať</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Choose save Directory</source>
         <translation type="obsolete">Vyberte adresár, kde sa bude ukladať</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Choose ipfilter.dat file</source>
         <translation type="obsolete">Vyberte ipfilter.dat súbor</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>I/O Error</source>
         <translation type="obsolete">V/V Chyba</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Couldn&apos;t open:</source>
         <translation type="obsolete">Nemohol som otvoriť:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>in read mode.</source>
         <translation type="obsolete">na čítanie.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Invalid Line</source>
         <translation type="obsolete">neplatný riadok</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Line</source>
         <translation type="obsolete">riadok</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>is malformed.</source>
         <translation type="obsolete">je v zlom tvare.</translation>
     </message>
@@ -3328,12 +3330,12 @@ However, those plugins were disabled.</source>
         <translation>Počiatočná IP:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Incorrect IP</source>
         <translation type="obsolete">Nesprávna IP</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>This IP is incorrect.</source>
         <translation type="obsolete">Táto IP je nesprávna.</translation>
     </message>
@@ -3358,7 +3360,7 @@ However, those plugins were disabled.</source>
         <translation>Komentár:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>to</source>
         <translation type="obsolete">a</translation>
     </message>
@@ -3479,47 +3481,47 @@ However, those plugins were disabled.</source>
         <translation>Vlastnosti torrentu</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Main Infos</source>
         <translation type="obsolete">Hlavninfo</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>File Name</source>
         <translation type="obsolete">Názov súboru</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Current Session</source>
         <translation type="obsolete">Súčasná relácia</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Total Uploaded:</source>
         <translation type="obsolete">Celkovo nahran:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Total Downloaded:</source>
         <translation type="obsolete">Celkovo stiahnut:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Download state:</source>
         <translation type="obsolete">Stav sťahovania:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Current Tracker:</source>
         <translation type="obsolete">Ssn tracker:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Number of Peers:</source>
         <translation type="obsolete">Pot rovesnov:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Torrent Content</source>
         <translation type="obsolete">Obsah torrentu</translation>
     </message>
@@ -3529,47 +3531,47 @@ However, those plugins were disabled.</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Total Failed:</source>
         <translation type="obsolete">Celkov pot zlyhan:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Finished</source>
         <translation type="obsolete">Skončené</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Queued for checking</source>
         <translation type="obsolete">Zaradené frontu pre kontrolu</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Checking files</source>
         <translation type="obsolete">Kontrolujem súbory</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Connecting to tracker</source>
         <translation type="obsolete">Pripájam sa k trackeru</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Downloading Metadata</source>
         <translation type="obsolete">Sťahujem metadáta</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Downloading</source>
         <translation type="obsolete">Sťahujem</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Seeding</source>
         <translation type="obsolete">Seedujem</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Allocating</source>
         <translation type="obsolete">Alokujem</translation>
     </message>
@@ -3579,12 +3581,12 @@ However, those plugins were disabled.</source>
         <translation>Neznámy</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Complete: </source>
         <translation type="obsolete">Dokončené: </translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Partial: </source>
         <translation type="obsolete">Čiastočne: </translation>
     </message>
@@ -3599,32 +3601,32 @@ However, those plugins were disabled.</source>
         <translation>Veľkosť</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Selected</source>
         <translation type="obsolete">Vybrané</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source> Unselect</source>
         <translation type="obsolete"> Odobrať</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source> Select</source>
         <translation type="obsolete"> Vybrať</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>You can select here precisely which files you want to download in current torrent.</source>
         <translation type="obsolete">Tu môžete presne vybrať, ktoré súbory zo súčasného torrentu chcete stiahnuť.</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>False</source>
         <translation type="obsolete">Nie</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>True</source>
         <translation type="obsolete">no</translation>
     </message>
@@ -3659,7 +3661,7 @@ However, those plugins were disabled.</source>
         <translation>Hlavné info</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Number of peers:</source>
         <translation type="obsolete">Počet rovesníkov:</translation>
     </message>
@@ -3689,22 +3691,22 @@ However, those plugins were disabled.</source>
         <translation>Obsah torrentu</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Seeders:</source>
         <translation type="obsolete">Seederi:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Leechers:</source>
         <translation type="obsolete">Leecheri:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Share Ratio:</source>
         <translation type="obsolete">Pomer zdieľania:</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>Options</source>
         <translation type="obsolete">Nastavenia</translation>
     </message>
@@ -3844,7 +3846,7 @@ However, those plugins were disabled.</source>
         <translation>Tento URL seed je už v zozname.</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="395"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/properties_imp.cpp" line="395"/>
         <source>Hard-coded url seeds cannot be deleted.</source>
         <translation type="obsolete">Napevno zadané URL seedy nie je možné zmazať.</translation>
     </message>
@@ -3874,7 +3876,7 @@ However, those plugins were disabled.</source>
         <translation>Vyhľadávanie</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="45"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/search.ui" line="45"/>
         <source>Search Engines</source>
         <translation type="obsolete">Vyhľadávače</translation>
     </message>
@@ -3914,14 +3916,14 @@ However, those plugins were disabled.</source>
         <translation>Vyčistiť</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="374"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/search.ui" line="374"/>
         <source>Update search plugin</source>
         <translation type="obsolete">Aktualizovať zásuvný modul vyhľadávania</translation>
     </message>
     <message>
         <location filename="../search.ui" line="99"/>
         <source>Search engines...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyhľadávače...</translation>
     </message>
 </context>
 <context>
@@ -4038,7 +4040,7 @@ However, those plugins were disabled.</source>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>True</source>
         <translation type="obsolete">Áno</translation>
     </message>
@@ -4058,7 +4060,7 @@ However, those plugins were disabled.</source>
         <translation>Zvoľte cestu pre uloženie</translation>
     </message>
     <message>
-        <location filename="" line="135076380"/>
+        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>False</source>
         <translation type="obsolete">Nie</translation>
     </message>

@@ -2362,7 +2362,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">请选择至少一个搜索引擎.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="495"/>
+        <location filename="../searchEngine.cpp" line="453"/>
         <source>Results</source>
         <translation>结果</translation>
     </message>
@@ -2417,32 +2417,32 @@ Changelog:
         <translation type="obsolete">您的搜索插件已是最新的.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="432"/>
+        <location filename="../searchEngine.cpp" line="390"/>
         <source>Search Engine</source>
         <translation>搜索引擎</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="443"/>
+        <location filename="../searchEngine.cpp" line="401"/>
         <source>Search has finished</source>
         <translation>搜索完毕</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="435"/>
+        <location filename="../searchEngine.cpp" line="393"/>
         <source>An error occured during search...</source>
         <translation>搜索中出现错误...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="438"/>
+        <location filename="../searchEngine.cpp" line="396"/>
         <source>Search aborted</source>
         <translation>搜索失败</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="441"/>
+        <location filename="../searchEngine.cpp" line="399"/>
         <source>Search returned no results</source>
         <translation>搜索无结果</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="447"/>
+        <location filename="../searchEngine.cpp" line="405"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>结果</translation>
@@ -3219,7 +3219,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">小时</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="357"/>
+        <location filename="../misc.h" line="358"/>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
@@ -3236,25 +3236,25 @@ However, those plugins were disabled.</source>
         <translation>未知</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="377"/>
+        <location filename="../misc.h" line="378"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1分钟</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="379"/>
+        <location filename="../misc.h" line="380"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1分钟</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="381"/>
+        <location filename="../misc.h" line="382"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1小时%2分钟</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="383"/>
+        <location filename="../misc.h" line="384"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1天%2小时%3分钟</translation>

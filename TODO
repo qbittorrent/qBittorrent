@@ -54,11 +54,11 @@
     - Number of seeds non null for finished torrent (Ticket #122)
 
 LANGUAGES UPDATED:
-- French *BETA3*
-- English *BETA3*
+- French *BETA6*
+- English *BETA6*
 - Japanese *BETA3*
 - Swedish *BETA3*
-- Slovak *BETA3*
+- Slovak *BETA6*
 - Ukrainian *BETA3*
 - Chinese (simplified) *BETA4*
 - Hungarian *BETA4*
@@ -70,9 +70,9 @@ LANGUAGES UPDATED:
 - German *BETA5*
 - Russian *BETA5*
 - Korean *BETA5*
-- Greek *BETA6*
-- Dutch *BETA6*
-- Romanian *BETA6*
+- Greek *BETA5*
+- Dutch *BETA5*
+- Romanian *BETA5*
 
 beta5->beta6 changelog:
 - FEATURE: Split download tab from GUI class and cleaned up code

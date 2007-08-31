@@ -2423,7 +2423,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Ви повинні вибрати хоча б один пошуковик.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="495"/>
+        <location filename="../searchEngine.cpp" line="453"/>
         <source>Results</source>
         <translation>Результати</translation>
     </message>
@@ -2479,32 +2479,32 @@ Changelog:
         <translation type="obsolete">Ви вже маєте останню версію пошукового плагіну.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="432"/>
+        <location filename="../searchEngine.cpp" line="390"/>
         <source>Search Engine</source>
         <translation>Пошуковик</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="443"/>
+        <location filename="../searchEngine.cpp" line="401"/>
         <source>Search has finished</source>
         <translation>Пошук закінчено</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="435"/>
+        <location filename="../searchEngine.cpp" line="393"/>
         <source>An error occured during search...</source>
         <translation>Під час пошуку сталася помилка...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="438"/>
+        <location filename="../searchEngine.cpp" line="396"/>
         <source>Search aborted</source>
         <translation>Пошук скасовано</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="441"/>
+        <location filename="../searchEngine.cpp" line="399"/>
         <source>Search returned no results</source>
         <translation>Пошук не дав результів</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="447"/>
+        <location filename="../searchEngine.cpp" line="405"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Результати</translation>
@@ -3292,7 +3292,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">д</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="357"/>
+        <location filename="../misc.h" line="358"/>
         <source>Unknown</source>
         <translation>Невідомо</translation>
     </message>
@@ -3315,25 +3315,25 @@ However, those plugins were disabled.</source>
         <translation>Невідомо</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="377"/>
+        <location filename="../misc.h" line="378"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1хв</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="379"/>
+        <location filename="../misc.h" line="380"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1хв</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="381"/>
+        <location filename="../misc.h" line="382"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1г%2хв</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="383"/>
+        <location filename="../misc.h" line="384"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1д%2г%3хв</translation>
