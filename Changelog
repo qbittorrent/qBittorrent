@@ -31,6 +31,8 @@
     - FEATURE: User is now warned when fast resume data was rejected
     - FEATURE: Url seeds are now displayed in torrent properties and are editable
     - FEATURE: Allow to drag 'n drop urls on the main window
+    - FEATURE: Improved search engine (multipage support in all plugins)
+    - FEATURE: Added BTJunkie search engine plugin
     - I18N: Added Hungarian translation
     - I18N: Added Brazilian translation
     - BUGFIX: Progress of paused torrents is now correct on restart

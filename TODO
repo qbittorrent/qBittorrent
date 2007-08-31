@@ -80,6 +80,8 @@ beta5->beta6 changelog:
 - FEATURE: Added support for .ico format (useful for RSS favicons)
 - FEATURE: Replaced Meganova search engine by TorrentReactor
 - FEATURE: Brand new search engine plugins system
+- FEATURE: Added btjunkie search plugin (with multipage support)
+- FEATURE: Search engine, added multipage support for mininova search plugin
 - I18N: Updated Greek, Dutch and Romanian translation
 - I18N: Removed no longer maintained Traditional chinese translation
 - BUGFIX: Made torrent deletion from hard-drive safer
