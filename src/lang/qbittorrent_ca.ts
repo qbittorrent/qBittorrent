@@ -3160,7 +3160,7 @@ However, those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="446"/>
+        <location filename="../engineSelectDlg.cpp" line="449"/>
         <source>qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3183,29 +3183,29 @@ However, those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="446"/>
+        <location filename="../engineSelectDlg.cpp" line="449"/>
         <source>Search plugin update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="439"/>
+        <location filename="../engineSelectDlg.cpp" line="442"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation type="unfinished">Ho sento, el servidor per actualitzar està temporalment no disponible.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="423"/>
+        <location filename="../engineSelectDlg.cpp" line="426"/>
         <source>%1 search plugin was successfuly updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="446"/>
+        <location filename="../engineSelectDlg.cpp" line="449"/>
         <source>Sorry, %1 search plugin update failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="354"/>
+        <location filename="../engineSelectDlg.cpp" line="356"/>
         <source>All your plugins are already up to date.</source>
         <translation type="unfinished"></translation>
     </message>
