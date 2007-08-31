@@ -5,6 +5,7 @@
     - FEATURE: Bittorrent FAST extension support
     - FEATURE: Added RSS support
     - FEATURE: Support files prioritizing in a torrent
+    - FEATURE: Brand new search engine plugins system
     - FEATURE: Finished torrents are now moved to another tab for seeding
     - FEATURE: Display more infos about the torrent in its properties
     - FEATURE: Allow the user to edit torrents' trackers

@@ -38,7 +38,6 @@
 - Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
 - Add "Mark all as read" feature for RSS
 - Allow to customize lists refreshing interval (in options)
-- Use search engines as plugins (split them, load them dynamically) to allow the user to add some
 
 // in v1.0.0 (partial) - WIP
 - Check storage st creation + hasher in torrent creation
@@ -80,6 +79,7 @@ beta5->beta6 changelog:
 - FEATURE: A lot of code optimization (CPU & memory usage)
 - FEATURE: Added support for .ico format (useful for RSS favicons)
 - FEATURE: Replaced Meganova search engine by TorrentReactor
+- FEATURE: Brand new search engine plugins system
 - I18N: Updated Greek, Dutch and Romanian translation
 - I18N: Removed no longer maintained Traditional chinese translation
 - BUGFIX: Made torrent deletion from hard-drive safer

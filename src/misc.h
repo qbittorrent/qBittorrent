@@ -328,6 +328,28 @@ class misc : public QObject{
       list.insert(i, value);
     }
 
+    static float getPluginVersion(QString filePath) {
+      QFile plugin(filePath);
+      if(!plugin.exists()){
+        return 0.0;
+      }
+      if(!plugin.open(QIODevice::ReadOnly | QIODevice::Text)){
+        return 0.0;
+      }
+      float version = 0.0;
+      while (!plugin.atEnd()){
+        QByteArray line = plugin.readLine();
+        if(line.startsWith("#VERSION: ")){
+          line = line.split(' ').last();
+          line.replace("\n", "");
+          version = line.toFloat();
+          qDebug("plugin version: %.2f", version);
+          break;
+        }
+      }
+      return version;
+    }
+
     // Take a number of seconds and return an user-friendly
     // time duration like "1d 2h 10m".
     static QString userFriendlyDuration(qlonglong seconds) {
