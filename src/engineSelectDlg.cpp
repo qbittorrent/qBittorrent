@@ -321,6 +321,7 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file, QString updateSer
     qDebug("* Error: Could not read versions.txt file");
     return false;
   }
+  bool updated = false;
   while(!versions.atEnd()) {
     QByteArray line = versions.readLine();
     line.replace("\n", "");
@@ -342,12 +343,16 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file, QString updateSer
       // Downloading update
       downloader->downloadUrl(updateServer+plugin_name+".zip"); // Actually this is really a .py
       downloader->downloadUrl(updateServer+plugin_name+".png");
+      updated = true;
     }
   }
   // Close file
   versions.close();
   // Clean up tmp file
   QFile::remove(versions_file);
+  if(!updated) {
+    QMessageBox::information(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("All your plugins are already up to date."));
+  }
   return file_correct;
 }
 
@@ -392,7 +397,7 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
   }
   if(url == "http://hydr0g3n.free.fr/search_engine/versions.txt") {
     if(!parseVersionsFile(filePath, "http://hydr0g3n.free.fr/search_engine/")) {
-      QMessageBox::information(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, update server is temporarily unavailable."));
+      QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, update server is temporarily unavailable."));
       return;
     }
   }
