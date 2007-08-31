@@ -344,13 +344,15 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file, QString updateSer
       downloader->downloadUrl(updateServer+plugin_name+".zip"); // Actually this is really a .py
       downloader->downloadUrl(updateServer+plugin_name+".png");
       updated = true;
+    }else {
+      qDebug("Plugin: %s is up to date", plugin_name.toUtf8().data());
     }
   }
   // Close file
   versions.close();
   // Clean up tmp file
   QFile::remove(versions_file);
-  if(!updated) {
+  if(file_correct && !updated) {
     QMessageBox::information(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("All your plugins are already up to date."));
   }
   return file_correct;
