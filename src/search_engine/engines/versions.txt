@@ -1,5 +1,5 @@
 isohunt: 1.00
 torrentreactor: 1.00
-btjunkie: 1.01
+btjunkie: 1.10
 mininova: 1.00
 piratebay: 1.00
