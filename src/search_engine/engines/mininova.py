@@ -1,4 +1,4 @@
-#VERSION: 1.00
+#VERSION: 1.10
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 from novaprinter import prettyPrinter
 import urllib
@@ -26,25 +26,33 @@ class mininova(object):
 				return txt.toxml()
 			else:
 				return ''.join([ get_text(n) for n in txt.childNodes])
-		dat = urllib.urlopen(self.url+'/search/%s/seeds'%(what,)).read().decode('utf-8', 'replace')
-		dat = re.sub("<a href=\"http://www.boardreader.com/index.php.*\"", "<a href=\"plop\"", dat)
-                dat = re.sub("<=", "&lt;=", dat)
-		x = minidom.parseString(dat.encode('utf-8', 'replace'))
-		table = x.getElementsByTagName('table').item(0)
-		if not table: return
-		for tr in table.getElementsByTagName('tr'):
-			tds = tr.getElementsByTagName('td')
-			if tds:
-				i = 0
-				vals = {}
-				for td in tds:
-					if self.table_items[i] == 'name':
-						vals['link'] = get_link(td).strip()
-					vals[self.table_items[i]] = get_text(td).strip()
-					i += 1
-				vals['engine_url'] = self.url
-				if not vals['seeds'].isdigit():
-					vals['seeds'] = 0
-				if not vals['leech'].isdigit():
-					vals['leech'] = 0
-				prettyPrinter(vals)
+		page = 1
+		while True:
+			res = 0
+			dat = urllib.urlopen(self.url+'/search/%s/seeds/%d'%(what, page)).read().decode('utf-8', 'replace')
+			dat = re.sub("<a href=\"http://www.boardreader.com/index.php.*\"", "<a href=\"plop\"", dat)
+			dat = re.sub("<=", "&lt;=", dat)
+			dat = re.sub("&\s", "&amp; ", dat)
+			x = minidom.parseString(dat.encode('utf-8', 'replace'))
+			table = x.getElementsByTagName('table').item(0)
+			if not table: return
+			for tr in table.getElementsByTagName('tr'):
+				tds = tr.getElementsByTagName('td')
+				if tds:
+					i = 0
+					vals = {}
+					for td in tds:
+						if self.table_items[i] == 'name':
+							vals['link'] = get_link(td).strip()
+						vals[self.table_items[i]] = get_text(td).strip()
+						i += 1
+					vals['engine_url'] = self.url
+					if not vals['seeds'].isdigit():
+						vals['seeds'] = 0
+					if not vals['leech'].isdigit():
+						vals['leech'] = 0
+					prettyPrinter(vals)
+					res = res + 1
+			if res == 0:
+				break
+			page = page +1
