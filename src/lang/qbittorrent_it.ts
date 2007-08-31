@@ -666,115 +666,115 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../downloadingTorrents.cpp" line="55"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="56"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">Dimensione</translation>
+        <translation>Dimensione</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="57"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamento</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="58"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Velocità DL</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="59"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Velocità UP</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="60"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished">Seeds/Leechs</translation>
+        <translation>Seeds/Leechs</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="61"/>
         <source>Ratio</source>
-        <translation type="unfinished">Rapporto</translation>
+        <translation>Rapporto</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="62"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished">ETA</translation>
+        <translation>ETA</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="98"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation type="unfinished">qBittorrent %1 avviato.</translation>
+        <translation>qBittorrent %1 avviato.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="99"/>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
-        <translation type="unfinished">Attenzione, condividere materiale protetto da copyright senza il permesso è illegale.</translation>
+        <translation>Attenzione, condividere materiale protetto da copyright senza il permesso è illegale.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="123"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;è stato bloccato&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;è stato bloccato&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="197"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Il recupero veloce del torrent %1 è stato rifiutato, altro tentativo in corso...</translation>
+        <translation>Il recupero veloce del torrent %1 è stato rifiutato, altro tentativo in corso...</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="201"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Fallito seed per l&apos;url: %1, messaggio: %2</translation>
+        <translation>Fallito seed per l&apos;url: %1, messaggio: %2</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="631"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; è stato aggiunto alla lista dei download.</translation>
+        <translation>&apos;%1&apos; è stato aggiunto alla lista dei download.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="633"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">&apos;%1&apos; ripreso. (recupero veloce)</translation>
+        <translation>&apos;%1&apos; ripreso. (recupero veloce)</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="641"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; è già nella lista dei download.</translation>
+        <translation>&apos;%1&apos; è già nella lista dei download.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="645"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">Impossibile decifrare il file torrent: &apos;%1&apos;</translation>
+        <translation>Impossibile decifrare il file torrent: &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="646"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Questo file è corrotto o non è un torrent.</translation>
+        <translation>Questo file è corrotto o non è un torrent.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="660"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="unfinished">Impossibile mettersi in ascolto sulle porte scelte.</translation>
+        <translation>Impossibile mettersi in ascolto sulle porte scelte.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="684"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished">Download di &apos;%1&apos; in corso...</translation>
+        <translation>Download di &apos;%1&apos; in corso...</translation>
     </message>
 </context>
 <context>
@@ -1660,13 +1660,13 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
         <location filename="../GUI.cpp" line="290"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation type="unfinished">Alt+3</translation>
+        <translation>Alt+3</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="292"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+F</translation>
     </message>
 </context>
 <context>
@@ -2086,7 +2086,7 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
     <message>
         <location filename="../rss_imp.cpp" line="155"/>
         <source>This rss feed is already in the list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Questo feed rss è già nella lista.</translation>
     </message>
 </context>
 <context>
@@ -2108,7 +2108,7 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
     <message>
         <location filename="../rss.h" line="261"/>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Mai</translation>
     </message>
 </context>
 <context>
@@ -2705,82 +2705,82 @@ Changelog:
     <message>
         <location filename="../download.ui" line="13"/>
         <source>Search</source>
-        <translation type="unfinished">Ricerca</translation>
+        <translation>Ricerca</translation>
     </message>
     <message>
         <location filename="../download.ui" line="48"/>
         <source>Total DL Speed:</source>
-        <translation type="unfinished">Velocità totale download:</translation>
+        <translation>Velocità totale download:</translation>
     </message>
     <message>
         <location filename="../download.ui" line="181"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <location filename="../download.ui" line="106"/>
         <source>Session ratio: </source>
-        <translation type="unfinished">Rapporto di condivisione: </translation>
+        <translation>Rapporto di condivisione: </translation>
     </message>
     <message>
         <location filename="../download.ui" line="152"/>
         <source>Total UP Speed:</source>
-        <translation type="unfinished">Velocità totale upload:</translation>
+        <translation>Velocità totale upload:</translation>
     </message>
     <message>
         <location filename="../download.ui" line="246"/>
         <source>Log</source>
-        <translation type="unfinished">Log</translation>
+        <translation>Log</translation>
     </message>
     <message>
         <location filename="../download.ui" line="280"/>
         <source>IP filter</source>
-        <translation type="unfinished">Filtro IP</translation>
+        <translation>Filtro IP</translation>
     </message>
     <message>
         <location filename="../download.ui" line="306"/>
         <source>Start</source>
-        <translation type="unfinished">Avvia</translation>
+        <translation>Avvia</translation>
     </message>
     <message>
         <location filename="../download.ui" line="311"/>
         <source>Pause</source>
-        <translation type="unfinished">Ferma</translation>
+        <translation>Ferma</translation>
     </message>
     <message>
         <location filename="../download.ui" line="316"/>
         <source>Delete</source>
-        <translation type="unfinished">Cancella</translation>
+        <translation>Cancella</translation>
     </message>
     <message>
         <location filename="../download.ui" line="321"/>
         <source>Clear</source>
-        <translation type="unfinished">Pulisci</translation>
+        <translation>Pulisci</translation>
     </message>
     <message>
         <location filename="../download.ui" line="326"/>
         <source>Preview file</source>
-        <translation type="unfinished">Anteprima file</translation>
+        <translation>Anteprima file</translation>
     </message>
     <message>
         <location filename="../download.ui" line="331"/>
         <source>Set upload limit</source>
-        <translation type="unfinished">Imposta limite di upload</translation>
+        <translation>Imposta limite di upload</translation>
     </message>
     <message>
         <location filename="../download.ui" line="336"/>
         <source>Set download limit</source>
-        <translation type="unfinished">Imposta limite di download</translation>
+        <translation>Imposta limite di download</translation>
     </message>
     <message>
         <location filename="../download.ui" line="341"/>
         <source>Delete Permanently</source>
-        <translation type="unfinished">Cancella permanentemente</translation>
+        <translation>Cancella permanentemente</translation>
     </message>
     <message>
         <location filename="../download.ui" line="346"/>
         <source>Torrent Properties</source>
-        <translation type="unfinished">Proprietà del torrent</translation>
+        <translation>Proprietà del torrent</translation>
     </message>
 </context>
 <context>
@@ -2788,62 +2788,62 @@ Changelog:
     <message>
         <location filename="../engineSelect.ui" line="13"/>
         <source>Search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin di ricerca</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="26"/>
         <source>Installed search engines:</source>
-        <translation type="unfinished"></translation>
+        <translation>Motori di ricerca installati:</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="46"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="51"/>
         <source>Url</source>
-        <translation type="unfinished"></translation>
+        <translation>Url</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="56"/>
         <source>Enabled</source>
-        <translation type="unfinished">Attivata</translation>
+        <translation>Attivata</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="69"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Puoi ottenere altri plugin per la ricerca qui: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="78"/>
         <source>Install a new one</source>
-        <translation type="unfinished"></translation>
+        <translation>Installane uno nuovo</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="85"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Controlla gli aggiornamenti</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="92"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiudi</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="101"/>
         <source>Enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="106"/>
         <source>Disable</source>
-        <translation type="unfinished">Disabilita</translation>
+        <translation>Disabilita</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="111"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Disinstalla</translation>
     </message>
 </context>
 <context>
@@ -2851,99 +2851,101 @@ Changelog:
     <message>
         <location filename="../engineSelectDlg.cpp" line="243"/>
         <source>True</source>
-        <translation type="unfinished">Vero</translation>
+        <translation>Vero</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="245"/>
         <source>False</source>
-        <translation type="unfinished">Falso</translation>
+        <translation>Falso</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="165"/>
         <source>Uninstall warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Avviso di disinstallazione</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="165"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alcuni plugin non possono essere disinstallati perché sono inclusi in qBittorrent.
+ Solo quelli aggiunti possono essere disinstallati.
+Comunque, quei plugin sono stati disabilitati.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="167"/>
         <source>Uninstall success</source>
-        <translation type="unfinished"></translation>
+        <translation>Disinstallazione riuscita</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="167"/>
         <source>All selected plugins were uninstalled successfuly</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutti i plugin selezionati sono stati disinstallati con successo</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="282"/>
         <source>Select search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Selezionare plugin di ricerca</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="283"/>
         <source>qBittorrent search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin di ricerca di qBittorrent</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="310"/>
         <source>Search plugin install</source>
-        <translation type="unfinished"></translation>
+        <translation>Installare plugin di ricerca</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="449"/>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="291"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Una versione più recente del plugin di ricerca %1 è già installata.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="307"/>
         <source>%1 search engine plugin was successfuly updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Il plugin di ricerca %1 è stato aggiornato con successo.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="310"/>
         <source>%1 search engine plugin was successfuly installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Il plugin di ricerca %1 è stato installato con successo.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="449"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">Aggiornato il plugin di ricerca</translation>
+        <translation>Aggiornato il plugin di ricerca</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="442"/>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spiacente, il server è momentaneamente non disponibile.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="426"/>
         <source>%1 search plugin was successfuly updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Il plugin di ricerca %1 è stato aggiornato con successo.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="449"/>
         <source>Sorry, %1 search plugin update failed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Spiacente, l&apos;aggiornamento del plugin di ricerca %1 è fallito.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="356"/>
         <source>All your plugins are already up to date.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutti i plugin sono già aggiornati.</translation>
     </message>
 </context>
 <context>
@@ -3644,7 +3646,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../search.ui" line="99"/>
         <source>Search engines...</source>
-        <translation type="unfinished"></translation>
+        <translation>Motori di ricerca...</translation>
     </message>
 </context>
 <context>
