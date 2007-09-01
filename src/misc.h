@@ -355,6 +355,7 @@ class misc : public QObject{
     // time duration like "1d 2h 10m".
     static QString userFriendlyDuration(qlonglong seconds) {
       if(seconds < 0 or seconds > 8640000) {
+        // We display unkown if seconds > 100 days
         return tr("Unknown");
       }
       int level = 0;

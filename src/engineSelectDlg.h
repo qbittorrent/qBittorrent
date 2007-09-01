@@ -44,7 +44,8 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
 
   protected:
     bool parseVersionsFile(QString versions_file, QString updateServer);
-    bool isUpdateNeeded(QString plugin_name, float new_version);
+    bool isUpdateNeeded(QString plugin_name, float new_version) const;
+    bool checkInstalled(QString plugin_name) const;
 
   signals:
     void enginesChanged();

@@ -1,35 +1,34 @@
 // Easy
 - Translations into as many languages as possible
-- Improve man page
 - Use Launchpad/Rosetta for translations once it supports TS files
 
 // Intermediate
-- Port on MacOS, Windows (and create an installer for Windows) - Progressing slowly
-- Add some transparency (menus,...), improve look
+- Port on MacOS, Windows (and create an installer for Windows) - Slow progress
+- Add some transparency (menus,...), improve look / usabilty
+- Skins support? (contact Mateusz)
 
 // Harder
-- Display a progress bar that really displays the pieces we have (like in eMule)
+- Display a progress bar that really represents the pieces we have (like in eMule)
 
 // Waiting for libtorrent
 - File selection in a torrent in compact mode
-- Allow to prioritize torrents
+- Allow to prioritize torrents (may code this in qBittorrent?)
 
 // Unsure
 - Azureus spoofing to prevent ban from trackers?
 - Option to shutdown computer when downloads are finished
-- Add a torrent scheduler
 - Make use of dbus on Linux for the single instance instead of socket communication?
   (http://techbase.kde.org/Development/Tutorials/D-Bus/Accessing_Interfaces)
-- search engines customizing
 
 // in v1.2.0
-- Allow user to organize the downloads into categories/folders
+- Allow user to organize the downloads into categories/folders?
 
 // in v1.1.0
 - Tabs support in search
 - Allow to hide columns?
 - Allow to scan multiple directories? (useful?)
-- Web interface (turbogears? php?)
+- Web interface (turbogears? php? python?)
+  * Webserver? Try to write a webserver as a plugin for qBittorrent in Python
 - improve and test tracker authentication code (remember login/pass) (need a tracker to test this)
 - support zipped torrents? (useful?)
 - Add option for RSS customization (refresh interval, max news per RSS...)
@@ -45,10 +44,10 @@
 - update sorting when a new torrent is added?
 - Keep documention up to date
 - Windows port (Chris - Peerkoel)
-- write patches libtorrent for file_priority(int index), actual_size() ?
+- write patches for libtorrent for file_priority(int index), actual_size() ?
 - valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
 - 128m  29m  16m S  4.8  2.9   0:02.28 qbittorrent
-* beta 6
+* beta 7
   - Translations update (IN PROGRESS)
   - Wait for some bug fixes in libtorrent :
     - Number of seeds non null for finished torrent (Ticket #122)
@@ -74,27 +73,6 @@ LANGUAGES UPDATED:
 - Dutch *BETA5*
 - Romanian *BETA5*
 
-beta5->beta6 changelog:
-- FEATURE: Split download tab from GUI class and cleaned up code
-- FEATURE: A lot of code optimization (CPU & memory usage)
-- FEATURE: Added support for .ico format (useful for RSS favicons)
-- FEATURE: Replaced Meganova search engine by TorrentReactor
-- FEATURE: Brand new search engine plugins system
-- FEATURE: Added btjunkie search plugin (with multipage support)
-- FEATURE: Search engine, added multipage support for mininova search plugin
-- I18N: Updated Greek, Dutch and Romanian translation
-- I18N: Removed no longer maintained Traditional chinese translation
-- BUGFIX: Made torrent deletion from hard-drive safer
-- BUGFIX: Fixed a bug when switching from finished to downloading list
-- BUGFIX: Showing checking progress for paused torrents too
-- BUGFIX: Fixed progress column sorting on startup
-- BUGFIX: Prevent downloadFromUrl flooding
-- BUGFIX: Fixed pause state toggle for paused and checking torrents
-- BUGFIX: Made finished list context menu more similar to the download list one
-- BUGFIX: Fixed Pause/Start action in lists context menus
-- BUGFIX: Improved ETA calculation
-- BUGFIX: ETA was wrong for torrents with filtered files
-- BUGFIX: Display the torrent that are being checked as 'checking' in seeding list
-- BUGFIX: Fixed file preview and improved previewable files detection
-- BUGFIX: Do not store and calculate ETA values for finished/paused torrents
-- BUGFIX: Fixed memory leak in GUI
+beta6->beta7 changelog:
+- FEATURE: Made search engine plugin install more reliable
+- BUGFIX: Updated man page / README / INSTALL

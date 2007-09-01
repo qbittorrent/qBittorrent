@@ -160,11 +160,12 @@ void createtorrent::on_createButton_clicked(){
   char const* creator_str = "qBittorrent "VERSION;
   try {
     torrent_info t;
-    QString input_path;
-    path full_path;
     ofstream out(complete(path((const char*)destination.toUtf8())), std::ios_base::binary);
+    path full_path;
+    // Adding files to the torrent
+    QString input_path;
     foreach(input_path, input){
-      full_path = complete(path((const char*)input_path.toUtf8()));
+      full_path = complete(path(input_path.toUtf8().data()));
       add_files(t, full_path.branch_path(), full_path.leaf());
     }
     int piece_size = 256 * 1024;
@@ -173,11 +174,11 @@ void createtorrent::on_createButton_clicked(){
     QStringList urlSeeds = allItems(URLSeeds_list);
     QString seed;
     foreach(seed, urlSeeds){
-      t.add_url_seed((const char*)seed.toUtf8());
+      t.add_url_seed(seed.toUtf8().data());
     }
     QStringList trackers = allItems(trackers_list);
     for(int i=0; i<trackers.size(); ++i){
-      t.add_tracker((const char*)trackers.at(i).toUtf8());
+      t.add_tracker(trackers.at(i).toUtf8().data());
     }
 
     // calculate the hash for all pieces

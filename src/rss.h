@@ -471,7 +471,7 @@ class RssManager : public QObject{
       connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
       loadStreamList();
       connect(&newsRefresher, SIGNAL(timeout()), this, SLOT(refreshOldFeeds()));
-      newsRefresher.start(60000);
+      newsRefresher.start(60000); // 1min
     }
 
     ~RssManager(){

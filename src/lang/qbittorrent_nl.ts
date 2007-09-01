@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="nl">
+<defaultcodec></defaultcodec>
 <context>
     <name>@default</name>
     <message>
@@ -2886,12 +2887,12 @@ Changelog:
         <translation type="obsolete">Geef alstublieft eerst een geldig bron pad</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent creation</source>
         <translation>Torrent maken</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent was succesvol gemaakt:</translation>
     </message>
@@ -2916,7 +2917,7 @@ Changelog:
         <translation>Type een announce URL</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="207"/>
+        <location filename="../createtorrent_imp.cpp" line="208"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Fout tijdens het maken van torrent, reden: %1</translation>
     </message>
@@ -3063,162 +3064,199 @@ Changelog:
     <message>
         <location filename="../engineSelect.ui" line="13"/>
         <source>Search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoekplugins</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="26"/>
         <source>Installed search engines:</source>
-        <translation type="unfinished"></translation>
+        <translation>Geïnstalleerde zoekplugins:</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="46"/>
         <source>Name</source>
-        <translation type="unfinished">Naam</translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="51"/>
         <source>Url</source>
-        <translation type="unfinished"></translation>
+        <translation>Url</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="56"/>
         <source>Enabled</source>
-        <translation type="unfinished">Ingeschakeld</translation>
+        <translation>Ingeschakeld</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="69"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>U kan hier nieuwe zoekplugins krijgen: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="78"/>
         <source>Install a new one</source>
-        <translation type="unfinished"></translation>
+        <translation>Installeer een nieuwe</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="85"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Controleer op updates</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="92"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Sluiten</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="101"/>
         <source>Enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Inschakelen</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="106"/>
         <source>Disable</source>
-        <translation type="unfinished">Uitschakelen</translation>
+        <translation>Uitschakelen</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="111"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Deïnstalleren</translation>
     </message>
 </context>
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="243"/>
+        <location filename="../engineSelectDlg.cpp" line="256"/>
         <source>True</source>
-        <translation type="unfinished">Waar</translation>
+        <translation>Waar</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="245"/>
+        <location filename="../engineSelectDlg.cpp" line="258"/>
         <source>False</source>
-        <translation type="unfinished">Onwaar</translation>
+        <translation>Onwaar</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="165"/>
         <source>Uninstall warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Deïnstallatie waarschuwing</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="165"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niet alle plugins konden worden gedeïnstalleerd omdat ze bij qBittorrent horen.
+Alleen de door u toegevoegde plugins kunnen worden gedeïnstalleerd.
+De plugins zijn uitgeschakeld.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="167"/>
         <source>Uninstall success</source>
-        <translation type="unfinished"></translation>
+        <translation>Deïnstallatie succesvol</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="167"/>
         <source>All selected plugins were uninstalled successfuly</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Alle gekozen plugins zijn succesvol gedeïnstalleerd</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="282"/>
+        <location filename="../engineSelectDlg.cpp" line="295"/>
         <source>Select search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Kies zoekplugins</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="283"/>
+        <location filename="../engineSelectDlg.cpp" line="296"/>
         <source>qBittorrent search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent zoekplugins</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="310"/>
+        <location filename="../engineSelectDlg.cpp" line="345"/>
         <source>Search plugin install</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoekplugins installatie</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="449"/>
+        <location filename="../engineSelectDlg.cpp" line="484"/>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="291"/>
+        <location filename="../engineSelectDlg.cpp" line="304"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Een nieuwere versie van %1 zoekmachineplugin is al geïnstalleerd.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="307"/>
         <source>%1 search engine plugin was successfuly updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">%1 zoekmachineplugin is succesvol vernieuwd.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="310"/>
         <source>%1 search engine plugin was successfuly installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">%1 zoekmachineplugin is succesvol geïnstalleerd.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="449"/>
+        <location filename="../engineSelectDlg.cpp" line="484"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">Zoekplugin update</translation>
+        <translation>Zoekplugin update</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="442"/>
+        <location filename="../engineSelectDlg.cpp" line="477"/>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation type="unfinished">Sorry, update server is tijdelijk niet bereikbaar.</translation>
+        <translation>Sorry, updateserver is tijdelijk niet bereikbaar.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="426"/>
         <source>%1 search plugin was successfuly updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">%1 zoekplugin is succesvol vernieuwd.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="449"/>
+        <location filename="../engineSelectDlg.cpp" line="484"/>
         <source>Sorry, %1 search plugin update failed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation>Sorry, %1 zoekplugin update mislukt.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="391"/>
+        <source>All your plugins are already up to date.</source>
+        <translation>Uw plugins zijn al het nieuwst.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="167"/>
+        <source>All selected plugins were uninstalled successfully</source>
+        <translation>Alle gekozen plugins zijn succesvol gedeïnstalleerd</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="326"/>
+        <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="356"/>
-        <source>All your plugins are already up to date.</source>
+        <location filename="../engineSelectDlg.cpp" line="331"/>
+        <source>%1 search engine plugin could not be installed.</source>
+        <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="342"/>
+        <source>%1 search engine plugin was successfully updated.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation>%1 zoekmachineplugin is succesvol vernieuwd.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="345"/>
+        <source>%1 search engine plugin was successfully installed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation>%1 zoekmachineplugin is succesvol geïnstalleerd.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="461"/>
+        <source>%1 search plugin was successfully updated.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation>%1 zoekplugin is succesvol vernieuwd.</translation>
     </message>
 </context>
 <context>
@@ -3272,7 +3310,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete"> d</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="358"/>
+        <location filename="../misc.h" line="359"/>
         <source>Unknown</source>
         <translation>Onbekend</translation>
     </message>
@@ -3295,25 +3333,25 @@ However, those plugins were disabled.</source>
         <translation>Onbekend</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="378"/>
+        <location filename="../misc.h" line="379"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="380"/>
+        <location filename="../misc.h" line="381"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="382"/>
+        <location filename="../misc.h" line="383"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1u%2m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="384"/>
+        <location filename="../misc.h" line="385"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1d%2u%3m</translation>
@@ -3966,7 +4004,7 @@ selecteer alstublieft een er van:</translation>
     <message>
         <location filename="../search.ui" line="99"/>
         <source>Search engines...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoekmachines...</translation>
     </message>
 </context>
 <context>

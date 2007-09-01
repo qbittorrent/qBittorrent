@@ -2616,12 +2616,12 @@ Changelog:
         <translation type="obsolete">Per favore inserire un percorso da aggiungere corretto</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent creation</source>
         <translation>Creazione di un torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent was created successfully:</source>
         <translation>Il torrent è stato creato correttamente:</translation>
     </message>
@@ -2641,7 +2641,7 @@ Changelog:
         <translation>Per favore digitare un URL di annuncio</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="207"/>
+        <location filename="../createtorrent_imp.cpp" line="208"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Creazione torrent fallita, motivo: %1</translation>
     </message>
@@ -2849,12 +2849,12 @@ Changelog:
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="243"/>
+        <location filename="../engineSelectDlg.cpp" line="256"/>
         <source>True</source>
         <translation>Vero</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="245"/>
+        <location filename="../engineSelectDlg.cpp" line="258"/>
         <source>False</source>
         <translation>Falso</translation>
     </message>
@@ -2880,72 +2880,107 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     <message>
         <location filename="../engineSelectDlg.cpp" line="167"/>
         <source>All selected plugins were uninstalled successfuly</source>
-        <translation>Tutti i plugin selezionati sono stati disinstallati con successo</translation>
+        <translation type="obsolete">Tutti i plugin selezionati sono stati disinstallati con successo</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="282"/>
+        <location filename="../engineSelectDlg.cpp" line="295"/>
         <source>Select search plugins</source>
         <translation>Selezionare plugin di ricerca</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="283"/>
+        <location filename="../engineSelectDlg.cpp" line="296"/>
         <source>qBittorrent search plugins</source>
         <translation>Plugin di ricerca di qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="310"/>
+        <location filename="../engineSelectDlg.cpp" line="345"/>
         <source>Search plugin install</source>
         <translation>Installare plugin di ricerca</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="449"/>
+        <location filename="../engineSelectDlg.cpp" line="484"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="291"/>
+        <location filename="../engineSelectDlg.cpp" line="304"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Una versione più recente del plugin di ricerca %1 è già installata.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="307"/>
+        <location filename="../engineSelectDlg.cpp" line="342"/>
         <source>%1 search engine plugin was successfuly updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Il plugin di ricerca %1 è stato aggiornato con successo.</translation>
+        <translation type="obsolete">Il plugin di ricerca %1 è stato aggiornato con successo.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="310"/>
+        <location filename="../engineSelectDlg.cpp" line="345"/>
         <source>%1 search engine plugin was successfuly installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Il plugin di ricerca %1 è stato installato con successo.</translation>
+        <translation type="obsolete">Il plugin di ricerca %1 è stato installato con successo.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="449"/>
+        <location filename="../engineSelectDlg.cpp" line="484"/>
         <source>Search plugin update</source>
         <translation>Aggiornato il plugin di ricerca</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="442"/>
+        <location filename="../engineSelectDlg.cpp" line="477"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Spiacente, il server è momentaneamente non disponibile.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="426"/>
+        <location filename="../engineSelectDlg.cpp" line="461"/>
         <source>%1 search plugin was successfuly updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Il plugin di ricerca %1 è stato aggiornato con successo.</translation>
+        <translation type="obsolete">Il plugin di ricerca %1 è stato aggiornato con successo.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="449"/>
+        <location filename="../engineSelectDlg.cpp" line="484"/>
         <source>Sorry, %1 search plugin update failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Spiacente, l&apos;aggiornamento del plugin di ricerca %1 è fallito.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="356"/>
+        <location filename="../engineSelectDlg.cpp" line="391"/>
         <source>All your plugins are already up to date.</source>
         <translation>Tutti i plugin sono già aggiornati.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="326"/>
+        <source>%1 search engine plugin could not be updated, keeping old version.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="331"/>
+        <source>%1 search engine plugin could not be installed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="167"/>
+        <source>All selected plugins were uninstalled successfully</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="342"/>
+        <source>%1 search engine plugin was successfully updated.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="345"/>
+        <source>%1 search engine plugin was successfully installed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="461"/>
+        <source>%1 search plugin was successfully updated.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2993,7 +3028,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <translation type="obsolete">gg</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="358"/>
+        <location filename="../misc.h" line="359"/>
         <source>Unknown</source>
         <translation>Sconosciuto</translation>
     </message>
@@ -3016,25 +3051,25 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <translation>Sconosciuta</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="378"/>
+        <location filename="../misc.h" line="379"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="380"/>
+        <location filename="../misc.h" line="381"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="382"/>
+        <location filename="../misc.h" line="383"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="384"/>
+        <location filename="../misc.h" line="385"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1d%2h%3m</translation>

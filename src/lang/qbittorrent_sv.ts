@@ -2007,12 +2007,12 @@ i.e: Search results</comment>
         <translation>Ange en sökväg för indata först</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent creation</source>
         <translation>Skapa torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrentfilen skapades:</translation>
     </message>
@@ -2032,7 +2032,7 @@ i.e: Search results</comment>
         <translation>Ange en annonserings-url</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="207"/>
+        <location filename="../createtorrent_imp.cpp" line="208"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Skapandet av torrent-fil misslyckades, anledning: %1</translation>
     </message>
@@ -2240,12 +2240,12 @@ i.e: Search results</comment>
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="243"/>
+        <location filename="../engineSelectDlg.cpp" line="256"/>
         <source>True</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="245"/>
+        <location filename="../engineSelectDlg.cpp" line="258"/>
         <source>False</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2267,73 +2267,85 @@ However, those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="167"/>
-        <source>All selected plugins were uninstalled successfuly</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../engineSelectDlg.cpp" line="282"/>
+        <location filename="../engineSelectDlg.cpp" line="295"/>
         <source>Select search plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="283"/>
+        <location filename="../engineSelectDlg.cpp" line="296"/>
         <source>qBittorrent search plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="310"/>
+        <location filename="../engineSelectDlg.cpp" line="345"/>
         <source>Search plugin install</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="449"/>
+        <location filename="../engineSelectDlg.cpp" line="484"/>
         <source>qBittorrent</source>
         <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="291"/>
+        <location filename="../engineSelectDlg.cpp" line="304"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="307"/>
-        <source>%1 search engine plugin was successfuly updated.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../engineSelectDlg.cpp" line="310"/>
-        <source>%1 search engine plugin was successfuly installed.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../engineSelectDlg.cpp" line="449"/>
+        <location filename="../engineSelectDlg.cpp" line="484"/>
         <source>Search plugin update</source>
         <translation type="unfinished">Uppdatering av sökinstick</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="442"/>
+        <location filename="../engineSelectDlg.cpp" line="477"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation type="unfinished">Tyvärr, uppdateringsservern är inte tillgänglig för tillfället.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="426"/>
-        <source>%1 search plugin was successfuly updated.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../engineSelectDlg.cpp" line="449"/>
+        <location filename="../engineSelectDlg.cpp" line="484"/>
         <source>Sorry, %1 search plugin update failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="356"/>
+        <location filename="../engineSelectDlg.cpp" line="391"/>
         <source>All your plugins are already up to date.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="326"/>
+        <source>%1 search engine plugin could not be updated, keeping old version.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="331"/>
+        <source>%1 search engine plugin could not be installed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="167"/>
+        <source>All selected plugins were uninstalled successfully</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="342"/>
+        <source>%1 search engine plugin was successfully updated.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="345"/>
+        <source>%1 search engine plugin was successfully installed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="461"/>
+        <source>%1 search plugin was successfully updated.</source>
+        <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2370,7 +2382,7 @@ However, those plugins were disabled.</source>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="358"/>
+        <location filename="../misc.h" line="359"/>
         <source>Unknown</source>
         <translation>Okänd</translation>
     </message>
@@ -2381,25 +2393,25 @@ However, those plugins were disabled.</source>
         <translation>Okänd</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="378"/>
+        <location filename="../misc.h" line="379"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="380"/>
+        <location filename="../misc.h" line="381"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="382"/>
+        <location filename="../misc.h" line="383"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h %2min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="384"/>
+        <location filename="../misc.h" line="385"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1d %2h %3min</translation>

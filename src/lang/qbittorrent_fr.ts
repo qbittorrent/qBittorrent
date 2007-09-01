@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr">
+<defaultcodec></defaultcodec>
 <context>
     <name>@default</name>
     <message>
@@ -3130,12 +3131,12 @@ Changements:
         <translation type="obsolete">Veuillez vérifier la chemin du fichier/dossier à inclure</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent creation</source>
         <translation>Création d&apos;un torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent was created successfully:</source>
         <translation>Le torrent a été créé avec succès :</translation>
     </message>
@@ -3170,7 +3171,7 @@ Changements:
         <translation type="obsolete">URL du tracker :</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="207"/>
+        <location filename="../createtorrent_imp.cpp" line="208"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>La création du torrent a échoué, raison : %1</translation>
     </message>
@@ -3383,12 +3384,12 @@ Changements:
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="243"/>
+        <location filename="../engineSelectDlg.cpp" line="256"/>
         <source>True</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="245"/>
+        <location filename="../engineSelectDlg.cpp" line="258"/>
         <source>False</source>
         <translation>Non</translation>
     </message>
@@ -3414,72 +3415,107 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../engineSelectDlg.cpp" line="167"/>
         <source>All selected plugins were uninstalled successfuly</source>
-        <translation>Tous les greffons sélectionnés ont été désinstallés avec succès</translation>
+        <translation type="obsolete">Tous les greffons sélectionnés ont été désinstallés avec succès</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="282"/>
+        <location filename="../engineSelectDlg.cpp" line="295"/>
         <source>Select search plugins</source>
         <translation>Sélectionnez les greffons</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="283"/>
+        <location filename="../engineSelectDlg.cpp" line="296"/>
         <source>qBittorrent search plugins</source>
         <translation>Greffons de recherche de qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="310"/>
+        <location filename="../engineSelectDlg.cpp" line="345"/>
         <source>Search plugin install</source>
         <translation>Installation d&apos;un greffon de recherche</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="449"/>
+        <location filename="../engineSelectDlg.cpp" line="484"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="291"/>
+        <location filename="../engineSelectDlg.cpp" line="304"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Une version plus récent du greffon %1 est déjà installée.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="307"/>
+        <location filename="../engineSelectDlg.cpp" line="342"/>
         <source>%1 search engine plugin was successfuly updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Le greffon %1 a été mis à jour avec succès.</translation>
+        <translation type="obsolete">Le greffon %1 a été mis à jour avec succès.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="310"/>
+        <location filename="../engineSelectDlg.cpp" line="345"/>
         <source>%1 search engine plugin was successfuly installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Le greffon %1 a été installé avec succès.</translation>
+        <translation type="obsolete">Le greffon %1 a été installé avec succès.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="449"/>
+        <location filename="../engineSelectDlg.cpp" line="484"/>
         <source>Search plugin update</source>
         <translation>Mise à jour du greffon de recherche</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="442"/>
+        <location filename="../engineSelectDlg.cpp" line="477"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Désolé, le serveur de mise à jour est temporairement indisponible.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="426"/>
+        <location filename="../engineSelectDlg.cpp" line="461"/>
         <source>%1 search plugin was successfuly updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Le greffon %1 a été mis à jour avec succès.</translation>
+        <translation type="obsolete">Le greffon %1 a été mis à jour avec succès.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="449"/>
+        <location filename="../engineSelectDlg.cpp" line="484"/>
         <source>Sorry, %1 search plugin update failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Désolé, la mise à jour du greffon %1 a échoué.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="356"/>
+        <location filename="../engineSelectDlg.cpp" line="391"/>
         <source>All your plugins are already up to date.</source>
         <translation>Tous vos greffons de recherche sont déjà à jour.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="326"/>
+        <source>%1 search engine plugin could not be updated, keeping old version.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation>Le greffon de recherche %1 n&apos;a pas pu être mis à jour, l&apos;ancienne version est conservée.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="331"/>
+        <source>%1 search engine plugin could not be installed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation>Le greffon de recherche %1 n&apos;a pas pu être installé.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="167"/>
+        <source>All selected plugins were uninstalled successfully</source>
+        <translation>Tous les greffons sélectionnés ont été désinstallés avec succès</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="342"/>
+        <source>%1 search engine plugin was successfully updated.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation>Le greffon %1 a été mis à jour avec succès.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="345"/>
+        <source>%1 search engine plugin was successfully installed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation>Le greffon %1 a été installé avec succès.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="461"/>
+        <source>%1 search plugin was successfully updated.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation>Le greffon %1 a été mis à jour avec succès.</translation>
     </message>
 </context>
 <context>
@@ -3533,7 +3569,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete"> j</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="358"/>
+        <location filename="../misc.h" line="359"/>
         <source>Unknown</source>
         <translation>Inconnu</translation>
     </message>
@@ -3556,25 +3592,25 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation>Inconnue</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="378"/>
+        <location filename="../misc.h" line="379"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="380"/>
+        <location filename="../misc.h" line="381"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="382"/>
+        <location filename="../misc.h" line="383"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="384"/>
+        <location filename="../misc.h" line="385"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1j%2h%3min</translation>
