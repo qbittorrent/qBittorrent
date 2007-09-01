@@ -209,6 +209,10 @@ void FinishedTorrents::updateFinishedList(){
     }
     Q_ASSERT(row != -1);
     if(h.is_paused()) continue;
+    if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) != -1) {
+      finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)h.progress()));
+      continue;
+    }
     if(h.state() == torrent_status::downloading || (h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking && h.progress() < 1.)) {
       // What are you doing here? go back to download tab!
       qDebug("Info: a torrent was moved from finished to download tab");
@@ -218,10 +222,8 @@ void FinishedTorrents::updateFinishedList(){
       continue;
     }
     if(h.state() == torrent_status::checking_files){
-      if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) == -1) {
-        finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
-        setRowColor(row, QString::fromUtf8("grey"));
-      }
+      finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
+      setRowColor(row, QString::fromUtf8("grey"));
       finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)h.progress()));
       continue;
     }

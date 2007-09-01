@@ -372,6 +372,10 @@ void DownloadingTorrents::updateDlList() {
       Q_ASSERT(row != -1);
       // No need to update a paused torrent
       if(h.is_paused()) continue;
+      if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) != -1) {
+         DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+         continue;
+      }
       // Parse download state
       // Setting download state
       switch(h.state()) {
@@ -384,10 +388,8 @@ void DownloadingTorrents::updateDlList() {
           continue;
         case torrent_status::checking_files:
         case torrent_status::queued_for_checking:
-          if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) == -1) {
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
-            setRowColor(row, QString::fromUtf8("grey"));
-          }
+          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
+          setRowColor(row, QString::fromUtf8("grey"));
           DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
           break;
         case torrent_status::connecting_to_tracker:
