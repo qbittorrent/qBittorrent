@@ -29,6 +29,7 @@
 - Allow to scan multiple directories? (useful?)
 - Web interface (turbogears? php? python?)
   * Webserver? Try to write a webserver as a plugin for qBittorrent in Python
+    * http://fragments.turtlemeat.com/pythonwebserver.php
 - improve and test tracker authentication code (remember login/pass) (need a tracker to test this)
 - support zipped torrents? (useful?)
 - Add option for RSS customization (refresh interval, max news per RSS...)
@@ -58,7 +59,7 @@ LANGUAGES UPDATED:
 - Japanese *BETA3*
 - Swedish *BETA3*
 - Slovak *BETA6*
-- Ukrainian *BETA3*
+- Ukrainian *BETA6*
 - Chinese (simplified) *BETA4*
 - Hungarian *BETA4*
 - Italian *BETA6*
