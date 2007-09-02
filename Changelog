@@ -55,6 +55,7 @@
     - BUGFIX: Made torrent deletion from hard-drive safer
     - BUGFIX: Prevent downloadFromUrl flooding
     - BUGFIX: ETA was wrong for torrents with filtered files
+    - BUGFIX: Fixed drag'n drop on non-KDE systems
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Redesigned options a little
     - COSMETIC: Display more logs messages concerning features

@@ -90,7 +90,7 @@ void engineSelectDlg::dragEnterEvent(QDragEnterEvent *event) {
   foreach(mime, event->mimeData()->formats()){
     qDebug("mimeData: %s", mime.toUtf8().data());
   }
-  if (event->mimeData()->hasFormat(QString::fromUtf8("text/plain"))) {
+  if (event->mimeData()->hasFormat(QString::fromUtf8("text/plain")) || event->mimeData()->hasFormat(QString::fromUtf8("text/uri-list"))) {
     event->acceptProposedAction();
   }
 }

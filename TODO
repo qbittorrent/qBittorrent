@@ -87,3 +87,4 @@ beta6->beta7 changelog:
 - BUGFIX: 'Unknown' is now displayed in search results columns where value is -1
 - BUGFIX: Improved search engine core a little
 - BUGFIX: Forgot to remove *.pyc files when uninstalling a search plugin
+- BUGFIX: Fixed drag'n drop on non-KDE systems
