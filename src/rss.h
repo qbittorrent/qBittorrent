@@ -153,7 +153,7 @@ class RssStream : public QObject{
     }
 
   public:
-    RssStream(QString _url): url(_url), alias(""), iconPath(":/Icons/rss.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
+    RssStream(QString _url): url(_url), alias(""), iconPath(":/Icons/rss16.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
       qDebug("RSSStream constructed");
     }
 

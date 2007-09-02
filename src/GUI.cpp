@@ -141,7 +141,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   // RSS tab
   rssWidget = new RSSImp();
   tabs->addTab(rssWidget, tr("RSS"));
-  tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss.png")));
+  tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss32.png")));
   readSettings();
   // Add torrent given on command line
   processParams(torrentCmdLine);

@@ -17,8 +17,12 @@
 // Unsure
 - Azureus spoofing to prevent ban from trackers?
 - Option to shutdown computer when downloads are finished
+- Display hard drive space left?
 - Make use of dbus on Linux for the single instance instead of socket communication?
   (http://techbase.kde.org/Development/Tutorials/D-Bus/Accessing_Interfaces)
+- When favicon can't be downloaded, try to parse the webpage for:
+  <link rel="icon" href="http://example.com/favicon.ico" type="image/vnd.microsoft.icon">
+    * Be carefull, the link can be relative
 
 // in v1.2.0
 - Allow user to organize the downloads into categories/folders?
@@ -38,9 +42,7 @@
 - Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
 - Add "Mark all as read" feature for RSS
 - Allow to customize lists refreshing interval (in options)
-- When favicon can't be downloaded, try to parse the webpage for:
-  <link rel="icon" href="http://example.com/favicon.ico" type="image/vnd.microsoft.icon">
-    * Be carefull, the link can be relative
+- Improve search plugin install (download drom url, choose in a list taken from plugins.qbittorrent.org)
 
 // in v1.0.0 (partial) - WIP
 - Check storage st creation + hasher in torrent creation
