@@ -336,7 +336,7 @@ void DownloadingTorrents::displayInfoBarMenu(const QPoint& pos) {
   QMenu myLogMenu(this);
   myLogMenu.addAction(actionClearLog);
   // XXX: Why mapToGlobal() is not enough?
-  myLogMenu.exec(mapToGlobal(pos)+QPoint(22,383));
+  myLogMenu.exec(mapToGlobal(pos)+QPoint(44,305));
 }
 
 void DownloadingTorrents::sortProgressColumnDelayed() {

@@ -61,6 +61,7 @@
     - COSMETIC: Display more logs messages concerning features
     - COSMETIC: Improved lists renderers
     - COSMETIC: Use a different icon for torrents being checked and for connecting ones
+    - COSMETIC: Improved some icons
 
 * Mon May 07 2007 - Christophe Dumez <chris@qbittorrent.org> - v0.9.3
     - BUGFIX: Fixed pause toggle on double-click in download list
