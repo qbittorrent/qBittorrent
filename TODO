@@ -49,6 +49,8 @@
 - valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
 - 128m  29m  16m S  4.8  2.9   0:02.28 qbittorrent
 * beta 7
+  - Allow to drag'n drop plugins
+  - read icon meta in xhtml pages when favicon.ico can't be downloaded?
   - Translations update (IN PROGRESS)
   - Wait for some bug fixes in libtorrent :
     - Number of seeds non null for finished torrent (Ticket #122)
