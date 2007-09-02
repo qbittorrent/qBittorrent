@@ -64,26 +64,30 @@ void createtorrent::on_browse_destination_clicked(){
 
 void createtorrent::on_addFolder_button_clicked(){
   QString dir = QFileDialog::getExistingDirectory(this, tr("Select a folder to add to the torrent"), QDir::homePath(), QFileDialog::ShowDirsOnly);
-  if(!dir.isEmpty() && input_list->findItems(dir, Qt::MatchCaseSensitive).size() == 0)
+  if(!dir.isEmpty()) {
     input_list->addItem(dir);
+    addFolder_button->setEnabled(false);
+    addFile_button->setEnabled(false);
+  }
 }
 
 void createtorrent::on_addFile_button_clicked(){
-  QStringList files = QFileDialog::getOpenFileNames(this, tr("Select files to add to the torrent"), QDir::homePath(), QString(), 0, QFileDialog::ShowDirsOnly);
-  QString file;
-  foreach(file, files){
-    if(input_list->findItems(file, Qt::MatchCaseSensitive).size() == 0){
-      input_list->addItem(file);
-    }
+  QString file = QFileDialog::getOpenFileName(this, tr("Select a file to add to the torrent"), QDir::homePath(), QString(), 0, QFileDialog::ShowDirsOnly);
+  if(!file.isEmpty()) {
+    input_list->addItem(file);
+    addFolder_button->setEnabled(false);
+    addFile_button->setEnabled(false);
   }
 }
 
 void createtorrent::on_removeFolder_button_clicked(){
   QModelIndexList selectedIndexes = input_list->selectionModel()->selectedIndexes();
-  for(int i=selectedIndexes.size()-1; i>=0; --i){
-    QListWidgetItem *item = input_list->takeItem(selectedIndexes.at(i).row());
-    delete item;
-  }
+  if(!selectedIndexes.size()) return;
+  Q_ASSERT(selectedIndexes.size() == 1);
+  QListWidgetItem *item = input_list->takeItem(selectedIndexes.first().row());
+  delete item;
+  addFolder_button->setEnabled(true);
+  addFile_button->setEnabled(true);
 }
 
 void createtorrent::on_removeTracker_button_clicked(){

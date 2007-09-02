@@ -54,7 +54,6 @@
 - 128m  29m  16m S  4.8  2.9   0:02.28 qbittorrent
 * beta 7
   - Fix storage st creation + hasher in torrent creation
-  - Pause all when window in hidden should pause all (both tabs)
   - Translations update (IN PROGRESS)
   - Wait for some bug fixes in libtorrent :
     - Number of seeds non null for finished torrent (Ticket #122)
@@ -91,4 +90,5 @@ beta6->beta7 changelog:
 - BUGFIX: Fixed drag'n drop on non-KDE systems
 - BUGFIX: Fixed log context menu position
 - BUGFIX: Made pause/resume all function affect both (dl/up) tabs when window is hidden
+- BUGFIX: Fixed torrent create (can only one file or one folder)
 - COSMETIC: Improved some icons

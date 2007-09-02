@@ -90,7 +90,7 @@
          </size>
         </property>
         <property name="text" >
-         <string>Input files or directories:</string>
+         <string>Input file or directory:</string>
         </property>
        </widget>
       </item>
