@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr">
+<defaultcodec></defaultcodec>
 <context>
     <name>@default</name>
     <message>
@@ -2994,7 +2995,7 @@ Changements:
     <message>
         <location filename="../createtorrent.ui" line="93"/>
         <source>Input file or directory:</source>
-        <translation type="unfinished">Fichier ou dossier à inclure :</translation>
+        <translation>Fichier ou dossier à inclure :</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -3198,7 +3199,7 @@ Changements:
     <message>
         <location filename="../createtorrent_imp.cpp" line="75"/>
         <source>Select a file to add to the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner un fichier à ajouter au torrent</translation>
     </message>
 </context>
 <context>
