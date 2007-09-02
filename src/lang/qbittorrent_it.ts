@@ -842,7 +842,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="579"/>
+        <location filename="../GUI.cpp" line="591"/>
         <source>Open Torrent Files</source>
         <translation>Apri file torrent</translation>
     </message>
@@ -857,22 +857,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Sei sicuro di voler cancellare tutti i file nella lista di download?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="685"/>
+        <location filename="../GUI.cpp" line="697"/>
         <source>&amp;Yes</source>
         <translation>&amp;Sì</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="685"/>
+        <location filename="../GUI.cpp" line="697"/>
         <source>&amp;No</source>
         <translation>&amp;No</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="677"/>
+        <location filename="../GUI.cpp" line="689"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>Sei sicuro di voler cancellare gli elementi selezionati dalla lista dei download?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="893"/>
+        <location filename="../GUI.cpp" line="905"/>
         <source>Finished</source>
         <translation>In Upload</translation>
     </message>
@@ -922,7 +922,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Impossibile creare la directory:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="580"/>
+        <location filename="../GUI.cpp" line="592"/>
         <source>Torrent Files</source>
         <translation>File torrent</translation>
     </message>
@@ -976,7 +976,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="683"/>
+        <location filename="../GUI.cpp" line="695"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Sei sicuro? -- qBittorrent</translation>
     </message>
@@ -1251,17 +1251,17 @@ Example: Downloading www.example.com/test.torrent</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1135"/>
         <source>Connection status:</source>
         <translation>Stato della connessione:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1135"/>
         <source>Offline</source>
         <translation>Offline</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1135"/>
         <source>No peers found...</source>
         <translation>Nessun peer trovato...</translation>
     </message>
@@ -1326,18 +1326,18 @@ Example: Downloading www.example.com/test.torrent</comment>
         <translation type="obsolete">qBittorrent %1 avviato.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Velocità DL: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Velocità UP: %1 KiB/s</translation>
@@ -1366,7 +1366,7 @@ Example: Downloading www.example.com/test.torrent</comment>
         <translation>Sei sicuro di voler uscire?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="704"/>
+        <location filename="../GUI.cpp" line="716"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; è stato rimosso.</translation>
@@ -1408,12 +1408,12 @@ Example: Downloading www.example.com/test.torrent</comment>
         <translation type="obsolete">In ascolto sulla porta: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="946"/>
+        <location filename="../GUI.cpp" line="975"/>
         <source>All downloads were paused.</source>
         <translation>Tutti i download sono stati fermati.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="969"/>
+        <location filename="../GUI.cpp" line="998"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos; fermato.</translation>
@@ -1425,12 +1425,12 @@ Example: Downloading www.example.com/test.torrent</comment>
         <translation type="obsolete">Connessione in corso...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="998"/>
+        <location filename="../GUI.cpp" line="1044"/>
         <source>All downloads were resumed.</source>
         <translation>Tutti i download sono stati ripresi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1021"/>
+        <location filename="../GUI.cpp" line="1067"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos; ripreso.</translation>
@@ -1454,23 +1454,23 @@ Example: Downloading www.example.com/test.torrent</comment>
         <translation>Errore di scrittura o di lettura con %1. Probabilmente il disco è pieno, il download è stato fermato</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1131"/>
         <source>Connection Status:</source>
         <translation>Stato della connessione:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1080"/>
+        <location filename="../GUI.cpp" line="1126"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1131"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Dietro firewall?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1131"/>
         <source>No incoming connections...</source>
         <translation>Nessuna connession in entrata...</translation>
     </message>
@@ -1518,28 +1518,28 @@ Example: Downloading www.example.com/test.torrent</comment>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="776"/>
+        <location filename="../GUI.cpp" line="788"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent è in ascolto sulla porta: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="801"/>
+        <location filename="../GUI.cpp" line="813"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Supporto DHT [ON], porta: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="806"/>
+        <location filename="../GUI.cpp" line="818"/>
         <source>DHT support [OFF]</source>
         <translation>Supporto DHT [OFF]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="836"/>
+        <location filename="../GUI.cpp" line="848"/>
         <source>PeX support [ON]</source>
         <translation>Supporto PeX [ON]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="839"/>
+        <location filename="../GUI.cpp" line="851"/>
         <source>PeX support [OFF]</source>
         <translation>Supporto PeX [OFF]</translation>
     </message>
@@ -1551,17 +1551,17 @@ Are you sure you want to quit qBittorrent?</source>
 Sei sicuro di voler uscire da qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="889"/>
+        <location filename="../GUI.cpp" line="901"/>
         <source>Downloads</source>
         <translation>In Download</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="684"/>
+        <location filename="../GUI.cpp" line="696"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
         <translation>Sei sicuro di voler cancellare gli elementi selezionati dalla lista dei download completati?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="810"/>
+        <location filename="../GUI.cpp" line="822"/>
         <source>UPnP support [ON]</source>
         <translation>Supporto UPnP [ON]</translation>
     </message>
@@ -1571,17 +1571,17 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
         <translation type="obsolete">Attenzione, condividere materiale protetto da copyright senza il permesso è illegale.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="820"/>
+        <location filename="../GUI.cpp" line="832"/>
         <source>Encryption support [ON]</source>
         <translation>Supporto cifratura [ON]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="825"/>
+        <location filename="../GUI.cpp" line="837"/>
         <source>Encryption support [FORCED]</source>
         <translation>Supporto cifratura [FORZATO]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="830"/>
+        <location filename="../GUI.cpp" line="842"/>
         <source>Encryption support [OFF]</source>
         <translation>Supporto cifratura [OFF]</translation>
     </message>
@@ -1636,17 +1636,17 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
         <translation type="obsolete">Il recupero veloce del torrent %1 è stato rifiutato, altro tentativo in corso...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="622"/>
+        <location filename="../GUI.cpp" line="634"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
         <translation>Sei sicuro di voler rimuovere gli elementi selezionati dalla lista dei download e dal disco?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="629"/>
+        <location filename="../GUI.cpp" line="641"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
         <translation>Sei sicuro di voler rimuovere gli oggetti selezionati dalla lista dei download completati e dal disco?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="649"/>
+        <location filename="../GUI.cpp" line="661"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos; è stato cancellato permanentemente.</translation>
@@ -2545,7 +2545,7 @@ Changelog:
     <message>
         <location filename="../createtorrent.ui" line="93"/>
         <source>Input files or directories:</source>
-        <translation>File o directory da inserire:</translation>
+        <translation type="obsolete">File o directory da inserire:</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="112"/>
@@ -2572,6 +2572,11 @@ Changelog:
         <source>Web seeds urls (optional):</source>
         <translation>Url dei seed web (facoltativo):</translation>
     </message>
+    <message>
+        <location filename="../createtorrent.ui" line="93"/>
+        <source>Input file or directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>createtorrent</name>
@@ -2591,22 +2596,22 @@ Changelog:
         <translation type="obsolete">File o directory da aggiungere</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="152"/>
+        <location filename="../createtorrent_imp.cpp" line="156"/>
         <source>No destination path set</source>
         <translation>Nessuna directory di salvataggio definita</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="152"/>
+        <location filename="../createtorrent_imp.cpp" line="156"/>
         <source>Please type a destination path first</source>
         <translation>Per favore inserire prima una directory di salvataggio</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="157"/>
+        <location filename="../createtorrent_imp.cpp" line="161"/>
         <source>No input path set</source>
         <translation>Nessuna percorso da inserire definito</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="157"/>
+        <location filename="../createtorrent_imp.cpp" line="161"/>
         <source>Please type an input path first</source>
         <translation>Per favore scegliere prima un percorso da inserire</translation>
     </message>
@@ -2621,12 +2626,12 @@ Changelog:
         <translation type="obsolete">Per favore inserire un percorso da aggiungere corretto</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
+        <location filename="../createtorrent_imp.cpp" line="217"/>
         <source>Torrent creation</source>
         <translation>Creazione di un torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
+        <location filename="../createtorrent_imp.cpp" line="217"/>
         <source>Torrent was created successfully:</source>
         <translation>Il torrent è stato creato correttamente:</translation>
     </message>
@@ -2638,33 +2643,38 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="72"/>
         <source>Select files to add to the torrent</source>
-        <translation>Selezionare i file da aggiungere al torrent</translation>
+        <translation type="obsolete">Selezionare i file da aggiungere al torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="99"/>
+        <location filename="../createtorrent_imp.cpp" line="103"/>
         <source>Please type an announce URL</source>
         <translation>Per favore digitare un URL di annuncio</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="208"/>
+        <location filename="../createtorrent_imp.cpp" line="212"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Creazione torrent fallita, motivo: %1</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="100"/>
+        <location filename="../createtorrent_imp.cpp" line="104"/>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
         <translation>URL di annuncio:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="118"/>
+        <location filename="../createtorrent_imp.cpp" line="122"/>
         <source>Please type a web seed url</source>
         <translation>Per favore inserire l&apos;url di un seed web</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="119"/>
+        <location filename="../createtorrent_imp.cpp" line="123"/>
         <source>Web seed URL:</source>
         <translation>Url del seed web:</translation>
+    </message>
+    <message>
+        <location filename="../createtorrent_imp.cpp" line="75"/>
+        <source>Select a file to add to the torrent</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

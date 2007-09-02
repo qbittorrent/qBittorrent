@@ -853,7 +853,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="579"/>
+        <location filename="../GUI.cpp" line="591"/>
         <source>Open Torrent Files</source>
         <translation>Otvoriť torrent súbory</translation>
     </message>
@@ -873,17 +873,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Určite chcete zmazať všetky súbory v zozname sťahovaných?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="685"/>
+        <location filename="../GUI.cpp" line="697"/>
         <source>&amp;Yes</source>
         <translation>&amp;Áno</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="685"/>
+        <location filename="../GUI.cpp" line="697"/>
         <source>&amp;No</source>
         <translation>&amp;Nie</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="677"/>
+        <location filename="../GUI.cpp" line="689"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>Určite chcete zmazať vybrané položky v zozname sťahovaných?</translation>
     </message>
@@ -898,7 +898,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">spusten</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="893"/>
+        <location filename="../GUI.cpp" line="905"/>
         <source>Finished</source>
         <translation>hotovo</translation>
     </message>
@@ -953,7 +953,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Nebolo možné vytvoriť adresár:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="580"/>
+        <location filename="../GUI.cpp" line="592"/>
         <source>Torrent Files</source>
         <translation>Torrent súbory</translation>
     </message>
@@ -1003,12 +1003,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="683"/>
+        <location filename="../GUI.cpp" line="695"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Ste si istý? -- qBittorrent</translation>
     </message>
@@ -1340,17 +1340,17 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1135"/>
         <source>Connection status:</source>
         <translation>Stav spojenia:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1135"/>
         <source>Offline</source>
         <translation>Offline</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1135"/>
         <source>No peers found...</source>
         <translation>Neboli nájdení rovesníci...</translation>
     </message>
@@ -1415,13 +1415,13 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">qBittorrent %1 spustený.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Rýchlosť sťahovania: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Rýchlosť nahrávania: %1 KiB/s</translation>
@@ -1450,7 +1450,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Ste si istý, že chcete skončiť?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="704"/>
+        <location filename="../GUI.cpp" line="716"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; bol odstránený.</translation>
@@ -1492,12 +1492,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">Počúvam na porte: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="946"/>
+        <location filename="../GUI.cpp" line="975"/>
         <source>All downloads were paused.</source>
         <translation>Všetky sťahovania pozastavené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="969"/>
+        <location filename="../GUI.cpp" line="998"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos; pozastavené.</translation>
@@ -1509,12 +1509,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">pripája sa...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="998"/>
+        <location filename="../GUI.cpp" line="1044"/>
         <source>All downloads were resumed.</source>
         <translation>Všetky sťahovania obnovené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1021"/>
+        <location filename="../GUI.cpp" line="1067"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos; obnovené.</translation>
@@ -1544,23 +1544,23 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">Vyskytla sa chyba (plný disk?), &apos;%1&apos; pozastavené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1131"/>
         <source>Connection Status:</source>
         <translation>Stav spojenia:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1080"/>
+        <location filename="../GUI.cpp" line="1126"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1131"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Za firewallom?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1131"/>
         <source>No incoming connections...</source>
         <translation>Žiadne prichádzajúce spojenia...</translation>
     </message>
@@ -1608,7 +1608,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="889"/>
+        <location filename="../GUI.cpp" line="901"/>
         <source>Downloads</source>
         <translation>Sťahovania</translation>
     </message>
@@ -1620,38 +1620,38 @@ Are you sure you want to quit qBittorrent?</source>
 Ste si istý, že chcete ukončiť qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="684"/>
+        <location filename="../GUI.cpp" line="696"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
         <translation>Ste si istý, že chcete zmazať vybrané položky zo zoznamu dokončených?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="776"/>
+        <location filename="../GUI.cpp" line="788"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent sa viaže (bind) na port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="801"/>
+        <location filename="../GUI.cpp" line="813"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Podpora DHT [zapnutá], port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="806"/>
+        <location filename="../GUI.cpp" line="818"/>
         <source>DHT support [OFF]</source>
         <translation>Podpora DHT [vypnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="810"/>
+        <location filename="../GUI.cpp" line="822"/>
         <source>UPnP support [ON]</source>
         <translation>Podpora UPnP [zapnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="836"/>
+        <location filename="../GUI.cpp" line="848"/>
         <source>PeX support [ON]</source>
         <translation>Podpora PeX [zapnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="839"/>
+        <location filename="../GUI.cpp" line="851"/>
         <source>PeX support [OFF]</source>
         <translation>Podpora PeX [vypnutá]</translation>
     </message>
@@ -1661,17 +1661,17 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Buďte opatrní, zdieľanie materiálu chráneného autorskými právami bez povolenia je protizákonné.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="820"/>
+        <location filename="../GUI.cpp" line="832"/>
         <source>Encryption support [ON]</source>
         <translation>Podpora kryptovania [zapnuté]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="825"/>
+        <location filename="../GUI.cpp" line="837"/>
         <source>Encryption support [FORCED]</source>
         <translation>Podpora kryptovania [vynútené]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="830"/>
+        <location filename="../GUI.cpp" line="842"/>
         <source>Encryption support [OFF]</source>
         <translation>Podpora kryptovania [vypnuté]</translation>
     </message>
@@ -1726,17 +1726,17 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Rýchle obnovenie torrentu torrent %1 bolo odmietnuté, skúšam znova...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="622"/>
+        <location filename="../GUI.cpp" line="634"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
         <translation>Ste si istý, že chcete zmazať vybrané položky zo zoznamu sťahovaných a z pevného disku?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="629"/>
+        <location filename="../GUI.cpp" line="641"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
         <translation>Ste si istý, že chcete zmazať vybrané položky zo zoznamu dokončených a z pevného disku?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="649"/>
+        <location filename="../GUI.cpp" line="661"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos; bol permanentne odstránený.</translation>
@@ -2660,9 +2660,9 @@ Záznam zmien:</translation>
         <translation>Cieľový torrent sbor:</translation>
     </message>
     <message>
-        <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
+        <location filename="../createtorrent.ui" line="93"/>
         <source>Input file or directory:</source>
-        <translation type="obsolete">Vstupn sbor alebo adres:</translation>
+        <translation type="unfinished">Vstupn sbor alebo adres:</translation>
     </message>
     <message>
         <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
@@ -2727,7 +2727,7 @@ Záznam zmien:</translation>
     <message>
         <location filename="../createtorrent.ui" line="93"/>
         <source>Input files or directories:</source>
-        <translation>Vstupné súbory alebo adresáre:</translation>
+        <translation type="obsolete">Vstupné súbory alebo adresáre:</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="112"/>
@@ -2768,22 +2768,22 @@ Záznam zmien:</translation>
         <translation type="obsolete">Vyberte vstupný adresár alebo súbor</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="152"/>
+        <location filename="../createtorrent_imp.cpp" line="156"/>
         <source>No destination path set</source>
         <translation>Nebola nastavená cieľová cesta</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="152"/>
+        <location filename="../createtorrent_imp.cpp" line="156"/>
         <source>Please type a destination path first</source>
         <translation>Napíšte prosím najprv cieľovú cestu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="157"/>
+        <location filename="../createtorrent_imp.cpp" line="161"/>
         <source>No input path set</source>
         <translation>Nebola zadaná vstupná cesta</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="157"/>
+        <location filename="../createtorrent_imp.cpp" line="161"/>
         <source>Please type an input path first</source>
         <translation>Napíšte prosím najprv vstupnú cestu</translation>
     </message>
@@ -2798,12 +2798,12 @@ Záznam zmien:</translation>
         <translation type="obsolete">Prosím, napíšte správnu vstupnú cestu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
+        <location filename="../createtorrent_imp.cpp" line="217"/>
         <source>Torrent creation</source>
         <translation>Vytvorenie torrentu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
+        <location filename="../createtorrent_imp.cpp" line="217"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent bol úspešne vytvorený:</translation>
     </message>
@@ -2820,33 +2820,38 @@ Záznam zmien:</translation>
     <message>
         <location filename="../createtorrent_imp.cpp" line="72"/>
         <source>Select files to add to the torrent</source>
-        <translation>Vyberte súbory, ktoré sa majú pridať do torrentu</translation>
+        <translation type="obsolete">Vyberte súbory, ktoré sa majú pridať do torrentu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="99"/>
+        <location filename="../createtorrent_imp.cpp" line="103"/>
         <source>Please type an announce URL</source>
         <translation>Prosím, napíšte announce URL</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="208"/>
+        <location filename="../createtorrent_imp.cpp" line="212"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Torrent nebol vytvorený, dôvod: %1</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="100"/>
+        <location filename="../createtorrent_imp.cpp" line="104"/>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
         <translation>Announce URL:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="118"/>
+        <location filename="../createtorrent_imp.cpp" line="122"/>
         <source>Please type a web seed url</source>
         <translation>Prosím, napíšte web seed URL</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="119"/>
+        <location filename="../createtorrent_imp.cpp" line="123"/>
         <source>Web seed URL:</source>
         <translation>Web seed URL:</translation>
+    </message>
+    <message>
+        <location filename="../createtorrent_imp.cpp" line="75"/>
+        <source>Select a file to add to the torrent</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

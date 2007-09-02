@@ -915,7 +915,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="579"/>
+        <location filename="../GUI.cpp" line="591"/>
         <source>Open Torrent Files</source>
         <translation>Відкрити Torrent-файли</translation>
     </message>
@@ -935,17 +935,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Ви впевнені що хочете видалити всі файли зі списку завантажень?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="685"/>
+        <location filename="../GUI.cpp" line="697"/>
         <source>&amp;Yes</source>
         <translation>&amp;Так</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="685"/>
+        <location filename="../GUI.cpp" line="697"/>
         <source>&amp;No</source>
         <translation>&amp;Ні</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="677"/>
+        <location filename="../GUI.cpp" line="689"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>Ви впевнені що хочете видалити вибрані файли зі списку завантажень?</translation>
     </message>
@@ -960,7 +960,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">почато</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="893"/>
+        <location filename="../GUI.cpp" line="905"/>
         <source>Finished</source>
         <translation>Закінчено</translation>
     </message>
@@ -1015,7 +1015,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Неможливо створити директорію:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="580"/>
+        <location filename="../GUI.cpp" line="592"/>
         <source>Torrent Files</source>
         <translation>Torrent файли</translation>
     </message>
@@ -1087,12 +1087,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="683"/>
+        <location filename="../GUI.cpp" line="695"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Ви впевнені? -- qBittorrent</translation>
     </message>
@@ -1442,17 +1442,17 @@ Please close the other one first.</source>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1135"/>
         <source>Connection status:</source>
         <translation>Статус з&apos;єднання:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1135"/>
         <source>Offline</source>
         <translation>Офлайн</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1135"/>
         <source>No peers found...</source>
         <translation>Не знайдено пірів...</translation>
     </message>
@@ -1517,13 +1517,13 @@ Please close the other one first.</source>
         <translation type="obsolete">qBittorrent %1 запущено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Швидкість прийому: %1 КіБ/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Швидкість віддачі: %1 КіБ/с</translation>
@@ -1552,7 +1552,7 @@ Please close the other one first.</source>
         <translation>Ви впевнені, що хочете вийти?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="704"/>
+        <location filename="../GUI.cpp" line="716"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; було видалено.</translation>
@@ -1594,12 +1594,12 @@ Please close the other one first.</source>
         <translation type="obsolete">Прослуховую порт: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="946"/>
+        <location filename="../GUI.cpp" line="975"/>
         <source>All downloads were paused.</source>
         <translation>Всі завантаження були призупинені.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="969"/>
+        <location filename="../GUI.cpp" line="998"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos; призупинено.</translation>
@@ -1611,12 +1611,12 @@ Please close the other one first.</source>
         <translation type="obsolete">З&apos;єднуюсь...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="998"/>
+        <location filename="../GUI.cpp" line="1044"/>
         <source>All downloads were resumed.</source>
         <translation>Всі завантаження було відновлено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1021"/>
+        <location filename="../GUI.cpp" line="1067"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos; відновлено.</translation>
@@ -1646,23 +1646,23 @@ Please close the other one first.</source>
         <translation type="obsolete">Сталася помилка (заповнено диск?), &apos;%1&apos; призупинено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1131"/>
         <source>Connection Status:</source>
         <translation>Статус з&apos;єднання:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1080"/>
+        <location filename="../GUI.cpp" line="1126"/>
         <source>Online</source>
         <translation>Онлайн</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1131"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Захищено фаєрволом?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1131"/>
         <source>No incoming connections...</source>
         <translation>Немає вхідних з&apos;єднань...</translation>
     </message>
@@ -1710,28 +1710,28 @@ Please close the other one first.</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="776"/>
+        <location filename="../GUI.cpp" line="788"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent прив&apos;язаний до порту: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="801"/>
+        <location filename="../GUI.cpp" line="813"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Підтримка DHT (Увімкнена), порт: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="806"/>
+        <location filename="../GUI.cpp" line="818"/>
         <source>DHT support [OFF]</source>
         <translation>Підтримка DHT (Вимкнена)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="836"/>
+        <location filename="../GUI.cpp" line="848"/>
         <source>PeX support [ON]</source>
         <translation>Підтримка PeX (Увімкнена)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="839"/>
+        <location filename="../GUI.cpp" line="851"/>
         <source>PeX support [OFF]</source>
         <translation>Підтримка PeX (Вимкнена)</translation>
     </message>
@@ -1743,17 +1743,17 @@ Are you sure you want to quit qBittorrent?</source>
 Ви впевнені, що хочете вийти з qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="889"/>
+        <location filename="../GUI.cpp" line="901"/>
         <source>Downloads</source>
         <translation>Завантаження</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="684"/>
+        <location filename="../GUI.cpp" line="696"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
         <translation>Ви впевнені що хочете видалити вибрані пункти зі списку завершених завантажень?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="810"/>
+        <location filename="../GUI.cpp" line="822"/>
         <source>UPnP support [ON]</source>
         <translation>Підтримка UNnP (Увімкнена)</translation>
     </message>
@@ -1763,17 +1763,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Будьте обережні, ділення захищеним матеріалом без дозволу є протизаконним.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="820"/>
+        <location filename="../GUI.cpp" line="832"/>
         <source>Encryption support [ON]</source>
         <translation>Підтримка шифрування (Увімкнена)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="825"/>
+        <location filename="../GUI.cpp" line="837"/>
         <source>Encryption support [FORCED]</source>
         <translation>Підтримка шифрування (Примусова)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="830"/>
+        <location filename="../GUI.cpp" line="842"/>
         <source>Encryption support [OFF]</source>
         <translation>Підтримка шифрування (Вимкнена)</translation>
     </message>
@@ -1828,17 +1828,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Було відмовлено у швидкому відновленні данних для torrent&apos;у %1, перевіряю знову...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="622"/>
+        <location filename="../GUI.cpp" line="634"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
         <translation>Ви впевнені що хочете видалити вибрані пункти зі списку завантажень та зі жорсткого диску?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="629"/>
+        <location filename="../GUI.cpp" line="641"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
         <translation>Ви впевнені що хочете видалити вибрані пункти зі списку завершених завантажень та зі жорсткого диску?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="649"/>
+        <location filename="../GUI.cpp" line="661"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos; було назавжди видалено.</translation>
@@ -2773,9 +2773,9 @@ Changelog:
         <translation>Цільовий torrent-файл:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="../createtorrent.ui" line="93"/>
         <source>Input file or directory:</source>
-        <translation type="obsolete">Вхідний файл чи директорія:</translation>
+        <translation type="unfinished">Вхідний файл чи директорія:</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -2840,7 +2840,7 @@ Changelog:
     <message>
         <location filename="../createtorrent.ui" line="93"/>
         <source>Input files or directories:</source>
-        <translation>Вхідні файли чи директорії:</translation>
+        <translation type="obsolete">Вхідні файли чи директорії:</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="112"/>
@@ -2881,22 +2881,22 @@ Changelog:
         <translation type="obsolete">Виберіть вхідну директорію чи файл</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="152"/>
+        <location filename="../createtorrent_imp.cpp" line="156"/>
         <source>No destination path set</source>
         <translation>Не задано шлях призначення</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="152"/>
+        <location filename="../createtorrent_imp.cpp" line="156"/>
         <source>Please type a destination path first</source>
         <translation>Будь-ласка, спочатку введіть шлях призначення</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="157"/>
+        <location filename="../createtorrent_imp.cpp" line="161"/>
         <source>No input path set</source>
         <translation>Не задано вхідний шлях</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="157"/>
+        <location filename="../createtorrent_imp.cpp" line="161"/>
         <source>Please type an input path first</source>
         <translation>Будь-ласка, спочатку введіть вхідний шлях</translation>
     </message>
@@ -2911,12 +2911,12 @@ Changelog:
         <translation type="obsolete">Будь-ласка, спочатку введіть правильний вхідний шлях</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
+        <location filename="../createtorrent_imp.cpp" line="217"/>
         <source>Torrent creation</source>
         <translation>Створення торренту</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
+        <location filename="../createtorrent_imp.cpp" line="217"/>
         <source>Torrent was created successfully:</source>
         <translation>Торрент було успішно створено:</translation>
     </message>
@@ -2933,33 +2933,38 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="72"/>
         <source>Select files to add to the torrent</source>
-        <translation>Виберіть файли для додавання в torrent</translation>
+        <translation type="obsolete">Виберіть файли для додавання в torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="99"/>
+        <location filename="../createtorrent_imp.cpp" line="103"/>
         <source>Please type an announce URL</source>
         <translation>Будб-ласка, введіть URL анонсу</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="208"/>
+        <location filename="../createtorrent_imp.cpp" line="212"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Створення torrent&apos;у було невдалим, причина: %1</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="100"/>
+        <location filename="../createtorrent_imp.cpp" line="104"/>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
         <translation>URL анонсу:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="118"/>
+        <location filename="../createtorrent_imp.cpp" line="122"/>
         <source>Please type a web seed url</source>
         <translation>Будб-ласка, введіть url web-роздачі</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="119"/>
+        <location filename="../createtorrent_imp.cpp" line="123"/>
         <source>Web seed URL:</source>
         <translation>URL web-роздачі:</translation>
+    </message>
+    <message>
+        <location filename="../createtorrent_imp.cpp" line="75"/>
+        <source>Select a file to add to the torrent</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
