@@ -935,23 +935,40 @@ void GUI::togglePausedState(QString hash) {
 void GUI::on_actionPause_All_triggered() {
   bool change = false;
   bool inDownloadList = true;
-  if(tabs->currentIndex() > 1) return;
-  if(tabs->currentIndex() == 1)
-    inDownloadList = false;
-  QStringList hashes;
-  if(inDownloadList) {
-    hashes = BTSession->getUnfinishedTorrents();
-  } else {
-    hashes = BTSession->getFinishedTorrents();
+  bool hidden = false;
+  switch(getCurrentTabIndex()) {
+    case -1:
+      hidden = true;
+      inDownloadList = false;
+      break;
+    case 0:
+      break;
+    case 1:
+      inDownloadList = false;
+      break;
+    default:
+      return;
+  }
+  
+  QStringList DL_hashes;
+  QStringList F_hashes;
+  if(hidden || inDownloadList) {
+    DL_hashes = BTSession->getUnfinishedTorrents();
+  }
+  if(hidden || !inDownloadList) {
+    F_hashes = BTSession->getFinishedTorrents();
   }
   QString hash;
-  foreach(hash, hashes) {
+  foreach(hash, DL_hashes) {
     if(BTSession->pauseTorrent(hash)){
       change = true;
-      if(inDownloadList)
-        downloadingTorrentTab->pauseTorrent(hash);
-      else
-        finishedTorrentTab->pauseTorrent(hash);
+      downloadingTorrentTab->pauseTorrent(hash);
+    }
+  }
+  foreach(hash, F_hashes) {
+    if(BTSession->pauseTorrent(hash)){
+      change = true;
+      finishedTorrentTab->pauseTorrent(hash);
     }
   }
   if(change)
@@ -987,23 +1004,40 @@ void GUI::on_actionPause_triggered() {
 void GUI::on_actionStart_All_triggered() {
   bool change = false;
   bool inDownloadList = true;
-  if(tabs->currentIndex() > 1) return;
-  if(tabs->currentIndex() == 1)
-    inDownloadList = false;
-  QStringList hashes;
-  if(inDownloadList) {
-    hashes = BTSession->getUnfinishedTorrents();
-  } else {
-    hashes = BTSession->getFinishedTorrents();
+  bool hidden = false;
+  switch(getCurrentTabIndex()) {
+    case -1:
+      hidden = true;
+      inDownloadList = false;
+      break;
+    case 0:
+      break;
+    case 1:
+      inDownloadList = false;
+      break;
+    default:
+      return;
+  }
+  
+  QStringList DL_hashes;
+  QStringList F_hashes;
+  if(hidden || inDownloadList) {
+    DL_hashes = BTSession->getUnfinishedTorrents();
+  }
+  if(hidden || !inDownloadList) {
+    F_hashes = BTSession->getFinishedTorrents();
   }
   QString hash;
-  foreach(hash, hashes) {
+  foreach(hash, DL_hashes) {
     if(BTSession->resumeTorrent(hash)){
       change = true;
-      if(inDownloadList)
-        downloadingTorrentTab->resumeTorrent(hash);
-      else
-        finishedTorrentTab->resumeTorrent(hash);
+      downloadingTorrentTab->resumeTorrent(hash);
+    }
+  }
+  foreach(hash, F_hashes) {
+    if(BTSession->resumeTorrent(hash)){
+      change = true;
+      finishedTorrentTab->resumeTorrent(hash);
     }
   }
   if(change)

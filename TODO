@@ -90,4 +90,5 @@ beta6->beta7 changelog:
 - BUGFIX: Forgot to remove *.pyc files when uninstalling a search plugin
 - BUGFIX: Fixed drag'n drop on non-KDE systems
 - BUGFIX: Fixed log context menu position
+- BUGFIX: Made pause/resume all function affect both (dl/up) tabs when window is hidden
 - COSMETIC: Improved some icons
