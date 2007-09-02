@@ -425,7 +425,10 @@ void SearchEngine::appendSearchResult(QString line){
   int row = SearchListModel->rowCount();
   SearchListModel->insertRow(row);
   for(int i=0; i<5; ++i){
-    SearchListModel->setData(SearchListModel->index(row, i), QVariant(parts.at(i)));
+    if(parts.at(i).toFloat() == -1)
+      SearchListModel->setData(SearchListModel->index(row, i), tr("Unknown"));
+    else
+      SearchListModel->setData(SearchListModel->index(row, i), QVariant(parts.at(i)));
   }
   // Add url to searchResultsUrls associative array
   searchResultsUrls.insert(filename, url);
