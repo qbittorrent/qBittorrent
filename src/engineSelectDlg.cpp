@@ -152,6 +152,9 @@ void engineSelectDlg::on_actionUninstall_triggered() {
       if(QFile::exists(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+name+".png")) {
         QFile::remove(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+name+".png");
       }
+      if(QFile::exists(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+name+".pyc")) {
+        QFile::remove(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+name+".pyc");
+      }
       // Remove it from lists
       installed_engines.removeAt(index);
       enginesEnabled.removeAt(index);

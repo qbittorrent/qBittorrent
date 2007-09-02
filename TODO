@@ -78,3 +78,6 @@ beta6->beta7 changelog:
 - FEATURE: Made search engine plugin install more reliable
 - BUGFIX: Updated man page / README / INSTALL
 - BUGFIX: Paused torrents could be displayed as connected for a sec after checking
+- BUGFIX: 'Unknown' is now displayed in search results columns where value is -1
+- BUGFIX: Improved search engine core a little
+- BUGFIX: Forgot to remove *.pyc files when uninstalling a search plugin

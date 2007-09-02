@@ -1,3 +1,5 @@
+#VERSION: 1.11
+
 def prettyPrinter(dictionnary):
 	dictionnary['size'] = anySizeToBytes(dictionnary['size'])
 	print "%(link)s|%(name)s|%(size)s|%(seeds)s|%(leech)s|%(engine_url)s" % dictionnary
@@ -9,14 +11,15 @@ def anySizeToBytes(size_string):
 	# separate integer from unit
 	try:
 		size, unit = size_string.split()
-	except (ValueError, TypeError):
+	except:
 		try:
 			size = size_string.strip()
 			unit = ''.join([c for c in size if c.isalpha()])
 			size = size[:-len(unit)]
-		except(ValueError, TypeError):
+		except:
 			return -1
-
+        if len(size) == 0:
+		return -1
 	size = float(size)
 	short_unit = unit.upper()[0]
 

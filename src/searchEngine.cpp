@@ -344,13 +344,17 @@ void SearchEngine::updateNova() {
   if(misc::getPluginVersion(":/search_engine/nova2.py") > misc::getPluginVersion(filePath)) {
     if(QFile::exists(filePath))
       QFile::remove(filePath);
-    QFile::copy(":/search_engine/nova2.py", misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py");
+    QFile::copy(":/search_engine/nova2.py", filePath);
   }
   // Set permissions
   QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;
   QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py").setPermissions(perm);
-  if(!QFile::exists(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"novaprinter.py")){
-    QFile::copy(":/search_engine/novaprinter.py", misc::qBittorrentPath()+"search_engine"+QDir::separator()+"novaprinter.py");
+  filePath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"novaprinter.py";
+  if(misc::getPluginVersion(":/search_engine/novaprinter.py") > misc::getPluginVersion(filePath)) {
+    if(QFile::exists(filePath)){
+      QFile::remove(filePath);
+    }
+    QFile::copy(":/search_engine/novaprinter.py", filePath);
   }
   QString destDir = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator();
   QDir shipped_subDir(":/search_engine/engines/");
@@ -425,7 +429,7 @@ void SearchEngine::appendSearchResult(QString line){
   int row = SearchListModel->rowCount();
   SearchListModel->insertRow(row);
   for(int i=0; i<5; ++i){
-    if(parts.at(i).toFloat() == -1)
+    if(parts.at(i).toFloat() == -1 && i != SIZE)
       SearchListModel->setData(SearchListModel->index(row, i), tr("Unknown"));
     else
       SearchListModel->setData(SearchListModel->index(row, i), QVariant(parts.at(i)));
