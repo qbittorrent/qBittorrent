@@ -915,7 +915,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="575"/>
+        <location filename="../GUI.cpp" line="579"/>
         <source>Open Torrent Files</source>
         <translation>Відкрити Torrent-файли</translation>
     </message>
@@ -935,17 +935,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Ви впевнені що хочете видалити всі файли зі списку завантажень?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="681"/>
+        <location filename="../GUI.cpp" line="685"/>
         <source>&amp;Yes</source>
         <translation>&amp;Так</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="681"/>
+        <location filename="../GUI.cpp" line="685"/>
         <source>&amp;No</source>
         <translation>&amp;Ні</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="673"/>
+        <location filename="../GUI.cpp" line="677"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>Ви впевнені що хочете видалити вибрані файли зі списку завантажень?</translation>
     </message>
@@ -960,7 +960,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">почато</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="889"/>
+        <location filename="../GUI.cpp" line="893"/>
         <source>Finished</source>
         <translation>Закінчено</translation>
     </message>
@@ -1015,7 +1015,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Неможливо створити директорію:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="576"/>
+        <location filename="../GUI.cpp" line="580"/>
         <source>Torrent Files</source>
         <translation>Torrent файли</translation>
     </message>
@@ -1087,12 +1087,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1070"/>
+        <location filename="../GUI.cpp" line="1074"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="679"/>
+        <location filename="../GUI.cpp" line="683"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Ви впевнені? -- qBittorrent</translation>
     </message>
@@ -1442,17 +1442,17 @@ Please close the other one first.</source>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1089"/>
         <source>Connection status:</source>
         <translation>Статус з&apos;єднання:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1089"/>
         <source>Offline</source>
         <translation>Офлайн</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1089"/>
         <source>No peers found...</source>
         <translation>Не знайдено пірів...</translation>
     </message>
@@ -1517,13 +1517,13 @@ Please close the other one first.</source>
         <translation type="obsolete">qBittorrent %1 запущено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1070"/>
+        <location filename="../GUI.cpp" line="1074"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Швидкість прийому: %1 КіБ/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1070"/>
+        <location filename="../GUI.cpp" line="1074"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Швидкість віддачі: %1 КіБ/с</translation>
@@ -1552,7 +1552,7 @@ Please close the other one first.</source>
         <translation>Ви впевнені, що хочете вийти?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="700"/>
+        <location filename="../GUI.cpp" line="704"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; було видалено.</translation>
@@ -1594,12 +1594,12 @@ Please close the other one first.</source>
         <translation type="obsolete">Прослуховую порт: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="942"/>
+        <location filename="../GUI.cpp" line="946"/>
         <source>All downloads were paused.</source>
         <translation>Всі завантаження були призупинені.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="965"/>
+        <location filename="../GUI.cpp" line="969"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos; призупинено.</translation>
@@ -1611,12 +1611,12 @@ Please close the other one first.</source>
         <translation type="obsolete">З&apos;єднуюсь...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="994"/>
+        <location filename="../GUI.cpp" line="998"/>
         <source>All downloads were resumed.</source>
         <translation>Всі завантаження було відновлено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1017"/>
+        <location filename="../GUI.cpp" line="1021"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos; відновлено.</translation>
@@ -1646,23 +1646,23 @@ Please close the other one first.</source>
         <translation type="obsolete">Сталася помилка (заповнено диск?), &apos;%1&apos; призупинено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1081"/>
+        <location filename="../GUI.cpp" line="1085"/>
         <source>Connection Status:</source>
         <translation>Статус з&apos;єднання:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1076"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>Online</source>
         <translation>Онлайн</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1081"/>
+        <location filename="../GUI.cpp" line="1085"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Захищено фаєрволом?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1081"/>
+        <location filename="../GUI.cpp" line="1085"/>
         <source>No incoming connections...</source>
         <translation>Немає вхідних з&apos;єднань...</translation>
     </message>
@@ -1710,28 +1710,28 @@ Please close the other one first.</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="772"/>
+        <location filename="../GUI.cpp" line="776"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent прив&apos;язаний до порту: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="797"/>
+        <location filename="../GUI.cpp" line="801"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Підтримка DHT (Увімкнена), порт: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="802"/>
+        <location filename="../GUI.cpp" line="806"/>
         <source>DHT support [OFF]</source>
         <translation>Підтримка DHT (Вимкнена)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="832"/>
+        <location filename="../GUI.cpp" line="836"/>
         <source>PeX support [ON]</source>
         <translation>Підтримка PeX (Увімкнена)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="835"/>
+        <location filename="../GUI.cpp" line="839"/>
         <source>PeX support [OFF]</source>
         <translation>Підтримка PeX (Вимкнена)</translation>
     </message>
@@ -1743,17 +1743,17 @@ Are you sure you want to quit qBittorrent?</source>
 Ви впевнені, що хочете вийти з qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="885"/>
+        <location filename="../GUI.cpp" line="889"/>
         <source>Downloads</source>
         <translation>Завантаження</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="680"/>
+        <location filename="../GUI.cpp" line="684"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
         <translation>Ви впевнені що хочете видалити вибрані пункти зі списку завершених завантажень?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="806"/>
+        <location filename="../GUI.cpp" line="810"/>
         <source>UPnP support [ON]</source>
         <translation>Підтримка UNnP (Увімкнена)</translation>
     </message>
@@ -1763,17 +1763,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Будьте обережні, ділення захищеним матеріалом без дозволу є протизаконним.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="816"/>
+        <location filename="../GUI.cpp" line="820"/>
         <source>Encryption support [ON]</source>
         <translation>Підтримка шифрування (Увімкнена)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="821"/>
+        <location filename="../GUI.cpp" line="825"/>
         <source>Encryption support [FORCED]</source>
         <translation>Підтримка шифрування (Примусова)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="826"/>
+        <location filename="../GUI.cpp" line="830"/>
         <source>Encryption support [OFF]</source>
         <translation>Підтримка шифрування (Вимкнена)</translation>
     </message>
@@ -1828,17 +1828,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Було відмовлено у швидкому відновленні данних для torrent&apos;у %1, перевіряю знову...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="618"/>
+        <location filename="../GUI.cpp" line="622"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
         <translation>Ви впевнені що хочете видалити вибрані пункти зі списку завантажень та зі жорсткого диску?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="625"/>
+        <location filename="../GUI.cpp" line="629"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
         <translation>Ви впевнені що хочете видалити вибрані пункти зі списку завершених завантажень та зі жорсткого диску?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="645"/>
+        <location filename="../GUI.cpp" line="649"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos; було назавжди видалено.</translation>
@@ -2423,7 +2423,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Ви повинні вибрати хоча б один пошуковик.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="456"/>
+        <location filename="../searchEngine.cpp" line="460"/>
         <source>Results</source>
         <translation>Результати</translation>
     </message>
@@ -2479,32 +2479,32 @@ Changelog:
         <translation type="obsolete">Ви вже маєте останню версію пошукового плагіну.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="390"/>
+        <location filename="../searchEngine.cpp" line="394"/>
         <source>Search Engine</source>
         <translation>Пошуковик</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="401"/>
+        <location filename="../searchEngine.cpp" line="405"/>
         <source>Search has finished</source>
         <translation>Пошук закінчено</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="393"/>
+        <location filename="../searchEngine.cpp" line="397"/>
         <source>An error occured during search...</source>
         <translation>Під час пошуку сталася помилка...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="396"/>
+        <location filename="../searchEngine.cpp" line="400"/>
         <source>Search aborted</source>
         <translation>Пошук скасовано</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="399"/>
+        <location filename="../searchEngine.cpp" line="403"/>
         <source>Search returned no results</source>
         <translation>Пошук не дав результів</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="405"/>
+        <location filename="../searchEngine.cpp" line="409"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Результати</translation>
@@ -2520,7 +2520,7 @@ Changelog:
         <translation type="obsolete">Неможливо завантажити пошуковий плагін з url: %1, причина: %2.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="429"/>
+        <location filename="../searchEngine.cpp" line="433"/>
         <source>Unknown</source>
         <translation type="unfinished">Невідомо</translation>
     </message>
@@ -3086,62 +3086,62 @@ Changelog:
 <context>
     <name>engineSelect</name>
     <message>
-        <location filename="../engineSelect.ui" line="13"/>
+        <location filename="../engineSelect.ui" line="16"/>
         <source>Search plugins</source>
         <translation>Пошукові плагіни</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="26"/>
+        <location filename="../engineSelect.ui" line="29"/>
         <source>Installed search engines:</source>
         <translation>Встановлені пошуковики:</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="46"/>
+        <location filename="../engineSelect.ui" line="49"/>
         <source>Name</source>
         <translation>Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="51"/>
+        <location filename="../engineSelect.ui" line="54"/>
         <source>Url</source>
         <translation>Url</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="56"/>
+        <location filename="../engineSelect.ui" line="59"/>
         <source>Enabled</source>
         <translation>Увімкнено</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="69"/>
+        <location filename="../engineSelect.ui" line="72"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
         <translation>Ви можете отримати нові пошукові плагіни тут: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="78"/>
+        <location filename="../engineSelect.ui" line="81"/>
         <source>Install a new one</source>
         <translation>Встановити новий</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="85"/>
+        <location filename="../engineSelect.ui" line="88"/>
         <source>Check for updates</source>
         <translation>Перевірити оновлення</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="92"/>
+        <location filename="../engineSelect.ui" line="95"/>
         <source>Close</source>
         <translation>Закрити</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="101"/>
+        <location filename="../engineSelect.ui" line="104"/>
         <source>Enable</source>
         <translation>Дозволити</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="106"/>
+        <location filename="../engineSelect.ui" line="109"/>
         <source>Disable</source>
         <translation>Заборонити</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="111"/>
+        <location filename="../engineSelect.ui" line="114"/>
         <source>Uninstall</source>
         <translation>Видалити</translation>
     </message>
@@ -3149,22 +3149,22 @@ Changelog:
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="256"/>
+        <location filename="../engineSelectDlg.cpp" line="287"/>
         <source>True</source>
         <translation>Так</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="258"/>
+        <location filename="../engineSelectDlg.cpp" line="289"/>
         <source>False</source>
         <translation>Ні</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="165"/>
+        <location filename="../engineSelectDlg.cpp" line="196"/>
         <source>Uninstall warning</source>
         <translation>Попередження про видалення</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="165"/>
+        <location filename="../engineSelectDlg.cpp" line="196"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -3173,88 +3173,88 @@ However, those plugins were disabled.</source>
 Тим не менше, ті плагіни вимкнено.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="167"/>
+        <location filename="../engineSelectDlg.cpp" line="198"/>
         <source>Uninstall success</source>
         <translation>Видалення успішне</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="295"/>
+        <location filename="../engineSelectDlg.cpp" line="378"/>
         <source>Select search plugins</source>
         <translation>Вибрати пошукові плагіни</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="296"/>
+        <location filename="../engineSelectDlg.cpp" line="379"/>
         <source>qBittorrent search plugins</source>
         <translation>Пошукові плагіни qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="345"/>
+        <location filename="../engineSelectDlg.cpp" line="497"/>
         <source>Search plugin install</source>
         <translation>Встановити пошуковий плагін</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="484"/>
+        <location filename="../engineSelectDlg.cpp" line="524"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="304"/>
+        <location filename="../engineSelectDlg.cpp" line="330"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Більш нова версія пошукового плагіну %1 вже є встановлена.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="484"/>
+        <location filename="../engineSelectDlg.cpp" line="524"/>
         <source>Search plugin update</source>
         <translation>Оновити пошуковий плагін</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="477"/>
+        <location filename="../engineSelectDlg.cpp" line="516"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Пробачте, сервер оновлень тимчасово недоступний.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="484"/>
+        <location filename="../engineSelectDlg.cpp" line="524"/>
         <source>Sorry, %1 search plugin update failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Вибачте, не вдалося оновити пошуковий плагін %1.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="391"/>
+        <location filename="../engineSelectDlg.cpp" line="426"/>
         <source>All your plugins are already up to date.</source>
         <translation>Всі ваші плагіни мають останню версію.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="326"/>
+        <location filename="../engineSelectDlg.cpp" line="352"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Пошуковий плагін не може бути оновлено, залишено стару версію.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="331"/>
+        <location filename="../engineSelectDlg.cpp" line="357"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Неможливо встановити пошуковий плагін %1.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="167"/>
+        <location filename="../engineSelectDlg.cpp" line="198"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>Всі вибрані пошукові плагіни було успішно видалено</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="342"/>
+        <location filename="../engineSelectDlg.cpp" line="368"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Пошуковий плагін %1 було успішно оновлено.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="345"/>
+        <location filename="../engineSelectDlg.cpp" line="497"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Пошуковий плагін %1 було успішно встановлено.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="461"/>
+        <location filename="../engineSelectDlg.cpp" line="499"/>
         <source>%1 search plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Пошуковий плагін %1 було успішно оновлено.</translation>

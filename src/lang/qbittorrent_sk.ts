@@ -853,7 +853,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="575"/>
+        <location filename="../GUI.cpp" line="579"/>
         <source>Open Torrent Files</source>
         <translation>Otvoriť torrent súbory</translation>
     </message>
@@ -873,17 +873,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Určite chcete zmazať všetky súbory v zozname sťahovaných?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="681"/>
+        <location filename="../GUI.cpp" line="685"/>
         <source>&amp;Yes</source>
         <translation>&amp;Áno</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="681"/>
+        <location filename="../GUI.cpp" line="685"/>
         <source>&amp;No</source>
         <translation>&amp;Nie</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="673"/>
+        <location filename="../GUI.cpp" line="677"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>Určite chcete zmazať vybrané položky v zozname sťahovaných?</translation>
     </message>
@@ -898,7 +898,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">spusten</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="889"/>
+        <location filename="../GUI.cpp" line="893"/>
         <source>Finished</source>
         <translation>hotovo</translation>
     </message>
@@ -953,7 +953,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Nebolo možné vytvoriť adresár:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="576"/>
+        <location filename="../GUI.cpp" line="580"/>
         <source>Torrent Files</source>
         <translation>Torrent súbory</translation>
     </message>
@@ -1003,12 +1003,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1070"/>
+        <location filename="../GUI.cpp" line="1074"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="679"/>
+        <location filename="../GUI.cpp" line="683"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Ste si istý? -- qBittorrent</translation>
     </message>
@@ -1340,17 +1340,17 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1089"/>
         <source>Connection status:</source>
         <translation>Stav spojenia:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1089"/>
         <source>Offline</source>
         <translation>Offline</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1089"/>
         <source>No peers found...</source>
         <translation>Neboli nájdení rovesníci...</translation>
     </message>
@@ -1415,13 +1415,13 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">qBittorrent %1 spustený.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1070"/>
+        <location filename="../GUI.cpp" line="1074"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Rýchlosť sťahovania: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1070"/>
+        <location filename="../GUI.cpp" line="1074"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Rýchlosť nahrávania: %1 KiB/s</translation>
@@ -1450,7 +1450,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Ste si istý, že chcete skončiť?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="700"/>
+        <location filename="../GUI.cpp" line="704"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; bol odstránený.</translation>
@@ -1492,12 +1492,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">Počúvam na porte: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="942"/>
+        <location filename="../GUI.cpp" line="946"/>
         <source>All downloads were paused.</source>
         <translation>Všetky sťahovania pozastavené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="965"/>
+        <location filename="../GUI.cpp" line="969"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos; pozastavené.</translation>
@@ -1509,12 +1509,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">pripája sa...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="994"/>
+        <location filename="../GUI.cpp" line="998"/>
         <source>All downloads were resumed.</source>
         <translation>Všetky sťahovania obnovené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1017"/>
+        <location filename="../GUI.cpp" line="1021"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos; obnovené.</translation>
@@ -1544,23 +1544,23 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">Vyskytla sa chyba (plný disk?), &apos;%1&apos; pozastavené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1081"/>
+        <location filename="../GUI.cpp" line="1085"/>
         <source>Connection Status:</source>
         <translation>Stav spojenia:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1076"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1081"/>
+        <location filename="../GUI.cpp" line="1085"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Za firewallom?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1081"/>
+        <location filename="../GUI.cpp" line="1085"/>
         <source>No incoming connections...</source>
         <translation>Žiadne prichádzajúce spojenia...</translation>
     </message>
@@ -1608,7 +1608,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="885"/>
+        <location filename="../GUI.cpp" line="889"/>
         <source>Downloads</source>
         <translation>Sťahovania</translation>
     </message>
@@ -1620,38 +1620,38 @@ Are you sure you want to quit qBittorrent?</source>
 Ste si istý, že chcete ukončiť qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="680"/>
+        <location filename="../GUI.cpp" line="684"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
         <translation>Ste si istý, že chcete zmazať vybrané položky zo zoznamu dokončených?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="772"/>
+        <location filename="../GUI.cpp" line="776"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent sa viaže (bind) na port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="797"/>
+        <location filename="../GUI.cpp" line="801"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Podpora DHT [zapnutá], port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="802"/>
+        <location filename="../GUI.cpp" line="806"/>
         <source>DHT support [OFF]</source>
         <translation>Podpora DHT [vypnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="806"/>
+        <location filename="../GUI.cpp" line="810"/>
         <source>UPnP support [ON]</source>
         <translation>Podpora UPnP [zapnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="832"/>
+        <location filename="../GUI.cpp" line="836"/>
         <source>PeX support [ON]</source>
         <translation>Podpora PeX [zapnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="835"/>
+        <location filename="../GUI.cpp" line="839"/>
         <source>PeX support [OFF]</source>
         <translation>Podpora PeX [vypnutá]</translation>
     </message>
@@ -1661,17 +1661,17 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Buďte opatrní, zdieľanie materiálu chráneného autorskými právami bez povolenia je protizákonné.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="816"/>
+        <location filename="../GUI.cpp" line="820"/>
         <source>Encryption support [ON]</source>
         <translation>Podpora kryptovania [zapnuté]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="821"/>
+        <location filename="../GUI.cpp" line="825"/>
         <source>Encryption support [FORCED]</source>
         <translation>Podpora kryptovania [vynútené]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="826"/>
+        <location filename="../GUI.cpp" line="830"/>
         <source>Encryption support [OFF]</source>
         <translation>Podpora kryptovania [vypnuté]</translation>
     </message>
@@ -1726,17 +1726,17 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Rýchle obnovenie torrentu torrent %1 bolo odmietnuté, skúšam znova...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="618"/>
+        <location filename="../GUI.cpp" line="622"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
         <translation>Ste si istý, že chcete zmazať vybrané položky zo zoznamu sťahovaných a z pevného disku?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="625"/>
+        <location filename="../GUI.cpp" line="629"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
         <translation>Ste si istý, že chcete zmazať vybrané položky zo zoznamu dokončených a z pevného disku?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="645"/>
+        <location filename="../GUI.cpp" line="649"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos; bol permanentne odstránený.</translation>
@@ -2306,7 +2306,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Musíte zvoliť aspoň jeden vyhľadávač.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="456"/>
+        <location filename="../searchEngine.cpp" line="460"/>
         <source>Results</source>
         <translation>Výsledky</translation>
     </message>
@@ -2361,32 +2361,32 @@ Záznam zmien:</translation>
         <translation type="obsolete">Váš vyhľadávací zásuvný modul je aktuálny.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="390"/>
+        <location filename="../searchEngine.cpp" line="394"/>
         <source>Search Engine</source>
         <translation>Vyhľadávač</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="401"/>
+        <location filename="../searchEngine.cpp" line="405"/>
         <source>Search has finished</source>
         <translation>Hľadanie skončené</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="393"/>
+        <location filename="../searchEngine.cpp" line="397"/>
         <source>An error occured during search...</source>
         <translation>Počas vyhľadávania sa vyskytla chyba...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="396"/>
+        <location filename="../searchEngine.cpp" line="400"/>
         <source>Search aborted</source>
         <translation>Vyhľadávanie preušené</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="399"/>
+        <location filename="../searchEngine.cpp" line="403"/>
         <source>Search returned no results</source>
         <translation>Vyhľadávanie nevrátilo žiadne výsledky</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="405"/>
+        <location filename="../searchEngine.cpp" line="409"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Výsledky</translation>
@@ -2402,7 +2402,7 @@ Záznam zmien:</translation>
         <translation type="obsolete">Nebolo možné stiahnuť zásuvný modul vyhľadávania z url: %1, dôvod: %2.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="429"/>
+        <location filename="../searchEngine.cpp" line="433"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2973,62 +2973,62 @@ Záznam zmien:</translation>
 <context>
     <name>engineSelect</name>
     <message>
-        <location filename="../engineSelect.ui" line="13"/>
+        <location filename="../engineSelect.ui" line="16"/>
         <source>Search plugins</source>
         <translation>Zásuvné moduly vyhľadávania</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="26"/>
+        <location filename="../engineSelect.ui" line="29"/>
         <source>Installed search engines:</source>
         <translation>Nainštalované vyhľadávače:</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="46"/>
+        <location filename="../engineSelect.ui" line="49"/>
         <source>Name</source>
         <translation>Názov</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="51"/>
+        <location filename="../engineSelect.ui" line="54"/>
         <source>Url</source>
         <translation>Url</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="56"/>
+        <location filename="../engineSelect.ui" line="59"/>
         <source>Enabled</source>
         <translation>Zapnuté</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="69"/>
+        <location filename="../engineSelect.ui" line="72"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
         <translation>Nové vyhľadávače môžete získať tu: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="78"/>
+        <location filename="../engineSelect.ui" line="81"/>
         <source>Install a new one</source>
         <translation>Nainštalovať nový</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="85"/>
+        <location filename="../engineSelect.ui" line="88"/>
         <source>Check for updates</source>
         <translation>Skontrolovať aktualizácie</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="92"/>
+        <location filename="../engineSelect.ui" line="95"/>
         <source>Close</source>
         <translation>Zatvoriť</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="101"/>
+        <location filename="../engineSelect.ui" line="104"/>
         <source>Enable</source>
         <translation>Zapnúť</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="106"/>
+        <location filename="../engineSelect.ui" line="109"/>
         <source>Disable</source>
         <translation>Vypnúť</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="111"/>
+        <location filename="../engineSelect.ui" line="114"/>
         <source>Uninstall</source>
         <translation>Odinštalovať</translation>
     </message>
@@ -3036,22 +3036,22 @@ Záznam zmien:</translation>
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="256"/>
+        <location filename="../engineSelectDlg.cpp" line="287"/>
         <source>True</source>
         <translation>Pravda</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="258"/>
+        <location filename="../engineSelectDlg.cpp" line="289"/>
         <source>False</source>
         <translation>Nepravda</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="165"/>
+        <location filename="../engineSelectDlg.cpp" line="196"/>
         <source>Uninstall warning</source>
         <translation>Upozornenie o odstránení</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="165"/>
+        <location filename="../engineSelectDlg.cpp" line="196"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -3060,7 +3060,7 @@ However, those plugins were disabled.</source>
 Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="167"/>
+        <location filename="../engineSelectDlg.cpp" line="198"/>
         <source>Uninstall success</source>
         <translation>Odstránenie prebehlo úspešne</translation>
     </message>
@@ -3070,27 +3070,27 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Všetky zvolené zásuvné moduly boli úspešne odstránené</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="295"/>
+        <location filename="../engineSelectDlg.cpp" line="378"/>
         <source>Select search plugins</source>
         <translation>Zvoliť zásuvné moduly vyhľadávačov</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="296"/>
+        <location filename="../engineSelectDlg.cpp" line="379"/>
         <source>qBittorrent search plugins</source>
         <translation>Zásuvné moduly vyhľadávania qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="345"/>
+        <location filename="../engineSelectDlg.cpp" line="497"/>
         <source>Search plugin install</source>
         <translation>Inštalácia zásuvného modulu vyhľadávača</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="484"/>
+        <location filename="../engineSelectDlg.cpp" line="524"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="304"/>
+        <location filename="../engineSelectDlg.cpp" line="330"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Novšia verzia zásuvného modulu vyhľadávača %1 je už nainštalovaná.</translation>
@@ -3108,12 +3108,12 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Zásuvný modul vyhľadávača %1 bol úspešne nainštalovaný.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="484"/>
+        <location filename="../engineSelectDlg.cpp" line="524"/>
         <source>Search plugin update</source>
         <translation>Aktualizácia zásuvného modulu vyhľadávača</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="477"/>
+        <location filename="../engineSelectDlg.cpp" line="516"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Je mi ľúto, aktualizačný server je dočasne nedostupný.</translation>
     </message>
@@ -3124,47 +3124,47 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Zásuvný modul vyhľadávača %1 bol úspešne aktualizovaný.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="484"/>
+        <location filename="../engineSelectDlg.cpp" line="524"/>
         <source>Sorry, %1 search plugin update failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Je mi ľúto, aktualizácia zásuvného modulu vyhľadávača %1 zlyhala.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="391"/>
+        <location filename="../engineSelectDlg.cpp" line="426"/>
         <source>All your plugins are already up to date.</source>
         <translation>Všetky vaše vyhľadávacie zásuvné moduly sú už aktuálne.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="326"/>
+        <location filename="../engineSelectDlg.cpp" line="352"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="331"/>
+        <location filename="../engineSelectDlg.cpp" line="357"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="167"/>
+        <location filename="../engineSelectDlg.cpp" line="198"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="342"/>
+        <location filename="../engineSelectDlg.cpp" line="368"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="345"/>
+        <location filename="../engineSelectDlg.cpp" line="497"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="461"/>
+        <location filename="../engineSelectDlg.cpp" line="499"/>
         <source>%1 search plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
