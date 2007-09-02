@@ -250,14 +250,14 @@
     RSSImp::RSSImp() : QWidget(){
       setupUi(this);
       // icons of bottom buttons
-      addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
-      delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
+      addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/subscribe.png")));
+      delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/unsubscribe.png")));
       refreshAll_button->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
       // icons of right-click menu
-      actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
+      actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/unsubscribe16.png")));
       actionRename->setIcon(QIcon(QString::fromUtf8(":/Icons/log.png")));
       actionRefresh->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
-      actionCreate->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
+      actionCreate->setIcon(QIcon(QString::fromUtf8(":/Icons/subscribe16.png")));
       actionRefreshAll->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
 
       // Hide second column (url)

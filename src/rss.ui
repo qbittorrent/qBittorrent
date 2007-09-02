@@ -83,14 +83,14 @@
           <widget class="QPushButton" name="delStream_button" >
            <property name="minimumSize" >
             <size>
-             <width>22</width>
-             <height>22</height>
+             <width>55</width>
+             <height>32</height>
             </size>
            </property>
-           <property name="maximumSize" >
+           <property name="iconSize" >
             <size>
-             <width>22</width>
-             <height>22</height>
+             <width>32</width>
+             <height>32</height>
             </size>
            </property>
            <property name="toolTip" >
@@ -105,14 +105,14 @@
           <widget class="QPushButton" name="refreshAll_button" >
            <property name="minimumSize" >
             <size>
-             <width>22</width>
-             <height>22</height>
+             <width>32</width>
+             <height>32</height>
             </size>
            </property>
-           <property name="maximumSize" >
+           <property name="iconSize" >
             <size>
-             <width>22</width>
-             <height>22</height>
+             <width>32</width>
+             <height>32</height>
             </size>
            </property>
            <property name="toolTip" >
@@ -127,14 +127,14 @@
           <widget class="QPushButton" name="addStream_button" >
            <property name="minimumSize" >
             <size>
-             <width>22</width>
-             <height>22</height>
+             <width>32</width>
+             <height>32</height>
             </size>
            </property>
-           <property name="maximumSize" >
+           <property name="iconSize" >
             <size>
-             <width>22</width>
-             <height>22</height>
+             <width>55</width>
+             <height>32</height>
             </size>
            </property>
            <property name="toolTip" >
