@@ -528,7 +528,16 @@ void GUI::hideEvent(QHideEvent *e) {
 // Action executed when a file is dropped
 void GUI::dropEvent(QDropEvent *event) {
   event->acceptProposedAction();
-  QStringList files=event->mimeData()->text().split(QString::fromUtf8("\n"));
+  QStringList files;
+  if(event->mimeData()->hasUrls()) {
+    QList<QUrl> urls = event->mimeData()->urls();
+    QUrl url;
+    foreach(url, urls) {
+      files << url.toString();
+    }
+  } else {
+    files = event->mimeData()->text().split(QString::fromUtf8("\n"));
+  }
   // Add file to download list
   QString file;
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
