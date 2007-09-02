@@ -2736,7 +2736,7 @@ Changements:
     <message>
         <location filename="../searchEngine.cpp" line="433"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Inconnu</translation>
     </message>
 </context>
 <context>
