@@ -9,6 +9,9 @@
     <height>254</height>
    </rect>
   </property>
+  <property name="acceptDrops" >
+   <bool>true</bool>
+  </property>
   <property name="windowTitle" >
    <string>Search plugins</string>
   </property>

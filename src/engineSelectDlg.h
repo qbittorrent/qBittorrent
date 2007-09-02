@@ -25,6 +25,7 @@
 #include "ui_engineSelect.h"
 
 class downloadThread;
+class QDropEvent;
 
 class engineSelectDlg : public QDialog, public Ui::engineSelect{
   Q_OBJECT
@@ -65,6 +66,9 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
     void on_actionUninstall_triggered();
     void on_updateButton_clicked();
     void on_installButton_clicked();
+    void dropEvent(QDropEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event);
+    void installPlugin(QString plugin_path);
 };
 
 #endif

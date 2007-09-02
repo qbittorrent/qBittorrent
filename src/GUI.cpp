@@ -553,6 +553,10 @@ void GUI::dropEvent(QDropEvent *event) {
 
 // Decode if we accept drag 'n drop or not
 void GUI::dragEnterEvent(QDragEnterEvent *event) {
+  QString mime;
+  foreach(mime, event->mimeData()->formats()){
+    qDebug("mimeData: %s", mime.toUtf8().data());
+  }
   if (event->mimeData()->hasFormat(QString::fromUtf8("text/plain"))) {
     event->acceptProposedAction();
   }
