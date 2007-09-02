@@ -38,6 +38,9 @@
 - Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
 - Add "Mark all as read" feature for RSS
 - Allow to customize lists refreshing interval (in options)
+- When favicon can't be downloaded, try to parse the webpage for:
+  <link rel="icon" href="http://example.com/favicon.ico" type="image/vnd.microsoft.icon">
+    * Be carefull, the link can be relative
 
 // in v1.0.0 (partial) - WIP
 - Check storage st creation + hasher in torrent creation
@@ -49,7 +52,6 @@
 - valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
 - 128m  29m  16m S  4.8  2.9   0:02.28 qbittorrent
 * beta 7
-  - read icon meta in xhtml pages when favicon.ico can't be downloaded?
   - Translations update (IN PROGRESS)
   - Wait for some bug fixes in libtorrent :
     - Number of seeds non null for finished torrent (Ticket #122)
