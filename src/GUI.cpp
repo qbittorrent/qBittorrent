@@ -533,7 +533,10 @@ void GUI::dropEvent(QDropEvent *event) {
     QList<QUrl> urls = event->mimeData()->urls();
     QUrl url;
     foreach(url, urls) {
-      files << url.toString();
+      QString tmp = url.toString();
+      tmp.trimmed();
+      if(!tmp.isEmpty())
+        files << url.toString();
     }
   } else {
     files = event->mimeData()->text().split(QString::fromUtf8("\n"));
