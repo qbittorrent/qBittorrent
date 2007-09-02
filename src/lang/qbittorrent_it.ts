@@ -2163,7 +2163,7 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
         <translation type="obsolete">Selezionare almeno un motore di ricerca.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>Risultati</translation>
     </message>
@@ -2258,6 +2258,11 @@ Changelog:
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">Impossibile aggiornare il plugin all&apos;url: %1, motivo: %2.</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

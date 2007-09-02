@@ -2408,7 +2408,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Вы должны выбрать по меньшей мере один поисковый двигатель.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>Результаты</translation>
     </message>
@@ -2503,6 +2503,11 @@ Changelog:
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">Невозможно скачать обновления поискового плагина по ссылке: %1, причина: %2.</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished">Неизвестно</translation>
     </message>
 </context>
 <context>

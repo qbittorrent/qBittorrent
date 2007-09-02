@@ -2439,7 +2439,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Трябва да изберете поне една търсачка.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation type="unfinished">Резултати</translation>
     </message>
@@ -2524,6 +2524,11 @@ Changelog:
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation type="unfinished">Резултати</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

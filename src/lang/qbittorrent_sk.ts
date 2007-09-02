@@ -2306,7 +2306,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Musíte zvoliť aspoň jeden vyhľadávač.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>Výsledky</translation>
     </message>
@@ -2400,6 +2400,11 @@ Záznam zmien:</translation>
         <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">Nebolo možné stiahnuť zásuvný modul vyhľadávania z url: %1, dôvod: %2.</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

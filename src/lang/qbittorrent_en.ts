@@ -1386,7 +1386,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1424,6 +1424,11 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../searchEngine.cpp" line="405"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -2531,7 +2531,7 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation type="obsolete">Musisz wybrać przynajmniej jedną wyszukiwarkę.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>Wyniki</translation>
     </message>
@@ -2627,6 +2627,11 @@ Zmiany:
         <location filename="" line="7471221"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">Nie można pobrać aktualizacji wtyczki wyszukiwarki z url: %1, powód: %2.</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished">Nieznany</translation>
     </message>
 </context>
 <context>

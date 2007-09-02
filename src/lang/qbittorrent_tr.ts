@@ -2471,7 +2471,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">En az bir arama motoru seçmelisiniz.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation type="unfinished">Sonuçlar</translation>
     </message>
@@ -2556,6 +2556,11 @@ Changelog:
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation type="unfinished">Sonuçlar</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished">Bilinmeyen</translation>
     </message>
 </context>
 <context>

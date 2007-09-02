@@ -2116,7 +2116,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Du må velge minst en søkemotor.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation type="unfinished">Resultater</translation>
     </message>
@@ -2200,6 +2200,11 @@ Endringer:</translation>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation type="unfinished">Resultater</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

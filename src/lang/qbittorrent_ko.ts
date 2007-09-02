@@ -2467,7 +2467,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">적어도 하나 이상의 검색 엔진을 선택해야 합니다.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>결과</translation>
     </message>
@@ -2562,6 +2562,11 @@ Changelog:
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">다음 url에서 검색 플러그인 (Plugin)을 다운로드 할수 없습니다: %1, 이유: %2.</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished">알수 없음</translation>
     </message>
 </context>
 <context>

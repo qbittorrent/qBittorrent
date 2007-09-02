@@ -1674,7 +1674,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation type="obsolete">Válassz legalább egy keresőt.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>Eredmény</translation>
     </message>
@@ -1769,6 +1769,11 @@ Changelog:
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">Nem sikerült kereső modult letölteni innen: %1, mert: %2.</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished">Ismeretlen</translation>
     </message>
 </context>
 <context>

@@ -1759,7 +1759,7 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">少なくとも 1 つの検索エンジンを選択する必要があります。</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>結果</translation>
     </message>
@@ -1854,6 +1854,11 @@ Changelog:
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">次の url にある検索プラグインの更新をダウンロードできませんでした: %1、理由: %2。</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished">不明</translation>
     </message>
 </context>
 <context>

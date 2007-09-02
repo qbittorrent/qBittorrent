@@ -2423,7 +2423,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Ви повинні вибрати хоча б один пошуковик.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>Результати</translation>
     </message>
@@ -2518,6 +2518,11 @@ Changelog:
         <location filename="" line="7471221"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">Неможливо завантажити пошуковий плагін з url: %1, причина: %2.</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished">Невідомо</translation>
     </message>
 </context>
 <context>

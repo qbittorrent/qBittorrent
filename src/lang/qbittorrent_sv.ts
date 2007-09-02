@@ -1640,7 +1640,7 @@ i.e: Number of partial sources</comment>
         <translation type="obsolete">Du måste välja minst en sökmotor.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>Resultat</translation>
     </message>
@@ -1782,6 +1782,11 @@ i.e: Search results</comment>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Resultat</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished">Okänd</translation>
     </message>
 </context>
 <context>

@@ -2637,7 +2637,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Vous devez sélectionner au moins un moteur de recherche.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>Résultats</translation>
     </message>
@@ -2732,6 +2732,11 @@ Changements:
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">Impossible de télécharger la mise à jour du greffon de recherche à l&apos;url : %1, raison : %2.</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

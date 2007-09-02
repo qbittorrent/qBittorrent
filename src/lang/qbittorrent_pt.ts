@@ -2285,7 +2285,7 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Você deve selecionar pelo menos um mecanismo de busca.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>Resultados</translation>
     </message>
@@ -2379,6 +2379,11 @@ Log de mudanças:</translation>
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">Não pude baixar a atualização do plugin de busca na url: %1, motivo: %2.</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished">Desconhecido</translation>
     </message>
 </context>
 <context>

@@ -2433,7 +2433,7 @@ Möchten sie qBittorrent wirklich beenden?</translation>
         <translation type="obsolete">Sie müssen mindestens eine Suchmaschine auswählen.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>Ergebnisse</translation>
     </message>
@@ -2528,6 +2528,11 @@ Changelog:
         <location filename="" line="7471221"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">Konnte Such-Plugin Update nicht von URL: %1 laden, Begründung: %2.</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished">Unbekannt</translation>
     </message>
 </context>
 <context>

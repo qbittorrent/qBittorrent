@@ -2196,7 +2196,7 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation type="obsolete">Trebuie să selectaţi cel puţin un motor de căutare.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>Rezultate</translation>
     </message>
@@ -2291,6 +2291,11 @@ Changelog:
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">Nu pot descărca plugin-ul de căutare reînoit prin url: %1, motivul: %2.</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished">Necunoscut</translation>
     </message>
 </context>
 <context>

@@ -2423,7 +2423,7 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
         <translation type="obsolete">U moet tenminste een zoekmachine kiezen.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>Resultaten</translation>
     </message>
@@ -2518,6 +2518,11 @@ Changelog:
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">Kon zoeken plugin update niet downloaden met url: %1, reden: %2.</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished">Onbekend</translation>
     </message>
 </context>
 <context>

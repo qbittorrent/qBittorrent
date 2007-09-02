@@ -2362,7 +2362,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">请选择至少一个搜索引擎.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>结果</translation>
     </message>
@@ -2456,6 +2456,11 @@ Changelog:
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">无法在网址:%1下载更新搜索插件,原因:%2.</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

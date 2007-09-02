@@ -2417,7 +2417,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Has de seleccionar un motor de busqueda.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation type="unfinished">Resultats</translation>
     </message>
@@ -2492,6 +2492,11 @@ Log:
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation type="unfinished">Resultats</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished">Desconegut</translation>
     </message>
 </context>
 <context>

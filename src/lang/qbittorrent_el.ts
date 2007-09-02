@@ -2524,7 +2524,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Πρέπει να επιλέξετε τουλάχιστο μια μηχανή αναζήτησης.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Results</source>
         <translation>Αποτελέσματα</translation>
     </message>
@@ -2619,6 +2619,11 @@ Changelog:
         <location filename="../searchEngine.cpp" line="483"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">Αδύνατο κατέβασμα plugin αναζήτησης από το url: %1,αιτία: %2.</translation>
+    </message>
+    <message>
+        <location filename="../searchEngine.cpp" line="429"/>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
