@@ -52,7 +52,6 @@
 
 // in v1.0.0 (partial) - WIP
 - Fix all (or almost all) opened bugs in bug tracker
-- update sorting when a new torrent is added?
 - Add an option 'Automatically update search plugins'
 - Add an option 'Display current speed in title bar'
 - Add an option 'append .!qBT to incomplete files'
@@ -76,7 +75,6 @@
     * piece size choice
     * Start seeding checkbox
   - Review torrent content selection
-    * Right-click menu (priorities)
     * check the one in ktorrent
   - Translations update (IN PROGRESS)
   - Wait for some bug fixes in libtorrent :
