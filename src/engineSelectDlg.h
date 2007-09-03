@@ -39,6 +39,7 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
     engineSelectDlg(QWidget *parent);
     ~engineSelectDlg();
     QList<QTreeWidgetItem*> findItemsWithUrl(QString url);
+    QTreeWidgetItem* findItemWithID(QString id);
 
   protected:
     bool parseVersionsFile(QString versions_file, QString updateServer);
@@ -64,7 +65,10 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
     void on_installButton_clicked();
     void dropEvent(QDropEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
-    void installPlugin(QString plugin_path);
+    void installPlugin(QString plugin_path, QString plugin_name);
+#ifdef HAVE_ZZIP
+    void installZipPlugin(QString path);
+#endif
 };
 
 #endif

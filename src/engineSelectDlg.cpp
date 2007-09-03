@@ -35,6 +35,10 @@
   using namespace Magick;
 #endif
 
+#ifdef HAVE_ZZIP
+  #include <zzip/zzip.h>
+#endif
+
 #define ENGINE_NAME 0
 #define ENGINE_URL 1
 #define ENGINE_STATE 2
@@ -79,8 +83,16 @@ void engineSelectDlg::dropEvent(QDropEvent *event) {
       downloader->downloadUrl(file);
       continue;
     }
-    if(file.endsWith(".py"))
-      installPlugin(file);
+    if(file.endsWith(".py")) {
+      QString plugin_name = file.split(QDir::separator()).last();
+      plugin_name.replace(".py", "");
+      installPlugin(file, plugin_name);
+    }
+#ifdef HAVE_ZZIP
+    if(file.endsWith(".zip")) {
+      installZipPlugin(file);
+    }
+#endif
   }
 }
 
@@ -291,7 +303,6 @@ void engineSelectDlg::loadSupportedSearchEngines(bool first) {
     QString nameUrlCouple(e);
     QStringList line = nameUrlCouple.split('|');
     if(line.size() != 2) continue;
-    // Download favicon
     QString enabledTxt;
     if(installed_engines.value(id, true)) {
       enabledTxt = tr("True");
@@ -327,17 +338,132 @@ QList<QTreeWidgetItem*> engineSelectDlg::findItemsWithUrl(QString url){
   return res;
 }
 
+QTreeWidgetItem* engineSelectDlg::findItemWithID(QString id){
+  QList<QTreeWidgetItem*> res;
+  for(int i=0; i<pluginsTree->topLevelItemCount(); ++i) {
+    QTreeWidgetItem *item = pluginsTree->topLevelItem(i);
+    if(id == item->text(ENGINE_ID))
+      return item;
+  }
+  return 0;
+}
+
 bool engineSelectDlg::isUpdateNeeded(QString plugin_name, float new_version) const {
   float old_version = misc::getPluginVersion(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+plugin_name+".py");
+  qDebug("IsUpdate needed? tobeinstalled: %.2f, alreadyinstalled: %.2f", new_version, old_version);
   return (new_version > old_version);
 }
 
-void engineSelectDlg::installPlugin(QString path) {
-  if(!path.endsWith(".py")) return;
+#ifdef HAVE_ZZIP
+void engineSelectDlg::installZipPlugin(QString path) {
+  QStringList plugins;
+  QStringList favicons;
+  ZZIP_DIR* dir = zzip_dir_open(path.toUtf8().data(), 0);
+  if(!dir) {
+    QMessageBox::warning(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("Search engine plugin archive could not be read."));
+    return;
+  }
+  ZZIP_DIRENT dirent;
+  while(zzip_dir_read(dir, &dirent)) {
+    /* show info for first file */
+    QString name(dirent.d_name);
+    if(name.endsWith(".py")) {
+      plugins << name;
+    } else {
+      if(name.endsWith(".png")) {
+        favicons << name;
+      }
+    }
+  }
+  QString plugin;
+  std::cout << dirent.d_name << std::endl;
+  ZZIP_FILE* fp = zzip_file_open(dir, dirent.d_name, 0);
+  if (fp) {
+    char buf[10];
+    zzip_ssize_t len = zzip_file_read(fp, buf, 10);
+    if (len) {
+      /* show head of README */
+      std::cout << buf;
+    }
+    zzip_file_close(fp);
+    std::cout << std::endl;
+  }
+  foreach(plugin, plugins) {
+    QString plugin_name = plugin.split(QDir::separator()).last();
+    plugin_name.chop(3); // Remove .py extension
+    qDebug("Detected plugin %s in archive", plugin_name.toUtf8().data());
+    ZZIP_FILE* fp = zzip_file_open(dir, plugin.toUtf8().data(), 0);
+    if(fp) {
+      QTemporaryFile *tmpfile = new QTemporaryFile();
+      QString tmpPath;
+      // Write file
+      if(tmpfile->open()) {
+        tmpPath = tmpfile->fileName();
+        char buf[255];
+        zzip_ssize_t len = zzip_file_read(fp, buf, 255);
+        while(len) {
+          tmpfile->write(buf, len);
+          len = zzip_file_read(fp, buf, 255);
+        }
+        zzip_file_close(fp);
+        tmpfile->close();
+      } else {
+        qDebug("Could not open tmp file");
+        QMessageBox::warning(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin could not be installed.", "%1 is the name of the search engine").arg(plugin_name.toUtf8().data()));
+        delete tmpfile;
+        continue;
+      }
+      // Install plugin
+      installPlugin(tmpPath, plugin_name);
+      qDebug("installPlugin() finished");
+      delete tmpfile;
+      qDebug("Deleted tmpfile");
+    } else {
+      qDebug("Cannot read file in archive");
+      QMessageBox::warning(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin could not be installed.", "%1 is the name of the search engine").arg(plugin_name.toUtf8().data()));
+    }
+  }
+  QString favicon;
+  foreach(favicon, favicons) {
+    qDebug("Detected favicon %s in archive", favicon.toUtf8().data());
+    // Ok we have a favicon here
+    QString plugin_name = favicon.split(QDir::separator()).last();
+    plugin_name.chop(4); // Remove .png extension
+    if(!QFile::exists(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+plugin_name+".py"))
+      continue;
+    // Check if we already have a favicon for this plugin
+    QString iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+plugin_name+".png";
+    if(QFile::exists(iconPath)) continue;
+    ZZIP_FILE* fp = zzip_file_open(dir, favicon.toUtf8().data(), 0);
+    if(fp) {
+      QFile dest_icon(iconPath);
+      // Write icon
+      if(dest_icon.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        char buf[255];
+        zzip_ssize_t len = zzip_file_read(fp, buf, 255);
+        while(len) {
+          dest_icon.write(buf, len);
+          len = zzip_file_read(fp, buf, 255);
+        }
+        zzip_file_close(fp);
+        dest_icon.close();
+        // Update icon in list
+        QTreeWidgetItem *item = findItemWithID(plugin_name);
+        Q_ASSERT(item);
+        item->setData(ENGINE_NAME, Qt::DecorationRole, QVariant(QIcon(iconPath)));
+      }
+    }
+  }
+  zzip_dir_close(dir);
+}
+#endif
+
+void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
+  qDebug("Asked to install plugin at %s", path.toUtf8().data());
   float new_version = misc::getPluginVersion(path);
-  QString plugin_name = path.split(QDir::separator()).last();
-  plugin_name.replace(".py", "");
+  qDebug("Version to be installed: %.2f", new_version);
   if(!isUpdateNeeded(plugin_name, new_version)) {
+    qDebug("Apparently update it not needed, we have a more recent version");
     QMessageBox::information(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("A more recent version of %1 search engine plugin is already installed.", "%1 is the name of the search engine").arg(plugin_name.toUtf8().data()));
     return;
   }
@@ -387,10 +513,25 @@ void engineSelectDlg::installPlugin(QString path) {
 void engineSelectDlg::on_installButton_clicked() {
   QStringList pathsList = QFileDialog::getOpenFileNames(0,
               tr("Select search plugins"), QDir::homePath(),
+#ifdef HAVE_ZZIP
+              tr("qBittorrent search plugins")+QString::fromUtf8(" (*.py *.zip)"));
+#else
               tr("qBittorrent search plugins")+QString::fromUtf8(" (*.py)"));
+#endif
   QString path;
   foreach(path, pathsList) {
-    installPlugin(path);
+    if(path.endsWith(".py")) {
+      QString plugin_name = path.split(QDir::separator()).last();
+      plugin_name.replace(".py", "");
+      installPlugin(path, plugin_name);
+    }
+#ifdef HAVE_ZZIP
+    else {
+      if(path.endsWith(".zip")) {
+        installZipPlugin(path);
+      }
+    }
+#endif
   }
 }
 
@@ -476,39 +617,32 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
     if(!parseVersionsFile(filePath, "http://www.dchris.eu/search_engine/")) {
       qDebug("Primary update server failed, try secondary");
       downloader->downloadUrl("http://hydr0g3n.free.fr/search_engine/versions.txt");
-      return;
     }
+    QFile::remove(filePath);
+    return;
   }
   if(url == "http://hydr0g3n.free.fr/search_engine/versions.txt") {
     if(!parseVersionsFile(filePath, "http://hydr0g3n.free.fr/search_engine/")) {
       QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, update server is temporarily unavailable."));
-      return;
     }
+    QFile::remove(filePath);
+    return;
   }
   if(url.endsWith(".pyqBT") || url.endsWith(".py")) {
-    // a plugin update has been downloaded
     QString plugin_name = url.split('/').last();
-    plugin_name.replace(".pyqBT", "");
     plugin_name.replace(".py", "");
-    QString dest_path = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+plugin_name+".py";
-    bool new_plugin = false;
-    if(QFile::exists(dest_path)) {
-      // Delete the old plugin
-      QFile::remove(dest_path);
-    } else {
-      // This is a new plugin
-      new_plugin = true;
-    }
-    // Copy the new plugin
-    QFile::copy(filePath, dest_path);
-    if(new_plugin) {
-      // if it is new, refresh the list of plugins
-      loadSupportedSearchEngines();
-      QMessageBox::information(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin was successfully installed.", "%1 is the name of the search engine").arg(plugin_name.toUtf8().data()));
-    } else {
-      QMessageBox::information(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("%1 search plugin was successfully updated.", "%1 is the name of the search engine").arg(plugin_name.toUtf8().data()));
-    }
+    plugin_name.replace(".pyqBT", "");
+    installPlugin(filePath, plugin_name);
+    QFile::remove(filePath);
+    return;
   }
+#ifdef HAVE_ZZIP
+  if(url.endsWith(".zip")) {
+    installZipPlugin(filePath);
+    QFile::remove(filePath);
+    return;
+  }
+#endif
 }
 
 void engineSelectDlg::handleDownloadFailure(QString url, QString reason) {
@@ -531,6 +665,13 @@ void engineSelectDlg::handleDownloadFailure(QString url, QString reason) {
     QString plugin_name = url.split('/').last();
     plugin_name.replace(".pyqBT", "");
     plugin_name.replace(".py", "");
-    QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, %1 search plugin update failed.", "%1 is the name of the search engine").arg(plugin_name.toUtf8().data()));
+    QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, %1 search plugin install failed.", "%1 is the name of the search engine").arg(plugin_name.toUtf8().data()));
   }
+#ifdef HAVE_ZZIP
+  if(url.endsWith(".zip")) {
+    QString plugin_name = url.split('/').last();
+    plugin_name.replace(".zip", "");
+    QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, %1 search plugin install failed.", "%1 is the name of the search engine").arg(plugin_name.toUtf8().data()));
+  }
+#endif
 }

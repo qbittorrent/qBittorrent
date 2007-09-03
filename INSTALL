@@ -29,6 +29,10 @@ Dependencies:
 - python >= 2.3 (needed by search engine)
 
 - libmagick++ (advised, not required)
+  * Needed for favicons support (RSS / Search plugins)
+
+- libzzip (advised, not required)
+  * Needed for zip support (Search plugins)
 
 NOTE FOR NON-KDE USERS:
 - qt4-qtconfig package is advised when using other systems than KDE.

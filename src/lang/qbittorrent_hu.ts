@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="en">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDlg</name>
     <message>
@@ -585,115 +586,115 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../downloadingTorrents.cpp" line="55"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">Név</translation>
+        <translation>Név</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="56"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">Méret</translation>
+        <translation>Méret</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="57"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">Folyamat</translation>
+        <translation>Folyamat</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="58"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>DL Speed</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="59"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>UP Speed</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="60"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished"></translation>
+        <translation>Seeds/Leechs</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="61"/>
         <source>Ratio</source>
-        <translation type="unfinished">Arány</translation>
+        <translation>Arány</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="62"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished">Idő</translation>
+        <translation>Idő</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="98"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation type="unfinished">qBittorrent %1 elindítva.</translation>
+        <translation>qBittorrent %1 elindítva.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="99"/>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
-        <translation type="unfinished">Csak óvatosan a megosztással. Nehogy megsértsd a szerzői jogokat!.</translation>
+        <translation>Csak óvatosan a megosztással. Nehogy megsértsd a szerzői jogokat!.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="123"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blokkolva&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blokkolva&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="197"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Hibás ellenőrző adat ennél a torrentnél: %1, újraellenőrzés...</translation>
+        <translation>Hibás ellenőrző adat ennél a torrentnél: %1, újraellenőrzés...</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="201"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Url forrás meghatározása sikertelen: %1, hibaüzenet: %2</translation>
+        <translation>Url forrás meghatározása sikertelen: %1, hibaüzenet: %2</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="633"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; felvéve a letöltési listára.</translation>
+        <translation>&apos;%1&apos; felvéve a letöltési listára.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="635"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">&apos;%1&apos; visszaállítva. (folytatás)</translation>
+        <translation>&apos;%1&apos; visszaállítva. (folytatás)</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="643"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; már letöltés alatt.</translation>
+        <translation>&apos;%1&apos; már letöltés alatt.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="647"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">Megfejthetetlen torrent: &apos;%1&apos;</translation>
+        <translation>Megfejthetetlen torrent: &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="648"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Ez a fájl sérült, vagy nem is torrent.</translation>
+        <translation>Ez a fájl sérült, vagy nem is torrent.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="662"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="unfinished">A megadott porok zártak.</translation>
+        <translation>A megadott porok zártak.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="686"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished">Letöltés alatt: &apos;%1&apos;, kis türelmet...</translation>
+        <translation>Letöltés alatt: &apos;%1&apos;, kis türelmet...</translation>
     </message>
 </context>
 <context>
@@ -1241,13 +1242,13 @@ Mégis leállítod a qBittorrentet?</translation>
         <location filename="../GUI.cpp" line="290"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation type="unfinished">Alt+3</translation>
+        <translation>Alt+3</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="292"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+F</translation>
     </message>
 </context>
 <context>
@@ -1597,7 +1598,7 @@ Mégis leállítod a qBittorrentet?</translation>
     <message>
         <location filename="../rss_imp.cpp" line="155"/>
         <source>This rss feed is already in the list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez a hírcsatorna már felvéve.</translation>
     </message>
 </context>
 <context>
@@ -1619,7 +1620,7 @@ Mégis leállítod a qBittorrentet?</translation>
     <message>
         <location filename="../rss.h" line="261"/>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Soha</translation>
     </message>
 </context>
 <context>
@@ -1773,7 +1774,7 @@ Changelog:
     <message>
         <location filename="../searchEngine.cpp" line="433"/>
         <source>Unknown</source>
-        <translation type="unfinished">Ismeretlen</translation>
+        <translation>Ismeretlen</translation>
     </message>
 </context>
 <context>
@@ -1968,7 +1969,7 @@ Changelog:
     <message>
         <location filename="../createtorrent.ui" line="93"/>
         <source>Input file or directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Forrás fájl vagy könyvtár:</translation>
     </message>
 </context>
 <context>
@@ -2052,7 +2053,7 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="75"/>
         <source>Select a file to add to the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Válassz fájlt(okat) a torrenthez</translation>
     </message>
 </context>
 <context>
@@ -2098,82 +2099,82 @@ Changelog:
     <message>
         <location filename="../download.ui" line="13"/>
         <source>Search</source>
-        <translation type="unfinished">Keresés</translation>
+        <translation>Keresés</translation>
     </message>
     <message>
         <location filename="../download.ui" line="48"/>
         <source>Total DL Speed:</source>
-        <translation type="unfinished">Bejövő sebesség:</translation>
+        <translation>Bejövő sebesség:</translation>
     </message>
     <message>
         <location filename="../download.ui" line="181"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KByte/s</translation>
+        <translation>KByte/s</translation>
     </message>
     <message>
         <location filename="../download.ui" line="106"/>
         <source>Session ratio: </source>
-        <translation type="unfinished">Megosztási arány: </translation>
+        <translation>Megosztási arány: </translation>
     </message>
     <message>
         <location filename="../download.ui" line="152"/>
         <source>Total UP Speed:</source>
-        <translation type="unfinished">Kimenő sebesség:</translation>
+        <translation>Kimenő sebesség:</translation>
     </message>
     <message>
         <location filename="../download.ui" line="246"/>
         <source>Log</source>
-        <translation type="unfinished">Napló</translation>
+        <translation>Napló</translation>
     </message>
     <message>
         <location filename="../download.ui" line="280"/>
         <source>IP filter</source>
-        <translation type="unfinished">IP szűrő</translation>
+        <translation>IP szűrő</translation>
     </message>
     <message>
         <location filename="../download.ui" line="306"/>
         <source>Start</source>
-        <translation type="unfinished">Indítás</translation>
+        <translation>Indítás</translation>
     </message>
     <message>
         <location filename="../download.ui" line="311"/>
         <source>Pause</source>
-        <translation type="unfinished">Szünet</translation>
+        <translation>Szünet</translation>
     </message>
     <message>
         <location filename="../download.ui" line="316"/>
         <source>Delete</source>
-        <translation type="unfinished">Törlés</translation>
+        <translation>Törlés</translation>
     </message>
     <message>
         <location filename="../download.ui" line="321"/>
         <source>Clear</source>
-        <translation type="unfinished">Törlés</translation>
+        <translation>Törlés</translation>
     </message>
     <message>
         <location filename="../download.ui" line="326"/>
         <source>Preview file</source>
-        <translation type="unfinished">Minta fájl</translation>
+        <translation>Minta fájl</translation>
     </message>
     <message>
         <location filename="../download.ui" line="331"/>
         <source>Set upload limit</source>
-        <translation type="unfinished">Feltöltési korlát megadása</translation>
+        <translation>Feltöltési korlát megadása</translation>
     </message>
     <message>
         <location filename="../download.ui" line="336"/>
         <source>Set download limit</source>
-        <translation type="unfinished">Letöltési korlát megadása</translation>
+        <translation>Letöltési korlát megadása</translation>
     </message>
     <message>
         <location filename="../download.ui" line="341"/>
         <source>Delete Permanently</source>
-        <translation type="unfinished">Végleges törlés</translation>
+        <translation>Végleges törlés</translation>
     </message>
     <message>
         <location filename="../download.ui" line="346"/>
         <source>Torrent Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent tulajdonságai</translation>
     </message>
 </context>
 <context>
@@ -2181,62 +2182,62 @@ Changelog:
     <message>
         <location filename="../engineSelect.ui" line="16"/>
         <source>Search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Kereső modulok</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="29"/>
         <source>Installed search engines:</source>
-        <translation type="unfinished"></translation>
+        <translation>Telepített keresők:</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="49"/>
         <source>Name</source>
-        <translation type="unfinished">Név</translation>
+        <translation>Név</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="54"/>
         <source>Url</source>
-        <translation type="unfinished"></translation>
+        <translation>Url</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="59"/>
         <source>Enabled</source>
-        <translation type="unfinished">Engedélyez</translation>
+        <translation>Státusz</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="72"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Újabb kereső modulok elérhetőek itt : &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="81"/>
         <source>Install a new one</source>
-        <translation type="unfinished"></translation>
+        <translation>Új telepítése</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="88"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítések ellenőrzése</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="95"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezárás</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="104"/>
         <source>Enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Enged</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="109"/>
         <source>Disable</source>
-        <translation type="unfinished">Letiltva</translation>
+        <translation>Tilt</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="114"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Eltávolít</translation>
     </message>
 </context>
 <context>
@@ -2244,111 +2245,113 @@ Changelog:
     <message>
         <location filename="../engineSelectDlg.cpp" line="287"/>
         <source>True</source>
-        <translation type="unfinished"></translation>
+        <translation>Engedve</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="289"/>
         <source>False</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiltva</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="196"/>
         <source>Uninstall warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Figyelemeztetés</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="196"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Néhány modult nem lehet eltávolítani, mivel a program részei.
+ Csak azokat lehet, amiket saját kezüleg telepítettél.
+Viszont azok a modulok kikapcsolhatóak.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="198"/>
         <source>Uninstall success</source>
-        <translation type="unfinished"></translation>
+        <translation>Sikeresen eltávolítva</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="378"/>
         <source>Select search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Modul kiválasztása</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="379"/>
         <source>qBittorrent search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent kereső modulok</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="497"/>
         <source>Search plugin install</source>
-        <translation type="unfinished"></translation>
+        <translation>Kerső telepítése</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="524"/>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="330"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>A %1 kereső modul egy újabb verziója már telepítve van.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="524"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">Kereső modul frissítése</translation>
+        <translation>Kereső modul frissítése</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="516"/>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation type="unfinished">A kiszolgálő jelenleg nem elérhető. Bocs.</translation>
+        <translation>A kiszolgálő jelenleg nem elérhető. Bocs.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="524"/>
         <source>Sorry, %1 search plugin update failed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Bocs,  nem sikerült frissíteni: %1.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="426"/>
         <source>All your plugins are already up to date.</source>
-        <translation type="unfinished"></translation>
+        <translation>A legújabb kereső modulokat használod.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="352"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 keresőt nem lehet frissíteni, előző verzió megtartva.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="357"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 kereső modul telepítése sikertelen.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="198"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>Kereső modul(ok) sikeresen eltávolítva</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="368"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 kereső modul sikeresen frissítve.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="497"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 kereső modul sikeresen telepítve.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="499"/>
         <source>%1 search plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 kereső modul sikeresen frissítve.</translation>
     </message>
 </context>
 <context>
@@ -2855,7 +2858,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../search.ui" line="99"/>
         <source>Search engines...</source>
-        <translation type="unfinished"></translation>
+        <translation>Keresők...</translation>
     </message>
 </context>
 <context>

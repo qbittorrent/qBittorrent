@@ -15,7 +15,8 @@
   <dep type='libcommoncpp2'>
     <required/>
   </dep>
-    <dep type='libmagick'/>
+  <dep type='libmagick'/>
+  <dep type='libzzip'/>
   <dep type='python'>
     <required/>
   </dep>
