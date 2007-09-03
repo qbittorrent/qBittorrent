@@ -340,21 +340,21 @@ fi
 
 gen_files() {
 cat >$1/modules.cpp <<EOT
-#line 1 "qt42.qcm"
+#line 1 "qt4.qcm"
 /*
 -----BEGIN QCMOD-----
-name: Qt >= 4.2
+name: Qt >= 4.3
 -----END QCMOD-----
 */
-class qc_qt42 : public ConfObj
+class qc_qt4 : public ConfObj
 {
 public:
-	qc_qt42(Conf *c) : ConfObj(c) {}
-	QString name() const { return "Qt >= 4.2"; }
-	QString shortname() const { return "qt42"; }
+	qc_qt4(Conf *c) : ConfObj(c) {}
+	QString name() const { return "Qt >= 4.3"; }
+	QString shortname() const { return "Qt 4.3"; }
 	bool exec()
 	{
-		return(QT_VERSION >= 0x040200);
+		return(QT_VERSION >= 0x040300);
 	}
 };
 #line 1 "libtorrent.qcm"
@@ -738,7 +738,7 @@ public:
 
 EOT
 cat >$1/modules_new.cpp <<EOT
-    o = new qc_qt42(conf);
+    o = new qc_qt4(conf);
     o->required = true;
     o->disabled = false;
     o = new qc_libtorrent(conf);

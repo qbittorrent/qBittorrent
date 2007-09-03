@@ -78,9 +78,7 @@ QMAKE_CXXFLAGS_DEBUG += -fwrapv -O1
 CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent libccext2 libccgnu2
 
-contains(DEFINES, HAVE_MAGICK){
-  #PKGCONFIG += ImageMagick++
-}else{
+!contains(DEFINES, HAVE_MAGICK){
   message(ImageMagick disabled)
 }
 
@@ -88,19 +86,6 @@ QT += network xml
 
 DEFINES += QT_NO_CAST_TO_ASCII
 #QT_NO_CAST_FROM_ASCII
-
-contains(DEBUG_MODE, 0){
-  contains(QT_VERSION, 4.2.0) {
-    message(Qt 4.2.0 detected : enabling debug output because of a bug in this version of Qt)
-  }else{
-    contains(QT_VERSION, 4.2.1) {
-      message(Qt 4.2.1 detected : enabling debug output because of a bug in this version of Qt)
-    }else{
-      DEFINES += QT_NO_DEBUG_OUTPUT
-    }
-  }
-  CONFIG += release
-}
 
 # Windows
 win32 {

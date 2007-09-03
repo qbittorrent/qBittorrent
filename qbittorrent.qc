@@ -3,7 +3,7 @@
  <profile>qbittorrent.pro</profile>
  <moddir>qcm</moddir>
  <datadir/>
-  <dep type='qt42'>
+  <dep type='qt4'>
     <required/>
   </dep>
   <dep type='libtorrent'>

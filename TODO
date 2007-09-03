@@ -119,4 +119,5 @@ beta6->beta7 changelog:
 - BUGFIX: Fixed torrent create (can only one file or one folder)
 - BUGFIX: the function that set the rows color doesn't handle hidden columns anymore
 - BUGFIX: improved search engine plugin manager code and fixed bugs
+- BUGFIX: Dropped Qt4.2 support, becomes too difficult to maintain
 - COSMETIC: Improved some icons
