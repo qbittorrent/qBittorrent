@@ -1927,7 +1927,7 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
     <message>
         <location filename="../PropListDelegate.h" line="121"/>
         <source>Ignored</source>
-        <translation>Ignorata</translation>
+        <translation>Ignora</translation>
     </message>
     <message>
         <location filename="../PropListDelegate.h" line="122"/>
@@ -2262,7 +2262,7 @@ Changelog:
     <message>
         <location filename="../searchEngine.cpp" line="433"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Sconosciuto</translation>
     </message>
 </context>
 <context>
@@ -2416,7 +2416,7 @@ Changelog:
     <message>
         <location filename="../addTorrentDialog.ui" line="162"/>
         <source>Ignored</source>
-        <translation>Ignorata</translation>
+        <translation>Ignora</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="167"/>
@@ -2575,7 +2575,7 @@ Changelog:
     <message>
         <location filename="../createtorrent.ui" line="93"/>
         <source>Input file or directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>File o directory da aggiungere:</translation>
     </message>
 </context>
 <context>
@@ -2674,7 +2674,7 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="75"/>
         <source>Select a file to add to the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Selezionare un file da aggiungere al torrent</translation>
     </message>
 </context>
 <context>
@@ -2823,7 +2823,7 @@ Changelog:
     <message>
         <location filename="../engineSelect.ui" line="59"/>
         <source>Enabled</source>
-        <translation>Attivata</translation>
+        <translation>Attivato</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="72"/>
@@ -2966,36 +2966,36 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <location filename="../engineSelectDlg.cpp" line="352"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Non è stato possibile aggiornare %1, mantengo la versione attuale.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="357"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Non è stato possibile installare il plugin di ricerca %1.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="198"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutti i plugin selezionati sono stati disinstallati con successo</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="368"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Il plugin di ricerca %1 è stato aggiornato con successo.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="497"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Il plugin di ricerca %1 è stato installato con successo.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="499"/>
         <source>%1 search plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Il plugin di ricerca %1 è stato aggiornato con successo.</translation>
     </message>
 </context>
 <context>
