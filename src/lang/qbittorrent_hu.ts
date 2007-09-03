@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="en">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDlg</name>
     <message>
@@ -2205,37 +2204,37 @@ Changelog:
         <translation>Státusz</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="72"/>
+        <location filename="../engineSelect.ui" line="77"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
         <translation>Újabb kereső modulok elérhetőek itt : &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="81"/>
+        <location filename="../engineSelect.ui" line="86"/>
         <source>Install a new one</source>
         <translation>Új telepítése</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="88"/>
+        <location filename="../engineSelect.ui" line="93"/>
         <source>Check for updates</source>
         <translation>Frissítések ellenőrzése</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="95"/>
+        <location filename="../engineSelect.ui" line="100"/>
         <source>Close</source>
         <translation>Bezárás</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="104"/>
+        <location filename="../engineSelect.ui" line="109"/>
         <source>Enable</source>
         <translation>Enged</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="109"/>
+        <location filename="../engineSelect.ui" line="114"/>
         <source>Disable</source>
         <translation>Tilt</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="114"/>
+        <location filename="../engineSelect.ui" line="119"/>
         <source>Uninstall</source>
         <translation>Eltávolít</translation>
     </message>
@@ -2243,22 +2242,22 @@ Changelog:
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="287"/>
+        <location filename="../engineSelectDlg.cpp" line="308"/>
         <source>True</source>
         <translation>Engedve</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="289"/>
+        <location filename="../engineSelectDlg.cpp" line="310"/>
         <source>False</source>
         <translation>Tiltva</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="196"/>
+        <location filename="../engineSelectDlg.cpp" line="206"/>
         <source>Uninstall warning</source>
         <translation>Figyelemeztetés</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="196"/>
+        <location filename="../engineSelectDlg.cpp" line="206"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -2267,43 +2266,43 @@ However, those plugins were disabled.</source>
 Viszont azok a modulok kikapcsolhatóak.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="198"/>
+        <location filename="../engineSelectDlg.cpp" line="208"/>
         <source>Uninstall success</source>
         <translation>Sikeresen eltávolítva</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="378"/>
+        <location filename="../engineSelectDlg.cpp" line="515"/>
         <source>Select search plugins</source>
         <translation>Modul kiválasztása</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="379"/>
+        <location filename="../engineSelectDlg.cpp" line="519"/>
         <source>qBittorrent search plugins</source>
         <translation>qBittorrent kereső modulok</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="497"/>
+        <location filename="../engineSelectDlg.cpp" line="508"/>
         <source>Search plugin install</source>
         <translation>Kerső telepítése</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="524"/>
+        <location filename="../engineSelectDlg.cpp" line="674"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="330"/>
+        <location filename="../engineSelectDlg.cpp" line="467"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>A %1 kereső modul egy újabb verziója már telepítve van.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="524"/>
+        <location filename="../engineSelectDlg.cpp" line="674"/>
         <source>Search plugin update</source>
         <translation>Kereső modul frissítése</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="516"/>
+        <location filename="../engineSelectDlg.cpp" line="660"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>A kiszolgálő jelenleg nem elérhető. Bocs.</translation>
     </message>
@@ -2311,38 +2310,38 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <location filename="../engineSelectDlg.cpp" line="524"/>
         <source>Sorry, %1 search plugin update failed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Bocs,  nem sikerült frissíteni: %1.</translation>
+        <translation type="obsolete">Bocs,  nem sikerült frissíteni: %1.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="426"/>
+        <location filename="../engineSelectDlg.cpp" line="578"/>
         <source>All your plugins are already up to date.</source>
         <translation>A legújabb kereső modulokat használod.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="352"/>
+        <location filename="../engineSelectDlg.cpp" line="489"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 keresőt nem lehet frissíteni, előző verzió megtartva.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="357"/>
+        <location filename="../engineSelectDlg.cpp" line="494"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 kereső modul telepítése sikertelen.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="198"/>
+        <location filename="../engineSelectDlg.cpp" line="208"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>Kereső modul(ok) sikeresen eltávolítva</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="368"/>
+        <location filename="../engineSelectDlg.cpp" line="505"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 kereső modul sikeresen frissítve.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="497"/>
+        <location filename="../engineSelectDlg.cpp" line="508"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 kereső modul sikeresen telepítve.</translation>
@@ -2351,7 +2350,18 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <location filename="../engineSelectDlg.cpp" line="499"/>
         <source>%1 search plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>%1 kereső modul sikeresen frissítve.</translation>
+        <translation type="obsolete">%1 kereső modul sikeresen frissítve.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="363"/>
+        <source>Search engine plugin archive could not be read.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="674"/>
+        <source>Sorry, %1 search plugin install failed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

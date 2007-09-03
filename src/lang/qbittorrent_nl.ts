@@ -3101,37 +3101,37 @@ Changelog:
         <translation>Ingeschakeld</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="72"/>
+        <location filename="../engineSelect.ui" line="77"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
         <translation>U kan hier nieuwe zoekplugins krijgen: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="81"/>
+        <location filename="../engineSelect.ui" line="86"/>
         <source>Install a new one</source>
         <translation>Installeer een nieuwe</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="88"/>
+        <location filename="../engineSelect.ui" line="93"/>
         <source>Check for updates</source>
         <translation>Controleer op updates</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="95"/>
+        <location filename="../engineSelect.ui" line="100"/>
         <source>Close</source>
         <translation>Sluiten</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="104"/>
+        <location filename="../engineSelect.ui" line="109"/>
         <source>Enable</source>
         <translation>Inschakelen</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="109"/>
+        <location filename="../engineSelect.ui" line="114"/>
         <source>Disable</source>
         <translation>Uitschakelen</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="114"/>
+        <location filename="../engineSelect.ui" line="119"/>
         <source>Uninstall</source>
         <translation>Deïnstalleren</translation>
     </message>
@@ -3139,22 +3139,22 @@ Changelog:
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="287"/>
+        <location filename="../engineSelectDlg.cpp" line="308"/>
         <source>True</source>
         <translation>Waar</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="289"/>
+        <location filename="../engineSelectDlg.cpp" line="310"/>
         <source>False</source>
         <translation>Onwaar</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="196"/>
+        <location filename="../engineSelectDlg.cpp" line="206"/>
         <source>Uninstall warning</source>
         <translation>Deïnstallatie waarschuwing</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="196"/>
+        <location filename="../engineSelectDlg.cpp" line="206"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -3163,7 +3163,7 @@ Alleen de door u toegevoegde plugins kunnen worden gedeïnstalleerd.
 De plugins zijn uitgeschakeld.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="198"/>
+        <location filename="../engineSelectDlg.cpp" line="208"/>
         <source>Uninstall success</source>
         <translation>Deïnstallatie succesvol</translation>
     </message>
@@ -3173,27 +3173,27 @@ De plugins zijn uitgeschakeld.</translation>
         <translation type="obsolete">Alle gekozen plugins zijn succesvol gedeïnstalleerd</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="378"/>
+        <location filename="../engineSelectDlg.cpp" line="515"/>
         <source>Select search plugins</source>
         <translation>Kies zoekplugins</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="379"/>
+        <location filename="../engineSelectDlg.cpp" line="519"/>
         <source>qBittorrent search plugins</source>
         <translation>qBittorrent zoekplugins</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="497"/>
+        <location filename="../engineSelectDlg.cpp" line="508"/>
         <source>Search plugin install</source>
         <translation>Zoekplugins installatie</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="524"/>
+        <location filename="../engineSelectDlg.cpp" line="674"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="330"/>
+        <location filename="../engineSelectDlg.cpp" line="467"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Een nieuwere versie van %1 zoekmachineplugin is al geïnstalleerd.</translation>
@@ -3211,12 +3211,12 @@ De plugins zijn uitgeschakeld.</translation>
         <translation type="obsolete">%1 zoekmachineplugin is succesvol geïnstalleerd.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="524"/>
+        <location filename="../engineSelectDlg.cpp" line="674"/>
         <source>Search plugin update</source>
         <translation>Zoekplugin update</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="516"/>
+        <location filename="../engineSelectDlg.cpp" line="660"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Sorry, updateserver is tijdelijk niet bereikbaar.</translation>
     </message>
@@ -3230,38 +3230,38 @@ De plugins zijn uitgeschakeld.</translation>
         <location filename="../engineSelectDlg.cpp" line="524"/>
         <source>Sorry, %1 search plugin update failed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Sorry, %1 zoekplugin update mislukt.</translation>
+        <translation type="obsolete">Sorry, %1 zoekplugin update mislukt.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="426"/>
+        <location filename="../engineSelectDlg.cpp" line="578"/>
         <source>All your plugins are already up to date.</source>
         <translation>Uw plugins zijn al het nieuwst.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="198"/>
+        <location filename="../engineSelectDlg.cpp" line="208"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>Alle gekozen plugins zijn succesvol gedeïnstalleerd</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="352"/>
+        <location filename="../engineSelectDlg.cpp" line="489"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="357"/>
+        <location filename="../engineSelectDlg.cpp" line="494"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="368"/>
+        <location filename="../engineSelectDlg.cpp" line="505"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 zoekmachineplugin is succesvol vernieuwd.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="497"/>
+        <location filename="../engineSelectDlg.cpp" line="508"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 zoekmachineplugin is succesvol geïnstalleerd.</translation>
@@ -3270,7 +3270,18 @@ De plugins zijn uitgeschakeld.</translation>
         <location filename="../engineSelectDlg.cpp" line="499"/>
         <source>%1 search plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>%1 zoekplugin is succesvol vernieuwd.</translation>
+        <translation type="obsolete">%1 zoekplugin is succesvol vernieuwd.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="363"/>
+        <source>Search engine plugin archive could not be read.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="674"/>
+        <source>Sorry, %1 search plugin install failed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

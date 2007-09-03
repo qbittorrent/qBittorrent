@@ -3116,37 +3116,37 @@ Changelog:
         <translation>Увімкнено</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="72"/>
+        <location filename="../engineSelect.ui" line="77"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
         <translation>Ви можете отримати нові пошукові плагіни тут: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="81"/>
+        <location filename="../engineSelect.ui" line="86"/>
         <source>Install a new one</source>
         <translation>Встановити новий</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="88"/>
+        <location filename="../engineSelect.ui" line="93"/>
         <source>Check for updates</source>
         <translation>Перевірити оновлення</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="95"/>
+        <location filename="../engineSelect.ui" line="100"/>
         <source>Close</source>
         <translation>Закрити</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="104"/>
+        <location filename="../engineSelect.ui" line="109"/>
         <source>Enable</source>
         <translation>Дозволити</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="109"/>
+        <location filename="../engineSelect.ui" line="114"/>
         <source>Disable</source>
         <translation>Заборонити</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="114"/>
+        <location filename="../engineSelect.ui" line="119"/>
         <source>Uninstall</source>
         <translation>Видалити</translation>
     </message>
@@ -3154,22 +3154,22 @@ Changelog:
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="287"/>
+        <location filename="../engineSelectDlg.cpp" line="308"/>
         <source>True</source>
         <translation>Так</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="289"/>
+        <location filename="../engineSelectDlg.cpp" line="310"/>
         <source>False</source>
         <translation>Ні</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="196"/>
+        <location filename="../engineSelectDlg.cpp" line="206"/>
         <source>Uninstall warning</source>
         <translation>Попередження про видалення</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="196"/>
+        <location filename="../engineSelectDlg.cpp" line="206"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -3178,43 +3178,43 @@ However, those plugins were disabled.</source>
 Тим не менше, ті плагіни вимкнено.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="198"/>
+        <location filename="../engineSelectDlg.cpp" line="208"/>
         <source>Uninstall success</source>
         <translation>Видалення успішне</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="378"/>
+        <location filename="../engineSelectDlg.cpp" line="515"/>
         <source>Select search plugins</source>
         <translation>Вибрати пошукові плагіни</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="379"/>
+        <location filename="../engineSelectDlg.cpp" line="519"/>
         <source>qBittorrent search plugins</source>
         <translation>Пошукові плагіни qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="497"/>
+        <location filename="../engineSelectDlg.cpp" line="508"/>
         <source>Search plugin install</source>
         <translation>Встановити пошуковий плагін</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="524"/>
+        <location filename="../engineSelectDlg.cpp" line="674"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="330"/>
+        <location filename="../engineSelectDlg.cpp" line="467"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Більш нова версія пошукового плагіну %1 вже є встановлена.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="524"/>
+        <location filename="../engineSelectDlg.cpp" line="674"/>
         <source>Search plugin update</source>
         <translation>Оновити пошуковий плагін</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="516"/>
+        <location filename="../engineSelectDlg.cpp" line="660"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Пробачте, сервер оновлень тимчасово недоступний.</translation>
     </message>
@@ -3222,38 +3222,38 @@ However, those plugins were disabled.</source>
         <location filename="../engineSelectDlg.cpp" line="524"/>
         <source>Sorry, %1 search plugin update failed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Вибачте, не вдалося оновити пошуковий плагін %1.</translation>
+        <translation type="obsolete">Вибачте, не вдалося оновити пошуковий плагін %1.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="426"/>
+        <location filename="../engineSelectDlg.cpp" line="578"/>
         <source>All your plugins are already up to date.</source>
         <translation>Всі ваші плагіни мають останню версію.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="352"/>
+        <location filename="../engineSelectDlg.cpp" line="489"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Пошуковий плагін не може бути оновлено, залишено стару версію.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="357"/>
+        <location filename="../engineSelectDlg.cpp" line="494"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Неможливо встановити пошуковий плагін %1.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="198"/>
+        <location filename="../engineSelectDlg.cpp" line="208"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>Всі вибрані пошукові плагіни було успішно видалено</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="368"/>
+        <location filename="../engineSelectDlg.cpp" line="505"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Пошуковий плагін %1 було успішно оновлено.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="497"/>
+        <location filename="../engineSelectDlg.cpp" line="508"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Пошуковий плагін %1 було успішно встановлено.</translation>
@@ -3262,7 +3262,18 @@ However, those plugins were disabled.</source>
         <location filename="../engineSelectDlg.cpp" line="499"/>
         <source>%1 search plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Пошуковий плагін %1 було успішно оновлено.</translation>
+        <translation type="obsolete">Пошуковий плагін %1 було успішно оновлено.</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="363"/>
+        <source>Search engine plugin archive could not be read.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="674"/>
+        <source>Sorry, %1 search plugin install failed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
