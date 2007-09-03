@@ -178,27 +178,14 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       }
     }
 
-    bool onlyOneItem() const {
+    bool allFiltered() const {
       unsigned int nbRows = PropListModel->rowCount();
       if(nbRows == 1) return true;
-      unsigned int nb_unfiltered = 0;
-      QModelIndexList selectedIndexes = torrentContentList->selectionModel()->selectedIndexes();
-      QModelIndex index;
-      unsigned int to_be_filtered = 0;
-      foreach(index, selectedIndexes){
-        if(index.column() == PRIORITY){
-          if(index.data().toInt() != IGNORED)
-            ++to_be_filtered;
-        }
-      }
       for(unsigned int i=0; i<nbRows; ++i){
-        if(PropListModel->data(PropListModel->index(i, PRIORITY)).toInt() != IGNORED){
-          ++nb_unfiltered;
-        }
+        if(PropListModel->data(PropListModel->index(i, PRIORITY)).toInt() != IGNORED)
+          return false;
       }
-      if(nb_unfiltered-to_be_filtered == 0)
-        return true;
-      return false;
+      return true;
     }
 
     void displayFilesListMenu(const QPoint& pos){
@@ -209,8 +196,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       // Enable/disable pause/start action given the DL state
       QModelIndexList selectedIndexes = torrentContentList->selectionModel()->selectedIndexes();
       myFilesLlistMenu.setTitle(tr("Priority"));
-      if(!onlyOneItem())
-        myFilesLlistMenu.addAction(actionIgnored);
+      myFilesLlistMenu.addAction(actionIgnored);
       myFilesLlistMenu.addAction(actionNormal);
       myFilesLlistMenu.addAction(actionHigh);
       myFilesLlistMenu.addAction(actionMaximum);
@@ -328,8 +314,8 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         QFile::remove(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".paused"));
       }
       // Check if there is at least one selected file
-      if(!hasSelectedFiles()){
-          QMessageBox::critical(0, tr("Invalid file selection"), tr("You must select at least one file in the torrent"));
+      if(allFiltered()){
+          QMessageBox::warning(0, tr("Invalid file selection"), tr("You must select at least one file in the torrent"));
           return;
       }
       // save filtered files
@@ -337,18 +323,6 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       // Add to download list
       emit torrentAddition(filePath, fromScanDir, from_url);
       close();
-    }
-
-    bool hasSelectedFiles(){
-      unsigned int nbRows = PropListModel->rowCount();
-      for(unsigned int i=0; i<nbRows; ++i){
-        QStandardItem *item = PropListModel->item(i, PRIORITY);
-        unsigned short priority = item->text().toInt();
-        if(priority) {
-          return true;
-        }
-      }
-      return false;
     }
 };
 

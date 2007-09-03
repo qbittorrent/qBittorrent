@@ -109,6 +109,7 @@ beta6->beta7 changelog:
 - FEATURE: Allow to drag'n drop plugin to list for install/update
 - FEATURE: Added some search plugins to http://plugins.qbittorrent.org
 - FEATURE: Added zip support in search plugins manager (can put .py & .png inside)
+- BUGFIX: In torrent content, it is now easier to filter all torrents using right click menu
 - BUGFIX: Updated man page / README / INSTALL
 - BUGFIX: Paused torrents could be displayed as connected for a sec after checking
 - BUGFIX: 'Unknown' is now displayed in search results columns where value is -1

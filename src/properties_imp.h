@@ -49,7 +49,6 @@ class properties : public QDialog, private Ui::properties{
     void on_okButton_clicked();
     void on_incrementalDownload_stateChanged(int);
     void setRowColor(int row, QString color);
-    void savePiecesPriorities();
     void updateInfos();
     void loadPiecesPriorities();
     void setAllPiecesState(unsigned short priority);
@@ -78,7 +77,8 @@ class properties : public QDialog, private Ui::properties{
     // Constructor
     properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h);
     ~properties();
-    bool onlyOneItem() const;
+    bool allFiltered() const;
+    bool savePiecesPriorities();
 };
 
 #endif

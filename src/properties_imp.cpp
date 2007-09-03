@@ -187,27 +187,13 @@ void properties::loadPiecesPriorities(){
   }
 }
 
-bool properties::onlyOneItem() const {
+bool properties::allFiltered() const {
   unsigned int nbRows = PropListModel->rowCount();
-  if(nbRows == 1) return true;
-  unsigned int nb_unfiltered = 0;
-  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
-  QModelIndex index;
-  unsigned int to_be_filtered = 0;
-  foreach(index, selectedIndexes){
-    if(index.column() == PRIORITY){
-      if(index.data().toInt() != IGNORED)
-        ++to_be_filtered;
-    }
-  }
   for(unsigned int i=0; i<nbRows; ++i){
-    if(PropListModel->data(PropListModel->index(i, PRIORITY)).toInt() != IGNORED){
-      ++nb_unfiltered;
-    }
+    if(PropListModel->data(PropListModel->index(i, PRIORITY)).toInt() != IGNORED)
+      return false;
   }
-  if(nb_unfiltered-to_be_filtered == 0)
-    return true;
-  return false;
+  return true;
 }
 
 void properties::displayFilesListMenu(const QPoint& pos){
@@ -218,8 +204,7 @@ void properties::displayFilesListMenu(const QPoint& pos){
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
   myFilesLlistMenu.setTitle(tr("Priority"));
-  if(!onlyOneItem())
-    myFilesLlistMenu.addAction(actionIgnored);
+  myFilesLlistMenu.addAction(actionIgnored);
   myFilesLlistMenu.addAction(actionNormal);
   myFilesLlistMenu.addAction(actionHigh);
   myFilesLlistMenu.addAction(actionMaximum);
@@ -525,8 +510,8 @@ void properties::on_incrementalDownload_stateChanged(int){
 }
 
 void properties::on_okButton_clicked(){
-  savePiecesPriorities();
-  close();
+  if(savePiecesPriorities())
+    close();
 }
 
 void properties::loadWebSeedsFromFile(){
@@ -566,8 +551,12 @@ void properties::saveWebSeeds(){
   qDebug("url seeds were saved");
 }
 
-void properties::savePiecesPriorities(){
-  if(!changedFilteredfiles) return;
+bool properties::savePiecesPriorities() {
+  if(!changedFilteredfiles) return true;
+  if(allFiltered()) {
+    QMessageBox::warning(0, tr("Priorities error"), tr("Error, you can't filter all the files in a torrent."));
+    return false;
+  }
   qDebug("Saving pieces priorities");
   bool hasFilteredFiles = false;
   QString fileName = h.name();
@@ -577,7 +566,7 @@ void properties::savePiecesPriorities(){
   // Write new files
   if(!pieces_file.open(QIODevice::WriteOnly | QIODevice::Text)){
     std::cerr << "Error: Could not save pieces priorities\n";
-    return;
+    return true;
   }
   unsigned int nbRows = PropListModel->rowCount();
   for(unsigned int i=0; i<nbRows; ++i){
@@ -597,4 +586,5 @@ void properties::savePiecesPriorities(){
   }
   emit filteredFilesChanged(hash);
   has_filtered_files = hasFilteredFiles;
+  return true;
 }
