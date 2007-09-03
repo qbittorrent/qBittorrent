@@ -122,7 +122,8 @@ void FinishedTorrents::torrentAdded(QString, QTorrentHandle& h, bool) {
 
 // Set the color of a row in data model
 void FinishedTorrents::setRowColor(int row, QString color){
-  for(int i=0; i<finishedListModel->columnCount(); ++i){
+  unsigned int nbColumns = finishedListModel->columnCount()-1;
+  for(unsigned int i=0; i<nbColumns; ++i){
     finishedListModel->setData(finishedListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
   }
 }

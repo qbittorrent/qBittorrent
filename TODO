@@ -103,4 +103,6 @@ beta6->beta7 changelog:
 - BUGFIX: Fixed log context menu position
 - BUGFIX: Made pause/resume all function affect both (dl/up) tabs when window is hidden
 - BUGFIX: Fixed torrent create (can only one file or one folder)
+- BUGFIX: the function that set the rows color doesn't handle hidden columns anymore
+- BUGFIX: improved search engine plugin manager code and fixed bugs
 - COSMETIC: Improved some icons

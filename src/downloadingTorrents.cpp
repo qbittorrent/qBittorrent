@@ -664,7 +664,7 @@ void DownloadingTorrents::portListeningFailure() {
 
 // Set the color of a row in data model
 void DownloadingTorrents::setRowColor(int row, QString color) {
-  unsigned int nbColumns = DLListModel->columnCount();
+  unsigned int nbColumns = DLListModel->columnCount()-1;
   for(unsigned int i=0; i<nbColumns; ++i) {
     DLListModel->setData(DLListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
   }

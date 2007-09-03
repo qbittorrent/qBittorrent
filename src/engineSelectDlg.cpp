@@ -38,12 +38,14 @@
 #define ENGINE_NAME 0
 #define ENGINE_URL 1
 #define ENGINE_STATE 2
+#define ENGINE_ID 3
 
 engineSelectDlg::engineSelectDlg(QWidget *parent) : QDialog(parent) {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   pluginsTree->header()->resizeSection(0, 170);
   pluginsTree->header()->resizeSection(1, 220);
+  pluginsTree->hideColumn(ENGINE_ID);
   actionEnable->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
   actionDisable->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
   actionUninstall->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
@@ -53,15 +55,13 @@ engineSelectDlg::engineSelectDlg(QWidget *parent) : QDialog(parent) {
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
-  loadSettings();
-  loadSupportedSearchEngines();
+  loadSupportedSearchEngines(true);
   connect(pluginsTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(toggleEngineState(QTreeWidgetItem*, int)));
   show();
 }
 
 engineSelectDlg::~engineSelectDlg() {
   qDebug("Destroying engineSelectDlg");
-  saveSettings();
   emit enginesChanged();
   qDebug("Before deleting downloader");
   delete downloader;
@@ -95,16 +95,17 @@ void engineSelectDlg::dragEnterEvent(QDragEnterEvent *event) {
   }
 }
 
-void engineSelectDlg::loadSettings() {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  known_engines = settings.value(QString::fromUtf8("SearchEngines/knownEngines"), QStringList()).toStringList();
-  known_enginesEnabled = settings.value(QString::fromUtf8("SearchEngines/knownEnginesEnabled"), QList<QVariant>()).toList();
-}
-
 void engineSelectDlg::saveSettings() {
+  QStringList known_engines;
+  QVariantList known_enginesEnabled;
+  QString engine;
+  foreach(engine, installed_engines) {
+    known_engines << engine;
+    known_enginesEnabled << QVariant(installed_engines.value(engine, true));
+  }
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  settings.setValue(QString::fromUtf8("SearchEngines/knownEngines"), installed_engines);
-  settings.setValue(QString::fromUtf8("SearchEngines/knownEnginesEnabled"), enginesEnabled);
+  settings.setValue(QString::fromUtf8("SearchEngines/knownEngines"), known_engines);
+  settings.setValue(QString::fromUtf8("SearchEngines/knownEnginesEnabled"), known_enginesEnabled);
 }
 
 void engineSelectDlg::on_updateButton_clicked() {
@@ -114,9 +115,9 @@ void engineSelectDlg::on_updateButton_clicked() {
 
 void engineSelectDlg::toggleEngineState(QTreeWidgetItem *item, int) {
   int index = pluginsTree->indexOfTopLevelItem(item);
-  Q_ASSERT(index != -1);
-  bool new_val = !enginesEnabled.at(index).toBool();
-  enginesEnabled.replace(index, QVariant(new_val));
+  QString id = item->text(ENGINE_ID);
+  bool new_val = !installed_engines.value(id, true);
+  installed_engines[id] = new_val;
   QString enabledTxt;
   if(new_val){
     enabledTxt = tr("True");
@@ -136,13 +137,12 @@ void engineSelectDlg::displayContextMenu(const QPoint& pos) {
   bool has_enable = false, has_disable = false;
   QTreeWidgetItem *item;
   foreach(item, items) {
-    int index = pluginsTree->indexOfTopLevelItem(item);
-    Q_ASSERT(index != -1);
-    if(enginesEnabled.at(index).toBool() and !has_disable) {
+    QString id = item->text(ENGINE_ID);
+    if(installed_engines.value(id, true) and !has_disable) {
       myContextMenu.addAction(actionDisable);
       has_disable = true;
     }
-    if(!enginesEnabled.at(index).toBool() and !has_enable) {
+    if(!installed_engines.value(id, true) and !has_enable) {
       myContextMenu.addAction(actionEnable);
       has_enable = true;
     }
@@ -165,33 +165,31 @@ void engineSelectDlg::on_actionUninstall_triggered() {
   foreach(item, items) {
     int index = pluginsTree->indexOfTopLevelItem(item);
     Q_ASSERT(index != -1);
-    QString name = installed_engines.at(index);
-    if(QFile::exists(":/search_engine/engines/"+name+".py")) {
+    QString id = item->text(ENGINE_ID);
+    if(QFile::exists(":/search_engine/engines/"+id+".py")) {
       error = true;
       // Disable it instead
-      enginesEnabled.replace(index, QVariant(false));
+      installed_engines.insert(id, false);
       item->setText(ENGINE_STATE, tr("False"));
       setRowColor(index, "red");
       continue;
     }else {
       // Proceed with uninstall
       // remove it from hard drive
-      QFile::remove(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+name+".py");
-      if(QFile::exists(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+name+".png")) {
-        QFile::remove(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+name+".png");
-      }
-      if(QFile::exists(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+name+".pyc")) {
-        QFile::remove(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+name+".pyc");
+      QDir enginesFolder(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines");
+      QStringList filters;
+      filters << id+".*";
+      QStringList files = enginesFolder.entryList(filters, QDir::Files, QDir::Unsorted);
+      QString file;
+      foreach(file, files) {
+        enginesFolder.remove(file);
       }
       // Remove it from lists
-      installed_engines.removeAt(index);
-      enginesEnabled.removeAt(index);
-      pluginsTree->takeTopLevelItem(index);
+      installed_engines.remove(id);
+      delete item;
       change = true;
     }
   }
-  if(change)
-    saveSettings();
   if(error)
     QMessageBox::warning(0, tr("Uninstall warning"), tr("Some plugins could not be uninstalled because they are included in qBittorrent.\n Only the ones you added yourself can be uninstalled.\nHowever, those plugins were disabled."));
   else
@@ -204,7 +202,8 @@ void engineSelectDlg::enableSelection() {
   foreach(item, items) {
     int index = pluginsTree->indexOfTopLevelItem(item);
     Q_ASSERT(index != -1);
-    enginesEnabled.replace(index, QVariant(true));
+    QString id = item->text(ENGINE_ID);
+    installed_engines.insert(id, true);
     item->setText(ENGINE_STATE, tr("True"));
     setRowColor(index, "green");
   }
@@ -216,7 +215,8 @@ void engineSelectDlg::disableSelection() {
   foreach(item, items) {
     int index = pluginsTree->indexOfTopLevelItem(item);
     Q_ASSERT(index != -1);
-    enginesEnabled.replace(index, QVariant(false));
+    QString id = item->text(ENGINE_ID);
+    installed_engines.insert(id, false);
     item->setText(ENGINE_STATE, tr("False"));
     setRowColor(index, "red");
   }
@@ -225,7 +225,7 @@ void engineSelectDlg::disableSelection() {
 // Set the color of a row in data model
 void engineSelectDlg::setRowColor(int row, QString color){
   QTreeWidgetItem *item = pluginsTree->topLevelItem(row);
-  for(int i=0; i<pluginsTree->columnCount(); ++i){
+  for(int i=0; i<pluginsTree->columnCount()-1; ++i){
     item->setData(i, Qt::ForegroundRole, QVariant(QColor(color)));
   }
 }
@@ -243,11 +243,23 @@ bool engineSelectDlg::checkInstalled(QString plugin_name) const {
   return plugins_list.contains(plugin_name.toUtf8());
 }
 
-void engineSelectDlg::loadSupportedSearchEngines() {
+void engineSelectDlg::loadSupportedSearchEngines(bool first) {
   // Some clean up first
   pluginsTree->clear();
+  QHash<QString, bool> old_engines;
+  if(first) {
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QStringList known_engines = settings.value(QString::fromUtf8("SearchEngines/knownEngines"), QStringList()).toStringList();
+    QVariantList enabled = settings.value(QString::fromUtf8("SearchEngines/knownEnginesEnabled"), QList<QVariant>()).toList();
+    Q_ASSERT(known_engines.size() == enabled.size());
+    unsigned int nbKnownEngines = known_engines.size();
+    for(unsigned int i=0; i<nbKnownEngines; ++i) {
+      old_engines[known_engines.at(i)] = enabled.at(i).toBool();
+    }
+  } else {
+    old_engines = installed_engines;
+  }
   installed_engines.clear();
-  enginesEnabled.clear();
   QStringList params;
   // Ask nova core for the supported search engines
   QProcess nova;
@@ -259,14 +271,11 @@ void engineSelectDlg::loadSupportedSearchEngines() {
   result = result.replace("\n", "");
   qDebug("read: %s", result.data());
   QByteArray e;
+  QStringList supported_engines_ids;
   foreach(e, result.split(',')) {
     QString en = QString(e);
-    installed_engines << en;
-    int index = known_engines.indexOf(en);
-    if(index == -1)
-      enginesEnabled << true;
-    else
-      enginesEnabled << known_enginesEnabled.at(index).toBool();
+    supported_engines_ids << en;
+    installed_engines[en] = old_engines.value(en, true);
   }
   params.clear();
   params << "--supported_engines_infos";
@@ -278,19 +287,21 @@ void engineSelectDlg::loadSupportedSearchEngines() {
   qDebug("read: %s", result.data());
   unsigned int i = 0;
   foreach(e, result.split(',')) {
+    QString id = supported_engines_ids.at(i);
     QString nameUrlCouple(e);
     QStringList line = nameUrlCouple.split('|');
     if(line.size() != 2) continue;
     // Download favicon
     QString enabledTxt;
-    if(enginesEnabled.at(i).toBool()){
+    if(installed_engines.value(id, true)) {
       enabledTxt = tr("True");
-    }else{
+    } else {
       enabledTxt = tr("False");
     }
     line << enabledTxt;
+    line << id;
     QTreeWidgetItem *item = new QTreeWidgetItem(pluginsTree, line);
-    QString iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+installed_engines.at(i)+".png";
+    QString iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+id+".png";
     if(QFile::exists(iconPath)) {
       // Good, we already have the icon
       item->setData(ENGINE_NAME, Qt::DecorationRole, QVariant(QIcon(iconPath)));
@@ -298,7 +309,7 @@ void engineSelectDlg::loadSupportedSearchEngines() {
       // Icon is missing, we must download it
       downloader->downloadUrl(line.at(1)+"/favicon.ico");
     }
-    if(enginesEnabled.at(i).toBool())
+    if(installed_engines.value(id, true))
       setRowColor(i, "green");
     else
       setRowColor(i, "red");
@@ -451,9 +462,8 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
       QList<QTreeWidgetItem*> items = findItemsWithUrl(url);
       QTreeWidgetItem *item;
       foreach(item, items){
-        int index = pluginsTree->indexOfTopLevelItem(item);
-        Q_ASSERT(index != -1);
-        QString iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+installed_engines.at(index)+".png";
+        QString id = item->text(ENGINE_ID);
+        QString iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+id+".png";
         QFile::copy(filePath, iconPath);
         item->setData(ENGINE_NAME, Qt::DecorationRole, QVariant(QIcon(iconPath)));
       }

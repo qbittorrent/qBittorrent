@@ -32,10 +32,7 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
 
   private:
     // Search related
-    QStringList installed_engines;
-    QVariantList enginesEnabled;
-    QStringList known_engines;
-    QVariantList known_enginesEnabled;
+    QHash<QString, bool> installed_engines;
     downloadThread *downloader;
 
   public:
@@ -52,10 +49,9 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
     void enginesChanged();
 
   protected slots:
-    void loadSettings();
     void saveSettings();
     void on_closeButton_clicked();
-    void loadSupportedSearchEngines();
+    void loadSupportedSearchEngines(bool first=false);
     void toggleEngineState(QTreeWidgetItem*, int);
     void setRowColor(int row, QString color);
     void processDownloadedFile(QString url, QString filePath);

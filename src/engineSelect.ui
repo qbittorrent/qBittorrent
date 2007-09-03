@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>527</width>
+    <width>541</width>
     <height>254</height>
    </rect>
   </property>
@@ -57,6 +57,11 @@
      <column>
       <property name="text" >
        <string>Enabled</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string/>
       </property>
      </column>
     </widget>
