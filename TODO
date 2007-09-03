@@ -9,12 +9,14 @@
 
 // Harder
 - Display a progress bar that really represents the pieces we have (like in eMule)
+- Torrent scheduler ala µtorrent/Bitcomet
 
 // Waiting for libtorrent
 - File selection in a torrent in compact mode
 - Allow to prioritize torrents (may code this in qBittorrent?)
 
 // Unsure
+- Display the peers we are connected to for each torrent with infos (like flag, dl/up speeds, ...)
 - Azureus spoofing to prevent ban from trackers?
 - Option to shutdown computer when downloads are finished
 - Display hard drive space left?
@@ -43,19 +45,31 @@
 - Add "Mark all as read" feature for RSS
 - Allow to customize lists refreshing interval (in options)
 - Improve search plugin install (download drom url, choose in a list taken from plugins.qbittorrent.org)
+- Display the number of DHT node if possible
+- Allow to change action on double-click
+  -> in download list
+  -> in seeding list
 
 // in v1.0.0 (partial) - WIP
 - Fix all (or almost all) opened bugs in bug tracker
 - update sorting when a new torrent is added?
+- Add an option 'Automatically update search plugins'
+- Add an option 'Display current speed in title bar'
+- Add an option 'append .!qBT to incomplete files'
+- Add an option "preallocate all files"
+- Add an option 'Put new downloads in ...'
+- Add an option 'Put complete downloads in ...'
+- Improve systray tooltip
+- Use tooltips in options to explain
 - Keep documention up to date
 - Windows port (Chris - Peerkoel)
 - write patches for libtorrent for file_priority(int index), actual_size() ?
 - valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
 - 128m  29m  16m S  4.8  2.9   0:02.28 qbittorrent
 * beta 7
-  - support plugins in tar with icon
   - update doc for plugins (and add screenies)
   - Redesign options (fully)
+    * Add options like "num uploads"
   - redesign torrent creation
     * lineEdit for input
     * Create and save button
