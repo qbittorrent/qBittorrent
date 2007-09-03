@@ -422,7 +422,7 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file, QString updateSer
     if(isUpdateNeeded(plugin_name, version)) {
       qDebug("Plugin: %s is outdated", plugin_name.toUtf8().data());
       // Downloading update
-      downloader->downloadUrl(updateServer+plugin_name+".zip"); // Actually this is really a .py
+      downloader->downloadUrl(updateServer+plugin_name+".pyqBT"); // Actually this is really a .py
       downloader->downloadUrl(updateServer+plugin_name+".png");
       updated = true;
     }else {
@@ -485,10 +485,10 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
       return;
     }
   }
-  if(url.endsWith(".zip") || url.endsWith(".py")) {
+  if(url.endsWith(".pyqBT") || url.endsWith(".py")) {
     // a plugin update has been downloaded
     QString plugin_name = url.split('/').last();
-    plugin_name.replace(".zip", "");
+    plugin_name.replace(".pyqBT", "");
     plugin_name.replace(".py", "");
     QString dest_path = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+plugin_name+".py";
     bool new_plugin = false;
@@ -526,10 +526,10 @@ void engineSelectDlg::handleDownloadFailure(QString url, QString reason) {
     QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, update server is temporarily unavailable."));
     return;
   }
-  if(url.endsWith(".zip") || url.endsWith(".py")) {
+  if(url.endsWith(".pyqBT") || url.endsWith(".py")) {
     // a plugin update download has been failed
     QString plugin_name = url.split('/').last();
-    plugin_name.replace(".zip", "");
+    plugin_name.replace(".pyqBT", "");
     plugin_name.replace(".py", "");
     QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, %1 search plugin update failed.", "%1 is the name of the search engine").arg(plugin_name.toUtf8().data()));
   }
