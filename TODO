@@ -53,7 +53,17 @@
 - valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
 - 128m  29m  16m S  4.8  2.9   0:02.28 qbittorrent
 * beta 7
-  - Fix storage st creation + hasher in torrent creation
+  - support plugins in tar with icon
+  - update doc for plugins (and add screenies)
+  - Redesign options (fully)
+  - redesign torrent creation
+    * lineEdit for input
+    * Create and save button
+    * piece size choice
+    * Start seeding checkbox
+  - Review torrent content selection
+    * Right-click menu (priorities)
+    * check the one in ktorrent
   - Translations update (IN PROGRESS)
   - Wait for some bug fixes in libtorrent :
     - Number of seeds non null for finished torrent (Ticket #122)
@@ -75,13 +85,15 @@ LANGUAGES UPDATED:
 - German *BETA6*
 - Russian *BETA6*
 - Korean *BETA5*
-- Greek *BETA5*
+- Greek *BETA6*
 - Dutch *BETA5*
 - Romanian *BETA5*
+- Bulgarian *BETA6*
 
 beta6->beta7 changelog:
 - FEATURE: Made search engine plugin install more reliable
 - FEATURE: Allow to drag'n drop plugin to list for install/update
+- FEATURE: Added some search plugins to http://plugins.qbittorrent.org
 - BUGFIX: Updated man page / README / INSTALL
 - BUGFIX: Paused torrents could be displayed as connected for a sec after checking
 - BUGFIX: 'Unknown' is now displayed in search results columns where value is -1
