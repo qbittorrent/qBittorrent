@@ -24,6 +24,7 @@
   <file>Icons/style.png</file>
   <file>Icons/wizard.png</file>
   <file>Icons/password.png</file>
+  <file>Icons/gear.png</file>
   <file>Icons/sphere2.png</file>
   <file>Icons/smile.png</file>
   <file>Icons/loading.png</file>
@@ -41,6 +42,9 @@
   <file>Icons/subscribe.png</file>
   <file>Icons/unsubscribe16.png</file>
   <file>Icons/subscribe16.png</file>
+  <file>Icons/search32.png</file>
+  <file>Icons/bt_settings.png</file>
+  <file>Icons/star.png</file>
   <file>Icons/flags/portugal.png</file>
   <file>Icons/flags/france.png</file>
   <file>Icons/flags/ukraine.png</file>
