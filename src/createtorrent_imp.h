@@ -30,13 +30,15 @@ class createtorrent : public QDialog, private Ui::createTorrentDialog{
   public:
     createtorrent(QWidget *parent = 0);
     QStringList allItems(QListWidget *list);
+    int getPieceSize() const;
+
+  signals:
+    void torrent_to_seed(QString path);
 
   protected slots:
-    void on_browse_destination_clicked();
     void on_createButton_clicked();
     void on_addFile_button_clicked();
     void on_addFolder_button_clicked();
-    void on_removeFolder_button_clicked();
     void on_addTracker_button_clicked();
     void on_removeTracker_button_clicked();
     void on_addURLSeed_button_clicked();

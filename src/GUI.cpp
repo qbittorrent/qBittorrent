@@ -511,7 +511,8 @@ void GUI::closeEvent(QCloseEvent *e) {
 
 // Display window to create a torrent
 void GUI::on_actionCreate_torrent_triggered() {
-  new createtorrent(this);
+  createtorrent *ct = new createtorrent(this);
+  connect(ct, SIGNAL(torrent_to_seed(QString)), this, SLOT(addTorrent(QString path)));
 }
 
 // Called when we minimize the program
@@ -740,6 +741,10 @@ void GUI::processParams(const QStringList& params) {
       }
     }
   }
+}
+
+void GUI::addTorrent(QString path) {
+  BTSession->addTorrent(path);
 }
 
 void GUI::processScannedFiles(const QStringList& params) {

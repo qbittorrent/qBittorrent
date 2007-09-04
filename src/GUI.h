@@ -127,6 +127,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void checkConnectionStatus();
     void configureSession(bool deleteOptions);
     void processParams(const QStringList& params);
+    void addTorrent(QString path);
     void addUnauthenticatedTracker(QPair<QTorrentHandle,QString> tracker);
     void processScannedFiles(const QStringList& params);
     void processDownloadedFiles(QString path, QString url);

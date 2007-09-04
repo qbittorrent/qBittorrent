@@ -42,7 +42,6 @@
 - Allow to disable UPnP/NAT-PMP/LSD in options?
 - Allow to automatically delete torrents when they reach a given ratio (in options) : easy
 - Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
-- Add "Mark all as read" feature for RSS
 - Allow to customize lists refreshing interval (in options)
 - Improve search plugin install (download drom url, choose in a list taken from plugins.qbittorrent.org)
 - Display the number of DHT node if possible
@@ -54,10 +53,6 @@
 - Fix all (or almost all) opened bugs in bug tracker
 - Add an option 'Automatically update search plugins'
 - Add an option 'Display current speed in title bar'
-- Add an option 'append .!qBT to incomplete files'
-- Add an option "preallocate all files"
-- Add an option 'Put new downloads in ...'
-- Add an option 'Put complete downloads in ...'
 - Improve systray tooltip
 - Use tooltips in options to explain
 - Keep documention up to date
@@ -66,19 +61,12 @@
 - valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
 - 128m  29m  16m S  4.8  2.9   0:02.28 qbittorrent
 * beta 7
+  - Add "Mark all as read" feature for RSS
   - update doc for plugins (and add screenies)
   - Redesign options (fully)
-    * Add options like "num uploads"
-  - redesign torrent creation
-    * lineEdit for input
-    * Create and save button
-    * piece size choice
-    * Start seeding checkbox
   - Review torrent content selection
     * check the one in ktorrent
   - Translations update (IN PROGRESS)
-  - Wait for some bug fixes in libtorrent :
-    - Number of seeds non null for finished torrent (Ticket #122)
 
 LANGUAGES UPDATED:
 - French *BETA6*
@@ -107,6 +95,8 @@ beta6->beta7 changelog:
 - FEATURE: Allow to drag'n drop plugin to list for install/update
 - FEATURE: Added some search plugins to http://plugins.qbittorrent.org
 - FEATURE: Added zip support in search plugins manager (can put .py & .png inside)
+- FEATURE: Redesigned torrent creation dialog
+- FEATURE: Allow to set piece size when creating a torrent
 - BUGFIX: In torrent content, it is now easier to filter all torrents using right click menu
 - BUGFIX: Updated man page / README / INSTALL
 - BUGFIX: Paused torrents could be displayed as connected for a sec after checking
@@ -120,4 +110,5 @@ beta6->beta7 changelog:
 - BUGFIX: the function that set the rows color doesn't handle hidden columns anymore
 - BUGFIX: improved search engine plugin manager code and fixed bugs
 - BUGFIX: Dropped Qt4.2 support, becomes too difficult to maintain
+- BUGFIX: Fixed deprecation warning with latest libtorrent svn
 - COSMETIC: Improved some icons

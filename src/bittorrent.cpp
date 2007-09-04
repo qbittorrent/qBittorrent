@@ -358,10 +358,10 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
     // Decode torrent file
     entry e = bdecode(std::istream_iterator<char>(in), std::istream_iterator<char>());
     // Getting torrent file informations
-    torrent_info t(e);
-    qDebug(" -> Hash: %s", misc::toString(t.info_hash()).c_str());
-    qDebug(" -> Name: %s", t.name().c_str());
-    QString hash = misc::toQString(t.info_hash());
+    boost::intrusive_ptr<torrent_info> t(new torrent_info(e));
+    qDebug(" -> Hash: %s", misc::toString(t->info_hash()).c_str());
+    qDebug(" -> Name: %s", t->name().c_str());
+    QString hash = misc::toQString(t->info_hash());
     if(file.startsWith(torrentBackup.path())) {
       QFileInfo fi(file);
       QString old_hash = fi.baseName();
@@ -378,7 +378,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
 //         return;
       }
     }
-    if(s->find_torrent(t.info_hash()).is_valid()) {
+    if(s->find_torrent(t->info_hash()).is_valid()) {
       qDebug("/!\\ Torrent is already in download list");
       // Update info Bar
       if(!fromScanDir) {
@@ -456,7 +456,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
     }
     // Incremental download
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental")) {
-      qDebug("Incremental download enabled for %s", t.name().c_str());
+      qDebug("Incremental download enabled for %s", t->name().c_str());
       h.set_sequenced_download_threshold(1);
     }
     // Start torrent because it was added in paused state
@@ -1086,7 +1086,7 @@ void bittorrent::reloadTorrent(const QTorrentHandle &h) {
   fs::path saveDir = h.save_path_boost();
   QString fileName = h.name();
   QString hash = h.hash();
-  torrent_info t = h.get_torrent_info();
+  boost::intrusive_ptr<torrent_info> t(new torrent_info(h.get_torrent_info()));
   qDebug("Reloading torrent: %s", fileName.toUtf8().data());
   entry resumeData;
     // Checking if torrentBackup Dir exists
