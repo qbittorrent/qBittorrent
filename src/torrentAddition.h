@@ -180,7 +180,6 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
 
     bool allFiltered() const {
       unsigned int nbRows = PropListModel->rowCount();
-      if(nbRows == 1) return true;
       for(unsigned int i=0; i<nbRows; ++i){
         if(PropListModel->data(PropListModel->index(i, PRIORITY)).toInt() != IGNORED)
           return false;
