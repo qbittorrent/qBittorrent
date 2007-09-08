@@ -33,6 +33,8 @@
     - FEATURE: Allow to drag 'n drop urls on the main window
     - FEATURE: Improved search engine (multipage support in all plugins)
     - FEATURE: Added BTJunkie search engine plugin
+    - FEATURE: Added an option to force full disk allocation for all torrents
+    - FEATURE: Added an option to add torrents in paused state
     - I18N: Added Hungarian translation
     - I18N: Added Brazilian translation
     - BUGFIX: Progress of paused torrents is now correct on restart
@@ -57,7 +59,7 @@
     - BUGFIX: ETA was wrong for torrents with filtered files
     - BUGFIX: Fixed drag'n drop on non-KDE systems
     - COSMETIC: Redesigned torrent properties a little
-    - COSMETIC: Redesigned options a little
+    - COSMETIC: Totally redesigned program preferences
     - COSMETIC: Display more logs messages concerning features
     - COSMETIC: Improved lists renderers
     - COSMETIC: Use a different icon for torrents being checked and for connecting ones

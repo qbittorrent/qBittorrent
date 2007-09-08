@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>594</width>
-    <height>530</height>
+    <width>597</width>
+    <height>560</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -19,11 +19,20 @@
    <string>Options -- qBittorrent</string>
   </property>
   <layout class="QVBoxLayout" >
-   <property name="margin" >
-    <number>9</number>
-   </property>
    <property name="spacing" >
     <number>6</number>
+   </property>
+   <property name="leftMargin" >
+    <number>9</number>
+   </property>
+   <property name="topMargin" >
+    <number>9</number>
+   </property>
+   <property name="rightMargin" >
+    <number>9</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>9</number>
    </property>
    <item>
     <widget class="QLabel" name="lbl_title" >
@@ -39,7 +48,7 @@
       </font>
      </property>
      <property name="text" >
-      <string>Options</string>
+      <string>Preferences</string>
      </property>
      <property name="alignment" >
       <set>Qt::AlignCenter</set>
@@ -73,906 +82,31 @@
      <property name="elideMode" >
       <enum>Qt::ElideLeft</enum>
      </property>
-     <widget class="QWidget" name="Connection" >
+     <widget class="QWidget" name="tab" >
       <attribute name="title" >
-       <string>Connection</string>
+       <string>General</string>
+      </attribute>
+      <attribute name="icon" >
+       <iconset resource="icons.qrc" >:/Icons/star.png</iconset>
       </attribute>
       <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>9</number>
-       </property>
-       <property name="spacing" >
-        <number>6</number>
-       </property>
        <item>
-        <widget class="QGroupBox" name="groupMainConnec" >
+        <widget class="QGroupBox" name="UISettingsBox" >
          <property name="title" >
-          <string>Main</string>
+          <string>User interface settings</string>
          </property>
          <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
           <item>
            <layout class="QHBoxLayout" >
-            <property name="margin" >
-             <number>0</number>
-            </property>
-            <property name="spacing" >
-             <number>6</number>
-            </property>
             <item>
-             <layout class="QVBoxLayout" >
-              <property name="margin" >
-               <number>0</number>
-              </property>
-              <property name="spacing" >
-               <number>6</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="lbl_download" >
-                <property name="text" >
-                 <string>Download Limit:</string>
-                </property>
-                <property name="buddy" >
-                 <cstring>spin_download</cstring>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="lbl_upload" >
-                <property name="text" >
-                 <string>Upload Limit:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="lbl_max_connec" >
-                <property name="text" >
-                 <string>Max Connects:</string>
-                </property>
-                <property name="buddy" >
-                 <cstring>spin_port_min</cstring>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="lbl_ports" >
-                <property name="text" >
-                 <string>Port range:</string>
-                </property>
-                <property name="buddy" >
-                 <cstring>spin_port_min</cstring>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_3" >
-                <property name="text" >
-                 <string>Share ratio:</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" >
-              <property name="margin" >
-               <number>0</number>
-              </property>
-              <property name="spacing" >
-               <number>6</number>
-              </property>
-              <item>
-               <layout class="QHBoxLayout" >
-                <property name="margin" >
-                 <number>0</number>
-                </property>
-                <property name="spacing" >
-                 <number>6</number>
-                </property>
-                <item>
-                 <widget class="QSpinBox" name="spin_download" >
-                  <property name="enabled" >
-                   <bool>false</bool>
-                  </property>
-                  <property name="suffix" >
-                   <string/>
-                  </property>
-                  <property name="maximum" >
-                   <number>1000000</number>
-                  </property>
-                  <property name="minimum" >
-                   <number>1</number>
-                  </property>
-                  <property name="value" >
-                   <number>200</number>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_8" >
-                  <property name="minimumSize" >
-                   <size>
-                    <width>64</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="text" >
-                   <string>KiB/s</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QCheckBox" name="disableDLLimit" >
-                  <property name="text" >
-                   <string>Disable</string>
-                  </property>
-                  <property name="checked" >
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer>
-                  <property name="orientation" >
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" >
-                   <size>
-                    <width>61</width>
-                    <height>25</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" >
-                <property name="margin" >
-                 <number>0</number>
-                </property>
-                <property name="spacing" >
-                 <number>6</number>
-                </property>
-                <item>
-                 <widget class="QSpinBox" name="spin_upload" >
-                  <property name="enabled" >
-                   <bool>false</bool>
-                  </property>
-                  <property name="suffix" >
-                   <string/>
-                  </property>
-                  <property name="maximum" >
-                   <number>1000000</number>
-                  </property>
-                  <property name="minimum" >
-                   <number>1</number>
-                  </property>
-                  <property name="value" >
-                   <number>10</number>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_9" >
-                  <property name="minimumSize" >
-                   <size>
-                    <width>64</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="text" >
-                   <string>KiB/s</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QCheckBox" name="disableUPLimit" >
-                  <property name="text" >
-                   <string>Disable</string>
-                  </property>
-                  <property name="checked" >
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer>
-                  <property name="orientation" >
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" >
-                   <size>
-                    <width>61</width>
-                    <height>25</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" >
-                <property name="margin" >
-                 <number>0</number>
-                </property>
-                <property name="spacing" >
-                 <number>6</number>
-                </property>
-                <item>
-                 <widget class="QSpinBox" name="spin_max_connec" >
-                  <property name="enabled" >
-                   <bool>false</bool>
-                  </property>
-                  <property name="maximum" >
-                   <number>1000</number>
-                  </property>
-                  <property name="minimum" >
-                   <number>1</number>
-                  </property>
-                  <property name="value" >
-                   <number>600</number>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="lbl_connecs" >
-                  <property name="minimumSize" >
-                   <size>
-                    <width>88</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="text" >
-                   <string>connections</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QCheckBox" name="disableMaxConnec" >
-                  <property name="enabled" >
-                   <bool>true</bool>
-                  </property>
-                  <property name="text" >
-                   <string>Disable</string>
-                  </property>
-                  <property name="checked" >
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer>
-                  <property name="orientation" >
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" >
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" >
-                <property name="margin" >
-                 <number>0</number>
-                </property>
-                <property name="spacing" >
-                 <number>6</number>
-                </property>
-                <item>
-                 <widget class="QSpinBox" name="spin_port_min" >
-                  <property name="maximum" >
-                   <number>65525</number>
-                  </property>
-                  <property name="minimum" >
-                   <number>1000</number>
-                  </property>
-                  <property name="value" >
-                   <number>6881</number>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="to_range" >
-                  <property name="text" >
-                   <string/>
-                  </property>
-                  <property name="alignment" >
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QSpinBox" name="spin_port_max" >
-                  <property name="maximum" >
-                   <number>65525</number>
-                  </property>
-                  <property name="minimum" >
-                   <number>1000</number>
-                  </property>
-                  <property name="value" >
-                   <number>6889</number>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer>
-                  <property name="orientation" >
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" >
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" >
-                <property name="margin" >
-                 <number>0</number>
-                </property>
-                <property name="spacing" >
-                 <number>6</number>
-                </property>
-                <item>
-                 <widget class="QLabel" name="label_11" >
-                  <property name="text" >
-                   <string>1 KiB DL = </string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QDoubleSpinBox" name="spin_ratio" >
-                  <property name="enabled" >
-                   <bool>false</bool>
-                  </property>
-                  <property name="alignment" >
-                   <set>Qt::AlignHCenter</set>
-                  </property>
-                  <property name="decimals" >
-                   <number>1</number>
-                  </property>
-                  <property name="maximum" >
-                   <double>99.900000000000006</double>
-                  </property>
-                  <property name="minimum" >
-                   <double>1.000000000000000</double>
-                  </property>
-                  <property name="singleStep" >
-                   <double>0.100000000000000</double>
-                  </property>
-                  <property name="value" >
-                   <double>1.000000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_12" >
-                  <property name="minimumSize" >
-                   <size>
-                    <width>82</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="text" >
-                   <string>KiB UP max.</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QCheckBox" name="disableRatio" >
-                  <property name="text" >
-                   <string>Disable</string>
-                  </property>
-                  <property name="checked" >
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer>
-                  <property name="orientation" >
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" >
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox" >
-         <property name="title" >
-          <string>Peer eXchange (PeX)</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <item>
-           <widget class="QCheckBox" name="disablePeX" >
-            <property name="text" >
-             <string>Disable Peer eXchange (PeX)</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QGroupBox" name="groupMainDHT" >
-           <property name="title" >
-            <string>DHT (trackerless)</string>
-           </property>
-           <layout class="QVBoxLayout" >
-            <property name="margin" >
-             <number>9</number>
-            </property>
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <item>
-             <widget class="QCheckBox" name="disableDHT" >
-              <property name="text" >
-               <string>Disable DHT (Trackerless)</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QGroupBox" name="groupDHT" >
-              <property name="title" >
-               <string>DHT configuration</string>
-              </property>
-              <layout class="QVBoxLayout" >
-               <property name="margin" >
-                <number>9</number>
-               </property>
-               <property name="spacing" >
-                <number>6</number>
-               </property>
-               <item>
-                <layout class="QHBoxLayout" >
-                 <property name="margin" >
-                  <number>0</number>
-                 </property>
-                 <property name="spacing" >
-                  <number>6</number>
-                 </property>
-                 <item>
-                  <widget class="QLabel" name="dhtPort_lbl" >
-                   <property name="text" >
-                    <string>DHT port:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QSpinBox" name="spin_dht_port" >
-                   <property name="minimumSize" >
-                    <size>
-                     <width>6</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="maximum" >
-                    <number>65525</number>
-                   </property>
-                   <property name="minimum" >
-                    <number>1000</number>
-                   </property>
-                   <property name="value" >
-                    <number>6881</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer>
-                   <property name="orientation" >
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" >
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QGroupBox" name="groupMainEncryption" >
-           <property name="title" >
-            <string>Encryption</string>
-           </property>
-           <layout class="QVBoxLayout" >
-            <property name="margin" >
-             <number>9</number>
-            </property>
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <item>
-             <layout class="QHBoxLayout" >
-              <property name="margin" >
-               <number>0</number>
-              </property>
-              <property name="spacing" >
-               <number>6</number>
-              </property>
-              <item>
-               <layout class="QVBoxLayout" >
-                <property name="margin" >
-                 <number>0</number>
-                </property>
-                <property name="spacing" >
-                 <number>6</number>
-                </property>
-                <item>
-                 <widget class="QLabel" name="lbl_encryption" >
-                  <property name="text" >
-                   <string>Encryption state:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QComboBox" name="comboEncryption" >
-                  <item>
-                   <property name="text" >
-                    <string>Enabled</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text" >
-                    <string>Forced</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text" >
-                    <string>Disabled</string>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item>
-                 <spacer>
-                  <property name="orientation" >
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                  <property name="sizeHint" >
-                   <size>
-                    <width>20</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <widget class="QLabel" name="lblencryption_icon" >
-                <property name="text" >
-                 <string/>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>554</width>
-           <height>16</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="Behaviour" >
-      <attribute name="title" >
-       <string>Behaviour</string>
-      </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>9</number>
-       </property>
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <item>
-        <widget class="QGroupBox" name="groupTorrentAddition" >
-         <property name="title" >
-          <string>Torrent addition</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <item>
-           <widget class="QCheckBox" name="checkAdditionDialog" >
-            <property name="text" >
-             <string>Display a torrent addition dialog everytime I add a torrent</string>
-            </property>
-            <property name="checked" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QGroupBox" name="groupSavePath" >
-            <property name="enabled" >
-             <bool>false</bool>
-            </property>
-            <property name="title" >
-             <string>Default save path</string>
-            </property>
-            <layout class="QVBoxLayout" >
-             <property name="margin" >
-              <number>9</number>
-             </property>
-             <property name="spacing" >
-              <number>6</number>
-             </property>
-             <item>
-              <layout class="QHBoxLayout" >
-               <property name="margin" >
-                <number>0</number>
-               </property>
-               <property name="spacing" >
-                <number>6</number>
-               </property>
-               <item>
-                <widget class="QLabel" name="lbl_savePath" >
-                 <property name="text" >
-                  <string>Save Path:</string>
-                 </property>
-                 <property name="buddy" >
-                  <cstring>proxy_username</cstring>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" >
-                 <property name="margin" >
-                  <number>0</number>
-                 </property>
-                 <property name="spacing" >
-                  <number>6</number>
-                 </property>
-                 <item>
-                  <widget class="QLineEdit" name="txt_savePath" >
-                   <property name="text" >
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QToolButton" name="browse_button" >
-                   <property name="text" >
-                    <string>...</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_3" >
-         <property name="title" >
-          <string>Main window</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <item>
-           <widget class="QCheckBox" name="confirmExit_checkBox" >
-            <property name="text" >
-             <string>Exit confirmation when the download list is not empty</string>
-            </property>
-            <property name="checked" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="check_goToSysTray" >
-            <property name="text" >
-             <string>Go to systray when minimizing window</string>
-            </property>
-            <property name="checked" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="check_closeToSysTray" >
-            <property name="text" >
-             <string>Go to systray when closing main window</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="check_disableSystray" >
-            <property name="text" >
-             <string>Disable systray integration</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupOSD" >
-         <property name="title" >
-          <string>Systray messages</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <item>
-           <widget class="QRadioButton" name="alwaysOSD" >
-            <property name="text" >
-             <string>Always display systray messages</string>
-            </property>
-            <property name="checked" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="someOSD" >
-            <property name="text" >
-             <string>Display systray messages only when window is hidden</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="neverOSD" >
-            <property name="text" >
-             <string>Never display systray messages</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>466</width>
-           <height>31</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab_3" >
-      <attribute name="title" >
-       <string>Language</string>
-      </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>9</number>
-       </property>
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <item>
-        <widget class="QGroupBox" name="groupBox_2" >
-         <property name="title" >
-          <string>Localization</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <item>
-           <layout class="QHBoxLayout" >
-            <property name="margin" >
-             <number>0</number>
-            </property>
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <item>
-             <widget class="QLabel" name="lbl_icon_i18n" >
-              <property name="text" >
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="lbl_i18n" >
+             <widget class="QLabel" name="lblI18n" >
               <property name="text" >
                <string>Language:</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="combo_i18n" >
-              <property name="minimumSize" >
-               <size>
-                <width>300</width>
-                <height>25</height>
-               </size>
-              </property>
+             <widget class="QComboBox" name="comboI18n" >
               <property name="sizeAdjustPolicy" >
                <enum>QComboBox::AdjustToContents</enum>
               </property>
@@ -996,21 +130,176 @@
             </item>
            </layout>
           </item>
+          <item>
+           <widget class="QLabel" name="lbl_i18n_info_2" >
+            <property name="font" >
+             <font>
+              <pointsize>6</pointsize>
+              <italic>true</italic>
+             </font>
+            </property>
+            <property name="text" >
+             <string>&lt;b>Note:&lt;/b> Changes will be applied after qBittorrent is restarted.</string>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QLabel" name="lblStyle" >
+              <property name="text" >
+               <string>Visual style:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboStyle" >
+              <item>
+               <property name="text" >
+                <string>Plastique style (KDE like)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>Cleanlooks style (Gnome like)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>Motif style (Unix like)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>CDE style (Common Desktop Environment like)</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkConfirmExit" >
+            <property name="text" >
+             <string>Ask for confirmation on exit when download list is not empty</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkSpeedInTitle" >
+            <property name="text" >
+             <string>Display current speed in title bar</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="lbl_i18n_info" >
-         <property name="text" >
-          <string>&lt;b>Note:&lt;/b> Changes will be applied after qBittorrent is restarted.</string>
+        <widget class="QGroupBox" name="systrayBox" >
+         <property name="title" >
+          <string>System tray icon</string>
          </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QCheckBox" name="checkNoSystray" >
+            <property name="text" >
+             <string>Disable system tray icon</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkCloseToSystray" >
+            <property name="text" >
+             <string comment="i.e: The systray tray icon will still be visible when closing the main window." >Close to tray</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkMinimizeToSysTray" >
+            <property name="text" >
+             <string>Minimize to tray</string>
+            </property>
+            <property name="checked" >
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkSystrayBalloons" >
+            <property name="text" >
+             <string>Show notification balloons in tray</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label" >
-         <property name="text" >
-          <string>&lt;b>Translators note:&lt;/b> If qBittorrent is not available in your language, &lt;br/>and if you would like to translate it in your mother tongue, &lt;br/>please contact me (chris@qbittorrent.org).</string>
+        <widget class="QGroupBox" name="previewBox" >
+         <property name="title" >
+          <string>Preview program</string>
          </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <layout class="QHBoxLayout" >
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="lbl_preview" >
+              <property name="text" >
+               <string>Media player:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="textMediaPlayer" />
+            </item>
+            <item>
+             <widget class="QToolButton" name="browsePreviewButton" >
+              <property name="text" >
+               <string>...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
@@ -1028,26 +317,1091 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tab_5" >
+      <attribute name="title" >
+       <string>Downloads</string>
+      </attribute>
+      <attribute name="icon" >
+       <iconset resource="icons.qrc" >:/Icons/gear.png</iconset>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QGroupBox" name="fileSystemBox" >
+         <property name="title" >
+          <string>Filesystem</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QLabel" name="lblSavePath" >
+            <property name="text" >
+             <string>Put downloads in this folder:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>0</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" >
+              <property name="spacing" >
+               <number>6</number>
+              </property>
+              <property name="leftMargin" >
+               <number>0</number>
+              </property>
+              <property name="topMargin" >
+               <number>0</number>
+              </property>
+              <property name="rightMargin" >
+               <number>0</number>
+              </property>
+              <property name="bottomMargin" >
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLineEdit" name="textSavePath" >
+                <property name="text" >
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="browseSaveDirButton" >
+                <property name="text" >
+                 <string>...</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkPreallocateAll" >
+            <property name="text" >
+             <string>Pre-allocate all files</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="torrentAdditionBox" >
+         <property name="title" >
+          <string>When adding a torrent</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QCheckBox" name="checkAdditionDialog" >
+            <property name="text" >
+             <string>Display torrent content and some options</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkStartPaused" >
+            <property name="text" >
+             <string comment="The torrent will be added to download list in pause state" >Do not start download automatically</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="dirScanBox" >
+         <property name="title" >
+          <string comment="qBittorrent will watch a directory and automatically download torrents present in it" >Folder watching</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QCheckBox" name="checkScanDir" >
+            <property name="text" >
+             <string>Automatically download torrents present in this folder:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>0</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" >
+              <property name="spacing" >
+               <number>6</number>
+              </property>
+              <property name="leftMargin" >
+               <number>0</number>
+              </property>
+              <property name="topMargin" >
+               <number>0</number>
+              </property>
+              <property name="rightMargin" >
+               <number>0</number>
+              </property>
+              <property name="bottomMargin" >
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLineEdit" name="textScanDir" >
+                <property name="enabled" >
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="browseScanDirButton" >
+                <property name="enabled" >
+                 <bool>false</bool>
+                </property>
+                <property name="text" >
+                 <string>...</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>557</width>
+           <height>21</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3" >
+      <attribute name="title" >
+       <string>Connection</string>
+      </attribute>
+      <attribute name="icon" >
+       <iconset resource="icons.qrc" >:/Icons/connection.png</iconset>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <item>
+        <layout class="QVBoxLayout" >
+         <item>
+          <layout class="QHBoxLayout" >
+           <item>
+            <widget class="QGroupBox" name="ListeningPortBox" >
+             <property name="title" >
+              <string>Listening port</string>
+             </property>
+             <layout class="QVBoxLayout" >
+              <item>
+               <layout class="QHBoxLayout" >
+                <item>
+                 <widget class="QLabel" name="lbl_ports" >
+                  <property name="text" >
+                   <string>Port range:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="spinPortMin" >
+                  <property name="minimum" >
+                   <number>1000</number>
+                  </property>
+                  <property name="maximum" >
+                   <number>65525</number>
+                  </property>
+                  <property name="value" >
+                   <number>6881</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="to_range" >
+                  <property name="text" >
+                   <string comment="i.e: 1200 to 1300" >to</string>
+                  </property>
+                  <property name="alignment" >
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="spinPortMax" >
+                  <property name="minimum" >
+                   <number>1000</number>
+                  </property>
+                  <property name="maximum" >
+                   <number>65525</number>
+                  </property>
+                  <property name="value" >
+                   <number>6889</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkUPnP" >
+                <property name="text" >
+                 <string>Enable UPnP port mapping</string>
+                </property>
+                <property name="checked" >
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkNATPMP" >
+                <property name="text" >
+                 <string>Enable NAT-PMP port mapping</string>
+                </property>
+                <property name="checked" >
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="bandwidthBox" >
+             <property name="title" >
+              <string>Global bandwidth limiting</string>
+             </property>
+             <layout class="QVBoxLayout" >
+              <item>
+               <layout class="QHBoxLayout" >
+                <item>
+                 <layout class="QVBoxLayout" >
+                  <item>
+                   <widget class="QCheckBox" name="checkUploadLimit" >
+                    <property name="minimumSize" >
+                     <size>
+                      <width>0</width>
+                      <height>45</height>
+                     </size>
+                    </property>
+                    <property name="text" >
+                     <string>Upload:</string>
+                    </property>
+                    <property name="checked" >
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkDownloadLimit" >
+                    <property name="minimumSize" >
+                     <size>
+                      <width>0</width>
+                      <height>37</height>
+                     </size>
+                    </property>
+                    <property name="text" >
+                     <string>Download:</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" >
+                  <item>
+                   <layout class="QHBoxLayout" >
+                    <item>
+                     <widget class="QSpinBox" name="spinUploadLimit" >
+                      <property name="enabled" >
+                       <bool>true</bool>
+                      </property>
+                      <property name="minimumSize" >
+                       <size>
+                        <width>0</width>
+                        <height>27</height>
+                       </size>
+                      </property>
+                      <property name="suffix" >
+                       <string/>
+                      </property>
+                      <property name="minimum" >
+                       <number>1</number>
+                      </property>
+                      <property name="maximum" >
+                       <number>1000000</number>
+                      </property>
+                      <property name="value" >
+                       <number>50</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_10" >
+                      <property name="text" >
+                       <string>KiB/s</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" >
+                    <item>
+                     <widget class="QSpinBox" name="spinDownloadLimit" >
+                      <property name="enabled" >
+                       <bool>false</bool>
+                      </property>
+                      <property name="minimumSize" >
+                       <size>
+                        <width>0</width>
+                        <height>27</height>
+                       </size>
+                      </property>
+                      <property name="suffix" >
+                       <string/>
+                      </property>
+                      <property name="minimum" >
+                       <number>1</number>
+                      </property>
+                      <property name="maximum" >
+                       <number>1000000</number>
+                      </property>
+                      <property name="value" >
+                       <number>100</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_13" >
+                      <property name="text" >
+                       <string>KiB/s</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupProxy" >
+           <property name="enabled" >
+            <bool>true</bool>
+           </property>
+           <property name="title" >
+            <string>Proxy Settings</string>
+           </property>
+           <layout class="QVBoxLayout" >
+            <item>
+             <layout class="QHBoxLayout" >
+              <item>
+               <widget class="QLabel" name="ProxyType_lbl" >
+                <property name="text" >
+                 <string>Type:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboProxyType" >
+                <item>
+                 <property name="text" >
+                  <string>(None)</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text" >
+                  <string>HTTP</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text" >
+                  <string>SOCKS5</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="lblProxyIP" >
+                <property name="enabled" >
+                 <bool>false</bool>
+                </property>
+                <property name="text" >
+                 <string>Proxy:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="textProxyIP" >
+                <property name="enabled" >
+                 <bool>false</bool>
+                </property>
+                <property name="text" >
+                 <string>0.0.0.0</string>
+                </property>
+                <property name="maxLength" >
+                 <number>15</number>
+                </property>
+                <property name="echoMode" >
+                 <enum>QLineEdit::Normal</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="lblProxyPort" >
+                <property name="enabled" >
+                 <bool>false</bool>
+                </property>
+                <property name="text" >
+                 <string>Port:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinProxyPort" >
+                <property name="enabled" >
+                 <bool>false</bool>
+                </property>
+                <property name="maximum" >
+                 <number>65525</number>
+                </property>
+                <property name="value" >
+                 <number>8080</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>21</width>
+                  <height>29</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" >
+              <item>
+               <widget class="QCheckBox" name="checkProxyAuth" >
+                <property name="enabled" >
+                 <bool>false</bool>
+                </property>
+                <property name="text" >
+                 <string>Authentication</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" >
+                <item>
+                 <layout class="QVBoxLayout" >
+                  <item>
+                   <widget class="QLabel" name="lblProxyUsername" >
+                    <property name="enabled" >
+                     <bool>false</bool>
+                    </property>
+                    <property name="text" >
+                     <string>Username:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="lblProxyPassword" >
+                    <property name="enabled" >
+                     <bool>false</bool>
+                    </property>
+                    <property name="text" >
+                     <string>Password:</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" >
+                  <item>
+                   <widget class="QLineEdit" name="textProxyUsername" >
+                    <property name="enabled" >
+                     <bool>false</bool>
+                    </property>
+                    <property name="text" >
+                     <string/>
+                    </property>
+                    <property name="maxLength" >
+                     <number>1000</number>
+                    </property>
+                    <property name="echoMode" >
+                     <enum>QLineEdit::Normal</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="textProxyPassword" >
+                    <property name="enabled" >
+                     <bool>false</bool>
+                    </property>
+                    <property name="text" >
+                     <string/>
+                    </property>
+                    <property name="maxLength" >
+                     <number>1000</number>
+                    </property>
+                    <property name="echoMode" >
+                     <enum>QLineEdit::Password</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <spacer>
+                  <property name="orientation" >
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" >
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="ProxyConnecsBox" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="minimumSize" >
+               <size>
+                <width>0</width>
+                <height>110</height>
+               </size>
+              </property>
+              <property name="title" >
+               <string>Affected connections</string>
+              </property>
+              <widget class="QCheckBox" name="checkProxyTrackers" >
+               <property name="geometry" >
+                <rect>
+                 <x>10</x>
+                 <y>20</y>
+                 <width>341</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="text" >
+                <string>Use proxy for connections to trackers</string>
+               </property>
+               <property name="checked" >
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QCheckBox" name="checkProxyPeers" >
+               <property name="geometry" >
+                <rect>
+                 <x>10</x>
+                 <y>40</y>
+                 <width>341</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="text" >
+                <string>Use proxy for connections to regular peers</string>
+               </property>
+               <property name="checked" >
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QCheckBox" name="checkProxyWebseeds" >
+               <property name="geometry" >
+                <rect>
+                 <x>10</x>
+                 <y>60</y>
+                 <width>341</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="text" >
+                <string>Use proxy for connections to web seeds</string>
+               </property>
+               <property name="checked" >
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QCheckBox" name="checkProxyDHT" >
+               <property name="geometry" >
+                <rect>
+                 <x>10</x>
+                 <y>80</y>
+                 <width>341</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="text" >
+                <string>Use proxy for DHT messages</string>
+               </property>
+               <property name="checked" >
+                <bool>true</bool>
+               </property>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_6" >
+      <attribute name="title" >
+       <string>Bittorrent</string>
+      </attribute>
+      <attribute name="icon" >
+       <iconset resource="icons.qrc" >:/Icons/bt_settings.png</iconset>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QGroupBox" name="nbConnecBox" >
+         <property name="title" >
+          <string>Connections limit</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QCheckBox" name="checkMaxConnecs" >
+              <property name="text" >
+               <string>Global maximum number of connections:</string>
+              </property>
+              <property name="checked" >
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinMaxConnec" >
+              <property name="enabled" >
+               <bool>true</bool>
+              </property>
+              <property name="font" >
+               <font>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="minimum" >
+               <number>2</number>
+              </property>
+              <property name="maximum" >
+               <number>2000</number>
+              </property>
+              <property name="value" >
+               <number>500</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QCheckBox" name="checkMaxConnecsPerTorrent" >
+              <property name="text" >
+               <string>Maximum number of connections per torrent:</string>
+              </property>
+              <property name="checked" >
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinMaxConnecPerTorrent" >
+              <property name="font" >
+               <font>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="minimum" >
+               <number>2</number>
+              </property>
+              <property name="maximum" >
+               <number>2000</number>
+              </property>
+              <property name="value" >
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QCheckBox" name="checkMaxUploadsPerTorrent" >
+              <property name="text" >
+               <string>Maximum number of upload slots per torrent:</string>
+              </property>
+              <property name="checked" >
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinMaxUploadsPerTorrent" >
+              <property name="font" >
+               <font>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="maximum" >
+               <number>500</number>
+              </property>
+              <property name="value" >
+               <number>4</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="AddBTFeaturesBox" >
+         <property name="title" >
+          <string>Additional Bittorrent features</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QCheckBox" name="checkDHT" >
+            <property name="text" >
+             <string>Enable DHT network (decentralized)</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkPeX" >
+            <property name="text" >
+             <string>Enable Peer eXchange (PeX)</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkLSD" >
+            <property name="text" >
+             <string>Enable Local Peer Discovery</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QLabel" name="lbl_encryption" >
+              <property name="text" >
+               <string>Encryption:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboEncryption" >
+              <item>
+               <property name="text" >
+                <string>Enabled</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>Forced</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>Disabled</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="ratioBox" >
+         <property name="title" >
+          <string>Share ratio settings</string>
+         </property>
+         <widget class="QWidget" name="layoutWidget" >
+          <property name="geometry" >
+           <rect>
+            <x>11</x>
+            <y>30</y>
+            <width>535</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" >
+           <item>
+            <widget class="QCheckBox" name="checkRatioLimit" >
+             <property name="text" >
+              <string>Desired ratio:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="spinRatio" >
+             <property name="enabled" >
+              <bool>false</bool>
+             </property>
+             <property name="font" >
+              <font>
+               <pointsize>8</pointsize>
+              </font>
+             </property>
+             <property name="alignment" >
+              <set>Qt::AlignHCenter</set>
+             </property>
+             <property name="decimals" >
+              <number>1</number>
+             </property>
+             <property name="minimum" >
+              <double>1.000000000000000</double>
+             </property>
+             <property name="maximum" >
+              <double>10.000000000000000</double>
+             </property>
+             <property name="singleStep" >
+              <double>0.100000000000000</double>
+             </property>
+             <property name="value" >
+              <double>1.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="layoutWidget" >
+          <property name="geometry" >
+           <rect>
+            <x>11</x>
+            <y>67</y>
+            <width>535</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" >
+           <item>
+            <widget class="QCheckBox" name="checkRatioRemove" >
+             <property name="text" >
+              <string>Remove torrents when their ratio reaches:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="spinMaxRatio" >
+             <property name="enabled" >
+              <bool>false</bool>
+             </property>
+             <property name="font" >
+              <font>
+               <pointsize>8</pointsize>
+              </font>
+             </property>
+             <property name="alignment" >
+              <set>Qt::AlignHCenter</set>
+             </property>
+             <property name="decimals" >
+              <number>1</number>
+             </property>
+             <property name="minimum" >
+              <double>1.000000000000000</double>
+             </property>
+             <property name="maximum" >
+              <double>10.000000000000000</double>
+             </property>
+             <property name="singleStep" >
+              <double>0.100000000000000</double>
+             </property>
+             <property name="value" >
+              <double>1.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="tab_4" >
       <attribute name="title" >
        <string>IP Filter</string>
       </attribute>
+      <attribute name="icon" >
+       <iconset resource="icons.qrc" >:/Icons/filter.png</iconset>
+      </attribute>
       <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>9</number>
-       </property>
        <property name="spacing" >
         <number>6</number>
        </property>
+       <property name="leftMargin" >
+        <number>9</number>
+       </property>
+       <property name="topMargin" >
+        <number>9</number>
+       </property>
+       <property name="rightMargin" >
+        <number>9</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>9</number>
+       </property>
        <item>
-        <widget class="QCheckBox" name="activateFilter" >
+        <widget class="QCheckBox" name="checkIPFilter" >
          <property name="text" >
           <string>Activate IP Filtering</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="filterGroup" >
+        <widget class="QGroupBox" name="filterBox" >
          <property name="enabled" >
           <bool>false</bool>
          </property>
@@ -1055,11 +1409,20 @@
           <string>Filter Settings</string>
          </property>
          <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
           <property name="spacing" >
            <number>6</number>
+          </property>
+          <property name="leftMargin" >
+           <number>9</number>
+          </property>
+          <property name="topMargin" >
+           <number>9</number>
+          </property>
+          <property name="rightMargin" >
+           <number>9</number>
+          </property>
+          <property name="bottomMargin" >
+           <number>9</number>
           </property>
           <item>
            <widget class="QTreeWidget" name="filtersList" >
@@ -1110,11 +1473,20 @@
           </item>
           <item>
            <layout class="QHBoxLayout" >
-            <property name="margin" >
-             <number>0</number>
-            </property>
             <property name="spacing" >
              <number>6</number>
+            </property>
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>0</number>
             </property>
             <item>
              <spacer>
@@ -1130,17 +1502,23 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="addFilterRange" >
+             <widget class="QPushButton" name="addFilterRangeButton" >
               <property name="text" >
                <string> Add Range</string>
               </property>
+              <property name="icon" >
+               <iconset resource="icons.qrc" >:/Icons/skin/add.png</iconset>
+              </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="delFilterRange" >
+             <widget class="QPushButton" name="delFilterRangeButton" >
               <property name="text" >
                <string> Remove Range</string>
               </property>
+              <property name="icon" >
+               <iconset resource="icons.qrc" >:/Icons/skin/remove.png</iconset>
+              </property>
              </widget>
             </item>
             <item>
@@ -1160,24 +1538,33 @@
           </item>
           <item>
            <layout class="QHBoxLayout" >
-            <property name="margin" >
-             <number>0</number>
-            </property>
             <property name="spacing" >
              <number>6</number>
             </property>
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>0</number>
+            </property>
             <item>
-             <widget class="QLabel" name="label_4" >
+             <widget class="QLabel" name="lblFilterPath" >
               <property name="text" >
-               <string>ipfilter.dat Path:</string>
+               <string>Filter file path:</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="filterFile" />
+             <widget class="QLineEdit" name="textFilterPath" />
             </item>
             <item>
-             <widget class="QToolButton" name="filterBrowse" >
+             <widget class="QToolButton" name="browseFilterButton" >
               <property name="text" >
                <string>...</string>
               </property>
@@ -1187,552 +1574,6 @@
           </item>
          </layout>
         </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab_2" >
-      <attribute name="title" >
-       <string>Proxy</string>
-      </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>9</number>
-       </property>
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <item>
-        <widget class="QCheckBox" name="enableProxy_checkBox" >
-         <property name="text" >
-          <string>Enable connection through a proxy server</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupProxy" >
-         <property name="enabled" >
-          <bool>false</bool>
-         </property>
-         <property name="title" >
-          <string>Proxy Settings</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <item>
-           <layout class="QHBoxLayout" >
-            <property name="margin" >
-             <number>0</number>
-            </property>
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <item>
-             <widget class="QLabel" name="lbl_ip" >
-              <property name="text" >
-               <string>Server IP or url:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="proxy_ip" >
-              <property name="text" >
-               <string>0.0.0.0</string>
-              </property>
-              <property name="maxLength" >
-               <number>15</number>
-              </property>
-              <property name="echoMode" >
-               <enum>QLineEdit::Normal</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer>
-              <property name="orientation" >
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" >
-               <size>
-                <width>21</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QLabel" name="lbl_port" >
-              <property name="text" >
-               <string>Port:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="proxy_port" >
-              <property name="maximum" >
-               <number>65525</number>
-              </property>
-              <property name="value" >
-               <number>8080</number>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer>
-              <property name="orientation" >
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" >
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" >
-            <property name="margin" >
-             <number>0</number>
-            </property>
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <item>
-             <widget class="QLabel" name="serverType_lbl" >
-              <property name="text" >
-               <string>Proxy type:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboProxyType" >
-              <item>
-               <property name="text" >
-                <string>HTTP</string>
-               </property>
-              </item>
-              <item>
-               <property name="text" >
-                <string>SOCKS5</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item>
-             <spacer>
-              <property name="orientation" >
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" >
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="enableProxyAuth_checkBox" >
-            <property name="text" >
-             <string>Proxy server requires authentication</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QGroupBox" name="groupProxyAuth" >
-            <property name="enabled" >
-             <bool>false</bool>
-            </property>
-            <property name="title" >
-             <string>Authentication</string>
-            </property>
-            <layout class="QVBoxLayout" >
-             <property name="margin" >
-              <number>9</number>
-             </property>
-             <property name="spacing" >
-              <number>6</number>
-             </property>
-             <item>
-              <layout class="QHBoxLayout" >
-               <property name="margin" >
-                <number>0</number>
-               </property>
-               <property name="spacing" >
-                <number>6</number>
-               </property>
-               <item>
-                <layout class="QVBoxLayout" >
-                 <property name="margin" >
-                  <number>0</number>
-                 </property>
-                 <property name="spacing" >
-                  <number>6</number>
-                 </property>
-                 <item>
-                  <widget class="QLabel" name="lbl_username" >
-                   <property name="text" >
-                    <string>User Name:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="lbl_password" >
-                   <property name="text" >
-                    <string>Password:</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <layout class="QVBoxLayout" >
-                 <property name="margin" >
-                  <number>0</number>
-                 </property>
-                 <property name="spacing" >
-                  <number>6</number>
-                 </property>
-                 <item>
-                  <widget class="QLineEdit" name="proxy_username" >
-                   <property name="text" >
-                    <string/>
-                   </property>
-                   <property name="maxLength" >
-                    <number>1000</number>
-                   </property>
-                   <property name="echoMode" >
-                    <enum>QLineEdit::Normal</enum>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="proxy_password" >
-                   <property name="text" >
-                    <string/>
-                   </property>
-                   <property name="maxLength" >
-                    <number>1000</number>
-                   </property>
-                   <property name="echoMode" >
-                    <enum>QLineEdit::Password</enum>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QGroupBox" name="groupProxyConnec" >
-            <property name="minimumSize" >
-             <size>
-              <width>0</width>
-              <height>110</height>
-             </size>
-            </property>
-            <property name="title" >
-             <string>Affected connections</string>
-            </property>
-            <widget class="QCheckBox" name="checkProxyTrackers" >
-             <property name="geometry" >
-              <rect>
-               <x>10</x>
-               <y>20</y>
-               <width>341</width>
-               <height>22</height>
-              </rect>
-             </property>
-             <property name="text" >
-              <string>Use proxy for connections to trackers</string>
-             </property>
-             <property name="checked" >
-              <bool>true</bool>
-             </property>
-            </widget>
-            <widget class="QCheckBox" name="checkProxyPeers" >
-             <property name="geometry" >
-              <rect>
-               <x>10</x>
-               <y>40</y>
-               <width>341</width>
-               <height>22</height>
-              </rect>
-             </property>
-             <property name="text" >
-              <string>Use proxy for connections to regular peers</string>
-             </property>
-             <property name="checked" >
-              <bool>true</bool>
-             </property>
-            </widget>
-            <widget class="QCheckBox" name="checkProxyWebseeds" >
-             <property name="geometry" >
-              <rect>
-               <x>10</x>
-               <y>60</y>
-               <width>341</width>
-               <height>22</height>
-              </rect>
-             </property>
-             <property name="text" >
-              <string>Use proxy for connections to web seeds</string>
-             </property>
-             <property name="checked" >
-              <bool>true</bool>
-             </property>
-            </widget>
-            <widget class="QCheckBox" name="checkProxyDHT" >
-             <property name="geometry" >
-              <rect>
-               <x>10</x>
-               <y>80</y>
-               <width>341</width>
-               <height>22</height>
-              </rect>
-             </property>
-             <property name="text" >
-              <string>Use proxy for DHT messages</string>
-             </property>
-             <property name="checked" >
-              <bool>true</bool>
-             </property>
-            </widget>
-           </widget>
-          </item>
-          <item>
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>20</width>
-              <height>21</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="Misc" >
-      <attribute name="title" >
-       <string>Misc</string>
-      </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>9</number>
-       </property>
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <item>
-        <widget class="QGroupBox" name="groupScan" >
-         <property name="title" >
-          <string>Directory scan</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <item>
-           <widget class="QCheckBox" name="enableScan_checkBox" >
-            <property name="text" >
-             <string>Enable directory scan (auto add torrent files inside)</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" >
-            <property name="margin" >
-             <number>0</number>
-            </property>
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <item>
-             <widget class="QLabel" name="lbl_scanDir" >
-              <property name="enabled" >
-               <bool>false</bool>
-              </property>
-              <property name="text" >
-               <string>Scanned Dir:</string>
-              </property>
-              <property name="buddy" >
-               <cstring>proxy_username</cstring>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" >
-              <property name="margin" >
-               <number>0</number>
-              </property>
-              <property name="spacing" >
-               <number>6</number>
-              </property>
-              <item>
-               <widget class="QLineEdit" name="scanDir" >
-                <property name="enabled" >
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QToolButton" name="browse_button_scan" >
-                <property name="enabled" >
-                 <bool>false</bool>
-                </property>
-                <property name="text" >
-                 <string>...</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_4" >
-         <property name="title" >
-          <string>Preview program</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <item>
-           <layout class="QHBoxLayout" >
-            <property name="margin" >
-             <number>0</number>
-            </property>
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <item>
-             <widget class="QLabel" name="lbl_preview" >
-              <property name="text" >
-               <string>Audio/Video player:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="preview_program" />
-            </item>
-            <item>
-             <widget class="QToolButton" name="browsePreview" >
-              <property name="text" >
-               <string>...</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupStyle" >
-         <property name="title" >
-          <string>Style (Look 'n Feel)</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <item>
-           <widget class="QRadioButton" name="radioPlastiqueStyle" >
-            <property name="text" >
-             <string>Plastique style (KDE like)</string>
-            </property>
-            <property name="checked" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="radioCleanlooksStyle" >
-            <property name="text" >
-             <string>Cleanlooks style (GNOME like)</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="radioMotifStyle" >
-            <property name="text" >
-             <string>Motif style (default Qt style on Unix systems)</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="radioCDEStyle" >
-            <property name="text" >
-             <string>CDE style (Common Desktop Environment like)</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="radioMacOSStyle" >
-            <property name="enabled" >
-             <bool>false</bool>
-            </property>
-            <property name="text" >
-             <string>MacOS style (MacOSX only)</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="radioWinXPStyle" >
-            <property name="enabled" >
-             <bool>false</bool>
-            </property>
-            <property name="text" >
-             <string>WindowsXP style (Windows XP only)</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>466</width>
-           <height>41</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
@@ -1740,11 +1581,20 @@
    </item>
    <item>
     <layout class="QHBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
-     </property>
      <property name="spacing" >
       <number>6</number>
+     </property>
+     <property name="leftMargin" >
+      <number>0</number>
+     </property>
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>0</number>
      </property>
      <item>
       <widget class="QDialogButtonBox" name="buttonBox" >
@@ -1763,6 +1613,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc" />
+ </resources>
  <connections/>
 </ui>

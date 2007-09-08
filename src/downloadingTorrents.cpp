@@ -246,7 +246,7 @@ void DownloadingTorrents::displayDLListMenu(const QPoint& pos) {
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QString previewProgram = settings.value(QString::fromUtf8("Options/Misc/PreviewProgram"), QString()).toString();
+  QString previewProgram = settings.value(QString::fromUtf8("Preferences/general/MediaPlayer"), QString()).toString();
   bool has_pause = false, has_start = false, has_preview = false;
   foreach(index, selectedIndexes) {
     if(index.column() == NAME) {

@@ -79,17 +79,17 @@ void engineSelectDlg::dropEvent(QDropEvent *event) {
   foreach(file, files) {
     qDebug("dropped %s", file.toUtf8().data());
     file = file.replace("file://", "");
-    if(file.startsWith("http://") || file.startsWith("https://") || file.startsWith("ftp://")) {
+    if(file.startsWith("http://", Qt::CaseInsensitive) || file.startsWith("https://", Qt::CaseInsensitive) || file.startsWith("ftp://", Qt::CaseInsensitive)) {
       downloader->downloadUrl(file);
       continue;
     }
-    if(file.endsWith(".py")) {
+    if(file.endsWith(".py", Qt::CaseInsensitive)) {
       QString plugin_name = file.split(QDir::separator()).last();
       plugin_name.replace(".py", "");
       installPlugin(file, plugin_name);
     }
 #ifdef HAVE_ZZIP
-    if(file.endsWith(".zip")) {
+    if(file.endsWith(".zip", Qt::CaseInsensitive)) {
       installZipPlugin(file);
     }
 #endif
@@ -332,7 +332,7 @@ QList<QTreeWidgetItem*> engineSelectDlg::findItemsWithUrl(QString url){
   QList<QTreeWidgetItem*> res;
   for(int i=0; i<pluginsTree->topLevelItemCount(); ++i) {
     QTreeWidgetItem *item = pluginsTree->topLevelItem(i);
-    if(url.startsWith(item->text(ENGINE_URL)))
+    if(url.startsWith(item->text(ENGINE_URL), Qt::CaseInsensitive))
       res << item;
   }
   return res;
@@ -367,10 +367,10 @@ void engineSelectDlg::installZipPlugin(QString path) {
   while(zzip_dir_read(dir, &dirent)) {
     /* show info for first file */
     QString name(dirent.d_name);
-    if(name.endsWith(".py")) {
+    if(name.endsWith(".py", Qt::CaseInsensitive)) {
       plugins << name;
     } else {
-      if(name.endsWith(".png")) {
+      if(name.endsWith(".png", Qt::CaseInsensitive)) {
         favicons << name;
       }
     }
@@ -520,14 +520,14 @@ void engineSelectDlg::on_installButton_clicked() {
 #endif
   QString path;
   foreach(path, pathsList) {
-    if(path.endsWith(".py")) {
+    if(path.endsWith(".py", Qt::CaseInsensitive)) {
       QString plugin_name = path.split(QDir::separator()).last();
-      plugin_name.replace(".py", "");
+      plugin_name.replace(".py", "", Qt::CaseInsensitive);
       installPlugin(path, plugin_name);
     }
 #ifdef HAVE_ZZIP
     else {
-      if(path.endsWith(".zip")) {
+      if(path.endsWith(".zip", Qt::CaseInsensitive)) {
         installZipPlugin(path);
       }
     }
@@ -582,7 +582,7 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file, QString updateSer
 
 void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
   qDebug("engineSelectDlg received %s", url.toUtf8().data());
-  if(url.endsWith("favicon.ico")){
+  if(url.endsWith("favicon.ico", Qt::CaseInsensitive)){
     // Icon downloaded
     QImage fileIcon;
 #ifdef HAVE_MAGICK
@@ -628,7 +628,7 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
     QFile::remove(filePath);
     return;
   }
-  if(url.endsWith(".pyqBT") || url.endsWith(".py")) {
+  if(url.endsWith(".pyqBT", Qt::CaseInsensitive) || url.endsWith(".py", Qt::CaseInsensitive)) {
     QString plugin_name = url.split('/').last();
     plugin_name.replace(".py", "");
     plugin_name.replace(".pyqBT", "");
@@ -637,7 +637,7 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
     return;
   }
 #ifdef HAVE_ZZIP
-  if(url.endsWith(".zip")) {
+  if(url.endsWith(".zip", Qt::CaseInsensitive)) {
     installZipPlugin(filePath);
     QFile::remove(filePath);
     return;
@@ -646,7 +646,7 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
 }
 
 void engineSelectDlg::handleDownloadFailure(QString url, QString reason) {
-  if(url.endsWith("favicon.ico")){
+  if(url.endsWith("favicon.ico", Qt::CaseInsensitive)){
     qDebug("Could not download favicon: %s, reason: %s", url.toUtf8().data(), reason.toUtf8().data());
     return;
   }
@@ -660,17 +660,17 @@ void engineSelectDlg::handleDownloadFailure(QString url, QString reason) {
     QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, update server is temporarily unavailable."));
     return;
   }
-  if(url.endsWith(".pyqBT") || url.endsWith(".py")) {
+  if(url.endsWith(".pyqBT", Qt::CaseInsensitive) || url.endsWith(".py", Qt::CaseInsensitive)) {
     // a plugin update download has been failed
     QString plugin_name = url.split('/').last();
-    plugin_name.replace(".pyqBT", "");
-    plugin_name.replace(".py", "");
+    plugin_name.replace(".pyqBT", "", Qt::CaseInsensitive);
+    plugin_name.replace(".py", "", Qt::CaseInsensitive);
     QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, %1 search plugin install failed.", "%1 is the name of the search engine").arg(plugin_name.toUtf8().data()));
   }
 #ifdef HAVE_ZZIP
-  if(url.endsWith(".zip")) {
+  if(url.endsWith(".zip", Qt::CaseInsensitive)) {
     QString plugin_name = url.split('/').last();
-    plugin_name.replace(".zip", "");
+    plugin_name.replace(".zip", "", Qt::CaseInsensitive);
     QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, %1 search plugin install failed.", "%1 is the name of the search engine").arg(plugin_name.toUtf8().data()));
   }
 #endif

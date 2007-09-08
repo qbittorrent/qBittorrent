@@ -84,7 +84,7 @@ LANGUAGES UPDATED:
 - Spanish *BETA5*
 - German *BETA6*
 - Russian *BETA6*
-- Korean *BETA5*
+- Korean *BETA6*
 - Greek *BETA6*
 - Dutch *BETA5*
 - Romanian *BETA5*
@@ -97,6 +97,9 @@ beta6->beta7 changelog:
 - FEATURE: Added zip support in search plugins manager (can put .py & .png inside)
 - FEATURE: Redesigned torrent creation dialog
 - FEATURE: Allow to set piece size when creating a torrent
+- FEATURE: Added an option to force full disk allocation for all torrents
+- FEATURE: Added an option to add torrents in paused state
+- FEATURE: Allow to disable UPnP/NAT-PMP/LSD
 - BUGFIX: In torrent content, it is now easier to filter all torrents using right click menu
 - BUGFIX: Updated man page / README / INSTALL
 - BUGFIX: Paused torrents could be displayed as connected for a sec after checking
@@ -112,3 +115,4 @@ beta6->beta7 changelog:
 - BUGFIX: Dropped Qt4.2 support, becomes too difficult to maintain
 - BUGFIX: Fixed deprecation warning with latest libtorrent svn
 - COSMETIC: Improved some icons
+- COSMETIC: Totally redesigned program preferences

@@ -83,6 +83,10 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       }
       QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
       savePathTxt->setText(settings.value(QString::fromUtf8("LastDirTorrentAdd"), home+QString::fromUtf8("qBT_dir")).toString());
+      if(settings.value("Preferences/Downloads/StartInPause", false).toBool()) {
+        addInPause->setChecked(true);
+        addInPause->setEnabled(false);
+      }
     }
 
     void showLoad(QString filePath, bool fromScanDir=false, QString from_url=QString::null){

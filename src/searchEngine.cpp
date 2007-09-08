@@ -389,8 +389,8 @@ void SearchEngine::updateNova() {
 // Error | Stopped by user | Finished normally
 void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
   QSettings settings("qBittorrent", "qBittorrent");
-  int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
-  if(systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
+  bool useNotificationBalloons = settings.value("Preferences/General/NotificationBaloons", true).toBool();
+  if(systrayIntegration && useNotificationBalloons) {
     myTrayIcon->showMessage(tr("Search Engine"), tr("Search has finished"), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
   }
   if(exitcode){

@@ -25,10 +25,10 @@
 #include "ui_options.h"
 #include <libtorrent/ip_filter.hpp>
 
-#define HTTP 0
-#define SOCKS5 1
-#define HTTP_PW 2
-#define SOCKS5_PW 3
+#define HTTP 1
+#define SOCKS5 2
+#define HTTP_PW 3
+#define SOCKS5_PW 4
 
 using namespace libtorrent;
 
@@ -51,71 +51,82 @@ class options_imp : public QDialog, private Ui::Dialog{
     // Methods
     void saveOptions();
     void loadOptions();
-    // Main options
-    std::pair<unsigned short, unsigned short> getPorts() const;
-    QPair<int,int> getLimits() const;
-    float getRatio() const;
-    int getMaxConnec() const;
+    // General options
+    QString getLocale() const;
+    int getStyle() const;
+    bool confirmOnExit() const;
+    bool speedInTitleBar() const;
+    bool systrayIntegration() const;
+    bool minimizeToTray() const;
+    bool closeToTray() const;
+    bool OSDEnabled() const;
+    QString getPreviewProgram() const;
+    // Downloads
+    QString getSavePath() const;
+    bool preAllocateAllFiles() const;
+    bool useAdditionDialog() const;
+    bool addTorrentsInPause() const;
+    bool isDirScanEnabled() const;
     QString getScanDir() const;
-    bool isDHTEnabled() const;
-    int getDHTPort() const;
-    int getEncryptionSetting() const;
-    bool isPeXDisabled() const;
-    // Filter Settings
-    bool isFilteringEnabled() const;
-    ip_filter getFilter() const;
-    // Proxy settings
+    // Connection options
+    std::pair<unsigned short, unsigned short> getPorts() const;
+    bool isUPnPEnabled() const;
+    bool isNATPMPEnabled() const;
+    QPair<int,int> getGlobalBandwidthLimits() const;
     bool isProxyEnabled() const;
     bool isProxyAuthEnabled() const;
     QString getProxyIp() const;
     unsigned short getProxyPort() const;
     QString getProxyUsername() const;
     QString getProxyPassword() const;
-    unsigned short getProxyType() const;
+    int getProxyType() const;
     bool useProxyForTrackers() const;
     bool useProxyForPeers() const;
     bool useProxyForWebseeds() const;
     bool useProxyForDHT() const;
-    // Language Settings
-    QString getLocale() const;
-    // Misc Settings
-    bool useAdditionDialog() const;
-    QString getSavePath() const;
-    bool getGoToSysTrayOnMinimizingWindow() const;
-    bool getGoToSysTrayOnExitingWindow() const;
-    bool getConfirmOnExit() const;
-    QString getPreviewProgram() const;
-    bool getUseOSDAlways() const;
-    bool getUseOSDWhenHiddenOnly() const;
-    QString getStyle() const;
-    bool useSystrayIntegration() const;
+    // Bittorrent options
+    int getMaxConnecs() const;
+    int getMaxConnecsPerTorrent() const;
+    int getMaxUploadsPerTorrent() const;
+    bool isDHTEnabled() const;
+    bool isPeXEnabled() const;
+    bool isLSDEnabled() const;
+    int getEncryptionSetting() const;
+    float getDesiredRatio() const;
+    float getDeleteRatio() const;
+    // IP Filter
+    bool isFilteringEnabled() const;
+    ip_filter getFilter() const;
 
   protected slots:
+    void enableUploadLimit(int checkBoxValue);
+    void enableDownloadLimit(int checkBoxValue);
+    void enableDirScan(int checkBoxValue);
+    void enableProxy(int comboIndex);
+    void enableProxyAuth(int checkBoxValue);
+    void enableMaxConnecsLimit(int);
+    void enableMaxConnecsLimitPerTorrent(int checkBoxValue);
+    void enableMaxUploadsLimitPerTorrent(int checkBoxValue);
+    void enableShareRatio(int checkBoxValue);
+    void enableDeleteRatio(int checkBoxValue);
+    void enableFilter(int checkBoxValue);
+    void setStyle(int style);
     void on_buttonBox_accepted();
     void closeEvent(QCloseEvent *e);
     void on_buttonBox_rejected();
     void applySettings(QAbstractButton* button);
-    void on_addFilterRange_clicked();
-    void on_delFilterRange_clicked();
-    void on_browse_button_scan_clicked();
-    void on_browsePreview_clicked();
-    void on_filterBrowse_clicked();
-    void disableDownload(int checkBoxValue);
-    void disableDHTGroup(int checkBoxValue);
-    void disableMaxConnecLimit(int);
-    void enableFilter(int checkBoxValue);
-    void disableUpload(int checkBoxValue);
-    void disableShareRatio(int checkBoxValue);
-    void enableProxy(int checkBoxValue);
-    void enableProxyAuth(int checkBoxValue);
-    void enableDirScan(int checkBoxValue);
-    void on_browse_button_clicked();
+    void on_addFilterRangeButton_clicked();
+    void on_delFilterRangeButton_clicked();
+    void on_browseScanDirButton_clicked();
+    void on_browsePreviewButton_clicked();
+    void on_browseFilterButton_clicked();
+    void on_browseSaveDirButton_clicked();
     void processFilterFile(QString filePath=QString());
     void enableApplyButton();
     void checkPortsLogic();
-    void enableSavePath(int checkBoxValue);
-    void setStyle(QString style);
-    void systrayDisabled(int val);
+    void enableSystrayOptions();
+    void disableSystrayOptions();
+    void setSystrayOptionsState(int checkBoxValue);
 
   public slots:
     void setLocale(QString locale);

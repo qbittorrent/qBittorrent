@@ -57,6 +57,8 @@ class bittorrent : public QObject{
     QStringList waitingForPause;
     QStringList finishedTorrents;
     QStringList unfinishedTorrents;
+    bool preAllocateAll;
+    bool addInPause;
 
   protected:
     QString getSavePath(QString hash);
@@ -90,9 +92,8 @@ class bittorrent : public QObject{
     void deleteTorrent(QString hash, bool permanent = false);
     bool pauseTorrent(QString hash);
     bool resumeTorrent(QString hash);
-    void enableDHT();
-    void disableDHT();
     void saveDHTEntry();
+    void preAllocateAllFiles(bool b);
     void saveFastResumeAndRatioData();
     void enableDirectoryScanning(QString scan_dir);
     void disableDirectoryScanning();
@@ -117,6 +118,7 @@ class bittorrent : public QObject{
     void setDHTPort(int dht_port);
     void setProxySettings(proxy_settings proxySettings, bool trackers=true, bool peers=true, bool web_seeds=true, bool dht=true);
     void setSessionSettings(session_settings sessionSettings);
+    void startTorrentsInPause(bool b);
     void setDefaultSavePath(QString savepath);
     void applyEncryptionSettings(pe_settings se);
     void loadFilesPriorities(QTorrentHandle& h);
@@ -124,6 +126,10 @@ class bittorrent : public QObject{
     void setUploadLimit(QString hash, long val);
     void setUnfinishedTorrent(QString hash);
     void setFinishedTorrent(QString hash);
+    void enableUPnP(bool b);
+    void enableNATPMP(bool b);
+    void enableLSD(bool b);
+    void enableDHT(bool b);
 
   protected slots:
     void scanDirectory();

@@ -44,17 +44,13 @@
 #define MAX_TRACKER_ERRORS 2
 
 // Main constructor
-bittorrent::bittorrent() : timerScan(0), DHTEnabled(false){
+bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false), addInPause(false){
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
   // Creating bittorrent session
   s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0));
   // Set severity level of libtorrent session
   s->set_severity_level(alert::info);
-  // Enable LSD/UPnP/NAT-PMP
-  s->start_lsd();
-  s->start_natpmp();
-  s->start_upnp();
   // Enabling metadata plugin
   s->add_extension(&create_metadata_plugin);
   timerAlerts = new QTimer();
@@ -85,6 +81,25 @@ bittorrent::~bittorrent() {
   delete s;
 }
 
+void bittorrent::preAllocateAllFiles(bool b) {
+  preAllocateAll = b;
+  if(b) {
+    // Reload All Torrents
+    std::vector<torrent_handle> handles = s->get_torrents();
+    unsigned int nbHandles = handles.size();
+    for(unsigned int i=0; i<nbHandles; ++i) {
+      QTorrentHandle h = handles[i];
+      if(!h.is_valid()) {
+        qDebug("/!\\ Error: Invalid handle");
+        continue;
+      }
+      QString hash = h.hash();
+      if(has_filtered_files(hash)) continue;
+      reloadTorrent(h);
+    }
+  }
+}
+
 void bittorrent::setDownloadLimit(QString hash, long val) {
   QTorrentHandle h = getTorrentHandle(hash);
   if(h.is_valid())
@@ -102,6 +117,10 @@ void bittorrent::setUploadLimit(QString hash, long val) {
 
 void bittorrent::handleDownloadFailure(QString url, QString reason) {
   emit downloadFromUrlFailure(url, reason);
+}
+
+void bittorrent::startTorrentsInPause(bool b) {
+  addInPause = b;
 }
 
 void bittorrent::updateETAs() {
@@ -346,7 +365,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
     }
   }
   // Processing torrents
-  file = path.trimmed().replace("file://", "");
+  file = path.trimmed().replace("file://", "", Qt::CaseInsensitive);
   if(file.isEmpty()) {
     return;
   }
@@ -409,7 +428,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
     }
     QString savePath = getSavePath(hash);
     // Adding files to bittorrent session
-    if(has_filtered_files(hash)) {
+    if(has_filtered_files(hash) || preAllocateAll) {
       h = s->add_torrent(t, fs::path(savePath.toUtf8().data()), resume_data, false, true);
       qDebug(" -> Full allocation mode");
     }else{
@@ -450,7 +469,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
       QFile::copy(file, newFile);
     }
     // Pause torrent if it was paused last time
-    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")) {
+    if(addInPause || QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")) {
       torrentsToPauseAfterChecking << hash;
       qDebug("Adding a torrent to the torrentsToPauseAfterChecking list");
     }
@@ -543,30 +562,53 @@ bool bittorrent::isDHTEnabled() const{
   return DHTEnabled;
 }
 
-// Enable DHT
-void bittorrent::enableDHT() {
-  if(!DHTEnabled) {
-    boost::filesystem::ifstream dht_state_file((misc::qBittorrentPath()+QString::fromUtf8("dht_state")).toUtf8().data(), std::ios_base::binary);
-    dht_state_file.unsetf(std::ios_base::skipws);
-    entry dht_state;
-    try{
-      dht_state = bdecode(std::istream_iterator<char>(dht_state_file), std::istream_iterator<char>());
-    }catch (std::exception&) {}
-    s->start_dht(dht_state);
-    s->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
-    s->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
-    s->add_dht_router(std::make_pair(std::string("router.bitcomet.com"), 6881));
-    DHTEnabled = true;
-    qDebug("DHT enabled");
+void bittorrent::enableUPnP(bool b) {
+  if(b) {
+    s->start_upnp();
+  } else {
+    s->stop_upnp();
   }
 }
 
-// Disable DHT
-void bittorrent::disableDHT() {
-  if(DHTEnabled) {
-    DHTEnabled = false;
-    s->stop_dht();
-    qDebug("DHT disabled");
+void bittorrent::enableNATPMP(bool b) {
+  if(b) {
+    s->start_natpmp();
+  } else {
+    s->stop_natpmp();
+  }
+}
+
+void bittorrent::enableLSD(bool b) {
+  if(b) {
+    s->start_lsd();
+  } else {
+    s->stop_lsd();
+  }
+}
+
+// Enable DHT
+void bittorrent::enableDHT(bool b) {
+  if(b) {
+    if(!DHTEnabled) {
+      boost::filesystem::ifstream dht_state_file((misc::qBittorrentPath()+QString::fromUtf8("dht_state")).toUtf8().data(), std::ios_base::binary);
+      dht_state_file.unsetf(std::ios_base::skipws);
+      entry dht_state;
+      try{
+        dht_state = bdecode(std::istream_iterator<char>(dht_state_file), std::istream_iterator<char>());
+      }catch (std::exception&) {}
+      s->start_dht(dht_state);
+      s->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
+      s->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
+      s->add_dht_router(std::make_pair(std::string("router.bitcomet.com"), 6881));
+      DHTEnabled = true;
+      qDebug("DHT enabled");
+    }
+  } else {
+    if(DHTEnabled) {
+      DHTEnabled = false;
+      s->stop_dht();
+      qDebug("DHT disabled");
+    }
   }
 }
 
