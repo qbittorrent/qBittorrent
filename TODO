@@ -38,10 +38,7 @@
     * http://fragments.turtlemeat.com/pythonwebserver.php
 - improve and test tracker authentication code (remember login/pass) (need a tracker to test this)
 - support zipped torrents? (useful?)
-- Allow to disable UPnP/NAT-PMP/LSD in options?
-- Allow to automatically delete torrents when they reach a given ratio (in options) : easy
 - Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
-- Allow to customize lists refreshing interval (in options)
 - Improve search plugin install (download drom url, choose in a list taken from plugins.qbittorrent.org)
 - Display the number of DHT node if possible
 - Allow to change action on double-click
