@@ -221,7 +221,18 @@
     // display a news
     void RSSImp::refreshTextBrowser(QListWidgetItem *item) {
       RssItem* article = rssmanager->getFeed(selectedFeedUrl)->getItem(listNews->row(item));
-      textBrowser->setHtml(article->getTitle()+":<br/>"+article->getDescription());
+      QString html;
+      html += "<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>";
+      html += "<div style='background-color: #678db2; font-weight: bold; color: #fff;'>"+article->getTitle() + "</div>";
+      if(article->getDate().isValid()) {
+        html += "<div style='background-color: #efefef;'><b>"+tr("Date: ")+"</b>"+article->getDate().toString()+"</div>";
+      }
+      if(!article->getAuthor().isEmpty()) {
+        html += "<div style='background-color: #efefef;'><b>"+tr("Author: ")+"</b>"+article->getAuthor()+"</div>";
+      }
+      html += "</div>";
+      html += "<divstyle='margin-left: 5px; margin-right: 5px;'>"+article->getDescription()+"</div>";
+      textBrowser->setHtml(html);
       article->setRead();
       item->setData(Qt::ForegroundRole, QVariant(QColor("grey")));
       item->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));

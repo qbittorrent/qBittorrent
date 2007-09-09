@@ -54,9 +54,7 @@
 - Use tooltips in options to explain
 - Keep documention up to date
 - Windows port (Chris - Peerkoel)
-- write patches for libtorrent for file_priority(int index), actual_size() ?
-- valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
-- 128m  29m  16m S  4.8  2.9   0:02.28 qbittorrent
+- Fix rss (read new on refresh)
 * beta 7
   - update doc for plugins (and add screenies)
   - update doc for options
@@ -102,6 +100,7 @@ beta6->beta7 changelog:
 - FEATURE: Added an option to display current transfer speeds in title bar
 - FEATURE: Added "Mark all as read" function for RSS feeds
 - FEATURE: Added some RSS settings in program preferences
+- FEATURE: Display RSS article date and author if available
 - BUGFIX: In torrent content, it is now easier to filter all torrents using right click menu
 - BUGFIX: Updated man page / README / INSTALL
 - BUGFIX: Paused torrents could be displayed as connected for a sec after checking

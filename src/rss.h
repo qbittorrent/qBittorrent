@@ -32,6 +32,7 @@
 #include <QTimer>
 #include <QImage>
 #include <QHash>
+#include <QDateTime>
 
 #include "misc.h"
 #include "downloadThread.h"
@@ -45,6 +46,28 @@ class RssManager;
 class RssStream;
 class RssItem;
 
+static const char shortDay[][4] = {
+    "Mon", "Tue", "Wed",
+    "Thu", "Fri", "Sat",
+    "Sun"
+};
+static const char longDay[][10] = {
+    "Monday", "Tuesday", "Wednesday",
+    "Thursday", "Friday", "Saturday",
+    "Sunday"
+};
+static const char shortMonth[][4] = {
+    "Jan", "Feb", "Mar", "Apr",
+    "May", "Jun", "Jul", "Aug",
+    "Sep", "Oct", "Nov", "Dec"
+};
+static const char longMonth[][10] = {
+    "January", "February", "March",
+    "April", "May", "June",
+    "July", "August", "September",
+    "October", "November", "December"
+};
+
 // Item of a rss stream, single information
 class RssItem : public QObject {
   Q_OBJECT
@@ -54,8 +77,142 @@ class RssItem : public QObject {
     QString link;
     QString description;
     QString image;
+    QString author;
+    QDateTime date;
     bool read;
     QString downloadLink;
+
+  protected:
+    // Ported to Qt4 from KDElibs4
+    QDateTime parseDate(const QString &string) {
+      QString str = string.trimmed();
+      if (str.isEmpty())
+          return QDateTime();
+
+      int nyear  = 6;   // indexes within string to values
+      int nmonth = 4;
+      int nday   = 2;
+      int nwday  = 1;
+      int nhour  = 7;
+      int nmin   = 8;
+      int nsec   = 9;
+      // Also accept obsolete form "Weekday, DD-Mon-YY HH:MM:SS ±hhmm"
+      QRegExp rx("^(?:([A-Z][a-z]+),\\s*)?(\\d{1,2})(\\s+|-)([^-\\s]+)(\\s+|-)(\\d{2,4})\\s+(\\d\\d):(\\d\\d)(?::(\\d\\d))?\\s+(\\S+)$");
+      QStringList parts;
+      if (!str.indexOf(rx)) {
+        // Check that if date has '-' separators, both separators are '-'.
+        parts = rx.capturedTexts();
+        bool h1 = (parts[3] == QLatin1String("-"));
+        bool h2 = (parts[5] == QLatin1String("-"));
+        if (h1 != h2)
+          return QDateTime();
+      } else {
+        // Check for the obsolete form "Wdy Mon DD HH:MM:SS YYYY"
+        rx = QRegExp("^([A-Z][a-z]+)\\s+(\\S+)\\s+(\\d\\d)\\s+(\\d\\d):(\\d\\d):(\\d\\d)\\s+(\\d\\d\\d\\d)$");
+        if (str.indexOf(rx))
+            return QDateTime();
+        nyear  = 7;
+        nmonth = 2;
+        nday   = 3;
+        nwday  = 1;
+        nhour  = 4;
+        nmin   = 5;
+        nsec   = 6;
+        parts = rx.capturedTexts();
+      }
+      bool ok[4];
+      int day    = parts[nday].toInt(&ok[0]);
+      int year   = parts[nyear].toInt(&ok[1]);
+      int hour   = parts[nhour].toInt(&ok[2]);
+      int minute = parts[nmin].toInt(&ok[3]);
+      if (!ok[0] || !ok[1] || !ok[2] || !ok[3])
+        return QDateTime();
+      int second = 0;
+      if (!parts[nsec].isEmpty()) {
+        second = parts[nsec].toInt(&ok[0]);
+        if (!ok[0])
+          return QDateTime();
+      }
+      bool leapSecond = (second == 60);
+      if (leapSecond)
+        second = 59;   // apparently a leap second - validate below, once time zone is known
+      int month = 0;
+      for ( ;  month < 12  &&  parts[nmonth] != shortMonth[month];  ++month) ;
+      int dayOfWeek = -1;
+      if (!parts[nwday].isEmpty()) {
+        // Look up the weekday name
+        while (++dayOfWeek < 7  &&  shortDay[dayOfWeek] != parts[nwday]) ;
+        if (dayOfWeek >= 7)
+          for (dayOfWeek = 0;  dayOfWeek < 7  &&  longDay[dayOfWeek] != parts[nwday];  ++dayOfWeek) ;
+      }
+//       if (month >= 12 || dayOfWeek >= 7
+//       ||  (dayOfWeek < 0  &&  format == RFCDateDay))
+//         return QDateTime;
+      int i = parts[nyear].size();
+      if (i < 4) {
+        // It's an obsolete year specification with less than 4 digits
+        year += (i == 2  &&  year < 50) ? 2000 : 1900;
+      }
+
+      // Parse the UTC offset part
+      int offset = 0;           // set default to '-0000'
+      bool negOffset = false;
+      if (parts.count() > 10) {
+        rx = QRegExp("^([+-])(\\d\\d)(\\d\\d)$");
+        if (!parts[10].indexOf(rx)) {
+          // It's a UTC offset ±hhmm
+          parts = rx.capturedTexts();
+          offset = parts[2].toInt(&ok[0]) * 3600;
+          int offsetMin = parts[3].toInt(&ok[1]);
+          if (!ok[0] || !ok[1] || offsetMin > 59)
+            return QDateTime();
+          offset += offsetMin * 60;
+          negOffset = (parts[1] == QLatin1String("-"));
+          if (negOffset)
+            offset = -offset;
+        } else {
+          // Check for an obsolete time zone name
+          QByteArray zone = parts[10].toLatin1();
+          if (zone.length() == 1  &&  isalpha(zone[0])  &&  toupper(zone[0]) != 'J')
+            negOffset = true;    // military zone: RFC 2822 treats as '-0000'
+          else if (zone != "UT" && zone != "GMT") {    // treated as '+0000'
+            offset = (zone == "EDT")                  ? -4*3600
+                    : (zone == "EST" || zone == "CDT") ? -5*3600
+                    : (zone == "CST" || zone == "MDT") ? -6*3600
+                    : (zone == "MST" || zone == "PDT") ? -7*3600
+                    : (zone == "PST")                  ? -8*3600
+                    : 0;
+            if (!offset) {
+              // Check for any other alphabetic time zone
+              bool nonalpha = false;
+              for (int i = 0, end = zone.size();  i < end && !nonalpha;  ++i)
+                nonalpha = !isalpha(zone[i]);
+              if (nonalpha)
+                return QDateTime();
+              // TODO: Attempt to recognize the time zone abbreviation?
+              negOffset = true;    // unknown time zone: RFC 2822 treats as '-0000'
+            }
+          }
+        }
+      }
+      QDate qdate(year, month+1, day);   // convert date, and check for out-of-range
+      if (!qdate.isValid())
+          return QDateTime();
+      QDateTime result(qdate, QTime(hour, minute, second));
+      if (!result.isValid()
+      ||  (dayOfWeek >= 0  &&  result.date().dayOfWeek() != dayOfWeek+1))
+        return QDateTime();    // invalid date/time, or weekday doesn't correspond with date
+      if (!offset) {
+        result.setTimeSpec(Qt::UTC);
+      }
+      if (leapSecond) {
+        // Validate a leap second time. Leap seconds are inserted after 23:59:59 UTC.
+        // Convert the time to UTC and check that it is 00:00:00.
+        if ((hour*3600 + minute*60 + 60 - offset + 86400*5) % 86400)   // (max abs(offset) is 100 hours)
+          return QDateTime();    // the time isn't the last second of the day
+      }
+      return result;
+    }
 
   public:
     // public constructor
@@ -70,6 +227,10 @@ class RssItem : public QObject {
 	  description = property.text();
 	else if (property.tagName() == "image")
 	  image = property.text();
+        else if (property.tagName() == "pubDate")
+          date = parseDate(property.text());
+        else if (property.tagName() == "author")
+          author = property.text();
 	property = property.nextSibling().toElement();
       }
     }
@@ -79,6 +240,10 @@ class RssItem : public QObject {
 
     QString getTitle() const{
       return title;
+    }
+
+    QString getAuthor() const {
+      return author;
     }
 
     QString getLink() const{
@@ -93,6 +258,10 @@ class RssItem : public QObject {
 
     QString getImage() const{
       return image;
+    }
+
+    QDateTime getDate() const {
+      return date;
     }
 
     QString getDownloadLink() const{
@@ -274,6 +443,7 @@ class RssStream : public QObject{
     }
 
   private:
+    // TODO: Read only news more recent than last refresh
     // read and create items from a rss document
     short readDoc(const QDomDocument& doc) {
       QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
@@ -291,10 +461,10 @@ class RssStream : public QObject{
       }
       QDomNode rss = root.firstChild();
       QDomElement channel = root.firstChild().toElement();
-      unsigned short listsize = getNbNews();
-      for(unsigned short i=0; i<listsize; ++i) {
-	listItem.removeLast();
-      }
+//       unsigned short listsize = getNbNews();
+//       for(unsigned short i=0; i<listsize; ++i) {
+// 	listItem.removeLast();
+//       }
 
       while(!channel.isNull()) {
         // we are reading the rss'main info
