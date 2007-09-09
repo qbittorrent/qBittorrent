@@ -35,6 +35,7 @@
       QTreeWidgetItem* item = listStreams->itemAt(pos);
       QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
       if(item != 0) {
+        myFinishedListMenu.addAction(actionMark_all_as_read);
 	myFinishedListMenu.addAction(actionDelete);
         if(selectedItems.size() == 1)
 	 myFinishedListMenu.addAction(actionRename);
@@ -118,13 +119,24 @@
       }
     }
 
+    void RSSImp::on_actionMark_all_as_read_triggered() {
+      QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
+      QTreeWidgetItem* item;
+      foreach(item, selectedItems){
+        QString url = item->text(1);
+        RssStream *feed = rssmanager->getFeed(url);
+        feed->markAllAsRead();
+        item->setData(0, Qt::DisplayRole, stream->getAliasOrUrl()+ QString::fromUtf8("  (0)"));
+      }
+    }
+
     //right-click somewhere, refresh all the streams
     void RSSImp::refreshAllStreams() {
       textBrowser->clear();
       listNews->clear();
       unsigned int nbFeeds = listStreams->topLevelItemCount();
       for(unsigned int i=0; i<nbFeeds; ++i)
-	listStreams->topLevelItem(i)->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+        listStreams->topLevelItem(i)->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
       rssmanager->refreshAll();
       updateLastRefreshedTimeForStreams();
     }
@@ -253,6 +265,7 @@
       addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/subscribe.png")));
       delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/unsubscribe.png")));
       refreshAll_button->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
+      actionMark_all_as_read->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
       // icons of right-click menu
       actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/unsubscribe16.png")));
       actionRename->setIcon(QIcon(QString::fromUtf8(":/Icons/log.png")));

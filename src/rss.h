@@ -242,6 +242,14 @@ class RssStream : public QObject{
       return listItem.size();
     }
 
+    void markAllAsRead() {
+      RssItem *item;
+      foreach(item, listItem){
+        if(!item->isRead())
+          item->setRead();
+      }
+    }
+
     unsigned int getNbUnRead() const{
       unsigned int nbUnread=0;
       RssItem *item;
