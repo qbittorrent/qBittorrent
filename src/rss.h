@@ -33,6 +33,7 @@
 #include <QImage>
 #include <QHash>
 #include <QDateTime>
+#include <QCryptographicHash>
 
 #include "misc.h"
 #include "downloadThread.h"
@@ -79,6 +80,7 @@ class RssItem : public QObject {
     QString image;
     QString author;
     QDateTime date;
+    QString hash;
     bool read;
     QString downloadLink;
 
@@ -233,6 +235,7 @@ class RssItem : public QObject {
           author = property.text();
 	property = property.nextSibling().toElement();
       }
+      hash = QCryptographicHash::hash(QByteArray(title.toUtf8())+QByteArray(description.toUtf8()), QCryptographicHash::Md5);
     }
 
     ~RssItem(){
@@ -248,6 +251,10 @@ class RssItem : public QObject {
 
     QString getLink() const{
       return link;
+    }
+
+    QString getHash() const {
+      return hash;
     }
 
     QString getDescription() const{
@@ -329,6 +336,14 @@ class RssStream : public QObject{
     void removeAllItems() {
       qDeleteAll(listItem);
       listItem.clear();
+    }
+
+    bool itemAlreadyExists(QString hash) {
+      RssItem * item;
+      foreach(item, listItem) {
+        if(item->getHash() == hash) return true;
+      }
+      return false;
     }
 
     void setLoading(bool val) {
@@ -446,9 +461,6 @@ class RssStream : public QObject{
     // TODO: Read only news more recent than last refresh
     // read and create items from a rss document
     short readDoc(const QDomDocument& doc) {
-      QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-      unsigned int max_articles = settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 50).toInt();
-      qDebug("Reading %d articles max in xml file", max_articles);
       // is it a rss file ?
       QDomElement root = doc.documentElement();
       if(root.tagName() == QString::fromUtf8("html")){
@@ -461,10 +473,6 @@ class RssStream : public QObject{
       }
       QDomNode rss = root.firstChild();
       QDomElement channel = root.firstChild().toElement();
-//       unsigned short listsize = getNbNews();
-//       for(unsigned short i=0; i<listsize; ++i) {
-// 	listItem.removeLast();
-//       }
 
       while(!channel.isNull()) {
         // we are reading the rss'main info
@@ -483,36 +491,46 @@ class RssStream : public QObject{
 	    else if (property.tagName() == "image")
 	      image = property.text();
 	    else if(property.tagName() == "item") {
-	      if(getNbNews() < max_articles) {
-	        listItem.append(new RssItem(property));
-	      }
+              RssItem * item = new RssItem(property);
+              if(!itemAlreadyExists(item->getHash()))
+                listItem.append(item);
 	    }
 	    property = property.nextSibling().toElement();
 	  }
 	}
 	channel = channel.nextSibling().toElement();
       }
+      sortList();
+      resizeList();
       return 0;
     }
 
-    // not actually used, it is used to resize the list of item AFTER the update, instead of delete it BEFORE, some troubles
+    static void insertSortElem(QList<RssItem*> &list, RssItem *item) {
+      int i = 0;
+      while(i < list.size() && item->getDate() < list.at(i)->getDate()) {
+        ++i;
+      }
+      list.insert(i, item);
+    }
+
+    void sortList() {
+      QList<RssItem*> new_list;
+      RssItem *item;
+      foreach(item, listItem) {
+        insertSortElem(new_list, item);
+      }
+      listItem = new_list;
+    }
+
+    // not actually used, it is used to resize the list of item AFTER the update, instead of delete it BEFORE
     void resizeList() {
       QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
       unsigned int max_articles = settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 50).toInt();
-      unsigned short lastindex = 0;
-      QString firstTitle = getItem(0)->getTitle();
-      unsigned short listsize = getNbNews();
-      for(unsigned short i=0; i<listsize; ++i) {
-        if(getItem(i)->getTitle() == firstTitle)
-	  lastindex = i;
+      int excess = listItem.size() - max_articles;
+      if(excess <= 0) return;
+      for(int i=0; i<excess; ++i){
+        listItem.removeLast();
       }
-      for(unsigned short i=0; i<lastindex; ++i) {
-	listItem.removeFirst();
-      }
-      while(getNbNews() > max_articles) {
-	listItem.removeLast();
-      }
-
     }
 
     // existing and opening test after download

@@ -101,6 +101,8 @@ beta6->beta7 changelog:
 - FEATURE: Added "Mark all as read" function for RSS feeds
 - FEATURE: Added some RSS settings in program preferences
 - FEATURE: Display RSS article date and author if available
+- FEATURE: Articles in a RSS feed are now ordered by date (newer at the top)
+- FEATURE: Read articles in a feed are not resetted when the feed is refreshed anymore
 - BUGFIX: In torrent content, it is now easier to filter all torrents using right click menu
 - BUGFIX: Updated man page / README / INSTALL
 - BUGFIX: Paused torrents could be displayed as connected for a sec after checking
