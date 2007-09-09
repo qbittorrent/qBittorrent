@@ -120,7 +120,7 @@ QStringList QTorrentHandle::url_seeds() const {
   std::vector<std::string> existing_seeds = h.get_torrent_info().url_seeds();
   unsigned int nbSeeds = existing_seeds.size();
   QString existing_seed;
-  for(unsigned int i=0; i<nbSeeds; ++i){
+  for(unsigned int i=0; i<nbSeeds; ++i) {
     res << misc::toQString(existing_seeds[i]);
   }
   return res;
@@ -278,9 +278,14 @@ void QTorrentHandle::add_url_seed(QString seed) {
   h.add_url_seed(misc::toString((const char*)seed.toUtf8()));
 }
 
-void QTorrentHandle::set_max_uploads(int val){
+void QTorrentHandle::set_max_uploads(int val) {
   Q_ASSERT(h.is_valid());
   h.set_max_uploads(val);
+}
+
+void QTorrentHandle::set_max_connections(int val) {
+  Q_ASSERT(h.is_valid());
+  h.set_max_connections(val);
 }
 
 void QTorrentHandle::prioritize_files(std::vector<int> v) {
@@ -308,7 +313,7 @@ void QTorrentHandle::set_sequenced_download_threshold(int val) {
   h.set_sequenced_download_threshold(val);
 }
 
-void QTorrentHandle::set_tracker_login(QString username, QString password){
+void QTorrentHandle::set_tracker_login(QString username, QString password) {
   Q_ASSERT(h.is_valid());
   h.set_tracker_login(std::string(username.toUtf8().data()), std::string(password.toUtf8().data()));
 }

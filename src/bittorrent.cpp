@@ -44,7 +44,7 @@
 #define MAX_TRACKER_ERRORS 2
 
 // Main constructor
-bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false), addInPause(false){
+bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4) {
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
   // Creating bittorrent session
@@ -369,7 +369,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
   if(file.isEmpty()) {
     return;
   }
-  Q_ASSERT(!file.startsWith("http://") && !file.startsWith("https://") && !file.startsWith("ftp://"));
+  Q_ASSERT(!file.startsWith("http://", Qt::CaseInsensitive) && !file.startsWith("https://", Qt::CaseInsensitive) && !file.startsWith("ftp://", Qt::CaseInsensitive));
   qDebug("Adding %s to download list", file.toUtf8().data());
   std::ifstream in(file.toUtf8().data(), std::ios_base::binary);
   in.unsetf(std::ios_base::skipws);
@@ -386,15 +386,6 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
       QString old_hash = fi.baseName();
       if(old_hash != hash){
         qDebug("* ERROR: Strange, hash changed from %s to %s", old_hash.toUtf8().data(), hash.toUtf8().data());
-//         QStringList filters;
-//         filters << old_hash+".*";
-//         QStringList files = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
-//         QString my_f;
-//         foreach(my_f, files) {
-//           qDebug("* deleting %s", my_f.toUtf8().data());
-//           torrentBackup.remove(my_f);
-//         }
-//         return;
       }
     }
     if(s->find_torrent(t->info_hash()).is_valid()) {
@@ -442,9 +433,10 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
       if(!from_url.isNull()) QFile::remove(file);
       return;
     }
-    // Is this really useful and appropriate ?
-    //h.set_max_connections(60);
-    h.set_max_uploads(-1);
+    // Connections limit per torrent
+    h.set_max_connections(maxConnecsPerTorrent);
+    // Uploads limit per torrent
+    h.set_max_uploads(maxUploadsPerTorrent);
     // Load filtered files
     loadFilesPriorities(h);
     // Load custom url seeds
@@ -555,6 +547,36 @@ bool bittorrent::has_filtered_files(QString hash) const{
 // Set the maximum number of opened connections
 void bittorrent::setMaxConnections(int maxConnec) {
   s->set_max_connections(maxConnec);
+}
+
+void bittorrent::setMaxConnectionsPerTorrent(int max) {
+  maxConnecsPerTorrent = max;
+  // Apply this to all session torrents
+  std::vector<torrent_handle> handles = s->get_torrents();
+  unsigned int nbHandles = handles.size();
+  for(unsigned int i=0; i<nbHandles; ++i) {
+    QTorrentHandle h = handles[i];
+    if(!h.is_valid()) {
+      qDebug("/!\\ Error: Invalid handle");
+      continue;
+    }
+    h.set_max_connections(max);
+  }
+}
+
+void bittorrent::setMaxUploadsPerTorrent(int max) {
+  maxUploadsPerTorrent = max;
+  // Apply this to all session torrents
+  std::vector<torrent_handle> handles = s->get_torrents();
+  unsigned int nbHandles = handles.size();
+  for(unsigned int i=0; i<nbHandles; ++i) {
+    QTorrentHandle h = handles[i];
+    if(!h.is_valid()) {
+      qDebug("/!\\ Error: Invalid handle");
+      continue;
+    }
+    h.set_max_uploads(max);
+  }
 }
 
 // Return DHT state
@@ -1151,8 +1173,10 @@ void bittorrent::reloadTorrent(const QTorrentHandle &h) {
   }
   QTorrentHandle new_h = s->add_torrent(t, saveDir, resumeData, false);
   qDebug("Using full allocation mode");
-
-  new_h.set_max_uploads(-1);
+  // Connections limit per torrent
+  new_h.set_max_connections(maxConnecsPerTorrent);
+  // Uploads limit per torrent
+  new_h.set_max_uploads(maxUploadsPerTorrent);
   // Load filtered Files
   loadFilesPriorities(new_h);
   // Load speed limit from hard drive

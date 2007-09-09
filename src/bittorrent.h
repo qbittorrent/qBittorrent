@@ -59,6 +59,8 @@ class bittorrent : public QObject{
     QStringList unfinishedTorrents;
     bool preAllocateAll;
     bool addInPause;
+    int maxConnecsPerTorrent;
+    int maxUploadsPerTorrent;
 
   protected:
     QString getSavePath(QString hash);
@@ -112,6 +114,8 @@ class bittorrent : public QObject{
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
     void setMaxConnections(int maxConnec);
+    void setMaxConnectionsPerTorrent(int max);
+    void setMaxUploadsPerTorrent(int max);
     void setDownloadRateLimit(long rate);
     void setUploadRateLimit(long rate);
     void setGlobalRatio(float ratio);

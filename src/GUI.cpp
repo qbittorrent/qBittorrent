@@ -777,21 +777,35 @@ void GUI::processDownloadedFiles(QString path, QString url) {
 // Set BT session configuration
 void GUI::configureSession(bool deleteOptions) {
   qDebug("Configuring session");
-  QPair<int, int> limits;
-  unsigned short old_listenPort, new_listenPort;
-  proxy_settings proxySettings;
-  session_settings sessionSettings;
-  pe_settings encryptionSettings;
   // Downloads
   BTSession->preAllocateAllFiles(options->preAllocateAllFiles());
   BTSession->startTorrentsInPause(options->addTorrentsInPause());
   // Connection
-  old_listenPort = BTSession->getListenPort();
+  // * Ports binding
+  unsigned short old_listenPort = BTSession->getListenPort();
   BTSession->setListeningPortsRange(options->getPorts());
-  new_listenPort = BTSession->getListenPort();
+  unsigned short new_listenPort = BTSession->getListenPort();
   if(new_listenPort != old_listenPort) {
     downloadingTorrentTab->setInfoBar(tr("qBittorrent is bind to port: %1", "e.g: qBittorrent is bind to port: 1666").arg( misc::toQString(new_listenPort)));
   }
+  // * Global download limit
+  QPair<int, int> limits = options->getGlobalBandwidthLimits();
+  if(limits.first <= 0) {
+    // Download limit disabled
+    BTSession->setDownloadRateLimit(-1);
+  } else {
+    // Enabled
+    BTSession->setDownloadRateLimit(limits.first*1024);
+  }
+  // * Global Upload limit
+  if(limits.second <= 0) {
+    // Upload limit disabled
+    BTSession->setUploadRateLimit(-1);
+  } else {
+    // Enabled
+    BTSession->setUploadRateLimit(limits.second*1024);
+  }
+  // * UPnP
   if(options->isUPnPEnabled()) {
     BTSession->enableUPnP(true);
     downloadingTorrentTab->setInfoBar(tr("UPnP support [ON]"), QString::fromUtf8("blue"));
@@ -799,6 +813,7 @@ void GUI::configureSession(bool deleteOptions) {
     BTSession->enableUPnP(false);
     downloadingTorrentTab->setInfoBar(tr("UPnP support [OFF]"), QString::fromUtf8("blue"));
   }
+  // * NAT-PMP
   if(options->isNATPMPEnabled()) {
     BTSession->enableNATPMP(true);
     downloadingTorrentTab->setInfoBar(tr("NAT-PMP support [ON]"), QString::fromUtf8("blue"));
@@ -806,87 +821,8 @@ void GUI::configureSession(bool deleteOptions) {
     BTSession->enableNATPMP(false);
     downloadingTorrentTab->setInfoBar(tr("NAT-PMP support [OFF]"), QString::fromUtf8("blue"));
   }
-  // Bittorrent
-  if(options->isLSDEnabled()) {
-    BTSession->enableLSD(true);
-    downloadingTorrentTab->setInfoBar(tr("Local Peer Discovery [ON]"), QString::fromUtf8("blue"));
-  } else {
-    BTSession->enableLSD(false);
-    downloadingTorrentTab->setInfoBar(tr("Local Peer Discovery support [OFF]"), QString::fromUtf8("blue"));
-  }
-  if(options->isDHTEnabled()) {
-    BTSession->enableDHT(true);
-    downloadingTorrentTab->setInfoBar(tr("DHT support [ON], port: %1").arg(new_listenPort), QString::fromUtf8("blue"));
-    // Set DHT Port
-    BTSession->setDHTPort(new_listenPort);
-  }else{
-    BTSession->enableDHT(false);
-    downloadingTorrentTab->setInfoBar(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
-  }
-  // IP Filter
-  // Configure session regarding options
-  BTSession->setDefaultSavePath(options->getSavePath());
-  // Apply max connec limit (-1 if disabled)
-  BTSession->setMaxConnections(options->getMaxConnecs());
-  limits = options->getGlobalBandwidthLimits();
-  switch(limits.first) {
-    case -1: // Download limit disabled
-    case 0:
-      BTSession->setDownloadRateLimit(-1);
-      break;
-    default:
-      BTSession->setDownloadRateLimit(limits.first*1024);
-  }
-  switch(limits.second) {
-    case -1: // Upload limit disabled
-    case 0:
-      BTSession->setUploadRateLimit(-1);
-      break;
-    default:
-      BTSession->setUploadRateLimit(limits.second*1024);
-  }
-  // Apply ratio (0 if disabled)
-  BTSession->setGlobalRatio(options->getDesiredRatio());
-  // Encryption settings
-  int encryptionState = options->getEncryptionSetting();
-  // The most secure, rc4 only so that all streams and encrypted
-  encryptionSettings.allowed_enc_level = pe_settings::rc4;
-  encryptionSettings.prefer_rc4 = true;
-  switch(encryptionState) {
-    case 0: //Enabled
-      encryptionSettings.out_enc_policy = pe_settings::enabled;
-      encryptionSettings.in_enc_policy = pe_settings::enabled;
-      downloadingTorrentTab->setInfoBar(tr("Encryption support [ON]"), QString::fromUtf8("blue"));
-      break;
-    case 1: // Forced
-      encryptionSettings.out_enc_policy = pe_settings::forced;
-      encryptionSettings.in_enc_policy = pe_settings::forced;
-      downloadingTorrentTab->setInfoBar(tr("Encryption support [FORCED]"), QString::fromUtf8("blue"));
-      break;
-    default: // Disabled
-      encryptionSettings.out_enc_policy = pe_settings::disabled;
-      encryptionSettings.in_enc_policy = pe_settings::disabled;
-      downloadingTorrentTab->setInfoBar(tr("Encryption support [OFF]"), QString::fromUtf8("blue"));
-  }
-  BTSession->applyEncryptionSettings(encryptionSettings);
-  // PeX
-  if(options->isPeXEnabled()) {
-    qDebug("Enabling Peer eXchange (PeX)");
-    downloadingTorrentTab->setInfoBar(tr("PeX support [ON]"), QString::fromUtf8("blue"));
-    BTSession->enablePeerExchange();
-  }else{
-    downloadingTorrentTab->setInfoBar(tr("PeX support [OFF]"), QString::fromUtf8("blue"));
-    qDebug("Peer eXchange (PeX) disabled");
-  }
-  // Apply filtering settings
-  if(options->isFilteringEnabled()) {
-    BTSession->enableIPFilter(options->getFilter());
-    downloadingTorrentTab->setBottomTabEnabled(1, true);
-  }else{
-    BTSession->disableIPFilter();
-    downloadingTorrentTab->setBottomTabEnabled(1, false);
-  }
-  // Apply Proxy settings
+  // * Proxy settings
+  proxy_settings proxySettings;
   if(options->isProxyEnabled()) {
     switch(options->getProxyType()) {
       case HTTP:
@@ -910,8 +846,79 @@ void GUI::configureSession(bool deleteOptions) {
     }
   }
   BTSession->setProxySettings(proxySettings, options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
+  // * Session settings
+  session_settings sessionSettings;
   sessionSettings.user_agent = "qBittorrent "VERSION;
   BTSession->setSessionSettings(sessionSettings);
+  // Bittorrent
+  // * Max connections limit
+  BTSession->setMaxConnections(options->getMaxConnecs());
+  // * Max connections per torrent limit
+  BTSession->setMaxConnectionsPerTorrent(options->getMaxConnecsPerTorrent());
+  // * Max uploads per torrent limit
+  BTSession->setMaxUploadsPerTorrent(options->getMaxUploadsPerTorrent());
+  // * DHT
+  if(options->isDHTEnabled()) {
+    BTSession->enableDHT(true);
+    downloadingTorrentTab->setInfoBar(tr("DHT support [ON], port: %1").arg(new_listenPort), QString::fromUtf8("blue"));
+    // Set DHT Port
+    BTSession->setDHTPort(new_listenPort);
+  }else{
+    BTSession->enableDHT(false);
+    downloadingTorrentTab->setInfoBar(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
+  }
+  // * PeX
+  if(options->isPeXEnabled()) {
+    downloadingTorrentTab->setInfoBar(tr("PeX support [ON]"), QString::fromUtf8("blue"));
+    BTSession->enablePeerExchange();
+  }else{
+    // TODO: How can we remove the extension?
+    downloadingTorrentTab->setInfoBar(tr("PeX support [OFF]"), QString::fromUtf8("blue"));
+  }
+  // * LSD
+  if(options->isLSDEnabled()) {
+    BTSession->enableLSD(true);
+    downloadingTorrentTab->setInfoBar(tr("Local Peer Discovery [ON]"), QString::fromUtf8("blue"));
+  } else {
+    BTSession->enableLSD(false);
+    downloadingTorrentTab->setInfoBar(tr("Local Peer Discovery support [OFF]"), QString::fromUtf8("blue"));
+  }
+  // * Encryption
+  int encryptionState = options->getEncryptionSetting();
+  // The most secure, rc4 only so that all streams and encrypted
+  pe_settings encryptionSettings;
+  encryptionSettings.allowed_enc_level = pe_settings::rc4;
+  encryptionSettings.prefer_rc4 = true;
+  switch(encryptionState) {
+    case 0: //Enabled
+      encryptionSettings.out_enc_policy = pe_settings::enabled;
+      encryptionSettings.in_enc_policy = pe_settings::enabled;
+      downloadingTorrentTab->setInfoBar(tr("Encryption support [ON]"), QString::fromUtf8("blue"));
+      break;
+    case 1: // Forced
+      encryptionSettings.out_enc_policy = pe_settings::forced;
+      encryptionSettings.in_enc_policy = pe_settings::forced;
+      downloadingTorrentTab->setInfoBar(tr("Encryption support [FORCED]"), QString::fromUtf8("blue"));
+      break;
+    default: // Disabled
+      encryptionSettings.out_enc_policy = pe_settings::disabled;
+      encryptionSettings.in_enc_policy = pe_settings::disabled;
+      downloadingTorrentTab->setInfoBar(tr("Encryption support [OFF]"), QString::fromUtf8("blue"));
+  }
+  BTSession->applyEncryptionSettings(encryptionSettings);
+  // IP Filter
+  // Configure session regarding options
+  BTSession->setDefaultSavePath(options->getSavePath());
+  // Apply ratio (0 if disabled)
+  BTSession->setGlobalRatio(options->getDesiredRatio());
+  // Apply filtering settings
+  if(options->isFilteringEnabled()) {
+    BTSession->enableIPFilter(options->getFilter());
+    downloadingTorrentTab->setBottomTabEnabled(1, true);
+  }else{
+    BTSession->disableIPFilter();
+    downloadingTorrentTab->setBottomTabEnabled(1, false);
+  }
   // Scan dir stuff
   if(options->getScanDir().isNull()) {
     BTSession->disableDirectoryScanning();

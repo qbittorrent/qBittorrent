@@ -71,7 +71,7 @@
 LANGUAGES UPDATED:
 - French *BETA6*
 - English *BETA6*
-- Japanese *BETA3*
+- Japanese *BETA6*
 - Swedish *BETA6*
 - Slovak *BETA6*
 - Ukrainian *BETA6*
@@ -81,7 +81,7 @@ LANGUAGES UPDATED:
 - Polish *BETA6*
 - Portuguese *BETA5*
 - Brazilian *BETA5*
-- Spanish *BETA5*
+- Spanish *BETA6*
 - German *BETA6*
 - Russian *BETA6*
 - Korean *BETA6*
@@ -100,6 +100,8 @@ beta6->beta7 changelog:
 - FEATURE: Added an option to force full disk allocation for all torrents
 - FEATURE: Added an option to add torrents in paused state
 - FEATURE: Allow to disable UPnP/NAT-PMP/LSD
+- FEATURE: Added an option to set the max number of connections per torrent
+- FEATURE: Added an option to set the max number of uploads per torrent
 - BUGFIX: In torrent content, it is now easier to filter all torrents using right click menu
 - BUGFIX: Updated man page / README / INSTALL
 - BUGFIX: Paused torrents could be displayed as connected for a sec after checking
