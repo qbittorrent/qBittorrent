@@ -157,12 +157,13 @@ void bittorrent::updateETAs() {
       if(h.download_payload_rate()) {
         listEtas << (qlonglong)((h.actual_size()-h.total_done())/(double)h.download_payload_rate());
         ETAstats[hash] = listEtas;
-        long moy = 0;
-        long val;
+        qlonglong moy = 0;
+        qlonglong val;
         unsigned int nbETAs = listEtas.size();
         Q_ASSERT(nbETAs);
         foreach(val, listEtas) {
           moy += (qlonglong)((double)val/(double)nbETAs);
+          qDebug("ETA: %ld, nbETAs: %d, moy: %ld", (long)val, nbETAs, (long)moy);
           Q_ASSERT(moy >= 0);
         }
         ETAs[hash] = moy;
