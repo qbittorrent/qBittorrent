@@ -454,6 +454,7 @@ void options_imp::loadOptions(){
     spinUploadLimit->setEnabled(false);
   }
   intValue = settings.value(QString::fromUtf8("ProxyType"), 0).toInt();
+  if(intValue < 0) intValue = 0;
   comboProxyType->setCurrentIndex(intValue);
   enableProxy(intValue);
   if(isProxyEnabled()) {
