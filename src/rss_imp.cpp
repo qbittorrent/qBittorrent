@@ -126,7 +126,7 @@
         QString url = item->text(1);
         RssStream *feed = rssmanager->getFeed(url);
         feed->markAllAsRead();
-        item->setData(0, Qt::DisplayRole, stream->getAliasOrUrl()+ QString::fromUtf8("  (0)"));
+        item->setData(0, Qt::DisplayRole, feed->getAliasOrUrl()+ QString::fromUtf8("  (0)"));
       }
     }
 
