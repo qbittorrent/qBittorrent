@@ -44,7 +44,7 @@
 #define MAX_TRACKER_ERRORS 2
 
 // Main constructor
-bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4) {
+bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), max_ratio(-1) {
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
   // Creating bittorrent session
@@ -100,6 +100,26 @@ void bittorrent::preAllocateAllFiles(bool b) {
   }
 }
 
+void bittorrent::deleteBigRatios() {
+  if(max_ratio == -1) return;
+  std::vector<torrent_handle> handles = s->get_torrents();
+  unsigned int nbHandles = handles.size();
+  for(unsigned int i=0; i<nbHandles; ++i) {
+    QTorrentHandle h = handles[i];
+    if(!h.is_valid()) {
+      qDebug("/!\\ Error: Invalid handle");
+      continue;
+    }
+    QString hash = h.hash();
+    if(getRealRatio(hash) > max_ratio) {
+      bool finished = finishedTorrents.contains(hash);
+      QString fileName = h.name();
+      deleteTorrent(hash);
+      emit torrent_deleted(hash, fileName, finished);
+    }
+  }
+}
+
 void bittorrent::setDownloadLimit(QString hash, long val) {
   QTorrentHandle h = getTorrentHandle(hash);
   if(h.is_valid())
@@ -149,6 +169,9 @@ void bittorrent::updateETAs() {
       }
     }
   }
+  // Delete big ratios
+  if(max_ratio != -1)
+    deleteBigRatios();
 }
 
 long bittorrent::getETA(QString hash) const{
@@ -929,6 +952,7 @@ void bittorrent::setUploadRateLimit(long rate) {
 // libtorrent allow to adjust ratio for each torrent
 // This function will apply to same ratio to all torrents
 void bittorrent::setGlobalRatio(float ratio) {
+  if(ratio != -1 && ratio < 1.) ratio = 1.;
   std::vector<torrent_handle> handles = s->get_torrents();
   unsigned int nbHandles = handles.size();
   for(unsigned int i=0; i<nbHandles; ++i) {
@@ -939,6 +963,14 @@ void bittorrent::setGlobalRatio(float ratio) {
     }
     h.set_ratio(ratio);
   }
+}
+
+// Torrents will a ratio superior to the given value will
+// be automatically deleted
+void bittorrent::setDeleteRatio(float ratio) {
+  if(ratio != -1 && ratio < 1.) ratio = 1.;
+  max_ratio = ratio;
+  deleteBigRatios();
 }
 
 bool bittorrent::loadTrackerFile(QString hash) {

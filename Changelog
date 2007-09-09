@@ -37,6 +37,7 @@
     - FEATURE: Added an option to add torrents in paused state
     - FEATURE: Added an option to set the max number of connections per torrent
     - FEATURE: Added an option to set the max number of uploads per torrent
+    - FEATURE: Added an option to automatically delete torrents when they reach a given ratio (>= 1.0)
     - I18N: Added Hungarian translation
     - I18N: Added Brazilian translation
     - BUGFIX: Progress of paused torrents is now correct on restart

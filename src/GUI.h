@@ -132,6 +132,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void processScannedFiles(const QStringList& params);
     void processDownloadedFiles(QString path, QString url);
     void downloadFromURLList(const QStringList& urls);
+    void deleteTorrent(QString hash, QString fileName, bool finished);
     void finishedTorrent(QTorrentHandle& h) const;
     void torrentChecked(QString hash) const;
     void updateLists();

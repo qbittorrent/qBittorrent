@@ -112,6 +112,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   connect(BTSession, SIGNAL(scanDirFoundTorrents(const QStringList&)), this, SLOT(processScannedFiles(const QStringList&)));
   connect(BTSession, SIGNAL(newDownloadedTorrent(QString, QString)), this, SLOT(processDownloadedFiles(QString, QString)));
   connect(BTSession, SIGNAL(downloadFromUrlFailure(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
+  connect(BTSession, SIGNAL(torrent_deleted(QString, QString, bool)), this, SLOT(deleteTorrent(QString, QString, bool)));
   qDebug("create tabWidget");
   tabs = new QTabWidget();
   // Download torrents tab
@@ -661,6 +662,16 @@ void GUI::on_actionDelete_Permanently_triggered() {
   }
 }
 
+void GUI::deleteTorrent(QString hash, QString fileName, bool finished) {
+  if(finished) {
+    finishedTorrentTab->deleteTorrent(hash);
+  } else {
+    downloadingTorrentTab->deleteTorrent(hash);
+  }
+  // Update info bar
+  downloadingTorrentTab->setInfoBar(tr("'%1' was removed because its ratio reached the maximum value you set.", "%1 is a file name").arg(fileName));
+}
+
 // delete selected items in the list
 void GUI::on_actionDelete_triggered() {
   QStringList hashes;
@@ -778,8 +789,16 @@ void GUI::processDownloadedFiles(QString path, QString url) {
 void GUI::configureSession(bool deleteOptions) {
   qDebug("Configuring session");
   // Downloads
+  // Save path
+  BTSession->setDefaultSavePath(options->getSavePath());
   BTSession->preAllocateAllFiles(options->preAllocateAllFiles());
   BTSession->startTorrentsInPause(options->addTorrentsInPause());
+  // * Scan dir
+  if(options->getScanDir().isNull()) {
+    BTSession->disableDirectoryScanning();
+  }else{
+    BTSession->enableDirectoryScanning(options->getScanDir());
+  }
   // Connection
   // * Ports binding
   unsigned short old_listenPort = BTSession->getListenPort();
@@ -906,12 +925,11 @@ void GUI::configureSession(bool deleteOptions) {
       downloadingTorrentTab->setInfoBar(tr("Encryption support [OFF]"), QString::fromUtf8("blue"));
   }
   BTSession->applyEncryptionSettings(encryptionSettings);
-  // IP Filter
-  // Configure session regarding options
-  BTSession->setDefaultSavePath(options->getSavePath());
-  // Apply ratio (0 if disabled)
+  // * Desired ratio
   BTSession->setGlobalRatio(options->getDesiredRatio());
-  // Apply filtering settings
+  // * Maximum ratio
+  BTSession->setDeleteRatio(options->getDeleteRatio());
+  // Ip Filter
   if(options->isFilteringEnabled()) {
     BTSession->enableIPFilter(options->getFilter());
     downloadingTorrentTab->setBottomTabEnabled(1, true);
@@ -919,12 +937,7 @@ void GUI::configureSession(bool deleteOptions) {
     BTSession->disableIPFilter();
     downloadingTorrentTab->setBottomTabEnabled(1, false);
   }
-  // Scan dir stuff
-  if(options->getScanDir().isNull()) {
-    BTSession->disableDirectoryScanning();
-  }else{
-    BTSession->enableDirectoryScanning(options->getScanDir());
-  }
+  // Clean up
   if(deleteOptions) {
     delete options;
   }

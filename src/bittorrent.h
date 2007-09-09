@@ -61,6 +61,7 @@ class bittorrent : public QObject{
     bool addInPause;
     int maxConnecsPerTorrent;
     int maxUploadsPerTorrent;
+    float max_ratio;
 
   protected:
     QString getSavePath(QString hash);
@@ -119,6 +120,7 @@ class bittorrent : public QObject{
     void setDownloadRateLimit(long rate);
     void setUploadRateLimit(long rate);
     void setGlobalRatio(float ratio);
+    void setDeleteRatio(float ratio);
     void setDHTPort(int dht_port);
     void setProxySettings(proxy_settings proxySettings, bool trackers=true, bool peers=true, bool web_seeds=true, bool dht=true);
     void setSessionSettings(session_settings sessionSettings);
@@ -142,6 +144,7 @@ class bittorrent : public QObject{
     bool loadTrackerFile(QString hash);
     void saveTrackerFile(QString hash);
     void reloadTorrent(const QTorrentHandle &h); // This is protected now, call pauseAndReloadTorrent() instead
+    void deleteBigRatios();
 
   signals:
     void invalidTorrent(QString path);
@@ -161,7 +164,7 @@ class bittorrent : public QObject{
     void fastResumeDataRejected(QString name);
     void urlSeedProblem(QString url, QString msg);
     void torrentFinishedChecking(QString hash);
-
+    void torrent_deleted(QString hash, QString fileName, bool finished);
 };
 
 #endif
