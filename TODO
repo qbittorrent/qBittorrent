@@ -51,10 +51,8 @@
 // in v1.0.0 (partial) - WIP
 - Fix all (or almost all) opened bugs in bug tracker
 - Improve systray tooltip
-- Use tooltips in options to explain
 - Keep documention up to date
 - Windows port (Chris - Peerkoel)
-- Fix rss (read new on refresh)
 * beta 7
   - update doc for plugins (and add screenies)
   - update doc for options
