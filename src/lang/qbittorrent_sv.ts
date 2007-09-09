@@ -192,12 +192,12 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Max anslutningar:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="538"/>
+        <location filename="../options.ui" line="582"/>
         <source>Port range:</source>
         <translation>Portintervall:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1569"/>
+        <location filename="../options.ui" line="1633"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -217,17 +217,17 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Proxy</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="733"/>
+        <location filename="../options.ui" line="790"/>
         <source>Proxy Settings</source>
         <translation>Proxyinställningar</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="780"/>
+        <location filename="../options.ui" line="837"/>
         <source>0.0.0.0</source>
         <translation>0.0.0.0</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="796"/>
+        <location filename="../options.ui" line="853"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
@@ -237,7 +237,7 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Proxyservern kräver autentisering</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="836"/>
+        <location filename="../options.ui" line="893"/>
         <source>Authentication</source>
         <translation>Autentisering</translation>
     </message>
@@ -247,7 +247,7 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Användarnamn:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="860"/>
+        <location filename="../options.ui" line="917"/>
         <source>Password:</source>
         <translation>Lösenord:</translation>
     </message>
@@ -272,47 +272,47 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Utdelningsförhållande:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1399"/>
+        <location filename="../options.ui" line="1465"/>
         <source>Activate IP Filtering</source>
         <translation>Aktivera IP-filtrering</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1409"/>
+        <location filename="../options.ui" line="1444"/>
         <source>Filter Settings</source>
         <translation>Filterinställningar</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1454"/>
+        <location filename="../options.ui" line="1502"/>
         <source>Start IP</source>
         <translation>Start-IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1459"/>
+        <location filename="../options.ui" line="1507"/>
         <source>End IP</source>
         <translation>Slut-IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1464"/>
+        <location filename="../options.ui" line="1512"/>
         <source>Origin</source>
         <translation>Ursprung</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1469"/>
+        <location filename="../options.ui" line="1517"/>
         <source>Comment</source>
         <translation>Kommentar</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1375"/>
         <source>IP Filter</source>
-        <translation>IP-filter</translation>
+        <translation type="obsolete">IP-filter</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1507"/>
+        <location filename="../options.ui" line="1558"/>
         <source> Add Range</source>
         <translation> Lägg till intervall</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1517"/>
+        <location filename="../options.ui" line="1571"/>
         <source> Remove Range</source>
         <translation> Ta bort intervall</translation>
     </message>
@@ -327,9 +327,9 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Gå till aktivitetsfältet vid minimering av fönster</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1535"/>
+        <location filename="../options.ui" line="1432"/>
         <source>Misc</source>
-        <translation type="obsolete">Diverse</translation>
+        <translation type="unfinished">Diverse</translation>
     </message>
     <message>
         <location filename="../options.ui" line="937"/>
@@ -347,7 +347,7 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Beteende</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="712"/>
+        <location filename="../options.ui" line="769"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -362,7 +362,7 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">KiB sändning max.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="263"/>
+        <location filename="../options.ui" line="307"/>
         <source>Preview program</source>
         <translation>Förhandsvisningsprogram</translation>
     </message>
@@ -437,7 +437,7 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Gå till aktivitetsfältet när huvudfönstret stängs</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="517"/>
+        <location filename="../options.ui" line="561"/>
         <source>Connection</source>
         <translation>Anslutning</translation>
     </message>
@@ -527,37 +527,37 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Proxytyp:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="754"/>
+        <location filename="../options.ui" line="811"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="759"/>
+        <location filename="../options.ui" line="816"/>
         <source>SOCKS5</source>
         <translation>SOCKS 5</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="931"/>
+        <location filename="../options.ui" line="988"/>
         <source>Affected connections</source>
         <translation>Berörda anslutningar</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="943"/>
+        <location filename="../options.ui" line="1000"/>
         <source>Use proxy for connections to trackers</source>
         <translation>Använd proxy för anslutningar till trackers</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="959"/>
+        <location filename="../options.ui" line="1016"/>
         <source>Use proxy for connections to regular peers</source>
         <translation>Använd proxy för anslutningar till vanliga parter</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="975"/>
+        <location filename="../options.ui" line="1032"/>
         <source>Use proxy for connections to web seeds</source>
         <translation>Använd proxy för anslutningar till webbdistributörer</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="991"/>
+        <location filename="../options.ui" line="1048"/>
         <source>Use proxy for DHT messages</source>
         <translation>Använd proxy för DHT-meddelanden</translation>
     </message>
@@ -572,17 +572,17 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Krypteringstillstånd:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1207"/>
+        <location filename="../options.ui" line="1264"/>
         <source>Enabled</source>
         <translation>Aktiverad</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1212"/>
+        <location filename="../options.ui" line="1269"/>
         <source>Forced</source>
         <translation>Tvingad</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1217"/>
+        <location filename="../options.ui" line="1274"/>
         <source>Disabled</source>
         <translation>Inaktiverad</translation>
     </message>
@@ -627,207 +627,237 @@ Copyright © 2006 Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="220"/>
+        <location filename="../options.ui" line="264"/>
         <source>System tray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="226"/>
+        <location filename="../options.ui" line="270"/>
         <source>Disable system tray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="233"/>
+        <location filename="../options.ui" line="277"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="240"/>
+        <location filename="../options.ui" line="284"/>
         <source>Minimize to tray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="250"/>
+        <location filename="../options.ui" line="294"/>
         <source>Show notification balloons in tray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="286"/>
+        <location filename="../options.ui" line="330"/>
         <source>Media player:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="322"/>
+        <location filename="../options.ui" line="366"/>
         <source>Downloads</source>
         <translation type="unfinished">Hämtningar</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="331"/>
+        <location filename="../options.ui" line="375"/>
         <source>Filesystem</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="337"/>
+        <location filename="../options.ui" line="381"/>
         <source>Put downloads in this folder:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="396"/>
+        <location filename="../options.ui" line="440"/>
         <source>Pre-allocate all files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="406"/>
+        <location filename="../options.ui" line="450"/>
         <source>When adding a torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="412"/>
+        <location filename="../options.ui" line="456"/>
         <source>Display torrent content and some options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="422"/>
+        <location filename="../options.ui" line="466"/>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="432"/>
+        <location filename="../options.ui" line="476"/>
         <source>Folder watching</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="438"/>
+        <location filename="../options.ui" line="482"/>
         <source>Automatically download torrents present in this folder:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="530"/>
+        <location filename="../options.ui" line="574"/>
         <source>Listening port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="558"/>
+        <location filename="../options.ui" line="602"/>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
         <translation type="unfinished">till</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="583"/>
+        <location filename="../options.ui" line="640"/>
         <source>Enable UPnP port mapping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="593"/>
+        <location filename="../options.ui" line="650"/>
         <source>Enable NAT-PMP port mapping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="606"/>
+        <location filename="../options.ui" line="663"/>
         <source>Global bandwidth limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="622"/>
+        <location filename="../options.ui" line="679"/>
         <source>Upload:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="638"/>
+        <location filename="../options.ui" line="695"/>
         <source>Download:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="741"/>
+        <location filename="../options.ui" line="798"/>
         <source>Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="749"/>
+        <location filename="../options.ui" line="806"/>
         <source>(None)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="770"/>
+        <location filename="../options.ui" line="827"/>
         <source>Proxy:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="850"/>
+        <location filename="../options.ui" line="907"/>
         <source>Username:</source>
         <translation type="unfinished">Användarnamn:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1008"/>
+        <location filename="../options.ui" line="1065"/>
         <source>Bittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1017"/>
+        <location filename="../options.ui" line="1074"/>
         <source>Connections limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1025"/>
+        <location filename="../options.ui" line="1082"/>
         <source>Global maximum number of connections:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1073"/>
+        <location filename="../options.ui" line="1130"/>
         <source>Maximum number of connections per torrent:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1118"/>
+        <location filename="../options.ui" line="1175"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1161"/>
+        <location filename="../options.ui" line="1218"/>
         <source>Additional Bittorrent features</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1167"/>
+        <location filename="../options.ui" line="1224"/>
         <source>Enable DHT network (decentralized)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1177"/>
+        <location filename="../options.ui" line="1234"/>
         <source>Enable Peer eXchange (PeX)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1187"/>
+        <location filename="../options.ui" line="1244"/>
         <source>Enable Local Peer Discovery</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1199"/>
+        <location filename="../options.ui" line="1256"/>
         <source>Encryption:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1243"/>
+        <location filename="../options.ui" line="1300"/>
         <source>Share ratio settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1258"/>
+        <location filename="../options.ui" line="1315"/>
         <source>Desired ratio:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1320"/>
+        <location filename="../options.ui" line="1377"/>
         <source>Remove torrents when their ratio reaches:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1559"/>
+        <location filename="../options.ui" line="1616"/>
         <source>Filter file path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="219"/>
+        <source>transfer lists refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="239"/>
+        <source>ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1645"/>
+        <source>RSS</source>
+        <translation type="unfinished">RSS</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1682"/>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1702"/>
+        <source>minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1726"/>
+        <source>Maximum number of articles per feed:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1065,17 +1095,17 @@ Stäng den först.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1189"/>
+        <location filename="../GUI.cpp" line="1195"/>
         <source>Connection status:</source>
         <translation>Anslutningsstatus:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1189"/>
+        <location filename="../GUI.cpp" line="1195"/>
         <source>Offline</source>
         <translation>Frånkopplad</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1189"/>
+        <location filename="../GUI.cpp" line="1195"/>
         <source>No peers found...</source>
         <translation>Inga parter hittades...</translation>
     </message>
@@ -1128,18 +1158,18 @@ Stäng den först.</translation>
         <translation type="obsolete">qBittorrent %1 startad.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1174"/>
+        <location filename="../GUI.cpp" line="1180"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1174"/>
+        <location filename="../GUI.cpp" line="1180"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Hämtning: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1174"/>
+        <location filename="../GUI.cpp" line="1180"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Sändning: %1 KiB/s</translation>
@@ -1180,23 +1210,23 @@ Stäng den först.</translation>
         <translation type="obsolete">Kunde inte avkoda torrent-fil: \&quot;%1\&quot;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1024"/>
+        <location filename="../GUI.cpp" line="1030"/>
         <source>All downloads were paused.</source>
         <translation>Alla hämtningar har pausats.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1047"/>
+        <location filename="../GUI.cpp" line="1053"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&quot;%1&quot; pausad.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1093"/>
+        <location filename="../GUI.cpp" line="1099"/>
         <source>All downloads were resumed.</source>
         <translation>Alla hämtningar har återupptagits.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1116"/>
+        <location filename="../GUI.cpp" line="1122"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&quot;%1&quot; återupptogs.</translation>
@@ -1220,23 +1250,23 @@ Stäng den först.</translation>
         <translation>Ett fel inträffade vid försök att läsa eller skriva %1. Disken är antagligen full, hämtningen har pausats</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1185"/>
+        <location filename="../GUI.cpp" line="1191"/>
         <source>Connection Status:</source>
         <translation>Anslutningsstatus:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1180"/>
+        <location filename="../GUI.cpp" line="1186"/>
         <source>Online</source>
         <translation>Ansluten</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1185"/>
+        <location filename="../GUI.cpp" line="1191"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Brandvägg?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1185"/>
+        <location filename="../GUI.cpp" line="1191"/>
         <source>No incoming connections...</source>
         <translation>Inga inkommande anslutningar...</translation>
     </message>
@@ -1263,28 +1293,28 @@ Stäng den först.</translation>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="810"/>
+        <location filename="../GUI.cpp" line="816"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent är bunden till port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="884"/>
+        <location filename="../GUI.cpp" line="890"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT-stöd [PÅ], port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="889"/>
+        <location filename="../GUI.cpp" line="895"/>
         <source>DHT support [OFF]</source>
         <translation>DHT-stöd [AV]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="893"/>
+        <location filename="../GUI.cpp" line="899"/>
         <source>PeX support [ON]</source>
         <translation>PeX-stöd [PÅ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="897"/>
+        <location filename="../GUI.cpp" line="903"/>
         <source>PeX support [OFF]</source>
         <translation>PeX-stöd [AV]</translation>
     </message>
@@ -1296,12 +1326,12 @@ Are you sure you want to quit qBittorrent?</source>
 Är du säker på att du vill avsluta qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="950"/>
+        <location filename="../GUI.cpp" line="956"/>
         <source>Downloads</source>
         <translation>Hämtningar</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="954"/>
+        <location filename="../GUI.cpp" line="960"/>
         <source>Finished</source>
         <translation>Färdig</translation>
     </message>
@@ -1311,7 +1341,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Är du säker på att du vill ta bort de markerade färdiga objekt(en) i listan?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="832"/>
+        <location filename="../GUI.cpp" line="838"/>
         <source>UPnP support [ON]</source>
         <translation>UPnP-stöd [PÅ]</translation>
     </message>
@@ -1321,17 +1351,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Var försiktig, dela ut upphovsrättsskyddat material utan tillåtelse är ett lagbrott.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="917"/>
+        <location filename="../GUI.cpp" line="923"/>
         <source>Encryption support [ON]</source>
         <translation>Krypteringsstöd [PÅ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="922"/>
+        <location filename="../GUI.cpp" line="928"/>
         <source>Encryption support [FORCED]</source>
         <translation>Krypteringsstöd [TVINGAD]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="927"/>
+        <location filename="../GUI.cpp" line="933"/>
         <source>Encryption support [OFF]</source>
         <translation>Krypteringsstöd [AV]</translation>
     </message>
@@ -1419,27 +1449,27 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="835"/>
+        <location filename="../GUI.cpp" line="841"/>
         <source>UPnP support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="840"/>
+        <location filename="../GUI.cpp" line="846"/>
         <source>NAT-PMP support [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="843"/>
+        <location filename="../GUI.cpp" line="849"/>
         <source>NAT-PMP support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="902"/>
+        <location filename="../GUI.cpp" line="908"/>
         <source>Local Peer Discovery [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="905"/>
+        <location filename="../GUI.cpp" line="911"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1450,7 +1480,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1154"/>
+        <location filename="../GUI.cpp" line="1160"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation type="unfinished"></translation>
@@ -1726,12 +1756,12 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="159"/>
+        <location filename="../rss_imp.cpp" line="163"/>
         <source>Please type a rss stream url</source>
         <translation>Ange en url för en RSS-kanal</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="159"/>
+        <location filename="../rss_imp.cpp" line="163"/>
         <source>Stream URL:</source>
         <translation>URL för kanal:</translation>
     </message>
@@ -1771,35 +1801,45 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Är du säker på att du vill ta bort den här kanalen från listan?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="255"/>
+        <location filename="../rss_imp.cpp" line="270"/>
         <source>Description:</source>
         <translation>Beskrivning:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="255"/>
+        <location filename="../rss_imp.cpp" line="270"/>
         <source>url:</source>
         <translation>url:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="255"/>
+        <location filename="../rss_imp.cpp" line="270"/>
         <source>Last refresh:</source>
         <translation>Senast uppdaterad:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="166"/>
+        <location filename="../rss_imp.cpp" line="170"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="167"/>
+        <location filename="../rss_imp.cpp" line="171"/>
         <source>This rss feed is already in the list.</source>
         <translation>Den här kanalen finns redan i listan.</translation>
+    </message>
+    <message>
+        <location filename="../rss_imp.cpp" line="228"/>
+        <source>Date: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss_imp.cpp" line="231"/>
+        <source>Author: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>RssItem</name>
     <message>
-        <location filename="../rss.h" line="95"/>
+        <location filename="../rss.h" line="262"/>
         <source>No description available</source>
         <translation>Ingen beskrivning tillgänglig</translation>
     </message>
@@ -1807,13 +1847,13 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="270"/>
+        <location filename="../rss.h" line="445"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>%1 sedan</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="269"/>
+        <location filename="../rss.h" line="444"/>
         <source>Never</source>
         <translation>Aldrig</translation>
     </message>
@@ -2831,32 +2871,32 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="1107"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Range Start IP</source>
         <translation>Intervall start-IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1108"/>
+        <location filename="../options_imp.cpp" line="1139"/>
         <source>Start IP:</source>
         <translation>Start-IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1131"/>
+        <location filename="../options_imp.cpp" line="1162"/>
         <source>Range End IP</source>
         <translation>Intervall slut-IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1132"/>
+        <location filename="../options_imp.cpp" line="1163"/>
         <source>End IP:</source>
         <translation>Slut-IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1146"/>
+        <location filename="../options_imp.cpp" line="1177"/>
         <source>IP Range Comment</source>
         <translation>Kommentar om IP-intervall</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1147"/>
+        <location filename="../options_imp.cpp" line="1178"/>
         <source>Comment:</source>
         <translation>Kommentar:</translation>
     </message>
@@ -2867,48 +2907,48 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <translation type="obsolete">till</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="973"/>
+        <location filename="../options_imp.cpp" line="1004"/>
         <source>Choose your favourite preview program</source>
         <translation>Välj ditt favoritprogram för förhandsvisning</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1141"/>
+        <location filename="../options_imp.cpp" line="1172"/>
         <source>Invalid IP</source>
         <translation>Ogiltigt IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1141"/>
+        <location filename="../options_imp.cpp" line="1172"/>
         <source>This IP is invalid.</source>
         <translation>Detta IP är ogiltigt.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="709"/>
+        <location filename="../options_imp.cpp" line="730"/>
         <source>Options were saved successfully.</source>
         <translation>Inställningarna har sparats.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="958"/>
+        <location filename="../options_imp.cpp" line="989"/>
         <source>Choose scan directory</source>
         <translation>Välj en avsökningskatalog</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="965"/>
+        <location filename="../options_imp.cpp" line="996"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>Välj en ipfilter.dat-fil</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="981"/>
+        <location filename="../options_imp.cpp" line="1012"/>
         <source>Choose a save directory</source>
         <translation>Välj en katalog att spara i</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1013"/>
+        <location filename="../options_imp.cpp" line="1044"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>In/Ut-fel</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1013"/>
+        <location filename="../options_imp.cpp" line="1044"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>Kunde inte öppna %1 i läsläge.</translation>
     </message>

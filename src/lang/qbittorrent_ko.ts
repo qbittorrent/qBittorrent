@@ -199,7 +199,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">스캔된 폴더:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1569"/>
+        <location filename="../options.ui" line="1633"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -224,7 +224,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">최대 동시 연결:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="538"/>
+        <location filename="../options.ui" line="582"/>
         <source>Port range:</source>
         <translation>포트 영역:</translation>
     </message>
@@ -267,7 +267,7 @@ inside)</source>
         <translation type="obsolete">프록시 서버를 통해 연결하기</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="733"/>
+        <location filename="../options.ui" line="790"/>
         <source>Proxy Settings</source>
         <translation>프록시 설정</translation>
     </message>
@@ -277,12 +277,12 @@ inside)</source>
         <translation type="obsolete">서버 주소:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="780"/>
+        <location filename="../options.ui" line="837"/>
         <source>0.0.0.0</source>
         <translation>0.0.0.0</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="796"/>
+        <location filename="../options.ui" line="853"/>
         <source>Port:</source>
         <translation>포트:</translation>
     </message>
@@ -292,7 +292,7 @@ inside)</source>
         <translation type="obsolete">프록시 서버를 사용하기 위해서는 인증확인이 필요합니다</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="836"/>
+        <location filename="../options.ui" line="893"/>
         <source>Authentication</source>
         <translation>인증</translation>
     </message>
@@ -302,7 +302,7 @@ inside)</source>
         <translation type="obsolete">아이디:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="860"/>
+        <location filename="../options.ui" line="917"/>
         <source>Password:</source>
         <translation>비밀번호:</translation>
     </message>
@@ -359,12 +359,12 @@ list:</source>
         <translation type="obsolete">KB 최고 업로딩 속도.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1399"/>
+        <location filename="../options.ui" line="1465"/>
         <source>Activate IP Filtering</source>
         <translation>IP 필터링 사용</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1409"/>
+        <location filename="../options.ui" line="1444"/>
         <source>Filter Settings</source>
         <translation>필터 설정</translation>
     </message>
@@ -374,22 +374,22 @@ list:</source>
         <translation type="obsolete">ipfilter.dat 웹주소 또는 경로:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1454"/>
+        <location filename="../options.ui" line="1502"/>
         <source>Start IP</source>
         <translation>시작 IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1459"/>
+        <location filename="../options.ui" line="1507"/>
         <source>End IP</source>
         <translation>끝 IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1464"/>
+        <location filename="../options.ui" line="1512"/>
         <source>Origin</source>
         <translation>출처</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1469"/>
+        <location filename="../options.ui" line="1517"/>
         <source>Comment</source>
         <translation>설명</translation>
     </message>
@@ -401,15 +401,15 @@ list:</source>
     <message>
         <location filename="../options.ui" line="1375"/>
         <source>IP Filter</source>
-        <translation>IP 필터</translation>
+        <translation type="obsolete">IP 필터</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1507"/>
+        <location filename="../options.ui" line="1558"/>
         <source> Add Range</source>
         <translation> 범위 확장</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1517"/>
+        <location filename="../options.ui" line="1571"/>
         <source> Remove Range</source>
         <translation> 범위 축소</translation>
     </message>
@@ -434,9 +434,9 @@ list:</source>
         <translation type="obsolete">최소화시 시스템 트레이에 아이콘 표시</translation>
     </message>
     <message>
-        <location filename="options.ui" line="1535"/>
+        <location filename="../options.ui" line="1432"/>
         <source>Misc</source>
-        <translation type="obsolete">기타</translation>
+        <translation type="unfinished">기타</translation>
     </message>
     <message>
         <location filename="options.ui" line="937"/>
@@ -499,7 +499,7 @@ list:</source>
         <translation type="obsolete">완료된 목록 자동으로 지우기</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="263"/>
+        <location filename="../options.ui" line="307"/>
         <source>Preview program</source>
         <translation>미리보기 프로그램</translation>
     </message>
@@ -509,7 +509,7 @@ list:</source>
         <translation type="obsolete">음악 및 영상 재생기:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="712"/>
+        <location filename="../options.ui" line="769"/>
         <source>KiB/s</source>
         <translation></translation>
     </message>
@@ -579,7 +579,7 @@ list:</source>
         <translation type="obsolete">메인 창을 닫을 때 시스템 트레이에 아이템 보여주기</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="517"/>
+        <location filename="../options.ui" line="561"/>
         <source>Connection</source>
         <translation>연결</translation>
     </message>
@@ -669,37 +669,37 @@ list:</source>
         <translation type="obsolete">프락시 종류 (Proxy type): </translation>
     </message>
     <message>
-        <location filename="../options.ui" line="754"/>
+        <location filename="../options.ui" line="811"/>
         <source>HTTP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="759"/>
+        <location filename="../options.ui" line="816"/>
         <source>SOCKS5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="931"/>
+        <location filename="../options.ui" line="988"/>
         <source>Affected connections</source>
         <translation>관련된 연결</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="943"/>
+        <location filename="../options.ui" line="1000"/>
         <source>Use proxy for connections to trackers</source>
         <translation>트렉커(tracker)에 연결하는데 프락시 사용</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="959"/>
+        <location filename="../options.ui" line="1016"/>
         <source>Use proxy for connections to regular peers</source>
         <translation>일반 사용자(peer)와 연결하는데 프락시 사용</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="975"/>
+        <location filename="../options.ui" line="1032"/>
         <source>Use proxy for connections to web seeds</source>
         <translation>웹 완전체(Web seed)와 연결하는데 프락시 사용</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="991"/>
+        <location filename="../options.ui" line="1048"/>
         <source>Use proxy for DHT messages</source>
         <translation>DHT 메세지에 프락시 사용</translation>
     </message>
@@ -714,17 +714,17 @@ list:</source>
         <translation type="obsolete">암호화(Encryption) 상태:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1207"/>
+        <location filename="../options.ui" line="1264"/>
         <source>Enabled</source>
         <translation>사용하기</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1212"/>
+        <location filename="../options.ui" line="1269"/>
         <source>Forced</source>
         <translation>강제</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1217"/>
+        <location filename="../options.ui" line="1274"/>
         <source>Disabled</source>
         <translation>사용하지 않기</translation>
     </message>
@@ -769,207 +769,237 @@ list:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="220"/>
+        <location filename="../options.ui" line="264"/>
         <source>System tray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="226"/>
+        <location filename="../options.ui" line="270"/>
         <source>Disable system tray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="233"/>
+        <location filename="../options.ui" line="277"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="240"/>
+        <location filename="../options.ui" line="284"/>
         <source>Minimize to tray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="250"/>
+        <location filename="../options.ui" line="294"/>
         <source>Show notification balloons in tray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="286"/>
+        <location filename="../options.ui" line="330"/>
         <source>Media player:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="322"/>
+        <location filename="../options.ui" line="366"/>
         <source>Downloads</source>
         <translation type="unfinished">다운로드</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="331"/>
+        <location filename="../options.ui" line="375"/>
         <source>Filesystem</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="337"/>
+        <location filename="../options.ui" line="381"/>
         <source>Put downloads in this folder:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="396"/>
+        <location filename="../options.ui" line="440"/>
         <source>Pre-allocate all files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="406"/>
+        <location filename="../options.ui" line="450"/>
         <source>When adding a torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="412"/>
+        <location filename="../options.ui" line="456"/>
         <source>Display torrent content and some options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="422"/>
+        <location filename="../options.ui" line="466"/>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="432"/>
+        <location filename="../options.ui" line="476"/>
         <source>Folder watching</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="438"/>
+        <location filename="../options.ui" line="482"/>
         <source>Automatically download torrents present in this folder:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="530"/>
+        <location filename="../options.ui" line="574"/>
         <source>Listening port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="558"/>
+        <location filename="../options.ui" line="602"/>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="583"/>
+        <location filename="../options.ui" line="640"/>
         <source>Enable UPnP port mapping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="593"/>
+        <location filename="../options.ui" line="650"/>
         <source>Enable NAT-PMP port mapping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="606"/>
+        <location filename="../options.ui" line="663"/>
         <source>Global bandwidth limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="622"/>
+        <location filename="../options.ui" line="679"/>
         <source>Upload:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="638"/>
+        <location filename="../options.ui" line="695"/>
         <source>Download:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="741"/>
+        <location filename="../options.ui" line="798"/>
         <source>Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="749"/>
+        <location filename="../options.ui" line="806"/>
         <source>(None)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="770"/>
+        <location filename="../options.ui" line="827"/>
         <source>Proxy:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="850"/>
+        <location filename="../options.ui" line="907"/>
         <source>Username:</source>
         <translation type="unfinished">사용자:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1008"/>
+        <location filename="../options.ui" line="1065"/>
         <source>Bittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1017"/>
+        <location filename="../options.ui" line="1074"/>
         <source>Connections limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1025"/>
+        <location filename="../options.ui" line="1082"/>
         <source>Global maximum number of connections:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1073"/>
+        <location filename="../options.ui" line="1130"/>
         <source>Maximum number of connections per torrent:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1118"/>
+        <location filename="../options.ui" line="1175"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1161"/>
+        <location filename="../options.ui" line="1218"/>
         <source>Additional Bittorrent features</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1167"/>
+        <location filename="../options.ui" line="1224"/>
         <source>Enable DHT network (decentralized)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1177"/>
+        <location filename="../options.ui" line="1234"/>
         <source>Enable Peer eXchange (PeX)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1187"/>
+        <location filename="../options.ui" line="1244"/>
         <source>Enable Local Peer Discovery</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1199"/>
+        <location filename="../options.ui" line="1256"/>
         <source>Encryption:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1243"/>
+        <location filename="../options.ui" line="1300"/>
         <source>Share ratio settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1258"/>
+        <location filename="../options.ui" line="1315"/>
         <source>Desired ratio:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1320"/>
+        <location filename="../options.ui" line="1377"/>
         <source>Remove torrents when their ratio reaches:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1559"/>
+        <location filename="../options.ui" line="1616"/>
         <source>Filter file path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="219"/>
+        <source>transfer lists refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="239"/>
+        <source>ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1645"/>
+        <source>RSS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1682"/>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1702"/>
+        <source>minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1726"/>
+        <source>Maximum number of articles per feed:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1328,7 +1358,7 @@ download list?</source>
         <translation type="obsolete">다시 시작됨.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="954"/>
+        <location filename="../GUI.cpp" line="960"/>
         <source>Finished</source>
         <translation>완료</translation>
     </message>
@@ -1391,7 +1421,7 @@ download list?</source>
         <translation type="obsolete"> 개발자: 크리스토프 두메스 :: Copyright (c) 2006</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1174"/>
+        <location filename="../GUI.cpp" line="1180"/>
         <source>qBittorrent</source>
         <translation>큐비토런트</translation>
     </message>
@@ -1736,17 +1766,17 @@ Please close the other one first.</source>
         <translation>큐비토런트 %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1189"/>
+        <location filename="../GUI.cpp" line="1195"/>
         <source>Connection status:</source>
         <translation>연결 상태:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1189"/>
+        <location filename="../GUI.cpp" line="1195"/>
         <source>Offline</source>
         <translation>오프라인</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1189"/>
+        <location filename="../GUI.cpp" line="1195"/>
         <source>No peers found...</source>
         <translation>피어가 없습니다...</translation>
     </message>
@@ -1811,13 +1841,13 @@ Please close the other one first.</source>
         <translation type="obsolete">큐비토런트 %1가 시작되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1174"/>
+        <location filename="../GUI.cpp" line="1180"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>다운로딩 속도: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1174"/>
+        <location filename="../GUI.cpp" line="1180"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>업로딩 속도: %1 KiB/s</translation>
@@ -1888,12 +1918,12 @@ Please close the other one first.</source>
         <translation type="obsolete">이미 연결 된 포트: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1024"/>
+        <location filename="../GUI.cpp" line="1030"/>
         <source>All downloads were paused.</source>
         <translation>모든 다운로드가 멈추었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1047"/>
+        <location filename="../GUI.cpp" line="1053"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos;가 정지 되었습니다.</translation>
@@ -1905,12 +1935,12 @@ Please close the other one first.</source>
         <translation type="obsolete">연결중...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1093"/>
+        <location filename="../GUI.cpp" line="1099"/>
         <source>All downloads were resumed.</source>
         <translation>모든 다운로드가 다시 시작되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1116"/>
+        <location filename="../GUI.cpp" line="1122"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos; 가 다운로드를 다시 시작되었습니다.</translation>
@@ -1940,23 +1970,23 @@ Please close the other one first.</source>
         <translation type="obsolete">오류 발생 (디스크가 꽉찼습니까?), &apos;%1&apos;가 정지 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1185"/>
+        <location filename="../GUI.cpp" line="1191"/>
         <source>Connection Status:</source>
         <translation>연결 상태:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1180"/>
+        <location filename="../GUI.cpp" line="1186"/>
         <source>Online</source>
         <translation>온라인</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1185"/>
+        <location filename="../GUI.cpp" line="1191"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>방화벽이 설치되어있습니까?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1185"/>
+        <location filename="../GUI.cpp" line="1191"/>
         <source>No incoming connections...</source>
         <translation>받는 연결이 없습니다...</translation>
     </message>
@@ -2004,28 +2034,28 @@ Please close the other one first.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="810"/>
+        <location filename="../GUI.cpp" line="816"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>큐비토런트는 다음 포트을  사용하고 있습니다: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="884"/>
+        <location filename="../GUI.cpp" line="890"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT 지원 [사용함], 포트: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="889"/>
+        <location filename="../GUI.cpp" line="895"/>
         <source>DHT support [OFF]</source>
         <translation>DHT 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="893"/>
+        <location filename="../GUI.cpp" line="899"/>
         <source>PeX support [ON]</source>
         <translation>Pes 지원 [사용함]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="897"/>
+        <location filename="../GUI.cpp" line="903"/>
         <source>PeX support [OFF]</source>
         <translation>Pes 지원 [사용안함]</translation>
     </message>
@@ -2037,7 +2067,7 @@ Are you sure you want to quit qBittorrent?</source>
 큐비토런트를 종료하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="950"/>
+        <location filename="../GUI.cpp" line="956"/>
         <source>Downloads</source>
         <translation>다운로드</translation>
     </message>
@@ -2047,7 +2077,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation> 현재 완료목록에서 선택된 파일을 지우시겠습니까? </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="832"/>
+        <location filename="../GUI.cpp" line="838"/>
         <source>UPnP support [ON]</source>
         <translation>UPnp 지원 [사용함]</translation>
     </message>
@@ -2057,17 +2087,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">허락없이 저작권이 있는 자료를 공유하는 것은 법에 저촉됩니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="917"/>
+        <location filename="../GUI.cpp" line="923"/>
         <source>Encryption support [ON]</source>
         <translation>암호화(Encryption) 지원 [사용함]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="922"/>
+        <location filename="../GUI.cpp" line="928"/>
         <source>Encryption support [FORCED]</source>
         <translation>암호화(Encryption) 지원 [강압적으로 사용]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="927"/>
+        <location filename="../GUI.cpp" line="933"/>
         <source>Encryption support [OFF]</source>
         <translation>암호화(Encryption) 지원 [사용안함]</translation>
     </message>
@@ -2149,27 +2179,27 @@ Are you sure you want to quit qBittorrent?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="835"/>
+        <location filename="../GUI.cpp" line="841"/>
         <source>UPnP support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="840"/>
+        <location filename="../GUI.cpp" line="846"/>
         <source>NAT-PMP support [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="843"/>
+        <location filename="../GUI.cpp" line="849"/>
         <source>NAT-PMP support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="902"/>
+        <location filename="../GUI.cpp" line="908"/>
         <source>Local Peer Discovery [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="905"/>
+        <location filename="../GUI.cpp" line="911"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2180,7 +2210,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1154"/>
+        <location filename="../GUI.cpp" line="1160"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation type="unfinished"></translation>
@@ -2614,12 +2644,12 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="159"/>
+        <location filename="../rss_imp.cpp" line="163"/>
         <source>Please type a rss stream url</source>
         <translation>RSS 스트림 주소(url)를 입력하세요</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="159"/>
+        <location filename="../rss_imp.cpp" line="163"/>
         <source>Stream URL:</source>
         <translation>스트림 URL:</translation>
     </message>
@@ -2654,35 +2684,45 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>이 스트림을 리스트에서 지우시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="255"/>
+        <location filename="../rss_imp.cpp" line="270"/>
         <source>Description:</source>
         <translation>설명:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="255"/>
+        <location filename="../rss_imp.cpp" line="270"/>
         <source>url:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="255"/>
+        <location filename="../rss_imp.cpp" line="270"/>
         <source>Last refresh:</source>
         <translation>최근 새로고침:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="166"/>
+        <location filename="../rss_imp.cpp" line="170"/>
         <source>qBittorrent</source>
         <translation>큐비토런트</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="167"/>
+        <location filename="../rss_imp.cpp" line="171"/>
         <source>This rss feed is already in the list.</source>
         <translation>이 RSS 피드는 이미 리스트에 포함되어 있습니다.</translation>
+    </message>
+    <message>
+        <location filename="../rss_imp.cpp" line="228"/>
+        <source>Date: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss_imp.cpp" line="231"/>
+        <source>Author: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>RssItem</name>
     <message>
-        <location filename="../rss.h" line="95"/>
+        <location filename="../rss.h" line="262"/>
         <source>No description available</source>
         <translation>관련 자료가 없습니다</translation>
     </message>
@@ -2690,13 +2730,13 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="270"/>
+        <location filename="../rss.h" line="445"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>%1분전</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="269"/>
+        <location filename="../rss.h" line="444"/>
         <source>Never</source>
         <translation>전혀 사용안함</translation>
     </message>
@@ -3853,12 +3893,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">이 잘못되었습니다.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1107"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Range Start IP</source>
         <translation>시작하는 IP의 범위</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1108"/>
+        <location filename="../options_imp.cpp" line="1139"/>
         <source>Start IP:</source>
         <translation>시작 IP:</translation>
     </message>
@@ -3873,22 +3913,22 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">잘못된 IP입니다. </translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1131"/>
+        <location filename="../options_imp.cpp" line="1162"/>
         <source>Range End IP</source>
         <translation>끝나는 IP의 범위</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1132"/>
+        <location filename="../options_imp.cpp" line="1163"/>
         <source>End IP:</source>
         <translation>끝 IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1146"/>
+        <location filename="../options_imp.cpp" line="1177"/>
         <source>IP Range Comment</source>
         <translation>IP 범위 설명</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1147"/>
+        <location filename="../options_imp.cpp" line="1178"/>
         <source>Comment:</source>
         <translation>설명:</translation>
     </message>
@@ -3899,48 +3939,48 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">~</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="973"/>
+        <location filename="../options_imp.cpp" line="1004"/>
         <source>Choose your favourite preview program</source>
         <translation>미리보기를 할 프로그램을 선택해 주십시오</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1141"/>
+        <location filename="../options_imp.cpp" line="1172"/>
         <source>Invalid IP</source>
         <translation>유효하지 않은 IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1141"/>
+        <location filename="../options_imp.cpp" line="1172"/>
         <source>This IP is invalid.</source>
         <translation>유효하지 않은 IP 입니다.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="709"/>
+        <location filename="../options_imp.cpp" line="730"/>
         <source>Options were saved successfully.</source>
         <translation>환경설정이 성공적으로 저장되었습니다.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="958"/>
+        <location filename="../options_imp.cpp" line="989"/>
         <source>Choose scan directory</source>
         <translation>스켄할 곳을 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="965"/>
+        <location filename="../options_imp.cpp" line="996"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>ipfilter.dat의 경로를 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="981"/>
+        <location filename="../options_imp.cpp" line="1012"/>
         <source>Choose a save directory</source>
         <translation>파일을 저장할 경로를 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1013"/>
+        <location filename="../options_imp.cpp" line="1044"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>I/O 에러</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1013"/>
+        <location filename="../options_imp.cpp" line="1044"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>%1을 읽기전용 모드로 열수 없습니다.</translation>
     </message>

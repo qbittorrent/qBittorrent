@@ -458,7 +458,6 @@ class RssStream : public QObject{
     }
 
   private:
-    // TODO: Read only news more recent than last refresh
     // read and create items from a rss document
     short readDoc(const QDomDocument& doc) {
       // is it a rss file ?
@@ -522,14 +521,13 @@ class RssStream : public QObject{
       listItem = new_list;
     }
 
-    // not actually used, it is used to resize the list of item AFTER the update, instead of delete it BEFORE
     void resizeList() {
       QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
       unsigned int max_articles = settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 50).toInt();
       int excess = listItem.size() - max_articles;
       if(excess <= 0) return;
       for(int i=0; i<excess; ++i){
-        listItem.removeLast();
+        delete listItem.takeLast();
       }
     }
 
