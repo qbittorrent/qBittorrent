@@ -64,6 +64,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     FinishedTorrents *finishedTorrentTab;
     QLabel *connecStatusLblIcon;
     bool systrayIntegration;
+    bool displaySpeedInTitle;
     bool force_exit;
     QTimer *refresher;
     // Keyboard shortcuts

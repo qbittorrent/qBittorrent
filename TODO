@@ -104,6 +104,7 @@ beta6->beta7 changelog:
 - FEATURE: Added an option to set the max number of connections per torrent
 - FEATURE: Added an option to set the max number of uploads per torrent
 - FEATURE: Added an option to automatically delete torrents when they reach a given ratio (>= 1.0)
+- FEATURE: Added an option to display current transfer speeds in title bar
 - BUGFIX: In torrent content, it is now easier to filter all torrents using right click menu
 - BUGFIX: Updated man page / README / INSTALL
 - BUGFIX: Paused torrents could be displayed as connected for a sec after checking
