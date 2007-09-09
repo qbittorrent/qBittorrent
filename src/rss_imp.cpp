@@ -120,6 +120,8 @@
     }
 
     void RSSImp::on_actionMark_all_as_read_triggered() {
+      textBrowser->clear();
+      listNews->clear();
       QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
       QTreeWidgetItem* item;
       foreach(item, selectedItems){
@@ -128,6 +130,8 @@
         feed->markAllAsRead();
         item->setData(0, Qt::DisplayRole, feed->getAliasOrUrl()+ QString::fromUtf8("  (0)"));
       }
+      if(selectedItems.size())
+        refreshNewsList(selectedItems.last(), 0);
     }
 
     //right-click somewhere, refresh all the streams

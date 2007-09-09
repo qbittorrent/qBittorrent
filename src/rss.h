@@ -131,10 +131,6 @@ class RssStream : public QObject{
   public slots :
     // read and store the downloaded rss' informations
     void processDownloadedFile(QString file_path) {
-      // delete the old file
-      if(QFile::exists(filePath)) {
-        QFile::remove(filePath);
-      }
       filePath = file_path;
       downloadFailure = false;
       openRss();
@@ -357,7 +353,7 @@ class RssStream : public QObject{
       if(!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug("openRss error : open failed, no file or locked, "+filePath.toUtf8());
         if(QFile::exists(filePath)) {
-        fileRss.remove();
+          fileRss.remove();
         }
         return -1;
       }
