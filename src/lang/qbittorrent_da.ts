@@ -1838,17 +1838,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished">Søg</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="216"/>
+        <location filename="../rss.ui" line="270"/>
         <source>Delete</source>
         <translation type="unfinished">Slet</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="221"/>
+        <location filename="../rss.ui" line="275"/>
         <source>Rename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="226"/>
+        <location filename="../rss.ui" line="280"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1858,110 +1858,115 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Opret</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="97"/>
+        <location filename="../rss.ui" line="127"/>
         <source>Delete selected streams</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="119"/>
+        <location filename="../rss.ui" line="149"/>
         <source>Refresh RSS streams</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="141"/>
+        <location filename="../rss.ui" line="171"/>
         <source>Add a new RSS stream</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="182"/>
+        <location filename="../rss.ui" line="227"/>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="231"/>
+        <location filename="../rss.ui" line="285"/>
         <source>Add RSS stream</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="236"/>
+        <location filename="../rss.ui" line="290"/>
         <source>Refresh all streams</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="51"/>
+        <location filename="../rss.ui" line="78"/>
         <source>RSS streams:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="56"/>
+        <location filename="../rss.ui" line="83"/>
         <source>2</source>
         <translation type="unfinished">2</translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="295"/>
+        <source>Mark all as read</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="147"/>
+        <location filename="../rss_imp.cpp" line="159"/>
         <source>Please type a rss stream url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="147"/>
+        <location filename="../rss_imp.cpp" line="159"/>
         <source>Stream URL:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="102"/>
+        <location filename="../rss_imp.cpp" line="103"/>
         <source>Please choose a new name for this stream</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="102"/>
+        <location filename="../rss_imp.cpp" line="103"/>
         <source>New stream name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="59"/>
+        <location filename="../rss_imp.cpp" line="60"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation type="unfinished">Er du sikker? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="60"/>
+        <location filename="../rss_imp.cpp" line="61"/>
         <source>&amp;Yes</source>
         <translation type="unfinished">&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="60"/>
+        <location filename="../rss_imp.cpp" line="61"/>
         <source>&amp;No</source>
         <translation type="unfinished">&amp;Nej</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="59"/>
+        <location filename="../rss_imp.cpp" line="60"/>
         <source>Are you sure you want to delete this stream from the list?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>Description:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>url:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>Last refresh:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="154"/>
+        <location filename="../rss_imp.cpp" line="166"/>
         <source>qBittorrent</source>
         <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="155"/>
+        <location filename="../rss_imp.cpp" line="167"/>
         <source>This rss feed is already in the list.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1977,13 +1982,13 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="262"/>
+        <location filename="../rss.h" line="270"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.h" line="261"/>
+        <location filename="../rss.h" line="269"/>
         <source>Never</source>
         <translation type="unfinished"></translation>
     </message>

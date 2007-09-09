@@ -12,5 +12,6 @@
   <file>search_engine/engines/piratebay.py</file>
   <file>search_engine/engines/isohunt.png</file>
   <file>search_engine/engines/btjunkie.png</file>
+  <file>search_engine/engines/bittorrent_slow.py</file>
 </qresource>
 </RCC>

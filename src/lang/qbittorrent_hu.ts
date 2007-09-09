@@ -1743,85 +1743,90 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>Keresés</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="216"/>
+        <location filename="../rss.ui" line="270"/>
         <source>Delete</source>
         <translation>Törlés</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="221"/>
+        <location filename="../rss.ui" line="275"/>
         <source>Rename</source>
         <translation>Átnevezés</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="226"/>
+        <location filename="../rss.ui" line="280"/>
         <source>Refresh</source>
         <translation>Frissítés</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="97"/>
+        <location filename="../rss.ui" line="127"/>
         <source>Delete selected streams</source>
         <translation>Kijelölt csatornák törlése</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="119"/>
+        <location filename="../rss.ui" line="149"/>
         <source>Refresh RSS streams</source>
         <translation>RSS csatornák ellenőrzése</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="141"/>
+        <location filename="../rss.ui" line="171"/>
         <source>Add a new RSS stream</source>
         <translation>RSS hírcsatorna hozzáadása</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="182"/>
+        <location filename="../rss.ui" line="227"/>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
         <translation>&lt;b&gt;Hírek:&lt;/b&gt; &lt;i&gt;(dupla kattintás a böngészőben való megtekintéshez)&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="231"/>
+        <location filename="../rss.ui" line="285"/>
         <source>Add RSS stream</source>
         <translation>RSS csatorna hozzádása</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="236"/>
+        <location filename="../rss.ui" line="290"/>
         <source>Refresh all streams</source>
         <translation>Összes csatorna ellenőrzése</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="51"/>
+        <location filename="../rss.ui" line="78"/>
         <source>RSS streams:</source>
         <translation>Hírcsatornák:</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="56"/>
+        <location filename="../rss.ui" line="83"/>
         <source>2</source>
         <translation>2</translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="295"/>
+        <source>Mark all as read</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="147"/>
+        <location filename="../rss_imp.cpp" line="159"/>
         <source>Please type a rss stream url</source>
         <translation>Kérlek add meg a csatorna url címét</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="147"/>
+        <location filename="../rss_imp.cpp" line="159"/>
         <source>Stream URL:</source>
         <translation>Csatorna címe:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="102"/>
+        <location filename="../rss_imp.cpp" line="103"/>
         <source>Please choose a new name for this stream</source>
         <translation>Kérlek válassz új nevet a csatornának</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="102"/>
+        <location filename="../rss_imp.cpp" line="103"/>
         <source>New stream name:</source>
         <translation>Az új név:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="59"/>
+        <location filename="../rss_imp.cpp" line="60"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Egészen biztos? -- qBittorrent</translation>
     </message>
@@ -1831,12 +1836,12 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation type="obsolete">Egészen biztos, hogy törlöd ezt a hírcsatornát a listáról?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="60"/>
+        <location filename="../rss_imp.cpp" line="61"/>
         <source>&amp;Yes</source>
         <translation>&amp;Igen</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="60"/>
+        <location filename="../rss_imp.cpp" line="61"/>
         <source>&amp;No</source>
         <translation>&amp;Nem</translation>
     </message>
@@ -1851,32 +1856,32 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation type="obsolete">Nincs leírás</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="59"/>
+        <location filename="../rss_imp.cpp" line="60"/>
         <source>Are you sure you want to delete this stream from the list?</source>
         <translation>Egészen biztos, hogy törlöd ezt a hírcsatornát a listáról?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>Description:</source>
         <translation>Leírás:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>url:</source>
         <translation>url:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>Last refresh:</source>
         <translation>Utolsó frissítés:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="154"/>
+        <location filename="../rss_imp.cpp" line="166"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="155"/>
+        <location filename="../rss_imp.cpp" line="167"/>
         <source>This rss feed is already in the list.</source>
         <translation>Ez a hírcsatorna már felvéve.</translation>
     </message>
@@ -1892,13 +1897,13 @@ Mégis leállítod a qBittorrentet?</translation>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="262"/>
+        <location filename="../rss.h" line="270"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>%1 előtt</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="261"/>
+        <location filename="../rss.h" line="269"/>
         <source>Never</source>
         <translation>Soha</translation>
     </message>

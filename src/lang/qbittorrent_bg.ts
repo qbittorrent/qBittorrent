@@ -2519,17 +2519,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Търси</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="216"/>
+        <location filename="../rss.ui" line="270"/>
         <source>Delete</source>
         <translation>Изтрий</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="221"/>
+        <location filename="../rss.ui" line="275"/>
         <source>Rename</source>
         <translation>Преименувай</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="226"/>
+        <location filename="../rss.ui" line="280"/>
         <source>Refresh</source>
         <translation>Обнови</translation>
     </message>
@@ -2539,110 +2539,115 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Образуване</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="97"/>
+        <location filename="../rss.ui" line="127"/>
         <source>Delete selected streams</source>
         <translation>Изтрий маркираните потоци</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="119"/>
+        <location filename="../rss.ui" line="149"/>
         <source>Refresh RSS streams</source>
         <translation>Обнови потоците RSS</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="141"/>
+        <location filename="../rss.ui" line="171"/>
         <source>Add a new RSS stream</source>
         <translation>Добави нов поток RSS</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="182"/>
+        <location filename="../rss.ui" line="227"/>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
         <translation>&lt;b&gt;Новини:&lt;/b&gt; &lt;i&gt;(щракни двойно за отваряне на линка в браузъра)&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="231"/>
+        <location filename="../rss.ui" line="285"/>
         <source>Add RSS stream</source>
         <translation>Добави поток RSS</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="236"/>
+        <location filename="../rss.ui" line="290"/>
         <source>Refresh all streams</source>
         <translation>Обнови всички потоци</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="51"/>
+        <location filename="../rss.ui" line="78"/>
         <source>RSS streams:</source>
         <translation>Потоци RSS:</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="56"/>
+        <location filename="../rss.ui" line="83"/>
         <source>2</source>
         <translation>2</translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="295"/>
+        <source>Mark all as read</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="147"/>
+        <location filename="../rss_imp.cpp" line="159"/>
         <source>Please type a rss stream url</source>
         <translation>Моля въведете url на поток rss</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="147"/>
+        <location filename="../rss_imp.cpp" line="159"/>
         <source>Stream URL:</source>
         <translation>Поток URL:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="102"/>
+        <location filename="../rss_imp.cpp" line="103"/>
         <source>Please choose a new name for this stream</source>
         <translation>Моля изберете ново име за този поток</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="102"/>
+        <location filename="../rss_imp.cpp" line="103"/>
         <source>New stream name:</source>
         <translation>Ново име на потока:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="59"/>
+        <location filename="../rss_imp.cpp" line="60"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Сигурни ли сте? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="60"/>
+        <location filename="../rss_imp.cpp" line="61"/>
         <source>&amp;Yes</source>
         <translation>&amp;Да</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="60"/>
+        <location filename="../rss_imp.cpp" line="61"/>
         <source>&amp;No</source>
         <translation>&amp;Не</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="59"/>
+        <location filename="../rss_imp.cpp" line="60"/>
         <source>Are you sure you want to delete this stream from the list?</source>
         <translation>Сигурни ли сте че искате да изтриете този поток от списъка?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>Description:</source>
         <translation>Описание:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>url:</source>
         <translation>url:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>Last refresh:</source>
         <translation>Последно обновяване:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="154"/>
+        <location filename="../rss_imp.cpp" line="166"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="155"/>
+        <location filename="../rss_imp.cpp" line="167"/>
         <source>This rss feed is already in the list.</source>
         <translation>Този rss feed е вече в списъка.</translation>
     </message>
@@ -2658,13 +2663,13 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="262"/>
+        <location filename="../rss.h" line="270"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>преди %1</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="261"/>
+        <location filename="../rss.h" line="269"/>
         <source>Never</source>
         <translation>Никога</translation>
     </message>

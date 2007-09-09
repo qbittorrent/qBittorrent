@@ -38,7 +38,6 @@
     * http://fragments.turtlemeat.com/pythonwebserver.php
 - improve and test tracker authentication code (remember login/pass) (need a tracker to test this)
 - support zipped torrents? (useful?)
-- Add option for RSS customization (refresh interval, max news per RSS...)
 - Allow to disable UPnP/NAT-PMP/LSD in options?
 - Allow to automatically delete torrents when they reach a given ratio (in options) : easy
 - Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
@@ -51,8 +50,6 @@
 
 // in v1.0.0 (partial) - WIP
 - Fix all (or almost all) opened bugs in bug tracker
-- Add an option 'Automatically update search plugins'
-- Add an option 'Display current speed in title bar'
 - Improve systray tooltip
 - Use tooltips in options to explain
 - Keep documention up to date
@@ -104,6 +101,7 @@ beta6->beta7 changelog:
 - FEATURE: Added an option to automatically delete torrents when they reach a given ratio (>= 1.0)
 - FEATURE: Added an option to display current transfer speeds in title bar
 - FEATURE: Added "Mark all as read" function for RSS feeds
+- FEATURE: Added some RSS settings in program preferences
 - BUGFIX: In torrent content, it is now easier to filter all torrents using right click menu
 - BUGFIX: Updated man page / README / INSTALL
 - BUGFIX: Paused torrents could be displayed as connected for a sec after checking

@@ -1663,85 +1663,90 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Sök</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="216"/>
+        <location filename="../rss.ui" line="270"/>
         <source>Delete</source>
         <translation>Ta bort</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="221"/>
+        <location filename="../rss.ui" line="275"/>
         <source>Rename</source>
         <translation>Byt namn</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="226"/>
+        <location filename="../rss.ui" line="280"/>
         <source>Refresh</source>
         <translation>Uppdatera</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="97"/>
+        <location filename="../rss.ui" line="127"/>
         <source>Delete selected streams</source>
         <translation>Ta bort markerade kanaler</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="119"/>
+        <location filename="../rss.ui" line="149"/>
         <source>Refresh RSS streams</source>
         <translation>Uppdatera RSS-kanaler</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="141"/>
+        <location filename="../rss.ui" line="171"/>
         <source>Add a new RSS stream</source>
         <translation>Lägg till en ny RSS-kanal</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="182"/>
+        <location filename="../rss.ui" line="227"/>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
         <translation>&lt;b&gt;Nyheter:&lt;/b&gt; &lt;i&gt;(dubbelklicka för att öppna länken i din webbläsare)&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="231"/>
+        <location filename="../rss.ui" line="285"/>
         <source>Add RSS stream</source>
         <translation>Lägg till RSS-kanal</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="236"/>
+        <location filename="../rss.ui" line="290"/>
         <source>Refresh all streams</source>
         <translation>Uppdatera alla kanaler</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="51"/>
+        <location filename="../rss.ui" line="78"/>
         <source>RSS streams:</source>
         <translation>RSS-kanaler:</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="56"/>
+        <location filename="../rss.ui" line="83"/>
         <source>2</source>
         <translation>2</translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="295"/>
+        <source>Mark all as read</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="147"/>
+        <location filename="../rss_imp.cpp" line="159"/>
         <source>Please type a rss stream url</source>
         <translation>Ange en url för en RSS-kanal</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="147"/>
+        <location filename="../rss_imp.cpp" line="159"/>
         <source>Stream URL:</source>
         <translation>URL för kanal:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="102"/>
+        <location filename="../rss_imp.cpp" line="103"/>
         <source>Please choose a new name for this stream</source>
         <translation>Välj ett nytt namn för den här kanalen</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="102"/>
+        <location filename="../rss_imp.cpp" line="103"/>
         <source>New stream name:</source>
         <translation>Nytt kanalnamn:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="59"/>
+        <location filename="../rss_imp.cpp" line="60"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Är du säker? -- qBittorrent</translation>
     </message>
@@ -1751,42 +1756,42 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Är du säker på att du vill ta bort den här kanalen från listan?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="60"/>
+        <location filename="../rss_imp.cpp" line="61"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="60"/>
+        <location filename="../rss_imp.cpp" line="61"/>
         <source>&amp;No</source>
         <translation>&amp;Nej</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="59"/>
+        <location filename="../rss_imp.cpp" line="60"/>
         <source>Are you sure you want to delete this stream from the list?</source>
         <translation>Är du säker på att du vill ta bort den här kanalen från listan?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>Description:</source>
         <translation>Beskrivning:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>url:</source>
         <translation>url:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>Last refresh:</source>
         <translation>Senast uppdaterad:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="154"/>
+        <location filename="../rss_imp.cpp" line="166"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="155"/>
+        <location filename="../rss_imp.cpp" line="167"/>
         <source>This rss feed is already in the list.</source>
         <translation>Den här kanalen finns redan i listan.</translation>
     </message>
@@ -1802,13 +1807,13 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="262"/>
+        <location filename="../rss.h" line="270"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>%1 sedan</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="261"/>
+        <location filename="../rss.h" line="269"/>
         <source>Never</source>
         <translation>Aldrig</translation>
     </message>

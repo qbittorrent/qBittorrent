@@ -2385,65 +2385,70 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Vyhľadávanie</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="97"/>
+        <location filename="../rss.ui" line="127"/>
         <source>Delete selected streams</source>
         <translation>Zmazať vybrané streamy</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="119"/>
+        <location filename="../rss.ui" line="149"/>
         <source>Refresh RSS streams</source>
         <translation>Obnoviť RSS streamy</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="141"/>
+        <location filename="../rss.ui" line="171"/>
         <source>Add a new RSS stream</source>
         <translation>Pridať nový RSS stream</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="182"/>
+        <location filename="../rss.ui" line="227"/>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
         <translation>&lt;b&gt;Novinky:&lt;/b&gt; &lt;i&gt;(dvojitým kliknutím otvoríte odkaz vo webovom prehliadači)&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="216"/>
+        <location filename="../rss.ui" line="270"/>
         <source>Delete</source>
         <translation>Zmazať</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="221"/>
+        <location filename="../rss.ui" line="275"/>
         <source>Rename</source>
         <translation>Premenovať</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="226"/>
+        <location filename="../rss.ui" line="280"/>
         <source>Refresh</source>
         <translation>Obnoviť</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="231"/>
+        <location filename="../rss.ui" line="285"/>
         <source>Add RSS stream</source>
         <translation>Pridať RSS stream</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="236"/>
+        <location filename="../rss.ui" line="290"/>
         <source>Refresh all streams</source>
         <translation>Obnoviť všetky streamy</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="51"/>
+        <location filename="../rss.ui" line="78"/>
         <source>RSS streams:</source>
         <translation>RSS streamy:</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="56"/>
+        <location filename="../rss.ui" line="83"/>
         <source>2</source>
         <translation>2</translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="295"/>
+        <source>Mark all as read</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="59"/>
+        <location filename="../rss_imp.cpp" line="60"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Ste si istý? -- qBittorrent</translation>
     </message>
@@ -2453,62 +2458,62 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Ste si istý, že chcete zmazať tento stream zo zoznamu?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="60"/>
+        <location filename="../rss_imp.cpp" line="61"/>
         <source>&amp;Yes</source>
         <translation>&amp;Áno</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="60"/>
+        <location filename="../rss_imp.cpp" line="61"/>
         <source>&amp;No</source>
         <translation>&amp;Nie</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="102"/>
+        <location filename="../rss_imp.cpp" line="103"/>
         <source>Please choose a new name for this stream</source>
         <translation>Prosím, zvoľte nový názov pre tento stream</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="102"/>
+        <location filename="../rss_imp.cpp" line="103"/>
         <source>New stream name:</source>
         <translation>Nový názov streamu:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="147"/>
+        <location filename="../rss_imp.cpp" line="159"/>
         <source>Please type a rss stream url</source>
         <translation>Prosím, napíšte URL RSS streamu</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="147"/>
+        <location filename="../rss_imp.cpp" line="159"/>
         <source>Stream URL:</source>
         <translation>URL streamu:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="59"/>
+        <location filename="../rss_imp.cpp" line="60"/>
         <source>Are you sure you want to delete this stream from the list?</source>
         <translation>Ste si istý, že chcete zmazať tento stream zo zoznamu?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>Description:</source>
         <translation>Popis:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>url:</source>
         <translation>url:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="255"/>
         <source>Last refresh:</source>
         <translation>Posledné obnovenie:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="154"/>
+        <location filename="../rss_imp.cpp" line="166"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="155"/>
+        <location filename="../rss_imp.cpp" line="167"/>
         <source>This rss feed is already in the list.</source>
         <translation>Tento RSS feed už je v zozname.</translation>
     </message>
@@ -2524,13 +2529,13 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="262"/>
+        <location filename="../rss.h" line="270"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>pred %1 min</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="261"/>
+        <location filename="../rss.h" line="269"/>
         <source>Never</source>
         <translation>Nikdy</translation>
     </message>

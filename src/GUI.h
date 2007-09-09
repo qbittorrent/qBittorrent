@@ -66,6 +66,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     bool systrayIntegration;
     bool displaySpeedInTitle;
     bool force_exit;
+    unsigned int refreshInterval;
     QTimer *refresher;
     // Keyboard shortcuts
     QShortcut *switchSearchShortcut;

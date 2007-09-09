@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>597</width>
+    <width>663</width>
     <height>560</height>
    </rect>
   </property>
@@ -211,6 +211,50 @@
             </property>
            </widget>
           </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QLabel" name="label_5" >
+              <property name="text" >
+               <string>transfer lists refresh interval:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinRefreshInterval" >
+              <property name="minimum" >
+               <number>10</number>
+              </property>
+              <property name="maximum" >
+               <number>99999</number>
+              </property>
+              <property name="value" >
+               <number>1500</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_6" >
+              <property name="text" >
+               <string>ms</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
          </layout>
         </widget>
        </item>
@@ -309,8 +353,8 @@
          </property>
          <property name="sizeHint" >
           <size>
-           <width>20</width>
-           <height>40</height>
+           <width>623</width>
+           <height>20</height>
           </size>
          </property>
         </spacer>
@@ -322,7 +366,7 @@
        <string>Downloads</string>
       </attribute>
       <attribute name="icon" >
-       <iconset resource="icons.qrc" >:/Icons/gear.png</iconset>
+       <iconset resource="icons.qrc" >:/Icons/download.png</iconset>
       </attribute>
       <layout class="QVBoxLayout" >
        <item>
@@ -574,6 +618,19 @@
                    <number>6889</number>
                   </property>
                  </widget>
+                </item>
+                <item>
+                 <spacer>
+                  <property name="orientation" >
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" >
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
                 </item>
                </layout>
               </item>
@@ -1372,38 +1429,16 @@
      </widget>
      <widget class="QWidget" name="tab_4" >
       <attribute name="title" >
-       <string>IP Filter</string>
+       <string>Misc</string>
       </attribute>
       <attribute name="icon" >
-       <iconset resource="icons.qrc" >:/Icons/filter.png</iconset>
+       <iconset resource="icons.qrc" >:/Icons/configure.png</iconset>
       </attribute>
       <layout class="QVBoxLayout" >
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
-       </property>
-       <item>
-        <widget class="QCheckBox" name="checkIPFilter" >
-         <property name="text" >
-          <string>Activate IP Filtering</string>
-         </property>
-        </widget>
-       </item>
        <item>
         <widget class="QGroupBox" name="filterBox" >
          <property name="enabled" >
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="title" >
           <string>Filter Settings</string>
@@ -1425,7 +1460,20 @@
            <number>9</number>
           </property>
           <item>
+           <widget class="QCheckBox" name="checkIPFilter" >
+            <property name="text" >
+             <string>Activate IP Filtering</string>
+            </property>
+            <property name="icon" >
+             <iconset resource="icons.qrc" >:/Icons/filter.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QTreeWidget" name="filtersList" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
             <property name="minimumSize" >
              <size>
               <width>0</width>
@@ -1503,6 +1551,9 @@
             </item>
             <item>
              <widget class="QPushButton" name="addFilterRangeButton" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
               <property name="text" >
                <string> Add Range</string>
               </property>
@@ -1513,6 +1564,9 @@
             </item>
             <item>
              <widget class="QPushButton" name="delFilterRangeButton" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
               <property name="text" >
                <string> Remove Range</string>
               </property>
@@ -1555,20 +1609,150 @@
             </property>
             <item>
              <widget class="QLabel" name="lblFilterPath" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
               <property name="text" >
                <string>Filter file path:</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="textFilterPath" />
+             <widget class="QLineEdit" name="textFilterPath" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QToolButton" name="browseFilterButton" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
               <property name="text" >
                <string>...</string>
               </property>
              </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupRSS" >
+         <property name="title" >
+          <string>RSS</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QLabel" name="label_4" >
+              <property name="minimumSize" >
+               <size>
+                <width>48</width>
+                <height>48</height>
+               </size>
+              </property>
+              <property name="maximumSize" >
+               <size>
+                <width>48</width>
+                <height>48</height>
+               </size>
+              </property>
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap resource="icons.qrc" >:/Icons/rss32.png</pixmap>
+              </property>
+              <property name="scaledContents" >
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" >
+              <item>
+               <layout class="QHBoxLayout" >
+                <item>
+                 <widget class="QLabel" name="label" >
+                  <property name="text" >
+                   <string>RSS feeds refresh interval:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="spinRSSRefresh" >
+                  <property name="minimum" >
+                   <number>1</number>
+                  </property>
+                  <property name="maximum" >
+                   <number>999999</number>
+                  </property>
+                  <property name="value" >
+                   <number>5</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_2" >
+                  <property name="text" >
+                   <string>minutes</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer>
+                  <property name="orientation" >
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" >
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" >
+                <item>
+                 <widget class="QLabel" name="label_3" >
+                  <property name="text" >
+                   <string>Maximum number of articles per feed:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed" >
+                  <property name="maximum" >
+                   <number>9999</number>
+                  </property>
+                  <property name="value" >
+                   <number>50</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer>
+                  <property name="orientation" >
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" >
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>

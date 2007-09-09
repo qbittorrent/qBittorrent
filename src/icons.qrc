@@ -12,7 +12,6 @@
   <file>Icons/downarrow.png</file>
   <file>Icons/description.png</file>
   <file>Icons/qbittorrent16.png</file>
-  <file>Icons/exec.png</file>
   <file>Icons/systemtray.png</file>
   <file>Icons/unhappy.png</file>
   <file>Icons/filter.png</file>
@@ -45,6 +44,8 @@
   <file>Icons/search32.png</file>
   <file>Icons/bt_settings.png</file>
   <file>Icons/star.png</file>
+  <file>Icons/configure.png</file>
+  <file>Icons/download.png</file>
   <file>Icons/flags/portugal.png</file>
   <file>Icons/flags/france.png</file>
   <file>Icons/flags/ukraine.png</file>

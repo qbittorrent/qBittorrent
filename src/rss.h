@@ -22,11 +22,6 @@
 #ifndef RSS_H
 #define RSS_H
 
-// MAX ITEM A STREAM
-#define STREAM_MAX_ITEM 50
-// 10min
-#define STREAM_REFRESH_INTERVAL 600000
-
 #include <QFile>
 #include <QList>
 #include <QTemporaryFile>
@@ -270,9 +265,9 @@ class RssStream : public QObject{
       return tr("%1 ago", "10min ago").arg(misc::userFriendlyDuration((long)(lastRefresh.elapsed()/1000.)).replace("<", "&lt;"));
     }
 
-    unsigned int getLastRefreshElapsed() const{
+    int getLastRefreshElapsed() const{
       if(!refreshed)
-        return STREAM_REFRESH_INTERVAL+1;
+        return -1;
       return lastRefresh.elapsed();
     }
 
@@ -285,6 +280,9 @@ class RssStream : public QObject{
   private:
     // read and create items from a rss document
     short readDoc(const QDomDocument& doc) {
+      QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+      unsigned int max_articles = settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 50).toInt();
+      qDebug("Reading %d articles max in xml file", max_articles);
       // is it a rss file ?
       QDomElement root = doc.documentElement();
       if(root.tagName() == QString::fromUtf8("html")){
@@ -319,7 +317,7 @@ class RssStream : public QObject{
 	    else if (property.tagName() == "image")
 	      image = property.text();
 	    else if(property.tagName() == "item") {
-	      if(getNbNews() < STREAM_MAX_ITEM) {
+	      if(getNbNews() < max_articles) {
 	        listItem.append(new RssItem(property));
 	      }
 	    }
@@ -333,6 +331,8 @@ class RssStream : public QObject{
 
     // not actually used, it is used to resize the list of item AFTER the update, instead of delete it BEFORE, some troubles
     void resizeList() {
+      QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+      unsigned int max_articles = settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 50).toInt();
       unsigned short lastindex = 0;
       QString firstTitle = getItem(0)->getTitle();
       unsigned short listsize = getNbNews();
@@ -343,30 +343,31 @@ class RssStream : public QObject{
       for(unsigned short i=0; i<lastindex; ++i) {
 	listItem.removeFirst();
       }
-      while(getNbNews()>STREAM_MAX_ITEM) {
-	listItem.removeAt(STREAM_MAX_ITEM);
+      while(getNbNews() > max_articles) {
+	listItem.removeLast();
       }
 
     }
 
     // existing and opening test after download
     short openRss(){
+      qDebug("openRss() called");
       QDomDocument doc("Rss Seed");
       QFile fileRss(filePath);
       if(!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) {
-	qDebug("error : open failed, no file or locked, "+filePath.toUtf8());
-	if(QFile::exists(filePath)) {
-	 fileRss.remove();
-	}
-	return -1;
+        qDebug("openRss error : open failed, no file or locked, "+filePath.toUtf8());
+        if(QFile::exists(filePath)) {
+        fileRss.remove();
+        }
+        return -1;
       }
       if(!doc.setContent(&fileRss)) {
-	qDebug("can't read temp file, might be empty");
-	fileRss.close();
-	if(QFile::exists(filePath)) {
-	 fileRss.remove();
-	}
-	return -1;
+        qDebug("can't read temp file, might be empty");
+        fileRss.close();
+        if(QFile::exists(filePath)) {
+        fileRss.remove();
+        }
+        return -1;
       }
       // start reading the xml
       short return_lecture = readDoc(doc);
@@ -386,6 +387,7 @@ class RssManager : public QObject{
     QHash<QString, RssStream*> streams;
     downloadThread *downloader;
     QTimer newsRefresher;
+    unsigned int refreshInterval;
 
   signals:
     void feedInfosChanged(QString url, QString aliasOrUrl, unsigned int nbUnread);
@@ -462,13 +464,21 @@ class RssManager : public QObject{
       foreach(stream, streams){
         QString url = stream->getUrl();
         if(stream->isLoading()) return;
-        if(stream->getLastRefreshElapsed() < STREAM_REFRESH_INTERVAL) return;
+        if(stream->getLastRefreshElapsed() != -1 && stream->getLastRefreshElapsed() < (int)refreshInterval) return;
         qDebug("Refreshing old feed: %s...", (const char*)url.toUtf8());
         stream->setLoading(true);
         downloader->downloadUrl(url);
         if(!stream->hasCustomIcon()){
           downloader->downloadUrl(stream->getIconUrl());
         }
+      }
+      // See if refreshInterval has changed
+      QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+      unsigned int new_refreshInterval = settings.value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toInt();
+      if(new_refreshInterval != refreshInterval) {
+        refreshInterval = new_refreshInterval;
+        newsRefresher.stop();
+        newsRefresher.start(refreshInterval*60000);
       }
     }
 
@@ -479,7 +489,9 @@ class RssManager : public QObject{
       connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
       loadStreamList();
       connect(&newsRefresher, SIGNAL(timeout()), this, SLOT(refreshOldFeeds()));
-      newsRefresher.start(60000); // 1min
+      QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+      refreshInterval = settings.value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toInt();
+      newsRefresher.start(refreshInterval*60000);
     }
 
     ~RssManager(){

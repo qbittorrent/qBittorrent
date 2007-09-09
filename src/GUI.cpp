@@ -56,7 +56,7 @@ namespace fs = boost::filesystem;
  *****************************************************/
 
 // Constructor
-GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), displaySpeedInTitle(false), force_exit(false) {
+GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), displaySpeedInTitle(false), force_exit(false), refreshInterval(1500) {
   setupUi(this);
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
@@ -790,6 +790,12 @@ void GUI::configureSession(bool deleteOptions) {
   qDebug("Configuring session");
   // General
   displaySpeedInTitle = options->speedInTitleBar();
+  unsigned int new_refreshInterval = options->getRefreshInterval();
+  if(refreshInterval != new_refreshInterval) {
+    refreshInterval = new_refreshInterval;
+    refresher->stop();
+    refresher->start(refreshInterval);
+  }
   // Downloads
   // * Save path
   BTSession->setDefaultSavePath(options->getSavePath());

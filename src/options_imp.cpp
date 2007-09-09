@@ -147,6 +147,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(comboStyle, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkConfirmExit, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkSpeedInTitle, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(spinRefreshInterval, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkNoSystray, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkCloseToSystray, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkMinimizeToSysTray, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
@@ -193,11 +194,13 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkRatioRemove, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(spinRatio, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxRatio, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-  // IP Filter tab
+  // Misc tab
   connect(checkIPFilter, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(addFilterRangeButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
   connect(delFilterRangeButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
   connect(textFilterPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(spinRSSRefresh, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(spinRSSMaxArticlesPerFeed, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   // Disable apply Button
   applyButton->setEnabled(false);
   if(!QSystemTrayIcon::supportsMessages()){
@@ -256,6 +259,7 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("Style"), getStyle());
   settings.setValue(QString::fromUtf8("ExitConfirm"), confirmOnExit());
   settings.setValue(QString::fromUtf8("SpeedInTitleBar"), speedInTitleBar());
+  settings.setValue(QString::fromUtf8("RefreshInterval"), getRefreshInterval());
   settings.setValue(QString::fromUtf8("SystrayEnabled"), systrayIntegration());
   settings.setValue(QString::fromUtf8("CloseToTray"), closeToTray());
   settings.setValue(QString::fromUtf8("MinimizeToTray"), minimizeToTray());
@@ -314,13 +318,20 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("MaxRatio"), getDeleteRatio());
   // End Bittorrent preferences
   settings.endGroup();
-  // IPFilter preferences
+  // Misc preferences
+  // * IPFilter
   settings.beginGroup("IPFilter");
   settings.setValue(QString::fromUtf8("Enabled"), isFilteringEnabled());
   if(isFilteringEnabled()){
     settings.setValue(QString::fromUtf8("File"), textFilterPath->text());
   }
   // End IPFilter preferences
+  settings.endGroup();
+  // * RSS
+  settings.beginGroup("RSS");
+  settings.setValue(QString::fromUtf8("RSSRefresh"), spinRSSRefresh->value());
+  settings.setValue(QString::fromUtf8("RSSMaxArticlesPerFeed"), spinRSSMaxArticlesPerFeed->value());
+  // End RSS preferences
   settings.endGroup();
   // End preferences
   settings.endGroup();
@@ -389,6 +400,7 @@ void options_imp::loadOptions(){
   setStyle(settings.value(QString::fromUtf8("Style"), 4).toInt());
   checkConfirmExit->setChecked(settings.value(QString::fromUtf8("ExitConfirm"), true).toBool());
   checkSpeedInTitle->setChecked(settings.value(QString::fromUtf8("SpeedInTitleBar"), false).toBool());
+  spinRefreshInterval->setValue(settings.value(QString::fromUtf8("RefreshInterval"), 1500).toInt());
   checkNoSystray->setChecked(!settings.value(QString::fromUtf8("SystrayEnabled"), true).toBool());
   if(!systrayIntegration()) {
     disableSystrayOptions();
@@ -543,20 +555,25 @@ void options_imp::loadOptions(){
   }
   // End Bittorrent preferences
   settings.endGroup();
-  // IPFilter preferences
+  // Misc preferences
+  // * IP Filter
   settings.beginGroup("IPFilter");
   checkIPFilter->setChecked(settings.value(QString::fromUtf8("Enabled"), false).toBool());
   if(isFilteringEnabled()) {
-    filterBox->setEnabled(true);
+    enableFilter(2); // Enable
     textFilterPath->setText(settings.value(QString::fromUtf8("File"), QString()).toString());
     processFilterFile(textFilterPath->text());
   } else {
-    // Disable
+    enableFilter(0); // Disable
     filterBox->setEnabled(false);
   }
-  // End IPFilter preferences
+  // End IP Filter
   settings.endGroup();
-  // End Preferences
+  // * RSS
+  settings.beginGroup("RSS");
+  spinRSSRefresh->setValue(settings.value(QString::fromUtf8("RSSRefresh"), 5).toInt());
+  spinRSSMaxArticlesPerFeed->setValue(settings.value(QString::fromUtf8("RSSMaxArticlesPerFeed"), 50).toInt());
+  // End RSS preferences
   settings.endGroup();
 }
 
@@ -584,6 +601,10 @@ bool options_imp::minimizeToTray() const{
 bool options_imp::closeToTray() const{
   if(checkNoSystray->isChecked()) return false;
   return checkCloseToSystray->isChecked();
+}
+
+unsigned int options_imp::getRefreshInterval() const {
+  return spinRefreshInterval->value();
 }
 
 bool options_imp::confirmOnExit() const{
@@ -787,10 +808,20 @@ void options_imp::enableMaxUploadsLimitPerTorrent(int checkBoxValue){
 void options_imp::enableFilter(int checkBoxValue){
   if(checkBoxValue!=2){
     //Disable
-    filterBox->setEnabled(false);
+    filtersList->setEnabled(false);
+    addFilterRangeButton->setEnabled(false);
+    delFilterRangeButton->setEnabled(false);
+    lblFilterPath->setEnabled(false);
+    textFilterPath->setEnabled(false);
+    browseFilterButton->setEnabled(false);
   }else{
     //enable
-    filterBox->setEnabled(true);
+    filtersList->setEnabled(true);
+    addFilterRangeButton->setEnabled(true);
+    delFilterRangeButton->setEnabled(true);
+    lblFilterPath->setEnabled(true);
+    textFilterPath->setEnabled(true);
+    browseFilterButton->setEnabled(true);
   }
 }
 
