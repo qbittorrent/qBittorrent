@@ -1149,8 +1149,8 @@ void GUI::updateLists() {
       return;
   }
   if(displaySpeedInTitle) {
-    QString dl_rate = QByteArray::number(BTSession->getSessionStatus().payload_download_rate, 'f', 1);
-    QString up_rate = QByteArray::number(BTSession->getSessionStatus().payload_upload_rate, 'f', 1);
+    QString dl_rate = QByteArray::number(BTSession->getSessionStatus().payload_download_rate/1024, 'f', 1);
+    QString up_rate = QByteArray::number(BTSession->getSessionStatus().payload_upload_rate/1024, 'f', 1);
     setWindowTitle(tr("qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)", "%1 is qBittorrent version").arg(QString::fromUtf8(VERSION)).arg(dl_rate).arg(up_rate));
   }
 }
