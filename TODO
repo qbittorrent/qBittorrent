@@ -39,7 +39,7 @@
 - improve and test tracker authentication code (remember login/pass) (need a tracker to test this)
 - support zipped torrents? (useful?)
 - Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
-- Improve search plugin install (download drom url, choose in a list taken from plugins.qbittorrent.org)
+- Improve search plugin install (choose in a list taken from plugins.qbittorrent.org)
 - Display the number of DHT node if possible
 - Allow to change action on double-click
   -> in download list
@@ -47,15 +47,17 @@
 
 // in v1.0.0 (partial) - WIP
 - Fix all (or almost all) opened bugs in bug tracker
-- Improve systray tooltip
+- Improve systray tooltip (again)
 - Keep documention up to date
 - Windows port (Chris - Peerkoel)
 * beta 7
   - update doc for plugins (and add screenies)
   - update doc for options
+  - Allow to install search plugins from an url
   - Review torrent content selection
     * check the one in ktorrent
   - Translations update (IN PROGRESS)
+  - Wait that http://pastebin.ca/690649 is fixed
 
 LANGUAGES UPDATED:
 - French *BETA6*
@@ -114,3 +116,4 @@ beta6->beta7 changelog:
 - BUGFIX: Fixed deprecation warning with latest libtorrent svn
 - COSMETIC: Improved some icons
 - COSMETIC: Totally redesigned program preferences
+- COSMETIC: Improved systray tooltip style

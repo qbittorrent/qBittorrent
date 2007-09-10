@@ -1177,7 +1177,16 @@ void GUI::checkConnectionStatus() {
     downloadingTorrentTab->updateRatio();
   // update global informations
   if(systrayIntegration) {
-    myTrayIcon->setToolTip(QString::fromUtf8("<b>")+tr("qBittorrent")+QString::fromUtf8("</b><br>")+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1)))+QString::fromUtf8("<br>")+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1)))); // tray icon
+    QString html = "<div style='vertical-align: middle; height: 18px; font-weight: bold; margin-bottom: 5px;'>";
+    html += tr("qBittorrent");
+    html += "</div>";
+    html += "<div style='vertical-align: baseline; height: 18px;'>";
+    html += "<img src=':/Icons/skin/downloading.png'/>"+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1)));
+    html += "</div>";
+    html += "<div style='vertical-align: baseline; height: 18px;'>";
+    html += "<img src=':/Icons/skin/seeding.png'/>"+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1)));
+    html += "</div>";
+    myTrayIcon->setToolTip(html); // tray icon
   }
   session_status sessionStatus = BTSession->getSessionStatus();
   if(sessionStatus.has_incoming_connections) {
