@@ -1177,7 +1177,7 @@ void GUI::checkConnectionStatus() {
     downloadingTorrentTab->updateRatio();
   // update global informations
   if(systrayIntegration) {
-    QString html = "<div style='vertical-align: middle; height: 18px; font-weight: bold; margin-bottom: 5px;'>";
+    QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
     html += tr("qBittorrent");
     html += "</div>";
     html += "<div style='vertical-align: baseline; height: 18px;'>";
