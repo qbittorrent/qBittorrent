@@ -22,6 +22,7 @@
 #include "engineSelectDlg.h"
 #include "downloadThread.h"
 #include "misc.h"
+#include "pluginSource.h"
 #include <QProcess>
 #include <QHeaderView>
 #include <QSettings>
@@ -29,6 +30,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDropEvent>
+#include <QInputDialog>
 
 #ifdef HAVE_MAGICK
   #include <Magick++.h>
@@ -511,6 +513,21 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
 }
 
 void engineSelectDlg::on_installButton_clicked() {
+  pluginSourceDlg *dlg = new pluginSourceDlg(this);
+  connect(dlg, SIGNAL(askForLocalFile()), this, SLOT(askForLocalPlugin()));
+  connect(dlg, SIGNAL(askForUrl()), this, SLOT(askForPluginUrl()));
+}
+
+void engineSelectDlg::askForPluginUrl() {
+  bool ok;
+  QString url = QInputDialog::getText(this, tr("New search engine plugin URL"),
+                                       tr("URL:"), QLineEdit::Normal,
+                                          "http://", &ok);
+  if (ok && !url.isEmpty())
+    downloader->downloadUrl(url);
+}
+
+void engineSelectDlg::askForLocalPlugin() {
   QStringList pathsList = QFileDialog::getOpenFileNames(0,
               tr("Select search plugins"), QDir::homePath(),
 #ifdef HAVE_ZZIP

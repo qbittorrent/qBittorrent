@@ -66,6 +66,8 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
     void dropEvent(QDropEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
     void installPlugin(QString plugin_path, QString plugin_name);
+    void askForLocalPlugin();
+    void askForPluginUrl();
 #ifdef HAVE_ZZIP
     void installZipPlugin(QString path);
 #endif

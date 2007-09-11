@@ -47,13 +47,11 @@
 
 // in v1.0.0 (partial) - WIP
 - Fix all (or almost all) opened bugs in bug tracker
-- Improve systray tooltip (again)
 - Keep documention up to date
 - Windows port (Chris - Peerkoel)
 * beta 7
   - update doc for plugins (and add screenies)
   - update doc for options
-  - Allow to install search plugins from an url
   - Review torrent content selection
     * check the one in ktorrent
   - Translations update (IN PROGRESS)
@@ -100,6 +98,7 @@ beta6->beta7 changelog:
 - FEATURE: Display RSS article date and author if available
 - FEATURE: Articles in a RSS feed are now ordered by date (newer at the top)
 - FEATURE: Read articles in a feed are not resetted when the feed is refreshed anymore
+- FEATURE: Allow to install plugins from their url
 - BUGFIX: In torrent content, it is now easier to filter all torrents using right click menu
 - BUGFIX: Updated man page / README / INSTALL
 - BUGFIX: Paused torrents could be displayed as connected for a sec after checking
