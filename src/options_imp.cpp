@@ -531,8 +531,8 @@ void options_imp::loadOptions(){
   checkPeX->setChecked(settings.value(QString::fromUtf8("PeX"), true).toBool());
   checkLSD->setChecked(settings.value(QString::fromUtf8("LSD"), true).toBool());
   comboEncryption->setCurrentIndex(settings.value(QString::fromUtf8("Encryption"), 0).toInt());
-  floatValue = settings.value(QString::fromUtf8("DesiredRatio"), 0).toDouble();
-  if(floatValue) {
+  floatValue = settings.value(QString::fromUtf8("DesiredRatio"), -1).toDouble();
+  if(floatValue >= 1.) {
     // Enable
     checkRatioLimit->setChecked(true);
     spinRatio->setEnabled(true);
@@ -542,8 +542,8 @@ void options_imp::loadOptions(){
     checkRatioLimit->setChecked(false);
     spinRatio->setEnabled(false);
   }
-  floatValue = settings.value(QString::fromUtf8("MaxRatio"), 0).toDouble();
-  if(floatValue) {
+  floatValue = settings.value(QString::fromUtf8("MaxRatio"), -1).toDouble();
+  if(floatValue >= 1.) {
     // Enable
     checkRatioRemove->setChecked(true);
     spinMaxRatio->setEnabled(true);
@@ -663,7 +663,7 @@ float options_imp::getDesiredRatio() const{
   if(checkRatioLimit->isChecked()){
     return spinRatio->value();
   }
-  return 0;
+  return -1;
 }
 
 // Return Share ratio
@@ -671,7 +671,7 @@ float options_imp::getDeleteRatio() const{
   if(checkRatioRemove->isChecked()){
     return spinMaxRatio->value();
   }
-  return 0;
+  return -1;
 }
 
 // Return Save Path

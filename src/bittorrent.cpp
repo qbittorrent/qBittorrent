@@ -102,20 +102,18 @@ void bittorrent::preAllocateAllFiles(bool b) {
 
 void bittorrent::deleteBigRatios() {
   if(max_ratio == -1) return;
-  std::vector<torrent_handle> handles = s->get_torrents();
-  unsigned int nbHandles = handles.size();
-  for(unsigned int i=0; i<nbHandles; ++i) {
-    QTorrentHandle h = handles[i];
+  QString hash;
+  foreach(hash, finishedTorrents) {
+    QTorrentHandle h = getTorrentHandle(hash);
     if(!h.is_valid()) {
       qDebug("/!\\ Error: Invalid handle");
       continue;
     }
     QString hash = h.hash();
     if(getRealRatio(hash) > max_ratio) {
-      bool finished = finishedTorrents.contains(hash);
       QString fileName = h.name();
       deleteTorrent(hash);
-      emit torrent_deleted(hash, fileName, finished);
+      emit torrent_deleted(hash, fileName, true);
     }
   }
 }
@@ -973,6 +971,7 @@ void bittorrent::setGlobalRatio(float ratio) {
 void bittorrent::setDeleteRatio(float ratio) {
   if(ratio != -1 && ratio < 1.) ratio = 1.;
   max_ratio = ratio;
+  qDebug("* Set deleteRatio to %.1f", max_ratio);
   deleteBigRatios();
 }
 

@@ -52,7 +52,6 @@
 * beta 7
   - update doc for plugins (and add screenies)
   - update doc for options
-	- remove ratio should be applied to finished torrent only (and disabled as a default!)
   - Review torrent content selection
     * check the one in ktorrent
   - Translations update (IN PROGRESS)
