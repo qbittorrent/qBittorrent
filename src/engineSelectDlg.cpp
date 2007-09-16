@@ -68,6 +68,7 @@ engineSelectDlg::engineSelectDlg(QWidget *parent) : QDialog(parent) {
 
 engineSelectDlg::~engineSelectDlg() {
   qDebug("Destroying engineSelectDlg");
+  saveSettings();
   emit enginesChanged();
   qDebug("Before deleting downloader");
   delete downloader;
@@ -110,12 +111,14 @@ void engineSelectDlg::dragEnterEvent(QDragEnterEvent *event) {
 }
 
 void engineSelectDlg::saveSettings() {
+  qDebug("Saving engines settings");
   QStringList known_engines;
   QVariantList known_enginesEnabled;
   QString engine;
-  foreach(engine, installed_engines) {
+  foreach(engine, installed_engines.keys()) {
     known_engines << engine;
     known_enginesEnabled << QVariant(installed_engines.value(engine, true));
+    qDebug("Engine %s has state: %d", engine.toUtf8().data(), installed_engines.value(engine, true));
   }
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.setValue(QString::fromUtf8("SearchEngines/knownEngines"), known_engines);
