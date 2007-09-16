@@ -45,7 +45,6 @@ class properties : public QDialog, private Ui::properties{
     QStandardItemModel *PropListModel;
     QTimer *updateInfosTimer;
     bool has_filtered_files;
-    bool editParentsOnly;
     QStringList urlSeeds;
 
   protected slots:
@@ -71,7 +70,9 @@ class properties : public QDialog, private Ui::properties{
     void deleteSelectedUrlSeeds();
     void loadTrackersErrors();
     void addFilesToTree(file *root, QStandardItem *parent);
-    void updateChildrenPriority(QStandardItem *item);
+    void updateChildrenPriority(QStandardItem *item, int priority);
+    void updateParentsPriority(QStandardItem *item, int priority);
+    void updatePriorities(QStandardItem *item);
     void getPriorities(QStandardItem *parent, int *priorities);
 
   signals:

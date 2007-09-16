@@ -169,6 +169,10 @@ class PropListDelegate: public QItemDelegate {
             model->setData(index, QVariant(IGNORED));
             if(filteredFilesChanged != 0)
               *filteredFilesChanged = true;
+          } else {
+            // XXX: hack to force the model to send the itemChanged() signal
+            model->setData(index, QVariant(NORMAL));
+            model->setData(index, QVariant(IGNORED));
           }
           break;
         case 1:
@@ -176,6 +180,9 @@ class PropListDelegate: public QItemDelegate {
             model->setData(index, QVariant(NORMAL));
             if(filteredFilesChanged != 0)
               *filteredFilesChanged = true;
+          } else {
+            model->setData(index, QVariant(HIGH));
+            model->setData(index, QVariant(NORMAL));
           }
           break;
         case 2:
@@ -183,6 +190,9 @@ class PropListDelegate: public QItemDelegate {
             model->setData(index, QVariant(HIGH));
             if(filteredFilesChanged != 0)
               *filteredFilesChanged = true;
+          } else {
+            model->setData(index, QVariant(NORMAL));
+            model->setData(index, QVariant(HIGH));
           }
           break;
         case 3:
@@ -190,6 +200,9 @@ class PropListDelegate: public QItemDelegate {
             model->setData(index, QVariant(MAXIMUM));
             if(filteredFilesChanged != 0)
               *filteredFilesChanged = true;
+          } else {
+            model->setData(index, QVariant(HIGH));
+            model->setData(index, QVariant(MAXIMUM));
           }
           break;
         default:
@@ -197,6 +210,9 @@ class PropListDelegate: public QItemDelegate {
             model->setData(index, QVariant(NORMAL));
             if(filteredFilesChanged != 0)
               *filteredFilesChanged = true;
+          } else {
+            model->setData(index, QVariant(HIGH));
+            model->setData(index, QVariant(NORMAL));
           }
       }
     }

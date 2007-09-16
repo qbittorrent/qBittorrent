@@ -32,7 +32,7 @@
 #include <QStandardItemModel>
 
 // Constructor
-properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h): QDialog(parent), h(h), BTSession(BTSession), changedFilteredfiles(false), hash(h.hash()), editParentsOnly(false) {
+properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h): QDialog(parent), h(h), BTSession(BTSession), changedFilteredfiles(false), hash(h.hash()) {
   setupUi(this);
   lbl_priorities->setText(tr("Priorities:")+"<ul><li>"+tr("Ignored: file is not downloaded at all")+"</li><li>"+tr("Normal: normal priority. Download order is dependent on availability")+"</li><li>"+tr("High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability")+"</li><li>"+tr("Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority")+"</li></ul>");
   // set icons
@@ -104,7 +104,7 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   addFilesToTree(arb->getRoot(), PropListModel->invisibleRootItem());
   delete arb;
   delete prioritiesTab;
-  connect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updateChildrenPriority(QStandardItem*)));
+  connect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
   filesList->expandAll();
   // List web seeds
   loadWebSeedsFromFile();
@@ -155,61 +155,81 @@ void properties::addFilesToTree(file *root, QStandardItem *parent) {
   }
 }
 
-void properties::updateChildrenPriority(QStandardItem *item) {
-  qDebug("Priority changed");
+// priority is the new priority of given item
+void properties::updateParentsPriority(QStandardItem *item, int priority) {
   QStandardItem *parent = item->parent();
-  int row = item->row();
-  if(!parent) {
-    parent = PropListModel->invisibleRootItem();
-  }
-  bool is_dir = (parent->child(row, INDEX)->text().toInt() == -1);
-  int priority = parent->child(row, PRIORITY)->text().toInt();
-  // Update parent priority
-  if(item->parent()) {
-    bool parentUpdate = true;
-    unsigned int rowCount = parent->rowCount();
-    for(unsigned int i=0; i<rowCount; ++i) {
-      if(parent->child(i, PRIORITY)->text().toInt() != priority) {
-        // Check if parent priority is NORMAL
-        QStandardItem *grandFather = parent->parent();
-        if(!grandFather) {
-          grandFather = PropListModel->invisibleRootItem();
-        }
-        QStandardItem *parentPrio = grandFather->child(parent->row(), PRIORITY);
-        editParentsOnly = true;
-        parentPrio->setText(misc::toQString(NORMAL));
-        editParentsOnly = false;
-        parentUpdate = false;
-        break;
-      }
-    }
-    if(parentUpdate) {
+  if(!parent) return;
+  // Check if children have different priorities
+  // then folder must have NORMAL priority
+  unsigned int rowCount = parent->rowCount();
+  for(unsigned int i=0; i<rowCount; ++i) {
+    if(parent->child(i, PRIORITY)->text().toInt() != priority) {
       QStandardItem *grandFather = parent->parent();
       if(!grandFather) {
         grandFather = PropListModel->invisibleRootItem();
       }
       QStandardItem *parentPrio = grandFather->child(parent->row(), PRIORITY);
-      editParentsOnly = true;
-      parentPrio->setText(misc::toQString(priority));
-      editParentsOnly = false;
+      if(parentPrio->text().toInt() != NORMAL) {
+        parentPrio->setText(misc::toQString(NORMAL));
+        // Recursively update ancesters of this parent too
+        updateParentsPriority(grandFather->child(parent->row()), priority);
+      }
+      return;
     }
   }
-  if(editParentsOnly) return;
-  if(!is_dir) return;
-  // Updating children
-  qDebug("Priority changed for a folder to %d", priority);
-  parent = parent->child(row);
+  // All the children have the same priority
+  // Parent folder should have the same priority too
+  QStandardItem *grandFather = parent->parent();
+  if(!grandFather) {
+    grandFather = PropListModel->invisibleRootItem();
+  }
+  QStandardItem *parentPrio = grandFather->child(parent->row(), PRIORITY);
+  if(parentPrio->text().toInt() != priority) {
+    parentPrio->setText(misc::toQString(priority));
+    // Recursively update ancesters of this parent too
+    updateParentsPriority(grandFather->child(parent->row()), priority);
+  }
+}
+
+void properties::updateChildrenPriority(QStandardItem *item, int priority) {
+  QStandardItem *parent = item->parent();
+  if(!parent) {
+    parent = PropListModel->invisibleRootItem();
+  }
+  parent = parent->child(item->row());
   unsigned int rowCount = parent->rowCount();
-  qDebug("The folder has %d children", rowCount);
   for(unsigned int i=0; i<rowCount; ++i) {
-    // get child priority
-    QStandardItem *child = parent->child(i, PRIORITY);
-    int child_prio = child->text().toInt();
-    qDebug("Child priority is %d", child_prio);
-    if(child_prio != priority) {
-      child->setText(misc::toQString(priority));
+    QStandardItem * childPrio = parent->child(i, PRIORITY);
+    if(childPrio->text().toInt() != priority) {
+      childPrio->setText(misc::toQString(priority));
+      // recursively update children of this child too
+      updateChildrenPriority(parent->child(i), priority);
     }
   }
+}
+
+void properties::updatePriorities(QStandardItem *item) {
+  qDebug("Priority changed");
+  // First we disable the signal/slot on item edition
+  // temporarily so that it doesn't mess with our manual updates
+  disconnect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
+  QStandardItem *parent = item->parent();
+  if(!parent) {
+    parent = PropListModel->invisibleRootItem();
+  }
+  int priority = parent->child(item->row(), PRIORITY)->text().toInt();
+  // Update parents priorities
+  updateParentsPriority(item, priority);
+  // If this is not a directory, then there are
+  // no children to update
+  if(parent->child(item->row(), INDEX)->text().toInt() == -1) {
+    // Updating children
+    qDebug("Priority changed for a folder to %d", priority);
+    updateChildrenPriority(item, priority);
+  }
+  // Reconnect the signal/slot on item edition so that we
+  // get future updates
+  connect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
 }
     
 void properties::loadTrackersErrors(){
