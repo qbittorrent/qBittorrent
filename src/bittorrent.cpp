@@ -955,6 +955,10 @@ void bittorrent::setUploadRateLimit(long rate) {
 // This function will apply to same ratio to all torrents
 void bittorrent::setGlobalRatio(float ratio) {
   if(ratio != -1 && ratio < 1.) ratio = 1.;
+  if(ratio == -1) {
+    // 0 means unlimited for libtorrent
+    ratio = 0;
+  }
   std::vector<torrent_handle> handles = s->get_torrents();
   unsigned int nbHandles = handles.size();
   for(unsigned int i=0; i<nbHandles; ++i) {

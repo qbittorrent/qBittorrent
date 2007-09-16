@@ -354,6 +354,7 @@ public:
 	QString shortname() const { return "Qt 4.3"; }
 	bool exec()
 	{
+		qWarning("QT VERSION: %s", QT_VERSION);
 		return(QT_VERSION >= 0x040300);
 	}
 };
