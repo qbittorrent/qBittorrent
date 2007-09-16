@@ -50,11 +50,10 @@
 - Keep documention up to date
 - Windows port (Chris - Peerkoel)
 - debug new torrent content selection
-* beta 7
-  - update doc for plugins (and add screenies)
-  - update doc for options
-  - Translations update (IN PROGRESS)
-  - Wait that http://pastebin.ca/690649 is fixed
+- update doc for plugins (and add screenies)
+- update doc for options
+- Translations update (IN PROGRESS)
+- Wait that http://pastebin.ca/690649 is fixed
 
 LANGUAGES UPDATED:
 - French *OK*
