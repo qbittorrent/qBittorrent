@@ -38,6 +38,7 @@
 #define SIZE 1
 #define PROGRESS 2
 #define PRIORITY 3
+#define INDEX 4
 
 #define IGNORED 0
 #define NORMAL 1
@@ -115,7 +116,6 @@ class PropListDelegate: public QItemDelegate {
 
     QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &/* option */, const QModelIndex & index) const {
       if(index.column() != PRIORITY) return 0;
-      if(onlyOneItem(index)) return 0;
       QComboBox* editor = new QComboBox(parent);
       editor->setFocusPolicy(Qt::StrongFocus);
       editor->addItem(tr("Ignored"));
@@ -128,6 +128,7 @@ class PropListDelegate: public QItemDelegate {
     void setEditorData(QWidget *editor, const QModelIndex &index) const {
       unsigned short val = index.model()->data(index, Qt::DisplayRole).toInt();
       QComboBox *combobox = static_cast<QComboBox*>(editor);
+      qDebug("Set Editor data: Prio is %d", val);
       switch(val){
         case IGNORED:
           combobox->setCurrentIndex(0);
@@ -156,28 +157,11 @@ class PropListDelegate: public QItemDelegate {
       return textRect.size();
     }
 
-    bool onlyOneItem(const QModelIndex& index) const  {
-      const QAbstractItemModel *model = index.model();
-      unsigned int nbRows = model->rowCount();
-      if(nbRows == 1) return true;
-      for(unsigned int i=0; i<nbRows; ++i){
-        if((unsigned int)index.row() == i) continue;
-        if(model->data(model->index(i, PRIORITY)).toInt()) return false;
-      }
-      return true;
-    }
-
     public slots:
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const {
       QComboBox *combobox = static_cast<QComboBox*>(editor);
       int value = combobox->currentIndex();
       qDebug("Setting combobox value in index: %d", value);
-      QString color;
-      if(value) {
-        color = QString::fromUtf8("green");
-      } else {
-        color = QString::fromUtf8("red");
-      }
       unsigned short old_val = index.model()->data(index, Qt::DisplayRole).toInt();
       switch(value){
         case 0:
@@ -215,14 +199,12 @@ class PropListDelegate: public QItemDelegate {
               *filteredFilesChanged = true;
           }
       }
-      for(int i=0; i<model->columnCount(); ++i){
-        model->setData(model->index(index.row(), i), QVariant(QColor(color)), Qt::ForegroundRole);
-      }
     }
 
     void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &/* index */) const {
       editor->setGeometry(option.rect);
     }
+
 };
 
 #endif

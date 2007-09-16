@@ -24,6 +24,7 @@
 
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/torrent_info.hpp>
+
 using namespace libtorrent;
 
 class QString;

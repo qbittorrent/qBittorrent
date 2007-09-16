@@ -34,7 +34,6 @@
 #include <QThread>
 
 #include <libtorrent/torrent_info.hpp>
-#include "qtorrenthandle.h"
 using namespace libtorrent;
 
 /*  Miscellaneaous functions that can be useful */
@@ -204,60 +203,6 @@ class misc : public QObject{
 //       }
 //       return true;
 //     }
-
-    // safe function to remove a torrent from hard-drive
-    static bool removeTorrentSavePath(QString savePath, QStringList filesPath) {
-      bool success = true;
-      QDir saveDir(savePath);
-      QString path;
-      // Check how many file there are
-      if(filesPath.size() == 1){
-        // Only one file, not in a folder
-        path = filesPath.first();
-        if(QFile::exists(path)) {
-          if(QFile::remove(path)){
-            qDebug("Deleted only file in torrent at %s", path.toUtf8().data());
-          } else {
-            std::cerr << "Could not delete only file in torrent at " << path.toUtf8().data() << '\n';
-            success = false;
-          }
-        }else{
-          // File didn't exist, nothing to do
-          qDebug("Only file %s did not exist, nothing to delete", path.toUtf8().data());
-        }
-        // Try to remove parent folder if empty (and not save_dir)
-        QFileInfo fi(path);
-        QDir parentFolder = fi.absoluteDir();
-        while(parentFolder != saveDir) {
-          qDebug("trying to remove parent folder: %s", parentFolder.absolutePath().toUtf8().data());
-          if(!saveDir.rmdir(parentFolder.absolutePath())) break;
-          parentFolder.cdUp();
-        }
-        return success;
-      }
-      // Torrent has several files in a subFolder
-      foreach(path, filesPath) {
-        if(QFile::exists(path)) {
-          if(QFile::remove(path)){
-            qDebug("Deleted file in torrent at %s", path.toUtf8().data());
-          } else {
-            std::cerr << "Could not delete file in torrent at " << path.toUtf8().data() << '\n';
-            success = false;
-          }
-        } else {
-          qDebug("File %s did not exist, nothing to delete", path.toUtf8().data());
-        }
-        // Try to remove parent folder if empty (and not save_dir)
-        QFileInfo fi(path);
-        QDir parentFolder = fi.absoluteDir();
-        while(parentFolder != saveDir) {
-          qDebug("trying to remove parent folder: %s", parentFolder.absolutePath().toUtf8().data());
-          if(!saveDir.rmdir(parentFolder.absolutePath())) break;
-          parentFolder.cdUp();
-        }
-      }
-      return success;
-    }
 
     static QString findFileInDir(QString dir_path, QString fileName) {
       QDir dir(dir_path);

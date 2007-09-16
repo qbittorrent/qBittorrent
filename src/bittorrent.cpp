@@ -208,9 +208,9 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   }
   QString savePath = h.save_path();
   QString fileName = h.name();
-  QStringList files_path;
+  arborescence *files_arb = 0;
   if(permanent){
-    files_path = h.files_path();
+    files_arb = new arborescence(h.get_torrent_info());
   }
   // Remove it from session
   s->remove_torrent(h.get_torrent_handle());
@@ -241,11 +241,11 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
       std::cerr << "Error: Torrent " << hash.toStdString() << " is neither in finished or unfinished list\n";
     }
   }
-  if(permanent) {
+  if(permanent && files_arb != 0) {
     // Remove from Hard drive
     qDebug("Removing this on hard drive: %s", qPrintable(savePath+QDir::separator()+fileName));
     // Deleting in a thread to avoid GUI freeze
-    deleter->deleteTorrent(savePath, files_path);
+    deleter->deleteTorrent(savePath, files_arb);
   }
 }
 
