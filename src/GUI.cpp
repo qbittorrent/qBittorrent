@@ -131,6 +131,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   // Smooth torrent switching between tabs Downloading <--> Finished
   connect(downloadingTorrentTab, SIGNAL(torrentFinished(QString)), finishedTorrentTab, SLOT(addTorrent(QString)));
   connect(finishedTorrentTab, SIGNAL(torrentMovedFromFinishedList(QString)), downloadingTorrentTab, SLOT(addTorrent(QString)));
+  // Start download list refresher
+  refresher = new QTimer(this);
+  connect(refresher, SIGNAL(timeout()), this, SLOT(updateLists()));
+  refresher->start(1500);
   // Configure BT session according to options
   configureSession(true);
   // Resume unfinished torrents
@@ -156,10 +160,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   checkConnect = new QTimer(this);
   connect(checkConnect, SIGNAL(timeout()), this, SLOT(checkConnectionStatus()));
   checkConnect->start(5000);
-  // Start download list refresher
-  refresher = new QTimer(this);
-  connect(refresher, SIGNAL(timeout()), this, SLOT(updateLists()));
-  refresher->start(1500);
   previewProcess = new QProcess(this);
   connect(previewProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(cleanTempPreviewFile(int, QProcess::ExitStatus)));
   // Accept drag 'n drops
@@ -793,7 +793,6 @@ void GUI::configureSession(bool deleteOptions) {
   unsigned int new_refreshInterval = options->getRefreshInterval();
   if(refreshInterval != new_refreshInterval) {
     refreshInterval = new_refreshInterval;
-    refresher->stop();
     refresher->start(refreshInterval);
   }
   // Downloads

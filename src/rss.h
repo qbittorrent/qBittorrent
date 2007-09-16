@@ -659,7 +659,6 @@ class RssManager : public QObject{
       unsigned int new_refreshInterval = settings.value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toInt();
       if(new_refreshInterval != refreshInterval) {
         refreshInterval = new_refreshInterval;
-        newsRefresher.stop();
         newsRefresher.start(refreshInterval*60000);
       }
     }
