@@ -372,7 +372,7 @@
        <item>
         <widget class="QGroupBox" name="fileSystemBox" >
          <property name="title" >
-          <string>Filesystem</string>
+          <string>File system</string>
          </property>
          <layout class="QVBoxLayout" >
           <item>
@@ -1374,7 +1374,7 @@
            <item>
             <widget class="QCheckBox" name="checkRatioRemove" >
              <property name="text" >
-              <string>Remove torrents when their ratio reaches:</string>
+              <string>Remove finished torrents when their ratio reaches:</string>
              </property>
             </widget>
            </item>
