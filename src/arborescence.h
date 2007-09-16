@@ -141,9 +141,9 @@ class file {
       }
       bool success = true;
       file *f;
+      qDebug("We have %d children", children.size());
       foreach(f, children) {
-        success = success && f->removeFromFS(saveDir);
-          success = false;
+        success = f->removeFromFS(saveDir) && success;
       }
       if(is_dir) {
         qDebug("trying to remove directory: %s", full_path.toUtf8().data());
@@ -151,7 +151,7 @@ class file {
         dir.rmdir(full_path);
       } else {
         qDebug("trying to remove file: %s", full_path.toUtf8().data());
-        success = success && QFile::remove(full_path);
+        success = QFile::remove(full_path) && success;
       }
       return success;
     }
