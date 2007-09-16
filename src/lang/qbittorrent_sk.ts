@@ -383,7 +383,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1432"/>
         <source>Misc</source>
-        <translation type="unfinished">Rozličné</translation>
+        <translation>Rozličné</translation>
     </message>
     <message>
         <location filename="../options.ui" line="937"/>
@@ -678,276 +678,276 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="51"/>
         <source>Preferences</source>
-        <translation type="unfinished">Nastavenia</translation>
+        <translation>Nastavenia</translation>
     </message>
     <message>
         <location filename="../options.ui" line="87"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Všeobecné</translation>
     </message>
     <message>
         <location filename="../options.ui" line="96"/>
         <source>User interface settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenia používateľského rozhrania</translation>
     </message>
     <message>
         <location filename="../options.ui" line="154"/>
         <source>Visual style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vizuálny štýl:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="167"/>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Čistý vzhľad (ako GNOME)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="172"/>
         <source>Motif style (Unix like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Štýl Motif (ako Unix)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="200"/>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdenie skončenia v prípade, že zoznam sťahovaní nie je prázdny</translation>
     </message>
     <message>
         <location filename="../options.ui" line="210"/>
         <source>Display current speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť aktuálnu rýchlosť sťahovania v titulnom pruhu</translation>
     </message>
     <message>
         <location filename="../options.ui" line="264"/>
         <source>System tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikona v oznamovacej oblasti (systray)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="270"/>
         <source>Disable system tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Vypnúť ikonu v oznamovacej oblasti (systray)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="277"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zatvoriť do oznamovacej oblasti (systray)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="284"/>
         <source>Minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimalizovať do oznamovacej oblasti (systray)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="294"/>
         <source>Show notification balloons in tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazovať bublinové upozornenia v oblasti upozornení (systray)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="330"/>
         <source>Media player:</source>
-        <translation type="unfinished"></translation>
+        <translation>Prehrávač multimédií:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="366"/>
         <source>Downloads</source>
-        <translation type="unfinished">Sťahovania</translation>
+        <translation>Sťahovania</translation>
     </message>
     <message>
         <location filename="../options.ui" line="381"/>
         <source>Put downloads in this folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sťahovať do tohoto priečinka:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="440"/>
         <source>Pre-allocate all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Dopredu alokovať všetky súbory</translation>
     </message>
     <message>
         <location filename="../options.ui" line="450"/>
         <source>When adding a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Pri pridávaní torrentu</translation>
     </message>
     <message>
         <location filename="../options.ui" line="456"/>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť obsah torrentu a nejaké voľby</translation>
     </message>
     <message>
         <location filename="../options.ui" line="466"/>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nezačínať sťahovanie automaticky</translation>
     </message>
     <message>
         <location filename="../options.ui" line="476"/>
         <source>Folder watching</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sledovanie priečinkov</translation>
     </message>
     <message>
         <location filename="../options.ui" line="482"/>
         <source>Automatically download torrents present in this folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticky sťahovať torrenty z tohto priečinka:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="574"/>
         <source>Listening port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port na počúvanie</translation>
     </message>
     <message>
         <location filename="../options.ui" line="602"/>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
-        <translation type="unfinished"></translation>
+        <translation>až</translation>
     </message>
     <message>
         <location filename="../options.ui" line="640"/>
         <source>Enable UPnP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnúť mapovanie portov UPnP</translation>
     </message>
     <message>
         <location filename="../options.ui" line="650"/>
         <source>Enable NAT-PMP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnúť mapovanie portov NAT-PMP</translation>
     </message>
     <message>
         <location filename="../options.ui" line="663"/>
         <source>Global bandwidth limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Globálny limit pásma</translation>
     </message>
     <message>
         <location filename="../options.ui" line="679"/>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávanie:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="695"/>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sťahovanie:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="798"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="806"/>
         <source>(None)</source>
-        <translation type="unfinished"></translation>
+        <translation>(žiadne)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="827"/>
         <source>Proxy:</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="907"/>
         <source>Username:</source>
-        <translation type="unfinished">Meno používateľa:</translation>
+        <translation>Meno používateľa:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1065"/>
         <source>Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittorrent</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1074"/>
         <source>Connections limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Limit spojení</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1082"/>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximálny globálny počet spojení:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1130"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximálny počet spojení na torrent:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1175"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximálny počet slotov pre nahrávanie na torrent:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1218"/>
         <source>Additional Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation>Ďalšie možnosti Bittorrent</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1224"/>
         <source>Enable DHT network (decentralized)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnúť sieť DHT (decentralizovaná)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1234"/>
         <source>Enable Peer eXchange (PeX)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnúť Peer eXchange (PeX)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1244"/>
         <source>Enable Local Peer Discovery</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnúť Local Peer Discovery</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1256"/>
         <source>Encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kryptovanie:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1300"/>
         <source>Share ratio settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenia pomeru zdieľania</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1315"/>
         <source>Desired ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Požadovaný pomer:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1616"/>
         <source>Filter file path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta k súboru filtov:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="219"/>
         <source>transfer lists refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>interval obnovovania zoznamu prenosov:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="239"/>
         <source>ms</source>
-        <translation type="unfinished"></translation>
+        <translation>ms</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1645"/>
         <source>RSS</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1682"/>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Interval obnovovania RSS kanálov:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1702"/>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>minút</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1726"/>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximálny počet článkov na kanál:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="375"/>
         <source>File system</source>
-        <translation type="unfinished"></translation>
+        <translation>Súborový systém</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1377"/>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstrániť dokončené torrenty keď ich pomer dosiahne:</translation>
     </message>
 </context>
 <context>
@@ -1727,31 +1727,31 @@ Najskôr ho prosím zatvorte.</translation>
         <location filename="../GUI.cpp" line="726"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation>&apos;%1&apos; bol odstránený.</translation>
+        <translation>„%1“ bol odstránený.</translation>
     </message>
     <message>
         <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1146"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; bol pridaný do zoznamu na sťahovanie.</translation>
+        <translation type="obsolete">„%1“ bol pridaný do zoznamu na sťahovanie.</translation>
     </message>
     <message>
         <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1148"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="obsolete">&apos;%1&apos; bol obnovený. (rýchle obnovenie)</translation>
+        <translation type="obsolete">„%1“ bol obnovený. (rýchle obnovenie)</translation>
     </message>
     <message>
         <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1156"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; sa už nachádza v zozname sťahovaných.</translation>
+        <translation type="obsolete">„%1“ sa už nachádza v zozname sťahovaných.</translation>
     </message>
     <message>
         <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1160"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="obsolete">Nebol omožné dekodovať torrent súbor: &apos;%1&apos;</translation>
+        <translation type="obsolete">Nebol omožné dekodovať torrent súbor: „%1“</translation>
     </message>
     <message>
         <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1234"/>
@@ -1774,7 +1774,7 @@ Najskôr ho prosím zatvorte.</translation>
         <location filename="../GUI.cpp" line="1052"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
-        <translation>&apos;%1&apos; pozastavené.</translation>
+        <translation>„%1“ pozastavené.</translation>
     </message>
     <message>
         <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1388"/>
@@ -1791,7 +1791,7 @@ Najskôr ho prosím zatvorte.</translation>
         <location filename="../GUI.cpp" line="1121"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
-        <translation>&apos;%1&apos; obnovené.</translation>
+        <translation>„%1“ obnovené.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="259"/>
@@ -1815,7 +1815,7 @@ Najskôr ho prosím zatvorte.</translation>
         <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
         <source>An error occured (full fisk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full fisk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation type="obsolete">Vyskytla sa chyba (plný disk?), &apos;%1&apos; pozastavené.</translation>
+        <translation type="obsolete">Vyskytla sa chyba (plný disk?), „%1“ pozastavené.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1199"/>
@@ -1863,13 +1863,13 @@ Najskôr ho prosím zatvorte.</translation>
         <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="1778"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="obsolete">Sťahuje sa &apos;%1&apos;, čakajte prosím...</translation>
+        <translation type="obsolete">Sťahuje sa „%1“;, čakajte prosím...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="280"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation>Vyskytla sa chyba (plný disk?), &apos;%1&apos; pozastavené.</translation>
+        <translation>Vyskytla sa chyba (plný disk?), „%1“ pozastavené.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="144"/>
@@ -2013,7 +2013,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <location filename="../GUI.cpp" line="661"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation>&apos;%1&apos; bol permanentne odstránený.</translation>
+        <translation>„%1“ bol permanentne odstránený.</translation>
     </message>
     <message>
         <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="335"/>
@@ -2035,39 +2035,39 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <location filename="../GUI.cpp" line="840"/>
         <source>UPnP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Podpora UPnP [vypnutá]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="845"/>
         <source>NAT-PMP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Podpora NAT-PMP [zapnutá]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="848"/>
         <source>NAT-PMP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Podpora NAT-PMP [vypnutá]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="907"/>
         <source>Local Peer Discovery [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Local Peer Discovery [zapnutá]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="910"/>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Podpora Local Peer Discovery support [vypnutá]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="672"/>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
         <comment>%1 is a file name</comment>
-        <translation type="unfinished"></translation>
+        <translation>„%1“ bol odstránený, pretože jeho pomer dosiahol maximálnu hodonotu, ktorú ste nastavili.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1159"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
 </context>
 <context>
@@ -2472,7 +2472,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <location filename="../rss.ui" line="295"/>
         <source>Mark all as read</source>
-        <translation type="unfinished"></translation>
+        <translation>Označiť všetky ako prečítané</translation>
     </message>
 </context>
 <context>
@@ -2545,17 +2545,17 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <location filename="../rss_imp.cpp" line="171"/>
         <source>This rss feed is already in the list.</source>
-        <translation>Tento RSS feed už je v zozname.</translation>
+        <translation>Tento RSS kanál už je v zozname.</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="228"/>
         <source>Date: </source>
-        <translation type="unfinished"></translation>
+        <translation>Dátum: </translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="231"/>
         <source>Author: </source>
-        <translation type="unfinished"></translation>
+        <translation>Autor: </translation>
     </message>
 </context>
 <context>
@@ -2730,7 +2730,7 @@ Záznam zmien:</translation>
     <message>
         <location filename="../searchEngine.cpp" line="433"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámy</translation>
     </message>
 </context>
 <context>
@@ -3078,77 +3078,77 @@ Záznam zmien:</translation>
     <message>
         <location filename="../createtorrent.ui" line="52"/>
         <source>File or folder to add to the torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Súbor alebo priečinok, ktorý sa má pridať do torrentu:</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="64"/>
         <source>Add a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať súbor</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="74"/>
         <source>Add a folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať priečinok</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="400"/>
         <source>Piece size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť časti:</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="411"/>
         <source>32 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>32 KiB</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="416"/>
         <source>64 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>64 KiB</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="421"/>
         <source>128 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>128 KiB</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="426"/>
         <source>256 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>256 KiB</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="431"/>
         <source>512 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>512 KiB</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="436"/>
         <source>1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>1 MiB</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="441"/>
         <source>2 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>2 MiB</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="446"/>
         <source>4 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>4 MiB</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="469"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
-        <translation type="unfinished"></translation>
+        <translation>Súkromný (ak je zapnuté, nebude sa šíriť pomocou siete DHT)</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="476"/>
         <source>Start seeding after creation</source>
-        <translation type="unfinished"></translation>
+        <translation>Začasť seedovanie po vytvorení</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="513"/>
         <source>Create and save...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť a uložiť...</translation>
     </message>
 </context>
 <context>
@@ -3252,17 +3252,17 @@ Záznam zmien:</translation>
     <message>
         <location filename="../createtorrent_imp.cpp" line="56"/>
         <source>Select a file to add to the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte súbor, ktorý sa má pridať do torrentu</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="150"/>
         <source>No tracker path set</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebola nastavená cesta k trackeru</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="150"/>
         <source>Please set at least one tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, nastavte aspoň jeden tracker</translation>
     </message>
 </context>
 <context>
@@ -3554,51 +3554,51 @@ Tieto moduly však boli vypnuté.</translation>
         <location filename="../engineSelectDlg.cpp" line="494"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zásuvný modul vyhľadávača %1 nebolo možné aktualizovať, zachovávam starú verziu.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="499"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zásuvný modul vyhľadávača %1 nebolo možné nainštalovať.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="213"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetky zvolené zásuvné moduly boli úspešne odinštalované</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="510"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zásuvný modul vyhľadávača %1 bol úspešne aktualizovaný.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="513"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zásuvný modul vyhľadávača %1 bol úspešne nainštalovaný.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="368"/>
         <source>Search engine plugin archive could not be read.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebolo možné prečítať archív zásuvného modulu vyhľadávača.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="694"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Je mi ľúto, aktualizácia zásuvného modulu vyhľadávača %1 zlyhala.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="526"/>
         <source>New search engine plugin URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL zásuvného modulu nového vyhľadávača</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="527"/>
         <source>URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL:</translation>
     </message>
 </context>
 <context>
@@ -3893,22 +3893,22 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../pluginSource.ui" line="13"/>
         <source>Plugin source</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdroj zásuvného modulu</translation>
     </message>
     <message>
         <location filename="../pluginSource.ui" line="26"/>
         <source>Search plugin source:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdroj zásuvného modulu vyhľadávača:</translation>
     </message>
     <message>
         <location filename="../pluginSource.ui" line="35"/>
         <source>Local file</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokálny súbor</translation>
     </message>
     <message>
         <location filename="../pluginSource.ui" line="42"/>
         <source>Web link</source>
-        <translation type="unfinished"></translation>
+        <translation>Webový odkaz</translation>
     </message>
 </context>
 <context>
@@ -4364,12 +4364,12 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../properties_imp.cpp" line="671"/>
         <source>Priorities error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba priorít</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="671"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba, nemôžete filtrovať všetky súbory v torrente.</translation>
     </message>
 </context>
 <context>
@@ -4556,7 +4556,7 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../torrentAddition.h" line="148"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>Tento súbor je bud poškodený alebo nie je torrent.</translation>
+        <translation>Tento súbor je buď poškodený alebo nie je torrent.</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="273"/>
