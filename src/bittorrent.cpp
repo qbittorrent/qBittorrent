@@ -160,13 +160,14 @@ void bittorrent::updateETAs() {
         unsigned int nbETAs = listEtas.size();
         Q_ASSERT(nbETAs);
         foreach(val, listEtas) {
-          // TODO: Remove this debug when #137223 is fixed
-          qDebug("old moy: %ld", (long)moy);
           moy += (qlonglong)((double)val/(double)nbETAs);
-          qDebug("ETA: %ld, nbETAs: %d, moy: %ld", (long)val, nbETAs, (long)moy);
-          Q_ASSERT(moy >= 0);
+          if(moy < 0) break;
         }
-        ETAs[hash] = moy;
+        if(moy < 0) {
+          ETAs.remove(hash);
+        } else {
+          ETAs[hash] = moy;
+        }
       }
     }
   }

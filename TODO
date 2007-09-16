@@ -53,7 +53,6 @@
 * beta 7
   - update doc for plugins (and add screenies)
   - update doc for options
-  - See bug about negative ETA
   - Translations update (IN PROGRESS)
   - Wait that http://pastebin.ca/690649 is fixed
 
@@ -114,6 +113,7 @@ beta6->beta7 changelog:
 - BUGFIX: improved search engine plugin manager code and fixed bugs
 - BUGFIX: Dropped Qt4.2 support, becomes too difficult to maintain
 - BUGFIX: Fixed deprecation warning with latest libtorrent svn
+- BUGFIX: Fixed an overflow causing ETA to become negative sometimes (hitted an assert)
 - COSMETIC: Improved some icons
 - COSMETIC: Totally redesigned program preferences
 - COSMETIC: Improved systray tooltip style
