@@ -352,9 +352,11 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         QStandardItem *item = parent->child(i, INDEX);
         int index = item->text().toInt();
         if(index < 0) {
-          getPriorities(parent->child(i, NAME), priorities);
+          qDebug("getPriorities(), found a folder, checking its children");
+          getPriorities(parent->child(i), priorities);
         } else {
           item = parent->child(i, PRIORITY);
+          qDebug("getPriorities(), found priority %d for file at index %d", item->text().toInt(), index);
           priorities[index] = item->text().toInt();
         }
       }
@@ -373,6 +375,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         return;
       }
       for(unsigned int i=0; i<nbFiles; ++i) {
+        qDebug("%d ", priorities[i]);
         pieces_file.write(misc::toQByteArray(priorities[i])+misc::toQByteArray("\n"));
       }
       pieces_file.close();

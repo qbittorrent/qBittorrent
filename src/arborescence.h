@@ -39,7 +39,8 @@ class file {
     int index; // Index in torrent_info
 
   public:
-    file(file *parent, QString path, bool dir, size_type size=0, float progress=0., int priority=1, int index=-1): parent(parent), is_dir(dir), size(size), progress(progress), priority(priority), index(index){
+    file(file *parent, QString path, bool dir, size_type size=0, int index=-1, float progress=0., int priority=1): parent(parent), is_dir(dir), size(size), progress(progress), priority(priority), index(index){
+      qDebug("created a file with index %d", index);
       rel_path = QDir::cleanPath(path);
       if(parent) {
         parent->updateProgress();
@@ -121,10 +122,10 @@ class file {
         parent->addBytes(b);
     }
 
-    file* addChild(QString fileName, bool dir, size_type size=0, float progress=0., int priority=1, int index = -1) {
+    file* addChild(QString fileName, bool dir, size_type size=0, int index = -1, float progress=0., int priority=1) {
       Q_ASSERT(is_dir);
       qDebug("Adding a new child of size: %ld", (long)size);
-      file *f = new file(this, QDir::cleanPath(rel_path+QDir::separator()+fileName), dir, size, progress, priority, index);
+      file *f = new file(this, QDir::cleanPath(rel_path+QDir::separator()+fileName), dir, size, index, progress, priority);
       children << f;
       if(size) {
         addBytes(size);
@@ -184,10 +185,12 @@ class arborescence {
     arborescence(torrent_info t, std::vector<float> fp, int *prioritiesTab) {
       torrent_info::file_iterator fi = t.begin_files();
       if(t.num_files() > 1) {
+        qDebug("More than one file in the torrent, setting a folder as root");
         root = new file(0, misc::toQString(t.name()), true);
       } else {
         // XXX: Will crash if there is no file in torrent
-        root = new file(0, misc::toQString(t.name()), false, fi->size, fp[0], prioritiesTab[0], 0);
+        qDebug("one file in the torrent, setting it as root with index 0");
+        root = new file(0, misc::toQString(t.name()), false, fi->size, 0, fp[0], prioritiesTab[0]);
         return;
       }
       int i = 0;
@@ -240,7 +243,7 @@ class arborescence {
             child = dad->addChild(fileName, true);
           } else {
             // File
-            child = dad->addChild(fileName, false, file_size, progress, priority, index);
+            child = dad->addChild(fileName, false, file_size, index, progress, priority);
           }
         }
         dad = child;
