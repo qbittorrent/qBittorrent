@@ -196,32 +196,32 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Опції -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="42"/>
+        <location filename="" line="7471221"/>
         <source>Options</source>
         <translation type="obsolete">Опції</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="90"/>
+        <location filename="" line="7471221"/>
         <source>Main</source>
         <translation type="obsolete">Головні</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="781"/>
+        <location filename="" line="7471221"/>
         <source>Save Path:</source>
         <translation type="obsolete">Шлях збереження:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="118"/>
+        <location filename="" line="7471221"/>
         <source>Download Limit:</source>
         <translation type="obsolete">Ліміт прийому:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="128"/>
+        <location filename="" line="7471221"/>
         <source>Upload Limit:</source>
         <translation type="obsolete">Ліміт віддачі:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="135"/>
+        <location filename="" line="7471221"/>
         <source>Max Connects:</source>
         <translation type="obsolete">Макс. з&apos;єднань:</translation>
     </message>
@@ -241,17 +241,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Кб/с</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="479"/>
+        <location filename="" line="7471221"/>
         <source>Disable</source>
         <translation type="obsolete">Заборонити</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="332"/>
+        <location filename="" line="7471221"/>
         <source>connections</source>
         <translation type="obsolete">з&apos;єднання</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1195"/>
+        <location filename="" line="7471221"/>
         <source>Proxy</source>
         <translation type="obsolete">Проксі</translation>
     </message>
@@ -276,7 +276,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Порт:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1346"/>
+        <location filename="" line="7471221"/>
         <source>Proxy server requires authentication</source>
         <translation type="obsolete">Проксі-сервер вимагає аутентифікації</translation>
     </message>
@@ -286,7 +286,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Аутентифікація</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1384"/>
+        <location filename="" line="7471221"/>
         <source>User Name:</source>
         <translation type="obsolete">Ім&apos;я користувача:</translation>
     </message>
@@ -296,12 +296,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Пароль:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1207"/>
+        <location filename="" line="7471221"/>
         <source>Enable connection through a proxy server</source>
         <translation type="obsolete">Дозволити з&apos;єднання через проксі-сервер</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="925"/>
+        <location filename="" line="7471221"/>
         <source>Language</source>
         <translation type="obsolete">Мова</translation>
     </message>
@@ -326,12 +326,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Налаштування мови вступлять у дію після перезапуску.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1577"/>
+        <location filename="" line="7471221"/>
         <source>Scanned Dir:</source>
         <translation type="obsolete">Просканована директорія:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1559"/>
+        <location filename="" line="7471221"/>
         <source>Enable directory scan (auto add torrent files inside)</source>
         <translation type="obsolete">Дозволити сканування директорії (автоматично додавати torrent-файли, що знаходяться всередині)</translation>
     </message>
@@ -341,7 +341,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Налаштування з&apos;єднання</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="155"/>
+        <location filename="" line="7471221"/>
         <source>Share ratio:</source>
         <translation type="obsolete">Коефіцієнт розподілу:</translation>
     </message>
@@ -391,7 +391,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Примінити</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1375"/>
+        <location filename="" line="7471221"/>
         <source>IP Filter</source>
         <translation type="obsolete">IP-фільтр</translation>
     </message>
@@ -406,7 +406,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Видалити діапазон</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1172"/>
+        <location filename="" line="7471221"/>
         <source>ipfilter.dat Path:</source>
         <translation type="obsolete">Шлях до ipfilter.dat:</translation>
     </message>
@@ -421,17 +421,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Питати підтвердження при виході</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="845"/>
+        <location filename="" line="7471221"/>
         <source>Go to systray when minimizing window</source>
         <translation type="obsolete">Мінімізувати в системний трей</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1432"/>
         <source>Misc</source>
-        <translation type="unfinished">Різне</translation>
+        <translation>Різне</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="937"/>
+        <location filename="" line="7471221"/>
         <source>Localization</source>
         <translation type="obsolete">Локалізація</translation>
     </message>
@@ -441,7 +441,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Мова:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="724"/>
+        <location filename="" line="7471221"/>
         <source>Behaviour</source>
         <translation type="obsolete">Поведінка</translation>
     </message>
@@ -471,12 +471,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>КіБ/с</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="434"/>
+        <location filename="" line="7471221"/>
         <source>1 KiB DL = </source>
         <translation type="obsolete">1 КіБ DL =</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="472"/>
+        <location filename="" line="7471221"/>
         <source>KiB UP max.</source>
         <translation type="obsolete">КіБ UP макс.</translation>
     </message>
@@ -501,17 +501,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Програма перегляду</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1639"/>
+        <location filename="" line="7471221"/>
         <source>Audio/Video player:</source>
         <translation type="obsolete">Аудіо/Відео плеєр:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="560"/>
+        <location filename="" line="7471221"/>
         <source>DHT configuration</source>
         <translation type="obsolete">Конфігурація DHT</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="580"/>
+        <location filename="" line="7471221"/>
         <source>DHT port:</source>
         <translation type="obsolete">Порт DHT:</translation>
     </message>
@@ -521,17 +521,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>&lt;b&gt;Увага:&lt;/b&gt;Зміни вступлять у дію після перезапуску qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1012"/>
+        <location filename="" line="7471221"/>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
         <translation type="obsolete">&lt;b&gt;До перекладачів:&lt;/b&gt; Якщо qBittorrent не доступний на вашій мові, &lt;br/&gt;і ви хочете перекласти його, &lt;br/&gt;будь-ласка зв&apos;яжіться зі мною (chris@qbittorrent.org).</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="748"/>
+        <location filename="" line="7471221"/>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
         <translation type="obsolete">Показувати діалог при додаванні торренту</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="761"/>
+        <location filename="" line="7471221"/>
         <source>Default save path</source>
         <translation type="obsolete">Шлях збереження за замовчанням</translation>
     </message>
@@ -541,32 +541,32 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Повідомлення в системному треї</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="884"/>
+        <location filename="" line="7471221"/>
         <source>Always display systray messages</source>
         <translation type="obsolete">Завжди показувати повіомлення в системному треї</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="894"/>
+        <location filename="" line="7471221"/>
         <source>Display systray messages only when window is hidden</source>
         <translation type="obsolete">Показувати повідомлення в системному треї лише коли вікно приховане</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="901"/>
+        <location filename="" line="7471221"/>
         <source>Never display systray messages</source>
         <translation type="obsolete">Ніколи не показувати повідомлення в системному треї</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="553"/>
+        <location filename="" line="7471221"/>
         <source>Disable DHT (Trackerless)</source>
         <translation type="obsolete">Відключити DHT (Безтрекерний режим)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="523"/>
+        <location filename="" line="7471221"/>
         <source>Disable Peer eXchange (PeX)</source>
         <translation type="obsolete">Відключити Peer eXchange (PeX)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="855"/>
+        <location filename="" line="7471221"/>
         <source>Go to systray when closing main window</source>
         <translation type="obsolete">Згортати до системного трею при закритті головного вікна</translation>
     </message>
@@ -576,37 +576,37 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>З&apos;єднання</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="511"/>
+        <location filename="" line="7471221"/>
         <source>Peer eXchange (PeX)</source>
         <translation type="obsolete">Peer eXchange (PeX)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="541"/>
+        <location filename="" line="7471221"/>
         <source>DHT (trackerless)</source>
         <translation type="obsolete">DHT (безтрекерний)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="736"/>
+        <location filename="" line="7471221"/>
         <source>Torrent addition</source>
         <translation type="obsolete">Додавання торренту</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="823"/>
+        <location filename="" line="7471221"/>
         <source>Main window</source>
         <translation type="obsolete">Головне вікно</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="872"/>
+        <location filename="" line="7471221"/>
         <source>Systray messages</source>
         <translation type="obsolete">Повідомлення системного трею</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1547"/>
+        <location filename="" line="7471221"/>
         <source>Directory scan</source>
         <translation type="obsolete">Сканування директорії</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1661"/>
+        <location filename="" line="7471221"/>
         <source>Style (Look &apos;n Feel)</source>
         <translation type="obsolete">Стиль (зовнішній вигляд)</translation>
     </message>
@@ -616,12 +616,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Стиль Plastique (KDE-подібний)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1683"/>
+        <location filename="" line="7471221"/>
         <source>Cleanlooks style (GNOME like)</source>
         <translation type="obsolete">Стиль Cleanlooks (GNOME-подібний)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1690"/>
+        <location filename="" line="7471221"/>
         <source>Motif style (default Qt style on Unix systems)</source>
         <translation type="obsolete">Стиль Motif (Стиль Qt по замовчанню на системах Unix)</translation>
     </message>
@@ -631,32 +631,32 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Стиль CDE (Common Desktop Environment-подібний)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1707"/>
+        <location filename="" line="7471221"/>
         <source>MacOS style (MacOSX only)</source>
         <translation type="obsolete">Стиль MacOS (лише MacOSX)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="835"/>
+        <location filename="" line="7471221"/>
         <source>Exit confirmation when the download list is not empty</source>
         <translation type="obsolete">Підтвердження виходу якщо список завантажень не порожній</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="862"/>
+        <location filename="" line="7471221"/>
         <source>Disable systray integration</source>
         <translation type="obsolete">Відключити інтеграцію до системного трею</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1717"/>
+        <location filename="" line="7471221"/>
         <source>WindowsXP style (Windows XP only)</source>
         <translation type="obsolete">Стиль WindowsXP (лише Windows XP)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1237"/>
+        <location filename="" line="7471221"/>
         <source>Server IP or url:</source>
         <translation type="obsolete">IP сервера або url:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1310"/>
+        <location filename="" line="7471221"/>
         <source>Proxy type:</source>
         <translation type="obsolete">Тип проксі:</translation>
     </message>
@@ -696,12 +696,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Використовувати проксі для DHT повідомлень</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="627"/>
+        <location filename="" line="7471221"/>
         <source>Encryption</source>
         <translation type="obsolete">Шифрування</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="655"/>
+        <location filename="" line="7471221"/>
         <source>Encryption state:</source>
         <translation type="obsolete">Стан шифрування:</translation>
     </message>
@@ -723,276 +723,276 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="51"/>
         <source>Preferences</source>
-        <translation type="unfinished">Налаштування</translation>
+        <translation>Налаштування</translation>
     </message>
     <message>
         <location filename="../options.ui" line="87"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Загальні</translation>
     </message>
     <message>
         <location filename="../options.ui" line="96"/>
         <source>User interface settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштування інтерфейсу</translation>
     </message>
     <message>
         <location filename="../options.ui" line="154"/>
         <source>Visual style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Візуальний стиль:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="167"/>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль Cleanlooks (Gnome-подібний)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="172"/>
         <source>Motif style (Unix like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль Motif (Unix-подібний)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="200"/>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Питати підтвердження при виході, коли список завантажень не порожній</translation>
     </message>
     <message>
         <location filename="../options.ui" line="210"/>
         <source>Display current speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Показувати поточну швидкість в заголовку вікна</translation>
     </message>
     <message>
         <location filename="../options.ui" line="264"/>
         <source>System tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Іконка в системному треї</translation>
     </message>
     <message>
         <location filename="../options.ui" line="270"/>
         <source>Disable system tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Відключити іконку в системному треї</translation>
     </message>
     <message>
         <location filename="../options.ui" line="277"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Закривати до трею</translation>
     </message>
     <message>
         <location filename="../options.ui" line="284"/>
         <source>Minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Мінімізувати до трею</translation>
     </message>
     <message>
         <location filename="../options.ui" line="294"/>
         <source>Show notification balloons in tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Показувати сповіщення в треї</translation>
     </message>
     <message>
         <location filename="../options.ui" line="330"/>
         <source>Media player:</source>
-        <translation type="unfinished"></translation>
+        <translation>Медіа плеєр:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="366"/>
         <source>Downloads</source>
-        <translation type="unfinished">Завантаження</translation>
+        <translation>Завантаження</translation>
     </message>
     <message>
         <location filename="../options.ui" line="381"/>
         <source>Put downloads in this folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Класти завантаження в цю папку:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="440"/>
         <source>Pre-allocate all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Попередньо виділяти місце для всіх файлів</translation>
     </message>
     <message>
         <location filename="../options.ui" line="450"/>
         <source>When adding a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Під час додавання торренту</translation>
     </message>
     <message>
         <location filename="../options.ui" line="456"/>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished"></translation>
+        <translation>Показувати вміст торренту та деякі опції</translation>
     </message>
     <message>
         <location filename="../options.ui" line="466"/>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation>Не починати завантаження автоматично</translation>
     </message>
     <message>
         <location filename="../options.ui" line="476"/>
         <source>Folder watching</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>Спостерігати за папкою</translation>
     </message>
     <message>
         <location filename="../options.ui" line="482"/>
         <source>Automatically download torrents present in this folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматично завантажувати торренти, присутні у цій папці:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="574"/>
         <source>Listening port</source>
-        <translation type="unfinished"></translation>
+        <translation>Прослуховування порту</translation>
     </message>
     <message>
         <location filename="../options.ui" line="602"/>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
-        <translation type="unfinished">до</translation>
+        <translation>до</translation>
     </message>
     <message>
         <location filename="../options.ui" line="640"/>
         <source>Enable UPnP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Увімкнути відображення портів UPnP</translation>
     </message>
     <message>
         <location filename="../options.ui" line="650"/>
         <source>Enable NAT-PMP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Увімкнути відображення портів NAT-PMP</translation>
     </message>
     <message>
         <location filename="../options.ui" line="663"/>
         <source>Global bandwidth limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Глобальний ліміт пропускної здатності</translation>
     </message>
     <message>
         <location filename="../options.ui" line="679"/>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>Віддача:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="695"/>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation>Прийом:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="798"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="806"/>
         <source>(None)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Ніякого)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="827"/>
         <source>Proxy:</source>
-        <translation type="unfinished"></translation>
+        <translation>Проксі:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="907"/>
         <source>Username:</source>
-        <translation type="unfinished">Ім&apos;я користувача:</translation>
+        <translation>Ім&apos;я користувача:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1065"/>
         <source>Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittorrent</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1074"/>
         <source>Connections limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Ліміт кількості з&apos;єднань</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1082"/>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Глобальне максимальне число з&apos;єднань:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1130"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальне число з&apos;єднань для одного торрента:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1175"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальне число слотів віддачі для одного торрента:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1218"/>
         <source>Additional Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation>Додаткові можливості Bittorrent&apos;а</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1224"/>
         <source>Enable DHT network (decentralized)</source>
-        <translation type="unfinished"></translation>
+        <translation>Увімкнути мережу DHT (децентралізовану)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1234"/>
         <source>Enable Peer eXchange (PeX)</source>
-        <translation type="unfinished"></translation>
+        <translation>Увімкнути Peer eXchange (PeX)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1244"/>
         <source>Enable Local Peer Discovery</source>
-        <translation type="unfinished"></translation>
+        <translation>Увімкнути локальний пошук пірів</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1256"/>
         <source>Encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation>Шифрування:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1300"/>
         <source>Share ratio settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштування коефіціентів розподілення</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1315"/>
         <source>Desired ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Бажаний коефіціент:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1616"/>
         <source>Filter file path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Фільтр шляхів до файлу:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="219"/>
         <source>transfer lists refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>інтервал оновлення списків передачі:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="239"/>
         <source>ms</source>
-        <translation type="unfinished"></translation>
+        <translation>мс</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1645"/>
         <source>RSS</source>
-        <translation type="unfinished">RSS</translation>
+        <translation>RSS</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1682"/>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Інтервал оновлення RSS-фідів:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1702"/>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>хвилин</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1726"/>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальне число записів у одному фіді:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="375"/>
         <source>File system</source>
-        <translation type="unfinished"></translation>
+        <translation>Файлова система</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1377"/>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation type="unfinished"></translation>
+        <translation>Видаляти закінчені торренти, коли їхній коефіціент розподілу досягає:</translation>
     </message>
 </context>
 <context>
@@ -2137,39 +2137,39 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../GUI.cpp" line="840"/>
         <source>UPnP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтримка UPnP [Вимкнено]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="845"/>
         <source>NAT-PMP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтримка NAT-PMP [Увімкнено]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="848"/>
         <source>NAT-PMP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтримка NAT-PMP [Вимкнено]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="907"/>
         <source>Local Peer Discovery [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Пошук Локальних Пірів [Увімкнено]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="910"/>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Пошук Локальних Пірів [Вимкнено]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="672"/>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
         <comment>%1 is a file name</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; було видалено, тому що його коефіціент досяг максимального значення встановленого вами.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1159"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent %1 (Прийом: %2КіБ/с, Віддача: %3КіБ/с)</translation>
     </message>
 </context>
 <context>
@@ -2589,7 +2589,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../rss.ui" line="295"/>
         <source>Mark all as read</source>
-        <translation type="unfinished"></translation>
+        <translation>Позначити всі як прочитані</translation>
     </message>
 </context>
 <context>
@@ -2667,12 +2667,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../rss_imp.cpp" line="228"/>
         <source>Date: </source>
-        <translation type="unfinished"></translation>
+        <translation>Дата:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="231"/>
         <source>Author: </source>
-        <translation type="unfinished"></translation>
+        <translation>Автор:</translation>
     </message>
 </context>
 <context>
@@ -2848,7 +2848,7 @@ Changelog:
     <message>
         <location filename="../searchEngine.cpp" line="433"/>
         <source>Unknown</source>
-        <translation type="unfinished">Невідомо</translation>
+        <translation>Невідомо</translation>
     </message>
 </context>
 <context>
@@ -3094,12 +3094,12 @@ Changelog:
         <translation type="obsolete">Створити torrent-файл</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="517"/>
+        <location filename="" line="7471221"/>
         <source>Destination torrent file:</source>
         <translation type="obsolete">Цільовий torrent-файл:</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="93"/>
+        <location filename="" line="7471221"/>
         <source>Input file or directory:</source>
         <translation type="obsolete">Вхідний файл чи директорія:</translation>
     </message>
@@ -3109,12 +3109,12 @@ Changelog:
         <translation type="obsolete">Коментарій:</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="538"/>
+        <location filename="" line="7471221"/>
         <source>...</source>
         <translation type="obsolete">...</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="578"/>
+        <location filename="" line="7471221"/>
         <source>Create</source>
         <translation type="obsolete">Створити</translation>
     </message>
@@ -3164,7 +3164,7 @@ Changelog:
         <translation>Створення torrent-файлу</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="93"/>
+        <location filename="" line="7471221"/>
         <source>Input files or directories:</source>
         <translation type="obsolete">Вхідні файли чи директорії:</translation>
     </message>
@@ -3179,7 +3179,7 @@ Changelog:
         <translation>Коментарій (необов&apos;язково):</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="489"/>
+        <location filename="" line="7471221"/>
         <source>Private (won&apos;t be distributed on trackerless network / DHT if enabled)</source>
         <translation type="obsolete">Приватно (якщо увімкнено, не буде передаватись через безтрекерну мережу / DHT)</translation>
     </message>
@@ -3191,77 +3191,77 @@ Changelog:
     <message>
         <location filename="../createtorrent.ui" line="52"/>
         <source>File or folder to add to the torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл або папка для додавання в торрент:</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="64"/>
         <source>Add a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Додати файл</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="74"/>
         <source>Add a folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Додати папку</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="400"/>
         <source>Piece size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Розмір частини:</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="411"/>
         <source>32 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>32 КіБ</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="416"/>
         <source>64 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>64 КіБ</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="421"/>
         <source>128 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>128 КіБ</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="426"/>
         <source>256 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>256 КіБ</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="431"/>
         <source>512 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>512 КіБ</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="436"/>
         <source>1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>1 МіБ</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="441"/>
         <source>2 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>2 МіБ</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="446"/>
         <source>4 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>4 МіБ</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="469"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
-        <translation type="unfinished"></translation>
+        <translation>Приватно (не буде передаватись через мережу DHT, якщо увімкнено)</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="476"/>
         <source>Start seeding after creation</source>
-        <translation type="unfinished"></translation>
+        <translation>Почати роздачу одразу після створення</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="513"/>
         <source>Create and save...</source>
-        <translation type="unfinished"></translation>
+        <translation>Створити і зберегти...</translation>
     </message>
 </context>
 <context>
@@ -3282,12 +3282,12 @@ Changelog:
         <translation type="obsolete">Виберіть вхідну директорію чи файл</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="156"/>
+        <location filename="" line="7471221"/>
         <source>No destination path set</source>
         <translation type="obsolete">Не задано шлях призначення</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="156"/>
+        <location filename="" line="7471221"/>
         <source>Please type a destination path first</source>
         <translation type="obsolete">Будь-ласка, спочатку введіть шлях призначення</translation>
     </message>
@@ -3332,7 +3332,7 @@ Changelog:
         <translation>Виберіть папку для додавання в torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="72"/>
+        <location filename="" line="7471221"/>
         <source>Select files to add to the torrent</source>
         <translation type="obsolete">Виберіть файли для додавання в torrent</translation>
     </message>
@@ -3365,17 +3365,17 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="56"/>
         <source>Select a file to add to the torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Виберіть файл для додавання в торрент</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="150"/>
         <source>No tracker path set</source>
-        <translation type="unfinished"></translation>
+        <translation>Не встановлено шлях трекера</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="150"/>
         <source>Please set at least one tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Будь-ласка, встановіть хоча б один трекер</translation>
     </message>
 </context>
 <context>
@@ -3630,7 +3630,7 @@ However, those plugins were disabled.</source>
         <translation>Пробачте, сервер оновлень тимчасово недоступний.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="524"/>
+        <location filename="" line="7471221"/>
         <source>Sorry, %1 search plugin update failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="obsolete">Вибачте, не вдалося оновити пошуковий плагін %1.</translation>
@@ -3670,7 +3670,7 @@ However, those plugins were disabled.</source>
         <translation>Пошуковий плагін %1 було успішно встановлено.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="499"/>
+        <location filename="" line="7471221"/>
         <source>%1 search plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="obsolete">Пошуковий плагін %1 було успішно оновлено.</translation>
@@ -3678,23 +3678,23 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../engineSelectDlg.cpp" line="368"/>
         <source>Search engine plugin archive could not be read.</source>
-        <translation type="unfinished"></translation>
+        <translation>Архів пошукового плагіну не може бути прочитаний.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="694"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished"></translation>
+        <translation>Вибачте, встановлення пошукового плагіну %1 невдале.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="526"/>
         <source>New search engine plugin URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Новий URL пошукового плагіну</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="527"/>
         <source>URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL:</translation>
     </message>
 </context>
 <context>
@@ -3888,7 +3888,7 @@ However, those plugins were disabled.</source>
         <translation>Коментарій:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="72"/>
+        <location filename="" line="7471221"/>
         <source>to</source>
         <comment>&lt;min port&gt; to &lt;max port&gt;</comment>
         <translation type="obsolete">до</translation>
@@ -3945,22 +3945,22 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../pluginSource.ui" line="13"/>
         <source>Plugin source</source>
-        <translation type="unfinished"></translation>
+        <translation>Джерело плагіну</translation>
     </message>
     <message>
         <location filename="../pluginSource.ui" line="26"/>
         <source>Search plugin source:</source>
-        <translation type="unfinished"></translation>
+        <translation>Джерело пошукового плагіну:</translation>
     </message>
     <message>
         <location filename="../pluginSource.ui" line="35"/>
         <source>Local file</source>
-        <translation type="unfinished"></translation>
+        <translation>Локальний файл</translation>
     </message>
     <message>
         <location filename="../pluginSource.ui" line="42"/>
         <source>Web link</source>
-        <translation type="unfinished"></translation>
+        <translation>Веб-посилання</translation>
     </message>
 </context>
 <context>
@@ -4416,12 +4416,12 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../properties_imp.cpp" line="671"/>
         <source>Priorities error</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка пріоритетів</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="671"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка, ви не можете відфільтрувати всі файли в торренті.</translation>
     </message>
 </context>
 <context>
