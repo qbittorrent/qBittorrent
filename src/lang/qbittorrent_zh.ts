@@ -74,10 +74,12 @@
     </message>
     <message encoding="UTF-8">
         <location filename="" line="7471221"/>
-        <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
+        <source>A bittorrent client using Qt4 and libtorrent, programmed in 
+C++.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://qbittorrent.sourceforge.net&lt;/i&gt;&lt;br&gt;</source>
+&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; 
+&lt;i&gt;http://qbittorrent.sourceforge.net&lt;/i&gt;&lt;br&gt;</source>
         <translation type="obsolete">bittorrent的用户使用由C++语言编写的Qt4和libtorrent.
 
 Copyright © 2006 by Christophe Dumez
@@ -90,14 +92,17 @@ Copyright © 2006 by Christophe Dumez
     </message>
     <message encoding="UTF-8">
         <location filename="../about.ui" line="119"/>
-        <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
+        <source>A bittorrent client using Qt4 and libtorrent, programmed in 
+C++.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation>bittorrent的用户使用由C++语言编写的Qt4和libtorrent.&lt;br&gt;
+&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; 
+&lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
+        <translation type="obsolete">bittorrent的用户使用由C++语言编写的Qt4和libtorrent.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;主页:&lt;/u&gt; &lt;i&gt;http://qbittorrent.sourceforge.net&lt;/i&gt;&lt;br&gt;</translation>
+&lt;br&gt; &lt;u&gt;主页:&lt;/u&gt; 
+&lt;i&gt;http://qbittorrent.sourceforge.net&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="329"/>
@@ -133,6 +138,14 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../about.ui" line="362"/>
         <source>Thanks to</source>
         <translation>感谢</translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="../about.ui" line="119"/>
+        <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
+&lt;br&gt;
+Copyright © 2006 by Christophe Dumez&lt;br&gt;
+&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -281,7 +294,8 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="" line="7471221"/>
-        <source>Please choose your preferred language in the following list:</source>
+        <source>Please choose your preferred language in the following 
+list:</source>
         <translation type="obsolete">请选择所需语言:</translation>
     </message>
     <message>
@@ -306,7 +320,8 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../options.ui" line="1559"/>
-        <source>Enable directory scan (auto add torrent files inside)</source>
+        <source>Enable directory scan (auto add torrent files 
+inside)</source>
         <translation type="obsolete">可使用目录监视功能(自动添加torrent文件)</translation>
     </message>
     <message>
@@ -436,7 +451,8 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="" line="7471221"/>
-        <source>Display OSD only if window is minimized or iconified</source>
+        <source>Display OSD only if window is minimized or 
+iconified</source>
         <translation type="obsolete">仅当窗口为最小化或为图标时显示OSD</translation>
     </message>
     <message>
@@ -496,13 +512,18 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../options.ui" line="142"/>
-        <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation>注意:变动会在重新运行qBittorrent之后生效.</translation>
+        <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after 
+qBittorrent is restarted.</source>
+        <translation type="obsolete">注意:变动会在重新运行qBittorrent之后生效.</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1012"/>
-        <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
-        <translation type="obsolete">注意: 如果qBittorrent不提供你所需要的语言支持,如果你有意向翻译qBittorrent,请与我联系(chris@qbittorrent.org).</translation>
+        <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not 
+available in your language, &lt;br/&gt;and if you would like to translate it 
+in your mother tongue, &lt;br/&gt;please contact me 
+(chris@qbittorrent.org).</source>
+        <translation type="obsolete">注意: 
+如果qBittorrent不提供你所需要的语言支持,如果你有意向翻译qBittorrent,请与我联系(chris@qbittorrent.org).</translation>
     </message>
     <message>
         <location filename="../options.ui" line="837"/>
@@ -511,7 +532,8 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../options.ui" line="748"/>
-        <source>Display a torrent addition dialog everytime I add a torrent</source>
+        <source>Display a torrent addition dialog everytime I add a 
+torrent</source>
         <translation type="obsolete">每当添加torrent文件时显示添加对话窗</translation>
     </message>
     <message>
@@ -592,7 +614,8 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1661"/>
         <source>Style (Look &apos;n Feel)</source>
-        <translation type="obsolete">外观（Look &apos;n Feel)</translation>
+        <translation type="obsolete">外观（Look &apos;n 
+Feel)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="162"/>
@@ -602,26 +625,31 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1683"/>
         <source>Cleanlooks style (GNOME like)</source>
-        <translation type="obsolete">Cleanlooks 外观 （如GNOME） </translation>
+        <translation type="obsolete">Cleanlooks 外观 （如GNOME） 
+</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1690"/>
         <source>Motif style (default Qt style on Unix systems)</source>
-        <translation type="obsolete">Motif 外观 （默认 Uinx 系统下 Qt 外观） </translation>
+        <translation type="obsolete">Motif 外观 （默认 Uinx 系统下 
+Qt 外观） </translation>
     </message>
     <message>
         <location filename="../options.ui" line="177"/>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation>CDE 外观（如Common Desktop Environment)</translation>
+        <translation>CDE 外观（如Common Desktop 
+Environment)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1707"/>
         <source>MacOS style (MacOSX only)</source>
-        <translation type="obsolete">MacOS 外观 （仅MacOSX)</translation>
+        <translation type="obsolete">MacOS 外观 
+（仅MacOSX)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="835"/>
-        <source>Exit confirmation when the download list is not empty</source>
+        <source>Exit confirmation when the download list is not 
+empty</source>
         <translation type="obsolete">下载列表不为空时确认退出</translation>
     </message>
     <message>
@@ -632,7 +660,8 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1717"/>
         <source>WindowsXP style (Windows XP only)</source>
-        <translation type="obsolete">WindowsXP 外观（仅Windows XP)</translation>
+        <translation type="obsolete">WindowsXP 外观（仅Windows 
+XP)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1237"/>
@@ -736,8 +765,9 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../options.ui" line="200"/>
-        <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation>下载列表不为空时退出需确认</translation>
+        <source>Ask for confirmation on exit when download list is not 
+empty</source>
+        <translation type="obsolete">下载列表不为空时退出需确认</translation>
     </message>
     <message>
         <location filename="../options.ui" line="210"/>
@@ -757,8 +787,9 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="277"/>
         <source>Close to tray</source>
-        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>关闭到状态栏</translation>
+        <comment>i.e: The systray tray icon will still be visible when 
+closing the main window.</comment>
+        <translation type="obsolete">关闭到状态栏</translation>
     </message>
     <message>
         <location filename="../options.ui" line="284"/>
@@ -803,19 +834,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="466"/>
         <source>Do not start download automatically</source>
-        <comment>The torrent will be added to download list in pause state</comment>
-        <translation>不要开始自动下载</translation>
+        <comment>The torrent will be added to download list in pause 
+state</comment>
+        <translation type="obsolete">不要开始自动下载</translation>
     </message>
     <message>
         <location filename="../options.ui" line="476"/>
         <source>Folder watching</source>
-        <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation>监视文件夹</translation>
+        <comment>qBittorrent will watch a directory and automatically 
+download torrents present in it</comment>
+        <translation type="obsolete">监视文件夹</translation>
     </message>
     <message>
         <location filename="../options.ui" line="482"/>
-        <source>Automatically download torrents present in this folder:</source>
-        <translation>自动下载此文件夹中的torrent:</translation>
+        <source>Automatically download torrents present in this 
+folder:</source>
+        <translation type="obsolete">自动下载此文件夹中的torrent:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="574"/>
@@ -896,7 +930,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1175"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>每torrent上传位置最大值:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1218"/>
@@ -916,7 +950,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1244"/>
         <source>Enable Local Peer Discovery</source>
-        <translation type="unfinished"></translation>
+        <translation>启用本地资源搜索</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1256"/>
@@ -931,7 +965,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1315"/>
         <source>Desired ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>期望比率:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1616"/>
@@ -946,7 +980,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="239"/>
         <source>ms</source>
-        <translation type="unfinished"></translation>
+        <translation>ms</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1645"/>
@@ -956,7 +990,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1682"/>
         <source>RSS feeds refresh interval:</source>
-        <translation>RSS种子刷新间隔:</translation>
+        <translation>RSS消息种子刷新间隔:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1702"/>
@@ -966,7 +1000,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1726"/>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>每个订阅源文章数目最大值:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="375"/>
@@ -977,6 +1011,39 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="1377"/>
         <source>Remove finished torrents when their ratio reaches:</source>
         <translation>当比率达到时移除完成的torrent:</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="142"/>
+        <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="200"/>
+        <source>Ask for confirmation on exit when download list is not empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="277"/>
+        <source>Close to tray</source>
+        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
+        <translation type="unfinished">关闭到状态栏</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="466"/>
+        <source>Do not start download automatically</source>
+        <comment>The torrent will be added to download list in pause state</comment>
+        <translation type="unfinished">不要开始自动下载</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="476"/>
+        <source>Folder watching</source>
+        <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
+        <translation type="unfinished">监视文件夹</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="482"/>
+        <source>Automatically download torrents present in this folder:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1036,19 +1103,24 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="99"/>
-        <source>Be careful, sharing copyrighted material without permission is against the law.</source>
-        <translation>注意，在未经允许情况下共享有版权的材料是违法的.</translation>
+        <source>Be careful, sharing copyrighted material without permission 
+is against the law.</source>
+        <translation type="obsolete">注意，在未经允许情况下共享有版权的材料是违法的.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="123"/>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; 
+&lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;被阻止&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; 
+&lt;i&gt;被阻止&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="197"/>
-        <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation>快速继续数据torrent %1失败, 再次检查...</translation>
+        <source>Fast resume data was rejected for torrent %1, checking 
+again...</source>
+        <translation type="obsolete">快速继续数据torrent %1失败, 
+再次检查...</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="201"/>
@@ -1058,31 +1130,36 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../downloadingTorrents.cpp" line="633"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation>&apos;%1&apos;添加到下载列表.</translation>
+        <comment>&apos;/home/y/xxx.torrent&apos; was added to download 
+list.</comment>
+        <translation type="obsolete">&apos;%1&apos;添加到下载列表.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="635"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation>&apos;%1&apos;重新开始. (快速)</translation>
+        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast 
+resume)</comment>
+        <translation type="obsolete">&apos;%1&apos;重新开始. (快速)</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="643"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation>&apos;%1&apos;已存在于下载列表中.</translation>
+        <comment>e.g: &apos;xxx.avi&apos; is already in download 
+list.</comment>
+        <translation type="obsolete">&apos;%1&apos;已存在于下载列表中.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="647"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation>无法解码torrent文件:&apos;%1&apos;</translation>
+        <comment>e.g: Unable to decode torrent file: 
+&apos;/home/y/xxx.torrent&apos;</comment>
+        <translation type="obsolete">无法解码torrent文件:&apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="648"/>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>该文件不是torrent文件或已经损坏.</translation>
+        <source>This file is either corrupted or this isn&apos;t a 
+torrent.</source>
+        <translation type="obsolete">该文件不是torrent文件或已经损坏.</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="662"/>
@@ -1092,8 +1169,60 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../downloadingTorrents.cpp" line="686"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
+        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please 
+wait...</comment>
+        <translation type="obsolete">&apos;%1&apos;下载中,请等待...</translation>
+    </message>
+    <message>
+        <location filename="../downloadingTorrents.cpp" line="99"/>
+        <source>Be careful, sharing copyrighted material without permission is against the law.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadingTorrents.cpp" line="123"/>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
+        <comment>x.y.z.w was blocked</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadingTorrents.cpp" line="197"/>
+        <source>Fast resume data was rejected for torrent %1, checking again...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadingTorrents.cpp" line="633"/>
+        <source>&apos;%1&apos; added to download list.</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <translation type="unfinished">&apos;%1&apos;添加到下载列表.</translation>
+    </message>
+    <message>
+        <location filename="../downloadingTorrents.cpp" line="635"/>
+        <source>&apos;%1&apos; resumed. (fast resume)</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadingTorrents.cpp" line="643"/>
+        <source>&apos;%1&apos; is already in download list.</source>
+        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <translation type="unfinished">&apos;%1&apos;已存在于下载列表中.</translation>
+    </message>
+    <message>
+        <location filename="../downloadingTorrents.cpp" line="647"/>
+        <source>Unable to decode torrent file: &apos;%1&apos;</source>
+        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <translation type="unfinished">无法解码torrent文件:&apos;%1&apos;</translation>
+    </message>
+    <message>
+        <location filename="../downloadingTorrents.cpp" line="648"/>
+        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadingTorrents.cpp" line="686"/>
+        <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation>&apos;%1&apos;下载中,请等待...</translation>
+        <translation type="unfinished">&apos;%1&apos;下载中,请等待...</translation>
     </message>
 </context>
 <context>
@@ -1190,12 +1319,14 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../GUI.cpp" line="1161"/>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
+        <source>This file is either corrupted or this isn&apos;t a 
+torrent.</source>
         <translation type="obsolete">该文件不是torrent文件或已经损坏.</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
-        <source>Are you sure you want to delete all files in download list?</source>
+        <source>Are you sure you want to delete all files in download 
+list?</source>
         <translation type="obsolete">确定删除下载列表中的所有文件?</translation>
     </message>
     <message>
@@ -1210,8 +1341,9 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../GUI.cpp" line="699"/>
-        <source>Are you sure you want to delete the selected item(s) in download list?</source>
-        <translation>确定删除所选中的文件?</translation>
+        <source>Are you sure you want to delete the selected item(s) in 
+download list?</source>
+        <translation type="obsolete">确定删除所选中的文件?</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -1335,21 +1467,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../GUI.cpp" line="462"/>
         <source>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </source>
-        <translation type="obsolete"> &lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;下载速度:</translation>
+        <translation type="obsolete"> 
+&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;下载速度:</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1395"/>
-        <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Online</source>
+        <source>&lt;b&gt;Connection 
+Status:&lt;/b&gt;&lt;br&gt;Online</source>
         <translation type="obsolete">&lt;b&gt;连接状态:&lt;/b&gt;&lt;br&gt;在线</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1400"/>
-        <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
+        <source>&lt;b&gt;Connection 
+Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming 
+connections...&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;连接状态:&lt;/b&gt;&lt;br&gt;有防火墙?&lt;br&gt;&lt;i&gt;无对内连接...&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1404"/>
-        <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
+        <source>&lt;b&gt;Connection 
+Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers 
+found...&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;连接状态:&lt;/b&gt;&lt;br&gt;离线&lt;/br&gt;&lt;i&gt;无法找到任何peer...&lt;/i&gt;</translation>
     </message>
     <message>
@@ -1440,7 +1578,8 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../GUI.cpp" line="814"/>
         <source>Are you sure you want to quit? -- qBittorrent</source>
-        <translation type="obsolete">确实要退出吗? -- qBittorrent</translation>
+        <translation type="obsolete">确实要退出吗? -- 
+qBittorrent</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -1635,7 +1774,8 @@ Please close the other one first.</source>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1005"/>
-        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
+        <source>Are you sure you want to delete the selected item(s) in 
+download list and in hard drive?</source>
         <translation type="obsolete">确定从硬盘及下载列表中删除所选中的项目?</translation>
     </message>
     <message>
@@ -1772,7 +1912,8 @@ Please close the other one first.</source>
     <message>
         <location filename="../GUI.cpp" line="588"/>
         <source>Stalled</source>
-        <comment>i.e: State of a torrent whose download speed is 0kb/s</comment>
+        <comment>i.e: State of a torrent whose download speed is 
+0kb/s</comment>
         <translation type="obsolete">等待中</translation>
     </message>
     <message>
@@ -1789,25 +1930,29 @@ Please close the other one first.</source>
     <message>
         <location filename="../GUI.cpp" line="1146"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <comment>&apos;/home/y/xxx.torrent&apos; was added to download 
+list.</comment>
         <translation type="obsolete">&apos;%1&apos;添加到下载列表.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1148"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast 
+resume)</comment>
         <translation type="obsolete">&apos;%1&apos;重新开始(快速)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1156"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <comment>e.g: &apos;xxx.avi&apos; is already in download 
+list.</comment>
         <translation type="obsolete">&apos;%1&apos;已存在于下载列表中.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1160"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <comment>e.g: Unable to decode torrent file: 
+&apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="obsolete">无法解码torrent文件:&apos;%1&apos;</translation>
     </message>
     <message>
@@ -1820,7 +1965,8 @@ Please close the other one first.</source>
         <location filename="../GUI.cpp" line="956"/>
         <source>Listening on port: %1</source>
         <comment>e.g: Listening on port: 1666</comment>
-        <translation type="obsolete"> 使用端口:&apos;%1&apos;</translation>
+        <translation type="obsolete"> 
+使用端口:&apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1029"/>
@@ -1864,9 +2010,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <location filename="../GUI.cpp" line="268"/>
-        <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
-        <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
-        <translation>读或写%1过程中出现错误.磁盘已满,下载被暂停</translation>
+        <source>An error occured when trying to read or write %1. The disk 
+is probably full, download has been paused</source>
+        <comment>e.g: An error occured when trying to read or write xxx.avi. 
+The disk is probably full, download has been paused</comment>
+        <translation type="obsolete">读或写%1过程中出现错误.磁盘已满,下载被暂停</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1199"/>
@@ -1913,14 +2061,17 @@ Please close the other one first.</source>
     <message>
         <location filename="../GUI.cpp" line="1778"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please 
+wait...</comment>
         <translation type="obsolete">&apos;%1&apos;下载中,请等待...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="280"/>
-        <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
-        <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation>出现错误(磁盘已满?),&apos;%1&apos;暂停.</translation>
+        <source>An error occured (full disk?), &apos;%1&apos; 
+paused.</source>
+        <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; 
+paused.</comment>
+        <translation type="obsolete">出现错误(磁盘已满?),&apos;%1&apos;暂停.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="144"/>
@@ -1972,8 +2123,9 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../GUI.cpp" line="706"/>
-        <source>Are you sure you want to delete the selected item(s) in finished list?</source>
-        <translation>您确定要删除完成列表中选中的项目吗?</translation>
+        <source>Are you sure you want to delete the selected item(s) in 
+finished list?</source>
+        <translation type="obsolete">您确定要删除完成列表中选中的项目吗?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="837"/>
@@ -1982,7 +2134,8 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../GUI.cpp" line="204"/>
-        <source>Be careful, sharing copyrighted material without permission is against the law.</source>
+        <source>Be careful, sharing copyrighted material without permission 
+is against the law.</source>
         <translation type="obsolete">注意，在未经允许情况下共享有版权的材料是违法的.</translation>
     </message>
     <message>
@@ -2002,9 +2155,12 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../GUI.cpp" line="315"/>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; 
+&lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;被阻止&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;font 
+color=&apos;red&apos;&gt;%1&lt;/font&gt; 
+&lt;i&gt;被阻止&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="130"/>
@@ -2047,18 +2203,22 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../GUI.cpp" line="331"/>
-        <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="obsolete">快速继续数据torrent  %1失败, 再次检查...</translation>
+        <source>Fast resume data was rejected for torrent %1, checking 
+again...</source>
+        <translation type="obsolete">快速继续数据torrent  %1失败, 
+再次检查...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="634"/>
-        <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
-        <translation>您确定要从下载列表和硬盘中删除选中的项目吗?</translation>
+        <source>Are you sure you want to delete the selected item(s) from 
+download list and from hard drive?</source>
+        <translation type="obsolete">您确定要从下载列表和硬盘中删除选中的项目吗?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="641"/>
-        <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
-        <translation>您确定要从完成列表和硬盘中删除选中的项目吗?</translation>
+        <source>Are you sure you want to delete the selected item(s) from 
+finished list and from hard drive?</source>
+        <translation type="obsolete">您确定要从完成列表和硬盘中删除选中的项目吗?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="661"/>
@@ -2069,7 +2229,8 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../GUI.cpp" line="335"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="obsolete">找不到网址种子:%1, 消息:%2</translation>
+        <translation type="obsolete">找不到网址种子:%1, 
+消息:%2</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="291"/>
@@ -2101,24 +2262,64 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../GUI.cpp" line="907"/>
         <source>Local Peer Discovery [ON]</source>
-        <translation type="unfinished">本地资源</translation>
+        <translation>本地资源搜索[开]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="910"/>
         <source>Local Peer Discovery support [OFF]</source>
+        <translation>本地资源搜索支持[关]</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="672"/>
+        <source>&apos;%1&apos; was removed because its ratio reached the 
+maximum value you set.</source>
+        <comment>%1 is a file name</comment>
+        <translation type="obsolete">&apos;%1&apos;被移除因为它的比率达到您设置的最大值.</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1159"/>
+        <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
+        <comment>%1 is qBittorrent version</comment>
+        <translation>qBittorrent %1 (下载: %2KiB/s, 上传: 
+%3KiB/s)</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="268"/>
+        <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
+        <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="280"/>
+        <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
+        <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="634"/>
+        <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="641"/>
+        <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="672"/>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
         <comment>%1 is a file name</comment>
-        <translation>&apos;%1&apos;被移除因为它的比率达到您设置的最大值.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1159"/>
-        <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
-        <comment>%1 is qBittorrent version</comment>
-        <translation>qBittorrent %1 (下载: %2KiB/s, 上传: %3KiB/s)</translation>
+        <location filename="../GUI.cpp" line="699"/>
+        <source>Are you sure you want to delete the selected item(s) in download list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="706"/>
+        <source>Are you sure you want to delete the selected item(s) in finished list?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2346,7 +2547,8 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../MainWindow.ui" line="135"/>
         <source>Session ratio: </source>
-        <translation type="obsolete"> 本次会话共享评价:</translation>
+        <translation type="obsolete"> 
+本次会话共享评价:</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="36"/>
@@ -2502,8 +2704,10 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../rss.ui" line="227"/>
-        <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
-        <translation>&lt;b&gt;新闻:&lt;/b&gt; &lt;i&gt;(双击以连接到网页浏览器)&lt;/i&gt;</translation>
+        <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the 
+link in your web browser)&lt;/i&gt;</source>
+        <translation type="obsolete">&lt;b&gt;新闻:&lt;/b&gt; 
+&lt;i&gt;(双击以连接到网页浏览器)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="285"/>
@@ -2528,7 +2732,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../rss.ui" line="295"/>
         <source>Mark all as read</source>
-        <translation type="unfinished">标记所有</translation>
+        <translation>标记所有条目为已读</translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="227"/>
+        <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2560,7 +2769,8 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="120"/>
-        <source>Are you sure you want to delete this stream from the list ?</source>
+        <source>Are you sure you want to delete this stream from the list 
+?</source>
         <translation type="obsolete">确定要从列表中删除此资源吗?</translation>
     </message>
     <message>
@@ -2575,8 +2785,9 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="60"/>
-        <source>Are you sure you want to delete this stream from the list?</source>
-        <translation>确定要从列表中删除此资源吗?</translation>
+        <source>Are you sure you want to delete this stream from the 
+list?</source>
+        <translation type="obsolete">确定要从列表中删除此资源吗?</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="270"/>
@@ -2601,7 +2812,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../rss_imp.cpp" line="171"/>
         <source>This rss feed is already in the list.</source>
-        <translation type="unfinished">该    已在列表中.</translation>
+        <translation>该RSS消息种子已在列表中.</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="228"/>
@@ -2612,6 +2823,11 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../rss_imp.cpp" line="231"/>
         <source>Author: </source>
         <translation>作者: </translation>
+    </message>
+    <message>
+        <location filename="../rss_imp.cpp" line="60"/>
+        <source>Are you sure you want to delete this stream from the list?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2700,7 +2916,8 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../searchEngine.cpp" line="469"/>
         <source>Search plugin update -- qBittorrent</source>
-        <translation type="obsolete">更新搜索插件-- qBittorrent</translation>
+        <translation type="obsolete">更新搜索插件-- 
+qBittorrent</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="448"/>
@@ -2780,7 +2997,8 @@ Changelog:
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="483"/>
-        <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
+        <source>Couldn&apos;t download search plugin update at url: %1, 
+reason: %2.</source>
         <translation type="obsolete">无法在网址:%1下载更新搜索插件,原因:%2.</translation>
     </message>
     <message>
@@ -2793,33 +3011,42 @@ Changelog:
     <name>Ui</name>
     <message>
         <location filename="" line="7471221"/>
-        <source>I would like to thank the following people who volonteered to translate qBittorrent:</source>
+        <source>I would like to thank the following people who volonteered 
+to translate qBittorrent:</source>
         <translation type="obsolete">感谢以下所有qBittorrent的志愿翻译者:</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="67"/>
-        <source>Please contact me if you would like to translate qBittorrent to your own language.</source>
+        <source>Please contact me if you would like to translate qBittorrent 
+to your own language.</source>
         <translation type="obsolete">如果你想为qBittorrent提供翻译请与我联系.</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
-        <source>I would like to thank sourceforge.net for hosting qBittorrent project.</source>
+        <source>I would like to thank sourceforge.net for hosting 
+qBittorrent project.</source>
         <translation type="obsolete">感谢sourceforge.net的支持.</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="44"/>
-        <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
+        <source>I would like to thank the following people who volunteered 
+to translate qBittorrent:</source>
         <translation type="obsolete">感谢以下所有qBittorrent的志愿翻译者:</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
-        <source>&lt;ul&gt;&lt;li&gt;I would like to thank sourceforge.net for hosting qBittorrent project.&lt;/li&gt;</source>
+        <source>&lt;ul&gt;&lt;li&gt;I would like to thank sourceforge.net 
+for hosting qBittorrent project.&lt;/li&gt;</source>
         <translation type="obsolete">&lt;ul&gt;&lt;li&gt;感谢sourceforge.net对qBittorrent的支持.&lt;/li&gt;</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
-        <source>&lt;li&gt;I also like to thank Jeffery Fernandez (developer@jefferyfernandez.id.au), our RPM packager, for his great work.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="obsolete">&lt;li&gt;同时还要感谢Jeffery Fernandez (developer@jefferyfernandez.id.au), RPM packager, 感谢他的杰出工作.&lt;/li&gt;&lt;/ul&gt;</translation>
+        <source>&lt;li&gt;I also like to thank Jeffery Fernandez 
+(developer@jefferyfernandez.id.au), our RPM packager, for his great 
+work.&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="obsolete">&lt;li&gt;同时还要感谢Jeffery 
+Fernandez (developer@jefferyfernandez.id.au), RPM packager, 
+感谢他的杰出工作.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="126"/>
@@ -2829,7 +3056,8 @@ Changelog:
     <message>
         <location filename="../previewSelect.h" line="126"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="obsolete">抱歉, 此文件无法被预览</translation>
+        <translation type="obsolete">抱歉, 
+此文件无法被预览</translation>
     </message>
     <message>
         <location filename="../previewSelect.h" line="98"/>
@@ -2863,7 +3091,8 @@ Changelog:
     </message>
     <message>
         <location filename="../about_imp.h" line="68"/>
-        <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
+        <source>Please contact me if you would like to translate qBittorrent 
+into your own language.</source>
         <translation type="obsolete">如果你想为qBittorrent提供翻译请与我联系.</translation>
     </message>
 </context>
@@ -2876,13 +3105,25 @@ Changelog:
     </message>
     <message>
         <location filename="../about_imp.h" line="54"/>
+        <source>I would like to thank the following people who volunteered 
+to translate qBittorrent:</source>
+        <translation type="obsolete">感谢以下所有qBittorrent的志愿翻译者:</translation>
+    </message>
+    <message>
+        <location filename="../about_imp.h" line="79"/>
+        <source>Please contact me if you would like to translate qBittorrent 
+into your own language.</source>
+        <translation type="obsolete">如果你想为qBittorrent提供翻译请与我联系.</translation>
+    </message>
+    <message>
+        <location filename="../about_imp.h" line="54"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation>感谢以下所有qBittorrent的志愿翻译者:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="79"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation>如果你想为qBittorrent提供翻译请与我联系.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2924,8 +3165,9 @@ Changelog:
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="116"/>
-        <source>Download in correct order (slower but good for previewing)</source>
-        <translation>按递增顺序下载(速度会有所减慢但利于预览)</translation>
+        <source>Download in correct order (slower but good for 
+previewing)</source>
+        <translation type="obsolete">按递增顺序下载(速度会有所减慢但利于预览)</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
@@ -2976,6 +3218,11 @@ Changelog:
         <location filename="../addTorrentDialog.ui" line="204"/>
         <source>Maximum</source>
         <translation>最大</translation>
+    </message>
+    <message>
+        <location filename="../addTorrentDialog.ui" line="116"/>
+        <source>Download in correct order (slower but good for previewing)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3068,17 +3315,20 @@ Changelog:
     </message>
     <message>
         <location filename="../createtorrent.ui" line="83"/>
-        <source>&lt;center&gt;Destination torrent file:&lt;/center&gt;</source>
+        <source>&lt;center&gt;Destination torrent 
+file:&lt;/center&gt;</source>
         <translation type="obsolete">目标Torrent文件：</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="99"/>
-        <source>&lt;center&gt;Input file or directory:&lt;/center&gt;</source>
+        <source>&lt;center&gt;Input file or 
+directory:&lt;/center&gt;</source>
         <translation type="obsolete">输入文件或目录</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="115"/>
-        <source>&lt;center&gt;Announce url:&lt;br&gt;(One per line)&lt;/center&gt;</source>
+        <source>&lt;center&gt;Announce url:&lt;br&gt;(One per 
+line)&lt;/center&gt;</source>
         <translation type="obsolete">请指定url:(每行一个)</translation>
     </message>
     <message>
@@ -3108,7 +3358,8 @@ Changelog:
     </message>
     <message>
         <location filename="../createtorrent.ui" line="489"/>
-        <source>Private (won&apos;t be distributed on trackerless network / DHT if enabled)</source>
+        <source>Private (won&apos;t be distributed on trackerless network / 
+DHT if enabled)</source>
         <translation type="obsolete">私人(不共享到无服务器的网络/DHT如启用)</translation>
     </message>
     <message>
@@ -3183,8 +3434,9 @@ Changelog:
     </message>
     <message>
         <location filename="../createtorrent.ui" line="469"/>
-        <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
-        <translation>私人(不共享到DHT网络如启用)</translation>
+        <source>Private (won&apos;t be distributed on DHT network if 
+enabled)</source>
+        <translation type="obsolete">私人(不共享到DHT网络如启用)</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="476"/>
@@ -3195,6 +3447,11 @@ Changelog:
         <location filename="../createtorrent.ui" line="513"/>
         <source>Create and save...</source>
         <translation>创建并保存...</translation>
+    </message>
+    <message>
+        <location filename="../createtorrent.ui" line="469"/>
+        <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3461,8 +3718,9 @@ Changelog:
     </message>
     <message>
         <location filename="../engineSelect.ui" line="77"/>
-        <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>您可以在这里获得新的搜索引擎:&lt;ahref=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <source>You can get new search engine plugins here: &lt;a 
+href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
+        <translation type="obsolete">您可以在这里获得新的搜索引擎:&lt;ahref=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="86"/>
@@ -3494,6 +3752,11 @@ Changelog:
         <source>Uninstall</source>
         <translation>卸载</translation>
     </message>
+    <message>
+        <location filename="../engineSelect.ui" line="77"/>
+        <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>engineSelectDlg</name>
@@ -3514,11 +3777,12 @@ Changelog:
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="211"/>
-        <source>Some plugins could not be uninstalled because they are included in qBittorrent.
- Only the ones you added yourself can be uninstalled.
+        <source>Some plugins could not be uninstalled because they are 
+included in qBittorrent.
+Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
-        <translation>一些插件不能被卸载因为被包括在qBittorrent内.
- 只有自己添加的那些可以被卸载
+        <translation type="obsolete">一些插件不能被卸载因为被包括在qBittorrent内.
+只有自己添加的那些可以被卸载
 然而, 那些插件被禁用.</translation>
     </message>
     <message>
@@ -3548,9 +3812,10 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="472"/>
-        <source>A more recent version of %1 search engine plugin is already installed.</source>
+        <source>A more recent version of %1 search engine plugin is already 
+installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>更新版本的%1搜索引擎插件已安装.</translation>
+        <translation type="obsolete">更新版本的%1搜索引擎插件已安装.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="694"/>
@@ -3560,7 +3825,8 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../engineSelectDlg.cpp" line="680"/>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation>对不起, 更新服务器暂时不可用.</translation>
+        <translation>对不起, 
+更新服务器暂时不可用.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="598"/>
@@ -3569,9 +3835,11 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="494"/>
-        <source>%1 search engine plugin could not be updated, keeping old version.</source>
+        <source>%1 search engine plugin could not be updated, keeping old 
+version.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>%1搜索引擎插件不能被更新, 保留旧版本.</translation>
+        <translation type="obsolete">%1搜索引擎插件不能被更新, 
+保留旧版本.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="499"/>
@@ -3616,6 +3884,25 @@ However, those plugins were disabled.</source>
         <location filename="../engineSelectDlg.cpp" line="527"/>
         <source>URL:</source>
         <translation>网址:</translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="211"/>
+        <source>Some plugins could not be uninstalled because they are included in qBittorrent.
+ Only the ones you added yourself can be uninstalled.
+However, those plugins were disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="472"/>
+        <source>A more recent version of %1 search engine plugin is already installed.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="494"/>
+        <source>%1 search engine plugin could not be updated, keeping old version.</source>
+        <comment>%1 is the name of the search engine</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3886,8 +4173,10 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../preview.ui" line="67"/>
-        <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation>下列文件支持预览, 请选择其一:</translation>
+        <source>The following files support previewing, &lt;br&gt;please 
+select one of them:</source>
+        <translation type="obsolete">下列文件支持预览, 
+请选择其一:</translation>
     </message>
     <message>
         <location filename="../preview.ui" line="101"/>
@@ -3898,6 +4187,11 @@ However, those plugins were disabled.</source>
         <location filename="../preview.ui" line="108"/>
         <source>Cancel</source>
         <translation>取消</translation>
+    </message>
+    <message>
+        <location filename="../preview.ui" line="67"/>
+        <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3998,7 +4292,8 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="" line="7471221"/>
         <source>(Complete: 0.0%, Partial: 0.0%)</source>
-        <translation type="obsolete">(完成: 0.0%, Partial: 0.0%)</translation>
+        <translation type="obsolete">(完成: 0.0%, Partial: 
+0.0%)</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -4112,7 +4407,8 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../properties.ui" line="940"/>
-        <source>You can select here precisely which files you want to download in current torrent.</source>
+        <source>You can select here precisely which files you want to 
+download in current torrent.</source>
         <translation type="obsolete">请在当前torrent中选择所需要的文件.</translation>
     </message>
     <message>
@@ -4192,8 +4488,9 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../properties.ui" line="546"/>
-        <source>Download in correct order (slower but good for previewing)</source>
-        <translation>按递增顺序下载(速度会有所减慢但利于预览)</translation>
+        <source>Download in correct order (slower but good for 
+previewing)</source>
+        <translation type="obsolete">按递增顺序下载(速度会有所减慢但利于预览)</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="432"/>
@@ -4267,18 +4564,22 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="37"/>
-        <source>Normal: normal priority. Download order is dependent on availability</source>
-        <translation>正常:正常优先.下载顺序取决于可用性</translation>
+        <source>Normal: normal priority. Download order is dependent on 
+availability</source>
+        <translation type="obsolete">正常:正常优先.下载顺序取决于可用性</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="37"/>
-        <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
-        <translation>高:高于正常优先.优先使用可用性相同的文件块,而不是可用性较低的</translation>
+        <source>High: higher than normal priority. Pieces are preferred over 
+pieces with the same availability, but not over pieces with lower 
+availability</source>
+        <translation type="obsolete">高:高于正常优先.优先使用可用性相同的文件块,而不是可用性较低的</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="37"/>
-        <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
-        <translation>最大:最大优先,忽略可用性,此文件块优先于任何优先级较低的文件块</translation>
+        <source>Maximum: maximum priority, availability is disregarded, the 
+piece is preferred over any other piece with lower priority</source>
+        <translation type="obsolete">最大:最大优先,忽略可用性,此文件块优先于任何优先级较低的文件块</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="48"/>
@@ -4359,8 +4660,9 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../properties.ui" line="995"/>
-        <source>The following url seeds are available for this torrent:</source>
-        <translation>以下网址种子对该torrent可用:</translation>
+        <source>The following url seeds are available for this 
+torrent:</source>
+        <translation type="obsolete">以下网址种子对该torrent可用:</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="671"/>
@@ -4369,8 +4671,39 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="671"/>
+        <source>Error, you can&apos;t filter all the files in a 
+torrent.</source>
+        <translation type="obsolete">错误,不能过滤torrent中的所有文件.</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="546"/>
+        <source>Download in correct order (slower but good for previewing)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="995"/>
+        <source>The following url seeds are available for this torrent:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="37"/>
+        <source>Normal: normal priority. Download order is dependent on availability</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="37"/>
+        <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="37"/>
+        <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties_imp.cpp" line="671"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
-        <translation>错误,不能过滤torrent中的所有文件.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4445,8 +4778,11 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../seeding.ui" line="47"/>
-        <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
-        <translation>&lt;u&gt;注释:&lt;/u&gt; 完成后继续共享torrents对网络的良好运作很重要.</translation>
+        <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep 
+sharing your torrents after they are finished for the well being of the 
+network.</source>
+        <translation type="obsolete">&lt;u&gt;注释:&lt;/u&gt; 
+完成后继续共享torrents对网络的良好运作很重要.</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="54"/>
@@ -4482,6 +4818,11 @@ However, those plugins were disabled.</source>
         <location filename="../seeding.ui" line="84"/>
         <source>Set upload limit</source>
         <translation>设定上传限制</translation>
+    </message>
+    <message>
+        <location filename="../seeding.ui" line="47"/>
+        <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4556,8 +4897,9 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="148"/>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>该文件不是torrent文件或已经损坏.</translation>
+        <source>This file is either corrupted or this isn&apos;t a 
+torrent.</source>
+        <translation type="obsolete">该文件不是torrent文件或已经损坏.</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="273"/>
@@ -4618,6 +4960,11 @@ However, those plugins were disabled.</source>
         <location filename="../torrentAddition.h" line="306"/>
         <source>Priority</source>
         <translation>优先</translation>
+    </message>
+    <message>
+        <location filename="../torrentAddition.h" line="148"/>
+        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
