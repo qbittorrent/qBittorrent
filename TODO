@@ -41,11 +41,14 @@
 - Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
 - Improve search plugin install (choose in a list taken from plugins.qbittorrent.org)
 - Display the number of DHT node if possible
+- Display in torrent addition dialog:
+   * free disk space on selected drive
+   * free disk space after torrent download (and/or torrent size)
 - Allow to change action on double-click
   -> in download list
   -> in seeding list
 
-// in v1.0.0 (partial) - WIP
+// in v1.0.0 - FEATURE FREEZE
 - Fix all (or almost all) opened bugs in bug tracker
 - Keep documention up to date
 - Windows port (Chris - Peerkoel)
