@@ -478,9 +478,9 @@ void properties::deleteSelectedUrlSeeds(){
 }
 
 void properties::deleteSelectedTrackers(){
+  QList<QListWidgetItem *> selectedItems = trackersURLS->selectedItems();
+  if(!selectedItems.size()) return;
   std::vector<announce_entry> trackers = h.trackers();
-  QList<QListWidgetItem *> selectedItems;
-  selectedItems = trackersURLS->selectedItems();
   QListWidgetItem *item;
   unsigned int nbTrackers = trackers.size();
   if(nbTrackers == (unsigned int) selectedItems.size()){
