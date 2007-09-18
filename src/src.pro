@@ -24,6 +24,8 @@ contains(DEBUG_MODE, 1){
 contains(DEBUG_MODE, 0){
   CONFIG -= debug
   CONFIG += release
+  # For libtorrent stuff
+  DEFINES += NDEBUG
   message(Release build!)
 }
 
