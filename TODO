@@ -19,6 +19,7 @@
 - Display the peers we are connected to for each torrent with infos (like flag, dl/up speeds, ...)
 - Azureus spoofing to prevent ban from trackers?
 - Option to shutdown computer when downloads are finished
+- NAT checker/Tester
 - Display hard drive space left?
 - Make use of dbus on Linux for the single instance instead of socket communication?
   (http://techbase.kde.org/Development/Tutorials/D-Bus/Accessing_Interfaces)
@@ -69,8 +70,8 @@ LANGUAGES UPDATED:
 - Hungarian *BETA6*
 - Italian *BETA6*
 - Polish *OK*
-- Portuguese *BETA5*
-- Brazilian *BETA5*
+- Portuguese *OK*
+- Brazilian *OK*
 - Spanish *BETA6*
 - German *OK*
 - Russian *OK*

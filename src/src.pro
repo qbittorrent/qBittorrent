@@ -24,10 +24,12 @@ contains(DEBUG_MODE, 1){
 contains(DEBUG_MODE, 0){
   CONFIG -= debug
   CONFIG += release
-  # For libtorrent stuff
-  DEFINES += NDEBUG
   message(Release build!)
 }
+
+# For libtorrent stuff
+# (comment this if you are using libtorrent with debug enabled)
+DEFINES += NDEBUG
 
 # Install
 
