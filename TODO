@@ -51,13 +51,9 @@
 
 // in v1.0.0 - FEATURE FREEZE
 - Fix all (or almost all) opened bugs in bug tracker
-- Keep documention up to date
-- Windows port (Chris - Peerkoel)
 - debug new torrent content selection
-- update doc for plugins (and add screenies)
-- update doc for options
+- Recheck doc
 - Translations update (IN PROGRESS)
-- Wait that http://pastebin.ca/690649 is fixed
 
 LANGUAGES UPDATED:
 - French *OK*
@@ -84,4 +80,5 @@ LANGUAGES UPDATED:
 beta7->rc1 changelog:
 - BUGFIX: Fixed overflow in ratio
 - BUGFIX: Added -DNDEBUG flag to fix compilation with libtorrent svn
+- I18N: Updated some translations
 - COSMETIC: Progress bar text now uses style foreground color
