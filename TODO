@@ -82,4 +82,6 @@ LANGUAGES UPDATED:
 - Bulgarian *BETA6*
 
 beta7->rc1 changelog:
+- BUGFIX: Fixed overflow in ratio
+- BUGFIX: Added -DNDEBUG flag to fix compilation with libtorrent svn
 - COSMETIC: Progress bar text now uses style foreground color

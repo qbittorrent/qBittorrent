@@ -749,7 +749,11 @@ void bittorrent::loadDownloadUploadForTorrent(QString hash) {
   QPair<size_type,size_type> downUp;
   downUp.first = (size_type)data_list.at(0).toLongLong();
   downUp.second = (size_type)data_list.at(1).toLongLong();
-  Q_ASSERT(downUp.first >= 0 && downUp.second >= 0);
+  if(downUp.first < 0 || downUp.second < 0) {
+    qDebug("** Overflow in ratio!!! fixing...");
+    downUp.first = 0;
+    downUp.second = 0;
+  }
   ratioData[hash] = downUp;
 }
 
