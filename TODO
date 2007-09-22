@@ -72,10 +72,10 @@ LANGUAGES UPDATED:
 - German *OK*
 - Russian *OK*
 - Korean *BETA6*
-- Greek *BETA6*
+- Greek *OK*
 - Dutch *OK*
 - Romanian *OK*
-- Bulgarian *BETA6*
+- Bulgarian *OK*
 
 beta7->rc1 changelog:
 - BUGFIX: Fixed overflow in ratio
