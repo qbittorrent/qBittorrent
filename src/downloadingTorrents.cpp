@@ -190,7 +190,8 @@ void DownloadingTorrents::setInfoBar(QString info, QColor color) {
     infoBar->clear();
     nbLines = 1;
   }
-  infoBar->append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color.rgb() +QString::fromUtf8("'><i>") + info + QString::fromUtf8("</i></font>"));
+  qDebug("Color is %s", color.name().toUtf8().data());
+  infoBar->append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color.name() +QString::fromUtf8("'><i>") + info + QString::fromUtf8("</i></font>"));
 }
 
 void DownloadingTorrents::addFastResumeRejectedAlert(QString name) {
