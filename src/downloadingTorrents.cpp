@@ -416,7 +416,7 @@ void DownloadingTorrents::updateDlList() {
           }else{
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-            setRowColor(row, QString::fromUtf8("black"));
+            setRowColor(row, QPalette::WindowText);
           }
           DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
           DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
@@ -683,5 +683,5 @@ int DownloadingTorrents::getRowFromHash(QString hash) const{
 }
 
 void DownloadingTorrents::displayDownloadingUrlInfos(QString url) {
-  setInfoBar(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(url), QString::fromUtf8("black"));
+  setInfoBar(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(url), QPalette::WindowText);
 }

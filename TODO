@@ -42,6 +42,7 @@
 - Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
 - Improve search plugin install (choose in a list taken from plugins.qbittorrent.org)
 - Display the number of DHT node if possible
+- When adding a duplicate torrent, check if the trackers are different from the existing one and ask the user if he wants to add them
 - Display in torrent addition dialog:
    * free disk space on selected drive
    * free disk space after torrent download (and/or torrent size)
@@ -68,7 +69,7 @@ LANGUAGES UPDATED:
 - Polish *OK*
 - Portuguese *OK*
 - Brazilian *OK*
-- Spanish *BETA6*
+- Spanish *OK*
 - German *OK*
 - Russian *OK*
 - Korean *BETA6*
@@ -81,4 +82,4 @@ beta7->rc1 changelog:
 - BUGFIX: Fixed overflow in ratio
 - BUGFIX: Added -DNDEBUG flag to fix compilation with libtorrent svn
 - I18N: Updated some translations
-- COSMETIC: Progress bar text now uses style foreground color
+- COSMETIC: Progress bar text now uses style's foreground color
