@@ -182,7 +182,7 @@ void DownloadingTorrents::deleteTorrent(QString hash) {
 }
 
 // Update Info Bar information
-void DownloadingTorrents::setInfoBar(QString info, QString color) {
+void DownloadingTorrents::setInfoBar(QString info, QColor color) {
   static unsigned int nbLines = 0;
   ++nbLines;
   // Check log size, clear it if too big
@@ -190,7 +190,7 @@ void DownloadingTorrents::setInfoBar(QString info, QString color) {
     infoBar->clear();
     nbLines = 1;
   }
-  infoBar->append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color +QString::fromUtf8("'><i>") + info + QString::fromUtf8("</i></font>"));
+  infoBar->append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color.rgb() +QString::fromUtf8("'><i>") + info + QString::fromUtf8("</i></font>"));
 }
 
 void DownloadingTorrents::addFastResumeRejectedAlert(QString name) {
@@ -663,10 +663,10 @@ void DownloadingTorrents::portListeningFailure() {
 }
 
 // Set the color of a row in data model
-void DownloadingTorrents::setRowColor(int row, QString color) {
+void DownloadingTorrents::setRowColor(int row, QColor color) {
   unsigned int nbColumns = DLListModel->columnCount()-1;
   for(unsigned int i=0; i<nbColumns; ++i) {
-    DLListModel->setData(DLListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
+    DLListModel->setData(DLListModel->index(row, i), QVariant(color), Qt::ForegroundRole);
   }
 }
 
