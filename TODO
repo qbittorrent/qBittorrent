@@ -81,5 +81,6 @@ LANGUAGES UPDATED:
 beta7->rc1 changelog:
 - BUGFIX: Fixed overflow in ratio
 - BUGFIX: Added -DNDEBUG flag to fix compilation with libtorrent svn
-- I18N: Updated some translations
-- COSMETIC: Progress bar text now uses style's foreground color
+- BUGFIX: Added a -DQT_NO_DEBUG_OUTPUT flag in debug mode to fix a bug in Qt4.3.x
+- I18N: Updated most translations
+- COSMETIC: foreground text now uses style's foreground color instead of hard-coded black.

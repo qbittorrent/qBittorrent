@@ -3,7 +3,7 @@ LANG_PATH = lang
 ICONS_PATH = Icons
 
 #Set the following variable to 1 to enable debug
-DEBUG_MODE = 1
+DEBUG_MODE = 0
 
 # Global
 TEMPLATE = app
@@ -11,7 +11,7 @@ TARGET = qbittorrent
 CONFIG += qt thread x11 network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v1.0.0beta7\\\"
+DEFINES += VERSION=\\\"v1.0.0rc1\\\"
 DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=0
 DEFINES += VERSION_BUGFIX=0
@@ -24,6 +24,7 @@ contains(DEBUG_MODE, 1){
 contains(DEBUG_MODE, 0){
   CONFIG -= debug
   CONFIG += release
+  DEFINES += QT_NO_DEBUG_OUTPUT
   message(Release build!)
 }
 
