@@ -78,9 +78,5 @@ LANGUAGES UPDATED:
 - Romanian *OK*
 - Bulgarian *OK*
 
-beta7->rc1 changelog:
-- BUGFIX: Fixed overflow in ratio
-- BUGFIX: Added -DNDEBUG flag to fix compilation with libtorrent svn
-- BUGFIX: Added a -DQT_NO_DEBUG_OUTPUT flag in debug mode to fix a bug in Qt4.3.x
-- I18N: Updated most translations
-- COSMETIC: foreground text now uses style's foreground color instead of hard-coded black.
+rc1->rc2 changelog:
+- BUGFIX: Fixed a unsupported character in man page
