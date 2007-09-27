@@ -45,7 +45,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
   Q_OBJECT
 
   signals:
-    void setInfoBarGUI(QString info, QString color);
+    void setInfoBarGUI(QString info, QColor color);
     void torrentAddition(QString filePath, bool fromScanDir, QString from_url);
 
   private:

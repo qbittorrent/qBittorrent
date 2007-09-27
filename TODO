@@ -65,18 +65,20 @@ LANGUAGES UPDATED:
 - Ukrainian *OK*
 - Chinese (simplified) *OK*
 - Hungarian *OK*
-- Italian *BETA6*
+- Italian *OK*
 - Polish *OK*
 - Portuguese *OK*
 - Brazilian *OK*
 - Spanish *OK*
 - German *OK*
 - Russian *OK*
-- Korean *BETA6*
+- Korean *OK*
 - Greek *OK*
 - Dutch *OK*
 - Romanian *OK*
 - Bulgarian *OK*
 
 rc1->rc2 changelog:
+- BUGFIX: Fixed infoBar text when adding a torrent
 - BUGFIX: Fixed a unsupported character in man page
+- I18N: Updated Italian and Korean translations

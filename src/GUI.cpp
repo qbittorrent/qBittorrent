@@ -743,7 +743,7 @@ void GUI::processParams(const QStringList& params) {
       if(useTorrentAdditionDialog) {
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
         connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-        connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), downloadingTorrentTab, SLOT(setInfoBar(QString, QString)));
+        connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
         dialog->showLoad(param);
       }else{
         BTSession->addTorrent(param);
@@ -764,7 +764,7 @@ void GUI::processScannedFiles(const QStringList& params) {
     if(useTorrentAdditionDialog) {
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
       connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-      connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), downloadingTorrentTab, SLOT(setInfoBar(QString, QString)));
+      connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
       dialog->showLoad(param, true);
     }else{
       BTSession->addTorrent(param, true);
@@ -778,7 +778,7 @@ void GUI::processDownloadedFiles(QString path, QString url) {
   if(useTorrentAdditionDialog) {
     torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
     connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-    connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), downloadingTorrentTab, SLOT(setInfoBar(QString, QString)));
+    connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
     dialog->showLoad(path, false, url);
   }else{
     BTSession->addTorrent(path, false, url);
