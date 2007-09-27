@@ -79,6 +79,7 @@ LANGUAGES UPDATED:
 - Bulgarian *OK*
 
 rc1->rc2 changelog:
+- BUGFIX: Fixed mininova search engine plugin
 - BUGFIX: Fixed infoBar text when adding a torrent
 - BUGFIX: Fixed a unsupported character in man page
 - I18N: Updated Italian and Korean translations
