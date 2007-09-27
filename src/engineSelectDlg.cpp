@@ -650,8 +650,8 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
   }
   if(url.endsWith(".pyqBT", Qt::CaseInsensitive) || url.endsWith(".py", Qt::CaseInsensitive)) {
     QString plugin_name = url.split('/').last();
-    plugin_name.replace(".py", "");
     plugin_name.replace(".pyqBT", "");
+    plugin_name.replace(".py", "");
     installPlugin(filePath, plugin_name);
     QFile::remove(filePath);
     return;
