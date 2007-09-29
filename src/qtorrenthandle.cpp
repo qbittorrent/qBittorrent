@@ -137,6 +137,9 @@ size_type QTorrentHandle::actual_size() const{
   }
   Q_ASSERT(size >= 0 && size <= h.get_torrent_info().total_size());
   return size;
+  // TODO: Wait until this bug is fixed in libtorrent
+  // http://code.rasterbar.com/libtorrent/ticket/144
+  //return h.status().total_wanted;
 }
 
 bool QTorrentHandle::has_filtered_pieces() const {

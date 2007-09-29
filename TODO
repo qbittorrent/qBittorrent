@@ -55,6 +55,7 @@
 - debug new torrent content selection
 - Recheck doc
 - Translations update (IN PROGRESS)
+- Make use of total_wanted
 
 rc2->rc3 changelog:
 - BUGFIX: Fixed compilation problem on FreeBSD
