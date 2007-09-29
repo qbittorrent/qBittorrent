@@ -21,28 +21,29 @@
 
 #include "downloadThread.h"
 #include <iostream>
+#include <cc++/common.h>
 
-QString subDownloadThread::errorCodeToString(ost::URLStream::Error status) {
+QString subDownloadThread::errorCodeToString(int status) {
   switch(status){
-    case ost::URLStream::errUnreachable:
+    case 1://ost::URLStream::errUnreachable:
       return tr("Host is unreachable");
-    case ost::URLStream::errMissing:
+    case 2://ost::URLStream::errMissing:
       return tr("File was not found (404)");
-    case ost::URLStream::errDenied:
+    case 3://ost::URLStream::errDenied:
       return tr("Connection was denied");
-    case ost::URLStream::errInvalid:
+    case 4://ost::URLStream::errInvalid:
       return tr("Url is invalid");
-    case ost::URLStream::errForbidden:
+    case 5://ost::URLStream::errForbidden:
       return tr("Connection forbidden (403)");
-    case ost::URLStream::errUnauthorized:
+    case 6://ost::URLStream::errUnauthorized:
       return tr("Connection was not authorized (401)");
-    case ost::URLStream::errRelocated:
+    case 7://ost::URLStream::errRelocated:
       return tr("Content has moved (301)");
-    case ost::URLStream::errFailure:
+    case 8://ost::URLStream::errFailure:
       return tr("Connection failure");
-    case ost::URLStream::errTimeout:
+    case 9://ost::URLStream::errTimeout:
       return tr("Connection was timed out");
-    case ost::URLStream::errInterface:
+    case 10://ost::URLStream::errInterface:
       return tr("Incorrect network interface");
     default:
       return tr("Unknown error");
@@ -75,7 +76,7 @@ void subDownloadThread::run(){
   ost::URLStream::Error status = url_stream->get((const char*)url.toUtf8());
   if(status){
       // Failure
-    QString error_msg = errorCodeToString(status);
+    QString error_msg = errorCodeToString((int)status);
     qDebug("Download failed for %s, reason: %s", (const char*)url.toUtf8(), (const char*)error_msg.toUtf8());
     url_stream->close();
     emit downloadFailureST(this, url, error_msg);

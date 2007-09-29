@@ -30,7 +30,9 @@
 #include <QWaitCondition>
 #include <QStringList>
 
-#include <cc++/common.h>
+namespace ost {
+  class URLStream;
+}
 
 class subDownloadThread : public QThread {
   Q_OBJECT
@@ -42,7 +44,7 @@ class subDownloadThread : public QThread {
   public:
     subDownloadThread(QObject *parent, QString url);
     ~subDownloadThread();
-    QString errorCodeToString(ost::URLStream::Error status);
+    QString errorCodeToString(int status);
 
   signals:
     // For subthreads
