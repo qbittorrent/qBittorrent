@@ -28,6 +28,7 @@
 #include <QStandardItemModel>
 #include <QMessageBox>
 #include <QTimer>
+#include <QString>
 
     // display a right-click menu
     void RSSImp::displayRSSListMenu(const QPoint& pos){
@@ -259,13 +260,13 @@
     void RSSImp::updateFeedNbNews(QString url){
       QTreeWidgetItem *item = getTreeItemFromUrl(url);
       RssStream *stream = rssmanager->getFeed(url);
-      item->setText(0, stream->getAliasOrUrl() + QString::fromUtf8("  (") + QString::number(stream->getNbUnRead(), 10)+ String(")"));
+      item->setText(0, stream->getAliasOrUrl() + QString::fromUtf8("  (") + QString::number(stream->getNbUnRead(), 10)+ QString(")"));
     }
 
     void RSSImp::updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnread){
       QTreeWidgetItem *item = getTreeItemFromUrl(url);
       RssStream *stream = rssmanager->getFeed(url);
-      item->setText(0, aliasOrUrl + QString::fromUtf8("  (") + QString::number(nbUnread, 10)+ String(")"));
+      item->setText(0, aliasOrUrl + QString::fromUtf8("  (") + QString::number(nbUnread, 10)+ QString(")"));
       item->setData(0,Qt::DecorationRole, QVariant(QIcon(stream->getIconPath())));
       item->setToolTip(0, QString::fromUtf8("<b>")+tr("Description:")+QString::fromUtf8("</b> ")+stream->getDescription()+QString::fromUtf8("<br/><b>")+tr("url:")+QString::fromUtf8("</b> ")+stream->getUrl()+QString::fromUtf8("<br/><b>")+tr("Last refresh:")+QString::fromUtf8("</b> ")+stream->getLastRefreshElapsedString());
       // If the feed is selected, update the displayed news

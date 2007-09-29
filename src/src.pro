@@ -159,5 +159,6 @@ SOURCES += GUI.cpp \
 	   FinishedTorrents.cpp \
            qtorrenthandle.cpp \
            downloadingTorrents.cpp \
-           engineSelectDlg.cpp
+           engineSelectDlg.cpp \
+           downloadThread.cpp
 

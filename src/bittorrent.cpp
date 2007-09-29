@@ -24,6 +24,11 @@
 #include <QString>
 #include <QTimer>
 
+#include "bittorrent.h"
+#include "misc.h"
+#include "downloadThread.h"
+#include "deleteThread.h"
+
 #include <libtorrent/extensions/metadata_transfer.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
 #include <libtorrent/entry.hpp>
@@ -33,11 +38,6 @@
 #include <libtorrent/ip_filter.hpp>
 #include <libtorrent/torrent_info.hpp>
 #include <boost/filesystem/exception.hpp>
-
-#include "bittorrent.h"
-#include "misc.h"
-#include "downloadThread.h"
-#include "deleteThread.h"
 
 #define ETAS_MAX_VALUES 3
 #define ETA_REFRESH_INTERVAL 10000
