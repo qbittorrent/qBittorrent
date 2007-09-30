@@ -923,7 +923,7 @@ bool options_imp::addTorrentsInPause() const {
 
 // Proxy settings
 bool options_imp::isProxyEnabled() const{
-  return (!comboProxyType->currentIndex());
+  return comboProxyType->currentIndex();
 }
 
 bool options_imp::isProxyAuthEnabled() const{

@@ -58,4 +58,5 @@
 - Make use of total_wanted
 
 rc2->rc3 changelog:
+- BUGFIX: Fixed a proxy problem causing connections to be rejected by trackers
 - BUGFIX: Fixed compilation problem on FreeBSD
