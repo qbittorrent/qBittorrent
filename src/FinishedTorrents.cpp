@@ -122,7 +122,8 @@ void FinishedTorrents::torrentAdded(QString, QTorrentHandle& h, bool) {
 
 // Set the color of a row in data model
 void FinishedTorrents::setRowColor(int row, QString color){
-  for(int i=0; i<finishedListModel->columnCount(); ++i){
+  unsigned int nbColumns = finishedListModel->columnCount()-1;
+  for(unsigned int i=0; i<nbColumns; ++i){
     finishedListModel->setData(finishedListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
   }
 }
@@ -209,6 +210,10 @@ void FinishedTorrents::updateFinishedList(){
     }
     Q_ASSERT(row != -1);
     if(h.is_paused()) continue;
+    if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) != -1) {
+      finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)h.progress()));
+      continue;
+    }
     if(h.state() == torrent_status::downloading || (h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking && h.progress() < 1.)) {
       // What are you doing here? go back to download tab!
       qDebug("Info: a torrent was moved from finished to download tab");
@@ -218,10 +223,8 @@ void FinishedTorrents::updateFinishedList(){
       continue;
     }
     if(h.state() == torrent_status::checking_files){
-      if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) == -1) {
-        finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
-        setRowColor(row, QString::fromUtf8("grey"));
-      }
+      finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
+      setRowColor(row, QString::fromUtf8("grey"));
       finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)h.progress()));
       continue;
     }
@@ -311,7 +314,7 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
   QSettings settings("qBittorrent", "qBittorrent");
-  QString previewProgram = settings.value("Options/Misc/PreviewProgram", QString()).toString();
+  QString previewProgram = settings.value("Preferences/general/MediaPlayer", QString()).toString();
   bool has_pause = false, has_start = false, has_preview = false;
   foreach(index, selectedIndexes) {
     if(index.column() == F_NAME) {

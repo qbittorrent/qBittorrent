@@ -69,6 +69,7 @@ public:
 		magickConfig.waitForStarted();
 		magickConfig.waitForFinished();
 		QByteArray result = magickConfig.readAll();
+		result = result.replace("\n", "");
 		conf->addLib(result.data());
 		conf->addDefine("HAVE_MAGICK");
 		return true;

@@ -1,0 +1,69 @@
+/*
+-----BEGIN QCMOD-----
+name: libzzip
+arg: with-libzzip-inc=[path], Path to libzzip++ include files
+arg: with-libzzip-lib=[path], Path to libzzip++ library files
+-----END QCMOD-----
+*/
+#include <QProcess>
+class qc_libzzip : public ConfObj
+{
+public:
+	qc_libzzip(Conf *c) : ConfObj(c) {}
+	QString name() const { return "Zzip library (libzzip)"; }
+	QString shortname() const { return "libzzip"; }
+	QString checkString() const {
+		if(!conf->getenv("QC_DISABLE_LIBZZIP").isEmpty())
+			return "";
+		return ConfObj::checkString();
+	}
+	bool exec(){
+		if(!conf->getenv("QC_DISABLE_LIBZZIP").isEmpty())
+			return false;
+		QString s;
+		s = conf->getenv("QC_WITH_LIBZZIP_INC");
+		if(!s.isEmpty()) {
+			if(!conf->checkHeader(s, "zzip/zzip.h")) {
+				return false;
+    			}
+		}else{
+			QStringList sl;
+			sl << "/usr/include";
+			sl << "/usr/local/include";
+			bool found = false;
+			foreach(s, sl){
+				if(conf->checkHeader(s, "zzip/zzip.h")){
+					found = true;
+					break;
+				}
+			}
+			if(!found)
+				return false;
+		}
+		conf->addIncludePath(s);
+
+		s = conf->getenv("QC_WITH_LIBZZIP_LIB");
+		if(!s.isEmpty()) {
+			if(!QFile::exists(s+QString("libzzip.so"))){
+                          return false;
+                        }
+		}else{
+			QStringList sl;
+			sl << "/usr/lib/";
+			sl << "/usr/local/lib/";
+			bool found = false;
+			foreach(s, sl){
+				if(QFile::exists(s+QString("libzzip.so"))){
+					found = true;
+					break;
+				}
+			}
+			if(!found)
+                         	return false;
+		}
+		conf->addLib(QString("-L") + s);
+		conf->addLib("-lzzip");
+		conf->addDefine("HAVE_ZZIP");
+		return true;
+	}
+};
