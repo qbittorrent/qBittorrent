@@ -129,17 +129,7 @@ QStringList QTorrentHandle::url_seeds() const {
 // get the size of the torrent without the filtered files
 size_type QTorrentHandle::actual_size() const{
   Q_ASSERT(h.is_valid());
-  size_type size = 0;
-  std::vector<int> piece_priorities = h.piece_priorities();
-  for(unsigned int i = 0; i<piece_priorities.size(); ++i) {
-    if(piece_priorities[i])
-      size += h.get_torrent_info().piece_size(i);
-  }
-  Q_ASSERT(size >= 0 && size <= h.get_torrent_info().total_size());
-  return size;
-  // TODO: Wait until this bug is fixed in libtorrent
-  // http://code.rasterbar.com/libtorrent/ticket/144
-  //return h.status().total_wanted;
+  return h.status().total_wanted;
 }
 
 bool QTorrentHandle::has_filtered_pieces() const {
