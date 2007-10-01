@@ -35,7 +35,6 @@
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/identify_client.hpp>
 #include <libtorrent/alert_types.hpp>
-#include <libtorrent/ip_filter.hpp>
 #include <libtorrent/torrent_info.hpp>
 #include <boost/filesystem/exception.hpp>
 

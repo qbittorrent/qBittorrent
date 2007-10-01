@@ -27,6 +27,7 @@
 #include <QStringList>
 
 #include <libtorrent/session.hpp>
+#include <libtorrent/ip_filter.hpp>
 #include "qtorrenthandle.h"
 
 using namespace libtorrent;

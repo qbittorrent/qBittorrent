@@ -565,7 +565,6 @@ void options_imp::loadOptions(){
     processFilterFile(textFilterPath->text());
   } else {
     enableFilter(0); // Disable
-    filterBox->setEnabled(false);
   }
   // End IP Filter
   settings.endGroup();

@@ -57,6 +57,6 @@
 - Translations update (IN PROGRESS)
 - Make use of total_wanted
 
-rc2->rc3 changelog:
-- BUGFIX: Fixed a proxy problem causing connections to be rejected by trackers
-- BUGFIX: Fixed compilation problem on FreeBSD
+rc3->rc4 changelog:
+- BUGFIX: Fixed ip filter preferences (couldn't enable it)
+- BUGFIX: Fixed a compilation problem on FreeBSD
