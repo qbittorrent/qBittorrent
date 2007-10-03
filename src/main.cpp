@@ -46,30 +46,28 @@
 
 void useStyle(QApplication *app, int style){
   switch(style) {
-    case 0:
+    case 1:
       app->setStyle(new QPlastiqueStyle());
       break;
-    case 1:
+    case 2:
       app->setStyle(new QCleanlooksStyle());
       break;
-    case 2:
+    case 3:
       app->setStyle(new QMotifStyle());
       break;
-    case 3:
+    case 4:
       app->setStyle(new QCDEStyle());
       break;
 #ifdef Q_WS_MAC
-    case 4:
+    case 5:
     app->setStyle(new QMacStyle());
     break;
 #endif
 #ifdef Q_WS_WIN
-    case 4:
+    case 6:
     app->setStyle(new QWindowsXPStyle());
     break;
 #endif
-    default:
-      app->setStyle(new QPlastiqueStyle());
   }
 }
 
@@ -123,7 +121,7 @@ int main(int argc, char *argv[]){
   }
   QApplication app(argc, argv);
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  useStyle(&app, settings.value("Preferences/General/Style", 4).toInt());
+  useStyle(&app, settings.value("Preferences/General/Style", 0).toInt());
   QSplashScreen *splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/splash.png")));
   splash->show();
   // Open options file to read locale

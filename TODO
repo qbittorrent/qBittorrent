@@ -55,9 +55,11 @@
 - debug new torrent content selection
 - Recheck doc
 - Translations update (IN PROGRESS)
+- add qt4-qtconfig as package dependency
 
 rc3->rc4 changelog:
 - BUGFIX: Fixed ip filter preferences (couldn't enable it)
 - BUGFIX: Fixed compilation problems on FreeBSD (Ok now)
 - BUGFIX: Updated INSTALL file
 - BUGFIX: Optimized torrent real size calculation
+- BUGFIX: Use system default style as a default (instead of Plastique style)

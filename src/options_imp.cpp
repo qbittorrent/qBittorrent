@@ -218,30 +218,28 @@ options_imp::~options_imp(){
 void options_imp::useStyle(){
   int style = getStyle();
   switch(style) {
-    case 0:
+    case 1:
       QApplication::setStyle(new QPlastiqueStyle());
       break;
-    case 1:
+    case 2:
       QApplication::setStyle(new QCleanlooksStyle());
       break;
-    case 2:
+    case 3:
       QApplication::setStyle(new QMotifStyle());
       break;
-    case 3:
+    case 4:
       QApplication::setStyle(new QCDEStyle());
       break;
 #ifdef Q_WS_MAC
-    case 4:
+    case 5:
     QApplication::setStyle(new QMacStyle());
     break;
 #endif
 #ifdef Q_WS_WIN
-    case 4:
+    case 6:
     QApplication::setStyle(new QWindowsXPStyle());
     break;
 #endif
-    default:
-      QApplication::setStyle(new QPlastiqueStyle());
   }
 }
 
@@ -395,9 +393,7 @@ void options_imp::loadOptions(){
   // General preferences
   settings.beginGroup("General");
   setLocale(settings.value(QString::fromUtf8("Locale"), "en_GB").toString());
-  // The following will select Windows style as default on Windows, MacOS style
-  // on MacOS and it will fallback to Plastique style on other systems
-  setStyle(settings.value(QString::fromUtf8("Style"), 4).toInt());
+  setStyle(settings.value(QString::fromUtf8("Style"), 0).toInt());
   checkConfirmExit->setChecked(settings.value(QString::fromUtf8("ExitConfirm"), true).toBool());
   checkSpeedInTitle->setChecked(settings.value(QString::fromUtf8("SpeedInTitleBar"), false).toBool());
   spinRefreshInterval->setValue(settings.value(QString::fromUtf8("RefreshInterval"), 1500).toInt());

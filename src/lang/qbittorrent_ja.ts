@@ -184,12 +184,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">最大接続数:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="582"/>
+        <location filename="../options.ui" line="587"/>
         <source>Port range:</source>
         <translation>ポートの範囲:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1633"/>
+        <location filename="../options.ui" line="1638"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -209,7 +209,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">プロキシ</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="790"/>
+        <location filename="../options.ui" line="795"/>
         <source>Proxy Settings</source>
         <translation>プロキシの設定</translation>
     </message>
@@ -219,12 +219,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">サーバー IP:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="837"/>
+        <location filename="../options.ui" line="842"/>
         <source>0.0.0.0</source>
         <translation>0.0.0.0</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="853"/>
+        <location filename="../options.ui" line="858"/>
         <source>Port:</source>
         <translation>ポート:</translation>
     </message>
@@ -234,7 +234,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">プロキシ サーバーは認証を必要とします</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="893"/>
+        <location filename="../options.ui" line="898"/>
         <source>Authentication</source>
         <translation>認証</translation>
     </message>
@@ -244,7 +244,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">ユーザー名:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="917"/>
+        <location filename="../options.ui" line="922"/>
         <source>Password:</source>
         <translation>パスワード:</translation>
     </message>
@@ -279,32 +279,32 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">共有率:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1465"/>
+        <location filename="../options.ui" line="1470"/>
         <source>Activate IP Filtering</source>
         <translation>IP フィルタをアクティブにする</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1444"/>
+        <location filename="../options.ui" line="1449"/>
         <source>Filter Settings</source>
         <translation>フィルタの設定</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1502"/>
+        <location filename="../options.ui" line="1507"/>
         <source>Start IP</source>
         <translation>開始 IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1507"/>
+        <location filename="../options.ui" line="1512"/>
         <source>End IP</source>
         <translation>最終 IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1512"/>
+        <location filename="../options.ui" line="1517"/>
         <source>Origin</source>
         <translation>オリジン</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1517"/>
+        <location filename="../options.ui" line="1522"/>
         <source>Comment</source>
         <translation>コメント</translation>
     </message>
@@ -319,12 +319,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">IP フィルタ</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1558"/>
+        <location filename="../options.ui" line="1563"/>
         <source> Add Range</source>
         <translation>(sp)範囲の追加</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1571"/>
+        <location filename="../options.ui" line="1576"/>
         <source> Remove Range</source>
         <translation>(sp)範囲の削除</translation>
     </message>
@@ -339,7 +339,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">ウィンドウの最小化時にシステムトレイへ移動する</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1432"/>
+        <location filename="../options.ui" line="1437"/>
         <source>Misc</source>
         <translation>他</translation>
     </message>
@@ -359,7 +359,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">動作</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="769"/>
+        <location filename="../options.ui" line="774"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -374,7 +374,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">KiB UP 最大。</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="307"/>
+        <location filename="../options.ui" line="312"/>
         <source>Preview program</source>
         <translation>プログラムのプレビュー</translation>
     </message>
@@ -449,7 +449,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">メイン ウィンドウが閉じられるときにシステムトレイへ移動する</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="561"/>
+        <location filename="../options.ui" line="566"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
@@ -509,7 +509,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">スタイル (外観)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="162"/>
+        <location filename="../options.ui" line="167"/>
         <source>Plastique style (KDE like)</source>
         <translation>プラスチック スタイル (KDE 風)</translation>
     </message>
@@ -524,7 +524,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Motif スタイル (既定の Unix システムでの Qt スタイル)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="177"/>
+        <location filename="../options.ui" line="182"/>
         <source>CDE style (Common Desktop Environment like)</source>
         <translation>CDE スタイル (Common Desktop Environment 風)</translation>
     </message>
@@ -559,37 +559,37 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">プロキシの種類:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="811"/>
+        <location filename="../options.ui" line="816"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="816"/>
+        <location filename="../options.ui" line="821"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="988"/>
+        <location filename="../options.ui" line="993"/>
         <source>Affected connections</source>
         <translation>影響された接続</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1000"/>
+        <location filename="../options.ui" line="1005"/>
         <source>Use proxy for connections to trackers</source>
         <translation>トラッカへの接続にプロキシを使用する</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1016"/>
+        <location filename="../options.ui" line="1021"/>
         <source>Use proxy for connections to regular peers</source>
         <translation>通常のピアへの接続にプロキシを使用する</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1032"/>
+        <location filename="../options.ui" line="1037"/>
         <source>Use proxy for connections to web seeds</source>
         <translation>Web シードへの接続にプロキシを使用する</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1048"/>
+        <location filename="../options.ui" line="1053"/>
         <source>Use proxy for DHT messages</source>
         <translation>DHT メッセージへの接続にプロキシを使用する</translation>
     </message>
@@ -604,17 +604,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">暗号化の状況:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1264"/>
+        <location filename="../options.ui" line="1269"/>
         <source>Enabled</source>
         <translation>有効</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1269"/>
+        <location filename="../options.ui" line="1274"/>
         <source>Forced</source>
         <translation>強制済み</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1274"/>
+        <location filename="../options.ui" line="1279"/>
         <source>Disabled</source>
         <translation>無効</translation>
     </message>
@@ -639,258 +639,263 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>視覚スタイル:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="167"/>
+        <location filename="../options.ui" line="172"/>
         <source>Cleanlooks style (Gnome like)</source>
         <translation>クリーンルック スタイル (Gnome 風)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="172"/>
+        <location filename="../options.ui" line="177"/>
         <source>Motif style (Unix like)</source>
         <translation>モチーフ スタイル (Unix 風)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="200"/>
+        <location filename="../options.ui" line="205"/>
         <source>Ask for confirmation on exit when download list is not empty</source>
         <translation>ダウンロードの一覧が空ではないときの終了時の確認を質問する</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="210"/>
+        <location filename="../options.ui" line="215"/>
         <source>Display current speed in title bar</source>
         <translation>タイトル バーに現在の速度を表示する</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="264"/>
+        <location filename="../options.ui" line="269"/>
         <source>System tray icon</source>
         <translation>システム トレイ アイコン</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="270"/>
+        <location filename="../options.ui" line="275"/>
         <source>Disable system tray icon</source>
         <translation>システム トレイ アイコンを無効にする</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="277"/>
+        <location filename="../options.ui" line="282"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation>トレイへ閉じる</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="284"/>
+        <location filename="../options.ui" line="289"/>
         <source>Minimize to tray</source>
         <translation>トレイへ最小化する</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="294"/>
+        <location filename="../options.ui" line="299"/>
         <source>Show notification balloons in tray</source>
         <translation>トレイに通知バルーンを表示する</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="330"/>
+        <location filename="../options.ui" line="335"/>
         <source>Media player:</source>
         <translation>メディア プレーヤー:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="366"/>
+        <location filename="../options.ui" line="371"/>
         <source>Downloads</source>
         <translation>ダウンロード</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="381"/>
+        <location filename="../options.ui" line="386"/>
         <source>Put downloads in this folder:</source>
         <translation>このフォルダにダウンロードを置く:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="440"/>
+        <location filename="../options.ui" line="445"/>
         <source>Pre-allocate all files</source>
         <translation>すべてのファイルを前割り当てする</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="450"/>
+        <location filename="../options.ui" line="455"/>
         <source>When adding a torrent</source>
         <translation>Torrent の追加時</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="456"/>
+        <location filename="../options.ui" line="461"/>
         <source>Display torrent content and some options</source>
         <translation>Torrent の内容といくつかのオプションを表示する</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="466"/>
+        <location filename="../options.ui" line="471"/>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>自動的にダウンロードを開始しない</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="476"/>
+        <location filename="../options.ui" line="481"/>
         <source>Folder watching</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
         <translation>フォルダの監視</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="482"/>
+        <location filename="../options.ui" line="487"/>
         <source>Automatically download torrents present in this folder:</source>
         <translation>このフォルダに torrent プリセットを自動的にダウンロードする:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="574"/>
+        <location filename="../options.ui" line="579"/>
         <source>Listening port</source>
         <translation>傾聴するポート</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="602"/>
+        <location filename="../options.ui" line="607"/>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
         <translation>から</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="640"/>
+        <location filename="../options.ui" line="645"/>
         <source>Enable UPnP port mapping</source>
         <translation>UPnP ポート マップを有効にする</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="650"/>
+        <location filename="../options.ui" line="655"/>
         <source>Enable NAT-PMP port mapping</source>
         <translation>NAT-PMP ポート マップを有効にする</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="663"/>
+        <location filename="../options.ui" line="668"/>
         <source>Global bandwidth limiting</source>
         <translation>グローバル大域幅制限</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="679"/>
+        <location filename="../options.ui" line="684"/>
         <source>Upload:</source>
         <translation>アップロード:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="695"/>
+        <location filename="../options.ui" line="700"/>
         <source>Download:</source>
         <translation>ダウンロード:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="798"/>
+        <location filename="../options.ui" line="803"/>
         <source>Type:</source>
         <translation>種類:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="806"/>
+        <location filename="../options.ui" line="811"/>
         <source>(None)</source>
         <translation>(なし)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="827"/>
+        <location filename="../options.ui" line="832"/>
         <source>Proxy:</source>
         <translation>プロキシ:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="907"/>
+        <location filename="../options.ui" line="912"/>
         <source>Username:</source>
         <translation>ユーザー名:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1065"/>
+        <location filename="../options.ui" line="1070"/>
         <source>Bittorrent</source>
         <translation>Bittorrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1074"/>
+        <location filename="../options.ui" line="1079"/>
         <source>Connections limit</source>
         <translation>接続制限</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1082"/>
+        <location filename="../options.ui" line="1087"/>
         <source>Global maximum number of connections:</source>
         <translation>グローバル最大接続数:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1130"/>
+        <location filename="../options.ui" line="1135"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Torrent あたりの最大接続数:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1175"/>
+        <location filename="../options.ui" line="1180"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Torrent あたりの最大アップロード スロット数:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1218"/>
+        <location filename="../options.ui" line="1223"/>
         <source>Additional Bittorrent features</source>
         <translation>Bittorrent の追加機能</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1224"/>
+        <location filename="../options.ui" line="1229"/>
         <source>Enable DHT network (decentralized)</source>
         <translation>DHT ネットワーク (分散) を有効にする</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1234"/>
+        <location filename="../options.ui" line="1239"/>
         <source>Enable Peer eXchange (PeX)</source>
         <translation>Peer eXchange (PeX) を有効にする</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1244"/>
+        <location filename="../options.ui" line="1249"/>
         <source>Enable Local Peer Discovery</source>
         <translation>ローカル ピア ディスカバリを有効にする</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1256"/>
+        <location filename="../options.ui" line="1261"/>
         <source>Encryption:</source>
         <translation>暗号化:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1300"/>
+        <location filename="../options.ui" line="1305"/>
         <source>Share ratio settings</source>
         <translation>共有率の設定</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1315"/>
+        <location filename="../options.ui" line="1320"/>
         <source>Desired ratio:</source>
         <translation>希望率:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1616"/>
+        <location filename="../options.ui" line="1621"/>
         <source>Filter file path:</source>
         <translation>フィルタのファイル パス:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="219"/>
+        <location filename="../options.ui" line="224"/>
         <source>transfer lists refresh interval:</source>
         <translation>転送の一覧の更新の間隔:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="239"/>
+        <location filename="../options.ui" line="244"/>
         <source>ms</source>
         <translation>ms</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1645"/>
+        <location filename="../options.ui" line="1650"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1682"/>
+        <location filename="../options.ui" line="1687"/>
         <source>RSS feeds refresh interval:</source>
         <translation>RSS フィードの更新の間隔:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1702"/>
+        <location filename="../options.ui" line="1707"/>
         <source>minutes</source>
         <translation>分</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1726"/>
+        <location filename="../options.ui" line="1731"/>
         <source>Maximum number of articles per feed:</source>
         <translation>フィードあたりの最大記事数:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="375"/>
+        <location filename="../options.ui" line="380"/>
         <source>File system</source>
         <translation>ファイル システム</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1377"/>
+        <location filename="../options.ui" line="1382"/>
         <source>Remove finished torrents when their ratio reaches:</source>
         <translation>率の達成時に完了済み torrent を削除する:</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="162"/>
+        <source>System default</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1916,22 +1921,22 @@ qBittorrent を終了してもよろしいですか?</translation>
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="163"/>
+        <location filename="../rss_imp.cpp" line="164"/>
         <source>Please type a rss stream url</source>
         <translation>rss ストリームの url を入力してください</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="163"/>
+        <location filename="../rss_imp.cpp" line="164"/>
         <source>Stream URL:</source>
         <translation>ストリームの URL:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="103"/>
+        <location filename="../rss_imp.cpp" line="104"/>
         <source>Please choose a new name for this stream</source>
         <translation>このストリームの新しい名前を選択してください</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="103"/>
+        <location filename="../rss_imp.cpp" line="104"/>
         <source>New stream name:</source>
         <translation>新しいストリーム名:</translation>
     </message>
@@ -1941,7 +1946,7 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">利用可能な説明がありません</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="60"/>
+        <location filename="../rss_imp.cpp" line="61"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>よろしいですか? -- qBittorrent</translation>
     </message>
@@ -1951,12 +1956,12 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">一覧からこのストリームを削除してもよろしいですか ?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="61"/>
+        <location filename="../rss_imp.cpp" line="62"/>
         <source>&amp;Yes</source>
         <translation>はい(&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="61"/>
+        <location filename="../rss_imp.cpp" line="62"/>
         <source>&amp;No</source>
         <translation>いいえ(&amp;N)</translation>
     </message>
@@ -1966,42 +1971,42 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">更新なし</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="60"/>
+        <location filename="../rss_imp.cpp" line="61"/>
         <source>Are you sure you want to delete this stream from the list?</source>
         <translation>一覧からこのストリームを削除してもよろしいですか ?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="270"/>
+        <location filename="../rss_imp.cpp" line="271"/>
         <source>Description:</source>
         <translation>説明:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="270"/>
+        <location filename="../rss_imp.cpp" line="271"/>
         <source>url:</source>
         <translation>url:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="270"/>
+        <location filename="../rss_imp.cpp" line="271"/>
         <source>Last refresh:</source>
         <translation>最後の更新:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="170"/>
+        <location filename="../rss_imp.cpp" line="171"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="171"/>
+        <location filename="../rss_imp.cpp" line="172"/>
         <source>This rss feed is already in the list.</source>
         <translation>この rss フィードはすでに一覧にあります。</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="228"/>
+        <location filename="../rss_imp.cpp" line="229"/>
         <source>Date: </source>
         <translation>日付: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="231"/>
+        <location filename="../rss_imp.cpp" line="232"/>
         <source>Author: </source>
         <translation>作者: </translation>
     </message>
@@ -3096,32 +3101,32 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="1138"/>
+        <location filename="../options_imp.cpp" line="1133"/>
         <source>Range Start IP</source>
         <translation>範囲の開始 IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1139"/>
+        <location filename="../options_imp.cpp" line="1134"/>
         <source>Start IP:</source>
         <translation>開始 IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1162"/>
+        <location filename="../options_imp.cpp" line="1157"/>
         <source>Range End IP</source>
         <translation>範囲の最終 IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1163"/>
+        <location filename="../options_imp.cpp" line="1158"/>
         <source>End IP:</source>
         <translation>最終 IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1177"/>
+        <location filename="../options_imp.cpp" line="1172"/>
         <source>IP Range Comment</source>
         <translation>IP 範囲のコメント</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1178"/>
+        <location filename="../options_imp.cpp" line="1173"/>
         <source>Comment:</source>
         <translation>コメント:</translation>
     </message>
@@ -3132,48 +3137,48 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">から</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1004"/>
+        <location filename="../options_imp.cpp" line="999"/>
         <source>Choose your favourite preview program</source>
         <translation>お気に入りのプレビュー プログラムを選択します</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1172"/>
+        <location filename="../options_imp.cpp" line="1167"/>
         <source>Invalid IP</source>
         <translation>不正な IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1172"/>
+        <location filename="../options_imp.cpp" line="1167"/>
         <source>This IP is invalid.</source>
         <translation>この IP は不正です。</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="730"/>
+        <location filename="../options_imp.cpp" line="725"/>
         <source>Options were saved successfully.</source>
         <translation>オプションの保存に成功しました。</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="989"/>
+        <location filename="../options_imp.cpp" line="984"/>
         <source>Choose scan directory</source>
         <translation>スキャンするディレクトリを選択します</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="996"/>
+        <location filename="../options_imp.cpp" line="991"/>
         <source>Choose an ipfilter.dat file</source>
         <translation>ipfilter.dat ファイルを選択します</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1012"/>
+        <location filename="../options_imp.cpp" line="1007"/>
         <source>Choose a save directory</source>
         <translation>保存ディレクトリを選択します</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1044"/>
+        <location filename="../options_imp.cpp" line="1039"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>I/O エラー</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1044"/>
+        <location filename="../options_imp.cpp" line="1039"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>読み込みモードで %1 を開くことができませんでした。</translation>
     </message>
@@ -3651,57 +3656,57 @@ However, those plugins were disabled.</source>
 <context>
     <name>subDownloadThread</name>
     <message>
-        <location filename="../downloadThread.h" line="58"/>
+        <location filename="../downloadThread.cpp" line="29"/>
         <source>Host is unreachable</source>
         <translation>ホストは達成できません</translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="60"/>
+        <location filename="../downloadThread.cpp" line="31"/>
         <source>File was not found (404)</source>
         <translation>ファイルは見つかりませんでした (404)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="62"/>
+        <location filename="../downloadThread.cpp" line="33"/>
         <source>Connection was denied</source>
         <translation>接続は拒否されました</translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="64"/>
+        <location filename="../downloadThread.cpp" line="35"/>
         <source>Url is invalid</source>
         <translation>Url は不正です</translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="66"/>
+        <location filename="../downloadThread.cpp" line="37"/>
         <source>Connection forbidden (403)</source>
         <translation>接続が禁止されました (403)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="68"/>
+        <location filename="../downloadThread.cpp" line="39"/>
         <source>Connection was not authorized (401)</source>
         <translation>接続は権限を許可されませんでした (401)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="70"/>
+        <location filename="../downloadThread.cpp" line="41"/>
         <source>Content has moved (301)</source>
         <translation>内容は移動しました (301)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="72"/>
+        <location filename="../downloadThread.cpp" line="43"/>
         <source>Connection failure</source>
         <translation>接続失敗</translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="74"/>
+        <location filename="../downloadThread.cpp" line="45"/>
         <source>Connection was timed out</source>
         <translation>接続はタイムアウトしました</translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="76"/>
+        <location filename="../downloadThread.cpp" line="47"/>
         <source>Incorrect network interface</source>
         <translation>不正確なネットワーク インターフェイスです</translation>
     </message>
     <message>
-        <location filename="../downloadThread.h" line="78"/>
+        <location filename="../downloadThread.cpp" line="49"/>
         <source>Unknown error</source>
         <translation>不明なエラーです</translation>
     </message>

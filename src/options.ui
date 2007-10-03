@@ -159,6 +159,11 @@
              <widget class="QComboBox" name="comboStyle" >
               <item>
                <property name="text" >
+                <string>System default</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
                 <string>Plastique style (KDE like)</string>
                </property>
               </item>
