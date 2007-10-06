@@ -24,6 +24,7 @@
 
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/torrent_info.hpp>
+
 using namespace libtorrent;
 
 class QString;
@@ -96,6 +97,7 @@ class QTorrentHandle {
     void remove_url_seed(QString seed);
     void add_url_seed(QString seed);
     void set_max_uploads(int val);
+    void set_max_connections(int val);
     void prioritize_files(std::vector<int> v);
     void set_ratio(float ratio) const;
     void replace_trackers(std::vector<announce_entry> const&) const;

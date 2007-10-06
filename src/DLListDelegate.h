@@ -86,7 +86,8 @@ class DLListDelegate: public QItemDelegate {
           newopt.textVisible = false;
           QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt,
           painter);
-          painter->setPen(QColor("Black"));
+          QPalette::ColorGroup cg = opt.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
+          painter->setPen(opt.palette.color(cg, QPalette::WindowText));
           painter->drawText(opt.rect, Qt::AlignCenter, newopt.text);
           break;
         }

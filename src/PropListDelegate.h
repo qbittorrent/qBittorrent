@@ -38,6 +38,7 @@
 #define SIZE 1
 #define PROGRESS 2
 #define PRIORITY 3
+#define INDEX 4
 
 #define IGNORED 0
 #define NORMAL 1
@@ -76,7 +77,8 @@ class PropListDelegate: public QItemDelegate {
           newopt.state |= QStyle::State_Enabled;
           newopt.textVisible = false;
           QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
-          painter->setPen(QColor("Black"));
+          QPalette::ColorGroup cg = opt.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
+          painter->setPen(opt.palette.color(cg, QPalette::WindowText));
           painter->drawText(opt.rect, Qt::AlignCenter, newopt.text);
           break;
         }
@@ -115,7 +117,6 @@ class PropListDelegate: public QItemDelegate {
 
     QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &/* option */, const QModelIndex & index) const {
       if(index.column() != PRIORITY) return 0;
-      if(onlyOneItem(index)) return 0;
       QComboBox* editor = new QComboBox(parent);
       editor->setFocusPolicy(Qt::StrongFocus);
       editor->addItem(tr("Ignored"));
@@ -128,6 +129,7 @@ class PropListDelegate: public QItemDelegate {
     void setEditorData(QWidget *editor, const QModelIndex &index) const {
       unsigned short val = index.model()->data(index, Qt::DisplayRole).toInt();
       QComboBox *combobox = static_cast<QComboBox*>(editor);
+      qDebug("Set Editor data: Prio is %d", val);
       switch(val){
         case IGNORED:
           combobox->setCurrentIndex(0);
@@ -156,28 +158,11 @@ class PropListDelegate: public QItemDelegate {
       return textRect.size();
     }
 
-    bool onlyOneItem(const QModelIndex& index) const  {
-      const QAbstractItemModel *model = index.model();
-      unsigned int nbRows = model->rowCount();
-      if(nbRows == 1) return true;
-      for(unsigned int i=0; i<nbRows; ++i){
-        if((unsigned int)index.row() == i) continue;
-        if(model->data(model->index(i, PRIORITY)).toInt()) return false;
-      }
-      return true;
-    }
-
     public slots:
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const {
       QComboBox *combobox = static_cast<QComboBox*>(editor);
       int value = combobox->currentIndex();
       qDebug("Setting combobox value in index: %d", value);
-      QString color;
-      if(value) {
-        color = QString::fromUtf8("green");
-      } else {
-        color = QString::fromUtf8("red");
-      }
       unsigned short old_val = index.model()->data(index, Qt::DisplayRole).toInt();
       switch(value){
         case 0:
@@ -185,6 +170,10 @@ class PropListDelegate: public QItemDelegate {
             model->setData(index, QVariant(IGNORED));
             if(filteredFilesChanged != 0)
               *filteredFilesChanged = true;
+          } else {
+            // XXX: hack to force the model to send the itemChanged() signal
+            model->setData(index, QVariant(NORMAL));
+            model->setData(index, QVariant(IGNORED));
           }
           break;
         case 1:
@@ -192,6 +181,9 @@ class PropListDelegate: public QItemDelegate {
             model->setData(index, QVariant(NORMAL));
             if(filteredFilesChanged != 0)
               *filteredFilesChanged = true;
+          } else {
+            model->setData(index, QVariant(HIGH));
+            model->setData(index, QVariant(NORMAL));
           }
           break;
         case 2:
@@ -199,6 +191,9 @@ class PropListDelegate: public QItemDelegate {
             model->setData(index, QVariant(HIGH));
             if(filteredFilesChanged != 0)
               *filteredFilesChanged = true;
+          } else {
+            model->setData(index, QVariant(NORMAL));
+            model->setData(index, QVariant(HIGH));
           }
           break;
         case 3:
@@ -206,6 +201,9 @@ class PropListDelegate: public QItemDelegate {
             model->setData(index, QVariant(MAXIMUM));
             if(filteredFilesChanged != 0)
               *filteredFilesChanged = true;
+          } else {
+            model->setData(index, QVariant(HIGH));
+            model->setData(index, QVariant(MAXIMUM));
           }
           break;
         default:
@@ -213,16 +211,17 @@ class PropListDelegate: public QItemDelegate {
             model->setData(index, QVariant(NORMAL));
             if(filteredFilesChanged != 0)
               *filteredFilesChanged = true;
+          } else {
+            model->setData(index, QVariant(HIGH));
+            model->setData(index, QVariant(NORMAL));
           }
-      }
-      for(int i=0; i<model->columnCount(); ++i){
-        model->setData(model->index(index.row(), i), QVariant(QColor(color)), Qt::ForegroundRole);
       }
     }
 
     void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &/* index */) const {
       editor->setGeometry(option.rect);
     }
+
 };
 
 #endif

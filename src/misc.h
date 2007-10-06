@@ -34,7 +34,6 @@
 #include <QThread>
 
 #include <libtorrent/torrent_info.hpp>
-#include "qtorrenthandle.h"
 using namespace libtorrent;
 
 /*  Miscellaneaous functions that can be useful */
@@ -205,60 +204,6 @@ class misc : public QObject{
 //       return true;
 //     }
 
-    // safe function to remove a torrent from hard-drive
-    static bool removeTorrentSavePath(QString savePath, QStringList filesPath) {
-      bool success = true;
-      QDir saveDir(savePath);
-      QString path;
-      // Check how many file there are
-      if(filesPath.size() == 1){
-        // Only one file, not in a folder
-        path = filesPath.first();
-        if(QFile::exists(path)) {
-          if(QFile::remove(path)){
-            qDebug("Deleted only file in torrent at %s", path.toUtf8().data());
-          } else {
-            std::cerr << "Could not delete only file in torrent at " << path.toUtf8().data() << '\n';
-            success = false;
-          }
-        }else{
-          // File didn't exist, nothing to do
-          qDebug("Only file %s did not exist, nothing to delete", path.toUtf8().data());
-        }
-        // Try to remove parent folder if empty (and not save_dir)
-        QFileInfo fi(path);
-        QDir parentFolder = fi.absoluteDir();
-        while(parentFolder != saveDir) {
-          qDebug("trying to remove parent folder: %s", parentFolder.absolutePath().toUtf8().data());
-          if(!saveDir.rmdir(parentFolder.absolutePath())) break;
-          parentFolder.cdUp();
-        }
-        return success;
-      }
-      // Torrent has several files in a subFolder
-      foreach(path, filesPath) {
-        if(QFile::exists(path)) {
-          if(QFile::remove(path)){
-            qDebug("Deleted file in torrent at %s", path.toUtf8().data());
-          } else {
-            std::cerr << "Could not delete file in torrent at " << path.toUtf8().data() << '\n';
-            success = false;
-          }
-        } else {
-          qDebug("File %s did not exist, nothing to delete", path.toUtf8().data());
-        }
-        // Try to remove parent folder if empty (and not save_dir)
-        QFileInfo fi(path);
-        QDir parentFolder = fi.absoluteDir();
-        while(parentFolder != saveDir) {
-          qDebug("trying to remove parent folder: %s", parentFolder.absolutePath().toUtf8().data());
-          if(!saveDir.rmdir(parentFolder.absolutePath())) break;
-          parentFolder.cdUp();
-        }
-      }
-      return success;
-    }
-
     static QString findFileInDir(QString dir_path, QString fileName) {
       QDir dir(dir_path);
       if(dir.exists(fileName)) {
@@ -328,10 +273,34 @@ class misc : public QObject{
       list.insert(i, value);
     }
 
+    static float getPluginVersion(QString filePath) {
+      QFile plugin(filePath);
+      if(!plugin.exists()){
+        qDebug("%s plugin does not exist, returning 0.0", filePath.toUtf8().data());
+        return 0.0;
+      }
+      if(!plugin.open(QIODevice::ReadOnly | QIODevice::Text)){
+        return 0.0;
+      }
+      float version = 0.0;
+      while (!plugin.atEnd()){
+        QByteArray line = plugin.readLine();
+        if(line.startsWith("#VERSION: ")){
+          line = line.split(' ').last();
+          line.replace("\n", "");
+          version = line.toFloat();
+          qDebug("plugin %s version: %.2f", filePath.toUtf8().data(), version);
+          break;
+        }
+      }
+      return version;
+    }
+
     // Take a number of seconds and return an user-friendly
     // time duration like "1d 2h 10m".
     static QString userFriendlyDuration(qlonglong seconds) {
       if(seconds < 0 or seconds > 8640000) {
+        // We display unkown if seconds > 100 days
         return tr("Unknown");
       }
       int level = 0;

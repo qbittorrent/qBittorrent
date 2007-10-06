@@ -44,33 +44,31 @@
 #include "GUI.h"
 #include "misc.h"
 
-void useStyle(QApplication *app, QString style){
-  std::cout << "* Style: Using " << style.toStdString()  << " style\n";
-  if(style == QString::fromUtf8("Cleanlooks")){
-    app->setStyle(new QCleanlooksStyle());
-    return;
-  }
-  if(style == QString::fromUtf8("Motif")){
-    app->setStyle(new QMotifStyle());
-    return;
-  }
-  if(style == QString::fromUtf8("CDE")){
-    app->setStyle(new QCDEStyle());
-    return;
-  }
+void useStyle(QApplication *app, int style){
+  switch(style) {
+    case 1:
+      app->setStyle(new QPlastiqueStyle());
+      break;
+    case 2:
+      app->setStyle(new QCleanlooksStyle());
+      break;
+    case 3:
+      app->setStyle(new QMotifStyle());
+      break;
+    case 4:
+      app->setStyle(new QCDEStyle());
+      break;
 #ifdef Q_WS_MAC
-  if(style == QString::fromUtf8("MacOS")){
+    case 5:
     app->setStyle(new QMacStyle());
-    return;
-  }
+    break;
 #endif
 #ifdef Q_WS_WIN
-  if(style == QString::fromUtf8("WinXP")){
+    case 6:
     app->setStyle(new QWindowsXPStyle());
-    return;
-  }
+    break;
 #endif
-  app->setStyle(new QPlastiqueStyle());
+  }
 }
 
 // Main
@@ -123,27 +121,15 @@ int main(int argc, char *argv[]){
   }
   QApplication app(argc, argv);
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QString style;
-#ifdef Q_WS_WIN
-  style = settings.value(QString::fromUtf8("Options/Style"), QString::fromUtf8("WinXP")).toString();
-#endif
-#ifdef Q_WS_MAC
-  style = settings.value(QString::fromUtf8("Options/Style"), QString::fromUtf8("MacOS")).toString();
-#endif
-#ifndef Q_WS_WIN
-  #ifndef Q_WS_MAC
-  style = settings.value(QString::fromUtf8("Options/Style"), QString::fromUtf8("Plastique")).toString();
-  #endif
-#endif
-  useStyle(&app, style);
+  useStyle(&app, settings.value("Preferences/General/Style", 0).toInt());
   QSplashScreen *splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/splash.png")));
   splash->show();
   // Open options file to read locale
-  locale = settings.value(QString::fromUtf8("Options/Language/Locale"), QString()).toString();
+  locale = settings.value(QString::fromUtf8("Preferences/General/Locale"), QString()).toString();
   QTranslator translator;
   if(locale.isEmpty()){
     locale = QLocale::system().name();
-    settings.setValue(QString::fromUtf8("Options/Language/Locale"), locale);
+    settings.setValue(QString::fromUtf8("Preferences/General/Locale"), locale);
   }
   if(translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
     qDebug("%s locale recognized, using translation.", (const char*)locale.toUtf8());

@@ -27,6 +27,7 @@
 #include <QStringList>
 
 #include <libtorrent/session.hpp>
+#include <libtorrent/ip_filter.hpp>
 #include "qtorrenthandle.h"
 
 using namespace libtorrent;
@@ -57,6 +58,11 @@ class bittorrent : public QObject{
     QStringList waitingForPause;
     QStringList finishedTorrents;
     QStringList unfinishedTorrents;
+    bool preAllocateAll;
+    bool addInPause;
+    int maxConnecsPerTorrent;
+    int maxUploadsPerTorrent;
+    float max_ratio;
 
   protected:
     QString getSavePath(QString hash);
@@ -90,9 +96,8 @@ class bittorrent : public QObject{
     void deleteTorrent(QString hash, bool permanent = false);
     bool pauseTorrent(QString hash);
     bool resumeTorrent(QString hash);
-    void enableDHT();
-    void disableDHT();
     void saveDHTEntry();
+    void preAllocateAllFiles(bool b);
     void saveFastResumeAndRatioData();
     void enableDirectoryScanning(QString scan_dir);
     void disableDirectoryScanning();
@@ -111,12 +116,16 @@ class bittorrent : public QObject{
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
     void setMaxConnections(int maxConnec);
+    void setMaxConnectionsPerTorrent(int max);
+    void setMaxUploadsPerTorrent(int max);
     void setDownloadRateLimit(long rate);
     void setUploadRateLimit(long rate);
     void setGlobalRatio(float ratio);
+    void setDeleteRatio(float ratio);
     void setDHTPort(int dht_port);
     void setProxySettings(proxy_settings proxySettings, bool trackers=true, bool peers=true, bool web_seeds=true, bool dht=true);
     void setSessionSettings(session_settings sessionSettings);
+    void startTorrentsInPause(bool b);
     void setDefaultSavePath(QString savepath);
     void applyEncryptionSettings(pe_settings se);
     void loadFilesPriorities(QTorrentHandle& h);
@@ -124,6 +133,10 @@ class bittorrent : public QObject{
     void setUploadLimit(QString hash, long val);
     void setUnfinishedTorrent(QString hash);
     void setFinishedTorrent(QString hash);
+    void enableUPnP(bool b);
+    void enableNATPMP(bool b);
+    void enableLSD(bool b);
+    void enableDHT(bool b);
 
   protected slots:
     void scanDirectory();
@@ -132,6 +145,7 @@ class bittorrent : public QObject{
     bool loadTrackerFile(QString hash);
     void saveTrackerFile(QString hash);
     void reloadTorrent(const QTorrentHandle &h); // This is protected now, call pauseAndReloadTorrent() instead
+    void deleteBigRatios();
 
   signals:
     void invalidTorrent(QString path);
@@ -151,7 +165,7 @@ class bittorrent : public QObject{
     void fastResumeDataRejected(QString name);
     void urlSeedProblem(QString url, QString msg);
     void torrentFinishedChecking(QString hash);
-
+    void torrent_deleted(QString hash, QString fileName, bool finished);
 };
 
 #endif

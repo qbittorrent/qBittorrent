@@ -182,7 +182,7 @@ void DownloadingTorrents::deleteTorrent(QString hash) {
 }
 
 // Update Info Bar information
-void DownloadingTorrents::setInfoBar(QString info, QString color) {
+void DownloadingTorrents::setInfoBar(QString info, QColor color) {
   static unsigned int nbLines = 0;
   ++nbLines;
   // Check log size, clear it if too big
@@ -190,7 +190,8 @@ void DownloadingTorrents::setInfoBar(QString info, QString color) {
     infoBar->clear();
     nbLines = 1;
   }
-  infoBar->append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color +QString::fromUtf8("'><i>") + info + QString::fromUtf8("</i></font>"));
+  qDebug("Color is %s", color.name().toUtf8().data());
+  infoBar->append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color.name() +QString::fromUtf8("'><i>") + info + QString::fromUtf8("</i></font>"));
 }
 
 void DownloadingTorrents::addFastResumeRejectedAlert(QString name) {
@@ -246,7 +247,7 @@ void DownloadingTorrents::displayDLListMenu(const QPoint& pos) {
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QString previewProgram = settings.value(QString::fromUtf8("Options/Misc/PreviewProgram"), QString()).toString();
+  QString previewProgram = settings.value(QString::fromUtf8("Preferences/general/MediaPlayer"), QString()).toString();
   bool has_pause = false, has_start = false, has_preview = false;
   foreach(index, selectedIndexes) {
     if(index.column() == NAME) {
@@ -336,7 +337,7 @@ void DownloadingTorrents::displayInfoBarMenu(const QPoint& pos) {
   QMenu myLogMenu(this);
   myLogMenu.addAction(actionClearLog);
   // XXX: Why mapToGlobal() is not enough?
-  myLogMenu.exec(mapToGlobal(pos)+QPoint(22,383));
+  myLogMenu.exec(mapToGlobal(pos)+QPoint(44,305));
 }
 
 void DownloadingTorrents::sortProgressColumnDelayed() {
@@ -372,6 +373,10 @@ void DownloadingTorrents::updateDlList() {
       Q_ASSERT(row != -1);
       // No need to update a paused torrent
       if(h.is_paused()) continue;
+      if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) != -1) {
+         DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+         continue;
+      }
       // Parse download state
       // Setting download state
       switch(h.state()) {
@@ -384,10 +389,8 @@ void DownloadingTorrents::updateDlList() {
           continue;
         case torrent_status::checking_files:
         case torrent_status::queued_for_checking:
-          if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) == -1) {
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
-            setRowColor(row, QString::fromUtf8("grey"));
-          }
+          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
+          setRowColor(row, QString::fromUtf8("grey"));
           DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
           break;
         case torrent_status::connecting_to_tracker:
@@ -414,7 +417,7 @@ void DownloadingTorrents::updateDlList() {
           }else{
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-            setRowColor(row, QString::fromUtf8("black"));
+            setRowColor(row, QPalette::WindowText);
           }
           DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
           DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
@@ -661,10 +664,10 @@ void DownloadingTorrents::portListeningFailure() {
 }
 
 // Set the color of a row in data model
-void DownloadingTorrents::setRowColor(int row, QString color) {
-  unsigned int nbColumns = DLListModel->columnCount();
+void DownloadingTorrents::setRowColor(int row, QColor color) {
+  unsigned int nbColumns = DLListModel->columnCount()-1;
   for(unsigned int i=0; i<nbColumns; ++i) {
-    DLListModel->setData(DLListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
+    DLListModel->setData(DLListModel->index(row, i), QVariant(color), Qt::ForegroundRole);
   }
 }
 
@@ -681,5 +684,5 @@ int DownloadingTorrents::getRowFromHash(QString hash) const{
 }
 
 void DownloadingTorrents::displayDownloadingUrlInfos(QString url) {
-  setInfoBar(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(url), QString::fromUtf8("black"));
+  setInfoBar(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(url), QPalette::WindowText);
 }

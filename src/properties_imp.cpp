@@ -23,6 +23,7 @@
 #include "misc.h"
 #include "PropListDelegate.h"
 #include "bittorrent.h"
+#include "arborescence.h"
 
 #include <QInputDialog>
 #include <QMessageBox>
@@ -43,12 +44,13 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   deleteWS_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
   setAttribute(Qt::WA_DeleteOnClose);
   // Set Properties list model
-  PropListModel = new QStandardItemModel(0,4);
+  PropListModel = new QStandardItemModel(0,5);
   PropListModel->setHeaderData(NAME, Qt::Horizontal, tr("File name"));
   PropListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
   PropListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
   PropListModel->setHeaderData(PRIORITY, Qt::Horizontal, tr("Priority"));
   filesList->setModel(PropListModel);
+  filesList->hideColumn(INDEX);
   PropDelegate = new PropListDelegate(0, &changedFilteredfiles);
   filesList->setItemDelegate(PropDelegate);
   connect(filesList, SIGNAL(clicked(const QModelIndex&)), filesList, SLOT(edit(const QModelIndex&)));
@@ -96,16 +98,14 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   loadTrackersErrors();
   std::vector<float> fp;
   h.file_progress(fp);
+  int *prioritiesTab = loadPiecesPriorities();
   // List files in torrent
-  unsigned int nbFiles = h.num_files();
-  for(unsigned int i=0; i<nbFiles; ++i){
-    unsigned int row = PropListModel->rowCount();
-    PropListModel->insertRow(row);
-    PropListModel->setData(PropListModel->index(row, NAME), QVariant(h.file_at(i)));
-    PropListModel->setData(PropListModel->index(row, SIZE), QVariant((qlonglong)h.filesize_at(i)));
-    PropListModel->setData(PropListModel->index(row, PROGRESS), QVariant((double)fp[i]));
-  }
-  loadPiecesPriorities();
+  arborescence *arb = new arborescence(h.get_torrent_info(), fp, prioritiesTab);
+  addFilesToTree(arb->getRoot(), PropListModel->invisibleRootItem());
+  delete arb;
+  delete prioritiesTab;
+  connect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
+  filesList->expandAll();
   // List web seeds
   loadWebSeedsFromFile();
   loadWebSeeds();
@@ -127,6 +127,111 @@ properties::~properties(){
   delete PropListModel;
 }
 
+void properties::addFilesToTree(file *root, QStandardItem *parent) {
+  QList<QStandardItem*> child;
+  // Name
+  QStandardItem *first;
+  if(root->isDir()) {
+    first = new QStandardItem(QIcon(":/Icons/folder.png"), root->name());
+  } else {
+    first = new QStandardItem(QIcon(":/Icons/file.png"), root->name());
+  }
+  child << first;
+  // Size
+  child << new QStandardItem(misc::toQString(root->getSize()));
+  // Progress
+  child << new QStandardItem(misc::toQString(root->getProgress()));
+  // Prio
+  child << new QStandardItem(misc::toQString(root->getPriority()));
+  // INDEX
+  child << new QStandardItem(misc::toQString(root->getIndex()));
+  // TODO: row Color?
+  // Add the child to the tree
+  parent->appendRow(child);
+  // Add childs
+  file *childFile;
+  foreach(childFile, root->getChildren()) {
+    addFilesToTree(childFile, first);
+  }
+}
+
+// priority is the new priority of given item
+void properties::updateParentsPriority(QStandardItem *item, int priority) {
+  QStandardItem *parent = item->parent();
+  if(!parent) return;
+  // Check if children have different priorities
+  // then folder must have NORMAL priority
+  unsigned int rowCount = parent->rowCount();
+  for(unsigned int i=0; i<rowCount; ++i) {
+    if(parent->child(i, PRIORITY)->text().toInt() != priority) {
+      QStandardItem *grandFather = parent->parent();
+      if(!grandFather) {
+        grandFather = PropListModel->invisibleRootItem();
+      }
+      QStandardItem *parentPrio = grandFather->child(parent->row(), PRIORITY);
+      if(parentPrio->text().toInt() != NORMAL) {
+        parentPrio->setText(misc::toQString(NORMAL));
+        // Recursively update ancesters of this parent too
+        updateParentsPriority(grandFather->child(parent->row()), priority);
+      }
+      return;
+    }
+  }
+  // All the children have the same priority
+  // Parent folder should have the same priority too
+  QStandardItem *grandFather = parent->parent();
+  if(!grandFather) {
+    grandFather = PropListModel->invisibleRootItem();
+  }
+  QStandardItem *parentPrio = grandFather->child(parent->row(), PRIORITY);
+  if(parentPrio->text().toInt() != priority) {
+    parentPrio->setText(misc::toQString(priority));
+    // Recursively update ancesters of this parent too
+    updateParentsPriority(grandFather->child(parent->row()), priority);
+  }
+}
+
+void properties::updateChildrenPriority(QStandardItem *item, int priority) {
+  QStandardItem *parent = item->parent();
+  if(!parent) {
+    parent = PropListModel->invisibleRootItem();
+  }
+  parent = parent->child(item->row());
+  unsigned int rowCount = parent->rowCount();
+  for(unsigned int i=0; i<rowCount; ++i) {
+    QStandardItem * childPrio = parent->child(i, PRIORITY);
+    if(childPrio->text().toInt() != priority) {
+      childPrio->setText(misc::toQString(priority));
+      // recursively update children of this child too
+      updateChildrenPriority(parent->child(i), priority);
+    }
+  }
+}
+
+void properties::updatePriorities(QStandardItem *item) {
+  qDebug("Priority changed");
+  // First we disable the signal/slot on item edition
+  // temporarily so that it doesn't mess with our manual updates
+  disconnect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
+  QStandardItem *parent = item->parent();
+  if(!parent) {
+    parent = PropListModel->invisibleRootItem();
+  }
+  int priority = parent->child(item->row(), PRIORITY)->text().toInt();
+  // Update parents priorities
+  updateParentsPriority(item, priority);
+  // If this is not a directory, then there are
+  // no children to update
+  if(parent->child(item->row(), INDEX)->text().toInt() == -1) {
+    // Updating children
+    qDebug("Priority changed for a folder to %d", priority);
+    updateChildrenPriority(item, priority);
+  }
+  // Reconnect the signal/slot on item edition so that we
+  // get future updates
+  connect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
+}
+    
 void properties::loadTrackersErrors(){
   // Tracker Errors
   QList<QPair<QString, QString> > errors = BTSession->getTrackersErrors(hash);
@@ -151,8 +256,9 @@ void properties::loadWebSeeds(){
   }
 }
 
-void properties::loadPiecesPriorities(){
+int* properties::loadPiecesPriorities(){
   unsigned int nbFiles = h.num_files();
+  int *prioritiesTab = new int[nbFiles];
   QString fileName = h.name();
   QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".priorities");
   has_filtered_files = false;
@@ -160,16 +266,18 @@ void properties::loadPiecesPriorities(){
   // Read saved file
   if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
     qDebug("Could not find pieces file");
-    setAllPiecesState(NORMAL);
-    return;
+    for(unsigned int i=0; i<nbFiles; ++i)
+      prioritiesTab[i] = NORMAL;
+    return prioritiesTab;
   }
   QByteArray pieces_text = pieces_file.readAll();
   pieces_file.close();
   QList<QByteArray> pieces_priority_list = pieces_text.split('\n');
   if((unsigned int)pieces_priority_list.size() != nbFiles+1){
     std::cerr << "Error: Corrupted pieces file\n";
-    setAllPiecesState(NORMAL);
-    return;
+    for(unsigned int i=0; i<nbFiles; ++i)
+      prioritiesTab[i] = NORMAL;
+    return prioritiesTab;
   }
   for(unsigned int i=0; i<nbFiles; ++i){
     int priority = pieces_priority_list.at(i).toInt();
@@ -178,48 +286,45 @@ void properties::loadPiecesPriorities(){
       priority = 1;
     }
     if(!priority){
-      setRowColor(i, "red");
       has_filtered_files = true;
-    }else{
-      setRowColor(i, "green");
     }
-    PropListModel->setData(PropListModel->index(i, PRIORITY), QVariant(priority));
+    prioritiesTab[i] = priority;
   }
+  return prioritiesTab;
 }
 
-bool properties::onlyOneItem() const {
+bool properties::allFiltered() const {
   unsigned int nbRows = PropListModel->rowCount();
-  if(nbRows == 1) return true;
-  unsigned int nb_unfiltered = 0;
-  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
-  QModelIndex index;
-  unsigned int to_be_filtered = 0;
-  foreach(index, selectedIndexes){
-    if(index.column() == PRIORITY){
-      if(index.data().toInt() != IGNORED)
-        ++to_be_filtered;
-    }
-  }
   for(unsigned int i=0; i<nbRows; ++i){
-    if(PropListModel->data(PropListModel->index(i, PRIORITY)).toInt() != IGNORED){
-      ++nb_unfiltered;
+    if(PropListModel->data(PropListModel->index(i, PRIORITY)).toInt() != IGNORED)
+      return false;
+  }
+  return true;
+}
+
+
+void properties::getPriorities(QStandardItem *parent, int *priorities) {
+  unsigned int nbRows = parent->rowCount();
+  for(unsigned int i=0; i<nbRows; ++i){
+    QStandardItem *item = parent->child(i, INDEX);
+    int index = item->text().toInt();
+    if(index < 0) {
+      getPriorities(parent->child(i, NAME), priorities);
+    } else {
+      item = parent->child(i, PRIORITY);
+      priorities[index] = item->text().toInt();
     }
   }
-  if(nb_unfiltered-to_be_filtered == 0)
-    return true;
-  return false;
 }
 
 void properties::displayFilesListMenu(const QPoint& pos){
-  unsigned int nbRows = PropListModel->rowCount();
-  if(nbRows == 1) return;
+  if(h.get_torrent_info().num_files() == 1) return;
   QMenu myFilesLlistMenu(this);
   QModelIndex index;
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
   myFilesLlistMenu.setTitle(tr("Priority"));
-  if(!onlyOneItem())
-    myFilesLlistMenu.addAction(actionIgnored);
+  myFilesLlistMenu.addAction(actionIgnored);
   myFilesLlistMenu.addAction(actionNormal);
   myFilesLlistMenu.addAction(actionHigh);
   myFilesLlistMenu.addAction(actionMaximum);
@@ -373,9 +478,9 @@ void properties::deleteSelectedUrlSeeds(){
 }
 
 void properties::deleteSelectedTrackers(){
+  QList<QListWidgetItem *> selectedItems = trackersURLS->selectedItems();
+  if(!selectedItems.size()) return;
   std::vector<announce_entry> trackers = h.trackers();
-  QList<QListWidgetItem *> selectedItems;
-  selectedItems = trackersURLS->selectedItems();
   QListWidgetItem *item;
   unsigned int nbTrackers = trackers.size();
   if(nbTrackers == (unsigned int) selectedItems.size()){
@@ -468,23 +573,17 @@ void properties::lowerSelectedTracker(){
 }
 
 void properties::updateInfos(){
-  std::vector<float> fp;
-  try{
-    h.file_progress(fp);
-    unsigned int nbFiles = h.num_files();
-    for(unsigned int i=0; i<nbFiles; ++i){
-      PropListModel->setData(PropListModel->index(i, PROGRESS), QVariant((double)fp[i]));
+  // Update current tracker
+  try {
+    QString tracker = h.current_tracker().trimmed();
+    if(!tracker.isEmpty()){
+      trackerURL->setText(tracker);
+    }else{
+      trackerURL->setText(tr("None - Unreachable?"));
     }
   }catch(invalid_handle e){
     // torrent was removed, closing properties
     close();
-  }
-  // Update current tracker
-  QString tracker = h.current_tracker().trimmed();
-  if(!tracker.isEmpty()){
-    trackerURL->setText(tracker);
-  }else{
-    trackerURL->setText(tr("None - Unreachable?"));
   }
 }
 
@@ -525,8 +624,8 @@ void properties::on_incrementalDownload_stateChanged(int){
 }
 
 void properties::on_okButton_clicked(){
-  savePiecesPriorities();
-  close();
+  if(savePiecesPriorities())
+    close();
 }
 
 void properties::loadWebSeedsFromFile(){
@@ -566,29 +665,34 @@ void properties::saveWebSeeds(){
   qDebug("url seeds were saved");
 }
 
-void properties::savePiecesPriorities(){
-  if(!changedFilteredfiles) return;
+bool properties::savePiecesPriorities() {
+  if(!changedFilteredfiles) return true;
+  if(allFiltered()) {
+    QMessageBox::warning(0, tr("Priorities error"), tr("Error, you can't filter all the files in a torrent."));
+    return false;
+  }
   qDebug("Saving pieces priorities");
   bool hasFilteredFiles = false;
   QString fileName = h.name();
   QFile pieces_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".priorities"));
   // First, remove old file
   pieces_file.remove();
-  // Write new files
+  int *priorities = new int[h.get_torrent_info().num_files()];
+  getPriorities(PropListModel->invisibleRootItem(), priorities);
+      // Ok, we have priorities, save them
   if(!pieces_file.open(QIODevice::WriteOnly | QIODevice::Text)){
     std::cerr << "Error: Could not save pieces priorities\n";
-    return;
+    return true;
   }
-  unsigned int nbRows = PropListModel->rowCount();
-  for(unsigned int i=0; i<nbRows; ++i){
-    QStandardItem *item = PropListModel->item(i, PRIORITY);
-    unsigned short priority = item->text().toInt();
-    if(!priority) {
+  unsigned int nbFiles = h.get_torrent_info().num_files();
+  for(unsigned int i=0; i<nbFiles; ++i) {
+    if(!priorities[i]) {
       hasFilteredFiles = true;
     }
-    pieces_file.write(misc::toQByteArray(priority)+"\n");
+    pieces_file.write(misc::toQByteArray(priorities[i])+misc::toQByteArray("\n"));
   }
   pieces_file.close();
+  delete[] priorities;
   // If h.has_filtered_pieces() s true, then the torrent
   // is already in full allocation mode, no need to
   // reload it.
@@ -597,4 +701,5 @@ void properties::savePiecesPriorities(){
   }
   emit filteredFilesChanged(hash);
   has_filtered_files = hasFilteredFiles;
+  return true;
 }

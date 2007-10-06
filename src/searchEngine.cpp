@@ -45,8 +45,6 @@
 SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration) : QWidget(), BTSession(BTSession), myTrayIcon(myTrayIcon), systrayIntegration(systrayIntegration){
   setupUi(this);
   downloader = new downloadThread(this);
-  connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(novaUpdateDownloaded(QString, QString)));
-  connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleNovaDownloadFailure(QString, QString)));
   // Set Search results list model
   SearchListModel = new QStandardItemModel(0,5);
   SearchListModel->setHeaderData(SEARCH_NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
@@ -81,21 +79,8 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   connect(searchProcess, SIGNAL(started()), this, SLOT(searchStarted()));
   connect(searchProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readSearchOutput()));
   connect(searchProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(searchFinished(int,QProcess::ExitStatus)));
-  // Set search engines names
-  mininova->setText("Mininova");
-  piratebay->setText("ThePirateBay");
-//   reactor->setText("TorrentReactor");
-  isohunt->setText("Isohunt");
-//   btjunkie->setText("BTJunkie");
-  reactor->setText("TorrentReactor");
-  // Check last checked search engines
-  loadCheckedSearchEngines();
-  connect(mininova, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
-  connect(piratebay, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
-//   connect(reactor, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
-  connect(isohunt, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
-//   connect(btjunkie, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
-  connect(reactor, SIGNAL(stateChanged(int)), this, SLOT(saveCheckedSearchEngines(int)));
+  // Check last enabled search engines
+  loadEngineSettings();
   // Update nova.py search plugin if necessary
   updateNova();
 }
@@ -183,18 +168,6 @@ void SearchEngine::sortSearchListString(int index, Qt::SortOrder sortOrder){
   SearchListModel->removeRows(0, nbRows_old);
 }
 
-// Save last checked search engines to a file
-void SearchEngine::saveCheckedSearchEngines(int) const{
-  QSettings settings("qBittorrent", "qBittorrent");
-  settings.beginGroup("SearchEngines");
-  settings.setValue("mininova", mininova->isChecked());
-  settings.setValue("piratebay", piratebay->isChecked());
-  settings.setValue("isohunt", isohunt->isChecked());
-  settings.setValue("reactor", reactor->isChecked());
-  settings.endGroup();
-  qDebug("Saved checked search engines");
-}
-
 // Save columns width in a file to remember them
 // (download list)
 void SearchEngine::saveColWidthSearchList() const{
@@ -206,6 +179,11 @@ void SearchEngine::saveColWidthSearchList() const{
   }
   settings.setValue("SearchListColsWidth", width_list.join(" "));
   qDebug("Search list columns width saved");
+}
+
+void SearchEngine::on_enginesButton_clicked() {
+  engineSelectDlg *dlg = new engineSelectDlg(this);
+  connect(dlg, SIGNAL(enginesChanged()), this, SLOT(loadEngineSettings()));
 }
 
 // Load columns width in a file that were saved previously
@@ -226,25 +204,30 @@ bool SearchEngine::loadColWidthSearchList(){
   return true;
 }
 
-// load last checked search engines from a file
-void SearchEngine::loadCheckedSearchEngines(){
-  qDebug("Loading checked search engines");
-  QSettings settings("qBittorrent", "qBittorrent");
-  settings.beginGroup("SearchEngines");
-  mininova->setChecked(settings.value("mininova", true).toBool());
-  piratebay->setChecked(settings.value("piratebay", false).toBool());
-  isohunt->setChecked(settings.value("isohunt", false).toBool());
-  reactor->setChecked(settings.value("reactor", false).toBool());
-  settings.endGroup();
-  qDebug("Loaded checked search engines");
-}
-
 // get the last searchs from a QSettings to a QStringList
 void SearchEngine::startSearchHistory(){
   QSettings settings("qBittorrent", "qBittorrent");
   settings.beginGroup("Search");
   searchHistory = settings.value("searchHistory",-1).toStringList();
   settings.endGroup();
+}
+
+void SearchEngine::loadEngineSettings() {
+  qDebug("Loading engine settings");
+  enabled_engines.clear();
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QStringList known_engines = settings.value(QString::fromUtf8("SearchEngines/knownEngines"), QStringList()).toStringList();
+  QVariantList known_enginesEnabled = settings.value(QString::fromUtf8("SearchEngines/knownEnginesEnabled"), QList<QVariant>()).toList();
+  QString engine;
+  unsigned int i = 0;
+  foreach(engine, known_engines) {
+    if(known_enginesEnabled.at(i).toBool())
+      enabled_engines << engine;
+    ++i;
+  }
+  if(enabled_engines.empty())
+    enabled_engines << "all";
+  qDebug("Engine settings loaded");
 }
 
 // Save the history list into the QSettings for the next session
@@ -282,33 +265,12 @@ void SearchEngine::on_search_button_clicked(){
 
 
   // Getting checked search engines
-  if(!mininova->isChecked() && ! piratebay->isChecked() && !reactor->isChecked() && !isohunt->isChecked()/* && !btjunkie->isChecked()*/ /*&& !meganova->isChecked()*/){
-    QMessageBox::critical(0, tr("No search engine selected"), tr("You must select at least one search engine."));
-    return;
-  }
+  Q_ASSERT(!enabled_engines.empty());
   QStringList params;
   QStringList engineNames;
   search_stopped = false;
-  // Get checked search engines
-  if(mininova->isChecked()){
-    engineNames << "mininova";
-  }
-  if(piratebay->isChecked()){
-    engineNames << "piratebay";
-  }
-//   if(reactor->isChecked()){
-//     engineNames << "reactor";
-//   }
-  if(isohunt->isChecked()){
-    engineNames << "isohunt";
-  }
-//   if(btjunkie->isChecked()){
-//     engineNames << "btjunkie";
-//   }
-  if(reactor->isChecked()){
-    engineNames << "reactor";
-  }
-  params << engineNames.join(",");
+
+  params << enabled_engines.join(",");
   params << pattern.split(" ");
   // Update SearchEngine widgets
   no_search_results = true;
@@ -316,7 +278,7 @@ void SearchEngine::on_search_button_clicked(){
   search_result_line_truncated.clear();
   results_lbl->setText(tr("Results")+" <i>(0)</i>:");
   // Launch search
-  searchProcess->start(misc::qBittorrentPath()+"nova.py", params, QIODevice::ReadOnly);
+  searchProcess->start(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py", params, QIODevice::ReadOnly);
 }
 
 void SearchEngine::searchStarted(){
@@ -360,136 +322,66 @@ void SearchEngine::readSearchOutput(){
   results_lbl->setText(tr("Results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
 }
 
-// Returns version of nova.py search engine
-float SearchEngine::getNovaVersion(QString novaPath) const{
-  QFile dest_nova(novaPath);
-  if(!dest_nova.exists()){
-    return 0.0;
-  }
-  if(!dest_nova.open(QIODevice::ReadOnly | QIODevice::Text)){
-    return 0.0;
-  }
-  float version = 0.0;
-  while (!dest_nova.atEnd()){
-    QByteArray line = dest_nova.readLine();
-    if(line.startsWith("# Version: ")){
-      line = line.split(' ').last();
-      line.chop(1); // removes '\n'
-      version = line.toFloat();
-      qDebug("Search plugin version: %.2f", version);
-      break;
-    }
-  }
-  return version;
-}
-
-// Returns changelog of nova.py search engine
-QByteArray SearchEngine::getNovaChangelog(QString novaPath, float my_version) const{
-  QFile dest_nova(novaPath);
-  if(!dest_nova.exists()){
-    return QByteArray("None");
-  }
-  if(!dest_nova.open(QIODevice::ReadOnly | QIODevice::Text)){
-    return QByteArray("None");
-  }
-  QByteArray changelog;
-  bool in_changelog = false;
-  while (!dest_nova.atEnd()){
-    QByteArray line = dest_nova.readLine();
-    line = line.trimmed();
-    if(line.startsWith("# Changelog:")){
-      in_changelog = true;
-    }else{
-      if(line.isEmpty()){
-        in_changelog = false;
-      }
-      if(line.startsWith("# End Changelog")) break;
-      QString end_version = "# Version: ";
-      char tmp[5];
-      snprintf(tmp, 5, "%.2f", my_version);
-      end_version+=QString::fromUtf8(tmp);
-      if(line.startsWith((const char*)end_version.toUtf8())) break;
-      if(in_changelog){
-        line.remove(0,1);
-        line += "\n";
-        changelog.append(line);
-      }
-    }
-  }
-  return changelog;
-}
-
 // Update nova.py search plugin if necessary
-void SearchEngine::updateNova() const{
+void SearchEngine::updateNova() {
   qDebug("Updating nova");
-  float provided_nova_version = getNovaVersion(":/search_engine/nova.py");
-  QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;
-  QFile(misc::qBittorrentPath()+"nova.py").setPermissions(perm);
-  if(provided_nova_version > getNovaVersion(misc::qBittorrentPath()+"nova.py")){
-    qDebug("updating local search plugin with shipped one");
-    // nova.py needs update
-    QFile::remove(misc::qBittorrentPath()+"nova.py");
-    qDebug("Old nova removed");
-    QFile::copy(":/search_engine/nova.py", misc::qBittorrentPath()+"nova.py");
-    qDebug("New nova copied");
-    QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;
-    QFile(misc::qBittorrentPath()+"nova.py").setPermissions(perm);
-    qDebug("local search plugin updated");
+  // create search_engine directory if necessary
+  QDir search_dir(misc::qBittorrentPath()+"search_engine");
+  if(!search_dir.exists()){
+    search_dir.mkdir(misc::qBittorrentPath()+"search_engine");
   }
-}
-
-void SearchEngine::novaUpdateDownloaded(QString url, QString filePath){
-  float version_on_server = getNovaVersion(filePath);
-  qDebug("Version on qbittorrent.org: %.2f", version_on_server);
-  float my_version = getNovaVersion(misc::qBittorrentPath()+"nova.py");
-  if(version_on_server > my_version){
-    if(QMessageBox::question(this,
-       tr("Search plugin update -- qBittorrent"),
-          tr("Search plugin can be updated, do you want to update it?\n\nChangelog:\n")+getNovaChangelog(filePath, my_version),
-             tr("&Yes"), tr("&No"),
-                QString(), 0, 1)){
-                  return;
-                }else{
-                  qDebug("Updating search plugin from qbittorrent.org");
-                  QFile::remove(misc::qBittorrentPath()+"nova.py");
-                  QFile::copy(filePath, misc::qBittorrentPath()+"nova.py");
-                  QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;
-                  QFile(misc::qBittorrentPath()+"nova.py").setPermissions(perm);
-                }
-  }else{
-    if(version_on_server == 0.0){
-      if(url == "http://www.dchris.eu/nova/nova.zip"){
-        qDebug("*Warning: Search plugin update download from primary server failed, trying secondary server...");
-        downloader->downloadUrl("http://hydr0g3n.free.fr/nova/nova.py");
-      }else{
-        QMessageBox::information(this, tr("Search plugin update")+" -- "+tr("qBittorrent"),
-                               tr("Sorry, update server is temporarily unavailable."));
+  QFile package_file(search_dir.path()+QDir::separator()+"__init__.py");
+  package_file.open(QIODevice::WriteOnly | QIODevice::Text);
+  package_file.close();
+  if(!search_dir.exists("engines")){
+    search_dir.mkdir("engines");
+  }
+  QFile package_file2(search_dir.path()+QDir::separator()+"engines"+QDir::separator()+"__init__.py");
+  package_file2.open(QIODevice::WriteOnly | QIODevice::Text);
+  package_file2.close();
+  // Copy search plugin files (if necessary)
+  QString filePath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py";
+  if(misc::getPluginVersion(":/search_engine/nova2.py") > misc::getPluginVersion(filePath)) {
+    if(QFile::exists(filePath))
+      QFile::remove(filePath);
+    QFile::copy(":/search_engine/nova2.py", filePath);
+  }
+  // Set permissions
+  QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;
+  QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py").setPermissions(perm);
+  filePath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"novaprinter.py";
+  if(misc::getPluginVersion(":/search_engine/novaprinter.py") > misc::getPluginVersion(filePath)) {
+    if(QFile::exists(filePath)){
+      QFile::remove(filePath);
+    }
+    QFile::copy(":/search_engine/novaprinter.py", filePath);
+  }
+  QString destDir = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator();
+  QDir shipped_subDir(":/search_engine/engines/");
+  QStringList files = shipped_subDir.entryList();
+  QString file;
+  foreach(file, files){
+    QString shipped_file = shipped_subDir.path()+QDir::separator()+file;
+    // Copy python classes
+    if(file.endsWith(".py")) {
+      if(misc::getPluginVersion(shipped_file) > misc::getPluginVersion(destDir+file) ) {
+        qDebug("shippped %s is more recent then local plugin, updating", file.toUtf8().data());
+        if(QFile::exists(destDir+file)) {
+          qDebug("Removing old %s", (destDir+file).toUtf8().data());
+          QFile::remove(destDir+file);
+        }
+        qDebug("%s copied to %s", shipped_file.toUtf8().data(), (destDir+file).toUtf8().data());
+        QFile::copy(shipped_file, destDir+file);
       }
-    }else{
-      QMessageBox::information(this, tr("Search plugin update -- qBittorrent"),
-                               tr("Your search plugin is already up to date."));
+    } else {
+      // Copy icons
+      if(file.endsWith(".png")) {
+        if(!QFile::exists(destDir+file)) {
+          QFile::copy(shipped_file, destDir+file);
+        }
+      }
     }
   }
-  // Delete tmp file
-  QFile::remove(filePath);
-}
-
-void SearchEngine::handleNovaDownloadFailure(QString url, QString reason){
-  if(url == "http://www.dchris.eu/nova/nova.zip"){
-    qDebug("*Warning: Search plugin update download from primary server failed, trying secondary server...");
-    downloader->downloadUrl("http://hydr0g3n.free.fr/nova/nova.py");
-  }else{
-    // Display a message box
-    QMessageBox::critical(0, tr("Search plugin download error"), tr("Couldn't download search plugin update at url: %1, reason: %2.").arg(url).arg(reason));
-  }
-}
-
-// Download nova.py from qbittorrent.org
-// Check if our nova.py is outdated and
-// ask user for action.
-void SearchEngine::on_update_nova_button_clicked(){
-  qDebug("Checking for search plugin updates on qbittorrent.org");
-  downloader->downloadUrl("http://www.dchris.eu/nova/nova.zip");
 }
 
 // Slot called when search is Finished
@@ -497,8 +389,8 @@ void SearchEngine::on_update_nova_button_clicked(){
 // Error | Stopped by user | Finished normally
 void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
   QSettings settings("qBittorrent", "qBittorrent");
-  int useOSD = settings.value("Options/OSDEnabled", 1).toInt();
-  if(systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
+  bool useNotificationBalloons = settings.value("Preferences/General/NotificationBaloons", true).toBool();
+  if(systrayIntegration && useNotificationBalloons) {
     myTrayIcon->showMessage(tr("Search Engine"), tr("Search has finished"), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
   }
   if(exitcode){
@@ -537,7 +429,10 @@ void SearchEngine::appendSearchResult(QString line){
   int row = SearchListModel->rowCount();
   SearchListModel->insertRow(row);
   for(int i=0; i<5; ++i){
-    SearchListModel->setData(SearchListModel->index(row, i), QVariant(parts.at(i)));
+    if(parts.at(i).toFloat() == -1 && i != SIZE)
+      SearchListModel->setData(SearchListModel->index(row, i), tr("Unknown"));
+    else
+      SearchListModel->setData(SearchListModel->index(row, i), QVariant(parts.at(i)));
   }
   // Add url to searchResultsUrls associative array
   searchResultsUrls.insert(filename, url);
