@@ -148,7 +148,7 @@ void bittorrent::updateETAs() {
           listEtas.removeFirst();
       }
       if(h.download_payload_rate()) {
-        listEtas << (qlonglong)((h.actual_size()-h.total_done())/(double)h.download_payload_rate());
+        listEtas << (qlonglong)((h.actual_size()-h.total_wanted_done())/(double)h.download_payload_rate());
         ETAstats[hash] = listEtas;
         qlonglong moy = 0;
         qlonglong val;

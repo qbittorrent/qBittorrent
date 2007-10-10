@@ -79,9 +79,9 @@ bool QTorrentHandle::is_paused() const {
 //   return h.get_torrent_info().total_size();
 // }
 
-size_type QTorrentHandle::total_done() const {
+size_type QTorrentHandle::total_wanted_done() const {
   Q_ASSERT(h.is_valid());
-  return h.status().total_done;
+  return h.status().total_wanted_done;
 }
 
 float QTorrentHandle::download_payload_rate() const {

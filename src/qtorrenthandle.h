@@ -59,7 +59,7 @@ class QTorrentHandle {
     bool is_paused() const;
     bool has_filtered_pieces() const;
 //     size_type total_size() const;
-    size_type total_done() const;
+    size_type total_wanted_done() const;
     float download_payload_rate() const;
     float upload_payload_rate() const;
     int num_peers() const;
