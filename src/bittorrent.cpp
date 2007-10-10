@@ -147,7 +147,9 @@ void bittorrent::updateETAs() {
       if(listEtas.size() == ETAS_MAX_VALUES) {
           listEtas.removeFirst();
       }
-      if(h.download_payload_rate()) {
+      // XXX: We can still get an overflow if remaining file size is approximately
+      // 8.38*10^5 TiB (lets assume this can't happen)
+      if(h.download_payload_rate() > 0.1) {
         listEtas << (qlonglong)((h.actual_size()-h.total_wanted_done())/(double)h.download_payload_rate());
         ETAstats[hash] = listEtas;
         qlonglong moy = 0;
@@ -156,12 +158,16 @@ void bittorrent::updateETAs() {
         Q_ASSERT(nbETAs);
         foreach(val, listEtas) {
           moy += (qlonglong)((double)val/(double)nbETAs);
-          if(moy < 0) break;
+          Q_ASSERT(moy >= 0);
         }
-        if(moy < 0) {
+        ETAs[hash] = moy;
+      } else {
+        // Speed is too low, we don't want overflow.
+        if(ETAstats.contains(hash)) {
           ETAs.remove(hash);
-        } else {
-          ETAs[hash] = moy;
+        }
+        if(ETAs.contains(hash)) {
+          ETAs.remove(hash);
         }
       }
     }

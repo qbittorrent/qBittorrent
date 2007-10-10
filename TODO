@@ -62,3 +62,4 @@ rc4->rc5 changelog:
 - BUGFIX: Now filtered don't appear on hard drive anymore (libtorrent >= r1659)
 - BUGFIX: AddInPause setting doesn't pause downloads on startup anymore
 - BUGFIX: Fixed an ETA calculation problem when the torrent has filtered files
+- BUGFIX: Fixed possible overflow in ETA calculation
