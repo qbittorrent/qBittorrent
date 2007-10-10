@@ -693,12 +693,8 @@ bool properties::savePiecesPriorities() {
   }
   pieces_file.close();
   delete[] priorities;
-  // If h.has_filtered_pieces() s true, then the torrent
-  // is already in full allocation mode, no need to
-  // reload it.
-  if(hasFilteredFiles && !h.has_filtered_pieces()){
-    BTSession->pauseAndReloadTorrent(h);
-  }
+  BTSession->loadFilesPriorities(h);
+  // Emit a signal so that the GUI updates the size
   emit filteredFilesChanged(hash);
   has_filtered_files = hasFilteredFiles;
   return true;

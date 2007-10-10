@@ -56,10 +56,8 @@
 - Recheck doc
 - Translations update (IN PROGRESS)
 - add qt4-qtconfig as package dependency
+- use new sparse mode
 
-rc3->rc4 changelog:
-- BUGFIX: Fixed ip filter preferences (couldn't enable it)
-- BUGFIX: Fixed compilation problems on FreeBSD (Ok now)
-- BUGFIX: Updated INSTALL file
-- BUGFIX: Optimized torrent real size calculation
-- BUGFIX: Use system default style as a default (instead of Plastique style)
+rc4->rc5 changelog:
+- BUGFIX: Now filtered don't appear on hard drive anymore (libtorrent >= r1659)
+- BUGFIX: AddInPause setting doesn't pause downloads on startup anymore

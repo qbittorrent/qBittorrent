@@ -48,7 +48,7 @@ class bittorrent : public QObject{
     downloadThread *downloader;
     QString defaultSavePath;
     QStringList torrentsToPauseAfterChecking;
-    QStringList reloadingTorrents;
+    QHash<QString, bool> reloadingTorrents;
     QHash<QString, QList<qlonglong> > ETAstats;
     QHash<QString, qlonglong> ETAs;
     QHash<QString, QPair<size_type,size_type> > ratioData;
@@ -90,7 +90,7 @@ class bittorrent : public QObject{
     bool has_filtered_files(QString hash) const;
 
   public slots:
-    void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString());
+    void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
     void downloadFromUrl(QString url);
     void downloadFromURLList(const QStringList& url_list);
     void deleteTorrent(QString hash, bool permanent = false);
@@ -104,7 +104,6 @@ class bittorrent : public QObject{
     void enablePeerExchange();
     void enableIPFilter(ip_filter filter);
     void disableIPFilter();
-    void pauseAndReloadTorrent(QTorrentHandle h);
     void resumeUnfinishedTorrents();
     void updateETAs();
     void saveTorrentSpeedLimits(QString hash);
@@ -144,7 +143,8 @@ class bittorrent : public QObject{
     void processDownloadedFile(QString, QString);
     bool loadTrackerFile(QString hash);
     void saveTrackerFile(QString hash);
-    void reloadTorrent(const QTorrentHandle &h); // This is protected now, call pauseAndReloadTorrent() instead
+    void pauseAndReloadTorrent(QTorrentHandle h, bool full_alloc);
+    void reloadTorrent(const QTorrentHandle &h, bool full_alloc); // This is protected now, call pauseAndReloadTorrent() instead
     void deleteBigRatios();
 
   signals:

@@ -82,20 +82,16 @@ bittorrent::~bittorrent() {
 
 void bittorrent::preAllocateAllFiles(bool b) {
   preAllocateAll = b;
-  if(b) {
-    // Reload All Torrents
-    std::vector<torrent_handle> handles = s->get_torrents();
-    unsigned int nbHandles = handles.size();
-    for(unsigned int i=0; i<nbHandles; ++i) {
-      QTorrentHandle h = handles[i];
-      if(!h.is_valid()) {
-        qDebug("/!\\ Error: Invalid handle");
-        continue;
-      }
-      QString hash = h.hash();
-      if(has_filtered_files(hash)) continue;
-      reloadTorrent(h);
+  // Reload All Torrents
+  std::vector<torrent_handle> handles = s->get_torrents();
+  unsigned int nbHandles = handles.size();
+  for(unsigned int i=0; i<nbHandles; ++i) {
+    QTorrentHandle h = handles[i];
+    if(!h.is_valid()) {
+      qDebug("/!\\ Error: Invalid handle");
+      continue;
     }
+    pauseAndReloadTorrent(h, b);
   }
 }
 
@@ -228,6 +224,10 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   ETAs.remove(hash);
   // Remove tracker errors
   trackersErrors.remove(hash);
+  // Remove from reloadingTorrents if reloading
+  if(reloadingTorrents.contains(hash)) {
+    reloadingTorrents.remove(hash);
+  }
   // Remove it from ratio table
   ratioData.remove(hash);
   int index = finishedTorrents.indexOf(hash);
@@ -373,7 +373,7 @@ void bittorrent::loadWebSeeds(QString hash) {
 }
 
 // Add a torrent to the bittorrent session
-void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
+void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bool resumed) {
   QTorrentHandle h;
   entry resume_data;
   bool fastResume=false;
@@ -443,12 +443,12 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
     }
     QString savePath = getSavePath(hash);
     // Adding files to bittorrent session
-    if(has_filtered_files(hash) || preAllocateAll) {
-      h = s->add_torrent(t, fs::path(savePath.toUtf8().data()), resume_data, false, true);
+    if(preAllocateAll) {
+      h = s->add_torrent(t, fs::path(savePath.toUtf8().data()), resume_data, storage_mode_allocate, true);
       qDebug(" -> Full allocation mode");
     }else{
-      h = s->add_torrent(t, fs::path(savePath.toUtf8().data()), resume_data, true, true);
-      qDebug(" -> Compact allocation mode");
+      h = s->add_torrent(t, fs::path(savePath.toUtf8().data()), resume_data, storage_mode_sparse, true);
+      qDebug(" -> Sparse allocation mode");
     }
     if(!h.is_valid()) {
       // No need to keep on, it failed.
@@ -485,7 +485,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url) {
       QFile::copy(file, newFile);
     }
     // Pause torrent if it was paused last time
-    if(addInPause || QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")) {
+    if(!resumed && (addInPause || QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused"))) {
       torrentsToPauseAfterChecking << hash;
       qDebug("Adding a torrent to the torrentsToPauseAfterChecking list");
     }
@@ -1119,10 +1119,9 @@ void bittorrent::readAlerts() {
         if(index != -1){
           waitingForPause.removeAt(index);
         }
-        index = reloadingTorrents.indexOf(hash);
-        if(index != -1) {
-          reloadingTorrents.removeAt(index);
-          reloadTorrent(h);
+        if(reloadingTorrents.contains(hash)) {
+          reloadTorrent(h, reloadingTorrents.value(hash));
+          reloadingTorrents.remove(hash);
         }
       }
     }
@@ -1168,7 +1167,7 @@ QStringList bittorrent::getTorrentsToPauseAfterChecking() const{
 
 // Function to reload the torrent async after the torrent is actually
 // paused so that we can get fastresume data
-void bittorrent::pauseAndReloadTorrent(QTorrentHandle h) {
+void bittorrent::pauseAndReloadTorrent(QTorrentHandle h, bool full_alloc) {
   if(!h.is_valid()) {
     std::cerr << "/!\\ Error: Invalid handle\n";
     return;
@@ -1176,14 +1175,14 @@ void bittorrent::pauseAndReloadTorrent(QTorrentHandle h) {
   // ask to pause the torrent (async)
   h.pause();
   QString hash = h.hash();
-  // Add it to reloadingTorrents list so that we now we
+  // Add it to reloadingTorrents has table so that we now we
   // we should reload the torrent once we receive the
   // torrent_paused_alert. pause() is async now...
-  reloadingTorrents << hash;
+  reloadingTorrents[hash] = full_alloc;
 }
 
 // Reload a torrent with full allocation mode
-void bittorrent::reloadTorrent(const QTorrentHandle &h) {
+void bittorrent::reloadTorrent(const QTorrentHandle &h, bool full_alloc) {
   qDebug("** Reloading a torrent");
   if(!h.is_valid()) {
     qDebug("/!\\ Error: Invalid handle");
@@ -1214,7 +1213,11 @@ void bittorrent::reloadTorrent(const QTorrentHandle &h) {
     SleeperThread::msleep(1000);
     ++timeout;
   }
-  QTorrentHandle new_h = s->add_torrent(t, saveDir, resumeData, false);
+  QTorrentHandle new_h;
+  if(full_alloc)
+    new_h = s->add_torrent(t, saveDir, resumeData, storage_mode_allocate);
+  else
+    new_h = s->add_torrent(t, saveDir, resumeData, storage_mode_sparse);
   qDebug("Using full allocation mode");
   // Connections limit per torrent
   new_h.set_max_connections(maxConnecsPerTorrent);
@@ -1335,7 +1338,7 @@ void bittorrent::applyEncryptionSettings(pe_settings se) {
   s->set_pe_settings(se);
 }
 
-// Will fast resume unfinished torrents in
+// Will fast resume torrents in
 // backup directory
 void bittorrent::resumeUnfinishedTorrents() {
   qDebug("Resuming unfinished torrents");
@@ -1351,7 +1354,7 @@ void bittorrent::resumeUnfinishedTorrents() {
   }
   // Resume downloads
   foreach(fileName, filePaths) {
-    addTorrent(fileName, false);
+    addTorrent(fileName, false, QString(), true);
   }
   qDebug("Unfinished torrents resumed");
 }
