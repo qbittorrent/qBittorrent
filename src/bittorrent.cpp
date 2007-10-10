@@ -485,7 +485,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
       QFile::copy(file, newFile);
     }
     // Pause torrent if it was paused last time
-    if(!resumed && (addInPause || QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused"))) {
+    if((!resumed && addInPause) || QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")) {
       torrentsToPauseAfterChecking << hash;
       qDebug("Adding a torrent to the torrentsToPauseAfterChecking list");
     }
