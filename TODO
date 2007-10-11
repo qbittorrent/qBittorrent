@@ -52,11 +52,10 @@
 
 // in v1.0.0 - FEATURE FREEZE
 - Fix all (or almost all) opened bugs in bug tracker
-- debug new torrent content selection
 - Recheck doc
 - Translations update (IN PROGRESS)
 - add qt4-qtconfig as package dependency
-- use new sparse mode
+RC5
 - wait for Ticket #182 Fix
 
 rc4->rc5 changelog:
