@@ -513,7 +513,7 @@ void GUI::closeEvent(QCloseEvent *e) {
 // Display window to create a torrent
 void GUI::on_actionCreate_torrent_triggered() {
   createtorrent *ct = new createtorrent(this);
-  connect(ct, SIGNAL(torrent_to_seed(QString)), this, SLOT(addTorrent(QString path)));
+  connect(ct, SIGNAL(torrent_to_seed(QString)), this, SLOT(addTorrent(QString)));
 }
 
 // Called when we minimize the program
@@ -557,7 +557,7 @@ void GUI::dropEvent(QDropEvent *event) {
     if(useTorrentAdditionDialog) {
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
       connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-      connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), downloadingTorrentTab, SLOT(setInfoBar(QString, QString)));
+      connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
       dialog->showLoad(file);
     }else{
       BTSession->addTorrent(file);
@@ -598,7 +598,7 @@ void GUI::on_actionOpen_triggered() {
       if(useTorrentAdditionDialog) {
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
         connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-        connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), downloadingTorrentTab, SLOT(setInfoBar(QString, QString)));
+        connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
         dialog->showLoad(pathsList.at(i));
       }else{
         BTSession->addTorrent(pathsList.at(i));

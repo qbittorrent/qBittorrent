@@ -141,7 +141,7 @@ QStringList createtorrent::allItems(QListWidget *list){
 // Main function that create a .torrent file
 void createtorrent::on_createButton_clicked(){
   QString input = textInputPath->text().trimmed();
-  if(input.isEmpty() == 0){
+  if(input.isEmpty()){
     QMessageBox::critical(0, tr("No input path set"), tr("Please type an input path first"));
     return;
   }
