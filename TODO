@@ -57,7 +57,6 @@
 - add qt4-qtconfig as package dependency
 RC5
 - wait for Ticket #182 Fix
-- BUGFIX: Fixed "Automatically start seeding" feature in torrent creation tool
 
 rc4->rc5 changelog:
 - BUGFIX: Now filtered don't appear on hard drive anymore (libtorrent >= r1659)
@@ -66,3 +65,4 @@ rc4->rc5 changelog:
 - BUGFIX: Fixed possible overflow in ETA calculation
 - BUGFIX: Fixed "Missing Input path" error when creating a torrent
 - BUGFIX: Fixed some notification messages for torrent addition dialog
+- BUGFIX: Fixed "Automatically start seeding" feature in torrent creation tool

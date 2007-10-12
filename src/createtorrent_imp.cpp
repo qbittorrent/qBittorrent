@@ -199,6 +199,7 @@ void createtorrent::on_createButton_clicked(){
     // create the torrent and print it to out
     entry e = t->create_torrent();
     libtorrent::bencode(std::ostream_iterator<char>(out), e);
+    out.flush();
     if(checkStartSeeding->isChecked())
       emit torrent_to_seed(destination);
   }
