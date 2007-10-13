@@ -55,8 +55,6 @@
 - Recheck doc
 - Translations update (IN PROGRESS)
 - add qt4-qtconfig as package dependency
-RC5
-- Make use of this: added option to delete files from disk as a torrent is removed (libtorrent)
 
 rc4->rc5 changelog:
 - BUGFIX: Now filtered don't appear on hard drive anymore (libtorrent >= r1659)
