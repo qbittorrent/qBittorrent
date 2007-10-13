@@ -1,98 +1,67 @@
 // Easy
 - Translations into as many languages as possible
-- Improve man page
 - Use Launchpad/Rosetta for translations once it supports TS files
 
 // Intermediate
-- Port on MacOS, Windows (and create an installer for Windows) - Progressing slowly
-- Add some transparency (menus,...), improve look
+- Port on MacOS, Windows (and create an installer for Windows) - Slow progress
+- Add some transparency (menus,...), improve look / usabilty
+- Skins support? (contact Mateusz)
 
 // Harder
-- Display a progress bar that really displays the pieces we have (like in eMule)
+- Display a progress bar that really represents the pieces we have (like in eMule)
+- Torrent scheduler ala µtorrent/Bitcomet
 
 // Waiting for libtorrent
 - File selection in a torrent in compact mode
-- Allow to prioritize torrents
+- Allow to prioritize torrents (may code this in qBittorrent?)
 
 // Unsure
+- Display the peers we are connected to for each torrent with infos (like flag, dl/up speeds, ...)
 - Azureus spoofing to prevent ban from trackers?
 - Option to shutdown computer when downloads are finished
-- Add a torrent scheduler
+- NAT checker/Tester
+- Display hard drive space left?
 - Make use of dbus on Linux for the single instance instead of socket communication?
   (http://techbase.kde.org/Development/Tutorials/D-Bus/Accessing_Interfaces)
-- search engines customizing
+- When favicon can't be downloaded, try to parse the webpage for:
+  <link rel="icon" href="http://example.com/favicon.ico" type="image/vnd.microsoft.icon">
+    * Be carefull, the link can be relative
 
 // in v1.2.0
-- Allow user to organize the downloads into categories/folders
+- Allow user to organize the downloads into categories/folders?
 
 // in v1.1.0
 - Tabs support in search
 - Allow to hide columns?
 - Allow to scan multiple directories? (useful?)
-- Web interface (turbogears? php?)
+- Web interface (turbogears? php? python?)
+  * Webserver? Try to write a webserver as a plugin for qBittorrent in Python
+    * http://fragments.turtlemeat.com/pythonwebserver.php
 - improve and test tracker authentication code (remember login/pass) (need a tracker to test this)
 - support zipped torrents? (useful?)
-- Add option for RSS customization (refresh interval, max news per RSS...)
-- Allow to disable UPnP/NAT-PMP/LSD in options?
-- Allow to automatically delete torrents when they reach a given ratio (in options) : easy
 - Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
-- Add "Mark all as read" feature for RSS
-- Allow to customize lists refreshing interval (in options)
-- Use search engines as plugins (split them, load them dynamically) to allow the user to add some
+- Improve search plugin install (choose in a list taken from plugins.qbittorrent.org)
+- Display the number of DHT node if possible
+- When adding a duplicate torrent, check if the trackers are different from the existing one and ask the user if he wants to add them
+- Display in torrent addition dialog:
+   * free disk space on selected drive
+   * free disk space after torrent download (and/or torrent size)
+- Allow to change action on double-click
+  -> in download list
+  -> in seeding list
 
-// in v1.0.0 (partial) - WIP
-- Check storage st creation + hasher in torrent creation
+// in v1.0.0 - FEATURE FREEZE
 - Fix all (or almost all) opened bugs in bug tracker
-- update sorting when a new torrent is added?
-- Keep documention up to date
-- Windows port (Chris - Peerkoel)
-- write patches libtorrent for file_priority(int index), actual_size() ?
-- valgrind --tool=memcheck --leak-check=full src/qbittorrent (Looks ok)
-- 128m  29m  16m S  4.8  2.9   0:02.28 qbittorrent
-* beta 6
-  - Translations update (IN PROGRESS)
-  - Wait for some bug fixes in libtorrent :
-    - Number of seeds non null for finished torrent (Ticket #122)
+- Recheck doc
+- Translations update (IN PROGRESS)
+- add qt4-qtconfig as package dependency
 
-LANGUAGES UPDATED:
-- French *BETA3*
-- English *BETA3*
-- Japanese *BETA3*
-- Swedish *BETA3*
-- Slovak *BETA3*
-- Ukrainian *BETA3*
-- Chinese (simplified) *BETA4*
-- Hungarian *BETA4*
-- Italian *BETA5*
-- Polish *BETA5*
-- Portuguese *BETA5*
-- Brazilian *BETA5*
-- Spanish *BETA5*
-- German *BETA5*
-- Russian *BETA5*
-- Korean *BETA5*
-- Greek *BETA6*
-- Dutch *BETA6*
-- Romanian *BETA6*
-
-beta5->beta6 changelog:
-- FEATURE: Split download tab from GUI class and cleaned up code
-- FEATURE: A lot of code optimization (CPU & memory usage)
-- FEATURE: Added support for .ico format (useful for RSS favicons)
-- FEATURE: Replaced Meganova search engine by TorrentReactor
-- I18N: Updated Greek, Dutch and Romanian translation
-- I18N: Removed no longer maintained Traditional chinese translation
-- BUGFIX: Made torrent deletion from hard-drive safer
-- BUGFIX: Fixed a bug when switching from finished to downloading list
-- BUGFIX: Showing checking progress for paused torrents too
-- BUGFIX: Fixed progress column sorting on startup
-- BUGFIX: Prevent downloadFromUrl flooding
-- BUGFIX: Fixed pause state toggle for paused and checking torrents
-- BUGFIX: Made finished list context menu more similar to the download list one
-- BUGFIX: Fixed Pause/Start action in lists context menus
-- BUGFIX: Improved ETA calculation
-- BUGFIX: ETA was wrong for torrents with filtered files
-- BUGFIX: Display the torrent that are being checked as 'checking' in seeding list
-- BUGFIX: Fixed file preview and improved previewable files detection
-- BUGFIX: Do not store and calculate ETA values for finished/paused torrents
-- BUGFIX: Fixed memory leak in GUI
+rc4->rc5 changelog:
+- BUGFIX: Now filtered don't appear on hard drive anymore (libtorrent >= r1659)
+- BUGFIX: AddInPause setting doesn't pause downloads on startup anymore
+- BUGFIX: Fixed an ETA calculation problem when the torrent has filtered files
+- BUGFIX: Fixed possible overflow in ETA calculation
+- BUGFIX: Fixed "Missing Input path" error when creating a torrent
+- BUGFIX: Fixed some notification messages for torrent addition dialog
+- BUGFIX: Fixed "Automatically start seeding" feature in torrent creation tool
+- COSMETIC: Improved progress bar text rendering

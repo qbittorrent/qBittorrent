@@ -1,0 +1,5 @@
+isohunt: 1.00
+torrentreactor: 1.00
+btjunkie: 1.10
+mininova: 1.11
+piratebay: 1.00

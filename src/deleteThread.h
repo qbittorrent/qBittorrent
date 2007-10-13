@@ -28,17 +28,17 @@
 #include <QMutexLocker>
 #include <QPair>
 
-#include "misc.h"
+#include "arborescence.h"
 
 class subDeleteThread : public QThread {
   Q_OBJECT
   private:
     QString save_path;
-    QStringList files_path;
+    arborescence *arb;
     bool abort;
 
   public:
-    subDeleteThread(QObject *parent, QString save_path, QStringList files_path) : QThread(parent), save_path(save_path), files_path(files_path), abort(false){}
+    subDeleteThread(QObject *parent, QString saveDir, arborescence *arb) : QThread(parent), save_path(saveDir), arb(arb), abort(false){}
 
     ~subDeleteThread(){
       abort = true;
@@ -52,10 +52,11 @@ class subDeleteThread : public QThread {
 
   protected:
     void run(){
-      if(misc::removeTorrentSavePath(save_path, files_path))
+      if(arb->removeFromFS(save_path))
         emit deletionSuccessST(this);
       else
         emit deletionFailureST(this);
+      delete arb;
     }
 };
 
@@ -63,7 +64,7 @@ class deleteThread : public QThread {
   Q_OBJECT
 
   private:
-    QList<QPair<QString, QStringList> > torrents_list;
+    QList<QPair<QString, arborescence*> > torrents_list;
     QMutex mutex;
     QWaitCondition condition;
     bool abort;
@@ -81,9 +82,10 @@ class deleteThread : public QThread {
       wait();
     }
 
-    void deleteTorrent(QString save_path, QStringList files_path){
+    void deleteTorrent(QString saveDir, arborescence *arb){
+      qDebug("deleteThread called");
       QMutexLocker locker(&mutex);
-      torrents_list << QPair<QString, QStringList>(save_path, files_path);
+      torrents_list << QPair<QString, arborescence*>(saveDir, arb);
       if(!isRunning()){
         start();
       }else{
@@ -98,7 +100,7 @@ class deleteThread : public QThread {
           return;
         mutex.lock();
         if(torrents_list.size() != 0){
-          QPair<QString, QStringList> torrent = torrents_list.takeFirst();
+          QPair<QString, arborescence *> torrent = torrents_list.takeFirst();
           mutex.unlock();
           subDeleteThread *st = new subDeleteThread(0, torrent.first, torrent.second);
           subThreads << st;

@@ -26,6 +26,7 @@
 
 #include <QProcess>
 #include "ui_search.h"
+#include "engineSelectDlg.h"
 
 class QStandardItemModel;
 class SearchListDelegate;
@@ -52,21 +53,20 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     QSystemTrayIcon *myTrayIcon;
     bool systrayIntegration;
     downloadThread *downloader;
+    QStringList enabled_engines;
 
   public:
     SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration);
     ~SearchEngine();
-    float getNovaVersion(QString novaPath) const;
-    QByteArray getNovaChangelog(QString novaPath, float my_version) const;
+    float getPluginVersion(QString filePath) const;
     bool loadColWidthSearchList();
 
-  public slots:
+  protected slots:
     // Search slots
     void on_search_button_clicked();
     void on_stop_search_button_clicked();
     void on_clear_button_clicked();
     void on_download_button_clicked();
-    void on_update_nova_button_clicked();
     void appendSearchResult(QString line);
     void searchFinished(int exitcode,QProcess::ExitStatus);
     void readSearchOutput();
@@ -74,16 +74,14 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     void searchStarted();
     void downloadSelectedItem(const QModelIndex& index);
     void startSearchHistory();
-    void loadCheckedSearchEngines();
-    void updateNova() const;
+    void updateNova();
     void saveSearchHistory();
     void saveColWidthSearchList() const;
-    void saveCheckedSearchEngines(int) const;
     void sortSearchList(int index);
     void sortSearchListInt(int index, Qt::SortOrder sortOrder);
     void sortSearchListString(int index, Qt::SortOrder sortOrder);
-    void novaUpdateDownloaded(QString url, QString path);
-    void handleNovaDownloadFailure(QString url, QString reason);
+    void on_enginesButton_clicked();
+    void loadEngineSettings();
 };
 
 #endif

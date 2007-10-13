@@ -29,6 +29,8 @@ class PropListDelegate;
 class QTimer;
 class bittorrent;
 class QStandardItemModel;
+class file;
+class QStandardItem;
 
 using namespace libtorrent;
 
@@ -49,9 +51,7 @@ class properties : public QDialog, private Ui::properties{
     void on_okButton_clicked();
     void on_incrementalDownload_stateChanged(int);
     void setRowColor(int row, QString color);
-    void savePiecesPriorities();
     void updateInfos();
-    void loadPiecesPriorities();
     void setAllPiecesState(unsigned short priority);
     void askForTracker();
     void loadTrackers();
@@ -69,6 +69,11 @@ class properties : public QDialog, private Ui::properties{
     void loadWebSeedsFromFile();
     void deleteSelectedUrlSeeds();
     void loadTrackersErrors();
+    void addFilesToTree(file *root, QStandardItem *parent);
+    void updateChildrenPriority(QStandardItem *item, int priority);
+    void updateParentsPriority(QStandardItem *item, int priority);
+    void updatePriorities(QStandardItem *item);
+    void getPriorities(QStandardItem *parent, int *priorities);
 
   signals:
     void filteredFilesChanged(QString hash);
@@ -78,7 +83,9 @@ class properties : public QDialog, private Ui::properties{
     // Constructor
     properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h);
     ~properties();
-    bool onlyOneItem() const;
+    bool allFiltered() const;
+    bool savePiecesPriorities();
+    int* loadPiecesPriorities();
 };
 
 #endif
