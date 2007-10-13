@@ -26,7 +26,7 @@
 #include <QApplication>
 #include <QSettings>
 #include <QPlastiqueStyle>
-#include <QCleanlooksStyle>
+#include "qgnomelook.h"
 #include <QMotifStyle>
 #include <QCDEStyle>
 #include <QDialogButtonBox>
@@ -222,7 +222,7 @@ void options_imp::useStyle(){
       QApplication::setStyle(new QPlastiqueStyle());
       break;
     case 2:
-      QApplication::setStyle(new QCleanlooksStyle());
+      QApplication::setStyle(new QGnomeLookStyle());
       break;
     case 3:
       QApplication::setStyle(new QMotifStyle());

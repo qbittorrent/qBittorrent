@@ -142,7 +142,7 @@ HEADERS += GUI.h misc.h options_imp.h about_imp.h \
            allocationDlg.h FinishedListDelegate.h \
            qtorrenthandle.h downloadingTorrents.h \
            engineSelectDlg.h pluginSource.h \
-           arborescence.h
+           arborescence.h qgnomelook.h
 FORMS += MainWindow.ui options.ui about.ui \
          properties.ui createtorrent.ui preview.ui \
          login.ui downloadFromURL.ui addTorrentDialog.ui \

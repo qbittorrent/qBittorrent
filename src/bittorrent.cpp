@@ -1138,8 +1138,7 @@ void bittorrent::readAlerts() {
       QTorrentHandle h(p->handle);
       if(h.is_valid()){
         qDebug("/!\\ Fast resume failed for %s, reason: %s", h.name().toUtf8().data(), p->msg().c_str());
-        // TODO: uncomment this when #182 in libtorrent is fixed
-        //emit fastResumeDataRejected(h.name());
+        emit fastResumeDataRejected(h.name());
       }
     }
     else if (url_seed_alert* p = dynamic_cast<url_seed_alert*>(a.get())) {

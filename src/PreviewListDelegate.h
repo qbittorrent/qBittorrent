@@ -61,11 +61,8 @@ class PreviewListDelegate: public QItemDelegate {
           newopt.maximum = 100;
           newopt.minimum = 0;
           newopt.state |= QStyle::State_Enabled;
-          newopt.textVisible = false;
+          newopt.textVisible = true;
           QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
-          QPalette::ColorGroup cg = opt.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
-          painter->setPen(opt.palette.color(cg, QPalette::WindowText));
-          painter->drawText(opt.rect, Qt::AlignCenter, newopt.text);
           break;
         }
         default:

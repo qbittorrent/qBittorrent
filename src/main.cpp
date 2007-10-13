@@ -29,7 +29,7 @@
 #include <QTcpSocket>
 #include <QTcpServer>
 #include <QPlastiqueStyle>
-#include <QCleanlooksStyle>
+#include "qgnomelook.h"
 #include <QMotifStyle>
 #include <QCDEStyle>
 #ifdef Q_WS_WIN
@@ -50,7 +50,7 @@ void useStyle(QApplication *app, int style){
       app->setStyle(new QPlastiqueStyle());
       break;
     case 2:
-      app->setStyle(new QCleanlooksStyle());
+      app->setStyle(new QGnomeLookStyle());
       break;
     case 3:
       app->setStyle(new QMotifStyle());
