@@ -58,3 +58,4 @@
 rc5->rc6 changelog:
 - BUGFIX: configure looks for libraries in lib64 folders too
 - BUGFIX: configure doesn't require paths with a terminal "/" anymore
+- BUGFIX: Fixed minimize to tray feature

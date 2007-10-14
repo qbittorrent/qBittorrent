@@ -519,7 +519,7 @@ void GUI::on_actionCreate_torrent_triggered() {
 // Called when we minimize the program
 void GUI::hideEvent(QHideEvent *e) {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  if(systrayIntegration && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool() && !e->spontaneous()) {
+  if(systrayIntegration && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
     // Hide window
     hide();
   }
