@@ -44,7 +44,7 @@ public:
 
 		s = conf->getenv("QC_WITH_LIBMAGICK_LIB");
 		if(!s.isEmpty()) {
-			if(!QFile::exists(s+QString("libMagick++.so"))){
+			if(!QFile::exists(s+QString("/libMagick++.so"))){
                           return false;
                         }
 		}else{

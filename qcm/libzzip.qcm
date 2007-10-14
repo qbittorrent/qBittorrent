@@ -44,7 +44,7 @@ public:
 
 		s = conf->getenv("QC_WITH_LIBZZIP_LIB");
 		if(!s.isEmpty()) {
-			if(!QFile::exists(s+QString("libzzip.so"))){
+			if(!QFile::exists(s+QString("/libzzip.so"))){
                           return false;
                         }
 		}else{
