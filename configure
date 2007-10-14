@@ -412,7 +412,9 @@ public:
 		}else{
 			QStringList sl;
 			sl << "/usr/lib/";
+			sl << "/usr/lib64/";
 			sl << "/usr/local/lib/";
+			sl << "/usr/local/lib64/";
 			bool found = false;
 			foreach(s, sl){
 				if(conf->checkLibrary(s, "torrent")){
@@ -541,7 +543,9 @@ public:
 		}else{
 			QStringList sl;
 			sl << "/usr/lib/";
+			sl << "/usr/lib64/";
 			sl << "/usr/local/lib/";
+			sl << "/usr/local/lib64/";
 			bool found = false;
 			foreach(s, sl){
 				if(QFile::exists(s+QString("libccext2.so"))){
@@ -620,7 +624,9 @@ public:
 		}else{
 			QStringList sl;
 			sl << "/usr/lib/";
+			sl << "/usr/lib64/";
 			sl << "/usr/local/lib/";
+			sl << "/usr/local/lib64/";
 			bool found = false;
 			foreach(s, sl){
 				if(QFile::exists(s+QString("libMagick++.so"))){
@@ -698,7 +704,9 @@ public:
 		}else{
 			QStringList sl;
 			sl << "/usr/lib/";
+			sl << "/usr/lib64/";
 			sl << "/usr/local/lib/";
+			sl << "/usr/local/lib64/";
 			bool found = false;
 			foreach(s, sl){
 				if(QFile::exists(s+QString("libzzip.so"))){

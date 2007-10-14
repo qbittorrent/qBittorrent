@@ -50,7 +50,9 @@ public:
 		}else{
 			QStringList sl;
 			sl << "/usr/lib/";
+			sl << "/usr/lib64/";
 			sl << "/usr/local/lib/";
+			sl << "/usr/local/lib64/";
 			bool found = false;
 			foreach(s, sl){
 				if(QFile::exists(s+QString("libzzip.so"))){
