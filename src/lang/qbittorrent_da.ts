@@ -1842,24 +1842,24 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Sandt</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="122"/>
+        <location filename="../PropListDelegate.h" line="119"/>
         <source>Ignored</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="123"/>
+        <location filename="../PropListDelegate.h" line="120"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="124"/>
+        <location filename="../PropListDelegate.h" line="121"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="125"/>
+        <location filename="../PropListDelegate.h" line="122"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation type="unfinished"></translation>
@@ -2583,12 +2583,12 @@ Changelog:
         <translation type="obsolete">Stien til input findes ikke</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent creation</source>
         <translation>Torrent oprettelse</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent blev oprettet succesfuldt:</translation>
     </message>
@@ -2608,7 +2608,7 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="207"/>
+        <location filename="../createtorrent_imp.cpp" line="208"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3464,7 +3464,7 @@ However, those plugins were disabled.</source>
 <context>
     <name>search_engine</name>
     <message>
-        <location filename="../search.ui" line="76"/>
+        <location filename="../search.ui" line="98"/>
         <source>Search</source>
         <translation type="unfinished">Søg</translation>
     </message>
@@ -3479,32 +3479,32 @@ However, those plugins were disabled.</source>
         <translation type="unfinished">Søg Efter:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="92"/>
+        <location filename="../search.ui" line="114"/>
         <source>Stop</source>
         <translation type="unfinished">Stop</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="127"/>
+        <location filename="../search.ui" line="149"/>
         <source>Status:</source>
         <translation type="unfinished">Status:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="157"/>
+        <location filename="../search.ui" line="179"/>
         <source>Stopped</source>
         <translation type="unfinished">Stoppet</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="230"/>
+        <location filename="../search.ui" line="252"/>
         <source>Results:</source>
         <translation type="unfinished">Resultater:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="297"/>
+        <location filename="../search.ui" line="319"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../search.ui" line="307"/>
+        <location filename="../search.ui" line="329"/>
         <source>Clear</source>
         <translation type="unfinished">Ryd resultater</translation>
     </message>
@@ -3514,7 +3514,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Opdater søge plugin</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="99"/>
+        <location filename="../search.ui" line="121"/>
         <source>Search engines...</source>
         <translation type="unfinished"></translation>
     </message>

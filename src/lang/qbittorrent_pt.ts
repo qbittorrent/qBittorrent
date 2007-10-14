@@ -2355,24 +2355,24 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Verdadeiro</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="122"/>
+        <location filename="../PropListDelegate.h" line="119"/>
         <source>Ignored</source>
         <translation>Ignorado</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="123"/>
+        <location filename="../PropListDelegate.h" line="120"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="124"/>
+        <location filename="../PropListDelegate.h" line="121"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Alta</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="125"/>
+        <location filename="../PropListDelegate.h" line="122"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Máxima</translation>
@@ -3282,12 +3282,12 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Digite primeiro um caminho de entrada correto</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent creation</source>
         <translation>Criação de torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent foi criado com sucesso:</translation>
     </message>
@@ -3312,7 +3312,7 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation>Digite uma url anunciada</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="207"/>
+        <location filename="../createtorrent_imp.cpp" line="208"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>A criação do torrent não foi possível, motivo: %1</translation>
     </message>
@@ -4374,7 +4374,7 @@ Portanto os plugins foram desabilitados.</translation>
 <context>
     <name>search_engine</name>
     <message>
-        <location filename="../search.ui" line="76"/>
+        <location filename="../search.ui" line="98"/>
         <source>Search</source>
         <translation>Busca</translation>
     </message>
@@ -4389,32 +4389,32 @@ Portanto os plugins foram desabilitados.</translation>
         <translation>Padrão de busca:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="92"/>
+        <location filename="../search.ui" line="114"/>
         <source>Stop</source>
         <translation>Parar</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="127"/>
+        <location filename="../search.ui" line="149"/>
         <source>Status:</source>
         <translation>Estado:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="157"/>
+        <location filename="../search.ui" line="179"/>
         <source>Stopped</source>
         <translation>Parado</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="230"/>
+        <location filename="../search.ui" line="252"/>
         <source>Results:</source>
         <translation>Resultados:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="297"/>
+        <location filename="../search.ui" line="319"/>
         <source>Download</source>
         <translation>Download</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="307"/>
+        <location filename="../search.ui" line="329"/>
         <source>Clear</source>
         <translation>Limpar</translation>
     </message>
@@ -4424,7 +4424,7 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Atualizar plugin de busca</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="99"/>
+        <location filename="../search.ui" line="121"/>
         <source>Search engines...</source>
         <translation>Máquinas de busca...</translation>
     </message>

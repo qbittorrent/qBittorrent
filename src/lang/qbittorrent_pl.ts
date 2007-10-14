@@ -2591,24 +2591,24 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation type="obsolete">Tak</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="122"/>
+        <location filename="../PropListDelegate.h" line="119"/>
         <source>Ignored</source>
         <translation>Ignorowany</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="123"/>
+        <location filename="../PropListDelegate.h" line="120"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normalny</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="124"/>
+        <location filename="../PropListDelegate.h" line="121"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Wysoki</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="125"/>
+        <location filename="../PropListDelegate.h" line="122"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maksymalny</translation>
@@ -3436,12 +3436,12 @@ Zmiany:
         <translation type="obsolete">Proszę podać poprawną ścieżkę źródłową</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent creation</source>
         <translation>Tworzenie torrent-a</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent was created successfully:</source>
         <translation>Utworzono plik torrent:</translation>
     </message>
@@ -3466,7 +3466,7 @@ Zmiany:
         <translation>Sprecyzuj adres URL trackera</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="207"/>
+        <location filename="../createtorrent_imp.cpp" line="208"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Nie udało się stworzyć torrenta , powód: %1</translation>
     </message>
@@ -4568,7 +4568,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
 <context>
     <name>search_engine</name>
     <message>
-        <location filename="../search.ui" line="76"/>
+        <location filename="../search.ui" line="98"/>
         <source>Search</source>
         <translation>Szukaj</translation>
     </message>
@@ -4583,32 +4583,32 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation>Wzorzec wyszukiwania:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="92"/>
+        <location filename="../search.ui" line="114"/>
         <source>Stop</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="127"/>
+        <location filename="../search.ui" line="149"/>
         <source>Status:</source>
         <translation>Status:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="157"/>
+        <location filename="../search.ui" line="179"/>
         <source>Stopped</source>
         <translation>Zatrzymany</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="230"/>
+        <location filename="../search.ui" line="252"/>
         <source>Results:</source>
         <translation>Rezultat:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="297"/>
+        <location filename="../search.ui" line="319"/>
         <source>Download</source>
         <translation>Pobierz</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="307"/>
+        <location filename="../search.ui" line="329"/>
         <source>Clear</source>
         <translation>Wyczyść</translation>
     </message>
@@ -4618,7 +4618,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Aktualizacja wtyczki wyszukiwania</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="99"/>
+        <location filename="../search.ui" line="121"/>
         <source>Search engines...</source>
         <translation>Wyszukaj silniki wyszukiwania...</translation>
     </message>

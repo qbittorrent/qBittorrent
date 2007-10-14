@@ -460,6 +460,11 @@ void SearchEngine::on_clear_button_clicked(){
   results_lbl->setText(tr("Results")+" <i>(0)</i>:");
 }
 
+void SearchEngine::on_clearPatternButton_clicked() {
+  search_pattern->clear();
+  search_pattern->setFocus();
+}
+
 // Download selected items in search results list
 void SearchEngine::on_download_button_clicked(){
   QModelIndexList selectedIndexes = resultsBrowser->selectionModel()->selectedIndexes();

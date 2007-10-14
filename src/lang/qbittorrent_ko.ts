@@ -2542,24 +2542,24 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">맞음</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="122"/>
+        <location filename="../PropListDelegate.h" line="119"/>
         <source>Ignored</source>
         <translation>무시</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="123"/>
+        <location filename="../PropListDelegate.h" line="120"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>보통</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="124"/>
+        <location filename="../PropListDelegate.h" line="121"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>높음</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="125"/>
+        <location filename="../PropListDelegate.h" line="122"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>최고</translation>
@@ -3371,12 +3371,12 @@ Changelog:
         <translation type="obsolete">변환할 파일 경로를 재설정해 주십시오</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent creation</source>
         <translation>토렌트 생성</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent was created successfully:</source>
         <translation>토렌트가 성공적으로 생성되었습니다:</translation>
     </message>
@@ -3401,7 +3401,7 @@ Changelog:
         <translation>발표되는 주소(announce URL)를 입력해 주십시오</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="207"/>
+        <location filename="../createtorrent_imp.cpp" line="208"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>토렌트 생성이 실패하였습니다, 이유: %1</translation>
     </message>
@@ -4498,7 +4498,7 @@ However, those plugins were disabled.</source>
 <context>
     <name>search_engine</name>
     <message>
-        <location filename="../search.ui" line="76"/>
+        <location filename="../search.ui" line="98"/>
         <source>Search</source>
         <translation>검색</translation>
     </message>
@@ -4513,32 +4513,32 @@ However, those plugins were disabled.</source>
         <translation>검색 양식:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="92"/>
+        <location filename="../search.ui" line="114"/>
         <source>Stop</source>
         <translation>정지</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="127"/>
+        <location filename="../search.ui" line="149"/>
         <source>Status:</source>
         <translation>상태:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="157"/>
+        <location filename="../search.ui" line="179"/>
         <source>Stopped</source>
         <translation>정지됨</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="230"/>
+        <location filename="../search.ui" line="252"/>
         <source>Results:</source>
         <translation>결과:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="297"/>
+        <location filename="../search.ui" line="319"/>
         <source>Download</source>
         <translation>다운로드</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="307"/>
+        <location filename="../search.ui" line="329"/>
         <source>Clear</source>
         <translation>모두 지우기</translation>
     </message>
@@ -4548,7 +4548,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">검색 plugin 업데이트</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="99"/>
+        <location filename="../search.ui" line="121"/>
         <source>Search engines...</source>
         <translation>검색 엔진...</translation>
     </message>

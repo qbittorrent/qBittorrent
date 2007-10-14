@@ -65,6 +65,28 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="clearPatternButton" >
+       <property name="maximumSize" >
+        <size>
+         <width>34</width>
+         <height>29</height>
+        </size>
+       </property>
+       <property name="text" >
+        <string/>
+       </property>
+       <property name="icon" >
+        <iconset resource="icons.qrc" >:/Icons/edit_clear.png</iconset>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>30</width>
+         <height>21</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="search_button" >
        <property name="maximumSize" >
         <size>
@@ -327,7 +349,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc" />
+ </resources>
  <connections>
   <connection>
    <sender>search_pattern</sender>

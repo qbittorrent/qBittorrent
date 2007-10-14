@@ -2381,24 +2381,24 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Áno</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="122"/>
+        <location filename="../PropListDelegate.h" line="119"/>
         <source>Ignored</source>
         <translation>Ignorovaný</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="123"/>
+        <location filename="../PropListDelegate.h" line="120"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normálna</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="124"/>
+        <location filename="../PropListDelegate.h" line="121"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Vysoká</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="125"/>
+        <location filename="../PropListDelegate.h" line="122"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maximálna</translation>
@@ -3204,12 +3204,12 @@ Záznam zmien:</translation>
         <translation type="obsolete">Prosím, napíšte správnu vstupnú cestu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent creation</source>
         <translation>Vytvorenie torrentu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent bol úspešne vytvorený:</translation>
     </message>
@@ -3234,7 +3234,7 @@ Záznam zmien:</translation>
         <translation>Prosím, napíšte announce URL</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="207"/>
+        <location filename="../createtorrent_imp.cpp" line="208"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Torrent nebol vytvorený, dôvod: %1</translation>
     </message>
@@ -4380,7 +4380,7 @@ Tieto moduly však boli vypnuté.</translation>
 <context>
     <name>search_engine</name>
     <message>
-        <location filename="../search.ui" line="76"/>
+        <location filename="../search.ui" line="98"/>
         <source>Search</source>
         <translation>Vyhľadávanie</translation>
     </message>
@@ -4395,32 +4395,32 @@ Tieto moduly však boli vypnuté.</translation>
         <translation>Vyhľadávací vzor:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="92"/>
+        <location filename="../search.ui" line="114"/>
         <source>Stop</source>
         <translation>Zastaviť</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="127"/>
+        <location filename="../search.ui" line="149"/>
         <source>Status:</source>
         <translation>Stav:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="157"/>
+        <location filename="../search.ui" line="179"/>
         <source>Stopped</source>
         <translation>Zastavený</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="230"/>
+        <location filename="../search.ui" line="252"/>
         <source>Results:</source>
         <translation>Výsledky:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="297"/>
+        <location filename="../search.ui" line="319"/>
         <source>Download</source>
         <translation>Stiahnuť</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="307"/>
+        <location filename="../search.ui" line="329"/>
         <source>Clear</source>
         <translation>Vyčistiť</translation>
     </message>
@@ -4430,7 +4430,7 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Aktualizovať zásuvný modul vyhľadávania</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="99"/>
+        <location filename="../search.ui" line="121"/>
         <source>Search engines...</source>
         <translation>Vyhľadávače...</translation>
     </message>

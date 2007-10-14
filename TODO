@@ -56,6 +56,8 @@
 - Translations update (IN PROGRESS)
 
 rc5->rc6 changelog:
+- FEATURE: Added a button to clear search pattern
 - BUGFIX: configure looks for libraries in lib64 folders too
 - BUGFIX: configure doesn't require paths with a terminal "/" anymore
 - BUGFIX: Fixed minimize to tray feature
+- I18N: Fixed swedish translation

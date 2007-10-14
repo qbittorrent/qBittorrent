@@ -93,7 +93,7 @@
         <translation>Studerar datorvetenskap</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="306"/>
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
 &lt;br&gt;
 Copyright &#xa9; 2006 by Christophe Dumez&lt;br&gt;
@@ -440,7 +440,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Lyssningsport</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="306"/>
         <source>to</source>
         <comment>
 i.e: 1200 to 1300</comment>
@@ -597,15 +597,15 @@ i.e: 1200 to 1300</comment>
         <translation>Ta bort färdiga torrent-filer när deras förhållande når:</translation>
     </message>
     <message>
+        <location filename="../options.ui" line="162"/>
+        <source>System default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../options.ui" line="607"/>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
         <translation type="unfinished">till</translation>
-    </message>
-    <message>
-        <location filename="../options.ui" line="162"/>
-        <source>System default</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -987,7 +987,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../GUI.cpp" line="959"/>
         <source>Finished</source>
-        <translation>Färdig</translation>
+        <translation>Färdiga</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="706"/>
@@ -1244,24 +1244,24 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../PropListDelegate.h" line="122"/>
+        <location filename="../PropListDelegate.h" line="119"/>
         <source>Ignored</source>
         <translation>Ignoreras</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="123"/>
+        <location filename="../PropListDelegate.h" line="120"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="124"/>
+        <location filename="../PropListDelegate.h" line="121"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Hög</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="125"/>
+        <location filename="../PropListDelegate.h" line="122"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maximal</translation>
@@ -1786,12 +1786,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Ange en sökväg för indata först</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent creation</source>
         <translation>Skapa torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="212"/>
+        <location filename="../createtorrent_imp.cpp" line="213"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrentfilen skapades:</translation>
     </message>
@@ -1806,7 +1806,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Ange en annonserings-url</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="207"/>
+        <location filename="../createtorrent_imp.cpp" line="208"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Skapandet av torrent-fil misslyckades, anledning: %1</translation>
     </message>
@@ -2623,7 +2623,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
 <context>
     <name>search_engine</name>
     <message>
-        <location filename="../search.ui" line="76"/>
+        <location filename="../search.ui" line="98"/>
         <source>Search</source>
         <translation>Sök</translation>
     </message>
@@ -2633,37 +2633,37 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <translation>Sökmönster:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="92"/>
+        <location filename="../search.ui" line="114"/>
         <source>Stop</source>
         <translation>Stoppa</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="127"/>
+        <location filename="../search.ui" line="149"/>
         <source>Status:</source>
         <translation>Status:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="157"/>
+        <location filename="../search.ui" line="179"/>
         <source>Stopped</source>
         <translation>Stoppad</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="230"/>
+        <location filename="../search.ui" line="252"/>
         <source>Results:</source>
         <translation>Resultat:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="297"/>
+        <location filename="../search.ui" line="319"/>
         <source>Download</source>
         <translation>Hämta</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="307"/>
+        <location filename="../search.ui" line="329"/>
         <source>Clear</source>
         <translation>Töm</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="99"/>
+        <location filename="../search.ui" line="121"/>
         <source>Search engines...</source>
         <translation>Sökmotorer...</translation>
     </message>
@@ -2746,7 +2746,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <location filename="../downloadThread.cpp" line="37"/>
         <source>Connection forbidden (403)</source>
-        <translation>Anslutningen förbjöds (403)</translation>
+        <translation>Anslutningen tillåts inte (403)</translation>
     </message>
     <message>
         <location filename="../downloadThread.cpp" line="39"/>

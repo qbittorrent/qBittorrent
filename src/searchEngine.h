@@ -82,6 +82,7 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     void sortSearchListString(int index, Qt::SortOrder sortOrder);
     void on_enginesButton_clicked();
     void loadEngineSettings();
+    void on_clearPatternButton_clicked();
 };
 
 #endif
