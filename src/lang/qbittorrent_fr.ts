@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr">
+<defaultcodec></defaultcodec>
 <context>
     <name>@default</name>
     <message>
@@ -4611,7 +4612,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../properties_imp.cpp" line="37"/>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
-        <translation>Elevée : Priorité supérieure à la normale. Les morceaux sont préférés aux autres possédant la même disponibilité, mais pas par rapport à ceux qui ont une disponibilité plus faible</translation>
+        <translation>Haute : Priorité supérieure à la normale. Les morceaux sont préférés aux autres possédant la même disponibilité, mais pas par rapport à ceux qui ont une disponibilité plus faible</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="37"/>
