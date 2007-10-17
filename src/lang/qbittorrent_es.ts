@@ -1006,7 +1006,7 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="162"/>
         <source>System default</source>
-        <translation type="unfinished"></translation>
+        <translation>Por defecto del systema</translation>
     </message>
 </context>
 <context>
@@ -1859,7 +1859,7 @@ Por favor cierra el otro antes.</translation>
         <location filename="../GUI.cpp" line="726"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation>&apos;%1&apos; fué removido.</translation>
+        <translation>&apos;%1&apos; fue removido.</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -1941,7 +1941,7 @@ Por favor cierra el otro antes.</translation>
         <location filename="../GUI.cpp" line="268"/>
         <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
         <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
-        <translation>Un error ocurrió mientras se intentaba leer o escribir %1. El disco tal vez esté lleno, la descarga fué pausada</translation>
+        <translation>Un error ocurrió mientras se intentaba leer o escribir %1. El disco tal vez esté lleno, la descarga fue pausada</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -2145,7 +2145,7 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../GUI.cpp" line="661"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation>&apos;%1&apos; fué borrado permanentemente.</translation>
+        <translation>&apos;%1&apos; fue borrado permanentemente.</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -2168,7 +2168,7 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../GUI.cpp" line="672"/>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
         <comment>%1 is a file name</comment>
-        <translation>&apos;%1&apos; fué eliminado porque su radio llegó al valor máximo que estableciste.</translation>
+        <translation>&apos;%1&apos; fue eliminado porque su radio llegó al valor máximo que estableciste.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="840"/>
@@ -3706,13 +3706,13 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <location filename="../engineSelectDlg.cpp" line="510"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>El plugin de motor de búsqueda %1 fué actualizado exitosamente.</translation>
+        <translation>El plugin de motor de búsqueda %1 fue actualizado exitosamente.</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="513"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>El plugin de motor de búsqueda %1 fué instalado exitosamente.</translation>
+        <translation>El plugin de motor de búsqueda %1 fue instalado exitosamente.</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -4640,12 +4640,12 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
     <message>
         <location filename="../downloadThread.cpp" line="31"/>
         <source>File was not found (404)</source>
-        <translation>El archivo no fué encontrado (404)</translation>
+        <translation>El archivo no fue encontrado (404)</translation>
     </message>
     <message>
         <location filename="../downloadThread.cpp" line="33"/>
         <source>Connection was denied</source>
-        <translation>La conexión fué negada</translation>
+        <translation>La conexión fue negada</translation>
     </message>
     <message>
         <location filename="../downloadThread.cpp" line="35"/>
