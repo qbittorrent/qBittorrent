@@ -47,7 +47,6 @@
 #include "allocationDlg.h"
 
 using namespace libtorrent;
-namespace fs = boost::filesystem;
 
 /*****************************************************
  *                                                   *

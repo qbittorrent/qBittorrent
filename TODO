@@ -46,6 +46,7 @@
 - Display in torrent addition dialog:
    * free disk space on selected drive
    * free disk space after torrent download (and/or torrent size)
+- Start minimized option in program preferences
 - Allow to change action on double-click
   -> in download list
   -> in seeding list
