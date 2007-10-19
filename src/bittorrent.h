@@ -33,6 +33,7 @@
 using namespace libtorrent;
 
 class downloadThread;
+class deleteThread;
 class QTimer;
 
 class bittorrent : public QObject{
@@ -53,6 +54,7 @@ class bittorrent : public QObject{
     QHash<QString, QPair<size_type,size_type> > ratioData;
     QTimer *ETARefresher;
     QHash<QString, QList<QPair<QString, QString> > > trackersErrors;
+    deleteThread *deleter;
     QStringList waitingForPause;
     QStringList finishedTorrents;
     QStringList unfinishedTorrents;

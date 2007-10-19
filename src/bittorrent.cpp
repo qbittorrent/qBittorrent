@@ -27,6 +27,7 @@
 #include "bittorrent.h"
 #include "misc.h"
 #include "downloadThread.h"
+#include "deleteThread.h"
 
 #include <libtorrent/extensions/metadata_transfer.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
@@ -61,6 +62,8 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
+  // File deleter (thread)
+  deleter = new deleteThread(this);
   qDebug("* BTSession constructed");
 }
 
@@ -69,6 +72,7 @@ bittorrent::~bittorrent() {
   // Disable directory scanning
   disableDirectoryScanning();
   // Delete our objects
+  delete deleter;
   delete timerAlerts;
   delete ETARefresher;
   delete downloader;
@@ -206,13 +210,12 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   }
   QString savePath = h.save_path();
   QString fileName = h.name();
-  // Remove it from session
-  if(permanent) {
-    qDebug("Removing this on hard drive: %s", qPrintable(savePath+QDir::separator()+fileName));
-    s->remove_torrent(h.get_torrent_handle(), session::delete_files);
-  } else {
-    s->remove_torrent(h.get_torrent_handle());
+  arborescence *files_arb = 0;
+  if(permanent){
+    files_arb = new arborescence(h.get_torrent_info());
   }
+  // Remove it from session
+  s->remove_torrent(h.get_torrent_handle());
   // Remove it from torrent backup directory
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
   QStringList filters;
@@ -243,6 +246,12 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
     }else{
       std::cerr << "Error: Torrent " << hash.toStdString() << " is neither in finished or unfinished list\n";
     }
+  }
+  if(permanent && files_arb != 0) {
+    // Remove from Hard drive
+    qDebug("Removing this on hard drive: %s", qPrintable(savePath+QDir::separator()+fileName));
+    // Deleting in a thread to avoid GUI freeze
+    deleter->deleteTorrent(savePath, files_arb);
   }
 }
 

@@ -62,4 +62,5 @@ rc5->rc6 changelog:
 - BUGFIX: configure doesn't require paths with a terminal "/" anymore
 - BUGFIX: Fixed minimize to tray feature
 - BUGFIX: Fixed folders progress calculation in torrent properties
+- BUGFIX: Fixed deletion of subfolders when deleting torrents from hard drive
 - I18N: Fixed swedish, French, Spanish translations
