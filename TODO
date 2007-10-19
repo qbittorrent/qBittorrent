@@ -63,4 +63,5 @@ rc5->rc6 changelog:
 - BUGFIX: Fixed minimize to tray feature
 - BUGFIX: Fixed folders progress calculation in torrent properties
 - BUGFIX: Fixed deletion of subfolders when deleting torrents from hard drive
+- BUGFIX: Remember scan directory in program preferences now
 - I18N: Fixed swedish, French, Spanish translations

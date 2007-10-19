@@ -427,6 +427,7 @@ void options_imp::loadOptions(){
   } else {
     // enable
     checkScanDir->setChecked(true);
+    textScanDir->setText(strValue);
     enableDirScan(2);
   }
   // End Downloads preferences
