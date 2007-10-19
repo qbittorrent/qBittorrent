@@ -64,4 +64,5 @@ rc5->rc6 changelog:
 - BUGFIX: Fixed folders progress calculation in torrent properties
 - BUGFIX: Fixed deletion of subfolders when deleting torrents from hard drive
 - BUGFIX: Remember scan directory in program preferences now
+- BUGFIX: Fixed ETA display (sometimes displayed < 1min for no reason)
 - I18N: Fixed swedish, French, Spanish translations
