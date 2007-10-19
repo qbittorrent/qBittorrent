@@ -56,13 +56,5 @@
 - Recheck doc
 - Translations update (IN PROGRESS)
 
-rc5->rc6 changelog:
-- FEATURE: Added a button to clear search pattern
-- BUGFIX: configure looks for libraries in lib64 folders too
-- BUGFIX: configure doesn't require paths with a terminal "/" anymore
-- BUGFIX: Fixed minimize to tray feature
-- BUGFIX: Fixed folders progress calculation in torrent properties
-- BUGFIX: Fixed deletion of subfolders when deleting torrents from hard drive
-- BUGFIX: Remember scan directory in program preferences now
-- BUGFIX: Fixed ETA display (sometimes displayed < 1min for no reason)
-- I18N: Fixed swedish, French, Spanish translations
+rc6->rc7 changelog:
+- I18N: Updated Turkish translation
