@@ -157,13 +157,13 @@ class BandwidthAllocationDialog : public QDialog, private Ui_bandwidth_dlg {
             s->set_upload_rate_limit(-1);
           else
             s->set_upload_rate_limit(val*1024);
-          settings.setValue(QString::fromUtf8("Options/Main/UPLimit"), val);
+          settings.setValue(QString::fromUtf8("Preferences/Connection/GlobalUPLimit"), val);
         }else{
           if(!val)
             s->set_download_rate_limit(-1);
           else
             s->set_download_rate_limit(val*1024);
-          settings.setValue(QString::fromUtf8("Options/Main/DLLimit"), val);
+          settings.setValue(QString::fromUtf8("Preferences/Connection/GlobalDLLimit"), val);
         }
       }
       close();

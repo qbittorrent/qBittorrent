@@ -37,15 +37,17 @@ public:
 
 		s = conf->getenv("QC_WITH_LIBCOMMONCPP2_LIB");
 		if(!s.isEmpty()) {
-			if(!QFile::exists(s+QString("libccext2.so")))
+			if(!QFile::exists(s+QString("/libccext2.so")))
 		    return false;
-			if(!QFile::exists(s+QString("libccgnu2.so")))
+			if(!QFile::exists(s+QString("/libccgnu2.so")))
 				return false;
     	conf->addLib(QString("-L") + s);
 		}else{
 			QStringList sl;
 			sl << "/usr/lib/";
+			sl << "/usr/lib64/";
 			sl << "/usr/local/lib/";
+			sl << "/usr/local/lib64/";
 			bool found = false;
 			foreach(s, sl){
 				if(QFile::exists(s+QString("libccext2.so"))){

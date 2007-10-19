@@ -64,7 +64,9 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     FinishedTorrents *finishedTorrentTab;
     QLabel *connecStatusLblIcon;
     bool systrayIntegration;
+    bool displaySpeedInTitle;
     bool force_exit;
+    unsigned int refreshInterval;
     QTimer *refresher;
     // Keyboard shortcuts
     QShortcut *switchSearchShortcut;
@@ -127,10 +129,12 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void checkConnectionStatus();
     void configureSession(bool deleteOptions);
     void processParams(const QStringList& params);
+    void addTorrent(QString path);
     void addUnauthenticatedTracker(QPair<QTorrentHandle,QString> tracker);
     void processScannedFiles(const QStringList& params);
     void processDownloadedFiles(QString path, QString url);
     void downloadFromURLList(const QStringList& urls);
+    void deleteTorrent(QString hash, QString fileName, bool finished);
     void finishedTorrent(QTorrentHandle& h) const;
     void torrentChecked(QString hash) const;
     void updateLists();

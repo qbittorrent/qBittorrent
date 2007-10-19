@@ -47,7 +47,6 @@
 #include "allocationDlg.h"
 
 using namespace libtorrent;
-namespace fs = boost::filesystem;
 
 /*****************************************************
  *                                                   *
@@ -56,11 +55,11 @@ namespace fs = boost::filesystem;
  *****************************************************/
 
 // Constructor
-GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), force_exit(false) {
+GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), displaySpeedInTitle(false), force_exit(false), refreshInterval(1500) {
   setupUi(this);
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  systrayIntegration = settings.value(QString::fromUtf8("Options/Misc/Behaviour/SystrayIntegration"), true).toBool();
+  systrayIntegration = settings.value(QString::fromUtf8("Preferences/General/SystrayEnabled"), true).toBool();
   // Create tray icon
   if (QSystemTrayIcon::isSystemTrayAvailable()) {
     if(systrayIntegration) {
@@ -112,6 +111,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   connect(BTSession, SIGNAL(scanDirFoundTorrents(const QStringList&)), this, SLOT(processScannedFiles(const QStringList&)));
   connect(BTSession, SIGNAL(newDownloadedTorrent(QString, QString)), this, SLOT(processDownloadedFiles(QString, QString)));
   connect(BTSession, SIGNAL(downloadFromUrlFailure(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
+  connect(BTSession, SIGNAL(torrent_deleted(QString, QString, bool)), this, SLOT(deleteTorrent(QString, QString, bool)));
   qDebug("create tabWidget");
   tabs = new QTabWidget();
   // Download torrents tab
@@ -130,6 +130,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   // Smooth torrent switching between tabs Downloading <--> Finished
   connect(downloadingTorrentTab, SIGNAL(torrentFinished(QString)), finishedTorrentTab, SLOT(addTorrent(QString)));
   connect(finishedTorrentTab, SIGNAL(torrentMovedFromFinishedList(QString)), downloadingTorrentTab, SLOT(addTorrent(QString)));
+  // Start download list refresher
+  refresher = new QTimer(this);
+  connect(refresher, SIGNAL(timeout()), this, SLOT(updateLists()));
+  refresher->start(1500);
   // Configure BT session according to options
   configureSession(true);
   // Resume unfinished torrents
@@ -141,7 +145,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   // RSS tab
   rssWidget = new RSSImp();
   tabs->addTab(rssWidget, tr("RSS"));
-  tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss.png")));
+  tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss32.png")));
   readSettings();
   // Add torrent given on command line
   processParams(torrentCmdLine);
@@ -155,10 +159,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   checkConnect = new QTimer(this);
   connect(checkConnect, SIGNAL(timeout()), this, SLOT(checkConnectionStatus()));
   checkConnect->start(5000);
-  // Start download list refresher
-  refresher = new QTimer(this);
-  connect(refresher, SIGNAL(timeout()), this, SLOT(updateLists()));
-  refresher->start(1500);
   previewProcess = new QProcess(this);
   connect(previewProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(cleanTempPreviewFile(int, QProcess::ExitStatus)));
   // Accept drag 'n drops
@@ -243,7 +243,7 @@ void GUI::finishedTorrent(QTorrentHandle& h) const {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   bool show_msg = true;
   QString fileName = h.name();
-  int useOSD = settings.value(QString::fromUtf8("Options/OSDEnabled"), 1).toInt();
+  bool useNotificationBalloons = settings.value(QString::fromUtf8("Preferences/General/NotificationBaloons"), true).toBool();
   // Add it to finished tab
   QString hash = h.hash();
   if(QFile::exists(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".finished"))) {
@@ -254,7 +254,7 @@ void GUI::finishedTorrent(QTorrentHandle& h) const {
     downloadingTorrentTab->setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
   downloadingTorrentTab->deleteTorrent(hash);
   finishedTorrentTab->addTorrent(hash);
-  if(show_msg && systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
+  if(show_msg && systrayIntegration && useNotificationBalloons) {
     myTrayIcon->showMessage(tr("Download finished"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
   }
 }
@@ -262,8 +262,8 @@ void GUI::finishedTorrent(QTorrentHandle& h) const {
 // Notification when disk is full
 void GUI::fullDiskError(QTorrentHandle& h) const {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  int useOSD = settings.value(QString::fromUtf8("Options/OSDEnabled"), 1).toInt();
-  if(systrayIntegration && (useOSD == 1 || (useOSD == 2 && (isMinimized() || isHidden())))) {
+  bool useNotificationBalloons = settings.value(QString::fromUtf8("Preferences/General/NotificationBaloons"), true).toBool();
+  if(systrayIntegration && useNotificationBalloons) {
     myTrayIcon->showMessage(tr("I/O Error", "i.e: Input/Output Error"), tr("An error occured when trying to read or write %1. The disk is probably full, download has been paused", "e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused").arg(h.name()), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
   }
   // Download will be paused by libtorrent. Updating GUI information accordingly
@@ -412,7 +412,7 @@ void GUI::previewFile(QString filePath) {
     QStringList params;
     params << tmpPath;
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    QString previewProgram = settings.value(QString::fromUtf8("Options/Misc/PreviewProgram"), QString()).toString();
+    QString previewProgram = settings.value(QString::fromUtf8("Preferences/General/MediaPlayer"), QString()).toString();
     previewProcess->start(previewProgram, params, QIODevice::ReadOnly);
   }else{
     QMessageBox::critical(0, tr("Preview process already running"), tr("There is already another preview process running.\nPlease close the other one first."));
@@ -475,13 +475,13 @@ void GUI::on_actionAbout_triggered() {
 void GUI::closeEvent(QCloseEvent *e) {
   qDebug("Mainwindow received closeEvent");
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  bool goToSystrayOnExit = settings.value(QString::fromUtf8("Options/Misc/Behaviour/GoToSystrayOnExit"), false).toBool();
+  bool goToSystrayOnExit = settings.value(QString::fromUtf8("Preferences/General/CloseToTray"), false).toBool();
   if(!force_exit && systrayIntegration && goToSystrayOnExit && !this->isHidden()) {
     hide();
     e->ignore();
     return;
   }
-  if(settings.value(QString::fromUtf8("Options/Misc/Behaviour/ConfirmOnExit"), true).toBool() && downloadingTorrentTab->getNbTorrentsInList()) {
+  if(settings.value(QString::fromUtf8("Preferences/General/ExitConfirm"), true).toBool() && downloadingTorrentTab->getNbTorrentsInList()) {
     show();
     if(!isMaximized())
       showNormal();
@@ -511,13 +511,14 @@ void GUI::closeEvent(QCloseEvent *e) {
 
 // Display window to create a torrent
 void GUI::on_actionCreate_torrent_triggered() {
-  new createtorrent(this);
+  createtorrent *ct = new createtorrent(this);
+  connect(ct, SIGNAL(torrent_to_seed(QString)), this, SLOT(addTorrent(QString)));
 }
 
 // Called when we minimize the program
 void GUI::hideEvent(QHideEvent *e) {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  if(systrayIntegration && settings.value(QString::fromUtf8("Options/Misc/Behaviour/GoToSystray"), true).toBool() && !e->spontaneous()) {
+  if(systrayIntegration && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
     // Hide window
     hide();
   }
@@ -528,13 +529,25 @@ void GUI::hideEvent(QHideEvent *e) {
 // Action executed when a file is dropped
 void GUI::dropEvent(QDropEvent *event) {
   event->acceptProposedAction();
-  QStringList files=event->mimeData()->text().split(QString::fromUtf8("\n"));
+  QStringList files;
+  if(event->mimeData()->hasUrls()) {
+    QList<QUrl> urls = event->mimeData()->urls();
+    QUrl url;
+    foreach(url, urls) {
+      QString tmp = url.toString();
+      tmp.trimmed();
+      if(!tmp.isEmpty())
+        files << url.toString();
+    }
+  } else {
+    files = event->mimeData()->text().split(QString::fromUtf8("\n"));
+  }
   // Add file to download list
   QString file;
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Options/Misc/TorrentAdditionDialog/Enabled"), true).toBool();
+  bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(file, files) {
-    file = file.trimmed().replace(QString::fromUtf8("file://"), QString::fromUtf8(""));
+    file = file.trimmed().replace(QString::fromUtf8("file://"), QString::fromUtf8(""), Qt::CaseInsensitive);
     qDebug("Dropped file %s on download list", file.toUtf8().data());
     if(file.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || file.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || file.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
       BTSession->downloadFromUrl(file);
@@ -543,7 +556,7 @@ void GUI::dropEvent(QDropEvent *event) {
     if(useTorrentAdditionDialog) {
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
       connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-      connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), downloadingTorrentTab, SLOT(setInfoBar(QString, QString)));
+      connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
       dialog->showLoad(file);
     }else{
       BTSession->addTorrent(file);
@@ -553,7 +566,11 @@ void GUI::dropEvent(QDropEvent *event) {
 
 // Decode if we accept drag 'n drop or not
 void GUI::dragEnterEvent(QDragEnterEvent *event) {
-  if (event->mimeData()->hasFormat(QString::fromUtf8("text/plain"))) {
+  QString mime;
+  foreach(mime, event->mimeData()->formats()){
+    qDebug("mimeData: %s", mime.toUtf8().data());
+  }
+  if (event->mimeData()->hasFormat(QString::fromUtf8("text/plain")) || event->mimeData()->hasFormat(QString::fromUtf8("text/uri-list"))) {
     event->acceptProposedAction();
   }
 }
@@ -567,22 +584,20 @@ void GUI::dragEnterEvent(QDragEnterEvent *event) {
 // Display a dialog to allow user to add
 // torrents to download list
 void GUI::on_actionOpen_triggered() {
-  QStringList pathsList;
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   // Open File Open Dialog
   // Note: it is possible to select more than one file
-  pathsList = QFileDialog::getOpenFileNames(0,
+  QStringList pathsList = QFileDialog::getOpenFileNames(0,
                                             tr("Open Torrent Files"), settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString(),
                                             tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if(!pathsList.empty()) {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Options/Misc/TorrentAdditionDialog/Enabled"), true).toBool();
+    bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
     unsigned int listSize = pathsList.size();
     for(unsigned int i=0; i<listSize; ++i) {
       if(useTorrentAdditionDialog) {
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
         connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-        connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), downloadingTorrentTab, SLOT(setInfoBar(QString, QString)));
+        connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
         dialog->showLoad(pathsList.at(i));
       }else{
         BTSession->addTorrent(pathsList.at(i));
@@ -644,6 +659,16 @@ void GUI::on_actionDelete_Permanently_triggered() {
     // Update info bar
     downloadingTorrentTab->setInfoBar(tr("'%1' was removed permanently.", "'xxx.avi' was removed permanently.").arg(fileName));
   }
+}
+
+void GUI::deleteTorrent(QString hash, QString fileName, bool finished) {
+  if(finished) {
+    finishedTorrentTab->deleteTorrent(hash);
+  } else {
+    downloadingTorrentTab->deleteTorrent(hash);
+  }
+  // Update info bar
+  downloadingTorrentTab->setInfoBar(tr("'%1' was removed because its ratio reached the maximum value you set.", "%1 is a file name").arg(fileName));
 }
 
 // delete selected items in the list
@@ -708,7 +733,7 @@ void GUI::on_actionDelete_triggered() {
 void GUI::processParams(const QStringList& params) {
   QString param;
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Options/Misc/TorrentAdditionDialog/Enabled"), true).toBool();
+  bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(param, params) {
     param = param.trimmed();
     if(param.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
@@ -717,7 +742,7 @@ void GUI::processParams(const QStringList& params) {
       if(useTorrentAdditionDialog) {
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
         connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-        connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), downloadingTorrentTab, SLOT(setInfoBar(QString, QString)));
+        connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
         dialog->showLoad(param);
       }else{
         BTSession->addTorrent(param);
@@ -726,15 +751,19 @@ void GUI::processParams(const QStringList& params) {
   }
 }
 
+void GUI::addTorrent(QString path) {
+  BTSession->addTorrent(path);
+}
+
 void GUI::processScannedFiles(const QStringList& params) {
   QString param;
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Options/Misc/TorrentAdditionDialog/Enabled"), true).toBool();
+  bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(param, params) {
     if(useTorrentAdditionDialog) {
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
       connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-      connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), downloadingTorrentTab, SLOT(setInfoBar(QString, QString)));
+      connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
       dialog->showLoad(param, true);
     }else{
       BTSession->addTorrent(param, true);
@@ -744,11 +773,11 @@ void GUI::processScannedFiles(const QStringList& params) {
 
 void GUI::processDownloadedFiles(QString path, QString url) {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Options/Misc/TorrentAdditionDialog/Enabled"), true).toBool();
+  bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   if(useTorrentAdditionDialog) {
     torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
     connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-    connect(dialog, SIGNAL(setInfoBarGUI(QString, QString)), downloadingTorrentTab, SLOT(setInfoBar(QString, QString)));
+    connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
     dialog->showLoad(path, false, url);
   }else{
     BTSession->addTorrent(path, false, url);
@@ -758,92 +787,67 @@ void GUI::processDownloadedFiles(QString path, QString url) {
 // Set BT session configuration
 void GUI::configureSession(bool deleteOptions) {
   qDebug("Configuring session");
-  QPair<int, int> limits;
-  unsigned short old_listenPort, new_listenPort;
-  proxy_settings proxySettings;
-  session_settings sessionSettings;
-  pe_settings encryptionSettings;
-  // Configure session regarding options
+  // General
+  displaySpeedInTitle = options->speedInTitleBar();
+  unsigned int new_refreshInterval = options->getRefreshInterval();
+  if(refreshInterval != new_refreshInterval) {
+    refreshInterval = new_refreshInterval;
+    refresher->start(refreshInterval);
+  }
+  // Downloads
+  // * Save path
   BTSession->setDefaultSavePath(options->getSavePath());
-  old_listenPort = BTSession->getListenPort();
+  BTSession->preAllocateAllFiles(options->preAllocateAllFiles());
+  BTSession->startTorrentsInPause(options->addTorrentsInPause());
+  // * Scan dir
+  if(options->getScanDir().isNull()) {
+    BTSession->disableDirectoryScanning();
+  }else{
+    BTSession->enableDirectoryScanning(options->getScanDir());
+  }
+  // Connection
+  // * Ports binding
+  unsigned short old_listenPort = BTSession->getListenPort();
   BTSession->setListeningPortsRange(options->getPorts());
-  new_listenPort = BTSession->getListenPort();
+  unsigned short new_listenPort = BTSession->getListenPort();
   if(new_listenPort != old_listenPort) {
     downloadingTorrentTab->setInfoBar(tr("qBittorrent is bind to port: %1", "e.g: qBittorrent is bind to port: 1666").arg( misc::toQString(new_listenPort)));
   }
-  // Apply max connec limit (-1 if disabled)
-  BTSession->setMaxConnections(options->getMaxConnec());
-  limits = options->getLimits();
-  switch(limits.first) {
-    case -1: // Download limit disabled
-    case 0:
-      BTSession->setDownloadRateLimit(-1);
-      break;
-    default:
-      BTSession->setDownloadRateLimit(limits.first*1024);
+  // * Global download limit
+  QPair<int, int> limits = options->getGlobalBandwidthLimits();
+  if(limits.first <= 0) {
+    // Download limit disabled
+    BTSession->setDownloadRateLimit(-1);
+  } else {
+    // Enabled
+    BTSession->setDownloadRateLimit(limits.first*1024);
   }
-  switch(limits.second) {
-    case -1: // Upload limit disabled
-    case 0:
-      BTSession->setUploadRateLimit(-1);
-      break;
-    default:
-      BTSession->setUploadRateLimit(limits.second*1024);
+  // * Global Upload limit
+  if(limits.second <= 0) {
+    // Upload limit disabled
+    BTSession->setUploadRateLimit(-1);
+  } else {
+    // Enabled
+    BTSession->setUploadRateLimit(limits.second*1024);
   }
-  // Apply ratio (0 if disabled)
-  BTSession->setGlobalRatio(options->getRatio());
-  // DHT (Trackerless)
-  if(options->isDHTEnabled()) {
-    downloadingTorrentTab->setInfoBar(tr("DHT support [ON], port: %1").arg(options->getDHTPort()), QString::fromUtf8("blue"));
-    BTSession->enableDHT();
-    // Set DHT Port
-    BTSession->setDHTPort(options->getDHTPort());
-  }else{
-    downloadingTorrentTab->setInfoBar(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
-    BTSession->disableDHT();
+  // * UPnP
+  if(options->isUPnPEnabled()) {
+    BTSession->enableUPnP(true);
+    downloadingTorrentTab->setInfoBar(tr("UPnP support [ON]"), QString::fromUtf8("blue"));
+  } else {
+    BTSession->enableUPnP(false);
+    downloadingTorrentTab->setInfoBar(tr("UPnP support [OFF]"), QString::fromUtf8("blue"));
   }
-  // UPnP can't be disabled
-  downloadingTorrentTab->setInfoBar(tr("UPnP support [ON]"), QString::fromUtf8("blue"));
-  // Encryption settings
-  int encryptionState = options->getEncryptionSetting();
-  // The most secure, rc4 only so that all streams and encrypted
-  encryptionSettings.allowed_enc_level = pe_settings::rc4;
-  encryptionSettings.prefer_rc4 = true;
-  switch(encryptionState) {
-    case 0: //Enabled
-      encryptionSettings.out_enc_policy = pe_settings::enabled;
-      encryptionSettings.in_enc_policy = pe_settings::enabled;
-      downloadingTorrentTab->setInfoBar(tr("Encryption support [ON]"), QString::fromUtf8("blue"));
-      break;
-    case 1: // Forced
-      encryptionSettings.out_enc_policy = pe_settings::forced;
-      encryptionSettings.in_enc_policy = pe_settings::forced;
-      downloadingTorrentTab->setInfoBar(tr("Encryption support [FORCED]"), QString::fromUtf8("blue"));
-      break;
-    default: // Disabled
-      encryptionSettings.out_enc_policy = pe_settings::disabled;
-      encryptionSettings.in_enc_policy = pe_settings::disabled;
-      downloadingTorrentTab->setInfoBar(tr("Encryption support [OFF]"), QString::fromUtf8("blue"));
+  // * NAT-PMP
+  if(options->isNATPMPEnabled()) {
+    BTSession->enableNATPMP(true);
+    downloadingTorrentTab->setInfoBar(tr("NAT-PMP support [ON]"), QString::fromUtf8("blue"));
+  } else {
+    BTSession->enableNATPMP(false);
+    downloadingTorrentTab->setInfoBar(tr("NAT-PMP support [OFF]"), QString::fromUtf8("blue"));
   }
-  BTSession->applyEncryptionSettings(encryptionSettings);
-  // PeX
-  if(!options->isPeXDisabled()) {
-    qDebug("Enabling Peer eXchange (PeX)");
-    downloadingTorrentTab->setInfoBar(tr("PeX support [ON]"), QString::fromUtf8("blue"));
-    BTSession->enablePeerExchange();
-  }else{
-    downloadingTorrentTab->setInfoBar(tr("PeX support [OFF]"), QString::fromUtf8("blue"));
-    qDebug("Peer eXchange (PeX) disabled");
-  }
-  // Apply filtering settings
-  if(options->isFilteringEnabled()) {
-    BTSession->enableIPFilter(options->getFilter());
-    downloadingTorrentTab->setBottomTabEnabled(1, true);
-  }else{
-    BTSession->disableIPFilter();
-    downloadingTorrentTab->setBottomTabEnabled(1, false);
-  }
-  // Apply Proxy settings
+  // * Proxy settings
+  proxy_settings proxySettings;
   if(options->isProxyEnabled()) {
     switch(options->getProxyType()) {
       case HTTP:
@@ -867,14 +871,79 @@ void GUI::configureSession(bool deleteOptions) {
     }
   }
   BTSession->setProxySettings(proxySettings, options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
+  // * Session settings
+  session_settings sessionSettings;
   sessionSettings.user_agent = "qBittorrent "VERSION;
   BTSession->setSessionSettings(sessionSettings);
-  // Scan dir stuff
-  if(options->getScanDir().isNull()) {
-    BTSession->disableDirectoryScanning();
+  // Bittorrent
+  // * Max connections limit
+  BTSession->setMaxConnections(options->getMaxConnecs());
+  // * Max connections per torrent limit
+  BTSession->setMaxConnectionsPerTorrent(options->getMaxConnecsPerTorrent());
+  // * Max uploads per torrent limit
+  BTSession->setMaxUploadsPerTorrent(options->getMaxUploadsPerTorrent());
+  // * DHT
+  if(options->isDHTEnabled()) {
+    BTSession->enableDHT(true);
+    downloadingTorrentTab->setInfoBar(tr("DHT support [ON], port: %1").arg(new_listenPort), QString::fromUtf8("blue"));
+    // Set DHT Port
+    BTSession->setDHTPort(new_listenPort);
   }else{
-    BTSession->enableDirectoryScanning(options->getScanDir());
+    BTSession->enableDHT(false);
+    downloadingTorrentTab->setInfoBar(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
   }
+  // * PeX
+  if(options->isPeXEnabled()) {
+    downloadingTorrentTab->setInfoBar(tr("PeX support [ON]"), QString::fromUtf8("blue"));
+    BTSession->enablePeerExchange();
+  }else{
+    // TODO: How can we remove the extension?
+    downloadingTorrentTab->setInfoBar(tr("PeX support [OFF]"), QString::fromUtf8("blue"));
+  }
+  // * LSD
+  if(options->isLSDEnabled()) {
+    BTSession->enableLSD(true);
+    downloadingTorrentTab->setInfoBar(tr("Local Peer Discovery [ON]"), QString::fromUtf8("blue"));
+  } else {
+    BTSession->enableLSD(false);
+    downloadingTorrentTab->setInfoBar(tr("Local Peer Discovery support [OFF]"), QString::fromUtf8("blue"));
+  }
+  // * Encryption
+  int encryptionState = options->getEncryptionSetting();
+  // The most secure, rc4 only so that all streams and encrypted
+  pe_settings encryptionSettings;
+  encryptionSettings.allowed_enc_level = pe_settings::rc4;
+  encryptionSettings.prefer_rc4 = true;
+  switch(encryptionState) {
+    case 0: //Enabled
+      encryptionSettings.out_enc_policy = pe_settings::enabled;
+      encryptionSettings.in_enc_policy = pe_settings::enabled;
+      downloadingTorrentTab->setInfoBar(tr("Encryption support [ON]"), QString::fromUtf8("blue"));
+      break;
+    case 1: // Forced
+      encryptionSettings.out_enc_policy = pe_settings::forced;
+      encryptionSettings.in_enc_policy = pe_settings::forced;
+      downloadingTorrentTab->setInfoBar(tr("Encryption support [FORCED]"), QString::fromUtf8("blue"));
+      break;
+    default: // Disabled
+      encryptionSettings.out_enc_policy = pe_settings::disabled;
+      encryptionSettings.in_enc_policy = pe_settings::disabled;
+      downloadingTorrentTab->setInfoBar(tr("Encryption support [OFF]"), QString::fromUtf8("blue"));
+  }
+  BTSession->applyEncryptionSettings(encryptionSettings);
+  // * Desired ratio
+  BTSession->setGlobalRatio(options->getDesiredRatio());
+  // * Maximum ratio
+  BTSession->setDeleteRatio(options->getDeleteRatio());
+  // Ip Filter
+  if(options->isFilteringEnabled()) {
+    BTSession->enableIPFilter(options->getFilter());
+    downloadingTorrentTab->setBottomTabEnabled(1, true);
+  }else{
+    BTSession->disableIPFilter();
+    downloadingTorrentTab->setBottomTabEnabled(1, false);
+  }
+  // Clean up
   if(deleteOptions) {
     delete options;
   }
@@ -919,23 +988,40 @@ void GUI::togglePausedState(QString hash) {
 void GUI::on_actionPause_All_triggered() {
   bool change = false;
   bool inDownloadList = true;
-  if(tabs->currentIndex() > 1) return;
-  if(tabs->currentIndex() == 1)
-    inDownloadList = false;
-  QStringList hashes;
-  if(inDownloadList) {
-    hashes = BTSession->getUnfinishedTorrents();
-  } else {
-    hashes = BTSession->getFinishedTorrents();
+  bool hidden = false;
+  switch(getCurrentTabIndex()) {
+    case -1:
+      hidden = true;
+      inDownloadList = false;
+      break;
+    case 0:
+      break;
+    case 1:
+      inDownloadList = false;
+      break;
+    default:
+      return;
+  }
+  
+  QStringList DL_hashes;
+  QStringList F_hashes;
+  if(hidden || inDownloadList) {
+    DL_hashes = BTSession->getUnfinishedTorrents();
+  }
+  if(hidden || !inDownloadList) {
+    F_hashes = BTSession->getFinishedTorrents();
   }
   QString hash;
-  foreach(hash, hashes) {
+  foreach(hash, DL_hashes) {
     if(BTSession->pauseTorrent(hash)){
       change = true;
-      if(inDownloadList)
-        downloadingTorrentTab->pauseTorrent(hash);
-      else
-        finishedTorrentTab->pauseTorrent(hash);
+      downloadingTorrentTab->pauseTorrent(hash);
+    }
+  }
+  foreach(hash, F_hashes) {
+    if(BTSession->pauseTorrent(hash)){
+      change = true;
+      finishedTorrentTab->pauseTorrent(hash);
     }
   }
   if(change)
@@ -971,23 +1057,40 @@ void GUI::on_actionPause_triggered() {
 void GUI::on_actionStart_All_triggered() {
   bool change = false;
   bool inDownloadList = true;
-  if(tabs->currentIndex() > 1) return;
-  if(tabs->currentIndex() == 1)
-    inDownloadList = false;
-  QStringList hashes;
-  if(inDownloadList) {
-    hashes = BTSession->getUnfinishedTorrents();
-  } else {
-    hashes = BTSession->getFinishedTorrents();
+  bool hidden = false;
+  switch(getCurrentTabIndex()) {
+    case -1:
+      hidden = true;
+      inDownloadList = false;
+      break;
+    case 0:
+      break;
+    case 1:
+      inDownloadList = false;
+      break;
+    default:
+      return;
+  }
+  
+  QStringList DL_hashes;
+  QStringList F_hashes;
+  if(hidden || inDownloadList) {
+    DL_hashes = BTSession->getUnfinishedTorrents();
+  }
+  if(hidden || !inDownloadList) {
+    F_hashes = BTSession->getFinishedTorrents();
   }
   QString hash;
-  foreach(hash, hashes) {
+  foreach(hash, DL_hashes) {
     if(BTSession->resumeTorrent(hash)){
       change = true;
-      if(inDownloadList)
-        downloadingTorrentTab->resumeTorrent(hash);
-      else
-        finishedTorrentTab->resumeTorrent(hash);
+      downloadingTorrentTab->resumeTorrent(hash);
+    }
+  }
+  foreach(hash, F_hashes) {
+    if(BTSession->resumeTorrent(hash)){
+      change = true;
+      finishedTorrentTab->resumeTorrent(hash);
     }
   }
   if(change)
@@ -1049,6 +1152,11 @@ void GUI::updateLists() {
     default:
       return;
   }
+  if(displaySpeedInTitle) {
+    QString dl_rate = QByteArray::number(BTSession->getSessionStatus().payload_download_rate/1024, 'f', 1);
+    QString up_rate = QByteArray::number(BTSession->getSessionStatus().payload_upload_rate/1024, 'f', 1);
+    setWindowTitle(tr("qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)", "%1 is qBittorrent version").arg(QString::fromUtf8(VERSION)).arg(dl_rate).arg(up_rate));
+  }
 }
 
 // Called when a tracker requires authentication
@@ -1067,7 +1175,16 @@ void GUI::checkConnectionStatus() {
     downloadingTorrentTab->updateRatio();
   // update global informations
   if(systrayIntegration) {
-    myTrayIcon->setToolTip(QString::fromUtf8("<b>")+tr("qBittorrent")+QString::fromUtf8("</b><br>")+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1)))+QString::fromUtf8("<br>")+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1)))); // tray icon
+    QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
+    html += tr("qBittorrent");
+    html += "</div>";
+    html += "<div style='vertical-align: baseline; height: 18px;'>";
+    html += "<img src=':/Icons/skin/downloading.png'/>&nbsp;"+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1)));
+    html += "</div>";
+    html += "<div style='vertical-align: baseline; height: 18px;'>";
+    html += "<img src=':/Icons/skin/seeding.png'/>&nbsp;"+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1)));
+    html += "</div>";
+    myTrayIcon->setToolTip(html); // tray icon
   }
   session_status sessionStatus = BTSession->getSessionStatus();
   if(sessionStatus.has_incoming_connections) {
@@ -1134,7 +1251,7 @@ void GUI::on_actionOptions_triggered() {
 
 // Is executed each time options are saved
 void GUI::OptionsSaved(QString info, bool deleteOptions) {
-  bool newSystrayIntegration = options->useSystrayIntegration();
+  bool newSystrayIntegration = options->systrayIntegration();
   if(newSystrayIntegration && !systrayIntegration) {
     // create the trayicon
     createTrayIcon();

@@ -57,6 +57,7 @@ class RSSImp : public QWidget, public Ui::RSS{
     void selectFirstFeed();
     void selectFirstNews();
     void updateFeedNbNews(QString url);
+    void on_actionMark_all_as_read_triggered();
 
   public:
     RSSImp();

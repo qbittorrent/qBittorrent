@@ -76,13 +76,13 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void torrentDuplicate(QString path);
     void torrentCorrupted(QString path);
     void portListeningFailure();
-    void setRowColor(int row, QString color);
+    void setRowColor(int row, QColor color);
     void displayDownloadingUrlInfos(QString url);
     void showProperties(const QModelIndex &index);
 
   public slots:
     void updateDlList();
-    void setInfoBar(QString info, QString color="black");
+    void setInfoBar(QString info, QColor color=QPalette::WindowText);
     void pauseTorrent(QString hash);
     void resumeTorrent(QString hash);
     void updateRatio();
