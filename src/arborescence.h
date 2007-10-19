@@ -62,12 +62,20 @@ class file {
 
     void updateProgress() {
       Q_ASSERT(is_dir);
-      float sum = 0;
+      if(children.isEmpty()) {
+        progress = 0.;
+        return;
+      }
+      float wanted = 0.;
+      float done = 0.;
       file *child;
       foreach(child, children) {
-        sum += child->getProgress();
+        wanted += child->getSize();
+        done += child->getSize()*child->getProgress();
       }
-      progress = sum / (float)children.size();
+      progress = done / wanted;
+      Q_ASSERT(progress >= 0.);
+      Q_ASSERT(progress <= 1.);
     }
 
     void updatePriority(int prio) {

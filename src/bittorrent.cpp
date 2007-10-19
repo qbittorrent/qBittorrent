@@ -154,8 +154,8 @@ void bittorrent::updateETAs() {
         Q_ASSERT(nbETAs);
         foreach(val, listEtas) {
           moy += (qlonglong)((double)val/(double)nbETAs);
-          Q_ASSERT(moy >= 0);
         }
+        Q_ASSERT(moy >= 0);
         ETAs[hash] = moy;
       } else {
         // Speed is too low, we don't want an overflow.
