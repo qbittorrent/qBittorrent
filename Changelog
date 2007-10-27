@@ -64,6 +64,7 @@
     - BUGFIX: Prevent downloadFromUrl flooding
     - BUGFIX: ETA was wrong for torrents with filtered files
     - BUGFIX: Fixed drag'n drop on non-KDE systems
+    - BUGFIX: Removed build dependency on Python
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Totally redesigned program preferences
     - COSMETIC: Display more logs messages concerning features

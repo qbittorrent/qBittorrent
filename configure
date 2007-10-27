@@ -723,26 +723,6 @@ public:
 		return true;
 	}
 };
-#line 1 "python.qcm"
-/*
------BEGIN QCMOD-----
-name: python
------END QCMOD-----
-*/
-class qc_python : public ConfObj
-{
-public:
-	qc_python(Conf *c) : ConfObj(c) {}
-	QString name() const { return "python >= 2.3"; }
-	QString shortname() const { return "python"; }
-	bool exec(){
-          int r = conf->doCommand("python testpython.py");
-	  if(r == 0)
-	    return true;
-	  else
-	    return false;
-	}
-};
 
 EOT
 cat >$1/modules_new.cpp <<EOT
@@ -763,9 +743,6 @@ cat >$1/modules_new.cpp <<EOT
     o->disabled = false;
     o = new qc_libzzip(conf);
     o->required = false;
-    o->disabled = false;
-    o = new qc_python(conf);
-    o->required = true;
     o->disabled = false;
 
 EOT

@@ -17,7 +17,4 @@
   </dep>
   <dep type='libmagick'/>
   <dep type='libzzip'/>
-  <dep type='python'>
-    <required/>
-  </dep>
 </qconf>

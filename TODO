@@ -57,4 +57,5 @@
 - Translations update (IN PROGRESS)
 
 rc6->rc7 changelog:
+- Removed build dependency on Python
 - I18N: Updated Turkish translation
