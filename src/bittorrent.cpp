@@ -639,7 +639,7 @@ void bittorrent::enableLSD(bool b) {
 }
 
 // Enable DHT
-void bittorrent::enableDHT(bool b) {
+bool bittorrent::enableDHT(bool b) {
   if(b) {
     if(!DHTEnabled) {
       boost::filesystem::ifstream dht_state_file((misc::qBittorrentPath()+QString::fromUtf8("dht_state")).toUtf8().data(), std::ios_base::binary);
@@ -648,12 +648,17 @@ void bittorrent::enableDHT(bool b) {
       try{
         dht_state = bdecode(std::istream_iterator<char>(dht_state_file), std::istream_iterator<char>());
       }catch (std::exception&) {}
-      s->start_dht(dht_state);
-      s->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
-      s->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
-      s->add_dht_router(std::make_pair(std::string("router.bitcomet.com"), 6881));
-      DHTEnabled = true;
-      qDebug("DHT enabled");
+      try {
+	s->start_dht(dht_state);
+	s->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
+	s->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
+	s->add_dht_router(std::make_pair(std::string("router.bitcomet.com"), 6881));
+	DHTEnabled = true;
+	qDebug("DHT enabled");
+       }catch(std::exception e) {
+         qDebug("Could not enable DHT, reason: %s", e.what());
+          return false;
+       }
     }
   } else {
     if(DHTEnabled) {
@@ -662,6 +667,7 @@ void bittorrent::enableDHT(bool b) {
       qDebug("DHT disabled");
     }
   }
+  return true;
 }
 
 void bittorrent::saveTorrentSpeedLimits(QString hash) {

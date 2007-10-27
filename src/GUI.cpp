@@ -884,11 +884,14 @@ void GUI::configureSession(bool deleteOptions) {
   BTSession->setMaxUploadsPerTorrent(options->getMaxUploadsPerTorrent());
   // * DHT
   if(options->isDHTEnabled()) {
-    BTSession->enableDHT(true);
-    downloadingTorrentTab->setInfoBar(tr("DHT support [ON], port: %1").arg(new_listenPort), QString::fromUtf8("blue"));
     // Set DHT Port
     BTSession->setDHTPort(new_listenPort);
-  }else{
+    if(BTSession->enableDHT(true)) {
+      downloadingTorrentTab->setInfoBar(tr("DHT support [ON], port: %1").arg(new_listenPort), QString::fromUtf8("blue"));
+    } else {
+      downloadingTorrentTab->setInfoBar(tr("DHT support [OFF]"), QString::fromUtf8("red"));
+    }
+  } else {
     BTSession->enableDHT(false);
     downloadingTorrentTab->setInfoBar(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
   }

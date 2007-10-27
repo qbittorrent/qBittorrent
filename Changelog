@@ -65,6 +65,7 @@
     - BUGFIX: ETA was wrong for torrents with filtered files
     - BUGFIX: Fixed drag'n drop on non-KDE systems
     - BUGFIX: Removed build dependency on Python
+    - BUGFIX: Catching DHT exception in case there is a problem
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Totally redesigned program preferences
     - COSMETIC: Display more logs messages concerning features

@@ -57,5 +57,6 @@
 - Translations update (IN PROGRESS)
 
 rc6->rc7 changelog:
-- Removed build dependency on Python
+- BUGFIX: Catching DHT exception in case there is a problem
+- BUGFIX: Removed build dependency on Python
 - I18N: Updated Turkish translation

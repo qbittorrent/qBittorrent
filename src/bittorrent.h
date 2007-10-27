@@ -135,7 +135,7 @@ class bittorrent : public QObject{
     void enableUPnP(bool b);
     void enableNATPMP(bool b);
     void enableLSD(bool b);
-    void enableDHT(bool b);
+    bool enableDHT(bool b);
 
   protected slots:
     void scanDirectory();
