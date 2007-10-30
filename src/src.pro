@@ -3,7 +3,7 @@ LANG_PATH = lang
 ICONS_PATH = Icons
 
 #Set the following variable to 1 to enable debug
-DEBUG_MODE = 0
+DEBUG_MODE = 1
 
 # Global
 TEMPLATE = app
@@ -30,7 +30,7 @@ contains(DEBUG_MODE, 0){
 
 # For libtorrent stuff
 # (comment this if you are using libtorrent with debug enabled)
-DEFINES += NDEBUG
+#DEFINES += NDEBUG
 
 # Install
 

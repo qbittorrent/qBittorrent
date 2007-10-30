@@ -59,4 +59,5 @@
 rc6->rc7 changelog:
 - BUGFIX: Catching DHT exception in case there is a problem
 - BUGFIX: Removed build dependency on Python
+- BUGFIX: Fixed a bug in children update when changing files priorities
 - I18N: Updated Turkish translation

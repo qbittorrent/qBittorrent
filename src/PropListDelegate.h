@@ -174,14 +174,14 @@ class PropListDelegate: public QItemDelegate {
           }
           break;
         case 1:
-          if(old_val != NORMAL){
-            model->setData(index, QVariant(NORMAL));
-            if(filteredFilesChanged != 0)
-              *filteredFilesChanged = true;
-          } else {
+//           if(old_val != NORMAL){
+//             model->setData(index, QVariant(NORMAL));
+//             if(filteredFilesChanged != 0)
+//               *filteredFilesChanged = true;
+//           } else {
             model->setData(index, QVariant(HIGH));
             model->setData(index, QVariant(NORMAL));
-          }
+//           }
           break;
         case 2:
           if(old_val != HIGH){
