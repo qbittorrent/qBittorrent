@@ -47,6 +47,7 @@
    * free disk space on selected drive
    * free disk space after torrent download (and/or torrent size)
 - Start minimized option in program preferences
+- In finished list, replace "Seeds/Leechs" column by "Leechers" because Seeds are always 0.
 - Allow to change action on double-click
   -> in download list
   -> in seeding list
