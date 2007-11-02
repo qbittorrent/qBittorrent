@@ -81,17 +81,21 @@ bittorrent::~bittorrent() {
 }
 
 void bittorrent::preAllocateAllFiles(bool b) {
-  preAllocateAll = b;
-  // Reload All Torrents
-  std::vector<torrent_handle> handles = s->get_torrents();
-  unsigned int nbHandles = handles.size();
-  for(unsigned int i=0; i<nbHandles; ++i) {
-    QTorrentHandle h = handles[i];
-    if(!h.is_valid()) {
-      qDebug("/!\\ Error: Invalid handle");
-      continue;
+  bool change = (preAllocateAll != b);
+  if(change) {
+    qDebug("PreAllocateAll changed, reloading all torrents!");
+    preAllocateAll = b;
+    // Reload All Torrents
+    std::vector<torrent_handle> handles = s->get_torrents();
+    unsigned int nbHandles = handles.size();
+    for(unsigned int i=0; i<nbHandles; ++i) {
+      QTorrentHandle h = handles[i];
+      if(!h.is_valid()) {
+        qDebug("/!\\ Error: Invalid handle");
+        continue;
+      }
+      pauseAndReloadTorrent(h, b);
     }
-    pauseAndReloadTorrent(h, b);
   }
 }
 
@@ -1226,11 +1230,13 @@ void bittorrent::reloadTorrent(const QTorrentHandle &h, bool full_alloc) {
     ++timeout;
   }
   QTorrentHandle new_h;
-  if(full_alloc)
+  if(full_alloc) {
     new_h = s->add_torrent(t, saveDir, resumeData, storage_mode_allocate);
-  else
+    qDebug("Using full allocation mode");
+  } else {
     new_h = s->add_torrent(t, saveDir, resumeData, storage_mode_sparse);
-  qDebug("Using full allocation mode");
+    qDebug("Using sparse mode");
+  }
   // Connections limit per torrent
   new_h.set_max_connections(maxConnecsPerTorrent);
   // Uploads limit per torrent

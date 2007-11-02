@@ -62,4 +62,5 @@ rc6->rc7 changelog:
 - BUGFIX: Removed build dependency on Python
 - BUGFIX: Fixed a bug in children update when changing files priorities
 - BUGFIX: Pause/Start All now affect all tabs, not only the current one
+- BUGFIX: Don't reload all torrents everytime settings are saved
 - I18N: Updated Turkish translation
