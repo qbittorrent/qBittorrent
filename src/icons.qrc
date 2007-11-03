@@ -12,7 +12,7 @@
   <file>Icons/downarrow.png</file>
   <file>Icons/description.png</file>
   <file>Icons/qbittorrent16.png</file>
-  <file>Icons/exec.png</file>
+  <file>Icons/file.png</file>
   <file>Icons/systemtray.png</file>
   <file>Icons/unhappy.png</file>
   <file>Icons/filter.png</file>
@@ -24,7 +24,7 @@
   <file>Icons/style.png</file>
   <file>Icons/wizard.png</file>
   <file>Icons/password.png</file>
-  <file>Icons/rss.png</file>
+  <file>Icons/gear.png</file>
   <file>Icons/sphere2.png</file>
   <file>Icons/smile.png</file>
   <file>Icons/loading.png</file>
@@ -36,6 +36,18 @@
   <file>Icons/add_file.png</file>
   <file>Icons/home.png</file>
   <file>Icons/splash.png</file>
+  <file>Icons/rss32.png</file>
+  <file>Icons/rss16.png</file>
+  <file>Icons/unsubscribe.png</file>
+  <file>Icons/subscribe.png</file>
+  <file>Icons/unsubscribe16.png</file>
+  <file>Icons/subscribe16.png</file>
+  <file>Icons/bt_settings.png</file>
+  <file>Icons/star.png</file>
+  <file>Icons/configure.png</file>
+  <file>Icons/download.png</file>
+  <file>Icons/folder.png</file>
+  <file>Icons/edit_clear.png</file>
   <file>Icons/flags/portugal.png</file>
   <file>Icons/flags/france.png</file>
   <file>Icons/flags/ukraine.png</file>
@@ -46,7 +58,6 @@
   <file>Icons/flags/slovakia.png</file>
   <file>Icons/flags/spain.png</file>
   <file>Icons/flags/finland.png</file>
-  <file>Icons/flags/china_hong_kong.png</file>
   <file>Icons/flags/spain_catalunya.png</file>
   <file>Icons/flags/poland.png</file>
   <file>Icons/flags/hungary.png</file>

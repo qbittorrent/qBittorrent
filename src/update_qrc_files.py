@@ -20,6 +20,27 @@ lang_file = open('lang.qrc', 'w')
 lang_file.write(output)
 lang_file.close()
 
+# update search_engine directory
+search_list = []
+for root, dirs, files in os.walk('search_engine'):
+  for file in files:
+    if file.startswith("__"):
+      continue
+    if splitext(file)[-1] in ('.py', '.png'):
+      search_list.append(join(root, file))
+
+output = '''<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+'''
+for file in search_list:
+  output += '  <file>%s</file>'%(file)
+  output += os.linesep
+output += '''</qresource>
+</RCC>'''
+search_file = open('search.qrc', 'w')
+search_file.write(output)
+search_file.close()
+
 # update icons files directory
 icons_list = []
 for root, dirs, files in os.walk('Icons'):

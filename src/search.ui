@@ -13,255 +13,221 @@
    <string>Search</string>
   </property>
   <layout class="QVBoxLayout" >
-   <property name="margin" >
-    <number>9</number>
-   </property>
-   <property name="spacing" >
-    <number>6</number>
-   </property>
    <item>
     <layout class="QHBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
-     </property>
      <property name="spacing" >
       <number>6</number>
      </property>
+     <property name="leftMargin" >
+      <number>0</number>
+     </property>
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>0</number>
+     </property>
      <item>
-      <widget class="QGroupBox" name="groupEngines" >
+      <widget class="QLabel" name="search_lbl" >
+       <property name="maximumSize" >
+        <size>
+         <width>16777215</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="font" >
+        <font>
+         <family>Sans Serif</family>
+         <pointsize>9</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+         <underline>false</underline>
+         <strikeout>false</strikeout>
+        </font>
+       </property>
+       <property name="text" >
+        <string>Search Pattern:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="search_pattern" >
+       <property name="maximumSize" >
+        <size>
+         <width>16777215</width>
+         <height>22</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="clearPatternButton" >
+       <property name="maximumSize" >
+        <size>
+         <width>34</width>
+         <height>29</height>
+        </size>
+       </property>
+       <property name="text" >
+        <string/>
+       </property>
+       <property name="icon" >
+        <iconset resource="icons.qrc" >:/Icons/edit_clear.png</iconset>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>30</width>
+         <height>21</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="search_button" >
+       <property name="maximumSize" >
+        <size>
+         <width>16777215</width>
+         <height>29</height>
+        </size>
+       </property>
+       <property name="text" >
+        <string>Search</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="stop_search_button" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+       <property name="maximumSize" >
+        <size>
+         <width>16777215</width>
+         <height>29</height>
+        </size>
+       </property>
+       <property name="text" >
+        <string>Stop</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="enginesButton" >
+       <property name="text" >
+        <string>Search engines...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="QLabel" name="status_lbl" >
+       <property name="maximumSize" >
+        <size>
+         <width>16777215</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="font" >
+        <font>
+         <family>Sans Serif</family>
+         <pointsize>9</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+         <underline>false</underline>
+         <strikeout>false</strikeout>
+        </font>
+       </property>
+       <property name="text" >
+        <string>Status:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="search_status" >
        <property name="minimumSize" >
         <size>
-         <width>131</width>
-         <height>132</height>
+         <width>400</width>
+         <height>0</height>
         </size>
        </property>
        <property name="maximumSize" >
         <size>
-         <width>125</width>
-         <height>132</height>
+         <width>16777215</width>
+         <height>35</height>
         </size>
        </property>
-       <property name="title" >
-        <string>Search Engines</string>
+       <property name="font" >
+        <font>
+         <family>Sans Serif</family>
+         <pointsize>9</pointsize>
+         <weight>50</weight>
+         <italic>true</italic>
+         <bold>false</bold>
+         <underline>false</underline>
+         <strikeout>false</strikeout>
+        </font>
        </property>
-       <layout class="QVBoxLayout" >
-        <property name="margin" >
-         <number>9</number>
-        </property>
-        <property name="spacing" >
-         <number>6</number>
-        </property>
-        <item>
-         <widget class="QCheckBox" name="mininova" >
-          <property name="text" >
-           <string/>
-          </property>
-          <property name="checked" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="piratebay" >
-          <property name="text" >
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="isohunt" >
-          <property name="text" >
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="reactor" >
-          <property name="text" >
-           <string/>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <property name="text" >
+        <string>Stopped</string>
+       </property>
       </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>0</number>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
        </property>
-       <property name="spacing" >
-        <number>6</number>
+       <property name="sizeHint" >
+        <size>
+         <width>188</width>
+         <height>21</height>
+        </size>
        </property>
-       <item>
-        <layout class="QHBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="search_lbl" >
-           <property name="maximumSize" >
-            <size>
-             <width>16777215</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="font" >
-            <font>
-             <family>Sans Serif</family>
-             <pointsize>9</pointsize>
-             <weight>75</weight>
-             <italic>false</italic>
-             <bold>true</bold>
-             <underline>false</underline>
-             <strikeout>false</strikeout>
-            </font>
-           </property>
-           <property name="text" >
-            <string>Search Pattern:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="search_pattern" >
-           <property name="maximumSize" >
-            <size>
-             <width>16777215</width>
-             <height>22</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="search_button" >
-           <property name="maximumSize" >
-            <size>
-             <width>16777215</width>
-             <height>29</height>
-            </size>
-           </property>
-           <property name="text" >
-            <string>Search</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="stop_search_button" >
-           <property name="enabled" >
-            <bool>false</bool>
-           </property>
-           <property name="maximumSize" >
-            <size>
-             <width>16777215</width>
-             <height>29</height>
-            </size>
-           </property>
-           <property name="text" >
-            <string>Stop</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="status_lbl" >
-           <property name="maximumSize" >
-            <size>
-             <width>16777215</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="font" >
-            <font>
-             <family>Sans Serif</family>
-             <pointsize>9</pointsize>
-             <weight>75</weight>
-             <italic>false</italic>
-             <bold>true</bold>
-             <underline>false</underline>
-             <strikeout>false</strikeout>
-            </font>
-           </property>
-           <property name="text" >
-            <string>Status:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="search_status" >
-           <property name="minimumSize" >
-            <size>
-             <width>400</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize" >
-            <size>
-             <width>16777215</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="font" >
-            <font>
-             <family>Sans Serif</family>
-             <pointsize>9</pointsize>
-             <weight>50</weight>
-             <italic>true</italic>
-             <bold>false</bold>
-             <underline>false</underline>
-             <strikeout>false</strikeout>
-            </font>
-           </property>
-           <property name="text" >
-            <string>Stopped</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-      </layout>
+      </spacer>
      </item>
     </layout>
    </item>
    <item>
     <layout class="QVBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
-     </property>
      <property name="spacing" >
       <number>6</number>
      </property>
+     <property name="leftMargin" >
+      <number>0</number>
+     </property>
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>0</number>
+     </property>
      <item>
       <layout class="QHBoxLayout" >
-       <property name="margin" >
-        <number>0</number>
-       </property>
        <property name="spacing" >
         <number>6</number>
+       </property>
+       <property name="leftMargin" >
+        <number>0</number>
+       </property>
+       <property name="topMargin" >
+        <number>0</number>
+       </property>
+       <property name="rightMargin" >
+        <number>0</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>0</number>
        </property>
        <item>
         <widget class="QLabel" name="results_lbl" >
@@ -329,11 +295,20 @@
      </item>
      <item>
       <layout class="QHBoxLayout" >
-       <property name="margin" >
-        <number>0</number>
-       </property>
        <property name="spacing" >
         <number>6</number>
+       </property>
+       <property name="leftMargin" >
+        <number>0</number>
+       </property>
+       <property name="topMargin" >
+        <number>0</number>
+       </property>
+       <property name="rightMargin" >
+        <number>0</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>0</number>
        </property>
        <item>
         <widget class="QPushButton" name="download_button" >
@@ -368,20 +343,15 @@
          </property>
         </spacer>
        </item>
-       <item>
-        <widget class="QPushButton" name="update_nova_button" >
-         <property name="text" >
-          <string>Update search plugin</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </item>
     </layout>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc" />
+ </resources>
  <connections>
   <connection>
    <sender>search_pattern</sender>

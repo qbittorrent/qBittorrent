@@ -27,6 +27,9 @@ Dependency options:
   --disable-libmagick                    Disable use of libmagick
   --with-libmagick-inc=[path]             Path to libmagick++ include files
   --with-libmagick-lib=[path]             Path to libmagick++ library files
+  --disable-libzzip                      Disable use of libzzip
+  --with-libzzip-inc=[path]               Path to libzzip++ include files
+  --with-libzzip-lib=[path]               Path to libzzip++ library files
 
 EOT
 }
@@ -188,6 +191,21 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
+		--disable-libzzip)
+			QC_DISABLE_libzzip="Y"
+			shift
+			;;
+
+		--with-libzzip-inc=*)
+			QC_WITH_LIBZZIP_INC=$optarg
+			shift
+			;;
+
+		--with-libzzip-lib=*)
+			QC_WITH_LIBZZIP_LIB=$optarg
+			shift
+			;;
+
 		--verbose)
 			QC_VERBOSE="Y"
 			shift
@@ -218,6 +236,9 @@ echo QC_WITH_LIBCOMMONCPP2_LIB=$QC_WITH_LIBCOMMONCPP2_LIB
 echo QC_DISABLE_libmagick=$QC_DISABLE_libmagick
 echo QC_WITH_LIBMAGICK_INC=$QC_WITH_LIBMAGICK_INC
 echo QC_WITH_LIBMAGICK_LIB=$QC_WITH_LIBMAGICK_LIB
+echo QC_DISABLE_libzzip=$QC_DISABLE_libzzip
+echo QC_WITH_LIBZZIP_INC=$QC_WITH_LIBZZIP_INC
+echo QC_WITH_LIBZZIP_LIB=$QC_WITH_LIBZZIP_LIB
 echo
 fi
 
@@ -319,21 +340,21 @@ fi
 
 gen_files() {
 cat >$1/modules.cpp <<EOT
-#line 1 "qt42.qcm"
+#line 1 "qt4.qcm"
 /*
 -----BEGIN QCMOD-----
-name: Qt >= 4.2
+name: Qt >= 4.3
 -----END QCMOD-----
 */
-class qc_qt42 : public ConfObj
+class qc_qt4 : public ConfObj
 {
 public:
-	qc_qt42(Conf *c) : ConfObj(c) {}
-	QString name() const { return "Qt >= 4.2"; }
-	QString shortname() const { return "qt42"; }
+	qc_qt4(Conf *c) : ConfObj(c) {}
+	QString name() const { return "Qt >= 4.3"; }
+	QString shortname() const { return "Qt 4.3"; }
 	bool exec()
 	{
-		return(QT_VERSION >= 0x040200);
+		return(QT_VERSION >= 0x040300);
 	}
 };
 #line 1 "libtorrent.qcm"
@@ -391,7 +412,9 @@ public:
 		}else{
 			QStringList sl;
 			sl << "/usr/lib/";
+			sl << "/usr/lib64/";
 			sl << "/usr/local/lib/";
+			sl << "/usr/local/lib64/";
 			bool found = false;
 			foreach(s, sl){
 				if(conf->checkLibrary(s, "torrent")){
@@ -512,15 +535,17 @@ public:
 
 		s = conf->getenv("QC_WITH_LIBCOMMONCPP2_LIB");
 		if(!s.isEmpty()) {
-			if(!QFile::exists(s+QString("libccext2.so")))
+			if(!QFile::exists(s+QString("/libccext2.so")))
 		    return false;
-			if(!QFile::exists(s+QString("libccgnu2.so")))
+			if(!QFile::exists(s+QString("/libccgnu2.so")))
 				return false;
     	conf->addLib(QString("-L") + s);
 		}else{
 			QStringList sl;
 			sl << "/usr/lib/";
+			sl << "/usr/lib64/";
 			sl << "/usr/local/lib/";
+			sl << "/usr/local/lib64/";
 			bool found = false;
 			foreach(s, sl){
 				if(QFile::exists(s+QString("libccext2.so"))){
@@ -593,13 +618,15 @@ public:
 
 		s = conf->getenv("QC_WITH_LIBMAGICK_LIB");
 		if(!s.isEmpty()) {
-			if(!QFile::exists(s+QString("libMagick++.so"))){
+			if(!QFile::exists(s+QString("/libMagick++.so"))){
                           return false;
                         }
 		}else{
 			QStringList sl;
 			sl << "/usr/lib/";
+			sl << "/usr/lib64/";
 			sl << "/usr/local/lib/";
+			sl << "/usr/local/lib64/";
 			bool found = false;
 			foreach(s, sl){
 				if(QFile::exists(s+QString("libMagick++.so"))){
@@ -618,35 +645,88 @@ public:
 		magickConfig.waitForStarted();
 		magickConfig.waitForFinished();
 		QByteArray result = magickConfig.readAll();
+		result = result.replace("\n", "");
 		conf->addLib(result.data());
 		conf->addDefine("HAVE_MAGICK");
 		return true;
 	}
 };
-#line 1 "python.qcm"
+#line 1 "libzzip.qcm"
 /*
 -----BEGIN QCMOD-----
-name: python
+name: libzzip
+arg: with-libzzip-inc=[path], Path to libzzip++ include files
+arg: with-libzzip-lib=[path], Path to libzzip++ library files
 -----END QCMOD-----
 */
-class qc_python : public ConfObj
+#include <QProcess>
+class qc_libzzip : public ConfObj
 {
 public:
-	qc_python(Conf *c) : ConfObj(c) {}
-	QString name() const { return "python >= 2.3"; }
-	QString shortname() const { return "python"; }
+	qc_libzzip(Conf *c) : ConfObj(c) {}
+	QString name() const { return "Zzip library (libzzip)"; }
+	QString shortname() const { return "libzzip"; }
+	QString checkString() const {
+		if(!conf->getenv("QC_DISABLE_LIBZZIP").isEmpty())
+			return "";
+		return ConfObj::checkString();
+	}
 	bool exec(){
-          int r = conf->doCommand("python testpython.py");
-	  if(r == 0)
-	    return true;
-	  else
-	    return false;
+		if(!conf->getenv("QC_DISABLE_LIBZZIP").isEmpty())
+			return false;
+		QString s;
+		s = conf->getenv("QC_WITH_LIBZZIP_INC");
+		if(!s.isEmpty()) {
+			if(!conf->checkHeader(s, "zzip/zzip.h")) {
+				return false;
+    			}
+		}else{
+			QStringList sl;
+			sl << "/usr/include";
+			sl << "/usr/local/include";
+			bool found = false;
+			foreach(s, sl){
+				if(conf->checkHeader(s, "zzip/zzip.h")){
+					found = true;
+					break;
+				}
+			}
+			if(!found)
+				return false;
+		}
+		conf->addIncludePath(s);
+
+		s = conf->getenv("QC_WITH_LIBZZIP_LIB");
+		if(!s.isEmpty()) {
+			if(!QFile::exists(s+QString("/libzzip.so"))){
+                          return false;
+                        }
+		}else{
+			QStringList sl;
+			sl << "/usr/lib/";
+			sl << "/usr/lib64/";
+			sl << "/usr/local/lib/";
+			sl << "/usr/local/lib64/";
+			bool found = false;
+			foreach(s, sl){
+				if(QFile::exists(s+QString("libzzip.so"))){
+					found = true;
+					break;
+				}
+			}
+			if(!found)
+                         	return false;
+		}
+		conf->addLib(QString("-L") + s);
+		conf->addLib("-lzzip");
+		conf->addDefine("HAVE_ZZIP");
+		return true;
 	}
 };
 
 EOT
 cat >$1/modules_new.cpp <<EOT
-    o = new qc_qt42(conf);
+    o = new qc_qt4(conf);
     o->required = true;
     o->disabled = false;
     o = new qc_libtorrent(conf);
@@ -661,8 +741,8 @@ cat >$1/modules_new.cpp <<EOT
     o = new qc_libmagick(conf);
     o->required = false;
     o->disabled = false;
-    o = new qc_python(conf);
-    o->required = true;
+    o = new qc_libzzip(conf);
+    o->required = false;
     o->disabled = false;
 
 EOT
@@ -1618,6 +1698,9 @@ export QC_WITH_LIBCOMMONCPP2_LIB
 export QC_DISABLE_libmagick
 export QC_WITH_LIBMAGICK_INC
 export QC_WITH_LIBMAGICK_LIB
+export QC_DISABLE_libzzip
+export QC_WITH_LIBZZIP_INC
+export QC_WITH_LIBZZIP_LIB
 export QC_VERBOSE
 rm -rf .qconftemp
 (

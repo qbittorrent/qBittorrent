@@ -3,7 +3,7 @@ LANG_PATH = lang
 ICONS_PATH = Icons
 
 #Set the following variable to 1 to enable debug
-DEBUG_MODE = 1
+DEBUG_MODE = 0
 
 # Global
 TEMPLATE = app
@@ -11,7 +11,7 @@ TARGET = qbittorrent
 CONFIG += qt thread x11 network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v1.0.0beta5\\\"
+DEFINES += VERSION=\\\"v1.0.0rc7\\\"
 DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=0
 DEFINES += VERSION_BUGFIX=0
@@ -24,8 +24,13 @@ contains(DEBUG_MODE, 1){
 contains(DEBUG_MODE, 0){
   CONFIG -= debug
   CONFIG += release
+  DEFINES += QT_NO_DEBUG_OUTPUT
   message(Release build!)
 }
+
+# For libtorrent stuff
+# (comment this if you are using libtorrent with debug enabled)
+DEFINES += NDEBUG
 
 # Install
 
@@ -78,9 +83,7 @@ QMAKE_CXXFLAGS_DEBUG += -fwrapv -O1
 CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent libccext2 libccgnu2
 
-contains(DEFINES, HAVE_MAGICK){
-  #PKGCONFIG += ImageMagick++
-}else{
+!contains(DEFINES, HAVE_MAGICK){
   message(ImageMagick disabled)
 }
 
@@ -88,19 +91,6 @@ QT += network xml
 
 DEFINES += QT_NO_CAST_TO_ASCII
 #QT_NO_CAST_FROM_ASCII
-
-contains(DEBUG_MODE, 0){
-  contains(QT_VERSION, 4.2.0) {
-    message(Qt 4.2.0 detected : enabling debug output because of a bug in this version of Qt)
-  }else{
-    contains(QT_VERSION, 4.2.1) {
-      message(Qt 4.2.1 detected : enabling debug output because of a bug in this version of Qt)
-    }else{
-      DEFINES += QT_NO_DEBUG_OUTPUT
-    }
-  }
-  CONFIG += release
-}
 
 # Windows
 win32 {
@@ -150,12 +140,14 @@ HEADERS += GUI.h misc.h options_imp.h about_imp.h \
            bittorrent.h searchEngine.h \
            rss.h rss_imp.h FinishedTorrents.h \
            allocationDlg.h FinishedListDelegate.h \
-           qtorrenthandle.h downloadingTorrents.h
+           qtorrenthandle.h downloadingTorrents.h \
+           engineSelectDlg.h pluginSource.h \
+           arborescence.h qgnomelook.h
 FORMS += MainWindow.ui options.ui about.ui \
          properties.ui createtorrent.ui preview.ui \
          login.ui downloadFromURL.ui addTorrentDialog.ui \
          search.ui rss.ui seeding.ui bandwidth_limit.ui \
-         download.ui
+         download.ui engineSelect.ui pluginSource.ui
 SOURCES += GUI.cpp \
            main.cpp \
            options_imp.cpp \
@@ -166,5 +158,7 @@ SOURCES += GUI.cpp \
 	   rss_imp.cpp \
 	   FinishedTorrents.cpp \
            qtorrenthandle.cpp \
-           downloadingTorrents.cpp
+           downloadingTorrents.cpp \
+           engineSelectDlg.cpp \
+           downloadThread.cpp
 
