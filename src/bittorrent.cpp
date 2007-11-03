@@ -85,11 +85,10 @@ void bittorrent::preAllocateAllFiles(bool b) {
   if(change) {
     qDebug("PreAllocateAll changed, reloading all torrents!");
     preAllocateAll = b;
-    // Reload All Torrents
-    std::vector<torrent_handle> handles = s->get_torrents();
-    unsigned int nbHandles = handles.size();
-    for(unsigned int i=0; i<nbHandles; ++i) {
-      QTorrentHandle h = handles[i];
+    // Reload All unfinished torrents
+    QString hash;
+    foreach(hash, unfinishedTorrents) {
+      QTorrentHandle h = getTorrentHandle(hash);
       if(!h.is_valid()) {
         qDebug("/!\\ Error: Invalid handle");
         continue;
@@ -1226,6 +1225,7 @@ void bittorrent::reloadTorrent(const QTorrentHandle &h, bool full_alloc) {
   // Add torrent again to session
   unsigned int timeout = 0;
   while(h.is_valid() && timeout < 6) {
+    qDebug("Waiting for the torrent to be removed...");
     SleeperThread::msleep(1000);
     ++timeout;
   }
