@@ -48,6 +48,7 @@
    * free disk space after torrent download (and/or torrent size)
 - Start minimized option in program preferences
 - In finished list, replace "Seeds/Leechs" column by "Leechers" because Seeds are always 0.
+- Use ShareMonkey Web service (http://www.sharemonkey.com/)
 - Allow to change action on double-click
   -> in download list
   -> in seeding list
@@ -56,6 +57,8 @@
 - Fix all (or almost all) opened bugs in bug tracker
 - Recheck doc
 - Translations update (IN PROGRESS)
+// RC8
+- BUGFIX: Fix destination save dir in addition dialog
 
 rc6->rc7 changelog:
 - BUGFIX: Catching DHT exception in case there is a problem

@@ -1281,6 +1281,7 @@ QString bittorrent::getSavePath(QString hash) {
     savePath = QString::fromUtf8(line.data());
   }else{
     // use default save path
+    qDebug("Using default save path because none was set");
     savePath = defaultSavePath;
   }
   // Checking if savePath Dir exists
