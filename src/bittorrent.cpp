@@ -708,6 +708,7 @@ void bittorrent::loadTorrentSpeedLimits(QString hash) {
 // Read pieces priorities from .priorities file
 // and ask QTorrentHandle to consider them
 void bittorrent::loadFilesPriorities(QTorrentHandle &h) {
+  qDebug("Applying pieces priorities");
   if(!h.is_valid()) {
     qDebug("/!\\ Error: Invalid handle");
     return;
