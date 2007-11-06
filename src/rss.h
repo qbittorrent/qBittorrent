@@ -22,11 +22,6 @@
 #ifndef RSS_H
 #define RSS_H
 
-// MAX ITEM A STREAM
-#define STREAM_MAX_ITEM 50
-// 10min
-#define STREAM_REFRESH_INTERVAL 600000
-
 #include <QFile>
 #include <QList>
 #include <QTemporaryFile>
@@ -37,6 +32,8 @@
 #include <QTimer>
 #include <QImage>
 #include <QHash>
+#include <QDateTime>
+#include <QCryptographicHash>
 
 #include "misc.h"
 #include "downloadThread.h"
@@ -50,6 +47,28 @@ class RssManager;
 class RssStream;
 class RssItem;
 
+static const char shortDay[][4] = {
+    "Mon", "Tue", "Wed",
+    "Thu", "Fri", "Sat",
+    "Sun"
+};
+static const char longDay[][10] = {
+    "Monday", "Tuesday", "Wednesday",
+    "Thursday", "Friday", "Saturday",
+    "Sunday"
+};
+static const char shortMonth[][4] = {
+    "Jan", "Feb", "Mar", "Apr",
+    "May", "Jun", "Jul", "Aug",
+    "Sep", "Oct", "Nov", "Dec"
+};
+static const char longMonth[][10] = {
+    "January", "February", "March",
+    "April", "May", "June",
+    "July", "August", "September",
+    "October", "November", "December"
+};
+
 // Item of a rss stream, single information
 class RssItem : public QObject {
   Q_OBJECT
@@ -59,8 +78,143 @@ class RssItem : public QObject {
     QString link;
     QString description;
     QString image;
+    QString author;
+    QDateTime date;
+    QString hash;
     bool read;
     QString downloadLink;
+
+  protected:
+    // Ported to Qt4 from KDElibs4
+    QDateTime parseDate(const QString &string) {
+      QString str = string.trimmed();
+      if (str.isEmpty())
+          return QDateTime();
+
+      int nyear  = 6;   // indexes within string to values
+      int nmonth = 4;
+      int nday   = 2;
+      int nwday  = 1;
+      int nhour  = 7;
+      int nmin   = 8;
+      int nsec   = 9;
+      // Also accept obsolete form "Weekday, DD-Mon-YY HH:MM:SS ±hhmm"
+      QRegExp rx("^(?:([A-Z][a-z]+),\\s*)?(\\d{1,2})(\\s+|-)([^-\\s]+)(\\s+|-)(\\d{2,4})\\s+(\\d\\d):(\\d\\d)(?::(\\d\\d))?\\s+(\\S+)$");
+      QStringList parts;
+      if (!str.indexOf(rx)) {
+        // Check that if date has '-' separators, both separators are '-'.
+        parts = rx.capturedTexts();
+        bool h1 = (parts[3] == QLatin1String("-"));
+        bool h2 = (parts[5] == QLatin1String("-"));
+        if (h1 != h2)
+          return QDateTime();
+      } else {
+        // Check for the obsolete form "Wdy Mon DD HH:MM:SS YYYY"
+        rx = QRegExp("^([A-Z][a-z]+)\\s+(\\S+)\\s+(\\d\\d)\\s+(\\d\\d):(\\d\\d):(\\d\\d)\\s+(\\d\\d\\d\\d)$");
+        if (str.indexOf(rx))
+            return QDateTime();
+        nyear  = 7;
+        nmonth = 2;
+        nday   = 3;
+        nwday  = 1;
+        nhour  = 4;
+        nmin   = 5;
+        nsec   = 6;
+        parts = rx.capturedTexts();
+      }
+      bool ok[4];
+      int day    = parts[nday].toInt(&ok[0]);
+      int year   = parts[nyear].toInt(&ok[1]);
+      int hour   = parts[nhour].toInt(&ok[2]);
+      int minute = parts[nmin].toInt(&ok[3]);
+      if (!ok[0] || !ok[1] || !ok[2] || !ok[3])
+        return QDateTime();
+      int second = 0;
+      if (!parts[nsec].isEmpty()) {
+        second = parts[nsec].toInt(&ok[0]);
+        if (!ok[0])
+          return QDateTime();
+      }
+      bool leapSecond = (second == 60);
+      if (leapSecond)
+        second = 59;   // apparently a leap second - validate below, once time zone is known
+      int month = 0;
+      for ( ;  month < 12  &&  parts[nmonth] != shortMonth[month];  ++month) ;
+      int dayOfWeek = -1;
+      if (!parts[nwday].isEmpty()) {
+        // Look up the weekday name
+        while (++dayOfWeek < 7  &&  shortDay[dayOfWeek] != parts[nwday]) ;
+        if (dayOfWeek >= 7)
+          for (dayOfWeek = 0;  dayOfWeek < 7  &&  longDay[dayOfWeek] != parts[nwday];  ++dayOfWeek) ;
+      }
+//       if (month >= 12 || dayOfWeek >= 7
+//       ||  (dayOfWeek < 0  &&  format == RFCDateDay))
+//         return QDateTime;
+      int i = parts[nyear].size();
+      if (i < 4) {
+        // It's an obsolete year specification with less than 4 digits
+        year += (i == 2  &&  year < 50) ? 2000 : 1900;
+      }
+
+      // Parse the UTC offset part
+      int offset = 0;           // set default to '-0000'
+      bool negOffset = false;
+      if (parts.count() > 10) {
+        rx = QRegExp("^([+-])(\\d\\d)(\\d\\d)$");
+        if (!parts[10].indexOf(rx)) {
+          // It's a UTC offset ±hhmm
+          parts = rx.capturedTexts();
+          offset = parts[2].toInt(&ok[0]) * 3600;
+          int offsetMin = parts[3].toInt(&ok[1]);
+          if (!ok[0] || !ok[1] || offsetMin > 59)
+            return QDateTime();
+          offset += offsetMin * 60;
+          negOffset = (parts[1] == QLatin1String("-"));
+          if (negOffset)
+            offset = -offset;
+        } else {
+          // Check for an obsolete time zone name
+          QByteArray zone = parts[10].toLatin1();
+          if (zone.length() == 1  &&  isalpha(zone[0])  &&  toupper(zone[0]) != 'J')
+            negOffset = true;    // military zone: RFC 2822 treats as '-0000'
+          else if (zone != "UT" && zone != "GMT") {    // treated as '+0000'
+            offset = (zone == "EDT")                  ? -4*3600
+                    : (zone == "EST" || zone == "CDT") ? -5*3600
+                    : (zone == "CST" || zone == "MDT") ? -6*3600
+                    : (zone == "MST" || zone == "PDT") ? -7*3600
+                    : (zone == "PST")                  ? -8*3600
+                    : 0;
+            if (!offset) {
+              // Check for any other alphabetic time zone
+              bool nonalpha = false;
+              for (int i = 0, end = zone.size();  i < end && !nonalpha;  ++i)
+                nonalpha = !isalpha(zone[i]);
+              if (nonalpha)
+                return QDateTime();
+              // TODO: Attempt to recognize the time zone abbreviation?
+              negOffset = true;    // unknown time zone: RFC 2822 treats as '-0000'
+            }
+          }
+        }
+      }
+      QDate qdate(year, month+1, day);   // convert date, and check for out-of-range
+      if (!qdate.isValid())
+          return QDateTime();
+      QDateTime result(qdate, QTime(hour, minute, second));
+      if (!result.isValid()
+      ||  (dayOfWeek >= 0  &&  result.date().dayOfWeek() != dayOfWeek+1))
+        return QDateTime();    // invalid date/time, or weekday doesn't correspond with date
+      if (!offset) {
+        result.setTimeSpec(Qt::UTC);
+      }
+      if (leapSecond) {
+        // Validate a leap second time. Leap seconds are inserted after 23:59:59 UTC.
+        // Convert the time to UTC and check that it is 00:00:00.
+        if ((hour*3600 + minute*60 + 60 - offset + 86400*5) % 86400)   // (max abs(offset) is 100 hours)
+          return QDateTime();    // the time isn't the last second of the day
+      }
+      return result;
+    }
 
   public:
     // public constructor
@@ -75,8 +229,13 @@ class RssItem : public QObject {
 	  description = property.text();
 	else if (property.tagName() == "image")
 	  image = property.text();
+        else if (property.tagName() == "pubDate")
+          date = parseDate(property.text());
+        else if (property.tagName() == "author")
+          author = property.text();
 	property = property.nextSibling().toElement();
       }
+      hash = QCryptographicHash::hash(QByteArray(title.toUtf8())+QByteArray(description.toUtf8()), QCryptographicHash::Md5);
     }
 
     ~RssItem(){
@@ -86,8 +245,16 @@ class RssItem : public QObject {
       return title;
     }
 
+    QString getAuthor() const {
+      return author;
+    }
+
     QString getLink() const{
       return link;
+    }
+
+    QString getHash() const {
+      return hash;
     }
 
     QString getDescription() const{
@@ -98,6 +265,10 @@ class RssItem : public QObject {
 
     QString getImage() const{
       return image;
+    }
+
+    QDateTime getDate() const {
+      return date;
     }
 
     QString getDownloadLink() const{
@@ -136,10 +307,6 @@ class RssStream : public QObject{
   public slots :
     // read and store the downloaded rss' informations
     void processDownloadedFile(QString file_path) {
-      // delete the old file
-      if(QFile::exists(filePath)) {
-        QFile::remove(filePath);
-      }
       filePath = file_path;
       downloadFailure = false;
       openRss();
@@ -153,7 +320,7 @@ class RssStream : public QObject{
     }
 
   public:
-    RssStream(QString _url): url(_url), alias(""), iconPath(":/Icons/rss.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
+    RssStream(QString _url): url(_url), alias(""), iconPath(":/Icons/rss16.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
       qDebug("RSSStream constructed");
     }
 
@@ -169,6 +336,14 @@ class RssStream : public QObject{
     void removeAllItems() {
       qDeleteAll(listItem);
       listItem.clear();
+    }
+
+    bool itemAlreadyExists(QString hash) {
+      RssItem * item;
+      foreach(item, listItem) {
+        if(item->getHash() == hash) return true;
+      }
+      return false;
     }
 
     void setLoading(bool val) {
@@ -242,6 +417,14 @@ class RssStream : public QObject{
       return listItem.size();
     }
 
+    void markAllAsRead() {
+      RssItem *item;
+      foreach(item, listItem){
+        if(!item->isRead())
+          item->setRead();
+      }
+    }
+
     unsigned int getNbUnRead() const{
       unsigned int nbUnread=0;
       RssItem *item;
@@ -262,9 +445,9 @@ class RssStream : public QObject{
       return tr("%1 ago", "10min ago").arg(misc::userFriendlyDuration((long)(lastRefresh.elapsed()/1000.)).replace("<", "&lt;"));
     }
 
-    unsigned int getLastRefreshElapsed() const{
+    int getLastRefreshElapsed() const{
       if(!refreshed)
-        return STREAM_REFRESH_INTERVAL+1;
+        return -1;
       return lastRefresh.elapsed();
     }
 
@@ -289,10 +472,6 @@ class RssStream : public QObject{
       }
       QDomNode rss = root.firstChild();
       QDomElement channel = root.firstChild().toElement();
-      unsigned short listsize = getNbNews();
-      for(unsigned short i=0; i<listsize; ++i) {
-	listItem.removeLast();
-      }
 
       while(!channel.isNull()) {
         // we are reading the rss'main info
@@ -311,54 +490,66 @@ class RssStream : public QObject{
 	    else if (property.tagName() == "image")
 	      image = property.text();
 	    else if(property.tagName() == "item") {
-	      if(getNbNews() < STREAM_MAX_ITEM) {
-	        listItem.append(new RssItem(property));
-	      }
+              RssItem * item = new RssItem(property);
+              if(!itemAlreadyExists(item->getHash()))
+                listItem.append(item);
 	    }
 	    property = property.nextSibling().toElement();
 	  }
 	}
 	channel = channel.nextSibling().toElement();
       }
+      sortList();
+      resizeList();
       return 0;
     }
 
-    // not actually used, it is used to resize the list of item AFTER the update, instead of delete it BEFORE, some troubles
-    void resizeList() {
-      unsigned short lastindex = 0;
-      QString firstTitle = getItem(0)->getTitle();
-      unsigned short listsize = getNbNews();
-      for(unsigned short i=0; i<listsize; ++i) {
-        if(getItem(i)->getTitle() == firstTitle)
-	  lastindex = i;
+    static void insertSortElem(QList<RssItem*> &list, RssItem *item) {
+      int i = 0;
+      while(i < list.size() && item->getDate() < list.at(i)->getDate()) {
+        ++i;
       }
-      for(unsigned short i=0; i<lastindex; ++i) {
-	listItem.removeFirst();
-      }
-      while(getNbNews()>STREAM_MAX_ITEM) {
-	listItem.removeAt(STREAM_MAX_ITEM);
-      }
+      list.insert(i, item);
+    }
 
+    void sortList() {
+      QList<RssItem*> new_list;
+      RssItem *item;
+      foreach(item, listItem) {
+        insertSortElem(new_list, item);
+      }
+      listItem = new_list;
+    }
+
+    void resizeList() {
+      QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+      unsigned int max_articles = settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 50).toInt();
+      int excess = listItem.size() - max_articles;
+      if(excess <= 0) return;
+      for(int i=0; i<excess; ++i){
+        delete listItem.takeLast();
+      }
     }
 
     // existing and opening test after download
     short openRss(){
+      qDebug("openRss() called");
       QDomDocument doc("Rss Seed");
       QFile fileRss(filePath);
       if(!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) {
-	qDebug("error : open failed, no file or locked, "+filePath.toUtf8());
-	if(QFile::exists(filePath)) {
-	 fileRss.remove();
-	}
-	return -1;
+        qDebug("openRss error : open failed, no file or locked, "+filePath.toUtf8());
+        if(QFile::exists(filePath)) {
+          fileRss.remove();
+        }
+        return -1;
       }
       if(!doc.setContent(&fileRss)) {
-	qDebug("can't read temp file, might be empty");
-	fileRss.close();
-	if(QFile::exists(filePath)) {
-	 fileRss.remove();
-	}
-	return -1;
+        qDebug("can't read temp file, might be empty");
+        fileRss.close();
+        if(QFile::exists(filePath)) {
+        fileRss.remove();
+        }
+        return -1;
       }
       // start reading the xml
       short return_lecture = readDoc(doc);
@@ -378,6 +569,7 @@ class RssManager : public QObject{
     QHash<QString, RssStream*> streams;
     downloadThread *downloader;
     QTimer newsRefresher;
+    unsigned int refreshInterval;
 
   signals:
     void feedInfosChanged(QString url, QString aliasOrUrl, unsigned int nbUnread);
@@ -454,13 +646,20 @@ class RssManager : public QObject{
       foreach(stream, streams){
         QString url = stream->getUrl();
         if(stream->isLoading()) return;
-        if(stream->getLastRefreshElapsed() < STREAM_REFRESH_INTERVAL) return;
+        if(stream->getLastRefreshElapsed() != -1 && stream->getLastRefreshElapsed() < (int)refreshInterval) return;
         qDebug("Refreshing old feed: %s...", (const char*)url.toUtf8());
         stream->setLoading(true);
         downloader->downloadUrl(url);
         if(!stream->hasCustomIcon()){
           downloader->downloadUrl(stream->getIconUrl());
         }
+      }
+      // See if refreshInterval has changed
+      QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+      unsigned int new_refreshInterval = settings.value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toInt();
+      if(new_refreshInterval != refreshInterval) {
+        refreshInterval = new_refreshInterval;
+        newsRefresher.start(refreshInterval*60000);
       }
     }
 
@@ -471,7 +670,9 @@ class RssManager : public QObject{
       connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
       loadStreamList();
       connect(&newsRefresher, SIGNAL(timeout()), this, SLOT(refreshOldFeeds()));
-      newsRefresher.start(60000);
+      QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+      refreshInterval = settings.value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toInt();
+      newsRefresher.start(refreshInterval*60000);
     }
 
     ~RssManager(){

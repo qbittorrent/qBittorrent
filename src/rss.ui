@@ -13,27 +13,54 @@
    <string>Search</string>
   </property>
   <layout class="QVBoxLayout" >
-   <property name="margin" >
-    <number>9</number>
-   </property>
    <property name="spacing" >
     <number>6</number>
    </property>
+   <property name="leftMargin" >
+    <number>9</number>
+   </property>
+   <property name="topMargin" >
+    <number>9</number>
+   </property>
+   <property name="rightMargin" >
+    <number>9</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>9</number>
+   </property>
    <item>
     <layout class="QHBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
-     </property>
      <property name="spacing" >
       <number>6</number>
      </property>
+     <property name="leftMargin" >
+      <number>0</number>
+     </property>
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>0</number>
+     </property>
      <item>
       <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>0</number>
-       </property>
        <property name="spacing" >
         <number>6</number>
+       </property>
+       <property name="leftMargin" >
+        <number>0</number>
+       </property>
+       <property name="topMargin" >
+        <number>0</number>
+       </property>
+       <property name="rightMargin" >
+        <number>0</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>0</number>
        </property>
        <item>
         <widget class="QTreeWidget" name="listStreams" >
@@ -60,11 +87,20 @@
        </item>
        <item>
         <layout class="QHBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
          <property name="spacing" >
           <number>6</number>
+         </property>
+         <property name="leftMargin" >
+          <number>0</number>
+         </property>
+         <property name="topMargin" >
+          <number>0</number>
+         </property>
+         <property name="rightMargin" >
+          <number>0</number>
+         </property>
+         <property name="bottomMargin" >
+          <number>0</number>
          </property>
          <item>
           <spacer>
@@ -83,14 +119,8 @@
           <widget class="QPushButton" name="delStream_button" >
            <property name="minimumSize" >
             <size>
-             <width>22</width>
-             <height>22</height>
-            </size>
-           </property>
-           <property name="maximumSize" >
-            <size>
-             <width>22</width>
-             <height>22</height>
+             <width>55</width>
+             <height>32</height>
             </size>
            </property>
            <property name="toolTip" >
@@ -99,20 +129,20 @@
            <property name="text" >
             <string/>
            </property>
+           <property name="iconSize" >
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="refreshAll_button" >
            <property name="minimumSize" >
             <size>
-             <width>22</width>
-             <height>22</height>
-            </size>
-           </property>
-           <property name="maximumSize" >
-            <size>
-             <width>22</width>
-             <height>22</height>
+             <width>32</width>
+             <height>32</height>
             </size>
            </property>
            <property name="toolTip" >
@@ -121,20 +151,20 @@
            <property name="text" >
             <string/>
            </property>
+           <property name="iconSize" >
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="addStream_button" >
            <property name="minimumSize" >
             <size>
-             <width>22</width>
-             <height>22</height>
-            </size>
-           </property>
-           <property name="maximumSize" >
-            <size>
-             <width>22</width>
-             <height>22</height>
+             <width>32</width>
+             <height>32</height>
             </size>
            </property>
            <property name="toolTip" >
@@ -142,6 +172,12 @@
            </property>
            <property name="text" >
             <string/>
+           </property>
+           <property name="iconSize" >
+            <size>
+             <width>55</width>
+             <height>32</height>
+            </size>
            </property>
           </widget>
          </item>
@@ -164,11 +200,20 @@
      </item>
      <item>
       <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>0</number>
-       </property>
        <property name="spacing" >
         <number>6</number>
+       </property>
+       <property name="leftMargin" >
+        <number>0</number>
+       </property>
+       <property name="topMargin" >
+        <number>0</number>
+       </property>
+       <property name="rightMargin" >
+        <number>0</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>0</number>
        </property>
        <item>
         <widget class="QLabel" name="news_lbl" >
@@ -198,11 +243,20 @@
        </item>
        <item>
         <layout class="QHBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
          <property name="spacing" >
           <number>6</number>
+         </property>
+         <property name="leftMargin" >
+          <number>0</number>
+         </property>
+         <property name="topMargin" >
+          <number>0</number>
+         </property>
+         <property name="rightMargin" >
+          <number>0</number>
+         </property>
+         <property name="bottomMargin" >
+          <number>0</number>
          </property>
         </layout>
        </item>
@@ -234,6 +288,11 @@
   <action name="actionRefreshAll" >
    <property name="text" >
     <string>Refresh all streams</string>
+   </property>
+  </action>
+  <action name="actionMark_all_as_read" >
+   <property name="text" >
+    <string>Mark all as read</string>
    </property>
   </action>
  </widget>

@@ -44,13 +44,15 @@ public:
 
 		s = conf->getenv("QC_WITH_LIBMAGICK_LIB");
 		if(!s.isEmpty()) {
-			if(!QFile::exists(s+QString("libMagick++.so"))){
+			if(!QFile::exists(s+QString("/libMagick++.so"))){
                           return false;
                         }
 		}else{
 			QStringList sl;
 			sl << "/usr/lib/";
+			sl << "/usr/lib64/";
 			sl << "/usr/local/lib/";
+			sl << "/usr/local/lib64/";
 			bool found = false;
 			foreach(s, sl){
 				if(QFile::exists(s+QString("libMagick++.so"))){
@@ -69,6 +71,7 @@ public:
 		magickConfig.waitForStarted();
 		magickConfig.waitForFinished();
 		QByteArray result = magickConfig.readAll();
+		result = result.replace("\n", "");
 		conf->addLib(result.data());
 		conf->addDefine("HAVE_MAGICK");
 		return true;

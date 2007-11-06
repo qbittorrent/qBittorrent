@@ -1,4 +1,4 @@
-qBittorrent - A BitTorrent client in C++ / Qt4.2
+qBittorrent - A BitTorrent client in C++ / Qt4
 ------------------------------------------
 
 *** Necessary if qt3 is default on your system ***
@@ -14,11 +14,12 @@ qbittorrent
 will install and execute qBittorrent hopefully without any problems.
 
 Dependencies:
-- Qt >= 4.2 (libqt-devel, libqtgui, libqtcore, libqtnetwork, libqtxml)
+- Qt >= 4.3.0 (libqt-devel, libqtgui, libqtcore, libqtnetwork, libqtxml)
 
-- libtorrent by Arvid Norberg (>= v0.13 REQUIRED)
+- rblibtorrent by Arvid Norberg (>= v0.13 REQUIRED)
+    -> http://www.qbittorrent.org/download.php (advised)
     -> http://www.libtorrent.net
-    Be carefull: another library (the one used by rtorrent) use the same name.
+    Be careful: another library (the one used by rTorrent) use the same name.
     These are TWO different libraries and qBittorrent will only work with the one provided
     on sourceforge (created by Arvid Norberg). The two libraries conflicts with each other.
 
@@ -26,13 +27,17 @@ Dependencies:
 
 - libcommoncpp2
 
-- python >= 2.3 (previous might work - not tested): needed by search engine.
+- python >= 2.3 (needed by search engine)
 
 - libmagick++ (advised, not required)
+  * Needed for favicons support (RSS / Search plugins)
 
-NOTE FOR GNOME USERS:
-- qt4-qtconfig package is advised when using Plastique style (default)
-  or just change qBittorrent style to Cleanlooks (GNOME like)
+- libzzip (advised, not required)
+  * Needed for zip support (Search plugins)
+
+NOTE FOR NON-KDE USERS:
+- qt4-qtconfig package is advised when using other systems than KDE.
+  You can also change qBittorrent style to Cleanlooks (GNOME like)
 
 DOCUMENTATION:
 Please note that there is a documentation with a "compiling howto" at http://wiki.qbittorrent.org.

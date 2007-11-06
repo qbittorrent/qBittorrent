@@ -79,9 +79,9 @@ bool QTorrentHandle::is_paused() const {
 //   return h.get_torrent_info().total_size();
 // }
 
-size_type QTorrentHandle::total_done() const {
+size_type QTorrentHandle::total_wanted_done() const {
   Q_ASSERT(h.is_valid());
-  return h.status().total_done;
+  return h.status().total_wanted_done;
 }
 
 float QTorrentHandle::download_payload_rate() const {
@@ -120,7 +120,7 @@ QStringList QTorrentHandle::url_seeds() const {
   std::vector<std::string> existing_seeds = h.get_torrent_info().url_seeds();
   unsigned int nbSeeds = existing_seeds.size();
   QString existing_seed;
-  for(unsigned int i=0; i<nbSeeds; ++i){
+  for(unsigned int i=0; i<nbSeeds; ++i) {
     res << misc::toQString(existing_seeds[i]);
   }
   return res;
@@ -129,14 +129,7 @@ QStringList QTorrentHandle::url_seeds() const {
 // get the size of the torrent without the filtered files
 size_type QTorrentHandle::actual_size() const{
   Q_ASSERT(h.is_valid());
-  size_type size = 0;
-  std::vector<int> piece_priorities = h.piece_priorities();
-  for(unsigned int i = 0; i<piece_priorities.size(); ++i) {
-    if(piece_priorities[i])
-      size += h.get_torrent_info().piece_size(i);
-  }
-  Q_ASSERT(size >= 0 && size <= h.get_torrent_info().total_size());
-  return size;
+  return h.status().total_wanted;
 }
 
 bool QTorrentHandle::has_filtered_pieces() const {
@@ -278,9 +271,14 @@ void QTorrentHandle::add_url_seed(QString seed) {
   h.add_url_seed(misc::toString((const char*)seed.toUtf8()));
 }
 
-void QTorrentHandle::set_max_uploads(int val){
+void QTorrentHandle::set_max_uploads(int val) {
   Q_ASSERT(h.is_valid());
   h.set_max_uploads(val);
+}
+
+void QTorrentHandle::set_max_connections(int val) {
+  Q_ASSERT(h.is_valid());
+  h.set_max_connections(val);
 }
 
 void QTorrentHandle::prioritize_files(std::vector<int> v) {
@@ -308,7 +306,7 @@ void QTorrentHandle::set_sequenced_download_threshold(int val) {
   h.set_sequenced_download_threshold(val);
 }
 
-void QTorrentHandle::set_tracker_login(QString username, QString password){
+void QTorrentHandle::set_tracker_login(QString username, QString password) {
   Q_ASSERT(h.is_valid());
   h.set_tracker_login(std::string(username.toUtf8().data()), std::string(password.toUtf8().data()));
 }

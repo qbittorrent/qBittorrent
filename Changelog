@@ -5,6 +5,8 @@
     - FEATURE: Bittorrent FAST extension support
     - FEATURE: Added RSS support
     - FEATURE: Support files prioritizing in a torrent
+    - FEATURE: Brand new search engine plugins system
+    - FEATURE: Filtered files don't appear on hard disk anymore
     - FEATURE: Finished torrents are now moved to another tab for seeding
     - FEATURE: Display more infos about the torrent in its properties
     - FEATURE: Allow the user to edit torrents' trackers
@@ -30,6 +32,15 @@
     - FEATURE: User is now warned when fast resume data was rejected
     - FEATURE: Url seeds are now displayed in torrent properties and are editable
     - FEATURE: Allow to drag 'n drop urls on the main window
+    - FEATURE: Improved search engine (multipage support in all plugins)
+    - FEATURE: Added BTJunkie search engine plugin
+    - FEATURE: Added an option to force full disk allocation for all torrents
+    - FEATURE: Added an option to add torrents in paused state
+    - FEATURE: Added an option to set the max number of connections per torrent
+    - FEATURE: Added an option to set the max number of uploads per torrent
+    - FEATURE: Added an option to automatically delete torrents when they reach a given ratio (>= 1.0)
+    - FEATURE: Added an option to display current transfer speeds in title bar
+    - FEATURE: Torrent content is now displayed as a tree
     - I18N: Added Hungarian translation
     - I18N: Added Brazilian translation
     - BUGFIX: Progress of paused torrents is now correct on restart
@@ -52,11 +63,16 @@
     - BUGFIX: Made torrent deletion from hard-drive safer
     - BUGFIX: Prevent downloadFromUrl flooding
     - BUGFIX: ETA was wrong for torrents with filtered files
+    - BUGFIX: Fixed drag'n drop on non-KDE systems
+    - BUGFIX: Removed build dependency on Python
+    - BUGFIX: Catching DHT exception in case there is a problem
     - COSMETIC: Redesigned torrent properties a little
-    - COSMETIC: Redesigned options a little
+    - COSMETIC: Totally redesigned program preferences
     - COSMETIC: Display more logs messages concerning features
     - COSMETIC: Improved lists renderers
     - COSMETIC: Use a different icon for torrents being checked and for connecting ones
+    - COSMETIC: Improved some icons
+    - COSMETIC: Improved systray tooltip style
 
 * Mon May 07 2007 - Christophe Dumez <chris@qbittorrent.org> - v0.9.3
     - BUGFIX: Fixed pause toggle on double-click in download list

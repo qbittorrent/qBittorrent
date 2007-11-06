@@ -28,6 +28,7 @@
 #include <QStandardItemModel>
 #include <QMessageBox>
 #include <QTimer>
+#include <QString>
 
     // display a right-click menu
     void RSSImp::displayRSSListMenu(const QPoint& pos){
@@ -35,6 +36,7 @@
       QTreeWidgetItem* item = listStreams->itemAt(pos);
       QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
       if(item != 0) {
+        myFinishedListMenu.addAction(actionMark_all_as_read);
 	myFinishedListMenu.addAction(actionDelete);
         if(selectedItems.size() == 1)
 	 myFinishedListMenu.addAction(actionRename);
@@ -118,13 +120,28 @@
       }
     }
 
+    void RSSImp::on_actionMark_all_as_read_triggered() {
+      textBrowser->clear();
+      listNews->clear();
+      QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
+      QTreeWidgetItem* item;
+      foreach(item, selectedItems){
+        QString url = item->text(1);
+        RssStream *feed = rssmanager->getFeed(url);
+        feed->markAllAsRead();
+        item->setData(0, Qt::DisplayRole, feed->getAliasOrUrl()+ QString::fromUtf8("  (0)"));
+      }
+      if(selectedItems.size())
+        refreshNewsList(selectedItems.last(), 0);
+    }
+
     //right-click somewhere, refresh all the streams
     void RSSImp::refreshAllStreams() {
       textBrowser->clear();
       listNews->clear();
       unsigned int nbFeeds = listStreams->topLevelItemCount();
       for(unsigned int i=0; i<nbFeeds; ++i)
-	listStreams->topLevelItem(i)->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+        listStreams->topLevelItem(i)->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
       rssmanager->refreshAll();
       updateLastRefreshedTimeForStreams();
     }
@@ -205,7 +222,18 @@
     // display a news
     void RSSImp::refreshTextBrowser(QListWidgetItem *item) {
       RssItem* article = rssmanager->getFeed(selectedFeedUrl)->getItem(listNews->row(item));
-      textBrowser->setHtml(article->getTitle()+":<br/>"+article->getDescription());
+      QString html;
+      html += "<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>";
+      html += "<div style='background-color: #678db2; font-weight: bold; color: #fff;'>"+article->getTitle() + "</div>";
+      if(article->getDate().isValid()) {
+        html += "<div style='background-color: #efefef;'><b>"+tr("Date: ")+"</b>"+article->getDate().toString()+"</div>";
+      }
+      if(!article->getAuthor().isEmpty()) {
+        html += "<div style='background-color: #efefef;'><b>"+tr("Author: ")+"</b>"+article->getAuthor()+"</div>";
+      }
+      html += "</div>";
+      html += "<divstyle='margin-left: 5px; margin-right: 5px;'>"+article->getDescription()+"</div>";
+      textBrowser->setHtml(html);
       article->setRead();
       item->setData(Qt::ForegroundRole, QVariant(QColor("grey")));
       item->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));
@@ -232,13 +260,13 @@
     void RSSImp::updateFeedNbNews(QString url){
       QTreeWidgetItem *item = getTreeItemFromUrl(url);
       RssStream *stream = rssmanager->getFeed(url);
-      item->setText(0, stream->getAliasOrUrl() + QString::fromUtf8("  (") + QString::number(stream->getNbUnRead(), 10)+ String(")"));
+      item->setText(0, stream->getAliasOrUrl() + QString::fromUtf8("  (") + QString::number(stream->getNbUnRead(), 10)+ QString(")"));
     }
 
     void RSSImp::updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnread){
       QTreeWidgetItem *item = getTreeItemFromUrl(url);
       RssStream *stream = rssmanager->getFeed(url);
-      item->setText(0, aliasOrUrl + QString::fromUtf8("  (") + QString::number(nbUnread, 10)+ String(")"));
+      item->setText(0, aliasOrUrl + QString::fromUtf8("  (") + QString::number(nbUnread, 10)+ QString(")"));
       item->setData(0,Qt::DecorationRole, QVariant(QIcon(stream->getIconPath())));
       item->setToolTip(0, QString::fromUtf8("<b>")+tr("Description:")+QString::fromUtf8("</b> ")+stream->getDescription()+QString::fromUtf8("<br/><b>")+tr("url:")+QString::fromUtf8("</b> ")+stream->getUrl()+QString::fromUtf8("<br/><b>")+tr("Last refresh:")+QString::fromUtf8("</b> ")+stream->getLastRefreshElapsedString());
       // If the feed is selected, update the displayed news
@@ -250,14 +278,15 @@
     RSSImp::RSSImp() : QWidget(){
       setupUi(this);
       // icons of bottom buttons
-      addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
-      delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
+      addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/subscribe.png")));
+      delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/unsubscribe.png")));
       refreshAll_button->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
+      actionMark_all_as_read->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
       // icons of right-click menu
-      actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
+      actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/unsubscribe16.png")));
       actionRename->setIcon(QIcon(QString::fromUtf8(":/Icons/log.png")));
       actionRefresh->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
-      actionCreate->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
+      actionCreate->setIcon(QIcon(QString::fromUtf8(":/Icons/subscribe16.png")));
       actionRefreshAll->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
 
       // Hide second column (url)
