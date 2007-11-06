@@ -1,3 +1,8 @@
+* Tuesday October 06 2007 - Arnaud Demaiziere <arnaud@qbittorrent.org> - v1.1.0
+    - BUGFIX: Rename leecher column in finished torrents list
+    - FEATURE: Option allow to start minimized in systray
+    - FEATURE: Allow to define double click action on torrents lists
+
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.0.0
     - FEATURE: Based on new libtorrent v0.13
     - FEATURE: Added UPnP / NAT-PMP port forwarding support
