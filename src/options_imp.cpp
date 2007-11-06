@@ -127,6 +127,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkNoSystray, SIGNAL(stateChanged(int)), this, SLOT(setSystrayOptionsState(int)));
   // Downloads tab
   connect(checkScanDir, SIGNAL(stateChanged(int)), this, SLOT(enableDirScan(int)));
+  connect(actionTorrentDlOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+  connect(actionTorrentFnOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   // Connection tab
   connect(checkUploadLimit, SIGNAL(stateChanged(int)), this, SLOT(enableUploadLimit(int)));
   connect(checkDownloadLimit,  SIGNAL(stateChanged(int)), this, SLOT(enableDownloadLimit(int)));
@@ -151,6 +153,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkNoSystray, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkCloseToSystray, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkMinimizeToSysTray, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkStartMinimized, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkSystrayBalloons, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(textMediaPlayer, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   // Downloads tab
@@ -261,6 +264,7 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("SystrayEnabled"), systrayIntegration());
   settings.setValue(QString::fromUtf8("CloseToTray"), closeToTray());
   settings.setValue(QString::fromUtf8("MinimizeToTray"), minimizeToTray());
+  settings.setValue(QString::fromUtf8("StartMinimized"), startMinimized());
   settings.setValue(QString::fromUtf8("NotificationBaloons"), OSDEnabled());
   settings.setValue(QString::fromUtf8("MediaPlayer"), getPreviewProgram());
   // End General preferences
@@ -272,6 +276,8 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("AdditionDialog"), useAdditionDialog());
   settings.setValue(QString::fromUtf8("StartInPause"), addTorrentsInPause());
   settings.setValue(QString::fromUtf8("ScanDir"), getScanDir());
+  settings.setValue(QString::fromUtf8("DblClOnTorDl"), getActionOnDblClOnTorrentDl());
+  settings.setValue(QString::fromUtf8("DblClOnTorFn"), getActionOnDblClOnTorrentFn());
   // End Downloads preferences
   settings.endGroup();
   // Connection preferences
@@ -404,6 +410,7 @@ void options_imp::loadOptions(){
     enableSystrayOptions();
     checkCloseToSystray->setChecked(settings.value(QString::fromUtf8("CloseToTray"), false).toBool());
     checkMinimizeToSysTray->setChecked(settings.value(QString::fromUtf8("MinimizeToTray"), false).toBool());
+    checkStartMinimized->setChecked(settings.value(QString::fromUtf8("StartMinimized"), false).toBool());
     checkSystrayBalloons->setChecked(settings.value(QString::fromUtf8("NotificationBaloons"), true).toBool());
   }
   textMediaPlayer->setText(settings.value(QString::fromUtf8("MediaPlayer"), QString()).toString());
@@ -430,6 +437,9 @@ void options_imp::loadOptions(){
     textScanDir->setText(strValue);
     enableDirScan(2);
   }
+  actionTorrentDlOnDblClBox->setCurrentIndex(settings.value(QString::fromUtf8("DblClOnTorDl"), 0).toInt());
+  actionTorrentFnOnDblClBox->setCurrentIndex(settings.value(QString::fromUtf8("DblClOnTorFn"), 0).toInt());
+  intValue = settings.value(QString::fromUtf8("DblClOnTorFn"), 1).toInt();
   // End Downloads preferences
   settings.endGroup();
   // Connection preferences
@@ -647,6 +657,11 @@ QPair<int,int> options_imp::getGlobalBandwidthLimits() const{
 bool options_imp::OSDEnabled() const {
   if(checkNoSystray->isChecked()) return false;
   return checkSystrayBalloons->isChecked();
+}
+
+bool options_imp::startMinimized() const {
+  if(checkStartMinimized->isChecked()) return true;
+  return checkStartMinimized->isChecked();
 }
 
 bool options_imp::systrayIntegration() const{
@@ -978,6 +993,20 @@ QString options_imp::getScanDir() const {
   }else{
     return QString();
   }
+}
+
+// Return action on double-click on a downloading torrent set in options
+int options_imp::getActionOnDblClOnTorrentDl() const {
+  if(actionTorrentDlOnDblClBox->currentIndex()<1)
+    return 1;
+  return actionTorrentDlOnDblClBox->currentIndex();
+}
+
+// Return action on double-click on a finished torrent set in options
+int options_imp::getActionOnDblClOnTorrentFn() const {
+  if(actionTorrentFnOnDblClBox->currentIndex()<1)
+    return 1;
+  return actionTorrentFnOnDblClBox->currentIndex();
 }
 
 // Display dialog to choose scan dir

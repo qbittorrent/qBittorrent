@@ -54,7 +54,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
 
   signals:
     void unfinishedTorrentsNumberChanged(unsigned int);
-    void torrentDoubleClicked(QString hash);
+    void torrentDoubleClicked(QString hash, bool finished);
     void torrentFinished(QString hash);
 
   protected slots:
@@ -91,7 +91,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void propertiesSelection();
     void sortProgressColumnDelayed();
     void updateFileSizeAndProgress(QString hash);
-
+    void showPropertiesFromHash(QString hash);
 };
 
 #endif

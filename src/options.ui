@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>663</width>
-    <height>560</height>
+    <height>586</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -294,6 +294,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QCheckBox" name="checkStartMinimized" >
+            <property name="text" >
+             <string>Start minimized</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QCheckBox" name="checkSystrayBalloons" >
             <property name="text" >
              <string>Show notification balloons in tray</string>
@@ -376,6 +383,12 @@
       <layout class="QVBoxLayout" >
        <item>
         <widget class="QGroupBox" name="fileSystemBox" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="title" >
           <string>File system</string>
          </property>
@@ -451,6 +464,12 @@
        </item>
        <item>
         <widget class="QGroupBox" name="torrentAdditionBox" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="title" >
           <string>When adding a torrent</string>
          </property>
@@ -477,6 +496,12 @@
        </item>
        <item>
         <widget class="QGroupBox" name="dirScanBox" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="title" >
           <string comment="qBittorrent will watch a directory and automatically download torrents present in it" >Folder watching</string>
          </property>
@@ -547,17 +572,114 @@
         </widget>
        </item>
        <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
+        <widget class="QGroupBox" name="ActDblClickBox" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <property name="sizeHint" >
-          <size>
-           <width>557</width>
-           <height>21</height>
-          </size>
+         <property name="title" >
+          <string comment="qBittorrent will watch a directory and automatically download torrents present in it" >Action on double click in transfer lists</string>
          </property>
-        </spacer>
+         <layout class="QVBoxLayout" >
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QLabel" name="lblDlList_2" >
+              <property name="text" >
+               <string>In download list:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="actionTorrentDlOnDblClBox" >
+              <property name="sizePolicy" >
+               <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="currentIndex" >
+               <number>0</number>
+              </property>
+              <item>
+               <property name="text" >
+                <string>Pause/Start torrent</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>Delete torrent</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>Show torrent's properties</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QLabel" name="lblUploadList" >
+              <property name="text" >
+               <string>In seeding list:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="actionTorrentFnOnDblClBox" >
+              <item>
+               <property name="text" >
+                <string>Pause/Start torrent</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>Delete torrent</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>Show torrent's properties</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
        </item>
       </layout>
      </widget>

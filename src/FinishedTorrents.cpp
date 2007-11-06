@@ -42,7 +42,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   finishedListModel->setHeaderData(F_SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
   finishedListModel->setHeaderData(F_PROGRESS, Qt::Horizontal, tr("Progress", "i.e: % downloaded"));
   finishedListModel->setHeaderData(F_UPSPEED, Qt::Horizontal, tr("UP Speed", "i.e: Upload speed"));
-  finishedListModel->setHeaderData(F_SEEDSLEECH, Qt::Horizontal, tr("Seeds/Leechs", "i.e: full/partial sources"));
+  finishedListModel->setHeaderData(F_SEEDSLEECH, Qt::Horizontal, tr("Leechers", "i.e: full/partial sources"));
   finishedListModel->setHeaderData(F_RATIO, Qt::Horizontal, tr("Ratio"));
   finishedList->setModel(finishedListModel);
   // Hide ETA & hash column
@@ -81,7 +81,7 @@ FinishedTorrents::~FinishedTorrents(){
 void FinishedTorrents::notifyTorrentDoubleClicked(const QModelIndex& index) {
   unsigned int row = index.row();
   QString hash = getHashFromRow(row);
-  emit torrentDoubleClicked(hash);
+  emit torrentDoubleClicked(hash, true);
 }
 
 void FinishedTorrents::addTorrent(QString hash){
@@ -97,7 +97,7 @@ void FinishedTorrents::addTorrent(QString hash){
   finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(h.name()));
   finishedListModel->setData(finishedListModel->index(row, F_SIZE), QVariant((qlonglong)h.actual_size()));
   finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), QVariant((double)0.));
-  finishedListModel->setData(finishedListModel->index(row, F_SEEDSLEECH), QVariant("0/0"));
+  finishedListModel->setData(finishedListModel->index(row, F_SEEDSLEECH), QVariant("0"));
   finishedListModel->setData(finishedListModel->index(row, F_RATIO), QVariant(QString::fromUtf8(misc::toString(BTSession->getRealRatio(hash)).c_str())));
   finishedListModel->setData(finishedListModel->index(row, F_HASH), QVariant(hash));
   finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)1.));
@@ -231,7 +231,7 @@ void FinishedTorrents::updateFinishedList(){
     setRowColor(row, QString::fromUtf8("orange"));
     finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png"))), Qt::DecorationRole);
     finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), QVariant((double)h.upload_payload_rate()));
-    finishedListModel->setData(finishedListModel->index(row, F_SEEDSLEECH), QVariant(misc::toQString(h.num_seeds(), true)+"/"+misc::toQString(h.num_peers() - h.num_seeds(), true)));
+    finishedListModel->setData(finishedListModel->index(row, F_SEEDSLEECH), misc::toQString(h.num_peers() - h.num_seeds(), true));
     finishedListModel->setData(finishedListModel->index(row, F_RATIO), QVariant(misc::toQString(BTSession->getRealRatio(hash))));
     finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)1.));
   }
@@ -253,7 +253,7 @@ void FinishedTorrents::pauseTorrent(QString hash) {
   Q_ASSERT(row != -1);
   finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), QVariant((double)0.0));
   finishedListModel->setData(finishedListModel->index(row, F_NAME), QIcon(QString::fromUtf8(":/Icons/skin/paused.png")), Qt::DecorationRole);
-  finishedListModel->setData(finishedListModel->index(row, F_SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
+  finishedListModel->setData(finishedListModel->index(row, F_SEEDSLEECH), QVariant(QString::fromUtf8("0")));
   setRowColor(row, QString::fromUtf8("red"));
 }
 
@@ -285,6 +285,13 @@ void FinishedTorrents::deleteTorrent(QString hash){
 void FinishedTorrents::showProperties(const QModelIndex &index){
   int row = index.row();
   QString hash = finishedListModel->data(finishedListModel->index(row, F_HASH)).toString();
+  QTorrentHandle h = BTSession->getTorrentHandle(hash);
+  properties *prop = new properties(this, BTSession, h);
+  connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSize(QString)));
+  prop->show();
+}
+
+void FinishedTorrents::showPropertiesFromHash(QString hash){
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   properties *prop = new properties(this, BTSession, h);
   connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSize(QString)));

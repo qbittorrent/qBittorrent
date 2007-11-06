@@ -96,6 +96,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void readParamsOnSocket();
     void acceptConnection();
     void togglePausedState(QString hash);
+    void torrentDoubleClicked(QString hash, bool finished);
     void on_actionPreview_file_triggered();
     void previewFile(QString filePath);
     void cleanTempPreviewFile(int, QProcess::ExitStatus) const;

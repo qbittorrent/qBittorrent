@@ -25,7 +25,7 @@
   (http://techbase.kde.org/Development/Tutorials/D-Bus/Accessing_Interfaces)
 - When favicon can't be downloaded, try to parse the webpage for:
   <link rel="icon" href="http://example.com/favicon.ico" type="image/vnd.microsoft.icon">
-    * Be carefull, the link can be relative
+    * Be careful, the link can be relative
 
 // in v1.2.0
 - Allow user to organize the downloads into categories/folders?
@@ -46,12 +46,7 @@
 - Display in torrent addition dialog:
    * free disk space on selected drive
    * free disk space after torrent download (and/or torrent size)
-- Start minimized option in program preferences
-- In finished list, replace "Seeds/Leechs" column by "Leechers" because Seeds are always 0.
-- Use ShareMonkey Web service (http://www.sharemonkey.com/)
-- Allow to change action on double-click
-  -> in download list
-  -> in seeding list
+  - Use ShareMonkey Web service (http://www.sharemonkey.com/)
 
 // in v1.0.0 - FEATURE FREEZE
 - Fix all (or almost all) opened bugs in bug tracker

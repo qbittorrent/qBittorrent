@@ -110,7 +110,7 @@ DownloadingTorrents::~DownloadingTorrents() {
 void DownloadingTorrents::notifyTorrentDoubleClicked(const QModelIndex& index) {
   unsigned int row = index.row();
   QString hash = getHashFromRow(row);
-  emit torrentDoubleClicked(hash);
+  emit torrentDoubleClicked(hash, false);
 }
 
 void DownloadingTorrents::addLogPeerBlocked(QString ip) {
@@ -156,6 +156,13 @@ void DownloadingTorrents::setBottomTabEnabled(unsigned int index, bool b){
 void DownloadingTorrents::showProperties(const QModelIndex &index) {
   int row = index.row();
   QString hash = DLListModel->data(DLListModel->index(row, HASH)).toString();
+  QTorrentHandle h = BTSession->getTorrentHandle(hash);
+  properties *prop = new properties(this, BTSession, h);
+  connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSizeAndProgress(QString)));
+  prop->show();
+}
+
+void DownloadingTorrents::showPropertiesFromHash(QString hash) {
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   properties *prop = new properties(this, BTSession, h);
   connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSizeAndProgress(QString)));

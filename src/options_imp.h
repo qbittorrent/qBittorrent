@@ -25,16 +25,27 @@
 #include "ui_options.h"
 #include <libtorrent/ip_filter.hpp>
 
+/*#include <QDialog>
+#include <qdialog.h>
+#include "ui_options.h"
+#include "ui_dialog.h"
+#include <libtorrent/ip_filter.hpp>*/
+
 #define HTTP 1
 #define SOCKS5 2
 #define HTTP_PW 3
 #define SOCKS5_PW 4
 
+// actions on double-click on torrents
+#define TOGGLE_PAUSE 0
+#define DELETE_IT 1
+#define SHOW_PROPERTIES 2
+
 using namespace libtorrent;
 
 class QCloseEvent;
 
-class options_imp : public QDialog, private Ui::Dialog{
+class options_imp : public QDialog, private Ui::Dialog {
   Q_OBJECT
 
   private:
@@ -60,6 +71,7 @@ class options_imp : public QDialog, private Ui::Dialog{
     bool systrayIntegration() const;
     bool minimizeToTray() const;
     bool closeToTray() const;
+    bool startMinimized() const;
     bool OSDEnabled() const;
     QString getPreviewProgram() const;
     // Downloads
@@ -69,6 +81,8 @@ class options_imp : public QDialog, private Ui::Dialog{
     bool addTorrentsInPause() const;
     bool isDirScanEnabled() const;
     QString getScanDir() const;
+    int getActionOnDblClOnTorrentDl() const;
+    int getActionOnDblClOnTorrentFn() const;
     // Connection options
     std::pair<unsigned short, unsigned short> getPorts() const;
     bool isUPnPEnabled() const;

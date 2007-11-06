@@ -70,10 +70,11 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void resumeTorrent(QString hash);
     void propertiesSelection();
     void deleteTorrent(QString hash);
+    void showPropertiesFromHash(QString hash);
 
   signals:
     void torrentMovedFromFinishedList(QString);
-    void torrentDoubleClicked(QString hash);
+    void torrentDoubleClicked(QString hash, bool finished);
     void finishedTorrentsNumberChanged(unsigned int);
 
 };

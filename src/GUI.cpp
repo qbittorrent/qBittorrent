@@ -120,12 +120,13 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   tabs->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
   vboxLayout->addWidget(tabs);
   connect(downloadingTorrentTab, SIGNAL(unfinishedTorrentsNumberChanged(unsigned int)), this, SLOT(updateUnfinishedTorrentNumber(unsigned int)));
-  connect(downloadingTorrentTab, SIGNAL(torrentDoubleClicked(QString)), this, SLOT(togglePausedState(QString)));
+  connect(downloadingTorrentTab, SIGNAL(torrentDoubleClicked(QString, bool)), this, SLOT(torrentDoubleClicked(QString, bool)));
   // Finished torrents tab
   finishedTorrentTab = new FinishedTorrents(this, BTSession);
   tabs->addTab(finishedTorrentTab, tr("Finished") + QString::fromUtf8(" (0)"));
   tabs->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
-  connect(finishedTorrentTab, SIGNAL(torrentDoubleClicked(QString)), this, SLOT(togglePausedState(QString)));
+  connect(finishedTorrentTab, SIGNAL(torrentDoubleClicked(QString, bool)), this, SLOT(torrentDoubleClicked(QString, bool)));
+
   connect(finishedTorrentTab, SIGNAL(finishedTorrentsNumberChanged(unsigned int)), this, SLOT(updateFinishedTorrentNumber(unsigned int)));
   // Smooth torrent switching between tabs Downloading <--> Finished
   connect(downloadingTorrentTab, SIGNAL(torrentFinished(QString)), finishedTorrentTab, SLOT(addTorrent(QString)));
@@ -163,7 +164,9 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(previewProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(cleanTempPreviewFile(int, QProcess::ExitStatus)));
   // Accept drag 'n drops
   setAcceptDrops(true);
-  show();
+  if(!settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), true).toBool()) {
+    show();
+  }
   createKeyboardShortcuts();
   qDebug("GUI Built");
 }
@@ -959,6 +962,59 @@ void GUI::updateUnfinishedTorrentNumber(unsigned int nb) {
 
 void GUI::updateFinishedTorrentNumber(unsigned int nb) {
   tabs->setTabText(1, tr("Finished") +QString::fromUtf8(" (")+misc::toQString(nb)+QString::fromUtf8(")"));
+}
+
+// Allow to change action on double-click
+void GUI::torrentDoubleClicked(QString hash, bool finished) {
+  int action;
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QTorrentHandle h = BTSession->getTorrentHandle(hash);
+  QString fileName;
+  int ret;
+
+  settings.beginGroup("Preferences");
+  settings.beginGroup("Downloads");
+  if(finished) {
+    action =  settings.value(QString::fromUtf8("DblClOnTorFN"), 1).toInt();
+  } else {
+    action = settings.value(QString::fromUtf8("DblClOnTorDl"), 1).toInt();
+  }
+  settings.endGroup();
+  settings.endGroup();
+
+  switch(action) {
+    case TOGGLE_PAUSE :
+      this->togglePausedState(hash);
+    break;
+    case DELETE_IT :
+      ret = QMessageBox::question(
+            this,
+            tr("Are you sure? -- qBittorrent"),
+            tr("Are you sure you want to delete the selected item(s) from download list and from hard drive?"),
+            tr("&Yes"), tr("&No"),
+            QString(), 0, 1);
+      if(ret)
+        return;
+      fileName = h.name();
+      // Remove the torrent
+      BTSession->deleteTorrent(hash, true);
+      // Delete item from list
+      if(finished) {
+        finishedTorrentTab->deleteTorrent(hash);
+      } else {
+        downloadingTorrentTab->deleteTorrent(hash);
+      }
+      // Update info bar
+      downloadingTorrentTab->setInfoBar(tr("'%1' was removed permanently.", "'xxx.avi' was removed permanently.").arg(fileName));
+    break;
+    case SHOW_PROPERTIES :
+      if(finished) {
+        finishedTorrentTab->showPropertiesFromHash(hash);
+      } else {
+        downloadingTorrentTab->showPropertiesFromHash(hash);
+      }
+    break;
+  }
 }
 
 // Toggle paused state of selected torrent
