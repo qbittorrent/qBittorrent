@@ -57,11 +57,5 @@
 - Recheck doc
 - Translations update (IN PROGRESS)
 
-rc6->rc7 changelog:
-- BUGFIX: Catching DHT exception in case there is a problem
-- BUGFIX: Removed build dependency on Python
-- BUGFIX: Fixed a bug in children update when changing files priorities
-- BUGFIX: Pause/Start All now affect all tabs, not only the current one
-- BUGFIX: Don't reload all torrents everytime settings are saved
-- BUGFIX: Don't reload seeding torrents anymore (no point)
-- I18N: Updated Turkish translation
+rc7->rc8 changelog:
+- BUGFIX: Fixed torrent files filtering
