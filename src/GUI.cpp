@@ -164,7 +164,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(previewProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(cleanTempPreviewFile(int, QProcess::ExitStatus)));
   // Accept drag 'n drops
   setAcceptDrops(true);
-  if(!settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), true).toBool()) {
+  if(!settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), false).toBool()) {
     show();
   }
   createKeyboardShortcuts();
