@@ -1,6 +1,3 @@
-* Wednesday October 07 2007 - Arnaud Demaiziere <arnaud@qbittorrent.org> - v1.1.0
-    - BUGFIX: clear the results of a search stops searching
-
 * Tuesday October 06 2007 - Arnaud Demaiziere <arnaud@qbittorrent.org> - v1.1.0
     - BUGFIX: Rename leecher column in finished torrents list
     - FEATURE: Option allow to start minimized in systray
