@@ -1,7 +1,7 @@
-* Tuesday October 06 2007 - Arnaud Demaiziere <arnaud@qbittorrent.org> - v1.1.0
-    - BUGFIX: Rename leecher column in finished torrents list
-    - FEATURE: Option allow to start minimized in systray
-    - FEATURE: Allow to define double click action on torrents lists
+* Tuesday October 06 2007 - Christophe Dumez <chris@qbittorrent.org> - v1.1.0
+    - FEATURE: Option to start qBittorrent minimized in systray
+    - FEATURE: Allow to define double-click actions in torrents lists
+    - BUGFIX: Do not display seeds number in seeding list (always 0)
 
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.0.0
     - FEATURE: Based on new libtorrent v0.13
