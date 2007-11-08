@@ -975,9 +975,9 @@ void GUI::torrentDoubleClicked(QString hash, bool finished) {
   settings.beginGroup("Preferences");
   settings.beginGroup("Downloads");
   if(finished) {
-    action =  settings.value(QString::fromUtf8("DblClOnTorFN"), 1).toInt();
+    action =  settings.value(QString::fromUtf8("DblClOnTorFN"), 0).toInt();
   } else {
-    action = settings.value(QString::fromUtf8("DblClOnTorDl"), 1).toInt();
+    action = settings.value(QString::fromUtf8("DblClOnTorDl"), 0).toInt();
   }
   settings.endGroup();
   settings.endGroup();
