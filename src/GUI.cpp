@@ -969,25 +969,19 @@ void GUI::torrentDoubleClicked(QString hash, bool finished) {
   int action;
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
-  QString fileName;
-  int ret;
 
-  settings.beginGroup("Preferences");
-  settings.beginGroup("Downloads");
   if(finished) {
-    action =  settings.value(QString::fromUtf8("DblClOnTorFN"), 0).toInt();
+    action =  settings.value(QString::fromUtf8("Preferences/Downloads/DblClOnTorFN"), 0).toInt();
   } else {
-    action = settings.value(QString::fromUtf8("DblClOnTorDl"), 0).toInt();
+    action = settings.value(QString::fromUtf8("Preferences/Downloads/DblClOnTorDl"), 0).toInt();
   }
-  settings.endGroup();
-  settings.endGroup();
 
   switch(action) {
-    case TOGGLE_PAUSE :
+    case TOGGLE_PAUSE:
       this->togglePausedState(hash);
     break;
-    case DELETE_IT :
-      ret = QMessageBox::question(
+    case DELETE_IT: {
+      int ret = QMessageBox::question(
             this,
             tr("Are you sure? -- qBittorrent"),
             tr("Are you sure you want to delete the selected item(s) from download list and from hard drive?"),
@@ -995,7 +989,7 @@ void GUI::torrentDoubleClicked(QString hash, bool finished) {
             QString(), 0, 1);
       if(ret)
         return;
-      fileName = h.name();
+      QString fileName = h.name();
       // Remove the torrent
       BTSession->deleteTorrent(hash, true);
       // Delete item from list
@@ -1006,7 +1000,8 @@ void GUI::torrentDoubleClicked(QString hash, bool finished) {
       }
       // Update info bar
       downloadingTorrentTab->setInfoBar(tr("'%1' was removed permanently.", "'xxx.avi' was removed permanently.").arg(fileName));
-    break;
+      break;
+    }
     case SHOW_PROPERTIES :
       if(finished) {
         finishedTorrentTab->showPropertiesFromHash(hash);
