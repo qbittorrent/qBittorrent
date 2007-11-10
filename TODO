@@ -60,3 +60,4 @@
 rc7->rc8 changelog:
 - BUGFIX: Fixed torrent files filtering
 - BUGFIX: Stop search when clearing results
+- BUGFIX: Fixed compilation on Fedora 8
