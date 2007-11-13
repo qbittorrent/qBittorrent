@@ -548,16 +548,6 @@ public:
 			if(!found) return false;
 			conf->addLib(QString("-L") + s);
 		}
-		// BUGFIX for Fedora (doesn't support pkg-config?)
-    QFile issue_file("/etc/issue");
-    if(issue_file.open(QIODevice::ReadOnly | QIODevice::Text)){
-      QString content = issue_file.readAll();
-      issue_file.close();
-      if(content.indexOf("Fedora") != -1){
-        qWarning("Fedora detected. WORKAROUND for Fedora pkg-config problem enabled");
-        conf->addLib("-pthread -lccext2 -lz -lccgnu2 -ldl -lrt");
-      }
-    }
 		return true;
 	}
 };
