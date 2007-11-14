@@ -304,6 +304,7 @@ bool properties::allFiltered() const {
 
 
 void properties::getPriorities(QStandardItem *parent, int *priorities) {
+  qDebug("In getPriorities");
   unsigned int nbRows = parent->rowCount();
   for(unsigned int i=0; i<nbRows; ++i){
     QStandardItem *item = parent->child(i, INDEX);
@@ -313,6 +314,7 @@ void properties::getPriorities(QStandardItem *parent, int *priorities) {
     } else {
       item = parent->child(i, PRIORITY);
       priorities[index] = item->text().toInt();
+      qDebug("File at index %d has priority %d", index, priorities[index]);
     }
   }
 }
