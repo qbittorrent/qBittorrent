@@ -45,6 +45,7 @@
 #include "options_imp.h"
 #include "previewSelect.h"
 #include "allocationDlg.h"
+#include "stdlib.h"
 
 using namespace libtorrent;
 
@@ -824,12 +825,21 @@ void GUI::configureSession(bool deleteOptions) {
   // * Proxy settings
   proxy_settings proxySettings;
   if(options->isProxyEnabled()) {
+    proxySettings.hostname = options->getProxyIp().toStdString();
+    proxySettings.port = options->getProxyPort();
+    if(options->isProxyAuthEnabled()) {
+      proxySettings.username = options->getProxyUsername().toStdString();
+      proxySettings.password = options->getProxyPassword().toStdString();
+    }
+    QString proxy_str;
     switch(options->getProxyType()) {
       case HTTP:
         proxySettings.type = proxy_settings::http;
+        proxy_str = misc::toQString("http://")+options->getProxyIp()+":"+misc::toQString(proxySettings.port);
         break;
       case HTTP_PW:
         proxySettings.type = proxy_settings::http_pw;
+        proxy_str = misc::toQString("http://")+options->getProxyUsername()+":"+options->getProxyPassword()+"@"+options->getProxyIp()+":"+misc::toQString(proxySettings.port);
         break;
       case SOCKS5:
         proxySettings.type = proxy_settings::socks5;
@@ -838,12 +848,12 @@ void GUI::configureSession(bool deleteOptions) {
         proxySettings.type = proxy_settings::socks5_pw;
         break;
     }
-    proxySettings.hostname = options->getProxyIp().toStdString();
-    proxySettings.port = options->getProxyPort();
-    if(options->isProxyAuthEnabled()) {
-      proxySettings.username = options->getProxyUsername().toStdString();
-      proxySettings.password = options->getProxyPassword().toStdString();
+    if(!proxy_str.isEmpty()) {
+      // We need this for urllib in search engine plugins
+      setenv("http_proxy", proxy_str.toUtf8().data(), 1);
     }
+  } else {
+    unsetenv("http_proxy");
   }
   BTSession->setProxySettings(proxySettings, options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
   // * Session settings

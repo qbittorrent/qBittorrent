@@ -55,3 +55,4 @@
 rc8->final? changelog:
 - FEATURE: Better media file preview (player detected automatically)
 - BUGFIX: Remember properties window size and position
+- BUGFIX: Improved proxy support in search engine (HTTP only)

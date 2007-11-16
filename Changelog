@@ -69,6 +69,7 @@
     - BUGFIX: Removed build dependency on Python
     - BUGFIX: Catching DHT exception in case there is a problem
     - BUGFIX: Remember properties window size and position
+    - BUGFIX: Improved proxy support in search engine (HTTP only)
     - COSMETIC: Redesigned torrent properties a little
     - COSMETIC: Totally redesigned program preferences
     - COSMETIC: Display more logs messages concerning features
