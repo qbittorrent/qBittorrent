@@ -41,6 +41,7 @@
     - FEATURE: Added an option to automatically delete torrents when they reach a given ratio (>= 1.0)
     - FEATURE: Added an option to display current transfer speeds in title bar
     - FEATURE: Torrent content is now displayed as a tree
+    - FEATURE: Better media file preview (player detected automatically)
     - I18N: Added Hungarian translation
     - I18N: Added Brazilian translation
     - BUGFIX: Progress of paused torrents is now correct on restart

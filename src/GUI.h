@@ -74,8 +74,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QShortcut *switchDownShortcut;
     QShortcut *switchUpShortcut;
     QShortcut *switchRSSShortcut;
-    // Preview
-    QProcess *previewProcess;
     // Search
     SearchEngine *searchEngine;
     // RSS
@@ -98,7 +96,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void togglePausedState(QString hash);
     void on_actionPreview_file_triggered();
     void previewFile(QString filePath);
-    void cleanTempPreviewFile(int, QProcess::ExitStatus) const;
     void balloonClicked();
     void writeSettings();
     void readSettings();

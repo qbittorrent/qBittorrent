@@ -159,8 +159,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   checkConnect = new QTimer(this);
   connect(checkConnect, SIGNAL(timeout()), this, SLOT(checkConnectionStatus()));
   checkConnect->start(5000);
-  previewProcess = new QProcess(this);
-  connect(previewProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(cleanTempPreviewFile(int, QProcess::ExitStatus)));
   // Accept drag 'n drops
   setAcceptDrops(true);
   show();
@@ -182,9 +180,6 @@ GUI::~GUI() {
     delete myTrayIconMenu;
   }
   delete tcpServer;
-  previewProcess->kill();
-  previewProcess->waitForFinished();
-  delete previewProcess;
   delete connecStatusLblIcon;
   delete tabs;
   // Keyboard shortcuts
@@ -388,12 +383,6 @@ void GUI::on_actionPreview_file_triggered() {
   new previewSelect(this, h);
 }
 
-void GUI::cleanTempPreviewFile(int, QProcess::ExitStatus) const {
-  if(!QFile::remove(QDir::tempPath()+QDir::separator()+QString::fromUtf8("qBT_preview.tmp"))) {
-    std::cerr << "Couldn't remove temporary file: " << (QDir::tempPath()+QDir::separator()+QString::fromUtf8("qBT_preview.tmp")).toUtf8().data() << "\n";
-  }
-}
-
 // Necessary if we want to close the window
 // in one time if "close to systray" is enabled
 void GUI::on_actionExit_triggered() {
@@ -402,21 +391,7 @@ void GUI::on_actionExit_triggered() {
 }
 
 void GUI::previewFile(QString filePath) {
-  // Check if there is already one preview running
-  if(previewProcess->state() == QProcess::NotRunning) {
-    // First copy temporarily (XXX: is it necessary?)
-    QString tmpPath = QDir::tempPath()+QDir::separator()+QString::fromUtf8("qBT_preview.tmp");
-    QFile::remove(tmpPath);
-    QFile::copy(filePath, tmpPath);
-    // Launch program preview
-    QStringList params;
-    params << tmpPath;
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    QString previewProgram = settings.value(QString::fromUtf8("Preferences/General/MediaPlayer"), QString()).toString();
-    previewProcess->start(previewProgram, params, QIODevice::ReadOnly);
-  }else{
-    QMessageBox::critical(0, tr("Preview process already running"), tr("There is already another preview process running.\nPlease close the other one first."));
-  }
+  QDesktopServices::openUrl(filePath);
 }
 
 unsigned int GUI::getCurrentTabIndex() const{

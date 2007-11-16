@@ -52,12 +52,5 @@
   -> in download list
   -> in seeding list
 
-// in v1.0.0 - FEATURE FREEZE
-- Fix all (or almost all) opened bugs in bug tracker
-- Recheck doc
-- Translations update (IN PROGRESS)
-
-rc7->rc8 changelog:
-- BUGFIX: Fixed torrent files filtering
-- BUGFIX: Stop search when clearing results
-- BUGFIX: Fixed compilation on Fedora 8
+rc8->final? changelog:
+- FEATURE: Better media file preview (player detected automatically)
