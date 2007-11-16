@@ -74,6 +74,8 @@ class properties : public QDialog, private Ui::properties{
     void updateParentsPriority(QStandardItem *item, int priority);
     void updatePriorities(QStandardItem *item);
     void getPriorities(QStandardItem *parent, int *priorities);
+    void writeSettings();
+    void loadSettings();
 
   signals:
     void filteredFilesChanged(QString hash);
@@ -86,6 +88,9 @@ class properties : public QDialog, private Ui::properties{
     bool allFiltered() const;
     bool savePiecesPriorities();
     int* loadPiecesPriorities();
+
+  protected:
+    QPoint screenCenter() const;
 };
 
 #endif

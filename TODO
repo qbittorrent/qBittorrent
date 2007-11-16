@@ -54,3 +54,4 @@
 
 rc8->final? changelog:
 - FEATURE: Better media file preview (player detected automatically)
+- BUGFIX: Remember properties window size and position
