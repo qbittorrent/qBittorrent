@@ -998,14 +998,14 @@ QString options_imp::getScanDir() const {
 // Return action on double-click on a downloading torrent set in options
 int options_imp::getActionOnDblClOnTorrentDl() const {
   if(actionTorrentDlOnDblClBox->currentIndex()<1)
-    return 1;
+    return 0;
   return actionTorrentDlOnDblClBox->currentIndex();
 }
 
 // Return action on double-click on a finished torrent set in options
 int options_imp::getActionOnDblClOnTorrentFn() const {
   if(actionTorrentFnOnDblClBox->currentIndex()<1)
-    return 1;
+    return 0;
   return actionTorrentFnOnDblClBox->currentIndex();
 }
 

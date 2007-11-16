@@ -980,26 +980,10 @@ void GUI::torrentDoubleClicked(QString hash, bool finished) {
     case TOGGLE_PAUSE:
       this->togglePausedState(hash);
     break;
-    case DELETE_IT: {
-      int ret = QMessageBox::question(
-            this,
-            tr("Are you sure? -- qBittorrent"),
-            tr("Are you sure you want to delete the selected item(s) from download list and from hard drive?"),
-            tr("&Yes"), tr("&No"),
-            QString(), 0, 1);
-      if(ret)
-        return;
-      QString fileName = h.name();
-      // Remove the torrent
-      BTSession->deleteTorrent(hash, true);
-      // Delete item from list
-      if(finished) {
-        finishedTorrentTab->deleteTorrent(hash);
-      } else {
-        downloadingTorrentTab->deleteTorrent(hash);
-      }
-      // Update info bar
-      downloadingTorrentTab->setInfoBar(tr("'%1' was removed permanently.", "'xxx.avi' was removed permanently.").arg(fileName));
+    case OPEN_DEST: {
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
+      QString savePath = h.save_path();
+      QDesktopServices::openUrl(QUrl(savePath));
       break;
     }
     case SHOW_PROPERTIES :

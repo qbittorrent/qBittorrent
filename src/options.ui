@@ -610,12 +610,12 @@
               </item>
               <item>
                <property name="text" >
-                <string>Delete torrent</string>
+                <string>Open destination folder</string>
                </property>
               </item>
               <item>
                <property name="text" >
-                <string>Show torrent's properties</string>
+                <string>Display torrent properties</string>
                </property>
               </item>
              </widget>
@@ -653,12 +653,12 @@
               </item>
               <item>
                <property name="text" >
-                <string>Delete torrent</string>
+                <string>Open destination folder</string>
                </property>
               </item>
               <item>
                <property name="text" >
-                <string>Show torrent's properties</string>
+                <string>Display torrent properties</string>
                </property>
               </item>
              </widget>

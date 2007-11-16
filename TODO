@@ -46,7 +46,7 @@
 - Display in torrent addition dialog:
    * free disk space on selected drive
    * free disk space after torrent download (and/or torrent size)
-- Add "Open destination dir" on double click
+- Add "Open destination dir" on right click
 - Use ShareMonkey Web service (http://www.sharemonkey.com/)
 
 // in v1.0.0 - FEATURE FREEZE
@@ -56,11 +56,3 @@
 // RC8
 - BUGFIX: Fix destination save dir in addition dialog
 
-rc6->rc7 changelog:
-- BUGFIX: Catching DHT exception in case there is a problem
-- BUGFIX: Removed build dependency on Python
-- BUGFIX: Fixed a bug in children update when changing files priorities
-- BUGFIX: Pause/Start All now affect all tabs, not only the current one
-- BUGFIX: Don't reload all torrents everytime settings are saved
-- BUGFIX: Don't reload seeding torrents anymore (no point)
-- I18N: Updated Turkish translation

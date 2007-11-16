@@ -94,13 +94,12 @@
       <includestyle>4</includestyle>
       <designerintegration>ExternalDesigner</designerintegration>
       <root>/usr/lib/qt4</root>
-      <qmake>/usr/bin/qmake-qt4</qmake>
-      <designer>/usr/bin/designer-qt4</designer>
+      <qmake>/usr/bin/qmake</qmake>
+      <designer>/usr/bin/designer</designer>
       <designerpluginpaths/>
     </qt>
     <references>
-      <pcs>automatic_%2Fhome%2Fchris%2Fqbittorrent_svn%2Ftrunk</pcs>
-      <pcs>Qt4</pcs>
+      <pcs>automatic_%2Fhome%2Fishanarora%2Fprojects%2Fqbittorrent</pcs>
     </references>
     <codecompletion>
       <automaticCodeCompletion>true</automaticCodeCompletion>
@@ -149,14 +148,14 @@
   </kdevfilecreate>
   <kdevtrollproject>
     <general>
-      <activedir></activedir>
+      <activedir>src</activedir>
     </general>
     <run>
       <directoryradio>executable</directoryradio>
-      <mainprogram>/home/chris/qbittorrent_svn/trunk/src/qbittorrent</mainprogram>
+      <mainprogram>/home/ishanarora/projects/qbittorrent/src/qbittorrent</mainprogram>
       <programargs/>
       <globaldebugarguments/>
-      <globalcwd>/home/chris/qbittorrent_svn/trunk</globalcwd>
+      <globalcwd>/home/ishanarora/projects/qbittorrent</globalcwd>
       <useglobalprogram>true</useglobalprogram>
       <terminal>false</terminal>
       <autocompile>true</autocompile>
@@ -187,7 +186,7 @@
   </cppsupportpart>
   <ctagspart>
     <customArguments/>
-    <customTagfilePath>/home/chris/qbittorrent_svn/trunk/tags</customTagfilePath>
+    <customTagfilePath>/home/ishanarora/projects/qbittorrent/tags</customTagfilePath>
     <activeTagsFiles/>
   </ctagspart>
   <kdevdocumentation>

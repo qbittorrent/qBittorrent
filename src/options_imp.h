@@ -38,7 +38,7 @@
 
 // actions on double-click on torrents
 #define TOGGLE_PAUSE 0
-#define DELETE_IT 1
+#define OPEN_DEST 1
 #define SHOW_PROPERTIES 2
 
 using namespace libtorrent;
