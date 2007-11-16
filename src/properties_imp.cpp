@@ -30,6 +30,8 @@
 #include <QMenu>
 #include <QTimer>
 #include <QStandardItemModel>
+#include <QSettings>
+#include <QDesktopWidget>
 
 // Constructor
 properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h): QDialog(parent), h(h), BTSession(BTSession), changedFilteredfiles(false), hash(h.hash()) {
@@ -118,6 +120,7 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   updateInfosTimer = new QTimer(this);
   connect(updateInfosTimer, SIGNAL(timeout()), this, SLOT(updateInfos()));
   updateInfosTimer->start(3000);
+  loadSettings();
 }
 
 properties::~properties(){
@@ -153,6 +156,36 @@ void properties::addFilesToTree(file *root, QStandardItem *parent) {
   foreach(childFile, root->getChildren()) {
     addFilesToTree(childFile, first);
   }
+}
+
+void properties::writeSettings() {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.beginGroup(QString::fromUtf8("PropWindow"));
+  settings.setValue(QString::fromUtf8("size"), size());
+  settings.setValue(QString::fromUtf8("pos"), pos());
+  settings.endGroup();
+}
+
+void properties::loadSettings() {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  resize(settings.value(QString::fromUtf8("PropWindow/size"), size()).toSize());
+  move(settings.value(QString::fromUtf8("PropWindow/pos"), screenCenter()).toPoint());
+}
+
+// Center window
+QPoint properties::screenCenter() const{
+  int scrn = 0;
+  QWidget *w = this->topLevelWidget();
+
+  if(w)
+    scrn = QApplication::desktop()->screenNumber(w);
+  else if(QApplication::desktop()->isVirtualDesktop())
+    scrn = QApplication::desktop()->screenNumber(QCursor::pos());
+  else
+    scrn = QApplication::desktop()->screenNumber(this);
+
+  QRect desk(QApplication::desktop()->availableGeometry(scrn));
+  return QPoint((desk.width() - this->frameGeometry().width()) / 2, (desk.height() - this->frameGeometry().height()) / 2);
 }
 
 // priority is the new priority of given item
