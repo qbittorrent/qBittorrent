@@ -73,7 +73,6 @@ class options_imp : public QDialog, private Ui::Dialog {
     bool closeToTray() const;
     bool startMinimized() const;
     bool OSDEnabled() const;
-    QString getPreviewProgram() const;
     // Downloads
     QString getSavePath() const;
     bool preAllocateAllFiles() const;
@@ -133,7 +132,6 @@ class options_imp : public QDialog, private Ui::Dialog {
     void on_addFilterRangeButton_clicked();
     void on_delFilterRangeButton_clicked();
     void on_browseScanDirButton_clicked();
-    void on_browsePreviewButton_clicked();
     void on_browseFilterButton_clicked();
     void on_browseSaveDirButton_clicked();
     void processFilterFile(QString filePath=QString());

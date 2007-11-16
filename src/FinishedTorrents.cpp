@@ -320,8 +320,6 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
   QModelIndex index;
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
-  QSettings settings("qBittorrent", "qBittorrent");
-  QString previewProgram = settings.value("Preferences/general/MediaPlayer", QString()).toString();
   bool has_pause = false, has_start = false, has_preview = false;
   foreach(index, selectedIndexes) {
     if(index.column() == F_NAME) {
@@ -341,7 +339,7 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
           has_pause = true;
         }
       }
-      if(!previewProgram.isEmpty() && BTSession->isFilePreviewPossible(hash) && !has_preview) {
+      if(BTSession->isFilePreviewPossible(hash) && !has_preview) {
          myFinishedListMenu.addAction(actionPreview_file);
          has_preview = true;
       }

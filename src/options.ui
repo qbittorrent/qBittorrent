@@ -314,51 +314,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="previewBox" >
-         <property name="title" >
-          <string>Preview program</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <item>
-           <layout class="QHBoxLayout" >
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QLabel" name="lbl_preview" >
-              <property name="text" >
-               <string>Media player:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="textMediaPlayer" />
-            </item>
-            <item>
-             <widget class="QToolButton" name="browsePreviewButton" >
-              <property name="text" >
-               <string>...</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
         <spacer>
          <property name="orientation" >
           <enum>Qt::Vertical</enum>

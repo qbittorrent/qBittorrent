@@ -155,7 +155,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkMinimizeToSysTray, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkStartMinimized, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkSystrayBalloons, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
-  connect(textMediaPlayer, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   // Downloads tab
   connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkPreallocateAll, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
@@ -266,7 +265,6 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("MinimizeToTray"), minimizeToTray());
   settings.setValue(QString::fromUtf8("StartMinimized"), startMinimized());
   settings.setValue(QString::fromUtf8("NotificationBaloons"), OSDEnabled());
-  settings.setValue(QString::fromUtf8("MediaPlayer"), getPreviewProgram());
   // End General preferences
   settings.endGroup();
   // Downloads preferences
@@ -413,7 +411,6 @@ void options_imp::loadOptions(){
     checkStartMinimized->setChecked(settings.value(QString::fromUtf8("StartMinimized"), false).toBool());
     checkSystrayBalloons->setChecked(settings.value(QString::fromUtf8("NotificationBaloons"), true).toBool());
   }
-  textMediaPlayer->setText(settings.value(QString::fromUtf8("MediaPlayer"), QString()).toString());
   // End General preferences
   settings.endGroup();
   // Downloads preferences
@@ -591,12 +588,6 @@ std::pair<unsigned short, unsigned short> options_imp::getPorts() const{
 
 int options_imp::getEncryptionSetting() const{
   return comboEncryption->currentIndex();
-}
-
-QString options_imp::getPreviewProgram() const{
-  QString preview_txt = textMediaPlayer->text();
-  preview_txt = preview_txt.trimmed();
-  return preview_txt;
 }
 
 bool options_imp::minimizeToTray() const{
@@ -1022,13 +1013,6 @@ void options_imp::on_browseFilterButton_clicked() {
   if(!ipfilter.isNull()){
     textFilterPath->setText(ipfilter);
     processFilterFile(ipfilter);
-  }
-}
-
-void options_imp::on_browsePreviewButton_clicked() {
-  QString program_txt = QFileDialog::getOpenFileName(this, tr("Choose your favourite preview program"), QDir::homePath());
-  if(!program_txt.isNull()){
-    textMediaPlayer->setText(program_txt);
   }
 }
 
