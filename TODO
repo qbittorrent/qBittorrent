@@ -26,25 +26,13 @@
 - When favicon can't be downloaded, try to parse the webpage for:
   <link rel="icon" href="http://example.com/favicon.ico" type="image/vnd.microsoft.icon">
     * Be careful, the link can be relative
+- Improve search plugin install (choose in a list taken from plugins.qbittorrent.org)
+- support zipped torrents? (useful?)
+- Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
 
 // in v1.2.0
 - Allow user to organize the downloads into categories/folders?
 
 // in v1.1.0
-- Tabs support in search
-- Allow to hide columns?
-- Allow to scan multiple directories? (useful?)
-- Web interface (turbogears? php? python?)
-  * Webserver? Try to write a webserver as a plugin for qBittorrent in Python
-    * http://fragments.turtlemeat.com/pythonwebserver.php
-- improve and test tracker authentication code (remember login/pass) (need a tracker to test this)
-- support zipped torrents? (useful?)
-- Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
-- Improve search plugin install (choose in a list taken from plugins.qbittorrent.org)
-- Display the number of DHT node if possible
-- When adding a duplicate torrent, check if the trackers are different from the existing one and ask the user if he wants to add them
-- Display in torrent addition dialog:
-   * free disk space on selected drive
-   * free disk space after torrent download (and/or torrent size)
-- Use ShareMonkey Web service (http://www.sharemonkey.com/)
+-> See https://blueprints.launchpad.net/qbittorrent
 
