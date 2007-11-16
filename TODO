@@ -46,13 +46,5 @@
 - Display in torrent addition dialog:
    * free disk space on selected drive
    * free disk space after torrent download (and/or torrent size)
-- Add "Open destination dir" on right click
 - Use ShareMonkey Web service (http://www.sharemonkey.com/)
-
-// in v1.0.0 - FEATURE FREEZE
-- Fix all (or almost all) opened bugs in bug tracker
-- Recheck doc
-- Translations update (IN PROGRESS)
-// RC8
-- BUGFIX: Fix destination save dir in addition dialog
 

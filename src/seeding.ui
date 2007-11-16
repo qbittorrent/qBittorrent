@@ -13,11 +13,20 @@
    <string>Search</string>
   </property>
   <layout class="QVBoxLayout" >
-   <property name="margin" >
-    <number>9</number>
-   </property>
    <property name="spacing" >
     <number>6</number>
+   </property>
+   <property name="leftMargin" >
+    <number>9</number>
+   </property>
+   <property name="topMargin" >
+    <number>9</number>
+   </property>
+   <property name="rightMargin" >
+    <number>9</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>9</number>
    </property>
    <item>
     <widget class="QLabel" name="lbl_finished" >
@@ -84,7 +93,17 @@
     <string>Set upload limit</string>
    </property>
   </action>
+  <action name="actionOpen_destination_folder" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/Icons/folder.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Open destination folder</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc" />
+ </resources>
  <connections/>
 </ui>

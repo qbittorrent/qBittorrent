@@ -69,6 +69,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   connect(actionDelete, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_triggered()));
   connect(actionPreview_file, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionPreview_file_triggered()));
   connect(actionDelete_Permanently, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_Permanently_triggered()));
+  connect(actionOpen_destination_folder, SIGNAL(triggered()), (GUI*)parent, SLOT(openDestinationFolder()));
   connect(actionTorrent_Properties, SIGNAL(triggered()), this, SLOT(propertiesSelection()));
 }
 
@@ -352,6 +353,7 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
   myFinishedListMenu.addSeparator();
   myFinishedListMenu.addAction(actionSet_upload_limit);
   myFinishedListMenu.addSeparator();
+  myFinishedListMenu.addAction(actionOpen_destination_folder);
   myFinishedListMenu.addAction(actionTorrent_Properties);
   // Call menu
   // XXX: why mapToGlobal() is not enough?

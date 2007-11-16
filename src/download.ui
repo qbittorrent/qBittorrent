@@ -18,7 +18,16 @@
      <property name="spacing" >
       <number>6</number>
      </property>
-     <property name="margin" >
+     <property name="leftMargin" >
+      <number>0</number>
+     </property>
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
       <number>0</number>
      </property>
      <item>
@@ -26,7 +35,16 @@
        <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="margin" >
+       <property name="leftMargin" >
+        <number>0</number>
+       </property>
+       <property name="topMargin" >
+        <number>0</number>
+       </property>
+       <property name="rightMargin" >
+        <number>0</number>
+       </property>
+       <property name="bottomMargin" >
         <number>0</number>
        </property>
        <item>
@@ -249,15 +267,22 @@
        <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="margin" >
+       <property name="leftMargin" >
+        <number>9</number>
+       </property>
+       <property name="topMargin" >
+        <number>9</number>
+       </property>
+       <property name="rightMargin" >
+        <number>9</number>
+       </property>
+       <property name="bottomMargin" >
         <number>9</number>
        </property>
        <item>
         <widget class="QTextBrowser" name="infoBar" >
          <property name="sizePolicy" >
-          <sizepolicy>
-           <hsizetype>7</hsizetype>
-           <vsizetype>7</vsizetype>
+          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -283,7 +308,16 @@
        <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="margin" >
+       <property name="leftMargin" >
+        <number>9</number>
+       </property>
+       <property name="topMargin" >
+        <number>9</number>
+       </property>
+       <property name="rightMargin" >
+        <number>9</number>
+       </property>
+       <property name="bottomMargin" >
         <number>9</number>
        </property>
        <item>
@@ -346,7 +380,17 @@
     <string>Torrent Properties</string>
    </property>
   </action>
+  <action name="actionOpen_destination_folder" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/Icons/folder.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Open destination folder</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc" />
+ </resources>
  <connections/>
 </ui>

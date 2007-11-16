@@ -146,6 +146,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
   public slots:
     void trackerAuthenticationRequired(QTorrentHandle& h);
     void setTabText(int index, QString text) const;
+    void openDestinationFolder() const;
 
   protected:
     void closeEvent(QCloseEvent *);

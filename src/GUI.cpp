@@ -386,6 +386,30 @@ void GUI::on_actionPreview_file_triggered() {
   new previewSelect(this, h);
 }
 
+void GUI::openDestinationFolder() const {
+  QStringList hashes;
+  switch(tabs->currentIndex()){
+    case 0:
+      hashes = downloadingTorrentTab->getSelectedTorrents(true);
+      break;
+    case 1:
+      hashes = finishedTorrentTab->getSelectedTorrents(true);
+      break;
+    default:
+      return;
+  }
+  QString hash;
+  QStringList pathsList;
+  foreach(hash, hashes) {
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    QString savePath = h.save_path();
+    if(!pathsList.contains(savePath)) {
+      pathsList.append(savePath);
+      QDesktopServices::openUrl(QUrl(savePath));
+    }
+  }
+}
+
 // Necessary if we want to close the window
 // in one time if "close to systray" is enabled
 void GUI::on_actionExit_triggered() {
