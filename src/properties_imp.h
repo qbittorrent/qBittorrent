@@ -31,6 +31,8 @@ class bittorrent;
 class QStandardItemModel;
 class file;
 class QStandardItem;
+class RealProgressBar;
+class RealProgressBarThread;
 
 using namespace libtorrent;
 
@@ -46,6 +48,8 @@ class properties : public QDialog, private Ui::properties{
     QTimer *updateInfosTimer;
     bool has_filtered_files;
     QStringList urlSeeds;
+    RealProgressBar *progressBar;
+    RealProgressBarThread *progressBarUpdater;
 
   protected slots:
     void on_okButton_clicked();

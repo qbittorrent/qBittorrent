@@ -24,6 +24,8 @@
 #include "PropListDelegate.h"
 #include "bittorrent.h"
 #include "arborescence.h"
+#include "realprogressbar.h"
+#include "realprogressbarthread.h"
 
 #include <QInputDialog>
 #include <QMessageBox>
@@ -120,6 +122,15 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   updateInfosTimer = new QTimer(this);
   connect(updateInfosTimer, SIGNAL(timeout()), this, SLOT(updateInfos()));
   updateInfosTimer->start(3000);
+  progressBar = new RealProgressBar(this);
+  progressBar->setForegroundColor(Qt::blue);
+  QVBoxLayout *vbox = new QVBoxLayout(this);
+  vbox->addWidget(progressBar);
+  RealProgressBox->setLayout(vbox);
+  progressBarUpdater = new RealProgressBarThread(progressBar, h);
+  progressBarUpdater->start();
+//  progressBarUpdater->refresh();
+  connect(updateInfosTimer, SIGNAL(timeout()), progressBarUpdater, SLOT(refresh()));
   loadSettings();
 }
 
@@ -128,6 +139,8 @@ properties::~properties(){
   delete updateInfosTimer;
   delete PropDelegate;
   delete PropListModel;
+  delete progressBarUpdater;
+  delete progressBar;
 }
 
 void properties::addFilesToTree(file *root, QStandardItem *parent) {

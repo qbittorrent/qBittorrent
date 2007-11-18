@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>594</width>
-    <height>567</height>
+    <height>621</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -310,6 +310,25 @@
            </layout>
           </item>
          </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="RealProgressBox" >
+         <property name="minimumSize" >
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font" >
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="title" >
+          <string>Downloaded pieces</string>
+         </property>
         </widget>
        </item>
        <item>

@@ -60,6 +60,16 @@ float QTorrentHandle::progress() const {
   return progress;
 }
 
+const std::vector<bool>* QTorrentHandle::pieces() const {
+	Q_ASSERT(h.is_valid());
+	return h.status().pieces;
+}
+
+void QTorrentHandle::get_download_queue(std::vector<partial_piece_info>& queue) const {
+	Q_ASSERT(h.is_valid());
+	h.get_download_queue(queue);
+}
+
 QString QTorrentHandle::current_tracker() const {
   Q_ASSERT(h.is_valid());
   return misc::toQString(h.status().current_tracker);
@@ -74,10 +84,20 @@ bool QTorrentHandle::is_paused() const {
   return h.is_paused();
 }
 
-// size_type QTorrentHandle::total_size() const {
-//   Q_ASSERT(h.is_valid());
-//   return h.get_torrent_info().total_size();
-// }
+size_type QTorrentHandle::total_size() const {
+  Q_ASSERT(h.is_valid());
+  return h.get_torrent_info().total_size();
+}
+
+size_type QTorrentHandle::piece_length() const {
+  Q_ASSERT(h.is_valid());
+	return h.get_torrent_info().piece_length();
+}
+
+int QTorrentHandle::num_pieces() const {
+  Q_ASSERT(h.is_valid());
+	return h.get_torrent_info().num_pieces();
+}
 
 size_type QTorrentHandle::total_wanted_done() const {
   Q_ASSERT(h.is_valid());
