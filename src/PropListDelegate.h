@@ -181,7 +181,8 @@ class PropListDelegate: public QItemDelegate {
 //           } else {
             model->setData(index, QVariant(HIGH));
             model->setData(index, QVariant(NORMAL));
-            *filteredFilesChanged = true;
+            if(filteredFilesChanged != 0)
+              *filteredFilesChanged = true;
 //           }
           break;
         case 2:
