@@ -845,7 +845,7 @@ void bittorrent::saveFastResumeAndRatioData() {
     }
     QString hash = h.hash();
     // Extracting resume data
-    if (h.has_metadata()) {
+    if (h.has_metadata() && h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking) {
       if(QFile::exists(torrentBackup.path()+QDir::separator()+hash+".torrent")) {
         // Remove old .fastresume data in case it exists
         QFile::remove(torrentBackup.path()+QDir::separator()+hash + ".fastresume");
