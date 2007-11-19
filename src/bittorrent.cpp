@@ -858,8 +858,6 @@ void bittorrent::saveFastResumeAndRatioData() {
       }
       // Save ratio data
       saveDownloadUploadForTorrent(hash);
-      // Save trackers
-      saveTrackerFile(hash);
     }
   }
   qDebug("Fast resume and ratio data saved");
@@ -1005,6 +1003,7 @@ bool bittorrent::loadTrackerFile(QString hash) {
 }
 
 void bittorrent::saveTrackerFile(QString hash) {
+  qDebug("Saving tracker file for %s", hash.toUtf8().data());
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
   QFile tracker_file(torrentBackup.path()+QDir::separator()+ hash + ".trackers");
   if(tracker_file.exists()) {

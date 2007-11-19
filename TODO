@@ -59,3 +59,4 @@ rc8->final? changelog:
 - BUGFIX: Do no pause torrents before saving fastresume data anymore (no longer needed)
 - BUGFIX: Save fast resume data regularly (every 10 seconds) to avoid downloading from scratch if qBittorrent crashes
 - BUGFIX: Do not save fastresume data for checking torrents anymore
+- BUGFIX: Saving trackers file only when necessary

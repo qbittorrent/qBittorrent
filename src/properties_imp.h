@@ -80,6 +80,7 @@ class properties : public QDialog, private Ui::properties{
   signals:
     void filteredFilesChanged(QString hash);
     void fileSizeChanged(QString hash);
+    void trackersChanged(QString hash);
 
   public:
     // Constructor

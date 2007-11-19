@@ -489,6 +489,7 @@ void properties::askForTracker(){
   h.force_reannounce();
   // Reload Trackers
   loadTrackers();
+  emit trackersChanged(h.hash());
 }
 
 void properties::deleteSelectedUrlSeeds(){
@@ -537,6 +538,7 @@ void properties::deleteSelectedTrackers(){
   h.force_reannounce();
   // Reload Trackers
   loadTrackers();
+  emit trackersChanged(h.hash());
 }
 
 void properties::riseSelectedTracker(){
@@ -570,6 +572,7 @@ void properties::riseSelectedTracker(){
     // Reload Trackers
     loadTrackers();
     trackersURLS->item(i-1)->setSelected(true);
+    emit trackersChanged(h.hash());
   }
 }
 
@@ -604,6 +607,7 @@ void properties::lowerSelectedTracker(){
     // Reload Trackers
     loadTrackers();
     trackersURLS->item(i+1)->setSelected(true);
+    emit trackersChanged(h.hash());
   }
 }
 
