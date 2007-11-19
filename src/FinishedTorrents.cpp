@@ -310,18 +310,14 @@ void FinishedTorrents::deleteTorrent(QString hash){
 
 // Show torrent properties dialog
 void FinishedTorrents::showProperties(const QModelIndex &index){
-  int row = index.row();
-  QString hash = finishedListModel->data(finishedListModel->index(row, F_HASH)).toString();
-  QTorrentHandle h = BTSession->getTorrentHandle(hash);
-  properties *prop = new properties(this, BTSession, h);
-  connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSize(QString)));
-  prop->show();
+  showPropertiesFromHash(finishedListModel->data(finishedListModel->index(index.row(), F_HASH)).toString());
 }
 
 void FinishedTorrents::showPropertiesFromHash(QString hash){
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   properties *prop = new properties(this, BTSession, h);
   connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSize(QString)));
+  connect(prop, SIGNAL(trackersChanged(QString)), BTSession, SLOT(saveTrackerFile(QString)));
   prop->show();
 }
 

@@ -168,18 +168,14 @@ void DownloadingTorrents::setBottomTabEnabled(unsigned int index, bool b){
 
 // Show torrent properties dialog
 void DownloadingTorrents::showProperties(const QModelIndex &index) {
-  int row = index.row();
-  QString hash = DLListModel->data(DLListModel->index(row, HASH)).toString();
-  QTorrentHandle h = BTSession->getTorrentHandle(hash);
-  properties *prop = new properties(this, BTSession, h);
-  connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSizeAndProgress(QString)));
-  prop->show();
+  showPropertiesFromHash(DLListModel->data(DLListModel->index(index.row(), HASH)).toString());
 }
 
 void DownloadingTorrents::showPropertiesFromHash(QString hash) {
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   properties *prop = new properties(this, BTSession, h);
   connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSizeAndProgress(QString)));
+  connect(prop, SIGNAL(trackersChanged(QString)), BTSession, SLOT(saveTrackerFile(QString)));
   prop->show();
 }
 
