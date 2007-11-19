@@ -39,6 +39,10 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     FinishedListDelegate *finishedListDelegate;
     QStandardItemModel *finishedListModel;
     unsigned int nbFinished;
+    void hideOrShowColumn(int index);
+    bool loadHiddenColumns();
+    void saveHiddenColumns();
+    QAction* getActionHoSCol(int index);
 
   public:
     FinishedTorrents(QObject *parent, bittorrent *BTSession);
@@ -71,6 +75,13 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void propertiesSelection();
     void deleteTorrent(QString hash);
     void showPropertiesFromHash(QString hash);
+    void hideOrShowColumnName();
+    void hideOrShowColumnSize();
+    void hideOrShowColumnProgress();
+    void hideOrShowColumnUpSpeed();
+    void hideOrShowColumnLeechers();
+    void hideOrShowColumnRatio();
+    void resetAllColumns();
 
   signals:
     void torrentMovedFromFinishedList(QString);

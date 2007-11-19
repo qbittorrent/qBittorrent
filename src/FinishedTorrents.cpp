@@ -45,6 +45,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   finishedListModel->setHeaderData(F_SEEDSLEECH, Qt::Horizontal, tr("Leechers", "i.e: full/partial sources"));
   finishedListModel->setHeaderData(F_RATIO, Qt::Horizontal, tr("Ratio"));
   finishedList->setModel(finishedListModel);
+  loadHiddenColumns();
   // Hide ETA & hash column
   finishedList->hideColumn(F_HASH);
   // Load last columns width for download list
@@ -71,10 +72,19 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   connect(actionDelete_Permanently, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_Permanently_triggered()));
   connect(actionOpen_destination_folder, SIGNAL(triggered()), (GUI*)parent, SLOT(openDestinationFolder()));
   connect(actionTorrent_Properties, SIGNAL(triggered()), this, SLOT(propertiesSelection()));
+
+  connect(actionHOSColName, SIGNAL(triggered()), this, SLOT(hideOrShowColumnName()));
+  connect(actionHOSColSize, SIGNAL(triggered()), this, SLOT(hideOrShowColumnSize()));
+  connect(actionHOSColProgress, SIGNAL(triggered()), this, SLOT(hideOrShowColumnProgress()));
+  connect(actionHOSColUpSpeed, SIGNAL(triggered()), this, SLOT(hideOrShowColumnUpSpeed()));
+  connect(actionHOSColLeechers, SIGNAL(triggered()), this, SLOT(hideOrShowColumnLeechers()));
+  connect(actionHOSColRatio, SIGNAL(triggered()), this, SLOT(hideOrShowColumnRatio()));
+  connect(actionResizeAllColumns, SIGNAL(triggered()), this, SLOT(resetAllColumns()));
 }
 
 FinishedTorrents::~FinishedTorrents(){
   saveColWidthFinishedList();
+  saveHiddenColumns();
   delete finishedListDelegate;
   delete finishedListModel;
 }
@@ -157,7 +167,7 @@ bool FinishedTorrents::loadColWidthFinishedList(){
   if(line.isEmpty())
     return false;
   QStringList width_list = line.split(' ');
-  if(width_list.size() != finishedListModel->columnCount()-1)
+  if(width_list.size() < finishedListModel->columnCount()-1)
     return false;
   unsigned int listSize = width_list.size();
   for(unsigned int i=0; i<listSize; ++i){
@@ -173,11 +183,27 @@ void FinishedTorrents::saveColWidthFinishedList() const{
   qDebug("Saving columns width in finished list");
   QSettings settings("qBittorrent", "qBittorrent");
   QStringList width_list;
-  unsigned int nbColumns = finishedListModel->columnCount()-1;
-  for(unsigned int i=0; i<nbColumns; ++i){
-    width_list << QString::fromUtf8(misc::toString(finishedList->columnWidth(i)).c_str());
+  QStringList new_width_list;
+  short nbColumns = finishedListModel->columnCount()-1;
+
+  QString line = settings.value("FinishedListColsWidth", QString()).toString();
+  if(!line.isEmpty()) {
+    width_list = line.split(' ');
   }
-  settings.setValue("FinishedListColsWidth", width_list.join(" "));
+  for(short i=0; i<nbColumns; ++i){
+    if(finishedList->columnWidth(i)<1 && width_list.size() == finishedListModel->columnCount()-1 && width_list.at(i).toInt()>=1) {
+      // load the former width
+      new_width_list << width_list.at(i);
+    } else if(finishedList->columnWidth(i)>=1) { 
+      // usual case, save the current width
+      new_width_list << QString::fromUtf8(misc::toString(finishedList->columnWidth(i)).c_str());
+    } else { 
+      // default width
+      finishedList->resizeColumnToContents(i);
+      new_width_list << QString::fromUtf8(misc::toString(finishedList->columnWidth(i)).c_str());
+    }
+  }
+  settings.setValue("FinishedListColsWidth", new_width_list.join(" "));
   qDebug("Finished list columns width saved");
 }
 
@@ -355,10 +381,161 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
   myFinishedListMenu.addSeparator();
   myFinishedListMenu.addAction(actionOpen_destination_folder);
   myFinishedListMenu.addAction(actionTorrent_Properties);
+  // hide/show columns menu
+  QMenu hideshowColumn(this);
+  hideshowColumn.setTitle(tr("Hide or Show Column"));
+  for(int i=0; i<=F_RATIO; i++) {
+    hideshowColumn.addAction(getActionHoSCol(i));
+  }
+  hideshowColumn.addAction(actionResizeAllColumns);
+  myFinishedListMenu.addMenu(&hideshowColumn);
+
   // Call menu
   // XXX: why mapToGlobal() is not enough?
   myFinishedListMenu.exec(mapToGlobal(pos)+QPoint(10,55));
 }
+
+/*
+ * Hiding Columns functions
+ */
+
+// toggle hide/show a column
+void FinishedTorrents::hideOrShowColumn(int index) {
+  if(!finishedList->isColumnHidden(index)) {
+    unsigned short i=0, nbColDisplayed = 0;
+    while(i<finishedListModel->columnCount()-1 && nbColDisplayed<=1) {
+      if(!finishedList->isColumnHidden(i))
+        nbColDisplayed++;
+      i++;
+    }
+    // can't hide a lonely column
+    if(nbColDisplayed>1) {
+      finishedList->setColumnHidden(index, true);
+      getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
+    }
+  } else {
+    //short buf_width = finishedList->columnWidth(index);
+    short nbColumns = 0;
+    finishedList->setColumnHidden(index, false);
+    /*finishedList->resizeColumnToContents(index); 
+    if(finishedList->columnWidth(index)<buf_width)
+      finishedList->setColumnWidth(index, buf_width);*/
+    getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
+    //resize all others non-hidden columns
+    for(int i=0; i<finishedListModel->columnCount()-1; i++) {
+      if(finishedList->isColumnHidden(i))
+        nbColumns++;
+    }
+    for(int i=0; i<finishedListModel->columnCount()-1; i++) {
+      if(i != index) {
+        finishedList->setColumnWidth(i, floor(finishedList->columnWidth(i)-(finishedList->columnWidth(index)/(nbColumns-1))));
+      }
+    }
+  }
+}
+
+void FinishedTorrents::hideOrShowColumnName() {
+  hideOrShowColumn(F_NAME);
+}
+
+void FinishedTorrents::hideOrShowColumnSize() {
+  hideOrShowColumn(F_SIZE);
+}
+
+void FinishedTorrents::hideOrShowColumnProgress() {
+  hideOrShowColumn(F_PROGRESS);
+}
+
+void FinishedTorrents::hideOrShowColumnUpSpeed() {
+  hideOrShowColumn(F_UPSPEED);
+}
+
+void FinishedTorrents::hideOrShowColumnLeechers() {
+  hideOrShowColumn(F_SEEDSLEECH);
+}
+
+void FinishedTorrents::hideOrShowColumnRatio() {
+  hideOrShowColumn(F_RATIO);
+}
+
+void FinishedTorrents::resetAllColumns() {
+  for(int i=0; i<finishedListModel->columnCount()-1; i++) {
+    finishedList->setColumnHidden(i, false);
+    finishedList->resizeColumnToContents(i);
+    getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
+  }
+  finishedList->setColumnWidth(F_NAME,270);
+}
+
+// load the previous settings, and hide the columns
+bool FinishedTorrents::loadHiddenColumns() {
+  bool loaded = false;
+  QSettings settings("qBittorrent", "qBittorrent");
+  QString line = settings.value("FinishedListColsHoS", QString()).toString();
+  QStringList ishidden_list;
+  if(!line.isEmpty()) {
+    ishidden_list = line.split(' ');
+    if(ishidden_list.size() == finishedListModel->columnCount()-1) {
+      unsigned int listSize = ishidden_list.size();
+      for(unsigned int i=0; i<listSize; ++i){
+            finishedList->header()->resizeSection(i, ishidden_list.at(i).toInt());
+      }
+      loaded = true;
+    }
+  }
+  for(int i=0; i<finishedListModel->columnCount()-1; i++) {
+    if(loaded && ishidden_list.at(i) == "0") {
+      finishedList->setColumnHidden(i, true);
+      getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
+    } else {
+      getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
+    }
+  }
+  return loaded;
+}
+
+// save the hidden columns in settings
+void FinishedTorrents::saveHiddenColumns() {
+  QSettings settings("qBittorrent", "qBittorrent");
+  QStringList ishidden_list;
+  short nbColumns = finishedListModel->columnCount()-1;
+
+  for(short i=0; i<nbColumns; ++i){
+    if(finishedList->isColumnHidden(i)) {
+      ishidden_list << QString::fromUtf8(misc::toString(0).c_str());
+    } else {
+      ishidden_list << QString::fromUtf8(misc::toString(1).c_str());
+    }
+  }
+  settings.setValue("FinishedListColsHoS", ishidden_list.join(" "));
+}
+
+// getter, return the action hide or show whose id is index
+QAction* FinishedTorrents::getActionHoSCol(int index) {
+  switch(index) {
+    case F_NAME :
+      return actionHOSColName;
+    break;
+    case F_SIZE :
+      return actionHOSColSize;
+    break;
+    case F_PROGRESS :
+      return actionHOSColProgress;
+    break;
+    case F_UPSPEED :
+      return actionHOSColUpSpeed;
+    break;
+    case F_SEEDSLEECH :
+      return actionHOSColLeechers;
+    break;
+    case F_RATIO :
+      return actionHOSColRatio;
+    break;
+    default :
+      return NULL;
+  }
+}
+
 
 /*
  * Sorting functions

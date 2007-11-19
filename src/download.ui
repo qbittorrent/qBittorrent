@@ -388,6 +388,51 @@
     <string>Open destination folder</string>
    </property>
   </action>
+  <action name="actionHOSColName" >
+   <property name="text" >
+    <string>Name</string>
+   </property>
+  </action>
+  <action name="actionHOSColSize" >
+   <property name="text" >
+    <string>Size</string>
+   </property>
+  </action>
+  <action name="actionHOSColProgress" >
+   <property name="text" >
+    <string>Progress</string>
+   </property>
+  </action>
+  <action name="actionHOSColDownSpeed" >
+   <property name="text" >
+    <string>DLSpeed</string>
+   </property>
+  </action>
+  <action name="actionHOSColUpSpeed" >
+   <property name="text" >
+    <string>UpSpeed</string>
+   </property>
+  </action>
+  <action name="actionHOSColSeedersLeechers" >
+   <property name="text" >
+    <string>Seeds/Leechs</string>
+   </property>
+  </action>
+  <action name="actionHOSColRatio" >
+   <property name="text" >
+    <string>Ratio</string>
+   </property>
+  </action>
+  <action name="actionHOSColEta" >
+   <property name="text" >
+    <string>ETA</string>
+   </property>
+  </action>
+  <action name="actionResizeAllColumns" >
+   <property name="text" >
+    <string>Resize all</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="icons.qrc" />

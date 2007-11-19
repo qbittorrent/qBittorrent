@@ -41,6 +41,10 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     bool delayedSorting;
     unsigned int nbTorrents;
     Qt::SortOrder delayedSortingOrder;
+    void hideOrShowColumn(int index);
+    bool loadHiddenColumns();
+    void saveHiddenColumns();
+    QAction* getActionHoSCol(int index);
 
   public:
     DownloadingTorrents(QObject *parent, bittorrent *BTSession);
@@ -92,6 +96,15 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void sortProgressColumnDelayed();
     void updateFileSizeAndProgress(QString hash);
     void showPropertiesFromHash(QString hash);
+    void hideOrShowColumnName();
+    void hideOrShowColumnSize();
+    void hideOrShowColumnProgress();
+    void hideOrShowColumnDownSpeed();
+    void hideOrShowColumnUpSpeed();
+    void hideOrShowColumnSeedersLeechers();
+    void hideOrShowColumnRatio();
+    void hideOrShowColumnEta();
+    void resetAllColumns();
 };
 
 #endif

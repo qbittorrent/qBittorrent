@@ -65,6 +65,7 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   downloadList->setItemDelegate(DLDelegate);
   // Hide hash column
   downloadList->hideColumn(HASH);
+  loadHiddenColumns();
 
   connect(BTSession, SIGNAL(addedTorrent(QString, QTorrentHandle&, bool)), this, SLOT(torrentAdded(QString, QTorrentHandle&, bool)));
   connect(BTSession, SIGNAL(duplicateTorrent(QString)), this, SLOT(torrentDuplicate(QString)));
@@ -95,6 +96,17 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   connect(actionDelete_Permanently, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_Permanently_triggered()));
   connect(actionOpen_destination_folder, SIGNAL(triggered()), (GUI*)parent, SLOT(openDestinationFolder()));
   connect(actionTorrent_Properties, SIGNAL(triggered()), this, SLOT(propertiesSelection()));
+
+  connect(actionHOSColName, SIGNAL(triggered()), this, SLOT(hideOrShowColumnName()));
+  connect(actionHOSColSize, SIGNAL(triggered()), this, SLOT(hideOrShowColumnSize()));
+  connect(actionHOSColProgress, SIGNAL(triggered()), this, SLOT(hideOrShowColumnProgress()));
+  connect(actionHOSColDownSpeed, SIGNAL(triggered()), this, SLOT(hideOrShowColumnDownSpeed()));
+  connect(actionHOSColUpSpeed, SIGNAL(triggered()), this, SLOT(hideOrShowColumnUpSpeed()));
+  connect(actionHOSColSeedersLeechers, SIGNAL(triggered()), this, SLOT(hideOrShowColumnSeedersLeechers()));
+  connect(actionHOSColRatio, SIGNAL(triggered()), this, SLOT(hideOrShowColumnRatio()));
+  connect(actionHOSColEta, SIGNAL(triggered()), this, SLOT(hideOrShowColumnEta()));
+  connect(actionResizeAllColumns, SIGNAL(triggered()), this, SLOT(resetAllColumns()));
+
   // Set info Bar infos
   setInfoBar(tr("qBittorrent %1 started.", "e.g: qBittorrent v0.x started.").arg(QString::fromUtf8(""VERSION)));
   setInfoBar(tr("Be careful, sharing copyrighted material without permission is against the law."), QString::fromUtf8("red"));
@@ -103,6 +115,7 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
 
 DownloadingTorrents::~DownloadingTorrents() {
   saveColWidthDLList();
+  saveHiddenColumns();
   delete DLDelegate;
   delete DLListModel;
 }
@@ -289,13 +302,174 @@ void DownloadingTorrents::displayDLListMenu(const QPoint& pos) {
   myDLLlistMenu.addSeparator();
   myDLLlistMenu.addAction(actionOpen_destination_folder);
   myDLLlistMenu.addAction(actionTorrent_Properties);
+  // hide/show columns menu
+  QMenu hideshowColumn(this);
+  hideshowColumn.setTitle(tr("Hide or Show Column"));
+  for(int i=0; i<=ETA; i++) {
+    hideshowColumn.addAction(getActionHoSCol(i));
+  }
+  hideshowColumn.addAction(actionResizeAllColumns);
+  myDLLlistMenu.addMenu(&hideshowColumn);
   // Call menu
   // XXX: why mapToGlobal() is not enough?
   myDLLlistMenu.exec(mapToGlobal(pos)+QPoint(10,60));
 }
 
+
+/*
+ * Hiding Columns functions
+ */
+
+// toggle hide/show a column
+void DownloadingTorrents::hideOrShowColumn(int index) {
+  if(!downloadList->isColumnHidden(index)) {
+    unsigned short i=0, nbColDisplayed = 0;
+    while(i<DLListModel->columnCount()-1 && nbColDisplayed<=1) {
+      if(!downloadList->isColumnHidden(i))
+        nbColDisplayed++;
+      i++;
+    }
+    // can't hide a lonely column
+    if(nbColDisplayed>1) {
+      downloadList->setColumnHidden(index, true);
+      getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
+    }
+  } else {
+    short nbColumns = 0;
+    downloadList->setColumnHidden(index, false);
+    getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
+    //resize all others non-hidden columns
+    for(int i=0; i<DLListModel->columnCount()-1; i++) {
+      if(downloadList->isColumnHidden(i))
+        nbColumns++;
+    }
+    for(int i=0; i<DLListModel->columnCount()-1; i++) {
+      if(i != index) {
+        downloadList->setColumnWidth(i, floor(downloadList->columnWidth(i)-(downloadList->columnWidth(index)/(nbColumns-1))));
+      }
+    }
+  }
+}
+
+// save the hidden columns in settings
+void DownloadingTorrents::saveHiddenColumns() {
+  QSettings settings("qBittorrent", "qBittorrent");
+  QStringList ishidden_list;
+  short nbColumns = DLListModel->columnCount()-1;
+
+  for(short i=0; i<nbColumns; ++i){
+    if(downloadList->isColumnHidden(i)) {
+      ishidden_list << QString::fromUtf8(misc::toString(0).c_str());
+    } else {
+      ishidden_list << QString::fromUtf8(misc::toString(1).c_str());
+    }
+  }
+  settings.setValue("DownloadListColsHoS", ishidden_list.join(" "));
+}
+
+// load the previous settings, and hide the columns
+bool DownloadingTorrents::loadHiddenColumns() {
+  bool loaded = false;
+  QSettings settings("qBittorrent", "qBittorrent");
+  QString line = settings.value("DownloadListColsHoS", QString()).toString();
+  QStringList ishidden_list;
+  if(!line.isEmpty()) {
+    ishidden_list = line.split(' ');
+    if(ishidden_list.size() == DLListModel->columnCount()-1) {
+      unsigned int listSize = ishidden_list.size();
+      for(unsigned int i=0; i<listSize; ++i){
+            downloadList->header()->resizeSection(i, ishidden_list.at(i).toInt());
+      }
+      loaded = true;
+    }
+  }
+  for(int i=0; i<DLListModel->columnCount()-1; i++) {
+    if(loaded && ishidden_list.at(i) == "0") {
+      downloadList->setColumnHidden(i, true);
+      getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
+    } else {
+      getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
+    }
+  }
+  return loaded;
+}
+
+void DownloadingTorrents::hideOrShowColumnName() {
+  hideOrShowColumn(NAME);
+}
+
+void DownloadingTorrents::hideOrShowColumnSize() {
+  hideOrShowColumn(SIZE);
+}
+
+void DownloadingTorrents::hideOrShowColumnProgress() {
+  hideOrShowColumn(PROGRESS);
+}
+
+void DownloadingTorrents::hideOrShowColumnDownSpeed() {
+  hideOrShowColumn(DLSPEED);
+}
+
+void DownloadingTorrents::hideOrShowColumnUpSpeed() {
+  hideOrShowColumn(UPSPEED);
+}
+
+void DownloadingTorrents::hideOrShowColumnSeedersLeechers() {
+  hideOrShowColumn(SEEDSLEECH);
+}
+
+void DownloadingTorrents::hideOrShowColumnRatio() {
+  hideOrShowColumn(RATIO);
+}
+
+void DownloadingTorrents::hideOrShowColumnEta() {
+  hideOrShowColumn(ETA);
+}
+
+
 void DownloadingTorrents::on_actionClearLog_triggered() {
   infoBar->clear();
+}
+
+// getter, return the action hide or show whose id is index
+QAction* DownloadingTorrents::getActionHoSCol(int index) {
+  switch(index) {
+    case NAME :
+      return actionHOSColName;
+    break;
+    case SIZE :
+      return actionHOSColSize;
+    break;
+    case PROGRESS :
+      return actionHOSColProgress;
+    break;
+    case DLSPEED :
+      return actionHOSColDownSpeed;
+    break;
+    case UPSPEED :
+      return actionHOSColUpSpeed;
+    break;
+    case SEEDSLEECH :
+      return actionHOSColSeedersLeechers;
+    break;
+    case RATIO :
+      return actionHOSColRatio;
+    break;
+    case ETA :
+      return actionHOSColEta;
+    break;
+    default :
+      return NULL;
+  }
+}
+
+void DownloadingTorrents::resetAllColumns() {
+  for(int i=0; i<DLListModel->columnCount()-1; i++) {
+    downloadList->setColumnHidden(i, false);
+    downloadList->resizeColumnToContents(i);
+    getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
+  }
+  downloadList->setColumnWidth(NAME,270);
 }
 
 QStringList DownloadingTorrents::getSelectedTorrents(bool only_one) const{
@@ -570,11 +744,26 @@ void DownloadingTorrents::saveColWidthDLList() const{
   qDebug("Saving columns width in download list");
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QStringList width_list;
-  unsigned int nbColumns = DLListModel->columnCount()-1;
-  for(unsigned int i=0; i<nbColumns; ++i) {
-    width_list << misc::toQString(downloadList->columnWidth(i));
+  QStringList new_width_list;
+  short nbColumns = DLListModel->columnCount()-1;
+  QString line = settings.value("DownloadListColsWidth", QString()).toString();
+  if(!line.isEmpty()) {
+    width_list = line.split(' ');
   }
-  settings.setValue(QString::fromUtf8("DownloadListColsWidth"), width_list.join(QString::fromUtf8(" ")));
+  for(short i=0; i<nbColumns; ++i){
+    if(downloadList->columnWidth(i)<1 && width_list.size() == DLListModel->columnCount()-1 && width_list.at(i).toInt()>=1) {
+      // load the former width
+      new_width_list << width_list.at(i);
+    } else if(downloadList->columnWidth(i)>=1) { 
+      // usual case, save the current width
+      new_width_list << QString::fromUtf8(misc::toString(downloadList->columnWidth(i)).c_str());
+    } else { 
+      // default width
+      downloadList->resizeColumnToContents(i);
+      new_width_list << QString::fromUtf8(misc::toString(downloadList->columnWidth(i)).c_str());
+    }
+  }
+  settings.setValue(QString::fromUtf8("DownloadListColsWidth"), new_width_list.join(QString::fromUtf8(" ")));
   qDebug("Download list columns width saved");
 }
 
