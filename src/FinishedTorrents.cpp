@@ -424,7 +424,7 @@ void FinishedTorrents::hideOrShowColumn(int index) {
     }
     for(int i=0; i<finishedListModel->columnCount()-1; i++) {
       if(i != index) {
-        finishedList->setColumnWidth(i, floor(finishedList->columnWidth(i)-(finishedList->columnWidth(index)/(nbColumns-1))));
+        finishedList->setColumnWidth(i, (int)floor(finishedList->columnWidth(i)-(finishedList->columnWidth(index)/(nbColumns-1))));
       }
     }
   }
