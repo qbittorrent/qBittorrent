@@ -42,7 +42,6 @@ class properties : public QDialog, private Ui::properties{
     QTorrentHandle h;
     bittorrent *BTSession;
     bool changedFilteredfiles;
-    bool changedTrackers;
     QString hash;
     PropListDelegate *PropDelegate;
     QStandardItemModel *PropListModel;
