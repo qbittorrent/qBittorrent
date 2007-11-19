@@ -58,6 +58,9 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   ETARefresher = new QTimer();
   connect(ETARefresher, SIGNAL(timeout()), this, SLOT(updateETAs()));
   ETARefresher->start(ETA_REFRESH_INTERVAL);
+  fastResumeSaver = new QTimer();
+  connect(fastResumeSaver, SIGNAL(timeout()), this, SLOT(saveFastResumeAndRatioData()));
+  fastResumeSaver->start(10000);
   // To download from urls
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
@@ -73,6 +76,7 @@ bittorrent::~bittorrent() {
   disableDirectoryScanning();
   // Delete our objects
   delete deleter;
+  delete fastResumeSaver;
   delete timerAlerts;
   delete ETARefresher;
   delete downloader;
@@ -93,7 +97,7 @@ void bittorrent::preAllocateAllFiles(bool b) {
         qDebug("/!\\ Error: Invalid handle");
         continue;
       }
-      pauseAndReloadTorrent(h, b);
+      reloadTorrent(h, b);
     }
   }
 }
@@ -233,10 +237,6 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   ETAs.remove(hash);
   // Remove tracker errors
   trackersErrors.remove(hash);
-  // Remove from reloadingTorrents if reloading
-  if(reloadingTorrents.contains(hash)) {
-    reloadingTorrents.remove(hash);
-  }
   // Remove it from ratio table
   ratioData.remove(hash);
   int index = finishedTorrents.indexOf(hash);
@@ -823,8 +823,7 @@ void bittorrent::saveDownloadUploadForTorrent(QString hash) {
   ratio_file.close();
 }
 
-// Save fastresume data for all torrents
-// and remove them from the session
+// Save fastresume data for all torrents (called periodically)
 void bittorrent::saveFastResumeAndRatioData() {
   qDebug("Saving fast resume and ratio data");
   QString file;
@@ -834,20 +833,9 @@ void bittorrent::saveFastResumeAndRatioData() {
   if(! torrentBackup.exists()) {
     torrentBackup.mkpath(torrentBackup.path());
   }
-  // Pause torrents
   std::vector<torrent_handle> handles = s->get_torrents();
-  for(unsigned int i=0; i<handles.size(); ++i) {
-    QTorrentHandle h = handles[i];
-    if(!h.is_valid()) {
-      qDebug("/!\\ Error: Invalid handle");
-      continue;
-    }
-    // Pause download (needed before fast resume writing)
-    if(!h.is_paused()){
-      waitingForPause << h.hash();
-      h.pause();
-    }
-  }
+  // It is not necessary to pause the torrents before saving fastresume data anymore
+  // because we either use Full allocation or sparse mode.
   // Write fast resume data
   for(unsigned int i=0; i<handles.size(); ++i) {
     QTorrentHandle h = handles[i];
@@ -856,11 +844,6 @@ void bittorrent::saveFastResumeAndRatioData() {
       continue;
     }
     QString hash = h.hash();
-    while(waitingForPause.contains(hash)) {
-      //qDebug("Sleeping while waiting that %s is paused", misc::toString(h.info_hash()).c_str());
-      SleeperThread::msleep(300);
-      readAlerts();
-    }
     // Extracting resume data
     if (h.has_metadata()) {
       if(QFile::exists(torrentBackup.path()+QDir::separator()+hash+".torrent")) {
@@ -878,8 +861,6 @@ void bittorrent::saveFastResumeAndRatioData() {
       // Save trackers
       saveTrackerFile(hash);
     }
-    // Remove torrent
-    s->remove_torrent(h.get_torrent_handle());
   }
   qDebug("Fast resume and ratio data saved");
 }
@@ -1126,21 +1107,6 @@ void bittorrent::readAlerts() {
         }
       }
     }
-    else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())) {
-      QTorrentHandle h(p->handle);
-      if(h.is_valid()){
-        QString hash = h.hash();
-        qDebug("Received torrent_paused_alert for %s", hash.toUtf8().data());
-        int index = waitingForPause.indexOf(hash);
-        if(index != -1){
-          waitingForPause.removeAt(index);
-        }
-        if(reloadingTorrents.contains(hash)) {
-          reloadTorrent(h, reloadingTorrents.value(hash));
-          reloadingTorrents.remove(hash);
-        }
-      }
-    }
     else if (peer_blocked_alert* p = dynamic_cast<peer_blocked_alert*>(a.get())) {
       emit peerBlocked(QString::fromUtf8(p->ip.to_string().c_str()));
     }
@@ -1179,22 +1145,6 @@ QList<QPair<QString, QString> > bittorrent::getTrackersErrors(QString hash) cons
 
 QStringList bittorrent::getTorrentsToPauseAfterChecking() const{
   return torrentsToPauseAfterChecking;
-}
-
-// Function to reload the torrent async after the torrent is actually
-// paused so that we can get fastresume data
-void bittorrent::pauseAndReloadTorrent(QTorrentHandle h, bool full_alloc) {
-  if(!h.is_valid()) {
-    std::cerr << "/!\\ Error: Invalid handle\n";
-    return;
-  }
-  // ask to pause the torrent (async)
-  h.pause();
-  QString hash = h.hash();
-  // Add it to reloadingTorrents has table so that we now we
-  // we should reload the torrent once we receive the
-  // torrent_paused_alert. pause() is async now...
-  reloadingTorrents[hash] = full_alloc;
 }
 
 // Reload a torrent with full allocation mode

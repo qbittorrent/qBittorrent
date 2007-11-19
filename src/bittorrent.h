@@ -44,18 +44,17 @@ class bittorrent : public QObject{
     QString scan_dir;
     QTimer *timerScan;
     QTimer *timerAlerts;
+    QTimer *fastResumeSaver;
     bool DHTEnabled;
     downloadThread *downloader;
     QString defaultSavePath;
     QStringList torrentsToPauseAfterChecking;
-    QHash<QString, bool> reloadingTorrents;
     QHash<QString, QList<qlonglong> > ETAstats;
     QHash<QString, qlonglong> ETAs;
     QHash<QString, QPair<size_type,size_type> > ratioData;
     QTimer *ETARefresher;
     QHash<QString, QList<QPair<QString, QString> > > trackersErrors;
     deleteThread *deleter;
-    QStringList waitingForPause;
     QStringList finishedTorrents;
     QStringList unfinishedTorrents;
     bool preAllocateAll;
@@ -136,6 +135,7 @@ class bittorrent : public QObject{
     void enableNATPMP(bool b);
     void enableLSD(bool b);
     bool enableDHT(bool b);
+    void reloadTorrent(const QTorrentHandle &h, bool full_alloc);
 
   protected slots:
     void scanDirectory();
@@ -143,8 +143,6 @@ class bittorrent : public QObject{
     void processDownloadedFile(QString, QString);
     bool loadTrackerFile(QString hash);
     void saveTrackerFile(QString hash);
-    void pauseAndReloadTorrent(QTorrentHandle h, bool full_alloc);
-    void reloadTorrent(const QTorrentHandle &h, bool full_alloc); // This is protected now, call pauseAndReloadTorrent() instead
     void deleteBigRatios();
 
   signals:
