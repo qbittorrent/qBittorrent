@@ -59,7 +59,7 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   connect(ETARefresher, SIGNAL(timeout()), this, SLOT(updateETAs()));
   ETARefresher->start(ETA_REFRESH_INTERVAL);
   fastResumeSaver = new QTimer();
-  connect(fastResumeSaver, SIGNAL(timeout()), this, SLOT(saveFastResumeAndRatioData()));
+  connect(fastResumeSaver, SIGNAL(timeout()), this, SLOT(saveFastResumeAndRatioDataUnfinished()));
   fastResumeSaver->start(60000);
   // To download from urls
   downloader = new downloadThread(this);
@@ -310,6 +310,8 @@ void bittorrent::setFinishedTorrent(QString hash) {
   // Remove it from ETAs hash tables
   ETAstats.remove(hash);
   ETAs.remove(hash);
+  // Save fast resume data
+  saveFastResumeAndRatioData(hash);
 }
 
 // Pause a running torrent
@@ -831,16 +833,18 @@ void bittorrent::saveDownloadUploadForTorrent(QString hash) {
   ratio_file.close();
 }
 
+// Only save fast resume data for unfinished torrents (Optimization)
+void bittorrent::saveFastResumeAndRatioDataUnfinished() {
+  QString hash;
+  QStringList hashes = getUnfinishedTorrents();
+  foreach(hash, hashes) {
+    saveFastResumeAndRatioData(hash);
+  }
+}
+
 // Save fastresume data for all torrents (called periodically)
 void bittorrent::saveFastResumeAndRatioData() {
   qDebug("Saving fast resume and ratio data");
-  QString file;
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  // Checking if torrentBackup Dir exists
-  // create it if it is not
-  if(! torrentBackup.exists()) {
-    torrentBackup.mkpath(torrentBackup.path());
-  }
   std::vector<torrent_handle> handles = s->get_torrents();
   // It is not necessary to pause the torrents before saving fastresume data anymore
   // because we either use Full allocation or sparse mode.
@@ -852,23 +856,39 @@ void bittorrent::saveFastResumeAndRatioData() {
       continue;
     }
     QString hash = h.hash();
-    // Extracting resume data
-    if (h.has_metadata() && h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking) {
-      if(QFile::exists(torrentBackup.path()+QDir::separator()+hash+".torrent")) {
-        // Remove old .fastresume data in case it exists
-        QFile::remove(torrentBackup.path()+QDir::separator()+hash + ".fastresume");
-        // Write fast resume data
-        entry resumeData = h.write_resume_data();
-        file = hash + ".fastresume";
-        boost::filesystem::ofstream out(fs::path(torrentBackup.path().toUtf8().data()) / file.toUtf8().data(), std::ios_base::binary);
-        out.unsetf(std::ios_base::skipws);
-        bencode(std::ostream_iterator<char>(out), resumeData);
-      }
-      // Save ratio data
-      saveDownloadUploadForTorrent(hash);
-    }
+    saveFastResumeAndRatioData(hash);
   }
   qDebug("Fast resume and ratio data saved");
+}
+
+void bittorrent::saveFastResumeAndRatioData(QString hash) {
+  QString file;
+  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+  // Checking if torrentBackup Dir exists
+  // create it if it is not
+  if(! torrentBackup.exists()) {
+    torrentBackup.mkpath(torrentBackup.path());
+  }
+  // Extracting resume data
+  QTorrentHandle h = getTorrentHandle(hash);
+  if(!h.is_valid()) {
+    qDebug("/!\\ Error: Invalid handle");
+    return;
+  }
+  if (h.has_metadata() && h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking) {
+    if(QFile::exists(torrentBackup.path()+QDir::separator()+hash+".torrent")) {
+      // Remove old .fastresume data in case it exists
+      QFile::remove(torrentBackup.path()+QDir::separator()+hash + ".fastresume");
+      // Write fast resume data
+      entry resumeData = h.write_resume_data();
+      file = hash + ".fastresume";
+      boost::filesystem::ofstream out(fs::path(torrentBackup.path().toUtf8().data()) / file.toUtf8().data(), std::ios_base::binary);
+      out.unsetf(std::ios_base::skipws);
+      bencode(std::ostream_iterator<char>(out), resumeData);
+    }
+    // Save ratio data
+    saveDownloadUploadForTorrent(hash);
+  }
 }
 
 bool bittorrent::isFilePreviewPossible(QString hash) const{
