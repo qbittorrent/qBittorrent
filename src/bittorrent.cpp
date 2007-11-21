@@ -60,7 +60,7 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   ETARefresher->start(ETA_REFRESH_INTERVAL);
   fastResumeSaver = new QTimer();
   connect(fastResumeSaver, SIGNAL(timeout()), this, SLOT(saveFastResumeAndRatioData()));
-  fastResumeSaver->start(10000);
+  fastResumeSaver->start(60000);
   // To download from urls
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
