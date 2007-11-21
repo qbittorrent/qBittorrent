@@ -341,7 +341,7 @@ void DownloadingTorrents::hideOrShowColumn(int index) {
     }
     for(int i=0; i<DLListModel->columnCount()-1; i++) {
       if(i != index) {
-        downloadList->setColumnWidth(i, floor(downloadList->columnWidth(i)-(downloadList->columnWidth(index)/(nbColumns-1))));
+        downloadList->setColumnWidth(i, (int)floor(downloadList->columnWidth(i)-(downloadList->columnWidth(index)/(nbColumns-1))));
       }
     }
   }
