@@ -79,6 +79,7 @@ start:
 	size_type piece_length = thandle.piece_length();
 	int num_pieces = thandle.num_pieces();
 	const std::vector<bool>* pieces = thandle.pieces();
+	//no vector returned
 	if (pieces == 0)
 		return;
 	//empty the array
@@ -97,7 +98,7 @@ start:
 		if((*pieces)[i])
 			mark(start, end);
 	}
-
+/*
 	//fill the array with incomplete pieces (from download queue)
 	std::vector<partial_piece_info> queue;
 	thandle.get_download_queue(queue);
@@ -116,12 +117,12 @@ start:
 			start = end;
 		}
 	}
-// 	qreal sum = 0.;
-// 	locker.relock();
-// 	for(int i=0; i<size; i++)
-// 		sum += array[i];
-// 	qDebug()<<"progress:"<<sum*100./size();
-// 	locker.unlock();
+ 	qreal sum = 0.;
+ 	locker.relock();
+	 	for(int i=0; i<size; i++)
+ 	sum += array[i];
+ 	qDebug()<<"progress:"<<sum*100./size;
+ 	locker.unlock();*/
 	qDebug("refreshed emmitted");
 	emit refreshed(array);
 	goto wait;

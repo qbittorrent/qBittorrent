@@ -90,9 +90,14 @@ void RealProgressBar::drawPixmap()
 
 QColor RealProgressBar::penColor(qreal x)
 {
-	qreal y = 1 - x;
-	Q_ASSERT(x >= 0.);
-	Q_ASSERT(y >= 0.);
+	if(x < 0.)
+		x = 0.;
+	else
+		if(x > 1.)
+			x = 1.;
+	qreal y = 1. - x;
+//	Q_ASSERT(x >= 0.);
+//	Q_ASSERT(y >= 0.);
 	qreal r1, g1, b1, a1, r2, g2, b2, a2;
 	foreground.getRgbF(&r1, &g1, &b1, &a1);
 	background.getRgbF(&r2, &g2, &b2, &a2);
