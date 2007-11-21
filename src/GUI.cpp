@@ -764,7 +764,12 @@ void GUI::processDownloadedFiles(QString path, QString url) {
 void GUI::configureSession(bool deleteOptions) {
   qDebug("Configuring session");
   // General
-  displaySpeedInTitle = options->speedInTitleBar();
+  bool new_displaySpeedInTitle = options->speedInTitleBar();
+  if(!new_displaySpeedInTitle && new_displaySpeedInTitle != displaySpeedInTitle) {
+    // Reset title
+    setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
+  }
+  displaySpeedInTitle = new_displaySpeedInTitle;
   unsigned int new_refreshInterval = options->getRefreshInterval();
   if(refreshInterval != new_refreshInterval) {
     refreshInterval = new_refreshInterval;

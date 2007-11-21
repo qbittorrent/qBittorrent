@@ -62,4 +62,4 @@ rc8->final? changelog:
 - BUGFIX: Saving trackers file only when necessary
 - BUGFIX: Fixed possible segfault when unfiltering files in torrent addition dialog
 - BUGFIX: Fixed possible overflow in ETA calculation
-
+- BUGFIX: title bar is now reset when "Display speed in title" is disabled
