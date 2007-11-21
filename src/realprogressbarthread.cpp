@@ -63,6 +63,8 @@ void RealProgressBarThread::refresh()
 		case restart:\
 			qDebug("RealProgressBarThread restart");\
 			goto start;\
+		case ignore:\
+			break;\
 	}
 
 void RealProgressBarThread::run(){
