@@ -166,8 +166,16 @@ void bittorrent::updateETAs() {
         foreach(val, listEtas) {
           moy += (qlonglong)((double)val/(double)nbETAs);
         }
-        Q_ASSERT(moy >= 0);
-        ETAs[hash] = moy;
+        if(moy < 0) {
+          if(ETAstats.contains(hash)) {
+            ETAstats.remove(hash);
+          }
+          if(ETAs.contains(hash)) {
+            ETAs.remove(hash);
+          }
+        } else {
+          ETAs[hash] = moy;
+        }
       } else {
         // Speed is too low, we don't want an overflow.
         if(ETAstats.contains(hash)) {
