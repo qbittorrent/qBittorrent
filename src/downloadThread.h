@@ -34,6 +34,13 @@ namespace ost {
   class URLStream;
 }
 
+typedef struct {
+  QString IP;
+  int port;
+  QString username;
+  QString password;
+} tmp_proxy;
+
 class subDownloadThread : public QThread {
   Q_OBJECT
   private:
@@ -76,6 +83,7 @@ class downloadThread : public QThread {
     ~downloadThread();
 
     void downloadUrl(QString url);
+    void setProxy(QString IP, int port, QString username, QString password);
 
   protected:
     void run();
