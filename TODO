@@ -52,10 +52,10 @@
   -> in download list
   -> in seeding list
 
-rc8->final? changelog:
+rc8->rc9 changelog:
 - FEATURE: Better media file preview (player detected automatically)
 - BUGFIX: Remember properties window size and position
-- BUGFIX: Improved proxy support in search engine (HTTP only)
+- BUGFIX: Added proxy support in search engine, RSS, downloads from urls
 - BUGFIX: Do no pause torrents before saving fastresume data anymore (no longer needed)
 - BUGFIX: Save fast resume data regularly (every 10 seconds) to avoid downloading from scratch if qBittorrent crashes
 - BUGFIX: Do not save fastresume data for checking torrents anymore
