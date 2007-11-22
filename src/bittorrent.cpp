@@ -59,7 +59,7 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   connect(ETARefresher, SIGNAL(timeout()), this, SLOT(updateETAs()));
   ETARefresher->start(ETA_REFRESH_INTERVAL);
   fastResumeSaver = new QTimer();
-  connect(fastResumeSaver, SIGNAL(timeout()), this, SLOT(saveFastResumeAndRatioDataUnfinished()));
+  connect(fastResumeSaver, SIGNAL(timeout()), this, SLOT(saveFastResumeAndRatioData()));
   fastResumeSaver->start(60000);
   // To download from urls
   downloader = new downloadThread(this);
@@ -321,6 +321,8 @@ bool bittorrent::pauseTorrent(QString hash) {
   if(h.is_valid() && !h.is_paused()) {
     h.pause();
     change = true;
+    // Save fast resume data
+    saveFastResumeAndRatioData(hash);
     qDebug("Torrent paused successfully");
   }else{
     if(!h.is_valid()) {
@@ -833,32 +835,19 @@ void bittorrent::saveDownloadUploadForTorrent(QString hash) {
   ratio_file.close();
 }
 
-// Only save fast resume data for unfinished torrents (Optimization)
-void bittorrent::saveFastResumeAndRatioDataUnfinished() {
+// Only save fast resume data for unfinished and unpaused torrents (Optimization)
+// Called periodically and on exit
+void bittorrent::saveFastResumeAndRatioData() {
   QString hash;
   QStringList hashes = getUnfinishedTorrents();
   foreach(hash, hashes) {
-    saveFastResumeAndRatioData(hash);
-  }
-}
-
-// Save fastresume data for all torrents (called periodically)
-void bittorrent::saveFastResumeAndRatioData() {
-  qDebug("Saving fast resume and ratio data");
-  std::vector<torrent_handle> handles = s->get_torrents();
-  // It is not necessary to pause the torrents before saving fastresume data anymore
-  // because we either use Full allocation or sparse mode.
-  // Write fast resume data
-  for(unsigned int i=0; i<handles.size(); ++i) {
-    QTorrentHandle h = handles[i];
-    if(!h.is_valid()) {
-      qDebug("/!\\ Error: Invalid handle");
+    QTorrentHandle h = getTorrentHandle(hash);
+    if(h.is_paused()) {
+      // Do not need to save fast resume data for paused torrents
       continue;
     }
-    QString hash = h.hash();
     saveFastResumeAndRatioData(hash);
   }
-  qDebug("Fast resume and ratio data saved");
 }
 
 void bittorrent::saveFastResumeAndRatioData(QString hash) {

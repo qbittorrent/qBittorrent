@@ -99,7 +99,6 @@ class bittorrent : public QObject{
     void preAllocateAllFiles(bool b);
     void saveFastResumeAndRatioData();
     void saveFastResumeAndRatioData(QString hash);
-    void saveFastResumeAndRatioDataUnfinished();
     void enableDirectoryScanning(QString scan_dir);
     void disableDirectoryScanning();
     void enablePeerExchange();
