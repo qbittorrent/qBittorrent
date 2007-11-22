@@ -842,6 +842,10 @@ void bittorrent::saveFastResumeAndRatioData() {
   QStringList hashes = getUnfinishedTorrents();
   foreach(hash, hashes) {
     QTorrentHandle h = getTorrentHandle(hash);
+    if(!h.is_valid()) {
+      qDebug("/!\\ Error: Invalid handle");
+      continue;
+    }
     if(h.is_paused()) {
       // Do not need to save fast resume data for paused torrents
       continue;
