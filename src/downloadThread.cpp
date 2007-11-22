@@ -55,7 +55,7 @@ subDownloadThread::subDownloadThread(QObject *parent, QString url) : QThread(par
   url_stream = new ost::URLStream();
   // Proxy support
   QSettings settings("qBittorrent", "qBittorrent");
-  int intValue = settings.value(QString::fromUtf8("[Preferences/Connection/ProxyType"), 0).toInt();
+  int intValue = settings.value(QString::fromUtf8("Preferences/Connection/ProxyType"), 0).toInt();
   if(intValue > 0) {
     // Proxy enabled
     url_stream->setProxy(settings.value(QString::fromUtf8("Preferences/Connection/Proxy/IP"), "0.0.0.0").toString().toUtf8().data(), settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Port"), 8080).toInt());
