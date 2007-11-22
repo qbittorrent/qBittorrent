@@ -8,11 +8,9 @@
 - Skins support? (contact Mateusz)
 
 // Harder
-- Display a progress bar that really represents the pieces we have (like in eMule)
 - Torrent scheduler ala µtorrent/Bitcomet
 
 // Waiting for libtorrent
-- File selection in a torrent in compact mode
 - Allow to prioritize torrents (may code this in qBittorrent?)
 
 // Unsure
