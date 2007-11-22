@@ -66,3 +66,4 @@ rc8->rc9 changelog:
 - BUGFIX: Fixed possible overflow in ETA calculation
 - BUGFIX: title bar is now reset when "Display speed in title" is disabled
 - BUGFIX: Fixed HTTP_PW and SOCKS5_PW in proxy combobox
+- BUGFIX: Fixed proxy auth disable problem when disabling proxy
