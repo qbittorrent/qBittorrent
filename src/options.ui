@@ -1069,70 +1069,72 @@
               <property name="title" >
                <string>Affected connections</string>
               </property>
-              <widget class="QCheckBox" name="checkProxyTrackers" >
-               <property name="geometry" >
-                <rect>
-                 <x>10</x>
-                 <y>20</y>
-                 <width>341</width>
-                 <height>22</height>
-                </rect>
-               </property>
-               <property name="text" >
-                <string>Use proxy for connections to trackers</string>
-               </property>
-               <property name="checked" >
-                <bool>true</bool>
-               </property>
-              </widget>
-              <widget class="QCheckBox" name="checkProxyPeers" >
-               <property name="geometry" >
-                <rect>
-                 <x>10</x>
-                 <y>40</y>
-                 <width>341</width>
-                 <height>22</height>
-                </rect>
-               </property>
-               <property name="text" >
-                <string>Use proxy for connections to regular peers</string>
-               </property>
-               <property name="checked" >
-                <bool>true</bool>
-               </property>
-              </widget>
-              <widget class="QCheckBox" name="checkProxyWebseeds" >
-               <property name="geometry" >
-                <rect>
-                 <x>10</x>
-                 <y>60</y>
-                 <width>341</width>
-                 <height>22</height>
-                </rect>
-               </property>
-               <property name="text" >
-                <string>Use proxy for connections to web seeds</string>
-               </property>
-               <property name="checked" >
-                <bool>true</bool>
-               </property>
-              </widget>
-              <widget class="QCheckBox" name="checkProxyDHT" >
-               <property name="geometry" >
-                <rect>
-                 <x>10</x>
-                 <y>80</y>
-                 <width>341</width>
-                 <height>22</height>
-                </rect>
-               </property>
-               <property name="text" >
-                <string>Use proxy for DHT messages</string>
-               </property>
-               <property name="checked" >
-                <bool>true</bool>
-               </property>
-              </widget>
+              <layout class="QVBoxLayout" >
+               <item>
+                <widget class="QCheckBox" name="checkProxyTrackers" >
+                 <property name="sizePolicy" >
+                  <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text" >
+                  <string>Use proxy for connections to trackers</string>
+                 </property>
+                 <property name="checked" >
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkProxyPeers" >
+                 <property name="sizePolicy" >
+                  <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text" >
+                  <string>Use proxy for connections to regular peers</string>
+                 </property>
+                 <property name="checked" >
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkProxyDHT" >
+                 <property name="sizePolicy" >
+                  <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text" >
+                  <string>Use proxy for DHT messages</string>
+                 </property>
+                 <property name="checked" >
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkProxyWebseeds" >
+                 <property name="sizePolicy" >
+                  <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text" >
+                  <string>Use proxy for connections to web seeds</string>
+                 </property>
+                 <property name="checked" >
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
            </layout>
