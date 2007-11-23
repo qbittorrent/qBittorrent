@@ -58,12 +58,17 @@ subDownloadThread::subDownloadThread(QObject *parent, QString url) : QThread(par
   int intValue = settings.value(QString::fromUtf8("Preferences/Connection/ProxyType"), 0).toInt();
   if(intValue > 0) {
     // Proxy enabled
-    qDebug("Set proxy, hostname: %s, port: %d", settings.value(QString::fromUtf8("Preferences/Connection/Proxy/IP"), "0.0.0.0").toString().toUtf8().data(), settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Port"), 8080).toInt());
-    url_stream->setProxy(settings.value(QString::fromUtf8("Preferences/Connection/Proxy/IP"), "0.0.0.0").toString().toUtf8().data(), settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Port"), 8080).toInt());
+    QString IP = settings.value(QString::fromUtf8("Preferences/Connection/Proxy/IP"), "0.0.0.0").toString();
+    qDebug("Set proxy, hostname: %s, port: %d", IP.toUtf8().data(), settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Port"), 8080).toInt());
+    if((intValue==1 || intValue==3) && !IP.startsWith("http://", Qt::CaseInsensitive)) {
+      // HTTP Proxy with missing leading http://
+      url_stream->setProxy((QString("http://")+settings.value(QString::fromUtf8("Preferences/Connection/Proxy/IP"), "0.0.0.0").toString()).toUtf8().data(), settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Port"), 8080).toInt());
+    }else {
+      url_stream->setProxy(settings.value(QString::fromUtf8("Preferences/Connection/Proxy/IP"), "0.0.0.0").toString().toUtf8().data(), settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Port"), 8080).toInt());
+    }
     if(settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Authentication"), false).toBool()) {
       qDebug("Proxy auth required");
       // Authentication required
-      url_stream->setProxyAuthentication(ost::URLStream::authBasic, "auth");
       url_stream->setProxyUser(settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Username"), QString()).toString().toUtf8().data());
       url_stream->setProxyPassword(settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Password"), QString()).toString().toUtf8().data());
     }
