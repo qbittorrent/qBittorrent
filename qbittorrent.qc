@@ -12,7 +12,7 @@
   <dep type='libboost'>
     <required/>
   </dep>
-  <dep type='libcommoncpp2'>
+  <dep type='libcurl'>
     <required/>
   </dep>
   <dep type='libmagick'/>

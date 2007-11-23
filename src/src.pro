@@ -81,7 +81,7 @@ QMAKE_CXXFLAGS_RELEASE += -fwrapv -O2
 QMAKE_CXXFLAGS_DEBUG += -fwrapv -O1
 
 CONFIG += link_pkgconfig
-PKGCONFIG += "libtorrent libccext2 libccgnu2"
+PKGCONFIG += "libtorrent libcurl"
 
 !contains(DEFINES, HAVE_MAGICK){
     message(ImageMagick disabled)

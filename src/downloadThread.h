@@ -29,29 +29,18 @@
 #include <QMutexLocker>
 #include <QWaitCondition>
 #include <QStringList>
-
-namespace ost {
-  class URLStream;
-}
-
-typedef struct {
-  QString IP;
-  int port;
-  QString username;
-  QString password;
-} tmp_proxy;
+#include <curl/curl.h>
 
 class subDownloadThread : public QThread {
   Q_OBJECT
   private:
     QString url;
-    ost::URLStream *url_stream;
     bool abort;
 
   public:
     subDownloadThread(QObject *parent, QString url);
     ~subDownloadThread();
-    QString errorCodeToString(int status);
+    QString errorCodeToString(CURLcode status);
 
   signals:
     // For subthreads
@@ -90,7 +79,6 @@ class downloadThread : public QThread {
 
   protected slots:
     void propagateDownloadedFile(subDownloadThread* st, QString url, QString path);
-
     void propagateDownloadFailure(subDownloadThread* st, QString url, QString reason);
 };
 
