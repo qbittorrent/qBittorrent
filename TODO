@@ -50,13 +50,10 @@
   -> in download list
   -> in seeding list
 
-// TODO v1.0.0
-- Fix libcommoncpp proxy support
-
 rc8->rc9 changelog:
 - FEATURE: Better media file preview (player detected automatically)
 - BUGFIX: Remember properties window size and position
-- BUGFIX: Added proxy support in search engine, RSS, downloads from urls
+- BUGFIX: Added HTTP proxy support in search engine, RSS, downloads from urls
 - BUGFIX: Do no pause torrents before saving fastresume data anymore (no longer needed)
 - BUGFIX: Save fast resume data regularly (every 60 seconds) to avoid downloading from scratch if qBittorrent crashes
 - BUGFIX: Do not save fastresume data for checking torrents anymore
