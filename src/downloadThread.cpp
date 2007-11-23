@@ -27,12 +27,15 @@
 // http://curl.rtin.bz/libcurl/c/libcurl-errors.html
 QString subDownloadThread::errorCodeToString(CURLcode status) {
   switch(status){
+    case CURLE_FTP_CANT_GET_HOST:
     case CURLE_COULDNT_RESOLVE_HOST:
       return tr("Host is unreachable");
     case CURLE_READ_ERROR:
     case CURLE_FILE_COULDNT_READ_FILE:
       return tr("File was not found (404)");
+    case CURLE_FTP_ACCESS_DENIED:
     case CURLE_LOGIN_DENIED:
+    case CURLE_FTP_USER_PASSWORD_INCORRECT:
       return tr("Connection was denied");
     case CURLE_URL_MALFORMAT:
       return tr("Url is invalid");
@@ -81,6 +84,9 @@ void subDownloadThread::run(){
   if(curl) {
     std::string c_url = url.toUtf8().data();
     curl_easy_setopt(curl, CURLOPT_URL, c_url.c_str());
+    // SSL support
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
     // PROXY SUPPORT
     QSettings settings("qBittorrent", "qBittorrent");
     int intValue = settings.value(QString::fromUtf8("Preferences/Connection/ProxyType"), 0).toInt();
