@@ -56,7 +56,7 @@ void RealProgressBar::setThread(const RealProgressBarThread *newThread)
 	thread = newThread;
 }
 */
-void RealProgressBar::paintEvent(QPaintEvent *event)
+void RealProgressBar::paintEvent(QPaintEvent *)
 {
 	QPainter painter(this);
 	painter.drawPixmap(rect(), pixmap);
