@@ -43,7 +43,7 @@
 #define MAX_TRACKER_ERRORS 2
 
 // Main constructor
-bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), max_ratio(-1) {
+bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), max_ratio(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false) {
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
   // Creating bittorrent session
@@ -631,25 +631,49 @@ bool bittorrent::isDHTEnabled() const{
 
 void bittorrent::enableUPnP(bool b) {
   if(b) {
-    s->start_upnp();
+    if(!UPnPEnabled) {
+      qDebug("Enabling UPnP");
+      s->start_upnp();
+      UPnPEnabled = true;  
+    }
   } else {
-    s->stop_upnp();
+    if(UPnPEnabled) {
+      qDebug("Disabling UPnP");
+      s->stop_upnp();
+      UPnPEnabled = false;
+    }
   }
 }
 
 void bittorrent::enableNATPMP(bool b) {
   if(b) {
-    s->start_natpmp();
+    if(!NATPMPEnabled) {
+      qDebug("Enabling NAT-PMP");
+      s->start_natpmp();
+      NATPMPEnabled = true;
+    }
   } else {
-    s->stop_natpmp();
+    if(NATPMPEnabled) {
+      qDebug("Disabling NAT-PMP");
+      s->stop_natpmp();
+      NATPMPEnabled = false;
+    }
   }
 }
 
 void bittorrent::enableLSD(bool b) {
   if(b) {
-    s->start_lsd();
+    if(!LSDEnabled) {
+      qDebug("Enabling LSD");
+      s->start_lsd();
+      LSDEnabled = true;
+    }
   } else {
-    s->stop_lsd();
+    if(LSDEnabled) {
+      qDebug("Disabling LSD");
+      s->stop_lsd();
+      LSDEnabled = false;
+    }
   }
 }
 

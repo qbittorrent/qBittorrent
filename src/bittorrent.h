@@ -62,6 +62,9 @@ class bittorrent : public QObject{
     int maxConnecsPerTorrent;
     int maxUploadsPerTorrent;
     float max_ratio;
+    bool UPnPEnabled;
+    bool NATPMPEnabled;
+    bool LSDEnabled;
 
   protected:
     QString getSavePath(QString hash);

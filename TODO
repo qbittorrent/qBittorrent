@@ -67,3 +67,4 @@ rc8->rc9 changelog:
 - BUGFIX: Fixed HTTP_PW and SOCKS5_PW in proxy combobox
 - BUGFIX: Fixed proxy auth disable problem when disabling proxy
 - BUGFIX: Fixed proxy layout in program preferences
+- BUGFIX: Fixed everlasting libtorrent session destruction on exit
