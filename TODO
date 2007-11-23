@@ -53,7 +53,8 @@
 rc8->rc9 changelog:
 - FEATURE: Better media file preview (player detected automatically)
 - BUGFIX: Remember properties window size and position
-- BUGFIX: Added HTTP proxy support in search engine, RSS, downloads from urls
+- BUGFIX: Added HTTP and SOCKS5 proxy support in downloads from urls, RSS
+- BUGFIX: Added HTTP proxy support in search engine (no SOCKS yet)
 - BUGFIX: Do no pause torrents before saving fastresume data anymore (no longer needed)
 - BUGFIX: Save fast resume data regularly (every 60 seconds) to avoid downloading from scratch if qBittorrent crashes
 - BUGFIX: Do not save fastresume data for checking torrents anymore
