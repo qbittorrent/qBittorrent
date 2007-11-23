@@ -52,7 +52,6 @@
 
 // TODO v1.0.0
 - Fix libcommoncpp proxy support
-- Fix layout in preferences/Proxy
 
 rc8->rc9 changelog:
 - FEATURE: Better media file preview (player detected automatically)
@@ -67,3 +66,4 @@ rc8->rc9 changelog:
 - BUGFIX: title bar is now reset when "Display speed in title" is disabled
 - BUGFIX: Fixed HTTP_PW and SOCKS5_PW in proxy combobox
 - BUGFIX: Fixed proxy auth disable problem when disabling proxy
+- BUGFIX: Fixed proxy layout in program preferences
