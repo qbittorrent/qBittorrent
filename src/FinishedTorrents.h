@@ -57,6 +57,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
   protected slots:
     void showProperties(const QModelIndex &index);
     void displayFinishedListMenu(const QPoint&);
+    void displayFinishedHoSMenu(const QPoint&);
     void setRowColor(int row, QString color);
     void saveColWidthFinishedList() const;
     void sortFinishedList(int index);
@@ -66,6 +67,13 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void torrentAdded(QString path, QTorrentHandle& h, bool fastResume);
     void on_actionSet_upload_limit_triggered();
     void notifyTorrentDoubleClicked(const QModelIndex& index);
+    void hideOrShowColumnName();
+    void hideOrShowColumnSize();
+    void hideOrShowColumnProgress();
+    void hideOrShowColumnUpSpeed();
+    void hideOrShowColumnLeechers();
+    void hideOrShowColumnRatio();
+    void resetAllColumns();
 
   public slots:
     void addTorrent(QString hash);
@@ -75,13 +83,6 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void propertiesSelection();
     void deleteTorrent(QString hash);
     void showPropertiesFromHash(QString hash);
-    void hideOrShowColumnName();
-    void hideOrShowColumnSize();
-    void hideOrShowColumnProgress();
-    void hideOrShowColumnUpSpeed();
-    void hideOrShowColumnLeechers();
-    void hideOrShowColumnRatio();
-    void resetAllColumns();
 
   signals:
     void torrentMovedFromFinishedList(QString);

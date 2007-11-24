@@ -69,6 +69,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void notifyTorrentDoubleClicked(const QModelIndex& index);
     void on_actionSet_upload_limit_triggered();
     void displayDLListMenu(const QPoint& pos);
+    void displayDLHoSMenu(const QPoint&);
     void on_actionClearLog_triggered();
     void displayInfoBarMenu(const QPoint& pos);
     void addTorrent(QString hash);
@@ -83,6 +84,15 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void setRowColor(int row, QColor color);
     void displayDownloadingUrlInfos(QString url);
     void showProperties(const QModelIndex &index);
+    void hideOrShowColumnName();
+    void hideOrShowColumnSize();
+    void hideOrShowColumnProgress();
+    void hideOrShowColumnDownSpeed();
+    void hideOrShowColumnUpSpeed();
+    void hideOrShowColumnSeedersLeechers();
+    void hideOrShowColumnRatio();
+    void hideOrShowColumnEta();
+    void resetAllColumns();
 
   public slots:
     void updateDlList();
@@ -96,15 +106,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void sortProgressColumnDelayed();
     void updateFileSizeAndProgress(QString hash);
     void showPropertiesFromHash(QString hash);
-    void hideOrShowColumnName();
-    void hideOrShowColumnSize();
-    void hideOrShowColumnProgress();
-    void hideOrShowColumnDownSpeed();
-    void hideOrShowColumnUpSpeed();
-    void hideOrShowColumnSeedersLeechers();
-    void hideOrShowColumnRatio();
-    void hideOrShowColumnEta();
-    void resetAllColumns();
+
 };
 
 #endif

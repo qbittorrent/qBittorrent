@@ -59,6 +59,9 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   finishedListDelegate = new FinishedListDelegate(finishedList);
   finishedList->setItemDelegate(finishedListDelegate);
   connect(finishedList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFinishedListMenu(const QPoint&)));
+  finishedList->header()->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(finishedList->header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFinishedHoSMenu(const QPoint&)));
+
   connect(finishedList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(notifyTorrentDoubleClicked(const QModelIndex&)));
   actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")));
   actionPreview_file->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")));
@@ -377,26 +380,32 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
   myFinishedListMenu.addSeparator();
   myFinishedListMenu.addAction(actionOpen_destination_folder);
   myFinishedListMenu.addAction(actionTorrent_Properties);
-  // hide/show columns menu
-  QMenu hideshowColumn(this);
-  hideshowColumn.setTitle(tr("Hide or Show Column"));
-  for(int i=0; i<=F_RATIO; i++) {
-    hideshowColumn.addAction(getActionHoSCol(i));
-  }
-  hideshowColumn.addAction(actionResizeAllColumns);
-  myFinishedListMenu.addMenu(&hideshowColumn);
 
   // Call menu
   // XXX: why mapToGlobal() is not enough?
   myFinishedListMenu.exec(mapToGlobal(pos)+QPoint(10,55));
 }
 
+
 /*
  * Hiding Columns functions
  */
 
+// hide/show columns menu
+void FinishedTorrents::displayFinishedHoSMenu(const QPoint& pos){
+  QMenu hideshowColumn(this);
+  hideshowColumn.setTitle(tr("Hide or Show Column"));
+  for(int i=0; i<=F_RATIO; i++) {
+    hideshowColumn.addAction(getActionHoSCol(i));
+  }
+  hideshowColumn.addAction(actionResizeAllColumns);
+  // Call menu
+  hideshowColumn.exec(mapToGlobal(pos)+QPoint(10,55));
+}
+
 // toggle hide/show a column
 void FinishedTorrents::hideOrShowColumn(int index) {
+  short nbColumns = 0;
   if(!finishedList->isColumnHidden(index)) {
     unsigned short i=0, nbColDisplayed = 0;
     while(i<finishedListModel->columnCount()-1 && nbColDisplayed<=1) {
@@ -406,25 +415,31 @@ void FinishedTorrents::hideOrShowColumn(int index) {
     }
     // can't hide a lonely column
     if(nbColDisplayed>1) {
+      //resize all others non-hidden columns
+      for(int i=0; i<finishedListModel->columnCount()-1; i++) {
+        if(finishedList->isColumnHidden(i) == false)
+          nbColumns++;
+      }
+      for(int i=0; i<finishedListModel->columnCount()-1; i++) {
+        if(i != index) {
+          finishedList->setColumnWidth(i, (int)ceil(finishedList->columnWidth(i)+(finishedList->columnWidth(index)/(nbColumns-1))));
+        }
+      }
       finishedList->setColumnHidden(index, true);
       getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
     }
   } else {
     //short buf_width = finishedList->columnWidth(index);
-    short nbColumns = 0;
     finishedList->setColumnHidden(index, false);
-    /*finishedList->resizeColumnToContents(index); 
-    if(finishedList->columnWidth(index)<buf_width)
-      finishedList->setColumnWidth(index, buf_width);*/
     getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
     //resize all others non-hidden columns
     for(int i=0; i<finishedListModel->columnCount()-1; i++) {
-      if(finishedList->isColumnHidden(i))
+      if(finishedList->isColumnHidden(i) == false)
         nbColumns++;
     }
     for(int i=0; i<finishedListModel->columnCount()-1; i++) {
       if(i != index) {
-        finishedList->setColumnWidth(i, (int)floor(finishedList->columnWidth(i)-(finishedList->columnWidth(index)/(nbColumns-1))));
+        finishedList->setColumnWidth(i, (int)ceil(finishedList->columnWidth(i)-(finishedList->columnWidth(index)/(nbColumns-1))));
       }
     }
   }

@@ -87,6 +87,8 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   connect(downloadList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(notifyTorrentDoubleClicked(const QModelIndex&)));
   connect(downloadList->header(), SIGNAL(sectionPressed(int)), this, SLOT(sortDownloadList(int)));
   connect(downloadList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLListMenu(const QPoint&)));
+  downloadList->header()->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(downloadList->header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLHoSMenu(const QPoint&)));
   connect(infoBar, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayInfoBarMenu(const QPoint&)));
   // Actions
   connect(actionPause, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionPause_triggered()));
@@ -297,14 +299,6 @@ void DownloadingTorrents::displayDLListMenu(const QPoint& pos) {
   myDLLlistMenu.addSeparator();
   myDLLlistMenu.addAction(actionOpen_destination_folder);
   myDLLlistMenu.addAction(actionTorrent_Properties);
-  // hide/show columns menu
-  QMenu hideshowColumn(this);
-  hideshowColumn.setTitle(tr("Hide or Show Column"));
-  for(int i=0; i<=ETA; i++) {
-    hideshowColumn.addAction(getActionHoSCol(i));
-  }
-  hideshowColumn.addAction(actionResizeAllColumns);
-  myDLLlistMenu.addMenu(&hideshowColumn);
   // Call menu
   // XXX: why mapToGlobal() is not enough?
   myDLLlistMenu.exec(mapToGlobal(pos)+QPoint(10,60));
@@ -315,8 +309,21 @@ void DownloadingTorrents::displayDLListMenu(const QPoint& pos) {
  * Hiding Columns functions
  */
 
+// hide/show columns menu
+void DownloadingTorrents::displayDLHoSMenu(const QPoint& pos){
+  QMenu hideshowColumn(this);
+  hideshowColumn.setTitle(tr("Hide or Show Column"));
+  for(int i=0; i<=ETA; i++) {
+    hideshowColumn.addAction(getActionHoSCol(i));
+  }
+  hideshowColumn.addAction(actionResizeAllColumns);
+  // Call menu
+  hideshowColumn.exec(mapToGlobal(pos)+QPoint(10,55));
+}
+
 // toggle hide/show a column
 void DownloadingTorrents::hideOrShowColumn(int index) {
+  short nbColumns = 0;
   if(!downloadList->isColumnHidden(index)) {
     unsigned short i=0, nbColDisplayed = 0;
     while(i<DLListModel->columnCount()-1 && nbColDisplayed<=1) {
@@ -326,21 +333,31 @@ void DownloadingTorrents::hideOrShowColumn(int index) {
     }
     // can't hide a lonely column
     if(nbColDisplayed>1) {
+      //resize all others non-hidden columns
+      for(int i=0; i<DLListModel->columnCount()-1; i++) {
+        if(downloadList->isColumnHidden(i) == false)
+          nbColumns++;
+      }
+      for(int i=0; i<DLListModel->columnCount()-1; i++) {
+        if(i != index) {
+          downloadList->setColumnWidth(i, (int)ceil(downloadList->columnWidth(i)+(downloadList->columnWidth(index)/(nbColumns-1))));
+        }
+      }
       downloadList->setColumnHidden(index, true);
       getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
     }
   } else {
-    short nbColumns = 0;
+    //short buf_width = finishedList->columnWidth(index);
     downloadList->setColumnHidden(index, false);
     getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
     //resize all others non-hidden columns
     for(int i=0; i<DLListModel->columnCount()-1; i++) {
-      if(downloadList->isColumnHidden(i))
+      if(downloadList->isColumnHidden(i) == false)
         nbColumns++;
     }
     for(int i=0; i<DLListModel->columnCount()-1; i++) {
       if(i != index) {
-        downloadList->setColumnWidth(i, (int)floor(downloadList->columnWidth(i)-(downloadList->columnWidth(index)/(nbColumns-1))));
+        downloadList->setColumnWidth(i, (int)ceil(downloadList->columnWidth(i)-(downloadList->columnWidth(index)/(nbColumns-1))));
       }
     }
   }
