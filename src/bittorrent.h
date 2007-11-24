@@ -62,6 +62,9 @@ class bittorrent : public QObject{
     int maxConnecsPerTorrent;
     int maxUploadsPerTorrent;
     float max_ratio;
+    bool UPnPEnabled;
+    bool NATPMPEnabled;
+    bool LSDEnabled;
 
   protected:
     QString getSavePath(QString hash);
@@ -99,7 +102,6 @@ class bittorrent : public QObject{
     void preAllocateAllFiles(bool b);
     void saveFastResumeAndRatioData();
     void saveFastResumeAndRatioData(QString hash);
-    void saveFastResumeAndRatioDataUnfinished();
     void enableDirectoryScanning(QString scan_dir);
     void disableDirectoryScanning();
     void enablePeerExchange();

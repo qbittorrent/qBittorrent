@@ -871,6 +871,7 @@ void options_imp::enableProxy(int index){
     textProxyIP->setEnabled(false);
     lblProxyPort->setEnabled(false);
     spinProxyPort->setEnabled(false);
+    checkProxyAuth->setChecked(false);
     checkProxyAuth->setEnabled(false);
     ProxyConnecsBox->setEnabled(false);
   }

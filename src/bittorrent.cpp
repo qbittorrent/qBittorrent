@@ -43,7 +43,7 @@
 #define MAX_TRACKER_ERRORS 2
 
 // Main constructor
-bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), max_ratio(-1) {
+bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), max_ratio(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false) {
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
   // Creating bittorrent session
@@ -59,7 +59,7 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   connect(ETARefresher, SIGNAL(timeout()), this, SLOT(updateETAs()));
   ETARefresher->start(ETA_REFRESH_INTERVAL);
   fastResumeSaver = new QTimer();
-  connect(fastResumeSaver, SIGNAL(timeout()), this, SLOT(saveFastResumeAndRatioDataUnfinished()));
+  connect(fastResumeSaver, SIGNAL(timeout()), this, SLOT(saveFastResumeAndRatioData()));
   fastResumeSaver->start(60000);
   // To download from urls
   downloader = new downloadThread(this);
@@ -321,6 +321,8 @@ bool bittorrent::pauseTorrent(QString hash) {
   if(h.is_valid() && !h.is_paused()) {
     h.pause();
     change = true;
+    // Save fast resume data
+    saveFastResumeAndRatioData(hash);
     qDebug("Torrent paused successfully");
   }else{
     if(!h.is_valid()) {
@@ -629,25 +631,49 @@ bool bittorrent::isDHTEnabled() const{
 
 void bittorrent::enableUPnP(bool b) {
   if(b) {
-    s->start_upnp();
+    if(!UPnPEnabled) {
+      qDebug("Enabling UPnP");
+      s->start_upnp();
+      UPnPEnabled = true;  
+    }
   } else {
-    s->stop_upnp();
+    if(UPnPEnabled) {
+      qDebug("Disabling UPnP");
+      s->stop_upnp();
+      UPnPEnabled = false;
+    }
   }
 }
 
 void bittorrent::enableNATPMP(bool b) {
   if(b) {
-    s->start_natpmp();
+    if(!NATPMPEnabled) {
+      qDebug("Enabling NAT-PMP");
+      s->start_natpmp();
+      NATPMPEnabled = true;
+    }
   } else {
-    s->stop_natpmp();
+    if(NATPMPEnabled) {
+      qDebug("Disabling NAT-PMP");
+      s->stop_natpmp();
+      NATPMPEnabled = false;
+    }
   }
 }
 
 void bittorrent::enableLSD(bool b) {
   if(b) {
-    s->start_lsd();
+    if(!LSDEnabled) {
+      qDebug("Enabling LSD");
+      s->start_lsd();
+      LSDEnabled = true;
+    }
   } else {
-    s->stop_lsd();
+    if(LSDEnabled) {
+      qDebug("Disabling LSD");
+      s->stop_lsd();
+      LSDEnabled = false;
+    }
   }
 }
 
@@ -833,32 +859,23 @@ void bittorrent::saveDownloadUploadForTorrent(QString hash) {
   ratio_file.close();
 }
 
-// Only save fast resume data for unfinished torrents (Optimization)
-void bittorrent::saveFastResumeAndRatioDataUnfinished() {
+// Only save fast resume data for unfinished and unpaused torrents (Optimization)
+// Called periodically and on exit
+void bittorrent::saveFastResumeAndRatioData() {
   QString hash;
   QStringList hashes = getUnfinishedTorrents();
   foreach(hash, hashes) {
-    saveFastResumeAndRatioData(hash);
-  }
-}
-
-// Save fastresume data for all torrents (called periodically)
-void bittorrent::saveFastResumeAndRatioData() {
-  qDebug("Saving fast resume and ratio data");
-  std::vector<torrent_handle> handles = s->get_torrents();
-  // It is not necessary to pause the torrents before saving fastresume data anymore
-  // because we either use Full allocation or sparse mode.
-  // Write fast resume data
-  for(unsigned int i=0; i<handles.size(); ++i) {
-    QTorrentHandle h = handles[i];
+    QTorrentHandle h = getTorrentHandle(hash);
     if(!h.is_valid()) {
       qDebug("/!\\ Error: Invalid handle");
       continue;
     }
-    QString hash = h.hash();
+    if(h.is_paused()) {
+      // Do not need to save fast resume data for paused torrents
+      continue;
+    }
     saveFastResumeAndRatioData(hash);
   }
-  qDebug("Fast resume and ratio data saved");
 }
 
 void bittorrent::saveFastResumeAndRatioData(QString hash) {

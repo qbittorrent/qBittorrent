@@ -11,7 +11,7 @@ TARGET = qbittorrent
 CONFIG += qt thread x11 network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v1.0.0rc8\\\"
+DEFINES += VERSION=\\\"v1.0.0rc9\\\"
 DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=0
 DEFINES += VERSION_BUGFIX=0
@@ -81,7 +81,7 @@ QMAKE_CXXFLAGS_RELEASE += -fwrapv -O2
 QMAKE_CXXFLAGS_DEBUG += -fwrapv -O1
 
 CONFIG += link_pkgconfig
-PKGCONFIG += libtorrent libccext2 libccgnu2
+PKGCONFIG += "libtorrent libcurl"
 
 !contains(DEFINES, HAVE_MAGICK){
   message(ImageMagick disabled)

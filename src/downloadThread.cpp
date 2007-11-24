@@ -21,56 +21,48 @@
 
 #include "downloadThread.h"
 #include <iostream>
-#include <cc++/common.h>
 #include <QSettings>
+#include <stdio.h>
 
-QString subDownloadThread::errorCodeToString(int status) {
+// http://curl.rtin.bz/libcurl/c/libcurl-errors.html
+QString subDownloadThread::errorCodeToString(CURLcode status) {
   switch(status){
-    case 1://ost::URLStream::errUnreachable:
+    case CURLE_FTP_CANT_GET_HOST:
+    case CURLE_COULDNT_RESOLVE_HOST:
       return tr("Host is unreachable");
-    case 2://ost::URLStream::errMissing:
+    case CURLE_READ_ERROR:
+    case CURLE_FILE_COULDNT_READ_FILE:
       return tr("File was not found (404)");
-    case 3://ost::URLStream::errDenied:
+    case CURLE_FTP_ACCESS_DENIED:
+    case CURLE_LOGIN_DENIED:
+    case CURLE_FTP_USER_PASSWORD_INCORRECT:
       return tr("Connection was denied");
-    case 4://ost::URLStream::errInvalid:
+    case CURLE_URL_MALFORMAT:
       return tr("Url is invalid");
-    case 5://ost::URLStream::errForbidden:
-      return tr("Connection forbidden (403)");
-    case 6://ost::URLStream::errUnauthorized:
-      return tr("Connection was not authorized (401)");
-    case 7://ost::URLStream::errRelocated:
-      return tr("Content has moved (301)");
-    case 8://ost::URLStream::errFailure:
+    case CURLE_COULDNT_RESOLVE_PROXY:
+      return tr("Could not resolve proxy");
+    //case 5:
+    //  return tr("Connection forbidden (403)");
+    //case 6:
+    //  return tr("Connection was not authorized (401)");
+    //case 7:
+    //  return tr("Content has moved (301)");
+    case CURLE_COULDNT_CONNECT:
       return tr("Connection failure");
-    case 9://ost::URLStream::errTimeout:
+    case CURLE_OPERATION_TIMEOUTED:
       return tr("Connection was timed out");
-    case 10://ost::URLStream::errInterface:
+    case CURLE_INTERFACE_FAILED:
       return tr("Incorrect network interface");
     default:
       return tr("Unknown error");
   }
 }
 
-subDownloadThread::subDownloadThread(QObject *parent, QString url) : QThread(parent), url(url), abort(false){
-  url_stream = new ost::URLStream();
-  // Proxy support
-  QSettings settings("qBittorrent", "qBittorrent");
-  int intValue = settings.value(QString::fromUtf8("Preferences/Connection/ProxyType"), 0).toInt();
-  if(intValue > 0) {
-    // Proxy enabled
-    url_stream->setProxy(settings.value(QString::fromUtf8("Preferences/Connection/Proxy/IP"), "0.0.0.0").toString().toUtf8().data(), settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Port"), 8080).toInt());
-    if(settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Authentication"), false).toBool()) {
-      // Authentication required
-      url_stream->setProxyUser(settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Username"), QString()).toString().toUtf8().data());
-      url_stream->setProxyPassword(settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Password"), QString()).toString().toUtf8().data());
-    }
-  }
-}
+subDownloadThread::subDownloadThread(QObject *parent, QString url) : QThread(parent), url(url), abort(false){}
 
 subDownloadThread::~subDownloadThread(){
   abort = true;
   wait();
-  delete url_stream;
 }
 
 void subDownloadThread::run(){
@@ -81,38 +73,57 @@ void subDownloadThread::run(){
     filePath = tmpfile->fileName();
   }
   delete tmpfile;
-  QFile dest_file(filePath);
-  if(!dest_file.open(QIODevice::WriteOnly | QIODevice::Text)){
-    std::cerr << "Error: could't create temporary file: " << (const char*)filePath.toUtf8() << '\n';
+  FILE *f = fopen(filePath.toUtf8().data(), "w");
+  if(!f) {
+    std::cerr << "couldn't open destination file" << "\n";
     return;
   }
-  ost::URLStream::Error status = url_stream->get((const char*)url.toUtf8());
-  if(status){
-      // Failure
-    QString error_msg = errorCodeToString((int)status);
-    qDebug("Download failed for %s, reason: %s", (const char*)url.toUtf8(), (const char*)error_msg.toUtf8());
-    url_stream->close();
-    emit downloadFailureST(this, url, error_msg);
-    return;
-  }
-  qDebug("Downloading %s...", (const char*)url.toUtf8());
-  char cbuf[1024];
-  int len;
-  while(!url_stream->eof()) {
-    url_stream->read(cbuf, sizeof(cbuf));
-    len = url_stream->gcount();
-    if(len > 0)
-      dest_file.write(cbuf, len);
-    if(abort){
-      dest_file.close();
-      url_stream->close();
-      return;
+  CURL *curl;
+  CURLcode res;
+  curl = curl_easy_init();
+  if(curl) {
+    std::string c_url = url.toUtf8().data();
+    curl_easy_setopt(curl, CURLOPT_URL, c_url.c_str());
+    // SSL support
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
+    // PROXY SUPPORT
+    QSettings settings("qBittorrent", "qBittorrent");
+    int intValue = settings.value(QString::fromUtf8("Preferences/Connection/ProxyType"), 0).toInt();
+    if(intValue > 0) {
+      // Proxy enabled
+      QString IP = settings.value(QString::fromUtf8("Preferences/Connection/Proxy/IP"), "0.0.0.0").toString();
+      QString port = settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Port"), 8080).toString();
+      qDebug("Using proxy: %s", (IP+QString(":")+port).toUtf8().data());
+      curl_easy_setopt(curl, CURLOPT_PROXYPORT, (IP+QString(":")+port).toUtf8().data());
+      // Default proxy type is HTTP, we must change if it is SOCKS5
+      if(intValue%2==0) {
+        qDebug("Proxy is SOCKS5, not HTTP");
+        curl_easy_setopt(curl, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+      }
+      // Authentication?
+      if(intValue > 2) {
+        qDebug("Proxy requires authentication, authenticating");
+        QString username = settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Username"), QString()).toString();
+        QString password = settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Password"), QString()).toString();
+        curl_easy_setopt(curl, CURLOPT_PROXYUSERPWD, (username+QString(":")+password).toUtf8().data());
+      }
     }
+    // TODO: define CURLOPT_WRITEFUNCTION or it will crash on windows
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, f);
+    qDebug("Downloading %s", url.toUtf8().data());
+    res = curl_easy_perform(curl);
+    /* always cleanup */
+    curl_easy_cleanup(curl);
+    fclose(f);
+    if(res) {
+      emit downloadFailureST(this, url, errorCodeToString(res));
+    } else {
+      emit downloadFinishedST(this, url, filePath);      
+    }
+  } else {
+    std::cerr << "Could not initialize CURL" << "\n";
   }
-  dest_file.close();
-  url_stream->close();
-  emit downloadFinishedST(this, url, filePath);
-  qDebug("download completed here: %s", (const char*)filePath.toUtf8());
 }
 
 /** Download Thread **/
