@@ -545,7 +545,9 @@ void DownloadingTorrents::updateDlList() {
       // No need to update a paused torrent
       if(h.is_paused()) continue;
       if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) != -1) {
-         DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+        if(!downloadList->isColumnHidden(PROGRESS)) {
+          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+        }
          continue;
       }
       // Parse download state
@@ -562,43 +564,71 @@ void DownloadingTorrents::updateDlList() {
         case torrent_status::queued_for_checking:
           DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
           setRowColor(row, QString::fromUtf8("grey"));
-          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+          if(!downloadList->isColumnHidden(PROGRESS)) {
+            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+          }
           break;
         case torrent_status::connecting_to_tracker:
           if(h.download_payload_rate() > 0) {
             // Display "Downloading" status when connecting if download speed > 0
-            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)BTSession->getETA(hash)));
+            if(!downloadList->isColumnHidden(ETA)) {
+              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)BTSession->getETA(hash)));
+            }
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png"))), Qt::DecorationRole);
             setRowColor(row, QString::fromUtf8("green"));
           }else{
-            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+            if(!downloadList->isColumnHidden(ETA)) {
+              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+            }
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/connecting.png"))), Qt::DecorationRole);
             setRowColor(row, QString::fromUtf8("grey"));
           }
-          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
-          DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
-          DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
+          if(!downloadList->isColumnHidden(PROGRESS)) {
+            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+          }
+          if(!downloadList->isColumnHidden(DLSPEED)) {
+            DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
+          }
+          if(!downloadList->isColumnHidden(UPSPEED)) {
+            DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
+          }
           break;
         case torrent_status::downloading:
         case torrent_status::downloading_metadata:
           if(h.download_payload_rate() > 0) {
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png"))), Qt::DecorationRole);
-            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)BTSession->getETA(hash)));
+            if(!downloadList->isColumnHidden(ETA)) {
+              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)BTSession->getETA(hash)));
+            }
             setRowColor(row, QString::fromUtf8("green"));
           }else{
             DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
-            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+            if(!downloadList->isColumnHidden(ETA)) {
+              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+            }
             setRowColor(row, QPalette::WindowText);
           }
-          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
-          DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
-          DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
+          if(!downloadList->isColumnHidden(PROGRESS)) {
+            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+          }
+          if(!downloadList->isColumnHidden(DLSPEED)) {
+            DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
+          }
+          if(!downloadList->isColumnHidden(UPSPEED)) {
+            DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
+          }
           break;
         default:
-          DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+          if(!downloadList->isColumnHidden(ETA)) {
+            DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+          }
       }
-      DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(misc::toQString(h.num_seeds(), true)+QString::fromUtf8("/")+misc::toQString(h.num_peers() - h.num_seeds(), true)));
-      DLListModel->setData(DLListModel->index(row, RATIO), QVariant(misc::toQString(BTSession->getRealRatio(hash))));
+      if(!downloadList->isColumnHidden(SEEDSLEECH)) {
+        DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(misc::toQString(h.num_seeds(), true)+QString::fromUtf8("/")+misc::toQString(h.num_peers() - h.num_seeds(), true)));
+      }
+      if(!downloadList->isColumnHidden(RATIO)) {
+        DLListModel->setData(DLListModel->index(row, RATIO), QVariant(misc::toQString(BTSession->getRealRatio(hash))));
+      }
     }catch(invalid_handle e) {
       continue;
     }

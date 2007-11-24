@@ -240,7 +240,9 @@ void FinishedTorrents::updateFinishedList(){
     Q_ASSERT(row != -1);
     if(h.is_paused()) continue;
     if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) != -1) {
-      finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)h.progress()));
+      if(!finishedList->isColumnHidden(F_PROGRESS)) {
+        finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)h.progress()));
+      }
       continue;
     }
     if(h.state() == torrent_status::downloading || (h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking && h.progress() < 1.)) {
@@ -254,15 +256,25 @@ void FinishedTorrents::updateFinishedList(){
     if(h.state() == torrent_status::checking_files){
       finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
       setRowColor(row, QString::fromUtf8("grey"));
-      finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)h.progress()));
+      if(!finishedList->isColumnHidden(F_PROGRESS)) {
+        finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)h.progress()));
+      }
       continue;
     }
     setRowColor(row, QString::fromUtf8("orange"));
     finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png"))), Qt::DecorationRole);
-    finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), QVariant((double)h.upload_payload_rate()));
-    finishedListModel->setData(finishedListModel->index(row, F_SEEDSLEECH), misc::toQString(h.num_peers() - h.num_seeds(), true));
-    finishedListModel->setData(finishedListModel->index(row, F_RATIO), QVariant(misc::toQString(BTSession->getRealRatio(hash))));
-    finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)1.));
+    if(!finishedList->isColumnHidden(F_UPSPEED)) {
+      finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), QVariant((double)h.upload_payload_rate()));
+    }
+    if(!finishedList->isColumnHidden(F_SEEDSLEECH)) {
+      finishedListModel->setData(finishedListModel->index(row, F_SEEDSLEECH), misc::toQString(h.num_peers() - h.num_seeds(), true));
+    }
+    if(!finishedList->isColumnHidden(F_RATIO)) {
+      finishedListModel->setData(finishedListModel->index(row, F_RATIO), QVariant(misc::toQString(BTSession->getRealRatio(hash))));
+    }
+    if(!finishedList->isColumnHidden(F_PROGRESS)) {
+      finishedListModel->setData(finishedListModel->index(row, F_PROGRESS), QVariant((double)1.));
+    }
   }
 }
 
