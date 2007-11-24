@@ -29,6 +29,7 @@
 - Allow user to organize the downloads into categories/folders?
 
 // in v1.1.0
+<<<<<<< .courant
 - Tabs support in search
 - Allow to hide columns?
 - Allow to scan multiple directories? (useful?)
@@ -50,22 +51,5 @@
   -> in download list
   -> in seeding list
 
-// V1.0.0 TODO
-- Choose a better ETA calculation algorithm (and avoid overflows)
-
-rc8->rc9 changelog:
-- FEATURE: Better media file preview (player detected automatically)
-- BUGFIX: Remember properties window size and position
-- BUGFIX: Added HTTP and SOCKS5 proxy support in downloads from urls, RSS
-- BUGFIX: Added HTTP proxy support in search engine (no SOCKS yet)
-- BUGFIX: Do no pause torrents before saving fastresume data anymore (no longer needed)
-- BUGFIX: Save fast resume data regularly (every 60 seconds) to avoid downloading from scratch if qBittorrent crashes
-- BUGFIX: Do not save fastresume data for checking torrents anymore
-- BUGFIX: Saving trackers file only when necessary
-- BUGFIX: Fixed possible segfault when unfiltering files in torrent addition dialog
-- BUGFIX: Fixed possible overflow in ETA calculation
-- BUGFIX: title bar is now reset when "Display speed in title" is disabled
-- BUGFIX: Fixed HTTP_PW and SOCKS5_PW in proxy combobox
-- BUGFIX: Fixed proxy auth disable problem when disabling proxy
-- BUGFIX: Fixed proxy layout in program preferences
-- BUGFIX: Fixed everlasting libtorrent session destruction on exit
+rc9->rc10 changelog:
+- FEATURE: Greatly improved ETA calculation algorithm (use GASA)

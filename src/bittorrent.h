@@ -25,6 +25,7 @@
 #include <QList>
 #include <QPair>
 #include <QStringList>
+#include <QDateTime>
 
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
@@ -45,14 +46,14 @@ class bittorrent : public QObject{
     QTimer *timerScan;
     QTimer *timerAlerts;
     QTimer *fastResumeSaver;
+    QTimer *BigRatioTimer;
     bool DHTEnabled;
     downloadThread *downloader;
     QString defaultSavePath;
     QStringList torrentsToPauseAfterChecking;
-    QHash<QString, QList<qlonglong> > ETAstats;
-    QHash<QString, qlonglong> ETAs;
+    QHash<QString, QDateTime> TorrentsStartTime;
+    QHash<QString, size_type> TorrentsStartData;
     QHash<QString, QPair<size_type,size_type> > ratioData;
-    QTimer *ETARefresher;
     QHash<QString, QList<QPair<QString, QString> > > trackersErrors;
     deleteThread *deleter;
     QStringList finishedTorrents;
@@ -82,7 +83,7 @@ class bittorrent : public QObject{
     session_status getSessionStatus() const;
     int getListenPort() const;
     QStringList getTorrentsToPauseAfterChecking() const;
-    long getETA(QString hash) const;
+    qlonglong getETA(QString hash) const;
     float getRealRatio(QString hash) const;
     session* getSession() const;
     QList<QPair<QString, QString> > getTrackersErrors(QString hash) const;
@@ -108,7 +109,6 @@ class bittorrent : public QObject{
     void enableIPFilter(ip_filter filter);
     void disableIPFilter();
     void resumeUnfinishedTorrents();
-    void updateETAs();
     void saveTorrentSpeedLimits(QString hash);
     void loadTorrentSpeedLimits(QString hash);
     void saveDownloadUploadForTorrent(QString hash);

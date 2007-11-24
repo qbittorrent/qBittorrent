@@ -298,7 +298,7 @@ class misc : public QObject{
 
     // Take a number of seconds and return an user-friendly
     // time duration like "1d 2h 10m".
-    static QString userFriendlyDuration(const long int seconds) {
+    static QString userFriendlyDuration(qlonglong seconds) {
       if(seconds < 0) {
         return tr("Unknown");
       }
