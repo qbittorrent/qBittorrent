@@ -50,6 +50,9 @@
   -> in download list
   -> in seeding list
 
+// V1.0.0 TODO
+- Choose a better ETA calculation algorithm (and avoid overflows)
+
 rc8->rc9 changelog:
 - FEATURE: Better media file preview (player detected automatically)
 - BUGFIX: Remember properties window size and position
