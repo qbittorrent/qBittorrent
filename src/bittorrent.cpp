@@ -38,8 +38,6 @@
 #include <libtorrent/torrent_info.hpp>
 #include <boost/filesystem/exception.hpp>
 
-#define ETAS_MAX_VALUES 3
-#define ETA_REFRESH_INTERVAL 10000
 #define MAX_TRACKER_ERRORS 2
 
 // Main constructor
@@ -55,9 +53,6 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   timerAlerts = new QTimer();
   connect(timerAlerts, SIGNAL(timeout()), this, SLOT(readAlerts()));
   timerAlerts->start(3000);
-  ETARefresher = new QTimer();
-  connect(ETARefresher, SIGNAL(timeout()), this, SLOT(updateETAs()));
-  ETARefresher->start(ETA_REFRESH_INTERVAL);
   fastResumeSaver = new QTimer();
   connect(fastResumeSaver, SIGNAL(timeout()), this, SLOT(saveFastResumeAndRatioData()));
   fastResumeSaver->start(60000);
@@ -67,6 +62,7 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
   // File deleter (thread)
   deleter = new deleteThread(this);
+  BigRatioTimer = 0;  
   qDebug("* BTSession constructed");
 }
 
@@ -87,7 +83,8 @@ bittorrent::~bittorrent() {
   delete deleter;
   delete fastResumeSaver;
   delete timerAlerts;
-  delete ETARefresher;
+  if(BigRatioTimer != 0)
+    delete BigRatioTimer;
   delete downloader;
   // Delete BT session
   qDebug("Deleting session");
@@ -154,57 +151,34 @@ void bittorrent::startTorrentsInPause(bool b) {
   addInPause = b;
 }
 
-void bittorrent::updateETAs() {
-  QString hash;
-  foreach(hash, unfinishedTorrents) {
-    QTorrentHandle h = getTorrentHandle(hash);
-    if(h.is_valid()) {
-      if(h.is_paused()) continue;
-      QString hash = h.hash();
-      QList<qlonglong> listEtas = ETAstats.value(hash, QList<qlonglong>());
-      // XXX: We can still get an overflow if remaining file size is approximately
-      // 8.38*10^5 TiB (let's assume this can't happen)
-      if(h.download_payload_rate() > 0.1) {
-        if(listEtas.size() == ETAS_MAX_VALUES) {
-            listEtas.removeFirst();
-        }
-        listEtas << (qlonglong)((h.actual_size()-h.total_wanted_done())/(double)h.download_payload_rate());
-        ETAstats[hash] = listEtas;
-        qlonglong moy = 0;
-        qlonglong val;
-        unsigned int nbETAs = listEtas.size();
-        Q_ASSERT(nbETAs);
-        foreach(val, listEtas) {
-          moy += (qlonglong)((double)val/(double)nbETAs);
-        }
-        if(moy < 0) {
-          if(ETAstats.contains(hash)) {
-            ETAstats.remove(hash);
-          }
-          if(ETAs.contains(hash)) {
-            ETAs.remove(hash);
-          }
-        } else {
-          ETAs[hash] = moy;
-        }
+// Calculate the ETA using GASA
+// GASA: global Average Speed Algorithm
+qlonglong bittorrent::getETA(QString hash) const {
+  QTorrentHandle h = getTorrentHandle(hash);
+  if(!h.is_valid()) return -1;
+  switch(h.state()) {
+    case torrent_status::downloading:
+    case torrent_status::connecting_to_tracker: {
+      if(!TorrentsStartTime.contains(hash)) return -1;
+      int timeElapsed = TorrentsStartTime.value(hash).secsTo(QDateTime::currentDateTime());
+      double avg_speed;
+      if(timeElapsed) {
+        size_type data_origin = TorrentsStartData.value(hash, 0);
+        avg_speed = (double)(h.total_payload_download()-data_origin) / (double)timeElapsed;
       } else {
-        // Speed is too low, we don't want an overflow.
-        if(ETAstats.contains(hash)) {
-          ETAstats.remove(hash);
-        }
-        if(ETAs.contains(hash)) {
-          ETAs.remove(hash);
-        }
+        return -1;
       }
+      if(avg_speed) {
+        return (qlonglong) floor((double) (h.actual_size() - h.total_wanted_done()) / avg_speed);
+      } else {
+        return -1;
+      }
+      
     }
+    default:
+      return -1;
   }
-  // Delete big ratios
-  if(max_ratio != -1)
-    deleteBigRatios();
-}
-
-long bittorrent::getETA(QString hash) const{
-  return ETAs.value(hash, -1);
+  
 }
 
 // Return the torrent handle, given its hash
@@ -251,9 +225,9 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   foreach(file, files) {
     torrentBackup.remove(file);
   }
-  // Remove it from ETAs hash tables
-  ETAstats.remove(hash);
-  ETAs.remove(hash);
+  // Remove it from TorrentsStartTime hash table
+  TorrentsStartTime.remove(hash);
+  TorrentsStartData.remove(hash);
   // Remove tracker errors
   trackersErrors.remove(hash);
   // Remove it from ratio table
@@ -301,6 +275,9 @@ void bittorrent::setUnfinishedTorrent(QString hash) {
   }
   if(!unfinishedTorrents.contains(hash)) {
     unfinishedTorrents << hash;
+    QTorrentHandle h = getTorrentHandle(hash);
+    TorrentsStartData[hash] = h.total_payload_download();
+    TorrentsStartTime[hash] = QDateTime::currentDateTime();
   }
 }
 
@@ -318,9 +295,9 @@ void bittorrent::setFinishedTorrent(QString hash) {
   if(index != -1) {
     unfinishedTorrents.removeAt(index);
   }
-  // Remove it from ETAs hash tables
-  ETAstats.remove(hash);
-  ETAs.remove(hash);
+  // Remove it from TorrentsStartTime hash table
+  TorrentsStartTime.remove(hash);
+  TorrentsStartData.remove(hash);
   // Save fast resume data
   saveFastResumeAndRatioData(hash);
 }
@@ -348,9 +325,9 @@ bool bittorrent::pauseTorrent(QString hash) {
     paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
     paused_file.close();
   }
-  // Remove it from ETAs hash tables
-  ETAstats.remove(hash);
-  ETAs.remove(hash);
+  // Remove it from TorrentsStartTime hash table
+  TorrentsStartTime.remove(hash);
+  TorrentsStartData.remove(hash);
   return change;
 }
 
@@ -359,6 +336,9 @@ bool bittorrent::resumeTorrent(QString hash) {
   bool success = false;
   QTorrentHandle h = getTorrentHandle(hash);
   if(h.is_valid() && h.is_paused()) {
+    // Save Addition DateTime
+    TorrentsStartData[hash] = h.total_payload_download();
+    TorrentsStartTime[hash] = QDateTime::currentDateTime();
     h.resume();
     success = true;
   }
@@ -1029,9 +1009,22 @@ void bittorrent::setGlobalRatio(float ratio) {
 // be automatically deleted
 void bittorrent::setDeleteRatio(float ratio) {
   if(ratio != -1 && ratio < 1.) ratio = 1.;
-  max_ratio = ratio;
-  qDebug("* Set deleteRatio to %.1f", max_ratio);
-  deleteBigRatios();
+  if(max_ratio == -1 && ratio != -1) {
+    Q_ASSERT(!BigRatioTimer);
+    BigRatioTimer = new QTimer(this);
+    connect(BigRatioTimer, SIGNAL(timeout()), this, SLOT(deleteBigRatios()));
+    BigRatioTimer->start(5000);
+  } else {
+    if(max_ratio != -1 && ratio == -1) {
+      delete BigRatioTimer;
+      BigRatioTimer = 0;
+    }
+  }
+  if(max_ratio != ratio) {
+    max_ratio = ratio;
+    qDebug("* Set deleteRatio to %.1f", max_ratio);
+    deleteBigRatios();
+  }
 }
 
 bool bittorrent::loadTrackerFile(QString hash) {
@@ -1186,6 +1179,10 @@ void bittorrent::readAlerts() {
           // Pause torrent
           pauseTorrent(hash);
           qDebug("%s was paused after checking", hash.toUtf8().data());
+        } else {
+          // Save Addition DateTime
+          TorrentsStartTime[hash] = QDateTime::currentDateTime();
+          TorrentsStartData[hash] = h.total_payload_download();
         }
         emit torrentFinishedChecking(hash);
       }

@@ -32,5 +32,6 @@
 - Allow user to organize the downloads into categories/folders?
 
 // in v1.1.0
+- Stop calculating ETAs when ETA column is hidden
 -> See https://blueprints.launchpad.net/qbittorrent
 
