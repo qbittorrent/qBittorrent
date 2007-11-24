@@ -606,7 +606,7 @@ void DownloadingTorrents::updateDlList() {
             if(!downloadList->isColumnHidden(ETA)) {
               DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
             }
-            setRowColor(row, QPalette::WindowText);
+            setRowColor(row, QApplication::palette().color(QPalette::WindowText));
           }
           if(!downloadList->isColumnHidden(PROGRESS)) {
             DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
