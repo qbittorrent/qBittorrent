@@ -321,42 +321,31 @@ void DownloadingTorrents::displayDLHoSMenu(const QPoint& pos){
 
 // toggle hide/show a column
 void DownloadingTorrents::hideOrShowColumn(int index) {
-  short nbColumns = 0;
+  unsigned int nbVisibleColumns = 0;
+  unsigned int nbCols = DLListModel->columnCount();
+  // Count visible columns
+  for(unsigned int i=0; i<nbCols; ++i) {
+    if(!downloadList->isColumnHidden(i))
+      ++nbVisibleColumns;
+  }
   if(!downloadList->isColumnHidden(index)) {
-    unsigned short i=0, nbColDisplayed = 0;
-    while(i<DLListModel->columnCount()-1 && nbColDisplayed<=1) {
-      if(!downloadList->isColumnHidden(i))
-        nbColDisplayed++;
-      i++;
-    }
-    // can't hide a lonely column
-    if(nbColDisplayed>1) {
-      //resize all others non-hidden columns
-      for(int i=0; i<DLListModel->columnCount()-1; i++) {
-        if(downloadList->isColumnHidden(i) == false)
-          nbColumns++;
-      }
-      for(int i=0; i<DLListModel->columnCount()-1; i++) {
-        if(i != index) {
-          downloadList->setColumnWidth(i, (int)ceil(downloadList->columnWidth(i)+(downloadList->columnWidth(index)/(nbColumns-1))));
-        }
-      }
-      downloadList->setColumnHidden(index, true);
-      getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
-    }
+    // User wants to hide the column
+    // Is there at least one other visible column?
+    if(nbVisibleColumns <= 1) return;
+    // User can hide the column, do it.
+    downloadList->setColumnHidden(index, true);
+    getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
+    --nbVisibleColumns;
   } else {
-    //short buf_width = finishedList->columnWidth(index);
+    // User want to display the column
     downloadList->setColumnHidden(index, false);
     getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
-    //resize all others non-hidden columns
-    for(int i=0; i<DLListModel->columnCount()-1; i++) {
-      if(downloadList->isColumnHidden(i) == false)
-        nbColumns++;
-    }
-    for(int i=0; i<DLListModel->columnCount()-1; i++) {
-      if(i != index) {
-        downloadList->setColumnWidth(i, (int)ceil(downloadList->columnWidth(i)-(downloadList->columnWidth(index)/(nbColumns-1))));
-      }
+    ++nbVisibleColumns;
+  }
+  //resize all others non-hidden columns
+  for(unsigned int i=0; i<nbCols; ++i) {
+    if(!downloadList->isColumnHidden(i)) {
+      downloadList->setColumnWidth(i, (int)ceil(downloadList->columnWidth(i)+(downloadList->columnWidth(index)/nbVisibleColumns)));
     }
   }
 }
