@@ -111,11 +111,6 @@
     <string>Size</string>
    </property>
   </action>
-  <action name="actionHOSColProgress" >
-   <property name="text" >
-    <string>Progress</string>
-   </property>
-  </action>
   <action name="actionHOSColUpSpeed" >
    <property name="text" >
     <string>Upload Speed</string>

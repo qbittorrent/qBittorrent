@@ -69,7 +69,6 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void notifyTorrentDoubleClicked(const QModelIndex& index);
     void hideOrShowColumnName();
     void hideOrShowColumnSize();
-    void hideOrShowColumnProgress();
     void hideOrShowColumnUpSpeed();
     void hideOrShowColumnLeechers();
     void hideOrShowColumnRatio();

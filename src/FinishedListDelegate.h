@@ -34,11 +34,10 @@
 // Defines for download list list columns
 #define F_NAME 0
 #define F_SIZE 1
-#define F_PROGRESS 2
-#define F_UPSPEED 3
-#define F_SEEDSLEECH 4
-#define F_RATIO 5
-#define F_HASH 6
+#define F_UPSPEED 2
+#define F_LEECH 3
+#define F_RATIO 4
+#define F_HASH 5
 
 class FinishedListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -65,20 +64,6 @@ class FinishedListDelegate: public QItemDelegate {
           QItemDelegate::drawBackground(painter, opt, index);
           double ratio = index.data().toDouble();
           QItemDelegate::drawDisplay(painter, opt, opt.rect, QString(QByteArray::number(ratio, 'f', 1)));
-          break;
-        }
-        case F_PROGRESS:{
-          QStyleOptionProgressBarV2 newopt;
-          double progress = index.data().toDouble()*100.;
-          newopt.rect = opt.rect;
-          newopt.text = QString(QByteArray::number(progress, 'f', 1))+QString::fromUtf8("%");
-          newopt.progress = (int)progress;
-          newopt.maximum = 100;
-          newopt.minimum = 0;
-          newopt.state |= QStyle::State_Enabled;
-          newopt.textVisible = true;
-          QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt,
-          painter);
           break;
         }
         default:
