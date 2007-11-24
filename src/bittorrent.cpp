@@ -72,6 +72,15 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
 
 // Main destructor
 bittorrent::~bittorrent() {
+  // Set Session settings
+  session_settings ss;
+  ss.tracker_receive_timeout = 1;
+  ss.stop_tracker_timeout = 1;
+  ss.tracker_completion_timeout = 1;
+  ss.piece_timeout = 1;
+  ss.peer_timeout = 1;
+  ss.urlseed_timeout = 1;
+  s->set_settings(ss);
   // Disable directory scanning
   disableDirectoryScanning();
   // Delete our objects
@@ -81,7 +90,9 @@ bittorrent::~bittorrent() {
   delete ETARefresher;
   delete downloader;
   // Delete BT session
+  qDebug("Deleting session");
   delete s;
+  qDebug("Session deleted");
 }
 
 void bittorrent::preAllocateAllFiles(bool b) {
