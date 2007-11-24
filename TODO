@@ -53,3 +53,4 @@
 
 rc9->rc10 changelog:
 - FEATURE: Greatly improved ETA calculation algorithm (use GASA)
+- COSMETIC: Use more skin colors instead of hard coded ones

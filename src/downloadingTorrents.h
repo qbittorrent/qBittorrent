@@ -82,7 +82,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
 
   public slots:
     void updateDlList();
-    void setInfoBar(QString info, QColor color=QPalette::WindowText);
+    void setInfoBar(QString info, QColor color=QApplication::palette().color(QPalette::WindowText));
     void pauseTorrent(QString hash);
     void resumeTorrent(QString hash);
     void updateRatio();
