@@ -42,7 +42,7 @@ class QGnomeLookStyle : public QCleanlooksStyle {
               vertical = (pb2->orientation == Qt::Vertical);
             }
             if (!vertical) {
-              QPalette::ColorRole textRole = QPalette::Dark;/*
+              QPalette::ColorRole textRole = QPalette::WindowText;/*
               if ((pb->textAlignment & Qt::AlignCenter) && pb->textVisible
                    && ((qint64(pb->progress) - qint64(pb->minimum)) * 2 >= (qint64(pb->maximum) - qint64(pb->minimum)))) {
                 textRole = QPalette::HighlightedText;
