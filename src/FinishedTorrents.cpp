@@ -82,7 +82,6 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   connect(actionHOSColUpSpeed, SIGNAL(triggered()), this, SLOT(hideOrShowColumnUpSpeed()));
   connect(actionHOSColLeechers, SIGNAL(triggered()), this, SLOT(hideOrShowColumnLeechers()));
   connect(actionHOSColRatio, SIGNAL(triggered()), this, SLOT(hideOrShowColumnRatio()));
-  connect(actionResizeAllColumns, SIGNAL(triggered()), this, SLOT(resetAllColumns()));
 }
 
 FinishedTorrents::~FinishedTorrents(){
@@ -398,7 +397,6 @@ void FinishedTorrents::displayFinishedHoSMenu(const QPoint& pos){
   for(int i=0; i<=F_RATIO; i++) {
     hideshowColumn.addAction(getActionHoSCol(i));
   }
-  hideshowColumn.addAction(actionResizeAllColumns);
   // Call menu
   hideshowColumn.exec(mapToGlobal(pos)+QPoint(10,55));
 }
@@ -467,15 +465,6 @@ void FinishedTorrents::hideOrShowColumnLeechers() {
 
 void FinishedTorrents::hideOrShowColumnRatio() {
   hideOrShowColumn(F_RATIO);
-}
-
-void FinishedTorrents::resetAllColumns() {
-  for(int i=0; i<finishedListModel->columnCount()-1; i++) {
-    finishedList->setColumnHidden(i, false);
-    finishedList->resizeColumnToContents(i);
-    getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
-  }
-  finishedList->setColumnWidth(F_NAME,270);
 }
 
 // load the previous settings, and hide the columns

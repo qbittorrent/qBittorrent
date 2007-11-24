@@ -131,11 +131,6 @@
     <string>Ratio</string>
    </property>
   </action>
-  <action name="actionResizeAllColumns" >
-   <property name="text" >
-    <string>Resize All</string>
-   </property>
-  </action>
  </widget>
  <resources>
   <include location="icons.qrc" />

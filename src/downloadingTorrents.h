@@ -92,7 +92,6 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void hideOrShowColumnSeedersLeechers();
     void hideOrShowColumnRatio();
     void hideOrShowColumnEta();
-    void resetAllColumns();
 
   public slots:
     void updateDlList();

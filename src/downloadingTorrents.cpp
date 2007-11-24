@@ -107,7 +107,6 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   connect(actionHOSColSeedersLeechers, SIGNAL(triggered()), this, SLOT(hideOrShowColumnSeedersLeechers()));
   connect(actionHOSColRatio, SIGNAL(triggered()), this, SLOT(hideOrShowColumnRatio()));
   connect(actionHOSColEta, SIGNAL(triggered()), this, SLOT(hideOrShowColumnEta()));
-  connect(actionResizeAllColumns, SIGNAL(triggered()), this, SLOT(resetAllColumns()));
 
   // Set info Bar infos
   setInfoBar(tr("qBittorrent %1 started.", "e.g: qBittorrent v0.x started.").arg(QString::fromUtf8(""VERSION)));
@@ -316,7 +315,6 @@ void DownloadingTorrents::displayDLHoSMenu(const QPoint& pos){
   for(int i=0; i<=ETA; i++) {
     hideshowColumn.addAction(getActionHoSCol(i));
   }
-  hideshowColumn.addAction(actionResizeAllColumns);
   // Call menu
   hideshowColumn.exec(mapToGlobal(pos)+QPoint(10,55));
 }
@@ -473,15 +471,6 @@ QAction* DownloadingTorrents::getActionHoSCol(int index) {
     default :
       return NULL;
   }
-}
-
-void DownloadingTorrents::resetAllColumns() {
-  for(int i=0; i<DLListModel->columnCount()-1; i++) {
-    downloadList->setColumnHidden(i, false);
-    downloadList->resizeColumnToContents(i);
-    getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
-  }
-  downloadList->setColumnWidth(NAME,270);
 }
 
 QStringList DownloadingTorrents::getSelectedTorrents(bool only_one) const{
