@@ -900,38 +900,38 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="299"/>
         <source>Start minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>最小化して起動する</translation>
     </message>
     <message>
         <location filename="../options.ui" line="538"/>
         <source>Action on double click in transfer lists</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>転送リストのダブル クリックの動作</translation>
     </message>
     <message>
         <location filename="../options.ui" line="546"/>
         <source>In download list:</source>
-        <translation type="unfinished"></translation>
+        <translation>ダウンロードの一覧:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="606"/>
         <source>Pause/Start torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent の一時停止/開始</translation>
     </message>
     <message>
         <location filename="../options.ui" line="611"/>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>作成先のフォルダを開く</translation>
     </message>
     <message>
         <location filename="../options.ui" line="616"/>
         <source>Display torrent properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent のプロパティを表示する</translation>
     </message>
     <message>
         <location filename="../options.ui" line="598"/>
         <source>In seeding list:</source>
-        <translation type="unfinished"></translation>
+        <translation>シードの一覧:</translation>
     </message>
 </context>
 <context>
@@ -1053,7 +1053,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../downloadingTorrents.cpp" line="314"/>
         <source>Hide or Show Column</source>
-        <translation type="unfinished"></translation>
+        <translation>列の非表示または表示</translation>
     </message>
 </context>
 <context>
@@ -1139,12 +1139,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../FinishedTorrents.cpp" line="44"/>
         <source>Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished">リーチャ</translation>
+        <translation>リーチャ</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="396"/>
         <source>Hide or Show Column</source>
-        <translation type="unfinished"></translation>
+        <translation>列の非表示または表示</translation>
     </message>
 </context>
 <context>
@@ -2869,47 +2869,47 @@ Changelog:
     <message>
         <location filename="../download.ui" line="388"/>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>作成先のフォルダを開く</translation>
     </message>
     <message>
         <location filename="../download.ui" line="393"/>
         <source>Name</source>
-        <translation type="unfinished">名前</translation>
+        <translation>名前</translation>
     </message>
     <message>
         <location filename="../download.ui" line="398"/>
         <source>Size</source>
-        <translation type="unfinished">サイズ</translation>
+        <translation>サイズ</translation>
     </message>
     <message>
         <location filename="../download.ui" line="403"/>
         <source>Progress</source>
-        <translation type="unfinished">進行状況</translation>
+        <translation>進行状況</translation>
     </message>
     <message>
         <location filename="../download.ui" line="408"/>
         <source>DLSpeed</source>
-        <translation type="unfinished"></translation>
+        <translation>DL 速度</translation>
     </message>
     <message>
         <location filename="../download.ui" line="413"/>
         <source>UpSpeed</source>
-        <translation type="unfinished"></translation>
+        <translation>Up 速度</translation>
     </message>
     <message>
         <location filename="../download.ui" line="418"/>
         <source>Seeds/Leechs</source>
-        <translation type="unfinished">速度/リーチ</translation>
+        <translation>速度/リーチ</translation>
     </message>
     <message>
         <location filename="../download.ui" line="423"/>
         <source>Ratio</source>
-        <translation type="unfinished">率</translation>
+        <translation>率</translation>
     </message>
     <message>
         <location filename="../download.ui" line="428"/>
         <source>ETA</source>
-        <translation type="unfinished">ETA</translation>
+        <translation>ETA</translation>
     </message>
 </context>
 <context>
@@ -3096,7 +3096,7 @@ However, those plugins were disabled.</source>
         <location filename="../engineSelectDlg.cpp" line="494"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>%1 検索エンジン プラグインは更新できませんでした、古いバージョンを保持します。</translation>
+        <translation>%1 検索エンジン プラグインは更新できませんでした、古いバージョンを維持します。</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="510"/>
@@ -3641,7 +3641,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../properties.ui" line="330"/>
         <source>Downloaded pieces</source>
-        <translation type="unfinished"></translation>
+        <translation>ダウンロードされた部分</translation>
     </message>
 </context>
 <context>
@@ -3717,7 +3717,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../seeding.ui" line="56"/>
         <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
-        <translation>&lt;u&gt;注意:&lt;/u&gt; ネットワークを良好に保つには完了した後に torrent の共有を維持することが重要です。</translation>
+        <translation>&lt;u&gt;注意:&lt;/u&gt; ネットワークを良好に維持するには完了した後に torrent の共有を維持することが重要です。</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="63"/>
@@ -3757,32 +3757,32 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../seeding.ui" line="101"/>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>作成先のフォルダを開く</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="106"/>
         <source>Name</source>
-        <translation type="unfinished">名前</translation>
+        <translation>名前</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="111"/>
         <source>Size</source>
-        <translation type="unfinished">サイズ</translation>
+        <translation>サイズ</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="116"/>
         <source>Upload Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>アップロード速度</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="121"/>
         <source>Leechers</source>
-        <translation type="unfinished">リーチャ</translation>
+        <translation>リーチャ</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="126"/>
         <source>Ratio</source>
-        <translation type="unfinished">率</translation>
+        <translation>率</translation>
     </message>
 </context>
 <context>
@@ -3845,7 +3845,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../downloadThread.cpp" line="43"/>
         <source>Could not resolve proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>プロキシを解決できませんでした</translation>
     </message>
 </context>
 <context>
