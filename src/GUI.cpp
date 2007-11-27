@@ -882,10 +882,20 @@ void GUI::configureSession(bool deleteOptions) {
     }
     if(!proxy_str.isEmpty()) {
       // We need this for urllib in search engine plugins
+#ifdef Q_WS_WIN
+      char proxystr[512];
+      snprintf(proxystr, 512, "http_proxy=%s", proxy_str.toUtf8().data());
+      putenv(proxystr);
+#else
       setenv("http_proxy", proxy_str.toUtf8().data(), 1);
+#endif
     }
   } else {
+#ifdef Q_WS_WIN
+    putenv("http_proxy=");
+#else
     unsetenv("http_proxy");
+#endif
   }
   BTSession->setProxySettings(proxySettings, options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
   // * Session settings
