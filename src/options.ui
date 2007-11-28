@@ -794,10 +794,10 @@
                  <bool>false</bool>
                 </property>
                 <property name="text" >
-                 <string>0.0.0.0</string>
+                 <string/>
                 </property>
                 <property name="maxLength" >
-                 <number>15</number>
+                 <number>75</number>
                 </property>
                 <property name="echoMode" >
                  <enum>QLineEdit::Normal</enum>

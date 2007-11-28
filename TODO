@@ -53,4 +53,5 @@
 
 rc9->rc10 changelog:
 - FEATURE: Greatly improved ETA calculation algorithm (use GASA)
+- BUGFIX: Fixed proxy host max length in preferences
 - COSMETIC: Use more skin colors instead of hard coded ones
