@@ -51,6 +51,9 @@
   -> in download list
   -> in seeding list
 
+TODO:
+- Check search engine cpu usage
+
 rc9->rc10 changelog:
 - FEATURE: Greatly improved ETA calculation algorithm (use GASA)
 - BUGFIX: Fixed proxy host max length in preferences
