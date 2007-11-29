@@ -395,7 +395,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="919"/>
         <source>0.0.0.0</source>
-        <translation>0.0.0.0</translation>
+        <translation type="obsolete">0.0.0.0</translation>
     </message>
     <message>
         <location filename="../options.ui" line="935"/>
@@ -1338,7 +1338,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> gestart.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1187"/>
+        <location filename="../GUI.cpp" line="1197"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1518,7 +1518,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="978"/>
+        <location filename="../GUI.cpp" line="988"/>
         <source>Finished</source>
         <translation>Klaar</translation>
     </message>
@@ -1816,17 +1816,17 @@ Stop het eerste proccess eerst.
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1210"/>
+        <location filename="../GUI.cpp" line="1220"/>
         <source>Connection status:</source>
         <translation>Verbindingsstatus:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1210"/>
+        <location filename="../GUI.cpp" line="1220"/>
         <source>Offline</source>
         <translation>Offline</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1210"/>
+        <location filename="../GUI.cpp" line="1220"/>
         <source>No peers found...</source>
         <translation>Geen peers gevonden...</translation>
     </message>
@@ -1891,13 +1891,13 @@ Stop het eerste proccess eerst.
         <translation type="obsolete">qBittorrent %1 gestart.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1190"/>
+        <location filename="../GUI.cpp" line="1200"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL snelheid: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1193"/>
+        <location filename="../GUI.cpp" line="1203"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP snelheid: %1 KiB/s</translation>
@@ -1968,12 +1968,12 @@ Stop het eerste proccess eerst.
         <translation type="obsolete">Aan het luisteren op poort: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1058"/>
+        <location filename="../GUI.cpp" line="1068"/>
         <source>All downloads were paused.</source>
         <translation>Alle downloads gepauzeerd.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1081"/>
+        <location filename="../GUI.cpp" line="1091"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos; gepauzeerd.</translation>
@@ -1985,12 +1985,12 @@ Stop het eerste proccess eerst.
         <translation type="obsolete">Verbinding maken...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1105"/>
+        <location filename="../GUI.cpp" line="1115"/>
         <source>All downloads were resumed.</source>
         <translation>Alle downloads hervat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1128"/>
+        <location filename="../GUI.cpp" line="1138"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos; hervat.</translation>
@@ -2014,23 +2014,23 @@ Stop het eerste proccess eerst.
         <translation>Een fout is opgetreden tijdens het lezen of schrijven van %1. De schijf is waarschijnlijk vol, de download is gepauzeerd</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1206"/>
+        <location filename="../GUI.cpp" line="1216"/>
         <source>Connection Status:</source>
         <translation>Verbindingsstatus:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1201"/>
+        <location filename="../GUI.cpp" line="1211"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1206"/>
+        <location filename="../GUI.cpp" line="1216"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Geblokkeerd?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1206"/>
+        <location filename="../GUI.cpp" line="1216"/>
         <source>No incoming connections...</source>
         <translation>Geen inkomende verbindingen...</translation>
     </message>
@@ -2084,22 +2084,22 @@ Stop het eerste proccess eerst.
         <translation>qBittorrent is verbonden aan poort: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="907"/>
+        <location filename="../GUI.cpp" line="917"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT ondersteuning [AAN], poort: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="913"/>
+        <location filename="../GUI.cpp" line="923"/>
         <source>DHT support [OFF]</source>
         <translation>DHT ondersteuning [UIT]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="917"/>
+        <location filename="../GUI.cpp" line="927"/>
         <source>PeX support [ON]</source>
         <translation>PeX ondersteuning [AAN]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="921"/>
+        <location filename="../GUI.cpp" line="931"/>
         <source>PeX support [OFF]</source>
         <translation>PeX ondersteuning [UIT]</translation>
     </message>
@@ -2111,7 +2111,7 @@ Are you sure you want to quit qBittorrent?</source>
 Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="974"/>
+        <location filename="../GUI.cpp" line="984"/>
         <source>Downloads</source>
         <translation>Downloads</translation>
     </message>
@@ -2126,17 +2126,17 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
         <translation>UPnP ondersteuning [AAN]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="941"/>
+        <location filename="../GUI.cpp" line="951"/>
         <source>Encryption support [ON]</source>
         <translation>Encryptie ondersteuning [AAN]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="946"/>
+        <location filename="../GUI.cpp" line="956"/>
         <source>Encryption support [FORCED]</source>
         <translation>Encryptie ondersteuning [GEFORCEERD]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="951"/>
+        <location filename="../GUI.cpp" line="961"/>
         <source>Encryption support [OFF]</source>
         <translation>Encryptie ondersteuning [UIT]</translation>
     </message>
@@ -2212,12 +2212,12 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
         <translation>NAT-PMP ondersteuning [UIT]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="926"/>
+        <location filename="../GUI.cpp" line="936"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery [AAN]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="929"/>
+        <location filename="../GUI.cpp" line="939"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Local Peer Discovery ondersteuning [UIT]</translation>
     </message>
@@ -2228,7 +2228,7 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
         <translation>&apos;%1&apos; is verwijderd omdat de ratio de maximale ingestelde waarde heeft bereikt.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1166"/>
+        <location filename="../GUI.cpp" line="1176"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>

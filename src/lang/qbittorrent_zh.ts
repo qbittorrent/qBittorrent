@@ -528,7 +528,7 @@ in your mother tongue, &lt;br/&gt;please contact me
     <message>
         <location filename="../options.ui" line="919"/>
         <source>0.0.0.0</source>
-        <translation>0.0.0.0</translation>
+        <translation type="obsolete">0.0.0.0</translation>
     </message>
     <message>
         <location filename="../options.ui" line="748"/>
@@ -1413,7 +1413,7 @@ download list?</source>
         <translation type="obsolete">开始</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="978"/>
+        <location filename="../GUI.cpp" line="988"/>
         <source>Finished</source>
         <translation>完成</translation>
     </message>
@@ -1863,17 +1863,17 @@ download list and in hard drive?</source>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1210"/>
+        <location filename="../GUI.cpp" line="1220"/>
         <source>Connection status:</source>
         <translation>连接状态:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1210"/>
+        <location filename="../GUI.cpp" line="1220"/>
         <source>Offline</source>
         <translation>离线</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1210"/>
+        <location filename="../GUI.cpp" line="1220"/>
         <source>No peers found...</source>
         <translation>找不到资源...</translation>
     </message>
@@ -1938,18 +1938,18 @@ download list and in hard drive?</source>
         <translation type="obsolete">qBittorrent %1开始.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1187"/>
+        <location filename="../GUI.cpp" line="1197"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1190"/>
+        <location filename="../GUI.cpp" line="1200"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>下载速度: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1193"/>
+        <location filename="../GUI.cpp" line="1203"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation> 上传速度: %1 KiB/s</translation>
@@ -2026,12 +2026,12 @@ list.</comment>
 使用端口:&apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1058"/>
+        <location filename="../GUI.cpp" line="1068"/>
         <source>All downloads were paused.</source>
         <translation>所有下载已暂停.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1081"/>
+        <location filename="../GUI.cpp" line="1091"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos;暂停.</translation>
@@ -2043,12 +2043,12 @@ list.</comment>
         <translation type="obsolete">连接中...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1105"/>
+        <location filename="../GUI.cpp" line="1115"/>
         <source>All downloads were resumed.</source>
         <translation>重新开始所有下载.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1128"/>
+        <location filename="../GUI.cpp" line="1138"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos;重新开始.</translation>
@@ -2074,23 +2074,23 @@ The disk is probably full, download has been paused</comment>
         <translation type="obsolete">读或写%1过程中出现错误.磁盘已满,下载被暂停</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1206"/>
+        <location filename="../GUI.cpp" line="1216"/>
         <source>Connection Status:</source>
         <translation>连接状态:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1201"/>
+        <location filename="../GUI.cpp" line="1211"/>
         <source>Online</source>
         <translation>联机</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1206"/>
+        <location filename="../GUI.cpp" line="1216"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>存在防火墙?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1206"/>
+        <location filename="../GUI.cpp" line="1216"/>
         <source>No incoming connections...</source>
         <translation>无对内连接...</translation>
     </message>
@@ -2147,22 +2147,22 @@ paused.</comment>
         <translation>qBittorrent 绑定端口:%1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="907"/>
+        <location filename="../GUI.cpp" line="917"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT 支持 [开], port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="913"/>
+        <location filename="../GUI.cpp" line="923"/>
         <source>DHT support [OFF]</source>
         <translation>DHT 支持［关］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="917"/>
+        <location filename="../GUI.cpp" line="927"/>
         <source>PeX support [ON]</source>
         <translation>PeX 支持［ON］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="921"/>
+        <location filename="../GUI.cpp" line="931"/>
         <source>PeX support [OFF]</source>
         <translation>PeX 支持［关］</translation>
     </message>
@@ -2174,7 +2174,7 @@ Are you sure you want to quit qBittorrent?</source>
 您确定要离开qBittorrent吗?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="974"/>
+        <location filename="../GUI.cpp" line="984"/>
         <source>Downloads</source>
         <translation>下载</translation>
     </message>
@@ -2196,17 +2196,17 @@ is against the law.</source>
         <translation type="obsolete">注意，在未经允许情况下共享有版权的材料是违法的.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="941"/>
+        <location filename="../GUI.cpp" line="951"/>
         <source>Encryption support [ON]</source>
         <translation>加密支持［开］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="946"/>
+        <location filename="../GUI.cpp" line="956"/>
         <source>Encryption support [FORCED]</source>
         <translation>加密支持［强制］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="951"/>
+        <location filename="../GUI.cpp" line="961"/>
         <source>Encryption support [OFF]</source>
         <translation>加密支持［关］</translation>
     </message>
@@ -2317,12 +2317,12 @@ finished list and from hard drive?</source>
         <translation>NAT-PMP 支持［关］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="926"/>
+        <location filename="../GUI.cpp" line="936"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>本地资源搜索[开]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="929"/>
+        <location filename="../GUI.cpp" line="939"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>本地资源搜索支持[关]</translation>
     </message>
@@ -2334,7 +2334,7 @@ maximum value you set.</source>
         <translation type="obsolete">&apos;%1&apos;被移除因为它的比率达到您设置的最大值.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1166"/>
+        <location filename="../GUI.cpp" line="1176"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (下载: %2KiB/s, 上传: 

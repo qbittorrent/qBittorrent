@@ -299,7 +299,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="919"/>
         <source>0.0.0.0</source>
-        <translation>0.0.0.0</translation>
+        <translation type="obsolete">0.0.0.0</translation>
     </message>
     <message>
         <location filename="../options.ui" line="935"/>
@@ -1293,7 +1293,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">kb/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="978"/>
+        <location filename="../GUI.cpp" line="988"/>
         <source>Finished</source>
         <translation>Tamamlandı</translation>
     </message>
@@ -1420,7 +1420,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1187"/>
+        <location filename="../GUI.cpp" line="1197"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1780,17 +1780,17 @@ Lütfen önce diğerini kapatın.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1210"/>
+        <location filename="../GUI.cpp" line="1220"/>
         <source>Connection status:</source>
         <translation>Bağlantı durumu:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1210"/>
+        <location filename="../GUI.cpp" line="1220"/>
         <source>Offline</source>
         <translation>Çevrimdışı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1210"/>
+        <location filename="../GUI.cpp" line="1220"/>
         <source>No peers found...</source>
         <translation>Kullanıcı bulunamadı...</translation>
     </message>
@@ -1855,13 +1855,13 @@ Lütfen önce diğerini kapatın.</translation>
         <translation type="obsolete">qBittorrent %1 başladı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1190"/>
+        <location filename="../GUI.cpp" line="1200"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL hızı: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1193"/>
+        <location filename="../GUI.cpp" line="1203"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP hızı: %1 KiB/s</translation>
@@ -1932,12 +1932,12 @@ Lütfen önce diğerini kapatın.</translation>
         <translation type="obsolete">Port dinleniyor: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1058"/>
+        <location filename="../GUI.cpp" line="1068"/>
         <source>All downloads were paused.</source>
         <translation>Bütün downloadlar duraklatıldı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1081"/>
+        <location filename="../GUI.cpp" line="1091"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos; duraklatıldı.</translation>
@@ -1949,12 +1949,12 @@ Lütfen önce diğerini kapatın.</translation>
         <translation type="obsolete">Bağlanılıyor...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1105"/>
+        <location filename="../GUI.cpp" line="1115"/>
         <source>All downloads were resumed.</source>
         <translation>Bütün downloadlar devam ettirildi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1128"/>
+        <location filename="../GUI.cpp" line="1138"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos; devam ettirildi.</translation>
@@ -1978,23 +1978,23 @@ Lütfen önce diğerini kapatın.</translation>
         <translation>%1 okunmaya veya yazılmaya çalışılırken bir hata oluştu. Disk muhtemelen dolu, download duraklatıldı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1206"/>
+        <location filename="../GUI.cpp" line="1216"/>
         <source>Connection Status:</source>
         <translation>Bağlantı Durumu:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1201"/>
+        <location filename="../GUI.cpp" line="1211"/>
         <source>Online</source>
         <translation>Çevrimiçi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1206"/>
+        <location filename="../GUI.cpp" line="1216"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Firewall açık mı?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1206"/>
+        <location filename="../GUI.cpp" line="1216"/>
         <source>No incoming connections...</source>
         <translation>Gelen bağlantı yok...</translation>
     </message>
@@ -2042,7 +2042,7 @@ Lütfen önce diğerini kapatın.</translation>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="974"/>
+        <location filename="../GUI.cpp" line="984"/>
         <source>Downloads</source>
         <translation>Downloadlar</translation>
     </message>
@@ -2065,22 +2065,22 @@ qBittorrent ten çıkmak istediğinize emin misiniz?</translation>
         <translation>qBittorrent bağlantı noktasına bağlandı: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="907"/>
+        <location filename="../GUI.cpp" line="917"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT desteği [AÇIK], port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="913"/>
+        <location filename="../GUI.cpp" line="923"/>
         <source>DHT support [OFF]</source>
         <translation>DHT desteği [KAPALI]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="917"/>
+        <location filename="../GUI.cpp" line="927"/>
         <source>PeX support [ON]</source>
         <translation>PeX desteği [AÇIK]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="921"/>
+        <location filename="../GUI.cpp" line="931"/>
         <source>PeX support [OFF]</source>
         <translation>PeX desteği [KAPALI]</translation>
     </message>
@@ -2090,17 +2090,17 @@ qBittorrent ten çıkmak istediğinize emin misiniz?</translation>
         <translation>UPnP desteği [AÇIK]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="941"/>
+        <location filename="../GUI.cpp" line="951"/>
         <source>Encryption support [ON]</source>
         <translation>Encryption desteği [AÇIK]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="946"/>
+        <location filename="../GUI.cpp" line="956"/>
         <source>Encryption support [FORCED]</source>
         <translation>Encryption desteği [ZORLANDI]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="951"/>
+        <location filename="../GUI.cpp" line="961"/>
         <source>Encryption support [OFF]</source>
         <translation>Encryption desteği [KAPALI]</translation>
     </message>
@@ -2176,12 +2176,12 @@ qBittorrent ten çıkmak istediğinize emin misiniz?</translation>
         <translation>NAT-PMP desteği [KAPALI]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="926"/>
+        <location filename="../GUI.cpp" line="936"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery [AÇIK]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="929"/>
+        <location filename="../GUI.cpp" line="939"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Local Peer Discovery desteği [KAPALI]</translation>
     </message>
@@ -2192,7 +2192,7 @@ qBittorrent ten çıkmak istediğinize emin misiniz?</translation>
         <translation>&apos;%1&apos; kaldırıldı çünkü oranı ayarladığınız maksimum değere ulaştı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1166"/>
+        <location filename="../GUI.cpp" line="1176"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
