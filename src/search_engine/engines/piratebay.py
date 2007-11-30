@@ -1,4 +1,4 @@
-#VERSION: 1.00
+#VERSION: 1.01
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 from novaprinter import prettyPrinter
 import sgmllib
@@ -68,7 +68,7 @@ class piratebay(object):
 		ret = []
 		i = 0
 		order = 'se'
-		while True:
+		while True and i<11:
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
 			dat = urllib.urlopen(self.url+'/search/%s/%u/0/0' % (what, i)).read()

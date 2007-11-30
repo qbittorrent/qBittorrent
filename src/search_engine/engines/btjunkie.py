@@ -1,4 +1,4 @@
-#VERSION: 1.10
+#VERSION: 1.11
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 from novaprinter import prettyPrinter
 import urllib
@@ -10,7 +10,7 @@ class btjunkie(object):
 
 	def search(self, what):
 		i = 1
-		while True:
+		while True and i<11:
 			res = 0
 			dat = urllib.urlopen(self.url+'/search?q=%s&o=52&p=%d'%(what,i)).read().decode('utf8', 'replace')
 			# I know it's not very readable, but the SGML parser feels in pain

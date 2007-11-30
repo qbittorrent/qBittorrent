@@ -29,7 +29,6 @@
 - Allow user to organize the downloads into categories/folders?
 
 // in v1.1.0
-<<<<<<< .courant
 - Tabs support in search
 - Allow to hide columns?
 - Allow to scan multiple directories? (useful?)
@@ -58,4 +57,5 @@ rc9->rc10 changelog:
 - FEATURE: Greatly improved ETA calculation algorithm (use GASA)
 - BUGFIX: Fixed proxy host max length in preferences
 - BUGFIX: Added a 3 minutes search engine timeout
+- BUGFIX: Limit search engine plugins to 10 result pages
 - COSMETIC: Use more skin colors instead of hard coded ones

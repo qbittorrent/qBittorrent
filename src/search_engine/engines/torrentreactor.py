@@ -1,4 +1,4 @@
-#VERSION: 1.00
+#VERSION: 1.01
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
 from novaprinter import prettyPrinter
 import sgmllib
@@ -67,7 +67,7 @@ class torrentreactor(object):
 
 	def search(self, what):
 		i = 0
-		while True:
+		while True and i<11:
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
 			dat = urllib.urlopen(self.url+'/search.php?search=&words=%s&cid=&sid=&type=2&orderby=a.seeds&asc=0&skip=%s'%(what,(i*35))).read().decode('utf-8', 'replace')

@@ -1,4 +1,4 @@
-#VERSION: 1.11
+#VERSION: 1.12
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 from novaprinter import prettyPrinter
 import urllib
@@ -29,7 +29,7 @@ class mininova(object):
 			else:
 				return ''.join([ get_text(n) for n in txt.childNodes])
 		page = 1
-		while True:
+		while True and page<11:
 			res = 0
 			dat = urllib.urlopen(self.url+'/search/%s/seeds/%d'%(what, page)).read().decode('utf-8', 'replace')
 			dat = re.sub("<a href=\"http://www.boardreader.com/index.php.*\"", "<a href=\"plop\"", dat)
