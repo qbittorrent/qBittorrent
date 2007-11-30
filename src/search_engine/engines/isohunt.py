@@ -1,4 +1,4 @@
-#VERSION: 1.00
+#VERSION: 1.01
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
 from novaprinter import prettyPrinter
 import sgmllib
@@ -67,7 +67,7 @@ class isohunt(object):
 
 	def search(self, what):
 		i = 1
-		while True:
+		while True and i<11:
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
 			dat = urllib.urlopen(self.url+'/torrents.php?ihq=%s&ihp=%s'%(what,i)).read().decode('utf-8', 'replace')
