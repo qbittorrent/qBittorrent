@@ -57,4 +57,5 @@ TODO:
 rc9->rc10 changelog:
 - FEATURE: Greatly improved ETA calculation algorithm (use GASA)
 - BUGFIX: Fixed proxy host max length in preferences
+- BUGFIX: Added a 3 minutes search engine timeout
 - COSMETIC: Use more skin colors instead of hard coded ones

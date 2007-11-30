@@ -33,6 +33,7 @@ class SearchListDelegate;
 class bittorrent;
 class QSystemTrayIcon;
 class downloadThread;
+class QTimer;
 
 class SearchEngine : public QWidget, public Ui::search_engine{
   Q_OBJECT
@@ -54,6 +55,7 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     bool systrayIntegration;
     downloadThread *downloader;
     QStringList enabled_engines;
+    QTimer *searchTimeout;
 
   public:
     SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration);

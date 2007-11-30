@@ -28,6 +28,7 @@
 #include <QTemporaryFile>
 #include <QSystemTrayIcon>
 #include <iostream>
+#include <QTimer>
 
 #include "SearchListDelegate.h"
 #include "searchEngine.h"
@@ -79,6 +80,9 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   connect(searchProcess, SIGNAL(started()), this, SLOT(searchStarted()));
   connect(searchProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readSearchOutput()));
   connect(searchProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(searchFinished(int,QProcess::ExitStatus)));
+  searchTimeout = new QTimer(this);
+  searchTimeout->setSingleShot(true);
+  connect(searchTimeout, SIGNAL(timeout()), this, SLOT(on_stop_search_button_clicked()));
   // Check last enabled search engines
   loadEngineSettings();
   // Update nova.py search plugin if necessary
@@ -92,6 +96,7 @@ SearchEngine::~SearchEngine(){
   saveColWidthSearchList();
   searchProcess->kill();
   searchProcess->waitForFinished();
+  delete searchTimeout;
   delete searchProcess;
   delete searchCompleter;
   delete SearchListModel;
@@ -245,6 +250,9 @@ void SearchEngine::on_search_button_clicked(){
     searchProcess->kill();
     searchProcess->waitForFinished();
   }
+  if(searchTimeout->isActive()) {
+    searchTimeout->stop();
+  }
   QString pattern = search_pattern->text().trimmed();
   // No search pattern entered
   if(pattern.isEmpty()){
@@ -279,6 +287,7 @@ void SearchEngine::on_search_button_clicked(){
   results_lbl->setText(tr("Results")+" <i>(0)</i>:");
   // Launch search
   searchProcess->start(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py", params, QIODevice::ReadOnly);
+  searchTimeout->start(180000); // 3min
 }
 
 void SearchEngine::searchStarted(){
@@ -448,6 +457,7 @@ void SearchEngine::on_stop_search_button_clicked(){
   // Kill process
   searchProcess->terminate();
   search_stopped = true;
+  searchTimeout->stop();
 }
 
 // Clear search results list
