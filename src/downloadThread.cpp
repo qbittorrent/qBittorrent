@@ -109,7 +109,8 @@ void subDownloadThread::run(){
         curl_easy_setopt(curl, CURLOPT_PROXYUSERPWD, (username+QString(":")+password).toUtf8().data());
       }
     }
-    // TODO: define CURLOPT_WRITEFUNCTION or it will crash on windows
+    // We have to define CURLOPT_WRITEFUNCTION or it will crash on windows
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fwrite);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, f);
     qDebug("Downloading %s", url.toUtf8().data());
     res = curl_easy_perform(curl);
