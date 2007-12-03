@@ -99,6 +99,7 @@ win32 {
 }
 
 QMAKE_LINK_OBJECT_MAX = 1
+QMAKE_LINK_OBJECT_SCRIPT = object_script
 
 RESOURCES = icons.qrc \
             lang.qrc \
