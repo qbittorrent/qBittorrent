@@ -58,4 +58,5 @@ rc9->rc10 changelog:
 - BUGFIX: Fixed proxy host max length in preferences
 - BUGFIX: Added a 3 minutes search engine timeout
 - BUGFIX: Limit search engine plugins to 10 result pages
+- BUGFIX: Fixed nbResults != 0 when clearing results while a search is running
 - COSMETIC: Use more skin colors instead of hard coded ones
