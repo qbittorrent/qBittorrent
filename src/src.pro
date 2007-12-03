@@ -3,7 +3,7 @@ LANG_PATH = lang
 ICONS_PATH = Icons
 
 #Set the following variable to 1 to enable debug
-DEBUG_MODE = 1
+DEBUG_MODE = 0
 
 # Global
 TEMPLATE = app
@@ -97,9 +97,6 @@ win32 {
   LIBS += -ltorrent -lccext2 -lccgnu2
   #-lMagick++ -lWand -lMagick
 }
-
-QMAKE_LINK_OBJECT_MAX = 10000
-QMAKE_LINK_OBJECT_SCRIPT = object_script
 
 RESOURCES = icons.qrc \
             lang.qrc \
