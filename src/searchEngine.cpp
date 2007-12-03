@@ -465,12 +465,13 @@ void SearchEngine::on_clear_button_clicked(){
   // Kill process
   searchProcess->terminate();
   search_stopped = true;
-
+  searchTimeout->stop();
   searchResultsUrls.clear();
   SearchListModel->removeRows(0, SearchListModel->rowCount());
   // Disable clear & download buttons
   clear_button->setEnabled(false);
   download_button->setEnabled(false);
+  nb_search_results = 0;
   results_lbl->setText(tr("Results")+" <i>(0)</i>:");
   // focus on search pattern
   search_pattern->clear();
