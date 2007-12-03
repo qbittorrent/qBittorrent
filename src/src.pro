@@ -96,8 +96,9 @@ DEFINES += QT_NO_CAST_TO_ASCII
 win32 {
   LIBS += -ltorrent -lccext2 -lccgnu2
   #-lMagick++ -lWand -lMagick
-  QMAKE_LINK_OBJECT_MAX = 1
 }
+
+QMAKE_LINK_OBJECT_MAX = 1
 
 RESOURCES = icons.qrc \
             lang.qrc \
