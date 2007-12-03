@@ -98,7 +98,7 @@ win32 {
   #-lMagick++ -lWand -lMagick
 }
 
-QMAKE_LINK_OBJECT_MAX = 1
+QMAKE_LINK_OBJECT_MAX = 10000
 QMAKE_LINK_OBJECT_SCRIPT = object_script
 
 RESOURCES = icons.qrc \
