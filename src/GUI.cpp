@@ -467,6 +467,7 @@ void GUI::closeEvent(QCloseEvent *e) {
        tr("&Yes"), tr("&No"),
        QString(), 0, 1)) {
          e->ignore();
+         force_exit = false;
          return;
     }
   }
