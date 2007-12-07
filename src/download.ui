@@ -428,6 +428,11 @@
     <string>ETA</string>
    </property>
   </action>
+  <action name="actionBuy_it" >
+   <property name="text" >
+    <string>Buy it</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="icons.qrc" />

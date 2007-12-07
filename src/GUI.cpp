@@ -411,6 +411,26 @@ void GUI::openDestinationFolder() const {
   }
 }
 
+void GUI::goBuyPage() const {
+  QStringList hashes;
+  switch(tabs->currentIndex()){
+    case 0:
+      hashes = downloadingTorrentTab->getSelectedTorrents(true);
+      break;
+    case 1:
+      hashes = finishedTorrentTab->getSelectedTorrents(true);
+      break;
+    default:
+      return;
+  }
+  QString hash;
+  QStringList pathsList;
+  foreach(hash, hashes) {
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    QDesktopServices::openUrl("http://match.sharemonkey.com/?info_hash="+hash+"&fileName="+h.name());
+  }
+}
+
 // Necessary if we want to close the window
 // in one time if "close to systray" is enabled
 void GUI::on_actionExit_triggered() {

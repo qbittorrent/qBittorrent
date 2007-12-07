@@ -73,6 +73,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   connect(actionPreview_file, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionPreview_file_triggered()));
   connect(actionDelete_Permanently, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_Permanently_triggered()));
   connect(actionOpen_destination_folder, SIGNAL(triggered()), (GUI*)parent, SLOT(openDestinationFolder()));
+  connect(actionBuy_it, SIGNAL(triggered()), (GUI*)parent, SLOT(goBuyPage()));
   connect(actionTorrent_Properties, SIGNAL(triggered()), this, SLOT(propertiesSelection()));
 
   connect(actionHOSColName, SIGNAL(triggered()), this, SLOT(hideOrShowColumnName()));
@@ -379,6 +380,8 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
   myFinishedListMenu.addSeparator();
   myFinishedListMenu.addAction(actionOpen_destination_folder);
   myFinishedListMenu.addAction(actionTorrent_Properties);
+  myFinishedListMenu.addSeparator();
+  myFinishedListMenu.addAction(actionBuy_it);
 
   // Call menu
   // XXX: why mapToGlobal() is not enough?

@@ -98,6 +98,7 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   connect(actionDelete_Permanently, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_Permanently_triggered()));
   connect(actionOpen_destination_folder, SIGNAL(triggered()), (GUI*)parent, SLOT(openDestinationFolder()));
   connect(actionTorrent_Properties, SIGNAL(triggered()), this, SLOT(propertiesSelection()));
+  connect(actionBuy_it, SIGNAL(triggered()), (GUI*)parent, SLOT(goBuyPage()));
 
   connect(actionHOSColName, SIGNAL(triggered()), this, SLOT(hideOrShowColumnName()));
   connect(actionHOSColSize, SIGNAL(triggered()), this, SLOT(hideOrShowColumnSize()));
@@ -298,6 +299,8 @@ void DownloadingTorrents::displayDLListMenu(const QPoint& pos) {
   myDLLlistMenu.addSeparator();
   myDLLlistMenu.addAction(actionOpen_destination_folder);
   myDLLlistMenu.addAction(actionTorrent_Properties);
+  myDLLlistMenu.addSeparator();
+  myDLLlistMenu.addAction(actionBuy_it);
   // Call menu
   // XXX: why mapToGlobal() is not enough?
   myDLLlistMenu.exec(mapToGlobal(pos)+QPoint(10,60));
