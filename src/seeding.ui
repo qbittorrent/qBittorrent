@@ -127,6 +127,9 @@
    </property>
   </action>
   <action name="actionBuy_it" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/Icons/money.png</iconset>
+   </property>
    <property name="text" >
     <string>Buy it</string>
    </property>
