@@ -427,7 +427,7 @@ void GUI::goBuyPage() const {
   QStringList pathsList;
   foreach(hash, hashes) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    QDesktopServices::openUrl("http://match.sharemonkey.com/?info_hash="+hash+"&fileName="+h.name());
+    QDesktopServices::openUrl("http://match.sharemonkey.com/?info_hash="+hash+"&fileName="+h.name()/*+"&cid="+OUR_CAMPAIGN_ID*/);
   }
 }
 
