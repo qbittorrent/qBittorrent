@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="en">
+<!DOCTYPE TS><TS version="1.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -48,7 +48,7 @@
         <translation>Franciaország</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="362"/>
+        <location filename="" line="7471221"/>
         <source>Thanks To</source>
         <translation type="obsolete">Külön köszönet</translation>
     </message>
@@ -154,32 +154,32 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Opciók -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="42"/>
+        <location filename="" line="7471221"/>
         <source>Options</source>
         <translation type="obsolete">Opciók</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="90"/>
+        <location filename="" line="7471221"/>
         <source>Main</source>
         <translation type="obsolete">Fő</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="781"/>
+        <location filename="" line="7471221"/>
         <source>Save Path:</source>
         <translation type="obsolete">Mentés helye:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="118"/>
+        <location filename="" line="7471221"/>
         <source>Download Limit:</source>
         <translation type="obsolete">Letöltési korlát:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="128"/>
+        <location filename="" line="7471221"/>
         <source>Upload Limit:</source>
         <translation type="obsolete">Feltöltési korlát:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="135"/>
+        <location filename="" line="7471221"/>
         <source>Max Connects:</source>
         <translation type="obsolete">Maximális kapcsolat:</translation>
     </message>
@@ -194,17 +194,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="479"/>
+        <location filename="" line="7471221"/>
         <source>Disable</source>
         <translation type="obsolete">Letiltva</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="332"/>
+        <location filename="" line="7471221"/>
         <source>connections</source>
         <translation type="obsolete">kapcsolat</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1195"/>
+        <location filename="" line="7471221"/>
         <source>Proxy</source>
         <translation type="obsolete">Proxy</translation>
     </message>
@@ -214,7 +214,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Proxy beállítások</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="919"/>
+        <location filename="" line="7471221"/>
         <source>0.0.0.0</source>
         <translation type="obsolete">0.0.0.0</translation>
     </message>
@@ -224,7 +224,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1346"/>
+        <location filename="" line="7471221"/>
         <source>Proxy server requires authentication</source>
         <translation type="obsolete">A proxy kiszolgáló megköveteli a hitelesítést</translation>
     </message>
@@ -234,7 +234,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Felhasználó</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1384"/>
+        <location filename="" line="7471221"/>
         <source>User Name:</source>
         <translation type="obsolete">Név:</translation>
     </message>
@@ -244,22 +244,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Jelszó:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1207"/>
+        <location filename="" line="7471221"/>
         <source>Enable connection through a proxy server</source>
         <translation type="obsolete">Kapcsolódás proxy kiszolgálón keresztül</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1577"/>
+        <location filename="" line="7471221"/>
         <source>Scanned Dir:</source>
         <translation type="obsolete">Megfigyelt mappa:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1559"/>
+        <location filename="" line="7471221"/>
         <source>Enable directory scan (auto add torrent files inside)</source>
         <translation type="obsolete">Mappa megfigyelése (torrentek hozzáadása automatikusan)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="155"/>
+        <location filename="" line="7471221"/>
         <source>Share ratio:</source>
         <translation type="obsolete">Megosztási arány:</translation>
     </message>
@@ -294,7 +294,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Megjegyzés</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1375"/>
+        <location filename="" line="7471221"/>
         <source>IP Filter</source>
         <translation type="obsolete">IP-szűrő</translation>
     </message>
@@ -309,12 +309,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Tartomány eltávolítása</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1172"/>
+        <location filename="" line="7471221"/>
         <source>ipfilter.dat Path:</source>
         <translation type="obsolete">ipfilter.dat helye:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="845"/>
+        <location filename="" line="7471221"/>
         <source>Go to systray when minimizing window</source>
         <translation type="obsolete">Panelre helyezés minimalizáláskor</translation>
     </message>
@@ -324,7 +324,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Vegyes</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="937"/>
+        <location filename="" line="7471221"/>
         <source>Localization</source>
         <translation type="obsolete">Honosítás</translation>
     </message>
@@ -334,7 +334,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Nyelv:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="724"/>
+        <location filename="" line="7471221"/>
         <source>Behaviour</source>
         <translation type="obsolete">Ablakok</translation>
     </message>
@@ -344,52 +344,52 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>KByte/s</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="434"/>
+        <location filename="" line="7471221"/>
         <source>1 KiB DL = </source>
         <translation type="obsolete">1 KByte DL = </translation>
     </message>
     <message>
-        <location filename="../options.ui" line="472"/>
+        <location filename="" line="7471221"/>
         <source>KiB UP max.</source>
         <translation type="obsolete">KByte UP max.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="312"/>
+        <location filename="" line="7471221"/>
         <source>Preview program</source>
         <translation type="obsolete">Bemutató program</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1639"/>
+        <location filename="" line="7471221"/>
         <source>Audio/Video player:</source>
         <translation type="obsolete">Audio/Video lejátszó:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="884"/>
+        <location filename="" line="7471221"/>
         <source>Always display systray messages</source>
         <translation type="obsolete">Panel üzenetek megjelenítése</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="894"/>
+        <location filename="" line="7471221"/>
         <source>Display systray messages only when window is hidden</source>
         <translation type="obsolete">Panel üzenetek megjelenítése csak rejtett módban</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="901"/>
+        <location filename="" line="7471221"/>
         <source>Never display systray messages</source>
         <translation type="obsolete">Panel üzenetek tiltása</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="560"/>
+        <location filename="" line="7471221"/>
         <source>DHT configuration</source>
         <translation type="obsolete">DHT beállítása</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="580"/>
+        <location filename="" line="7471221"/>
         <source>DHT port:</source>
         <translation type="obsolete">DHT port:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="925"/>
+        <location filename="" line="7471221"/>
         <source>Language</source>
         <translation type="obsolete">Nyelv</translation>
     </message>
@@ -399,32 +399,32 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>&lt;b&gt;Note:&lt;/b&gt; A változások életbe lépéséhez újra kell indítanod a qBittorrentet.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1012"/>
+        <location filename="" line="7471221"/>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
         <translation type="obsolete">&lt;b&gt;Fordítási megjegyzés:&lt;/b&gt; Ha a qBittorrent nem elérhető a nyelveden, &lt;br/&gt;és szeretnéd lefordítani, &lt;br/&gt;kérlek értesíts: (chris@qbittorrent.org).</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="748"/>
+        <location filename="" line="7471221"/>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
         <translation type="obsolete">&quot;Torrent hozzáadása&quot; ablak megnyitása minden új torrentnél</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="761"/>
+        <location filename="" line="7471221"/>
         <source>Default save path</source>
         <translation type="obsolete">Alapértelmezett letöltési könyvtár</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="553"/>
+        <location filename="" line="7471221"/>
         <source>Disable DHT (Trackerless)</source>
         <translation type="obsolete">DHT letiltva</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="523"/>
+        <location filename="" line="7471221"/>
         <source>Disable Peer eXchange (PeX)</source>
         <translation type="obsolete">PeX letiltva</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="855"/>
+        <location filename="" line="7471221"/>
         <source>Go to systray when closing main window</source>
         <translation type="obsolete">Panelre helyezés a főablak bezárásakor</translation>
     </message>
@@ -434,37 +434,37 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Kapcsolatok</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="511"/>
+        <location filename="" line="7471221"/>
         <source>Peer eXchange (PeX)</source>
         <translation type="obsolete">Ügyfél csere (PeX)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="541"/>
+        <location filename="" line="7471221"/>
         <source>DHT (trackerless)</source>
         <translation type="obsolete">DHT (tracker nélküli üzemmód)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="736"/>
+        <location filename="" line="7471221"/>
         <source>Torrent addition</source>
         <translation type="obsolete">Torrent hozzáadása</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="823"/>
+        <location filename="" line="7471221"/>
         <source>Main window</source>
         <translation type="obsolete">Főablak</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="872"/>
+        <location filename="" line="7471221"/>
         <source>Systray messages</source>
         <translation type="obsolete">Panel üzenetek</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1547"/>
+        <location filename="" line="7471221"/>
         <source>Directory scan</source>
         <translation type="obsolete">Mappa megfigyelése</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1661"/>
+        <location filename="" line="7471221"/>
         <source>Style (Look &apos;n Feel)</source>
         <translation type="obsolete">Kinézet</translation>
     </message>
@@ -474,12 +474,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>KDE</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1683"/>
+        <location filename="" line="7471221"/>
         <source>Cleanlooks style (GNOME like)</source>
         <translation type="obsolete">Gnome</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1690"/>
+        <location filename="" line="7471221"/>
         <source>Motif style (default Qt style on Unix systems)</source>
         <translation type="obsolete">Qt-szerű</translation>
     </message>
@@ -489,32 +489,32 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Átlagos deszktop</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1707"/>
+        <location filename="" line="7471221"/>
         <source>MacOS style (MacOSX only)</source>
         <translation type="obsolete">MacOS stílus (csak MacOSX-en)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="835"/>
+        <location filename="" line="7471221"/>
         <source>Exit confirmation when the download list is not empty</source>
         <translation type="obsolete">Megerősítés kérése a kilépésről, ha vannak letöltések</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="862"/>
+        <location filename="" line="7471221"/>
         <source>Disable systray integration</source>
         <translation type="obsolete">Panel integráció letiltása</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1717"/>
+        <location filename="" line="7471221"/>
         <source>WindowsXP style (Windows XP only)</source>
         <translation type="obsolete">Windwos XP (Csak XP-re)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1237"/>
+        <location filename="" line="7471221"/>
         <source>Server IP or url:</source>
         <translation type="obsolete">Kiszolgáló címe:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1310"/>
+        <location filename="" line="7471221"/>
         <source>Proxy type:</source>
         <translation type="obsolete">Proxy típusa:</translation>
     </message>
@@ -554,12 +554,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Proxy a DHT üzenetekhez</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="627"/>
+        <location filename="" line="7471221"/>
         <source>Encryption</source>
         <translation type="obsolete">Titkosítás</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="655"/>
+        <location filename="" line="7471221"/>
         <source>Encryption state:</source>
         <translation type="obsolete">Titkosítás állapota:</translation>
     </message>
@@ -645,7 +645,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Panel üzenetek megjelenítése</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="335"/>
+        <location filename="" line="7471221"/>
         <source>Media player:</source>
         <translation type="obsolete">Media player:</translation>
     </message>
@@ -855,43 +855,43 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="162"/>
         <source>System default</source>
-        <translation type="unfinished"></translation>
+        <translation>Rendszer alapértelmezett</translation>
     </message>
     <message>
         <location filename="../options.ui" line="299"/>
         <source>Start minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>Kicsinyítve indítás</translation>
     </message>
     <message>
         <location filename="../options.ui" line="538"/>
         <source>Action on double click in transfer lists</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>Az átviteli listán duplaükattintáskor</translation>
     </message>
     <message>
         <location filename="../options.ui" line="546"/>
         <source>In download list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltési listán:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="606"/>
         <source>Pause/Start torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent leállítása/folytatása</translation>
     </message>
     <message>
         <location filename="../options.ui" line="611"/>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Célmappa megnyitása</translation>
     </message>
     <message>
         <location filename="../options.ui" line="616"/>
         <source>Display torrent properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent jellemzőinek mutatása</translation>
     </message>
     <message>
         <location filename="../options.ui" line="598"/>
         <source>In seeding list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltési listán:</translation>
     </message>
 </context>
 <context>
@@ -1013,7 +1013,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../downloadingTorrents.cpp" line="317"/>
         <source>Hide or Show Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Oszlop mutatása vagy elrejtése</translation>
     </message>
 </context>
 <context>
@@ -1027,7 +1027,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>FinishedTorrents</name>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="209"/>
+        <location filename="" line="7471221"/>
         <source>Finished</source>
         <translation type="obsolete">Feltöltés</translation>
     </message>
@@ -1044,13 +1044,13 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Méret</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="43"/>
+        <location filename="" line="7471221"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation type="obsolete">Folyamat</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="38"/>
+        <location filename="" line="7471221"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
         <translation type="obsolete">Bejövő sebesség</translation>
@@ -1062,30 +1062,30 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Kimenő sebesség</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="45"/>
+        <location filename="" line="7471221"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
         <translation type="obsolete">Seeder/Leecher</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="41"/>
+        <location filename="" line="7471221"/>
         <source>Status</source>
         <translation type="obsolete">Állapot</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="42"/>
+        <location filename="" line="7471221"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation type="obsolete">Idő</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="102"/>
+        <location filename="" line="7471221"/>
         <source>Finished</source>
         <comment>i.e: Torrent has finished downloading</comment>
         <translation type="obsolete">Letöltve</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="240"/>
+        <location filename="" line="7471221"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
         <translation type="obsolete">Nincs</translation>
@@ -1099,12 +1099,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../FinishedTorrents.cpp" line="44"/>
         <source>Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished">Letöltők</translation>
+        <translation>Letöltők</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="399"/>
         <source>Hide or Show Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Oszlop mutatása vagy elrejtése</translation>
     </message>
 </context>
 <context>
@@ -1115,7 +1115,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Torrent fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1161"/>
+        <location filename="" line="7471221"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="obsolete">Ez a fájl sérült, vagy nem is torrent.</translation>
     </message>
@@ -1135,12 +1135,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Biztos vagy benne, hogy törlöd a felsorlolt elemeket a letöltési listáról?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1411"/>
+        <location filename="" line="7471221"/>
         <source>Connecting...</source>
         <translation type="obsolete">Csatlakozás...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="583"/>
+        <location filename="" line="7471221"/>
         <source>Downloading...</source>
         <translation type="obsolete">Letöltés...</translation>
     </message>
@@ -1155,27 +1155,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Egészen biztos? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1691"/>
+        <location filename="" line="7471221"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="obsolete">A megadott porok zártak.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="134"/>
+        <location filename="" line="7471221"/>
         <source>Status</source>
         <translation type="obsolete">Állapot</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1477"/>
+        <location filename="" line="7471221"/>
         <source>Paused</source>
         <translation type="obsolete">Leállítva</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="418"/>
+        <location filename="" line="7471221"/>
         <source>Preview process already running</source>
         <translation type="obsolete">Már van egy előzetes</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="418"/>
+        <location filename="" line="7471221"/>
         <source>There is already another preview process running.
 Please close the other one first.</source>
         <translation type="obsolete">Már folyamatban van egy előzetes.
@@ -1187,7 +1187,7 @@ Kérlek előbb azt zárd be.</translation>
         <translation>Letöltés elkészült</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1005"/>
+        <location filename="" line="7471221"/>
         <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
         <translation type="obsolete">Egészen biztos vagy benne, hogy törlöd a felsorlolt elemeket a letöltési listáról ÉS a merevlemezről?</translation>
     </message>
@@ -1213,49 +1213,49 @@ Kérlek előbb azt zárd be.</translation>
         <translation>Nem találtam ügyfélt...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="124"/>
+        <location filename="" line="7471221"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation type="obsolete">Név</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="125"/>
+        <location filename="" line="7471221"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation type="obsolete">Méret</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="126"/>
+        <location filename="" line="7471221"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation type="obsolete">Folyamat</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="127"/>
+        <location filename="" line="7471221"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
         <translation type="obsolete">DL Speed</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="128"/>
+        <location filename="" line="7471221"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation type="obsolete">UP Speed</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="129"/>
+        <location filename="" line="7471221"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
         <translation type="obsolete">Seeds/Leechs</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="131"/>
+        <location filename="" line="7471221"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation type="obsolete">Idő</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="203"/>
+        <location filename="" line="7471221"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
         <translation type="obsolete">qBittorrent %1 elindítva.</translation>
@@ -1278,13 +1278,13 @@ Kérlek előbb azt zárd be.</translation>
         <translation>Feltöltés: %1 KByte/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="558"/>
+        <location filename="" line="7471221"/>
         <source>Checking...</source>
         <comment>i.e: Checking already downloaded parts...</comment>
         <translation type="obsolete">Ellenőrzés...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="588"/>
+        <location filename="" line="7471221"/>
         <source>Stalled</source>
         <comment>i.e: State of a torrent whose download speed is 0kb/s</comment>
         <translation type="obsolete">Elakadt</translation>
@@ -1301,31 +1301,31 @@ Kérlek előbb azt zárd be.</translation>
         <translation>&apos;%1&apos; eltávolítva.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1146"/>
+        <location filename="" line="7471221"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="obsolete">&apos;%1&apos; felvéve a letöltési listára.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1148"/>
+        <location filename="" line="7471221"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="obsolete">&apos;%1&apos; visszaállítva. (folytatás)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1156"/>
+        <location filename="" line="7471221"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="obsolete">&apos;%1&apos; már letöltés alatt.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1160"/>
+        <location filename="" line="7471221"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="obsolete">Megfejthetetlen torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1234"/>
+        <location filename="" line="7471221"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
         <translation type="obsolete">Nincs</translation>
@@ -1342,7 +1342,7 @@ Kérlek előbb azt zárd be.</translation>
         <translation>&apos;%1&apos; megállítva.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1388"/>
+        <location filename="" line="7471221"/>
         <source>Connecting...</source>
         <comment>i.e: Connecting to the tracker...</comment>
         <translation type="obsolete">Csatlakozás...</translation>
@@ -1398,7 +1398,7 @@ Kérlek előbb azt zárd be.</translation>
         <translation>Nincs kapcsolat...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1778"/>
+        <location filename="" line="7471221"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="obsolete">Letöltés alatt: &apos;%1&apos;, kis türelmet...</translation>
@@ -1463,7 +1463,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>Feltöltések</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1012"/>
+        <location filename="" line="7471221"/>
         <source>Are you sure you want to delete the selected item(s) in finished list and in hard drive?</source>
         <translation type="obsolete">Egészen biztos vagy benne, hogy törlöd a felsorolt elemeket a feltöltési listáról ÉS a merevlemezről?</translation>
     </message>
@@ -1478,7 +1478,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>UPnP támogatás [ON]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="204"/>
+        <location filename="" line="7471221"/>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
         <translation type="obsolete">Csak óvatosan a megosztással. Nehogy megsértsd a szerzői jogokat!.</translation>
     </message>
@@ -1498,13 +1498,13 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>Titkosítás [OFF]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="315"/>
+        <location filename="" line="7471221"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blokkolva&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="130"/>
+        <location filename="" line="7471221"/>
         <source>Ratio</source>
         <translation type="obsolete">Arány</translation>
     </message>
@@ -1521,7 +1521,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="261"/>
+        <location filename="" line="7471221"/>
         <source>Alt+3, Ctrl+F</source>
         <comment>shortcut to switch to third tab (search)</comment>
         <translation type="obsolete">Alt+3, Ctrl+F</translation>
@@ -1543,7 +1543,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>Nem sikerült letölteni url címről: %1, mert: %2.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="331"/>
+        <location filename="" line="7471221"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="obsolete">Hibás ellenőrző adat ennél a torrentnél: %1, újraellenőrzés...</translation>
     </message>
@@ -1564,7 +1564,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>&apos;%1&apos; véglegesen törölve.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="335"/>
+        <location filename="" line="7471221"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="obsolete">Url forrás meghatározása sikertelen: %1, hibaüzenet: %2</translation>
     </message>
@@ -1621,22 +1621,22 @@ Mégis leállítod a qBittorrentet?</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../MainWindow.ui" line="305"/>
+        <location filename="" line="7471221"/>
         <source>Log:</source>
         <translation type="obsolete">Napló:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="77"/>
+        <location filename="" line="7471221"/>
         <source>Total DL Speed:</source>
         <translation type="obsolete">Bejövő sebesség:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="181"/>
+        <location filename="" line="7471221"/>
         <source>Total UP Speed:</source>
         <translation type="obsolete">Kimenő sebesség:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="373"/>
+        <location filename="" line="7471221"/>
         <source>&amp;Options</source>
         <translation type="obsolete">&amp;Tulajdonságok</translation>
     </message>
@@ -1711,7 +1711,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>Letöltés URL-ről</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="210"/>
+        <location filename="" line="7471221"/>
         <source>KiB/s</source>
         <translation type="obsolete">KByte/s</translation>
     </message>
@@ -1721,7 +1721,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>Torrent készítés</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="135"/>
+        <location filename="" line="7471221"/>
         <source>Session ratio: </source>
         <translation type="obsolete">Megosztási arány: </translation>
     </message>
@@ -1751,7 +1751,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>Hibajelentés</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="36"/>
+        <location filename="" line="7471221"/>
         <source>Downloads</source>
         <translation type="obsolete">Letöltések</translation>
     </message>
@@ -1766,12 +1766,12 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>Letöltési korlát megadása</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="275"/>
+        <location filename="" line="7471221"/>
         <source>Log</source>
         <translation type="obsolete">Napló</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="309"/>
+        <location filename="" line="7471221"/>
         <source>IP filter</source>
         <translation type="obsolete">IP szűrő</translation>
     </message>
@@ -1918,7 +1918,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>Egészen biztos? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="120"/>
+        <location filename="" line="7471221"/>
         <source>Are you sure you want to delete this stream from the list ?</source>
         <translation type="obsolete">Egészen biztos, hogy törlöd ezt a hírcsatornát a listáról?</translation>
     </message>
@@ -1933,12 +1933,12 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>&amp;Nem</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="192"/>
+        <location filename="" line="7471221"/>
         <source>no refresh</source>
         <translation type="obsolete">Nincs újdonság</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="190"/>
+        <location filename="" line="7471221"/>
         <source>no description available</source>
         <translation type="obsolete">Nincs leírás</translation>
     </message>
@@ -2047,12 +2047,12 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>Kérlek adj meg kulcsszót a kereséshez</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="286"/>
+        <location filename="" line="7471221"/>
         <source>No search engine selected</source>
         <translation type="obsolete">Nincs kereső kiválasztva</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="286"/>
+        <location filename="" line="7471221"/>
         <source>You must select at least one search engine.</source>
         <translation type="obsolete">Válassz legalább egy keresőt.</translation>
     </message>
@@ -2067,12 +2067,12 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>Keresés...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="469"/>
+        <location filename="" line="7471221"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation type="obsolete">Keresőmodul frissítés -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="448"/>
+        <location filename="" line="7471221"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -2083,32 +2083,32 @@ Changelog:
 </translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="449"/>
+        <location filename="" line="7471221"/>
         <source>&amp;Yes</source>
         <translation type="obsolete">&amp;Igen</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="449"/>
+        <location filename="" line="7471221"/>
         <source>&amp;No</source>
         <translation type="obsolete">&amp;Nem</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="465"/>
+        <location filename="" line="7471221"/>
         <source>Search plugin update</source>
         <translation type="obsolete">Kereső modul frissítése</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="465"/>
+        <location filename="" line="7471221"/>
         <source>qBittorrent</source>
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="466"/>
+        <location filename="" line="7471221"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation type="obsolete">A kiszolgálő jelenleg nem elérhető. Bocs.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="470"/>
+        <location filename="" line="7471221"/>
         <source>Your search plugin is already up to date.</source>
         <translation type="obsolete">A legújabb keresőt használod.</translation>
     </message>
@@ -2144,12 +2144,12 @@ Changelog:
         <translation>Találat</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="483"/>
+        <location filename="" line="7471221"/>
         <source>Search plugin download error</source>
         <translation type="obsolete">Hiba a kereső modul letöltésekor</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="483"/>
+        <location filename="" line="7471221"/>
         <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
         <translation type="obsolete">Nem sikerült kereső modult letölteni innen: %1, mert: %2.</translation>
     </message>
@@ -2294,12 +2294,12 @@ Changelog:
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../createtorrent.ui" line="538"/>
+        <location filename="" line="7471221"/>
         <source>...</source>
         <translation type="obsolete">...</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="578"/>
+        <location filename="" line="7471221"/>
         <source>Create</source>
         <translation type="obsolete">Létrehozás</translation>
     </message>
@@ -2319,7 +2319,7 @@ Changelog:
         <translation>Torrent létrehozása</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="93"/>
+        <location filename="" line="7471221"/>
         <source>Input files or directories:</source>
         <translation type="obsolete">Forrás fájl vagy könyvtár:</translation>
     </message>
@@ -2334,12 +2334,12 @@ Changelog:
         <translation>Megjegyzés (esetleges):</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="489"/>
+        <location filename="" line="7471221"/>
         <source>Private (won&apos;t be distributed on trackerless network / DHT if enabled)</source>
         <translation type="obsolete">Zárt (Nem jelenik meg a tracker nélküli DHT hálózaton)</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="517"/>
+        <location filename="" line="7471221"/>
         <source>Destination torrent file:</source>
         <translation type="obsolete">Torrent fájl neve:</translation>
     </message>
@@ -2349,7 +2349,7 @@ Changelog:
         <translation>Web seeds urls (esetleges):</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="93"/>
+        <location filename="" line="7471221"/>
         <source>Input file or directory:</source>
         <translation type="obsolete">Forrás fájl vagy könyvtár:</translation>
     </message>
@@ -2442,12 +2442,12 @@ Changelog:
         <translation>Torrentek</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="156"/>
+        <location filename="" line="7471221"/>
         <source>No destination path set</source>
         <translation type="obsolete">Nincs célmappa</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="156"/>
+        <location filename="" line="7471221"/>
         <source>Please type a destination path first</source>
         <translation type="obsolete">Kérlek add meg a torrent helyét</translation>
     </message>
@@ -2477,7 +2477,7 @@ Changelog:
         <translation>Válassz egy könyvtárat a torrenthez</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="72"/>
+        <location filename="" line="7471221"/>
         <source>Select files to add to the torrent</source>
         <translation type="obsolete">Válassz fájlt(okat) a torrenthez</translation>
     </message>
@@ -2646,52 +2646,52 @@ Changelog:
     <message>
         <location filename="../download.ui" line="388"/>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Célmappa megnyitása</translation>
     </message>
     <message>
         <location filename="../download.ui" line="393"/>
         <source>Name</source>
-        <translation type="unfinished">Név</translation>
+        <translation>Név</translation>
     </message>
     <message>
         <location filename="../download.ui" line="398"/>
         <source>Size</source>
-        <translation type="unfinished">Méret</translation>
+        <translation>Méret</translation>
     </message>
     <message>
         <location filename="../download.ui" line="403"/>
         <source>Progress</source>
-        <translation type="unfinished">Folyamat</translation>
+        <translation>Folyamat</translation>
     </message>
     <message>
         <location filename="../download.ui" line="408"/>
         <source>DLSpeed</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltési sebesség</translation>
     </message>
     <message>
         <location filename="../download.ui" line="413"/>
         <source>UpSpeed</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltési sebesség</translation>
     </message>
     <message>
         <location filename="../download.ui" line="418"/>
         <source>Seeds/Leechs</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltők/Letöltők</translation>
     </message>
     <message>
         <location filename="../download.ui" line="423"/>
         <source>Ratio</source>
-        <translation type="unfinished">Arány</translation>
+        <translation>Arány</translation>
     </message>
     <message>
         <location filename="../download.ui" line="428"/>
         <source>ETA</source>
-        <translation type="unfinished">Idő</translation>
+        <translation>Hátramaradt idő</translation>
     </message>
     <message>
         <location filename="../download.ui" line="436"/>
         <source>Buy it</source>
-        <translation type="unfinished"></translation>
+        <translation>Megveszem</translation>
     </message>
 </context>
 <context>
@@ -2825,7 +2825,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation>A kiszolgálő jelenleg nem elérhető. Bocs.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="524"/>
+        <location filename="" line="7471221"/>
         <source>Sorry, %1 search plugin update failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="obsolete">Bocs,  nem sikerült frissíteni: %1.</translation>
@@ -2865,7 +2865,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation>%1 kereső modul sikeresen telepítve.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="499"/>
+        <location filename="" line="7471221"/>
         <source>%1 search plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="obsolete">%1 kereső modul sikeresen frissítve.</translation>
@@ -2993,13 +2993,13 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation>Megjegyzés:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="72"/>
+        <location filename="" line="7471221"/>
         <source>to</source>
         <comment>&lt;min port&gt; to &lt;max port&gt;</comment>
         <translation type="obsolete"> - </translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1000"/>
+        <location filename="" line="7471221"/>
         <source>Choose your favourite preview program</source>
         <translation type="obsolete">Válasz ki kedvenc bemutató programod</translation>
     </message>
@@ -3342,7 +3342,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation>Már letöltés alatt ez az url forrás.</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="395"/>
+        <location filename="" line="7471221"/>
         <source>Hard-coded url seeds cannot be deleted.</source>
         <translation type="obsolete">Nem törölhető ez az url forrás! (Hard-coded).</translation>
     </message>
@@ -3376,7 +3376,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
     <message>
         <location filename="../properties.ui" line="330"/>
         <source>Downloaded pieces</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltött részek</translation>
     </message>
 </context>
 <context>
@@ -3387,7 +3387,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation>Keresés</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="45"/>
+        <location filename="" line="7471221"/>
         <source>Search Engines</source>
         <translation type="obsolete">Keresők</translation>
     </message>
@@ -3427,7 +3427,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation>Törlés</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="374"/>
+        <location filename="" line="7471221"/>
         <source>Update search plugin</source>
         <translation type="obsolete">Kereső modul frissítése</translation>
     </message>
@@ -3492,37 +3492,37 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
     <message>
         <location filename="../seeding.ui" line="101"/>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Célmappa megnyitása</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="106"/>
         <source>Name</source>
-        <translation type="unfinished">Név</translation>
+        <translation>Név</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="111"/>
         <source>Size</source>
-        <translation type="unfinished">Méret</translation>
+        <translation>Méret</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="116"/>
         <source>Upload Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltési sebesség</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="121"/>
         <source>Leechers</source>
-        <translation type="unfinished">Letöltők</translation>
+        <translation>Letöltők</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="126"/>
         <source>Ratio</source>
-        <translation type="unfinished">Arány</translation>
+        <translation>Arány</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="134"/>
         <source>Buy it</source>
-        <translation type="unfinished"></translation>
+        <translation>Megveszem</translation>
     </message>
 </context>
 <context>
@@ -3548,17 +3548,17 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation>Érvénytelen cím</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="37"/>
+        <location filename="" line="7471221"/>
         <source>Connection forbidden (403)</source>
         <translation type="obsolete">Kapcsolódás letiltva (403)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="39"/>
+        <location filename="" line="7471221"/>
         <source>Connection was not authorized (401)</source>
         <translation type="obsolete">Sikertelen hitelesítés kapcsolódáskor (401)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="41"/>
+        <location filename="" line="7471221"/>
         <source>Content has moved (301)</source>
         <translation type="obsolete">Tartalom áthelyezve (301)</translation>
     </message>
@@ -3585,7 +3585,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
     <message>
         <location filename="../downloadThread.cpp" line="43"/>
         <source>Could not resolve proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem sikerült csatlakozni a proxy-hoz</translation>
     </message>
 </context>
 <context>
