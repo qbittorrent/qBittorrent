@@ -158,7 +158,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     GUI(QWidget *parent=0, QStringList torrentCmdLine=QStringList());
     ~GUI();
     // Methods
-    unsigned int getCurrentTabIndex() const;
+    int getCurrentTabIndex() const;
     QPoint screenCenter() const;
 };
 
