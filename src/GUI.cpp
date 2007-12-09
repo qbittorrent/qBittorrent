@@ -395,7 +395,7 @@ void GUI::previewFile(QString filePath) {
   QDesktopServices::openUrl(QString("file://")+filePath);
 }
 
-unsigned int GUI::getCurrentTabIndex() const{
+int GUI::getCurrentTabIndex() const{
   if(isMinimized() || isHidden())
     return -1;
   return tabs->currentIndex();
