@@ -392,7 +392,7 @@ void GUI::on_actionExit_triggered() {
 }
 
 void GUI::previewFile(QString filePath) {
-  QDesktopServices::openUrl(filePath);
+  QDesktopServices::openUrl(QString("file://")+filePath);
 }
 
 unsigned int GUI::getCurrentTabIndex() const{
