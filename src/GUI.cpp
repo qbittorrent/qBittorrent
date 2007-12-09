@@ -406,7 +406,7 @@ void GUI::openDestinationFolder() const {
     QString savePath = h.save_path();
     if(!pathsList.contains(savePath)) {
       pathsList.append(savePath);
-      QDesktopServices::openUrl(QUrl(savePath));
+      QDesktopServices::openUrl(QString("file://")+savePath);
     }
   }
 }
