@@ -53,12 +53,5 @@
 TODO:
 - Check search engine cpu usage
 
-rc9->rc10 changelog:
-- FEATURE: Greatly improved ETA calculation algorithm (use GASA)
-- BUGFIX: Fixed proxy host max length in preferences
-- BUGFIX: Added a 3 minutes search engine timeout
-- BUGFIX: Limit search engine plugins to 10 result pages
-- BUGFIX: Fixed nbResults != 0 when clearing results while a search is running
-- BUGFIX: Fixed possible problem when closing to systray and cancelling app exit
-- BUGFIX: Fixed preview when path contains spaces
-- COSMETIC: Use more skin colors instead of hard coded ones
+rc10->? changelog:
+- BUGFIX: Bypass exit confirmation on system shutdown
