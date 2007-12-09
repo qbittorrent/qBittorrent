@@ -496,7 +496,7 @@ void GUI::on_actionAbout_triggered() {
 
 // Called when we close the program
 void GUI::closeEvent(QCloseEvent *e) {
-  qDebug("Mainwindow received closeEvent");
+
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   bool goToSystrayOnExit = settings.value(QString::fromUtf8("Preferences/General/CloseToTray"), false).toBool();
   if(!force_exit && systrayIntegration && goToSystrayOnExit && !this->isHidden()) {
@@ -508,14 +508,16 @@ void GUI::closeEvent(QCloseEvent *e) {
     show();
     if(!isMaximized())
       showNormal();
-    if(QMessageBox::question(this,
-       tr("Are you sure you want to quit?")+QString::fromUtf8(" -- ")+tr("qBittorrent"),
-       tr("The download list is not empty.\nAre you sure you want to quit qBittorrent?"),
-       tr("&Yes"), tr("&No"),
-       QString(), 0, 1)) {
-         e->ignore();
-         force_exit = false;
-         return;
+    if(e->spontaneous() == true || force_exit == true) {
+      if(QMessageBox::question(this,
+        tr("Are you sure you want to quit?")+QString::fromUtf8(" -- ")+tr("qBittorrent"),
+        tr("The download list is not empty.\nAre you sure you want to quit qBittorrent?"),
+        tr("&Yes"), tr("&No"),
+        QString(), 0, 1)) {
+          e->ignore();
+          force_exit = false;
+          return;
+      }
     }
   }
   hide();
@@ -532,6 +534,7 @@ void GUI::closeEvent(QCloseEvent *e) {
   e->accept();
   qApp->exit();
 }
+
 
 // Display window to create a torrent
 void GUI::on_actionCreate_torrent_triggered() {
