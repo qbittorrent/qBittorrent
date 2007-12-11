@@ -530,6 +530,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
     // Display warning to tell user we can't decode the torrent file
     if(!from_url.isNull()) {
       emit invalidTorrent(from_url);
+      QFile::remove(file);
     }else{
       emit invalidTorrent(file);
     }
@@ -544,6 +545,8 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
     // Display warning to tell user we can't decode the torrent file
     if(!from_url.isNull()) {
       emit invalidTorrent(from_url);
+      qDebug("File path is: %s", file.toUtf8().data());
+      QFile::remove(file);
     }else{
       emit invalidTorrent(file);
     }

@@ -125,6 +125,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         // Display warning to tell user we can't decode the torrent file
         if(!from_url.isNull()){
           emit setInfoBarGUI(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
+          QFile::remove(filePath);
         }else{
           emit setInfoBarGUI(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+filePath+QString::fromUtf8("'"), QString::fromUtf8("red"));
         }
@@ -142,9 +143,11 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         // Display warning to tell user we can't decode the torrent file
         if(!from_url.isNull()){
           emit setInfoBarGUI(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
+          QFile::remove(filePath);
         }else{
           emit setInfoBarGUI(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+filePath+QString::fromUtf8("'"), QString::fromUtf8("red"));
         }
+        qDebug("path is %s", filePath.toUtf8().data());
         emit setInfoBarGUI(tr("This file is either corrupted or this isn't a torrent."), QString::fromUtf8("red"));
         if(fromScanDir){
           // Remove .corrupt file in case it already exists
