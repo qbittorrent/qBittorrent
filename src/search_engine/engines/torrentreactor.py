@@ -1,4 +1,4 @@
-#VERSION: 1.01
+#VERSION: 1.02
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
 from novaprinter import prettyPrinter
 import sgmllib
@@ -22,9 +22,7 @@ class torrentreactor(object):
 			if params['href'].startswith('http://dl.torrentreactor.net/download.php'):
 				self.current_item = {}
 				self.td_counter = 0
-				equal = params['href'].find("=")
-				amp = params['href'].find("&", equal+1)
-				self.id = str(int(params['href'][equal+1:amp]))
+				self.current_item['link'] = params['href'].strip()
 
 		def handle_data(self, data):
 			if self.td_counter == 0:
@@ -47,11 +45,10 @@ class torrentreactor(object):
 		def start_td(self,attr):
 			if isinstance(self.td_counter,int):
 				self.td_counter += 1
-				if self.td_counter > 7:
+				if self.td_counter > 3:
 					self.td_counter = None
 					# add item to results
 					if self.current_item:
-						self.current_item['link']='http://download.torrentreactor.net/download.php?id=%s&name=%s'%(self.id, urllib.quote(self.current_item['name']))
 						self.current_item['engine_url'] = self.url
 						if not self.current_item['seeds'].isdigit():
 							self.current_item['seeds'] = 0
@@ -71,6 +68,7 @@ class torrentreactor(object):
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
 			dat = urllib.urlopen(self.url+'/search.php?search=&words=%s&cid=&sid=&type=2&orderby=a.seeds&asc=0&skip=%s'%(what,(i*35))).read().decode('utf-8', 'replace')
+			#print "loading page: "+self.url+'/search.php?search=&words=%s&cid=&sid=&type=2&orderby=a.seeds&asc=0&skip=%s'%(what,(i*35))
 			parser.feed(dat)
 			parser.close()
 			if len(results) <= 0:
