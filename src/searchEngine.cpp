@@ -318,6 +318,7 @@ void SearchEngine::downloadSelectedItem(const QModelIndex& index){
 // line to search results calling appendSearchResult().
 void SearchEngine::readSearchOutput(){
   QByteArray output = searchProcess->readAllStandardOutput();
+  output.replace("\r", "");
   QList<QByteArray> lines_list = output.split('\n');
   QByteArray line;
   if(!search_result_line_truncated.isEmpty()){
