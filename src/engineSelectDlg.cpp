@@ -256,6 +256,7 @@ bool engineSelectDlg::checkInstalled(QString plugin_name) const {
   nova.waitForStarted();
   nova.waitForFinished();
   QByteArray result = nova.readAll();
+  result = result.replace("\n\r", "");
   result = result.replace("\n", "");
   QList<QByteArray> plugins_list = result.split(',');
   return plugins_list.contains(plugin_name.toUtf8());
@@ -287,6 +288,7 @@ void engineSelectDlg::loadSupportedSearchEngines(bool first) {
   nova.waitForStarted();
   nova.waitForFinished();
   QByteArray result = nova.readAll();
+  result = result.replace("\n\r", "");
   result = result.replace("\n", "");
   qDebug("read: %s", result.data());
   QByteArray e;
@@ -303,6 +305,7 @@ void engineSelectDlg::loadSupportedSearchEngines(bool first) {
   nova.waitForStarted();
   nova.waitForFinished();
   result = nova.readAll();
+  result = result.replace("\n\r", "");
   result = result.replace("\n", "");
   qDebug("read: %s", result.data());
   unsigned int i = 0;
