@@ -370,7 +370,7 @@ void SearchEngine::updateNova() {
   QStringList files = shipped_subDir.entryList();
   QString file;
   foreach(file, files){
-    QString shipped_file = shipped_subDir.path()+QDir::separator()+file;
+    QString shipped_file = shipped_subDir.path()+"/"+file;
     // Copy python classes
     if(file.endsWith(".py")) {
       if(misc::getPluginVersion(shipped_file) > misc::getPluginVersion(destDir+file) ) {
