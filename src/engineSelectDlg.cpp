@@ -297,8 +297,9 @@ void engineSelectDlg::loadSupportedSearchEngines(bool first) {
     installed_engines[en] = old_engines.value(en, true);
   }
   params.clear();
+  params << misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py";
   params << "--supported_engines_infos";
-  nova.start(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py", params, QIODevice::ReadOnly);
+  nova.start("python", params, QIODevice::ReadOnly);
   nova.waitForStarted();
   nova.waitForFinished();
   result = nova.readAll();
