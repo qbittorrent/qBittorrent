@@ -277,7 +277,7 @@ void SearchEngine::on_search_button_clicked(){
   QStringList params;
   QStringList engineNames;
   search_stopped = false;
-
+  params << misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py";
   params << enabled_engines.join(",");
   params << pattern.split(" ");
   // Update SearchEngine widgets
@@ -286,7 +286,7 @@ void SearchEngine::on_search_button_clicked(){
   search_result_line_truncated.clear();
   results_lbl->setText(tr("Results")+" <i>(0)</i>:");
   // Launch search
-  searchProcess->start(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py", params, QIODevice::ReadOnly);
+  searchProcess->start("python", params, QIODevice::ReadOnly);
   searchTimeout->start(180000); // 3min
 }
 
