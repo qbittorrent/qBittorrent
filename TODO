@@ -58,3 +58,4 @@ rc10->rc11? changelog:
 - BUGFIX: Download from urls are now able to follow redirections
 - BUGFIX: Clean up for failed torrents downloaded from urls
 - BUGFIX: Fixed downloads from URLs on Windows
+- BUGFIX: Fixed search engine on Windows
