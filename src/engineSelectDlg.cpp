@@ -250,8 +250,9 @@ void engineSelectDlg::setRowColor(int row, QString color){
 bool engineSelectDlg::checkInstalled(QString plugin_name) const {
   QProcess nova;
   QStringList params;
+  params << misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py";
   params << "--supported_engines";
-  nova.start(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py", params, QIODevice::ReadOnly);
+  nova.start("python", params, QIODevice::ReadOnly);
   nova.waitForStarted();
   nova.waitForFinished();
   QByteArray result = nova.readAll();
