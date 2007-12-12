@@ -281,8 +281,9 @@ void engineSelectDlg::loadSupportedSearchEngines(bool first) {
   QStringList params;
   // Ask nova core for the supported search engines
   QProcess nova;
+  params << misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py";
   params << "--supported_engines";
-  nova.start(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py", params, QIODevice::ReadOnly);
+  nova.start("python", params, QIODevice::ReadOnly);
   nova.waitForStarted();
   nova.waitForFinished();
   QByteArray result = nova.readAll();
