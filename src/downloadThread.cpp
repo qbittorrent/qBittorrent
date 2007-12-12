@@ -73,7 +73,7 @@ void subDownloadThread::run(){
     filePath = tmpfile->fileName();
   }
   delete tmpfile;
-  FILE *f = fopen(filePath.toUtf8().data(), "w");
+  FILE *f = fopen(filePath.toUtf8().data(), "wb");
   if(!f) {
     std::cerr << "couldn't open destination file" << "\n";
     return;
@@ -113,7 +113,7 @@ void subDownloadThread::run(){
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fwrite);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, f);
     // Verbose
-    //curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
+    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
     // No progress info (we don't use it)
     curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1);
     // Redirections
