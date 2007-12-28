@@ -113,7 +113,7 @@ void subDownloadThread::run(){
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fwrite);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, f);
     // Verbose
-    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
+    // curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
     // No progress info (we don't use it)
     curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1);
     // Redirections
