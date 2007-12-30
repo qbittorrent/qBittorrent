@@ -36,6 +36,7 @@
 #include <libtorrent/file_pool.hpp>
 
 #include "createtorrent_imp.h"
+#include "misc.h"
 
 using namespace libtorrent;
 using namespace boost::filesystem;
@@ -120,11 +121,13 @@ void createtorrent::on_addURLSeed_button_clicked(){
 // Subfunction to add files to a torrent_info structure
 // Written by Arvid Norberg (libtorrent Author)
 void add_files(torrent_info& t, path const& p, path const& l){
+  qDebug("p: %s, l: %s, l.leaf(): %s", p.string().c_str(), l.string().c_str(), l.leaf().c_str());
   path f(p / l);
   if (is_directory(f)){
     for (directory_iterator i(f), end; i != end; ++i)
       add_files(t, p, l / i->leaf());
   }else{
+    qDebug("Adding %s", l.string().c_str());
     t.add_file(l, file_size(f));
   }
 }
@@ -141,6 +144,8 @@ QStringList createtorrent::allItems(QListWidget *list){
 // Main function that create a .torrent file
 void createtorrent::on_createButton_clicked(){
   QString input = textInputPath->text().trimmed();
+  if (input.endsWith(QDir::separator()))
+    input.chop(1);
   if(input.isEmpty()){
     QMessageBox::critical(0, tr("No input path set"), tr("Please type an input path first"));
     return;
@@ -161,9 +166,8 @@ void createtorrent::on_createButton_clicked(){
   try {
     boost::intrusive_ptr<torrent_info> t(new torrent_info);
     ofstream out(complete(path((const char*)destination.toUtf8())), std::ios_base::binary);
-    path full_path;
     // Adding files to the torrent
-    full_path = complete(path(input.toUtf8().data()));
+    path full_path = complete(path(input.toUtf8().data()));
     add_files(*t, full_path.branch_path(), full_path.leaf());
     // Set piece size
     int piece_size = getPieceSize();
@@ -200,8 +204,14 @@ void createtorrent::on_createButton_clicked(){
     entry e = t->create_torrent();
     libtorrent::bencode(std::ostream_iterator<char>(out), e);
     out.flush();
-    if(checkStartSeeding->isChecked())
+    if(checkStartSeeding->isChecked()) {
+      // Create save path file
+      QFile savepath_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+misc::toQString(t->info_hash())+QString::fromUtf8(".savepath"));
+      savepath_file.open(QIODevice::WriteOnly | QIODevice::Text);
+      savepath_file.write(full_path.branch_path().string().c_str());
+      savepath_file.close();
       emit torrent_to_seed(destination);
+    }
   }
   catch (std::exception& e){
     std::cerr << e.what() << "\n";
