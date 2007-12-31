@@ -30,7 +30,6 @@
 
 // in v1.1.0
 - Tabs support in search
-- Allow to hide columns?
 - Allow to scan multiple directories? (useful?)
 - Web interface (turbogears? php? python?)
   * Webserver? Try to write a webserver as a plugin for qBittorrent in Python
@@ -44,11 +43,6 @@
 - Display in torrent addition dialog:
    * free disk space on selected drive
    * free disk space after torrent download (and/or torrent size)
-- Start minimized option in program preferences
-- In finished list, replace "Seeds/Leechs" column by "Leechers" because Seeds are always 0.
-- Allow to change action on double-click
-  -> in download list
-  -> in seeding list
 
 TODO:
 - Check search engine cpu usage
