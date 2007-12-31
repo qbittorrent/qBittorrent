@@ -75,6 +75,8 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   connect(BTSession, SIGNAL(fastResumeDataRejected(QString)), this, SLOT(addFastResumeRejectedAlert(QString)));
   connect(BTSession, SIGNAL(aboutToDownloadFromUrl(QString)), this, SLOT(displayDownloadingUrlInfos(QString)));
   connect(BTSession, SIGNAL(urlSeedProblem(QString, QString)), this, SLOT(addUrlSeedError(QString, QString)));
+  connect(BTSession, SIGNAL(UPnPError(QString)), this, SLOT(displayUPnPError(QString)));
+  connect(BTSession, SIGNAL(UPnPSucess(QString)), this, SLOT(displayUPnPSucess(QString)));
 
   // Load last columns width for download list
   if(!loadColWidthDLList()) {
@@ -198,6 +200,14 @@ void DownloadingTorrents::deleteTorrent(QString hash) {
   DLListModel->removeRow(row);
   --nbTorrents;
   emit unfinishedTorrentsNumberChanged(nbTorrents);
+}
+
+void DownloadingTorrents::displayUPnPError(QString msg) {
+  setInfoBar(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(msg), QColor("red"));
+}
+
+void DownloadingTorrents::displayUPnPSucess() {
+  DownloadingTorrents::setInfoBar(tr("UPnP/NAT-PMP: Port mapping successful"), QColor("blue"));
 }
 
 // Update Info Bar information

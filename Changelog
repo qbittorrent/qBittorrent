@@ -5,8 +5,11 @@
     - FEATURE: Allow to open torrent destination folder
     - FEATURE: Real progress bar in torrent properties that displays downloaded pieces
     - FEATURE: Allow to buy downloads using ShareMonkey
+    - FEATURE: Display if UPnP/NAT-PMP was successful or not
+    - FEATURE: Threadified torrent creation
     - BUGFIX: Do not display seeds number in seeding list (always 0)
     - COSMETIC: Do not display progress bar in seeding list (always 100%)
+    - COSMETIC: Added a progress bar for torrent creation
 
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.0.0
     - FEATURE: Based on new libtorrent v0.13

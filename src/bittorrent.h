@@ -168,6 +168,8 @@ class bittorrent : public QObject{
     void urlSeedProblem(QString url, QString msg);
     void torrentFinishedChecking(QString hash);
     void torrent_deleted(QString hash, QString fileName, bool finished);
+    void UPnPError(QString msg);
+    void UPnPSuccess();
 };
 
 #endif

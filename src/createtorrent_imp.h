@@ -22,13 +22,48 @@
 #ifndef CREATE_TORRENT_IMP_H
 #define CREATE_TORRENT_IMP_H
 
+#include <QThread>
+
 #include "ui_createtorrent.h"
+
+class torrentCreatorThread : public QThread {
+  Q_OBJECT
+  
+  QString input_path;
+  QString save_path;
+  QStringList trackers;
+  QStringList url_seeds;
+  QString comment;
+  bool is_private;
+  int piece_size;
+  bool abort;
+  
+  public:
+    torrentCreatorThread() {}
+    ~torrentCreatorThread() {
+      abort = true;
+      wait();
+    }
+    void create(QString _input_path, QString _save_path, QStringList _trackers, QStringList _url_seeds, QString _comment, bool _is_private, int _piece_size);
+  
+  protected:
+    void run();
+    
+  signals:
+    void creationFailure(QString msg);
+    void creationSuccess(QString path, const char* branch_path, QString hash);
+    void updateProgress(int progress);
+};
 
 class createtorrent : public QDialog, private Ui::createTorrentDialog{
   Q_OBJECT
 
+  private:
+    torrentCreatorThread *creatorThread;
+    
   public:
     createtorrent(QWidget *parent = 0);
+    ~createtorrent();
     QStringList allItems(QListWidget *list);
     int getPieceSize() const;
 
@@ -43,6 +78,9 @@ class createtorrent : public QDialog, private Ui::createTorrentDialog{
     void on_removeTracker_button_clicked();
     void on_addURLSeed_button_clicked();
     void on_removeURLSeed_button_clicked();
+    void handleCreationFailure(QString msg);
+    void handleCreationSuccess(QString path, const char* branch_path, QString hash);
+    void updateProgressBar(int progress);
 };
 
 #endif
