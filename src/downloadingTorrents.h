@@ -93,7 +93,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void hideOrShowColumnRatio();
     void hideOrShowColumnEta();
     void displayUPnPError(QString msg);
-    void displayUPnPSucess();
+    void displayUPnPSuccess(QString msg);
 
   public slots:
     void updateDlList();

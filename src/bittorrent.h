@@ -169,7 +169,7 @@ class bittorrent : public QObject{
     void torrentFinishedChecking(QString hash);
     void torrent_deleted(QString hash, QString fileName, bool finished);
     void UPnPError(QString msg);
-    void UPnPSuccess();
+    void UPnPSuccess(QString msg);
 };
 
 #endif

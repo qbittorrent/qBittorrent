@@ -1163,7 +1163,7 @@ void bittorrent::readAlerts() {
     }
     else if (portmap_alert* p = dynamic_cast<portmap_alert*>(a.get())) {
       qDebug("UPnP Success, msg: %s", p->msg().c_str());
-      emit UPnPSuccess();
+      emit UPnPSuccess(QString(p->msg().c_str()));
     }
     else if (peer_blocked_alert* p = dynamic_cast<peer_blocked_alert*>(a.get())) {
       emit peerBlocked(QString::fromUtf8(p->ip.to_string().c_str()));
