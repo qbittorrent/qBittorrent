@@ -1041,75 +1041,85 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Odh. čas</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="113"/>
+        <location filename="../downloadingTorrents.cpp" line="115"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
         <translation>qBittorrent %1 spustený.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="114"/>
+        <location filename="../downloadingTorrents.cpp" line="116"/>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
         <translation>Buďte opatrní, zdieľanie materiálu chráneného autorskými právami bez povolenia je protizákonné.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="139"/>
+        <location filename="../downloadingTorrents.cpp" line="141"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;bol zablokovaný&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="216"/>
+        <location filename="../downloadingTorrents.cpp" line="226"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Rýchle obnovenie torrentu torrent %1 bolo odmietnuté, skúšam znova...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="220"/>
+        <location filename="../downloadingTorrents.cpp" line="230"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="853"/>
+        <location filename="../downloadingTorrents.cpp" line="863"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>„%1“ bol pridaný do zoznamu na sťahovanie.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="855"/>
+        <location filename="../downloadingTorrents.cpp" line="865"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>„%1“ bol obnovený. (rýchle obnovenie)</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="863"/>
+        <location filename="../downloadingTorrents.cpp" line="873"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>„%1“ sa už nachádza v zozname sťahovaných.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="867"/>
+        <location filename="../downloadingTorrents.cpp" line="877"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Nebol omožné dekodovať torrent súbor: „%1“</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="868"/>
+        <location filename="../downloadingTorrents.cpp" line="878"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Tento súbor je buď poškodený alebo to nie je torrent.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="882"/>
+        <location filename="../downloadingTorrents.cpp" line="892"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Nepodarilo sa počúvať na žiadnom zo zadaných portov.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="906"/>
+        <location filename="../downloadingTorrents.cpp" line="916"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Sťahuje sa „%1“, čakajte prosím...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="317"/>
+        <location filename="../downloadingTorrents.cpp" line="327"/>
         <source>Hide or Show Column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadingTorrents.cpp" line="206"/>
+        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadingTorrents.cpp" line="210"/>
+        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2689,7 +2699,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Musíte zvoliť aspoň jeden vyhľadávač.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="475"/>
+        <location filename="../searchEngine.cpp" line="476"/>
         <source>Results</source>
         <translation>Výsledky</translation>
     </message>
@@ -2744,32 +2754,32 @@ Záznam zmien:</translation>
         <translation type="obsolete">Váš vyhľadávací zásuvný modul je aktuálny.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="403"/>
+        <location filename="../searchEngine.cpp" line="404"/>
         <source>Search Engine</source>
         <translation>Vyhľadávač</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="414"/>
+        <location filename="../searchEngine.cpp" line="415"/>
         <source>Search has finished</source>
         <translation>Hľadanie skončené</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="406"/>
+        <location filename="../searchEngine.cpp" line="407"/>
         <source>An error occured during search...</source>
         <translation>Počas vyhľadávania sa vyskytla chyba...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="409"/>
+        <location filename="../searchEngine.cpp" line="410"/>
         <source>Search aborted</source>
         <translation>Vyhľadávanie preušené</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="412"/>
+        <location filename="../searchEngine.cpp" line="413"/>
         <source>Search returned no results</source>
         <translation>Vyhľadávanie nevrátilo žiadne výsledky</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="418"/>
+        <location filename="../searchEngine.cpp" line="419"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Výsledky</translation>
@@ -2785,7 +2795,7 @@ Záznam zmien:</translation>
         <translation type="obsolete">Nebolo možné stiahnuť zásuvný modul vyhľadávania z url: %1, dôvod: %2.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="442"/>
+        <location filename="../searchEngine.cpp" line="443"/>
         <source>Unknown</source>
         <translation>Neznámy</translation>
     </message>
@@ -3063,7 +3073,7 @@ Záznam zmien:</translation>
         <translation type="obsolete">Vytvoriť</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="520"/>
+        <location filename="../createtorrent.ui" line="534"/>
         <source>Cancel</source>
         <translation>Storno</translation>
     </message>
@@ -3203,20 +3213,25 @@ Záznam zmien:</translation>
         <translation>Začasť seedovanie po vytvorení</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="513"/>
+        <location filename="../createtorrent.ui" line="527"/>
         <source>Create and save...</source>
         <translation>Vytvoriť a uložiť...</translation>
+    </message>
+    <message>
+        <location filename="../createtorrent.ui" line="483"/>
+        <source>Progress:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>createtorrent</name>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="153"/>
+        <location filename="../createtorrent_imp.cpp" line="166"/>
         <source>Select destination torrent file</source>
         <translation>Vybrať cieľový torrent súbor</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="153"/>
+        <location filename="../createtorrent_imp.cpp" line="166"/>
         <source>Torrent Files</source>
         <translation>Torrent súbory</translation>
     </message>
@@ -3236,12 +3251,12 @@ Záznam zmien:</translation>
         <translation type="obsolete">Napíšte prosím najprv cieľovú cestu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="145"/>
+        <location filename="../createtorrent_imp.cpp" line="158"/>
         <source>No input path set</source>
         <translation>Nebola zadaná vstupná cesta</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="145"/>
+        <location filename="../createtorrent_imp.cpp" line="158"/>
         <source>Please type an input path first</source>
         <translation>Napíšte prosím najprv vstupnú cestu</translation>
     </message>
@@ -3256,12 +3271,12 @@ Záznam zmien:</translation>
         <translation type="obsolete">Prosím, napíšte správnu vstupnú cestu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
+        <location filename="../createtorrent_imp.cpp" line="192"/>
         <source>Torrent creation</source>
         <translation>Vytvorenie torrentu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
+        <location filename="../createtorrent_imp.cpp" line="192"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent bol úspešne vytvorený:</translation>
     </message>
@@ -3271,7 +3286,7 @@ Záznam zmien:</translation>
         <translation type="obsolete">Prosím, najprv napíšte platnú cestu pre vstup</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="50"/>
+        <location filename="../createtorrent_imp.cpp" line="59"/>
         <source>Select a folder to add to the torrent</source>
         <translation>Vyberte adresár, ktorý sa má pridať do torrentu</translation>
     </message>
@@ -3281,43 +3296,43 @@ Záznam zmien:</translation>
         <translation type="obsolete">Vyberte súbory, ktoré sa majú pridať do torrentu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="92"/>
+        <location filename="../createtorrent_imp.cpp" line="101"/>
         <source>Please type an announce URL</source>
         <translation>Prosím, napíšte announce URL</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="208"/>
+        <location filename="../createtorrent_imp.cpp" line="179"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Torrent nebol vytvorený, dôvod: %1</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="93"/>
+        <location filename="../createtorrent_imp.cpp" line="102"/>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
         <translation>Announce URL:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="111"/>
+        <location filename="../createtorrent_imp.cpp" line="120"/>
         <source>Please type a web seed url</source>
         <translation>Prosím, napíšte web seed URL</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="112"/>
+        <location filename="../createtorrent_imp.cpp" line="121"/>
         <source>Web seed URL:</source>
         <translation>Web seed URL:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="56"/>
+        <location filename="../createtorrent_imp.cpp" line="65"/>
         <source>Select a file to add to the torrent</source>
         <translation>Vyberte súbor, ktorý sa má pridať do torrentu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="150"/>
+        <location filename="../createtorrent_imp.cpp" line="163"/>
         <source>No tracker path set</source>
         <translation>Nebola nastavená cesta k trackeru</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="150"/>
+        <location filename="../createtorrent_imp.cpp" line="163"/>
         <source>Please set at least one tracker</source>
         <translation>Prosím, nastavte aspoň jeden tracker</translation>
     </message>
@@ -3559,12 +3574,12 @@ Záznam zmien:</translation>
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="313"/>
+        <location filename="../engineSelectDlg.cpp" line="319"/>
         <source>True</source>
         <translation>Pravda</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="315"/>
+        <location filename="../engineSelectDlg.cpp" line="321"/>
         <source>False</source>
         <translation>Nepravda</translation>
     </message>
@@ -3593,27 +3608,27 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Všetky zvolené zásuvné moduly boli úspešne odstránené</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="535"/>
+        <location filename="../engineSelectDlg.cpp" line="541"/>
         <source>Select search plugins</source>
         <translation>Zvoliť zásuvné moduly vyhľadávačov</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="539"/>
+        <location filename="../engineSelectDlg.cpp" line="545"/>
         <source>qBittorrent search plugins</source>
         <translation>Zásuvné moduly vyhľadávania qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="513"/>
+        <location filename="../engineSelectDlg.cpp" line="519"/>
         <source>Search plugin install</source>
         <translation>Inštalácia zásuvného modulu vyhľadávača</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="694"/>
+        <location filename="../engineSelectDlg.cpp" line="700"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="472"/>
+        <location filename="../engineSelectDlg.cpp" line="478"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Novšia verzia zásuvného modulu vyhľadávača %1 je už nainštalovaná.</translation>
@@ -3631,12 +3646,12 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Zásuvný modul vyhľadávača %1 bol úspešne nainštalovaný.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="694"/>
+        <location filename="../engineSelectDlg.cpp" line="700"/>
         <source>Search plugin update</source>
         <translation>Aktualizácia zásuvného modulu vyhľadávača</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="680"/>
+        <location filename="../engineSelectDlg.cpp" line="686"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Je mi ľúto, aktualizačný server je dočasne nedostupný.</translation>
     </message>
@@ -3653,18 +3668,18 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Je mi ľúto, aktualizácia zásuvného modulu vyhľadávača %1 zlyhala.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="598"/>
+        <location filename="../engineSelectDlg.cpp" line="604"/>
         <source>All your plugins are already up to date.</source>
         <translation>Všetky vaše vyhľadávacie zásuvné moduly sú už aktuálne.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="494"/>
+        <location filename="../engineSelectDlg.cpp" line="500"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Zásuvný modul vyhľadávača %1 nebolo možné aktualizovať, zachovávam starú verziu.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="499"/>
+        <location filename="../engineSelectDlg.cpp" line="505"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Zásuvný modul vyhľadávača %1 nebolo možné nainštalovať.</translation>
@@ -3675,35 +3690,35 @@ Tieto moduly však boli vypnuté.</translation>
         <translation>Všetky zvolené zásuvné moduly boli úspešne odinštalované</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="510"/>
+        <location filename="../engineSelectDlg.cpp" line="516"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Zásuvný modul vyhľadávača %1 bol úspešne aktualizovaný.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="513"/>
+        <location filename="../engineSelectDlg.cpp" line="519"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Zásuvný modul vyhľadávača %1 bol úspešne nainštalovaný.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="368"/>
+        <location filename="../engineSelectDlg.cpp" line="374"/>
         <source>Search engine plugin archive could not be read.</source>
         <translation>Nebolo možné prečítať archív zásuvného modulu vyhľadávača.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="694"/>
+        <location filename="../engineSelectDlg.cpp" line="700"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Je mi ľúto, aktualizácia zásuvného modulu vyhľadávača %1 zlyhala.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="526"/>
+        <location filename="../engineSelectDlg.cpp" line="532"/>
         <source>New search engine plugin URL</source>
         <translation>URL zásuvného modulu nového vyhľadávača</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="527"/>
+        <location filename="../engineSelectDlg.cpp" line="533"/>
         <source>URL:</source>
         <translation>URL:</translation>
     </message>
@@ -4701,17 +4716,17 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Áno</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="146"/>
+        <location filename="../torrentAddition.h" line="148"/>
         <source>Unable to decode torrent file:</source>
         <translation>Nemohol som dekódovať torrent súbor:</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="148"/>
+        <location filename="../torrentAddition.h" line="151"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Tento súbor je buď poškodený alebo nie je torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="273"/>
+        <location filename="../torrentAddition.h" line="276"/>
         <source>Choose save path</source>
         <translation>Zvoľte cestu pre uloženie</translation>
     </message>
@@ -4721,32 +4736,32 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Nie</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="407"/>
+        <location filename="../torrentAddition.h" line="410"/>
         <source>Empty save path</source>
         <translation>Prázdna cesta pre uloženie</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="407"/>
+        <location filename="../torrentAddition.h" line="410"/>
         <source>Please enter a save path</source>
         <translation>Prosím, zadajte cestu pre uloženie</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="413"/>
+        <location filename="../torrentAddition.h" line="416"/>
         <source>Save path creation error</source>
         <translation>Chyba pri vytváraní cesty pre uloženie</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="413"/>
+        <location filename="../torrentAddition.h" line="416"/>
         <source>Could not create the save path</source>
         <translation>Nemohol som vytvoriť cestu pre uloženie</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="443"/>
+        <location filename="../torrentAddition.h" line="446"/>
         <source>Invalid file selection</source>
         <translation>Neplatný výber súboru</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="443"/>
+        <location filename="../torrentAddition.h" line="446"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Musíte vybrať aspoň jeden súbor z torrentu</translation>
     </message>
@@ -4766,7 +4781,7 @@ Tieto moduly však boli vypnuté.</translation>
         <translation>Priebeh</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="306"/>
+        <location filename="../torrentAddition.h" line="309"/>
         <source>Priority</source>
         <translation>Priorita</translation>
     </message>

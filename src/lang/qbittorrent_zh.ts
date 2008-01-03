@@ -1137,7 +1137,7 @@ folder:</source>
         <translation>估计剩余时间</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="113"/>
+        <location filename="../downloadingTorrents.cpp" line="115"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
         <translation>qBittorrent %1开始.</translation>
@@ -1164,7 +1164,7 @@ again...</source>
 再次检查...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="220"/>
+        <location filename="../downloadingTorrents.cpp" line="230"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>找不到网址种子:%1, 消息:%2</translation>
     </message>
@@ -1203,7 +1203,7 @@ torrent.</source>
         <translation type="obsolete">该文件不是torrent文件或已经损坏.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="882"/>
+        <location filename="../downloadingTorrents.cpp" line="892"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>所给端口无响应.</translation>
     </message>
@@ -1215,59 +1215,69 @@ wait...</comment>
         <translation type="obsolete">&apos;%1&apos;下载中,请等待...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="114"/>
+        <location filename="../downloadingTorrents.cpp" line="116"/>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="139"/>
+        <location filename="../downloadingTorrents.cpp" line="141"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="216"/>
+        <location filename="../downloadingTorrents.cpp" line="226"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="853"/>
+        <location filename="../downloadingTorrents.cpp" line="863"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">&apos;%1&apos;添加到下载列表.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="855"/>
+        <location filename="../downloadingTorrents.cpp" line="865"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="863"/>
+        <location filename="../downloadingTorrents.cpp" line="873"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="unfinished">&apos;%1&apos;已存在于下载列表中.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="867"/>
+        <location filename="../downloadingTorrents.cpp" line="877"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="unfinished">无法解码torrent文件:&apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="868"/>
+        <location filename="../downloadingTorrents.cpp" line="878"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="906"/>
+        <location filename="../downloadingTorrents.cpp" line="916"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">&apos;%1&apos;下载中,请等待...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="317"/>
+        <location filename="../downloadingTorrents.cpp" line="327"/>
         <source>Hide or Show Column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadingTorrents.cpp" line="206"/>
+        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadingTorrents.cpp" line="210"/>
+        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2961,7 +2971,7 @@ list?</source>
         <translation type="obsolete">请选择至少一个搜索引擎.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="475"/>
+        <location filename="../searchEngine.cpp" line="476"/>
         <source>Results</source>
         <translation>结果</translation>
     </message>
@@ -3017,32 +3027,32 @@ Changelog:
         <translation type="obsolete">您的搜索插件已是最新的.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="403"/>
+        <location filename="../searchEngine.cpp" line="404"/>
         <source>Search Engine</source>
         <translation>搜索引擎</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="414"/>
+        <location filename="../searchEngine.cpp" line="415"/>
         <source>Search has finished</source>
         <translation>搜索完毕</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="406"/>
+        <location filename="../searchEngine.cpp" line="407"/>
         <source>An error occured during search...</source>
         <translation>搜索中出现错误...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="409"/>
+        <location filename="../searchEngine.cpp" line="410"/>
         <source>Search aborted</source>
         <translation>搜索失败</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="412"/>
+        <location filename="../searchEngine.cpp" line="413"/>
         <source>Search returned no results</source>
         <translation>搜索无结果</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="418"/>
+        <location filename="../searchEngine.cpp" line="419"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>结果</translation>
@@ -3059,7 +3069,7 @@ reason: %2.</source>
         <translation type="obsolete">无法在网址:%1下载更新搜索插件,原因:%2.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="442"/>
+        <location filename="../searchEngine.cpp" line="443"/>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
@@ -3356,7 +3366,7 @@ previewing)</source>
         <translation type="obsolete">创建</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="520"/>
+        <location filename="../createtorrent.ui" line="534"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
@@ -3501,7 +3511,7 @@ enabled)</source>
         <translation>创建后开始做种</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="513"/>
+        <location filename="../createtorrent.ui" line="527"/>
         <source>Create and save...</source>
         <translation>创建并保存...</translation>
     </message>
@@ -3510,16 +3520,21 @@ enabled)</source>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../createtorrent.ui" line="483"/>
+        <source>Progress:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>createtorrent</name>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="153"/>
+        <location filename="../createtorrent_imp.cpp" line="166"/>
         <source>Select destination torrent file</source>
         <translation>选择torrent文件目的地</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="153"/>
+        <location filename="../createtorrent_imp.cpp" line="166"/>
         <source>Torrent Files</source>
         <translation>Torrent文件</translation>
     </message>
@@ -3539,12 +3554,12 @@ enabled)</source>
         <translation type="obsolete">请先给出目标路经</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="145"/>
+        <location filename="../createtorrent_imp.cpp" line="158"/>
         <source>No input path set</source>
         <translation>未设置输入路径</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="145"/>
+        <location filename="../createtorrent_imp.cpp" line="158"/>
         <source>Please type an input path first</source>
         <translation>请先给出输入路径</translation>
     </message>
@@ -3559,12 +3574,12 @@ enabled)</source>
         <translation type="obsolete">请先给出一个正确的输入路径</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
+        <location filename="../createtorrent_imp.cpp" line="192"/>
         <source>Torrent creation</source>
         <translation>创建Torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
+        <location filename="../createtorrent_imp.cpp" line="192"/>
         <source>Torrent was created successfully:</source>
         <translation>成功创建Torrent:</translation>
     </message>
@@ -3574,7 +3589,7 @@ enabled)</source>
         <translation type="obsolete">请先输入一个有效的路径</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="50"/>
+        <location filename="../createtorrent_imp.cpp" line="59"/>
         <source>Select a folder to add to the torrent</source>
         <translation>选择加入torrent的文件夹</translation>
     </message>
@@ -3584,43 +3599,43 @@ enabled)</source>
         <translation type="obsolete">选择加入torrentd的文件</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="92"/>
+        <location filename="../createtorrent_imp.cpp" line="101"/>
         <source>Please type an announce URL</source>
         <translation>请输入一个announce网址</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="208"/>
+        <location filename="../createtorrent_imp.cpp" line="179"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>创建Torrent失败,原因:%1</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="93"/>
+        <location filename="../createtorrent_imp.cpp" line="102"/>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
         <translation>Announce网址:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="111"/>
+        <location filename="../createtorrent_imp.cpp" line="120"/>
         <source>Please type a web seed url</source>
         <translation>请输入一个网络种子网址</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="112"/>
+        <location filename="../createtorrent_imp.cpp" line="121"/>
         <source>Web seed URL:</source>
         <translation>网络种子网址:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="56"/>
+        <location filename="../createtorrent_imp.cpp" line="65"/>
         <source>Select a file to add to the torrent</source>
         <translation>选择加入到torrent的文件</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="150"/>
+        <location filename="../createtorrent_imp.cpp" line="163"/>
         <source>No tracker path set</source>
         <translation>未设置tracker路径</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="150"/>
+        <location filename="../createtorrent_imp.cpp" line="163"/>
         <source>Please set at least one tracker</source>
         <translation>请设置至少一个tracker</translation>
     </message>
@@ -3868,12 +3883,12 @@ href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="313"/>
+        <location filename="../engineSelectDlg.cpp" line="319"/>
         <source>True</source>
         <translation>正确</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="315"/>
+        <location filename="../engineSelectDlg.cpp" line="321"/>
         <source>False</source>
         <translation>错误</translation>
     </message>
@@ -3898,22 +3913,22 @@ However, those plugins were disabled.</source>
         <translation>卸载成功</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="535"/>
+        <location filename="../engineSelectDlg.cpp" line="541"/>
         <source>Select search plugins</source>
         <translation>选择搜索插件</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="539"/>
+        <location filename="../engineSelectDlg.cpp" line="545"/>
         <source>qBittorrent search plugins</source>
         <translation>qBittorrent搜索插件</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="513"/>
+        <location filename="../engineSelectDlg.cpp" line="519"/>
         <source>Search plugin install</source>
         <translation>安装搜索插件</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="694"/>
+        <location filename="../engineSelectDlg.cpp" line="700"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -3925,18 +3940,18 @@ installed.</source>
         <translation type="obsolete">更新版本的%1搜索引擎插件已安装.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="694"/>
+        <location filename="../engineSelectDlg.cpp" line="700"/>
         <source>Search plugin update</source>
         <translation>更新搜索插件</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="680"/>
+        <location filename="../engineSelectDlg.cpp" line="686"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>对不起, 
 更新服务器暂时不可用.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="598"/>
+        <location filename="../engineSelectDlg.cpp" line="604"/>
         <source>All your plugins are already up to date.</source>
         <translation>所有的插件已是最新的.</translation>
     </message>
@@ -3949,7 +3964,7 @@ version.</source>
 保留旧版本.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="499"/>
+        <location filename="../engineSelectDlg.cpp" line="505"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1搜索引擎插件不能被安装.</translation>
@@ -3960,35 +3975,35 @@ version.</source>
         <translation>所有选中的插件已成功卸载</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="510"/>
+        <location filename="../engineSelectDlg.cpp" line="516"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1搜索引擎插件已成功更新.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="513"/>
+        <location filename="../engineSelectDlg.cpp" line="519"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1搜索引擎插件已成功安装.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="368"/>
+        <location filename="../engineSelectDlg.cpp" line="374"/>
         <source>Search engine plugin archive could not be read.</source>
         <translation>搜索引擎插件压缩文件不能被读取.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="694"/>
+        <location filename="../engineSelectDlg.cpp" line="700"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>对不起, %1搜索插件安装失败.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="526"/>
+        <location filename="../engineSelectDlg.cpp" line="532"/>
         <source>New search engine plugin URL</source>
         <translation>新搜索引擎插件网址</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="527"/>
+        <location filename="../engineSelectDlg.cpp" line="533"/>
         <source>URL:</source>
         <translation>网址:</translation>
     </message>
@@ -4000,13 +4015,13 @@ However, those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="472"/>
+        <location filename="../engineSelectDlg.cpp" line="478"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="494"/>
+        <location filename="../engineSelectDlg.cpp" line="500"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation type="unfinished"></translation>
@@ -5043,7 +5058,7 @@ network.</source>
         <translation type="obsolete">真</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="146"/>
+        <location filename="../torrentAddition.h" line="148"/>
         <source>Unable to decode torrent file:</source>
         <translation>无法解码torrent文件:</translation>
     </message>
@@ -5054,7 +5069,7 @@ torrent.</source>
         <translation type="obsolete">该文件不是torrent文件或已经损坏.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="273"/>
+        <location filename="../torrentAddition.h" line="276"/>
         <source>Choose save path</source>
         <translation>选择保存路径</translation>
     </message>
@@ -5064,32 +5079,32 @@ torrent.</source>
         <translation type="obsolete">假</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="407"/>
+        <location filename="../torrentAddition.h" line="410"/>
         <source>Empty save path</source>
         <translation>保存路径为空</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="407"/>
+        <location filename="../torrentAddition.h" line="410"/>
         <source>Please enter a save path</source>
         <translation>请输入一个保存路径</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="413"/>
+        <location filename="../torrentAddition.h" line="416"/>
         <source>Save path creation error</source>
         <translation>创建保存路径时出现错误</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="413"/>
+        <location filename="../torrentAddition.h" line="416"/>
         <source>Could not create the save path</source>
         <translation>无法创建保存路径</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="443"/>
+        <location filename="../torrentAddition.h" line="446"/>
         <source>Invalid file selection</source>
         <translation>所选文件无效</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="443"/>
+        <location filename="../torrentAddition.h" line="446"/>
         <source>You must select at least one file in the torrent</source>
         <translation>至少选择一个torrent文件</translation>
     </message>
@@ -5109,12 +5124,12 @@ torrent.</source>
         <translation>进度</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="306"/>
+        <location filename="../torrentAddition.h" line="309"/>
         <source>Priority</source>
         <translation>优先</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="148"/>
+        <location filename="../torrentAddition.h" line="151"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished"></translation>
     </message>
