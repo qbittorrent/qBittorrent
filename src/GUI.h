@@ -59,6 +59,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QTabWidget *tabs;
     options_imp *options;
     QSystemTrayIcon *myTrayIcon;
+    QTimer *systrayCreator;
     QMenu *myTrayIconMenu;
     DownloadingTorrents *downloadingTorrentTab;
     FinishedTorrents *finishedTorrentTab;
@@ -105,6 +106,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void updateFinishedTorrentNumber(unsigned int nb);
     void fullDiskError(QTorrentHandle& h) const;
     void handleDownloadFromUrlFailure(QString, QString) const;
+    void createSystrayDelayed();
     // Keyboard shortcuts
     void createKeyboardShortcuts();
     void displayDownTab() const;

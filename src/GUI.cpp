@@ -61,14 +61,21 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   systrayIntegration = settings.value(QString::fromUtf8("Preferences/General/SystrayEnabled"), true).toBool();
+  systrayCreator = 0;
   // Create tray icon
   if (QSystemTrayIcon::isSystemTrayAvailable()) {
     if(systrayIntegration) {
       createTrayIcon();
     }
   }else{
+    if(systrayIntegration) {
+      // May be system startup, check again later
+      systrayCreator = new QTimer(this);
+      connect(systrayCreator, SIGNAL(timeout()), this, SLOT(createSystrayDelayed()));
+      systrayCreator->start(1000);
+    }
     systrayIntegration = false;
-    qDebug("Info: System tray unavailable\n");
+    qDebug("Info: System tray unavailable");
   }
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent32.png")));
@@ -176,6 +183,9 @@ GUI::~GUI() {
   delete downloadingTorrentTab;
   delete finishedTorrentTab;
   delete checkConnect;
+  if(systrayCreator) {
+    delete systrayCreator;
+  }
   if(systrayIntegration) {
     delete myTrayIcon;
     delete myTrayIconMenu;
@@ -1182,6 +1192,29 @@ void GUI::downloadFromURLList(const QStringList& urls) {
  *                     Options                       *
  *                                                   *
  *****************************************************/
+
+void GUI::createSystrayDelayed() {
+  static int timeout = 10;
+  if(QSystemTrayIcon::isSystemTrayAvailable()) {
+      // Ok, systray integration is now supported
+      // Create systray icon
+      createTrayIcon();
+      systrayIntegration = true;
+      delete systrayCreator;
+      systrayCreator = 0;
+  } else {
+    if(timeout) {
+      // Retry a bit later
+      systrayCreator->start(1000);
+      --timeout;
+    } else {
+      // Timed out, apparently system really does not
+      // support systray icon
+      delete systrayCreator;
+      systrayCreator = 0;
+    }
+  }
+}
 
 void GUI::createTrayIcon() {
   // Tray icon

@@ -58,6 +58,7 @@
     - BUGFIX: search plugin update - do not display only last version changelog
     - BUGFIX: Search plugin update - fixed missing new lines in changelog
     - BUGFIX: The number of search results was not reset when clicking on 'Clear' button
+    - BUGFIX: Fixed systray integration when qbittorrent is launched on system startup
     - BUGFIX: Update torrent progress when its content changed (filtered files)
     - BUGFIX: Improved the way menu icons are installed to avoid problems on some systems
     - BUGFIX: Improved incremental download

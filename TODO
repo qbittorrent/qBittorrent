@@ -44,3 +44,6 @@
    * free disk space on selected drive
    * free disk space after torrent download (and/or torrent size)
 
+rc11 -> final? changelog:
+BUGFIX: Fixed systray integration when qbittorrent is launched on system startup
+
