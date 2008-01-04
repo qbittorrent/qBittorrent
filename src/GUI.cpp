@@ -1264,7 +1264,12 @@ void GUI::downloadFromURLList(const QStringList& urls) {
 
 void GUI::createTrayIcon() {
   // Tray icon
+ #ifdef Q_WS_WIN
+  myTrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent16.png")), this);
+ #endif
+ #ifndef Q_WS_WIN
   myTrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent22.png")), this);
+#endif
   // Tray icon Menu
   myTrayIconMenu = new QMenu(this);
   myTrayIconMenu->addAction(actionOpen);
