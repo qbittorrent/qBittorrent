@@ -121,7 +121,8 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         delete arb;
         connect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
         torrentContentList->expandAll();
-      }catch (invalid_torrent_file&){ // Raised by torrent_info constructor
+      }
+      catch (invalid_torrent_file&){ // Raised by torrent_info constructor
         // Display warning to tell user we can't decode the torrent file
         if(!from_url.isNull()){
           emit setInfoBarGUI(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
@@ -141,6 +142,24 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       catch(invalid_encoding& e){
         std::cerr << "Could not decode file, reason: " << e.what() << '\n';
         // Display warning to tell user we can't decode the torrent file
+        if(!from_url.isNull()){
+          emit setInfoBarGUI(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
+          QFile::remove(filePath);
+        }else{
+          emit setInfoBarGUI(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+filePath+QString::fromUtf8("'"), QString::fromUtf8("red"));
+        }
+        qDebug("path is %s", filePath.toUtf8().data());
+        emit setInfoBarGUI(tr("This file is either corrupted or this isn't a torrent."), QString::fromUtf8("red"));
+        if(fromScanDir){
+          // Remove .corrupt file in case it already exists
+          QFile::remove(filePath+QString::fromUtf8(".corrupt"));
+          //Rename file extension so that it won't display error message more than once
+          QFile::rename(filePath,filePath+QString::fromUtf8(".corrupt"));
+        }
+        close();
+      }
+      catch(std::exception& e){
+        std::cerr << "Could not decode file, reason: " << e.what() << '\n';
         if(!from_url.isNull()){
           emit setInfoBarGUI(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
           QFile::remove(filePath);

@@ -46,4 +46,4 @@
 
 rc11 -> final? changelog:
 BUGFIX: Fixed systray integration when qbittorrent is launched on system startup
-
+BUGFIX: Catch all possible exceptions when adding a torrent to avoid crashing

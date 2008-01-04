@@ -546,6 +546,22 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
       QFile::rename(file,file+".corrupt");
     }
   }
+  catch (std::exception& e) {
+    std::cerr << "Could not decode file, reason: " << e.what() << '\n';
+    // Display warning to tell user we can't decode the torrent file
+    if(!from_url.isNull()) {
+      emit invalidTorrent(from_url);
+      QFile::remove(file);
+    }else{
+      emit invalidTorrent(file);
+    }
+    if(fromScanDir) {
+      // Remove .corrupt file in case it already exists
+      QFile::remove(file+".corrupt");
+      //Rename file extension so that it won't display error message more than once
+      QFile::rename(file,file+".corrupt");
+    }
+  }
 }
 
 // Check in .priorities file if the user filtered files
