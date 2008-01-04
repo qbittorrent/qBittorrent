@@ -44,14 +44,3 @@
    * free disk space on selected drive
    * free disk space after torrent download (and/or torrent size)
 
-TODO:
-- Check search engine cpu usage
-
-rc10->rc11? changelog:
-- BUGFIX: Bypass exit confirmation on system shutdown
-- BUGFIX: Download from urls are now able to follow redirections
-- BUGFIX: Clean up for failed torrents downloaded from urls
-- BUGFIX: Fixed downloads from URLs on Windows
-- BUGFIX: Fixed search engine on Windows
-- BUGFIX: Fixed torrent creation from a directory
-- BUGFIX: Fixed save path when seeding automatically after torrent creation
