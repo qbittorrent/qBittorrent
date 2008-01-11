@@ -952,43 +952,43 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="162"/>
         <source>System default</source>
-        <translation type="unfinished"></translation>
+        <translation>Štandardné nastavenie systému</translation>
     </message>
     <message>
         <location filename="../options.ui" line="299"/>
         <source>Start minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustiť minimalizované</translation>
     </message>
     <message>
         <location filename="../options.ui" line="538"/>
         <source>Action on double click in transfer lists</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>Činnosť po dvojitom kliknutí v zozname prenosov</translation>
     </message>
     <message>
         <location filename="../options.ui" line="546"/>
         <source>In download list:</source>
-        <translation type="unfinished"></translation>
+        <translation>V zozname sťahovaní:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="606"/>
         <source>Pause/Start torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozastaviť/spustiť torrent</translation>
     </message>
     <message>
         <location filename="../options.ui" line="611"/>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť cieľový priečinok</translation>
     </message>
     <message>
         <location filename="../options.ui" line="616"/>
         <source>Display torrent properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť vlastnosti torrentu</translation>
     </message>
     <message>
         <location filename="../options.ui" line="598"/>
         <source>In seeding list:</source>
-        <translation type="unfinished"></translation>
+        <translation>V zozname seedov:</translation>
     </message>
 </context>
 <context>
@@ -1110,17 +1110,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../downloadingTorrents.cpp" line="327"/>
         <source>Hide or Show Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Skryť alebo zobraziť stĺpec</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="206"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP/NAT-PMP: Zlyhanie mapovania portov, správa: %1</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="210"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP/NAT-PMP: Mapovanie portov úspešné, správa: %1</translation>
     </message>
 </context>
 <context>
@@ -1183,12 +1183,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../FinishedTorrents.cpp" line="44"/>
         <source>Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished">Leecheri</translation>
+        <translation>Leecheri</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="399"/>
         <source>Hide or Show Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť alebo skryť stĺpec</translation>
     </message>
 </context>
 <context>
@@ -3220,7 +3220,7 @@ Záznam zmien:</translation>
     <message>
         <location filename="../createtorrent.ui" line="483"/>
         <source>Progress:</source>
-        <translation type="unfinished"></translation>
+        <translation>Priebeh:</translation>
     </message>
 </context>
 <context>
@@ -3460,52 +3460,52 @@ Záznam zmien:</translation>
     <message>
         <location filename="../download.ui" line="388"/>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť cieľový priečinok</translation>
     </message>
     <message>
         <location filename="../download.ui" line="393"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <location filename="../download.ui" line="398"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť</translation>
     </message>
     <message>
         <location filename="../download.ui" line="403"/>
         <source>Progress</source>
-        <translation type="unfinished">Priebeh</translation>
+        <translation>Priebeh</translation>
     </message>
     <message>
         <location filename="../download.ui" line="408"/>
         <source>DLSpeed</source>
-        <translation type="unfinished"></translation>
+        <translation>Rýchlosť sťahovania</translation>
     </message>
     <message>
         <location filename="../download.ui" line="413"/>
         <source>UpSpeed</source>
-        <translation type="unfinished"></translation>
+        <translation>Rýchlosť nahrávania</translation>
     </message>
     <message>
         <location filename="../download.ui" line="418"/>
         <source>Seeds/Leechs</source>
-        <translation type="unfinished">Seederi/Leecheri</translation>
+        <translation>Seederi/Leecheri</translation>
     </message>
     <message>
         <location filename="../download.ui" line="423"/>
         <source>Ratio</source>
-        <translation type="unfinished">Pomer</translation>
+        <translation>Pomer</translation>
     </message>
     <message>
         <location filename="../download.ui" line="428"/>
         <source>ETA</source>
-        <translation type="unfinished"></translation>
+        <translation>Odh. čas</translation>
     </message>
     <message>
         <location filename="../download.ui" line="436"/>
         <source>Buy it</source>
-        <translation type="unfinished"></translation>
+        <translation>Kúpiť</translation>
     </message>
 </context>
 <context>
@@ -4496,7 +4496,7 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../properties.ui" line="330"/>
         <source>Downloaded pieces</source>
-        <translation type="unfinished"></translation>
+        <translation>Stiahnuté časti</translation>
     </message>
 </context>
 <context>
@@ -4612,37 +4612,37 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../seeding.ui" line="101"/>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť cieľový priečinok</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="106"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="111"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="116"/>
         <source>Upload Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Rýchlosť nahrávania</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="121"/>
         <source>Leechers</source>
-        <translation type="unfinished">Leecheri</translation>
+        <translation>Leecheri</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="126"/>
         <source>Ratio</source>
-        <translation type="unfinished">Pomer</translation>
+        <translation>Pomer</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="134"/>
         <source>Buy it</source>
-        <translation type="unfinished"></translation>
+        <translation>Kúpiť</translation>
     </message>
 </context>
 <context>
@@ -4705,7 +4705,7 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../downloadThread.cpp" line="43"/>
         <source>Could not resolve proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebolo možné preložiť adresu proxy</translation>
     </message>
 </context>
 <context>
