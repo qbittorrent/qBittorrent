@@ -1,4 +1,4 @@
-#VERSION: 1.12
+#VERSION: 1.13
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 from novaprinter import prettyPrinter
 import urllib
@@ -14,14 +14,24 @@ class mininova(object):
 		order = 'seeds' # must be one in self.table_items
 
 		def get_link(lnk):
-                        lnks = lnk.getElementsByTagName('a')
-                        i = 0
-                        try:
-                          while not lnks.item(i).attributes.get('href').value.startswith('/get'):
-                            i += 1
-                        except:
-                          return None
-                        return (self.url+lnks.item(i).attributes.get('href').value).strip()
+			lnks = lnk.getElementsByTagName('a')
+			i = 0
+			try:
+				while not lnks.item(i).attributes.get('href').value.startswith('/get'):
+					i += 1
+			except:
+				return None
+			return (self.url+lnks.item(i).attributes.get('href').value).strip()
+		
+		def get_name(lnk):
+			lnks = lnk.getElementsByTagName('a')
+			i = 0
+			try:
+				while not lnks.item(i).attributes.get('href').value.startswith('/tor'):
+					i += 1
+			except:
+				return None
+			return lnks.item(i).firstChild.toxml()
 
 		def get_text(txt):
 			if txt.nodeType == txt.TEXT_NODE:
@@ -46,15 +56,17 @@ class mininova(object):
 					for td in tds:
 						if self.table_items[i] == 'name':
 							vals['link'] = get_link(td)
-						vals[self.table_items[i]] = get_text(td).strip()
+							vals['name'] = get_name(td)
+						else:
+							vals[self.table_items[i]] = get_text(td).strip()
 						i += 1
 					vals['engine_url'] = self.url
 					if not vals['seeds'].isdigit():
 						vals['seeds'] = 0
 					if not vals['leech'].isdigit():
 						vals['leech'] = 0
-                                        if vals['link'] is None:
-                                          continue
+					if vals['link'] is None:
+						continue
 					prettyPrinter(vals)
 					res = res + 1
 			if res == 0:
