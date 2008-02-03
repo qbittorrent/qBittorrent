@@ -29,7 +29,7 @@ class PropListDelegate;
 class QTimer;
 class bittorrent;
 class QStandardItemModel;
-class file;
+class torrent_file;
 class QStandardItem;
 class RealProgressBar;
 class RealProgressBarThread;
@@ -73,7 +73,7 @@ class properties : public QDialog, private Ui::properties{
     void loadWebSeedsFromFile();
     void deleteSelectedUrlSeeds();
     void loadTrackersErrors();
-    void addFilesToTree(file *root, QStandardItem *parent);
+    void addFilesToTree(torrent_file *root, QStandardItem *parent);
     void updateChildrenPriority(QStandardItem *item, int priority);
     void updateParentsPriority(QStandardItem *item, int priority);
     void updatePriorities(QStandardItem *item);
