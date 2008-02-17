@@ -45,6 +45,7 @@ class previewSelect: public QDialog, private Ui::preview {
     QStandardItemModel *previewListModel;
     PreviewListDelegate *listDelegate;
     QTorrentHandle h;
+    QList<int> indexes;
 
   signals:
     void readyToPreviewFile(QString) const;
@@ -57,7 +58,7 @@ class previewSelect: public QDialog, private Ui::preview {
       QString path;
       foreach(index, selectedIndexes){
         if(index.column() == NAME){
-          path = h.files_path().at(index.row());
+          path = h.files_path().at(indexes.at(index.row()));
           // File
           if(QFile::exists(path)){
             emit readyToPreviewFile(path);
@@ -101,6 +102,7 @@ class previewSelect: public QDialog, private Ui::preview {
           previewListModel->setData(previewListModel->index(row, NAME), QVariant(fileName));
           previewListModel->setData(previewListModel->index(row, SIZE), QVariant((qlonglong)h.filesize_at(i)));
           previewListModel->setData(previewListModel->index(row, PROGRESS), QVariant((double)fp[i]));
+          indexes << i;
         }
       }
       previewList->selectionModel()->select(previewListModel->index(0, NAME), QItemSelectionModel::Select);
