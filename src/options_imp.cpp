@@ -438,7 +438,7 @@ void options_imp::loadOptions(){
   checkUPnP->setChecked(settings.value(QString::fromUtf8("UPnP"), true).toBool());
   checkNATPMP->setChecked(settings.value(QString::fromUtf8("NAT-PMP"), true).toBool());
   intValue = settings.value(QString::fromUtf8("GlobalDLLimit"), -1).toInt();
-  if(intValue != -1) {
+  if(intValue > 0) {
     // Enabled
     checkDownloadLimit->setChecked(true);
     spinDownloadLimit->setEnabled(true);
