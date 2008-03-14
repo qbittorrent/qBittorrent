@@ -2718,12 +2718,12 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     <message>
         <location filename="../MainWindow.ui" line="226"/>
         <source>Set global download limit</source>
-        <translation>Définir limite envoi</translation>
+        <translation>Définir limite de téléchargement</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="231"/>
         <source>Set global upload limit</source>
-        <translation>Définir limite téléchargement</translation>
+        <translation>Définir limite d&apos;envoi</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="63"/>
