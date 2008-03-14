@@ -4319,27 +4319,27 @@ select one of them:</source>
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewSelect.h" line="110"/>
+        <location filename="../previewSelect.h" line="112"/>
         <source>Preview impossible</source>
         <translation>无法预览</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="110"/>
+        <location filename="../previewSelect.h" line="112"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>抱歉, 此文件无法被预览</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="84"/>
+        <location filename="../previewSelect.h" line="85"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="85"/>
+        <location filename="../previewSelect.h" line="86"/>
         <source>Size</source>
         <translation>大小</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="86"/>
+        <location filename="../previewSelect.h" line="87"/>
         <source>Progress</source>
         <translation>进度</translation>
     </message>

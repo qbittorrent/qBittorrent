@@ -4053,27 +4053,27 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewSelect.h" line="110"/>
+        <location filename="../previewSelect.h" line="112"/>
         <source>Preview impossible</source>
         <translation>Önizleme yapılamıyor</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="110"/>
+        <location filename="../previewSelect.h" line="112"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Üzgünüz, bu dosyaya önizleme yapılamıyor</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="84"/>
+        <location filename="../previewSelect.h" line="85"/>
         <source>Name</source>
         <translation>İsim</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="85"/>
+        <location filename="../previewSelect.h" line="86"/>
         <source>Size</source>
         <translation>Boyut</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="86"/>
+        <location filename="../previewSelect.h" line="87"/>
         <source>Progress</source>
         <translation>İlerleme</translation>
     </message>

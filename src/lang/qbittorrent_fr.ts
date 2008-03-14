@@ -4373,27 +4373,27 @@ Cependant, les greffons en question ont été désactivés.</translation>
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewSelect.h" line="110"/>
+        <location filename="../previewSelect.h" line="112"/>
         <source>Preview impossible</source>
         <translation>Prévisualisation impossible</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="110"/>
+        <location filename="../previewSelect.h" line="112"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Désolé, il est impossible de prévisualiser ce fichier</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="84"/>
+        <location filename="../previewSelect.h" line="85"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="85"/>
+        <location filename="../previewSelect.h" line="86"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="86"/>
+        <location filename="../previewSelect.h" line="87"/>
         <source>Progress</source>
         <translation>Progression</translation>
     </message>

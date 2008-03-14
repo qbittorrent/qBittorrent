@@ -4136,27 +4136,27 @@ Die Plugins wurden jedoch deaktiviert.</translation>
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewSelect.h" line="110"/>
+        <location filename="../previewSelect.h" line="112"/>
         <source>Preview impossible</source>
         <translation>Vorschau unmöglich</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="110"/>
+        <location filename="../previewSelect.h" line="112"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Bedauere, wir können keine Vorschau für diese Datei erstellen</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="84"/>
+        <location filename="../previewSelect.h" line="85"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="85"/>
+        <location filename="../previewSelect.h" line="86"/>
         <source>Size</source>
         <translation>Größe</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="86"/>
+        <location filename="../previewSelect.h" line="87"/>
         <source>Progress</source>
         <translation>Verlauf</translation>
     </message>

@@ -4172,27 +4172,27 @@ However, those plugins were disabled.</source>
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewSelect.h" line="110"/>
+        <location filename="../previewSelect.h" line="112"/>
         <source>Preview impossible</source>
         <translation>미리보기 불가</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="110"/>
+        <location filename="../previewSelect.h" line="112"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>죄송합니다. 이 파일은 미리보기를 할수 없습니다</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="84"/>
+        <location filename="../previewSelect.h" line="85"/>
         <source>Name</source>
         <translation>파일 이름</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="85"/>
+        <location filename="../previewSelect.h" line="86"/>
         <source>Size</source>
         <translation>크기</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="86"/>
+        <location filename="../previewSelect.h" line="87"/>
         <source>Progress</source>
         <translation>진행상황</translation>
     </message>
