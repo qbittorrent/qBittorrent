@@ -2656,12 +2656,12 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     <message>
         <location filename="../MainWindow.ui" line="226"/>
         <source>Set global download limit</source>
-        <translation>Définir limite envoi</translation>
+        <translation>Définir limite téléchargement</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="231"/>
         <source>Set global upload limit</source>
-        <translation>Définir limite téléchargement</translation>
+        <translation>Définir limite d&apos;envoi</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="63"/>
@@ -4256,27 +4256,27 @@ Cependant, les greffons en question ont été désactivés.</translation>
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewSelect.h" line="110"/>
+        <location filename="../previewSelect.h" line="112"/>
         <source>Preview impossible</source>
         <translation>Prévisualisation impossible</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="110"/>
+        <location filename="../previewSelect.h" line="112"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Désolé, il est impossible de prévisualiser ce fichier</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="84"/>
+        <location filename="../previewSelect.h" line="85"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="85"/>
+        <location filename="../previewSelect.h" line="86"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="86"/>
+        <location filename="../previewSelect.h" line="87"/>
         <source>Progress</source>
         <translation>Progression</translation>
     </message>
@@ -4882,7 +4882,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../downloadThread.cpp" line="43"/>
         <source>Could not resolve proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de résoudre le nom du serveur mandataire</translation>
     </message>
 </context>
 <context>
