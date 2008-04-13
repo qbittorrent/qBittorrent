@@ -1064,6 +1064,7 @@ bool bittorrent::loadTrackerFile(QString hash) {
   if(trackers.size() != 0) {
     QTorrentHandle h = getTorrentHandle(hash);
     h.replace_trackers(trackers);
+    h.force_reannounce();
     return true;
   }else{
     return false;
