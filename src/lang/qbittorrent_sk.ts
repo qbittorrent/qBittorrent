@@ -791,7 +791,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="656"/>
         <source>Listening port</source>
-        <translation>Port na počúvanie</translation>
+        <translation>Počúvať na porte</translation>
     </message>
     <message>
         <location filename="../options.ui" line="684"/>
@@ -832,7 +832,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="888"/>
         <source>(None)</source>
-        <translation>(žiadne)</translation>
+        <translation>(žiadny)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="909"/>
@@ -892,7 +892,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1340"/>
         <source>Encryption:</source>
-        <translation>Kryptovanie:</translation>
+        <translation type="unfinished">Šifrovanie:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1384"/>
@@ -947,7 +947,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1461"/>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation>Odstrániť dokončené torrenty keď ich pomer dosiahne:</translation>
+        <translation>Odstrániť dokončené torrenty, keď ich pomer dosiahne:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="162"/>
@@ -1241,7 +1241,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../GUI.cpp" line="1022"/>
         <source>Finished</source>
-        <translation>hotovo</translation>
+        <translation>Dokončené</translation>
     </message>
     <message>
         <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/translations_1.0.0beta6" line="135076380"/>
@@ -2004,17 +2004,17 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <location filename="../GUI.cpp" line="985"/>
         <source>Encryption support [ON]</source>
-        <translation>Podpora kryptovania [zapnuté]</translation>
+        <translation>Podpora šifrovania [zapnuté]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="990"/>
         <source>Encryption support [FORCED]</source>
-        <translation>Podpora kryptovania [vynútené]</translation>
+        <translation>Podpora šifrovania [vynútené]</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="995"/>
         <source>Encryption support [OFF]</source>
-        <translation>Podpora kryptovania [vypnuté]</translation>
+        <translation>Podpora šifrovania [vypnuté]</translation>
     </message>
     <message>
         <location filename="../../../DOCUME~1/helix/LOCALS~1/Temp/_PA338/GUI.cpp" line="315"/>
@@ -2901,7 +2901,7 @@ Záznam zmien:</translation>
     <message>
         <location filename="../addTorrentDialog.ui" line="54"/>
         <source>Save path:</source>
-        <translation>Cesta pre uloženie:</translation>
+        <translation>Uložiť kam:</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="81"/>
@@ -3210,7 +3210,7 @@ Záznam zmien:</translation>
     <message>
         <location filename="../createtorrent.ui" line="476"/>
         <source>Start seeding after creation</source>
-        <translation>Začasť seedovanie po vytvorení</translation>
+        <translation>Začať seedovanie po vytvorení</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="527"/>
@@ -3576,12 +3576,12 @@ Záznam zmien:</translation>
     <message>
         <location filename="../engineSelectDlg.cpp" line="319"/>
         <source>True</source>
-        <translation>Pravda</translation>
+        <translation>Áno</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="321"/>
         <source>False</source>
-        <translation>Nepravda</translation>
+        <translation>Nie</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="211"/>
@@ -4329,12 +4329,12 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../properties.ui" line="565"/>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation>Stiahnuť v správnom poradí (pomalšie ale lepšie pre náhľad)</translation>
+        <translation>Stiahnuť v správnom poradí (pomalšie, ale lepšie pre náhľad)</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="151"/>
         <source>Save path:</source>
-        <translation>Cesta pre uloženie:</translation>
+        <translation>Uložiť kam:</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="84"/>
