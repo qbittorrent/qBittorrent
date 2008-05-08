@@ -44,7 +44,7 @@ contains(DEBUG_MODE, 0){
     }
 
     # Man page
-    man.files = ../doc/qbittorrent.1.gz
+    man.files = ../doc/qbittorrent.1
     man.path = $$PREFIX/share/man/man1/
     INSTALLS += man
 
