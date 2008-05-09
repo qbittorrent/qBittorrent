@@ -113,7 +113,6 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
 
   // Set info Bar infos
   setInfoBar(tr("qBittorrent %1 started.", "e.g: qBittorrent v0.x started.").arg(QString::fromUtf8(""VERSION)));
-  setInfoBar(tr("Be careful, sharing copyrighted material without permission is against the law."), QString::fromUtf8("red"));
   qDebug("Download tab built");
 }
 
