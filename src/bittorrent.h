@@ -54,7 +54,7 @@ class bittorrent : public QObject{
     QHash<QString, QDateTime> TorrentsStartTime;
     QHash<QString, size_type> TorrentsStartData;
     QHash<QString, QPair<size_type,size_type> > ratioData;
-    QHash<QString, QList<QPair<QString, QString> > > trackersErrors;
+    QHash<QString, QHash<QString, QString> > trackersErrors;
     deleteThread *deleter;
     QStringList finishedTorrents;
     QStringList unfinishedTorrents;
@@ -86,7 +86,7 @@ class bittorrent : public QObject{
     qlonglong getETA(QString hash) const;
     float getRealRatio(QString hash) const;
     session* getSession() const;
-    QList<QPair<QString, QString> > getTrackersErrors(QString hash) const;
+    QHash<QString, QString> getTrackersErrors(QString hash) const;
     QStringList getFinishedTorrents() const;
     QStringList getUnfinishedTorrents() const;
     bool isFinished(QString hash) const;

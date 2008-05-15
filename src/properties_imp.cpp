@@ -99,7 +99,6 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
     }
   }
   shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
-  loadTrackersErrors();
   std::vector<float> fp;
   h.file_progress(fp);
   int *prioritiesTab = loadPiecesPriorities();
@@ -277,19 +276,6 @@ void properties::updatePriorities(QStandardItem *item) {
   // get future updates
   connect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
 }
-    
-void properties::loadTrackersErrors(){
-  // Tracker Errors
-  QList<QPair<QString, QString> > errors = BTSession->getTrackersErrors(hash);
-  unsigned int nbTrackerErrors = errors.size();
-  trackerErrors->clear();
-  for(unsigned int i=0; i < nbTrackerErrors; ++i){
-    QPair<QString, QString> pair = errors.at(i);
-    trackerErrors->append(QString::fromUtf8("<font color='grey'>")+pair.first+QString::fromUtf8("</font> - <font color='red'>")+pair.second+QString::fromUtf8("</font>"));
-  }
-  if(!nbTrackerErrors)
-    trackerErrors->append(tr("None", "i.e: No error message"));
-}
 
 void properties::loadWebSeeds(){
   QString url_seed;
@@ -449,9 +435,19 @@ void properties::loadTrackers(){
   //Trackers
   std::vector<announce_entry> trackers = h.trackers();
   trackersURLS->clear();
+  QHash<QString, QString> errors = BTSession->getTrackersErrors(h.hash());
   unsigned int nbTrackers = trackers.size();
   for(unsigned int i=0; i<nbTrackers; ++i){
-    trackersURLS->addItem(misc::toQString(trackers[i].url));
+    QString current_tracker = misc::toQString(trackers[i].url);
+    QListWidgetItem *item = new QListWidgetItem(current_tracker, trackersURLS);
+    // IsThere any errors ?
+    if(errors.contains(current_tracker)) {
+      item->setForeground(QBrush(QColor("red")));
+      // Set tooltip
+      item->setToolTip(errors[current_tracker]);
+    } else {
+      item->setForeground(QBrush(QColor("green")));
+    }
   }
   QString tracker = h.current_tracker().trimmed();
   if(!tracker.isEmpty()){
@@ -633,6 +629,8 @@ void properties::updateInfos(){
     }else{
       trackerURL->setText(tr("None - Unreachable?"));
     }
+    // XXX: This causes selection problems
+    //loadTrackers();
   }catch(invalid_handle e){
     // torrent was removed, closing properties
     close();

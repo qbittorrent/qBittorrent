@@ -1163,16 +1163,28 @@ void bittorrent::readAlerts() {
       // Level: fatal
       QTorrentHandle h(p->handle);
       if(h.is_valid()){
-        QString hash = h.hash();
-        QList<QPair<QString, QString> > errors = trackersErrors.value(hash, QList<QPair<QString, QString> >());
-        if(errors.size() > MAX_TRACKER_ERRORS)
-          errors.removeAt(0);
-        errors << QPair<QString,QString>(QTime::currentTime().toString("hh:mm:ss"), QString::fromUtf8(a->msg().c_str()));
-        trackersErrors[hash] = errors;
         // Authentication
-        if(p->status_code == 401) {
+        if(p->status_code != 401) {
+          QString hash = h.hash();
+          qDebug("Received a tracker error for %s", (const char*)h.current_tracker().toUtf8());
+          QHash<QString, QString> errors = trackersErrors.value(hash, QHash<QString, QString>());
+          // p->url requires at least libtorrent v0.13.1
+          errors[misc::toQString(p->url)] = QString::fromUtf8(a->msg().c_str());
+          trackersErrors[hash] = errors;
+        } else {
           emit trackerAuthenticationRequired(h);
         }
+      }
+    }
+    else if (tracker_reply_alert* p = dynamic_cast<tracker_reply_alert*>(a.get())) {
+      QTorrentHandle h(p->handle);
+      if(h.is_valid()){
+        qDebug("Received a tracker reply from %s", (const char*)h.current_tracker().toUtf8());
+        QString hash = h.hash();
+        QHash<QString, QString> errors = trackersErrors.value(hash, QHash<QString, QString>());
+        // p->url requires at least libtorrent v0.13.1
+        errors.remove(h.current_tracker());
+        trackersErrors[hash] = errors;
       }
     }
     else if (portmap_error_alert* p = dynamic_cast<portmap_error_alert*>(a.get())) {
@@ -1218,8 +1230,8 @@ void bittorrent::readAlerts() {
   }
 }
 
-QList<QPair<QString, QString> > bittorrent::getTrackersErrors(QString hash) const{
-  return trackersErrors.value(hash, QList<QPair<QString, QString> >());
+QHash<QString, QString> bittorrent::getTrackersErrors(QString hash) const{
+  return trackersErrors.value(hash, QHash<QString, QString>());
 }
 
 QStringList bittorrent::getTorrentsToPauseAfterChecking() const{
