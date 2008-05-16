@@ -142,6 +142,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkRatioRemove,  SIGNAL(stateChanged(int)), this, SLOT(enableDeleteRatio(int)));
   // IP Filter tab
   connect(checkIPFilter,  SIGNAL(stateChanged(int)), this, SLOT(enableFilter(int)));
+  // Web UI tab
+  connect(checkWebUi,  SIGNAL(toggled(bool)), this, SLOT(enableWebUi(bool)));
 
   // Apply button is activated when a value is changed
   // General tab
@@ -203,6 +205,11 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(textFilterPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinRSSRefresh, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinRSSMaxArticlesPerFeed, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  // Web UI tab
+  connect(checkWebUi, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(spinWebUiPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
+  connect(textWebUiUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(textWebUiPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   // Disable apply Button
   applyButton->setEnabled(false);
   if(!QSystemTrayIcon::supportsMessages()){
@@ -334,6 +341,17 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("RSSRefresh"), spinRSSRefresh->value());
   settings.setValue(QString::fromUtf8("RSSMaxArticlesPerFeed"), spinRSSMaxArticlesPerFeed->value());
   // End RSS preferences
+  settings.endGroup();
+  // Web UI
+  settings.beginGroup("WebUI");
+  settings.setValue("Enabled", isWebUiEnabled());
+  if(isWebUiEnabled())
+  {
+    settings.setValue("Port", webUiPort());
+    settings.setValue("Username", webUiUsername());
+    settings.setValue("Password", webUiPassword());
+  }
+  // End Web UI
   settings.endGroup();
   // End preferences
   settings.endGroup();
@@ -585,6 +603,15 @@ void options_imp::loadOptions(){
   spinRSSRefresh->setValue(settings.value(QString::fromUtf8("RSSRefresh"), 5).toInt());
   spinRSSMaxArticlesPerFeed->setValue(settings.value(QString::fromUtf8("RSSMaxArticlesPerFeed"), 50).toInt());
   // End RSS preferences
+  settings.endGroup();
+  // Web UI
+  settings.beginGroup("WebUI");
+  checkWebUi->setChecked(settings.value("Enabled", false).toBool());
+  enableWebUi(isWebUiEnabled());
+  spinWebUiPort->setValue(settings.value("Port", 8080).toInt());
+  textWebUiUsername->setText(settings.value("Username", "user").toString());
+  textWebUiPassword->setText(settings.value("Password", "").toString());
+  // End Web UI
   settings.endGroup();
 }
 
@@ -1241,4 +1268,31 @@ void options_imp::on_delFilterRangeButton_clicked(){
     }
   }
   ipfilter.close();
+}
+
+// Web UI
+
+void options_imp::enableWebUi(bool checkBoxValue){
+  groupWebUiServer->setEnabled(checkBoxValue);
+  groupWebUiAuth->setEnabled(checkBoxValue);
+}
+
+bool options_imp::isWebUiEnabled() const
+{
+  return checkWebUi->isChecked();
+}
+
+quint16 options_imp::webUiPort() const
+{
+  return spinWebUiPort->value();
+}
+
+QString options_imp::webUiUsername() const
+{
+  return textWebUiUsername->text();
+}
+
+QString options_imp::webUiPassword() const
+{
+  return textWebUiPassword->text();
 }

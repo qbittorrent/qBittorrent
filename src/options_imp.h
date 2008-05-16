@@ -111,6 +111,10 @@ class options_imp : public QDialog, private Ui::Dialog {
     // IP Filter
     bool isFilteringEnabled() const;
     ip_filter getFilter() const;
+    bool isWebUiEnabled() const;
+    quint16 webUiPort() const;
+    QString webUiUsername() const;
+    QString webUiPassword() const;
 
   protected slots:
     void enableUploadLimit(int checkBoxValue);
@@ -140,6 +144,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     void enableSystrayOptions();
     void disableSystrayOptions();
     void setSystrayOptionsState(int checkBoxValue);
+    void enableWebUi(bool checkBoxValue);
 
   public slots:
     void setLocale(QString locale);

@@ -100,7 +100,8 @@ win32 {
 
 RESOURCES = icons.qrc \
             lang.qrc \
-            search.qrc
+            search.qrc \
+            webui.qrc
 
 # Translations
 TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
@@ -133,7 +134,7 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
 HEADERS += GUI.h misc.h options_imp.h about_imp.h \
            properties_imp.h createtorrent_imp.h \
            DLListDelegate.h SearchListDelegate.h \
-	   PropListDelegate.h previewSelect.h \
+           PropListDelegate.h previewSelect.h \
            PreviewListDelegate.h trackerLogin.h \
            downloadThread.h downloadFromURLImp.h \
            torrentAddition.h deleteThread.h \
@@ -143,8 +144,10 @@ HEADERS += GUI.h misc.h options_imp.h about_imp.h \
            qtorrenthandle.h downloadingTorrents.h \
            engineSelectDlg.h pluginSource.h \
            arborescence.h qgnomelook.h realprogressbar.h \
- realprogressbarthread.h \
- qrealarray.h
+           realprogressbarthread.h qrealarray.h \
+           httpserver.h httpconnection.h \
+           httprequestparser.h httpresponsegenerator.h \
+           json.h eventmanager.h
 FORMS += MainWindow.ui options.ui about.ui \
          properties.ui createtorrent.ui preview.ui \
          login.ui downloadFromURL.ui addTorrentDialog.ui \
@@ -153,19 +156,25 @@ FORMS += MainWindow.ui options.ui about.ui \
 SOURCES += GUI.cpp \
            main.cpp \
            options_imp.cpp \
-	   properties_imp.cpp \
-	   createtorrent_imp.cpp \
-	   bittorrent.cpp \
-	   searchEngine.cpp \
-	   rss_imp.cpp \
-	   FinishedTorrents.cpp \
+           properties_imp.cpp \
+           createtorrent_imp.cpp \
+           bittorrent.cpp \
+           searchEngine.cpp \
+           rss_imp.cpp \
+           FinishedTorrents.cpp \
            qtorrenthandle.cpp \
            downloadingTorrents.cpp \
            engineSelectDlg.cpp \
            downloadThread.cpp \
            realprogressbar.cpp \
- realprogressbarthread.cpp \
- qrealarray.cpp
+           realprogressbarthread.cpp \
+           qrealarray.cpp \
+           httpserver.cpp \
+           httpconnection.cpp \
+           httprequestparser.cpp \
+           httpresponsegenerator.cpp \
+           json.cpp \
+           eventmanager.cpp
 
 DESTDIR = .
 

@@ -99,6 +99,8 @@ class bittorrent : public QObject{
     void deleteTorrent(QString hash, bool permanent = false);
     bool pauseTorrent(QString hash);
     bool resumeTorrent(QString hash);
+    void pauseAllTorrents();
+    void resumeAllTorrents();
     void saveDHTEntry();
     void preAllocateAllFiles(bool b);
     void saveFastResumeAndRatioData();
@@ -153,6 +155,9 @@ class bittorrent : public QObject{
     void invalidTorrent(QString path);
     void duplicateTorrent(QString path);
     void addedTorrent(QString path, QTorrentHandle& h, bool fastResume);
+    void deletedTorrent(QString hash);
+    void pausedTorrent(QString hash);
+    void resumedTorrent(QString hash);
     void finishedTorrent(QTorrentHandle& h);
     void fullDiskError(QTorrentHandle& h);
     void trackerError(QString hash, QString time, QString msg);
@@ -167,7 +172,7 @@ class bittorrent : public QObject{
     void fastResumeDataRejected(QString name);
     void urlSeedProblem(QString url, QString msg);
     void torrentFinishedChecking(QString hash);
-    void torrent_deleted(QString hash, QString fileName, bool finished);
+    void torrent_ratio_deleted(QString fileName);
     void UPnPError(QString msg);
     void UPnPSuccess(QString msg);
 };

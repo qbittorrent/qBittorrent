@@ -31,6 +31,7 @@
 #include <QModelIndex>
 
 #include "GUI.h"
+#include "httpserver.h"
 #include "downloadingTorrents.h"
 #include "misc.h"
 #include "createtorrent_imp.h"
@@ -119,7 +120,9 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(BTSession, SIGNAL(scanDirFoundTorrents(const QStringList&)), this, SLOT(processScannedFiles(const QStringList&)));
   connect(BTSession, SIGNAL(newDownloadedTorrent(QString, QString)), this, SLOT(processDownloadedFiles(QString, QString)));
   connect(BTSession, SIGNAL(downloadFromUrlFailure(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
-  connect(BTSession, SIGNAL(torrent_deleted(QString, QString, bool)), this, SLOT(deleteTorrent(QString, QString, bool)));
+  connect(BTSession, SIGNAL(deletedTorrent(QString)), this, SLOT(deleteTorrent(QString)));
+  connect(BTSession, SIGNAL(torrent_ratio_deleted(QString)), this, SLOT(deleteRatioTorrent(QString)));
+  connect(BTSession, SIGNAL(pausedTorrent(QString)), this, SLOT(pauseTorrent(QString)));
   qDebug("create tabWidget");
   tabs = new QTabWidget();
   // Download torrents tab
@@ -158,6 +161,15 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   readSettings();
   // Add torrent given on command line
   processParams(torrentCmdLine);
+  // Initialize Web UI
+  httpServer = 0;
+  if(settings.value("Preferences/WebUI/Enabled", false).toBool())
+  {
+    quint16 port = settings.value("Preferences/WebUI/Port", 8080).toUInt();
+    QString username = settings.value("Preferences/WebUI/Username", "").toString();
+    QString password = settings.value("Preferences/WebUI/Password", "").toString();
+    initWebUi(username, password, port);
+  }
   // Use a tcp server to allow only one instance of qBittorrent
   tcpServer = new QTcpServer();
   if (!tcpServer->listen(QHostAddress::LocalHost, 1666)) {
@@ -196,6 +208,9 @@ GUI::~GUI() {
   delete tcpServer;
   delete connecStatusLblIcon;
   delete tabs;
+  // HTTP Server
+  if(httpServer)
+    delete httpServer;
   // Keyboard shortcuts
   delete switchSearchShortcut;
   delete switchSearchShortcut2;
@@ -687,25 +702,20 @@ void GUI::on_actionDelete_Permanently_triggered() {
     QString fileName = h.name();
     // Remove the torrent
     BTSession->deleteTorrent(hash, true);
-    // Delete item from list
-    if(inDownloadList) {
-      downloadingTorrentTab->deleteTorrent(hash);
-    } else {
-      finishedTorrentTab->deleteTorrent(hash);
-    }
     // Update info bar
     downloadingTorrentTab->setInfoBar(tr("'%1' was removed permanently.", "'xxx.avi' was removed permanently.").arg(fileName));
   }
 }
 
-void GUI::deleteTorrent(QString hash, QString fileName, bool finished) {
-  if(finished) {
-    finishedTorrentTab->deleteTorrent(hash);
-  } else {
-    downloadingTorrentTab->deleteTorrent(hash);
-  }
+void GUI::deleteRatioTorrent(QString fileName) {
   // Update info bar
   downloadingTorrentTab->setInfoBar(tr("'%1' was removed because its ratio reached the maximum value you set.", "%1 is a file name").arg(fileName));
+}
+
+void GUI::deleteTorrent(QString hash) {
+  // Delete item from list
+  downloadingTorrentTab->deleteTorrent(hash);
+  finishedTorrentTab->deleteTorrent(hash);
 }
 
 // delete selected items in the list
@@ -752,12 +762,6 @@ void GUI::on_actionDelete_triggered() {
     QString fileName = h.name();
     // Remove the torrent
     BTSession->deleteTorrent(hash, false);
-    // Delete item from list
-    if(inDownloadList) {
-      downloadingTorrentTab->deleteTorrent(hash);
-    } else {
-      finishedTorrentTab->deleteTorrent(hash);
-    }
     // Update info bar
     downloadingTorrentTab->setInfoBar(tr("'%1' was removed.", "'xxx.avi' was removed.").arg(fileName));
   }
@@ -1127,6 +1131,11 @@ void GUI::on_actionPause_triggered() {
   }
 }
 
+void GUI::pauseTorrent(QString hash) {
+  downloadingTorrentTab->pauseTorrent(hash);
+  finishedTorrentTab->pauseTorrent(hash);
+}
+
 // Resume All Downloads in DL list
 void GUI::on_actionStart_All_triggered() {
   bool change = false;
@@ -1344,8 +1353,38 @@ void GUI::OptionsSaved(QString info, bool deleteOptions) {
   systrayIntegration = newSystrayIntegration;
   // Update info bar
   downloadingTorrentTab->setInfoBar(info);
+  // Update Web UI
+  if (options->isWebUiEnabled())
+  {
+    quint16 port = options->webUiPort();
+    QString username = options->webUiUsername();
+    QString password = options->webUiPassword();
+    initWebUi(username, password, port);
+  }
+  else if(httpServer)
+  {
+    delete httpServer;
+    httpServer = 0;
+  }
   // Update session
   configureSession(deleteOptions);
+}
+
+bool GUI::initWebUi(QString username, QString password, int port)
+{
+  if(httpServer)
+  {
+    httpServer->close();
+  }
+  else
+    httpServer = new HttpServer(BTSession, 500, this);
+  httpServer->setAuthorization(username, password);
+  bool success = httpServer->listen(QHostAddress::Any, port);
+  if (success)
+    qDebug()<<"Web UI listening on port "<<port;
+  else
+    QMessageBox::critical(this, "Web User Interface Error", "Unable to initialize HTTP Server on port " + port);
+  return success;
 }
 
 /*****************************************************

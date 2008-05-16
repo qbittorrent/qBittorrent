@@ -147,7 +147,8 @@ unsigned int DownloadingTorrents::getNbTorrentsInList() const {
 // Note: do not actually pause the torrent in BT session
 void DownloadingTorrents::pauseTorrent(QString hash) {
   int row = getRowFromHash(hash);
-  Q_ASSERT(row != -1);
+  if(row == -1)
+    return;
   DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.0));
   DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.0));
   DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
