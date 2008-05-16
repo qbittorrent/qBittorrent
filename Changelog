@@ -1,4 +1,5 @@
 * Tuesday October 06 2007 - Christophe Dumez <chris@qbittorrent.org> - v1.1.0
+    - FEATURE: Web interface to control qbittorrent (Ishan Arora)
     - FEATURE: Allow to hide/show some columns in download and seeding lists
     - FEATURE: Option to start qBittorrent minimized in systray
     - FEATURE: Allow to define double-click actions in torrents lists
