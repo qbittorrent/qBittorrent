@@ -1181,7 +1181,7 @@ void bittorrent::readAlerts() {
         // Authentication
         if(p->status_code != 401) {
           QString hash = h.hash();
-          qDebug("Received a tracker error for %s", (const char*)misc::toQString(p->url).toUtf8());
+          qDebug("Received a tracker error for %s", p->url.c_str());
           QHash<QString, QString> errors = trackersErrors.value(hash, QHash<QString, QString>());
           // p->url requires at least libtorrent v0.13.1
           errors[misc::toQString(p->url)] = QString::fromUtf8(a->msg().c_str());
