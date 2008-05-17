@@ -1262,6 +1262,7 @@ void options_imp::parseP2BFilterFile(QString filePath) {
     }
 
     if(version==1 || version==2) {
+      qDebug ("p2b version 1 or 2");
       unsigned int start, end;
       
       string name;
@@ -1283,6 +1284,7 @@ void options_imp::parseP2BFilterFile(QString filePath) {
       }
     }
     else if(version==3) {
+      qDebug ("p2b version 3");
       unsigned int namecount;
       if(!stream.readRawData((char*)&namecount, sizeof(namecount))) {
         QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
