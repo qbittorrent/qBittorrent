@@ -1083,6 +1083,10 @@ void options_imp::parseDATFilterFile(QString filePath) {
       if(firstPart.contains('-')) {
         // Range is splitted by a dash
         QList<QByteArray> IPs = firstPart.split('-');
+        if(IPs.size() != 2) {
+          qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
+          continue;
+        }
         strStartIP = IPs.at(0).trimmed();
         strEndIP = IPs.at(1).trimmed();
         // Check if IPs are correct
@@ -1165,7 +1169,8 @@ void options_imp::parseDATFilterFile(QString filePath) {
 
 // Parser for PeerGuardian ip filter in p2p format
 void options_imp::parseP2PFilterFile(QString filePath) {
-/*  QFile file(filePath);
+  const QRegExp is_ipv4(QString::fromUtf8("^(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}$"), Qt::CaseInsensitive, QRegExp::RegExp);
+  QFile file(filePath);
   QStringList IP;
   if (file.exists()){
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -1182,55 +1187,35 @@ void options_imp::parseP2PFilterFile(QString filePath) {
       // Ignoring commented lines
       if(line.startsWith('#') || line.startsWith("//")) continue;
       // Line is not commented
-      QList<QByteArray> partsList = line.split(',');
-      unsigned int nbElem = partsList.size();
-      if(nbElem < 2){
-        qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
+      QList<QByteArray> partsList = line.split(':');
+      if(partsList.size() < 2){
+        qDebug("p2p file: line %d is malformed.", nbLine);
         continue;
       }
-      bool ok;
-      int nbAccess = partsList.at(1).trimmed().toInt(&ok);
-      if(!ok){
-        qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
+      // Get IP range
+      QList<QByteArray> IPs = partsList.at(2).split('-');
+      if(IPs.size() != 2) {
+        qDebug("p2p file: line %d is malformed.", nbLine);
         continue;
       }
-      if(nbAccess <= 127){
-        QString strComment;
-        QString strStartIP = partsList.at(0).split('-').at(0).trimmed();
-        QString strEndIP = partsList.at(0).split('-').at(1).trimmed();
-        if(nbElem > 2){
-          strComment = partsList.at(2).trimmed();
-        }else{
-          strComment = QString();
-        }
-        // Split IP
-        QRegExp is_ipv6(QString::fromUtf8("^[0-9a-f]{4}(:[0-9a-f]{4}){7}$"), Qt::CaseInsensitive, QRegExp::RegExp);
-        QRegExp is_ipv4(QString::fromUtf8("^(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}$"), Qt::CaseInsensitive, QRegExp::RegExp);
-
-        if(strStartIP.contains(is_ipv4) && strEndIP.contains(is_ipv4)) {
-          // IPv4
-          IP = strStartIP.split('.');
-          address_v4 start((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
-          IP = strEndIP.split('.');
-          address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
-          // Apply to bittorrent session
-          filter.add_rule(start, last, ip_filter::blocked);
-        } else if(strStartIP.contains(is_ipv6) && strEndIP.contains(is_ipv6)) {
-          // IPv6, ex :   1fff:0000:0a88:85a3:0000:0000:ac1f:8001
-          IP = strStartIP.split(':');
-          address_v6 start = address_v6::from_string(strStartIP.remove(':', 0).toUtf8().data());
-          IP = strEndIP.split(':');
-          address_v6 last = address_v6::from_string(strEndIP.remove(':', 0).toUtf8().data());
-          // Apply to bittorrent session
-          filter.add_rule(start, last, ip_filter::blocked);
-        } else {
-            qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-            continue;
-        }
+      QString strStartIP = IPs.at(0).trimmed();
+      QString strEndIP = IPs.at(1).trimmed();
+      // Check IPs format (IPv4 only)
+      if(strStartIP.contains(is_ipv4) && strEndIP.contains(is_ipv4)) {
+        // IPv4
+        IP = strStartIP.split('.');
+        address_v4 start((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
+        IP = strEndIP.split('.');
+        address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
+        // Apply to bittorrent session
+        filter.add_rule(start, last, ip_filter::blocked);
+      } else {
+          qDebug("p2p file: line %d is malformed.", nbLine);
+          continue;
       }
     }
     file.close();
-  }*/
+  }
 }
 
 // Process ip filter file
