@@ -8,6 +8,7 @@
     - FEATURE: Allow to buy downloads using ShareMonkey
     - FEATURE: Display if UPnP/NAT-PMP was successful or not
     - FEATURE: Threadified torrent creation
+    - FEATURE: Improved eMule DAT ip filter parser
     - BUGFIX: Do not display seeds number in seeding list (always 0)
     - COSMETIC: Do not display progress bar in seeding list (always 100%)
     - COSMETIC: Added a progress bar for torrent creation

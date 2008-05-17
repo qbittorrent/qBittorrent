@@ -1054,7 +1054,118 @@ void options_imp::on_browseSaveDirButton_clicked(){
 
 // Parser for eMule ip filter in DAT format
 void options_imp::parseDATFilterFile(QString filePath) {
+  const QRegExp is_ipv6(QString::fromUtf8("^[0-9a-f]{4}(:[0-9a-f]{4}){7}$"), Qt::CaseInsensitive, QRegExp::RegExp);
+  const QRegExp is_ipv4(QString::fromUtf8("^(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}$"), Qt::CaseInsensitive, QRegExp::RegExp);
+  QString strStartIP, strEndIP;
+  bool IPv4 = true;
   QFile file(filePath);
+  if (file.exists()){
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+      QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("Couldn't open %1 in read mode.").arg(filePath));
+      return;
+    }
+    unsigned int nbLine = 0;
+    while (!file.atEnd()) {
+      ++nbLine;
+      QByteArray line = file.readLine();
+      // Ignoring empty lines
+      line = line.trimmed();
+      if(line.isEmpty()) continue;
+      // Ignoring commented lines
+      if(line.startsWith('#') || line.startsWith("//")) continue;
+      // Line is not commented
+      QList<QByteArray> partsList = line.split(',');
+      unsigned int nbElem = partsList.size();
+      // IP Range can be splitted by a dash or a comma...
+      // Check if there is a dash in first part
+      QByteArray firstPart = partsList.at(0);
+      int nbAccess = 0;
+      if(firstPart.contains('-')) {
+        // Range is splitted by a dash
+        QList<QByteArray> IPs = firstPart.split('-');
+        strStartIP = IPs.at(0).trimmed();
+        strEndIP = IPs.at(1).trimmed();
+        // Check if IPs are correct
+        if(strStartIP.contains(is_ipv4) && strEndIP.contains(is_ipv4)) {
+          IPv4 = true;
+        } else {
+          if(strStartIP.contains(is_ipv6) && strEndIP.contains(is_ipv6)) {
+            IPv4 = false;
+          } else {
+            // Could not determine IP format
+            qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
+            continue;
+          }
+        }
+        // Check if there is an access value (apparently not mandatory)
+        if(nbElem > 1) {
+          // There is possibly one
+          bool ok;
+          nbAccess = partsList.at(1).trimmed().toInt(&ok);
+          if(!ok){
+            nbAccess = 0;
+          }
+        }
+      } else {
+        // Range is probably splitted by a comma
+        unsigned int nbElem = partsList.size();
+        if(nbElem > 1) {
+          strStartIP = firstPart.trimmed();
+          strEndIP = partsList.at(1).trimmed();
+          // Check if IPs are correct
+          if(strStartIP.contains(is_ipv4) && strEndIP.contains(is_ipv4)) {
+            IPv4 = true;
+          } else {
+            if(strStartIP.contains(is_ipv6) && strEndIP.contains(is_ipv6)) {
+              IPv4 = false;
+            } else {
+              // Could not determine IP format
+              qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
+              continue;
+            }
+          }
+          // Check if there is an access value (apparently not mandatory)
+          if(nbElem > 2) {
+            // There is possibly one
+            bool ok;
+            nbAccess = partsList.at(2).trimmed().toInt(&ok);
+            if(!ok){
+              nbAccess = 0;
+            }
+          }
+        }
+      }
+      if(nbAccess > 127) {
+        // Ignoring this rule because access value is too high
+        continue;
+      }
+      // Now Add to the filter
+      QStringList IP;
+      if(IPv4) {
+        //IPv4 addresses
+        IP = strStartIP.split('.');
+        address_v4 start((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
+        IP = strEndIP.split('.');
+        address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
+        // Apply to bittorrent session
+        filter.add_rule(start, last, ip_filter::blocked);
+      } else {
+        // IPv6, ex :   1fff:0000:0a88:85a3:0000:0000:ac1f:8001
+        IP = strStartIP.split(':');
+        address_v6 start = address_v6::from_string(strStartIP.remove(':', 0).toUtf8().data());
+        IP = strEndIP.split(':');
+        address_v6 last = address_v6::from_string(strEndIP.remove(':', 0).toUtf8().data());
+        // Apply to bittorrent session
+        filter.add_rule(start, last, ip_filter::blocked);
+      }
+    }
+    file.close();
+  }
+}
+
+// Parser for PeerGuardian ip filter in p2p format
+void options_imp::parseP2PFilterFile(QString filePath) {
+/*  QFile file(filePath);
   QStringList IP;
   if (file.exists()){
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -1065,6 +1176,10 @@ void options_imp::parseDATFilterFile(QString filePath) {
     while (!file.atEnd()) {
       ++nbLine;
       QByteArray line = file.readLine();
+      // Ignoring empty lines
+      line = line.trimmed();
+      if(line.isEmpty()) continue;
+      // Ignoring commented lines
       if(line.startsWith('#') || line.startsWith("//")) continue;
       // Line is not commented
       QList<QByteArray> partsList = line.split(',');
@@ -1115,12 +1230,7 @@ void options_imp::parseDATFilterFile(QString filePath) {
       }
     }
     file.close();
-  }
-}
-
-// Parser for PeerGuardian ip filter in p2p format
-void options_imp::parseP2PFilterFile(QString filePath) {
-  std::cerr << "p2p file support was not implemented yet\n";
+  }*/
 }
 
 // Process ip filter file
