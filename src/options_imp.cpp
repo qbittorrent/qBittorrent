@@ -1197,7 +1197,7 @@ void options_imp::parseP2PFilterFile(QString filePath) {
         continue;
       }
       // Get IP range
-      QList<QByteArray> IPs = partsList.at(2).split('-');
+      QList<QByteArray> IPs = partsList.at(1).split('-');
       if(IPs.size() != 2) {
         qDebug("p2p file: line %d is malformed.", nbLine);
         continue;
