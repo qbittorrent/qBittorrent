@@ -39,6 +39,10 @@
   #include <QMacStyle>
 #endif
 
+// P2B Stuff
+#include <arpa/inet.h>
+// End of P2B stuff
+
 #include "options_imp.h"
 #include "misc.h"
 
@@ -1218,11 +1222,121 @@ void options_imp::parseP2PFilterFile(QString filePath) {
   }
 }
 
+int options_imp::getlineInStream(QDataStream& stream, string& name, char delim) {
+  char c;
+  int total_read = 0;
+  do {
+    int read = stream.readRawData(&c, 1);
+    total_read += read;
+    if(read > 0) {
+      if(c != delim) {
+        name += c;
+      } else {
+        // Delim found
+        return total_read;
+      }
+    }
+  } while(read > 0);
+  return total_read;
+}
+
+// Parser for PeerGuardian ip filter in p2p format
+void options_imp::parseP2BFilterFile(QString filePath) {
+  QFile file(filePath);
+  if (file.exists()){
+    if(!file.open(QIODevice::ReadOnly)){
+      QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("Couldn't open %1 in read mode.").arg(filePath));
+      return;
+    }
+    QDataStream stream(&file);
+    // Read header
+    char buf[7];
+    unsigned char version;
+    if(
+            !stream.readRawData(buf, sizeof(buf)) ||
+            memcmp(buf, "\xFF\xFF\xFF\xFFP2B", 7) ||
+            !stream.readRawData((char*)&version, sizeof(version))
+    ) {
+      QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
+      return;
+    }
+
+    if(version==1 || version==2) {
+      unsigned int start, end;
+      
+      string name;
+      while(getlineInStream(stream, name, '\0')) {
+        if(
+          !stream.readRawData((char*)&start, sizeof(start)) ||
+          !stream.readRawData((char*)&end, sizeof(end))
+        ) {
+          QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
+          return;
+        }
+        // Network byte order to Host byte order
+        // asio address_v4 contructor expects it
+        // that way
+        address_v4 first(ntohl(start));
+        address_v4 last(ntohl(end));
+        // Apply to bittorrent session
+        filter.add_rule(first, last, ip_filter::blocked);
+      }
+    }
+    else if(version==3) {
+      unsigned int namecount;
+      if(!stream.readRawData((char*)&namecount, sizeof(namecount))) {
+        QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
+        return;
+      }
+      namecount=ntohl(namecount);
+      // Reading names although, we don't really care about them
+      for(unsigned int i=0; i<namecount; i++) {
+        string name;
+        if(!getlineInStream(stream, name, '\0')) {
+          QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
+          return;
+        }
+      }
+      // Reading the ranges
+      unsigned int rangecount;
+      if(!stream.readRawData((char*)&rangecount, sizeof(rangecount))) {
+        QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
+        return;
+      }
+      rangecount=ntohl(rangecount);
+
+      unsigned int name, start, end;
+
+      for(unsigned int i=0; i<rangecount; i++) {
+        if(
+          !stream.readRawData((char*)&name, sizeof(name)) ||
+          !stream.readRawData((char*)&start, sizeof(start)) ||
+          !stream.readRawData((char*)&end, sizeof(end))
+        ) {
+          QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
+          return;
+        }
+        // Network byte order to Host byte order
+        // asio address_v4 contructor expects it
+        // that way
+        address_v4 first(ntohl(start));
+        address_v4 last(ntohl(end));
+        // Apply to bittorrent session
+        filter.add_rule(first, last, ip_filter::blocked);
+      }
+    } else {
+      QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
+      return;
+    }
+    file.close();
+  }
+}
+
 // Process ip filter file
 // Supported formats:
 //  * eMule IP list (DAT): http://wiki.phoenixlabs.org/wiki/DAT_Format
-//  * PeerGuardian Text (P2P): http://wiki.phoenixlabs.org/wiki/P2P_Format (TODO)
-//  * PeerGuardian Binary (P2B): http://wiki.phoenixlabs.org/wiki/P2B_Format (TODO)
+//  * PeerGuardian Text (P2P): http://wiki.phoenixlabs.org/wiki/P2P_Format
+//  * PeerGuardian Binary (P2B): http://wiki.phoenixlabs.org/wiki/P2B_Format
 void options_imp::processFilterFile(QString filePath){
   qDebug("Processing filter files");
   if(filePath.endsWith(".dat", Qt::CaseInsensitive)) {
@@ -1232,8 +1346,15 @@ void options_imp::processFilterFile(QString filePath){
     if(filePath.endsWith(".p2p", Qt::CaseInsensitive)) {
       // PeerGuardian p2p file
       parseP2PFilterFile(filePath);
+    } else {
+        if(filePath.endsWith(".p2p", Qt::CaseInsensitive)) {
+          // PeerGuardian p2p file
+          parseP2BFilterFile(filePath);
+        } else {
+          // Default: eMule DAT format
+          parseDATFilterFile(filePath);
+        }
     }
-    // TODO: Add p2b support
   }
 }
 

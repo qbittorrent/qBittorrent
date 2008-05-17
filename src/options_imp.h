@@ -24,12 +24,11 @@
 
 #include "ui_options.h"
 #include <libtorrent/ip_filter.hpp>
+#include <QDataStream>
 
-/*#include <QDialog>
-#include <qdialog.h>
-#include "ui_options.h"
-#include "ui_dialog.h"
-#include <libtorrent/ip_filter.hpp>*/
+// P2B Stuff
+#include <string.h>
+// End of P2B stuff
 
 #define HTTP 1
 #define SOCKS5 2
@@ -42,6 +41,7 @@
 #define SHOW_PROPERTIES 2
 
 using namespace libtorrent;
+using namespace std;
 
 class QCloseEvent;
 
@@ -115,6 +115,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     quint16 webUiPort() const;
     QString webUiUsername() const;
     QString webUiPassword() const;
+    int getlineInStream(QDataStream& stream, string& name, char delim);
 
   protected slots:
     void enableUploadLimit(int checkBoxValue);
@@ -145,6 +146,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     void enableWebUi(bool checkBoxValue);
     void parseDATFilterFile(QString filePath);
     void parseP2PFilterFile(QString filePath);
+    void parseP2BFilterFile(QString filePath);
 
   public slots:
     void setLocale(QString locale);
