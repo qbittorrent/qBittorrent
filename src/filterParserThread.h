@@ -220,7 +220,7 @@ class FilterParserThread : public QThread  {
             continue;
           }
           // Get IP range
-          QList<QByteArray> IPs = partsList.at(1).split('-');
+          QList<QByteArray> IPs = partsList.last().split('-');
           if(IPs.size() != 2) {
             qDebug("p2p file: line %d is malformed.", nbLine);
             continue;
