@@ -1037,7 +1037,7 @@ void options_imp::on_browseScanDirButton_clicked() {
 }
 
 void options_imp::on_browseFilterButton_clicked() {
-  QString ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ipfilter.dat file"), QDir::homePath());
+  QString ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), QDir::homePath(), tr("Filters (*.dat *.p2p *.p2b)"));
   if(!ipfilter.isNull()){
     textFilterPath->setText(ipfilter);
     processFilterFile(ipfilter);
@@ -1052,13 +1052,8 @@ void options_imp::on_browseSaveDirButton_clicked(){
   }
 }
 
-// Process ip filter file
-// Supported formats:
-//  * eMule IP list (DAT): http://wiki.phoenixlabs.org/wiki/DAT_Format
-//  * PeerGuardian Text (P2P): http://wiki.phoenixlabs.org/wiki/P2P_Format (TODO)
-//  * PeerGuardian Binary (P2B): http://wiki.phoenixlabs.org/wiki/P2B_Format (TODO)
-void options_imp::processFilterFile(QString filePath){
-  qDebug("Processing filter files");
+// Parser for eMule ip filter in DAT format
+void options_imp::parseDATFilterFile(QString filePath) {
   QFile file(filePath);
   QStringList IP;
   if (file.exists()){
@@ -1120,6 +1115,30 @@ void options_imp::processFilterFile(QString filePath){
       }
     }
     file.close();
+  }
+}
+
+// Parser for PeerGuardian ip filter in p2p format
+void options_imp::parseP2PFilterFile(QString filePath) {
+  std::cerr << "p2p file support was not implemented yet\n";
+}
+
+// Process ip filter file
+// Supported formats:
+//  * eMule IP list (DAT): http://wiki.phoenixlabs.org/wiki/DAT_Format
+//  * PeerGuardian Text (P2P): http://wiki.phoenixlabs.org/wiki/P2P_Format (TODO)
+//  * PeerGuardian Binary (P2B): http://wiki.phoenixlabs.org/wiki/P2B_Format (TODO)
+void options_imp::processFilterFile(QString filePath){
+  qDebug("Processing filter files");
+  if(filePath.endsWith(".dat", Qt::CaseInsensitive)) {
+    // eMule DAT file
+    parseDATFilterFile(filePath);
+  } else {
+    if(filePath.endsWith(".p2p", Qt::CaseInsensitive)) {
+      // PeerGuardian p2p file
+      parseP2PFilterFile(filePath);
+    }
+    // TODO: Add p2b support
   }
 }
 

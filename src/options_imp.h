@@ -143,6 +143,8 @@ class options_imp : public QDialog, private Ui::Dialog {
     void disableSystrayOptions();
     void setSystrayOptionsState(int checkBoxValue);
     void enableWebUi(bool checkBoxValue);
+    void parseDATFilterFile(QString filePath);
+    void parseP2PFilterFile(QString filePath);
 
   public slots:
     void setLocale(QString locale);
