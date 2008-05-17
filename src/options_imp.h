@@ -24,11 +24,6 @@
 
 #include "ui_options.h"
 #include <libtorrent/ip_filter.hpp>
-#include <QDataStream>
-
-// P2B Stuff
-#include <string.h>
-// End of P2B stuff
 
 #define HTTP 1
 #define SOCKS5 2
@@ -41,7 +36,6 @@
 #define SHOW_PROPERTIES 2
 
 using namespace libtorrent;
-using namespace std;
 
 class QCloseEvent;
 
@@ -50,7 +44,6 @@ class options_imp : public QDialog, private Ui::Dialog {
 
   private:
     QButtonGroup choiceLanguage;
-    ip_filter filter;
     QStringList locales;
     QAbstractButton *applyButton;
 
@@ -110,12 +103,11 @@ class options_imp : public QDialog, private Ui::Dialog {
     float getDeleteRatio() const;
     // IP Filter
     bool isFilteringEnabled() const;
-    ip_filter getFilter() const;
+    QString getFilter() const;
     bool isWebUiEnabled() const;
     quint16 webUiPort() const;
     QString webUiUsername() const;
     QString webUiPassword() const;
-    int getlineInStream(QDataStream& stream, string& name, char delim);
 
   protected slots:
     void enableUploadLimit(int checkBoxValue);
@@ -137,16 +129,12 @@ class options_imp : public QDialog, private Ui::Dialog {
     void on_browseScanDirButton_clicked();
     void on_browseFilterButton_clicked();
     void on_browseSaveDirButton_clicked();
-    void processFilterFile(QString filePath=QString());
     void enableApplyButton();
     void checkPortsLogic();
     void enableSystrayOptions();
     void disableSystrayOptions();
     void setSystrayOptionsState(int checkBoxValue);
     void enableWebUi(bool checkBoxValue);
-    void parseDATFilterFile(QString filePath);
-    void parseP2PFilterFile(QString filePath);
-    void parseP2BFilterFile(QString filePath);
 
   public slots:
     void setLocale(QString locale);

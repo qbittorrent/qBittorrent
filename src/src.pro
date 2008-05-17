@@ -147,7 +147,7 @@ HEADERS += GUI.h misc.h options_imp.h about_imp.h \
            realprogressbarthread.h qrealarray.h \
            httpserver.h httpconnection.h \
            httprequestparser.h httpresponsegenerator.h \
-           json.h eventmanager.h
+           json.h eventmanager.h filterParserThread.h
 FORMS += MainWindow.ui options.ui about.ui \
          properties.ui createtorrent.ui preview.ui \
          login.ui downloadFromURL.ui addTorrentDialog.ui \

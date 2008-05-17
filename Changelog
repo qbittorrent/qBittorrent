@@ -12,6 +12,7 @@
     - FEATURE: Added support for PeerGuardian p2p filters (text)
     - FEATURE: Added support for PeerGuardian p2b filters (binary)
     - BUGFIX: Do not display seeds number in seeding list (always 0)
+    - BUGFIX: Threadified IP filter file parser to avoid GUI freeze
     - COSMETIC: Do not display progress bar in seeding list (always 100%)
     - COSMETIC: Added a progress bar for torrent creation
     - COSMETIC: Display tracker errors in a cleaner way

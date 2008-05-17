@@ -28,6 +28,7 @@
 #include "misc.h"
 #include "downloadThread.h"
 #include "deleteThread.h"
+#include "filterParserThread.h"
 
 #include <libtorrent/extensions/metadata_transfer.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
@@ -62,7 +63,8 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
   // File deleter (thread)
   deleter = new deleteThread(this);
-  BigRatioTimer = 0;  
+  BigRatioTimer = 0;
+  filterParser = 0;
   qDebug("* BTSession constructed");
 }
 
@@ -85,6 +87,8 @@ bittorrent::~bittorrent() {
   delete timerAlerts;
   if(BigRatioTimer != 0)
     delete BigRatioTimer;
+  if(filterParser != 0)
+    delete filterParser;
   delete downloader;
   // Delete BT session
   qDebug("Deleting session");
@@ -1119,15 +1123,25 @@ void bittorrent::setDHTPort(int dht_port) {
 }
 
 // Enable IP Filtering
-void bittorrent::enableIPFilter(ip_filter filter) {
+void bittorrent::enableIPFilter(QString filter) {
   qDebug("Enabling IPFiler");
-  s->set_ip_filter(filter);
+  if(!filterParser) {
+    filterParser = new FilterParserThread(this, s);
+  }
+  if(filterPath.isEmpty() || filterPath != filter) {
+    filterPath = filter;
+    filterParser->processFilterFile(filter);
+  }
 }
 
 // Disable IP Filtering
 void bittorrent::disableIPFilter() {
   qDebug("Disabling IPFilter");
   s->set_ip_filter(ip_filter());
+  if(filterParser) {
+    delete filterParser;
+  }
+  filterPath = "";
 }
 
 // Set BT session settings (user_agent)

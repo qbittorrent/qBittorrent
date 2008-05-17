@@ -36,6 +36,7 @@ using namespace libtorrent;
 class downloadThread;
 class deleteThread;
 class QTimer;
+class FilterParserThread;
 
 class bittorrent : public QObject{
   Q_OBJECT
@@ -66,6 +67,8 @@ class bittorrent : public QObject{
     bool UPnPEnabled;
     bool NATPMPEnabled;
     bool LSDEnabled;
+    FilterParserThread *filterParser;
+    QString filterPath;
 
   protected:
     QString getSavePath(QString hash);
@@ -108,7 +111,7 @@ class bittorrent : public QObject{
     void enableDirectoryScanning(QString scan_dir);
     void disableDirectoryScanning();
     void enablePeerExchange();
-    void enableIPFilter(ip_filter filter);
+    void enableIPFilter(QString filter);
     void disableIPFilter();
     void resumeUnfinishedTorrents();
     void saveTorrentSpeedLimits(QString hash);
