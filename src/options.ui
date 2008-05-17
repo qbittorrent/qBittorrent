@@ -22,16 +22,7 @@
    <property name="spacing" >
     <number>6</number>
    </property>
-   <property name="leftMargin" >
-    <number>9</number>
-   </property>
-   <property name="topMargin" >
-    <number>9</number>
-   </property>
-   <property name="rightMargin" >
-    <number>9</number>
-   </property>
-   <property name="bottomMargin" >
+   <property name="margin" >
     <number>9</number>
    </property>
    <item>
@@ -83,11 +74,20 @@
       <enum>Qt::ElideLeft</enum>
      </property>
      <widget class="QWidget" name="tab" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>457</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>General</string>
       </attribute>
       <attribute name="icon" >
-       <iconset resource="icons.qrc" >:/Icons/star.png</iconset>
+       <iconset resource="icons.qrc" >
+        <normaloff>:/Icons/star.png</normaloff>:/Icons/star.png</iconset>
       </attribute>
       <layout class="QVBoxLayout" >
        <item>
@@ -120,7 +120,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -189,7 +189,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -250,7 +250,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -318,7 +318,7 @@
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>623</width>
            <height>20</height>
@@ -329,11 +329,20 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tab_5" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>457</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Downloads</string>
       </attribute>
       <attribute name="icon" >
-       <iconset resource="icons.qrc" >:/Icons/download.png</iconset>
+       <iconset resource="icons.qrc" >
+        <normaloff>:/Icons/download.png</normaloff>:/Icons/download.png</iconset>
       </attribute>
       <layout class="QVBoxLayout" >
        <item>
@@ -360,16 +369,7 @@
             <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -377,16 +377,7 @@
               <property name="spacing" >
                <number>6</number>
               </property>
-              <property name="leftMargin" >
-               <number>0</number>
-              </property>
-              <property name="topMargin" >
-               <number>0</number>
-              </property>
-              <property name="rightMargin" >
-               <number>0</number>
-              </property>
-              <property name="bottomMargin" >
+              <property name="margin" >
                <number>0</number>
               </property>
               <item>
@@ -473,16 +464,7 @@
             <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -490,16 +472,7 @@
               <property name="spacing" >
                <number>6</number>
               </property>
-              <property name="leftMargin" >
-               <number>0</number>
-              </property>
-              <property name="topMargin" >
-               <number>0</number>
-              </property>
-              <property name="rightMargin" >
-               <number>0</number>
-              </property>
-              <property name="bottomMargin" >
+              <property name="margin" >
                <number>0</number>
               </property>
               <item>
@@ -580,7 +553,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -623,7 +596,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -639,11 +612,20 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tab_3" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>457</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Connection</string>
       </attribute>
       <attribute name="icon" >
-       <iconset resource="icons.qrc" >:/Icons/connection.png</iconset>
+       <iconset resource="icons.qrc" >
+        <normaloff>:/Icons/connection.png</normaloff>:/Icons/connection.png</iconset>
       </attribute>
       <layout class="QVBoxLayout" >
        <item>
@@ -706,7 +688,7 @@
                   <property name="orientation" >
                    <enum>Qt::Horizontal</enum>
                   </property>
-                  <property name="sizeHint" >
+                  <property name="sizeHint" stdset="0" >
                    <size>
                     <width>20</width>
                     <height>20</height>
@@ -954,7 +936,7 @@
                 <property name="orientation" >
                  <enum>Qt::Horizontal</enum>
                 </property>
-                <property name="sizeHint" >
+                <property name="sizeHint" stdset="0" >
                  <size>
                   <width>21</width>
                   <height>29</height>
@@ -1043,7 +1025,7 @@
                   <property name="orientation" >
                    <enum>Qt::Horizontal</enum>
                   </property>
-                  <property name="sizeHint" >
+                  <property name="sizeHint" stdset="0" >
                    <size>
                     <width>40</width>
                     <height>20</height>
@@ -1145,11 +1127,20 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tab_6" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>457</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Bittorrent</string>
       </attribute>
       <attribute name="icon" >
-       <iconset resource="icons.qrc" >:/Icons/bt_settings.png</iconset>
+       <iconset resource="icons.qrc" >
+        <normaloff>:/Icons/bt_settings.png</normaloff>:/Icons/bt_settings.png</iconset>
       </attribute>
       <layout class="QVBoxLayout" >
        <item>
@@ -1196,7 +1187,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -1241,7 +1232,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -1283,7 +1274,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -1365,7 +1356,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -1428,7 +1419,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -1482,7 +1473,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -1500,7 +1491,7 @@
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>20</width>
            <height>40</height>
@@ -1511,11 +1502,20 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tab_4" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>457</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Misc</string>
       </attribute>
       <attribute name="icon" >
-       <iconset resource="icons.qrc" >:/Icons/configure.png</iconset>
+       <iconset resource="icons.qrc" >
+        <normaloff>:/Icons/configure.png</normaloff>:/Icons/configure.png</iconset>
       </attribute>
       <layout class="QVBoxLayout" >
        <item>
@@ -1526,170 +1526,20 @@
          <property name="title" >
           <string>Filter Settings</string>
          </property>
-         <layout class="QVBoxLayout" >
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <property name="leftMargin" >
-           <number>9</number>
-          </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
+         <layout class="QVBoxLayout" name="verticalLayout" >
           <item>
            <widget class="QCheckBox" name="checkIPFilter" >
             <property name="text" >
              <string>Activate IP Filtering</string>
             </property>
             <property name="icon" >
-             <iconset resource="icons.qrc" >:/Icons/filter.png</iconset>
+             <iconset resource="icons.qrc" >
+              <normaloff>:/Icons/filter.png</normaloff>:/Icons/filter.png</iconset>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QTreeWidget" name="filtersList" >
-            <property name="enabled" >
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize" >
-             <size>
-              <width>0</width>
-              <height>171</height>
-             </size>
-            </property>
-            <property name="font" >
-             <font>
-              <family>Sans Serif</family>
-              <pointsize>8</pointsize>
-              <weight>50</weight>
-              <italic>false</italic>
-              <bold>false</bold>
-              <underline>false</underline>
-              <strikeout>false</strikeout>
-             </font>
-            </property>
-            <property name="selectionMode" >
-             <enum>QAbstractItemView::ExtendedSelection</enum>
-            </property>
-            <property name="itemsExpandable" >
-             <bool>false</bool>
-            </property>
-            <column>
-             <property name="text" >
-              <string>Start IP</string>
-             </property>
-            </column>
-            <column>
-             <property name="text" >
-              <string>End IP</string>
-             </property>
-            </column>
-            <column>
-             <property name="text" >
-              <string>Origin</string>
-             </property>
-            </column>
-            <column>
-             <property name="text" >
-              <string>Comment</string>
-             </property>
-            </column>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" >
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
-            </property>
-            <item>
-             <spacer>
-              <property name="orientation" >
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" >
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="addFilterRangeButton" >
-              <property name="enabled" >
-               <bool>false</bool>
-              </property>
-              <property name="text" >
-               <string> Add Range</string>
-              </property>
-              <property name="icon" >
-               <iconset resource="icons.qrc" >:/Icons/skin/add.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="delFilterRangeButton" >
-              <property name="enabled" >
-               <bool>false</bool>
-              </property>
-              <property name="text" >
-               <string> Remove Range</string>
-              </property>
-              <property name="icon" >
-               <iconset resource="icons.qrc" >:/Icons/skin/remove.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer>
-              <property name="orientation" >
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" >
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" >
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
-            </property>
+           <layout class="QHBoxLayout" name="horizontalLayout" >
             <item>
              <widget class="QLabel" name="lblFilterPath" >
               <property name="enabled" >
@@ -1791,7 +1641,7 @@
                   <property name="orientation" >
                    <enum>Qt::Horizontal</enum>
                   </property>
-                  <property name="sizeHint" >
+                  <property name="sizeHint" stdset="0" >
                    <size>
                     <width>40</width>
                     <height>20</height>
@@ -1825,7 +1675,7 @@
                   <property name="orientation" >
                    <enum>Qt::Horizontal</enum>
                   </property>
-                  <property name="sizeHint" >
+                  <property name="sizeHint" stdset="0" >
                    <size>
                     <width>40</width>
                     <height>20</height>
@@ -1842,14 +1692,36 @@
          </layout>
         </widget>
        </item>
+       <item>
+        <spacer name="verticalSpacer" >
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0" >
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tab_2" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>457</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Web UI</string>
       </attribute>
       <attribute name="icon" >
-       <iconset resource="icons.qrc" >:/Icons/password.png</iconset>
+       <iconset resource="icons.qrc" >
+        <normaloff>:/Icons/password.png</normaloff>:/Icons/password.png</iconset>
       </attribute>
       <layout class="QVBoxLayout" >
        <item>
@@ -1902,7 +1774,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0" >
              <size>
               <width>21</width>
               <height>29</height>
@@ -1987,7 +1859,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0" >
              <size>
               <width>198</width>
               <height>57</height>
@@ -2003,7 +1875,7 @@
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>623</width>
            <height>41</height>
@@ -2020,16 +1892,7 @@
      <property name="spacing" >
       <number>6</number>
      </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin" >
       <number>0</number>
      </property>
      <item>
@@ -2038,7 +1901,7 @@
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="standardButtons" >
-        <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
+        <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
        </property>
        <property name="centerButtons" >
         <bool>true</bool>
@@ -2104,9 +1967,6 @@
   <tabstop>checkRatioRemove</tabstop>
   <tabstop>spinMaxRatio</tabstop>
   <tabstop>checkIPFilter</tabstop>
-  <tabstop>filtersList</tabstop>
-  <tabstop>addFilterRangeButton</tabstop>
-  <tabstop>delFilterRangeButton</tabstop>
   <tabstop>textFilterPath</tabstop>
   <tabstop>browseFilterButton</tabstop>
   <tabstop>spinRSSRefresh</tabstop>

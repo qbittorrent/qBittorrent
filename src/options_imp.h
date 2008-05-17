@@ -133,8 +133,6 @@ class options_imp : public QDialog, private Ui::Dialog {
     void closeEvent(QCloseEvent *e);
     void on_buttonBox_rejected();
     void applySettings(QAbstractButton* button);
-    void on_addFilterRangeButton_clicked();
-    void on_delFilterRangeButton_clicked();
     void on_browseScanDirButton_clicked();
     void on_browseFilterButton_clicked();
     void on_browseSaveDirButton_clicked();
