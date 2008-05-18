@@ -147,12 +147,14 @@ HEADERS += GUI.h misc.h options_imp.h about_imp.h \
            realprogressbarthread.h qrealarray.h \
            httpserver.h httpconnection.h \
            httprequestparser.h httpresponsegenerator.h \
-           json.h eventmanager.h filterParserThread.h
+           json.h eventmanager.h filterParserThread.h \
+           TrackersAdditionDlg.h
 FORMS += MainWindow.ui options.ui about.ui \
          properties.ui createtorrent.ui preview.ui \
          login.ui downloadFromURL.ui addTorrentDialog.ui \
          search.ui rss.ui seeding.ui bandwidth_limit.ui \
-         download.ui engineSelect.ui pluginSource.ui
+         download.ui engineSelect.ui pluginSource.ui \
+         trackersAdd.ui
 SOURCES += GUI.cpp \
            main.cpp \
            options_imp.cpp \

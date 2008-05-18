@@ -26,6 +26,7 @@
 #include "arborescence.h"
 #include "realprogressbar.h"
 #include "realprogressbarthread.h"
+#include "TrackersAdditionDlg.h"
 
 #include <QInputDialog>
 #include <QMessageBox>
@@ -482,18 +483,19 @@ void properties::askWebSeed(){
 // and add it to the download list
 // if it is not already in it
 void properties::askForTracker(){
-  bool ok;
-  // Ask user for a new tracker
-  QString trackerUrl = QInputDialog::getText(this, tr("New tracker"),
-                                       tr("New tracker url:"), QLineEdit::Normal,
-                                       "http://www.", &ok);
-  if(!ok) return;
-  // Add the tracker to the list
+  TrackersAddDlg *dlg = new TrackersAddDlg(this);
+  connect(dlg, SIGNAL(TrackersToAdd(QStringList)), this, SLOT(addTrackerList(QStringList)));
+}
+
+void properties::addTrackerList(QStringList myTrackers) {
+  // Add the trackers to the list
   std::vector<announce_entry> trackers = h.trackers();
-  announce_entry new_tracker(misc::toString(trackerUrl.toUtf8().data()));
-  new_tracker.tier = 0; // Will be fixed a bit later
-  trackers.push_back(new_tracker);
-  misc::fixTrackersTiers(trackers);
+  foreach(QString tracker, myTrackers) {
+    announce_entry new_tracker(misc::toString(tracker.toUtf8().data()));
+    new_tracker.tier = 0; // Will be fixed a bit later
+    trackers.push_back(new_tracker);
+    misc::fixTrackersTiers(trackers);
+  }
   h.replace_trackers(trackers);
   h.force_reannounce();
   // Reload Trackers
