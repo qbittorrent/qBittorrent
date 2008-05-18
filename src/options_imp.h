@@ -73,6 +73,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     bool addTorrentsInPause() const;
     bool isDirScanEnabled() const;
     QString getScanDir() const;
+    int getFolderScanInterval() const;
     int getActionOnDblClOnTorrentDl() const;
     int getActionOnDblClOnTorrentFn() const;
     // Connection options

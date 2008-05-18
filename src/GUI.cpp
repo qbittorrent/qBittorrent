@@ -849,6 +849,8 @@ void GUI::configureSession(bool deleteOptions) {
   if(options->getScanDir().isNull()) {
     BTSession->disableDirectoryScanning();
   }else{
+    //Interval first
+    BTSession->setTimerScanInterval(options->getFolderScanInterval());
     BTSession->enableDirectoryScanning(options->getScanDir());
   }
   // Connection

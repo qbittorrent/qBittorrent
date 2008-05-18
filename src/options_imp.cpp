@@ -164,6 +164,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkStartPaused, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkScanDir, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(textScanDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(FolderScanSpin, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   // Connection tab
   connect(spinPortMin, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinPortMax, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
@@ -279,6 +280,7 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("AdditionDialog"), useAdditionDialog());
   settings.setValue(QString::fromUtf8("StartInPause"), addTorrentsInPause());
   settings.setValue(QString::fromUtf8("ScanDir"), getScanDir());
+  settings.setValue(QString::fromUtf8("ScanDirInterval"), getFolderScanInterval());
   settings.setValue(QString::fromUtf8("DblClOnTorDl"), getActionOnDblClOnTorrentDl());
   settings.setValue(QString::fromUtf8("DblClOnTorFn"), getActionOnDblClOnTorrentFn());
   // End Downloads preferences
@@ -448,6 +450,7 @@ void options_imp::loadOptions(){
     // enable
     checkScanDir->setChecked(true);
     textScanDir->setText(strValue);
+    FolderScanSpin->setValue(settings.value(QString::fromUtf8("ScanDirInterval"), 5).toInt());
     enableDirScan(2);
   }
   actionTorrentDlOnDblClBox->setCurrentIndex(settings.value(QString::fromUtf8("DblClOnTorDl"), 0).toInt());
@@ -931,10 +934,16 @@ void options_imp::enableDirScan(int checkBoxValue){
     //enable
     textScanDir->setEnabled(true);
     browseScanDirButton->setEnabled(true);
+    FolderScanSpin->setEnabled(true);
+    FolderScanLbl->setEnabled(true);
+    FolderScanLbl2->setEnabled(true);
   }else{
     //disable
     textScanDir->setEnabled(false);
     browseScanDirButton->setEnabled(false);
+    FolderScanSpin->setEnabled(false);
+    FolderScanLbl->setEnabled(false);
+    FolderScanLbl2->setEnabled(false);
   }
 }
 
@@ -967,6 +976,10 @@ QString options_imp::getProxyIp() const{
 
 unsigned short options_imp::getProxyPort() const{
   return spinProxyPort->value();
+}
+
+int options_imp::getFolderScanInterval() const {
+  return FolderScanSpin->value();
 }
 
 QString options_imp::getProxyUsername() const{

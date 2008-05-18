@@ -42,7 +42,7 @@
 #define MAX_TRACKER_ERRORS 2
 
 // Main constructor
-bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), max_ratio(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false) {
+bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), max_ratio(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), folderScanInterval(5) {
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
   // Creating bittorrent session
@@ -977,13 +977,22 @@ void bittorrent::setDefaultSavePath(QString savepath) {
   defaultSavePath = savepath;
 }
 
+void bittorrent::setTimerScanInterval(int secs) {
+  if(folderScanInterval != secs) {
+    folderScanInterval = secs;
+    if(!scan_dir.isNull()) {
+      timerScan->start(folderScanInterval*1000);
+    }
+  }
+}
+
 // Enable directory scanning
 void bittorrent::enableDirectoryScanning(QString _scan_dir) {
   if(!_scan_dir.isEmpty()) {
     scan_dir = _scan_dir;
     timerScan = new QTimer(this);
     connect(timerScan, SIGNAL(timeout()), this, SLOT(scanDirectory()));
-    timerScan->start(5000);
+    timerScan->start(folderScanInterval*1000);
   }
 }
 

@@ -69,6 +69,7 @@ class bittorrent : public QObject{
     bool LSDEnabled;
     FilterParserThread *filterParser;
     QString filterPath;
+    int folderScanInterval; // in seconds
 
   protected:
     QString getSavePath(QString hash);
@@ -145,6 +146,7 @@ class bittorrent : public QObject{
     void enableLSD(bool b);
     bool enableDHT(bool b);
     void reloadTorrent(const QTorrentHandle &h, bool full_alloc);
+    void setTimerScanInterval(int secs);
 
   protected slots:
     void scanDirectory();
