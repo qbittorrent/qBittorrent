@@ -77,6 +77,7 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
 
 // Main destructor
 bittorrent::~bittorrent() {
+  qDebug("BTSession deletion");
   // Set Session settings
   session_settings ss;
   ss.tracker_receive_timeout = 1;

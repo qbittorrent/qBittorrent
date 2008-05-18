@@ -198,6 +198,7 @@ GUI::~GUI() {
   delete downloadingTorrentTab;
   delete finishedTorrentTab;
   delete checkConnect;
+  qDebug("1");
   if(systrayCreator) {
     delete systrayCreator;
   }
@@ -205,19 +206,23 @@ GUI::~GUI() {
     delete myTrayIcon;
     delete myTrayIconMenu;
   }
+  qDebug("2");
   delete tcpServer;
   delete connecStatusLblIcon;
   delete tabs;
   // HTTP Server
   if(httpServer)
     delete httpServer;
+  qDebug("3");
   // Keyboard shortcuts
   delete switchSearchShortcut;
   delete switchSearchShortcut2;
   delete switchDownShortcut;
   delete switchUpShortcut;
   delete switchRSSShortcut;
+  qDebug("4");
   delete BTSession;
+  qDebug("5");
 }
 
 void GUI::on_actionWebsite_triggered() const {
