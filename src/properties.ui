@@ -550,6 +550,9 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="selectionMode" >
+              <enum>QAbstractItemView::ExtendedSelection</enum>
+             </property>
             </widget>
            </item>
            <item>
