@@ -1,5 +1,6 @@
-* Tuesday October 06 2007 - Christophe Dumez <chris@qbittorrent.org> - v1.1.0
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.1.0
     - FEATURE: Web interface to control qbittorrent (Ishan Arora)
+    - FEATURE: Can spoof Azureus peer id to avoid ban
     - FEATURE: Allow to hide/show some columns in download and seeding lists
     - FEATURE: Option to start qBittorrent minimized in systray
     - FEATURE: Allow to define double-click actions in torrents lists
@@ -19,7 +20,7 @@
     - COSMETIC: Display tracker errors in a cleaner way
     - COSMETIC: Display "unpaused/total_torrent" in download/upload tabs
 
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.0.0
+* Fri Apr 11 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.0.0
     - FEATURE: Based on new libtorrent v0.13
     - FEATURE: Added UPnP / NAT-PMP port forwarding support
     - FEATURE: Added encryption support (compatible with Azureus)

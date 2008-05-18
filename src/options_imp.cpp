@@ -194,6 +194,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkDHT, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkPeX, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkLSD, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkAzureusSpoof, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(comboEncryption, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkRatioLimit, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkRatioRemove, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
@@ -322,6 +323,7 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("DHT"), isDHTEnabled());
   settings.setValue(QString::fromUtf8("PeX"), isPeXEnabled());
   settings.setValue(QString::fromUtf8("LSD"), isLSDEnabled());
+  settings.setValue(QString::fromUtf8("AzureusSpoof"), shouldSpoofAzureus());
   settings.setValue(QString::fromUtf8("Encryption"), getEncryptionSetting());
   settings.setValue(QString::fromUtf8("DesiredRatio"), getDesiredRatio());
   settings.setValue(QString::fromUtf8("MaxRatio"), getDeleteRatio());
@@ -355,6 +357,10 @@ void options_imp::saveOptions(){
   settings.endGroup();
   // End preferences
   settings.endGroup();
+}
+
+bool options_imp::shouldSpoofAzureus() const {
+  return checkAzureusSpoof->isChecked();
 }
 
 bool options_imp::isFilteringEnabled() const{
@@ -561,6 +567,7 @@ void options_imp::loadOptions(){
   checkDHT->setChecked(settings.value(QString::fromUtf8("DHT"), true).toBool());
   checkPeX->setChecked(settings.value(QString::fromUtf8("PeX"), true).toBool());
   checkLSD->setChecked(settings.value(QString::fromUtf8("LSD"), true).toBool());
+  checkAzureusSpoof->setChecked(settings.value(QString::fromUtf8("AzureusSpoof"), false).toBool());
   comboEncryption->setCurrentIndex(settings.value(QString::fromUtf8("Encryption"), 0).toInt());
   floatValue = settings.value(QString::fromUtf8("DesiredRatio"), -1).toDouble();
   if(floatValue >= 1.) {

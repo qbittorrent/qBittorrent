@@ -1362,6 +1362,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QCheckBox" name="checkAzureusSpoof" >
+            <property name="text" >
+             <string>Spoof Azureus to avoid ban (requires restart)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <layout class="QHBoxLayout" >
             <item>
              <widget class="QLabel" name="lbl_encryption" >

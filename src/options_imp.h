@@ -99,6 +99,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     bool isDHTEnabled() const;
     bool isPeXEnabled() const;
     bool isLSDEnabled() const;
+    bool shouldSpoofAzureus() const;
     int getEncryptionSetting() const;
     float getDesiredRatio() const;
     float getDeleteRatio() const;

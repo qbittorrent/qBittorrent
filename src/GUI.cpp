@@ -940,7 +940,11 @@ void GUI::configureSession(bool deleteOptions) {
   BTSession->setProxySettings(proxySettings, options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
   // * Session settings
   session_settings sessionSettings;
-  sessionSettings.user_agent = "qBittorrent "VERSION;
+  if(options->shouldSpoofAzureus()) {
+    sessionSettings.user_agent = "Azureus 3.0.5.2";
+  } else {
+    sessionSettings.user_agent = "qBittorrent "VERSION;
+  }
   BTSession->setSessionSettings(sessionSettings);
   // Bittorrent
   // * Max connections limit

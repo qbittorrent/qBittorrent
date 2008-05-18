@@ -23,6 +23,7 @@
 #include <QTime>
 #include <QString>
 #include <QTimer>
+#include <QSettings>
 
 #include "bittorrent.h"
 #include "misc.h"
@@ -46,7 +47,13 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
   // Creating bittorrent session
-  s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0));
+  // Check if we should spoof azureus
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  if(settings.value(QString::fromUtf8("AzureusSpoof"), false).toBool()) {
+    s = new session(fingerprint("AZ", 3, 0, 5, 2));
+  } else {
+    s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0));
+  }
   // Set severity level of libtorrent session
   s->set_severity_level(alert::info);
   // Enabling metadata plugin
