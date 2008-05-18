@@ -127,14 +127,14 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   tabs = new QTabWidget();
   // Download torrents tab
   downloadingTorrentTab = new DownloadingTorrents(this, BTSession);
-  tabs->addTab(downloadingTorrentTab, tr("Downloads") + QString::fromUtf8(" (0)"));
+  tabs->addTab(downloadingTorrentTab, tr("Downloads") + QString::fromUtf8(" (0/0)"));
   tabs->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
   vboxLayout->addWidget(tabs);
   connect(downloadingTorrentTab, SIGNAL(unfinishedTorrentsNumberChanged(unsigned int)), this, SLOT(updateUnfinishedTorrentNumber(unsigned int)));
   connect(downloadingTorrentTab, SIGNAL(torrentDoubleClicked(QString, bool)), this, SLOT(torrentDoubleClicked(QString, bool)));
   // Finished torrents tab
   finishedTorrentTab = new FinishedTorrents(this, BTSession);
-  tabs->addTab(finishedTorrentTab, tr("Finished") + QString::fromUtf8(" (0)"));
+  tabs->addTab(finishedTorrentTab, tr("Finished") + QString::fromUtf8(" (0/0)"));
   tabs->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   connect(finishedTorrentTab, SIGNAL(torrentDoubleClicked(QString, bool)), this, SLOT(torrentDoubleClicked(QString, bool)));
 
@@ -1021,11 +1021,13 @@ void GUI::configureSession(bool deleteOptions) {
 }
 
 void GUI::updateUnfinishedTorrentNumber(unsigned int nb) {
-  tabs->setTabText(0, tr("Downloads") +QString::fromUtf8(" (")+misc::toQString(nb)+QString::fromUtf8(")"));
+  unsigned int paused = BTSession->getUnfinishedPausedTorrentsNb();
+  tabs->setTabText(0, tr("Downloads") +QString::fromUtf8(" (")+misc::toQString(nb-paused)+"/"+misc::toQString(nb)+QString::fromUtf8(")"));
 }
 
 void GUI::updateFinishedTorrentNumber(unsigned int nb) {
-  tabs->setTabText(1, tr("Finished") +QString::fromUtf8(" (")+misc::toQString(nb)+QString::fromUtf8(")"));
+  unsigned int paused = BTSession->getFinishedPausedTorrentsNb();
+  tabs->setTabText(1, tr("Finished") +QString::fromUtf8(" (")+misc::toQString(nb-paused)+"/"+misc::toQString(nb)+QString::fromUtf8(")"));
 }
 
 // Allow to change action on double-click
@@ -1072,15 +1074,19 @@ void GUI::togglePausedState(QString hash) {
     downloadingTorrentTab->setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(h.name()));
     if(inDownloadList) {
       downloadingTorrentTab->resumeTorrent(hash);
+      updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
     }else{
       finishedTorrentTab->resumeTorrent(hash);
+      updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
     }
   }else{
     BTSession->pauseTorrent(hash);
     if(inDownloadList) {
       downloadingTorrentTab->pauseTorrent(hash);
+      updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
     }else{
       finishedTorrentTab->pauseTorrent(hash);
+      updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
     }
     downloadingTorrentTab->setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(h.name()));
   }
@@ -1104,8 +1110,11 @@ void GUI::on_actionPause_All_triggered() {
       finishedTorrentTab->pauseTorrent(hash);
     }
   }
-  if(change)
+  if(change) {
+    updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
+    updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
     downloadingTorrentTab->setInfoBar(tr("All downloads were paused."));
+  }
 }
 
 // pause selected items in the list
@@ -1125,8 +1134,10 @@ void GUI::on_actionPause_triggered() {
     if(BTSession->pauseTorrent(hash)){
       if(inDownloadList) {
         downloadingTorrentTab->pauseTorrent(hash);
+        updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
       } else {
         finishedTorrentTab->pauseTorrent(hash);
+        updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
       }
       downloadingTorrentTab->setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(BTSession->getTorrentHandle(hash).name()));
     }
@@ -1136,6 +1147,8 @@ void GUI::on_actionPause_triggered() {
 void GUI::pauseTorrent(QString hash) {
   downloadingTorrentTab->pauseTorrent(hash);
   finishedTorrentTab->pauseTorrent(hash);
+  updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
+  updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
 }
 
 // Resume All Downloads in DL list
@@ -1156,8 +1169,11 @@ void GUI::on_actionStart_All_triggered() {
       finishedTorrentTab->resumeTorrent(hash);
     }
   }
-  if(change)
+  if(change) {
+    updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
+    updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
     downloadingTorrentTab->setInfoBar(tr("All downloads were resumed."));
+  }
 }
 
 // start selected items in the list
@@ -1177,8 +1193,10 @@ void GUI::on_actionStart_triggered() {
     if(BTSession->resumeTorrent(hash)){
       if(inDownloadList) {
         downloadingTorrentTab->resumeTorrent(hash);
+        updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
       } else {
         finishedTorrentTab->resumeTorrent(hash);
+        updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
       }
       downloadingTorrentTab->setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(BTSession->getTorrentHandle(hash).name()));
     }

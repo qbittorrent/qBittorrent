@@ -17,6 +17,7 @@
     - COSMETIC: Do not display progress bar in seeding list (always 100%)
     - COSMETIC: Added a progress bar for torrent creation
     - COSMETIC: Display tracker errors in a cleaner way
+    - COSMETIC: Display "unpaused/total_torrent" in download/upload tabs
 
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.0.0
     - FEATURE: Based on new libtorrent v0.13

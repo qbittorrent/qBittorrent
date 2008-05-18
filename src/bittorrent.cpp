@@ -203,6 +203,26 @@ bool bittorrent::isPaused(QString hash) const{
   return h.is_paused();
 }
 
+unsigned int bittorrent::getFinishedPausedTorrentsNb() const {
+  unsigned int nbPaused = 0;
+  foreach(QString hash, finishedTorrents) {
+    if(isPaused(hash)) {
+      ++nbPaused;
+    }
+  }
+  return nbPaused;
+}
+
+unsigned int bittorrent::getUnfinishedPausedTorrentsNb() const {
+  unsigned int nbPaused = 0;
+  foreach(QString hash, unfinishedTorrents) {
+    if(isPaused(hash)) {
+      ++nbPaused;
+    }
+  }
+  return nbPaused;
+}
+
 // Delete a torrent from the session, given its hash
 // permanent = true means that the torrent will be removed from the hard-drive too
 void bittorrent::deleteTorrent(QString hash, bool permanent) {

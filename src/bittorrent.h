@@ -95,6 +95,8 @@ class bittorrent : public QObject{
     QStringList getUnfinishedTorrents() const;
     bool isFinished(QString hash) const;
     bool has_filtered_files(QString hash) const;
+    unsigned int getFinishedPausedTorrentsNb() const;
+    unsigned int getUnfinishedPausedTorrentsNb() const;
 
   public slots:
     void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
