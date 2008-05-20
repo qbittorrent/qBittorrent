@@ -164,7 +164,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkStartPaused, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkScanDir, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(textScanDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-  connect(FolderScanSpin, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(FolderScanSpin, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   // Connection tab
   connect(spinPortMin, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinPortMax, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
