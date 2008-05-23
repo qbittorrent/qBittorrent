@@ -1187,18 +1187,18 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
 <context>
     <name>FilterParserThread</name>
     <message>
-        <location filename="../filterParserThread.h" line="355"/>
+        <location filename="../filterParserThread.h" line="357"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation type="unfinished">I/O Hatası</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="271"/>
+        <location filename="../filterParserThread.h" line="273"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation type="unfinished">%1 okuma modunda açılamadı.</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="355"/>
+        <location filename="../filterParserThread.h" line="357"/>
         <source>%1 is not a valid PeerGuardian P2B file.</source>
         <translation type="unfinished"></translation>
     </message>

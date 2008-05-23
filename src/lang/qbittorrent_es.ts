@@ -1210,18 +1210,18 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
 <context>
     <name>FilterParserThread</name>
     <message>
-        <location filename="../filterParserThread.h" line="355"/>
+        <location filename="../filterParserThread.h" line="357"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation type="unfinished">Error de Entrada/Salida</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="271"/>
+        <location filename="../filterParserThread.h" line="273"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation type="unfinished">No se pudo abrir %1 en modo lectura.</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="355"/>
+        <location filename="../filterParserThread.h" line="357"/>
         <source>%1 is not a valid PeerGuardian P2B file.</source>
         <translation type="unfinished"></translation>
     </message>
