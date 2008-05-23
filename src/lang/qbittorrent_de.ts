@@ -1193,7 +1193,7 @@ Copyright (c) 2006 Christophe Dumez&lt;br&gt;
         <location filename="../filterParserThread.h" line="355"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">I/O Error</translation>
     </message>
     <message>
         <location filename="../filterParserThread.h" line="271"/>

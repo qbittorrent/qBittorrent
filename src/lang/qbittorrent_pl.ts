@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS><TS version="1.1" language="pl">
 <context>
     <name>@default</name>
     <message>
@@ -1108,32 +1108,32 @@ Wszystkie prawa zastrzeżone © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="511"/>
         <source>Folder scan interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Okres skanu foldera:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="531"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>sekund</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1367"/>
         <source>Spoof Azureus to avoid ban (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Podrabianie Azureusa pozwala ominąć blokadę (wymagany restart)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1765"/>
         <source>Web UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Web UI</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1778"/>
         <source>Enable Web User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz interfejs Web</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1791"/>
         <source>HTTP Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Serwer HTTP</translation>
     </message>
 </context>
 <context>
@@ -1260,12 +1260,12 @@ Wszystkie prawa zastrzeżone © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../downloadingTorrents.cpp" line="206"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP/NAT-PMP: Błąd mapowania portu, wiadomość %1</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="210"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP/NAT-PMP: Udane mapowanie portu, wiadomość %1</translation>
     </message>
 </context>
 <context>
@@ -1274,17 +1274,17 @@ Wszystkie prawa zastrzeżone © 2006 Christophe Dumez&lt;br&gt;
         <location filename="../filterParserThread.h" line="355"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
-        <translation type="unfinished">Błąd We/Wy</translation>
+        <translation>Błąd We/Wy</translation>
     </message>
     <message>
         <location filename="../filterParserThread.h" line="271"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
-        <translation type="unfinished">Nie można otworzyć %1 w trybie odczytu.</translation>
+        <translation>Nie można otworzyć %1 w trybie odczytu.</translation>
     </message>
     <message>
         <location filename="../filterParserThread.h" line="355"/>
         <source>%1 is not a valid PeerGuardian P2B file.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 nie jest poprawnym plikiem PeerGuardian.</translation>
     </message>
 </context>
 <context>
@@ -3081,12 +3081,12 @@ Zmiany:
     <message>
         <location filename="../trackersAdd.ui" line="13"/>
         <source>Trackers addition dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodatkowy dialog trackerów</translation>
     </message>
     <message>
         <location filename="../trackersAdd.ui" line="19"/>
         <source>List of trackers to add (one per line):</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista trackerów do dodania (jeden na linię):</translation>
     </message>
 </context>
 <context>
@@ -3514,7 +3514,7 @@ Zmiany:
     <message>
         <location filename="../createtorrent.ui" line="483"/>
         <source>Progress:</source>
-        <translation type="unfinished"></translation>
+        <translation>Postęp:</translation>
     </message>
 </context>
 <context>
@@ -3799,7 +3799,7 @@ Zmiany:
     <message>
         <location filename="../download.ui" line="436"/>
         <source>Buy it</source>
-        <translation type="unfinished"></translation>
+        <translation>Kup to</translation>
     </message>
 </context>
 <context>
@@ -4262,12 +4262,12 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <location filename="../options_imp.cpp" line="1059"/>
         <source>Choose an ip filter file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik ip filter</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1059"/>
         <source>Filters (*.dat *.p2p *.p2b)</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtry (*.dat *.p2p *.p2b)</translation>
     </message>
 </context>
 <context>
@@ -4902,7 +4902,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <location filename="../seeding.ui" line="134"/>
         <source>Buy it</source>
-        <translation type="unfinished"></translation>
+        <translation>Kup to</translation>
     </message>
 </context>
 <context>

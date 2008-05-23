@@ -39,6 +39,8 @@ using namespace std;
 // End of P2B stuff
 
 class FilterParserThread : public QThread  {
+  Q_OBJECT
+
   private:
     session *s;
     ip_filter filter;

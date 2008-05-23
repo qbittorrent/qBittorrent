@@ -133,7 +133,7 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
 	if(modify(hash, "state", v))
 		event["state"] = v;
 	
-	v = QVariant(h.actual_size());
+	v = QVariant((qlonglong)h.actual_size());
 	if(modify(hash, "size", v))
 		event["size"] = v;
 	
