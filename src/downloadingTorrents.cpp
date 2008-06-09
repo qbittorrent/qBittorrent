@@ -47,8 +47,6 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
 //   tabBottom->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/log.png")));
 //   tabBottom->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/filter.png")));
-  // Set default ratio
-  lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/stare.png")));
 
   // Set Download list model
   DLListModel = new QStandardItemModel(0,9);
@@ -490,32 +488,6 @@ QStringList DownloadingTorrents::getSelectedTorrents(bool only_one) const{
   return res;
 }
 
-void DownloadingTorrents::updateRatio() {
-  // Update ratio info
-  float ratio = 1.;
-  session_status sessionStatus = BTSession->getSessionStatus();
-  if(sessionStatus.total_payload_download == 0) {
-    if(sessionStatus.total_payload_upload == 0)
-      ratio = 1.;
-    else
-      ratio = 10.;
-  }else{
-    ratio = (double)sessionStatus.total_payload_upload / (double)sessionStatus.total_payload_download;
-    if(ratio > 10.)
-      ratio = 10.;
-  }
-  LCD_Ratio->display(QString(QByteArray::number(ratio, 'f', 1)));
-  if(ratio < 0.5) {
-    lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/unhappy.png")));
-  }else{
-    if(ratio > 1.0) {
-      lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/smile.png")));
-    }else{
-      lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/stare.png")));
-    }
-  }
-}
-
 void DownloadingTorrents::displayInfoBarMenu(const QPoint& pos) {
   // Log Menu
   QMenu myLogMenu(this);
@@ -534,9 +506,6 @@ void DownloadingTorrents::sortProgressColumnDelayed() {
 // get information from torrent handles and
 // update download list accordingly
 void DownloadingTorrents::updateDlList() {
-  // update global informations
-  LCD_UpSpeed->display(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1))); // UP LCD
-  LCD_DownSpeed->display(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1))); // DL LCD
   // browse handles
   QStringList unfinishedTorrents = BTSession->getUnfinishedTorrents();
   QString hash;

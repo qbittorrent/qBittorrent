@@ -21,6 +21,7 @@
     - COSMETIC: Display tracker errors in a cleaner way
     - COSMETIC: Display "unpaused/total_torrent" in download/upload tabs
     - COSMETIC: Allow to resize RSS column
+    - COSMETIC: Global UP/DL speeds and ratio are displayed above tabs
 
 * Fri Apr 11 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.0.0
     - FEATURE: Based on new libtorrent v0.13

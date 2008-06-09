@@ -107,6 +107,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
   actionCreate_torrent->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/new.png")));
+  // Set default ratio
+  lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/stare.png")));
   // Fix Tool bar layout
   toolBar->layout()->setSpacing(7);
   // creating options
@@ -129,7 +131,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   downloadingTorrentTab = new DownloadingTorrents(this, BTSession);
   tabs->addTab(downloadingTorrentTab, tr("Downloads") + QString::fromUtf8(" (0/0)"));
   tabs->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
-  vboxLayout->addWidget(tabs);
+  verticalLayout->addWidget(tabs);
   connect(downloadingTorrentTab, SIGNAL(unfinishedTorrentsNumberChanged(unsigned int)), this, SLOT(updateUnfinishedTorrentNumber(unsigned int)));
   connect(downloadingTorrentTab, SIGNAL(torrentDoubleClicked(QString, bool)), this, SLOT(torrentDoubleClicked(QString, bool)));
   // Finished torrents tab
@@ -223,6 +225,32 @@ GUI::~GUI() {
   qDebug("4");
   delete BTSession;
   qDebug("5");
+}
+
+void GUI::updateRatio() {
+  // Update ratio info
+  float ratio = 1.;
+  session_status sessionStatus = BTSession->getSessionStatus();
+  if(sessionStatus.total_payload_download == 0) {
+    if(sessionStatus.total_payload_upload == 0)
+      ratio = 1.;
+    else
+      ratio = 10.;
+  }else{
+    ratio = (double)sessionStatus.total_payload_upload / (double)sessionStatus.total_payload_download;
+    if(ratio > 10.)
+      ratio = 10.;
+  }
+  LCD_Ratio->display(QString(QByteArray::number(ratio, 'f', 1)));
+  if(ratio < 0.5) {
+    lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/unhappy.png")));
+  }else{
+    if(ratio > 1.0) {
+      lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/smile.png")));
+    }else{
+      lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/stare.png")));
+    }
+  }
 }
 
 void GUI::on_actionWebsite_triggered() const {
@@ -1232,6 +1260,9 @@ void GUI::on_actionTorrent_Properties_triggered() {
 }
 
 void GUI::updateLists() {
+  // update global informations
+  LCD_UpSpeed->display(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1))); // UP LCD
+  LCD_DownSpeed->display(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1))); // DL LCD
   switch(getCurrentTabIndex()){
     case 0:
       downloadingTorrentTab->updateDlList();
@@ -1261,8 +1292,7 @@ void GUI::trackerAuthenticationRequired(QTorrentHandle& h) {
 void GUI::checkConnectionStatus() {
 //   qDebug("Checking connection status");
   // Update Ratio
-  if(getCurrentTabIndex() == 0)
-    downloadingTorrentTab->updateRatio();
+  updateRatio();
   // update global informations
   if(systrayIntegration) {
     QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";

@@ -100,7 +100,6 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void setInfoBar(QString info, QColor color=QApplication::palette().color(QPalette::WindowText));
     void pauseTorrent(QString hash);
     void resumeTorrent(QString hash);
-    void updateRatio();
     void deleteTorrent(QString hash);
     void setBottomTabEnabled(unsigned int index, bool b);
     void propertiesSelection();
