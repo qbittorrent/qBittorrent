@@ -12,259 +12,202 @@
   <property name="windowTitle" >
    <string>Search</string>
   </property>
-  <layout class="QVBoxLayout" >
-   <property name="spacing" >
-    <number>6</number>
+  <widget class="QSplitter" name="splitter" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>786</width>
+     <height>424</height>
+    </rect>
    </property>
-   <property name="leftMargin" >
-    <number>9</number>
+   <property name="orientation" >
+    <enum>Qt::Horizontal</enum>
    </property>
-   <property name="topMargin" >
-    <number>9</number>
-   </property>
-   <property name="rightMargin" >
-    <number>9</number>
-   </property>
-   <property name="bottomMargin" >
-    <number>9</number>
-   </property>
-   <item>
-    <layout class="QHBoxLayout" >
+   <widget class="QWidget" name="" >
+    <layout class="QVBoxLayout" >
      <property name="spacing" >
       <number>6</number>
      </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin" >
       <number>0</number>
      </property>
      <item>
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
-        <number>6</number>
+      <widget class="QTreeWidget" name="listStreams" >
+       <property name="contextMenuPolicy" >
+        <enum>Qt::CustomContextMenu</enum>
        </property>
-       <property name="leftMargin" >
-        <number>0</number>
+       <property name="selectionMode" >
+        <enum>QAbstractItemView::ExtendedSelection</enum>
        </property>
-       <property name="topMargin" >
-        <number>0</number>
+       <property name="columnCount" >
+        <number>2</number>
        </property>
-       <property name="rightMargin" >
-        <number>0</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QTreeWidget" name="listStreams" >
-         <property name="contextMenuPolicy" >
-          <enum>Qt::CustomContextMenu</enum>
-         </property>
-         <property name="selectionMode" >
-          <enum>QAbstractItemView::ExtendedSelection</enum>
-         </property>
-         <property name="columnCount" >
-          <number>2</number>
-         </property>
-         <column>
-          <property name="text" >
-           <string>RSS streams:</string>
-          </property>
-         </column>
-         <column>
-          <property name="text" >
-           <string>2</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" >
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <property name="leftMargin" >
-          <number>0</number>
-         </property>
-         <property name="topMargin" >
-          <number>0</number>
-         </property>
-         <property name="rightMargin" >
-          <number>0</number>
-         </property>
-         <property name="bottomMargin" >
-          <number>0</number>
-         </property>
-         <item>
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="delStream_button" >
-           <property name="minimumSize" >
-            <size>
-             <width>55</width>
-             <height>32</height>
-            </size>
-           </property>
-           <property name="toolTip" >
-            <string>Delete selected streams</string>
-           </property>
-           <property name="text" >
-            <string/>
-           </property>
-           <property name="iconSize" >
-            <size>
-             <width>32</width>
-             <height>32</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="refreshAll_button" >
-           <property name="minimumSize" >
-            <size>
-             <width>32</width>
-             <height>32</height>
-            </size>
-           </property>
-           <property name="toolTip" >
-            <string>Refresh RSS streams</string>
-           </property>
-           <property name="text" >
-            <string/>
-           </property>
-           <property name="iconSize" >
-            <size>
-             <width>32</width>
-             <height>32</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="addStream_button" >
-           <property name="minimumSize" >
-            <size>
-             <width>32</width>
-             <height>32</height>
-            </size>
-           </property>
-           <property name="toolTip" >
-            <string>Add a new RSS stream</string>
-           </property>
-           <property name="text" >
-            <string/>
-           </property>
-           <property name="iconSize" >
-            <size>
-             <width>55</width>
-             <height>32</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-      </layout>
+       <column>
+        <property name="text" >
+         <string>RSS streams:</string>
+        </property>
+       </column>
+       <column>
+        <property name="text" >
+         <string>2</string>
+        </property>
+       </column>
+      </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" >
+      <layout class="QHBoxLayout" >
        <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="leftMargin" >
-        <number>0</number>
-       </property>
-       <property name="topMargin" >
-        <number>0</number>
-       </property>
-       <property name="rightMargin" >
-        <number>0</number>
-       </property>
-       <property name="bottomMargin" >
+       <property name="margin" >
         <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="news_lbl" >
-         <property name="font" >
-          <font>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
          </property>
-         <property name="text" >
-          <string>&lt;b>News:&lt;/b> &lt;i>(double-click to open the link in your web browser)&lt;/i></string>
+         <property name="sizeHint" stdset="0" >
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
          </property>
-        </widget>
+        </spacer>
        </item>
        <item>
-        <widget class="QListWidget" name="listNews" >
+        <widget class="QPushButton" name="delStream_button" >
          <property name="minimumSize" >
           <size>
-           <width>520</width>
-           <height>0</height>
+           <width>55</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="toolTip" >
+          <string>Delete selected streams</string>
+         </property>
+         <property name="text" >
+          <string/>
+         </property>
+         <property name="iconSize" >
+          <size>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QTextBrowser" name="textBrowser" />
+        <widget class="QPushButton" name="refreshAll_button" >
+         <property name="minimumSize" >
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="toolTip" >
+          <string>Refresh RSS streams</string>
+         </property>
+         <property name="text" >
+          <string/>
+         </property>
+         <property name="iconSize" >
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" >
-         <property name="spacing" >
-          <number>6</number>
+        <widget class="QPushButton" name="addStream_button" >
+         <property name="minimumSize" >
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
          </property>
-         <property name="leftMargin" >
-          <number>0</number>
+         <property name="toolTip" >
+          <string>Add a new RSS stream</string>
          </property>
-         <property name="topMargin" >
-          <number>0</number>
+         <property name="text" >
+          <string/>
          </property>
-         <property name="rightMargin" >
-          <number>0</number>
+         <property name="iconSize" >
+          <size>
+           <width>55</width>
+           <height>32</height>
+          </size>
          </property>
-         <property name="bottomMargin" >
-          <number>0</number>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
          </property>
-        </layout>
+         <property name="sizeHint" stdset="0" >
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </item>
     </layout>
-   </item>
-  </layout>
+    <zorder>listStreams</zorder>
+    <zorder></zorder>
+   </widget>
+   <widget class="QWidget" name="" >
+    <layout class="QVBoxLayout" >
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="news_lbl" >
+       <property name="font" >
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text" >
+        <string>&lt;b>News:&lt;/b> &lt;i>(double-click to open the link in your web browser)&lt;/i></string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QListWidget" name="listNews" >
+       <property name="minimumSize" >
+        <size>
+         <width>520</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextBrowser" name="textBrowser" />
+     </item>
+     <item>
+      <layout class="QHBoxLayout" >
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <property name="margin" >
+        <number>0</number>
+       </property>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
   <action name="actionDelete" >
    <property name="text" >
     <string>Delete</string>
