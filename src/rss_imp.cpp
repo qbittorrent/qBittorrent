@@ -239,6 +239,26 @@
       item->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));
       updateFeedNbNews(selectedFeedUrl);
     }
+		
+		void RSSImp::saveSlidersPosition() {
+			// Remember sliders positions
+			QSettings settings("qBittorrent", "qBittorrent");
+			settings.setValue("rss/splitter_h", splitter_h->saveState());
+			settings.setValue("rss/splitter_v", splitter_v->saveState());
+			qDebug("Splitters position saved");
+		}
+		
+		void RSSImp::restoreSlidersPosition() {
+			QSettings settings("qBittorrent", "qBittorrent");
+			QByteArray pos_h = settings.value("rss/splitter_h", QByteArray()).toByteArray();
+			if(!pos_h.isNull()) {
+				splitter_h->restoreState(pos_h);
+			}
+			QByteArray pos_v = settings.value("rss/splitter_v", QByteArray()).toByteArray();
+			if(!pos_v.isNull()) {
+				splitter_v->restoreState(pos_v);
+			}
+		}
 
     QTreeWidgetItem* RSSImp::getTreeItemFromUrl(QString url) const{
       unsigned int nbItems = listStreams->topLevelItemCount();
@@ -313,6 +333,11 @@
       selectFirstFeed();
       // Refresh all feeds
       rssmanager->refreshAll();
+			// Restore sliders position
+			restoreSlidersPosition();
+			// Bind saveSliders slots
+			connect(splitter_v, SIGNAL(splitterMoved(int, int)), this, SLOT(saveSlidersPosition()));
+			connect(splitter_h, SIGNAL(splitterMoved(int, int)), this, SLOT(saveSlidersPosition()));
       qDebug("RSSImp constructed");
     }
 

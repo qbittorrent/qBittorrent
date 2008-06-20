@@ -14,7 +14,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2" >
    <item>
-    <widget class="QSplitter" name="splitter_2" >
+    <widget class="QSplitter" name="splitter_h" >
      <property name="orientation" >
       <enum>Qt::Horizontal</enum>
      </property>
@@ -155,7 +155,7 @@
       <zorder>listStreams</zorder>
       <zorder></zorder>
      </widget>
-     <widget class="QWidget" name="" >
+     <widget class="QWidget" name="layoutWidget" >
       <layout class="QVBoxLayout" name="verticalLayout" >
        <item>
         <widget class="QLabel" name="news_lbl" >
@@ -171,7 +171,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QSplitter" name="splitter" >
+        <widget class="QSplitter" name="splitter_v" >
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
@@ -180,7 +180,6 @@
         </widget>
        </item>
       </layout>
-      <zorder>splitter</zorder>
      </widget>
     </widget>
    </item>
