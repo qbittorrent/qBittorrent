@@ -16,13 +16,194 @@
    <string/>
   </property>
   <widget class="QWidget" name="centralwidget" >
-   <layout class="QVBoxLayout" >
-    <property name="spacing" >
-     <number>6</number>
-    </property>
-    <property name="margin" >
-     <number>9</number>
-    </property>
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>58</y>
+     <width>849</width>
+     <height>505</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout" >
+    <item>
+     <layout class="QHBoxLayout" name="_3" >
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <property name="margin" >
+       <number>0</number>
+      </property>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0" >
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="lbl_DLSpeed_2" >
+        <property name="text" >
+         <string>Total DL Speed:</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLCDNumber" name="LCD_DownSpeed" >
+        <property name="autoFillBackground" >
+         <bool>true</bool>
+        </property>
+        <property name="frameShadow" >
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="smallDecimalPoint" >
+         <bool>false</bool>
+        </property>
+        <property name="numDigits" >
+         <number>6</number>
+        </property>
+        <property name="segmentStyle" >
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+        <property name="value" stdset="0" >
+         <double>0.000000000000000</double>
+        </property>
+        <property name="intValue" stdset="0" >
+         <number>0</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="unitDL_2" >
+        <property name="text" >
+         <string>KiB/s</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0" >
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2" >
+        <property name="text" >
+         <string>Session ratio: </string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLCDNumber" name="LCD_Ratio" >
+        <property name="autoFillBackground" >
+         <bool>true</bool>
+        </property>
+        <property name="numDigits" >
+         <number>4</number>
+        </property>
+        <property name="segmentStyle" >
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+        <property name="value" stdset="0" >
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lbl_ratio_icon" >
+        <property name="text" >
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0" >
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="lbl_UPSpeed_2" >
+        <property name="text" >
+         <string>Total UP Speed:</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLCDNumber" name="LCD_UpSpeed" >
+        <property name="autoFillBackground" >
+         <bool>true</bool>
+        </property>
+        <property name="smallDecimalPoint" >
+         <bool>false</bool>
+        </property>
+        <property name="numDigits" >
+         <number>6</number>
+        </property>
+        <property name="segmentStyle" >
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+        <property name="value" stdset="0" >
+         <double>0.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="unitUP_2" >
+        <property name="text" >
+         <string>KiB/s</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0" >
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar" >
@@ -31,7 +212,7 @@
      <x>0</x>
      <y>0</y>
      <width>849</width>
-     <height>29</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit" >
@@ -82,6 +263,14 @@
    <property name="enabled" >
     <bool>true</bool>
    </property>
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>26</y>
+     <width>849</width>
+     <height>32</height>
+    </rect>
+   </property>
    <property name="contextMenuPolicy" >
     <enum>Qt::NoContextMenu</enum>
    </property>
@@ -98,7 +287,7 @@
     </size>
    </property>
    <attribute name="toolBarArea" >
-    <number>4</number>
+    <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak" >
     <bool>false</bool>

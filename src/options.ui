@@ -22,16 +22,7 @@
    <property name="spacing" >
     <number>6</number>
    </property>
-   <property name="leftMargin" >
-    <number>9</number>
-   </property>
-   <property name="topMargin" >
-    <number>9</number>
-   </property>
-   <property name="rightMargin" >
-    <number>9</number>
-   </property>
-   <property name="bottomMargin" >
+   <property name="margin" >
     <number>9</number>
    </property>
    <item>
@@ -63,7 +54,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QTabWidget" name="tabOptions" >
+    <widget class="QTabWidget" name="tabOption" >
      <property name="tabPosition" >
       <enum>QTabWidget::North</enum>
      </property>
@@ -83,11 +74,20 @@
       <enum>Qt::ElideLeft</enum>
      </property>
      <widget class="QWidget" name="tab" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>457</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>General</string>
       </attribute>
       <attribute name="icon" >
-       <iconset resource="icons.qrc" >:/Icons/star.png</iconset>
+       <iconset resource="icons.qrc" >
+        <normaloff>:/Icons/star.png</normaloff>:/Icons/star.png</iconset>
       </attribute>
       <layout class="QVBoxLayout" >
        <item>
@@ -120,7 +120,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -189,7 +189,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -250,7 +250,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -318,7 +318,7 @@
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>623</width>
            <height>20</height>
@@ -329,13 +329,22 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tab_5" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>457</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Downloads</string>
       </attribute>
       <attribute name="icon" >
-       <iconset resource="icons.qrc" >:/Icons/download.png</iconset>
+       <iconset resource="icons.qrc" >
+        <normaloff>:/Icons/download.png</normaloff>:/Icons/download.png</iconset>
       </attribute>
-      <layout class="QVBoxLayout" >
+      <layout class="QVBoxLayout" name="verticalLayout_4" >
        <item>
         <widget class="QGroupBox" name="fileSystemBox" >
          <property name="sizePolicy" >
@@ -360,16 +369,7 @@
             <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -377,16 +377,7 @@
               <property name="spacing" >
                <number>6</number>
               </property>
-              <property name="leftMargin" >
-               <number>0</number>
-              </property>
-              <property name="topMargin" >
-               <number>0</number>
-              </property>
-              <property name="rightMargin" >
-               <number>0</number>
-              </property>
-              <property name="bottomMargin" >
+              <property name="margin" >
                <number>0</number>
               </property>
               <item>
@@ -428,23 +419,40 @@
          <property name="title" >
           <string>When adding a torrent</string>
          </property>
-         <layout class="QVBoxLayout" >
+         <layout class="QVBoxLayout" name="verticalLayout_3" >
           <item>
-           <widget class="QCheckBox" name="checkAdditionDialog" >
-            <property name="text" >
-             <string>Display torrent content and some options</string>
-            </property>
-            <property name="checked" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="checkStartPaused" >
-            <property name="text" >
-             <string comment="The torrent will be added to download list in pause state" >Do not start download automatically</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_3" >
+            <item>
+             <widget class="QCheckBox" name="checkAdditionDialog" >
+              <property name="text" >
+               <string>Display torrent content and some options</string>
+              </property>
+              <property name="checked" >
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer" >
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkStartPaused" >
+              <property name="text" >
+               <string comment="The torrent will be added to download list in pause state" >Do not start download automatically</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
@@ -460,7 +468,7 @@
          <property name="title" >
           <string comment="qBittorrent will watch a directory and automatically download torrents present in it" >Folder watching</string>
          </property>
-         <layout class="QVBoxLayout" >
+         <layout class="QVBoxLayout" name="verticalLayout_2" >
           <item>
            <widget class="QCheckBox" name="checkScanDir" >
             <property name="text" >
@@ -473,53 +481,56 @@
             <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
-             <layout class="QHBoxLayout" >
-              <property name="spacing" >
-               <number>6</number>
+             <widget class="QLineEdit" name="textScanDir" >
+              <property name="enabled" >
+               <bool>false</bool>
               </property>
-              <property name="leftMargin" >
-               <number>0</number>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="browseScanDirButton" >
+              <property name="enabled" >
+               <bool>false</bool>
               </property>
-              <property name="topMargin" >
-               <number>0</number>
+              <property name="text" >
+               <string>...</string>
               </property>
-              <property name="rightMargin" >
-               <number>0</number>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2" >
+            <item>
+             <widget class="QLabel" name="FolderScanLbl" >
+              <property name="text" >
+               <string>Folder scan interval:</string>
               </property>
-              <property name="bottomMargin" >
-               <number>0</number>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="FolderScanSpin" >
+              <property name="minimum" >
+               <number>1</number>
               </property>
-              <item>
-               <widget class="QLineEdit" name="textScanDir" >
-                <property name="enabled" >
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QToolButton" name="browseScanDirButton" >
-                <property name="enabled" >
-                 <bool>false</bool>
-                </property>
-                <property name="text" >
-                 <string>...</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+              <property name="maximum" >
+               <number>9999</number>
+              </property>
+              <property name="value" >
+               <number>5</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="FolderScanLbl2" >
+              <property name="text" >
+               <string>seconds</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -580,7 +591,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -623,7 +634,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -639,11 +650,20 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tab_3" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>457</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Connection</string>
       </attribute>
       <attribute name="icon" >
-       <iconset resource="icons.qrc" >:/Icons/connection.png</iconset>
+       <iconset resource="icons.qrc" >
+        <normaloff>:/Icons/connection.png</normaloff>:/Icons/connection.png</iconset>
       </attribute>
       <layout class="QVBoxLayout" >
        <item>
@@ -706,7 +726,7 @@
                   <property name="orientation" >
                    <enum>Qt::Horizontal</enum>
                   </property>
-                  <property name="sizeHint" >
+                  <property name="sizeHint" stdset="0" >
                    <size>
                     <width>20</width>
                     <height>20</height>
@@ -954,7 +974,7 @@
                 <property name="orientation" >
                  <enum>Qt::Horizontal</enum>
                 </property>
-                <property name="sizeHint" >
+                <property name="sizeHint" stdset="0" >
                  <size>
                   <width>21</width>
                   <height>29</height>
@@ -1043,7 +1063,7 @@
                   <property name="orientation" >
                    <enum>Qt::Horizontal</enum>
                   </property>
-                  <property name="sizeHint" >
+                  <property name="sizeHint" stdset="0" >
                    <size>
                     <width>40</width>
                     <height>20</height>
@@ -1145,11 +1165,20 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tab_6" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>457</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Bittorrent</string>
       </attribute>
       <attribute name="icon" >
-       <iconset resource="icons.qrc" >:/Icons/bt_settings.png</iconset>
+       <iconset resource="icons.qrc" >
+        <normaloff>:/Icons/bt_settings.png</normaloff>:/Icons/bt_settings.png</iconset>
       </attribute>
       <layout class="QVBoxLayout" >
        <item>
@@ -1196,7 +1225,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -1241,7 +1270,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -1283,7 +1312,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -1333,6 +1362,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QCheckBox" name="checkAzureusSpoof" >
+            <property name="text" >
+             <string>Spoof Azureus to avoid ban (requires restart)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <layout class="QHBoxLayout" >
             <item>
              <widget class="QLabel" name="lbl_encryption" >
@@ -1365,7 +1401,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -1383,279 +1419,43 @@
          <property name="title" >
           <string>Share ratio settings</string>
          </property>
-         <widget class="QWidget" name="layoutWidget" >
-          <property name="geometry" >
-           <rect>
-            <x>11</x>
-            <y>30</y>
-            <width>535</width>
-            <height>31</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" >
-           <item>
-            <widget class="QCheckBox" name="checkRatioLimit" >
-             <property name="text" >
-              <string>Desired ratio:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QDoubleSpinBox" name="spinRatio" >
-             <property name="enabled" >
-              <bool>false</bool>
-             </property>
-             <property name="font" >
-              <font>
-               <pointsize>8</pointsize>
-              </font>
-             </property>
-             <property name="alignment" >
-              <set>Qt::AlignHCenter</set>
-             </property>
-             <property name="decimals" >
-              <number>1</number>
-             </property>
-             <property name="minimum" >
-              <double>1.000000000000000</double>
-             </property>
-             <property name="maximum" >
-              <double>10.000000000000000</double>
-             </property>
-             <property name="singleStep" >
-              <double>0.100000000000000</double>
-             </property>
-             <property name="value" >
-              <double>1.000000000000000</double>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer>
-             <property name="orientation" >
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" >
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="layoutWidget" >
-          <property name="geometry" >
-           <rect>
-            <x>11</x>
-            <y>67</y>
-            <width>535</width>
-            <height>31</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" >
-           <item>
-            <widget class="QCheckBox" name="checkRatioRemove" >
-             <property name="text" >
-              <string>Remove finished torrents when their ratio reaches:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QDoubleSpinBox" name="spinMaxRatio" >
-             <property name="enabled" >
-              <bool>false</bool>
-             </property>
-             <property name="font" >
-              <font>
-               <pointsize>8</pointsize>
-              </font>
-             </property>
-             <property name="alignment" >
-              <set>Qt::AlignHCenter</set>
-             </property>
-             <property name="decimals" >
-              <number>1</number>
-             </property>
-             <property name="minimum" >
-              <double>1.000000000000000</double>
-             </property>
-             <property name="maximum" >
-              <double>10.000000000000000</double>
-             </property>
-             <property name="singleStep" >
-              <double>0.100000000000000</double>
-             </property>
-             <property name="value" >
-              <double>1.000000000000000</double>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer>
-             <property name="orientation" >
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" >
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab_4" >
-      <attribute name="title" >
-       <string>Misc</string>
-      </attribute>
-      <attribute name="icon" >
-       <iconset resource="icons.qrc" >:/Icons/configure.png</iconset>
-      </attribute>
-      <layout class="QVBoxLayout" >
-       <item>
-        <widget class="QGroupBox" name="filterBox" >
-         <property name="enabled" >
-          <bool>true</bool>
-         </property>
-         <property name="title" >
-          <string>Filter Settings</string>
-         </property>
          <layout class="QVBoxLayout" >
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <property name="leftMargin" >
-           <number>9</number>
-          </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
-          <item>
-           <widget class="QCheckBox" name="checkIPFilter" >
-            <property name="text" >
-             <string>Activate IP Filtering</string>
-            </property>
-            <property name="icon" >
-             <iconset resource="icons.qrc" >:/Icons/filter.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QTreeWidget" name="filtersList" >
-            <property name="enabled" >
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize" >
-             <size>
-              <width>0</width>
-              <height>171</height>
-             </size>
-            </property>
-            <property name="font" >
-             <font>
-              <family>Sans Serif</family>
-              <pointsize>8</pointsize>
-              <weight>50</weight>
-              <italic>false</italic>
-              <bold>false</bold>
-              <underline>false</underline>
-              <strikeout>false</strikeout>
-             </font>
-            </property>
-            <property name="selectionMode" >
-             <enum>QAbstractItemView::ExtendedSelection</enum>
-            </property>
-            <property name="itemsExpandable" >
-             <bool>false</bool>
-            </property>
-            <column>
-             <property name="text" >
-              <string>Start IP</string>
-             </property>
-            </column>
-            <column>
-             <property name="text" >
-              <string>End IP</string>
-             </property>
-            </column>
-            <column>
-             <property name="text" >
-              <string>Origin</string>
-             </property>
-            </column>
-            <column>
-             <property name="text" >
-              <string>Comment</string>
-             </property>
-            </column>
-           </widget>
-          </item>
           <item>
            <layout class="QHBoxLayout" >
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
-            </property>
             <item>
-             <spacer>
-              <property name="orientation" >
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" >
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="addFilterRangeButton" >
-              <property name="enabled" >
-               <bool>false</bool>
-              </property>
+             <widget class="QCheckBox" name="checkRatioLimit" >
               <property name="text" >
-               <string> Add Range</string>
-              </property>
-              <property name="icon" >
-               <iconset resource="icons.qrc" >:/Icons/skin/add.png</iconset>
+               <string>Desired ratio:</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="delFilterRangeButton" >
+             <widget class="QDoubleSpinBox" name="spinRatio" >
               <property name="enabled" >
                <bool>false</bool>
               </property>
-              <property name="text" >
-               <string> Remove Range</string>
+              <property name="font" >
+               <font>
+                <pointsize>8</pointsize>
+               </font>
               </property>
-              <property name="icon" >
-               <iconset resource="icons.qrc" >:/Icons/skin/remove.png</iconset>
+              <property name="alignment" >
+               <set>Qt::AlignHCenter</set>
+              </property>
+              <property name="decimals" >
+               <number>1</number>
+              </property>
+              <property name="minimum" >
+               <double>1.000000000000000</double>
+              </property>
+              <property name="maximum" >
+               <double>10.000000000000000</double>
+              </property>
+              <property name="singleStep" >
+               <double>0.100000000000000</double>
+              </property>
+              <property name="value" >
+               <double>1.000000000000000</double>
               </property>
              </widget>
             </item>
@@ -1664,7 +1464,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -1676,21 +1476,115 @@
           </item>
           <item>
            <layout class="QHBoxLayout" >
-            <property name="spacing" >
-             <number>6</number>
+            <item>
+             <widget class="QCheckBox" name="checkRatioRemove" >
+              <property name="text" >
+               <string>Remove finished torrents when their ratio reaches:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="spinMaxRatio" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="font" >
+               <font>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignHCenter</set>
+              </property>
+              <property name="decimals" >
+               <number>1</number>
+              </property>
+              <property name="minimum" >
+               <double>1.000000000000000</double>
+              </property>
+              <property name="maximum" >
+               <double>10.000000000000000</double>
+              </property>
+              <property name="singleStep" >
+               <double>0.100000000000000</double>
+              </property>
+              <property name="value" >
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0" >
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_4" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>457</height>
+       </rect>
+      </property>
+      <attribute name="title" >
+       <string>Misc</string>
+      </attribute>
+      <attribute name="icon" >
+       <iconset resource="icons.qrc" >
+        <normaloff>:/Icons/configure.png</normaloff>:/Icons/configure.png</iconset>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QGroupBox" name="filterBox" >
+         <property name="enabled" >
+          <bool>true</bool>
+         </property>
+         <property name="title" >
+          <string>Filter Settings</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout" >
+          <item>
+           <widget class="QCheckBox" name="checkIPFilter" >
+            <property name="text" >
+             <string>Activate IP Filtering</string>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
+            <property name="icon" >
+             <iconset resource="icons.qrc" >
+              <normaloff>:/Icons/filter.png</normaloff>:/Icons/filter.png</iconset>
             </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
-            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout" >
             <item>
              <widget class="QLabel" name="lblFilterPath" >
               <property name="enabled" >
@@ -1792,7 +1686,7 @@
                   <property name="orientation" >
                    <enum>Qt::Horizontal</enum>
                   </property>
-                  <property name="sizeHint" >
+                  <property name="sizeHint" stdset="0" >
                    <size>
                     <width>40</width>
                     <height>20</height>
@@ -1826,7 +1720,7 @@
                   <property name="orientation" >
                    <enum>Qt::Horizontal</enum>
                   </property>
-                  <property name="sizeHint" >
+                  <property name="sizeHint" stdset="0" >
                    <size>
                     <width>40</width>
                     <height>20</height>
@@ -1843,6 +1737,197 @@
          </layout>
         </widget>
        </item>
+       <item>
+        <spacer name="verticalSpacer" >
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0" >
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>457</height>
+       </rect>
+      </property>
+      <attribute name="title" >
+       <string>Web UI</string>
+      </attribute>
+      <attribute name="icon" >
+       <iconset resource="icons.qrc" >
+        <normaloff>:/Icons/password.png</normaloff>:/Icons/password.png</iconset>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QCheckBox" name="checkWebUi" >
+         <property name="enabled" >
+          <bool>true</bool>
+         </property>
+         <property name="text" >
+          <string>Enable Web User Interface</string>
+         </property>
+         <property name="checked" >
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupWebUiServer" >
+         <property name="enabled" >
+          <bool>true</bool>
+         </property>
+         <property name="title" >
+          <string>HTTP Server</string>
+         </property>
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QLabel" name="lblWebUiPort" >
+            <property name="enabled" >
+             <bool>true</bool>
+            </property>
+            <property name="text" >
+             <string>Port:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="spinWebUiPort" >
+            <property name="enabled" >
+             <bool>true</bool>
+            </property>
+            <property name="maximum" >
+             <number>65525</number>
+            </property>
+            <property name="value" >
+             <number>80</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0" >
+             <size>
+              <width>21</width>
+              <height>29</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupWebUiAuth" >
+         <property name="enabled" >
+          <bool>true</bool>
+         </property>
+         <property name="title" >
+          <string>Authentication</string>
+         </property>
+         <layout class="QHBoxLayout" >
+          <item>
+           <layout class="QVBoxLayout" >
+            <item>
+             <widget class="QLabel" name="lblWebUiUsername" >
+              <property name="enabled" >
+               <bool>true</bool>
+              </property>
+              <property name="text" >
+               <string>Username:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblWebUiPassword" >
+              <property name="enabled" >
+               <bool>true</bool>
+              </property>
+              <property name="text" >
+               <string>Password:</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" >
+            <item>
+             <widget class="QLineEdit" name="textWebUiUsername" >
+              <property name="enabled" >
+               <bool>true</bool>
+              </property>
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="maxLength" >
+               <number>1000</number>
+              </property>
+              <property name="echoMode" >
+               <enum>QLineEdit::Normal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="textWebUiPassword" >
+              <property name="enabled" >
+               <bool>true</bool>
+              </property>
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="maxLength" >
+               <number>1000</number>
+              </property>
+              <property name="echoMode" >
+               <enum>QLineEdit::Password</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0" >
+             <size>
+              <width>198</width>
+              <height>57</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0" >
+          <size>
+           <width>623</width>
+           <height>41</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
       </layout>
      </widget>
     </widget>
@@ -1852,16 +1937,7 @@
      <property name="spacing" >
       <number>6</number>
      </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin" >
       <number>0</number>
      </property>
      <item>
@@ -1870,7 +1946,7 @@
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="standardButtons" >
-        <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
+        <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
        </property>
        <property name="centerButtons" >
         <bool>true</bool>
@@ -1881,6 +1957,70 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tabOption</tabstop>
+  <tabstop>comboI18n</tabstop>
+  <tabstop>comboStyle</tabstop>
+  <tabstop>checkConfirmExit</tabstop>
+  <tabstop>checkSpeedInTitle</tabstop>
+  <tabstop>spinRefreshInterval</tabstop>
+  <tabstop>checkNoSystray</tabstop>
+  <tabstop>checkCloseToSystray</tabstop>
+  <tabstop>checkMinimizeToSysTray</tabstop>
+  <tabstop>checkStartMinimized</tabstop>
+  <tabstop>checkSystrayBalloons</tabstop>
+  <tabstop>textSavePath</tabstop>
+  <tabstop>browseSaveDirButton</tabstop>
+  <tabstop>checkPreallocateAll</tabstop>
+  <tabstop>checkAdditionDialog</tabstop>
+  <tabstop>checkStartPaused</tabstop>
+  <tabstop>checkScanDir</tabstop>
+  <tabstop>browseScanDirButton</tabstop>
+  <tabstop>actionTorrentDlOnDblClBox</tabstop>
+  <tabstop>actionTorrentFnOnDblClBox</tabstop>
+  <tabstop>spinPortMin</tabstop>
+  <tabstop>spinPortMax</tabstop>
+  <tabstop>checkUPnP</tabstop>
+  <tabstop>checkNATPMP</tabstop>
+  <tabstop>checkUploadLimit</tabstop>
+  <tabstop>checkDownloadLimit</tabstop>
+  <tabstop>spinUploadLimit</tabstop>
+  <tabstop>spinDownloadLimit</tabstop>
+  <tabstop>comboProxyType</tabstop>
+  <tabstop>textProxyIP</tabstop>
+  <tabstop>spinProxyPort</tabstop>
+  <tabstop>checkProxyAuth</tabstop>
+  <tabstop>textProxyUsername</tabstop>
+  <tabstop>textProxyPassword</tabstop>
+  <tabstop>checkProxyTrackers</tabstop>
+  <tabstop>checkProxyPeers</tabstop>
+  <tabstop>checkProxyDHT</tabstop>
+  <tabstop>checkProxyWebseeds</tabstop>
+  <tabstop>checkMaxConnecs</tabstop>
+  <tabstop>spinMaxConnec</tabstop>
+  <tabstop>checkMaxConnecsPerTorrent</tabstop>
+  <tabstop>spinMaxConnecPerTorrent</tabstop>
+  <tabstop>checkMaxUploadsPerTorrent</tabstop>
+  <tabstop>spinMaxUploadsPerTorrent</tabstop>
+  <tabstop>checkDHT</tabstop>
+  <tabstop>checkPeX</tabstop>
+  <tabstop>checkLSD</tabstop>
+  <tabstop>comboEncryption</tabstop>
+  <tabstop>checkRatioLimit</tabstop>
+  <tabstop>spinRatio</tabstop>
+  <tabstop>checkRatioRemove</tabstop>
+  <tabstop>spinMaxRatio</tabstop>
+  <tabstop>checkIPFilter</tabstop>
+  <tabstop>textFilterPath</tabstop>
+  <tabstop>browseFilterButton</tabstop>
+  <tabstop>spinRSSRefresh</tabstop>
+  <tabstop>spinRSSMaxArticlesPerFeed</tabstop>
+  <tabstop>checkWebUi</tabstop>
+  <tabstop>spinWebUiPort</tabstop>
+  <tabstop>textWebUiUsername</tabstop>
+  <tabstop>textWebUiPassword</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
  <resources>
   <include location="icons.qrc" />
  </resources>

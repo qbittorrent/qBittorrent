@@ -1,0 +1,427 @@
+/* MOCHA UI */
+
+html {
+	overflow: auto; /* Removes empty vertical scrollbars in IE */
+}
+
+body {
+	margin: 0; /* Required */
+}
+
+#mochaDesktop {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 500px;
+	min-width: 750px; /* Helps keep header content from wrapping */		
+	overflow: hidden;
+}
+
+#mochaDesktopHeader {
+}
+
+#mochaDesktopTitlebar {
+	padding: 5px 8px 7px 8px;
+	background: #f0f0f0;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #bbb;
+	height: 25px;
+}
+
+#mochaDesktopTitlebar h1 {
+	margin: 0;
+	padding: 4px 0 0 0;
+	font-size: 18px;
+	font-weight: bold;
+	color: #e60;
+}
+	
+#mochaDesktopTitlebar h1 .version {
+	font-size: 12px;
+	color: #333;	
+}		
+
+#mochaDesktopNavbar {
+	padding: 0;
+	background: #f0f0f0;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #bbb;
+	height: 22px;
+}
+
+#mochaDesktopNavbar ul {	
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	font-size: 12px;
+}
+
+#mochaDesktopNavbar li {
+	float: left;
+}
+
+#mochaDesktopNavbar a {
+	display: block;
+}	
+	
+#mochaDesktopNavbar ul li a {
+	padding: 2px 9px 2px 9px;	
+	color: #000;
+}
+
+#mochaDesktopNavbar ul li a:hover {
+	background: #e4e4e4;
+}
+	
+#mochaDesktopNavbar li ul {
+	padding: 2px;
+	border: 1px solid #999;
+	background: #fff;
+	position: absolute;
+	width: 148px;
+	left: -999em;
+	z-index: 8000;
+}
+
+#mochaDesktopNavbar li ul li {
+} 
+
+#mochaDesktopNavbar li ul li a {
+	padding: 1px 9px 1px 9px;
+	width: 130px;
+}
+
+#mochaDesktopNavbar li:hover ul, #mochaDesktopNavbar li.ieHover ul { /* lists nested under hovered list items */
+	left: auto;
+}
+
+#mochaDesktopNavbar li:hover, #mochaDesktopNavbar li.hover {
+	position: static;
+}
+
+#mochaToolbar {
+	padding: 4px 4px 4px 4px;
+	background: #f0f0f0;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #bbb;
+	height: 40px;
+	width: 100%;
+}
+
+.mochaToolButton {
+	padding: 4px 4px 4px 4px;
+}
+
+.divider {
+	margin-top: 2px;
+	padding-top: 3px;	
+	border-top: 1px solid #ddd;
+}	
+
+#mochaPageWrapper {
+	clear: both;
+	width: 100%;
+	overflow: auto; /* This can be set to hidden if you want to treat it more like a desktop than a web page */
+}
+
+#mochaPage {
+	padding: 0px 0px 0px 0px;
+}
+	
+/* Windows */
+	
+div.mocha {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	overflow: hidden;	
+}
+	
+div.mochaOverlay {
+	position: absolute;
+	top: 2px;
+	left: 3px;	
+}
+	
+div.mocha .mochaTitlebar {
+	width: 100%;
+	overflow: hidden;
+}		
+	
+div.mocha .mochaTitlebar h3 {
+	font-size: 12px;
+	line-height: 15px;	
+	font-weight: bold;
+	color: #000;
+	margin: 6px 10px 4px 12px;
+	padding: 0;
+}
+	
+div.mocha .mochaTitlebar a {
+	color: #444;
+}	
+	
+div.mocha .mochaContentBorder {
+	border-top: 1px solid #bdbdbd;	
+	border-bottom: 1px solid #d7d7d7;
+}
+	
+div.mocha .mochaContentWrapper { /* Has a fixed height and scrollbars if required */
+	font-size: 11px;	
+	background: #fff;
+	overflow: auto;	
+}
+	
+div.mocha .mochaContent {
+	padding: 10px 12px;
+}		
+
+.resizeHandle {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	width: 12px;
+	height: 12px;
+	background: #000;
+	cursor: se-resize;
+	opacity: .0;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;	
+}
+	
+.mochaControls {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	width: 0;
+	height: 14px;
+	background: #f00;
+	opacity: .0;
+	filter: alpha(opacity=0);
+	-moz-opacity: .0;
+}
+
+.minimizeToggle, .maximizeToggle, .mochaClose {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	float: right;
+	width: 14px;
+	height: 14px;
+	font-size: 1px;
+	background: #000;	
+	cursor: pointer;	
+}
+
+.mochaLoadingIcon {
+	position: absolute;
+	bottom: 7px;
+	left: 6px;	
+}
+
+.mochaIframe {
+	width: 100%;
+	height: inherit;
+}  
+	
+/* Slider */
+
+#slider {
+	position: relative;
+	font-size: 12px;
+	font-weight: bold;
+	width: 200px;
+	padding-top: 18px;	
+}
+
+#sliderarea {
+	clear: both;
+	position: relative;
+	height: 10px;
+	width: 200px;
+	font-size: 1px;	
+	background: #ddd;
+	margin: 2px 0 10px 0;
+}
+ 
+#sliderknob {
+	position: absolute;
+	height: 10px;
+	width: 20px;
+	font-size: 1px;
+	background: #e60;
+	cursor: pointer;
+}
+	
+#update {
+	position: absolute;
+	top: 0;
+	left: 0;	
+}	
+	
+.clear {
+	clear: both;
+}
+	
+/* Window Builder Form Elements */
+	
+#mochaDesktop form {
+	margin: 0 0 0 0;
+	padding: 5px 0 0 0;
+	width: 320px;
+}
+
+#mochaDesktop textarea, #mochaDesktop input {
+	color: #555;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;		
+}
+	
+#mochaDesktop .input {
+	background: #fbfbfb;
+	width: 225px;
+	padding: 1px 0 1px 3px;
+	border: 1px solid #ccc;	
+}
+
+#mochaDesktop textarea {
+	background: #fbfbfb;
+	width: 225px;
+	height: 100px;
+	padding: 1px 0 1px 3px;
+	border: 1px solid #ccc;	
+}		
+
+#mochaDesktop .formLabel {
+	float: left;	
+	text-align: right;
+	width: 80px;
+	margin: 0 0 5px 0;	
+}
+	
+#mochaDesktop .formField {
+	float: right;
+	margin: 0 0 5px 0;
+	padding: 0 0 0 0;
+	width: 230px;
+}
+	
+#mochaDesktop form .number {
+	width: 40px;
+}
+	
+/* Modal Windows */
+
+#mochaModalOverlay {
+	display: none;
+	position: fixed; /* This is fixed rather than absolute to fix Mac FF2 issues */
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: #000;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	z-index: 10000;
+}
+
+* html 	#mochaModalOverlay {
+	position: absolute;
+}	
+	
+/* fix for IE6 select z-index issue */
+
+iframe.zIndexFix {
+	display: none;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	filter: mask();
+	width: 100px;
+	height: 100px;
+	border: 1px solid transparent;
+}
+	
+/* Window Minimize Dock */
+
+#mochaDock {
+	display: none;
+	position: relative;
+	background: #fff;
+	padding: 2px 15px;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: #f0f0f0;
+	border-top: 1px solid #bbb;
+	border-bottom: 1px solid #fff;
+	min-height: 20px;
+	height: auto;
+   _height: 20px; /* IE 6.0 hack, for not supporting min-height SFF 12/07/2007*/
+}
+	
+.mochaDockButton {
+	width: 120px;
+	height: 20px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+    text-align: left;
+	font-size: 10px;
+	background-color: #f0f0f0;
+	border-top: 1px solid #fff;
+	border-right: 1px solid #777;
+	border-bottom: 1px solid #777;
+	border-left: 1px solid #fff;
+	margin: 0 1px 0 0;			 
+}
+
+#mochaDockPlacement {
+	position: absolute;
+	top: 3px;
+	left: 2px;
+	width: 10px;
+	height: 9px;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	background: #f00; /* for troubleshooting */
+	cursor: pointer;
+	z-index: 3; /* for IE */	
+}
+
+#mochaDockAutoHide {
+	position: absolute;
+	top: 13px;
+	left: 2px;
+	width: 10px;
+	height: 9px;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	background: #f00; /* for troubleshooting */
+	cursor: pointer;
+	z-index: 3; /* for IE */		
+}
+
+/* Accordian */
+
+.accordianToggler {
+	margin: 0;
+	padding: 4px 10px;
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #f5f5f5;
+	font-size: 11px;
+	cursor: pointer;
+}
+
+.accordianContent {
+	padding: 10px 10px 5px 10px;
+}
+
+/* Screens/Workspaces */
+
+.screen {
+	display: none;
+}

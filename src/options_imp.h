@@ -25,12 +25,6 @@
 #include "ui_options.h"
 #include <libtorrent/ip_filter.hpp>
 
-/*#include <QDialog>
-#include <qdialog.h>
-#include "ui_options.h"
-#include "ui_dialog.h"
-#include <libtorrent/ip_filter.hpp>*/
-
 #define HTTP 1
 #define SOCKS5 2
 #define HTTP_PW 3
@@ -50,7 +44,6 @@ class options_imp : public QDialog, private Ui::Dialog {
 
   private:
     QButtonGroup choiceLanguage;
-    ip_filter filter;
     QStringList locales;
     QAbstractButton *applyButton;
 
@@ -80,6 +73,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     bool addTorrentsInPause() const;
     bool isDirScanEnabled() const;
     QString getScanDir() const;
+    int getFolderScanInterval() const;
     int getActionOnDblClOnTorrentDl() const;
     int getActionOnDblClOnTorrentFn() const;
     // Connection options
@@ -105,12 +99,17 @@ class options_imp : public QDialog, private Ui::Dialog {
     bool isDHTEnabled() const;
     bool isPeXEnabled() const;
     bool isLSDEnabled() const;
+    bool shouldSpoofAzureus() const;
     int getEncryptionSetting() const;
     float getDesiredRatio() const;
     float getDeleteRatio() const;
     // IP Filter
     bool isFilteringEnabled() const;
-    ip_filter getFilter() const;
+    QString getFilter() const;
+    bool isWebUiEnabled() const;
+    quint16 webUiPort() const;
+    QString webUiUsername() const;
+    QString webUiPassword() const;
 
   protected slots:
     void enableUploadLimit(int checkBoxValue);
@@ -129,17 +128,15 @@ class options_imp : public QDialog, private Ui::Dialog {
     void closeEvent(QCloseEvent *e);
     void on_buttonBox_rejected();
     void applySettings(QAbstractButton* button);
-    void on_addFilterRangeButton_clicked();
-    void on_delFilterRangeButton_clicked();
     void on_browseScanDirButton_clicked();
     void on_browseFilterButton_clicked();
     void on_browseSaveDirButton_clicked();
-    void processFilterFile(QString filePath=QString());
     void enableApplyButton();
     void checkPortsLogic();
     void enableSystrayOptions();
     void disableSystrayOptions();
     void setSystrayOptionsState(int checkBoxValue);
+    void enableWebUi(bool checkBoxValue);
 
   public slots:
     void setLocale(QString locale);

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>qBittorrent web User Interface</title>
+	<link rel="stylesheet" href="css/dynamicTable.css" type="text/css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/mocha.css" type="text/css" />
+	<script type="text/javascript" src="scripts/mootools-trunk-1475.js" charset="utf-8"></script>
+	<!--[if IE]>
+		<script type="text/javascript" src="scripts/excanvas-compressed.js"></script>
+	<![endif]-->
+	<script type="text/javascript" src="scripts/mocha-events.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/mocha.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/dynamicTable.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/client.js" charset="utf-8"></script>
+</head>
+<body>
+	<div id="mochaDesktop">
+		<div id="mochaDesktopHeader">
+			<div id="mochaDesktopTitlebar">
+				<h1>qBittorrent Web User Interface <span class="version">version 1.0</span></h1>
+			</div>
+			<div id="mochaDesktopNavbar">
+				<ul>
+					<li>
+						<a class="returnFalse">File</a>
+						<ul>
+							<li><a id="downloadLink">Download from URL</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="returnFalse">Edit</a>
+						<ul>
+							<li><a id="resumeAllLink">Start All</a></li>
+							<li><a id="pauseAllLink">Pause All</a></li>
+							<li class="divider"><a id="resumeLink">Start</a></li>
+							<li><a id="pauseLink">Pause</a></li>
+							<li class="divider"><a id="deleteLink">Delete</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="returnFalse">Help</a>
+						<ul>
+							<li><a id="bugLink">Report a bug</a></li>
+							<li><a id="siteLink">Visit Website</a></li>
+							<li><a id="docsLink">Documentation</a></li>
+							<li><a id="aboutLink">About</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div id="mochaToolbar">
+				<a id="downloadButton"><img class="mochaToolButton" title="Download from URL" src="images/skin/url.png"/></a>
+				<a id="deleteButton"><img class="mochaToolButton" title="Delete" src="images/skin/delete.png"/></a>
+				<a id="resumeButton"><img class="mochaToolButton" title="Resume" src="images/skin/play.png"/></a>
+				<a id="pauseButton"><img class="mochaToolButton" title="Pause" src="images/skin/pause.png"/></a>
+				<a id="resumeAllButton"><img class="mochaToolButton" title="Resume all" src="images/skin/play_all.png"/></a>
+				<a id="pauseAllButton"><img class="mochaToolButton" title="Pause All" src="images/skin/pause_all.png"/></a>
+			</div>
+		</div>
+		<div id="mochaPageWrapper">
+			<div id="mochaPage">
+				<div id="mochaScreens">
+					<div class="screen">
+						<table class="torrentTable" cellpadding="0" cellspacing="0">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Name</th>
+									<th>Size</th>
+									<th>Progress</th>
+									<th>DL Speed</th>
+									<th>UP Speed</th>
+								</tr>
+							</thead>
+							<tbody id="myTable"></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

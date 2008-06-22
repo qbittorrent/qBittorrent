@@ -46,6 +46,7 @@ class options_imp;
 class QTabWidget;
 class QLabel;
 class QModelIndex;
+class HttpServer;
 
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -79,6 +80,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     SearchEngine *searchEngine;
     // RSS
     RSSImp *rssWidget;
+    // Web UI
+    HttpServer *httpServer;
     // Misc
     QTcpServer *tcpServer;
     QTcpSocket *clientConnection;
@@ -134,10 +137,13 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void processScannedFiles(const QStringList& params);
     void processDownloadedFiles(QString path, QString url);
     void downloadFromURLList(const QStringList& urls);
-    void deleteTorrent(QString hash, QString fileName, bool finished);
+    void deleteTorrent(QString hash);
+    void deleteRatioTorrent(QString fileName);
     void finishedTorrent(QTorrentHandle& h) const;
     void torrentChecked(QString hash) const;
     void updateLists();
+    bool initWebUi(QString username, QString password, int port);
+    void pauseTorrent(QString hash);
     // Options slots
     void on_actionOptions_triggered();
     void OptionsSaved(QString info, bool deleteOptions);
@@ -150,6 +156,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void setTabText(int index, QString text) const;
     void openDestinationFolder() const;
     void goBuyPage() const;
+    void updateRatio();
 
   protected:
     void closeEvent(QCloseEvent *);

@@ -72,12 +72,12 @@ class properties : public QDialog, private Ui::properties{
     void saveWebSeeds();
     void loadWebSeedsFromFile();
     void deleteSelectedUrlSeeds();
-    void loadTrackersErrors();
     void addFilesToTree(torrent_file *root, QStandardItem *parent);
     void updateChildrenPriority(QStandardItem *item, int priority);
     void updateParentsPriority(QStandardItem *item, int priority);
     void updatePriorities(QStandardItem *item);
     void getPriorities(QStandardItem *parent, int *priorities);
+    void addTrackerList(QStringList myTrackers);
     void writeSettings();
     void loadSettings();
 

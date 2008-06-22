@@ -1,4 +1,6 @@
-* Tuesday October 06 2007 - Christophe Dumez <chris@qbittorrent.org> - v1.1.0
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.1.0
+    - FEATURE: Web interface to control qbittorrent (Ishan Arora)
+    - FEATURE: Can spoof Azureus peer id to avoid ban
     - FEATURE: Allow to hide/show some columns in download and seeding lists
     - FEATURE: Option to start qBittorrent minimized in systray
     - FEATURE: Allow to define double-click actions in torrents lists
@@ -7,11 +9,21 @@
     - FEATURE: Allow to buy downloads using ShareMonkey
     - FEATURE: Display if UPnP/NAT-PMP was successful or not
     - FEATURE: Threadified torrent creation
+    - FEATURE: Improved eMule DAT ip filter parser
+    - FEATURE: Added support for PeerGuardian p2p filters (text)
+    - FEATURE: Added support for PeerGuardian p2b filters (binary)
+    - FEATURE: Allow to customize folder scan interval
+    - FEATURE: Allow to add several trackers at once
     - BUGFIX: Do not display seeds number in seeding list (always 0)
+    - BUGFIX: Threadified IP filter file parser to avoid GUI freeze
     - COSMETIC: Do not display progress bar in seeding list (always 100%)
     - COSMETIC: Added a progress bar for torrent creation
+    - COSMETIC: Display tracker errors in a cleaner way
+    - COSMETIC: Display "unpaused/total_torrent" in download/upload tabs
+    - COSMETIC: Allow to resize RSS column
+    - COSMETIC: Global UP/DL speeds and ratio are displayed above tabs
 
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.0.0
+* Fri Apr 11 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.0.0
     - FEATURE: Based on new libtorrent v0.13
     - FEATURE: Added UPnP / NAT-PMP port forwarding support
     - FEATURE: Added encryption support (compatible with Azureus)

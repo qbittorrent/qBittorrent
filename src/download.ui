@@ -18,206 +18,9 @@
      <property name="spacing" >
       <number>6</number>
      </property>
-     <property name="leftMargin" >
+     <property name="margin" >
       <number>0</number>
      </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
-      <number>0</number>
-     </property>
-     <item>
-      <layout class="QHBoxLayout" >
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>0</number>
-       </property>
-       <property name="topMargin" >
-        <number>0</number>
-       </property>
-       <property name="rightMargin" >
-        <number>0</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>0</number>
-       </property>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLabel" name="lbl_DLSpeed" >
-         <property name="text" >
-          <string>Total DL Speed:</string>
-         </property>
-         <property name="alignment" >
-          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLCDNumber" name="LCD_DownSpeed" >
-         <property name="autoFillBackground" >
-          <bool>true</bool>
-         </property>
-         <property name="frameShadow" >
-          <enum>QFrame::Raised</enum>
-         </property>
-         <property name="smallDecimalPoint" >
-          <bool>false</bool>
-         </property>
-         <property name="numDigits" >
-          <number>6</number>
-         </property>
-         <property name="segmentStyle" >
-          <enum>QLCDNumber::Flat</enum>
-         </property>
-         <property name="value" stdset="0" >
-          <double>0.000000000000000</double>
-         </property>
-         <property name="intValue" stdset="0" >
-          <number>0</number>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="unitDL" >
-         <property name="text" >
-          <string>KiB/s</string>
-         </property>
-         <property name="alignment" >
-          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLabel" name="label" >
-         <property name="text" >
-          <string>Session ratio: </string>
-         </property>
-         <property name="alignment" >
-          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLCDNumber" name="LCD_Ratio" >
-         <property name="autoFillBackground" >
-          <bool>true</bool>
-         </property>
-         <property name="numDigits" >
-          <number>4</number>
-         </property>
-         <property name="segmentStyle" >
-          <enum>QLCDNumber::Flat</enum>
-         </property>
-         <property name="value" stdset="0" >
-          <double>1.000000000000000</double>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="lbl_ratio_icon" >
-         <property name="text" >
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLabel" name="lbl_UPSpeed" >
-         <property name="text" >
-          <string>Total UP Speed:</string>
-         </property>
-         <property name="alignment" >
-          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLCDNumber" name="LCD_UpSpeed" >
-         <property name="autoFillBackground" >
-          <bool>true</bool>
-         </property>
-         <property name="smallDecimalPoint" >
-          <bool>false</bool>
-         </property>
-         <property name="numDigits" >
-          <number>6</number>
-         </property>
-         <property name="segmentStyle" >
-          <enum>QLCDNumber::Flat</enum>
-         </property>
-         <property name="value" stdset="0" >
-          <double>0.000000000000000</double>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="unitUP" >
-         <property name="text" >
-          <string>KiB/s</string>
-         </property>
-         <property name="alignment" >
-          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </item>
      <item>
       <widget class="QTreeView" name="downloadList" >
        <property name="minimumSize" >
@@ -260,6 +63,14 @@
       <number>0</number>
      </property>
      <widget class="QWidget" name="log_tab" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>765</width>
+        <height>138</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Log</string>
       </attribute>
@@ -267,16 +78,7 @@
        <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
+       <property name="margin" >
         <number>9</number>
        </property>
        <item>
@@ -301,6 +103,14 @@
       </layout>
      </widget>
      <widget class="QWidget" name="filter_tab" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>765</width>
+        <height>138</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>IP filter</string>
       </attribute>
@@ -308,16 +118,7 @@
        <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
+       <property name="margin" >
         <number>9</number>
        </property>
        <item>
@@ -382,7 +183,8 @@
   </action>
   <action name="actionOpen_destination_folder" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/Icons/folder.png</iconset>
+    <iconset resource="icons.qrc" >
+     <normaloff>:/Icons/folder.png</normaloff>:/Icons/folder.png</iconset>
    </property>
    <property name="text" >
     <string>Open destination folder</string>
@@ -430,12 +232,15 @@
   </action>
   <action name="actionBuy_it" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/Icons/money.png</iconset>
+    <iconset resource="icons.qrc" >
+     <normaloff>:/Icons/money.png</normaloff>:/Icons/money.png</iconset>
    </property>
    <property name="text" >
     <string>Buy it</string>
    </property>
   </action>
+  <zorder>tabBottom</zorder>
+  <zorder></zorder>
  </widget>
  <resources>
   <include location="icons.qrc" />

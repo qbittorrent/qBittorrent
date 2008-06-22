@@ -280,7 +280,8 @@ int FinishedTorrents::getRowFromHash(QString hash) const{
 // Note: does not actually pause the torrent in BT Session
 void FinishedTorrents::pauseTorrent(QString hash) {
   int row = getRowFromHash(hash);
-  Q_ASSERT(row != -1);
+  if(row == -1)
+    return;
   finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), QVariant((double)0.0));
   finishedListModel->setData(finishedListModel->index(row, F_NAME), QIcon(QString::fromUtf8(":/Icons/skin/paused.png")), Qt::DecorationRole);
   finishedListModel->setData(finishedListModel->index(row, F_LEECH), QVariant(QString::fromUtf8("0")));

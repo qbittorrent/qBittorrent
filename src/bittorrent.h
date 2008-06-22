@@ -36,6 +36,7 @@ using namespace libtorrent;
 class downloadThread;
 class deleteThread;
 class QTimer;
+class FilterParserThread;
 
 class bittorrent : public QObject{
   Q_OBJECT
@@ -54,7 +55,7 @@ class bittorrent : public QObject{
     QHash<QString, QDateTime> TorrentsStartTime;
     QHash<QString, size_type> TorrentsStartData;
     QHash<QString, QPair<size_type,size_type> > ratioData;
-    QHash<QString, QList<QPair<QString, QString> > > trackersErrors;
+    QHash<QString, QHash<QString, QString> > trackersErrors;
     deleteThread *deleter;
     QStringList finishedTorrents;
     QStringList unfinishedTorrents;
@@ -66,6 +67,9 @@ class bittorrent : public QObject{
     bool UPnPEnabled;
     bool NATPMPEnabled;
     bool LSDEnabled;
+    FilterParserThread *filterParser;
+    QString filterPath;
+    int folderScanInterval; // in seconds
 
   protected:
     QString getSavePath(QString hash);
@@ -86,11 +90,13 @@ class bittorrent : public QObject{
     qlonglong getETA(QString hash) const;
     float getRealRatio(QString hash) const;
     session* getSession() const;
-    QList<QPair<QString, QString> > getTrackersErrors(QString hash) const;
+    QHash<QString, QString> getTrackersErrors(QString hash) const;
     QStringList getFinishedTorrents() const;
     QStringList getUnfinishedTorrents() const;
     bool isFinished(QString hash) const;
     bool has_filtered_files(QString hash) const;
+    unsigned int getFinishedPausedTorrentsNb() const;
+    unsigned int getUnfinishedPausedTorrentsNb() const;
 
   public slots:
     void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
@@ -99,6 +105,8 @@ class bittorrent : public QObject{
     void deleteTorrent(QString hash, bool permanent = false);
     bool pauseTorrent(QString hash);
     bool resumeTorrent(QString hash);
+    void pauseAllTorrents();
+    void resumeAllTorrents();
     void saveDHTEntry();
     void preAllocateAllFiles(bool b);
     void saveFastResumeAndRatioData();
@@ -106,7 +114,7 @@ class bittorrent : public QObject{
     void enableDirectoryScanning(QString scan_dir);
     void disableDirectoryScanning();
     void enablePeerExchange();
-    void enableIPFilter(ip_filter filter);
+    void enableIPFilter(QString filter);
     void disableIPFilter();
     void resumeUnfinishedTorrents();
     void saveTorrentSpeedLimits(QString hash);
@@ -140,6 +148,7 @@ class bittorrent : public QObject{
     void enableLSD(bool b);
     bool enableDHT(bool b);
     void reloadTorrent(const QTorrentHandle &h, bool full_alloc);
+    void setTimerScanInterval(int secs);
 
   protected slots:
     void scanDirectory();
@@ -153,6 +162,9 @@ class bittorrent : public QObject{
     void invalidTorrent(QString path);
     void duplicateTorrent(QString path);
     void addedTorrent(QString path, QTorrentHandle& h, bool fastResume);
+    void deletedTorrent(QString hash);
+    void pausedTorrent(QString hash);
+    void resumedTorrent(QString hash);
     void finishedTorrent(QTorrentHandle& h);
     void fullDiskError(QTorrentHandle& h);
     void trackerError(QString hash, QString time, QString msg);
@@ -167,7 +179,7 @@ class bittorrent : public QObject{
     void fastResumeDataRejected(QString name);
     void urlSeedProblem(QString url, QString msg);
     void torrentFinishedChecking(QString hash);
-    void torrent_deleted(QString hash, QString fileName, bool finished);
+    void torrent_ratio_deleted(QString fileName);
     void UPnPError(QString msg);
     void UPnPSuccess(QString msg);
 };

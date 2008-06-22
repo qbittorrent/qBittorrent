@@ -26,6 +26,7 @@
 #include "arborescence.h"
 #include "realprogressbar.h"
 #include "realprogressbarthread.h"
+#include "TrackersAdditionDlg.h"
 
 #include <QInputDialog>
 #include <QMessageBox>
@@ -99,7 +100,6 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
     }
   }
   shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
-  loadTrackersErrors();
   std::vector<float> fp;
   h.file_progress(fp);
   int *prioritiesTab = loadPiecesPriorities();
@@ -277,19 +277,6 @@ void properties::updatePriorities(QStandardItem *item) {
   // get future updates
   connect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
 }
-    
-void properties::loadTrackersErrors(){
-  // Tracker Errors
-  QList<QPair<QString, QString> > errors = BTSession->getTrackersErrors(hash);
-  unsigned int nbTrackerErrors = errors.size();
-  trackerErrors->clear();
-  for(unsigned int i=0; i < nbTrackerErrors; ++i){
-    QPair<QString, QString> pair = errors.at(i);
-    trackerErrors->append(QString::fromUtf8("<font color='grey'>")+pair.first+QString::fromUtf8("</font> - <font color='red'>")+pair.second+QString::fromUtf8("</font>"));
-  }
-  if(!nbTrackerErrors)
-    trackerErrors->append(tr("None", "i.e: No error message"));
-}
 
 void properties::loadWebSeeds(){
   QString url_seed;
@@ -449,9 +436,19 @@ void properties::loadTrackers(){
   //Trackers
   std::vector<announce_entry> trackers = h.trackers();
   trackersURLS->clear();
+  QHash<QString, QString> errors = BTSession->getTrackersErrors(h.hash());
   unsigned int nbTrackers = trackers.size();
   for(unsigned int i=0; i<nbTrackers; ++i){
-    trackersURLS->addItem(misc::toQString(trackers[i].url));
+    QString current_tracker = misc::toQString(trackers[i].url);
+    QListWidgetItem *item = new QListWidgetItem(current_tracker, trackersURLS);
+    // IsThere any errors ?
+    if(errors.contains(current_tracker)) {
+      item->setForeground(QBrush(QColor("red")));
+      // Set tooltip
+      item->setToolTip(errors[current_tracker]);
+    } else {
+      item->setForeground(QBrush(QColor("green")));
+    }
   }
   QString tracker = h.current_tracker().trimmed();
   if(!tracker.isEmpty()){
@@ -486,18 +483,19 @@ void properties::askWebSeed(){
 // and add it to the download list
 // if it is not already in it
 void properties::askForTracker(){
-  bool ok;
-  // Ask user for a new tracker
-  QString trackerUrl = QInputDialog::getText(this, tr("New tracker"),
-                                       tr("New tracker url:"), QLineEdit::Normal,
-                                       "http://www.", &ok);
-  if(!ok) return;
-  // Add the tracker to the list
+  TrackersAddDlg *dlg = new TrackersAddDlg(this);
+  connect(dlg, SIGNAL(TrackersToAdd(QStringList)), this, SLOT(addTrackerList(QStringList)));
+}
+
+void properties::addTrackerList(QStringList myTrackers) {
+  // Add the trackers to the list
   std::vector<announce_entry> trackers = h.trackers();
-  announce_entry new_tracker(misc::toString(trackerUrl.toUtf8().data()));
-  new_tracker.tier = 0; // Will be fixed a bit later
-  trackers.push_back(new_tracker);
-  misc::fixTrackersTiers(trackers);
+  foreach(QString tracker, myTrackers) {
+    announce_entry new_tracker(misc::toString(tracker.toUtf8().data()));
+    new_tracker.tier = 0; // Will be fixed a bit later
+    trackers.push_back(new_tracker);
+    misc::fixTrackersTiers(trackers);
+  }
   h.replace_trackers(trackers);
   h.force_reannounce();
   // Reload Trackers
@@ -633,6 +631,8 @@ void properties::updateInfos(){
     }else{
       trackerURL->setText(tr("None - Unreachable?"));
     }
+    // XXX: This causes selection problems
+    //loadTrackers();
   }catch(invalid_handle e){
     // torrent was removed, closing properties
     close();

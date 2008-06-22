@@ -142,6 +142,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkRatioRemove,  SIGNAL(stateChanged(int)), this, SLOT(enableDeleteRatio(int)));
   // IP Filter tab
   connect(checkIPFilter,  SIGNAL(stateChanged(int)), this, SLOT(enableFilter(int)));
+  // Web UI tab
+  connect(checkWebUi,  SIGNAL(toggled(bool)), this, SLOT(enableWebUi(bool)));
 
   // Apply button is activated when a value is changed
   // General tab
@@ -162,6 +164,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkStartPaused, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkScanDir, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(textScanDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(FolderScanSpin, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   // Connection tab
   connect(spinPortMin, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinPortMax, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
@@ -191,6 +194,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkDHT, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkPeX, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkLSD, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkAzureusSpoof, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(comboEncryption, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkRatioLimit, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkRatioRemove, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
@@ -198,11 +202,14 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(spinMaxRatio, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   // Misc tab
   connect(checkIPFilter, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
-  connect(addFilterRangeButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
-  connect(delFilterRangeButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
   connect(textFilterPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinRSSRefresh, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinRSSMaxArticlesPerFeed, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  // Web UI tab
+  connect(checkWebUi, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(spinWebUiPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
+  connect(textWebUiUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(textWebUiPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   // Disable apply Button
   applyButton->setEnabled(false);
   if(!QSystemTrayIcon::supportsMessages()){
@@ -274,6 +281,7 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("AdditionDialog"), useAdditionDialog());
   settings.setValue(QString::fromUtf8("StartInPause"), addTorrentsInPause());
   settings.setValue(QString::fromUtf8("ScanDir"), getScanDir());
+  settings.setValue(QString::fromUtf8("ScanDirInterval"), getFolderScanInterval());
   settings.setValue(QString::fromUtf8("DblClOnTorDl"), getActionOnDblClOnTorrentDl());
   settings.setValue(QString::fromUtf8("DblClOnTorFn"), getActionOnDblClOnTorrentFn());
   // End Downloads preferences
@@ -315,6 +323,7 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("DHT"), isDHTEnabled());
   settings.setValue(QString::fromUtf8("PeX"), isPeXEnabled());
   settings.setValue(QString::fromUtf8("LSD"), isLSDEnabled());
+  settings.setValue(QString::fromUtf8("AzureusSpoof"), shouldSpoofAzureus());
   settings.setValue(QString::fromUtf8("Encryption"), getEncryptionSetting());
   settings.setValue(QString::fromUtf8("DesiredRatio"), getDesiredRatio());
   settings.setValue(QString::fromUtf8("MaxRatio"), getDeleteRatio());
@@ -335,8 +344,23 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("RSSMaxArticlesPerFeed"), spinRSSMaxArticlesPerFeed->value());
   // End RSS preferences
   settings.endGroup();
+  // Web UI
+  settings.beginGroup("WebUI");
+  settings.setValue("Enabled", isWebUiEnabled());
+  if(isWebUiEnabled())
+  {
+    settings.setValue("Port", webUiPort());
+    settings.setValue("Username", webUiUsername());
+    settings.setValue("Password", webUiPassword());
+  }
+  // End Web UI
+  settings.endGroup();
   // End preferences
   settings.endGroup();
+}
+
+bool options_imp::shouldSpoofAzureus() const {
+  return checkAzureusSpoof->isChecked();
 }
 
 bool options_imp::isFilteringEnabled() const{
@@ -432,6 +456,7 @@ void options_imp::loadOptions(){
     // enable
     checkScanDir->setChecked(true);
     textScanDir->setText(strValue);
+    FolderScanSpin->setValue(settings.value(QString::fromUtf8("ScanDirInterval"), 5).toInt());
     enableDirScan(2);
   }
   actionTorrentDlOnDblClBox->setCurrentIndex(settings.value(QString::fromUtf8("DblClOnTorDl"), 0).toInt());
@@ -542,6 +567,7 @@ void options_imp::loadOptions(){
   checkDHT->setChecked(settings.value(QString::fromUtf8("DHT"), true).toBool());
   checkPeX->setChecked(settings.value(QString::fromUtf8("PeX"), true).toBool());
   checkLSD->setChecked(settings.value(QString::fromUtf8("LSD"), true).toBool());
+  checkAzureusSpoof->setChecked(settings.value(QString::fromUtf8("AzureusSpoof"), false).toBool());
   comboEncryption->setCurrentIndex(settings.value(QString::fromUtf8("Encryption"), 0).toInt());
   floatValue = settings.value(QString::fromUtf8("DesiredRatio"), -1).toDouble();
   if(floatValue >= 1.) {
@@ -574,7 +600,6 @@ void options_imp::loadOptions(){
   if(isFilteringEnabled()) {
     enableFilter(2); // Enable
     textFilterPath->setText(settings.value(QString::fromUtf8("File"), QString()).toString());
-    processFilterFile(textFilterPath->text());
   } else {
     enableFilter(0); // Disable
   }
@@ -585,6 +610,15 @@ void options_imp::loadOptions(){
   spinRSSRefresh->setValue(settings.value(QString::fromUtf8("RSSRefresh"), 5).toInt());
   spinRSSMaxArticlesPerFeed->setValue(settings.value(QString::fromUtf8("RSSMaxArticlesPerFeed"), 50).toInt());
   // End RSS preferences
+  settings.endGroup();
+  // Web UI
+  settings.beginGroup("WebUI");
+  checkWebUi->setChecked(settings.value("Enabled", false).toBool());
+  enableWebUi(isWebUiEnabled());
+  spinWebUiPort->setValue(settings.value("Port", 8080).toInt());
+  textWebUiUsername->setText(settings.value("Username", "user").toString());
+  textWebUiPassword->setText(settings.value("Password", "").toString());
+  // End Web UI
   settings.endGroup();
 }
 
@@ -818,17 +852,11 @@ void options_imp::enableMaxUploadsLimitPerTorrent(int checkBoxValue){
 void options_imp::enableFilter(int checkBoxValue){
   if(checkBoxValue!=2){
     //Disable
-    filtersList->setEnabled(false);
-    addFilterRangeButton->setEnabled(false);
-    delFilterRangeButton->setEnabled(false);
     lblFilterPath->setEnabled(false);
     textFilterPath->setEnabled(false);
     browseFilterButton->setEnabled(false);
   }else{
     //enable
-    filtersList->setEnabled(true);
-    addFilterRangeButton->setEnabled(true);
-    delFilterRangeButton->setEnabled(true);
     lblFilterPath->setEnabled(true);
     textFilterPath->setEnabled(true);
     browseFilterButton->setEnabled(true);
@@ -913,10 +941,16 @@ void options_imp::enableDirScan(int checkBoxValue){
     //enable
     textScanDir->setEnabled(true);
     browseScanDirButton->setEnabled(true);
+    FolderScanSpin->setEnabled(true);
+    FolderScanLbl->setEnabled(true);
+    FolderScanLbl2->setEnabled(true);
   }else{
     //disable
     textScanDir->setEnabled(false);
     browseScanDirButton->setEnabled(false);
+    FolderScanSpin->setEnabled(false);
+    FolderScanLbl->setEnabled(false);
+    FolderScanLbl2->setEnabled(false);
   }
 }
 
@@ -949,6 +983,10 @@ QString options_imp::getProxyIp() const{
 
 unsigned short options_imp::getProxyPort() const{
   return spinProxyPort->value();
+}
+
+int options_imp::getFolderScanInterval() const {
+  return FolderScanSpin->value();
 }
 
 QString options_imp::getProxyUsername() const{
@@ -1018,10 +1056,9 @@ void options_imp::on_browseScanDirButton_clicked() {
 }
 
 void options_imp::on_browseFilterButton_clicked() {
-  QString ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ipfilter.dat file"), QDir::homePath());
+  QString ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), QDir::homePath(), tr("Filters (*.dat *.p2p *.p2b)"));
   if(!ipfilter.isNull()){
     textFilterPath->setText(ipfilter);
-    processFilterFile(ipfilter);
   }
 }
 
@@ -1033,212 +1070,34 @@ void options_imp::on_browseSaveDirButton_clicked(){
   }
 }
 
-// look for ipfilter.dat file
-// reads emule ipfilter files.
-// with the following format:
-//
-// <first-ip> - <last-ip> , <access> , <comment>
-//
-// first-ip is an ip address that defines the first
-// address of the range
-// last-ip is the last ip address in the range
-// access is a number specifying the access control
-// for this ip-range. Right now values > 127 = allowed
-// and numbers <= 127 = blocked
-// the rest of the line is ignored
-//
-// Lines may be commented using '#' or '//'
-void options_imp::processFilterFile(QString filePath){
-  qDebug("Processing filter files");
-  filtersList->clear();
-  QString manualFilters= misc::qBittorrentPath() + QString::fromUtf8("ipfilter.dat");
-  QStringList filterFiles(manualFilters);
-  filterFiles.append(filePath);
-  for(int i=0; i<2; ++i){
-    QFile file(filterFiles.at(i));
-    QStringList IP;
-    if (file.exists()){
-      if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("Couldn't open %1 in read mode.").arg(filePath));
-        continue;
-      }
-      unsigned int nbLine = 0;
-      while (!file.atEnd()) {
-        ++nbLine;
-        QByteArray line = file.readLine();
-        if(line.startsWith('#') || line.startsWith("//")) continue;
-        // Line is not commented
-        QList<QByteArray> partsList = line.split(',');
-        unsigned int nbElem = partsList.size();
-        if(nbElem < 2){
-          qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-          continue;
-        }
-        bool ok;
-        int nbAccess = partsList.at(1).trimmed().toInt(&ok);
-        if(!ok){
-          qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-          continue;
-        }
-        if(nbAccess <= 127){
-          QString strComment;
-          QString strStartIP = partsList.at(0).split('-').at(0).trimmed();
-          QString strEndIP = partsList.at(0).split('-').at(1).trimmed();
-          if(nbElem > 2){
-            strComment = partsList.at(2).trimmed();
-          }else{
-            strComment = QString();
-          }
-          // Split IP
-
-          QRegExp is_ipv6(QString::fromUtf8("^[0-9a-f]{4}(:[0-9a-f]{4}){7}$"), Qt::CaseInsensitive, QRegExp::RegExp);
-          QRegExp is_ipv4(QString::fromUtf8("^(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}$"), Qt::CaseInsensitive, QRegExp::RegExp);
-
-          if(strStartIP.contains(is_ipv4) && strEndIP.contains(is_ipv4)) {
-            // IPv4
-            IP = strStartIP.split('.');
-            address_v4 start((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
-            IP = strEndIP.split('.');
-            address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
-
-            // add it to list
-            QStringList item(QString::fromUtf8(start.to_string().c_str()));
-            item.append(QString::fromUtf8(last.to_string().c_str()));
-            if(!i){
-              item.append(QString::fromUtf8("Manual"));
-            }else{
-              item.append(QString::fromUtf8("ipfilter.dat"));
-            }
-            item.append(strComment);
-            new QTreeWidgetItem(filtersList, item);
-            // Apply to bittorrent session
-            filter.add_rule(start, last, ip_filter::blocked);
-          } else if(strStartIP.contains(is_ipv6) && strEndIP.contains(is_ipv6)) {
-            // IPv6, ex :   1fff:0000:0a88:85a3:0000:0000:ac1f:8001
-            IP = strStartIP.split(':');
-            address_v6 start = address_v6::from_string(strStartIP.remove(':', 0).toUtf8().data());
-            IP = strEndIP.split(':');
-            address_v6 last = address_v6::from_string(strEndIP.remove(':', 0).toUtf8().data());
-
-            // add it to list
-            QStringList item(QString::fromUtf8(start.to_string().c_str()));
-            item.append(QString::fromUtf8(last.to_string().c_str()));
-            if(!i){
-              item.append(QString::fromUtf8("Manual"));
-            }else{
-              item.append(QString::fromUtf8("ipfilter.dat"));
-            }
-            item.append(strComment);
-            new QTreeWidgetItem(filtersList, item);
-            // Apply to bittorrent session
-            filter.add_rule(start, last, ip_filter::blocked);
-          } else {
-              qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
-              continue;
-          }
-
-        }
-      }
-      file.close();
-    }
-  }
-}
-
 // Return Filter object to apply to BT session
-ip_filter options_imp::getFilter() const{
-  return filter;
+QString options_imp::getFilter() const{
+  return textFilterPath->text();
 }
 
-// Add an IP Range to ipFilter
-void options_imp::on_addFilterRangeButton_clicked(){
-  bool ok;
-  // Ask user for start ip
-  QString startIP = QInputDialog::getText(this, tr("Range Start IP"),
-                                       tr("Start IP:"), QLineEdit::Normal,
-                                       QString::fromUtf8("0.0.0.0"), &ok);
-  QStringList IP1 = startIP.split('.');
-  // Check IP
-  bool ipv4 = true;
-  QRegExp is_ipv6(QString::fromUtf8("^[0-9a-f]{4}(:[0-9a-f]{4}){7}$"), Qt::CaseInsensitive, QRegExp::RegExp);
-  QRegExp is_ipv4(QString::fromUtf8("^(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}$"), Qt::CaseInsensitive, QRegExp::RegExp);
+// Web UI
 
-
-
-  if(!ok) {
-    return;
-  } else if(startIP.isEmpty()
-    || (!startIP.contains(is_ipv4) && !startIP.contains(is_ipv6))){
-    QMessageBox::critical(0, tr("Invalid IP"), tr("This IP is invalid."));
-    return;
-  } else if(startIP.contains(is_ipv4)) {
-    ipv4 = true;
-  } else if(startIP.contains(is_ipv6)) {
-    ipv4 = false;
-  }
-
-  // Ask user for last ip
-  QString lastIP = QInputDialog::getText(this, tr("Range End IP"),
-                                          tr("End IP:"), QLineEdit::Normal,
-                                          startIP, &ok);
-  // check IP
-  if (!ok) {
-    return;
-  } else if(lastIP.isEmpty()
-    || (!lastIP.contains(is_ipv4) && !lastIP.contains(is_ipv6))
-    || (ipv4 == true && !lastIP.contains(is_ipv4))
-    || (ipv4 == false && !lastIP.contains(is_ipv6))){
-    QMessageBox::critical(0, tr("Invalid IP"), tr("This IP is invalid."));
-    return;
-  }
-
-  // Ask user for Comment
-  QString comment = QInputDialog::getText(this, tr("IP Range Comment"),
-                                         tr("Comment:"), QLineEdit::Normal,
-                                         QString::fromUtf8(""), &ok);
-  if (!ok){
-    comment = QString::fromUtf8("");
-    return;
-  }
-  QFile ipfilter(misc::qBittorrentPath() + QString::fromUtf8("ipfilter.dat"));
-  if (!ipfilter.open(QIODevice::Append | QIODevice::WriteOnly | QIODevice::Text)){
-    std::cerr << "Error: Couldn't write in ipfilter.dat";
-    return;
-  }
-  QTextStream out(&ipfilter);
-  out << startIP << " - " << lastIP << ", 0, " << comment << "\n";
-  ipfilter.close();
-  processFilterFile(textFilterPath->text());
-  enableApplyButton();
+void options_imp::enableWebUi(bool checkBoxValue){
+  groupWebUiServer->setEnabled(checkBoxValue);
+  groupWebUiAuth->setEnabled(checkBoxValue);
 }
 
-// Delete selected IP range in list and ipfilter.dat file
-// User can only delete IP added manually
-void options_imp::on_delFilterRangeButton_clicked(){
-  bool changed = false;
-  QList<QTreeWidgetItem *> selectedItems = filtersList->selectedItems();
-  // Delete from list
-  for(int i=0; i<selectedItems.size(); ++i) {
-    QTreeWidgetItem *item = selectedItems.at(i);
-    if(item->text(2) == QString::fromUtf8("Manual")){
-      delete item;
-      changed = true;
-    }
-    if(changed){
-      enableApplyButton();
-    }
-  }
-  // Update ipfilter.dat
-  QFile ipfilter(misc::qBittorrentPath() + QString::fromUtf8("ipfilter.dat"));
-  if (!ipfilter.open(QIODevice::WriteOnly | QIODevice::Text)){
-    std::cerr << "Error: Couldn't write in ipfilter.dat";
-    return;
-  }
-  QTextStream out(&ipfilter);
-  for(int i=0; i<filtersList->topLevelItemCount();++i){
-    QTreeWidgetItem *item = filtersList->topLevelItem(i);
-    if(item->text(2) == QString::fromUtf8("Manual")){
-      out << item->text(0) << " - " << item->text(1) << ", 0, " << item->text(3) << "\n";
-    }
-  }
-  ipfilter.close();
+bool options_imp::isWebUiEnabled() const
+{
+  return checkWebUi->isChecked();
+}
+
+quint16 options_imp::webUiPort() const
+{
+  return spinWebUiPort->value();
+}
+
+QString options_imp::webUiUsername() const
+{
+  return textWebUiUsername->text();
+}
+
+QString options_imp::webUiPassword() const
+{
+  return textWebUiPassword->text();
 }

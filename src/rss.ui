@@ -12,54 +12,18 @@
   <property name="windowTitle" >
    <string>Search</string>
   </property>
-  <layout class="QVBoxLayout" >
-   <property name="spacing" >
-    <number>6</number>
-   </property>
-   <property name="leftMargin" >
-    <number>9</number>
-   </property>
-   <property name="topMargin" >
-    <number>9</number>
-   </property>
-   <property name="rightMargin" >
-    <number>9</number>
-   </property>
-   <property name="bottomMargin" >
-    <number>9</number>
-   </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2" >
    <item>
-    <layout class="QHBoxLayout" >
-     <property name="spacing" >
-      <number>6</number>
+    <widget class="QSplitter" name="splitter_h" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
      </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
-      <number>0</number>
-     </property>
-     <item>
+     <widget class="QWidget" name="layoutWidget" >
       <layout class="QVBoxLayout" >
        <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="leftMargin" >
-        <number>0</number>
-       </property>
-       <property name="topMargin" >
-        <number>0</number>
-       </property>
-       <property name="rightMargin" >
-        <number>0</number>
-       </property>
-       <property name="bottomMargin" >
+       <property name="margin" >
         <number>0</number>
        </property>
        <item>
@@ -90,16 +54,7 @@
          <property name="spacing" >
           <number>6</number>
          </property>
-         <property name="leftMargin" >
-          <number>0</number>
-         </property>
-         <property name="topMargin" >
-          <number>0</number>
-         </property>
-         <property name="rightMargin" >
-          <number>0</number>
-         </property>
-         <property name="bottomMargin" >
+         <property name="margin" >
           <number>0</number>
          </property>
          <item>
@@ -107,7 +62,7 @@
            <property name="orientation" >
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0" >
             <size>
              <width>40</width>
              <height>20</height>
@@ -186,7 +141,7 @@
            <property name="orientation" >
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0" >
             <size>
              <width>40</width>
              <height>20</height>
@@ -197,24 +152,11 @@
         </layout>
        </item>
       </layout>
-     </item>
-     <item>
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>0</number>
-       </property>
-       <property name="topMargin" >
-        <number>0</number>
-       </property>
-       <property name="rightMargin" >
-        <number>0</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>0</number>
-       </property>
+      <zorder>listStreams</zorder>
+      <zorder></zorder>
+     </widget>
+     <widget class="QWidget" name="layoutWidget" >
+      <layout class="QVBoxLayout" name="verticalLayout" >
        <item>
         <widget class="QLabel" name="news_lbl" >
          <property name="font" >
@@ -229,40 +171,17 @@
         </widget>
        </item>
        <item>
-        <widget class="QListWidget" name="listNews" >
-         <property name="minimumSize" >
-          <size>
-           <width>520</width>
-           <height>0</height>
-          </size>
+        <widget class="QSplitter" name="splitter_v" >
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
          </property>
+         <widget class="QListWidget" name="listNews" />
+         <widget class="QTextBrowser" name="textBrowser" />
         </widget>
        </item>
-       <item>
-        <widget class="QTextBrowser" name="textBrowser" />
-       </item>
-       <item>
-        <layout class="QHBoxLayout" >
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <property name="leftMargin" >
-          <number>0</number>
-         </property>
-         <property name="topMargin" >
-          <number>0</number>
-         </property>
-         <property name="rightMargin" >
-          <number>0</number>
-         </property>
-         <property name="bottomMargin" >
-          <number>0</number>
-         </property>
-        </layout>
-       </item>
       </layout>
-     </item>
-    </layout>
+     </widget>
+    </widget>
    </item>
   </layout>
   <action name="actionDelete" >
