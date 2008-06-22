@@ -537,7 +537,7 @@ class RssStream : public QObject{
       QDomDocument doc("Rss Seed");
       QFile fileRss(filePath);
       if(!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug("openRss error : open failed, no file or locked, "+filePath.toUtf8());
+        qDebug("openRss error : open failed, no file or locked, %s", (const char*)filePath.toUtf8());
         if(QFile::exists(filePath)) {
           fileRss.remove();
         }
