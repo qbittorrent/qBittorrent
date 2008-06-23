@@ -131,7 +131,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   downloadingTorrentTab = new DownloadingTorrents(this, BTSession);
   tabs->addTab(downloadingTorrentTab, tr("Downloads") + QString::fromUtf8(" (0/0)"));
   tabs->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
-  verticalLayout->addWidget(tabs);
+  vboxLayout->addWidget(tabs);
   connect(downloadingTorrentTab, SIGNAL(unfinishedTorrentsNumberChanged(unsigned int)), this, SLOT(updateUnfinishedTorrentNumber(unsigned int)));
   connect(downloadingTorrentTab, SIGNAL(torrentDoubleClicked(QString, bool)), this, SLOT(torrentDoubleClicked(QString, bool)));
   // Finished torrents tab

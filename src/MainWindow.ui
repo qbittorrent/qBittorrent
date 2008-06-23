@@ -24,7 +24,7 @@
      <height>505</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout" >
+   <layout class="QVBoxLayout" name="vboxLayout" >
     <item>
      <layout class="QHBoxLayout" name="_3" >
       <property name="spacing" >
