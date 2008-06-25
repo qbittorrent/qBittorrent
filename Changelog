@@ -3,6 +3,7 @@
     - FEATURE: Can spoof Azureus peer id to avoid ban
     - FEATURE: Allow to hide/show some columns in download and seeding lists
     - FEATURE: Option to start qBittorrent minimized in systray
+    - FEATURE: Multi-tab support in search engine (Grigis Gaëtan)
     - FEATURE: Allow to define double-click actions in torrents lists
     - FEATURE: Allow to open torrent destination folder
     - FEATURE: Real progress bar in torrent properties that displays downloaded pieces
