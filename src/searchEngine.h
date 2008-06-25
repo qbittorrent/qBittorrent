@@ -26,43 +26,15 @@
 
 #include <QProcess>
 #include <QList>
-#include <QTreeView>
 #include "ui_search.h"
 #include "engineSelectDlg.h"
+#include "SearchTab.h"
 
-class QStandardItemModel;
-class SearchListDelegate;
 class bittorrent;
 class QSystemTrayIcon;
 class downloadThread;
 class QTimer;
 class SearchEngine;
-class TabbedSearch : public QWidget, public Ui::search_engine
-{
-    Q_OBJECT
-            
-    private:
-        QVBoxLayout *box;
-        QLabel *results_lbl;
-        QTreeView *resultsBrowser;
-        QStandardItemModel *SearchListModel;
-        SearchListDelegate *SearchDelegate;
-    public:
-        static QList<TabbedSearch*> *all_tab; // To store all tabs
-        TabbedSearch(QString &title,QTabWidget *tab_barWidget,SearchEngine *searchEngi);
-        ~TabbedSearch();
-        bool loadColWidthSearchList();
-        QLabel * getCurrentLabel();
-        QStandardItemModel * getCurrentSearchListModel();
-        QTreeView * getCurrentTreeView();
-        void setRowColor(int row, QString color);
-    protected slots:
-        void sortSearchList(int index);
-        void sortSearchListInt(int index, Qt::SortOrder sortOrder);
-        void sortSearchListString(int index, Qt::SortOrder sortOrder);
-        void saveColWidthSearchList() const;
-        
-};
 
 class SearchEngine : public QWidget, public Ui::search_engine{
   Q_OBJECT
@@ -83,7 +55,7 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     downloadThread *downloader;
     QStringList enabled_engines;
     QTimer *searchTimeout;
-    TabbedSearch *tab_search;
+    SearchTab *tab_search;
   public:
     SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration);
     ~SearchEngine();

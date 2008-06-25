@@ -29,177 +29,15 @@
 #include <QSystemTrayIcon>
 #include <iostream>
 #include <QTimer>
+#include <QDir>
 
-#include "SearchListDelegate.h"
 #include "searchEngine.h"
 #include "bittorrent.h"
 #include "downloadThread.h"
-
-#define SEARCH_NAME 0
-#define SEARCH_SIZE 1
-#define SEARCH_SEEDERS 2
-#define SEARCH_LEECHERS 3
-#define SEARCH_ENGINE 4
+#include "misc.h"
+#include "SearchListDelegate.h"
 
 #define SEARCHHISTORY_MAXSIZE 50
-
-/*TAB SYSTEM TO MOVE IN ANOTHER FILE*/
-QList<TabbedSearch*>* TabbedSearch::all_tab = new QList<TabbedSearch*>();
-TabbedSearch::TabbedSearch(QString &title,QTabWidget *tab_barWidget,SearchEngine *searchEngi) : QWidget()
-{
-    box=new QVBoxLayout();
-    results_lbl=new QLabel();
-    resultsBrowser = new QTreeView();
-    box->addWidget(results_lbl);
-    box->addWidget(resultsBrowser);
-    
-    setLayout(box);
-    // Set Search results list model
-    SearchListModel = new QStandardItemModel(0,5);
-    SearchListModel->setHeaderData(SEARCH_NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
-    SearchListModel->setHeaderData(SEARCH_SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
-    SearchListModel->setHeaderData(SEARCH_SEEDERS, Qt::Horizontal, tr("Seeders", "i.e: Number of full sources"));
-    SearchListModel->setHeaderData(SEARCH_LEECHERS, Qt::Horizontal, tr("Leechers", "i.e: Number of partial sources"));
-    SearchListModel->setHeaderData(SEARCH_ENGINE, Qt::Horizontal, tr("Search engine"));
-    resultsBrowser->setModel(SearchListModel);
-    SearchDelegate = new SearchListDelegate();
-    resultsBrowser->setItemDelegate(SearchDelegate);
-    // Make search list header clickable for sorting
-    resultsBrowser->header()->setClickable(true);
-    resultsBrowser->header()->setSortIndicatorShown(true);
-    
-    // Connect signals to slots (search part)
-    connect(resultsBrowser, SIGNAL(doubleClicked(const QModelIndex&)), searchEngi, SLOT(downloadSelectedItem(const QModelIndex&)));
-    connect(resultsBrowser->header(), SIGNAL(sectionPressed(int)), this, SLOT(sortSearchList(int)));
-    
-    // Load last columns width for search results list
-    if(!loadColWidthSearchList()){
-      resultsBrowser->header()->resizeSection(0, 275);
-    }
-    tab_barWidget->addTab(this, title);
-    all_tab->append(this);
-}
-
-TabbedSearch::~TabbedSearch()
-{
-    saveColWidthSearchList();
-    delete resultsBrowser;
-    delete SearchListModel;
-    delete SearchDelegate;
-}
-
-/*LES FONCTIONS POUR GET LA BETE*/
-QLabel* TabbedSearch::getCurrentLabel()
-{
-    return results_lbl;
-}
-
-QTreeView* TabbedSearch::getCurrentTreeView()
-{
-    return resultsBrowser;
-}
-
-QStandardItemModel* TabbedSearch::getCurrentSearchListModel()
-{
-    return SearchListModel;
-}
-
-// Set the color of a row in data model
-void TabbedSearch::setRowColor(int row, QString color){
-  for(int i=0; i<SearchListModel->columnCount(); ++i){
-    SearchListModel->setData(SearchListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
-  }
-}
-
-void TabbedSearch::sortSearchList(int index){
-  static Qt::SortOrder sortOrder = Qt::AscendingOrder;
-  if(resultsBrowser->header()->sortIndicatorSection() == index){
-      sortOrder = (sortOrder == Qt::DescendingOrder) ? Qt::AscendingOrder : Qt::DescendingOrder; ;
-  }
-  resultsBrowser->header()->setSortIndicator(index, sortOrder);
-  switch(index){
-    //case SIZE:
-    case SEEDERS:
-    case LEECHERS:
-    case SIZE:
-      sortSearchListInt(index, sortOrder);
-      break;
-    default:
-      sortSearchListString(index, sortOrder);
-  }
-}
-
-void TabbedSearch::sortSearchListInt(int index, Qt::SortOrder sortOrder){
-  QList<QPair<int, qlonglong> > lines;
-  // Insertion sorting
-  for(int i=0; i<SearchListModel->rowCount(); ++i){
-    misc::insertSort(lines, QPair<int,qlonglong>(i, SearchListModel->data(SearchListModel->index(i, index)).toLongLong()), sortOrder);
-  }
-  // Insert items in new model, in correct order
-  int nbRows_old = lines.size();
-  for(int row=0; row<lines.size(); ++row){
-    SearchListModel->insertRow(SearchListModel->rowCount());
-    int sourceRow = lines[row].first;
-    for(int col=0; col<5; ++col){
-      SearchListModel->setData(SearchListModel->index(nbRows_old+row, col), SearchListModel->data(SearchListModel->index(sourceRow, col)));
-      SearchListModel->setData(SearchListModel->index(nbRows_old+row, col), SearchListModel->data(SearchListModel->index(sourceRow, col), Qt::ForegroundRole), Qt::ForegroundRole);
-    }
-  }
-  // Remove old rows
-  SearchListModel->removeRows(0, nbRows_old);
-}
-
-void TabbedSearch::sortSearchListString(int index, Qt::SortOrder sortOrder){
-  QList<QPair<int, QString> > lines;
-  // Insetion sorting
-  for(int i=0; i<SearchListModel->rowCount(); ++i){
-    misc::insertSortString(lines, QPair<int, QString>(i, SearchListModel->data(SearchListModel->index(i, index)).toString()), sortOrder);
-  }
-  // Insert items in new model, in correct order
-  int nbRows_old = lines.size();
-  for(int row=0; row<nbRows_old; ++row){
-    SearchListModel->insertRow(SearchListModel->rowCount());
-    int sourceRow = lines[row].first;
-    for(int col=0; col<5; ++col){
-      SearchListModel->setData(SearchListModel->index(nbRows_old+row, col), SearchListModel->data(SearchListModel->index(sourceRow, col)));
-      SearchListModel->setData(SearchListModel->index(nbRows_old+row, col), SearchListModel->data(SearchListModel->index(sourceRow, col), Qt::ForegroundRole), Qt::ForegroundRole);
-    }
-  }
-  // Remove old rows
-  SearchListModel->removeRows(0, nbRows_old);
-}
-
-// Save columns width in a file to remember them
-// (download list)
-void TabbedSearch::saveColWidthSearchList() const{
-  qDebug("Saving columns width in search list");
-  QSettings settings("qBittorrent", "qBittorrent");
-  QStringList width_list;
-  for(int i=0; i<SearchListModel->columnCount(); ++i){
-    width_list << misc::toQString(resultsBrowser->columnWidth(i));
-  }
-  settings.setValue("SearchListColsWidth", width_list.join(" "));
-  qDebug("Search list columns width saved");
-}
-
-// Load columns width in a file that were saved previously
-// (search list)
-bool TabbedSearch::loadColWidthSearchList(){
-  qDebug("Loading columns width for search list");
-  QSettings settings("qBittorrent", "qBittorrent");
-  QString line = settings.value("SearchListColsWidth", QString()).toString();
-  if(line.isEmpty())
-    return false;
-  QStringList width_list = line.split(' ');
-  if(width_list.size() != SearchListModel->columnCount())
-    return false;
-  for(int i=0; i<width_list.size(); ++i){
-        resultsBrowser->header()->resizeSection(i, width_list.at(i).toInt());
-  }
-  qDebug("Search list columns width loaded");
-  return true;
-}
-/*END TAB SYSTME*/
 
 /*SEARCH ENGINE START*/
 SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration) : QWidget(), BTSession(BTSession), myTrayIcon(myTrayIcon), systrayIntegration(systrayIntegration){
@@ -291,7 +129,7 @@ void SearchEngine::on_search_button_clicked(){
   }
   QString pattern = search_pattern->text().trimmed();
   //AJOUT TAB obligé de passé le widget en param sinon crash 
-  tab_search=new TabbedSearch(pattern,tabWidget,this);
+  tab_search=new SearchTab(pattern,tabWidget,this);
   // No search pattern entered
   if(pattern.isEmpty()){
     QMessageBox::critical(0, tr("Empty search pattern"), tr("Please type a search pattern first"));
@@ -345,7 +183,7 @@ void SearchEngine::searchStarted(){
 void SearchEngine::downloadSelectedItem(const QModelIndex& index){
   int row = index.row();
   // Get Item url
-  QString url = searchResultsUrls.value(TabbedSearch::all_tab->at(tabWidget->currentIndex())->getCurrentSearchListModel()->data(TabbedSearch::all_tab->at(tabWidget->currentIndex())->getCurrentSearchListModel()->index(row, NAME)).toString());
+  QString url = searchResultsUrls.value(SearchTab::all_tab->at(tabWidget->currentIndex())->getCurrentSearchListModel()->data(SearchTab::all_tab->at(tabWidget->currentIndex())->getCurrentSearchListModel()->index(row, NAME)).toString());
   // Download from url
   BTSession->downloadFromUrl(url);
   // Set item color to RED
@@ -526,7 +364,7 @@ void SearchEngine::on_clearPatternButton_clicked() {
 // Download selected items in search results list
 void SearchEngine::on_download_button_clicked(){
   //QModelIndexList selectedIndexes = tab_search->getCurrentTreeView()->selectionModel()->selectedIndexes();
-  QModelIndexList selectedIndexes = TabbedSearch::all_tab->at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
+  QModelIndexList selectedIndexes = SearchTab::all_tab->at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
   QModelIndex index;
   foreach(index, selectedIndexes){
     if(index.column() == NAME){
