@@ -43,82 +43,78 @@
 
 #define SEARCHHISTORY_MAXSIZE 50
 
-SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration) : QWidget(), BTSession(BTSession), myTrayIcon(myTrayIcon), systrayIntegration(systrayIntegration){
-  setupUi(this);
-  downloader = new downloadThread(this);
-  // Set Search results list model
-  SearchListModel = new QStandardItemModel(0,5);
-  SearchListModel->setHeaderData(SEARCH_NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
-  SearchListModel->setHeaderData(SEARCH_SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
-  SearchListModel->setHeaderData(SEARCH_SEEDERS, Qt::Horizontal, tr("Seeders", "i.e: Number of full sources"));
-  SearchListModel->setHeaderData(SEARCH_LEECHERS, Qt::Horizontal, tr("Leechers", "i.e: Number of partial sources"));
-  SearchListModel->setHeaderData(SEARCH_ENGINE, Qt::Horizontal, tr("Search engine"));
-  resultsBrowser->setModel(SearchListModel);
-  SearchDelegate = new SearchListDelegate();
-  resultsBrowser->setItemDelegate(SearchDelegate);
-  // Make search list header clickable for sorting
-  resultsBrowser->header()->setClickable(true);
-  resultsBrowser->header()->setSortIndicatorShown(true);
-  // Load last columns width for search results list
-  if(!loadColWidthSearchList()){
-    resultsBrowser->header()->resizeSection(0, 275);
-  }
-
-  // new qCompleter to the search pattern
-  startSearchHistory();
-  searchCompleter = new QCompleter(searchHistory, this);
-  searchCompleter->setCaseSensitivity(Qt::CaseInsensitive);
-  search_pattern->setCompleter(searchCompleter);
-
-  // Boolean initialization
-  search_stopped = false;
-  // Connect signals to slots (search part)
-  connect(resultsBrowser, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(downloadSelectedItem(const QModelIndex&)));
-  connect(resultsBrowser->header(), SIGNAL(sectionPressed(int)), this, SLOT(sortSearchList(int)));
-  // Creating Search Process
-  searchProcess = new QProcess(this);
-  connect(searchProcess, SIGNAL(started()), this, SLOT(searchStarted()));
-  connect(searchProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readSearchOutput()));
-  connect(searchProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(searchFinished(int,QProcess::ExitStatus)));
-  searchTimeout = new QTimer(this);
-  searchTimeout->setSingleShot(true);
-  connect(searchTimeout, SIGNAL(timeout()), this, SLOT(on_stop_search_button_clicked()));
-  // Check last enabled search engines
-  loadEngineSettings();
-  // Update nova.py search plugin if necessary
-  updateNova();
+/*TAB SYSTEM TO MOVE IN ANOTHER FILE*/
+QList<TabbedSearch*>* TabbedSearch::all_tab = new QList<TabbedSearch*>();
+TabbedSearch::TabbedSearch(QString &title,QTabWidget *tab_barWidget,SearchEngine *searchEngi) : QWidget()
+{
+    box=new QVBoxLayout();
+    results_lbl=new QLabel();
+    resultsBrowser = new QTreeView();
+    box->addWidget(results_lbl);
+    box->addWidget(resultsBrowser);
+    
+    setLayout(box);
+    // Set Search results list model
+    SearchListModel = new QStandardItemModel(0,5);
+    SearchListModel->setHeaderData(SEARCH_NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
+    SearchListModel->setHeaderData(SEARCH_SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
+    SearchListModel->setHeaderData(SEARCH_SEEDERS, Qt::Horizontal, tr("Seeders", "i.e: Number of full sources"));
+    SearchListModel->setHeaderData(SEARCH_LEECHERS, Qt::Horizontal, tr("Leechers", "i.e: Number of partial sources"));
+    SearchListModel->setHeaderData(SEARCH_ENGINE, Qt::Horizontal, tr("Search engine"));
+    resultsBrowser->setModel(SearchListModel);
+    SearchDelegate = new SearchListDelegate();
+    resultsBrowser->setItemDelegate(SearchDelegate);
+    // Make search list header clickable for sorting
+    resultsBrowser->header()->setClickable(true);
+    resultsBrowser->header()->setSortIndicatorShown(true);
+    
+    // Connect signals to slots (search part)
+    connect(resultsBrowser, SIGNAL(doubleClicked(const QModelIndex&)), searchEngi, SLOT(downloadSelectedItem(const QModelIndex&)));
+    connect(resultsBrowser->header(), SIGNAL(sectionPressed(int)), this, SLOT(sortSearchList(int)));
+    
+    // Load last columns width for search results list
+    if(!loadColWidthSearchList()){
+      resultsBrowser->header()->resizeSection(0, 275);
+    }
+    tab_barWidget->addTab(this, title);
+    all_tab->append(this);
 }
 
-SearchEngine::~SearchEngine(){
-  qDebug("Search destruction");
-  // save the searchHistory for later uses
-  saveSearchHistory();
-  saveColWidthSearchList();
-  searchProcess->kill();
-  searchProcess->waitForFinished();
-  delete searchTimeout;
-  delete searchProcess;
-  delete searchCompleter;
-  delete SearchListModel;
-  delete SearchDelegate;
-  delete downloader;
+TabbedSearch::~TabbedSearch()
+{
+    saveColWidthSearchList();
+    delete resultsBrowser;
+    delete SearchListModel;
+    delete SearchDelegate;
+}
+
+/*LES FONCTIONS POUR GET LA BETE*/
+QLabel* TabbedSearch::getCurrentLabel()
+{
+    return results_lbl;
+}
+
+QTreeView* TabbedSearch::getCurrentTreeView()
+{
+    return resultsBrowser;
+}
+
+QStandardItemModel* TabbedSearch::getCurrentSearchListModel()
+{
+    return SearchListModel;
 }
 
 // Set the color of a row in data model
-void SearchEngine::setRowColor(int row, QString color){
+void TabbedSearch::setRowColor(int row, QString color){
   for(int i=0; i<SearchListModel->columnCount(); ++i){
     SearchListModel->setData(SearchListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
   }
 }
 
-void SearchEngine::sortSearchList(int index){
+void TabbedSearch::sortSearchList(int index){
   static Qt::SortOrder sortOrder = Qt::AscendingOrder;
   if(resultsBrowser->header()->sortIndicatorSection() == index){
-    if(sortOrder == Qt::AscendingOrder){
-      sortOrder = Qt::DescendingOrder;
-    }else{
-      sortOrder = Qt::AscendingOrder;
-    }
+      sortOrder = (sortOrder == Qt::DescendingOrder) ? Qt::AscendingOrder : Qt::DescendingOrder; ;
   }
   resultsBrowser->header()->setSortIndicator(index, sortOrder);
   switch(index){
@@ -133,7 +129,7 @@ void SearchEngine::sortSearchList(int index){
   }
 }
 
-void SearchEngine::sortSearchListInt(int index, Qt::SortOrder sortOrder){
+void TabbedSearch::sortSearchListInt(int index, Qt::SortOrder sortOrder){
   QList<QPair<int, qlonglong> > lines;
   // Insertion sorting
   for(int i=0; i<SearchListModel->rowCount(); ++i){
@@ -153,7 +149,7 @@ void SearchEngine::sortSearchListInt(int index, Qt::SortOrder sortOrder){
   SearchListModel->removeRows(0, nbRows_old);
 }
 
-void SearchEngine::sortSearchListString(int index, Qt::SortOrder sortOrder){
+void TabbedSearch::sortSearchListString(int index, Qt::SortOrder sortOrder){
   QList<QPair<int, QString> > lines;
   // Insetion sorting
   for(int i=0; i<SearchListModel->rowCount(); ++i){
@@ -175,7 +171,7 @@ void SearchEngine::sortSearchListString(int index, Qt::SortOrder sortOrder){
 
 // Save columns width in a file to remember them
 // (download list)
-void SearchEngine::saveColWidthSearchList() const{
+void TabbedSearch::saveColWidthSearchList() const{
   qDebug("Saving columns width in search list");
   QSettings settings("qBittorrent", "qBittorrent");
   QStringList width_list;
@@ -186,14 +182,9 @@ void SearchEngine::saveColWidthSearchList() const{
   qDebug("Search list columns width saved");
 }
 
-void SearchEngine::on_enginesButton_clicked() {
-  engineSelectDlg *dlg = new engineSelectDlg(this);
-  connect(dlg, SIGNAL(enginesChanged()), this, SLOT(loadEngineSettings()));
-}
-
 // Load columns width in a file that were saved previously
 // (search list)
-bool SearchEngine::loadColWidthSearchList(){
+bool TabbedSearch::loadColWidthSearchList(){
   qDebug("Loading columns width for search list");
   QSettings settings("qBittorrent", "qBittorrent");
   QString line = settings.value("SearchListColsWidth", QString()).toString();
@@ -207,6 +198,51 @@ bool SearchEngine::loadColWidthSearchList(){
   }
   qDebug("Search list columns width loaded");
   return true;
+}
+/*END TAB SYSTME*/
+
+/*SEARCH ENGINE START*/
+SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration) : QWidget(), BTSession(BTSession), myTrayIcon(myTrayIcon), systrayIntegration(systrayIntegration){
+  setupUi(this);
+  downloader = new downloadThread(this);
+
+  // new qCompleter to the search pattern
+  startSearchHistory();
+  searchCompleter = new QCompleter(searchHistory, this);
+  searchCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+  search_pattern->setCompleter(searchCompleter);
+
+  // Boolean initialization
+  search_stopped = false;
+  // Creating Search Process
+  searchProcess = new QProcess(this);
+  connect(searchProcess, SIGNAL(started()), this, SLOT(searchStarted()));
+  connect(searchProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readSearchOutput()));
+  connect(searchProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(searchFinished(int,QProcess::ExitStatus)));
+  searchTimeout = new QTimer(this);
+  searchTimeout->setSingleShot(true);
+  connect(searchTimeout, SIGNAL(timeout()), this, SLOT(on_stop_search_button_clicked()));
+  // Check last enabled search engines
+  loadEngineSettings();
+  // Update nova.py search plugin if necessary
+  updateNova();
+}
+
+SearchEngine::~SearchEngine(){
+  qDebug("Search destruction");
+  // save the searchHistory for later uses
+  saveSearchHistory();
+  searchProcess->kill();
+  searchProcess->waitForFinished();
+  delete searchTimeout;
+  delete searchProcess;
+  delete searchCompleter;
+  delete downloader;
+}
+
+void SearchEngine::on_enginesButton_clicked() {
+  engineSelectDlg *dlg = new engineSelectDlg(this);
+  connect(dlg, SIGNAL(enginesChanged()), this, SLOT(loadEngineSettings()));
 }
 
 // get the last searchs from a QSettings to a QStringList
@@ -254,6 +290,8 @@ void SearchEngine::on_search_button_clicked(){
     searchTimeout->stop();
   }
   QString pattern = search_pattern->text().trimmed();
+  //AJOUT TAB obligé de passé le widget en param sinon crash 
+  tab_search=new TabbedSearch(pattern,tabWidget,this);
   // No search pattern entered
   if(pattern.isEmpty()){
     QMessageBox::critical(0, tr("Empty search pattern"), tr("Please type a search pattern first"));
@@ -284,7 +322,8 @@ void SearchEngine::on_search_button_clicked(){
   no_search_results = true;
   nb_search_results = 0;
   search_result_line_truncated.clear();
-  results_lbl->setText(tr("Results")+" <i>(0)</i>:");
+  //on change le texte du label courrant
+  tab_search->getCurrentLabel()->setText(tr("Results")+" <i>(0)</i>:");
   // Launch search
   searchProcess->start("python", params, QIODevice::ReadOnly);
   searchTimeout->start(180000); // 3min
@@ -296,21 +335,21 @@ void SearchEngine::searchStarted(){
   search_status->repaint();
   stop_search_button->setEnabled(true);
   stop_search_button->repaint();
-  // clear results window
-  SearchListModel->removeRows(0, SearchListModel->rowCount());
+  // clear results window ... not needed since we got Tabbed
+  //SearchListModel->removeRows(0, SearchListModel->rowCount());
   // Clear previous results urls too
-  searchResultsUrls.clear();
+  //searchResultsUrls.clear();
 }
 
 // Download the given item from search results list
 void SearchEngine::downloadSelectedItem(const QModelIndex& index){
   int row = index.row();
   // Get Item url
-  QString url = searchResultsUrls.value(SearchListModel->data(SearchListModel->index(row, NAME)).toString());
+  QString url = searchResultsUrls.value(TabbedSearch::all_tab->at(tabWidget->currentIndex())->getCurrentSearchListModel()->data(TabbedSearch::all_tab->at(tabWidget->currentIndex())->getCurrentSearchListModel()->index(row, NAME)).toString());
   // Download from url
   BTSession->downloadFromUrl(url);
   // Set item color to RED
-  setRowColor(row, "red");
+  tab_search->setRowColor(row, "red");
 }
 
 // search Qprocess return output as soon as it gets new
@@ -329,7 +368,7 @@ void SearchEngine::readSearchOutput(){
   foreach(line, lines_list){
     appendSearchResult(QString(line));
   }
-  results_lbl->setText(tr("Results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
+  tab_search->getCurrentLabel()->setText(tr("Results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
 }
 
 // Update nova.py search plugin if necessary
@@ -416,7 +455,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
       }
     }
   }
-  results_lbl->setText(tr("Results", "i.e: Search results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
+  tab_search->getCurrentLabel()->setText(tr("Results", "i.e: Search results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
   search_button->setEnabled(true);
   stop_search_button->setEnabled(false);
 }
@@ -436,13 +475,13 @@ void SearchEngine::appendSearchResult(QString line){
     return;
   }
   // Add item to search result list
-  int row = SearchListModel->rowCount();
-  SearchListModel->insertRow(row);
+  int row = tab_search->getCurrentSearchListModel()->rowCount();
+  tab_search->getCurrentSearchListModel()->insertRow(row);
   for(int i=0; i<5; ++i){
     if(parts.at(i).toFloat() == -1 && i != SIZE)
-      SearchListModel->setData(SearchListModel->index(row, i), tr("Unknown"));
+      tab_search->getCurrentSearchListModel()->setData(tab_search->getCurrentSearchListModel()->index(row, i), tr("Unknown"));
     else
-      SearchListModel->setData(SearchListModel->index(row, i), QVariant(parts.at(i)));
+      tab_search->getCurrentSearchListModel()->setData(tab_search->getCurrentSearchListModel()->index(row, i), QVariant(parts.at(i)));
   }
   // Add url to searchResultsUrls associative array
   searchResultsUrls.insert(filename, url);
@@ -468,12 +507,12 @@ void SearchEngine::on_clear_button_clicked(){
   search_stopped = true;
   searchTimeout->stop();
   searchResultsUrls.clear();
-  SearchListModel->removeRows(0, SearchListModel->rowCount());
+  tab_search->getCurrentSearchListModel()->removeRows(0, tab_search->getCurrentSearchListModel()->rowCount());
   // Disable clear & download buttons
   clear_button->setEnabled(false);
   download_button->setEnabled(false);
   nb_search_results = 0;
-  results_lbl->setText(tr("Results")+" <i>(0)</i>:");
+  tab_search->getCurrentLabel()->setText(tr("Results")+" <i>(0)</i>:");
   // focus on search pattern
   search_pattern->clear();
   search_pattern->setFocus();
@@ -486,14 +525,15 @@ void SearchEngine::on_clearPatternButton_clicked() {
 
 // Download selected items in search results list
 void SearchEngine::on_download_button_clicked(){
-  QModelIndexList selectedIndexes = resultsBrowser->selectionModel()->selectedIndexes();
+  //QModelIndexList selectedIndexes = tab_search->getCurrentTreeView()->selectionModel()->selectedIndexes();
+  QModelIndexList selectedIndexes = TabbedSearch::all_tab->at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
   QModelIndex index;
   foreach(index, selectedIndexes){
     if(index.column() == NAME){
       // Get Item url
       QString url = searchResultsUrls.value(index.data().toString());
       BTSession->downloadFromUrl(url);
-      setRowColor(index.row(), "red");
+      tab_search->setRowColor(index.row(), "red");
     }
   }
 }

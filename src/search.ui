@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>811</width>
+    <width>820</width>
     <height>453</height>
    </rect>
   </property>
@@ -196,6 +196,10 @@
     </layout>
    </item>
    <item>
+    <widget class="QTabWidget" name="tabWidget" >
+    </widget>
+   </item>
+   <item>
     <layout class="QVBoxLayout" >
      <property name="spacing" >
       <number>6</number>
@@ -212,87 +216,6 @@
      <property name="bottomMargin" >
       <number>0</number>
      </property>
-     <item>
-      <layout class="QHBoxLayout" >
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>0</number>
-       </property>
-       <property name="topMargin" >
-        <number>0</number>
-       </property>
-       <property name="rightMargin" >
-        <number>0</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QLabel" name="results_lbl" >
-         <property name="maximumSize" >
-          <size>
-           <width>16777215</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="font" >
-          <font>
-           <family>Sans Serif</family>
-           <pointsize>9</pointsize>
-           <weight>75</weight>
-           <italic>false</italic>
-           <bold>true</bold>
-           <underline>false</underline>
-           <strikeout>false</strikeout>
-          </font>
-         </property>
-         <property name="text" >
-          <string>Results:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>721</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="QTreeView" name="resultsBrowser" >
-       <property name="minimumSize" >
-        <size>
-         <width>0</width>
-         <height>200</height>
-        </size>
-       </property>
-       <property name="contextMenuPolicy" >
-        <enum>Qt::CustomContextMenu</enum>
-       </property>
-       <property name="autoScroll" >
-        <bool>true</bool>
-       </property>
-       <property name="selectionMode" >
-        <enum>QAbstractItemView::ExtendedSelection</enum>
-       </property>
-       <property name="indentation" >
-        <number>1</number>
-       </property>
-       <property name="itemsExpandable" >
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
      <item>
       <layout class="QHBoxLayout" >
        <property name="spacing" >

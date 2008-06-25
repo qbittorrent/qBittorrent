@@ -25,6 +25,8 @@
 #define TIME_TRAY_BALLOON 5000
 
 #include <QProcess>
+#include <QList>
+#include <QTreeView>
 #include "ui_search.h"
 #include "engineSelectDlg.h"
 
@@ -34,6 +36,33 @@ class bittorrent;
 class QSystemTrayIcon;
 class downloadThread;
 class QTimer;
+class SearchEngine;
+class TabbedSearch : public QWidget, public Ui::search_engine
+{
+    Q_OBJECT
+            
+    private:
+        QVBoxLayout *box;
+        QLabel *results_lbl;
+        QTreeView *resultsBrowser;
+        QStandardItemModel *SearchListModel;
+        SearchListDelegate *SearchDelegate;
+    public:
+        static QList<TabbedSearch*> *all_tab; // To store all tabs
+        TabbedSearch(QString &title,QTabWidget *tab_barWidget,SearchEngine *searchEngi);
+        ~TabbedSearch();
+        bool loadColWidthSearchList();
+        QLabel * getCurrentLabel();
+        QStandardItemModel * getCurrentSearchListModel();
+        QTreeView * getCurrentTreeView();
+        void setRowColor(int row, QString color);
+    protected slots:
+        void sortSearchList(int index);
+        void sortSearchListInt(int index, Qt::SortOrder sortOrder);
+        void sortSearchListString(int index, Qt::SortOrder sortOrder);
+        void saveColWidthSearchList() const;
+        
+};
 
 class SearchEngine : public QWidget, public Ui::search_engine{
   Q_OBJECT
@@ -48,42 +77,34 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     unsigned long nb_search_results;
     QCompleter *searchCompleter;
     QStringList searchHistory;
-    QStandardItemModel *SearchListModel;
-    SearchListDelegate *SearchDelegate;
     bittorrent *BTSession;
     QSystemTrayIcon *myTrayIcon;
     bool systrayIntegration;
     downloadThread *downloader;
     QStringList enabled_engines;
     QTimer *searchTimeout;
-
+    TabbedSearch *tab_search;
   public:
     SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration);
     ~SearchEngine();
     float getPluginVersion(QString filePath) const;
-    bool loadColWidthSearchList();
-
+  public slots:
+    void on_download_button_clicked();
+    void downloadSelectedItem(const QModelIndex& index);
   protected slots:
     // Search slots
     void on_search_button_clicked();
     void on_stop_search_button_clicked();
     void on_clear_button_clicked();
-    void on_download_button_clicked();
     void appendSearchResult(QString line);
     void searchFinished(int exitcode,QProcess::ExitStatus);
     void readSearchOutput();
-    void setRowColor(int row, QString color);
+    void loadEngineSettings();
     void searchStarted();
-    void downloadSelectedItem(const QModelIndex& index);
     void startSearchHistory();
     void updateNova();
     void saveSearchHistory();
-    void saveColWidthSearchList() const;
-    void sortSearchList(int index);
-    void sortSearchListInt(int index, Qt::SortOrder sortOrder);
-    void sortSearchListString(int index, Qt::SortOrder sortOrder);
     void on_enginesButton_clicked();
-    void loadEngineSettings();
     void on_clearPatternButton_clicked();
 };
 
