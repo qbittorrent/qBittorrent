@@ -36,7 +36,6 @@
 #define SEARCH_LEECHERS 3
 #define SEARCH_ENGINE 4
 
-QList<SearchTab*>* SearchTab::all_tab = new QList<SearchTab*>();
 SearchTab::SearchTab(SearchEngine *parent) : QWidget()
 {
     box=new QVBoxLayout();
@@ -68,7 +67,6 @@ SearchTab::SearchTab(SearchEngine *parent) : QWidget()
     if(!loadColWidthSearchList()){
       resultsBrowser->header()->resizeSection(0, 275);
     }
-    all_tab->append(this);
 }
 
 SearchTab::~SearchTab()

@@ -43,7 +43,7 @@
 SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration) : QWidget(), BTSession(BTSession), myTrayIcon(myTrayIcon), systrayIntegration(systrayIntegration){
   setupUi(this);
   downloader = new downloadThread(this);
-
+  all_tab = new QList<SearchTab*>();
   // new qCompleter to the search pattern
   startSearchHistory();
   searchCompleter = new QCompleter(searchHistory, this);
@@ -76,6 +76,7 @@ SearchEngine::~SearchEngine(){
   delete searchProcess;
   delete searchCompleter;
   delete downloader;
+  delete all_tab;
 }
 
 void SearchEngine::on_enginesButton_clicked() {
@@ -136,6 +137,7 @@ void SearchEngine::on_search_button_clicked(){
   // Tab Addition
   tab_search=new SearchTab(this);
   tabWidget->addTab(tab_search, pattern);
+  all_tab->append(tab_search);
   closeTab_button->setEnabled(true);
   // if the pattern is not in the pattern
   if(searchHistory.indexOf(pattern) == -1){
@@ -185,11 +187,11 @@ void SearchEngine::searchStarted(){
 void SearchEngine::downloadSelectedItem(const QModelIndex& index){
   int row = index.row();
   // Get Item url
-  QString url = searchResultsUrls.value(SearchTab::all_tab->at(tabWidget->currentIndex())->getCurrentSearchListModel()->data(SearchTab::all_tab->at(tabWidget->currentIndex())->getCurrentSearchListModel()->index(row, NAME)).toString());
+  QString url = searchResultsUrls.value(all_tab->at(tabWidget->currentIndex())->getCurrentSearchListModel()->data(all_tab->at(tabWidget->currentIndex())->getCurrentSearchListModel()->index(row, NAME)).toString());
   // Download from url
   BTSession->downloadFromUrl(url);
   // Set item color to RED
-  SearchTab::all_tab->at(tabWidget->currentIndex())->setRowColor(row, "red");
+  all_tab->at(tabWidget->currentIndex())->setRowColor(row, "red");
 }
 
 // search Qprocess return output as soon as it gets new
@@ -365,14 +367,14 @@ void SearchEngine::on_clearPatternButton_clicked() {
 // Download selected items in search results list
 void SearchEngine::on_download_button_clicked(){
   //QModelIndexList selectedIndexes = tab_search->getCurrentTreeView()->selectionModel()->selectedIndexes();
-  QModelIndexList selectedIndexes = SearchTab::all_tab->at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
+  QModelIndexList selectedIndexes = all_tab->at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
   QModelIndex index;
   foreach(index, selectedIndexes){
     if(index.column() == NAME){
       // Get Item url
       QString url = searchResultsUrls.value(index.data().toString());
       BTSession->downloadFromUrl(url);
-      SearchTab::all_tab->at(tabWidget->currentIndex())->setRowColor(index.row(), "red");
+      all_tab->at(tabWidget->currentIndex())->setRowColor(index.row(), "red");
     }
   }
 }

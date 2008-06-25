@@ -40,7 +40,6 @@ class SearchTab : public QWidget, public Ui::search_engine
         QStandardItemModel *SearchListModel;
         SearchListDelegate *SearchDelegate;
     public:
-        static QList<SearchTab*> *all_tab; // To store all tabs
         SearchTab(SearchEngine *parent);
         ~SearchTab();
         bool loadColWidthSearchList();
