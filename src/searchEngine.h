@@ -67,7 +67,7 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     // Search slots
     void on_search_button_clicked();
     void on_stop_search_button_clicked();
-    void on_clear_button_clicked();
+    void on_closeTab_button_clicked();
     void appendSearchResult(QString line);
     void searchFinished(int exitcode,QProcess::ExitStatus);
     void readSearchOutput();

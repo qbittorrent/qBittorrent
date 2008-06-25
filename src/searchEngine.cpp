@@ -128,13 +128,15 @@ void SearchEngine::on_search_button_clicked(){
     searchTimeout->stop();
   }
   QString pattern = search_pattern->text().trimmed();
-  //AJOUT TAB obligé de passé le widget en param sinon crash 
-  tab_search=new SearchTab(pattern,tabWidget,this);
   // No search pattern entered
   if(pattern.isEmpty()){
     QMessageBox::critical(0, tr("Empty search pattern"), tr("Please type a search pattern first"));
     return;
   }
+  // Tab Addition
+  tab_search=new SearchTab(this);
+  tabWidget->addTab(tab_search, pattern);
+  closeTab_button->setEnabled(true);
   // if the pattern is not in the pattern
   if(searchHistory.indexOf(pattern) == -1){
     //update the searchHistory list
@@ -187,7 +189,7 @@ void SearchEngine::downloadSelectedItem(const QModelIndex& index){
   // Download from url
   BTSession->downloadFromUrl(url);
   // Set item color to RED
-  tab_search->setRowColor(row, "red");
+  SearchTab::all_tab->at(tabWidget->currentIndex())->setRowColor(row, "red");
 }
 
 // search Qprocess return output as soon as it gets new
@@ -326,7 +328,6 @@ void SearchEngine::appendSearchResult(QString line){
   no_search_results = false;
   ++nb_search_results;
   // Enable clear & download buttons
-  clear_button->setEnabled(true);
   download_button->setEnabled(true);
 }
 
@@ -339,21 +340,21 @@ void SearchEngine::on_stop_search_button_clicked(){
 }
 
 // Clear search results list
-void SearchEngine::on_clear_button_clicked(){
-  // Kill process
-  searchProcess->terminate();
-  search_stopped = true;
-  searchTimeout->stop();
-  searchResultsUrls.clear();
-  tab_search->getCurrentSearchListModel()->removeRows(0, tab_search->getCurrentSearchListModel()->rowCount());
-  // Disable clear & download buttons
-  clear_button->setEnabled(false);
-  download_button->setEnabled(false);
-  nb_search_results = 0;
-  tab_search->getCurrentLabel()->setText(tr("Results")+" <i>(0)</i>:");
-  // focus on search pattern
-  search_pattern->clear();
-  search_pattern->setFocus();
+void SearchEngine::on_closeTab_button_clicked(){
+  //// Kill process
+  //searchProcess->terminate();
+  //search_stopped = true;
+  //searchTimeout->stop();
+  //searchResultsUrls.clear();
+  //tab_search->getCurrentSearchListModel()->removeRows(0, tab_search->getCurrentSearchListModel()->rowCount());
+  //// Disable clear & download buttons
+  //clear_button->setEnabled(false);
+  //download_button->setEnabled(false);
+  //nb_search_results = 0;
+  //tab_search->getCurrentLabel()->setText(tr("Results")+" <i>(0)</i>:");
+  //// focus on search pattern
+  //search_pattern->clear();
+  //search_pattern->setFocus();
 }
 
 void SearchEngine::on_clearPatternButton_clicked() {
@@ -371,7 +372,7 @@ void SearchEngine::on_download_button_clicked(){
       // Get Item url
       QString url = searchResultsUrls.value(index.data().toString());
       BTSession->downloadFromUrl(url);
-      tab_search->setRowColor(index.row(), "red");
+      SearchTab::all_tab->at(tabWidget->currentIndex())->setRowColor(index.row(), "red");
     }
   }
 }

@@ -37,7 +37,7 @@
 #define SEARCH_ENGINE 4
 
 QList<SearchTab*>* SearchTab::all_tab = new QList<SearchTab*>();
-SearchTab::SearchTab(QString &title,QTabWidget *tab_barWidget,SearchEngine *searchEngi) : QWidget()
+SearchTab::SearchTab(SearchEngine *parent) : QWidget()
 {
     box=new QVBoxLayout();
     results_lbl=new QLabel();
@@ -61,14 +61,13 @@ SearchTab::SearchTab(QString &title,QTabWidget *tab_barWidget,SearchEngine *sear
     resultsBrowser->header()->setSortIndicatorShown(true);
     
     // Connect signals to slots (search part)
-    connect(resultsBrowser, SIGNAL(doubleClicked(const QModelIndex&)), searchEngi, SLOT(downloadSelectedItem(const QModelIndex&)));
+    connect(resultsBrowser, SIGNAL(doubleClicked(const QModelIndex&)), parent, SLOT(downloadSelectedItem(const QModelIndex&)));
     connect(resultsBrowser->header(), SIGNAL(sectionPressed(int)), this, SLOT(sortSearchList(int)));
     
     // Load last columns width for search results list
     if(!loadColWidthSearchList()){
       resultsBrowser->header()->resizeSection(0, 275);
     }
-    tab_barWidget->addTab(this, title);
     all_tab->append(this);
 }
 

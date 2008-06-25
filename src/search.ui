@@ -18,16 +18,7 @@
      <property name="spacing" >
       <number>6</number>
      </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin" >
       <number>0</number>
      </property>
      <item>
@@ -76,7 +67,8 @@
         <string/>
        </property>
        <property name="icon" >
-        <iconset resource="icons.qrc" >:/Icons/edit_clear.png</iconset>
+        <iconset resource="icons.qrc" >
+         <normaloff>:/Icons/edit_clear.png</normaloff>:/Icons/edit_clear.png</iconset>
        </property>
        <property name="iconSize" >
         <size>
@@ -185,7 +177,7 @@
        <property name="orientation" >
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0" >
         <size>
          <width>188</width>
          <height>21</height>
@@ -196,24 +188,14 @@
     </layout>
    </item>
    <item>
-    <widget class="QTabWidget" name="tabWidget" >
-    </widget>
+    <widget class="QTabWidget" name="tabWidget" />
    </item>
    <item>
     <layout class="QVBoxLayout" >
      <property name="spacing" >
       <number>6</number>
      </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin" >
       <number>0</number>
      </property>
      <item>
@@ -221,16 +203,7 @@
        <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="leftMargin" >
-        <number>0</number>
-       </property>
-       <property name="topMargin" >
-        <number>0</number>
-       </property>
-       <property name="rightMargin" >
-        <number>0</number>
-       </property>
-       <property name="bottomMargin" >
+       <property name="margin" >
         <number>0</number>
        </property>
        <item>
@@ -244,12 +217,12 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="clear_button" >
+        <widget class="QPushButton" name="closeTab_button" >
          <property name="enabled" >
           <bool>false</bool>
          </property>
          <property name="text" >
-          <string>Clear</string>
+          <string>Close tab</string>
          </property>
         </widget>
        </item>
@@ -258,7 +231,7 @@
          <property name="orientation" >
           <enum>Qt::Horizontal</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>601</width>
            <height>20</height>
