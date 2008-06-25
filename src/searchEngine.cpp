@@ -43,7 +43,6 @@
 SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration) : QWidget(), BTSession(BTSession), myTrayIcon(myTrayIcon), systrayIntegration(systrayIntegration){
   setupUi(this);
   downloader = new downloadThread(this);
-  all_tab = new QList<SearchTab*>();
   // new qCompleter to the search pattern
   startSearchHistory();
   searchCompleter = new QCompleter(searchHistory, this);
@@ -76,7 +75,6 @@ SearchEngine::~SearchEngine(){
   delete searchProcess;
   delete searchCompleter;
   delete downloader;
-  delete all_tab;
 }
 
 void SearchEngine::on_enginesButton_clicked() {
@@ -135,9 +133,9 @@ void SearchEngine::on_search_button_clicked(){
     return;
   }
   // Tab Addition
-  tab_search=new SearchTab(this);
-  tabWidget->addTab(tab_search, pattern);
-  all_tab->append(tab_search);
+  currentSearchTab=new SearchTab(this);
+  tabWidget->addTab(currentSearchTab, pattern);
+  all_tab.append(currentSearchTab);
   closeTab_button->setEnabled(true);
   // if the pattern is not in the pattern
   if(searchHistory.indexOf(pattern) == -1){
@@ -165,7 +163,7 @@ void SearchEngine::on_search_button_clicked(){
   nb_search_results = 0;
   search_result_line_truncated.clear();
   //on change le texte du label courrant
-  tab_search->getCurrentLabel()->setText(tr("Results")+" <i>(0)</i>:");
+  currentSearchTab->getCurrentLabel()->setText(tr("Results")+" <i>(0)</i>:");
   // Launch search
   searchProcess->start("python", params, QIODevice::ReadOnly);
   searchTimeout->start(180000); // 3min
@@ -187,11 +185,11 @@ void SearchEngine::searchStarted(){
 void SearchEngine::downloadSelectedItem(const QModelIndex& index){
   int row = index.row();
   // Get Item url
-  QString url = searchResultsUrls.value(all_tab->at(tabWidget->currentIndex())->getCurrentSearchListModel()->data(all_tab->at(tabWidget->currentIndex())->getCurrentSearchListModel()->index(row, NAME)).toString());
+  QString url = searchResultsUrls.value(all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel()->data(all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel()->index(row, NAME)).toString());
   // Download from url
   BTSession->downloadFromUrl(url);
   // Set item color to RED
-  all_tab->at(tabWidget->currentIndex())->setRowColor(row, "red");
+  all_tab.at(tabWidget->currentIndex())->setRowColor(row, "red");
 }
 
 // search Qprocess return output as soon as it gets new
@@ -210,7 +208,7 @@ void SearchEngine::readSearchOutput(){
   foreach(line, lines_list){
     appendSearchResult(QString(line));
   }
-  tab_search->getCurrentLabel()->setText(tr("Results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
+  currentSearchTab->getCurrentLabel()->setText(tr("Results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
 }
 
 // Update nova.py search plugin if necessary
@@ -297,7 +295,8 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
       }
     }
   }
-  tab_search->getCurrentLabel()->setText(tr("Results", "i.e: Search results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
+  if(currentSearchTab)
+    currentSearchTab->getCurrentLabel()->setText(tr("Results", "i.e: Search results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
   search_button->setEnabled(true);
   stop_search_button->setEnabled(false);
 }
@@ -317,13 +316,13 @@ void SearchEngine::appendSearchResult(QString line){
     return;
   }
   // Add item to search result list
-  int row = tab_search->getCurrentSearchListModel()->rowCount();
-  tab_search->getCurrentSearchListModel()->insertRow(row);
+  int row = currentSearchTab->getCurrentSearchListModel()->rowCount();
+  currentSearchTab->getCurrentSearchListModel()->insertRow(row);
   for(int i=0; i<5; ++i){
     if(parts.at(i).toFloat() == -1 && i != SIZE)
-      tab_search->getCurrentSearchListModel()->setData(tab_search->getCurrentSearchListModel()->index(row, i), tr("Unknown"));
+      currentSearchTab->getCurrentSearchListModel()->setData(currentSearchTab->getCurrentSearchListModel()->index(row, i), tr("Unknown"));
     else
-      tab_search->getCurrentSearchListModel()->setData(tab_search->getCurrentSearchListModel()->index(row, i), QVariant(parts.at(i)));
+      currentSearchTab->getCurrentSearchListModel()->setData(currentSearchTab->getCurrentSearchListModel()->index(row, i), QVariant(parts.at(i)));
   }
   // Add url to searchResultsUrls associative array
   searchResultsUrls.insert(filename, url);
@@ -343,20 +342,26 @@ void SearchEngine::on_stop_search_button_clicked(){
 
 // Clear search results list
 void SearchEngine::on_closeTab_button_clicked(){
-  //// Kill process
-  //searchProcess->terminate();
-  //search_stopped = true;
-  //searchTimeout->stop();
-  //searchResultsUrls.clear();
-  //tab_search->getCurrentSearchListModel()->removeRows(0, tab_search->getCurrentSearchListModel()->rowCount());
-  //// Disable clear & download buttons
-  //clear_button->setEnabled(false);
-  //download_button->setEnabled(false);
-  //nb_search_results = 0;
-  //tab_search->getCurrentLabel()->setText(tr("Results")+" <i>(0)</i>:");
-  //// focus on search pattern
-  //search_pattern->clear();
-  //search_pattern->setFocus();
+  if(all_tab.size()) {
+    qDebug("currentTab rank: %d", tabWidget->currentIndex());
+    qDebug("currentSearchTab rank: %d", tabWidget->indexOf(currentSearchTab));
+    if(tabWidget->currentIndex() == tabWidget->indexOf(currentSearchTab)) {
+        qDebug("Deleted current search Tab");
+        if(searchProcess->state() != QProcess::NotRunning){
+            searchProcess->terminate();
+        }
+        if(searchTimeout->isActive()) {
+            searchTimeout->stop();
+        }
+        search_stopped = true;
+        currentSearchTab = 0;
+    }
+    delete all_tab.takeAt(tabWidget->currentIndex());
+    if(!all_tab.size()) {
+        closeTab_button->setEnabled(false);
+        download_button->setEnabled(false);
+    }
+  }
 }
 
 void SearchEngine::on_clearPatternButton_clicked() {
@@ -366,15 +371,15 @@ void SearchEngine::on_clearPatternButton_clicked() {
 
 // Download selected items in search results list
 void SearchEngine::on_download_button_clicked(){
-  //QModelIndexList selectedIndexes = tab_search->getCurrentTreeView()->selectionModel()->selectedIndexes();
-  QModelIndexList selectedIndexes = all_tab->at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
+  //QModelIndexList selectedIndexes = currentSearchTab->getCurrentTreeView()->selectionModel()->selectedIndexes();
+  QModelIndexList selectedIndexes = all_tab.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
   QModelIndex index;
   foreach(index, selectedIndexes){
     if(index.column() == NAME){
       // Get Item url
       QString url = searchResultsUrls.value(index.data().toString());
       BTSession->downloadFromUrl(url);
-      all_tab->at(tabWidget->currentIndex())->setRowColor(index.row(), "red");
+      all_tab.at(tabWidget->currentIndex())->setRowColor(index.row(), "red");
     }
   }
 }

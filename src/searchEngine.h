@@ -55,8 +55,8 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     downloadThread *downloader;
     QStringList enabled_engines;
     QTimer *searchTimeout;
-    SearchTab *tab_search;
-    QList<SearchTab*> *all_tab; // To store all tabs
+    SearchTab *currentSearchTab;
+    QList<SearchTab*> all_tab; // To store all tabs
   public:
     SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration);
     ~SearchEngine();
