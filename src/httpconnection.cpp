@@ -49,7 +49,7 @@ void HttpConnection::read()
 	qDebug(" -------");
 	qDebug("|REQUEST|");
 	qDebug(" -------");
-	qDebug(input.toAscii().constData());
+	qDebug("%s", input.toAscii().constData());
 	parser.write(input);
 	if(parser.isError())
 	{
