@@ -136,6 +136,7 @@ void SearchEngine::on_search_button_clicked(){
   currentSearchTab=new SearchTab(this);
   tabWidget->addTab(currentSearchTab, pattern);
   all_tab.append(currentSearchTab);
+  tabWidget->setCurrentWidget(currentSearchTab);
   closeTab_button->setEnabled(true);
   // if the pattern is not in the pattern
   if(searchHistory.indexOf(pattern) == -1){
