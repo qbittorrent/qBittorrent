@@ -31,6 +31,7 @@
 #include <QStandardItemModel>
 #include <QHeaderView>
 #include <QMenu>
+#include <QMessageBox>
 
 FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : parent(parent), BTSession(BTSession), nbFinished(0){
   setupUi(this);
@@ -242,10 +243,17 @@ void FinishedTorrents::updateFinishedList(){
     }
     if(h.state() == torrent_status::downloading || (h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking && h.progress() < 1.)) {
       // What are you doing here? go back to download tab!
-      qDebug("Info: a torrent was moved from finished to download tab");
-      deleteTorrent(hash);
-      BTSession->setFinishedTorrent(hash);
-      emit torrentMovedFromFinishedList(hash);
+      int reponse = QMessageBox::question(this, tr("Finished torrent not found"), tr("Would you like to put it put it in the download list ?"), QMessageBox::Yes | QMessageBox::No);
+      if (reponse == QMessageBox::Yes) {
+        qDebug("Info: a torrent was moved from finished to download tab");
+        deleteTorrent(hash);
+        BTSession->setFinishedTorrent(hash);
+        emit torrentMovedFromFinishedList(hash);
+      }
+      else if (reponse == QMessageBox::No) {
+		    qDebug("Deleted from the finished");
+		    BTSession->deleteTorrent(hash, true);
+      }
       continue;
     }
     if(h.state() == torrent_status::checking_files){
