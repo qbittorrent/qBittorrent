@@ -66,6 +66,7 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     void downloadSelectedItem(const QModelIndex& index);
   protected slots:
     // Search slots
+    void on_tab_changed(int t);//to prevent the use of the download button when the tab is empty
     void on_search_button_clicked();
     void on_stop_search_button_clicked();
     void on_closeTab_button_clicked();

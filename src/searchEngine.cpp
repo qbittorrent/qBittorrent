@@ -56,6 +56,7 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   connect(searchProcess, SIGNAL(started()), this, SLOT(searchStarted()));
   connect(searchProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readSearchOutput()));
   connect(searchProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(searchFinished(int,QProcess::ExitStatus)));
+  connect(tabWidget,SIGNAL(currentChanged(int)),this,SLOT(on_tab_changed(int)));
   searchTimeout = new QTimer(this);
   searchTimeout->setSingleShot(true);
   connect(searchTimeout, SIGNAL(timeout()), this, SLOT(on_stop_search_button_clicked()));
@@ -75,6 +76,19 @@ SearchEngine::~SearchEngine(){
   delete searchProcess;
   delete searchCompleter;
   delete downloader;
+}
+
+void SearchEngine::on_tab_changed(int t)
+{//when we switch from a tab that is not empty to another that is empty the download button 
+	//doesn't have to be available
+	if(t>-1)
+	{//-1 = no more tab
+    if(all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel()->rowCount()) {
+        download_button->setEnabled(true);
+    } else {
+        download_button->setEnabled(false);
+    }
+	}
 }
 
 void SearchEngine::on_enginesButton_clicked() {
@@ -134,8 +148,8 @@ void SearchEngine::on_search_button_clicked(){
   }
   // Tab Addition
   currentSearchTab=new SearchTab(this);
-  tabWidget->addTab(currentSearchTab, pattern);
   all_tab.append(currentSearchTab);
+  tabWidget->addTab(currentSearchTab, pattern);
   tabWidget->setCurrentWidget(currentSearchTab);
   closeTab_button->setEnabled(true);
   // if the pattern is not in the pattern
