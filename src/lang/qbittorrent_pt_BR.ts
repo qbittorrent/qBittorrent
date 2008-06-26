@@ -4119,7 +4119,7 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1059"/>
-        <source>Filters (*.dat *.p2p *.p2b)</source>
+        <source>Filters</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -4309,7 +4309,12 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <location filename="../options_imp.cpp" line="1059"/>
         <source>Filters (*.dat *.p2p *.p2b)</source>
-        <translation>Filtry (*.dat *.p2p *.p2b)</translation>
+        <translation type="obsolete">Filtry (*.dat *.p2p *.p2b)</translation>
+    </message>
+    <message>
+        <location filename="../options_imp.cpp" line="1059"/>
+        <source>Filters</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
