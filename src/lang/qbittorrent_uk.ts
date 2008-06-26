@@ -1069,54 +1069,54 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>DownloadingTorrents</name>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="55"/>
+        <location filename="../downloadingTorrents.cpp" line="53"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="56"/>
+        <location filename="../downloadingTorrents.cpp" line="54"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Розмір</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="57"/>
+        <location filename="../downloadingTorrents.cpp" line="55"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation>Прогрес</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="58"/>
+        <location filename="../downloadingTorrents.cpp" line="56"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Швидкість зкачкування</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="59"/>
+        <location filename="../downloadingTorrents.cpp" line="57"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Швидкість закачування</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="60"/>
+        <location filename="../downloadingTorrents.cpp" line="58"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
         <translation>Сідерів/Лічерів</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="61"/>
+        <location filename="../downloadingTorrents.cpp" line="59"/>
         <source>Ratio</source>
         <translation>Коефіціент</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="62"/>
+        <location filename="../downloadingTorrents.cpp" line="60"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation>ETA</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="115"/>
+        <location filename="../downloadingTorrents.cpp" line="113"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
         <translation>qBittorrent %1 запущено.</translation>
@@ -1127,73 +1127,73 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Будьте обережні, розповсюдження захищеного матеріалу без дозволу є протизаконним.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="140"/>
+        <location filename="../downloadingTorrents.cpp" line="138"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;було заблоковано&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="226"/>
+        <location filename="../downloadingTorrents.cpp" line="224"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Було відмовлено у швидкому відновленні данних для torrent&apos;у %1, перевіряю знову...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="230"/>
+        <location filename="../downloadingTorrents.cpp" line="228"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Пошук url роздачі невдалий для url: %1, повідомлення: %2</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="863"/>
+        <location filename="../downloadingTorrents.cpp" line="832"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; додано до списку завантажень.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="865"/>
+        <location filename="../downloadingTorrents.cpp" line="834"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; відновлено. (швидке відновлення)</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="873"/>
+        <location filename="../downloadingTorrents.cpp" line="842"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; вже є у списку завантажень.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="877"/>
+        <location filename="../downloadingTorrents.cpp" line="846"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Неможливо декодувати торрент-файл: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="878"/>
+        <location filename="../downloadingTorrents.cpp" line="847"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Цей файл пошкоджено, або він не є торрент-файлом.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="892"/>
+        <location filename="../downloadingTorrents.cpp" line="861"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Не можу слухати по жодному з вказаних портів.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="916"/>
+        <location filename="../downloadingTorrents.cpp" line="885"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Завантажуєсться &apos;%1&apos;, будь-ласка зачекайте...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="327"/>
+        <location filename="../downloadingTorrents.cpp" line="325"/>
         <source>Hide or Show Column</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="206"/>
+        <location filename="../downloadingTorrents.cpp" line="204"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="210"/>
+        <location filename="../downloadingTorrents.cpp" line="208"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1233,13 +1233,13 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Закінчено</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="41"/>
+        <location filename="../FinishedTorrents.cpp" line="42"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="42"/>
+        <location filename="../FinishedTorrents.cpp" line="43"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Розмір</translation>
@@ -1251,7 +1251,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Прогрес</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="43"/>
+        <location filename="../FinishedTorrents.cpp" line="44"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Швидкість віддачі</translation>
@@ -1286,26 +1286,36 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Немає</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="45"/>
+        <location filename="../FinishedTorrents.cpp" line="46"/>
         <source>Ratio</source>
         <translation>Коефіціент</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="44"/>
+        <location filename="../FinishedTorrents.cpp" line="45"/>
         <source>Leechers</source>
         <comment>i.e: full/partial sources</comment>
         <translation type="unfinished">Лічери</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="400"/>
+        <location filename="../FinishedTorrents.cpp" line="408"/>
         <source>Hide or Show Column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FinishedTorrents.cpp" line="246"/>
+        <source>Incomplete torrent in seeding list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FinishedTorrents.cpp" line="246"/>
+        <source>It appears that the state of &apos;%1&apos; torrent changed from &apos;seeding&apos; to &apos;downloading&apos;. Would you like to move it back to download list? (otherwise the torrent will simply be deleted)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="648"/>
+        <location filename="../GUI.cpp" line="676"/>
         <source>Open Torrent Files</source>
         <translation>Відкрити Torrent-файли</translation>
     </message>
@@ -1325,17 +1335,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Ви впевнені що хочете видалити всі файли зі списку завантажень?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="758"/>
+        <location filename="../GUI.cpp" line="786"/>
         <source>&amp;Yes</source>
         <translation>&amp;Так</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="758"/>
+        <location filename="../GUI.cpp" line="786"/>
         <source>&amp;No</source>
         <translation>&amp;Ні</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="750"/>
+        <location filename="../GUI.cpp" line="778"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>Ви впевнені що хочете видалити вибрані файли зі списку завантажень?</translation>
     </message>
@@ -1350,7 +1360,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">почато</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1039"/>
+        <location filename="../GUI.cpp" line="1067"/>
         <source>Finished</source>
         <translation>Закінчено</translation>
     </message>
@@ -1405,7 +1415,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Неможливо створити директорію:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="649"/>
+        <location filename="../GUI.cpp" line="677"/>
         <source>Torrent Files</source>
         <translation>Torrent файли</translation>
     </message>
@@ -1477,12 +1487,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1269"/>
+        <location filename="../GUI.cpp" line="1299"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="756"/>
+        <location filename="../GUI.cpp" line="784"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Ви впевнені? -- qBittorrent</translation>
     </message>
@@ -1810,7 +1820,7 @@ Please close the other one first.</source>
         <translation type="obsolete">Ви впевнені, що хочете видалити вибрані завантаження зі списку та з вінчестера?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="287"/>
+        <location filename="../GUI.cpp" line="315"/>
         <source>Download finished</source>
         <translation>Завантаження завершено</translation>
     </message>
@@ -1826,23 +1836,23 @@ Please close the other one first.</source>
         <translation type="obsolete">Пошуковик</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="840"/>
+        <location filename="../GUI.cpp" line="868"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1292"/>
+        <location filename="../GUI.cpp" line="1322"/>
         <source>Connection status:</source>
         <translation>Статус з&apos;єднання:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1292"/>
+        <location filename="../GUI.cpp" line="1322"/>
         <source>Offline</source>
         <translation>Офлайн</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1292"/>
+        <location filename="../GUI.cpp" line="1322"/>
         <source>No peers found...</source>
         <translation>Не знайдено пірів...</translation>
     </message>
@@ -1907,13 +1917,13 @@ Please close the other one first.</source>
         <translation type="obsolete">qBittorrent %1 запущено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1272"/>
+        <location filename="../GUI.cpp" line="1302"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Швидкість прийому: %1 КіБ/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1275"/>
+        <location filename="../GUI.cpp" line="1305"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Швидкість віддачі: %1 КіБ/с</translation>
@@ -1937,12 +1947,12 @@ Please close the other one first.</source>
         <translation type="obsolete">Заглохло</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="543"/>
+        <location filename="../GUI.cpp" line="571"/>
         <source>Are you sure you want to quit?</source>
         <translation>Ви впевнені, що хочете вийти?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="771"/>
+        <location filename="../GUI.cpp" line="799"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; було видалено.</translation>
@@ -1984,12 +1994,12 @@ Please close the other one first.</source>
         <translation type="obsolete">Прослуховую порт: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1125"/>
+        <location filename="../GUI.cpp" line="1153"/>
         <source>All downloads were paused.</source>
         <translation>Всі завантаження були призупинені.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1151"/>
+        <location filename="../GUI.cpp" line="1179"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos; призупинено.</translation>
@@ -2001,30 +2011,30 @@ Please close the other one first.</source>
         <translation type="obsolete">З&apos;єднуюсь...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1184"/>
+        <location filename="../GUI.cpp" line="1212"/>
         <source>All downloads were resumed.</source>
         <translation>Всі завантаження було відновлено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1210"/>
+        <location filename="../GUI.cpp" line="1238"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos; відновлено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="287"/>
+        <location filename="../GUI.cpp" line="315"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Завантаження &apos;%1&apos; закінчилось.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="296"/>
+        <location filename="../GUI.cpp" line="324"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Помилка вводу/виводу</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="296"/>
+        <location filename="../GUI.cpp" line="324"/>
         <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
         <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
         <translation>Сталася помилка під час запису чи зчитування %1. Можливо диск заповнено, завантаження було призупинено</translation>
@@ -2036,23 +2046,23 @@ Please close the other one first.</source>
         <translation type="obsolete">Сталася помилка (заповнено диск?), &apos;%1&apos; призупинено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1288"/>
+        <location filename="../GUI.cpp" line="1318"/>
         <source>Connection Status:</source>
         <translation>Статус з&apos;єднання:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1283"/>
+        <location filename="../GUI.cpp" line="1313"/>
         <source>Online</source>
         <translation>Онлайн</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1288"/>
+        <location filename="../GUI.cpp" line="1318"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Захищено фаєрволом?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1288"/>
+        <location filename="../GUI.cpp" line="1318"/>
         <source>No incoming connections...</source>
         <translation>Немає вхідних з&apos;єднань...</translation>
     </message>
@@ -2084,66 +2094,66 @@ Please close the other one first.</source>
         <translation type="obsolete">Завантажую &apos;%1&apos;, будь-ласка зачекайте...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="308"/>
+        <location filename="../GUI.cpp" line="336"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Сталася помилка (заповнено диск?), &apos;%1&apos; призупинено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="155"/>
+        <location filename="../GUI.cpp" line="157"/>
         <source>Search</source>
         <translation>Пошук</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="159"/>
+        <location filename="../GUI.cpp" line="161"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="867"/>
+        <location filename="../GUI.cpp" line="895"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent прив&apos;язаний до порту: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="966"/>
+        <location filename="../GUI.cpp" line="994"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Підтримка DHT (Увімкнена), порт: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="972"/>
+        <location filename="../GUI.cpp" line="1000"/>
         <source>DHT support [OFF]</source>
         <translation>Підтримка DHT (Вимкнена)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="976"/>
+        <location filename="../GUI.cpp" line="1004"/>
         <source>PeX support [ON]</source>
         <translation>Підтримка PeX (Увімкнена)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="980"/>
+        <location filename="../GUI.cpp" line="1008"/>
         <source>PeX support [OFF]</source>
         <translation>Підтримка PeX (Вимкнена)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="544"/>
+        <location filename="../GUI.cpp" line="572"/>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Список завантажень не порожній.
 Ви впевнені, що хочете вийти з qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1034"/>
+        <location filename="../GUI.cpp" line="1062"/>
         <source>Downloads</source>
         <translation>Завантаження</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="757"/>
+        <location filename="../GUI.cpp" line="785"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
         <translation>Ви впевнені що хочете видалити вибрані пункти зі списку завершених завантажень?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="889"/>
+        <location filename="../GUI.cpp" line="917"/>
         <source>UPnP support [ON]</source>
         <translation>Підтримка UNnP (Увімкнена)</translation>
     </message>
@@ -2153,17 +2163,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Будьте обережні, ділення захищеним матеріалом без дозволу є протизаконним.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1000"/>
+        <location filename="../GUI.cpp" line="1028"/>
         <source>Encryption support [ON]</source>
         <translation>Підтримка шифрування (Увімкнена)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1005"/>
+        <location filename="../GUI.cpp" line="1033"/>
         <source>Encryption support [FORCED]</source>
         <translation>Підтримка шифрування (Примусова)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1010"/>
+        <location filename="../GUI.cpp" line="1038"/>
         <source>Encryption support [OFF]</source>
         <translation>Підтримка шифрування (Вимкнена)</translation>
     </message>
@@ -2179,13 +2189,13 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">КоеКоефіціент</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="315"/>
+        <location filename="../GUI.cpp" line="343"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="317"/>
+        <location filename="../GUI.cpp" line="345"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
         <translation>Alt+2</translation>
@@ -2197,18 +2207,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Alt+3, Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="323"/>
+        <location filename="../GUI.cpp" line="351"/>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="391"/>
+        <location filename="../GUI.cpp" line="419"/>
         <source>Url download error</source>
         <translation>Помилка завантаження url</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="391"/>
+        <location filename="../GUI.cpp" line="419"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Неможливо завантажити файл з url: %1, причина: %2.</translation>
     </message>
@@ -2218,17 +2228,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Було відмовлено у швидкому відновленні данних для torrent&apos;у %1, перевіряю знову...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="690"/>
+        <location filename="../GUI.cpp" line="718"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
         <translation>Ви впевнені що хочете видалити вибрані пункти зі списку завантажень та зі жорсткого диску?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="697"/>
+        <location filename="../GUI.cpp" line="725"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
         <translation>Ви впевнені що хочете видалити вибрані пункти зі списку завершених завантажень та зі жорсткого диску?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="711"/>
+        <location filename="../GUI.cpp" line="739"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos; було назавжди видалено.</translation>
@@ -2239,50 +2249,50 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Пошук url роздачі невдалий для url: %1, повідомлення: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="319"/>
+        <location filename="../GUI.cpp" line="347"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="321"/>
+        <location filename="../GUI.cpp" line="349"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="892"/>
+        <location filename="../GUI.cpp" line="920"/>
         <source>UPnP support [OFF]</source>
         <translation>Підтримка UPnP [Вимкнено]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="897"/>
+        <location filename="../GUI.cpp" line="925"/>
         <source>NAT-PMP support [ON]</source>
         <translation>Підтримка NAT-PMP [Увімкнено]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="900"/>
+        <location filename="../GUI.cpp" line="928"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>Підтримка NAT-PMP [Вимкнено]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="985"/>
+        <location filename="../GUI.cpp" line="1013"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Пошук Локальних Пірів [Увімкнено]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="988"/>
+        <location filename="../GUI.cpp" line="1016"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Пошук Локальних Пірів [Вимкнено]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="717"/>
+        <location filename="../GUI.cpp" line="745"/>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
         <comment>%1 is a file name</comment>
         <translation>&apos;%1&apos; було видалено, тому що його коефіціент досяг максимального значення встановленого вами.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1248"/>
+        <location filename="../GUI.cpp" line="1279"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Прийом: %2КіБ/с, Віддача: %3КіБ/с)</translation>
@@ -2296,9 +2306,9 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Лог:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="../MainWindow.ui" line="52"/>
         <source>Total DL Speed:</source>
-        <translation type="obsolete">Загальна DL швидкість:</translation>
+        <translation type="unfinished">Загальна DL швидкість:</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -2306,9 +2316,9 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Кб/с</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="../MainWindow.ui" line="156"/>
         <source>Total UP Speed:</source>
-        <translation type="obsolete">Загальна UP швидкість:</translation>
+        <translation type="unfinished">Загальна UP швидкість:</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -2351,67 +2361,67 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">&amp;Опції</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="39"/>
+        <location filename="../MainWindow.ui" line="220"/>
         <source>&amp;Edit</source>
         <translation>&amp;Редагувати</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="69"/>
+        <location filename="../MainWindow.ui" line="250"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="54"/>
+        <location filename="../MainWindow.ui" line="235"/>
         <source>&amp;Help</source>
         <translation>&amp;Допомога</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="126"/>
+        <location filename="../MainWindow.ui" line="315"/>
         <source>Open</source>
         <translation>Відкрити</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="131"/>
+        <location filename="../MainWindow.ui" line="320"/>
         <source>Exit</source>
         <translation>Вихід</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="136"/>
+        <location filename="../MainWindow.ui" line="325"/>
         <source>Preferences</source>
         <translation>Налаштування</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="141"/>
+        <location filename="../MainWindow.ui" line="330"/>
         <source>About</source>
         <translation>Про програму</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="146"/>
+        <location filename="../MainWindow.ui" line="335"/>
         <source>Start</source>
         <translation>Почати</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="151"/>
+        <location filename="../MainWindow.ui" line="340"/>
         <source>Pause</source>
         <translation>Призупинити</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="156"/>
+        <location filename="../MainWindow.ui" line="345"/>
         <source>Delete</source>
         <translation>Видалити</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="161"/>
+        <location filename="../MainWindow.ui" line="350"/>
         <source>Pause All</source>
         <translation>Призупинити всі</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="166"/>
+        <location filename="../MainWindow.ui" line="355"/>
         <source>Start All</source>
         <translation>Почати всі</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="221"/>
+        <location filename="../MainWindow.ui" line="410"/>
         <source>Documentation</source>
         <translation>Документація</translation>
     </message>
@@ -2421,7 +2431,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Видалити всі</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="181"/>
+        <location filename="../MainWindow.ui" line="370"/>
         <source>Torrent Properties</source>
         <translation>Властивості Torrent</translation>
     </message>
@@ -2486,7 +2496,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Пошуковик</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="186"/>
+        <location filename="../MainWindow.ui" line="375"/>
         <source>Download from URL</source>
         <translation>Завантажити з URL</translation>
     </message>
@@ -2501,12 +2511,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Очистити</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="../MainWindow.ui" line="185"/>
         <source>KiB/s</source>
-        <translation type="obsolete">КіБ/с</translation>
+        <translation type="unfinished">КіБ/с</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="191"/>
+        <location filename="../MainWindow.ui" line="380"/>
         <source>Create torrent</source>
         <translation>Створити torrent</translation>
     </message>
@@ -2521,9 +2531,9 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Оновити пошуковий плагін</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="../MainWindow.ui" line="110"/>
         <source>Session ratio: </source>
-        <translation type="obsolete">Коефіціент сесії:</translation>
+        <translation type="unfinished">Коефіціент сесії:</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -2531,37 +2541,37 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Трансфери</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="196"/>
+        <location filename="../MainWindow.ui" line="385"/>
         <source>Preview file</source>
         <translation>Файл перегляду</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="201"/>
+        <location filename="../MainWindow.ui" line="390"/>
         <source>Clear log</source>
         <translation>Очистити лог</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="176"/>
+        <location filename="../MainWindow.ui" line="365"/>
         <source>Delete Permanently</source>
         <translation>Видалити назовсім</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="171"/>
+        <location filename="../MainWindow.ui" line="360"/>
         <source>Visit website</source>
         <translation>Відвідати веб-сайт</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="206"/>
+        <location filename="../MainWindow.ui" line="395"/>
         <source>Report a bug</source>
         <translation>Повідомити про помилку</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="211"/>
+        <location filename="../MainWindow.ui" line="400"/>
         <source>Set upload limit</source>
         <translation>Встановити ліміт віддачі</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="216"/>
+        <location filename="../MainWindow.ui" line="405"/>
         <source>Set download limit</source>
         <translation>Встановити ліміт прийому</translation>
     </message>
@@ -2576,17 +2586,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Фільтер IP</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="226"/>
+        <location filename="../MainWindow.ui" line="415"/>
         <source>Set global download limit</source>
         <translation>Встановити глобальний ліміт прийому</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="231"/>
+        <location filename="../MainWindow.ui" line="420"/>
         <source>Set global upload limit</source>
         <translation>Встановити глобальний ліміт віддачі</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="63"/>
+        <location filename="../MainWindow.ui" line="244"/>
         <source>Options</source>
         <translation>Опції</translation>
     </message>
@@ -2643,17 +2653,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Пошук</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="270"/>
+        <location filename="../rss.ui" line="189"/>
         <source>Delete</source>
         <translation>Видалити</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="275"/>
+        <location filename="../rss.ui" line="194"/>
         <source>Rename</source>
         <translation>Переіменувати</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="280"/>
+        <location filename="../rss.ui" line="199"/>
         <source>Refresh</source>
         <translation>Обновити</translation>
     </message>
@@ -2663,47 +2673,47 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Створити</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="127"/>
+        <location filename="../rss.ui" line="82"/>
         <source>Delete selected streams</source>
         <translation>Видалити вибрані потоки</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="149"/>
+        <location filename="../rss.ui" line="104"/>
         <source>Refresh RSS streams</source>
         <translation>Обновити потоки RSS</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="171"/>
+        <location filename="../rss.ui" line="126"/>
         <source>Add a new RSS stream</source>
         <translation>Додати новий потік RSS</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="227"/>
+        <location filename="../rss.ui" line="169"/>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
         <translation>&lt;b&gt;Новини:&lt;/b&gt; &lt;i&gt;(подвійний клік відкриє посилання у вашому броузері)&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="285"/>
+        <location filename="../rss.ui" line="204"/>
         <source>Add RSS stream</source>
         <translation>Додать потік RSS</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="290"/>
+        <location filename="../rss.ui" line="209"/>
         <source>Refresh all streams</source>
         <translation>Обновити всі потоки</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="78"/>
+        <location filename="../rss.ui" line="42"/>
         <source>RSS streams:</source>
         <translation>Потоки RSS:</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="83"/>
+        <location filename="../rss.ui" line="47"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="295"/>
+        <location filename="../rss.ui" line="214"/>
         <source>Mark all as read</source>
         <translation>Позначити всі як прочитані</translation>
     </message>
@@ -2756,17 +2766,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Ви впевнені що хочете видалити цей потік зі списку?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="271"/>
+        <location filename="../rss_imp.cpp" line="291"/>
         <source>Description:</source>
         <translation>Опис:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="271"/>
+        <location filename="../rss_imp.cpp" line="291"/>
         <source>url:</source>
         <translation>url:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="271"/>
+        <location filename="../rss_imp.cpp" line="291"/>
         <source>Last refresh:</source>
         <translation>Останнє обновлення:</translation>
     </message>
@@ -2819,38 +2829,38 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../searchEngine.cpp" line="51"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation>Ім&apos;я</translation>
+        <translation type="obsolete">Ім&apos;я</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="52"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation>Розмір</translation>
+        <translation type="obsolete">Розмір</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="53"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation>Сідери</translation>
+        <translation type="obsolete">Сідери</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="54"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation>Лічери</translation>
+        <translation type="obsolete">Лічери</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="55"/>
         <source>Search engine</source>
-        <translation>Пошуковик</translation>
+        <translation type="obsolete">Пошуковик</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="259"/>
+        <location filename="../searchEngine.cpp" line="146"/>
         <source>Empty search pattern</source>
         <translation>Пустий шаблон пошуку</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="259"/>
+        <location filename="../searchEngine.cpp" line="146"/>
         <source>Please type a search pattern first</source>
         <translation>Будь-ласка, спочатку введіть шаблон пошуку</translation>
     </message>
@@ -2865,12 +2875,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Ви повинні вибрати хоча б один пошуковик.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="476"/>
+        <location filename="../searchEngine.cpp" line="226"/>
         <source>Results</source>
         <translation>Результати</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="295"/>
+        <location filename="../searchEngine.cpp" line="189"/>
         <source>Searching...</source>
         <translation>Шукаю...</translation>
     </message>
@@ -2921,32 +2931,32 @@ Changelog:
         <translation type="obsolete">Ви вже маєте останню версію пошукового плагіну.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="404"/>
+        <location filename="../searchEngine.cpp" line="298"/>
         <source>Search Engine</source>
         <translation>Пошуковик</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="415"/>
+        <location filename="../searchEngine.cpp" line="309"/>
         <source>Search has finished</source>
         <translation>Пошук закінчено</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="407"/>
+        <location filename="../searchEngine.cpp" line="301"/>
         <source>An error occured during search...</source>
         <translation>Під час пошуку сталася помилка...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="410"/>
+        <location filename="../searchEngine.cpp" line="304"/>
         <source>Search aborted</source>
         <translation>Пошук скасовано</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="413"/>
+        <location filename="../searchEngine.cpp" line="307"/>
         <source>Search returned no results</source>
         <translation>Пошук не дав результів</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="419"/>
+        <location filename="../searchEngine.cpp" line="314"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Результати</translation>
@@ -2962,9 +2972,41 @@ Changelog:
         <translation type="obsolete">Неможливо завантажити пошуковий плагін з url: %1, причина: %2.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="443"/>
+        <location filename="../searchEngine.cpp" line="338"/>
         <source>Unknown</source>
         <translation>Невідомо</translation>
+    </message>
+</context>
+<context>
+    <name>SearchTab</name>
+    <message>
+        <location filename="../SearchTab.cpp" line="50"/>
+        <source>Name</source>
+        <comment>i.e: file name</comment>
+        <translation type="unfinished">Ім&apos;я</translation>
+    </message>
+    <message>
+        <location filename="../SearchTab.cpp" line="51"/>
+        <source>Size</source>
+        <comment>i.e: file size</comment>
+        <translation type="unfinished">Розмір</translation>
+    </message>
+    <message>
+        <location filename="../SearchTab.cpp" line="52"/>
+        <source>Seeders</source>
+        <comment>i.e: Number of full sources</comment>
+        <translation type="unfinished">Сідери</translation>
+    </message>
+    <message>
+        <location filename="../SearchTab.cpp" line="53"/>
+        <source>Leechers</source>
+        <comment>i.e: Number of partial sources</comment>
+        <translation type="unfinished">Лічери</translation>
+    </message>
+    <message>
+        <location filename="../SearchTab.cpp" line="54"/>
+        <source>Search engine</source>
+        <translation type="unfinished">Пошуковик</translation>
     </message>
 </context>
 <context>
@@ -3560,125 +3602,125 @@ Changelog:
     <message>
         <location filename="../download.ui" line="66"/>
         <source>Total DL Speed:</source>
-        <translation>Загальна швидкість зкачування:</translation>
+        <translation type="obsolete">Загальна швидкість зкачування:</translation>
     </message>
     <message>
         <location filename="../download.ui" line="199"/>
         <source>KiB/s</source>
-        <translation>КіБ/с</translation>
+        <translation type="obsolete">КіБ/с</translation>
     </message>
     <message>
         <location filename="../download.ui" line="124"/>
         <source>Session ratio: </source>
-        <translation>Коефіціент сесії:</translation>
+        <translation type="obsolete">Коефіціент сесії:</translation>
     </message>
     <message>
         <location filename="../download.ui" line="170"/>
         <source>Total UP Speed:</source>
-        <translation>Загальна швидкість закачування:</translation>
+        <translation type="obsolete">Загальна швидкість закачування:</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="264"/>
+        <location filename="../download.ui" line="75"/>
         <source>Log</source>
         <translation>Лог</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="305"/>
+        <location filename="../download.ui" line="115"/>
         <source>IP filter</source>
         <translation>Фільтр IP</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="340"/>
+        <location filename="../download.ui" line="141"/>
         <source>Start</source>
         <translation>Почати</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="345"/>
+        <location filename="../download.ui" line="146"/>
         <source>Pause</source>
         <translation>Призупинити</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="350"/>
+        <location filename="../download.ui" line="151"/>
         <source>Delete</source>
         <translation>Видалити</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="355"/>
+        <location filename="../download.ui" line="156"/>
         <source>Clear</source>
         <translation>Очистити</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="360"/>
+        <location filename="../download.ui" line="161"/>
         <source>Preview file</source>
         <translation>Файл попереднього перегляду</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="365"/>
+        <location filename="../download.ui" line="166"/>
         <source>Set upload limit</source>
         <translation>Встановити ліміт закачування</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="370"/>
+        <location filename="../download.ui" line="171"/>
         <source>Set download limit</source>
         <translation>Встановити ліміт зкачування</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="375"/>
+        <location filename="../download.ui" line="176"/>
         <source>Delete Permanently</source>
         <translation>Видалити назавжди</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="380"/>
+        <location filename="../download.ui" line="181"/>
         <source>Torrent Properties</source>
         <translation>Властивості торенту</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="388"/>
+        <location filename="../download.ui" line="190"/>
         <source>Open destination folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../download.ui" line="393"/>
+        <location filename="../download.ui" line="195"/>
         <source>Name</source>
         <translation type="unfinished">Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="398"/>
+        <location filename="../download.ui" line="200"/>
         <source>Size</source>
         <translation type="unfinished">Розмір</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="403"/>
+        <location filename="../download.ui" line="205"/>
         <source>Progress</source>
         <translation type="unfinished">Прогрес</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="408"/>
+        <location filename="../download.ui" line="210"/>
         <source>DLSpeed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../download.ui" line="413"/>
+        <location filename="../download.ui" line="215"/>
         <source>UpSpeed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../download.ui" line="418"/>
+        <location filename="../download.ui" line="220"/>
         <source>Seeds/Leechs</source>
         <translation type="unfinished">Сідерів/Лічерів</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="423"/>
+        <location filename="../download.ui" line="225"/>
         <source>Ratio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../download.ui" line="428"/>
+        <location filename="../download.ui" line="230"/>
         <source>ETA</source>
         <translation type="unfinished">ETA</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="436"/>
+        <location filename="../download.ui" line="239"/>
         <source>Buy it</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4626,7 +4668,7 @@ However, those plugins were disabled.</source>
 <context>
     <name>search_engine</name>
     <message>
-        <location filename="../search.ui" line="98"/>
+        <location filename="../search.ui" line="90"/>
         <source>Search</source>
         <translation>Пошук</translation>
     </message>
@@ -4636,39 +4678,39 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Пошуковики</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="53"/>
+        <location filename="../search.ui" line="44"/>
         <source>Search Pattern:</source>
         <translation>Шаблон пошуку:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="114"/>
+        <location filename="../search.ui" line="106"/>
         <source>Stop</source>
         <translation>Зупинити</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="149"/>
+        <location filename="../search.ui" line="141"/>
         <source>Status:</source>
         <translation>Статус:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="179"/>
+        <location filename="../search.ui" line="171"/>
         <source>Stopped</source>
         <translation>Зупинено</translation>
     </message>
     <message>
         <location filename="../search.ui" line="252"/>
         <source>Results:</source>
-        <translation>Результати:</translation>
+        <translation type="obsolete">Результати:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="319"/>
+        <location filename="../search.ui" line="215"/>
         <source>Download</source>
         <translation>Завантажити</translation>
     </message>
     <message>
         <location filename="../search.ui" line="329"/>
         <source>Clear</source>
-        <translation>Очистити</translation>
+        <translation type="obsolete">Очистити</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>
@@ -4676,9 +4718,14 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Оновити пошуковий плагін</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="121"/>
+        <location filename="../search.ui" line="113"/>
         <source>Search engines...</source>
         <translation>Пошуковики...</translation>
+    </message>
+    <message>
+        <location filename="../search.ui" line="225"/>
+        <source>Close tab</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
