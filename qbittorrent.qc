@@ -6,7 +6,7 @@
   <dep type='qt4'>
     <required/>
   </dep>
-  <dep type='libtorrent'>
+  <dep type='libtorrent-rasterbar'>
     <required/>
   </dep>
   <dep type='libboost'>

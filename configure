@@ -18,9 +18,11 @@ Main options:
   --help              This help text.
 
 Dependency options:
-  --with-libtorrent-inc=[path]            Path to libtorrent include files
-  --with-libtorrent-lib=[path]            Path to libtorrent library files
-  --with-libtorrent-static-lib=[path]     Path to libtorrent .a file
+  --with-libtorrent-inc=[path]            Path to libtorrent-rasterbar include
+                                         files
+  --with-libtorrent-lib=[path]            Path to libtorrent-rasterbar library
+                                         files
+  --with-libtorrent-static-lib=[path]     Path to libtorrent-rasterbar .a file
   --with-libboost-inc=[path]              Path to libboost include files
   --with-libcurl-inc=[path]               Path to libcurl include files
   --with-libcurl-lib=[path]               Path to libcurl library files
@@ -357,21 +359,21 @@ public:
 		return(QT_VERSION >= 0x040300);
 	}
 };
-#line 1 "libtorrent.qcm"
+#line 1 "libtorrent-rasterbar.qcm"
 /*
 -----BEGIN QCMOD-----
-name: libtorrent
-arg: with-libtorrent-inc=[path], Path to libtorrent include files
-arg: with-libtorrent-lib=[path], Path to libtorrent library files
-arg: with-libtorrent-static-lib=[path], Path to libtorrent .a file
+name: libtorrent-rasterbar
+arg: with-libtorrent-inc=[path], Path to libtorrent-rasterbar include files
+arg: with-libtorrent-lib=[path], Path to libtorrent-rasterbar library files
+arg: with-libtorrent-static-lib=[path], Path to libtorrent-rasterbar .a file
 -----END QCMOD-----
 */
-class qc_libtorrent : public ConfObj
+class qc_libtorrent_rasterbar : public ConfObj
 {
 public:
-	qc_libtorrent(Conf *c) : ConfObj(c) {}
-	QString name() const { return "libtorrent >= 0.13"; }
-	QString shortname() const { return "libtorrent"; }
+	qc_libtorrent_rasterbar(Conf *c) : ConfObj(c) {}
+	QString name() const { return "libtorrent-rasterbar >= 0.13"; }
+	QString shortname() const { return "libtorrent-rasterbar"; }
 	bool exec(){
         	QString s;
 		s = conf->getenv("QC_WITH_LIBTORRENT_INC");
@@ -405,7 +407,7 @@ public:
 
 		s = conf->getenv("QC_WITH_LIBTORRENT_LIB");
 		if(!s.isEmpty()) {
-      			if(!conf->checkLibrary(s, "torrent")) {
+      			if(!conf->checkLibrary(s, "torrent-rasterbar")) {
 			        return false;
 			}
       			conf->addLib(QString("-L") + s);
@@ -417,7 +419,7 @@ public:
 			sl << "/usr/local/lib64/";
 			bool found = false;
 			foreach(s, sl){
-				if(conf->checkLibrary(s, "torrent")){
+				if(conf->checkLibrary(s, "torrent-rasterbar")){
 					found = true;
 					break;
 				}
@@ -705,7 +707,7 @@ cat >$1/modules_new.cpp <<EOT
     o = new qc_qt4(conf);
     o->required = true;
     o->disabled = false;
-    o = new qc_libtorrent(conf);
+    o = new qc_libtorrent_rasterbar(conf);
     o->required = true;
     o->disabled = false;
     o = new qc_libboost(conf);
