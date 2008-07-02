@@ -978,6 +978,7 @@ void GUI::configureSession(bool deleteOptions) {
   } else {
     sessionSettings.user_agent = "qBittorrent "VERSION;
   }
+  sessionSettings.upnp_ignore_nonrouters = true;
   BTSession->setSessionSettings(sessionSettings);
   // Bittorrent
   // * Max connections limit
