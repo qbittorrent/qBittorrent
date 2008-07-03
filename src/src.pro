@@ -153,7 +153,7 @@ HEADERS += GUI.h misc.h options_imp.h about_imp.h \
            httpserver.h httpconnection.h \
            httprequestparser.h httpresponsegenerator.h \
            json.h eventmanager.h filterParserThread.h \
-           TrackersAdditionDlg.h searchTab.h DBUSAdaptor.h
+           TrackersAdditionDlg.h searchTab.h
 FORMS += MainWindow.ui options.ui about.ui \
          properties.ui createtorrent.ui preview.ui \
          login.ui downloadFromURL.ui addTorrentDialog.ui \
