@@ -18,6 +18,7 @@
     - BUGFIX: Do not display seeds number in seeding list (always 0)
     - BUGFIX: Threadified IP filter file parser to avoid GUI freeze
     - BUGFIX: Ask if we want to redownload if content was deleted from hard drive
+    - BUGFIX: Added missing copyright/licensing information for some files
     - COSMETIC: Do not display progress bar in seeding list (always 100%)
     - COSMETIC: Added a progress bar for torrent creation
     - COSMETIC: Display tracker errors in a cleaner way
