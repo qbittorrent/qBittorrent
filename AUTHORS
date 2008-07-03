@@ -7,8 +7,9 @@ Contributors:
 * Grigis Gaëtan <cipher16@gmail.com>
 
 Images Authors:
-* src/Icons/skin: Mateusz Tobola <tobejodok@qbittorrent.org> (GPLv2 license) -> see src/Icons/copyright
-* src/Icons/flags: http://www.openclipart.org (creative commons Public Domain Dedication license) -> see src/Icons/copyright
+* src/Icons/skin: Mateusz Tobola <tobejodok@qbittorrent.org> (GPLv2 license) -> see src/Icons/skin/copyright
+* src/menuicons/YYxYY/*.png: Mateusz Tobola <tobejodok@qbittorrent.org> (GPLv2 license) -> see src/Icons/skin/copyright
+* src/Icons/flags: http://www.openclipart.org (creative commons Public Domain Dedication license) -> see src/Icons/flags/copyright
 * src/Icons/*.png: Gnome icon theme (GPLv2 license) -> see src/Icons/copyright
 
 Translations authors:
