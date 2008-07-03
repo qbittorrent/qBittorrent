@@ -1,1 +1,0 @@
-shlibs:Depends=libboost-date-time1.33.1, libboost-filesystem1.33.1, libboost-thread1.33.1, libc6 (>= 2.3.4-1), libcurl3 (>= 7.15.0-1), libgcc1 (>= 1:4.0.2), libqt4-core (>= 4.1.2), libqt4-gui (>= 4.1.2), libstdc++6 (>= 4.0.2-4), libx11-6, libxext6, zlib1g (>= 1:1.2.1)

@@ -16,6 +16,8 @@ DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=1
 DEFINES += VERSION_BUGFIX=0
 
+QMAKE_LFLAGS += -Wl,--as-needed
+
 contains(DEBUG_MODE, 1){
     CONFIG += debug
     CONFIG -= release
@@ -42,6 +44,9 @@ contains(DEBUG_MODE, 0){
         target.path = $$BINDIR
         INSTALLS += target
     }
+    
+    # DBUS
+    QT += dbus
 
     # Man page
     man.files = ../doc/qbittorrent.1
@@ -148,7 +153,7 @@ HEADERS += GUI.h misc.h options_imp.h about_imp.h \
            httpserver.h httpconnection.h \
            httprequestparser.h httpresponsegenerator.h \
            json.h eventmanager.h filterParserThread.h \
-           TrackersAdditionDlg.h searchTab.h
+           TrackersAdditionDlg.h searchTab.h DBUSAdaptor.h
 FORMS += MainWindow.ui options.ui about.ui \
          properties.ui createtorrent.ui preview.ui \
          login.ui downloadFromURL.ui addTorrentDialog.ui \
