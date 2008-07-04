@@ -56,7 +56,7 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   connect(searchProcess, SIGNAL(started()), this, SLOT(searchStarted()));
   connect(searchProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readSearchOutput()));
   connect(searchProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(searchFinished(int,QProcess::ExitStatus)));
-  connect(tabWidget,SIGNAL(currentChanged(int)),this,SLOT(on_tab_changed(int)));
+  connect(tabWidget, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
   searchTimeout = new QTimer(this);
   searchTimeout->setSingleShot(true);
   connect(searchTimeout, SIGNAL(timeout()), this, SLOT(on_stop_search_button_clicked()));
@@ -78,7 +78,7 @@ SearchEngine::~SearchEngine(){
   delete downloader;
 }
 
-void SearchEngine::on_tab_changed(int t)
+void SearchEngine::tab_changed(int t)
 {//when we switch from a tab that is not empty to another that is empty the download button 
 	//doesn't have to be available
 	if(t>-1)
