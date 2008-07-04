@@ -25,6 +25,21 @@ Images Authors:
   copyright: Mateusz Tobola <tobejodok@qbittorrent.org>
   license: GPLv2
 
+* file: src/search_engine/engines/btjunkie.png
+  copyright: Downloaded from btjunkie.org
+
+* file: src/search_engine/engines/isohunt.png
+  copyright: Downloaded from isohunt.com
+
+* file: src/search_engine/engines/mininova.png
+  copyright: Downloaded from mininova.org
+
+* file: src/search_engine/engines/piratebay.png
+  copyright: Downloaded from thepiratebay.org
+
+* file: src/search_engine/engines/torrentreactor.png
+  copyright: Downloaded from torrentreactor.net
+
 Translations authors:
 * files: src/lang/*.ts
   copyright:
