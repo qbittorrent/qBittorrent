@@ -1,0 +1,70 @@
+/*
+-----BEGIN QCMOD-----
+name: libtorrent-rasterbar
+arg: with-libtorrent-inc=[path], Path to libtorrent-rasterbar include files
+arg: with-libtorrent-lib=[path], Path to libtorrent-rasterbar library files
+arg: with-libtorrent-static-lib=[path], Path to libtorrent-rasterbar .a file
+-----END QCMOD-----
+*/
+class qc_libtorrent_rasterbar : public ConfObj
+{
+public:
+	qc_libtorrent_rasterbar(Conf *c) : ConfObj(c) {}
+	QString name() const { return "libtorrent-rasterbar >= 0.13"; }
+	QString shortname() const { return "libtorrent-rasterbar"; }
+	bool exec(){
+        	QString s;
+		s = conf->getenv("QC_WITH_LIBTORRENT_INC");
+		if(!s.isEmpty()) {
+			if(!conf->checkHeader(s, "libtorrent/lsd.hpp")) {
+				return false;
+      			}
+		}else{
+			QStringList sl;
+			sl << "/usr/include";
+			sl << "/usr/local/include";
+			bool found = false;
+			foreach(s, sl){
+				if(conf->checkHeader(s, "libtorrent/lsd.hpp")){
+					found = true;
+					break;
+				}
+			}
+			if(!found) {
+				return false;
+          		}
+		}
+		conf->addIncludePath(s);
+		conf->addIncludePath(s+QDir::separator()+"libtorrent");
+
+		s = conf->getenv("QC_WITH_LIBTORRENT_STATIC_LIB");
+		if(!s.isEmpty() && QFile::exists(s) && s.endsWith(".a")){
+			conf->addLib(s);
+			return true;
+		}
+
+		s = conf->getenv("QC_WITH_LIBTORRENT_LIB");
+		if(!s.isEmpty()) {
+      			if(!conf->checkLibrary(s, "torrent-rasterbar")) {
+			        return false;
+			}
+      			conf->addLib(QString("-L") + s);
+		}else{
+			QStringList sl;
+			sl << "/usr/lib/";
+			sl << "/usr/lib64/";
+			sl << "/usr/local/lib/";
+			sl << "/usr/local/lib64/";
+			bool found = false;
+			foreach(s, sl){
+				if(conf->checkLibrary(s, "torrent-rasterbar")){
+					found = true;
+					break;
+				}
+			}
+			if(!found) return false;
+			conf->addLib(QString("-L") + s);
+		}
+		return true;
+	}
+};
