@@ -7,10 +7,50 @@ Contributors:
 * Grigis Gaëtan <cipher16@gmail.com>
 
 Images Authors:
-* src/Icons/skin: Mateusz Tobola <tobejodok@qbittorrent.org> (GPLv2 license) -> see src/Icons/skin/copyright
-* src/menuicons/YYxYY/*.png: Mateusz Tobola <tobejodok@qbittorrent.org> (GPLv2 license) -> see src/Icons/skin/copyright
-* src/Icons/flags: http://www.openclipart.org (creative commons Public Domain Dedication license) -> see src/Icons/flags/copyright
-* src/Icons/*.png: Gnome icon theme (GPLv2 license) -> see src/Icons/copyright
+* files: src/Icons/*.png
+  copyright: Gnome Icon Theme
+  license: GPLv2
+  url: http://ftp.acc.umu.se/pub/GNOME/sources/gnome-icon-theme
+
+* files: src/Icons/flags/*.png
+  copyright: Open Clip Art Library
+  license: Creative Commons Public Domain Dedication
+  url: http://www.openclipart.org
+
+* files: src/Icons/skins/*.png
+  copyright: Mateusz Tobola <tobejodok@qbittorrent.org>
+  license: GPLv2
+
+* files: src/menuicons/YYxYY/*.png
+  copyright: Mateusz Tobola <tobejodok@qbittorrent.org>
+  license: GPLv2
 
 Translations authors:
-* src/lang/*.ts: see src/lang/copyright
+* files: src/lang/*.ts
+  copyright:
+  - Brazilian: Nick Marinho (nickmarinho@gmail.com)
+  - Bulgarian: Tsvetan & Boiko Bankov (emerge_life@users.sourceforge.net)
+  - Catalan: Gekko Dam Beer (gekko04@users.sourceforge.net)
+  - Chinese (Simplified): Guo Yue (guoyue0418@hotmail.com)
+  - Danish: Mathias Nielsen (comoneo@gmail.com)
+  - Dutch: Joost Schipper (heavyjoost@users.sourceforge.net)
+  - English: Christophe Dumez (chris@qbittorrent.org)
+  - Finnish: Niklas Laxström (nikerabbit@users.sourceforge.net)
+  - French: Christophe Dumez (chris@qbittorrent.org)
+  - German: Niels Hoffmann (zentralmaschine@users.sourceforge.net)
+  - Greek: Tsvetan Bankov (emerge_life@users.sourceforge.net)
+  - Hungarian: Majoros Péter (majoros.j.p@t-online.hu)
+  - Italian: Mirko Ferrari (mirkoferrari@gmail.com) and Ferraro Luciano (luciano.ferraro@gmail.com)
+  - Japanese: Nardog (nardog@e2umail.com)
+  - Korean: Jin Woo Sin (jin828sin@users.sourceforge.net)
+  - Norwegian: Lars-Erik Labori (hamil@users.sourceforge.net)
+  - Polish: Jarek Smieja (ajep9691@wp.pl)
+  - Portuguese: Nick Marinho (nickmarinho@gmail.com)
+  - Romanian: Obada Denis (obadadenis@users.sourceforge.net)
+  - Russian: Nick Khazov (m2k3d0n at users.sourceforge.net)
+  - Slovak:  helix84
+  - Spanish: Vicente Raul Plata Fonseca (silverxnt@users.sourceforge.net)
+  - Swedish: Daniel Nylander (po@danielnylander.se)
+  - Turkish: Erdem Bingöl (erdem84@gmail.com)
+  - Ukrainian: Andrey Shpachenko (masterfix@users.sourceforge.net)
+  license: GPLv2
