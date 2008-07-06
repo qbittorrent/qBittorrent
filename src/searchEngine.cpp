@@ -48,7 +48,12 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   searchCompleter = new QCompleter(searchHistory, this);
   searchCompleter->setCaseSensitivity(Qt::CaseInsensitive);
   search_pattern->setCompleter(searchCompleter);
-
+  // Add close tab button
+  closeTab_button = new QPushButton();
+  closeTab_button->setIcon(QIcon(QString::fromUtf8(":/Icons/gnome-shutdown.png")));
+  closeTab_button->setFlat(true);
+  connect(closeTab_button, SIGNAL(clicked()), this, SLOT(closeTab_button_clicked()));
+  tabWidget->setCornerWidget(closeTab_button);
   // Boolean initialization
   search_stopped = false;
   // Creating Search Process
@@ -356,7 +361,7 @@ void SearchEngine::on_stop_search_button_clicked(){
 }
 
 // Clear search results list
-void SearchEngine::on_closeTab_button_clicked(){
+void SearchEngine::closeTab_button_clicked(){
   if(all_tab.size()) {
     qDebug("currentTab rank: %d", tabWidget->currentIndex());
     qDebug("currentSearchTab rank: %d", tabWidget->indexOf(currentSearchTab));

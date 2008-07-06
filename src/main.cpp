@@ -24,10 +24,15 @@
 #include <QTranslator>
 #include <QFile>
 #include <QSplashScreen>
-#include <QTcpSocket>
 #include <QSettings>
-#include <QTcpSocket>
-#include <QTcpServer>
+#ifdef QT_4_4
+  #include <QLocalSocket>
+  #include <unistd.h>
+  #include <sys/types.h>
+#else
+  #include <QTcpSocket>
+  #include <QHostAddress>
+#endif
 #include <QPlastiqueStyle>
 #include "qgnomelook.h"
 #include <QMotifStyle>
@@ -92,10 +97,22 @@ int main(int argc, char *argv[]){
   if(putenv("QBITTORRENT="VERSION)){
     std::cerr << "Couldn't set environment variable...\n";
   }
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   //Check if there is another instance running
-  QTcpSocket tcpSocket;
-  tcpSocket.connectToHost(QHostAddress::LocalHost, 1666);
-  if (tcpSocket.waitForConnected(1000)){
+#ifdef QT_4_4
+  QLocalSocket localSocket;
+  QString uid = QString::number(getuid());
+#else
+  QTcpSocket localSocket;
+#endif
+#ifdef QT_4_4
+  localSocket.connectToServer("qBittorrent-"+uid, QIODevice::WriteOnly);
+#else
+  int serverPort = settings.value(QString::fromUtf8("uniqueInstancePort"), -1).toInt();
+  if(serverPort != -1) {
+  localSocket.connectToHost(QHostAddress::LocalHost, serverPort, QIODevice::WriteOnly);
+#endif
+  if (localSocket.waitForConnected(1000)){
     std::cout << "Another qBittorrent instance is already running...\n";
     // Send parameters
     if(argc > 1){
@@ -107,20 +124,26 @@ int main(int argc, char *argv[]){
       QByteArray block = params.join("\n").toUtf8();
       std::cout << "writting: " << block.data() << '\n';
       std::cout << "size: " << block.size() << '\n';
-      uint val = tcpSocket.write(block);
-      if(tcpSocket.waitForBytesWritten(5000)){
+      uint val = localSocket.write(block);
+      if(localSocket.waitForBytesWritten(5000)){
         std::cout << "written(" <<val<<"): " << block.data() << '\n';
       }else{
         std::cerr << "Writing to the socket timed out\n";
       }
-      tcpSocket.disconnectFromHost();
+#ifdef QT_4_4
+      localSocket.disconnectFromServer();
+#else
+      localSocket.disconnectFromHost();
+#endif
       std::cout << "disconnected\n";
     }
-    tcpSocket.close();
+    localSocket.close();
     return 0;
   }
+#ifndef QT_4_4
+  }
+#endif
   QApplication app(argc, argv);
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   useStyle(&app, settings.value("Preferences/General/Style", 0).toInt());
   QSplashScreen *splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/splash.png")));
   splash->show();

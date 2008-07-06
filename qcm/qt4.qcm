@@ -11,6 +11,10 @@ public:
 	QString shortname() const { return "Qt 4.3"; }
 	bool exec()
 	{
+		if(QT_VERSION >= 0x040400) {
+			conf->addDefine("QT_4_4");
+		}
 		return(QT_VERSION >= 0x040300);
+		
 	}
 };

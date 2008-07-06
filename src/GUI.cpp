@@ -23,8 +23,16 @@
 #include <QDesktopWidget>
 #include <QTimer>
 #include <QDesktopServices>
-#include <QTcpServer>
-#include <QTcpSocket>
+#ifdef QT_4_4
+  #include <QLocalServer>
+  #include <QLocalSocket>
+  #include <unistd.h>
+  #include <sys/types.h>
+#else
+  #include <QTcpServer>
+  #include <QTcpSocket>
+#endif
+
 #include <QCloseEvent>
 #include <QShortcut>
 #include <QLabel>
@@ -173,11 +181,23 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     initWebUi(username, password, port);
   }
   // Use a tcp server to allow only one instance of qBittorrent
-  tcpServer = new QTcpServer();
-  if (!tcpServer->listen(QHostAddress::LocalHost, 1666)) {
+#ifdef QT_4_4
+  localServer = new QLocalServer();
+  QString uid = QString::number(getuid());
+  if (!localServer->listen("qBittorrent-"+uid)) {
+#else
+  localServer = new QTcpServer();
+  if (!localServer->listen(QHostAddress::LocalHost)) {
+#endif
     std::cerr  << "Couldn't create socket, single instance mode won't work...\n";
   }
-  connect(tcpServer, SIGNAL(newConnection()), this, SLOT(acceptConnection()));
+#ifndef QT_4_4  
+  else {
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    settings.setValue(QString::fromUtf8("uniqueInstancePort"), localServer->serverPort());
+  }
+#endif
+  connect(localServer, SIGNAL(newConnection()), this, SLOT(acceptConnection()));
   // Start connection checking timer
   checkConnect = new QTimer(this);
   connect(checkConnect, SIGNAL(timeout()), this, SLOT(checkConnectionStatus()));
@@ -209,7 +229,7 @@ GUI::~GUI() {
     delete myTrayIconMenu;
   }
   qDebug("2");
-  delete tcpServer;
+  delete localServer;
   delete connecStatusLblIcon;
   delete tabs;
   // HTTP Server
@@ -399,7 +419,7 @@ void GUI::balloonClicked() {
 }
 
 void GUI::acceptConnection() {
-  clientConnection = tcpServer->nextPendingConnection();
+  clientConnection = localServer->nextPendingConnection();
   connect(clientConnection, SIGNAL(disconnected()), this, SLOT(readParamsOnSocket()));
   qDebug("accepted connection from another instance");
 }

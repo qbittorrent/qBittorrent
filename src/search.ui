@@ -217,16 +217,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="closeTab_button" >
-         <property name="enabled" >
-          <bool>false</bool>
-         </property>
-         <property name="text" >
-          <string>Close tab</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <spacer>
          <property name="orientation" >
           <enum>Qt::Horizontal</enum>

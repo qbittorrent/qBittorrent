@@ -56,6 +56,7 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     QStringList enabled_engines;
     QTimer *searchTimeout;
     SearchTab *currentSearchTab;
+    QPushButton *closeTab_button;
     QList<SearchTab*> all_tab; // To store all tabs
   public:
     SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration);
@@ -69,7 +70,7 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     void tab_changed(int);//to prevent the use of the download button when the tab is empty
     void on_search_button_clicked();
     void on_stop_search_button_clicked();
-    void on_closeTab_button_clicked();
+    void closeTab_button_clicked();
     void appendSearchResult(QString line);
     void searchFinished(int exitcode,QProcess::ExitStatus);
     void readSearchOutput();

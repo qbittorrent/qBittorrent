@@ -15,6 +15,7 @@ will install and execute qBittorrent hopefully without any problems.
 
 Dependencies:
 - Qt >= 4.3.0 (libqt-devel, libqtgui, libqtcore, libqtnetwork, libqtxml)
+  Qt >= 4.4.0 is advised
 
 - libtorrent-rasterbar by Arvid Norberg (>= v0.13.1 REQUIRED)
     -> http://www.qbittorrent.org/download.php (advised)

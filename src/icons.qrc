@@ -16,6 +16,7 @@
   <file>Icons/filter.png</file>
   <file>Icons/folder.png</file>
   <file>Icons/gear.png</file>
+  <file>Icons/gnome-shutdown.png</file>
   <file>Icons/home.png</file>
   <file>Icons/loading.png</file>
   <file>Icons/locale.png</file>
@@ -28,6 +29,9 @@
   <file>Icons/qbittorrent16.png</file>
   <file>Icons/qbittorrent22.png</file>
   <file>Icons/qbittorrent32.png</file>
+  <file>Icons/queued-and-gear.png</file>
+  <file>Icons/queued-and-hashing.png</file>
+  <file>Icons/queued.png</file>
   <file>Icons/refresh.png</file>
   <file>Icons/rss16.png</file>
   <file>Icons/rss32.png</file>
@@ -46,6 +50,7 @@
   <file>Icons/unhappy.png</file>
   <file>Icons/unsubscribe.png</file>
   <file>Icons/unsubscribe16.png</file>
+  <file>Icons/up-queued.png</file>
   <file>Icons/uparrow.png</file>
   <file>Icons/url.png</file>
   <file>Icons/wizard.png</file>
