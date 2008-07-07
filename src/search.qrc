@@ -1,16 +1,16 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
-  <file>search_engine/nova2.py</file>
   <file>search_engine/novaprinter.py</file>
-  <file>search_engine/engines/btjunkie.png</file>
-  <file>search_engine/engines/btjunkie.py</file>
+  <file>search_engine/nova2.py</file>
   <file>search_engine/engines/isohunt.png</file>
-  <file>search_engine/engines/isohunt.py</file>
+  <file>search_engine/engines/piratebay.png</file>
   <file>search_engine/engines/mininova.png</file>
   <file>search_engine/engines/mininova.py</file>
-  <file>search_engine/engines/piratebay.png</file>
+  <file>search_engine/engines/btjunkie.py</file>
   <file>search_engine/engines/piratebay.py</file>
+  <file>search_engine/engines/isohunt.py</file>
   <file>search_engine/engines/torrentreactor.png</file>
+  <file>search_engine/engines/btjunkie.png</file>
   <file>search_engine/engines/torrentreactor.py</file>
 </qresource>
 </RCC>
