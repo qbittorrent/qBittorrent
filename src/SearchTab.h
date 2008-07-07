@@ -56,3 +56,4 @@ class SearchTab : public QWidget, public Ui::search_engine
 };
 
 #endif
+
