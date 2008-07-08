@@ -44,7 +44,7 @@ class about : public QDialog, private Ui::AboutDlg{
       // Thanks
       te_thanks->append(QString::fromUtf8("<a name='top'></a>"));
       te_thanks->append(QString::fromUtf8("<ul><li>I would like to thank sourceforge.net for hosting qBittorrent project.</li>"));
-      te_thanks->append(QString::fromUtf8("<li>I am happy that Arnaud Demaizière is contributing to the project as a developer. His help is greatly appreciated</li>"));
+      te_thanks->append(QString::fromUtf8("<li>I am happy that Ishan Arora and Arnaud Demaizière are contributing to the project as developers. Their help is greatly appreciated</li>"));
       te_thanks->append(QString::fromUtf8("<li>I also want to thank Jeffery Fernandez (jeffery@qbittorrent.org), project consultant, RPM packager, for his help and support.</li>"));
       te_thanks->append(QString::fromUtf8("<li>I am grateful to Peter Koeleman (peter@qbittorrent.org) who is helping port qBittorrent to Windows.</li>"));
       te_thanks->append(QString::fromUtf8("<li>Thanks a lot to our graphist Mateusz Toboła (tobejodok@qbittorrent.org) for his great work.</li></ul><br><br>"));
