@@ -1461,9 +1461,9 @@ bool GUI::initWebUi(QString username, QString password, int port)
   httpServer->setAuthorization(username, password);
   bool success = httpServer->listen(QHostAddress::Any, port);
   if (success)
-    qDebug()<<"Web UI listening on port "<<port;
+    qDebug("Web UI listening on port %d", port);
   else
-    QMessageBox::critical(this, "Web User Interface Error", "Unable to initialize HTTP Server on port " + port);
+    QMessageBox::critical(this, "Web User Interface Error", "Unable to initialize HTTP Server on port " + misc::toQString(port));
   return success;
 }
 
