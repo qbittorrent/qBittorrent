@@ -2904,12 +2904,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">검색 엔진</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Empty search pattern</source>
         <translation>검색 양식 지우기</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Please type a search pattern first</source>
         <translation>검색 양식을 작성해주십시오</translation>
     </message>
@@ -2924,12 +2924,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">적어도 하나 이상의 검색 엔진을 선택해야 합니다.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="226"/>
+        <location filename="../searchEngine.cpp" line="231"/>
         <source>Results</source>
         <translation>결과</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="189"/>
+        <location filename="../searchEngine.cpp" line="194"/>
         <source>Searching...</source>
         <translation>검색중...</translation>
     </message>
@@ -2980,32 +2980,32 @@ Changelog:
         <translation type="obsolete">님은 현재 최신 검색 엔진 플로그인을 사용중입니다.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="298"/>
+        <location filename="../searchEngine.cpp" line="303"/>
         <source>Search Engine</source>
         <translation>검색 엔진</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="309"/>
+        <location filename="../searchEngine.cpp" line="314"/>
         <source>Search has finished</source>
         <translation>검색 완료</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="301"/>
+        <location filename="../searchEngine.cpp" line="306"/>
         <source>An error occured during search...</source>
         <translation>검색 중 오류 발생...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="304"/>
+        <location filename="../searchEngine.cpp" line="309"/>
         <source>Search aborted</source>
         <translation>검색이 중단됨</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="307"/>
+        <location filename="../searchEngine.cpp" line="312"/>
         <source>Search returned no results</source>
         <translation>검색 결과가 없음</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="314"/>
+        <location filename="../searchEngine.cpp" line="319"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>결과</translation>
@@ -3021,7 +3021,7 @@ Changelog:
         <translation type="obsolete">다음 url에서 검색 플러그인 (Plugin)을 다운로드 할수 없습니다: %1, 이유: %2.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="338"/>
+        <location filename="../searchEngine.cpp" line="343"/>
         <source>Unknown</source>
         <translation>알려지지 않음</translation>
     </message>
@@ -4787,11 +4787,6 @@ However, those plugins were disabled.</source>
         <location filename="../search.ui" line="113"/>
         <source>Search engines...</source>
         <translation>검색 엔진...</translation>
-    </message>
-    <message>
-        <location filename="../search.ui" line="225"/>
-        <source>Close tab</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

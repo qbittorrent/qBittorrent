@@ -2628,12 +2628,12 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation type="obsolete">Motorul de căutare</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Empty search pattern</source>
         <translation>Şablonul de căutat este vid</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Please type a search pattern first</source>
         <translation>Vă rugăm să completaţi şablonul de căutare</translation>
     </message>
@@ -2648,12 +2648,12 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation type="obsolete">Trebuie să selectaţi cel puţin un motor de căutare.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="226"/>
+        <location filename="../searchEngine.cpp" line="231"/>
         <source>Results</source>
         <translation>Rezultate</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="189"/>
+        <location filename="../searchEngine.cpp" line="194"/>
         <source>Searching...</source>
         <translation>Căutare...</translation>
     </message>
@@ -2704,32 +2704,32 @@ Changelog:
         <translation type="obsolete">Plugin-ul cautat este de acum înnoit.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="298"/>
+        <location filename="../searchEngine.cpp" line="303"/>
         <source>Search Engine</source>
         <translation>Motor de Căutare</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="309"/>
+        <location filename="../searchEngine.cpp" line="314"/>
         <source>Search has finished</source>
         <translation>Căutarea a fost terminată</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="301"/>
+        <location filename="../searchEngine.cpp" line="306"/>
         <source>An error occured during search...</source>
         <translation>Eroare în timpul căutării...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="304"/>
+        <location filename="../searchEngine.cpp" line="309"/>
         <source>Search aborted</source>
         <translation>Cautarea abordată</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="307"/>
+        <location filename="../searchEngine.cpp" line="312"/>
         <source>Search returned no results</source>
         <translation>Cautarea nu a returnat rezultate</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="314"/>
+        <location filename="../searchEngine.cpp" line="319"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Rezultate</translation>
@@ -2745,7 +2745,7 @@ Changelog:
         <translation type="obsolete">Nu pot descărca plugin-ul de căutare reînoit prin url: %1, motivul: %2.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="338"/>
+        <location filename="../searchEngine.cpp" line="343"/>
         <source>Unknown</source>
         <translation>Necunoscut</translation>
     </message>
@@ -4456,11 +4456,6 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
         <location filename="../search.ui" line="113"/>
         <source>Search engines...</source>
         <translation>Motoare de căutare...</translation>
-    </message>
-    <message>
-        <location filename="../search.ui" line="225"/>
-        <source>Close tab</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

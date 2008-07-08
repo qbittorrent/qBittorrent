@@ -2350,12 +2350,12 @@ Haluatko varmasti lopettaa?</translation>
         <translation type="obsolete">Hakupalvelu</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Empty search pattern</source>
         <translation>Tyhjä hakulauseke</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Please type a search pattern first</source>
         <translation>Kirjoita ensin hakulauseke</translation>
     </message>
@@ -2365,12 +2365,12 @@ Haluatko varmasti lopettaa?</translation>
         <translation type="obsolete">Valitse ensin ainakin yksi hakupalvelu.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="226"/>
+        <location filename="../searchEngine.cpp" line="231"/>
         <source>Results</source>
         <translation>Tulokset</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="189"/>
+        <location filename="../searchEngine.cpp" line="194"/>
         <source>Searching...</source>
         <translation>Etsitään...</translation>
     </message>
@@ -2411,38 +2411,38 @@ Muutoshistoria:
         <translation type="obsolete">Hakuliitännäinen on ajan tasalla.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="298"/>
+        <location filename="../searchEngine.cpp" line="303"/>
         <source>Search Engine</source>
         <translation>Hakupalvelu</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="309"/>
+        <location filename="../searchEngine.cpp" line="314"/>
         <source>Search has finished</source>
         <translation>Haku on päättynyt</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="301"/>
+        <location filename="../searchEngine.cpp" line="306"/>
         <source>An error occured during search...</source>
         <translation>Haun aikana tapahtui virhe...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="304"/>
+        <location filename="../searchEngine.cpp" line="309"/>
         <source>Search aborted</source>
         <translation>Haku keskeytetty</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="307"/>
+        <location filename="../searchEngine.cpp" line="312"/>
         <source>Search returned no results</source>
         <translation>Haku ei palauttanut tuloksia</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="314"/>
+        <location filename="../searchEngine.cpp" line="319"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Tulokset</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="338"/>
+        <location filename="../searchEngine.cpp" line="343"/>
         <source>Unknown</source>
         <translation>Tuntematon</translation>
     </message>
@@ -4033,11 +4033,6 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <location filename="../search.ui" line="113"/>
         <source>Search engines...</source>
         <translation>Hakukoneet...</translation>
-    </message>
-    <message>
-        <location filename="../search.ui" line="225"/>
-        <source>Close tab</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

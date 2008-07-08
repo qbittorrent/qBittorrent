@@ -2819,12 +2819,12 @@ qBittorrent ten çıkmak istediğinize emin misiniz?</translation>
         <translation type="obsolete">Arama motoru</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Empty search pattern</source>
         <translation>Boş arama sorgusu</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Please type a search pattern first</source>
         <translation>Lütfen önce bir arama sorgusu girin</translation>
     </message>
@@ -2839,12 +2839,12 @@ qBittorrent ten çıkmak istediğinize emin misiniz?</translation>
         <translation type="obsolete">En az bir arama motoru seçmelisiniz.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="226"/>
+        <location filename="../searchEngine.cpp" line="231"/>
         <source>Results</source>
         <translation>Sonuçlar</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="189"/>
+        <location filename="../searchEngine.cpp" line="194"/>
         <source>Searching...</source>
         <translation>Aranıyor...</translation>
     </message>
@@ -2895,38 +2895,38 @@ Changelog:
         <translation type="obsolete">Arama plugini zaten güncel durumda.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="298"/>
+        <location filename="../searchEngine.cpp" line="303"/>
         <source>Search Engine</source>
         <translation>Arama Motoru</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="309"/>
+        <location filename="../searchEngine.cpp" line="314"/>
         <source>Search has finished</source>
         <translation>Arama bitti</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="301"/>
+        <location filename="../searchEngine.cpp" line="306"/>
         <source>An error occured during search...</source>
         <translation>Arama yapılırken bir hata oluştu...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="304"/>
+        <location filename="../searchEngine.cpp" line="309"/>
         <source>Search aborted</source>
         <translation>Arama iptal edildi</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="307"/>
+        <location filename="../searchEngine.cpp" line="312"/>
         <source>Search returned no results</source>
         <translation>Arama sonuç bulamadı</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="314"/>
+        <location filename="../searchEngine.cpp" line="319"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Sonuçlar</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="338"/>
+        <location filename="../searchEngine.cpp" line="343"/>
         <source>Unknown</source>
         <translation>Bilinmeyen</translation>
     </message>
@@ -4653,11 +4653,6 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <location filename="../search.ui" line="113"/>
         <source>Search engines...</source>
         <translation>Arama motorları...</translation>
-    </message>
-    <message>
-        <location filename="../search.ui" line="225"/>
-        <source>Close tab</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

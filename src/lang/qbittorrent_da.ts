@@ -2181,12 +2181,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Søgemaskine</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Empty search pattern</source>
         <translation type="unfinished">Tomt søge kriterie</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Please type a search pattern first</source>
         <translation type="unfinished">Indtast venligst et søge kriterie først</translation>
     </message>
@@ -2201,12 +2201,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Du skal vælge mindst en søgemaskine.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="226"/>
+        <location filename="../searchEngine.cpp" line="231"/>
         <source>Results</source>
         <translation type="unfinished">Resultater</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="189"/>
+        <location filename="../searchEngine.cpp" line="194"/>
         <source>Searching...</source>
         <translation type="unfinished">Søger...</translation>
     </message>
@@ -2257,38 +2257,38 @@ Changelog:
         <translation type="obsolete">Dit søge plugin er allerede opdateret fuldt ud.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="298"/>
+        <location filename="../searchEngine.cpp" line="303"/>
         <source>Search Engine</source>
         <translation type="unfinished">Søgemaskine</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="309"/>
+        <location filename="../searchEngine.cpp" line="314"/>
         <source>Search has finished</source>
         <translation type="unfinished">Søgningen er færdig</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="301"/>
+        <location filename="../searchEngine.cpp" line="306"/>
         <source>An error occured during search...</source>
         <translation type="unfinished">Der opstod en fejl under søgningen...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="304"/>
+        <location filename="../searchEngine.cpp" line="309"/>
         <source>Search aborted</source>
         <translation type="unfinished">Søgning afbrudt</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="307"/>
+        <location filename="../searchEngine.cpp" line="312"/>
         <source>Search returned no results</source>
         <translation type="unfinished">Søgningen gav intet resultat</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="314"/>
+        <location filename="../searchEngine.cpp" line="319"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation type="unfinished">Resultater</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="338"/>
+        <location filename="../searchEngine.cpp" line="343"/>
         <source>Unknown</source>
         <translation type="unfinished">Ukendt</translation>
     </message>
@@ -3732,11 +3732,6 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../search.ui" line="113"/>
         <source>Search engines...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search.ui" line="225"/>
-        <source>Close tab</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

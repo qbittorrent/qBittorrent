@@ -2840,12 +2840,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Поисковый сервис</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Empty search pattern</source>
         <translation>Очистить шаблон поиска</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Please type a search pattern first</source>
         <translation>Пожалуйста, наберите сначала шаблон поиска</translation>
     </message>
@@ -2860,12 +2860,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Вы должны выбрать по меньшей мере один поисковый двигатель.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="226"/>
+        <location filename="../searchEngine.cpp" line="231"/>
         <source>Results</source>
         <translation>Результаты</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="189"/>
+        <location filename="../searchEngine.cpp" line="194"/>
         <source>Searching...</source>
         <translation>Поиск...</translation>
     </message>
@@ -2916,32 +2916,32 @@ Changelog:
         <translation type="obsolete">Ваш поисковый плагин не нуждается в обновлении.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="298"/>
+        <location filename="../searchEngine.cpp" line="303"/>
         <source>Search Engine</source>
         <translation>Поисковый движок</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="309"/>
+        <location filename="../searchEngine.cpp" line="314"/>
         <source>Search has finished</source>
         <translation>Поиск завершен</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="301"/>
+        <location filename="../searchEngine.cpp" line="306"/>
         <source>An error occured during search...</source>
         <translation>Во время поиска произошла ошибка...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="304"/>
+        <location filename="../searchEngine.cpp" line="309"/>
         <source>Search aborted</source>
         <translation>Поиск прерван</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="307"/>
+        <location filename="../searchEngine.cpp" line="312"/>
         <source>Search returned no results</source>
         <translation>Поиск не дал результатов</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="314"/>
+        <location filename="../searchEngine.cpp" line="319"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Результаты</translation>
@@ -2957,7 +2957,7 @@ Changelog:
         <translation type="obsolete">Невозможно скачать обновления поискового плагина по ссылке: %1, причина: %2.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="338"/>
+        <location filename="../searchEngine.cpp" line="343"/>
         <source>Unknown</source>
         <translation>Неизвестно</translation>
     </message>
@@ -4718,11 +4718,6 @@ However, those plugins were disabled.</source>
         <location filename="../search.ui" line="113"/>
         <source>Search engines...</source>
         <translation>Поисковые движки...</translation>
-    </message>
-    <message>
-        <location filename="../search.ui" line="225"/>
-        <source>Close tab</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

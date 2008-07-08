@@ -2186,12 +2186,12 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">検索エンジン</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Empty search pattern</source>
         <translation>検索パターンを空にする</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Please type a search pattern first</source>
         <translation>まず検索パターンを入力してください</translation>
     </message>
@@ -2206,12 +2206,12 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">少なくとも 1 つの検索エンジンを選択する必要があります。</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="226"/>
+        <location filename="../searchEngine.cpp" line="231"/>
         <source>Results</source>
         <translation>結果</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="189"/>
+        <location filename="../searchEngine.cpp" line="194"/>
         <source>Searching...</source>
         <translation>検索しています...</translation>
     </message>
@@ -2262,32 +2262,32 @@ Changelog:
         <translation type="obsolete">お使いの検索プラグインはすでに最新です。</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="298"/>
+        <location filename="../searchEngine.cpp" line="303"/>
         <source>Search Engine</source>
         <translation>検索エンジン</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="309"/>
+        <location filename="../searchEngine.cpp" line="314"/>
         <source>Search has finished</source>
         <translation>検索は完了しました</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="301"/>
+        <location filename="../searchEngine.cpp" line="306"/>
         <source>An error occured during search...</source>
         <translation>検索中にエラーが発生しました...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="304"/>
+        <location filename="../searchEngine.cpp" line="309"/>
         <source>Search aborted</source>
         <translation>検索が中止されました</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="307"/>
+        <location filename="../searchEngine.cpp" line="312"/>
         <source>Search returned no results</source>
         <translation>検索結果がありません</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="314"/>
+        <location filename="../searchEngine.cpp" line="319"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>結果</translation>
@@ -2303,7 +2303,7 @@ Changelog:
         <translation type="obsolete">次の url にある検索プラグインの更新をダウンロードできませんでした: %1、理由: %2。</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="338"/>
+        <location filename="../searchEngine.cpp" line="343"/>
         <source>Unknown</source>
         <translation>不明</translation>
     </message>
@@ -3834,11 +3834,6 @@ However, those plugins were disabled.</source>
         <location filename="../search.ui" line="113"/>
         <source>Search engines...</source>
         <translation>検索エンジン...</translation>
-    </message>
-    <message>
-        <location filename="../search.ui" line="225"/>
-        <source>Close tab</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

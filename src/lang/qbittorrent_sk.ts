@@ -2738,12 +2738,12 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Vyhľadávač</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Empty search pattern</source>
         <translation>Prázdny vyhľadávací vzor</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="146"/>
+        <location filename="../searchEngine.cpp" line="151"/>
         <source>Please type a search pattern first</source>
         <translation>Prosím, najprv zadajte vyhľadávací vzor</translation>
     </message>
@@ -2758,12 +2758,12 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Musíte zvoliť aspoň jeden vyhľadávač.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="226"/>
+        <location filename="../searchEngine.cpp" line="231"/>
         <source>Results</source>
         <translation>Výsledky</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="189"/>
+        <location filename="../searchEngine.cpp" line="194"/>
         <source>Searching...</source>
         <translation>Hľadá sa...</translation>
     </message>
@@ -2813,32 +2813,32 @@ Záznam zmien:</translation>
         <translation type="obsolete">Váš vyhľadávací zásuvný modul je aktuálny.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="298"/>
+        <location filename="../searchEngine.cpp" line="303"/>
         <source>Search Engine</source>
         <translation>Vyhľadávač</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="309"/>
+        <location filename="../searchEngine.cpp" line="314"/>
         <source>Search has finished</source>
         <translation>Hľadanie skončené</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="301"/>
+        <location filename="../searchEngine.cpp" line="306"/>
         <source>An error occured during search...</source>
         <translation>Počas vyhľadávania sa vyskytla chyba...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="304"/>
+        <location filename="../searchEngine.cpp" line="309"/>
         <source>Search aborted</source>
         <translation>Vyhľadávanie preušené</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="307"/>
+        <location filename="../searchEngine.cpp" line="312"/>
         <source>Search returned no results</source>
         <translation>Vyhľadávanie nevrátilo žiadne výsledky</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="314"/>
+        <location filename="../searchEngine.cpp" line="319"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Výsledky</translation>
@@ -2854,7 +2854,7 @@ Záznam zmien:</translation>
         <translation type="obsolete">Nebolo možné stiahnuť zásuvný modul vyhľadávania z url: %1, dôvod: %2.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="338"/>
+        <location filename="../searchEngine.cpp" line="343"/>
         <source>Unknown</source>
         <translation>Neznámy</translation>
     </message>
@@ -4669,11 +4669,6 @@ Tieto moduly však boli vypnuté.</translation>
         <location filename="../search.ui" line="113"/>
         <source>Search engines...</source>
         <translation>Vyhľadávače...</translation>
-    </message>
-    <message>
-        <location filename="../search.ui" line="225"/>
-        <source>Close tab</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
