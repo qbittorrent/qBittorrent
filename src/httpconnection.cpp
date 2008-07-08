@@ -64,10 +64,10 @@ void HttpConnection::read()
 void HttpConnection::write()
 {
 	QByteArray output = generator.toByteArray();
-	qDebug(" --------");
+	/*qDebug(" --------");
 	qDebug("|RESPONSE|");
 	qDebug(" --------");
-	qDebug()<<output;
+	qDebug()<<output;*/
 	socket->write(output);
 	socket->disconnectFromHost();
 }
