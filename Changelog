@@ -1,3 +1,8 @@
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.2.0
+    - FEATURE: DHT is always ON (no longer used as fallback)
+    - FEATURE: The number of DHT nodes is displayed
+    - COSMETIC: Transfer speed, ratio and DHT nodes are displayed in status bar    
+
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.1.0
     - FEATURE: Web interface to control qbittorrent (Ishan Arora)
     - FEATURE: Can spoof Azureus peer id to avoid ban

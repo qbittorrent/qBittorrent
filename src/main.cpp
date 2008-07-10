@@ -145,6 +145,7 @@ int main(int argc, char *argv[]){
 #endif
   QApplication app(argc, argv);
   useStyle(&app, settings.value("Preferences/General/Style", 0).toInt());
+  app.setStyleSheet("QStatusBar::item { border: 0px solid black }; "); 
   QSplashScreen *splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/splash.png")));
   splash->show();
   // Open options file to read locale

@@ -52,6 +52,7 @@ class QTabWidget;
 class QLabel;
 class QModelIndex;
 class HttpServer;
+class QFrame;
 
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -75,6 +76,13 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     bool force_exit;
     unsigned int refreshInterval;
     QTimer *refresher;
+    QLabel *dlSpeedLbl;
+    QLabel *upSpeedLbl;
+    QLabel *ratioLbl;
+    QLabel *DHTLbl;
+    QFrame *statusSep1;
+    QFrame *statusSep2;
+    QFrame *statusSep3;
     // Keyboard shortcuts
     QShortcut *switchSearchShortcut;
     QShortcut *switchSearchShortcut2;

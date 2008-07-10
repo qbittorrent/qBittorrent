@@ -23,6 +23,8 @@
 #include <QDesktopWidget>
 #include <QTimer>
 #include <QDesktopServices>
+#include <QStatusBar>
+#include <QFrame>
 #ifdef QT_4_4
   #include <QLocalServer>
   #include <QLocalSocket>
@@ -115,8 +117,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
   actionCreate_torrent->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/new.png")));
-  // Set default ratio
-  lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/stare.png")));
   // Fix Tool bar layout
   toolBar->layout()->setSpacing(7);
   // creating options
@@ -208,12 +208,39 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     show();
   }
   createKeyboardShortcuts();
+  dlSpeedLbl = new QLabel(tr("DL: %1 KiB/s").arg("0.0"));
+  upSpeedLbl = new QLabel(tr("UP: %1 KiB/s").arg("0.0"));
+  ratioLbl = new QLabel(tr("Ratio: %1").arg("1.0"));
+  DHTLbl = new QLabel(tr("DHT: %1 Nodes").arg(0));
+  statusSep1 = new QFrame();
+  statusSep1->setFixedWidth(1);
+  statusSep1->setFrameStyle(QFrame::Box);
+  statusSep2 = new QFrame();
+  statusSep2->setFixedWidth(1);
+  statusSep2->setFrameStyle(QFrame::Box);
+  statusSep3 = new QFrame();
+  statusSep3->setFixedWidth(1);
+  statusSep3->setFrameStyle(QFrame::Box);
+  QMainWindow::statusBar()->addPermanentWidget(DHTLbl);
+  QMainWindow::statusBar()->addPermanentWidget(statusSep1);
+  QMainWindow::statusBar()->addPermanentWidget(dlSpeedLbl);
+  QMainWindow::statusBar()->addPermanentWidget(statusSep2);
+  QMainWindow::statusBar()->addPermanentWidget(upSpeedLbl);
+  QMainWindow::statusBar()->addPermanentWidget(statusSep3);
+  QMainWindow::statusBar()->addPermanentWidget(ratioLbl);
   qDebug("GUI Built");
 }
 
 // Destructor
 GUI::~GUI() {
   qDebug("GUI destruction");
+  delete dlSpeedLbl;
+  delete upSpeedLbl;
+  delete ratioLbl;
+  delete DHTLbl;
+  delete statusSep1;
+  delete statusSep2;
+  delete statusSep3;
   delete rssWidget;
   delete searchEngine;
   delete refresher;
@@ -261,16 +288,9 @@ void GUI::updateRatio() {
     if(ratio > 10.)
       ratio = 10.;
   }
-  LCD_Ratio->display(QString(QByteArray::number(ratio, 'f', 1)));
-  if(ratio < 0.5) {
-    lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/unhappy.png")));
-  }else{
-    if(ratio > 1.0) {
-      lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/smile.png")));
-    }else{
-      lbl_ratio_icon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/stare.png")));
-    }
-  }
+  ratioLbl->setText(tr("Ratio: %1").arg(QString(QByteArray::number(ratio, 'f', 1))));
+  // Update DHT nodes
+  DHTLbl->setText(tr("DHT: %1 Nodes").arg(QString::number(sessionStatus.dht_nodes)));
 }
 
 void GUI::on_actionWebsite_triggered() const {
@@ -999,6 +1019,7 @@ void GUI::configureSession(bool deleteOptions) {
     sessionSettings.user_agent = "qBittorrent "VERSION;
   }
   sessionSettings.upnp_ignore_nonrouters = true;
+  sessionSettings.use_dht_as_fallback = false;
   BTSession->setSessionSettings(sessionSettings);
   // Bittorrent
   // * Max connections limit
@@ -1282,8 +1303,8 @@ void GUI::on_actionTorrent_Properties_triggered() {
 
 void GUI::updateLists() {
   // update global informations
-  LCD_UpSpeed->display(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1))); // UP LCD
-  LCD_DownSpeed->display(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1))); // DL LCD
+  dlSpeedLbl = new QLabel(tr("DL: %1 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1))));
+  upSpeedLbl = new QLabel(tr("UP: %1 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1))));
   switch(getCurrentTabIndex()){
     case 0:
       downloadingTorrentTab->updateDlList();
