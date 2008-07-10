@@ -1303,8 +1303,8 @@ void GUI::on_actionTorrent_Properties_triggered() {
 
 void GUI::updateLists() {
   // update global informations
-  dlSpeedLbl = new QLabel(tr("DL: %1 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1))));
-  upSpeedLbl = new QLabel(tr("UP: %1 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1))));
+  dlSpeedLbl->setText(tr("DL: %1 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1))));
+  upSpeedLbl->setText(tr("UP: %1 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1))));
   switch(getCurrentTabIndex()){
     case 0:
       downloadingTorrentTab->updateDlList();
