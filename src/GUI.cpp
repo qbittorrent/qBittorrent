@@ -211,7 +211,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   dlSpeedLbl = new QLabel(tr("DL: %1 KiB/s").arg("0.0"));
   upSpeedLbl = new QLabel(tr("UP: %1 KiB/s").arg("0.0"));
   ratioLbl = new QLabel(tr("Ratio: %1").arg("1.0"));
-  DHTLbl = new QLabel(tr("DHT: %1 Nodes").arg(0));
+  DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0));
   statusSep1 = new QFrame();
   statusSep1->setFixedWidth(1);
   statusSep1->setFrameStyle(QFrame::Box);
@@ -290,7 +290,7 @@ void GUI::updateRatio() {
   }
   ratioLbl->setText(tr("Ratio: %1").arg(QString(QByteArray::number(ratio, 'f', 1))));
   // Update DHT nodes
-  DHTLbl->setText(tr("DHT: %1 Nodes").arg(QString::number(sessionStatus.dht_nodes)));
+  DHTLbl->setText(tr("DHT: %1 nodes").arg(QString::number(sessionStatus.dht_nodes)));
 }
 
 void GUI::on_actionWebsite_triggered() const {
