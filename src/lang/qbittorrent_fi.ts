@@ -244,7 +244,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">DHT-portti:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="0"/>
         <source>DHT (Trackerless):</source>
         <translation type="obsolete">DHT:</translation>
     </message>
@@ -841,32 +841,32 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="511"/>
         <source>Folder scan interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hakemistojen päivitystiheys:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="531"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>sekuntia</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1367"/>
         <source>Spoof Azureus to avoid ban (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Esitä Azureusta (vaatii uudelleenkäynnistyksen)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1765"/>
         <source>Web UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Verkkokäyttöliittymä</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1778"/>
         <source>Enable Web User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä verkkokäyttöliittymää</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1791"/>
         <source>HTTP Server</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP-palvelin</translation>
     </message>
 </context>
 <context>
@@ -1007,17 +1007,17 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
         <location filename="../filterParserThread.h" line="357"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
-        <translation type="unfinished">I/O-virhe</translation>
+        <translation>I/O-virhe</translation>
     </message>
     <message>
         <location filename="../filterParserThread.h" line="273"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
-        <translation type="unfinished">Tiedoston %1 avaaminen lukutilassa epäonnistui.</translation>
+        <translation>Tiedoston %1 avaaminen lukutilassa epäonnistui.</translation>
     </message>
     <message>
         <location filename="../filterParserThread.h" line="357"/>
         <source>%1 is not a valid PeerGuardian P2B file.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ei ole kelvollinen PeerGuardian P2B -tiedosto.</translation>
     </message>
 </context>
 <context>
@@ -1107,12 +1107,12 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedTorrents.cpp" line="246"/>
         <source>Incomplete torrent in seeding list</source>
-        <translation type="unfinished"></translation>
+        <translation>Keskeneräinen torrent jakolistassa</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="246"/>
         <source>It appears that the state of &apos;%1&apos; torrent changed from &apos;seeding&apos; to &apos;downloading&apos;. Would you like to move it back to download list? (otherwise the torrent will simply be deleted)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torretin %1 tila muuttui jakamisesta lataukseen. Haluatko siirtää sen takaisin latauslistaan (muulloin se vain poistetaan)?</translation>
     </message>
 </context>
 <context>
@@ -1149,7 +1149,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
         <translation>Oletko varma? — qBittorrent</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="0"/>
         <source>Are you sure you want to delete all files in download list?</source>
         <translation type="obsolete">Haluatko varmasti poistaa kaikki tiedostot latauslistasta?</translation>
     </message>
@@ -1164,7 +1164,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Haluatko varmasti poistaa valitut kohteet latauslistasta ja tallennusmedialta?</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="0"/>
         <source>Are you sure you want to quit qbittorrent?</source>
         <translation type="obsolete">Haluatko varmasti lopettaa qBittorrentin?</translation>
     </message>
@@ -1246,7 +1246,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Ladataan...</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="0"/>
         <source>Download list cleared.</source>
         <translation type="obsolete">Lataulista tyhjennettiin.</translation>
     </message>
@@ -1899,7 +1899,7 @@ Haluatko varmasti lopettaa?</translation>
         <translation>Tyhjennä loki</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="0"/>
         <source>Connection Status</source>
         <translation type="obsolete">Yhteyden tila</translation>
     </message>
@@ -1914,7 +1914,7 @@ Haluatko varmasti lopettaa?</translation>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="0"/>
         <source>Delete All</source>
         <translation type="obsolete">Poista kaikki</translation>
     </message>
@@ -1961,7 +1961,7 @@ Haluatko varmasti lopettaa?</translation>
     <message>
         <location filename="../MainWindow.ui" line="185"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="305"/>
@@ -2021,7 +2021,7 @@ Haluatko varmasti lopettaa?</translation>
     <message>
         <location filename="../MainWindow.ui" line="110"/>
         <source>Session ratio: </source>
-        <translation type="unfinished"> Jakosuhde:</translation>
+        <translation> Jakosuhde:</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="335"/>
@@ -2056,12 +2056,12 @@ Haluatko varmasti lopettaa?</translation>
     <message>
         <location filename="../MainWindow.ui" line="52"/>
         <source>Total DL Speed:</source>
-        <translation type="unfinished">Kokonaislatausnopeus:</translation>
+        <translation>Kokonaislatausnopeus:</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="156"/>
         <source>Total UP Speed:</source>
-        <translation type="unfinished">Kokonaislähetysnopeus:</translation>
+        <translation>Kokonaislähetysnopeus:</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="36"/>
@@ -2453,30 +2453,30 @@ Muutoshistoria:
         <location filename="../SearchTab.cpp" line="50"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">Nimi</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../SearchTab.cpp" line="51"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">Koko</translation>
+        <translation>Koko</translation>
     </message>
     <message>
         <location filename="../SearchTab.cpp" line="52"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation type="unfinished">Jakajia</translation>
+        <translation>Jakajia</translation>
     </message>
     <message>
         <location filename="../SearchTab.cpp" line="53"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation type="unfinished">Lataajia</translation>
+        <translation>Lataajia</translation>
     </message>
     <message>
         <location filename="../SearchTab.cpp" line="54"/>
         <source>Search engine</source>
-        <translation type="unfinished">Hakupalvelu</translation>
+        <translation>Hakupalvelu</translation>
     </message>
 </context>
 <context>
@@ -2484,12 +2484,12 @@ Muutoshistoria:
     <message>
         <location filename="../trackersAdd.ui" line="13"/>
         <source>Trackers addition dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Seurantapalvelimien lisäys</translation>
     </message>
     <message>
         <location filename="../trackersAdd.ui" line="19"/>
         <source>List of trackers to add (one per line):</source>
-        <translation type="unfinished"></translation>
+        <translation>Seurantapalvelimet jokainen omalla rivillään:</translation>
     </message>
 </context>
 <context>
@@ -2606,7 +2606,7 @@ Muutoshistoria:
         <translation>Tallennuskansio:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="0"/>
         <source>select</source>
         <translation type="obsolete">valitse</translation>
     </message>
@@ -2873,7 +2873,7 @@ Muutoshistoria:
         <translation>Lähdekansiota ei ole asetettu</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="0"/>
         <source>Please type a correct input path first</source>
         <translation type="obsolete">Anna kelvollinen lähdekansio</translation>
     </message>
@@ -3451,7 +3451,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Loppu:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="0"/>
         <source>Incorrect IP</source>
         <translation type="obsolete">Virheellinen IP</translation>
     </message>
@@ -3496,7 +3496,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Alku:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="0"/>
         <source>This IP is incorrect.</source>
         <translation type="obsolete">Tämä IP on virheellinen.</translation>
     </message>
@@ -3545,12 +3545,12 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     <message>
         <location filename="../options_imp.cpp" line="1059"/>
         <source>Choose an ip filter file</source>
-        <translation type="unfinished"></translation>
+        <translation>Valitse IP-suodatintiedosto</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1059"/>
         <source>Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Suotimet</translation>
     </message>
 </context>
 <context>
@@ -3720,7 +3720,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="0"/>
         <source>Options</source>
         <translation type="obsolete">Asetukset</translation>
     </message>
@@ -4033,6 +4033,11 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <location filename="../search.ui" line="113"/>
         <source>Search engines...</source>
         <translation>Hakukoneet...</translation>
+    </message>
+    <message>
+        <location filename="../search.ui" line="225"/>
+        <source>Close tab</source>
+        <translation type="obsolete">Sulje välilehti</translation>
     </message>
 </context>
 <context>
