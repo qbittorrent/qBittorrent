@@ -300,7 +300,7 @@ class misc : public QObject{
     // time duration like "1d 2h 10m".
     static QString userFriendlyDuration(qlonglong seconds) {
       if(seconds < 0) {
-        return tr("Unknown");
+        return QString::fromUtf8("∞");
       }
       if(seconds < 60) {
         return tr("< 1m", "< 1 minute");
@@ -319,7 +319,7 @@ class misc : public QObject{
       if(days < 100) {
         return tr("%1d%2h%3m", "e.g: 2days 10hours 2minutes").arg(QString::fromUtf8(misc::toString(days).c_str())).arg(QString::fromUtf8(misc::toString(hours).c_str())).arg(QString::fromUtf8(misc::toString(minutes).c_str()));
       }
-      return tr("Unknown");
+      return QString::fromUtf8("∞");
     }
 };
 
