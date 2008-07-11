@@ -140,8 +140,9 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkMaxUploadsPerTorrent,  SIGNAL(stateChanged(int)), this, SLOT(enableMaxUploadsLimitPerTorrent(int)));
   connect(checkRatioLimit,  SIGNAL(stateChanged(int)), this, SLOT(enableShareRatio(int)));
   connect(checkRatioRemove,  SIGNAL(stateChanged(int)), this, SLOT(enableDeleteRatio(int)));
-  // IP Filter tab
-  connect(checkIPFilter,  SIGNAL(stateChanged(int)), this, SLOT(enableFilter(int)));
+  // Misc tab
+  connect(checkIPFilter, SIGNAL(stateChanged(int)), this, SLOT(enableFilter(int)));
+  connect(checkEnableRSS, SIGNAL(stateChanged(int)), this, SLOT(enableRSS(int)));
   // Web UI tab
   connect(checkWebUi,  SIGNAL(toggled(bool)), this, SLOT(enableWebUi(bool)));
 
@@ -205,6 +206,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(textFilterPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinRSSRefresh, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinRSSMaxArticlesPerFeed, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(checkEnableRSS, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   // Web UI tab
   connect(checkWebUi, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinWebUiPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
@@ -338,8 +340,9 @@ void options_imp::saveOptions(){
   }
   // End IPFilter preferences
   settings.endGroup();
-  // * RSS
+  // RSS
   settings.beginGroup("RSS");
+  settings.setValue(QString::fromUtf8("RSSEnabled"), isRSSEnabled());
   settings.setValue(QString::fromUtf8("RSSRefresh"), spinRSSRefresh->value());
   settings.setValue(QString::fromUtf8("RSSMaxArticlesPerFeed"), spinRSSMaxArticlesPerFeed->value());
   // End RSS preferences
@@ -607,6 +610,12 @@ void options_imp::loadOptions(){
   settings.endGroup();
   // * RSS
   settings.beginGroup("RSS");
+  checkEnableRSS->setChecked(settings.value(QString::fromUtf8("RSSEnabled"), false).toBool());
+  if(isRSSEnabled()) {
+    enableRSS(2); // Enable
+  } else {
+    enableRSS(0); // Disable
+  }
   spinRSSRefresh->setValue(settings.value(QString::fromUtf8("RSSRefresh"), 5).toInt());
   spinRSSMaxArticlesPerFeed->setValue(settings.value(QString::fromUtf8("RSSMaxArticlesPerFeed"), 50).toInt());
   // End RSS preferences
@@ -656,6 +665,10 @@ bool options_imp::isDirScanEnabled() const {
 
 bool options_imp::isDHTEnabled() const{
   return checkDHT->isChecked();
+}
+
+bool options_imp::isRSSEnabled() const{
+  return checkEnableRSS->isChecked();
 }
 
 bool options_imp::isPeXEnabled() const{
@@ -850,7 +863,7 @@ void options_imp::enableMaxUploadsLimitPerTorrent(int checkBoxValue){
 }
 
 void options_imp::enableFilter(int checkBoxValue){
-  if(checkBoxValue!=2){
+  if(checkBoxValue != 2){
     //Disable
     lblFilterPath->setEnabled(false);
     textFilterPath->setEnabled(false);
@@ -860,6 +873,16 @@ void options_imp::enableFilter(int checkBoxValue){
     lblFilterPath->setEnabled(true);
     textFilterPath->setEnabled(true);
     browseFilterButton->setEnabled(true);
+  }
+}
+
+void options_imp::enableRSS(int checkBoxValue) {
+  if(checkBoxValue != 2){
+    //Disable
+    groupRSSSettings->setEnabled(false);
+  }else{
+    //enable
+    groupRSSSettings->setEnabled(true);
   }
 }
 

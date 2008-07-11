@@ -1562,7 +1562,7 @@
        <iconset resource="icons.qrc" >
         <normaloff>:/Icons/configure.png</normaloff>:/Icons/configure.png</iconset>
       </attribute>
-      <layout class="QVBoxLayout" >
+      <layout class="QVBoxLayout" name="verticalLayout_7" >
        <item>
         <widget class="QGroupBox" name="filterBox" >
          <property name="enabled" >
@@ -1622,117 +1622,136 @@
          <property name="title" >
           <string>RSS</string>
          </property>
-         <layout class="QVBoxLayout" >
+         <layout class="QVBoxLayout" name="verticalLayout_6" >
           <item>
-           <layout class="QHBoxLayout" >
-            <item>
-             <widget class="QLabel" name="label_4" >
-              <property name="minimumSize" >
-               <size>
-                <width>48</width>
-                <height>48</height>
-               </size>
-              </property>
-              <property name="maximumSize" >
-               <size>
-                <width>48</width>
-                <height>48</height>
-               </size>
-              </property>
-              <property name="text" >
-               <string/>
-              </property>
-              <property name="pixmap" >
-               <pixmap resource="icons.qrc" >:/Icons/rss32.png</pixmap>
-              </property>
-              <property name="scaledContents" >
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" >
-              <item>
-               <layout class="QHBoxLayout" >
-                <item>
-                 <widget class="QLabel" name="label" >
-                  <property name="text" >
-                   <string>RSS feeds refresh interval:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QSpinBox" name="spinRSSRefresh" >
-                  <property name="minimum" >
-                   <number>1</number>
-                  </property>
-                  <property name="maximum" >
-                   <number>999999</number>
-                  </property>
-                  <property name="value" >
-                   <number>5</number>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_2" >
-                  <property name="text" >
-                   <string>minutes</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer>
-                  <property name="orientation" >
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0" >
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" >
-                <item>
-                 <widget class="QLabel" name="label_3" >
-                  <property name="text" >
-                   <string>Maximum number of articles per feed:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed" >
-                  <property name="maximum" >
-                   <number>9999</number>
-                  </property>
-                  <property name="value" >
-                   <number>50</number>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer>
-                  <property name="orientation" >
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0" >
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-             </layout>
-            </item>
-           </layout>
+           <widget class="QCheckBox" name="checkEnableRSS" >
+            <property name="text" >
+             <string>Enable RSS support</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupRSSSettings" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
+            <property name="title" >
+             <string>RSS settings</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_5" >
+             <item>
+              <layout class="QHBoxLayout" >
+               <item>
+                <widget class="QLabel" name="label_4" >
+                 <property name="minimumSize" >
+                  <size>
+                   <width>48</width>
+                   <height>48</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize" >
+                  <size>
+                   <width>48</width>
+                   <height>48</height>
+                  </size>
+                 </property>
+                 <property name="text" >
+                  <string/>
+                 </property>
+                 <property name="pixmap" >
+                  <pixmap resource="icons.qrc" >:/Icons/rss32.png</pixmap>
+                 </property>
+                 <property name="scaledContents" >
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" >
+                 <item>
+                  <layout class="QHBoxLayout" >
+                   <item>
+                    <widget class="QLabel" name="label" >
+                     <property name="text" >
+                      <string>RSS feeds refresh interval:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QSpinBox" name="spinRSSRefresh" >
+                     <property name="minimum" >
+                      <number>1</number>
+                     </property>
+                     <property name="maximum" >
+                      <number>999999</number>
+                     </property>
+                     <property name="value" >
+                      <number>5</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_2" >
+                     <property name="text" >
+                      <string>minutes</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer>
+                     <property name="orientation" >
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0" >
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" >
+                   <item>
+                    <widget class="QLabel" name="label_3" >
+                     <property name="text" >
+                      <string>Maximum number of articles per feed:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed" >
+                     <property name="maximum" >
+                      <number>9999</number>
+                     </property>
+                     <property name="value" >
+                      <number>50</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer>
+                     <property name="orientation" >
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0" >
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
           </item>
          </layout>
         </widget>

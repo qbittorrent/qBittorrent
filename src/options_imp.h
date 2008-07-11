@@ -99,6 +99,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     bool isDHTEnabled() const;
     bool isPeXEnabled() const;
     bool isLSDEnabled() const;
+    bool isRSSEnabled() const;
     bool shouldSpoofAzureus() const;
     int getEncryptionSetting() const;
     float getDesiredRatio() const;
@@ -123,6 +124,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     void enableShareRatio(int checkBoxValue);
     void enableDeleteRatio(int checkBoxValue);
     void enableFilter(int checkBoxValue);
+    void enableRSS(int checkBoxValue);
     void setStyle(int style);
     void on_buttonBox_accepted();
     void closeEvent(QCloseEvent *e);

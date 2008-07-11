@@ -147,8 +147,14 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   tabs->addTab(finishedTorrentTab, tr("Finished") + QString::fromUtf8(" (0/0)"));
   tabs->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   connect(finishedTorrentTab, SIGNAL(torrentDoubleClicked(QString, bool)), this, SLOT(torrentDoubleClicked(QString, bool)));
-
   connect(finishedTorrentTab, SIGNAL(finishedTorrentsNumberChanged(unsigned int)), this, SLOT(updateFinishedTorrentNumber(unsigned int)));
+  // Search engine tab
+  searchEngine = new SearchEngine(BTSession, myTrayIcon, systrayIntegration);
+  tabs->addTab(searchEngine, tr("Search"));
+  tabs->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/skin/search.png")));
+  readSettings();
+  // RSS Tab
+  rssWidget = 0;
   // Smooth torrent switching between tabs Downloading <--> Finished
   connect(downloadingTorrentTab, SIGNAL(torrentFinished(QString)), finishedTorrentTab, SLOT(addTorrent(QString)));
   connect(finishedTorrentTab, SIGNAL(torrentMovedFromFinishedList(QString)), downloadingTorrentTab, SLOT(addTorrent(QString)));
@@ -160,15 +166,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   configureSession(true);
   // Resume unfinished torrents
   BTSession->resumeUnfinishedTorrents();
-  // Search engine tab
-  searchEngine = new SearchEngine(BTSession, myTrayIcon, systrayIntegration);
-  tabs->addTab(searchEngine, tr("Search"));
-  tabs->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/skin/search.png")));
-  // RSS tab
-  rssWidget = new RSSImp();
-  tabs->addTab(rssWidget, tr("RSS"));
-  tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss32.png")));
-  readSettings();
   // Add torrent given on command line
   processParams(torrentCmdLine);
   // Initialize Web UI
@@ -241,7 +238,8 @@ GUI::~GUI() {
   delete statusSep1;
   delete statusSep2;
   delete statusSep3;
-  delete rssWidget;
+  if(rssWidget != 0)
+    delete rssWidget;
   delete searchEngine;
   delete refresher;
   delete downloadingTorrentTab;
@@ -272,6 +270,20 @@ GUI::~GUI() {
   qDebug("4");
   delete BTSession;
   qDebug("5");
+}
+
+void GUI::displayRSSTab(bool enable) {
+  if(enable) {
+    // RSS tab
+    rssWidget = new RSSImp();
+    tabs->addTab(rssWidget, tr("RSS"));
+    tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss32.png")));
+  } else {
+    if(rssWidget != 0) {
+      delete rssWidget;
+      rssWidget = 0;
+    }
+  }
 }
 
 void GUI::updateRatio() {
@@ -1091,6 +1103,12 @@ void GUI::configureSession(bool deleteOptions) {
   }else{
     BTSession->disableIPFilter();
     downloadingTorrentTab->setBottomTabEnabled(1, false);
+  }
+  // RSS
+  if(options->isRSSEnabled()) {
+    displayRSSTab(true);
+  } else {
+    displayRSSTab(false);
   }
   // Clean up
   if(deleteOptions) {
