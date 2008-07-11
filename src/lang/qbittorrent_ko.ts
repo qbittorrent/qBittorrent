@@ -4031,7 +4031,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>알수 없음</translation>
+        <translation type="obsolete">알수 없음</translation>
     </message>
     <message>
         <location filename="translations_1.0.0beta6/misc.h" line="215"/>

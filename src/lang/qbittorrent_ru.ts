@@ -3973,7 +3973,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Неизвестно</translation>
+        <translation type="obsolete">Неизвестно</translation>
     </message>
     <message>
         <location filename="" line="134768880"/>

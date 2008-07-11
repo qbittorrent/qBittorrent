@@ -3195,7 +3195,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Ukendt</translation>
+        <translation type="obsolete">Ukendt</translation>
     </message>
     <message>
         <location filename="../misc.h" line="110"/>

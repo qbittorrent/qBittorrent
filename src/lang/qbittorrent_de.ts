@@ -4013,7 +4013,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Unbekannt</translation>
+        <translation type="obsolete">Unbekannt</translation>
     </message>
     <message>
         <location filename="../misc.h" line="110"/>

@@ -4112,7 +4112,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Nieznany</translation>
+        <translation type="obsolete">Nieznany</translation>
     </message>
     <message>
         <location filename="" line="0"/>

@@ -2279,11 +2279,6 @@ However, those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.h" line="322"/>
-        <source>Unknown</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../misc.h" line="110"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>

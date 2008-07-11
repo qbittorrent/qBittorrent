@@ -3716,7 +3716,7 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Necunoscut</translation>
+        <translation type="obsolete">Necunoscut</translation>
     </message>
     <message>
         <location filename="" line="0"/>

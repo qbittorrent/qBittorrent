@@ -4016,7 +4016,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Desconocido</translation>
+        <translation type="obsolete">Desconocido</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>

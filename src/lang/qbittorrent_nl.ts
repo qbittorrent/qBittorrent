@@ -3979,7 +3979,7 @@ De plugins zijn uitgeschakeld.</translation>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Onbekend</translation>
+        <translation type="obsolete">Onbekend</translation>
     </message>
     <message>
         <location filename="../misc.h" line="215"/>

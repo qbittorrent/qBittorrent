@@ -2295,7 +2295,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Okänd</translation>
+        <translation type="obsolete">Okänd</translation>
     </message>
     <message>
         <location filename="../misc.h" line="110"/>

@@ -3703,7 +3703,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Sconosciuto</translation>
+        <translation type="obsolete">Sconosciuto</translation>
     </message>
     <message>
         <location filename="../misc.h" line="220"/>

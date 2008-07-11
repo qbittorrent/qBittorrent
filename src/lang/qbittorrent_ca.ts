@@ -3800,7 +3800,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Desconegut</translation>
+        <translation type="obsolete">Desconegut</translation>
     </message>
     <message>
         <location filename="../misc.h" line="110"/>

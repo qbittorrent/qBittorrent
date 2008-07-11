@@ -3380,7 +3380,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>tuntematon</translation>
+        <translation type="obsolete">tuntematon</translation>
     </message>
     <message>
         <location filename="../misc.h" line="110"/>

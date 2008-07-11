@@ -3867,7 +3867,7 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Neznámy</translation>
+        <translation type="obsolete">Neznámy</translation>
     </message>
     <message>
         <location filename="" line="0"/>

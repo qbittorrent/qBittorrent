@@ -3923,7 +3923,7 @@ Portanto os plugins foram desabilitados.</translation>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Desconhecido</translation>
+        <translation type="obsolete">Desconhecido</translation>
     </message>
     <message>
         <location filename="" line="0"/>

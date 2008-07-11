@@ -4104,7 +4104,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Άγνωστος</translation>
+        <translation type="obsolete">Άγνωστος</translation>
     </message>
     <message>
         <location filename="" line="7471221"/>

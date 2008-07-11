@@ -3046,7 +3046,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Ismeretlen</translation>
+        <translation type="obsolete">Ismeretlen</translation>
     </message>
     <message>
         <location filename="../misc.h" line="110"/>

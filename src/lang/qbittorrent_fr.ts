@@ -4233,7 +4233,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
-        <translation>Inconnu</translation>
+        <translation type="obsolete">Inconnu</translation>
     </message>
     <message>
         <location filename="../misc.h" line="215"/>
