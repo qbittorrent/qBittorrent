@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>849</width>
+    <width>914</width>
     <height>563</height>
    </rect>
   </property>
@@ -16,22 +16,14 @@
    <string/>
   </property>
   <widget class="QWidget" name="centralwidget" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>58</y>
-     <width>849</width>
-     <height>482</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="vboxLayout" />
+   <layout class="QVBoxLayout" />
   </widget>
   <widget class="QMenuBar" name="menubar" >
    <property name="geometry" >
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>849</width>
+     <width>914</width>
      <height>26</height>
     </rect>
    </property>
@@ -83,14 +75,6 @@
    <property name="enabled" >
     <bool>true</bool>
    </property>
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>26</y>
-     <width>849</width>
-     <height>32</height>
-    </rect>
-   </property>
    <property name="contextMenuPolicy" >
     <enum>Qt::NoContextMenu</enum>
    </property>
@@ -126,20 +110,14 @@
    <addaction name="actionStart_All" />
    <addaction name="actionPause_All" />
    <addaction name="separator" />
+   <addaction name="actionDecreasePriority" />
+   <addaction name="actionIncreasePriority" />
+   <addaction name="separator" />
    <addaction name="actionOptions" />
    <addaction name="actionExit" />
    <addaction name="separator" />
   </widget>
-  <widget class="QStatusBar" name="statusBar" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>540</y>
-     <width>849</width>
-     <height>23</height>
-    </rect>
-   </property>
-  </widget>
+  <widget class="QStatusBar" name="statusBar" />
   <action name="actionOpen" >
    <property name="text" >
     <string>Open</string>
@@ -250,7 +228,25 @@
     <string>Set global upload limit</string>
    </property>
   </action>
+  <action name="actionDecreasePriority" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/Icons/downarrow.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Decrease priority</string>
+   </property>
+  </action>
+  <action name="actionIncreasePriority" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/Icons/uparrow.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Increase priority</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc" />
+ </resources>
  <connections/>
 </ui>

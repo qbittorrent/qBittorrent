@@ -1227,6 +1227,45 @@ void GUI::on_actionPause_All_triggered() {
   }
 }
 
+void GUI::on_actionIncreasePriority_triggered() {
+  bool inDownloadList = true;
+  if(tabs->currentIndex() > 1) return;
+  if(tabs->currentIndex() == 1)
+    inDownloadList = false;
+  if(!inDownloadList)
+    return;
+  QStringList hashes;
+  if(inDownloadList) {
+    hashes = downloadingTorrentTab->getSelectedTorrents();
+  } else {
+    hashes = finishedTorrentTab->getSelectedTorrents();
+  }
+  foreach(QString hash, hashes) {
+    BTSession->increaseDlTorrentPriority(hash);
+    downloadingTorrentTab->updateDlList();
+  }
+}
+
+void GUI::on_actionDecreasePriority_triggered() {
+  bool inDownloadList = true;
+  if(tabs->currentIndex() > 1) return;
+  if(tabs->currentIndex() == 1)
+    inDownloadList = false;
+  if(!inDownloadList)
+    return;
+  QStringList hashes;
+  if(inDownloadList) {
+    hashes = downloadingTorrentTab->getSelectedTorrents();
+  } else {
+    hashes = finishedTorrentTab->getSelectedTorrents();
+  }
+  QString hash;
+  foreach(QString hash, hashes) {
+    BTSession->decreaseDlTorrentPriority(hash);
+    downloadingTorrentTab->updateDlList();
+  }
+}
+
 // pause selected items in the list
 void GUI::on_actionPause_triggered() {
   bool inDownloadList = true;

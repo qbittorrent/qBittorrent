@@ -162,7 +162,7 @@ void bittorrent::setMaxActiveDlTorrents(int val) {
   maxActiveDlTorrents = val;
 }
 
-void bittorrent::decreaseDlTorrentPriority(QString hash) {
+void bittorrent::increaseDlTorrentPriority(QString hash) {
   int index = downloadQueue->indexOf(hash);
   Q_ASSERT(index != -1);
   if(index > 0) {
@@ -173,7 +173,7 @@ void bittorrent::decreaseDlTorrentPriority(QString hash) {
   }
 }
 
-void bittorrent::increaseDlTorrentPriority(QString hash) {
+void bittorrent::decreaseDlTorrentPriority(QString hash) {
   int index = downloadQueue->indexOf(hash);
   Q_ASSERT(index != -1);
   if(index >= 0 && index < (downloadQueue->size()-1)) {
