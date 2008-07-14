@@ -335,7 +335,7 @@ void DownloadingTorrents::displayDLHoSMenu(const QPoint& pos){
   QMenu hideshowColumn(this);
   hideshowColumn.setTitle(tr("Hide or Show Column"));
   int lastCol;
-  if(BTSession->isDlQueueingEnabled()) {
+  if(BTSession->isQueueingEnabled()) {
     lastCol = PRIORITY;
   } else {
     lastCol = ETA;
@@ -552,10 +552,9 @@ void DownloadingTorrents::updateDlList() {
       }
       Q_ASSERT(row != -1);
       // Update Priority
-      if(BTSession->isDlQueueingEnabled()) {
+      if(BTSession->isQueueingEnabled()) {
         DLListModel->setData(DLListModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
         if(h.is_paused() && BTSession->isDownloadQueued(hash)) {
-          qDebug("Download queued");
           DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queued.png"))), Qt::DecorationRole);
           if(!downloadList->isColumnHidden(ETA)) {
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
@@ -672,7 +671,7 @@ void DownloadingTorrents::addTorrent(QString hash) {
   DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
   DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
   DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-  if(BTSession->isDlQueueingEnabled())
+  if(BTSession->isQueueingEnabled())
     DLListModel->setData(DLListModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
   DLListModel->setData(DLListModel->index(row, HASH), QVariant(hash));
   // Pause torrent if it was paused last time

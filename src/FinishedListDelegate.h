@@ -37,7 +37,8 @@
 #define F_UPSPEED 2
 #define F_LEECH 3
 #define F_RATIO 4
-#define F_HASH 5
+#define F_PRIORITY 5
+#define F_HASH 6
 
 class FinishedListDelegate: public QItemDelegate {
   Q_OBJECT

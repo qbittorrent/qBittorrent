@@ -70,10 +70,14 @@ class bittorrent : public QObject{
     FilterParserThread *filterParser;
     QString filterPath;
     int folderScanInterval; // in seconds
-    bool dlQueueingEnabled;
-    int maxActiveDlTorrents;
+    bool queueingEnabled;
+    int maxActiveDownloads;
+    int maxActiveTorrents;
+    int currentActiveDownloads;
     QStringList *downloadQueue;
     QStringList *queuedDownloads;
+    QStringList *uploadQueue;
+    QStringList *queuedUploads;
 
   protected:
     QString getSavePath(QString hash);
@@ -101,10 +105,12 @@ class bittorrent : public QObject{
     bool has_filtered_files(QString hash) const;
     unsigned int getFinishedPausedTorrentsNb() const;
     unsigned int getUnfinishedPausedTorrentsNb() const;
-    bool isDlQueueingEnabled() const;
+    bool isQueueingEnabled() const;
     int getDlTorrentPriority(QString hash) const;
+    int getUpTorrentPriority(QString hash) const;
     bool isDownloadQueued(QString hash) const;
-    int loadDlTorrentPriority(QString hash);
+    bool isUploadQueued(QString hash) const;
+    int loadTorrentPriority(QString hash);
 
   public slots:
     void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
@@ -124,7 +130,7 @@ class bittorrent : public QObject{
     void enablePeerExchange();
     void enableIPFilter(QString filter);
     void disableIPFilter();
-    void setDlQueueingEnabled(bool enable);
+    void setQueueingEnabled(bool enable);
     void resumeUnfinishedTorrents();
     void saveTorrentSpeedLimits(QString hash);
     void loadTorrentSpeedLimits(QString hash);
@@ -133,9 +139,12 @@ class bittorrent : public QObject{
     void handleDownloadFailure(QString url, QString reason);
     void loadWebSeeds(QString fileHash);
     void updateDownloadQueue();
+    void updateUploadQueue();
     void increaseDlTorrentPriority(QString hash);
     void decreaseDlTorrentPriority(QString hash);
-    void saveDlTorrentPriority(QString hash, int prio);
+    void increaseUpTorrentPriority(QString hash);
+    void decreaseUpTorrentPriority(QString hash);
+    void saveTorrentPriority(QString hash, int prio);
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
     void setMaxConnections(int maxConnec);
@@ -162,7 +171,8 @@ class bittorrent : public QObject{
     bool enableDHT(bool b);
     void reloadTorrent(const QTorrentHandle &h, bool full_alloc);
     void setTimerScanInterval(int secs);
-    void setMaxActiveDlTorrents(int val);
+    void setMaxActiveDownloads(int val);
+    void setMaxActiveTorrents(int val);
 
   protected slots:
     void scanDirectory();

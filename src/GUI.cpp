@@ -1112,15 +1112,22 @@ void GUI::configureSession(bool deleteOptions) {
   }
   // Queueing System
   if(options->isQueueingSystemEnabled()) {
-    if(!BTSession->isDlQueueingEnabled()) {
-      BTSession->setMaxActiveDlTorrents(options->getMaxActiveDownloads());
-      BTSession->setDlQueueingEnabled(true);
+    if(!BTSession->isQueueingEnabled()) {
+      int max_torrents = options->getMaxActiveTorrents();
+      int max_downloads = options->getMaxActiveDownloads();
+      if(max_torrents < max_downloads)
+        max_torrents = max_downloads;
+      BTSession->setMaxActiveTorrents(max_torrents);
+      BTSession->setMaxActiveDownloads(max_downloads);
+      BTSession->setQueueingEnabled(true);
       downloadingTorrentTab->hidePriorityColumn(false);
+      finishedTorrentTab->hidePriorityColumn(false);
     }
   } else {
-    if(BTSession->isDlQueueingEnabled()) {
-      BTSession->setDlQueueingEnabled(false);
+    if(BTSession->isQueueingEnabled()) {
+      BTSession->setQueueingEnabled(false);
       downloadingTorrentTab->hidePriorityColumn(true);
+      finishedTorrentTab->hidePriorityColumn(true);
     }
   }
   // Clean up

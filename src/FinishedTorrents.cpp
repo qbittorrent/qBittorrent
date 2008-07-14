@@ -38,14 +38,17 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   actionStart->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play.png")));
   actionPause->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")));
   connect(BTSession, SIGNAL(addedTorrent(QString, QTorrentHandle&, bool)), this, SLOT(torrentAdded(QString, QTorrentHandle&, bool)));
-  finishedListModel = new QStandardItemModel(0,6);
+  finishedListModel = new QStandardItemModel(0,7);
   finishedListModel->setHeaderData(F_NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
   finishedListModel->setHeaderData(F_SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
   finishedListModel->setHeaderData(F_UPSPEED, Qt::Horizontal, tr("UP Speed", "i.e: Upload speed"));
   finishedListModel->setHeaderData(F_LEECH, Qt::Horizontal, tr("Leechers", "i.e: full/partial sources"));
   finishedListModel->setHeaderData(F_RATIO, Qt::Horizontal, tr("Ratio"));
+  finishedListModel->setHeaderData(F_PRIORITY, Qt::Horizontal, tr("Priority"));
   finishedList->setModel(finishedListModel);
   loadHiddenColumns();
+  // Hide priority column
+  finishedList->hideColumn(F_PRIORITY);
   // Hide hash column
   finishedList->hideColumn(F_HASH);
   // Load last columns width for download list
@@ -82,6 +85,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   connect(actionHOSColUpSpeed, SIGNAL(triggered()), this, SLOT(hideOrShowColumnUpSpeed()));
   connect(actionHOSColLeechers, SIGNAL(triggered()), this, SLOT(hideOrShowColumnLeechers()));
   connect(actionHOSColRatio, SIGNAL(triggered()), this, SLOT(hideOrShowColumnRatio()));
+  connect(actionHOSColPriority, SIGNAL(triggered()), this, SLOT(hideOrShowColumnPriority()));
 }
 
 FinishedTorrents::~FinishedTorrents(){
@@ -95,6 +99,10 @@ void FinishedTorrents::notifyTorrentDoubleClicked(const QModelIndex& index) {
   unsigned int row = index.row();
   QString hash = getHashFromRow(row);
   emit torrentDoubleClicked(hash, true);
+}
+
+void FinishedTorrents::hidePriorityColumn(bool hide) {
+  finishedList->setColumnHidden(F_PRIORITY, hide);
 }
 
 void FinishedTorrents::addTorrent(QString hash){
@@ -112,6 +120,8 @@ void FinishedTorrents::addTorrent(QString hash){
   finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), QVariant((double)0.));
   finishedListModel->setData(finishedListModel->index(row, F_LEECH), QVariant("0"));
   finishedListModel->setData(finishedListModel->index(row, F_RATIO), QVariant(QString::fromUtf8(misc::toString(BTSession->getRealRatio(hash)).c_str())));
+  if(BTSession->isQueueingEnabled())
+    finishedListModel->setData(finishedListModel->index(row, F_PRIORITY), QVariant((int)BTSession->getUpTorrentPriority(hash)));
   finishedListModel->setData(finishedListModel->index(row, F_HASH), QVariant(hash));
   if(h.is_paused()) {
     finishedListModel->setData(finishedListModel->index(row, F_NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
@@ -237,6 +247,14 @@ void FinishedTorrents::updateFinishedList(){
       row = getRowFromHash(hash);
     }
     Q_ASSERT(row != -1);
+    // Update priority
+    if(BTSession->isQueueingEnabled()) {
+      finishedListModel->setData(finishedListModel->index(row, F_PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
+      if(h.is_paused() && BTSession->isUploadQueued(hash)) {
+        finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queued.png"))), Qt::DecorationRole);
+        setRowColor(row, QString::fromUtf8("grey"));
+      }
+    }
     if(h.is_paused()) continue;
     if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) != -1) {
       continue;
@@ -406,6 +424,12 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
 void FinishedTorrents::displayFinishedHoSMenu(const QPoint& pos){
   QMenu hideshowColumn(this);
   hideshowColumn.setTitle(tr("Hide or Show Column"));
+  int lastCol;
+  if(BTSession->isQueueingEnabled()) {
+    lastCol = F_PRIORITY;
+  } else {
+    lastCol = F_RATIO;
+  }
   for(int i=0; i<=F_RATIO; i++) {
     hideshowColumn.addAction(getActionHoSCol(i));
   }
@@ -462,6 +486,10 @@ void FinishedTorrents::hideOrShowColumnLeechers() {
 
 void FinishedTorrents::hideOrShowColumnRatio() {
   hideOrShowColumn(F_RATIO);
+}
+
+void FinishedTorrents::hideOrShowColumnPriority() {
+  hideOrShowColumn(F_PRIORITY);
 }
 
 // load the previous settings, and hide the columns
@@ -524,6 +552,9 @@ QAction* FinishedTorrents::getActionHoSCol(int index) {
       break;
     case F_RATIO :
       return actionHOSColRatio;
+      break;
+    case F_PRIORITY :
+      return actionHOSColPriority;
       break;
     default :
       return NULL;

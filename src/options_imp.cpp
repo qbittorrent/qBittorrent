@@ -210,6 +210,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkEnableRSS, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkEnableQueueing, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(spinMaxActiveDownloads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(spinMaxActiveTorrents, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   // Web UI tab
   connect(checkWebUi, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinWebUiPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
@@ -354,6 +355,7 @@ void options_imp::saveOptions(){
   settings.beginGroup("Queueing");
   settings.setValue(QString::fromUtf8("QueueingEnabled"), isQueueingSystemEnabled());
   settings.setValue(QString::fromUtf8("MaxActiveDownloads"), spinMaxActiveDownloads->value());
+  settings.setValue(QString::fromUtf8("MaxActiveTorrents"), spinMaxActiveTorrents->value());
   // End Queueing system preferences
   settings.endGroup();
   // Web UI
@@ -635,6 +637,7 @@ void options_imp::loadOptions(){
   if(isQueueingSystemEnabled()) {
     enableQueueingSystem(2); // Enable
     spinMaxActiveDownloads->setValue(settings.value(QString::fromUtf8("MaxActiveDownloads"), 3).toInt());
+    spinMaxActiveTorrents->setValue(settings.value(QString::fromUtf8("MaxActiveTorrents"), 5).toInt());
   } else {
     enableQueueingSystem(0); // Disable
   }
@@ -663,6 +666,10 @@ int options_imp::getEncryptionSetting() const{
 
 int options_imp::getMaxActiveDownloads() const {
   return spinMaxActiveDownloads->value();
+}
+
+int options_imp::getMaxActiveTorrents() const {
+  return spinMaxActiveTorrents->value();
 }
 
 bool options_imp::minimizeToTray() const{
@@ -855,10 +862,14 @@ void options_imp::enableQueueingSystem(int checkBoxValue) {
     //Disable
     spinMaxActiveDownloads->setEnabled(false);
     label_max_active->setEnabled(false);
+    maxActiveTorrents_lbl->setEnabled(false);
+    spinMaxActiveTorrents->setEnabled(false);
   }else{
     //enable
     spinMaxActiveDownloads->setEnabled(true);
     label_max_active->setEnabled(true);
+    maxActiveTorrents_lbl->setEnabled(true);
+    spinMaxActiveTorrents->setEnabled(true);
   }
 }
 
