@@ -612,8 +612,18 @@ void bittorrent::setUnfinishedTorrent(QString hash) {
     TorrentsStartData[hash] = h.total_payload_download();
     TorrentsStartTime[hash] = QDateTime::currentDateTime();
   }
-  // Add it to downloadQueue
   if(queueingEnabled) {
+    // Remove it from uploadQueue
+    if(uploadQueue->contains(hash)) {
+      uploadQueue->removeAll(hash);
+      queuedDownloads->removeAll(hash);
+      if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio"))
+        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio");
+      if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued"))
+        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
+      updateUploadQueue();
+    }
+    // Add it to downloadQueue
     if(!downloadQueue->contains(hash)) {
       downloadQueue->append(hash);
       saveTorrentPriority(hash, downloadQueue->size()-1);
