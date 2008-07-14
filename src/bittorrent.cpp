@@ -298,6 +298,14 @@ void bittorrent::updateDownloadQueue() {
           }
         }
       }
+    } else {
+      if(currentActiveTorrents < maxActiveDlTorrents && isDownloadQueued(hash)) {
+        QTorrentHandle h = getTorrentHandle(hash);
+        h.resume();
+        queuedDownloads->removeAll(hash);
+        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
+        ++currentActiveTorrents;
+      }
     }
   }
   if(currentActiveTorrents < maxActiveDlTorrents) {
