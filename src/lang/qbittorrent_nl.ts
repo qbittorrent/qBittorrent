@@ -220,7 +220,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
 <context>
     <name>DLListDelegate</name>
     <message>
-        <location filename="../DLListDelegate.h" line="68"/>
+        <location filename="../DLListDelegate.h" line="69"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -398,12 +398,12 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">0.0.0.0</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1819"/>
+        <location filename="../options.ui" line="1878"/>
         <source>Port:</source>
         <translation>Poort:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1858"/>
+        <location filename="../options.ui" line="1917"/>
         <source>Authentication</source>
         <translation>Authenticatie</translation>
     </message>
@@ -413,7 +413,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Gebruikersnaam:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1879"/>
+        <location filename="../options.ui" line="1938"/>
         <source>Password:</source>
         <translation>Wachtwoord:</translation>
     </message>
@@ -967,7 +967,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>Proxy:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1869"/>
+        <location filename="../options.ui" line="1928"/>
         <source>Username:</source>
         <translation>Gebruikersnaam:</translation>
     </message>
@@ -1133,17 +1133,17 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1784"/>
+        <location filename="../options.ui" line="1843"/>
         <source>Web UI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1797"/>
+        <location filename="../options.ui" line="1856"/>
         <source>Enable Web User Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1810"/>
+        <location filename="../options.ui" line="1869"/>
         <source>HTTP Server</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1155,6 +1155,21 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1639"/>
         <source>RSS settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1762"/>
+        <source>Download queueing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1768"/>
+        <source>Enable queueing system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1780"/>
+        <source>Maximum active downloads:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1208,7 +1223,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation>Geschatte resterende tijd</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="113"/>
+        <location filename="../downloadingTorrents.cpp" line="117"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
         <translation>qBittorrent %1 gestart.</translation>
@@ -1219,75 +1234,80 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Wees voorzichtig, materiaal met copyright delen zonder toestemming is verboden.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="138"/>
+        <location filename="../downloadingTorrents.cpp" line="149"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;is geblokkeerd&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="224"/>
+        <location filename="../downloadingTorrents.cpp" line="235"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Snelle vervatting voor torrent %1 mislukt. Bezig met opnieuw controleren...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="228"/>
+        <location filename="../downloadingTorrents.cpp" line="239"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url seed raadpleging mislukt voor url: %1, bericht: %2</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="832"/>
+        <location filename="../downloadingTorrents.cpp" line="873"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; toegevoegd aan de downloadlijst.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="834"/>
+        <location filename="../downloadingTorrents.cpp" line="875"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; hervat. (snelle hervatting)</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="842"/>
+        <location filename="../downloadingTorrents.cpp" line="883"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; staat al in de downloadlijst.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="846"/>
+        <location filename="../downloadingTorrents.cpp" line="887"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Torrentbestand kan niet worden gedecodeerd: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="847"/>
+        <location filename="../downloadingTorrents.cpp" line="888"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Dit bestand is beschadigd of is geen torrent.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="861"/>
+        <location filename="../downloadingTorrents.cpp" line="902"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Kan niet luisteren op de aangegeven poorten.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="885"/>
+        <location filename="../downloadingTorrents.cpp" line="926"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Bezig met downloaden van &apos;%1&apos;, even geduld alstublieft...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="325"/>
+        <location filename="../downloadingTorrents.cpp" line="336"/>
         <source>Hide or Show Column</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="204"/>
+        <location filename="../downloadingTorrents.cpp" line="215"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="208"/>
+        <location filename="../downloadingTorrents.cpp" line="219"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadingTorrents.cpp" line="61"/>
+        <source>Priority</source>
+        <translation type="unfinished">Prioriteit</translation>
     </message>
 </context>
 <context>
@@ -1417,7 +1437,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> gestart.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1359"/>
+        <location filename="../GUI.cpp" line="1372"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1597,7 +1617,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1127"/>
+        <location filename="../GUI.cpp" line="1140"/>
         <source>Finished</source>
         <translation>Klaar</translation>
     </message>
@@ -1895,17 +1915,17 @@ Stop het eerste proccess eerst.
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1382"/>
+        <location filename="../GUI.cpp" line="1395"/>
         <source>Connection status:</source>
         <translation>Verbindingsstatus:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1382"/>
+        <location filename="../GUI.cpp" line="1395"/>
         <source>Offline</source>
         <translation>Offline</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1382"/>
+        <location filename="../GUI.cpp" line="1395"/>
         <source>No peers found...</source>
         <translation>Geen peers gevonden...</translation>
     </message>
@@ -1970,13 +1990,13 @@ Stop het eerste proccess eerst.
         <translation type="obsolete">qBittorrent %1 gestart.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1362"/>
+        <location filename="../GUI.cpp" line="1375"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL snelheid: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1365"/>
+        <location filename="../GUI.cpp" line="1378"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP snelheid: %1 KiB/s</translation>
@@ -2047,12 +2067,12 @@ Stop het eerste proccess eerst.
         <translation type="obsolete">Aan het luisteren op poort: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1213"/>
+        <location filename="../GUI.cpp" line="1226"/>
         <source>All downloads were paused.</source>
         <translation>Alle downloads gepauzeerd.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1239"/>
+        <location filename="../GUI.cpp" line="1252"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation>&apos;%1&apos; gepauzeerd.</translation>
@@ -2064,12 +2084,12 @@ Stop het eerste proccess eerst.
         <translation type="obsolete">Verbinding maken...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1272"/>
+        <location filename="../GUI.cpp" line="1285"/>
         <source>All downloads were resumed.</source>
         <translation>Alle downloads hervat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1298"/>
+        <location filename="../GUI.cpp" line="1311"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos; hervat.</translation>
@@ -2093,23 +2113,23 @@ Stop het eerste proccess eerst.
         <translation>Een fout is opgetreden tijdens het lezen of schrijven van %1. De schijf is waarschijnlijk vol, de download is gepauzeerd</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1378"/>
+        <location filename="../GUI.cpp" line="1391"/>
         <source>Connection Status:</source>
         <translation>Verbindingsstatus:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1373"/>
+        <location filename="../GUI.cpp" line="1386"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1378"/>
+        <location filename="../GUI.cpp" line="1391"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation>Geblokkeerd?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1378"/>
+        <location filename="../GUI.cpp" line="1391"/>
         <source>No incoming connections...</source>
         <translation>Geen inkomende verbindingen...</translation>
     </message>
@@ -2190,7 +2210,7 @@ Are you sure you want to quit qBittorrent?</source>
 Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1122"/>
+        <location filename="../GUI.cpp" line="1135"/>
         <source>Downloads</source>
         <translation>Downloads</translation>
     </message>
@@ -2307,18 +2327,18 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
         <translation>&apos;%1&apos; is verwijderd omdat de ratio de maximale ingestelde waarde heeft bereikt.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1339"/>
+        <location filename="../GUI.cpp" line="1352"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1324"/>
+        <location filename="../GUI.cpp" line="1337"/>
         <source>DL: %1 KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1325"/>
+        <location filename="../GUI.cpp" line="1338"/>
         <source>UP: %1 KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3734,6 +3754,11 @@ Changelog:
         <source>Buy it</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../download.ui" line="244"/>
+        <source>Priority</source>
+        <translation type="unfinished">Prioriteit</translation>
+    </message>
 </context>
 <context>
     <name>engineSelect</name>
@@ -4168,12 +4193,12 @@ De plugins zijn uitgeschakeld.</translation>
         <translation type="obsolete">Dit IP is ongeldig.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="787"/>
+        <location filename="../options_imp.cpp" line="815"/>
         <source>Options were saved successfully.</source>
         <translation>Opties zijn succesvol opgeslagen.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1075"/>
+        <location filename="../options_imp.cpp" line="1115"/>
         <source>Choose scan directory</source>
         <translation>Kies scanmap</translation>
     </message>
@@ -4183,7 +4208,7 @@ De plugins zijn uitgeschakeld.</translation>
         <translation type="obsolete">Kies een ipfilter.dat bestand</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1090"/>
+        <location filename="../options_imp.cpp" line="1130"/>
         <source>Choose a save directory</source>
         <translation>Kies een opslagmap</translation>
     </message>
@@ -4199,12 +4224,12 @@ De plugins zijn uitgeschakeld.</translation>
         <translation type="obsolete">Kon %1 niet openen om te lezen.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1082"/>
+        <location filename="../options_imp.cpp" line="1122"/>
         <source>Choose an ip filter file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1082"/>
+        <location filename="../options_imp.cpp" line="1122"/>
         <source>Filters</source>
         <translation type="unfinished"></translation>
     </message>
