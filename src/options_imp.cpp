@@ -143,6 +143,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // Misc tab
   connect(checkIPFilter, SIGNAL(stateChanged(int)), this, SLOT(enableFilter(int)));
   connect(checkEnableRSS, SIGNAL(stateChanged(int)), this, SLOT(enableRSS(int)));
+  connect(checkEnableQueueing, SIGNAL(stateChanged(int)), this, SLOT(enableQueueingSystem(int)));
   // Web UI tab
   connect(checkWebUi,  SIGNAL(toggled(bool)), this, SLOT(enableWebUi(bool)));
 
@@ -207,6 +208,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(spinRSSRefresh, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinRSSMaxArticlesPerFeed, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkEnableRSS, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkEnableQueueing, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(spinMaxActiveDownloads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   // Web UI tab
   connect(checkWebUi, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinWebUiPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
@@ -346,6 +349,12 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("RSSRefresh"), spinRSSRefresh->value());
   settings.setValue(QString::fromUtf8("RSSMaxArticlesPerFeed"), spinRSSMaxArticlesPerFeed->value());
   // End RSS preferences
+  settings.endGroup();
+  // Queueing system
+  settings.beginGroup("Queueing");
+  settings.setValue(QString::fromUtf8("QueueingEnabled"), isQueueingSystemEnabled());
+  settings.setValue(QString::fromUtf8("MaxActiveDownloads"), spinMaxActiveDownloads->value());
+  // End Queueing system preferences
   settings.endGroup();
   // Web UI
   settings.beginGroup("WebUI");
@@ -620,6 +629,17 @@ void options_imp::loadOptions(){
   spinRSSMaxArticlesPerFeed->setValue(settings.value(QString::fromUtf8("RSSMaxArticlesPerFeed"), 50).toInt());
   // End RSS preferences
   settings.endGroup();
+  // Queueing system preferences
+  settings.beginGroup("Queueing");
+  checkEnableQueueing->setChecked(settings.value("QueueingEnabled", false).toBool());
+  if(isQueueingSystemEnabled()) {
+    enableQueueingSystem(2); // Enable
+    spinMaxActiveDownloads->setValue(settings.value(QString::fromUtf8("MaxActiveDownloads"), 3).toInt());
+  } else {
+    enableQueueingSystem(0); // Disable
+  }
+  // End Queueing system preferences
+  settings.endGroup();
   // Web UI
   settings.beginGroup("WebUI");
   checkWebUi->setChecked(settings.value("Enabled", false).toBool());
@@ -639,6 +659,10 @@ std::pair<unsigned short, unsigned short> options_imp::getPorts() const{
 
 int options_imp::getEncryptionSetting() const{
   return comboEncryption->currentIndex();
+}
+
+int options_imp::getMaxActiveDownloads() const {
+  return spinMaxActiveDownloads->value();
 }
 
 bool options_imp::minimizeToTray() const{
@@ -661,6 +685,10 @@ bool options_imp::confirmOnExit() const{
 
 bool options_imp::isDirScanEnabled() const {
   return checkScanDir->isChecked();
+}
+
+bool options_imp::isQueueingSystemEnabled() const {
+  return checkEnableQueueing->isChecked();
 }
 
 bool options_imp::isDHTEnabled() const{
@@ -819,6 +847,18 @@ void options_imp::enableMaxConnecsLimit(int checkBoxValue){
   }else{
     //enable
     spinMaxConnec->setEnabled(true);
+  }
+}
+
+void options_imp::enableQueueingSystem(int checkBoxValue) {
+  if(checkBoxValue != 2) {
+    //Disable
+    spinMaxActiveDownloads->setEnabled(false);
+    label_max_active->setEnabled(false);
+  }else{
+    //enable
+    spinMaxActiveDownloads->setEnabled(true);
+    label_max_active->setEnabled(true);
   }
 }
 

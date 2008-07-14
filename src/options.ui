@@ -1562,7 +1562,7 @@
        <iconset resource="icons.qrc" >
         <normaloff>:/Icons/configure.png</normaloff>:/Icons/configure.png</iconset>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_7" >
+      <layout class="QVBoxLayout" name="verticalLayout_8" >
        <item>
         <widget class="QGroupBox" name="filterBox" >
          <property name="enabled" >
@@ -1752,6 +1752,65 @@
              </item>
             </layout>
            </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupQueueing" >
+         <property name="title" >
+          <string>Download queueing</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_7" >
+          <item>
+           <widget class="QCheckBox" name="checkEnableQueueing" >
+            <property name="text" >
+             <string>Enable queueing system</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4" >
+            <item>
+             <widget class="QLabel" name="label_max_active" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="text" >
+               <string>Maximum active downloads:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinMaxActiveDownloads" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="minimum" >
+               <number>1</number>
+              </property>
+              <property name="maximum" >
+               <number>999</number>
+              </property>
+              <property name="value" >
+               <number>3</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_2" >
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>

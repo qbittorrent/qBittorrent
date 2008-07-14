@@ -55,6 +55,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     QString getHashFromRow(unsigned int row) const;
     QStringList getSelectedTorrents(bool only_one=false) const;
     unsigned int getNbTorrentsInList() const;
+    void enablePriorityColumn(bool enable);
 
   signals:
     void unfinishedTorrentsNumberChanged(unsigned int);
@@ -92,6 +93,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void hideOrShowColumnSeedersLeechers();
     void hideOrShowColumnRatio();
     void hideOrShowColumnEta();
+    void hideOrShowColumnPriority();
     void displayUPnPError(QString msg);
     void displayUPnPSuccess(QString msg);
 
@@ -106,6 +108,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void sortProgressColumnDelayed();
     void updateFileSizeAndProgress(QString hash);
     void showPropertiesFromHash(QString hash);
+    void hidePriorityColumn(bool hide);
 
 };
 

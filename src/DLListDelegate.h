@@ -40,7 +40,8 @@
 #define SEEDSLEECH 5
 #define RATIO 6
 #define ETA 7
-#define HASH 8
+#define PRIORITY 8
+#define HASH 9
 
 class DLListDelegate: public QItemDelegate {
   Q_OBJECT

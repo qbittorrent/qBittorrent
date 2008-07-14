@@ -239,6 +239,11 @@
     <string>Buy it</string>
    </property>
   </action>
+  <action name="actionHOSColPriority" >
+   <property name="text" >
+    <string>Priority</string>
+   </property>
+  </action>
   <zorder>tabBottom</zorder>
   <zorder></zorder>
  </widget>

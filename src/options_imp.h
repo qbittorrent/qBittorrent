@@ -107,6 +107,9 @@ class options_imp : public QDialog, private Ui::Dialog {
     // IP Filter
     bool isFilteringEnabled() const;
     QString getFilter() const;
+    // Queueing system
+    bool isQueueingSystemEnabled() const;
+    int getMaxActiveDownloads() const;
     bool isWebUiEnabled() const;
     quint16 webUiPort() const;
     QString webUiUsername() const;
@@ -125,6 +128,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     void enableDeleteRatio(int checkBoxValue);
     void enableFilter(int checkBoxValue);
     void enableRSS(int checkBoxValue);
+    void enableQueueingSystem(int checkBoxValue);
     void setStyle(int style);
     void on_buttonBox_accepted();
     void closeEvent(QCloseEvent *e);

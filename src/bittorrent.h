@@ -70,6 +70,10 @@ class bittorrent : public QObject{
     FilterParserThread *filterParser;
     QString filterPath;
     int folderScanInterval; // in seconds
+    bool dlQueueingEnabled;
+    int maxActiveDlTorrents;
+    QStringList *downloadQueue;
+    QStringList *queuedDownloads;
 
   protected:
     QString getSavePath(QString hash);
@@ -97,6 +101,10 @@ class bittorrent : public QObject{
     bool has_filtered_files(QString hash) const;
     unsigned int getFinishedPausedTorrentsNb() const;
     unsigned int getUnfinishedPausedTorrentsNb() const;
+    bool isDlQueueingEnabled() const;
+    int getDlTorrentPriority(QString hash) const;
+    bool isDownloadQueued(QString hash) const;
+    int loadDlTorrentPriority(QString hash);
 
   public slots:
     void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
@@ -116,6 +124,7 @@ class bittorrent : public QObject{
     void enablePeerExchange();
     void enableIPFilter(QString filter);
     void disableIPFilter();
+    void setDlQueueingEnabled(bool enable);
     void resumeUnfinishedTorrents();
     void saveTorrentSpeedLimits(QString hash);
     void loadTorrentSpeedLimits(QString hash);
@@ -123,6 +132,10 @@ class bittorrent : public QObject{
     void loadDownloadUploadForTorrent(QString hash);
     void handleDownloadFailure(QString url, QString reason);
     void loadWebSeeds(QString fileHash);
+    void updateDownloadQueue();
+    void increaseDlTorrentPriority(QString hash);
+    void decreaseDlTorrentPriority(QString hash);
+    void saveDlTorrentPriority(QString hash, int prio);
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
     void setMaxConnections(int maxConnec);
@@ -149,6 +162,7 @@ class bittorrent : public QObject{
     bool enableDHT(bool b);
     void reloadTorrent(const QTorrentHandle &h, bool full_alloc);
     void setTimerScanInterval(int secs);
+    void setMaxActiveDlTorrents(int val);
 
   protected slots:
     void scanDirectory();

@@ -1110,6 +1110,19 @@ void GUI::configureSession(bool deleteOptions) {
   } else {
     displayRSSTab(false);
   }
+  // Queueing System
+  if(options->isQueueingSystemEnabled()) {
+    if(!BTSession->isDlQueueingEnabled()) {
+      BTSession->setMaxActiveDlTorrents(options->getMaxActiveDownloads());
+      BTSession->setDlQueueingEnabled(true);
+      downloadingTorrentTab->hidePriorityColumn(false);
+    }
+  } else {
+    if(BTSession->isDlQueueingEnabled()) {
+      BTSession->setDlQueueingEnabled(false);
+      downloadingTorrentTab->hidePriorityColumn(true);
+    }
+  }
   // Clean up
   if(deleteOptions) {
     delete options;
