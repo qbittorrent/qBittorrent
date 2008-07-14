@@ -556,7 +556,7 @@ void DownloadingTorrents::updateDlList() {
         DLListModel->setData(DLListModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
         if(h.is_paused() && BTSession->isDownloadQueued(hash)) {
           qDebug("Download queued");
-          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
+          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queued.png"))), Qt::DecorationRole);
           if(!downloadList->isColumnHidden(ETA)) {
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
           }
