@@ -1239,8 +1239,6 @@ void GUI::on_actionIncreasePriority_triggered() {
   if(tabs->currentIndex() > 1) return;
   if(tabs->currentIndex() == 1)
     inDownloadList = false;
-  if(!inDownloadList)
-    return;
   QStringList hashes;
   if(inDownloadList) {
     hashes = downloadingTorrentTab->getSelectedTorrents();
@@ -1248,8 +1246,13 @@ void GUI::on_actionIncreasePriority_triggered() {
     hashes = finishedTorrentTab->getSelectedTorrents();
   }
   foreach(QString hash, hashes) {
-    BTSession->increaseDlTorrentPriority(hash);
-    downloadingTorrentTab->updateDlList();
+    if(inDownloadList) {
+      BTSession->increaseDlTorrentPriority(hash);
+      downloadingTorrentTab->updateDlList();
+    } else {
+      BTSession->increaseUpTorrentPriority(hash);
+      finishedTorrentTab->updateFinishedList();
+    }
   }
 }
 
@@ -1258,8 +1261,6 @@ void GUI::on_actionDecreasePriority_triggered() {
   if(tabs->currentIndex() > 1) return;
   if(tabs->currentIndex() == 1)
     inDownloadList = false;
-  if(!inDownloadList)
-    return;
   QStringList hashes;
   if(inDownloadList) {
     hashes = downloadingTorrentTab->getSelectedTorrents();
@@ -1268,8 +1269,13 @@ void GUI::on_actionDecreasePriority_triggered() {
   }
   QString hash;
   foreach(QString hash, hashes) {
-    BTSession->decreaseDlTorrentPriority(hash);
-    downloadingTorrentTab->updateDlList();
+    if(inDownloadList) {
+      BTSession->decreaseDlTorrentPriority(hash);
+      downloadingTorrentTab->updateDlList();
+    } else {
+      BTSession->decreaseUpTorrentPriority(hash);
+      finishedTorrentTab->updateFinishedList();
+    }
   }
 }
 
