@@ -345,7 +345,6 @@ int bittorrent::getDlTorrentPriority(QString hash) const {
 
 int bittorrent::getUpTorrentPriority(QString hash) const {
   Q_ASSERT(uploadQueue != 0);
-  qDebug("priority: %d", uploadQueue->indexOf(hash));
   return uploadQueue->indexOf(hash);
 }
 

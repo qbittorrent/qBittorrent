@@ -1113,15 +1113,16 @@ void GUI::configureSession(bool deleteOptions) {
   // Queueing System
   if(options->isQueueingSystemEnabled()) {
     if(!BTSession->isQueueingEnabled()) {
-      int max_torrents = options->getMaxActiveTorrents();
-      int max_downloads = options->getMaxActiveDownloads();
-      if(max_torrents < max_downloads)
-        max_torrents = max_downloads;
-      BTSession->setMaxActiveTorrents(max_torrents);
-      BTSession->setMaxActiveDownloads(max_downloads);
-      BTSession->setQueueingEnabled(true);
       downloadingTorrentTab->hidePriorityColumn(false);
       finishedTorrentTab->hidePriorityColumn(false);
+    }
+    int max_torrents = options->getMaxActiveTorrents();
+    int max_downloads = options->getMaxActiveDownloads();
+    if(max_torrents < max_downloads)
+      max_torrents = max_downloads;
+    BTSession->setMaxActiveTorrents(max_torrents);
+    BTSession->setMaxActiveDownloads(max_downloads);
+    BTSession->setQueueingEnabled(true);
     }
   } else {
     if(BTSession->isQueueingEnabled()) {
