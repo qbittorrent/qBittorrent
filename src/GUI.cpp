@@ -133,6 +133,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(BTSession, SIGNAL(deletedTorrent(QString)), this, SLOT(deleteTorrent(QString)));
   connect(BTSession, SIGNAL(torrent_ratio_deleted(QString)), this, SLOT(deleteRatioTorrent(QString)));
   connect(BTSession, SIGNAL(pausedTorrent(QString)), this, SLOT(pauseTorrent(QString)));
+  connect(BTSession, SIGNAL(updateUnfinishedTorrentNumber()), this, SLOT(updateUnfinishedTorrentNumberCalc()));
+  connect(BTSession, SIGNAL(updateFinishedTorrentNumber()), this, SLOT(updateFinishedTorrentNumberCalc()));
   qDebug("create tabWidget");
   tabs = new QTabWidget();
   // Download torrents tab
@@ -1142,8 +1144,20 @@ void GUI::updateUnfinishedTorrentNumber(unsigned int nb) {
   tabs->setTabText(0, tr("Downloads") +QString::fromUtf8(" (")+misc::toQString(nb-paused)+"/"+misc::toQString(nb)+QString::fromUtf8(")"));
 }
 
+void GUI::updateUnfinishedTorrentNumberCalc() {
+  unsigned int paused = BTSession->getUnfinishedPausedTorrentsNb();
+  unsigned int nb = BTSession->getUnfinishedTorrents().size();
+  tabs->setTabText(0, tr("Downloads") +QString::fromUtf8(" (")+misc::toQString(nb-paused)+"/"+misc::toQString(nb)+QString::fromUtf8(")"));
+}
+
 void GUI::updateFinishedTorrentNumber(unsigned int nb) {
   unsigned int paused = BTSession->getFinishedPausedTorrentsNb();
+  tabs->setTabText(1, tr("Finished") +QString::fromUtf8(" (")+misc::toQString(nb-paused)+"/"+misc::toQString(nb)+QString::fromUtf8(")"));
+}
+
+void GUI::updateFinishedTorrentNumberCalc() {
+  unsigned int paused = BTSession->getFinishedPausedTorrentsNb();
+  unsigned int nb = BTSession->getFinishedTorrents().size();
   tabs->setTabText(1, tr("Finished") +QString::fromUtf8(" (")+misc::toQString(nb-paused)+"/"+misc::toQString(nb)+QString::fromUtf8(")"));
 }
 

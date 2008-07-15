@@ -124,6 +124,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void readSettings();
     void on_actionExit_triggered();
     void createTrayIcon();
+    void updateUnfinishedTorrentNumberCalc();
+    void updateFinishedTorrentNumberCalc();
     void updateUnfinishedTorrentNumber(unsigned int nb);
     void updateFinishedTorrentNumber(unsigned int nb);
     void fullDiskError(QTorrentHandle& h) const;

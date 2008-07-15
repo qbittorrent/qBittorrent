@@ -370,6 +370,7 @@ int bittorrent::getUpTorrentPriority(QString hash) const {
 
 void bittorrent::updateUploadQueue() {
   Q_ASSERT(queueingEnabled);
+  bool change = false;
   int maxActiveUploads = maxActiveTorrents - currentActiveDownloads;
   int currentActiveUploads = 0;
   // Check if it is necessary to queue uploads
@@ -381,6 +382,7 @@ void bittorrent::updateUploadQueue() {
       } else {
         // Queue it
         h.pause();
+        change = true;
         if(!queuedUploads->contains(hash)) {
           queuedUploads->append(hash);
           // Create .queued file
@@ -395,6 +397,7 @@ void bittorrent::updateUploadQueue() {
       if(currentActiveUploads < maxActiveUploads && isUploadQueued(hash)) {
         QTorrentHandle h = getTorrentHandle(hash);
         h.resume();
+        change = true;
         queuedUploads->removeAll(hash);
         QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
         ++currentActiveUploads;
@@ -408,6 +411,7 @@ void bittorrent::updateUploadQueue() {
         if(uploadQueue->contains(hash)) {
           QTorrentHandle h = getTorrentHandle(hash);
           h.resume();
+          change = true;
           queuedUploads->removeAll(hash);
           QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
           ++currentActiveUploads;
@@ -417,10 +421,13 @@ void bittorrent::updateUploadQueue() {
       }
     }
   }
+  if(change)
+    emit updateFinishedTorrentNumber();  
 }
 
 void bittorrent::updateDownloadQueue() {
   Q_ASSERT(queueingEnabled);
+  bool change = false;
   currentActiveDownloads = 0;
   // Check if it is necessary to queue torrents
   foreach(QString hash, *downloadQueue) {
@@ -431,6 +438,7 @@ void bittorrent::updateDownloadQueue() {
       } else {
         // Queue it
         h.pause();
+        change = true;
         if(!queuedDownloads->contains(hash)) {
           queuedDownloads->append(hash);
           // Create .queued file
@@ -445,6 +453,7 @@ void bittorrent::updateDownloadQueue() {
       if(currentActiveDownloads < maxActiveDownloads && isDownloadQueued(hash)) {
         QTorrentHandle h = getTorrentHandle(hash);
         h.resume();
+        change = true;
         queuedDownloads->removeAll(hash);
         QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
         ++currentActiveDownloads;
@@ -458,6 +467,7 @@ void bittorrent::updateDownloadQueue() {
         if(downloadQueue->contains(hash)) {
           QTorrentHandle h = getTorrentHandle(hash);
           h.resume();
+          change = true;
           queuedDownloads->removeAll(hash);
           QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
           ++currentActiveDownloads;
@@ -467,6 +477,8 @@ void bittorrent::updateDownloadQueue() {
       }
     }
   }
+  if(change)
+    emit updateUnfinishedTorrentNumber();
 }
 
 // Calculate the ETA using GASA

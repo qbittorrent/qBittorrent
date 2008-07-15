@@ -208,6 +208,8 @@ class bittorrent : public QObject{
     void torrent_ratio_deleted(QString fileName);
     void UPnPError(QString msg);
     void UPnPSuccess(QString msg);
+    void updateFinishedTorrentNumber();
+    void updateUnfinishedTorrentNumber();
 };
 
 #endif
