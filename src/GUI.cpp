@@ -1123,7 +1123,6 @@ void GUI::configureSession(bool deleteOptions) {
     BTSession->setMaxActiveTorrents(max_torrents);
     BTSession->setMaxActiveDownloads(max_downloads);
     BTSession->setQueueingEnabled(true);
-    }
   } else {
     if(BTSession->isQueueingEnabled()) {
       BTSession->setQueueingEnabled(false);
