@@ -249,7 +249,7 @@ void FinishedTorrents::updateFinishedList(){
     Q_ASSERT(row != -1);
     // Update priority
     if(BTSession->isQueueingEnabled()) {
-      finishedListModel->setData(finishedListModel->index(row, F_PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
+      finishedListModel->setData(finishedListModel->index(row, F_PRIORITY), QVariant((int)BTSession->getUpTorrentPriority(hash)));
       if(h.is_paused() && BTSession->isUploadQueued(hash)) {
         finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queued.png"))), Qt::DecorationRole);
         setRowColor(row, QString::fromUtf8("grey"));
