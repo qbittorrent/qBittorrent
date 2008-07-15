@@ -108,6 +108,8 @@ class bittorrent : public QObject{
     bool isQueueingEnabled() const;
     int getDlTorrentPriority(QString hash) const;
     int getUpTorrentPriority(QString hash) const;
+    int getMaximumActiveDownloads() const;
+    int getMaximumActiveTorrents() const;
     bool isDownloadQueued(QString hash) const;
     bool isUploadQueued(QString hash) const;
     int loadTorrentPriority(QString hash);

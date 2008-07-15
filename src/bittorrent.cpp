@@ -166,11 +166,23 @@ bool bittorrent::isQueueingEnabled() const {
 }
 
 void bittorrent::setMaxActiveDownloads(int val) {
-  maxActiveDownloads = val;
+  if(val != maxActiveDownloads) {
+    maxActiveDownloads = val;
+    if(queueingEnabled) {
+      updateDownloadQueue();
+      updateUploadQueue();
+    }
+  }
 }
 
 void bittorrent::setMaxActiveTorrents(int val) {
-  maxActiveTorrents = val;
+  if(val != maxActiveTorrents) {
+    maxActiveTorrents = val;
+    if(queueingEnabled) {
+      updateDownloadQueue();
+      updateUploadQueue();
+    }
+  }
 }
 
 void bittorrent::increaseDlTorrentPriority(QString hash) {
@@ -260,6 +272,14 @@ void bittorrent::setUploadLimit(QString hash, long val) {
   if(h.is_valid())
     h.set_upload_limit(val);
   saveTorrentSpeedLimits(hash);
+}
+
+int bittorrent::getMaximumActiveDownloads() const {
+  return maxActiveDownloads;
+}
+
+int bittorrent::getMaximumActiveTorrents() const {
+  return maxActiveTorrents;
 }
 
 void bittorrent::handleDownloadFailure(QString url, QString reason) {
