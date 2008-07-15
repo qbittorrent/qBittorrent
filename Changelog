@@ -1,4 +1,5 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.2.0
+    - FEATURE: Torrent queueing system (with priorities)
     - FEATURE: DHT is always ON (no longer used as fallback)
     - FEATURE: The number of DHT nodes is displayed
     - FEATURE: RSS can now be disabled from program preferences
