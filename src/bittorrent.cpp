@@ -73,6 +73,9 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   BigRatioTimer = 0;
   filterParser = 0;
   downloadQueue = 0;
+  queuedDownloads = 0;
+  uploadQueue = 0;
+  queuedUploads = 0;
   qDebug("* BTSession constructed");
 }
 
@@ -342,6 +345,7 @@ int bittorrent::getDlTorrentPriority(QString hash) const {
 
 int bittorrent::getUpTorrentPriority(QString hash) const {
   Q_ASSERT(uploadQueue != 0);
+  qDebug("priority: %d", uploadQueue->indexOf(hash));
   return uploadQueue->indexOf(hash);
 }
 
@@ -649,7 +653,7 @@ void bittorrent::setFinishedTorrent(QString hash) {
   // Remove it from TorrentsStartTime hash table
   TorrentsStartTime.remove(hash);
   TorrentsStartData.remove(hash);
-  // Remove it from downloadQueue
+  // Remove it from  
   if(queueingEnabled) {
     downloadQueue->removeAll(hash);
     queuedDownloads->removeAll(hash);
@@ -658,8 +662,10 @@ void bittorrent::setFinishedTorrent(QString hash) {
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued"))
       QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
     updateDownloadQueue();
-    uploadQueue->append(hash);
-    updateUploadQueue();
+    if(!uploadQueue->contains(hash)) {
+      uploadQueue->append(hash);
+      updateUploadQueue();
+    }
   }
   // Save fast resume data
   saveFastResumeAndRatioData(hash);
