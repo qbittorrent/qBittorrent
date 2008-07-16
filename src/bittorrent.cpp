@@ -346,6 +346,27 @@ void bittorrent::setQueueingEnabled(bool enable) {
       queuedUploads = new QStringList();
       updateUploadQueue();
     } else {
+      // Unqueue torrents
+      foreach(QString hash, *queuedDownloads) {
+        QTorrentHandle h = getTorrentHandle(hash);
+        h.resume();
+        if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued")) {
+          QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
+        }
+        if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio")) {
+          QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio");
+        }
+      }
+      foreach(QString hash, *queuedUploads) {
+        QTorrentHandle h = getTorrentHandle(hash);
+        h.resume();
+        if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued")) {
+          QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
+        }
+        if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio")) {
+          QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio");
+        }
+      }
       delete downloadQueue;
       downloadQueue = 0;
       delete queuedDownloads;
