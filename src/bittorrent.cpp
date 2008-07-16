@@ -750,13 +750,15 @@ bool bittorrent::pauseTorrent(QString hash) {
   // Remove it from TorrentsStartTime hash table
   TorrentsStartTime.remove(hash);
   TorrentsStartData.remove(hash);
-  // Remove it from queued list if present
-  if(queuedDownloads->contains(hash))
-    queuedDownloads->removeAll(hash);
-  if(queuedUploads->contains(hash))
-    queuedUploads->removeAll(hash);
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued"))
-    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
+  if(queueingEnabled) {
+    // Remove it from queued list if present
+    if(queuedDownloads->contains(hash))
+      queuedDownloads->removeAll(hash);
+    if(queuedUploads->contains(hash))
+      queuedUploads->removeAll(hash);
+    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued"))
+      QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
+  }
   return change;
 }
 
