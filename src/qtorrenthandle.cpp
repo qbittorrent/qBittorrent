@@ -55,7 +55,9 @@ QString QTorrentHandle::name() const {
 
 float QTorrentHandle::progress() const {
   Q_ASSERT(h.is_valid());
-  float progress = h.status().progress;
+  if(!h.status().total_wanted)
+    return 0.;
+  float progress = (float)h.status().total_wanted_done/(float)h.status().total_wanted;
   Q_ASSERT(progress >= 0. && progress <= 1.);
   return progress;
 }
