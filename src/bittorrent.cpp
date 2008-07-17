@@ -429,7 +429,7 @@ void bittorrent::updateUploadQueue() {
     // Could not fill download slots, unqueue torrents
     foreach(QString hash, *uploadQueue) {
       if(uploadQueue->size() != 0 && currentActiveUploads < maxActiveUploads) {
-        if(uploadQueue->contains(hash)) {
+        if(queuedUploads->contains(hash)) {
           QTorrentHandle h = getTorrentHandle(hash);
           h.resume();
           change = true;
@@ -485,7 +485,7 @@ void bittorrent::updateDownloadQueue() {
     // Could not fill download slots, unqueue torrents
     foreach(QString hash, *downloadQueue) {
       if(downloadQueue->size() != 0 && currentActiveDownloads < maxActiveDownloads) {
-        if(downloadQueue->contains(hash)) {
+        if(queuedDownloads->contains(hash)) {
           QTorrentHandle h = getTorrentHandle(hash);
           h.resume();
           change = true;
@@ -738,7 +738,20 @@ bool bittorrent::pauseTorrent(QString hash) {
     if(!h.is_valid()) {
       qDebug("Could not pause torrent %s, reason: invalid", hash.toUtf8().data());
     }else{
-      qDebug("Could not pause torrent %s, reason: already paused", hash.toUtf8().data());
+      if(queueingEnabled && (isDownloadQueued(hash)||isUploadQueued(hash))) {
+        // Remove it from queued list if present
+        if(queuedDownloads->contains(hash))
+          queuedDownloads->removeAll(hash);
+        if(queuedUploads->contains(hash))
+          queuedUploads->removeAll(hash);
+        if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued"))
+          QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
+        updateDownloadQueue();
+        updateUploadQueue();
+        change = true;
+      } else {
+        qDebug("Could not pause torrent %s, reason: already paused", hash.toUtf8().data());
+      }
     }
   }
   // Create .paused file if necessary
@@ -750,15 +763,6 @@ bool bittorrent::pauseTorrent(QString hash) {
   // Remove it from TorrentsStartTime hash table
   TorrentsStartTime.remove(hash);
   TorrentsStartData.remove(hash);
-  if(queueingEnabled) {
-    // Remove it from queued list if present
-    if(queuedDownloads->contains(hash))
-      queuedDownloads->removeAll(hash);
-    if(queuedUploads->contains(hash))
-      queuedUploads->removeAll(hash);
-    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued"))
-      QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
-  }
   return change;
 }
 
@@ -767,12 +771,14 @@ bool bittorrent::resumeTorrent(QString hash) {
   bool success = false;
   QTorrentHandle h = getTorrentHandle(hash);
   if(h.is_valid() && h.is_paused()) {
-    // Save Addition DateTime
-    TorrentsStartData[hash] = h.total_payload_download();
-    TorrentsStartTime[hash] = QDateTime::currentDateTime();
-    h.resume();
-    success = true;
-    emit resumedTorrent(hash);
+    if(!(queueingEnabled && (isDownloadQueued(hash)||isUploadQueued(hash)))) {
+      // Save Addition DateTime
+      TorrentsStartData[hash] = h.total_payload_download();
+      TorrentsStartTime[hash] = QDateTime::currentDateTime();
+      h.resume();
+      success = true;
+      emit resumedTorrent(hash);
+    }
   }
   // Delete .paused file
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused"))
@@ -782,6 +788,8 @@ bool bittorrent::resumeTorrent(QString hash) {
     torrentsToPauseAfterChecking.removeAt(index);
     success = true;
   }
+  updateDownloadQueue();
+  updateUploadQueue();
   return success;
 }
 

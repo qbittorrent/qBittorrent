@@ -1200,7 +1200,7 @@ void GUI::togglePausedState(QString hash) {
   if(tabs->currentIndex() == 1)
     inDownloadList = false;
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
-  if(BTSession->isPaused(hash)) {
+  if(BTSession->isPaused(hash) && !(BTSession->isQueueingEnabled() && (BTSession->isDownloadQueued(hash) || BTSession->isUploadQueued(hash)))) {
     BTSession->resumeTorrent(hash);
     downloadingTorrentTab->setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(h.name()));
     if(inDownloadList) {
