@@ -187,3 +187,4 @@ bool SearchTab::loadColWidthSearchList(){
   qDebug("Search list columns width loaded");
   return true;
 }
+
