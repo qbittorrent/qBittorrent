@@ -89,6 +89,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QShortcut *switchDownShortcut;
     QShortcut *switchUpShortcut;
     QShortcut *switchRSSShortcut;
+    QAction *prioSeparator;
     // Search
     SearchEngine *searchEngine;
     // RSS

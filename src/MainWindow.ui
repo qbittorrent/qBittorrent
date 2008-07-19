@@ -114,10 +114,11 @@
    <addaction name="actionPause_All" />
    <addaction name="separator" />
    <addaction name="actionOptions" />
-   <addaction name="actionExit" />
-   <addaction name="separator" />
    <addaction name="actionDecreasePriority" />
    <addaction name="actionIncreasePriority" />
+   <addaction name="separator" />
+   <addaction name="actionExit" />
+   <addaction name="separator" />
   </widget>
   <widget class="QStatusBar" name="statusBar" />
   <action name="actionOpen" >
