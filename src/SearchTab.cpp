@@ -41,6 +41,7 @@ SearchTab::SearchTab(SearchEngine *parent) : QWidget()
     box=new QVBoxLayout();
     results_lbl=new QLabel();
     resultsBrowser = new QTreeView();
+    resultsBrowser->setSelectionMode(QAbstractItemView::ExtendedSelection);
     box->addWidget(results_lbl);
     box->addWidget(resultsBrowser);
     
