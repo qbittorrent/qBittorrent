@@ -113,7 +113,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
   connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/disconnected.png")));
   connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+tr("Offline")+QString::fromUtf8("<br><i>")+tr("No peers found...")+QString::fromUtf8("</i>"));
-  toolBar->addWidget(connecStatusLblIcon);
+  toolBar->insertWidget(actionDecreasePriority, connecStatusLblIcon);
+  toolBar->insertSeparator(actionDecreasePriority);
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
   actionCreate_torrent->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/new.png")));
@@ -1117,6 +1118,9 @@ void GUI::configureSession(bool deleteOptions) {
     if(!BTSession->isQueueingEnabled()) {
       downloadingTorrentTab->hidePriorityColumn(false);
       finishedTorrentTab->hidePriorityColumn(false);
+      actionDecreasePriority->setVisible(true);
+      actionIncreasePriority->setVisible(true);
+      toolBar->layout()->setSpacing(7);
     }
     int max_torrents = options->getMaxActiveTorrents();
     int max_downloads = options->getMaxActiveDownloads();
@@ -1130,6 +1134,9 @@ void GUI::configureSession(bool deleteOptions) {
       BTSession->setQueueingEnabled(false);
       downloadingTorrentTab->hidePriorityColumn(true);
       finishedTorrentTab->hidePriorityColumn(true);
+      actionDecreasePriority->setVisible(false);
+      actionIncreasePriority->setVisible(false);
+      toolBar->layout()->setSpacing(7);
     }
   }
   // Clean up

@@ -90,6 +90,9 @@
      <height>32</height>
     </size>
    </property>
+   <property name="floatable" >
+    <bool>false</bool>
+   </property>
    <attribute name="toolBarArea" >
     <enum>TopToolBarArea</enum>
    </attribute>
@@ -110,12 +113,11 @@
    <addaction name="actionStart_All" />
    <addaction name="actionPause_All" />
    <addaction name="separator" />
-   <addaction name="actionDecreasePriority" />
-   <addaction name="actionIncreasePriority" />
-   <addaction name="separator" />
    <addaction name="actionOptions" />
    <addaction name="actionExit" />
    <addaction name="separator" />
+   <addaction name="actionDecreasePriority" />
+   <addaction name="actionIncreasePriority" />
   </widget>
   <widget class="QStatusBar" name="statusBar" />
   <action name="actionOpen" >
@@ -235,6 +237,9 @@
    <property name="text" >
     <string>Decrease priority</string>
    </property>
+   <property name="visible" >
+    <bool>false</bool>
+   </property>
   </action>
   <action name="actionIncreasePriority" >
    <property name="icon" >
@@ -242,6 +247,9 @@
    </property>
    <property name="text" >
     <string>Increase priority</string>
+   </property>
+   <property name="visible" >
+    <bool>false</bool>
    </property>
   </action>
  </widget>
