@@ -141,7 +141,8 @@ void RealProgressBarThread::mark(qreal start, qreal end, qreal progress){
 	if (end > array.size())
 		end = array.size();
 	int start_int, end_int;
-	qreal temp, start_frac, end_frac;
+	qreal start_frac, end_frac;
+	double temp;
 	start_frac = modf(start, &temp);
 	start_int = (int) temp;
 	end_frac = modf(end, &temp);
