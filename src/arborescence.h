@@ -234,7 +234,7 @@ class arborescence {
     void addFile(QString path, size_type file_size, int index, float progress=0., int priority=1) {
       Q_ASSERT(root->isDir());
       path = QDir::cleanPath(path);
-      Q_ASSERT(path.startsWith(root->path()));
+      //Q_ASSERT(path.startsWith(root->path()));
       QString relative_path = path.remove(0, root->path().size());
       if(relative_path.at(0) ==QDir::separator())
         relative_path.remove(0, 1);
