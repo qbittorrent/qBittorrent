@@ -364,11 +364,19 @@ void DownloadingTorrents::hideOrShowColumn(int index) {
     downloadList->setColumnHidden(index, true);
     getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
     --nbVisibleColumns;
+    if(index == ETA) {
+      BTSession->setETACalculation(false);
+      qDebug("Disable ETA calculation");
+    }
   } else {
     // User want to display the column
     downloadList->setColumnHidden(index, false);
     getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
     ++nbVisibleColumns;
+    if(index == ETA) {
+      BTSession->setETACalculation(true);
+      qDebug("Enable ETA calculation");
+    }
   }
   //resize all others non-hidden columns
   for(unsigned int i=0; i<nbCols; ++i) {

@@ -43,7 +43,7 @@
 #define MAX_TRACKER_ERRORS 2
 
 // Main constructor
-bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), max_ratio(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), folderScanInterval(5), queueingEnabled(false) {
+bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), max_ratio(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), folderScanInterval(5), queueingEnabled(false), calculateETA(true) {
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
   // Creating bittorrent session
@@ -150,6 +150,24 @@ void bittorrent::deleteBigRatios() {
       QString fileName = h.name();
       deleteTorrent(hash);
       emit torrent_ratio_deleted(fileName);
+    }
+  }
+}
+
+void bittorrent::setETACalculation(bool enable) {
+  if(calculateETA != enable) {
+    calculateETA = enable;
+    if(calculateETA) {
+      foreach(QString hash, unfinishedTorrents) {
+        QTorrentHandle h = getTorrentHandle(hash);
+        if(!h.is_paused()) {
+          TorrentsStartData[hash] = h.total_payload_download();
+          TorrentsStartTime[hash] = QDateTime::currentDateTime();
+        }
+      }
+    } else {
+      TorrentsStartData.clear();
+      TorrentsStartTime.clear();
     }
   }
 }
@@ -505,6 +523,7 @@ void bittorrent::updateDownloadQueue() {
 // Calculate the ETA using GASA
 // GASA: global Average Speed Algorithm
 qlonglong bittorrent::getETA(QString hash) const {
+  Q_ASSERT(calculateETA);
   QTorrentHandle h = getTorrentHandle(hash);
   if(!h.is_valid()) return -1;
   switch(h.state()) {
@@ -597,8 +616,10 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
     torrentBackup.remove(file);
   }
   // Remove it from TorrentsStartTime hash table
-  TorrentsStartTime.remove(hash);
-  TorrentsStartData.remove(hash);
+  if(calculateETA) {
+    TorrentsStartTime.remove(hash);
+    TorrentsStartData.remove(hash);
+  }
   // Remove tracker errors
   trackersErrors.remove(hash);
   // Remove it from ratio table
@@ -665,8 +686,10 @@ void bittorrent::setUnfinishedTorrent(QString hash) {
   if(!unfinishedTorrents.contains(hash)) {
     unfinishedTorrents << hash;
     QTorrentHandle h = getTorrentHandle(hash);
-    TorrentsStartData[hash] = h.total_payload_download();
-    TorrentsStartTime[hash] = QDateTime::currentDateTime();
+    if(calculateETA) {
+      TorrentsStartData[hash] = h.total_payload_download();
+      TorrentsStartTime[hash] = QDateTime::currentDateTime();
+    }
   }
   if(queueingEnabled) {
     // Remove it from uploadQueue
@@ -703,8 +726,10 @@ void bittorrent::setFinishedTorrent(QString hash) {
     unfinishedTorrents.removeAt(index);
   }
   // Remove it from TorrentsStartTime hash table
-  TorrentsStartTime.remove(hash);
-  TorrentsStartData.remove(hash);
+  if(calculateETA) {
+    TorrentsStartTime.remove(hash);
+    TorrentsStartData.remove(hash);
+  }
   // Remove it from  
   if(queueingEnabled) {
     downloadQueue->removeAll(hash);
@@ -761,8 +786,10 @@ bool bittorrent::pauseTorrent(QString hash) {
     paused_file.close();
   }
   // Remove it from TorrentsStartTime hash table
-  TorrentsStartTime.remove(hash);
-  TorrentsStartData.remove(hash);
+  if(calculateETA) {
+    TorrentsStartTime.remove(hash);
+    TorrentsStartData.remove(hash);
+  }
   return change;
 }
 
@@ -773,8 +800,10 @@ bool bittorrent::resumeTorrent(QString hash) {
   if(h.is_valid() && h.is_paused()) {
     if(!(queueingEnabled && (isDownloadQueued(hash)||isUploadQueued(hash)))) {
       // Save Addition DateTime
-      TorrentsStartData[hash] = h.total_payload_download();
-      TorrentsStartTime[hash] = QDateTime::currentDateTime();
+      if(calculateETA) {
+        TorrentsStartData[hash] = h.total_payload_download();
+        TorrentsStartTime[hash] = QDateTime::currentDateTime();
+      }
       h.resume();
       success = true;
       emit resumedTorrent(hash);
@@ -1702,8 +1731,10 @@ void bittorrent::readAlerts() {
           qDebug("%s was paused after checking", hash.toUtf8().data());
         } else {
           // Save Addition DateTime
-          TorrentsStartTime[hash] = QDateTime::currentDateTime();
-          TorrentsStartData[hash] = h.total_payload_download();
+          if(calculateETA) {
+            TorrentsStartTime[hash] = QDateTime::currentDateTime();
+            TorrentsStartData[hash] = h.total_payload_download();
+          }
         }
         emit torrentFinishedChecking(hash);
       }

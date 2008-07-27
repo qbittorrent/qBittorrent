@@ -78,6 +78,7 @@ class bittorrent : public QObject{
     QStringList *queuedDownloads;
     QStringList *uploadQueue;
     QStringList *queuedUploads;
+    bool calculateETA;
 
   protected:
     QString getSavePath(QString hash);
@@ -175,6 +176,7 @@ class bittorrent : public QObject{
     void setTimerScanInterval(int secs);
     void setMaxActiveDownloads(int val);
     void setMaxActiveTorrents(int val);
+    void setETACalculation(bool enable);
 
   protected slots:
     void scanDirectory();
