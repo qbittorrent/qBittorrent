@@ -394,7 +394,7 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
 
   // Call menu
   // XXX: why mapToGlobal() is not enough?
-  myFinishedListMenu.exec(mapToGlobal(pos)+QPoint(10,55));
+  myFinishedListMenu.exec(mapToGlobal(pos)+QPoint(10,59));
 }
 
 
@@ -410,7 +410,7 @@ void FinishedTorrents::displayFinishedHoSMenu(const QPoint& pos){
     hideshowColumn.addAction(getActionHoSCol(i));
   }
   // Call menu
-  hideshowColumn.exec(mapToGlobal(pos)+QPoint(10,55));
+  hideshowColumn.exec(mapToGlobal(pos)+QPoint(10,32));
 }
 
 // toggle hide/show a column
