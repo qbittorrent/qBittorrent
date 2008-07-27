@@ -322,7 +322,7 @@ void DownloadingTorrents::displayDLListMenu(const QPoint& pos) {
   myDLLlistMenu.addAction(actionBuy_it);
   // Call menu
   // XXX: why mapToGlobal() is not enough?
-  myDLLlistMenu.exec(mapToGlobal(pos)+QPoint(10,60));
+  myDLLlistMenu.exec(mapToGlobal(pos)+QPoint(10,35));
 }
 
 
@@ -344,7 +344,7 @@ void DownloadingTorrents::displayDLHoSMenu(const QPoint& pos){
     hideshowColumn.addAction(getActionHoSCol(i));
   }
   // Call menu
-  hideshowColumn.exec(mapToGlobal(pos)+QPoint(10,55));
+  hideshowColumn.exec(mapToGlobal(pos)+QPoint(10,10));
 }
 
 // toggle hide/show a column
