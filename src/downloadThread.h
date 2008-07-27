@@ -30,6 +30,7 @@
 #include <QWaitCondition>
 #include <QStringList>
 #include <curl/curl.h>
+#include <QQueue>
 
 class subDownloadThread : public QThread {
   Q_OBJECT
@@ -55,8 +56,7 @@ class downloadThread : public QThread {
   Q_OBJECT
 
   private:
-    QStringList url_list;
-    QStringList downloading_list;
+    QQueue<QString> urls_queue;
     QMutex mutex;
     QWaitCondition condition;
     bool abort;

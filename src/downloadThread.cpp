@@ -152,9 +152,7 @@ downloadThread::~downloadThread(){
 
 void downloadThread::downloadUrl(QString url){
   QMutexLocker locker(&mutex);
-  if(downloading_list.contains(url)) return;
-  url_list << url;
-  downloading_list << url;
+  urls_queue.enqueue(url);
   if(!isRunning()){
     start();
   }else{
@@ -167,8 +165,8 @@ void downloadThread::run(){
     if(abort)
       return;
     mutex.lock();
-    if(url_list.size() != 0 && subThreads.size() < MAX_THREADS){
-      QString url = url_list.takeFirst();
+    if(!urls_queue.empty() && subThreads.size() < MAX_THREADS){
+      QString url = urls_queue.dequeue();
       mutex.unlock();
       subDownloadThread *st = new subDownloadThread(0, url);
       subThreads << st;
@@ -189,10 +187,7 @@ void downloadThread::propagateDownloadedFile(subDownloadThread* st, QString url,
   delete st;
   emit downloadFinished(url, path);
   mutex.lock();
-  index = downloading_list.indexOf(url);
-  Q_ASSERT(index != -1);
-  downloading_list.removeAt(index);
-  if(url_list.size() != 0) {
+  if(!urls_queue.empty()) {
     condition.wakeOne();
   }
   mutex.unlock();
@@ -205,10 +200,7 @@ void downloadThread::propagateDownloadFailure(subDownloadThread* st, QString url
   delete st;
   emit downloadFailure(url, reason);
   mutex.lock();
-  index = downloading_list.indexOf(url);
-  Q_ASSERT(index != -1);
-  downloading_list.removeAt(index);
-  if(url_list.size() != 0) {
+  if(!urls_queue.empty()) {
     condition.wakeOne();
   }
   mutex.unlock();
