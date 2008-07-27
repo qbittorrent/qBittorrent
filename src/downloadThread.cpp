@@ -24,6 +24,8 @@
 #include <QSettings>
 #include <stdio.h>
 
+#define MAX_THREADS 3
+
 // http://curl.rtin.bz/libcurl/c/libcurl-errors.html
 QString subDownloadThread::errorCodeToString(CURLcode status) {
   switch(status){
@@ -165,7 +167,7 @@ void downloadThread::run(){
     if(abort)
       return;
     mutex.lock();
-    if(url_list.size() != 0){
+    if(url_list.size() != 0 && subThreads.size() < MAX_THREADS){
       QString url = url_list.takeFirst();
       mutex.unlock();
       subDownloadThread *st = new subDownloadThread(0, url);
@@ -190,6 +192,9 @@ void downloadThread::propagateDownloadedFile(subDownloadThread* st, QString url,
   index = downloading_list.indexOf(url);
   Q_ASSERT(index != -1);
   downloading_list.removeAt(index);
+  if(url_list.size() != 0) {
+    condition.wakeOne();
+  }
   mutex.unlock();
 }
 
@@ -203,5 +208,8 @@ void downloadThread::propagateDownloadFailure(subDownloadThread* st, QString url
   index = downloading_list.indexOf(url);
   Q_ASSERT(index != -1);
   downloading_list.removeAt(index);
+  if(url_list.size() != 0) {
+    condition.wakeOne();
+  }
   mutex.unlock();
 }

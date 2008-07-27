@@ -4,6 +4,7 @@
     - FEATURE: The number of DHT nodes is displayed
     - FEATURE: RSS can now be disabled from program preferences
     - BUGFIX: Disable ETA calculation when ETA column is hidden
+    - BUGFIX: Limit the number of concurrent download threads to save memory
     - COSMETIC: Transfer speed, ratio and DHT nodes are displayed in status bar    
     - COSMETIC: RSS Tab is now hidden as a default
 
