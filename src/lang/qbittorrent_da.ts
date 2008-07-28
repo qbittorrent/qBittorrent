@@ -3826,47 +3826,47 @@ However, those plugins were disabled.</source>
 <context>
     <name>subDownloadThread</name>
     <message>
-        <location filename="../downloadThread.cpp" line="32"/>
+        <location filename="../downloadThread.cpp" line="34"/>
         <source>Host is unreachable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="35"/>
+        <location filename="../downloadThread.cpp" line="37"/>
         <source>File was not found (404)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="39"/>
+        <location filename="../downloadThread.cpp" line="41"/>
         <source>Connection was denied</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="41"/>
+        <location filename="../downloadThread.cpp" line="43"/>
         <source>Url is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="51"/>
+        <location filename="../downloadThread.cpp" line="53"/>
         <source>Connection failure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="53"/>
+        <location filename="../downloadThread.cpp" line="55"/>
         <source>Connection was timed out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="55"/>
+        <location filename="../downloadThread.cpp" line="57"/>
         <source>Incorrect network interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="57"/>
+        <location filename="../downloadThread.cpp" line="59"/>
         <source>Unknown error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="43"/>
+        <location filename="../downloadThread.cpp" line="45"/>
         <source>Could not resolve proxy</source>
         <translation type="unfinished"></translation>
     </message>

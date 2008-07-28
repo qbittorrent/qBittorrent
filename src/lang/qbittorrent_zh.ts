@@ -5104,22 +5104,22 @@ network.</source>
 <context>
     <name>subDownloadThread</name>
     <message>
-        <location filename="../downloadThread.cpp" line="32"/>
+        <location filename="../downloadThread.cpp" line="34"/>
         <source>Host is unreachable</source>
         <translation>无法连接到主机</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="35"/>
+        <location filename="../downloadThread.cpp" line="37"/>
         <source>File was not found (404)</source>
         <translation>文件未找到（404）</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="39"/>
+        <location filename="../downloadThread.cpp" line="41"/>
         <source>Connection was denied</source>
         <translation>连接被拒绝</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="41"/>
+        <location filename="../downloadThread.cpp" line="43"/>
         <source>Url is invalid</source>
         <translation>网址无效</translation>
     </message>
@@ -5139,27 +5139,27 @@ network.</source>
         <translation type="obsolete">内容被移动(301)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="51"/>
+        <location filename="../downloadThread.cpp" line="53"/>
         <source>Connection failure</source>
         <translation>连接失败</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="53"/>
+        <location filename="../downloadThread.cpp" line="55"/>
         <source>Connection was timed out</source>
         <translation>连接超时</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="55"/>
+        <location filename="../downloadThread.cpp" line="57"/>
         <source>Incorrect network interface</source>
         <translation>不正确的网络关联</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="57"/>
+        <location filename="../downloadThread.cpp" line="59"/>
         <source>Unknown error</source>
         <translation>未知错误</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="43"/>
+        <location filename="../downloadThread.cpp" line="45"/>
         <source>Could not resolve proxy</source>
         <translation>无法联系到代理服务器</translation>
     </message>

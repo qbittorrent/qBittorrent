@@ -4814,22 +4814,22 @@ However, those plugins were disabled.</source>
 <context>
     <name>subDownloadThread</name>
     <message>
-        <location filename="../downloadThread.cpp" line="32"/>
+        <location filename="../downloadThread.cpp" line="34"/>
         <source>Host is unreachable</source>
         <translation>Хост недоступний</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="35"/>
+        <location filename="../downloadThread.cpp" line="37"/>
         <source>File was not found (404)</source>
         <translation>Файл не знайдено (404)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="39"/>
+        <location filename="../downloadThread.cpp" line="41"/>
         <source>Connection was denied</source>
         <translation>Відмовлено у з&apos;єднанні</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="41"/>
+        <location filename="../downloadThread.cpp" line="43"/>
         <source>Url is invalid</source>
         <translation>Неправильний URL</translation>
     </message>
@@ -4849,27 +4849,27 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Контент переміщено (301)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="51"/>
+        <location filename="../downloadThread.cpp" line="53"/>
         <source>Connection failure</source>
         <translation>Відмовлено у з&apos;єднанні</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="53"/>
+        <location filename="../downloadThread.cpp" line="55"/>
         <source>Connection was timed out</source>
         <translation>Вичерпано час на з&apos;єднання</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="55"/>
+        <location filename="../downloadThread.cpp" line="57"/>
         <source>Incorrect network interface</source>
         <translation>Неправильний мережевий інтерфейс</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="57"/>
+        <location filename="../downloadThread.cpp" line="59"/>
         <source>Unknown error</source>
         <translation>Невідома помилка</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="43"/>
+        <location filename="../downloadThread.cpp" line="45"/>
         <source>Could not resolve proxy</source>
         <translation type="unfinished"></translation>
     </message>

@@ -3927,22 +3927,22 @@ However, those plugins were disabled.</source>
 <context>
     <name>subDownloadThread</name>
     <message>
-        <location filename="../downloadThread.cpp" line="32"/>
+        <location filename="../downloadThread.cpp" line="34"/>
         <source>Host is unreachable</source>
         <translation>ホストは達成できません</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="35"/>
+        <location filename="../downloadThread.cpp" line="37"/>
         <source>File was not found (404)</source>
         <translation>ファイルは見つかりませんでした (404)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="39"/>
+        <location filename="../downloadThread.cpp" line="41"/>
         <source>Connection was denied</source>
         <translation>接続は拒否されました</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="41"/>
+        <location filename="../downloadThread.cpp" line="43"/>
         <source>Url is invalid</source>
         <translation>Url は不正です</translation>
     </message>
@@ -3962,27 +3962,27 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">内容は移動しました (301)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="51"/>
+        <location filename="../downloadThread.cpp" line="53"/>
         <source>Connection failure</source>
         <translation>接続失敗</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="53"/>
+        <location filename="../downloadThread.cpp" line="55"/>
         <source>Connection was timed out</source>
         <translation>接続はタイムアウトしました</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="55"/>
+        <location filename="../downloadThread.cpp" line="57"/>
         <source>Incorrect network interface</source>
         <translation>不正確なネットワーク インターフェイスです</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="57"/>
+        <location filename="../downloadThread.cpp" line="59"/>
         <source>Unknown error</source>
         <translation>不明なエラーです</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="43"/>
+        <location filename="../downloadThread.cpp" line="45"/>
         <source>Could not resolve proxy</source>
         <translation>プロキシを解決できませんでした</translation>
     </message>

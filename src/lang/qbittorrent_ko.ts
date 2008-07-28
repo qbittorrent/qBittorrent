@@ -4885,22 +4885,22 @@ However, those plugins were disabled.</source>
 <context>
     <name>subDownloadThread</name>
     <message>
-        <location filename="../downloadThread.cpp" line="32"/>
+        <location filename="../downloadThread.cpp" line="34"/>
         <source>Host is unreachable</source>
         <translation>호스트에 도달할수 없습니다</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="35"/>
+        <location filename="../downloadThread.cpp" line="37"/>
         <source>File was not found (404)</source>
         <translation>파일을 찾을수 없습니다 (404)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="39"/>
+        <location filename="../downloadThread.cpp" line="41"/>
         <source>Connection was denied</source>
         <translation>연결이 부인되었습니다.</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="41"/>
+        <location filename="../downloadThread.cpp" line="43"/>
         <source>Url is invalid</source>
         <translation>주소(Url)가 유효하지 않습니다</translation>
     </message>
@@ -4920,27 +4920,27 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">내용이 이동되었습니다 (301)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="51"/>
+        <location filename="../downloadThread.cpp" line="53"/>
         <source>Connection failure</source>
         <translation>연결 실패</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="53"/>
+        <location filename="../downloadThread.cpp" line="55"/>
         <source>Connection was timed out</source>
         <translation>연결 시간이 초과하였습니다</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="55"/>
+        <location filename="../downloadThread.cpp" line="57"/>
         <source>Incorrect network interface</source>
         <translation>네트웍크 인터페이스(network interface)가 맞지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="57"/>
+        <location filename="../downloadThread.cpp" line="59"/>
         <source>Unknown error</source>
         <translation>알수 없는 오류</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="43"/>
+        <location filename="../downloadThread.cpp" line="45"/>
         <source>Could not resolve proxy</source>
         <translation>프록시를 설정할수 없습니다</translation>
     </message>
