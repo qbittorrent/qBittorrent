@@ -1111,41 +1111,41 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation>Url falhou para: %1, mensagem: %2</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="872"/>
+        <location filename="../downloadingTorrents.cpp" line="880"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; adicionado a lista de download.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="874"/>
+        <location filename="../downloadingTorrents.cpp" line="882"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; continuando. (continue rápido)</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="882"/>
+        <location filename="../downloadingTorrents.cpp" line="890"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; já está na lista de download.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="886"/>
+        <location filename="../downloadingTorrents.cpp" line="894"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Incapaz de decodificar arquivo torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="887"/>
+        <location filename="../downloadingTorrents.cpp" line="895"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Este arquivo encontra-se corrompido ou não é um torrent.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="901"/>
+        <location filename="../downloadingTorrents.cpp" line="909"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Não foi possível escutar pelas portas dadas.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="925"/>
+        <location filename="../downloadingTorrents.cpp" line="933"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>baixando &apos;%1&apos;, por favor espere...</translation>
@@ -4841,22 +4841,22 @@ Portanto os plugins foram desabilitados.</translation>
 <context>
     <name>subDownloadThread</name>
     <message>
-        <location filename="../downloadThread.cpp" line="32"/>
+        <location filename="../downloadThread.cpp" line="34"/>
         <source>Host is unreachable</source>
         <translation>O host é inalcançável</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="35"/>
+        <location filename="../downloadThread.cpp" line="37"/>
         <source>File was not found (404)</source>
         <translation>Arquivo não encontrado (404)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="39"/>
+        <location filename="../downloadThread.cpp" line="41"/>
         <source>Connection was denied</source>
         <translation>Conexão foi negada</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="41"/>
+        <location filename="../downloadThread.cpp" line="43"/>
         <source>Url is invalid</source>
         <translation>Url é inválida</translation>
     </message>
@@ -4876,27 +4876,27 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Conteúdo foi movido (301)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="51"/>
+        <location filename="../downloadThread.cpp" line="53"/>
         <source>Connection failure</source>
         <translation>Conexão falhou</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="53"/>
+        <location filename="../downloadThread.cpp" line="55"/>
         <source>Connection was timed out</source>
         <translation>Conexão esgotou o tempo</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="55"/>
+        <location filename="../downloadThread.cpp" line="57"/>
         <source>Incorrect network interface</source>
         <translation>Relação da rede incorreta</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="57"/>
+        <location filename="../downloadThread.cpp" line="59"/>
         <source>Unknown error</source>
         <translation>Erro desconhecido</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="43"/>
+        <location filename="../downloadThread.cpp" line="45"/>
         <source>Could not resolve proxy</source>
         <translation>Não pude resolver proxy</translation>
     </message>

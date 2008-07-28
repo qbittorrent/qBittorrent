@@ -1163,41 +1163,41 @@ qBittorrent beobachtet das Verzeichniss und starten den Download von vorhandenen
         <translation>URL Seed Lookup für die URL: %1 ist fehlgeschlagen, Begründung: %2</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="872"/>
+        <location filename="../downloadingTorrents.cpp" line="880"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; zur Download Liste hinzugefügt.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="874"/>
+        <location filename="../downloadingTorrents.cpp" line="882"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; wird fortgesetzt. (Schnelles Fortsetzen)</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="882"/>
+        <location filename="../downloadingTorrents.cpp" line="890"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; befindet sich bereits in der Download Liste.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="886"/>
+        <location filename="../downloadingTorrents.cpp" line="894"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Kann Torrent Datei &apos;%1&apos; nicht dekodieren</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="887"/>
+        <location filename="../downloadingTorrents.cpp" line="895"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Diese Datei ist entweder beschädigt, oder sie ist kein Torrent.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="901"/>
+        <location filename="../downloadingTorrents.cpp" line="909"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Konnte nicht auf den angegebenen Ports lauschen.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="925"/>
+        <location filename="../downloadingTorrents.cpp" line="933"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Lade &apos;%1&apos;, bitte warten...</translation>
@@ -4964,22 +4964,22 @@ Die Plugins wurden jedoch deaktiviert.</translation>
 <context>
     <name>subDownloadThread</name>
     <message>
-        <location filename="../downloadThread.cpp" line="32"/>
+        <location filename="../downloadThread.cpp" line="34"/>
         <source>Host is unreachable</source>
         <translation>Host ist unerreichbar</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="35"/>
+        <location filename="../downloadThread.cpp" line="37"/>
         <source>File was not found (404)</source>
         <translation>Datei nicht gefunden (404)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="39"/>
+        <location filename="../downloadThread.cpp" line="41"/>
         <source>Connection was denied</source>
         <translation>Verbindung verweigert</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="41"/>
+        <location filename="../downloadThread.cpp" line="43"/>
         <source>Url is invalid</source>
         <translation>URL ist ungültig</translation>
     </message>
@@ -4999,27 +4999,27 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete">Inhalt wurde verschoben (301)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="51"/>
+        <location filename="../downloadThread.cpp" line="53"/>
         <source>Connection failure</source>
         <translation>Verbindungs-Fehler</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="53"/>
+        <location filename="../downloadThread.cpp" line="55"/>
         <source>Connection was timed out</source>
         <translation>Verbidung wurde unterbrochen</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="55"/>
+        <location filename="../downloadThread.cpp" line="57"/>
         <source>Incorrect network interface</source>
         <translation>Falsches Netzwerk Interface</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="57"/>
+        <location filename="../downloadThread.cpp" line="59"/>
         <source>Unknown error</source>
         <translation>Unbekannter Fehler</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="43"/>
+        <location filename="../downloadThread.cpp" line="45"/>
         <source>Could not resolve proxy</source>
         <translation>Der Proxy konnte nicht aufgelöst werden</translation>
     </message>
