@@ -1079,73 +1079,73 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="162"/>
         <source>System default</source>
-        <translation type="unfinished"></translation>
+        <translation>Systeem standaard</translation>
     </message>
     <message>
         <location filename="../options.ui" line="299"/>
         <source>Start minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>Start geminimaliseerd</translation>
     </message>
     <message>
         <location filename="../options.ui" line="567"/>
         <source>Action on double click in transfer lists</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>Actie bij dubbelklik in overdracht lijsten</translation>
     </message>
     <message>
         <location filename="../options.ui" line="575"/>
         <source>In download list:</source>
-        <translation type="unfinished"></translation>
+        <translation>In download lijst:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="635"/>
         <source>Pause/Start torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Pauze/Start torrent</translation>
     </message>
     <message>
         <location filename="../options.ui" line="640"/>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Open doel map</translation>
     </message>
     <message>
         <location filename="../options.ui" line="645"/>
         <source>Display torrent properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Geef torrent eigenschappen weer</translation>
     </message>
     <message>
         <location filename="../options.ui" line="627"/>
         <source>In seeding list:</source>
-        <translation type="unfinished"></translation>
+        <translation>In seed lijst:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="529"/>
         <source>Folder scan interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Map scan interval:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="549"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>seconden</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1367"/>
         <source>Spoof Azureus to avoid ban (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spoof Azureus om ban te voorkomen (herstart verplicht)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1868"/>
         <source>Web UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Web UI</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1880"/>
         <source>Enable Web User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Web Gebruikers Interface inschakelen</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1893"/>
         <source>HTTP Server</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP Server</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1619"/>
@@ -1158,6 +1158,11 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../options.ui" line="1752"/>
+        <source>Torrent queueing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../options.ui" line="1758"/>
         <source>Enable queueing system</source>
         <translation type="unfinished"></translation>
@@ -1165,11 +1170,6 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1770"/>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../options.ui" line="1752"/>
-        <source>Torrent queueing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1297,17 +1297,17 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../downloadingTorrents.cpp" line="336"/>
         <source>Hide or Show Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Verberg of Toon Kolom</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="215"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP/NAT-PMP: Port mapping fout, bericht: %1</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="219"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP/NAT-PMP: Port mapping succesvol, bericht: %1</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="61"/>
@@ -1321,17 +1321,17 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <location filename="../filterParserThread.h" line="357"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
-        <translation type="unfinished">I/O Fout</translation>
+        <translation>I/O Fout</translation>
     </message>
     <message>
         <location filename="../filterParserThread.h" line="273"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
-        <translation type="unfinished">Kon %1 niet openen om te lezen.</translation>
+        <translation>Kon %1 niet openen om te lezen.</translation>
     </message>
     <message>
         <location filename="../filterParserThread.h" line="357"/>
         <source>%1 is not a valid PeerGuardian P2B file.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 is geen geldig PeerGuardian P2B bestand.</translation>
     </message>
 </context>
 <context>
@@ -1406,22 +1406,22 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <location filename="../FinishedTorrents.cpp" line="45"/>
         <source>Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished">Downloaders</translation>
+        <translation>Downloaders</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="426"/>
         <source>Hide or Show Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Verberg of Toon Kolom</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="264"/>
         <source>Incomplete torrent in seeding list</source>
-        <translation type="unfinished"></translation>
+        <translation>Incomplete torrent in seed lijst</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="264"/>
         <source>It appears that the state of &apos;%1&apos; torrent changed from &apos;seeding&apos; to &apos;downloading&apos;. Would you like to move it back to download list? (otherwise the torrent will simply be deleted)</source>
-        <translation type="unfinished"></translation>
+        <translation>De status van torrent &apos;%1&apos; veranderde van &apos;seeden&apos; naar &apos;downloaden&apos;. Wilt u het terug naar de download lijst verplaatsen? (anders zal de torrent verwijderd worden)</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="47"/>
@@ -2608,7 +2608,7 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     <message>
         <location filename="../MainWindow.ui" line="110"/>
         <source>Session ratio: </source>
-        <translation type="obsolete"> Sessie deelverhouding:</translation>
+        <translation type="obsolete"> Sessie deelverhouding: </translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="36"/>
@@ -3053,30 +3053,30 @@ Changelog:
         <location filename="../SearchTab.cpp" line="51"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">Naam</translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <location filename="../SearchTab.cpp" line="52"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">Grootte</translation>
+        <translation>Grootte</translation>
     </message>
     <message>
         <location filename="../SearchTab.cpp" line="53"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation type="unfinished">Uploaders</translation>
+        <translation>Uploaders</translation>
     </message>
     <message>
         <location filename="../SearchTab.cpp" line="54"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation type="unfinished">Downloaders</translation>
+        <translation>Downloaders</translation>
     </message>
     <message>
         <location filename="../SearchTab.cpp" line="55"/>
         <source>Search engine</source>
-        <translation type="unfinished">Zoekmachine</translation>
+        <translation>Zoekmachine</translation>
     </message>
 </context>
 <context>
@@ -3084,12 +3084,12 @@ Changelog:
     <message>
         <location filename="../trackersAdd.ui" line="13"/>
         <source>Trackers addition dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Trackers toevoegen dialoog</translation>
     </message>
     <message>
         <location filename="../trackersAdd.ui" line="19"/>
         <source>List of trackers to add (one per line):</source>
-        <translation type="unfinished"></translation>
+        <translation>Lijst van toe te voegen trackers (een per regel):</translation>
     </message>
 </context>
 <context>
@@ -3487,7 +3487,7 @@ Changelog:
     <message>
         <location filename="../createtorrent.ui" line="483"/>
         <source>Progress:</source>
-        <translation type="unfinished"></translation>
+        <translation>Voortgang:</translation>
     </message>
 </context>
 <context>
@@ -3727,52 +3727,52 @@ Changelog:
     <message>
         <location filename="../download.ui" line="190"/>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Open doel map</translation>
     </message>
     <message>
         <location filename="../download.ui" line="195"/>
         <source>Name</source>
-        <translation type="unfinished">Naam</translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <location filename="../download.ui" line="200"/>
         <source>Size</source>
-        <translation type="unfinished">Grootte</translation>
+        <translation>Grootte</translation>
     </message>
     <message>
         <location filename="../download.ui" line="205"/>
         <source>Progress</source>
-        <translation type="unfinished">Voortgang</translation>
+        <translation>Voortgang</translation>
     </message>
     <message>
         <location filename="../download.ui" line="210"/>
         <source>DLSpeed</source>
-        <translation type="unfinished"></translation>
+        <translation>DLSnelheid</translation>
     </message>
     <message>
         <location filename="../download.ui" line="215"/>
         <source>UpSpeed</source>
-        <translation type="unfinished"></translation>
+        <translation>UpSnelheid</translation>
     </message>
     <message>
         <location filename="../download.ui" line="220"/>
         <source>Seeds/Leechs</source>
-        <translation type="unfinished">Up-/Downloaders</translation>
+        <translation>Up-/Downloaders</translation>
     </message>
     <message>
         <location filename="../download.ui" line="225"/>
         <source>Ratio</source>
-        <translation type="unfinished">Verhouding</translation>
+        <translation>Verhouding</translation>
     </message>
     <message>
         <location filename="../download.ui" line="230"/>
         <source>ETA</source>
-        <translation type="unfinished">Geschatte resterende tijd</translation>
+        <translation>Geschatte resterende tijd</translation>
     </message>
     <message>
         <location filename="../download.ui" line="239"/>
         <source>Buy it</source>
-        <translation type="unfinished"></translation>
+        <translation>Koop het</translation>
     </message>
     <message>
         <location filename="../download.ui" line="244"/>
@@ -4052,7 +4052,7 @@ De plugins zijn uitgeschakeld.</translation>
         <translation type="obsolete"> d</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="303"/>
+        <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
         <translation type="obsolete">Onbekend</translation>
     </message>
@@ -4246,12 +4246,12 @@ De plugins zijn uitgeschakeld.</translation>
     <message>
         <location filename="../options_imp.cpp" line="1133"/>
         <source>Choose an ip filter file</source>
-        <translation type="unfinished"></translation>
+        <translation>Kies een ip filter bestand</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1133"/>
         <source>Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Filters</translation>
     </message>
 </context>
 <context>
@@ -4736,7 +4736,7 @@ selecteer alstublieft een er van:</translation>
     <message>
         <location filename="../properties.ui" line="293"/>
         <source>Downloaded pieces</source>
-        <translation type="unfinished"></translation>
+        <translation>Gedownloade stukjes</translation>
     </message>
 </context>
 <context>
@@ -4852,37 +4852,37 @@ selecteer alstublieft een er van:</translation>
     <message>
         <location filename="../seeding.ui" line="101"/>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Open doel map</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="106"/>
         <source>Name</source>
-        <translation type="unfinished">Naam</translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="111"/>
         <source>Size</source>
-        <translation type="unfinished">Grootte</translation>
+        <translation>Grootte</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="116"/>
         <source>Upload Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Upload Snelheid</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="121"/>
         <source>Leechers</source>
-        <translation type="unfinished">Downloaders</translation>
+        <translation>Downloaders</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="126"/>
         <source>Ratio</source>
-        <translation type="unfinished">Verhouding</translation>
+        <translation>Verhouding</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="134"/>
         <source>Buy it</source>
-        <translation type="unfinished"></translation>
+        <translation>Koop het</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="139"/>
@@ -4950,7 +4950,7 @@ selecteer alstublieft een er van:</translation>
     <message>
         <location filename="../downloadThread.cpp" line="45"/>
         <source>Could not resolve proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kon proxy niet herleiden</translation>
     </message>
 </context>
 <context>
