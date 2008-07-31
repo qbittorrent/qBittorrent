@@ -30,6 +30,7 @@
 #include <QHttpResponseHeader>
 #include <QFile>
 #include <QDebug>
+#include <QTemporaryFile>
 
 HttpConnection::HttpConnection(QTcpSocket *socket, HttpServer *parent)
 	: QObject(parent), socket(socket), parent(parent)
@@ -45,11 +46,17 @@ HttpConnection::~HttpConnection()
 
 void HttpConnection::read()
 {
-	QString input = socket->readAll();
+	QByteArray input = socket->readAll();
 	qDebug(" -------");
 	qDebug("|REQUEST|");
 	qDebug(" -------");
-	qDebug("%s", input.toAscii().constData());
+	//qDebug("%s", input.toAscii().constData());
+	if(input.size() > 100000) {
+		qDebug("Request too big");
+		generator.setStatusLine(400, "Bad Request");
+		write();
+		return;
+	}
 	parser.write(input);
 	if(parser.isError())
 	{
@@ -74,6 +81,7 @@ void HttpConnection::write()
 
 void HttpConnection::respond()
 {
+	qDebug("Respond called");
 	QStringList auth = parser.value("Authorization").split(" ", QString::SkipEmptyParts);
 	if (auth.size() != 2 || QString::compare(auth[0], "Basic", Qt::CaseInsensitive) != 0 || !parent->isAuthorized(auth[1].toUtf8()))
 	{
@@ -174,6 +182,25 @@ void HttpConnection::respondCommand(QString command)
 			}
 		}
 		emit urlsReadyToBeDownloaded(url_list_cleaned);
+		return;
+	}
+	if(command == "upload")
+	{
+		QByteArray torrentfile = parser.torrent();
+		// XXX: Trick to get a unique filename
+		QString filePath;
+		QTemporaryFile *tmpfile = new QTemporaryFile();
+		if (tmpfile->open()) {
+			filePath = tmpfile->fileName();
+		}
+		delete tmpfile;
+		// write it to HD
+		QFile torrent(filePath);
+		if(torrent.open(QIODevice::WriteOnly)) {
+			torrent.write(torrentfile);
+			torrent.close();
+		}
+		emit torrentReadyToBeDownloaded(filePath, false, QString(), false);
 		return;
 	}
 	if(command == "resumeall")
