@@ -35,6 +35,23 @@ function attachMochaLinkEvents(){
 			height: 270
 		});
 	});
+	
+	addClickEvent('upload', function(e){
+		new Event(e).stop();
+		document.mochaUI.newWindow({
+			id: 'uploadPage',
+			title: 'Upload torrent file',
+			loadMethod: 'iframe',
+			contentURL:'upload.html',
+			scrollbars: false,
+			resizable: false,
+			maximizable: false,
+			paddingVertical: 0,
+			paddingHorizontal: 0,
+			width: 500,
+			height: 120
+		});
+	});
 
 	addClickEvent('delete', function(e){
 		new Event(e).stop();

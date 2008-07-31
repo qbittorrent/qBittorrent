@@ -49,11 +49,11 @@ QString HttpRequestParser::url() const
 	return path;
 }
 
-QString HttpRequestParser::message() const
+QByteArray HttpRequestParser::message() const
 {
 	if(isParsable())
 		return data;
-	return QString();
+	return QByteArray();
 }
 
 QString HttpRequestParser::get(const QString key) const
@@ -66,7 +66,12 @@ QString HttpRequestParser::post(const QString key) const
 	return postMap[key];
 }
 
-void HttpRequestParser::write(QString str)
+QByteArray HttpRequestParser::torrent() const
+{
+	return torrent_content;
+}
+
+void HttpRequestParser::write(QByteArray str)
 {
 	while (!headerDone && str.size()>0)
 	{
@@ -111,7 +116,7 @@ void HttpRequestParser::write(QString str)
 				if(contentType() == "application/x-www-form-urlencoded")
 				{
 					QUrl url;
-					url.setEncodedQuery(data.toAscii());
+					url.setEncodedQuery(data);
 					QListIterator<QPair<QString, QString> > i(url.queryItems());
 					while (i.hasNext())
 					{
@@ -120,9 +125,15 @@ void HttpRequestParser::write(QString str)
 						qDebug() << pair.first << "=" << post(pair.first);
 					}
 				}
+				if(contentType() == "multipart/form-data")
+				{
+					//qDebug() << data.right(data.size()-data.indexOf("\r\n\r\n")-QByteArray("\r\n\r\n").size());
+					torrent_content = data.right(data.size()-data.indexOf("\r\n\r\n")-QByteArray("\r\n\r\n").size());
+				}
 			}
 		}
 		else
 			error = true;
 	}
+	qDebug() << "isError: " << isError();
 }

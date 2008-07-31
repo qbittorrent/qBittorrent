@@ -30,10 +30,11 @@ class HttpRequestParser : public QHttpRequestHeader
 		bool headerDone;
 		bool messageDone;
 		bool error;
-		QString data;
+		QByteArray data;
 		QString path;
 		QMap<QString, QString> postMap;
 		QMap<QString, QString> getMap;
+		QByteArray torrent_content;
 
 	public:
 		HttpRequestParser();
@@ -41,10 +42,11 @@ class HttpRequestParser : public QHttpRequestHeader
 		bool isParsable() const;
 		bool isError() const;
 		QString url() const;
-		QString message() const;
+		QByteArray message() const;
 		QString get(const QString key) const;
 		QString post(const QString key) const;
-		void write(QString str);
+		QByteArray torrent() const;
+		void write(QByteArray str);
 };
 
 #endif
