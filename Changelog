@@ -1,4 +1,7 @@
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.1.0
+* Fri Aug 01 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.1
+    - BUGFIX: Fixed bad resource file for icons
+
+* Fri Aug 01 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.0
     - FEATURE: Web interface to control qbittorrent (Ishan Arora)
     - FEATURE: Can spoof Azureus peer id to avoid ban
     - FEATURE: Allow to hide/show some columns in download and seeding lists

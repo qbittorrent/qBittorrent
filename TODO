@@ -1,37 +1,6 @@
-// Easy
-- Translations into as many languages as possible
-- Use Launchpad/Rosetta for translations once it supports TS files
+See https://blueprints.launchpad.net/qbittorrent/
 
-// Intermediate
-- Port on MacOS, Windows (and create an installer for Windows) - Slow progress
-- Add some transparency (menus,...), improve look / usabilty
-- Skins support? (contact Mateusz)
-
-// Harder
-- Torrent scheduler ala µtorrent/Bitcomet
-
-// Waiting for libtorrent
-- Allow to prioritize torrents (may code this in qBittorrent?)
-
-// Unsure
-- Display the peers we are connected to for each torrent with infos (like flag, dl/up speeds, ...)
-- Azureus spoofing to prevent ban from trackers?
-- Option to shutdown computer when downloads are finished
-- NAT checker/Tester
-- Display hard drive space left?
-- Make use of dbus on Linux for the single instance instead of socket communication?
-  (http://techbase.kde.org/Development/Tutorials/D-Bus/Accessing_Interfaces)
-- When favicon can't be downloaded, try to parse the webpage for:
-  <link rel="icon" href="http://example.com/favicon.ico" type="image/vnd.microsoft.icon">
-    * Be careful, the link can be relative
-- Improve search plugin install (choose in a list taken from plugins.qbittorrent.org)
-- support zipped torrents? (useful?)
-- Allow to limit the number of downloading torrents simultaneously (other are paused until a download finishes)
-
-// in v1.2.0
-- Allow user to organize the downloads into categories/folders?
-
-Translations updated:
+Translations updated in v1.1.0:
 - French
 - Chinese
 - Polish
