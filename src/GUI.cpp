@@ -656,15 +656,18 @@ void GUI::on_actionCreate_torrent_triggered() {
   connect(ct, SIGNAL(torrent_to_seed(QString)), this, SLOT(addTorrent(QString)));
 }
 
-// Called when we minimize the program
-void GUI::hideEvent(QHideEvent *e) {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  if(systrayIntegration && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
-    // Hide window
-    hide();
+bool GUI::event(QEvent * e) {
+  if(e->type() == QEvent::WindowStateChange) {
+    //Now check to see if the window is minimised
+    if(isMinimized()) {
+      qDebug("minimisation");
+      QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+      if(systrayIntegration && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
+        hide();
+      }
+    }
   }
-  // Accept hiding
-  e->accept();
+  return QMainWindow::event(e);
 }
 
 // Action executed when a file is dropped
