@@ -1172,32 +1172,32 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1619"/>
         <source>Enable RSS support</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer le module RSS</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1629"/>
         <source>RSS settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Paramètres du RSS</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1758"/>
         <source>Enable queueing system</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer le système de file d&apos;attente</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1770"/>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre maximum de téléchargements actifs :</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1752"/>
         <source>Torrent queueing</source>
-        <translation type="unfinished"></translation>
+        <translation>Mise en attente de torrents</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1813"/>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre maximum de torrents actifs :</translation>
     </message>
 </context>
 <context>
@@ -1334,7 +1334,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../downloadingTorrents.cpp" line="61"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorité</translation>
+        <translation>Priorité</translation>
     </message>
 </context>
 <context>
@@ -1459,7 +1459,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedTorrents.cpp" line="47"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorité</translation>
+        <translation>Priorité</translation>
     </message>
 </context>
 <context>
@@ -2524,22 +2524,22 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     <message>
         <location filename="../GUI.cpp" line="1416"/>
         <source>DL: %1 KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>R : %1 Ko/s</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1417"/>
         <source>UP: %1 KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>E : %1 Ko/s</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="307"/>
         <source>Ratio: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ratio : %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="309"/>
         <source>DHT: %1 nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT : %1 noeuds</translation>
     </message>
 </context>
 <context>
@@ -2852,12 +2852,12 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     <message>
         <location filename="../MainWindow.ui" line="239"/>
         <source>Decrease priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Diminuer la priorité</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="250"/>
         <source>Increase priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Augmenter la priorité</translation>
     </message>
 </context>
 <context>
@@ -4031,7 +4031,7 @@ Changements:
     <message>
         <location filename="../download.ui" line="244"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorité</translation>
+        <translation>Priorité</translation>
     </message>
 </context>
 <context>
@@ -5175,7 +5175,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../seeding.ui" line="139"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorité</translation>
+        <translation>Priorité</translation>
     </message>
 </context>
 <context>
