@@ -11,7 +11,7 @@ TARGET = qbittorrent
 CONFIG += qt thread x11 network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v1.2.0beta1\\\"
+DEFINES += VERSION=\\\"v1.2.0beta2\\\"
 DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=2
 DEFINES += VERSION_BUGFIX=0
@@ -32,7 +32,7 @@ contains(DEBUG_MODE, 0){
 
 # For libtorrent stuff
 # (comment this if you are using libtorrent with debug enabled)
-#DEFINES += NDEBUG
+DEFINES += NDEBUG
 
 # Install
 

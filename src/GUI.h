@@ -183,7 +183,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
 
   protected:
     void closeEvent(QCloseEvent *);
-    void hideEvent(QHideEvent *);
+    bool event(QEvent * event);
     void displayRSSTab(bool enable);
 
   public:

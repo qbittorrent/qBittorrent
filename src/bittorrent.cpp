@@ -204,6 +204,7 @@ void bittorrent::setMaxActiveTorrents(int val) {
 }
 
 void bittorrent::increaseDlTorrentPriority(QString hash) {
+  Q_ASSERT(queueingEnabled);
   int index = downloadQueue->indexOf(hash);
   Q_ASSERT(index != -1);
   if(index > 0) {
@@ -215,6 +216,7 @@ void bittorrent::increaseDlTorrentPriority(QString hash) {
 }
 
 void bittorrent::increaseUpTorrentPriority(QString hash) {
+  Q_ASSERT(queueingEnabled);
   int index = uploadQueue->indexOf(hash);
   Q_ASSERT(index != -1);
   if(index > 0) {
@@ -226,6 +228,7 @@ void bittorrent::increaseUpTorrentPriority(QString hash) {
 }
 
 void bittorrent::decreaseDlTorrentPriority(QString hash) {
+  Q_ASSERT(queueingEnabled);
   int index = downloadQueue->indexOf(hash);
   Q_ASSERT(index != -1);
   if(index >= 0 && index < (downloadQueue->size()-1)) {
@@ -237,6 +240,7 @@ void bittorrent::decreaseDlTorrentPriority(QString hash) {
 }
 
 void bittorrent::decreaseUpTorrentPriority(QString hash) {
+  Q_ASSERT(queueingEnabled);
   int index = uploadQueue->indexOf(hash);
   Q_ASSERT(index != -1);
   if(index >= 0 && index < (uploadQueue->size()-1)) {
@@ -757,6 +761,10 @@ bool bittorrent::pauseTorrent(QString hash) {
     change = true;
     // Save fast resume data
     saveFastResumeAndRatioData(hash);
+    if(queueingEnabled) {
+      updateDownloadQueue();
+      updateUploadQueue();
+    }
     qDebug("Torrent paused successfully");
     emit pausedTorrent(hash);
   }else{
@@ -817,8 +825,10 @@ bool bittorrent::resumeTorrent(QString hash) {
     torrentsToPauseAfterChecking.removeAt(index);
     success = true;
   }
-  updateDownloadQueue();
-  updateUploadQueue();
+  if(queueingEnabled) {
+    updateDownloadQueue();
+    updateUploadQueue();
+  }
   return success;
 }
 

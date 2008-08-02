@@ -7,7 +7,7 @@
     - COSMETIC: Transfer speed, ratio and DHT nodes are displayed in status bar    
     - COSMETIC: RSS Tab is now hidden as a default
 
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.1.0
+* Fri Aug 01 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.0
     - FEATURE: Web interface to control qbittorrent (Ishan Arora)
     - FEATURE: Can spoof Azureus peer id to avoid ban
     - FEATURE: Allow to hide/show some columns in download and seeding lists
@@ -36,6 +36,7 @@
     - COSMETIC: Display "unpaused/total_torrent" in download/upload tabs
     - COSMETIC: Allow to resize RSS column
     - COSMETIC: Global UP/DL speeds and ratio are displayed above tabs
+    - COSMETIC: Use infinity symbol for ETA when time is infinite
 
 * Fri Apr 11 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.0.0
     - FEATURE: Based on new libtorrent v0.13
