@@ -761,6 +761,10 @@ bool bittorrent::pauseTorrent(QString hash) {
     change = true;
     // Save fast resume data
     saveFastResumeAndRatioData(hash);
+    if(queueingEnabled) {
+      updateDownloadQueue();
+      updateUploadQueue();
+    }
     qDebug("Torrent paused successfully");
     emit pausedTorrent(hash);
   }else{
