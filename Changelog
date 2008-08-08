@@ -4,8 +4,11 @@
     - FEATURE: The number of DHT nodes is displayed
     - FEATURE: RSS can now be disabled from program preferences
     - BUGFIX: Disable ETA calculation when ETA column is hidden
-    - COSMETIC: Transfer speed, ratio and DHT nodes are displayed in status bar    
+    - BUGFIX: Removed "disconnected" connection state, detection was far from perfect
+    - COSMETIC: Transfer speed, ratio, connection status and DHT nodes are displayed in status bar    
     - COSMETIC: RSS Tab is now hidden as a default
+    - COSMETIC: Allow to hide or display top toolbar
+    - COSMETIC: Top toolbar is now hidden as a default
 
 * Fri Aug 01 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.0
     - FEATURE: Web interface to control qbittorrent (Ishan Arora)

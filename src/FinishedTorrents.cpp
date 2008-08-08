@@ -64,8 +64,8 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   connect(finishedList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFinishedListMenu(const QPoint&)));
   finishedList->header()->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(finishedList->header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFinishedHoSMenu(const QPoint&)));
-
   connect(finishedList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(notifyTorrentDoubleClicked(const QModelIndex&)));
+  connect(BTSession, SIGNAL(forceFinishedListUpdate()), this, SLOT(updateFinishedList()));
   actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")));
   actionPreview_file->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")));
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
@@ -74,6 +74,8 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   connect(actionPause, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionPause_triggered()));
   connect(actionStart, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionStart_triggered()));
   connect(actionDelete, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_triggered()));
+  connect(actionIncreasePriority, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionIncreasePriority_triggered()));
+  connect(actionDecreasePriority, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDecreasePriority_triggered()));
   connect(actionPreview_file, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionPreview_file_triggered()));
   connect(actionDelete_Permanently, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_Permanently_triggered()));
   connect(actionOpen_destination_folder, SIGNAL(triggered()), (GUI*)parent, SLOT(openDestinationFolder()));
@@ -407,6 +409,11 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
   myFinishedListMenu.addSeparator();
   myFinishedListMenu.addAction(actionOpen_destination_folder);
   myFinishedListMenu.addAction(actionTorrent_Properties);
+  if(BTSession->isQueueingEnabled()) {
+    myFinishedListMenu.addSeparator();
+    myFinishedListMenu.addAction(actionIncreasePriority);
+    myFinishedListMenu.addAction(actionDecreasePriority);
+  }
   myFinishedListMenu.addSeparator();
   myFinishedListMenu.addAction(actionBuy_it);
 

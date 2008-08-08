@@ -18,7 +18,16 @@
      <property name="spacing" >
       <number>6</number>
      </property>
-     <property name="margin" >
+     <property name="leftMargin" >
+      <number>0</number>
+     </property>
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
       <number>0</number>
      </property>
      <item>
@@ -63,14 +72,6 @@
       <number>0</number>
      </property>
      <widget class="QWidget" name="log_tab" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>765</width>
-        <height>138</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Log</string>
       </attribute>
@@ -78,7 +79,16 @@
        <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="margin" >
+       <property name="leftMargin" >
+        <number>9</number>
+       </property>
+       <property name="topMargin" >
+        <number>9</number>
+       </property>
+       <property name="rightMargin" >
+        <number>9</number>
+       </property>
+       <property name="bottomMargin" >
         <number>9</number>
        </property>
        <item>
@@ -103,14 +113,6 @@
       </layout>
      </widget>
      <widget class="QWidget" name="filter_tab" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>765</width>
-        <height>138</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>IP filter</string>
       </attribute>
@@ -118,7 +120,16 @@
        <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="margin" >
+       <property name="leftMargin" >
+        <number>9</number>
+       </property>
+       <property name="topMargin" >
+        <number>9</number>
+       </property>
+       <property name="rightMargin" >
+        <number>9</number>
+       </property>
+       <property name="bottomMargin" >
         <number>9</number>
        </property>
        <item>
@@ -183,8 +194,7 @@
   </action>
   <action name="actionOpen_destination_folder" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >
-     <normaloff>:/Icons/folder.png</normaloff>:/Icons/folder.png</iconset>
+    <iconset resource="icons.qrc" >:/Icons/folder.png</iconset>
    </property>
    <property name="text" >
     <string>Open destination folder</string>
@@ -232,8 +242,7 @@
   </action>
   <action name="actionBuy_it" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >
-     <normaloff>:/Icons/money.png</normaloff>:/Icons/money.png</iconset>
+    <iconset resource="icons.qrc" >:/Icons/money.png</iconset>
    </property>
    <property name="text" >
     <string>Buy it</string>
@@ -244,8 +253,22 @@
     <string>Priority</string>
    </property>
   </action>
-  <zorder>tabBottom</zorder>
-  <zorder></zorder>
+  <action name="actionIncreasePriority" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/Icons/skin/increase.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Increase priority</string>
+   </property>
+  </action>
+  <action name="actionDecreasePriority" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/Icons/skin/decrease.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Decrease priority</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="icons.qrc" />

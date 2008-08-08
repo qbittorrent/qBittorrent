@@ -78,6 +78,7 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   connect(BTSession, SIGNAL(urlSeedProblem(QString, QString)), this, SLOT(addUrlSeedError(QString, QString)));
   connect(BTSession, SIGNAL(UPnPError(QString)), this, SLOT(displayUPnPError(QString)));
   connect(BTSession, SIGNAL(UPnPSuccess(QString)), this, SLOT(displayUPnPSuccess(QString)));
+  connect(BTSession, SIGNAL(forceUnfinishedListUpdate()), this, SLOT(updateDlList()));
 
   // Load last columns width for download list
   if(!loadColWidthDLList()) {
@@ -97,6 +98,8 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   connect(actionPause, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionPause_triggered()));
   connect(actionStart, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionStart_triggered()));
   connect(actionDelete, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_triggered()));
+  connect(actionIncreasePriority, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionIncreasePriority_triggered()));
+  connect(actionDecreasePriority, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDecreasePriority_triggered()));
   connect(actionPreview_file, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionPreview_file_triggered()));
   connect(actionDelete_Permanently, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_Permanently_triggered()));
   connect(actionOpen_destination_folder, SIGNAL(triggered()), (GUI*)parent, SLOT(openDestinationFolder()));
@@ -318,6 +321,11 @@ void DownloadingTorrents::displayDLListMenu(const QPoint& pos) {
   myDLLlistMenu.addSeparator();
   myDLLlistMenu.addAction(actionOpen_destination_folder);
   myDLLlistMenu.addAction(actionTorrent_Properties);
+  if(BTSession->isQueueingEnabled()) {
+    myDLLlistMenu.addSeparator();
+    myDLLlistMenu.addAction(actionIncreasePriority);
+    myDLLlistMenu.addAction(actionDecreasePriority);
+  }
   myDLLlistMenu.addSeparator();
   myDLLlistMenu.addAction(actionBuy_it);
   // Call menu
@@ -669,6 +677,7 @@ void DownloadingTorrents::addTorrent(QString hash) {
   }
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   int row = getRowFromHash(hash);
+  qDebug("DL: addTorrent(): %s, row: %d", (const char*)hash.toUtf8(), row);
   if(row != -1) return;
   row = DLListModel->rowCount();
   // Adding torrent to download list
@@ -856,6 +865,7 @@ void DownloadingTorrents::torrentAdded(QString path, QTorrentHandle& h, bool fas
   if(BTSession->isFinished(hash)) {
     return;
   }
+  if(getRowFromHash(hash) != -1) return;
   int row = DLListModel->rowCount();
   // Adding torrent to download list
   DLListModel->insertRow(row);

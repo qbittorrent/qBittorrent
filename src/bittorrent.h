@@ -212,6 +212,8 @@ class bittorrent : public QObject{
     void UPnPSuccess(QString msg);
     void updateFinishedTorrentNumber();
     void updateUnfinishedTorrentNumber();
+    void forceUnfinishedListUpdate();
+    void forceFinishedListUpdate();
 };
 
 #endif

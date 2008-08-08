@@ -159,6 +159,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkMinimizeToSysTray, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkStartMinimized, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkSystrayBalloons, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkDisplayToolbar, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   // Downloads tab
   connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkPreallocateAll, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
@@ -278,6 +279,7 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("MinimizeToTray"), minimizeToTray());
   settings.setValue(QString::fromUtf8("StartMinimized"), startMinimized());
   settings.setValue(QString::fromUtf8("NotificationBaloons"), OSDEnabled());
+  settings.setValue(QString::fromUtf8("ToolbarDisplayed"), isToolbarDisplayed());
   // End General preferences
   settings.endGroup();
   // Downloads preferences
@@ -440,6 +442,7 @@ void options_imp::loadOptions(){
   checkSpeedInTitle->setChecked(settings.value(QString::fromUtf8("SpeedInTitleBar"), false).toBool());
   spinRefreshInterval->setValue(settings.value(QString::fromUtf8("RefreshInterval"), 1500).toInt());
   checkNoSystray->setChecked(!settings.value(QString::fromUtf8("SystrayEnabled"), true).toBool());
+  checkDisplayToolbar->setChecked(settings.value(QString::fromUtf8("ToolbarDisplayed"), false).toBool());
   if(!systrayIntegration()) {
     disableSystrayOptions();
   } else {
@@ -1147,6 +1150,10 @@ void options_imp::on_browseSaveDirButton_clicked(){
 // Return Filter object to apply to BT session
 QString options_imp::getFilter() const{
   return textFilterPath->text();
+}
+
+bool options_imp::isToolbarDisplayed() const {
+  return checkDisplayToolbar->isChecked();
 }
 
 // Web UI

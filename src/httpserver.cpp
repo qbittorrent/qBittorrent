@@ -30,7 +30,7 @@ HttpServer::HttpServer(bittorrent *BTSession, int msec, QObject* parent) : QTcpS
 	base64 = QByteArray(":").toBase64();
 	connect(this, SIGNAL(newConnection()), this, SLOT(newHttpConnection()));
 	HttpServer::BTSession = BTSession;
-	manager = new EventManager(this);
+	manager = new EventManager(this, BTSession);
 	//add torrents
 	QStringList list = BTSession->getUnfinishedTorrents() + BTSession->getFinishedTorrents();
 	QString hash;

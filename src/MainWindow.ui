@@ -41,6 +41,8 @@
     <addaction name="separator" />
     <addaction name="actionDelete" />
     <addaction name="actionDelete_Permanently" />
+    <addaction name="actionDecreasePriority" />
+    <addaction name="actionIncreasePriority" />
    </widget>
    <widget class="QMenu" name="menu_Help" >
     <property name="title" >

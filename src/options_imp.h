@@ -66,6 +66,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     bool closeToTray() const;
     bool startMinimized() const;
     bool OSDEnabled() const;
+    bool isToolbarDisplayed() const;
     // Downloads
     QString getSavePath() const;
     bool preAllocateAllFiles() const;

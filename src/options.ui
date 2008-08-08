@@ -210,6 +210,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QCheckBox" name="checkDisplayToolbar" >
+            <property name="text" >
+             <string>Display top toolbar</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QCheckBox" name="checkSpeedInTitle" >
             <property name="text" >
              <string>Display current speed in title bar</string>

@@ -79,6 +79,9 @@ window.addEvent('domready', function(){
 										case 'stalled':
 												row[0] = '<img src="images/skin/stalled.png"/>';
 										break;
+										case 'queued':
+												row[0] = '<img src="images/skin/queued.png"/>';
+										break;
 									}
 								}
 								if($defined(event.size)){

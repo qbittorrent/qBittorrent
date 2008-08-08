@@ -464,8 +464,10 @@ void bittorrent::updateUploadQueue() {
       }
     }
   }
-  if(change)
-    emit updateFinishedTorrentNumber();  
+  if(change) {
+    emit updateFinishedTorrentNumber();
+    emit forceFinishedListUpdate();
+  }
 }
 
 void bittorrent::updateDownloadQueue() {
@@ -520,8 +522,10 @@ void bittorrent::updateDownloadQueue() {
       }
     }
   }
-  if(change)
+  if(change) {
     emit updateUnfinishedTorrentNumber();
+    emit forceUnfinishedListUpdate();
+  }
 }
 
 // Calculate the ETA using GASA

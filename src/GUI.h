@@ -83,6 +83,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QFrame *statusSep1;
     QFrame *statusSep2;
     QFrame *statusSep3;
+    QFrame *statusSep4;
     // Keyboard shortcuts
     QShortcut *switchSearchShortcut;
     QShortcut *switchSearchShortcut2;
@@ -90,6 +91,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QShortcut *switchUpShortcut;
     QShortcut *switchRSSShortcut;
     QAction *prioSeparator;
+    QAction *prioSeparator2;
     // Search
     SearchEngine *searchEngine;
     // RSS

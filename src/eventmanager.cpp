@@ -20,11 +20,12 @@
 
 
 #include "eventmanager.h"
+#include "bittorrent.h"
 #include "json.h"
 #include <QDebug>
 
-EventManager::EventManager(QObject *parent)
-	: QObject(parent)
+EventManager::EventManager(QObject *parent, bittorrent *BTSession)
+	: QObject(parent), BTSession(BTSession)
 {
 	revision = 0;
 }
@@ -99,10 +100,12 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
 	QVariantMap event;
 	QVariant v;
 	
-	if(h.is_paused())
-		v = QVariant("paused");
-	else
-	{
+	if(h.is_paused()) {
+		if(BTSession->isDownloadQueued(hash) || BTSession->isUploadQueued(hash))
+			v = QVariant("queued");
+		else
+			v = QVariant("paused");
+	} else {
 		switch(h.state())
 		{
 			case torrent_status::finished:

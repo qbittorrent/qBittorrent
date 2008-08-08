@@ -27,6 +27,8 @@
 #include <QPair>
 #include <QVariant>
 
+struct bittorrent;
+
 class EventManager : public QObject
 {
 	Q_OBJECT
@@ -34,12 +36,13 @@ class EventManager : public QObject
 		ulong revision;
 		QLinkedList<QPair <ulong, QVariantMap> > events;
 		bool modify(QString hash, QString key, QVariant value);
+		bittorrent* BTSession;
 
 	protected:
 		void update(QVariantMap event);
 
 	public:
-		EventManager(QObject *parent = 0);
+		EventManager(QObject *parent, bittorrent* BTSession);
 		QVariant querySince(ulong r) const;
 		bool isUpdated(ulong r) const;
 

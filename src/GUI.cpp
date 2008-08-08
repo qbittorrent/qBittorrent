@@ -109,13 +109,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   actionSet_global_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
   actionDocumentation->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/qb_question.png")));
-  connecStatusLblIcon = new QLabel();
-  connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
-  connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/disconnected.png")));
-  connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+tr("Offline")+QString::fromUtf8("<br><i>")+tr("No peers found...")+QString::fromUtf8("</i>"));
-  toolBar->addWidget(connecStatusLblIcon);
   prioSeparator = toolBar->insertSeparator(actionDecreasePriority);
+  prioSeparator2 = menu_Edit->insertSeparator(actionDecreasePriority);
   prioSeparator->setVisible(false);
+  prioSeparator2->setVisible(false);
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
   actionCreate_torrent->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/new.png")));
@@ -209,6 +206,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     show();
   }
   createKeyboardShortcuts();
+  connecStatusLblIcon = new QLabel();
+  connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
+  connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/firewalled.png")));
+  connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
   dlSpeedLbl = new QLabel(tr("DL: %1 KiB/s").arg("0.0"));
   upSpeedLbl = new QLabel(tr("UP: %1 KiB/s").arg("0.0"));
   ratioLbl = new QLabel(tr("Ratio: %1").arg("1.0"));
@@ -222,12 +223,17 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   statusSep3 = new QFrame();
   statusSep3->setFixedWidth(1);
   statusSep3->setFrameStyle(QFrame::Box);
+  statusSep4 = new QFrame();
+  statusSep4->setFixedWidth(1);
+  statusSep4->setFrameStyle(QFrame::Box);
   QMainWindow::statusBar()->addPermanentWidget(DHTLbl);
   QMainWindow::statusBar()->addPermanentWidget(statusSep1);
-  QMainWindow::statusBar()->addPermanentWidget(dlSpeedLbl);
+  QMainWindow::statusBar()->addPermanentWidget(connecStatusLblIcon);
   QMainWindow::statusBar()->addPermanentWidget(statusSep2);
-  QMainWindow::statusBar()->addPermanentWidget(upSpeedLbl);
+  QMainWindow::statusBar()->addPermanentWidget(dlSpeedLbl);
   QMainWindow::statusBar()->addPermanentWidget(statusSep3);
+  QMainWindow::statusBar()->addPermanentWidget(upSpeedLbl);
+  QMainWindow::statusBar()->addPermanentWidget(statusSep4);
   QMainWindow::statusBar()->addPermanentWidget(ratioLbl);
   qDebug("GUI Built");
 }
@@ -242,6 +248,7 @@ GUI::~GUI() {
   delete statusSep1;
   delete statusSep2;
   delete statusSep3;
+  delete statusSep4;
   if(rssWidget != 0)
     delete rssWidget;
   delete searchEngine;
@@ -414,6 +421,8 @@ void GUI::createKeyboardShortcuts() {
   actionStart_All->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift+S")));
   actionPause->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+P")));
   actionPause_All->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift+P")));
+  actionDecreasePriority->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+-")));
+  actionIncreasePriority->setShortcut(QKeySequence(QString::fromUtf8("Ctrl++")));
 }
 
 // Keyboard shortcuts slots
@@ -927,6 +936,11 @@ void GUI::configureSession(bool deleteOptions) {
     setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   }
   displaySpeedInTitle = new_displaySpeedInTitle;
+  if(options->isToolbarDisplayed()) {
+    toolBar->setVisible(true);
+  } else {
+    toolBar->setVisible(false);
+  }
   unsigned int new_refreshInterval = options->getRefreshInterval();
   if(refreshInterval != new_refreshInterval) {
     refreshInterval = new_refreshInterval;
@@ -1125,6 +1139,7 @@ void GUI::configureSession(bool deleteOptions) {
       actionDecreasePriority->setVisible(true);
       actionIncreasePriority->setVisible(true);
       prioSeparator->setVisible(true);
+      prioSeparator2->setVisible(true);
       toolBar->layout()->setSpacing(7);
     }
     int max_torrents = options->getMaxActiveTorrents();
@@ -1142,6 +1157,7 @@ void GUI::configureSession(bool deleteOptions) {
       actionDecreasePriority->setVisible(false);
       actionIncreasePriority->setVisible(false);
       prioSeparator->setVisible(false);
+      prioSeparator2->setVisible(false);
       toolBar->layout()->setSpacing(7);
     }
   }
@@ -1464,15 +1480,8 @@ void GUI::checkConnectionStatus() {
     connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/connected.png")));
     connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection Status:")+QString::fromUtf8("</b><br>")+tr("Online"));
   }else{
-    if(sessionStatus.num_peers) {
-      // Firewalled ?
-      connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/firewalled.png")));
-      connecStatusLblIcon->setToolTip("<b>"+tr("Connection Status:")+QString::fromUtf8("</b><br>")+tr("Firewalled?", "i.e: Behind a firewall/router?")+QString::fromUtf8("<br><i>")+tr("No incoming connections...")+QString::fromUtf8("</i>"));
-    }else{
-      // Disconnected
-      connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/disconnected.png")));
-      connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+tr("Offline")+QString::fromUtf8("<br><i>")+tr("No peers found...")+QString::fromUtf8("</i>"));
-    }
+    connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/firewalled.png")));
+    connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
   }
 }
 

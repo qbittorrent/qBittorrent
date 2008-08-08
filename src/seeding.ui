@@ -139,6 +139,22 @@
     <string>Priority</string>
    </property>
   </action>
+  <action name="actionIncreasePriority" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/Icons/skin/increase.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Increase priority</string>
+   </property>
+  </action>
+  <action name="actionDecreasePriority" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/Icons/skin/decrease.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Decrease priority</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="icons.qrc" />
