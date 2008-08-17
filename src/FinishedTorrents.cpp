@@ -267,7 +267,7 @@ void FinishedTorrents::updateFinishedList(){
       if (reponse == QMessageBox::Yes) {
         qDebug("Info: a torrent was moved from finished to download tab");
         deleteTorrent(hash);
-        BTSession->setFinishedTorrent(hash);
+        BTSession->setUnfinishedTorrent(hash);
         emit torrentMovedFromFinishedList(hash);
       }
       else if (reponse == QMessageBox::No) {

@@ -57,6 +57,8 @@ float QTorrentHandle::progress() const {
   Q_ASSERT(h.is_valid());
   if(!h.status().total_wanted)
     return 0.;
+  if (h.status().total_wanted_done == h.status().total_wanted)
+    return 1.;
   float progress = (float)h.status().total_wanted_done/(float)h.status().total_wanted;
   Q_ASSERT(progress >= 0. && progress <= 1.);
   return progress;
