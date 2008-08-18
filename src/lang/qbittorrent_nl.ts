@@ -3188,7 +3188,7 @@ Changelog:
         <translation>Ik wil de volgende mensen graag bedanken die qBittorrent hebben vertaald:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="80"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Neem contact met me op als u qBittorrent naar uw eigen taal wilt vertalen.</translation>
     </message>
@@ -4233,12 +4233,12 @@ De plugins zijn uitgeschakeld.</translation>
         <translation type="obsolete">Dit IP is ongeldig.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="825"/>
+        <location filename="../options_imp.cpp" line="827"/>
         <source>Options were saved successfully.</source>
         <translation>Opties zijn succesvol opgeslagen.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1129"/>
+        <location filename="../options_imp.cpp" line="1131"/>
         <source>Choose scan directory</source>
         <translation>Kies scanmap</translation>
     </message>
@@ -4248,7 +4248,7 @@ De plugins zijn uitgeschakeld.</translation>
         <translation type="obsolete">Kies een ipfilter.dat bestand</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1144"/>
+        <location filename="../options_imp.cpp" line="1146"/>
         <source>Choose a save directory</source>
         <translation>Kies een opslagmap</translation>
     </message>
@@ -4264,12 +4264,12 @@ De plugins zijn uitgeschakeld.</translation>
         <translation type="obsolete">Kon %1 niet openen om te lezen.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Choose an ip filter file</source>
         <translation>Kies een ip filter bestand</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Filters</source>
         <translation>Filters</translation>
     </message>

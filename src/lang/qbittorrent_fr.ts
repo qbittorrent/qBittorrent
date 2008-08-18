@@ -3402,7 +3402,7 @@ Changements:
         <translation>Je tiens à remercier les personnes suivantes pour avoir traduit qBittorrent :</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="80"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Veuillez me contacter si vous désirez traduire qBittorrent dans votre langue natale.</translation>
     </message>
@@ -4487,12 +4487,12 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Cette adresse IP est incorrecte.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="825"/>
+        <location filename="../options_imp.cpp" line="827"/>
         <source>Options were saved successfully.</source>
         <translation>Préférences sauvegardées avec succès.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1129"/>
+        <location filename="../options_imp.cpp" line="1131"/>
         <source>Choose scan directory</source>
         <translation>Choisir le dossier à surveiller</translation>
     </message>
@@ -4502,7 +4502,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Choisir un fichier ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1144"/>
+        <location filename="../options_imp.cpp" line="1146"/>
         <source>Choose a save directory</source>
         <translation>Choisir un répertoire de sauvegarde</translation>
     </message>
@@ -4518,7 +4518,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Impossible d&apos;ouvrir %1 en lecture.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Choose an ip filter file</source>
         <translation>Choisir un fichier de filtrage IP</translation>
     </message>
@@ -4528,7 +4528,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Filtres (*.dat *.p2p *.p2b)</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>

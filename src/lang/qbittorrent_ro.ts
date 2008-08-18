@@ -2951,7 +2951,7 @@ Changelog:
         <translation>Eu vreau să mulţumesc voluntarilor care au translat qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="80"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Contactaţimă dacă doriţi să traduceţi qBittorrent in limba dumneavoastră.</translation>
     </message>
@@ -3970,12 +3970,12 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
         <translation type="obsolete">Acest IP este valid.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="825"/>
+        <location filename="../options_imp.cpp" line="827"/>
         <source>Options were saved successfully.</source>
         <translation>Opţiunile salvate cu success.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1129"/>
+        <location filename="../options_imp.cpp" line="1131"/>
         <source>Choose scan directory</source>
         <translation>Selectează directoriul de scanare</translation>
     </message>
@@ -3985,7 +3985,7 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
         <translation type="obsolete">Selectează fişierul ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1144"/>
+        <location filename="../options_imp.cpp" line="1146"/>
         <source>Choose a save directory</source>
         <translation>Selectează directoriul de salvare</translation>
     </message>
@@ -4001,12 +4001,12 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
         <translation type="obsolete">Nu pot deschide %1 în mod de citire.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Choose an ip filter file</source>
         <translation>Alageţi un fişier ip filtru</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Filters</source>
         <translation>Filtre</translation>
     </message>

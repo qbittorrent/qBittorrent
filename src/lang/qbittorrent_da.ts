@@ -2484,7 +2484,7 @@ Changelog:
         <translation type="unfinished">Jeg vil gerne takke disse personer, som meldte sig frivilligt til at oversætte qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="80"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished">Kontakt mig venligst hvis du kunne tænke dig og oversætte qBittorrent til dit eget sprog.</translation>
     </message>
@@ -3377,12 +3377,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Denne IP er ugyldig.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="825"/>
+        <location filename="../options_imp.cpp" line="827"/>
         <source>Options were saved successfully.</source>
         <translation>Indstillingerne blev gemt.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1129"/>
+        <location filename="../options_imp.cpp" line="1131"/>
         <source>Choose scan directory</source>
         <translation>Vælg mappe til scan</translation>
     </message>
@@ -3392,7 +3392,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Vælg en ipfilter.dat fil</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1144"/>
+        <location filename="../options_imp.cpp" line="1146"/>
         <source>Choose a save directory</source>
         <translation>Vælg en standart mappe</translation>
     </message>
@@ -3408,12 +3408,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Kunne ikke åbne %1 til læsning.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Choose an ip filter file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Filters</source>
         <translation type="unfinished"></translation>
     </message>

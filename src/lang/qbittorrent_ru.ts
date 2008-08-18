@@ -3178,7 +3178,7 @@ Changelog:
         <translation>Я хочу поблагодарить следующих людей, кто вызвался перевести qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="80"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Пожалуйста, свяжитесь со мной, если хотите перевести qBittorrent на свой язык.</translation>
     </message>
@@ -4227,12 +4227,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Этот IP неправилен.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="825"/>
+        <location filename="../options_imp.cpp" line="827"/>
         <source>Options were saved successfully.</source>
         <translation>Настройки были успешно сохранены.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1129"/>
+        <location filename="../options_imp.cpp" line="1131"/>
         <source>Choose scan directory</source>
         <translation>Выберите директорию для сканирования</translation>
     </message>
@@ -4242,7 +4242,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Выберите файл ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1144"/>
+        <location filename="../options_imp.cpp" line="1146"/>
         <source>Choose a save directory</source>
         <translation>Выберите путь сохранения</translation>
     </message>
@@ -4258,12 +4258,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Невозможно открыть %1 в режиме чтения.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Choose an ip filter file</source>
         <translation>Укажите файл ip фильтра</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Filters</source>
         <translation>Фильтры</translation>
     </message>

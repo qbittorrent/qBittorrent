@@ -3070,7 +3070,7 @@ Záznam zmien:</translation>
         <translation>Rád by som poďakoval nasledovným dobrovoľníkom, ktorí preložili qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="80"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Prosím, kontaktujte ma ak chcete preložiť qBittorrent do vášho jazyka.</translation>
     </message>
@@ -4178,12 +4178,12 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Táto IP je neplatná.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="825"/>
+        <location filename="../options_imp.cpp" line="827"/>
         <source>Options were saved successfully.</source>
         <translation>Nastavenia úspešne uložené.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1129"/>
+        <location filename="../options_imp.cpp" line="1131"/>
         <source>Choose scan directory</source>
         <translation>Zvoliť adresár pre prezeranie</translation>
     </message>
@@ -4193,7 +4193,7 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Vyberte súbor ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1144"/>
+        <location filename="../options_imp.cpp" line="1146"/>
         <source>Choose a save directory</source>
         <translation>Vyberte adresár, kde sa bude ukladať</translation>
     </message>
@@ -4209,12 +4209,12 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Nebolo možné otvoriť %1 v režime pre čítanie.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Choose an ip filter file</source>
         <translation>Zvoliť súbor IP filtra</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Filters</source>
         <translation>Filtre</translation>
     </message>

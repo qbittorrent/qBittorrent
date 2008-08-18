@@ -3307,7 +3307,7 @@ Zmiany:
         <translation>Chciałbym podziękować następującym osobom, które wspomogły lokalizację qBittorrenta:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="80"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Proszę o kontakt, jeżeli chcesz pomóc w tłumaczeniu qBittorrent.</translation>
     </message>
@@ -4366,12 +4366,12 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Ten adres IP jest niepoprawny.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="825"/>
+        <location filename="../options_imp.cpp" line="827"/>
         <source>Options were saved successfully.</source>
         <translation>Ustawienia zapisane.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1129"/>
+        <location filename="../options_imp.cpp" line="1131"/>
         <source>Choose scan directory</source>
         <translation>Wybierz katalog przeszukiwania</translation>
     </message>
@@ -4381,7 +4381,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Wybierz plik ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1144"/>
+        <location filename="../options_imp.cpp" line="1146"/>
         <source>Choose a save directory</source>
         <translation>Wybierz katalog docelowy</translation>
     </message>
@@ -4397,7 +4397,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Nie można otworzyć %1 w trybie odczytu.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Choose an ip filter file</source>
         <translation>Wybierz plik ip filter</translation>
     </message>
@@ -4407,7 +4407,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Filtry (*.dat *.p2p *.p2b)</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Filters</source>
         <translation>Filtry</translation>
     </message>

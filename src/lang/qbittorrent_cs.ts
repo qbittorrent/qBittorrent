@@ -643,7 +643,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="215"/>
         <source>Display top toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit horní panel nástrojů</translation>
     </message>
 </context>
 <context>
@@ -1204,7 +1204,7 @@ Opravdu chcete ukončit qBittorrent?</translation>
     <message>
         <location filename="../GUI.cpp" line="1484"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation type="unfinished"></translation>
+        <translation>Žádná přímá spojení. To může značit problémy s nastavením sítě.</translation>
     </message>
 </context>
 <context>
@@ -1661,7 +1661,7 @@ Opravdu chcete ukončit qBittorrent?</translation>
         <translation>Chtěl bych poděkovat následujícím lidem, kteří dobrovolně přeložili qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="80"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Kontaktujte mě, prosím, pokud byste chtěli přeložit qBittorrent do svého jazyka.</translation>
     </message>
@@ -2130,12 +2130,12 @@ Opravdu chcete ukončit qBittorrent?</translation>
     <message>
         <location filename="../download.ui" line="261"/>
         <source>Increase priority</source>
-        <translation type="unfinished">Zvýšit prioritu</translation>
+        <translation>Zvýšit prioritu</translation>
     </message>
     <message>
         <location filename="../download.ui" line="269"/>
         <source>Decrease priority</source>
-        <translation type="unfinished">Snížit prioritu</translation>
+        <translation>Snížit prioritu</translation>
     </message>
 </context>
 <context>
@@ -2178,7 +2178,7 @@ Opravdu chcete ukončit qBittorrent?</translation>
     <message>
         <location filename="../engineSelect.ui" line="93"/>
         <source>Check for updates</source>
-        <translation>Skontrolovat aktualizace</translation>
+        <translation>Zkontrolovat aktualizace</translation>
     </message>
     <message>
         <location filename="../engineSelect.ui" line="100"/>
@@ -2390,27 +2390,27 @@ Nicméně, tyto moduly byly vypnuty.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="825"/>
+        <location filename="../options_imp.cpp" line="827"/>
         <source>Options were saved successfully.</source>
         <translation>Nastavení bylo úspěšně uloženo.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1129"/>
+        <location filename="../options_imp.cpp" line="1131"/>
         <source>Choose scan directory</source>
         <translation>Vyberte adresář ke sledování</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1144"/>
+        <location filename="../options_imp.cpp" line="1146"/>
         <source>Choose a save directory</source>
         <translation>Vyberte adresář pro ukládání</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Choose an ip filter file</source>
         <translation>Vyberte soubor IP filtrů</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1136"/>
+        <location filename="../options_imp.cpp" line="1138"/>
         <source>Filters</source>
         <translation>Filtry</translation>
     </message>
@@ -2851,12 +2851,12 @@ Nicméně, tyto moduly byly vypnuty.</translation>
     <message>
         <location filename="../seeding.ui" line="147"/>
         <source>Increase priority</source>
-        <translation type="unfinished">Zvýšit prioritu</translation>
+        <translation>Zvýšit prioritu</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="155"/>
         <source>Decrease priority</source>
-        <translation type="unfinished">Snížit prioritu</translation>
+        <translation>Snížit prioritu</translation>
     </message>
 </context>
 <context>
