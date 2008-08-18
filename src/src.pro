@@ -11,10 +11,10 @@ TARGET = qbittorrent
 CONFIG += qt thread x11 network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v1.1.2\\\"
+DEFINES += VERSION=\\\"v1.1.3\\\"
 DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=1
-DEFINES += VERSION_BUGFIX=2
+DEFINES += VERSION_BUGFIX=3
 
 QMAKE_LFLAGS += -Wl,--as-needed
 
@@ -133,7 +133,8 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
 	       $$LANG_PATH/qbittorrent_da.ts \
 	       $$LANG_PATH/qbittorrent_ja.ts \
                $$LANG_PATH/qbittorrent_hu.ts \
-               $$LANG_PATH/qbittorrent_pt_BR.ts
+               $$LANG_PATH/qbittorrent_pt_BR.ts \
+               $$LANG_PATH/qbittorrent_cs.ts
 
 # Source code
 HEADERS += GUI.h misc.h options_imp.h about_imp.h \
