@@ -133,7 +133,8 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
 	       $$LANG_PATH/qbittorrent_da.ts \
 	       $$LANG_PATH/qbittorrent_ja.ts \
                $$LANG_PATH/qbittorrent_hu.ts \
-               $$LANG_PATH/qbittorrent_pt_BR.ts
+               $$LANG_PATH/qbittorrent_pt_BR.ts \
+               $$LANG_PATH/qbittorrent_cs.ts
 
 # Source code
 HEADERS += GUI.h misc.h options_imp.h about_imp.h \
