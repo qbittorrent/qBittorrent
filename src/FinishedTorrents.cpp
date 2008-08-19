@@ -105,6 +105,10 @@ void FinishedTorrents::notifyTorrentDoubleClicked(const QModelIndex& index) {
 
 void FinishedTorrents::hidePriorityColumn(bool hide) {
   finishedList->setColumnHidden(F_PRIORITY, hide);
+  if(hide)
+    getActionHoSCol(F_PRIORITY)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
+  else
+    getActionHoSCol(F_PRIORITY)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
 }
 
 void FinishedTorrents::addTorrent(QString hash){
@@ -437,7 +441,7 @@ void FinishedTorrents::displayFinishedHoSMenu(const QPoint& pos){
   } else {
     lastCol = F_RATIO;
   }
-  for(int i=0; i<=F_RATIO; i++) {
+  for(int i=0; i<=lastCol; i++) {
     hideshowColumn.addAction(getActionHoSCol(i));
   }
   // Call menu

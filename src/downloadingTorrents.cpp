@@ -396,6 +396,10 @@ void DownloadingTorrents::hideOrShowColumn(int index) {
 
 void DownloadingTorrents::hidePriorityColumn(bool hide) {
   downloadList->setColumnHidden(PRIORITY, hide);
+  if(hide)
+    getActionHoSCol(PRIORITY)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
+  else
+    getActionHoSCol(PRIORITY)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
 }
 
 // save the hidden columns in settings
