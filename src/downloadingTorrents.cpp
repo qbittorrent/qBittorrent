@@ -782,6 +782,7 @@ void DownloadingTorrents::sortDownloadList(int index, Qt::SortOrder startSortOrd
     case ETA:
     case UPSPEED:
     case DLSPEED:
+    case PRIORITY:
       sortDownloadListFloat(index, sortOrder);
       break;
     case PROGRESS:
