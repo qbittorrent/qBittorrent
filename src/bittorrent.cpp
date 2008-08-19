@@ -314,6 +314,7 @@ void bittorrent::startTorrentsInPause(bool b) {
 
 void bittorrent::setQueueingEnabled(bool enable) {
   if(queueingEnabled != enable) {
+    qDebug("Queueing system is changing state...");
     queueingEnabled = enable;
     if(enable) {
       // Load priorities
@@ -358,7 +359,7 @@ void bittorrent::setQueueingEnabled(bool enable) {
       foreach(couple2, tmp_list2) {
         uploadQueue->append(couple2.second);
       }
-      (*uploadQueue)<<noprio;
+      (*uploadQueue)<<noprio2;
       // save priorities
       int j=0;
       foreach(QString hash, *uploadQueue) {
