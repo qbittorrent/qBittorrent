@@ -718,41 +718,41 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Vyhledání URL seedu selhalo pro URL: %1, zpráva: %2</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="890"/>
+        <location filename="../downloadingTorrents.cpp" line="895"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; přidán do seznamu stahování.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="892"/>
+        <location filename="../downloadingTorrents.cpp" line="897"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; obnoven. (rychlé obnovení)</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="900"/>
+        <location filename="../downloadingTorrents.cpp" line="905"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; už je v seznamu stahování.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="904"/>
+        <location filename="../downloadingTorrents.cpp" line="909"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Nelze dekódovat soubor torrentu: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="905"/>
+        <location filename="../downloadingTorrents.cpp" line="910"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Tento soubor je buď poškozen, nebo to není soubor torrentu.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="919"/>
+        <location filename="../downloadingTorrents.cpp" line="924"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Nelze naslouchat na žádném z udaných portů.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="943"/>
+        <location filename="../downloadingTorrents.cpp" line="948"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Stahuji  &apos;%1&apos;, prosím čekejte...</translation>
@@ -837,17 +837,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Leecheři</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="433"/>
+        <location filename="../FinishedTorrents.cpp" line="437"/>
         <source>Hide or Show Column</source>
         <translation>Zobrazit či skrýt sloupec</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="266"/>
+        <location filename="../FinishedTorrents.cpp" line="270"/>
         <source>Incomplete torrent in seeding list</source>
         <translation>Neúplný torrent v seznamu seedovaných</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="266"/>
+        <location filename="../FinishedTorrents.cpp" line="270"/>
         <source>It appears that the state of &apos;%1&apos; torrent changed from &apos;seeding&apos; to &apos;downloading&apos;. Would you like to move it back to download list? (otherwise the torrent will simply be deleted)</source>
         <translation>Zdá se, že stav torrentu &apos;%1&apos; se změnil ze &apos;seedování&apos; na &apos;&apos;stahování. Chceš ho přesunout zpět do seznamu stahování? (jinak bude prostě smazán)</translation>
     </message>

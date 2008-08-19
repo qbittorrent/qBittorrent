@@ -1103,7 +1103,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="215"/>
         <source>Display top toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать верхнюю панель</translation>
     </message>
 </context>
 <context>
@@ -1183,41 +1183,41 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Поиск раздающего Url не удался: %1, сообщение: %2</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="890"/>
+        <location filename="../downloadingTorrents.cpp" line="895"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; добавлен в список закачек.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="892"/>
+        <location filename="../downloadingTorrents.cpp" line="897"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; возобновлен. (быстрое возобновление)</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="900"/>
+        <location filename="../downloadingTorrents.cpp" line="905"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; уже присутствует в списке закачек.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="904"/>
+        <location filename="../downloadingTorrents.cpp" line="909"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Не удалось декодировать torrent файл: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="905"/>
+        <location filename="../downloadingTorrents.cpp" line="910"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Этот файл либо поврежден, либо не torrent типа.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="919"/>
+        <location filename="../downloadingTorrents.cpp" line="924"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Невозможно прослушать ни один из заданных портов.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="943"/>
+        <location filename="../downloadingTorrents.cpp" line="948"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Скачивание &apos;%1&apos;, подождите...</translation>
@@ -1342,17 +1342,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Качающие</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="433"/>
+        <location filename="../FinishedTorrents.cpp" line="437"/>
         <source>Hide or Show Column</source>
         <translation>Скрыть или показать столбец</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="266"/>
+        <location filename="../FinishedTorrents.cpp" line="270"/>
         <source>Incomplete torrent in seeding list</source>
         <translation>Неполный torrent в списке раздачи</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="266"/>
+        <location filename="../FinishedTorrents.cpp" line="270"/>
         <source>It appears that the state of &apos;%1&apos; torrent changed from &apos;seeding&apos; to &apos;downloading&apos;. Would you like to move it back to download list? (otherwise the torrent will simply be deleted)</source>
         <translation>Похоже, что состояние %1 torrent-а изменилось с &apos;раздается&apos; на &apos;скачивается&apos;. Хотите переместить его обратно в список закачек? (иначе torrent будет просто удален)</translation>
     </message>
@@ -2355,7 +2355,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../GUI.cpp" line="1484"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет прямых соединений. Причиной этого могут быть проблемы в настройке сети.</translation>
     </message>
 </context>
 <context>
@@ -3792,12 +3792,12 @@ Changelog:
     <message>
         <location filename="../download.ui" line="261"/>
         <source>Increase priority</source>
-        <translation type="unfinished">Повысить приоритет</translation>
+        <translation>Повысить приоритет</translation>
     </message>
     <message>
         <location filename="../download.ui" line="269"/>
         <source>Decrease priority</source>
-        <translation type="unfinished">Понизить приоритет</translation>
+        <translation>Понизить приоритет</translation>
     </message>
 </context>
 <context>
@@ -4910,12 +4910,12 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../seeding.ui" line="147"/>
         <source>Increase priority</source>
-        <translation type="unfinished">Повысить приоритет</translation>
+        <translation>Повысить приоритет</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="155"/>
         <source>Decrease priority</source>
-        <translation type="unfinished">Понизить приоритет</translation>
+        <translation>Понизить приоритет</translation>
     </message>
 </context>
 <context>

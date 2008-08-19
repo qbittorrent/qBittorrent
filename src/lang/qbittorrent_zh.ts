@@ -1268,7 +1268,7 @@ torrent.</source>
         <translation type="obsolete">该文件不是torrent文件或已经损坏.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="919"/>
+        <location filename="../downloadingTorrents.cpp" line="924"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>所给端口无响应.</translation>
     </message>
@@ -1291,36 +1291,36 @@ wait...</comment>
         <translation>快速继续数据torrent %1失败,再次检查...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="890"/>
+        <location filename="../downloadingTorrents.cpp" line="895"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos;添加到下载列表.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="892"/>
+        <location filename="../downloadingTorrents.cpp" line="897"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos;重新开始. (快速)</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="900"/>
+        <location filename="../downloadingTorrents.cpp" line="905"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos;已存在于下载列表中.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="904"/>
+        <location filename="../downloadingTorrents.cpp" line="909"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>无法解码torrent文件:&apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="905"/>
+        <location filename="../downloadingTorrents.cpp" line="910"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>该文件不是torrent文件或已经损坏.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="943"/>
+        <location filename="../downloadingTorrents.cpp" line="948"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;下载中,请等待...</translation>
@@ -1451,17 +1451,17 @@ wait...</comment>
         <translation>不完整种子</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="433"/>
+        <location filename="../FinishedTorrents.cpp" line="437"/>
         <source>Hide or Show Column</source>
         <translation>隐藏或显示栏</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="266"/>
+        <location filename="../FinishedTorrents.cpp" line="270"/>
         <source>Incomplete torrent in seeding list</source>
         <translation>不完全torrent在种子列表中</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="266"/>
+        <location filename="../FinishedTorrents.cpp" line="270"/>
         <source>It appears that the state of &apos;%1&apos; torrent changed from &apos;seeding&apos; to &apos;downloading&apos;. Would you like to move it back to download list? (otherwise the torrent will simply be deleted)</source>
         <translation>据显示&apos;%1&apos; torrent状态从&apos;做种中&apos; 变为 &apos;下载中&apos;.将它移回下载列表吗?(否则此torrent将被删除) </translation>
     </message>

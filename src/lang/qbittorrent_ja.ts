@@ -1076,41 +1076,41 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>次の url の url シードの参照に失敗しました: %1、メッセージ: %2</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="890"/>
+        <location filename="../downloadingTorrents.cpp" line="895"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; がダウンロードの一覧に追加されました。</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="892"/>
+        <location filename="../downloadingTorrents.cpp" line="897"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; が再開されました。 (高速再開)</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="900"/>
+        <location filename="../downloadingTorrents.cpp" line="905"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; はすでにダウンロードの一覧にあります。</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="904"/>
+        <location filename="../downloadingTorrents.cpp" line="909"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Torrent ファイルをデコードすることができません: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="905"/>
+        <location filename="../downloadingTorrents.cpp" line="910"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>このファイルは壊れているかこれは torrent ではないかのどちらかです。</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="919"/>
+        <location filename="../downloadingTorrents.cpp" line="924"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>所定のポートで記入できませんでした。</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="943"/>
+        <location filename="../downloadingTorrents.cpp" line="948"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos; をダウンロードしています、お待ちください...</translation>
@@ -1241,17 +1241,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>リーチャ</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="433"/>
+        <location filename="../FinishedTorrents.cpp" line="437"/>
         <source>Hide or Show Column</source>
         <translation>列の非表示または表示</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="266"/>
+        <location filename="../FinishedTorrents.cpp" line="270"/>
         <source>Incomplete torrent in seeding list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="266"/>
+        <location filename="../FinishedTorrents.cpp" line="270"/>
         <source>It appears that the state of &apos;%1&apos; torrent changed from &apos;seeding&apos; to &apos;downloading&apos;. Would you like to move it back to download list? (otherwise the torrent will simply be deleted)</source>
         <translation type="unfinished"></translation>
     </message>

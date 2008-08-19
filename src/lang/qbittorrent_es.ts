@@ -1187,41 +1187,41 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation>Falló la búsqueda de semilla por Url para la url: %1, mensaje: %2</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="890"/>
+        <location filename="../downloadingTorrents.cpp" line="895"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; agregado a la lista de descargas.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="892"/>
+        <location filename="../downloadingTorrents.cpp" line="897"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; reiniciado. (reinicio rápido)</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="900"/>
+        <location filename="../downloadingTorrents.cpp" line="905"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; ya está en la lista de descargas.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="904"/>
+        <location filename="../downloadingTorrents.cpp" line="909"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Imposible decodificar el archivo torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="905"/>
+        <location filename="../downloadingTorrents.cpp" line="910"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Este archivo puede estar corrupto, o no ser un torrent.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="919"/>
+        <location filename="../downloadingTorrents.cpp" line="924"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>No se pudo escuchar en ninguno de los puertos brindados.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="943"/>
+        <location filename="../downloadingTorrents.cpp" line="948"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Descargando &apos;%1&apos;, por favor espera...</translation>
@@ -1352,17 +1352,17 @@ Copyright © 2006 por Christophe Dumez&lt;br&gt;
         <translation>Leechers</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="433"/>
+        <location filename="../FinishedTorrents.cpp" line="437"/>
         <source>Hide or Show Column</source>
         <translation>Ocultar o Mostrar Columna</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="266"/>
+        <location filename="../FinishedTorrents.cpp" line="270"/>
         <source>Incomplete torrent in seeding list</source>
         <translation>Torrent incompleto en lista de seeding</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="266"/>
+        <location filename="../FinishedTorrents.cpp" line="270"/>
         <source>It appears that the state of &apos;%1&apos; torrent changed from &apos;seeding&apos; to &apos;downloading&apos;. Would you like to move it back to download list? (otherwise the torrent will simply be deleted)</source>
         <translation>Parece que el estado del torrent &apos;%1&apos; ha cambiado de &apos;seeding&apos; a &apos;descargando&apos;. ¿Le gustaría moverlo nuevamente a la lista de descargas? (de otra manera el torrent simplemente será eliminado)</translation>
     </message>

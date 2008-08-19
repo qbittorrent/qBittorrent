@@ -16,7 +16,9 @@ DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=2
 DEFINES += VERSION_BUGFIX=0
 
-QMAKE_LFLAGS += -Wl,--as-needed
+!mac {
+	QMAKE_LFLAGS += -Wl,--as-needed
+}
 
 contains(DEBUG_MODE, 1){
     CONFIG += debug
