@@ -286,9 +286,11 @@ GUI::~GUI() {
 void GUI::displayRSSTab(bool enable) {
   if(enable) {
     // RSS tab
-    rssWidget = new RSSImp();
-    tabs->addTab(rssWidget, tr("RSS"));
-    tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss32.png")));
+    if(rssWidget == 0) {
+      rssWidget = new RSSImp();
+      tabs->addTab(rssWidget, tr("RSS"));
+      tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss32.png")));
+    }
   } else {
     if(rssWidget != 0) {
       delete rssWidget;
