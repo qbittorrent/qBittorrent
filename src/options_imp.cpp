@@ -115,6 +115,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   locales << "ja_JP";
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/china.png"))), QString::fromUtf8("中文 (简体)"));
   locales << "zh_CN";
+  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/taiwan.png"))), QString::fromUtf8("中文 (繁體)"));
+  locales << "zh_TW";
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/south_korea.png"))), QString::fromUtf8("한글"));
   locales << "ko_KR";
 
