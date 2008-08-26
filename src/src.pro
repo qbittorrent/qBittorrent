@@ -11,7 +11,7 @@ TARGET = qbittorrent
 CONFIG += qt thread x11 network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v1.2.0beta4\\\"
+DEFINES += VERSION=\\\"v1.2.0beta5\\\"
 DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=2
 DEFINES += VERSION_BUGFIX=0
