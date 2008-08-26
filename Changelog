@@ -5,11 +5,21 @@
     - FEATURE: RSS can now be disabled from program preferences
     - BUGFIX: Disable ETA calculation when ETA column is hidden
     - BUGFIX: Removed "disconnected" connection state, detection was far from perfect
-    - I18N: Added Czech and Traditional Chinese locales
     - COSMETIC: Transfer speed, ratio, connection status and DHT nodes are displayed in status bar    
     - COSMETIC: RSS Tab is now hidden as a default
     - COSMETIC: Allow to hide or display top toolbar
     - COSMETIC: Top toolbar is now hidden as a default
+
+* Tue Aug 26 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.3
+    - BUGFIX: Fixed ratio saving for seeding torrents
+    - I18N: Added czech and traditional chinese translations
+
+* Sun Aug 17 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.2
+    - BUGFIX: Fixed progress calculation
+    - BUGFIX: Fixed finished torrent detection
+
+* Fri Aug 01 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.1
+    - BUGFIX: Fixed bad resource file for icons
 
 * Fri Aug 01 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.0
     - FEATURE: Web interface to control qbittorrent (Ishan Arora)

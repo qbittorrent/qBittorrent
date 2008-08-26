@@ -1401,7 +1401,7 @@ void bittorrent::saveFastResumeAndRatioData() {
       continue;
     }
     if(h.is_paused()) {
-      // Do not need to save fast resume data for paused torrents
+      // Do not need to save ratio data for paused torrents
       continue;
     }
     saveDownloadUploadForTorrent(hash);
