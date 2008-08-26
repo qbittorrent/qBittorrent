@@ -933,6 +933,19 @@ void bittorrent::saveFastResumeAndRatioData() {
     }
     saveFastResumeAndRatioData(hash);
   }
+  hashes = getFinishedTorrents();
+  foreach(hash, hashes) {
+    QTorrentHandle h = getTorrentHandle(hash);
+    if(!h.is_valid()) {
+      qDebug("/!\\ Error: Invalid handle");
+      continue;
+    }
+    if(h.is_paused()) {
+      // Do not need to save fast resume data for paused torrents
+      continue;
+    }
+    saveDownloadUploadForTorrent(hash);
+  }
 }
 
 void bittorrent::saveFastResumeAndRatioData(QString hash) {
