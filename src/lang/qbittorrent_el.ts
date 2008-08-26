@@ -3219,7 +3219,7 @@ Changelog:
         <translation>Θα ήθελα να ευχαριστήσω τους παρακάτω που εθελοντικά μετέφρασαν το qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="81"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Παρακαλώ επικοινωνήστε μαζί μου αν θα θέλατε να μεταφράσετε το qBittorrent στη δική σας γλώσσα.</translation>
     </message>
@@ -4263,12 +4263,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Αυτό το IP είναι άκυρο.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="774"/>
+        <location filename="../options_imp.cpp" line="778"/>
         <source>Options were saved successfully.</source>
         <translation>Οι επιλογές αποθηκεύτηκαν επιτυχώς.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1052"/>
+        <location filename="../options_imp.cpp" line="1056"/>
         <source>Choose scan directory</source>
         <translation>Επιλέξτε φάκελο αναζήτησης</translation>
     </message>
@@ -4278,7 +4278,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Επιλέξτε ένα αρχείο ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1067"/>
+        <location filename="../options_imp.cpp" line="1071"/>
         <source>Choose a save directory</source>
         <translation>Επιλέξτε φάκελο αποθήκευσης</translation>
     </message>
@@ -4294,12 +4294,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Αδύνατο το άνοιγμα του %1 σε λειτουργία ανάγνωσης.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Choose an ip filter file</source>
         <translation>Επιλέξτε ένα αρχείο φίλτρου ip</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Filters</source>
         <translation>Φίλτρα</translation>
     </message>

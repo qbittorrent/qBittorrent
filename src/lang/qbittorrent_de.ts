@@ -3129,7 +3129,7 @@ Changelog:
         <translation>Ich möchte folgenden freiwilligen Übersetzern danken:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="81"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Bitte kontaktieren Sie mich, falls Sie qBittorrent in Ihre Sprache übersetzen wollen.</translation>
     </message>
@@ -4156,12 +4156,12 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete">Diese IP ist ungültig.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="774"/>
+        <location filename="../options_imp.cpp" line="778"/>
         <source>Options were saved successfully.</source>
         <translation>Optionen wurden erfolgreich gespeichert.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1052"/>
+        <location filename="../options_imp.cpp" line="1056"/>
         <source>Choose scan directory</source>
         <translation>Verzeichnis zum scannen auswählen</translation>
     </message>
@@ -4171,7 +4171,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete">ipfilter.dat Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1067"/>
+        <location filename="../options_imp.cpp" line="1071"/>
         <source>Choose a save directory</source>
         <translation>Verzeichnis zum Speichern auswählen</translation>
     </message>
@@ -4181,12 +4181,12 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete">Kein Lesezugriff auf %1.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Choose an ip filter file</source>
         <translation>IP-Filter-Datei wählen</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Filters</source>
         <translation>Filter</translation>
     </message>

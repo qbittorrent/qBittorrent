@@ -3291,7 +3291,7 @@ into your own language.</source>
         <translation>感谢以下所有qBittorrent的志愿翻译者:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="81"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>如果你想为qBittorrent提供翻译请与我联系.</translation>
     </message>
@@ -4331,12 +4331,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">此IP无效.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="774"/>
+        <location filename="../options_imp.cpp" line="778"/>
         <source>Options were saved successfully.</source>
         <translation>选项保存成功.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1052"/>
+        <location filename="../options_imp.cpp" line="1056"/>
         <source>Choose scan directory</source>
         <translation>选择监视目录</translation>
     </message>
@@ -4346,7 +4346,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">选择ipfilter.dat文件</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1067"/>
+        <location filename="../options_imp.cpp" line="1071"/>
         <source>Choose a save directory</source>
         <translation>保存到</translation>
     </message>
@@ -4362,12 +4362,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">无法在读状态下打开%1.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Choose an ip filter file</source>
         <translation>选择ip过滤文件</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Filters</source>
         <translation>过滤器</translation>
     </message>

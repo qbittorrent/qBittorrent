@@ -1671,7 +1671,7 @@ Opravdu chcete ukončit qBittorrent?</translation>
         <translation>Chtěl bych poděkovat následujícím lidem, kteří dobrovolně přeložili qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="81"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Kontaktujte mě, prosím, pokud byste chtěli přeložit qBittorrent do svého jazyka.</translation>
     </message>
@@ -2390,27 +2390,27 @@ Nicméně, tyto moduly byly vypnuty.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="774"/>
+        <location filename="../options_imp.cpp" line="778"/>
         <source>Options were saved successfully.</source>
         <translation>Nastavení bylo úspěšně uloženo.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1052"/>
+        <location filename="../options_imp.cpp" line="1056"/>
         <source>Choose scan directory</source>
         <translation>Vyberte adresář ke sledování</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1067"/>
+        <location filename="../options_imp.cpp" line="1071"/>
         <source>Choose a save directory</source>
         <translation>Vyberte adresář pro ukládání</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Choose an ip filter file</source>
         <translation>Vyberte soubor IP filtrů</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Filters</source>
         <translation>Filtry</translation>
     </message>

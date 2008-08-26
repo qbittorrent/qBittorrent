@@ -2666,7 +2666,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../rss_imp.cpp" line="171"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="172"/>
@@ -2958,7 +2958,7 @@ Log:
     <message>
         <location filename="../about_imp.h" line="43"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="54"/>
@@ -2966,7 +2966,7 @@ Log:
         <translation type="unfinished">Vui agrair a les següents persones la seva voluntat per traduir qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="81"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3673,7 +3673,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../engineSelectDlg.cpp" line="700"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="478"/>
@@ -3947,17 +3947,17 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Aquesta IP es invalida.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="774"/>
+        <location filename="../options_imp.cpp" line="778"/>
         <source>Options were saved successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1052"/>
+        <location filename="../options_imp.cpp" line="1056"/>
         <source>Choose scan directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1067"/>
+        <location filename="../options_imp.cpp" line="1071"/>
         <source>Choose a save directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3968,12 +3968,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">I/O Error</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Choose an ip filter file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Filters</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4372,7 +4372,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../properties_imp.cpp" line="534"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="535"/>

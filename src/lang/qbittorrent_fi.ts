@@ -2558,7 +2558,7 @@ Muutoshistoria:
         <translation>Haluan kiittää seuraavia henkilöitä, jotka ovat vapaaehtoisesti kääntäneet qBittorrentin:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="81"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Ota yhteyttä minuun, jos haluat kääntää qBittorentin omalle kielellesi.</translation>
     </message>
@@ -3512,12 +3512,12 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">–</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="774"/>
+        <location filename="../options_imp.cpp" line="778"/>
         <source>Options were saved successfully.</source>
         <translation>Asetukset tallennettiin.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1052"/>
+        <location filename="../options_imp.cpp" line="1056"/>
         <source>Choose scan directory</source>
         <translation>Valitse hakukansio</translation>
     </message>
@@ -3527,7 +3527,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Valitse ipfilter.dat-tiedosto</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1067"/>
+        <location filename="../options_imp.cpp" line="1071"/>
         <source>Choose a save directory</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
@@ -3543,12 +3543,12 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Tiedoston %1 avaaminen lukutilassa epäonnistui.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Choose an ip filter file</source>
         <translation>Valitse IP-suodatintiedosto</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Filters</source>
         <translation>Suotimet</translation>
     </message>

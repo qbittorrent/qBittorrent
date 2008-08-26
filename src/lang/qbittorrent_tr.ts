@@ -3072,7 +3072,7 @@ Changelog:
         <translation>qBittorrent için gönüllü olarak çevirmenlik yapanlara teşekkürlerimi sunarım:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="81"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Eğer qBittorrent i kendi dilinize çevirmek isterseniz benimle iletişim kurun.</translation>
     </message>
@@ -4072,12 +4072,12 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation type="obsolete">Bu IP geçersizdir.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="774"/>
+        <location filename="../options_imp.cpp" line="778"/>
         <source>Options were saved successfully.</source>
         <translation>Ayarlar başarıyla kaydedildi.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1052"/>
+        <location filename="../options_imp.cpp" line="1056"/>
         <source>Choose scan directory</source>
         <translation>Taranacak klasörü seç</translation>
     </message>
@@ -4087,7 +4087,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation type="obsolete">Bir ipfilter.dat dosyası seç</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1067"/>
+        <location filename="../options_imp.cpp" line="1071"/>
         <source>Choose a save directory</source>
         <translation>Bir kayıt klasörü seçin</translation>
     </message>
@@ -4103,12 +4103,12 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation type="obsolete">%1 okuma modunda açılamadı.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Choose an ip filter file</source>
         <translation>Bir ipfilter.dat dosyası seç</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Filters</source>
         <translation>Filtreler</translation>
     </message>

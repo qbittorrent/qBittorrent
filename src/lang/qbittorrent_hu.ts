@@ -2286,7 +2286,7 @@ Changelog:
         <translation>Külön köszönet illeti a fordítókat, önkéntes munkájukért:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="79"/>
+        <location filename="../about_imp.h" line="81"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Amennyiben szeretnéd lefordítani (mondjuk már le van) a qBittorrentet, kérlek értesíts.</translation>
     </message>
@@ -3133,12 +3133,12 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">Ez az IP cím nemlétező.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="774"/>
+        <location filename="../options_imp.cpp" line="778"/>
         <source>Options were saved successfully.</source>
         <translation>Beállítások sikeresen elmentve.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1052"/>
+        <location filename="../options_imp.cpp" line="1056"/>
         <source>Choose scan directory</source>
         <translation>Megfigyelt könyvtár beállítása</translation>
     </message>
@@ -3148,7 +3148,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">Ipfilter.dat fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1067"/>
+        <location filename="../options_imp.cpp" line="1071"/>
         <source>Choose a save directory</source>
         <translation>Letöltési könyvtár megadása</translation>
     </message>
@@ -3164,12 +3164,12 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">%1 olvasása sikertelen.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Choose an ip filter file</source>
         <translation>Válassz egy ip szűrő fájlt</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1059"/>
+        <location filename="../options_imp.cpp" line="1063"/>
         <source>Filters</source>
         <translation>Szűrők</translation>
     </message>
