@@ -45,7 +45,7 @@ createtorrent::createtorrent(QWidget *parent): QDialog(parent){
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   creatorThread = new torrentCreatorThread();
-  connect(creatorThread, SIGNAL(creationSuccess(QString)), this, SLOT(handleCreationSucess(QString)));
+  connect(creatorThread, SIGNAL(creationSuccess(QString, const char*, QString)), this, SLOT(handleCreationSuccess(QString, const char*, QString)));
   connect(creatorThread, SIGNAL(creationFailure(QString)), this, SLOT(handleCreationFailure(QString)));
   connect(creatorThread, SIGNAL(updateProgress(int)), this, SLOT(updateProgressBar(int)));
   show();
@@ -128,13 +128,36 @@ void createtorrent::on_addURLSeed_button_clicked(){
 
 // Subfunction to add files to a torrent_info structure
 // Written by Arvid Norberg (libtorrent Author)
+//void add_files(torrent_info& t, path const& p, path const& l){
+//  qDebug("p: %s, l: %s, l.leaf(): %s", p.string().c_str(), l.string().c_str(), l.leaf().c_str());
+//  path f(p / l);
+//  if (is_directory(f)){
+//    for (directory_iterator i(f), end; i != end; ++i)
+//      add_files(t, p, l / i->leaf());
+//  }else{
+//    qDebug("Adding %s", l.string().c_str());
+//    t.add_file(l, file_size(f));
+//  }
+//}
+
 void add_files(torrent_info& t, path const& p, path const& l){
-  qDebug("p: %s, l: %s, l.leaf(): %s", p.string().c_str(), l.string().c_str(), l.leaf().c_str());
+  using boost::filesystem::path;
+  using boost::filesystem::directory_iterator;
+#if BOOST_VERSION < 103600
+  std::string const& leaf = l.leaf();
+#else
+  std::string const& leaf = l.filename();
+#endif
+  if (leaf == ".." || leaf == ".") return;
   path f(p / l);
-  if (is_directory(f)){
+  if (is_directory(f)) {
     for (directory_iterator i(f), end; i != end; ++i)
+#if BOOST_VERSION < 103600
       add_files(t, p, l / i->leaf());
-  }else{
+#else
+      add_files(t, p, l / i->filename());
+#endif
+  } else {
     qDebug("Adding %s", l.string().c_str());
     t.add_file(l, file_size(f));
   }
