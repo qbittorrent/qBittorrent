@@ -128,18 +128,6 @@ void createtorrent::on_addURLSeed_button_clicked(){
 
 // Subfunction to add files to a torrent_info structure
 // Written by Arvid Norberg (libtorrent Author)
-//void add_files(torrent_info& t, path const& p, path const& l){
-//  qDebug("p: %s, l: %s, l.leaf(): %s", p.string().c_str(), l.string().c_str(), l.leaf().c_str());
-//  path f(p / l);
-//  if (is_directory(f)){
-//    for (directory_iterator i(f), end; i != end; ++i)
-//      add_files(t, p, l / i->leaf());
-//  }else{
-//    qDebug("Adding %s", l.string().c_str());
-//    t.add_file(l, file_size(f));
-//  }
-//}
-
 void add_files(torrent_info& t, path const& p, path const& l){
   using boost::filesystem::path;
   using boost::filesystem::directory_iterator;
@@ -244,7 +232,11 @@ void torrentCreatorThread::run() {
     ofstream out(complete(path((const char*)save_path.toUtf8())), std::ios_base::binary);
     // Adding files to the torrent
     path full_path = complete(path(input_path.toUtf8().data()));
+#if BOOST_VERSION < 103600
     add_files(*t, full_path.branch_path(), full_path.leaf());
+#else
+    add_files(*t, full_path.branch_path(), full_path.filename());
+#endif
     if(abort) return;
     // Set piece size
     t->set_piece_size(piece_size);
