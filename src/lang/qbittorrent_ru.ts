@@ -3178,7 +3178,7 @@ Changelog:
         <translation>Я хочу поблагодарить следующих людей, кто вызвался перевести qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="80"/>
+        <location filename="../about_imp.h" line="81"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Пожалуйста, свяжитесь со мной, если хотите перевести qBittorrent на свой язык.</translation>
     </message>
@@ -3503,12 +3503,12 @@ Changelog:
 <context>
     <name>createtorrent</name>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="166"/>
+        <location filename="../createtorrent_imp.cpp" line="177"/>
         <source>Select destination torrent file</source>
         <translation>Выберите torrent файл назначения</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="166"/>
+        <location filename="../createtorrent_imp.cpp" line="177"/>
         <source>Torrent Files</source>
         <translation>Файлы Torrent</translation>
     </message>
@@ -3528,12 +3528,12 @@ Changelog:
         <translation type="obsolete">Пожалуйста, сначала введите путь назначения</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="158"/>
+        <location filename="../createtorrent_imp.cpp" line="169"/>
         <source>No input path set</source>
         <translation>Не установлен входной путь</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="158"/>
+        <location filename="../createtorrent_imp.cpp" line="169"/>
         <source>Please type an input path first</source>
         <translation>Пожалуйста, сначала введите путь назначения</translation>
     </message>
@@ -3548,12 +3548,12 @@ Changelog:
         <translation type="obsolete">Пожалуйста, сначала введите правильный входной путь</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="192"/>
+        <location filename="../createtorrent_imp.cpp" line="203"/>
         <source>Torrent creation</source>
         <translation>Создание Torrent-а</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="192"/>
+        <location filename="../createtorrent_imp.cpp" line="203"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent успешно создан:</translation>
     </message>
@@ -3578,7 +3578,7 @@ Changelog:
         <translation>Введите ссылку анонсирования</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="179"/>
+        <location filename="../createtorrent_imp.cpp" line="190"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Создание torrent-а не завершено, причина: %1</translation>
     </message>
@@ -3604,12 +3604,12 @@ Changelog:
         <translation>Выберите файл для добавления в torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="163"/>
+        <location filename="../createtorrent_imp.cpp" line="174"/>
         <source>No tracker path set</source>
         <translation>Нет пути трекера</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="163"/>
+        <location filename="../createtorrent_imp.cpp" line="174"/>
         <source>Please set at least one tracker</source>
         <translation>Пожалуйста, пропишите хотя бы один трекер</translation>
     </message>
@@ -4227,12 +4227,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Этот IP неправилен.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="827"/>
+        <location filename="../options_imp.cpp" line="829"/>
         <source>Options were saved successfully.</source>
         <translation>Настройки были успешно сохранены.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1131"/>
+        <location filename="../options_imp.cpp" line="1133"/>
         <source>Choose scan directory</source>
         <translation>Выберите директорию для сканирования</translation>
     </message>
@@ -4242,7 +4242,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Выберите файл ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1146"/>
+        <location filename="../options_imp.cpp" line="1148"/>
         <source>Choose a save directory</source>
         <translation>Выберите путь сохранения</translation>
     </message>
@@ -4258,12 +4258,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Невозможно открыть %1 в режиме чтения.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1138"/>
+        <location filename="../options_imp.cpp" line="1140"/>
         <source>Choose an ip filter file</source>
         <translation>Укажите файл ip фильтра</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1138"/>
+        <location filename="../options_imp.cpp" line="1140"/>
         <source>Filters</source>
         <translation>Фильтры</translation>
     </message>

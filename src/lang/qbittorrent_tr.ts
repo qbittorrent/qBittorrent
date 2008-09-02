@@ -3152,7 +3152,7 @@ Changelog:
         <translation>qBittorrent için gönüllü olarak çevirmenlik yapanlara teşekkürlerimi sunarım:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="80"/>
+        <location filename="../about_imp.h" line="81"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Eğer qBittorrent i kendi dilinize çevirmek isterseniz benimle iletişim kurun.</translation>
     </message>
@@ -3477,12 +3477,12 @@ Changelog:
 <context>
     <name>createtorrent</name>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="166"/>
+        <location filename="../createtorrent_imp.cpp" line="177"/>
         <source>Select destination torrent file</source>
         <translation>Kaynak Torrent dosyasını seç</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="166"/>
+        <location filename="../createtorrent_imp.cpp" line="177"/>
         <source>Torrent Files</source>
         <translation>Torrent Dosyaları</translation>
     </message>
@@ -3502,12 +3502,12 @@ Changelog:
         <translation type="obsolete">Lütfen önce bir kaynak yolu seçin</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="158"/>
+        <location filename="../createtorrent_imp.cpp" line="169"/>
         <source>No input path set</source>
         <translation>Girdi yolu seçilmedi</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="158"/>
+        <location filename="../createtorrent_imp.cpp" line="169"/>
         <source>Please type an input path first</source>
         <translation>LLütfen önce bir kayıt yolu seçin</translation>
     </message>
@@ -3522,12 +3522,12 @@ Changelog:
         <translation type="obsolete">Lütfen önce düzgün bir girdi yolu seçin</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="192"/>
+        <location filename="../createtorrent_imp.cpp" line="203"/>
         <source>Torrent creation</source>
         <translation>Torrent oluşturumu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="192"/>
+        <location filename="../createtorrent_imp.cpp" line="203"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent başarıyla oluşturuldu:</translation>
     </message>
@@ -3547,7 +3547,7 @@ Changelog:
         <translation>Lütfen bir announce URLsi yazın</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="179"/>
+        <location filename="../createtorrent_imp.cpp" line="190"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Torrent yaratımı başarısızlıkla sonuçlandı, neden: %1</translation>
     </message>
@@ -3573,12 +3573,12 @@ Changelog:
         <translation>Torrent e eklemek için bir dosya seçin</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="163"/>
+        <location filename="../createtorrent_imp.cpp" line="174"/>
         <source>No tracker path set</source>
         <translation>Tracker yolu ayarlanmadı</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="163"/>
+        <location filename="../createtorrent_imp.cpp" line="174"/>
         <source>Please set at least one tracker</source>
         <translation>Lütfen en azından bir tracker ayarlayın</translation>
     </message>
@@ -4167,12 +4167,12 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation type="obsolete">Bu IP geçersizdir.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="827"/>
+        <location filename="../options_imp.cpp" line="829"/>
         <source>Options were saved successfully.</source>
         <translation>Ayarlar başarıyla kaydedildi.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1131"/>
+        <location filename="../options_imp.cpp" line="1133"/>
         <source>Choose scan directory</source>
         <translation>Taranacak klasörü seç</translation>
     </message>
@@ -4182,7 +4182,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation type="obsolete">Bir ipfilter.dat dosyası seç</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1146"/>
+        <location filename="../options_imp.cpp" line="1148"/>
         <source>Choose a save directory</source>
         <translation>Bir kayıt klasörü seçin</translation>
     </message>
@@ -4198,12 +4198,12 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation type="obsolete">%1 okuma modunda açılamadı.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1138"/>
+        <location filename="../options_imp.cpp" line="1140"/>
         <source>Choose an ip filter file</source>
         <translation>Bir ipfilter.dat dosyası seç</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1138"/>
+        <location filename="../options_imp.cpp" line="1140"/>
         <source>Filters</source>
         <translation>Filtreler</translation>
     </message>

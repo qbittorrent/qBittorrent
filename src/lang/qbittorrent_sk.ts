@@ -3070,7 +3070,7 @@ Záznam zmien:</translation>
         <translation>Rád by som poďakoval nasledovným dobrovoľníkom, ktorí preložili qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="80"/>
+        <location filename="../about_imp.h" line="81"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Prosím, kontaktujte ma ak chcete preložiť qBittorrent do vášho jazyka.</translation>
     </message>
@@ -3410,12 +3410,12 @@ Záznam zmien:</translation>
 <context>
     <name>createtorrent</name>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="166"/>
+        <location filename="../createtorrent_imp.cpp" line="177"/>
         <source>Select destination torrent file</source>
         <translation>Vybrať cieľový torrent súbor</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="166"/>
+        <location filename="../createtorrent_imp.cpp" line="177"/>
         <source>Torrent Files</source>
         <translation>Torrent súbory</translation>
     </message>
@@ -3435,12 +3435,12 @@ Záznam zmien:</translation>
         <translation type="obsolete">Napíšte prosím najprv cieľovú cestu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="158"/>
+        <location filename="../createtorrent_imp.cpp" line="169"/>
         <source>No input path set</source>
         <translation>Nebola zadaná vstupná cesta</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="158"/>
+        <location filename="../createtorrent_imp.cpp" line="169"/>
         <source>Please type an input path first</source>
         <translation>Napíšte prosím najprv vstupnú cestu</translation>
     </message>
@@ -3455,12 +3455,12 @@ Záznam zmien:</translation>
         <translation type="obsolete">Prosím, napíšte správnu vstupnú cestu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="192"/>
+        <location filename="../createtorrent_imp.cpp" line="203"/>
         <source>Torrent creation</source>
         <translation>Vytvorenie torrentu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="192"/>
+        <location filename="../createtorrent_imp.cpp" line="203"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent bol úspešne vytvorený:</translation>
     </message>
@@ -3485,7 +3485,7 @@ Záznam zmien:</translation>
         <translation>Prosím, napíšte announce URL</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="179"/>
+        <location filename="../createtorrent_imp.cpp" line="190"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Torrent nebol vytvorený, dôvod: %1</translation>
     </message>
@@ -3511,12 +3511,12 @@ Záznam zmien:</translation>
         <translation>Vyberte súbor, ktorý sa má pridať do torrentu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="163"/>
+        <location filename="../createtorrent_imp.cpp" line="174"/>
         <source>No tracker path set</source>
         <translation>Nebola nastavená cesta k trackeru</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="163"/>
+        <location filename="../createtorrent_imp.cpp" line="174"/>
         <source>Please set at least one tracker</source>
         <translation>Prosím, nastavte aspoň jeden tracker</translation>
     </message>
@@ -4178,12 +4178,12 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Táto IP je neplatná.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="827"/>
+        <location filename="../options_imp.cpp" line="829"/>
         <source>Options were saved successfully.</source>
         <translation>Nastavenia úspešne uložené.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1131"/>
+        <location filename="../options_imp.cpp" line="1133"/>
         <source>Choose scan directory</source>
         <translation>Zvoliť adresár pre prezeranie</translation>
     </message>
@@ -4193,7 +4193,7 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Vyberte súbor ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1146"/>
+        <location filename="../options_imp.cpp" line="1148"/>
         <source>Choose a save directory</source>
         <translation>Vyberte adresár, kde sa bude ukladať</translation>
     </message>
@@ -4209,12 +4209,12 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Nebolo možné otvoriť %1 v režime pre čítanie.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1138"/>
+        <location filename="../options_imp.cpp" line="1140"/>
         <source>Choose an ip filter file</source>
         <translation>Zvoliť súbor IP filtra</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1138"/>
+        <location filename="../options_imp.cpp" line="1140"/>
         <source>Filters</source>
         <translation>Filtre</translation>
     </message>

@@ -2366,7 +2366,7 @@ Changelog:
         <translation>Külön köszönet illeti a fordítókat, önkéntes munkájukért:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="80"/>
+        <location filename="../about_imp.h" line="81"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Amennyiben szeretnéd lefordítani (mondjuk már le van) a qBittorrentet, kérlek értesíts.</translation>
     </message>
@@ -2631,12 +2631,12 @@ Changelog:
 <context>
     <name>createtorrent</name>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="166"/>
+        <location filename="../createtorrent_imp.cpp" line="177"/>
         <source>Select destination torrent file</source>
         <translation>Torrent helye</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="166"/>
+        <location filename="../createtorrent_imp.cpp" line="177"/>
         <source>Torrent Files</source>
         <translation>Torrentek</translation>
     </message>
@@ -2651,22 +2651,22 @@ Changelog:
         <translation type="obsolete">Kérlek add meg a torrent helyét</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="158"/>
+        <location filename="../createtorrent_imp.cpp" line="169"/>
         <source>No input path set</source>
         <translation>Nincs forrásmappa</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="158"/>
+        <location filename="../createtorrent_imp.cpp" line="169"/>
         <source>Please type an input path first</source>
         <translation>Kérlek adj meg forrásmappát</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="192"/>
+        <location filename="../createtorrent_imp.cpp" line="203"/>
         <source>Torrent creation</source>
         <translation>Torrent létrehozása</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="192"/>
+        <location filename="../createtorrent_imp.cpp" line="203"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent sikeresen elkészült:):</translation>
     </message>
@@ -2686,7 +2686,7 @@ Changelog:
         <translation>Kérlek add meg a gazda címét (URL)</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="179"/>
+        <location filename="../createtorrent_imp.cpp" line="190"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Torrent készítése sikertelen:(, oka: %1</translation>
     </message>
@@ -2712,12 +2712,12 @@ Changelog:
         <translation>Válassz fájlt(okat) a torrenthez</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="163"/>
+        <location filename="../createtorrent_imp.cpp" line="174"/>
         <source>No tracker path set</source>
         <translation>Nincs tracker megadva</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="163"/>
+        <location filename="../createtorrent_imp.cpp" line="174"/>
         <source>Please set at least one tracker</source>
         <translation>Kérlek adj meg legalább egy trackert</translation>
     </message>
@@ -3228,12 +3228,12 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">Ez az IP cím nemlétező.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="827"/>
+        <location filename="../options_imp.cpp" line="829"/>
         <source>Options were saved successfully.</source>
         <translation>Beállítások sikeresen elmentve.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1131"/>
+        <location filename="../options_imp.cpp" line="1133"/>
         <source>Choose scan directory</source>
         <translation>Megfigyelt könyvtár beállítása</translation>
     </message>
@@ -3243,7 +3243,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">Ipfilter.dat fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1146"/>
+        <location filename="../options_imp.cpp" line="1148"/>
         <source>Choose a save directory</source>
         <translation>Letöltési könyvtár megadása</translation>
     </message>
@@ -3259,12 +3259,12 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">%1 olvasása sikertelen.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1138"/>
+        <location filename="../options_imp.cpp" line="1140"/>
         <source>Choose an ip filter file</source>
         <translation>Válassz egy ip szűrő fájlt</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1138"/>
+        <location filename="../options_imp.cpp" line="1140"/>
         <source>Filters</source>
         <translation>Szűrők</translation>
     </message>
