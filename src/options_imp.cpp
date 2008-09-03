@@ -446,7 +446,7 @@ void options_imp::loadOptions(){
   checkSpeedInTitle->setChecked(settings.value(QString::fromUtf8("SpeedInTitleBar"), false).toBool());
   spinRefreshInterval->setValue(settings.value(QString::fromUtf8("RefreshInterval"), 1500).toInt());
   checkNoSystray->setChecked(!settings.value(QString::fromUtf8("SystrayEnabled"), true).toBool());
-  checkDisplayToolbar->setChecked(settings.value(QString::fromUtf8("ToolbarDisplayed"), false).toBool());
+  checkDisplayToolbar->setChecked(settings.value(QString::fromUtf8("ToolbarDisplayed"), true).toBool());
   if(!systrayIntegration()) {
     disableSystrayOptions();
   } else {

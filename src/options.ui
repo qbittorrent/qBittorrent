@@ -214,6 +214,9 @@
             <property name="text" >
              <string>Display top toolbar</string>
             </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item>
