@@ -89,6 +89,7 @@ class QTorrentHandle {
     size_type total_payload_upload();
     QStringList files_path() const;
     int num_uploads() const;
+    bool is_seed() const;
 
     //
     // Setters

@@ -261,6 +261,11 @@ int QTorrentHandle::num_uploads() const {
   return h.status().num_uploads;
 }
 
+bool QTorrentHandle::is_seed() const {
+  Q_ASSERT(h.is_valid());
+  return h.is_seed();
+}
+
 //
 // Setters
 //
