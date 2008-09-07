@@ -145,7 +145,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(downloadingTorrentTab, SIGNAL(torrentDoubleClicked(QString, bool)), this, SLOT(torrentDoubleClicked(QString, bool)));
   // Finished torrents tab
   finishedTorrentTab = new FinishedTorrents(this, BTSession);
-  tabs->addTab(finishedTorrentTab, tr("Finished") + QString::fromUtf8(" (0/0)"));
+  tabs->addTab(finishedTorrentTab, tr("Uploads") + QString::fromUtf8(" (0/0)"));
   tabs->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   connect(finishedTorrentTab, SIGNAL(torrentDoubleClicked(QString, bool)), this, SLOT(torrentDoubleClicked(QString, bool)));
   connect(finishedTorrentTab, SIGNAL(finishedTorrentsNumberChanged(unsigned int)), this, SLOT(updateFinishedTorrentNumber(unsigned int)));
