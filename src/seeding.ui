@@ -29,13 +29,6 @@
     <number>9</number>
    </property>
    <item>
-    <widget class="QLabel" name="lbl_finished" >
-     <property name="text" >
-      <string>The following torrents are finished and shared:</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QTreeView" name="finishedList" >
      <property name="contextMenuPolicy" >
       <enum>Qt::CustomContextMenu</enum>

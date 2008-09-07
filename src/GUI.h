@@ -116,6 +116,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void on_actionCreate_torrent_triggered();
     void on_actionWebsite_triggered() const;
     void on_actionBugReport_triggered() const;
+    void on_actionShow_console_triggered();
     void readParamsOnSocket();
     void acceptConnection();
     void togglePausedState(QString hash);

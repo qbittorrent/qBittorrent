@@ -58,6 +58,7 @@
      <string>Options</string>
     </property>
     <addaction name="actionOptions" />
+    <addaction name="actionShow_console" />
    </widget>
    <widget class="QMenu" name="menu_File" >
     <property name="title" >
@@ -253,6 +254,14 @@
    </property>
    <property name="visible" >
     <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionShow_console" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/Icons/log.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Show console</string>
    </property>
   </action>
  </widget>

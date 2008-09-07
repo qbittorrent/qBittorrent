@@ -57,6 +57,7 @@
 #include "previewSelect.h"
 #include "allocationDlg.h"
 #include "stdlib.h"
+#include "console_imp.h"
 
 using namespace libtorrent;
 
@@ -488,6 +489,10 @@ void GUI::handleDownloadFromUrlFailure(QString url, QString reason) const{
 void GUI::on_actionSet_global_upload_limit_triggered() {
   qDebug("actionSet_global_upload_limit_triggered");
   new BandwidthAllocationDialog(this, true, BTSession, QStringList());
+}
+
+void GUI::on_actionShow_console_triggered() {
+  new consoleDlg(this, BTSession);
 }
 
 void GUI::on_actionSet_global_download_limit_triggered() {
