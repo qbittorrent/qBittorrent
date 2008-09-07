@@ -161,7 +161,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void processDownloadedFiles(QString path, QString url);
     void downloadFromURLList(const QStringList& urls);
     void deleteTorrent(QString hash);
-    void deleteRatioTorrent(QString fileName);
     void finishedTorrent(QTorrentHandle& h) const;
     void torrentChecked(QString hash) const;
     void updateLists();
@@ -171,7 +170,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void on_actionDecreasePriority_triggered();
     // Options slots
     void on_actionOptions_triggered();
-    void OptionsSaved(QString info, bool deleteOptions);
+    void OptionsSaved(bool deleteOptions);
     // HTTP slots
     void on_actionDownload_from_URL_triggered();
 

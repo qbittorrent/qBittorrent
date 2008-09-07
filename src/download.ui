@@ -57,95 +57,6 @@
      </item>
     </layout>
    </item>
-   <item>
-    <widget class="QTabWidget" name="tabBottom" >
-     <property name="maximumSize" >
-      <size>
-       <width>16777215</width>
-       <height>142</height>
-      </size>
-     </property>
-     <property name="tabPosition" >
-      <enum>QTabWidget::West</enum>
-     </property>
-     <property name="currentIndex" >
-      <number>0</number>
-     </property>
-     <widget class="QWidget" name="log_tab" >
-      <attribute name="title" >
-       <string>Log</string>
-      </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
-       </property>
-       <item>
-        <widget class="QTextBrowser" name="infoBar" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize" >
-          <size>
-           <width>16777215</width>
-           <height>120</height>
-          </size>
-         </property>
-         <property name="contextMenuPolicy" >
-          <enum>Qt::CustomContextMenu</enum>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="filter_tab" >
-      <attribute name="title" >
-       <string>IP filter</string>
-      </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
-       </property>
-       <item>
-        <widget class="QTextBrowser" name="textBlockedUsers" >
-         <property name="maximumSize" >
-          <size>
-           <width>16777215</width>
-           <height>123</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-   </item>
   </layout>
   <action name="actionStart" >
    <property name="text" >
@@ -160,11 +71,6 @@
   <action name="actionDelete" >
    <property name="text" >
     <string>Delete</string>
-   </property>
-  </action>
-  <action name="actionClearLog" >
-   <property name="text" >
-    <string>Clear</string>
    </property>
   </action>
   <action name="actionPreview_file" >

@@ -816,7 +816,7 @@ void options_imp::on_buttonBox_accepted(){
     applyButton->setEnabled(false);
     // set infobar text
     this->hide();
-    emit status_changed(tr("Options were saved successfully."), true);
+    emit status_changed(true);
   }else{
     setAttribute(Qt::WA_DeleteOnClose);
     accept();
@@ -826,7 +826,7 @@ void options_imp::on_buttonBox_accepted(){
 void options_imp::applySettings(QAbstractButton* button) {
   if(button == applyButton){
     saveOptions();
-    emit status_changed(tr("Options were saved successfully."), false);
+    emit status_changed(false);
   }
 }
 

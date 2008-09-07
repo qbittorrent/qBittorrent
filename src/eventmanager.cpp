@@ -65,7 +65,7 @@ bool EventManager::isUpdated(ulong r) const
 	return (r < revision);
 }
 
-void EventManager::addedTorrent(QString, QTorrentHandle& h)
+void EventManager::addedTorrent(QTorrentHandle& h)
 {
 	QVariantMap event;
 	event["type"] = QVariant("add");

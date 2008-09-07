@@ -151,7 +151,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     void useStyle();
 
   signals:
-    void status_changed(QString, bool) const;
+    void status_changed(bool) const;
     void exitWithCancel();
 };
 

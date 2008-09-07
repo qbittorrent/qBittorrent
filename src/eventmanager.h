@@ -50,7 +50,7 @@ class EventManager : public QObject
 		void updated();
 
 	public slots:
-		void addedTorrent(QString path, QTorrentHandle& h);
+		void addedTorrent(QTorrentHandle& h);
 		void deletedTorrent(QString hash);
 		void modifiedTorrent(QTorrentHandle h);
 };

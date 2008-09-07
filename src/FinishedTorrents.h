@@ -64,7 +64,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void sortFinishedListFloat(int index, Qt::SortOrder sortOrder);
     void sortFinishedListString(int index, Qt::SortOrder sortOrder);
     void updateFileSize(QString hash);
-    void torrentAdded(QString path, QTorrentHandle& h, bool fastResume);
+    void torrentAdded(QTorrentHandle& h);
     void on_actionSet_upload_limit_triggered();
     void notifyTorrentDoubleClicked(const QModelIndex& index);
     void hideOrShowColumnName();

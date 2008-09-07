@@ -37,7 +37,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   setupUi(this);
   actionStart->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play.png")));
   actionPause->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")));
-  connect(BTSession, SIGNAL(addedTorrent(QString, QTorrentHandle&, bool)), this, SLOT(torrentAdded(QString, QTorrentHandle&, bool)));
+  connect(BTSession, SIGNAL(addedTorrent(QTorrentHandle&)), this, SLOT(torrentAdded(QTorrentHandle&)));
   finishedListModel = new QStandardItemModel(0,7);
   finishedListModel->setHeaderData(F_NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
   finishedListModel->setHeaderData(F_SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
@@ -141,7 +141,7 @@ void FinishedTorrents::addTorrent(QString hash){
   emit finishedTorrentsNumberChanged(nbFinished);
 }
 
-void FinishedTorrents::torrentAdded(QString, QTorrentHandle& h, bool) {
+void FinishedTorrents::torrentAdded(QTorrentHandle& h) {
   QString hash = h.hash();
   if(BTSession->isFinished(hash)) {
     addTorrent(hash);

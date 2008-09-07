@@ -26,6 +26,8 @@
 #include <QPair>
 #include <QStringList>
 #include <QDateTime>
+#include <QApplication>
+#include <QPalette>
 
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
@@ -38,7 +40,7 @@ class deleteThread;
 class QTimer;
 class FilterParserThread;
 
-class bittorrent : public QObject{
+class bittorrent : public QObject {
   Q_OBJECT
 
   private:
@@ -56,6 +58,8 @@ class bittorrent : public QObject{
     QHash<QString, size_type> TorrentsStartData;
     QHash<QString, QPair<size_type,size_type> > ratioData;
     QHash<QString, QHash<QString, QString> > trackersErrors;
+    QStringList consoleMessages;
+    QStringList peerBanMessages;
     deleteThread *deleter;
     QStringList finishedTorrents;
     QStringList unfinishedTorrents;
@@ -114,6 +118,8 @@ class bittorrent : public QObject{
     bool isDownloadQueued(QString hash) const;
     bool isUploadQueued(QString hash) const;
     int loadTorrentPriority(QString hash);
+    QStringList getConsoleMessages() const;
+    QStringList getPeerBanMessages() const;
 
   public slots:
     void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
@@ -177,6 +183,8 @@ class bittorrent : public QObject{
     void setMaxActiveDownloads(int val);
     void setMaxActiveTorrents(int val);
     void setETACalculation(bool enable);
+    void addConsoleMessage(QString msg, QColor color=QApplication::palette().color(QPalette::WindowText));
+    void addPeerBanMessage(QString msg, bool from_ipfilter);
 
   protected slots:
     void scanDirectory();
@@ -187,29 +195,29 @@ class bittorrent : public QObject{
     void deleteBigRatios();
 
   signals:
-    void invalidTorrent(QString path);
-    void duplicateTorrent(QString path);
-    void addedTorrent(QString path, QTorrentHandle& h, bool fastResume);
+    //void invalidTorrent(QString path);
+    //void duplicateTorrent(QString path);
+    void addedTorrent(QTorrentHandle& h);
     void deletedTorrent(QString hash);
     void pausedTorrent(QString hash);
     void resumedTorrent(QString hash);
     void finishedTorrent(QTorrentHandle& h);
     void fullDiskError(QTorrentHandle& h);
     void trackerError(QString hash, QString time, QString msg);
-    void portListeningFailure();
+    //void portListeningFailure();
     void trackerAuthenticationRequired(QTorrentHandle& h);
     void scanDirFoundTorrents(const QStringList& pathList);
     void newDownloadedTorrent(QString path, QString url);
-    void aboutToDownloadFromUrl(QString url);
+    //void aboutToDownloadFromUrl(QString url);
     void updateFileSize(QString hash);
-    void peerBlocked(QString);
+    //void peerBlocked(QString);
     void downloadFromUrlFailure(QString url, QString reason);
-    void fastResumeDataRejected(QString name);
-    void urlSeedProblem(QString url, QString msg);
+    //void fastResumeDataRejected(QString name);
+    //void urlSeedProblem(QString url, QString msg);
     void torrentFinishedChecking(QString hash);
-    void torrent_ratio_deleted(QString fileName);
-    void UPnPError(QString msg);
-    void UPnPSuccess(QString msg);
+    //void torrent_ratio_deleted(QString fileName);
+    //void UPnPError(QString msg);
+    //void UPnPSuccess(QString msg);
     void updateFinishedTorrentNumber();
     void updateUnfinishedTorrentNumber();
     void forceUnfinishedListUpdate();

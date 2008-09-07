@@ -63,27 +63,18 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void torrentFinished(QString hash);
 
   protected slots:
-    void addLogPeerBlocked(QString);
-    void addFastResumeRejectedAlert(QString);
-    void addUrlSeedError(QString url, QString msg);
     void on_actionSet_download_limit_triggered();
     void notifyTorrentDoubleClicked(const QModelIndex& index);
     void on_actionSet_upload_limit_triggered();
     void displayDLListMenu(const QPoint& pos);
     void displayDLHoSMenu(const QPoint&);
-    void on_actionClearLog_triggered();
-    void displayInfoBarMenu(const QPoint& pos);
     void addTorrent(QString hash);
     void sortDownloadList(int index, Qt::SortOrder startSortOrder=Qt::AscendingOrder, bool fromLoadColWidth=false);
     void sortDownloadListFloat(int index, Qt::SortOrder sortOrder);
     void sortDownloadListString(int index, Qt::SortOrder sortOrder);
     void saveColWidthDLList() const;
-    void torrentAdded(QString path, QTorrentHandle& h, bool fastResume);
-    void torrentDuplicate(QString path);
-    void torrentCorrupted(QString path);
-    void portListeningFailure();
+    void torrentAdded(QTorrentHandle& h);
     void setRowColor(int row, QColor color);
-    void displayDownloadingUrlInfos(QString url);
     void showProperties(const QModelIndex &index);
     void hideOrShowColumnName();
     void hideOrShowColumnSize();
@@ -94,16 +85,12 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void hideOrShowColumnRatio();
     void hideOrShowColumnEta();
     void hideOrShowColumnPriority();
-    void displayUPnPError(QString msg);
-    void displayUPnPSuccess(QString msg);
 
   public slots:
     void updateDlList();
-    void setInfoBar(QString info, QColor color=QApplication::palette().color(QPalette::WindowText));
     void pauseTorrent(QString hash);
     void resumeTorrent(QString hash);
     void deleteTorrent(QString hash);
-    void setBottomTabEnabled(unsigned int index, bool b);
     void propertiesSelection();
     void sortProgressColumnDelayed();
     void updateFileSizeAndProgress(QString hash);

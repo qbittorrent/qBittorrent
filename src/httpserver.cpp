@@ -38,10 +38,10 @@ HttpServer::HttpServer(bittorrent *BTSession, int msec, QObject* parent) : QTcpS
 	{
 		QTorrentHandle h = BTSession->getTorrentHandle(hash);
 		if(h.is_valid())
-			manager->addedTorrent(QString(), h);
+			manager->addedTorrent(h);
 	}
 	//connect BTSession to manager
-	connect(BTSession, SIGNAL(addedTorrent(QString, QTorrentHandle&, bool)), manager, SLOT(addedTorrent(QString, QTorrentHandle&)));
+	connect(BTSession, SIGNAL(addedTorrent(QTorrentHandle&)), manager, SLOT(addedTorrent(QTorrentHandle&)));
 	connect(BTSession, SIGNAL(deletedTorrent(QString)), manager, SLOT(deletedTorrent(QString)));
 	//set timer
 	QTimer *timer = new QTimer(this);

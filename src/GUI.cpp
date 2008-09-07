@@ -120,7 +120,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   toolBar->layout()->setSpacing(7);
   // creating options
   options = new options_imp(this);
-  connect(options, SIGNAL(status_changed(QString, bool)), this, SLOT(OptionsSaved(QString, bool)));
+  connect(options, SIGNAL(status_changed(bool)), this, SLOT(OptionsSaved(bool)));
   BTSession = new bittorrent();
   connect(BTSession, SIGNAL(fullDiskError(QTorrentHandle&)), this, SLOT(fullDiskError(QTorrentHandle&)));
   connect(BTSession, SIGNAL(finishedTorrent(QTorrentHandle&)), this, SLOT(finishedTorrent(QTorrentHandle&)));
@@ -130,7 +130,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(BTSession, SIGNAL(newDownloadedTorrent(QString, QString)), this, SLOT(processDownloadedFiles(QString, QString)));
   connect(BTSession, SIGNAL(downloadFromUrlFailure(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
   connect(BTSession, SIGNAL(deletedTorrent(QString)), this, SLOT(deleteTorrent(QString)));
-  connect(BTSession, SIGNAL(torrent_ratio_deleted(QString)), this, SLOT(deleteRatioTorrent(QString)));
   connect(BTSession, SIGNAL(pausedTorrent(QString)), this, SLOT(pauseTorrent(QString)));
   connect(BTSession, SIGNAL(updateUnfinishedTorrentNumber()), this, SLOT(updateUnfinishedTorrentNumberCalc()));
   connect(BTSession, SIGNAL(updateFinishedTorrentNumber()), this, SLOT(updateFinishedTorrentNumberCalc()));
@@ -373,7 +372,7 @@ void GUI::finishedTorrent(QTorrentHandle& h) const {
     qDebug("We received a finished signal for torrent %s, but it already has a .finished file", hash.toUtf8().data());
   }
   if(show_msg)
-    downloadingTorrentTab->setInfoBar(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
+    BTSession->addConsoleMessage(tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName));
   downloadingTorrentTab->deleteTorrent(hash);
   finishedTorrentTab->addTorrent(hash);
   if(show_msg && systrayIntegration && useNotificationBalloons) {
@@ -398,7 +397,7 @@ void GUI::fullDiskError(QTorrentHandle& h) const {
   }else{
     downloadingTorrentTab->pauseTorrent(hash);
   }
-  downloadingTorrentTab->setInfoBar(tr("An error occured (full disk?), '%1' paused.", "e.g: An error occured (full disk?), 'xxx.avi' paused.").arg(h.name()));
+  BTSession->addConsoleMessage(tr("An error occured (full disk?), '%1' paused.", "e.g: An error occured (full disk?), 'xxx.avi' paused.").arg(h.name()));
 }
 
 void GUI::createKeyboardShortcuts() {
@@ -709,9 +708,7 @@ void GUI::dropEvent(QDropEvent *event) {
       continue;
     }
     if(useTorrentAdditionDialog) {
-      torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-      connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-      connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
+      torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
       dialog->showLoad(file);
     }else{
       BTSession->addTorrent(file);
@@ -750,9 +747,7 @@ void GUI::on_actionOpen_triggered() {
     unsigned int listSize = pathsList.size();
     for(unsigned int i=0; i<listSize; ++i) {
       if(useTorrentAdditionDialog) {
-        torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-        connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-        connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
+        torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
         dialog->showLoad(pathsList.at(i));
       }else{
         BTSession->addTorrent(pathsList.at(i));
@@ -805,14 +800,7 @@ void GUI::on_actionDelete_Permanently_triggered() {
     QString fileName = h.name();
     // Remove the torrent
     BTSession->deleteTorrent(hash, true);
-    // Update info bar
-    downloadingTorrentTab->setInfoBar(tr("'%1' was removed permanently.", "'xxx.avi' was removed permanently.").arg(fileName));
   }
-}
-
-void GUI::deleteRatioTorrent(QString fileName) {
-  // Update info bar
-  downloadingTorrentTab->setInfoBar(tr("'%1' was removed because its ratio reached the maximum value you set.", "%1 is a file name").arg(fileName));
 }
 
 void GUI::deleteTorrent(QString hash) {
@@ -865,8 +853,6 @@ void GUI::on_actionDelete_triggered() {
     QString fileName = h.name();
     // Remove the torrent
     BTSession->deleteTorrent(hash, false);
-    // Update info bar
-    downloadingTorrentTab->setInfoBar(tr("'%1' was removed.", "'xxx.avi' was removed.").arg(fileName));
   }
 }
 
@@ -884,9 +870,7 @@ void GUI::processParams(const QStringList& params) {
       BTSession->downloadFromUrl(param);
     }else{
       if(useTorrentAdditionDialog) {
-        torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-        connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-        connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
+        torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
         dialog->showLoad(param);
       }else{
         BTSession->addTorrent(param);
@@ -905,9 +889,7 @@ void GUI::processScannedFiles(const QStringList& params) {
   bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(param, params) {
     if(useTorrentAdditionDialog) {
-      torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-      connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-      connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
+      torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
       dialog->showLoad(param, true);
     }else{
       BTSession->addTorrent(param, true);
@@ -919,9 +901,7 @@ void GUI::processDownloadedFiles(QString path, QString url) {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   if(useTorrentAdditionDialog) {
-    torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-    connect(dialog, SIGNAL(torrentAddition(QString, bool, QString)), BTSession, SLOT(addTorrent(QString, bool, QString)));
-    connect(dialog, SIGNAL(setInfoBarGUI(QString, QColor)), downloadingTorrentTab, SLOT(setInfoBar(QString, QColor)));
+    torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
     dialog->showLoad(path, false, url);
   }else{
     BTSession->addTorrent(path, false, url);
@@ -967,7 +947,7 @@ void GUI::configureSession(bool deleteOptions) {
   BTSession->setListeningPortsRange(options->getPorts());
   unsigned short new_listenPort = BTSession->getListenPort();
   if(new_listenPort != old_listenPort) {
-    downloadingTorrentTab->setInfoBar(tr("qBittorrent is bind to port: %1", "e.g: qBittorrent is bind to port: 1666").arg( misc::toQString(new_listenPort)));
+    BTSession->addConsoleMessage(tr("qBittorrent is bind to port: %1", "e.g: qBittorrent is bind to port: 1666").arg( misc::toQString(new_listenPort)));
   }
   // * Global download limit
   QPair<int, int> limits = options->getGlobalBandwidthLimits();
@@ -989,18 +969,18 @@ void GUI::configureSession(bool deleteOptions) {
   // * UPnP
   if(options->isUPnPEnabled()) {
     BTSession->enableUPnP(true);
-    downloadingTorrentTab->setInfoBar(tr("UPnP support [ON]"), QString::fromUtf8("blue"));
+    BTSession->addConsoleMessage(tr("UPnP support [ON]"), QString::fromUtf8("blue"));
   } else {
     BTSession->enableUPnP(false);
-    downloadingTorrentTab->setInfoBar(tr("UPnP support [OFF]"), QString::fromUtf8("blue"));
+    BTSession->addConsoleMessage(tr("UPnP support [OFF]"), QString::fromUtf8("blue"));
   }
   // * NAT-PMP
   if(options->isNATPMPEnabled()) {
     BTSession->enableNATPMP(true);
-    downloadingTorrentTab->setInfoBar(tr("NAT-PMP support [ON]"), QString::fromUtf8("blue"));
+    BTSession->addConsoleMessage(tr("NAT-PMP support [ON]"), QString::fromUtf8("blue"));
   } else {
     BTSession->enableNATPMP(false);
-    downloadingTorrentTab->setInfoBar(tr("NAT-PMP support [OFF]"), QString::fromUtf8("blue"));
+    BTSession->addConsoleMessage(tr("NAT-PMP support [OFF]"), QString::fromUtf8("blue"));
   }
   // * Proxy settings
   proxy_settings proxySettings;
@@ -1068,29 +1048,29 @@ void GUI::configureSession(bool deleteOptions) {
     // Set DHT Port
     BTSession->setDHTPort(new_listenPort);
     if(BTSession->enableDHT(true)) {
-      downloadingTorrentTab->setInfoBar(tr("DHT support [ON], port: %1").arg(new_listenPort), QString::fromUtf8("blue"));
+      BTSession->addConsoleMessage(tr("DHT support [ON], port: %1").arg(new_listenPort), QString::fromUtf8("blue"));
     } else {
-      downloadingTorrentTab->setInfoBar(tr("DHT support [OFF]"), QString::fromUtf8("red"));
+      BTSession->addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("red"));
     }
   } else {
     BTSession->enableDHT(false);
-    downloadingTorrentTab->setInfoBar(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
+    BTSession->addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
   }
   // * PeX
   if(options->isPeXEnabled()) {
-    downloadingTorrentTab->setInfoBar(tr("PeX support [ON]"), QString::fromUtf8("blue"));
+    BTSession->addConsoleMessage(tr("PeX support [ON]"), QString::fromUtf8("blue"));
     BTSession->enablePeerExchange();
   }else{
     // TODO: How can we remove the extension?
-    downloadingTorrentTab->setInfoBar(tr("PeX support [OFF]"), QString::fromUtf8("blue"));
+    BTSession->addConsoleMessage(tr("PeX support [OFF]"), QString::fromUtf8("blue"));
   }
   // * LSD
   if(options->isLSDEnabled()) {
     BTSession->enableLSD(true);
-    downloadingTorrentTab->setInfoBar(tr("Local Peer Discovery [ON]"), QString::fromUtf8("blue"));
+    BTSession->addConsoleMessage(tr("Local Peer Discovery [ON]"), QString::fromUtf8("blue"));
   } else {
     BTSession->enableLSD(false);
-    downloadingTorrentTab->setInfoBar(tr("Local Peer Discovery support [OFF]"), QString::fromUtf8("blue"));
+    BTSession->addConsoleMessage(tr("Local Peer Discovery support [OFF]"), QString::fromUtf8("blue"));
   }
   // * Encryption
   int encryptionState = options->getEncryptionSetting();
@@ -1102,17 +1082,17 @@ void GUI::configureSession(bool deleteOptions) {
     case 0: //Enabled
       encryptionSettings.out_enc_policy = pe_settings::enabled;
       encryptionSettings.in_enc_policy = pe_settings::enabled;
-      downloadingTorrentTab->setInfoBar(tr("Encryption support [ON]"), QString::fromUtf8("blue"));
+      BTSession->addConsoleMessage(tr("Encryption support [ON]"), QString::fromUtf8("blue"));
       break;
     case 1: // Forced
       encryptionSettings.out_enc_policy = pe_settings::forced;
       encryptionSettings.in_enc_policy = pe_settings::forced;
-      downloadingTorrentTab->setInfoBar(tr("Encryption support [FORCED]"), QString::fromUtf8("blue"));
+      BTSession->addConsoleMessage(tr("Encryption support [FORCED]"), QString::fromUtf8("blue"));
       break;
     default: // Disabled
       encryptionSettings.out_enc_policy = pe_settings::disabled;
       encryptionSettings.in_enc_policy = pe_settings::disabled;
-      downloadingTorrentTab->setInfoBar(tr("Encryption support [OFF]"), QString::fromUtf8("blue"));
+      BTSession->addConsoleMessage(tr("Encryption support [OFF]"), QString::fromUtf8("blue"));
   }
   BTSession->applyEncryptionSettings(encryptionSettings);
   // * Desired ratio
@@ -1122,10 +1102,8 @@ void GUI::configureSession(bool deleteOptions) {
   // Ip Filter
   if(options->isFilteringEnabled()) {
     BTSession->enableIPFilter(options->getFilter());
-    downloadingTorrentTab->setBottomTabEnabled(1, true);
   }else{
     BTSession->disableIPFilter();
-    downloadingTorrentTab->setBottomTabEnabled(1, false);
   }
   // RSS
   if(options->isRSSEnabled()) {
@@ -1233,7 +1211,6 @@ void GUI::togglePausedState(QString hash) {
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   if(BTSession->isPaused(hash) && !(BTSession->isQueueingEnabled() && (BTSession->isDownloadQueued(hash) || BTSession->isUploadQueued(hash)))) {
     BTSession->resumeTorrent(hash);
-    downloadingTorrentTab->setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(h.name()));
     if(inDownloadList) {
       downloadingTorrentTab->resumeTorrent(hash);
       updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
@@ -1250,7 +1227,6 @@ void GUI::togglePausedState(QString hash) {
       finishedTorrentTab->pauseTorrent(hash);
       updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
     }
-    downloadingTorrentTab->setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(h.name()));
   }
 }
 
@@ -1275,7 +1251,6 @@ void GUI::on_actionPause_All_triggered() {
   if(change) {
     updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
     updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
-    downloadingTorrentTab->setInfoBar(tr("All downloads were paused."));
   }
 }
 
@@ -1346,7 +1321,6 @@ void GUI::on_actionPause_triggered() {
         finishedTorrentTab->pauseTorrent(hash);
         updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
       }
-      downloadingTorrentTab->setInfoBar(tr("'%1' paused.", "xxx.avi paused.").arg(BTSession->getTorrentHandle(hash).name()));
     }
   }
 }
@@ -1379,7 +1353,6 @@ void GUI::on_actionStart_All_triggered() {
   if(change) {
     updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
     updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
-    downloadingTorrentTab->setInfoBar(tr("All downloads were resumed."));
   }
 }
 
@@ -1405,7 +1378,6 @@ void GUI::on_actionStart_triggered() {
         finishedTorrentTab->resumeTorrent(hash);
         updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
       }
-      downloadingTorrentTab->setInfoBar(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(BTSession->getTorrentHandle(hash).name()));
     }
   }
 }
@@ -1561,7 +1533,8 @@ void GUI::on_actionOptions_triggered() {
 }
 
 // Is executed each time options are saved
-void GUI::OptionsSaved(QString info, bool deleteOptions) {
+void GUI::OptionsSaved(bool deleteOptions) {
+  BTSession->addConsoleMessage(tr("Options were saved successfully."));
   bool newSystrayIntegration = options->systrayIntegration();
   if(newSystrayIntegration && !systrayIntegration) {
     // create the trayicon
@@ -1573,8 +1546,6 @@ void GUI::OptionsSaved(QString info, bool deleteOptions) {
     delete myTrayIconMenu;
   }
   systrayIntegration = newSystrayIntegration;
-  // Update info bar
-  downloadingTorrentTab->setInfoBar(info);
   // Update Web UI
   if (options->isWebUiEnabled())
   {

@@ -39,7 +39,6 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   actionStart->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play.png")));
   actionPause->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")));
   actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")));
-  actionClearLog->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")));
   actionPreview_file->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")));
   actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
@@ -68,16 +67,7 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   downloadList->hideColumn(HASH);
   loadHiddenColumns();
 
-  connect(BTSession, SIGNAL(addedTorrent(QString, QTorrentHandle&, bool)), this, SLOT(torrentAdded(QString, QTorrentHandle&, bool)));
-  connect(BTSession, SIGNAL(duplicateTorrent(QString)), this, SLOT(torrentDuplicate(QString)));
-  connect(BTSession, SIGNAL(invalidTorrent(QString)), this, SLOT(torrentCorrupted(QString)));
-  connect(BTSession, SIGNAL(portListeningFailure()), this, SLOT(portListeningFailure()));
-  connect(BTSession, SIGNAL(peerBlocked(QString)), this, SLOT(addLogPeerBlocked(const QString)));
-  connect(BTSession, SIGNAL(fastResumeDataRejected(QString)), this, SLOT(addFastResumeRejectedAlert(QString)));
-  connect(BTSession, SIGNAL(aboutToDownloadFromUrl(QString)), this, SLOT(displayDownloadingUrlInfos(QString)));
-  connect(BTSession, SIGNAL(urlSeedProblem(QString, QString)), this, SLOT(addUrlSeedError(QString, QString)));
-  connect(BTSession, SIGNAL(UPnPError(QString)), this, SLOT(displayUPnPError(QString)));
-  connect(BTSession, SIGNAL(UPnPSuccess(QString)), this, SLOT(displayUPnPSuccess(QString)));
+  connect(BTSession, SIGNAL(addedTorrent(QTorrentHandle&)), this, SLOT(torrentAdded(QTorrentHandle&)));
   connect(BTSession, SIGNAL(forceUnfinishedListUpdate()), this, SLOT(updateDlList()));
 
   // Load last columns width for download list
@@ -93,7 +83,6 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   connect(downloadList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLListMenu(const QPoint&)));
   downloadList->header()->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(downloadList->header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLHoSMenu(const QPoint&)));
-  connect(infoBar, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayInfoBarMenu(const QPoint&)));
   // Actions
   connect(actionPause, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionPause_triggered()));
   connect(actionStart, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionStart_triggered()));
@@ -117,7 +106,7 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   connect(actionHOSColPriority, SIGNAL(triggered()), this, SLOT(hideOrShowColumnPriority()));
 
   // Set info Bar infos
-  setInfoBar(tr("qBittorrent %1 started.", "e.g: qBittorrent v0.x started.").arg(QString::fromUtf8(""VERSION)));
+  BTSession->addConsoleMessage(tr("qBittorrent %1 started.", "e.g: qBittorrent v0.x started.").arg(QString::fromUtf8(""VERSION)));
   qDebug("Download tab built");
 }
 
@@ -142,16 +131,6 @@ void DownloadingTorrents::notifyTorrentDoubleClicked(const QModelIndex& index) {
   emit torrentDoubleClicked(hash, false);
 }
 
-void DownloadingTorrents::addLogPeerBlocked(QString ip) {
-  static unsigned int nbLines = 0;
-  ++nbLines;
-  if(nbLines > 200) {
-    textBlockedUsers->clear();
-    nbLines = 1;
-  }
-  textBlockedUsers->append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - ")+tr("<font color='red'>%1</font> <i>was blocked</i>", "x.y.z.w was blocked").arg(ip));
-}
-
 unsigned int DownloadingTorrents::getNbTorrentsInList() const {
   return nbTorrents;
 }
@@ -174,12 +153,6 @@ void DownloadingTorrents::pauseTorrent(QString hash) {
 QString DownloadingTorrents::getHashFromRow(unsigned int row) const {
   Q_ASSERT(row < (unsigned int)DLListModel->rowCount());
   return DLListModel->data(DLListModel->index(row, HASH)).toString();
-}
-
-void DownloadingTorrents::setBottomTabEnabled(unsigned int index, bool b){
-  if(index and !b)
-    tabBottom->setCurrentIndex(0);
-  tabBottom->setTabEnabled(index, b);
 }
 
 // Show torrent properties dialog
@@ -212,34 +185,6 @@ void DownloadingTorrents::deleteTorrent(QString hash) {
   DLListModel->removeRow(row);
   --nbTorrents;
   emit unfinishedTorrentsNumberChanged(nbTorrents);
-}
-
-void DownloadingTorrents::displayUPnPError(QString msg) {
-  setInfoBar(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(msg), QColor("red"));
-}
-
-void DownloadingTorrents::displayUPnPSuccess(QString msg) {
-  DownloadingTorrents::setInfoBar(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(msg), QColor("blue"));
-}
-
-// Update Info Bar information
-void DownloadingTorrents::setInfoBar(QString info, QColor color) {
-  static unsigned int nbLines = 0;
-  ++nbLines;
-  // Check log size, clear it if too big
-  if(nbLines > 200) {
-    infoBar->clear();
-    nbLines = 1;
-  }
-  infoBar->append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color.name() +QString::fromUtf8("'><i>") + info + QString::fromUtf8("</i></font>"));
-}
-
-void DownloadingTorrents::addFastResumeRejectedAlert(QString name) {
-  setInfoBar(tr("Fast resume data was rejected for torrent %1, checking again...").arg(name), QString::fromUtf8("red"));
-}
-
-void DownloadingTorrents::addUrlSeedError(QString url, QString msg) {
-  setInfoBar(tr("Url seed lookup failed for url: %1, message: %2").arg(url).arg(msg), QString::fromUtf8("red"));
 }
 
 void DownloadingTorrents::on_actionSet_download_limit_triggered() {
@@ -481,10 +426,6 @@ void DownloadingTorrents::hideOrShowColumnPriority() {
   hideOrShowColumn(PRIORITY);
 }
 
-void DownloadingTorrents::on_actionClearLog_triggered() {
-  infoBar->clear();
-}
-
 // getter, return the action hide or show whose id is index
 QAction* DownloadingTorrents::getActionHoSCol(int index) {
   switch(index) {
@@ -533,14 +474,6 @@ QStringList DownloadingTorrents::getSelectedTorrents(bool only_one) const{
     }
   }
   return res;
-}
-
-void DownloadingTorrents::displayInfoBarMenu(const QPoint& pos) {
-  // Log Menu
-  QMenu myLogMenu(this);
-  myLogMenu.addAction(actionClearLog);
-  // XXX: Why mapToGlobal() is not enough?
-  myLogMenu.exec(mapToGlobal(pos)+QPoint(44,305));
 }
 
 void DownloadingTorrents::sortProgressColumnDelayed() {
@@ -865,7 +798,7 @@ bool DownloadingTorrents::loadColWidthDLList() {
 }
 
 // Called when a torrent is added
-void DownloadingTorrents::torrentAdded(QString path, QTorrentHandle& h, bool fastResume) {
+void DownloadingTorrents::torrentAdded(QTorrentHandle& h) {
   QString hash = h.hash();
   if(BTSession->isFinished(hash)) {
     return;
@@ -891,23 +824,8 @@ void DownloadingTorrents::torrentAdded(QString path, QTorrentHandle& h, bool fas
     DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/connecting.png"))), Qt::DecorationRole);
     setRowColor(row, QString::fromUtf8("grey"));
   }
-  if(!fastResume) {
-    setInfoBar(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(path));
-  }else{
-    setInfoBar(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(path));
-  }
   ++nbTorrents;
   emit unfinishedTorrentsNumberChanged(nbTorrents);
-}
-
-// Called when trying to add a duplicate torrent
-void DownloadingTorrents::torrentDuplicate(QString path) {
-  setInfoBar(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(path));
-}
-
-void DownloadingTorrents::torrentCorrupted(QString path) {
-  setInfoBar(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(path), QString::fromUtf8("red"));
-  setInfoBar(tr("This file is either corrupted or this isn't a torrent."),QString::fromUtf8("red"));
 }
 
 void DownloadingTorrents::updateFileSizeAndProgress(QString hash) {
@@ -916,12 +834,6 @@ void DownloadingTorrents::updateFileSizeAndProgress(QString hash) {
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)h.actual_size()));
   DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
-}
-
-// Called when we couldn't listen on any port
-// in the given range.
-void DownloadingTorrents::portListeningFailure() {
-  setInfoBar(tr("Couldn't listen on any of the given ports."), QString::fromUtf8("red"));
 }
 
 // Set the color of a row in data model
@@ -942,8 +854,4 @@ int DownloadingTorrents::getRowFromHash(QString hash) const{
     }
   }
   return -1;
-}
-
-void DownloadingTorrents::displayDownloadingUrlInfos(QString url) {
-  setInfoBar(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(url), QPalette::WindowText);
 }
