@@ -2700,7 +2700,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="264"/>
-        <source>Show console</source>
+        <source>Console</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
