@@ -26,7 +26,7 @@
 #include <QByteArray>
 
 class bittorrent;
-
+class QTimer;
 class EventManager;
 
 class HttpServer : public QTcpServer
@@ -37,6 +37,7 @@ class HttpServer : public QTcpServer
 		QByteArray base64;
 		bittorrent *BTSession;
 		EventManager *manager;
+		QTimer *timer;
 
 	public:
 		HttpServer(bittorrent *BTSession, int msec, QObject* parent = 0);
