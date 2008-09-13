@@ -595,7 +595,7 @@ QAction* FinishedTorrents::getActionHoSCol(int index) {
 void FinishedTorrents::toggleFinishedListSortOrder(int index) {
   Qt::SortOrder sortOrder = Qt::AscendingOrder;
   if(finishedList->header()->sortIndicatorSection() == index){
-    sortOrder = (Qt::SortOrder)!(bool)finishedList->header()->sortIndicatorSection();
+    sortOrder = (Qt::SortOrder)!(bool)finishedList->header()->sortIndicatorOrder();
   }
   switch(index) {
     case F_SIZE:
