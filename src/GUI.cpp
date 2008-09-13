@@ -34,14 +34,13 @@
   #include <QTcpServer>
   #include <QTcpSocket>
 #endif
-
+#include <stdlib.h>
 #include <QCloseEvent>
 #include <QShortcut>
 #include <QLabel>
 #include <QModelIndex>
 
 #include "GUI.h"
-#include "httpserver.h"
 #include "downloadingTorrents.h"
 #include "misc.h"
 #include "createtorrent_imp.h"
@@ -56,8 +55,9 @@
 #include "options_imp.h"
 #include "previewSelect.h"
 #include "allocationDlg.h"
-#include "stdlib.h"
+#include <stdlib.h>
 #include "console_imp.h"
+#include "httpserver.h"
 
 using namespace libtorrent;
 
@@ -472,7 +472,7 @@ void GUI::acceptConnection() {
 }
 
 void GUI::readParamsOnSocket() {
-  if(clientConnection != 0) {
+  if(clientConnection) {
     QByteArray params = clientConnection->readAll();
     if(!params.isEmpty()) {
       processParams(QString::fromUtf8(params.data()).split(QString::fromUtf8("\n")));
@@ -1488,7 +1488,6 @@ void GUI::createSystrayDelayed() {
       createTrayIcon();
       systrayIntegration = true;
       delete systrayCreator;
-      systrayCreator = 0;
   } else {
     if(timeout) {
       // Retry a bit later
@@ -1498,7 +1497,6 @@ void GUI::createSystrayDelayed() {
       // Timed out, apparently system really does not
       // support systray icon
       delete systrayCreator;
-      systrayCreator = 0;
     }
   }
 }
@@ -1562,7 +1560,6 @@ void GUI::OptionsSaved(bool deleteOptions) {
   else if(httpServer)
   {
     delete httpServer;
-    httpServer = 0;
   }
   // Update session
   configureSession(deleteOptions);

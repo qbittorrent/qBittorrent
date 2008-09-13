@@ -28,6 +28,7 @@
 #include <QDateTime>
 #include <QApplication>
 #include <QPalette>
+#include <QPointer>
 
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
@@ -46,10 +47,10 @@ class bittorrent : public QObject {
   private:
     session *s;
     QString scan_dir;
-    QTimer *timerScan;
+    QPointer<QTimer> timerScan;
     QTimer *timerAlerts;
     QTimer *fastResumeSaver;
-    QTimer *BigRatioTimer;
+    QPointer<QTimer> BigRatioTimer;
     bool DHTEnabled;
     downloadThread *downloader;
     QString defaultSavePath;
@@ -71,7 +72,7 @@ class bittorrent : public QObject {
     bool UPnPEnabled;
     bool NATPMPEnabled;
     bool LSDEnabled;
-    FilterParserThread *filterParser;
+    QPointer<FilterParserThread> filterParser;
     QString filterPath;
     int folderScanInterval; // in seconds
     bool queueingEnabled;

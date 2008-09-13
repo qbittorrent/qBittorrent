@@ -97,9 +97,9 @@ bittorrent::~bittorrent() {
   delete deleter;
   delete fastResumeSaver;
   delete timerAlerts;
-  if(BigRatioTimer != 0)
+  if(BigRatioTimer)
     delete BigRatioTimer;
-  if(filterParser != 0)
+  if(filterParser)
     delete filterParser;
   delete downloader;
   if(queueingEnabled) {
@@ -1558,7 +1558,7 @@ void bittorrent::disableDirectoryScanning() {
       timerScan->stop();
     }
   }
-  if(timerScan != 0)
+  if(timerScan)
     delete timerScan;
 }
 
@@ -1618,7 +1618,6 @@ void bittorrent::setDeleteRatio(float ratio) {
   } else {
     if(max_ratio != -1 && ratio == -1) {
       delete BigRatioTimer;
-      BigRatioTimer = 0;
     }
   }
   if(max_ratio != ratio) {
@@ -1643,7 +1642,7 @@ bool bittorrent::loadTrackerFile(QString hash) {
     t.tier = parts[1].toInt();
     trackers.push_back(t);
   }
-  if(trackers.size() != 0) {
+  if(!trackers.empty()) {
     QTorrentHandle h = getTorrentHandle(hash);
     h.replace_trackers(trackers);
     h.force_reannounce();
