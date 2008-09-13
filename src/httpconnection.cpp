@@ -42,6 +42,7 @@ HttpConnection::HttpConnection(QTcpSocket *socket, HttpServer *parent)
 
 HttpConnection::~HttpConnection()
 {
+  delete socket;
 }
 
 void HttpConnection::read()
