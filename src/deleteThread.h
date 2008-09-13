@@ -105,7 +105,7 @@ class deleteThread : public QThread {
         if(!torrents_list.empty()){
           QPair<QString, arborescence *> torrent = torrents_list.takeFirst();
           mutex.unlock();
-          subDeleteThread *st = new subDeleteThread(this, torrent.first, torrent.second);
+          subDeleteThread *st = new subDeleteThread(0, torrent.first, torrent.second);
           subThreads << st;
           connect(st, SIGNAL(deletionSuccessST(subDeleteThread*)), this, SLOT(deleteSubThread(subDeleteThread*)));
           //connect(st, SIGNAL(deletionFailureST(subDeleteThread*)), this, SLOT(deleteSubThread(subDeleteThread*)));
