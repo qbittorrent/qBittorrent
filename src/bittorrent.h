@@ -54,7 +54,6 @@ class bittorrent : public QObject {
     bool DHTEnabled;
     downloadThread *downloader;
     QString defaultSavePath;
-    QStringList torrentsToPauseAfterChecking;
     QHash<QString, QDateTime> TorrentsStartTime;
     QHash<QString, size_type> TorrentsStartData;
     QHash<QString, QPair<size_type,size_type> > ratioData;
@@ -100,7 +99,6 @@ class bittorrent : public QObject {
     float getPayloadUploadRate() const;
     session_status getSessionStatus() const;
     int getListenPort() const;
-    QStringList getTorrentsToPauseAfterChecking() const;
     qlonglong getETA(QString hash) const;
     float getRealRatio(QString hash) const;
     session* getSession() const;
@@ -121,6 +119,7 @@ class bittorrent : public QObject {
     int loadTorrentPriority(QString hash);
     QStringList getConsoleMessages() const;
     QStringList getPeerBanMessages() const;
+    float getUncheckedTorrentProgress(QString hash) const;
 
   public slots:
     void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
@@ -215,7 +214,7 @@ class bittorrent : public QObject {
     void downloadFromUrlFailure(QString url, QString reason);
     //void fastResumeDataRejected(QString name);
     //void urlSeedProblem(QString url, QString msg);
-    void torrentFinishedChecking(QString hash);
+    //void torrentFinishedChecking(QString hash);
     //void torrent_ratio_deleted(QString fileName);
     //void UPnPError(QString msg);
     //void UPnPSuccess(QString msg);

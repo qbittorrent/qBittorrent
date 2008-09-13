@@ -125,7 +125,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   BTSession = new bittorrent();
   connect(BTSession, SIGNAL(fullDiskError(QTorrentHandle&)), this, SLOT(fullDiskError(QTorrentHandle&)));
   connect(BTSession, SIGNAL(finishedTorrent(QTorrentHandle&)), this, SLOT(finishedTorrent(QTorrentHandle&)));
-  connect(BTSession, SIGNAL(torrentFinishedChecking(QString)), this, SLOT(torrentChecked(QString)));
   connect(BTSession, SIGNAL(trackerAuthenticationRequired(QTorrentHandle&)), this, SLOT(trackerAuthenticationRequired(QTorrentHandle&)));
   connect(BTSession, SIGNAL(scanDirFoundTorrents(const QStringList&)), this, SLOT(processScannedFiles(const QStringList&)));
   connect(BTSession, SIGNAL(newDownloadedTorrent(QString, QString)), this, SLOT(processDownloadedFiles(QString, QString)));
@@ -336,27 +335,6 @@ void GUI::writeSettings() {
   settings.setValue(QString::fromUtf8("size"), size());
   settings.setValue(QString::fromUtf8("pos"), pos());
   settings.endGroup();
-}
-
-// Called when a torrent finished checking
-void GUI::torrentChecked(QString hash) const {
-  // Check if the torrent was paused after checking
-  if(BTSession->isPaused(hash)) {
-    // Was paused, change its icon/color
-    if(BTSession->isFinished(hash)) {
-      // In finished list
-      qDebug("Automatically paused torrent was in finished list");
-      finishedTorrentTab->pauseTorrent(hash);
-    }else{
-      // In download list
-      downloadingTorrentTab->pauseTorrent(hash);
-    }
-  }
-  if(!BTSession->isFinished(hash)){
-    // Delayed Sorting
-    downloadingTorrentTab->updateFileSizeAndProgress(hash);
-    downloadingTorrentTab->sortProgressColumnDelayed();
-  }
 }
 
 // called when a torrent has finished

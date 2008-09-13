@@ -1,6 +1,5 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.2.0
     - FEATURE: Torrent queueing system (with priorities)
-    - FEATURE: DHT is always ON (no longer used as fallback)
     - FEATURE: The number of DHT nodes is displayed
     - FEATURE: RSS can now be disabled from program preferences
     - BUGFIX: Disable ETA calculation when ETA column is hidden
@@ -9,6 +8,15 @@
     - COSMETIC: RSS Tab is now hidden as a default
     - COSMETIC: Allow to hide or display top toolbar
     - COSMETIC: Log is now in a separate dialog
+
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.1.4
+    - FEATURE: DHT is no longer used as fallback only
+    - BUGFIX: Fixed 'start seeding after torrent creation' feature
+    - BUGFIX: Fixed compilation with boost v1.36
+    - BUGFIX: Some code optimization
+    - BUGFIX: Fixed memory leak in Web UI
+    - BUGFIX: Fixed problems with column sorting
+    - BUGFIX: Improved code for pausing torrents on startup
 
 * Tue Aug 26 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.3
     - BUGFIX: Fixed ratio saving for seeding torrents

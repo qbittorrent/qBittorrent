@@ -163,7 +163,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void downloadFromURLList(const QStringList& urls);
     void deleteTorrent(QString hash);
     void finishedTorrent(QTorrentHandle& h) const;
-    void torrentChecked(QString hash) const;
     void updateLists();
     bool initWebUi(QString username, QString password, int port);
     void pauseTorrent(QString hash);

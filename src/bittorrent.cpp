@@ -574,8 +574,6 @@ bool bittorrent::isPaused(QString hash) const{
     qDebug("/!\\ Error: Invalid handle");
     return true;
   }
-  if(torrentsToPauseAfterChecking.contains(hash))
-    return true;
   return h.is_paused();
 }
 
@@ -833,11 +831,6 @@ bool bittorrent::resumeTorrent(QString hash) {
   // Delete .paused file
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused"))
     QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
-  int index = torrentsToPauseAfterChecking.indexOf(hash);
-  if(index != -1) {
-    torrentsToPauseAfterChecking.removeAt(index);
-    change = true;
-  }
   if(queueingEnabled) {
     updateDownloadQueue();
     updateUploadQueue();
@@ -892,7 +885,7 @@ void bittorrent::loadWebSeeds(QString hash) {
 }
 
 // Add a torrent to the bittorrent session
-void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bool resumed) {
+void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bool) {
   QTorrentHandle h;
   entry resume_data;
   bool fastResume=false;
@@ -1005,18 +998,15 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
       // Copy it to torrentBackup directory
       QFile::copy(file, newFile);
     }
-    // Pause torrent if it was paused last time
-    if((!resumed && addInPause) || QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")) {
-      torrentsToPauseAfterChecking << hash;
-      qDebug("Adding a torrent to the torrentsToPauseAfterChecking list");
-    }
     // Incremental download
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental")) {
       qDebug("Incremental download enabled for %s", t->name().c_str());
       h.set_sequenced_download_threshold(1);
     }
-    // Start torrent because it was added in paused state
-    h.resume();
+    if(!addInPause && !QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")) {
+      // Start torrent because it was added in paused state
+      h.resume();
+    }
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")) {
       finishedTorrents << hash;
       if(queueingEnabled) {
@@ -1351,6 +1341,14 @@ void bittorrent::loadDownloadUploadForTorrent(QString hash) {
     downUp.second = 0;
   }
   ratioData[hash] = downUp;
+}
+
+float bittorrent::getUncheckedTorrentProgress(QString hash) const {
+  /*if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished"))
+    return 1.;*/
+  QTorrentHandle h = getTorrentHandle(hash);
+  QPair<size_type,size_type> downUpInfo = ratioData.value(hash, QPair<size_type,size_type>(0,0));
+  return (float)downUpInfo.first / (float)h.actual_size();
 }
 
 float bittorrent::getRealRatio(QString hash) const{
@@ -1813,20 +1811,14 @@ void bittorrent::readAlerts() {
       if(h.is_valid()){
         QString hash = h.hash();
         qDebug("%s have just finished checking", hash.toUtf8().data());
-        int index = torrentsToPauseAfterChecking.indexOf(hash);
-        if(index != -1) {
-          torrentsToPauseAfterChecking.removeAt(index);
-          // Pause torrent
-          pauseTorrent(hash);
-          qDebug("%s was paused after checking", hash.toUtf8().data());
-        } else {
+	if(!h.is_paused()) {
           // Save Addition DateTime
           if(calculateETA) {
             TorrentsStartTime[hash] = QDateTime::currentDateTime();
             TorrentsStartData[hash] = h.total_payload_download();
           }
-        }
-        emit torrentFinishedChecking(hash);
+	}
+        //emit torrentFinishedChecking(hash);
       }
     }
     a = s->pop_alert();
@@ -1835,10 +1827,6 @@ void bittorrent::readAlerts() {
 
 QHash<QString, QString> bittorrent::getTrackersErrors(QString hash) const{
   return trackersErrors.value(hash, QHash<QString, QString>());
-}
-
-QStringList bittorrent::getTorrentsToPauseAfterChecking() const{
-  return torrentsToPauseAfterChecking;
 }
 
 // Reload a torrent with full allocation mode
