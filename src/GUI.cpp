@@ -32,14 +32,13 @@
   #include <QTcpServer>
   #include <QTcpSocket>
 #endif
-
+#include <stdlib.h>
 #include <QCloseEvent>
 #include <QShortcut>
 #include <QLabel>
 #include <QModelIndex>
 
 #include "GUI.h"
-#include "httpserver.h"
 #include "downloadingTorrents.h"
 #include "misc.h"
 #include "createtorrent_imp.h"
@@ -54,7 +53,7 @@
 #include "options_imp.h"
 #include "previewSelect.h"
 #include "allocationDlg.h"
-#include "stdlib.h"
+#include "httpserver.h"
 
 using namespace libtorrent;
 
@@ -125,7 +124,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   BTSession = new bittorrent();
   connect(BTSession, SIGNAL(fullDiskError(QTorrentHandle&)), this, SLOT(fullDiskError(QTorrentHandle&)));
   connect(BTSession, SIGNAL(finishedTorrent(QTorrentHandle&)), this, SLOT(finishedTorrent(QTorrentHandle&)));
-  connect(BTSession, SIGNAL(torrentFinishedChecking(QString)), this, SLOT(torrentChecked(QString)));
   connect(BTSession, SIGNAL(trackerAuthenticationRequired(QTorrentHandle&)), this, SLOT(trackerAuthenticationRequired(QTorrentHandle&)));
   connect(BTSession, SIGNAL(scanDirFoundTorrents(const QStringList&)), this, SLOT(processScannedFiles(const QStringList&)));
   connect(BTSession, SIGNAL(newDownloadedTorrent(QString, QString)), this, SLOT(processDownloadedFiles(QString, QString)));
@@ -293,27 +291,6 @@ void GUI::writeSettings() {
   settings.endGroup();
 }
 
-// Called when a torrent finished checking
-void GUI::torrentChecked(QString hash) const {
-  // Check if the torrent was paused after checking
-  if(BTSession->isPaused(hash)) {
-    // Was paused, change its icon/color
-    if(BTSession->isFinished(hash)) {
-      // In finished list
-      qDebug("Automatically paused torrent was in finished list");
-      finishedTorrentTab->pauseTorrent(hash);
-    }else{
-      // In download list
-      downloadingTorrentTab->pauseTorrent(hash);
-    }
-  }
-  if(!BTSession->isFinished(hash)){
-    // Delayed Sorting
-    downloadingTorrentTab->updateFileSizeAndProgress(hash);
-    downloadingTorrentTab->sortProgressColumnDelayed();
-  }
-}
-
 // called when a torrent has finished
 void GUI::finishedTorrent(QTorrentHandle& h) const {
   qDebug("In GUI, a torrent has finished");
@@ -425,7 +402,7 @@ void GUI::acceptConnection() {
 }
 
 void GUI::readParamsOnSocket() {
-  if(clientConnection != 0) {
+  if(clientConnection) {
     QByteArray params = clientConnection->readAll();
     if(!params.isEmpty()) {
       processParams(QString::fromUtf8(params.data()).split(QString::fromUtf8("\n")));
@@ -999,6 +976,7 @@ void GUI::configureSession(bool deleteOptions) {
     sessionSettings.user_agent = "qBittorrent "VERSION;
   }
   sessionSettings.upnp_ignore_nonrouters = true;
+  sessionSettings.use_dht_as_fallback = false;
   BTSession->setSessionSettings(sessionSettings);
   // Bittorrent
   // * Max connections limit
@@ -1369,7 +1347,6 @@ void GUI::createSystrayDelayed() {
       createTrayIcon();
       systrayIntegration = true;
       delete systrayCreator;
-      systrayCreator = 0;
   } else {
     if(timeout) {
       // Retry a bit later
@@ -1379,7 +1356,6 @@ void GUI::createSystrayDelayed() {
       // Timed out, apparently system really does not
       // support systray icon
       delete systrayCreator;
-      systrayCreator = 0;
     }
   }
 }
@@ -1444,7 +1420,6 @@ void GUI::OptionsSaved(QString info, bool deleteOptions) {
   else if(httpServer)
   {
     delete httpServer;
-    httpServer = 0;
   }
   // Update session
   configureSession(deleteOptions);
@@ -1453,11 +1428,9 @@ void GUI::OptionsSaved(QString info, bool deleteOptions) {
 bool GUI::initWebUi(QString username, QString password, int port)
 {
   if(httpServer)
-  {
     httpServer->close();
-  }
   else
-    httpServer = new HttpServer(BTSession, 500, this);
+    httpServer = new HttpServer(BTSession, 1000, this);
   httpServer->setAuthorization(username, password);
   bool success = httpServer->listen(QHostAddress::Any, port);
   if (success)

@@ -1,6 +1,14 @@
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.1.4
+* Sun Sept 14 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.4
+    - FEATURE: DHT is no longer used as fallback only
+    - FEATURE: Ported WebUI to Mootools v1.2
     - BUGFIX: Fixed 'start seeding after torrent creation' feature
     - BUGFIX: Fixed compilation with boost v1.36
+    - BUGFIX: Some code optimization
+    - BUGFIX: Fixed memory leak in Web UI
+    - BUGFIX: Fixed problems with column sorting
+    - BUGFIX: Improved code for pausing torrents on startup
+    - BUGFIX: Torrent addition dialog is now disabled for downloads from WebUI
+    - BUGFIX: Give focus to input field in WebUI download dialog
 
 * Tue Aug 26 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.3
     - BUGFIX: Fixed ratio saving for seeding torrents

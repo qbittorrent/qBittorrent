@@ -42,14 +42,24 @@ HttpConnection::HttpConnection(QTcpSocket *socket, HttpServer *parent)
 
 HttpConnection::~HttpConnection()
 {
+  delete socket;
+}
+
+void HttpConnection::processDownloadedFile(QString url, QString file_path) {
+	qDebug("URL %s successfully downloaded !", (const char*)url.toUtf8());
+	emit torrentReadyToBeDownloaded(file_path, false, url, false);	
+}
+
+void HttpConnection::handleDownloadFailure(QString url, QString reason) {
+	std::cerr << "Could not download " << (const char*)url.toUtf8() << ", reason: " << (const char*)reason.toUtf8() << "\n";
 }
 
 void HttpConnection::read()
 {
 	QByteArray input = socket->readAll();
-	qDebug(" -------");
+	/*qDebug(" -------");
 	qDebug("|REQUEST|");
-	qDebug(" -------");
+	qDebug(" -------"); */
 	//qDebug("%s", input.toAscii().constData());
 	if(input.size() > 100000) {
 		qDebug("Request too big");
@@ -81,7 +91,7 @@ void HttpConnection::write()
 
 void HttpConnection::respond()
 {
-	qDebug("Respond called");
+	//qDebug("Respond called");
 	QStringList auth = parser.value("Authorization").split(" ", QString::SkipEmptyParts);
 	if (auth.size() != 2 || QString::compare(auth[0], "Basic", Qt::CaseInsensitive) != 0 || !parent->isAuthorized(auth[1].toUtf8()))
 	{
@@ -172,16 +182,13 @@ void HttpConnection::respondCommand(QString command)
 	{
 		QString urls = parser.post("urls");
 		QStringList list = urls.split('\n');
-		QStringList url_list_cleaned;
 		foreach(QString url, list){
 			url = url.trimmed();
 			if(!url.isEmpty()){
-				if(url_list_cleaned.indexOf(QRegExp(url, Qt::CaseInsensitive, QRegExp::FixedString)) < 0){
-					url_list_cleaned << url;
-				}
+				qDebug("Downloading url: %s", (const char*)url.toUtf8());
+				emit UrlReadyToBeDownloaded(url);
 			}
 		}
-		emit urlsReadyToBeDownloaded(url_list_cleaned);
 		return;
 	}
 	if(command == "upload")

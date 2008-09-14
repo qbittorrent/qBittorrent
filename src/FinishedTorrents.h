@@ -60,7 +60,9 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void displayFinishedHoSMenu(const QPoint&);
     void setRowColor(int row, QString color);
     void saveColWidthFinishedList() const;
-    void sortFinishedList(int index);
+    void loadLastSortedColumn();
+    void toggleFinishedListSortOrder(int index);
+    void sortFinishedList(int index=-1, Qt::SortOrder sortOrder=Qt::AscendingOrder);
     void sortFinishedListFloat(int index, Qt::SortOrder sortOrder);
     void sortFinishedListString(int index, Qt::SortOrder sortOrder);
     void updateFileSize(QString hash);

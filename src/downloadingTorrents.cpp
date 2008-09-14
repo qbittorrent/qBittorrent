@@ -33,7 +33,7 @@
 #include <QTime>
 #include <QMenu>
 
-DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession) : parent(parent), BTSession(BTSession), delayedSorting(false), nbTorrents(0) {
+DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession) : parent(parent), BTSession(BTSession), nbTorrents(0) {
   setupUi(this);
   // Setting icons
   actionStart->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play.png")));
@@ -85,7 +85,7 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   downloadList->header()->setSortIndicatorShown(true);
   // Connecting Actions to slots
   connect(downloadList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(notifyTorrentDoubleClicked(const QModelIndex&)));
-  connect(downloadList->header(), SIGNAL(sectionPressed(int)), this, SLOT(sortDownloadList(int)));
+  connect(downloadList->header(), SIGNAL(sectionPressed(int)), this, SLOT(toggleDownloadListSortOrder(int)));
   connect(downloadList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLListMenu(const QPoint&)));
   downloadList->header()->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(downloadList->header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLHoSMenu(const QPoint&)));
@@ -153,7 +153,7 @@ void DownloadingTorrents::pauseTorrent(QString hash) {
   DLListModel->setData(DLListModel->index(row, NAME), QIcon(QString::fromUtf8(":/Icons/skin/paused.png")), Qt::DecorationRole);
   DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
-  DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+  //DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
   setRowColor(row, QString::fromUtf8("red"));
 }
 
@@ -496,13 +496,6 @@ void DownloadingTorrents::displayInfoBarMenu(const QPoint& pos) {
   myLogMenu.exec(mapToGlobal(pos)+QPoint(44,305));
 }
 
-void DownloadingTorrents::sortProgressColumnDelayed() {
-    if(delayedSorting) {
-      sortDownloadListFloat(PROGRESS, delayedSortingOrder);
-      qDebug("Delayed sorting of progress column");
-    }
-}
-
 // get information from torrent handles and
 // update download list accordingly
 void DownloadingTorrents::updateDlList() {
@@ -526,12 +519,6 @@ void DownloadingTorrents::updateDlList() {
       Q_ASSERT(row != -1);
       // No need to update a paused torrent
       if(h.is_paused()) continue;
-      if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) != -1) {
-        if(!downloadList->isColumnHidden(PROGRESS)) {
-          DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
-        }
-         continue;
-      }
       // Parse download state
       // Setting download state
       switch(h.state()) {
@@ -636,6 +623,7 @@ void DownloadingTorrents::addTorrent(QString hash) {
   DLListModel->setData(DLListModel->index(row, HASH), QVariant(hash));
   // Pause torrent if it was paused last time
   if(BTSession->isPaused(hash)) {
+    DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)BTSession->getUncheckedTorrentProgress(hash)));
     DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/paused.png"))), Qt::DecorationRole);
     setRowColor(row, QString::fromUtf8("red"));
   }else{
@@ -644,6 +632,7 @@ void DownloadingTorrents::addTorrent(QString hash) {
   }
   ++nbTorrents;
   emit unfinishedTorrentsNumberChanged(nbTorrents);
+  sortDownloadList();
 }
 
 void DownloadingTorrents::sortDownloadListFloat(int index, Qt::SortOrder sortOrder) {
@@ -692,27 +681,36 @@ void DownloadingTorrents::sortDownloadListString(int index, Qt::SortOrder sortOr
   DLListModel->removeRows(0, nbRows_old);
 }
 
-void DownloadingTorrents::sortDownloadList(int index, Qt::SortOrder startSortOrder, bool fromLoadColWidth) {
-  qDebug("Called sort download list");
-  static Qt::SortOrder sortOrder = startSortOrder;
-  if(!fromLoadColWidth && downloadList->header()->sortIndicatorSection() == index) {
-    if(sortOrder == Qt::AscendingOrder) {
-      sortOrder = Qt::DescendingOrder;
-    }else{
-      sortOrder = Qt::AscendingOrder;
-    }
+void DownloadingTorrents::toggleDownloadListSortOrder(int index) {
+  Qt::SortOrder sortOrder = Qt::AscendingOrder;
+  qDebug("Toggling column sort order");
+  if(downloadList->header()->sortIndicatorSection() == index) {
+    sortOrder = (Qt::SortOrder)!(bool)downloadList->header()->sortIndicatorOrder();
   }
+  switch(index) {
+    case SIZE:
+    case ETA:
+    case UPSPEED:
+    case DLSPEED:
+    case PROGRESS:
+      sortDownloadListFloat(index, sortOrder);
+      break;
+    default:
+      sortDownloadListString(index, sortOrder);
+  }
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QString sortOrderLetter;
   if(sortOrder == Qt::AscendingOrder)
     sortOrderLetter = QString::fromUtf8("a");
   else
     sortOrderLetter = QString::fromUtf8("d");
-  if(fromLoadColWidth) {
-    // XXX: Why is this needed?
-    if(sortOrder == Qt::DescendingOrder)
-      downloadList->header()->setSortIndicator(index, Qt::AscendingOrder);
-    else
-      downloadList->header()->setSortIndicator(index, Qt::DescendingOrder);
+  settings.setValue(QString::fromUtf8("DownloadListSortedCol"), misc::toQString(index)+sortOrderLetter);
+}
+
+void DownloadingTorrents::sortDownloadList(int index, Qt::SortOrder sortOrder) {
+  if(index == -1) {
+    index = downloadList->header()->sortIndicatorSection();
+    sortOrder = downloadList->header()->sortIndicatorOrder();
   } else {
     downloadList->header()->setSortIndicator(index, sortOrder);
   }
@@ -721,23 +719,12 @@ void DownloadingTorrents::sortDownloadList(int index, Qt::SortOrder startSortOrd
     case ETA:
     case UPSPEED:
     case DLSPEED:
-      sortDownloadListFloat(index, sortOrder);
-      break;
     case PROGRESS:
-      if(fromLoadColWidth) {
-        // Progress sorting must be delayed until files are checked (on startup)
-        delayedSorting = true;
-        qDebug("Delayed sorting of the progress column");
-        delayedSortingOrder = sortOrder;
-      }else{
-        sortDownloadListFloat(index, sortOrder);
-      }
+      sortDownloadListFloat(index, sortOrder);
       break;
     default:
       sortDownloadListString(index, sortOrder);
   }
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  settings.setValue(QString::fromUtf8("DownloadListSortedCol"), misc::toQString(index)+sortOrderLetter);
 }
 
 // Save columns width in a file to remember them
@@ -786,7 +773,14 @@ bool DownloadingTorrents::loadColWidthDLList() {
   for(unsigned int i=0; i<listSize; ++i) {
         downloadList->header()->resizeSection(i, width_list.at(i).toInt());
   }
+  loadLastSortedColumn();
+  qDebug("Download list columns width loaded");
+  return true;
+}
+
+void DownloadingTorrents::loadLastSortedColumn() {
   // Loading last sorted column
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QString sortedCol = settings.value(QString::fromUtf8("DownloadListSortedCol"), QString()).toString();
   if(!sortedCol.isEmpty()) {
     Qt::SortOrder sortOrder;
@@ -796,10 +790,8 @@ bool DownloadingTorrents::loadColWidthDLList() {
       sortOrder = Qt::AscendingOrder;
     sortedCol = sortedCol.left(sortedCol.size()-1);
     int index = sortedCol.toInt();
-    sortDownloadList(index, sortOrder, true);
+    sortDownloadList(index, sortOrder);
   }
-  qDebug("Download list columns width loaded");
-  return true;
 }
 
 // Called when a torrent is added
@@ -822,6 +814,7 @@ void DownloadingTorrents::torrentAdded(QString path, QTorrentHandle& h, bool fas
   // Pause torrent if it was paused last time
   // Not using isPaused function because torrents are paused after checking now
   if(QFile::exists(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".paused"))) {
+    DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)BTSession->getUncheckedTorrentProgress(hash)));
     DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/paused.png"))), Qt::DecorationRole);
     setRowColor(row, QString::fromUtf8("red"));
   }else{
@@ -835,6 +828,7 @@ void DownloadingTorrents::torrentAdded(QString path, QTorrentHandle& h, bool fas
   }
   ++nbTorrents;
   emit unfinishedTorrentsNumberChanged(nbTorrents);
+  sortDownloadList();
 }
 
 // Called when trying to add a duplicate torrent
@@ -852,7 +846,7 @@ void DownloadingTorrents::updateFileSizeAndProgress(QString hash) {
   Q_ASSERT(row != -1);
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)h.actual_size()));
-  DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+  //DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
 }
 
 // Called when we couldn't listen on any port

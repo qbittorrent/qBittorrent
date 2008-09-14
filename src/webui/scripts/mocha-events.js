@@ -57,7 +57,7 @@ function attachMochaLinkEvents(){
 		new Event(e).stop();
 		var h = myTable.selectedId();
 		if(h && confirm('Are you sure you want to delete the selected item in download list?'))
-			new Ajax('/command/delete', {method: 'post', data: {hash: h}}).request();
+			new Request({url: '/command/delete', method: 'post', data: {hash: h}}).send();
 	});
 
 	['pause','resume'].each(function(item) {
@@ -65,13 +65,13 @@ function attachMochaLinkEvents(){
 			new Event(e).stop();
 			var h = myTable.selectedId();
 			if(h){
-				new Ajax('/command/'+item, {method: 'post', data: {hash: h}}).request();
+				new Request({url: '/command/'+item, method: 'post', data: {hash: h}}).send();
 			}
 		});
 		
 		addClickEvent(item+'All', function(e){
 			new Event(e).stop();
-			new Ajax('/command/'+item+'all').request();
+			new Request({url: '/command/'+item+'all'}).send();
 		});
 	});
 	

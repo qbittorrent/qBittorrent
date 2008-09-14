@@ -24,7 +24,7 @@
 
 #include <QProcess>
 #include <QSystemTrayIcon>
-
+#include <QPointer>
 #include "ui_MainWindow.h"
 #include "qtorrenthandle.h"
 
@@ -65,7 +65,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QTabWidget *tabs;
     options_imp *options;
     QSystemTrayIcon *myTrayIcon;
-    QTimer *systrayCreator;
+    QPointer<QTimer> systrayCreator;
     QMenu *myTrayIconMenu;
     DownloadingTorrents *downloadingTorrentTab;
     FinishedTorrents *finishedTorrentTab;
@@ -86,7 +86,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // RSS
     RSSImp *rssWidget;
     // Web UI
-    HttpServer *httpServer;
+    QPointer<HttpServer> httpServer;
     // Misc
 #ifdef QT_4_4
     QLocalServer *localServer;
@@ -150,7 +150,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void deleteTorrent(QString hash);
     void deleteRatioTorrent(QString fileName);
     void finishedTorrent(QTorrentHandle& h) const;
-    void torrentChecked(QString hash) const;
     void updateLists();
     bool initWebUi(QString username, QString password, int port);
     void pauseTorrent(QString hash);

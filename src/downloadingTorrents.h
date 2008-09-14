@@ -38,9 +38,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     bittorrent *BTSession;
     DLListDelegate *DLDelegate;
     QStandardItemModel *DLListModel;
-    bool delayedSorting;
     unsigned int nbTorrents;
-    Qt::SortOrder delayedSortingOrder;
     void hideOrShowColumn(int index);
     bool loadHiddenColumns();
     void saveHiddenColumns();
@@ -73,7 +71,8 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void on_actionClearLog_triggered();
     void displayInfoBarMenu(const QPoint& pos);
     void addTorrent(QString hash);
-    void sortDownloadList(int index, Qt::SortOrder startSortOrder=Qt::AscendingOrder, bool fromLoadColWidth=false);
+    void sortDownloadList(int index=-1, Qt::SortOrder startSortOrder=Qt::AscendingOrder);
+    void toggleDownloadListSortOrder(int index);
     void sortDownloadListFloat(int index, Qt::SortOrder sortOrder);
     void sortDownloadListString(int index, Qt::SortOrder sortOrder);
     void saveColWidthDLList() const;
@@ -94,6 +93,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void hideOrShowColumnEta();
     void displayUPnPError(QString msg);
     void displayUPnPSuccess(QString msg);
+    void loadLastSortedColumn();
 
   public slots:
     void updateDlList();
@@ -103,7 +103,6 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void deleteTorrent(QString hash);
     void setBottomTabEnabled(unsigned int index, bool b);
     void propertiesSelection();
-    void sortProgressColumnDelayed();
     void updateFileSizeAndProgress(QString hash);
     void showPropertiesFromHash(QString hash);
 

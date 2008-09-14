@@ -331,7 +331,7 @@ var MochaUI = new Class({
 		var subElements = this.insertWindowElements(windowEl, windowProperties.height, windowProperties.width);
 		
 		// Set title
-		subElements.title.setHTML(windowProperties.title);
+		subElements.title.set('html', windowProperties.title);
 
 		// Add content to window		
 		switch(windowProperties.loadMethod) {
@@ -342,11 +342,11 @@ var MochaUI = new Class({
 						this.showLoadingIcon(subElements.canvasIcon);
 					}.bind(this),
 					onFailure: function(){						
-						subElements.content.setHTML('<p><strong>Error Loading XMLHttpRequest</strong></p><p>Make sure all of your content is uploaded to your server, and that you are attempting to load a document from the same domain as this page. XMLHttpRequests will not work on your local machine.</p>');
+						subElements.content.set('html', '<p><strong>Error Loading XMLHttpRequest</strong></p><p>Make sure all of your content is uploaded to your server, and that you are attempting to load a document from the same domain as this page. XMLHttpRequests will not work on your local machine.</p>');
 						this.hideLoadingIcon.delay(150, this, subElements.canvasIcon);
 					}.bind(this),
 					onSuccess: function(response) {						
-						subElements.content.setHTML(response);
+						subElements.content.set('html', response);
 						this.hideLoadingIcon.delay(150, this, subElements.canvasIcon);
 						windowProperties.onContentLoaded();
 					}.bind(this)
@@ -374,7 +374,7 @@ var MochaUI = new Class({
 				break;
 			case 'html':
 			default:
-				subElements.content.setHTML(windowProperties.content);
+				subElements.content.set('html', windowProperties.content);
 				windowProperties.onContentLoaded();
 				break;
 		}
@@ -665,7 +665,7 @@ var MochaUI = new Class({
 			'id': windowEl.id + '_dockButton',
 			'class': 'mochaDockButton',
 			'title': titleText
-		}).setHTML(titleText.substring(0,13) + (titleText.length > 13 ? '...' : '')).injectInside($(this.dock));
+		}).set('html', titleText.substring(0,13) + (titleText.length > 13 ? '...' : '')).injectInside($(this.dock));
 		dockButton.addEvent('click', function(event) {
 			this.restoreMinimized(windowEl);
 		}.bind(this));
@@ -1525,7 +1525,7 @@ function addSlider(){
 			steps: 20,
 			offset: 5,
 			onChange: function(pos){
-				$('updatevalue').setHTML(pos);
+				$('updatevalue').set('html', pos);
 				document.mochaUI.options.cornerRadius = pos;
 				$$('div.mocha').each(function(windowEl, i) {
 					document.mochaUI.drawWindow(windowEl);

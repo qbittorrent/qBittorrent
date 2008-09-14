@@ -20,7 +20,6 @@
 
 
 #include "httpresponsegenerator.h"
-#include <QDebug>
 
 void HttpResponseGenerator::setMessage(const QByteArray message)
 {
