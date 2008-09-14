@@ -9,7 +9,7 @@
     - COSMETIC: Allow to hide or display top toolbar
     - COSMETIC: Log is now in a separate dialog
 
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.1.4
+* Sun Sept 14 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.4
     - FEATURE: DHT is no longer used as fallback only
     - FEATURE: Ported WebUI to Mootools v1.2
     - BUGFIX: Fixed 'start seeding after torrent creation' feature
