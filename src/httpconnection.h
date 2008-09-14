@@ -27,7 +27,6 @@
 #include <QObject>
 
 class QTcpSocket;
-
 class HttpServer;
 
 class HttpConnection : public QObject
@@ -47,6 +46,8 @@ class HttpConnection : public QObject
 		void respondJson();
 		void respondCommand(QString command);
 		void respondNotFound();
+		void processDownloadedFile(QString, QString);
+		void handleDownloadFailure(QString, QString);
 
 	public:
 		HttpConnection(QTcpSocket *socket, HttpServer *parent);
@@ -56,7 +57,7 @@ class HttpConnection : public QObject
 		void read();
 
 	signals:
-		void urlsReadyToBeDownloaded(const QStringList&);
+                void UrlReadyToBeDownloaded(QString url);
 		void torrentReadyToBeDownloaded(QString, bool, QString, bool);
 		void deleteTorrent(QString hash);
 		void resumeTorrent(QString hash);

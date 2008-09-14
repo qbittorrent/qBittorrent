@@ -41,7 +41,8 @@ window.addEvent('domready', function(){
 		var url = 'json/events?r='+r;
 		if (!waiting){
 			waiting=true;
-			var request = new Json.Remote(url, {
+			var request = new Request.JSON({
+                                url: url,
 				method: 'get',
 				onComplete: function(jsonObj) {
 					if(jsonObj){

@@ -1940,10 +1940,23 @@ void bittorrent::downloadFromUrl(QString url) {
   downloader->downloadUrl(url);
 }
 
+void bittorrent::downloadUrlAndSkipDialog(QString url) {
+  //emit aboutToDownloadFromUrl(url);
+  url_skippingDlg << url;
+  // Launch downloader thread
+  downloader->downloadUrl(url);
+}
+
 // Add to bittorrent session the downloaded torrent file
 void bittorrent::processDownloadedFile(QString url, QString file_path) {
-  // Add file to torrent download list
-  emit newDownloadedTorrent(file_path, url);
+  int index = url_skippingDlg.indexOf(url);
+  if(index < 0) {
+    // Add file to torrent download list
+    emit newDownloadedTorrent(file_path, url);
+  } else {
+    url_skippingDlg.removeAt(index);
+    addTorrent(file_path, false, url, false);
+  }
 }
 
 void bittorrent::downloadFromURLList(const QStringList& url_list) {

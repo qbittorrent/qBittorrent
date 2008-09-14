@@ -83,6 +83,7 @@ class bittorrent : public QObject {
     QStringList *uploadQueue;
     QStringList *queuedUploads;
     bool calculateETA;
+    QStringList url_skippingDlg;
 
   protected:
     QString getSavePath(QString hash);
@@ -154,6 +155,7 @@ class bittorrent : public QObject {
     void increaseUpTorrentPriority(QString hash);
     void decreaseUpTorrentPriority(QString hash);
     void saveTorrentPriority(QString hash, int prio);
+    void downloadUrlAndSkipDialog(QString);
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
     void setMaxConnections(int maxConnec);
