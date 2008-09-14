@@ -35,27 +35,30 @@ class subDeleteThread : public QThread {
   private:
     QString save_path;
     arborescence *arb;
-    bool abort;
 
   public:
-    subDeleteThread(QObject *parent, QString saveDir, arborescence *arb) : QThread(parent), save_path(saveDir), arb(arb), abort(false){}
+    subDeleteThread(QObject *parent, QString saveDir, arborescence *_arb) : QThread(parent), save_path(saveDir) {
+      arb = _arb;
+    }
 
     ~subDeleteThread(){
-      abort = true;
-      wait();
+      qDebug("subDeleteThread successfuly deleted");
+      //wait();
     }
 
   signals:
     // For subthreads
     void deletionSuccessST(subDeleteThread* st);
-    void deletionFailureST(subDeleteThread* st);
+    //void deletionFailureST(subDeleteThread* st);
 
   protected:
     void run(){
-      if(arb->removeFromFS(save_path))
+      /*if(arb->removeFromFS(save_path))
         emit deletionSuccessST(this);
       else
-        emit deletionFailureST(this);
+        emit deletionFailureST(this);*/
+      arb->removeFromFS(save_path);
+      emit deletionSuccessST(this);
       delete arb;
     }
 };
@@ -99,13 +102,13 @@ class deleteThread : public QThread {
         if(abort)
           return;
         mutex.lock();
-        if(torrents_list.size() != 0){
+        if(!torrents_list.empty()){
           QPair<QString, arborescence *> torrent = torrents_list.takeFirst();
           mutex.unlock();
           subDeleteThread *st = new subDeleteThread(0, torrent.first, torrent.second);
           subThreads << st;
           connect(st, SIGNAL(deletionSuccessST(subDeleteThread*)), this, SLOT(deleteSubThread(subDeleteThread*)));
-          connect(st, SIGNAL(deletionFailureST(subDeleteThread*)), this, SLOT(deleteSubThread(subDeleteThread*)));
+          //connect(st, SIGNAL(deletionFailureST(subDeleteThread*)), this, SLOT(deleteSubThread(subDeleteThread*)));
           st->start();
         }else{
           condition.wait(&mutex);

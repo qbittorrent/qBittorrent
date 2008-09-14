@@ -66,7 +66,7 @@ var dynamicTable = new Class	({
 		for(var i=0; i<row.length; i++)
 		{
 			var td = new Element('td');
-			td.setHTML(row[i]);
+			td.set('html', row[i]);
 			td.injectInside(tr);
 		};
 
@@ -100,7 +100,7 @@ var dynamicTable = new Class	({
 		{
 			var tds = tr.getElements('td');
 			row.each(function(el, i){
-				tds[i].setHTML(el);
+				tds[i].set('html', el);
 			});
 			return true;
 		}
@@ -115,7 +115,7 @@ var dynamicTable = new Class	({
 		var tr = this.rows[id];
 		if($defined(tr))
 		{
-			tr.remove();
+			tr.dispose();
 			this.altRow();
 			return true;
 		}

@@ -32,25 +32,28 @@ HttpServer::HttpServer(bittorrent *BTSession, int msec, QObject* parent) : QTcpS
 	HttpServer::BTSession = BTSession;
 	manager = new EventManager(this, BTSession);
 	//add torrents
-	QStringList list = BTSession->getUnfinishedTorrents() + BTSession->getFinishedTorrents();
-	QString hash;
-	foreach(hash, list)
-	{
+	QStringList list = BTSession->getUnfinishedTorrents();
+	foreach(QString hash, list) {
 		QTorrentHandle h = BTSession->getTorrentHandle(hash);
-		if(h.is_valid())
-			manager->addedTorrent(h);
+		if(h.is_valid()) manager->addedTorrent(h);
 	}
+        list = BTSession->getFinishedTorrents();
+	foreach(QString hash, list) {   
+                QTorrentHandle h = BTSession->getTorrentHandle(hash);
+                if(h.is_valid()) manager->addedTorrent(h);
+        }
 	//connect BTSession to manager
 	connect(BTSession, SIGNAL(addedTorrent(QTorrentHandle&)), manager, SLOT(addedTorrent(QTorrentHandle&)));
 	connect(BTSession, SIGNAL(deletedTorrent(QString)), manager, SLOT(deletedTorrent(QString)));
 	//set timer
-	QTimer *timer = new QTimer(this);
+	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(onTimer()));
 	timer->start(msec);
 }
 
 HttpServer::~HttpServer()
 {
+	delete timer;
 	delete manager;
 }
 
@@ -61,7 +64,7 @@ void HttpServer::newHttpConnection()
 	{
 		HttpConnection *connection = new HttpConnection(socket, this);
 		//connect connection to BTSession
-		connect(connection, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), BTSession, SLOT(downloadFromURLList(const QStringList&)));
+		connect(connection, SIGNAL(UrlReadyToBeDownloaded(QString)), BTSession, SLOT(downloadUrlAndSkipDialog(QString)));
 		connect(connection, SIGNAL(torrentReadyToBeDownloaded(QString, bool, QString, bool)), BTSession, SLOT(addTorrent(QString, bool, QString, bool)));
 		connect(connection, SIGNAL(deleteTorrent(QString)), BTSession, SLOT(deleteTorrent(QString)));
 		connect(connection, SIGNAL(pauseTorrent(QString)), BTSession, SLOT(pauseTorrent(QString)));
@@ -73,13 +76,16 @@ void HttpServer::newHttpConnection()
 
 void HttpServer::onTimer()
 {
-	QStringList list = BTSession->getUnfinishedTorrents() + BTSession->getFinishedTorrents();
-	foreach(QString hash, list)
-	{
+	QStringList list = BTSession->getUnfinishedTorrents();
+	foreach(QString hash, list) {
 		QTorrentHandle h = BTSession->getTorrentHandle(hash);
-		if(h.is_valid())
-			manager->modifiedTorrent(h);
+		if(h.is_valid()) manager->modifiedTorrent(h);
 	}
+        list = BTSession->getFinishedTorrents();
+	foreach(QString hash, list) {   
+                QTorrentHandle h = BTSession->getTorrentHandle(hash);
+                if(h.is_valid()) manager->modifiedTorrent(h);
+        }
 }
 
 void HttpServer::setAuthorization(QString username, QString password)

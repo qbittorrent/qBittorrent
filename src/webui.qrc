@@ -10,7 +10,7 @@
   <file>webui/scripts/excanvas-compressed.js</file>
   <file>webui/scripts/mocha-events.js</file>
   <file>webui/scripts/mocha.js</file>
-  <file>webui/scripts/mootools-trunk-1475.js</file>
+  <file>webui/scripts/mootools-1.2-core-yc.js</file>
   <file>webui/scripts/dynamicTable.js</file>
   <file>webui/scripts/client.js</file>
   <file>webui/scripts/download.js</file>

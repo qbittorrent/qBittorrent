@@ -32,11 +32,11 @@ EventManager::EventManager(QObject *parent, bittorrent *BTSession)
 
 void EventManager::update(QVariantMap event)
 {
-	revision++;
+	++revision;
 	events << QPair<ulong, QVariantMap>(revision, event);
 	emit updated();
-	qDebug("Added the following event");
-	qDebug() << event;
+	//qDebug("Added the following event");
+	//qDebug() << event;
 /*	QLinkedList<QPair<ulong, QVariantMap> >::iterator i;
 	for (i = events.begin(); i != events.end(); i++)
 		qDebug() << *i;*/

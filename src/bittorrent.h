@@ -28,6 +28,7 @@
 #include <QDateTime>
 #include <QApplication>
 #include <QPalette>
+#include <QPointer>
 
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
@@ -46,14 +47,13 @@ class bittorrent : public QObject {
   private:
     session *s;
     QString scan_dir;
-    QTimer *timerScan;
+    QPointer<QTimer> timerScan;
     QTimer *timerAlerts;
     QTimer *fastResumeSaver;
-    QTimer *BigRatioTimer;
+    QPointer<QTimer> BigRatioTimer;
     bool DHTEnabled;
     downloadThread *downloader;
     QString defaultSavePath;
-    QStringList torrentsToPauseAfterChecking;
     QHash<QString, QDateTime> TorrentsStartTime;
     QHash<QString, size_type> TorrentsStartData;
     QHash<QString, QPair<size_type,size_type> > ratioData;
@@ -71,7 +71,7 @@ class bittorrent : public QObject {
     bool UPnPEnabled;
     bool NATPMPEnabled;
     bool LSDEnabled;
-    FilterParserThread *filterParser;
+    QPointer<FilterParserThread> filterParser;
     QString filterPath;
     int folderScanInterval; // in seconds
     bool queueingEnabled;
@@ -83,6 +83,7 @@ class bittorrent : public QObject {
     QStringList *uploadQueue;
     QStringList *queuedUploads;
     bool calculateETA;
+    QStringList url_skippingDlg;
 
   protected:
     QString getSavePath(QString hash);
@@ -99,7 +100,6 @@ class bittorrent : public QObject {
     float getPayloadUploadRate() const;
     session_status getSessionStatus() const;
     int getListenPort() const;
-    QStringList getTorrentsToPauseAfterChecking() const;
     qlonglong getETA(QString hash) const;
     float getRealRatio(QString hash) const;
     session* getSession() const;
@@ -120,6 +120,7 @@ class bittorrent : public QObject {
     int loadTorrentPriority(QString hash);
     QStringList getConsoleMessages() const;
     QStringList getPeerBanMessages() const;
+    float getUncheckedTorrentProgress(QString hash) const;
 
   public slots:
     void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
@@ -154,6 +155,7 @@ class bittorrent : public QObject {
     void increaseUpTorrentPriority(QString hash);
     void decreaseUpTorrentPriority(QString hash);
     void saveTorrentPriority(QString hash, int prio);
+    void downloadUrlAndSkipDialog(QString);
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
     void setMaxConnections(int maxConnec);
@@ -214,7 +216,7 @@ class bittorrent : public QObject {
     void downloadFromUrlFailure(QString url, QString reason);
     //void fastResumeDataRejected(QString name);
     //void urlSeedProblem(QString url, QString msg);
-    void torrentFinishedChecking(QString hash);
+    //void torrentFinishedChecking(QString hash);
     //void torrent_ratio_deleted(QString fileName);
     //void UPnPError(QString msg);
     //void UPnPSuccess(QString msg);

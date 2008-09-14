@@ -58,7 +58,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   // Make download list header clickable for sorting
   finishedList->header()->setClickable(true);
   finishedList->header()->setSortIndicatorShown(true);
-  connect(finishedList->header(), SIGNAL(sectionPressed(int)), this, SLOT(sortFinishedList(int)));
+  connect(finishedList->header(), SIGNAL(sectionPressed(int)), this, SLOT(toggleFinishedListSortOrder(int)));
   finishedListDelegate = new FinishedListDelegate(finishedList);
   finishedList->setItemDelegate(finishedListDelegate);
   connect(finishedList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFinishedListMenu(const QPoint&)));
@@ -139,6 +139,7 @@ void FinishedTorrents::addTorrent(QString hash){
   // Update the number of finished torrents
   ++nbFinished;
   emit finishedTorrentsNumberChanged(nbFinished);
+  sortFinishedList();
 }
 
 void FinishedTorrents::torrentAdded(QTorrentHandle& h) {
@@ -190,8 +191,25 @@ bool FinishedTorrents::loadColWidthFinishedList(){
   for(unsigned int i=0; i<listSize; ++i){
         finishedList->header()->resizeSection(i, width_list.at(i).toInt());
   }
+  loadLastSortedColumn();
   qDebug("Finished list columns width loaded");
   return true;
+}
+
+void FinishedTorrents::loadLastSortedColumn() {
+  // Loading last sorted column
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QString sortedCol = settings.value(QString::fromUtf8("FinishedListSortedCol"), QString()).toString();
+  if(!sortedCol.isEmpty()) {
+    Qt::SortOrder sortOrder;
+    if(sortedCol.endsWith(QString::fromUtf8("d")))
+      sortOrder = Qt::DescendingOrder;
+    else
+      sortOrder = Qt::AscendingOrder;
+    sortedCol = sortedCol.left(sortedCol.size()-1);
+    int index = sortedCol.toInt();
+    sortFinishedList(index, sortOrder);
+  }
 }
 
 // Save columns width in a file to remember them
@@ -262,9 +280,6 @@ void FinishedTorrents::updateFinishedList(){
       }
     }
     if(h.is_paused()) continue;
-    if(BTSession->getTorrentsToPauseAfterChecking().indexOf(hash) != -1) {
-      continue;
-    }
     if(h.state() == torrent_status::downloading || (h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking && h.is_seed())) {
       // What are you doing here? go back to download tab!
       int reponse = QMessageBox::question(this, tr("Incomplete torrent in seeding list"), tr("It appears that the state of '%1' torrent changed from 'seeding' to 'downloading'. Would you like to move it back to download list? (otherwise the torrent will simply be deleted)").arg(h.name()), QMessageBox::Yes | QMessageBox::No);
@@ -577,20 +592,39 @@ QAction* FinishedTorrents::getActionHoSCol(int index) {
  * Sorting functions
  */
 
-void FinishedTorrents::sortFinishedList(int index){
-  static Qt::SortOrder sortOrder = Qt::AscendingOrder;
+void FinishedTorrents::toggleFinishedListSortOrder(int index) {
+  Qt::SortOrder sortOrder = Qt::AscendingOrder;
   if(finishedList->header()->sortIndicatorSection() == index){
-    if(sortOrder == Qt::AscendingOrder){
-      sortOrder = Qt::DescendingOrder;
-    }else{
-      sortOrder = Qt::AscendingOrder;
-    }
+    sortOrder = (Qt::SortOrder)!(bool)finishedList->header()->sortIndicatorOrder();
   }
-  finishedList->header()->setSortIndicator(index, sortOrder);
-  switch(index){
+  switch(index) {
     case F_SIZE:
     case F_UPSPEED:
     case F_PRIORITY:
+      sortFinishedListFloat(index, sortOrder);
+      break;
+    default:
+      sortFinishedListString(index, sortOrder);
+  }
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QString sortOrderLetter;
+  if(sortOrder == Qt::AscendingOrder)
+    sortOrderLetter = QString::fromUtf8("a");
+  else
+    sortOrderLetter = QString::fromUtf8("d");
+  settings.setValue(QString::fromUtf8("FinishedListSortedCol"), misc::toQString(index)+sortOrderLetter);
+}
+
+void FinishedTorrents::sortFinishedList(int index, Qt::SortOrder sortOrder){
+  if(index == -1) {
+    index = finishedList->header()->sortIndicatorSection();
+    sortOrder = finishedList->header()->sortIndicatorOrder();
+  } else {
+    finishedList->header()->setSortIndicator(index, sortOrder);
+  }
+  switch(index) {
+    case F_SIZE:
+    case F_UPSPEED:
       sortFinishedListFloat(index, sortOrder);
       break;
     default:
