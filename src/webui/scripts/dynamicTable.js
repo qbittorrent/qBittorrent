@@ -71,14 +71,14 @@ var dynamicTable = new Class	({
 		};
 
 		if(this.options.overCls){
-			tr.addEvent('mouseover', function(){
+			tr.addEvent('mouseover', function(e){
 				tr.addClass(this.options.overCls);
 			}.bind(this));
-			tr.addEvent('mouseout', function(){
+			tr.addEvent('mouseout', function(e){
 				tr.removeClass(this.options.overCls);
 			}.bind(this));
 		}
-		tr.addEvent('click', function(){
+		tr.addEvent('click', function(e){
 			var temptr = this.rows[this.cur];
 			if(temptr){
 				temptr.removeClass(this.options.selectCls);

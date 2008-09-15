@@ -76,16 +76,18 @@ void HttpServer::newHttpConnection()
 
 void HttpServer::onTimer()
 {
+	qDebug("EventManager Timer Start");
 	QStringList list = BTSession->getUnfinishedTorrents();
 	foreach(QString hash, list) {
 		QTorrentHandle h = BTSession->getTorrentHandle(hash);
 		if(h.is_valid()) manager->modifiedTorrent(h);
 	}
-        list = BTSession->getFinishedTorrents();
+	list = BTSession->getFinishedTorrents();
 	foreach(QString hash, list) {   
-                QTorrentHandle h = BTSession->getTorrentHandle(hash);
-                if(h.is_valid()) manager->modifiedTorrent(h);
-        }
+		QTorrentHandle h = BTSession->getTorrentHandle(hash);
+		if(h.is_valid()) manager->modifiedTorrent(h);
+	}
+	qDebug("EventManager Timer Stop");
 }
 
 void HttpServer::setAuthorization(QString username, QString password)
