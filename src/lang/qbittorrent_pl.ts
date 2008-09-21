@@ -3353,17 +3353,17 @@ Zmiany:
         <translation>Dodatkowe informacje o pliku torrent</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="54"/>
+        <location filename="../addTorrentDialog.ui" line="39"/>
         <source>Save path:</source>
         <translation>Katalog docelowy:</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="81"/>
+        <location filename="../addTorrentDialog.ui" line="66"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="96"/>
+        <location filename="../addTorrentDialog.ui" line="81"/>
         <source>Torrent content:</source>
         <translation>Zawartość torrenta:</translation>
     </message>
@@ -3383,22 +3383,22 @@ Zmiany:
         <translation type="obsolete">Zaznaczony</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="116"/>
+        <location filename="../addTorrentDialog.ui" line="145"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Pobierz w ustalonej kolejności (wolniejsze ale lepsze przy korzystaniu z opcji podglądu)</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="123"/>
+        <location filename="../addTorrentDialog.ui" line="152"/>
         <source>Add to download list in paused state</source>
         <translation>Dodaj tylko do listy pobierania (bez rozpoczynania pobierania)</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="160"/>
+        <location filename="../addTorrentDialog.ui" line="189"/>
         <source>Add</source>
         <translation>Dodaj</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="167"/>
+        <location filename="../addTorrentDialog.ui" line="196"/>
         <source>Cancel</source>
         <translation>Anuluj</translation>
     </message>
@@ -3418,24 +3418,34 @@ Zmiany:
         <translation type="obsolete">Wybierz</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="189"/>
+        <location filename="../addTorrentDialog.ui" line="218"/>
         <source>Ignored</source>
         <translation>Ignorowany</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="194"/>
+        <location filename="../addTorrentDialog.ui" line="223"/>
         <source>Normal</source>
         <translation>Normalny</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="199"/>
+        <location filename="../addTorrentDialog.ui" line="228"/>
         <source>High</source>
         <translation>Wysoki</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="204"/>
+        <location filename="../addTorrentDialog.ui" line="233"/>
         <source>Maximum</source>
         <translation>Maksymalny</translation>
+    </message>
+    <message>
+        <location filename="../addTorrentDialog.ui" line="116"/>
+        <source>Collapse all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addTorrentDialog.ui" line="123"/>
+        <source>Expand All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5275,17 +5285,17 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Tak</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="167"/>
+        <location filename="../torrentAddition.h" line="169"/>
         <source>Unable to decode torrent file:</source>
         <translation>Problem z odkodowaniem pliku torrent:</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="170"/>
+        <location filename="../torrentAddition.h" line="172"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Plik jest uszkodzony lub nie jest plikiem torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="295"/>
+        <location filename="../torrentAddition.h" line="297"/>
         <source>Choose save path</source>
         <translation>Wybierz katalog docelowy</translation>
     </message>
@@ -5295,32 +5305,32 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Nie</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="429"/>
+        <location filename="../torrentAddition.h" line="431"/>
         <source>Empty save path</source>
         <translation>Niepoprawny katalog docelowy</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="429"/>
+        <location filename="../torrentAddition.h" line="431"/>
         <source>Please enter a save path</source>
         <translation>Podaj katalog docelowy</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="435"/>
+        <location filename="../torrentAddition.h" line="437"/>
         <source>Save path creation error</source>
         <translation>Błąd tworzenia katalogu docelowego</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="435"/>
+        <location filename="../torrentAddition.h" line="437"/>
         <source>Could not create the save path</source>
         <translation>Nie można założyć katalogu docelowego</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="465"/>
+        <location filename="../torrentAddition.h" line="467"/>
         <source>Invalid file selection</source>
         <translation>Wybrano niepoprawny plik</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="465"/>
+        <location filename="../torrentAddition.h" line="467"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Musisz wybrać przynajmniej jeden plik z pliku torrent</translation>
     </message>
@@ -5340,7 +5350,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation>Postęp</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="328"/>
+        <location filename="../torrentAddition.h" line="330"/>
         <source>Priority</source>
         <translation>Priorytet</translation>
     </message>

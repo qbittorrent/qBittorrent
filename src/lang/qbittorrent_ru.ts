@@ -3224,17 +3224,17 @@ Changelog:
         <translation>Окно добавления torrent-а</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="54"/>
+        <location filename="../addTorrentDialog.ui" line="39"/>
         <source>Save path:</source>
         <translation>Путь сохранения:</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="81"/>
+        <location filename="../addTorrentDialog.ui" line="66"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="96"/>
+        <location filename="../addTorrentDialog.ui" line="81"/>
         <source>Torrent content:</source>
         <translation>Содержимое torrent-а:</translation>
     </message>
@@ -3254,22 +3254,22 @@ Changelog:
         <translation type="obsolete">Выбрано</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="116"/>
+        <location filename="../addTorrentDialog.ui" line="145"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Загрузить в правильном порядке (медленнее, но удобнее для предпросмотра)</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="123"/>
+        <location filename="../addTorrentDialog.ui" line="152"/>
         <source>Add to download list in paused state</source>
         <translation>Добавить в список закачек в приостановленном состоянии</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="160"/>
+        <location filename="../addTorrentDialog.ui" line="189"/>
         <source>Add</source>
         <translation>Добавить</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="167"/>
+        <location filename="../addTorrentDialog.ui" line="196"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
@@ -3289,24 +3289,34 @@ Changelog:
         <translation type="obsolete">Выбрать</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="189"/>
+        <location filename="../addTorrentDialog.ui" line="218"/>
         <source>Ignored</source>
         <translation>Игнорировано</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="194"/>
+        <location filename="../addTorrentDialog.ui" line="223"/>
         <source>Normal</source>
         <translation>Обычный</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="199"/>
+        <location filename="../addTorrentDialog.ui" line="228"/>
         <source>High</source>
         <translation>Высокий</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="204"/>
+        <location filename="../addTorrentDialog.ui" line="233"/>
         <source>Maximum</source>
         <translation>Максимальный</translation>
+    </message>
+    <message>
+        <location filename="../addTorrentDialog.ui" line="116"/>
+        <source>Collapse all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addTorrentDialog.ui" line="123"/>
+        <source>Expand All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5126,17 +5136,17 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Да</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="167"/>
+        <location filename="../torrentAddition.h" line="169"/>
         <source>Unable to decode torrent file:</source>
         <translation>Невозможно декодировать torrent файл:</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="170"/>
+        <location filename="../torrentAddition.h" line="172"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Этот файл либо поврежден, либо не torrent типа.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="295"/>
+        <location filename="../torrentAddition.h" line="297"/>
         <source>Choose save path</source>
         <translation>Выберите путь сохранения</translation>
     </message>
@@ -5146,32 +5156,32 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Нет</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="429"/>
+        <location filename="../torrentAddition.h" line="431"/>
         <source>Empty save path</source>
         <translation>Очистить путь сохранения</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="429"/>
+        <location filename="../torrentAddition.h" line="431"/>
         <source>Please enter a save path</source>
         <translation>Пожалуйста, введите путь сохранения</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="435"/>
+        <location filename="../torrentAddition.h" line="437"/>
         <source>Save path creation error</source>
         <translation>Ошибка создания пути сохранения</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="435"/>
+        <location filename="../torrentAddition.h" line="437"/>
         <source>Could not create the save path</source>
         <translation>Невозможно создать путь сохранения</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="465"/>
+        <location filename="../torrentAddition.h" line="467"/>
         <source>Invalid file selection</source>
         <translation>Неправильное выделение файлов</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="465"/>
+        <location filename="../torrentAddition.h" line="467"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Вы должны выбрать по меньшей мере один файл в torrentе</translation>
     </message>
@@ -5191,7 +5201,7 @@ However, those plugins were disabled.</source>
         <translation>Прогресс</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="328"/>
+        <location filename="../torrentAddition.h" line="330"/>
         <source>Priority</source>
         <translation>Приоритет</translation>
     </message>

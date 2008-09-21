@@ -3345,17 +3345,17 @@ Changelog:
         <translation>Διάλογος προσθήκης τορεντ</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="54"/>
+        <location filename="../addTorrentDialog.ui" line="39"/>
         <source>Save path:</source>
         <translation>Αποθήκευση σε:</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="81"/>
+        <location filename="../addTorrentDialog.ui" line="66"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="96"/>
+        <location filename="../addTorrentDialog.ui" line="81"/>
         <source>Torrent content:</source>
         <translation>Περιεχόμενο τορεντ:</translation>
     </message>
@@ -3375,22 +3375,22 @@ Changelog:
         <translation type="obsolete">Επιλεγμένο(α)</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="116"/>
+        <location filename="../addTorrentDialog.ui" line="145"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Κατέβασμα στη σωστή σειρά (πιο αργό αλλα καλό για προεπισκόπηση)</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="123"/>
+        <location filename="../addTorrentDialog.ui" line="152"/>
         <source>Add to download list in paused state</source>
         <translation>Προσθήκη στη λίστα κατεβάσματος σε κατάσταση παύσης</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="160"/>
+        <location filename="../addTorrentDialog.ui" line="189"/>
         <source>Add</source>
         <translation>Προσθήκη</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="167"/>
+        <location filename="../addTorrentDialog.ui" line="196"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
@@ -3410,24 +3410,34 @@ Changelog:
         <translation type="obsolete"> Επιλογή</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="189"/>
+        <location filename="../addTorrentDialog.ui" line="218"/>
         <source>Ignored</source>
         <translation>Αγνοήθηκε</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="194"/>
+        <location filename="../addTorrentDialog.ui" line="223"/>
         <source>Normal</source>
         <translation>Κανονικό</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="199"/>
+        <location filename="../addTorrentDialog.ui" line="228"/>
         <source>High</source>
         <translation>Υψηλό</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="204"/>
+        <location filename="../addTorrentDialog.ui" line="233"/>
         <source>Maximum</source>
         <translation>Μέγιστο</translation>
+    </message>
+    <message>
+        <location filename="../addTorrentDialog.ui" line="116"/>
+        <source>Collapse all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addTorrentDialog.ui" line="123"/>
+        <source>Expand All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5262,17 +5272,17 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Σωστό</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="167"/>
+        <location filename="../torrentAddition.h" line="169"/>
         <source>Unable to decode torrent file:</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο τορεντ:</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="170"/>
+        <location filename="../torrentAddition.h" line="172"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Το αρχείο είτε είναι κατεστραμμένο, ή δεν ειναι ενα τορεντ.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="295"/>
+        <location filename="../torrentAddition.h" line="297"/>
         <source>Choose save path</source>
         <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
     </message>
@@ -5282,32 +5292,32 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Λάθος</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="429"/>
+        <location filename="../torrentAddition.h" line="431"/>
         <source>Empty save path</source>
         <translation>Κενή διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="429"/>
+        <location filename="../torrentAddition.h" line="431"/>
         <source>Please enter a save path</source>
         <translation>Παρακαλώ εισάγετε μία διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="435"/>
+        <location filename="../torrentAddition.h" line="437"/>
         <source>Save path creation error</source>
         <translation>Σφάλμα δημιουργίας διαδρομής αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="435"/>
+        <location filename="../torrentAddition.h" line="437"/>
         <source>Could not create the save path</source>
         <translation>Δεν μπόρεσε να δημιουργηθεί η διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="465"/>
+        <location filename="../torrentAddition.h" line="467"/>
         <source>Invalid file selection</source>
         <translation>Άκυρη επιλογή αρχείου</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="465"/>
+        <location filename="../torrentAddition.h" line="467"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Πρέπει να επιλέξετε τουλάχιστο ένα αρχείο του τορεντ</translation>
     </message>
@@ -5327,7 +5337,7 @@ However, those plugins were disabled.</source>
         <translation>Πρόοδος</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="328"/>
+        <location filename="../torrentAddition.h" line="330"/>
         <source>Priority</source>
         <translation>Προτεραιότητα</translation>
     </message>

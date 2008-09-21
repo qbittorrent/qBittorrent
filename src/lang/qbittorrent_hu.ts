@@ -2412,59 +2412,69 @@ Changelog:
         <translation>Torrent hozzáadása</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="54"/>
+        <location filename="../addTorrentDialog.ui" line="39"/>
         <source>Save path:</source>
         <translation>Mentés helye:</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="81"/>
+        <location filename="../addTorrentDialog.ui" line="66"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="96"/>
+        <location filename="../addTorrentDialog.ui" line="81"/>
         <source>Torrent content:</source>
         <translation>Torrent tartalma:</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="116"/>
+        <location filename="../addTorrentDialog.ui" line="145"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Letöltés sorrendben. Előnézethez kiváló, de lassabb a letöltés</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="123"/>
+        <location filename="../addTorrentDialog.ui" line="152"/>
         <source>Add to download list in paused state</source>
         <translation>Letöltés nélkül add a listához</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="160"/>
+        <location filename="../addTorrentDialog.ui" line="189"/>
         <source>Add</source>
         <translation>Mehet</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="167"/>
+        <location filename="../addTorrentDialog.ui" line="196"/>
         <source>Cancel</source>
         <translation>Mégse</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="189"/>
+        <location filename="../addTorrentDialog.ui" line="218"/>
         <source>Ignored</source>
         <translation>Mellőzve</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="194"/>
+        <location filename="../addTorrentDialog.ui" line="223"/>
         <source>Normal</source>
         <translation>Átlagos</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="199"/>
+        <location filename="../addTorrentDialog.ui" line="228"/>
         <source>High</source>
         <translation>Magas</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="204"/>
+        <location filename="../addTorrentDialog.ui" line="233"/>
         <source>Maximum</source>
         <translation>Maximális</translation>
+    </message>
+    <message>
+        <location filename="../addTorrentDialog.ui" line="116"/>
+        <source>Collapse all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addTorrentDialog.ui" line="123"/>
+        <source>Expand All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3972,47 +3982,47 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentAddition.h" line="167"/>
+        <location filename="../torrentAddition.h" line="169"/>
         <source>Unable to decode torrent file:</source>
         <translation>Hasznavehetetlen torrent fájl:</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="170"/>
+        <location filename="../torrentAddition.h" line="172"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Ez a fájl sérült, vagy nem is torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="295"/>
+        <location filename="../torrentAddition.h" line="297"/>
         <source>Choose save path</source>
         <translation>Mentés helye</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="429"/>
+        <location filename="../torrentAddition.h" line="431"/>
         <source>Empty save path</source>
         <translation>Mentés helye hiányos</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="429"/>
+        <location filename="../torrentAddition.h" line="431"/>
         <source>Please enter a save path</source>
         <translation>Kérlek add meg a mentés helyét</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="435"/>
+        <location filename="../torrentAddition.h" line="437"/>
         <source>Save path creation error</source>
         <translation>Járhatatlan ösvény</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="435"/>
+        <location filename="../torrentAddition.h" line="437"/>
         <source>Could not create the save path</source>
         <translation>Nem sikerült létrehozni a letöltési könyvtárat. (Írásvédett?)</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="465"/>
+        <location filename="../torrentAddition.h" line="467"/>
         <source>Invalid file selection</source>
         <translation>Választás hiánya</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="465"/>
+        <location filename="../torrentAddition.h" line="467"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Legalább egy fájlt ki kell választanod</translation>
     </message>
@@ -4032,7 +4042,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation>Folyamat</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="328"/>
+        <location filename="../torrentAddition.h" line="330"/>
         <source>Priority</source>
         <translation>Elsőbbség</translation>
     </message>

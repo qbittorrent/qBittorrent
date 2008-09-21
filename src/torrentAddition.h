@@ -78,6 +78,8 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       connect(actionNormal, SIGNAL(triggered()), this, SLOT(normalSelection()));
       connect(actionHigh, SIGNAL(triggered()), this, SLOT(highSelection()));
       connect(actionMaximum, SIGNAL(triggered()), this, SLOT(maximumSelection()));
+      connect(collapseAllButton, SIGNAL(clicked()), torrentContentList, SLOT(collapseAll()));
+      connect(expandAllButton, SIGNAL(clicked()), torrentContentList, SLOT(expandAll()));
       torrentContentList->header()->resizeSection(0, 200);
       //torrentContentList->header()->setResizeMode(0, QHeaderView::Stretch);
       QString home = QDir::homePath();
