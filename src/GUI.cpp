@@ -1509,7 +1509,7 @@ void GUI::createTrayIcon() {
 // Display Program Options
 void GUI::on_actionOptions_triggered() {
   options = new options_imp(this);
-  connect(options, SIGNAL(status_changed(QString, bool)), this, SLOT(OptionsSaved(QString, bool)));
+  connect(options, SIGNAL(status_changed(bool)), this, SLOT(OptionsSaved(bool)));
   options->show();
 }
 
