@@ -359,19 +359,26 @@ class RssStream : public QObject{
     }
 
     QString getAlias() const{
+      qDebug("getAlias() returned Alias: %s", (const char*)alias.toUtf8());
       return alias;
     }
 
     void setAlias(QString _alias){
+      qDebug("setAlias() to %s", (const char*)_alias.toUtf8());
       alias = _alias;
     }
 
     // Return the alias if the stream has one, the url if it has no alias
     QString getAliasOrUrl() const{
-      if(!alias.isEmpty())
+      if(!alias.isEmpty()) {
+        qDebug("getAliasOrUrl() returned alias: %s", (const char*)alias.toUtf8());
         return alias;
-      if(!title.isEmpty())
+      }
+      if(!title.isEmpty()) {
+        qDebug("getAliasOrUrl() returned title: %s", (const char*)title.toUtf8());
         return title;
+      }
+      qDebug("getAliasOrUrl() returned url: %s", (const char*)url.toUtf8());
       return url;
     }
 
@@ -676,6 +683,8 @@ class RssManager : public QObject{
     }
 
     ~RssManager(){
+      qDebug("Deleting RSSManager");
+      saveStreamList();
       qDeleteAll(streams);
       delete downloader;
     }
