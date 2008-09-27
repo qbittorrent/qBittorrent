@@ -41,7 +41,7 @@ var dynamicTable = new Class	({
 		}, options);
 		this.table = $(table);
 		this.rows = new Object();
-		this.cur = false;
+		this.cur = new Array();
 	},
 
 	altRow: function()
@@ -79,15 +79,41 @@ var dynamicTable = new Class	({
 			}.bind(this));
 		}
 		tr.addEvent('click', function(e){
-			var temptr = this.rows[this.cur];
-			if(temptr){
-				temptr.removeClass(this.options.selectCls);
+			if(e.control) {
+				found = false;
+				if(this.cur.contains(id)) {
+				  // remove it
+					this.cur.erase(id);
+					// Remove selected style
+					temptr = this.rows[id];
+			    if(temptr){
+				    temptr.removeClass(this.options.selectCls);
+			    }
+				} else {
+					this.cur[this.cur.length] = id;
+					// Add selected style
+					temptr = this.rows[id];
+					if(temptr){
+						temptr.addClass(this.options.selectCls);
+					}
+				}
+			} else {
+				//TODO: handle alt key
+				// Control key is not pressed
+				// Remove selected style from previous ones
+				for(i=0; i<this.cur.length; i++) {
+					var temptr = this.rows[this.cur[i]];
+					if(temptr){
+						temptr.removeClass(this.options.selectCls);
+					}
+				}
+				// Add selected style to new one
+				temptr = this.rows[id];
+				if(temptr){
+					temptr.addClass(this.options.selectCls);
+				}
+				this.cur[0] = id;
 			}
-			temptr = this.rows[id];
-			if(temptr){
-				temptr.addClass(this.options.selectCls);
-			}
-			this.cur = id;
 		}.bind(this));
 
 		tr.injectInside(this.table);
@@ -108,9 +134,9 @@ var dynamicTable = new Class	({
 	},
 
 	removeRow: function(id){
-		if(this.cur === id)
+		if(this.cur.contains(id))
 		{
-			this.cur = false;
+			this.cur.erase(id);
 		}
 		var tr = this.rows[id];
 		if($defined(tr))
@@ -122,7 +148,7 @@ var dynamicTable = new Class	({
 		return false;
 	},
 
-	selectedId: function(){
+	selectedIds: function(){
 		return this.cur;
 	},
 	

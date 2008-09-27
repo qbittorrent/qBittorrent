@@ -55,17 +55,22 @@ function attachMochaLinkEvents(){
 
 	addClickEvent('delete', function(e){
 		new Event(e).stop();
-		var h = myTable.selectedId();
-		if(h && confirm('Are you sure you want to delete the selected item in download list?'))
-			new Request({url: '/command/delete', method: 'post', data: {hash: h}}).send();
+		var h = myTable.selectedIds();
+		if(h.length && confirm('Are you sure you want to delete the selected item in download list?')) {
+			h.each(function(item, index){
+				new Request({url: '/command/delete', method: 'post', data: {hash: item}}).send();
+			});
+		}
 	});
 
 	['pause','resume'].each(function(item) {
 		addClickEvent(item, function(e){
 			new Event(e).stop();
-			var h = myTable.selectedId();
-			if(h){
-				new Request({url: '/command/'+item, method: 'post', data: {hash: h}}).send();
+			var h = myTable.selectedIds();
+			if(h.length){
+				h.each(function(item, index){
+				  new Request({url: '/command/'+item, method: 'post', data: {hash: item}}).send();
+				});
 			}
 		});
 		
