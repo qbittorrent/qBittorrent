@@ -68,8 +68,8 @@ function attachMochaLinkEvents(){
 			new Event(e).stop();
 			var h = myTable.selectedIds();
 			if(h.length){
-				h.each(function(item, index){
-				  new Request({url: '/command/'+item, method: 'post', data: {hash: item}}).send();
+				h.each(function(hash, index){
+				  new Request({url: '/command/'+item, method: 'post', data: {hash: hash}}).send();
 				});
 			}
 		});
