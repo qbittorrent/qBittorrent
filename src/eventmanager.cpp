@@ -68,7 +68,61 @@ bool EventManager::isUpdated(ulong r) const
 void EventManager::addedTorrent(QTorrentHandle& h)
 {
 	QVariantMap event;
+	QString hash = h.hash();
 	event["type"] = QVariant("add");
+	event["hash"] = QVariant(hash);
+	event["name"] = QVariant(h.name());
+	event["seed"] = QVariant(h.is_seed());
+	if(h.is_paused()) {
+		if(BTSession->isQueueingEnabled() && (BTSession->isDownloadQueued(hash) || BTSession->isUploadQueued(hash)))
+			event["state"] = QVariant("queued");
+		else
+			event["state"] = QVariant("paused");
+	} else {
+		switch(h.state())
+		{
+			case torrent_status::finished:
+			case torrent_status::seeding:
+				event["state"] = QVariant("seeding");
+				break;
+			case torrent_status::checking_files:
+			case torrent_status::queued_for_checking:
+				event["state"] = QVariant("checking");
+				break;
+			case torrent_status::connecting_to_tracker:
+				if(h.download_payload_rate() > 0)
+					event["state"] = QVariant("downloading");
+				else
+					event["state"] = QVariant("connecting");
+				break;
+			case torrent_status::downloading:
+			case torrent_status::downloading_metadata:
+				if(h.download_payload_rate() > 0)
+					event["state"] = QVariant("downloading");
+				else
+					event["state"] = QVariant("stalled");
+				break;
+			default:
+				qDebug("No status, should not happen!!! status is %d", h.state());
+				event["state"] = QVariant();
+		}
+	}
+	update(event);
+}
+
+void EventManager::torrentSwitchedtoUnfinished(QString hash) {
+	QVariantMap event;
+	QTorrentHandle h = BTSession->getTorrentHandle(hash);
+	event["type"] = QVariant("unfinish");
+	event["hash"] = QVariant(h.hash());
+	event["name"] = QVariant(h.name());
+	update(event);
+}
+
+void EventManager::torrentSwitchedtoFinished(QString hash) {
+	QVariantMap event;
+	QTorrentHandle h = BTSession->getTorrentHandle(hash);
+	event["type"] = QVariant("finish");
 	event["hash"] = QVariant(h.hash());
 	event["name"] = QVariant(h.name());
 	update(event);
@@ -77,8 +131,10 @@ void EventManager::addedTorrent(QTorrentHandle& h)
 void EventManager::deletedTorrent(QString hash)
 {
 	QVariantMap event;
+	QTorrentHandle h = BTSession->getTorrentHandle(hash);
 	event["type"] = QVariant("delete");
 	event["hash"] = QVariant(hash);
+	event["seed"] = QVariant(h.is_seed());
 	QLinkedList<QPair<ulong, QVariantMap> >::iterator i = events.end();
 	bool loop = true;
 	while (loop && i != events.begin()) {
@@ -130,6 +186,7 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
 					v = QVariant("stalled");
 				break;
 			default:
+			  qDebug("No status, should not happen!!! status is %d", h.state());
 				v = QVariant();
 		}
 	}
@@ -149,8 +206,16 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
 		event["dlspeed"] = v;
 	
 	v = QVariant(h.upload_payload_rate());
-	if(modify(hash, "upspeed", v))
+	if(modify(hash, "upspeed", v)) {
 		event["upspeed"] = v;
+		if(h.is_seed())
+		  qDebug("upspeed changed for seed");
+	} else {
+		if(h.is_seed())
+		  qDebug("upspeed did not change for seed");
+	}
+	v = QVariant(h.is_seed());
+	event["seed"] = v;
 	
 	if(event.size() > 0)
 	{

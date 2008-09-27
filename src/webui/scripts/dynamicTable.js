@@ -60,7 +60,10 @@ var dynamicTable = new Class	({
 	},
 
 	insertRow: function(id, row){
-		this.removeRow(id);
+		var tr = this.rows[id];
+		if($defined(tr))
+		  return;
+		//this.removeRow(id);
 		var tr = new Element('tr');
 		this.rows[id] = tr;
 		for(var i=0; i<row.length; i++)

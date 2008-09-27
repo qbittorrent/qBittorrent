@@ -6,10 +6,13 @@
 	<link rel="stylesheet" href="css/dynamicTable.css" type="text/css" />
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
 	<link rel="stylesheet" href="css/mocha.css" type="text/css" />
+	<link rel="stylesheet" href="css/mootabs1.2.css" type="text/css" />
 	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
 	<!--[if IE]>
 		<script type="text/javascript" src="scripts/excanvas-compressed.js"></script>
 	<![endif]-->
+	<script type="text/javascript" src="scripts/mootabs1.2.js" charset="utf-8"></script>
 	<script type="text/javascript" src="scripts/mocha-events.js" charset="utf-8"></script>
 	<script type="text/javascript" src="scripts/mocha.js" charset="utf-8"></script>
 	<script type="text/javascript" src="scripts/dynamicTable.js" charset="utf-8"></script>
@@ -61,27 +64,52 @@
 				<a id="pauseAllButton"><img class="mochaToolButton" title="Pause All" src="images/skin/pause_all.png"/></a>
 			</div>
 		</div>
-		<div id="mochaPageWrapper">
-			<div id="mochaPage">
-				<div id="mochaScreens">
-					<div class="screen">
-						<table class="torrentTable" cellpadding="0" cellspacing="0">
-							<thead>
-								<tr>
-									<th></th>
-									<th>Name</th>
-									<th>Size</th>
-									<th>Progress</th>
-									<th>DL Speed</th>
-									<th>UP Speed</th>
-								</tr>
-							</thead>
-							<tbody id="myTable"></tbody>
-						</table>
+								
+		<div id="myTabs">
+			<ul class="mootabs_title">
+				<li title="Tab1">Downloads</li>
+				<li title="Tab2">Uploads</li>
+			</ul>
+						<div id="mochaPageWrapper">
+					<div id="mochaPage">
+						<div id="mochaScreens">
+											<div class="screen">
+			<div id="Tab1" class="mootabs_panel">
+								<table class="torrentTable" cellpadding="0" cellspacing="0">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Name</th>
+											<th>Size</th>
+											<th>Progress</th>
+											<th>DL Speed</th>
+											<th>UP Speed</th>
+										</tr>
+									</thead>
+									<tbody id="myTable"></tbody>
+								</table>
+			</div><!-- tab1 -->
+			<div id="Tab2" class="mootabs_panel">
+								<table class="torrentTable" cellpadding="0" cellspacing="0">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Name</th>
+											<th>Size</th>
+											<th>Progress</th>
+											<th>DL Speed</th>
+											<th>UP Speed</th>
+										</tr>
+									</thead>
+									<tbody id="myTableUP"></tbody>
+								</table>
+			</div>
+				          </div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+		</div><!-- tabs -->
+
 	</div>
 </body>
 </html>

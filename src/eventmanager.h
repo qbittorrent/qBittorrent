@@ -53,6 +53,8 @@ class EventManager : public QObject
 		void addedTorrent(QTorrentHandle& h);
 		void deletedTorrent(QString hash);
 		void modifiedTorrent(QTorrentHandle h);
+		void torrentSwitchedtoUnfinished(QString hash);
+		void torrentSwitchedtoFinished(QString hash);
 };
 
 #endif

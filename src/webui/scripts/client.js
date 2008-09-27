@@ -22,7 +22,14 @@
  */
 
 window.addEvent('domready', function(){
+  // Tabs
+  myTabs1 = new mootabs('myTabs', {
+      width: '100%',
+      height: '100%'
+  });
+  // Download list
 	myTable = new dynamicTable('myTable', {overCls: 'over', selectCls: 'selected', altCls: 'alt'});
+  myTableUP = new dynamicTable('myTableUP', {overCls: 'over', selectCls: 'selected', altCls: 'alt'});
 	var r=0;
 	var waiting=false;
 	var round1 = function(val){return Math.round(val*10)/10};
@@ -53,8 +60,35 @@ window.addEvent('domready', function(){
 							case 'add':
 								var row = new Array();
 								row.length = 6;
+                switch (event.state)
+                {
+                  case 'paused':
+                      row[0] = '<img src="images/skin/paused.png"/>';
+                  break;
+                  case 'seeding':
+                      row[0] = '<img src="images/skin/seeding.png"/>';
+                  break;
+                  case 'checking':
+                      row[0] = '<img src="images/time.png"/>';
+                  break;
+                  case 'downloading':
+                      row[0] = '<img src="images/skin/downloading.png"/>';
+                  break;
+                  case 'connecting':
+                      row[0] = '<img src="images/skin/connecting.png"/>';
+                  break;
+                  case 'stalled':
+                      row[0] = '<img src="images/skin/stalled.png"/>';
+                  break;
+                  case 'queued':
+                      row[0] = '<img src="images/skin/queued.png"/>';
+                  break;
+                }
 								row[1] = event.name;
-								myTable.insertRow(event.hash, row);
+                if(event.seed)
+                  myTableUP.insertRow(event.hash, row);
+                else
+								  myTable.insertRow(event.hash, row);
 								break;
 							case 'modify':
 								var row = new Array();
@@ -96,11 +130,31 @@ window.addEvent('domready', function(){
 								row[4] = fspeed(event.dlspeed);
 								if($defined(event.upspeed))
 								row[5] = fspeed(event.upspeed);
-								myTable.updateRow(event.hash, row);
+                if(event.seed)
+                  myTableUP.updateRow(event.hash, row);
+                else
+								  myTable.updateRow(event.hash, row);
 								break;
 							case 'delete':
-								myTable.removeRow(event.hash);
+                if(event.seed)
+                  myTableUP.removeRow(event.hash);
+                else
+								  myTable.removeRow(event.hash);
 								break;
+              case 'finish':
+                myTable.removeRow(event.hash);
+                var row = new Array();
+								row.length = 6;
+								row[1] = event.name;
+                myTableUP.insertRow(event.hash, row);
+                break;
+              case 'unfinish':
+                myTableUP.removeRow(event.hash);
+                var row = new Array();
+								row.length = 6;
+								row[1] = event.name;
+                myTable.insertRow(event.hash, row);
+                break;
 							}
 						});
 					}

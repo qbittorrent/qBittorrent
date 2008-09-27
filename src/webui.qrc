@@ -7,12 +7,15 @@
   <file>webui/css/mocha.css</file>
   <file>webui/css/dynamicTable.css</file>
   <file>webui/css/style.css</file>
+  <file>webui/css/mootabs1.2.css</file>
   <file>webui/scripts/excanvas-compressed.js</file>
   <file>webui/scripts/mocha-events.js</file>
   <file>webui/scripts/mocha.js</file>
   <file>webui/scripts/mootools-1.2-core-yc.js</file>
+  <file>webui/scripts/mootools-1.2-more.js</file>
   <file>webui/scripts/dynamicTable.js</file>
   <file>webui/scripts/client.js</file>
   <file>webui/scripts/download.js</file>
+  <file>webui/scripts/mootabs1.2.js</file>
 </qresource>
 </RCC>

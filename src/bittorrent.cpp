@@ -721,6 +721,7 @@ void bittorrent::setUnfinishedTorrent(QString hash) {
       updateDownloadQueue();
     }
   }
+  emit torrentSwitchedtoUnfinished(hash);
 }
 
 // Add the given hash to the list of finished torrents
@@ -758,6 +759,7 @@ void bittorrent::setFinishedTorrent(QString hash) {
   }
   // Save fast resume data
   saveFastResumeAndRatioData(hash);
+  emit torrentSwitchedtoFinished(hash);
 }
 
 // Pause a running torrent

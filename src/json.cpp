@@ -34,6 +34,7 @@ QString toJson(QVariant v)
 		case QVariant::LongLong:
 		case QVariant::UInt:
 		case QVariant::ULongLong:
+			qDebug("JSON: %s", (const char*)v.value<QString>().toUtf8());
 			return v.value<QString>();
 		case QVariant::String:
 		{

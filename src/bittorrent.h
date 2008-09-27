@@ -224,6 +224,8 @@ class bittorrent : public QObject {
     void updateUnfinishedTorrentNumber();
     void forceUnfinishedListUpdate();
     void forceFinishedListUpdate();
+    void torrentSwitchedtoFinished(QString hash);
+    void torrentSwitchedtoUnfinished(QString hash);
 };
 
 #endif
