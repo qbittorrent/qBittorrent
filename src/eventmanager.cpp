@@ -101,7 +101,7 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
 	QVariant v;
 	
 	if(h.is_paused()) {
-		if(BTSession->isDownloadQueued(hash) || BTSession->isUploadQueued(hash))
+		if(BTSession->isQueueingEnabled() && (BTSession->isDownloadQueued(hash) || BTSession->isUploadQueued(hash)))
 			v = QVariant("queued");
 		else
 			v = QVariant("paused");
