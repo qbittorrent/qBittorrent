@@ -37,7 +37,8 @@ var dynamicTable = new Class	({
 		this.setOptions({
 			overCls: false,
 			selectCls: false,
-			altCls: false
+			altCls: false,
+			type: 'DL'
 		}, options);
 		this.table = $(table);
 		this.rows = new Object();

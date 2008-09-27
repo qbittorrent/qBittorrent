@@ -28,8 +28,8 @@ window.addEvent('domready', function(){
       height: '100%'
   });
   // Download list
-	myTable = new dynamicTable('myTable', {overCls: 'over', selectCls: 'selected', altCls: 'alt'});
-  myTableUP = new dynamicTable('myTableUP', {overCls: 'over', selectCls: 'selected', altCls: 'alt'});
+	myTable = new dynamicTable('myTable', {overCls: 'over', selectCls: 'selected', altCls: 'alt', type: 'DL'});
+  myTableUP = new dynamicTable('myTableUP', {overCls: 'over', selectCls: 'selected', altCls: 'alt', type: 'UP'});
 	var r=0;
 	var waiting=false;
 	var round1 = function(val){return Math.round(val*10)/10};
@@ -59,7 +59,10 @@ window.addEvent('domready', function(){
 							switch(event.type){
 							case 'add':
 								var row = new Array();
-								row.length = 6;
+                if(event.seed)
+                  row.length = 4;
+                else
+                  row.length = 6;
                 switch (event.state)
                 {
                   case 'paused':
@@ -122,14 +125,19 @@ window.addEvent('domready', function(){
 								if($defined(event.size)){
 									row[2] = fsize(event.size);
 								}
-								if($defined(event.progress))
-								{
-									row[3] = round1(event.progress*100) + ' %';
-								}
-								if($defined(event.dlspeed))
-								row[4] = fspeed(event.dlspeed);
-								if($defined(event.upspeed))
-								row[5] = fspeed(event.upspeed);
+                if(!event.seed) {
+                  if($defined(event.progress))
+                  {
+                    row[3] = round1(event.progress*100) + ' %';
+                  }
+                  if($defined(event.dlspeed))
+                  row[4] = fspeed(event.dlspeed);
+                  if($defined(event.upspeed))
+                    row[5] = fspeed(event.upspeed);
+                } else {
+                  if($defined(event.upspeed))
+                  row[3] = fspeed(event.upspeed);
+                }
                 if(event.seed)
                   myTableUP.updateRow(event.hash, row);
                 else
@@ -144,15 +152,69 @@ window.addEvent('domready', function(){
               case 'finish':
                 myTable.removeRow(event.hash);
                 var row = new Array();
-								row.length = 6;
+								row.length = 4;
+                switch (event.state)
+                {
+                  case 'paused':
+                      row[0] = '<img src="images/skin/paused.png"/>';
+                  break;
+                  case 'seeding':
+                      row[0] = '<img src="images/skin/seeding.png"/>';
+                  break;
+                  case 'checking':
+                      row[0] = '<img src="images/time.png"/>';
+                  break;
+                  case 'downloading':
+                      row[0] = '<img src="images/skin/downloading.png"/>';
+                  break;
+                  case 'connecting':
+                      row[0] = '<img src="images/skin/connecting.png"/>';
+                  break;
+                  case 'stalled':
+                      row[0] = '<img src="images/skin/stalled.png"/>';
+                  break;
+                  case 'queued':
+                      row[0] = '<img src="images/skin/queued.png"/>';
+                  break;
+                }
 								row[1] = event.name;
+                row[2] = fsize(event.size);
+                row[3] = fspeed(event.upspeed);
                 myTableUP.insertRow(event.hash, row);
                 break;
               case 'unfinish':
                 myTableUP.removeRow(event.hash);
                 var row = new Array();
 								row.length = 6;
+                switch (event.state)
+                {
+                  case 'paused':
+                      row[0] = '<img src="images/skin/paused.png"/>';
+                  break;
+                  case 'seeding':
+                      row[0] = '<img src="images/skin/seeding.png"/>';
+                  break;
+                  case 'checking':
+                      row[0] = '<img src="images/time.png"/>';
+                  break;
+                  case 'downloading':
+                      row[0] = '<img src="images/skin/downloading.png"/>';
+                  break;
+                  case 'connecting':
+                      row[0] = '<img src="images/skin/connecting.png"/>';
+                  break;
+                  case 'stalled':
+                      row[0] = '<img src="images/skin/stalled.png"/>';
+                  break;
+                  case 'queued':
+                      row[0] = '<img src="images/skin/queued.png"/>';
+                  break;
+                }
 								row[1] = event.name;
+                row[2] = fsize(event.size);
+                row[3] = round1(event.progress*100) + ' %';
+                row[4] = fspeed(event.dlspeed);
+                row[5] = fspeed(event.upspeed);
                 myTable.insertRow(event.hash, row);
                 break;
 							}

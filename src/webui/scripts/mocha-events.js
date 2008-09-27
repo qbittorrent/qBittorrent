@@ -96,7 +96,7 @@ function attachMochaLinkEvents(){
 			loadMethod: 'iframe',
 			contentURL: 'http://bugs.qbittorrent.org/',
 			width: 650,
-			height: 400,
+			height: 400
 		});
 	});
 	
@@ -108,7 +108,7 @@ function attachMochaLinkEvents(){
 			loadMethod: 'iframe',
 			contentURL: 'http://www.qbittorrent.org/',
 			width: 650,
-			height: 400,
+			height: 400
 		});
 	});
 	
@@ -120,7 +120,7 @@ function attachMochaLinkEvents(){
 			loadMethod: 'iframe',
 			contentURL: 'http://wiki.qbittorrent.org/',
 			width: 650,
-			height: 400,
+			height: 400
 		});
 	});
 	
@@ -132,7 +132,7 @@ function attachMochaLinkEvents(){
 			loadMethod: 'iframe',
 			contentURL: 'about.html',
 			width: 650,
-			height: 400,
+			height: 400
 		});
 	});
 	
