@@ -102,6 +102,7 @@
   <file>Icons/skin/seeding.png</file>
   <file>Icons/skin/settings.png</file>
   <file>Icons/skin/stalled.png</file>
+  <file>Icons/skin/tabs.gif</file>
   <file>Icons/skin/url.png</file>
 </qresource>
 </RCC>

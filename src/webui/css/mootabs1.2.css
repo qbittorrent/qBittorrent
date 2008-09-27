@@ -1,24 +1,51 @@
 
+.toolbarTabs {	
+	padding: 0 5px 2px 2px;
+	background: url(../images/skin/tabs.gif) repeat-x;
+	background-position: left -70px;
+	overflow: visible;
+}
+
 .mootabs_title {
-	list-style-image: none;
-	list-style-type: none;
-	margin: 0px;
-	padding: 0px;
-	height: 24px;
+  padding-top: 1px;
+	list-style:	none;
+	margin: 0;
+	padding: 0;
+	line-height: 16px;
+	font-size: 11px;
 }
 
 .mootabs_title li {
+	display: block;
 	float: left;
-	background-color: #ddd;
-	padding: 2px 8px 2px 8px;
-	margin-right: 2px;
-	cursor: pointer;
-	height: 24px;
+	margin:	0 0 5px 0;
+	cursor: pointer;	
+	background: url(../images/skin/tabs.gif) repeat-x;
+	background-position: left -35px;
 	
 }
 
 .mootabs_title li.active {
-	background-color: #f1f1f1;
+	background: url(../images/skin/tabs.gif) repeat-x;
+	background-position: left 0;
+}
+
+.mootabs_title li a {
+	display: block;
+	margin-left: 8px;
+	padding: 6px 16px 5px 10px;
+	text-align: center;
+	font-weight: normal;
+	color: #141414;
+	background: url(../images/skin/tabs.gif) repeat-x;
+	background-position: right -35px;	
+}
+
+.mootabs_title li.active a {
+	color: #141414;
+	font-weight: bold;	
+	background: url(../images/skin/tabs.gif) repeat-x;
+	background-position: right 0;
 }
 
 .mootabs_panel {
