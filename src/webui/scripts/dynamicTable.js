@@ -80,7 +80,7 @@ var dynamicTable = new Class	({
 		}
 		tr.addEvent('click', function(e){
 			if(e.control) {
-				found = false;
+				// CTRL key was pressed
 				if(this.cur.contains(id)) {
 				  // remove it
 					this.cur.erase(id);
@@ -98,21 +98,36 @@ var dynamicTable = new Class	({
 					}
 				}
 			} else {
-				//TODO: handle alt key
-				// Control key is not pressed
-				// Remove selected style from previous ones
-				for(i=0; i<this.cur.length; i++) {
-					var temptr = this.rows[this.cur[i]];
-					if(temptr){
-						temptr.removeClass(this.options.selectCls);
+				if(e.shift && this.cur.length == 1) {
+					// Shift key was pressed
+					ids = this.getRowIds();
+					beginIndex = ids.indexOf(this.cur[0]);
+					endIndex = ids.indexOf(id);
+					for(i=beginIndex+1; i<(endIndex+1); i++) {
+						curID = ids[i];
+						this.cur[this.cur.length] = curID;
+						// Add selected style
+						temptr = this.rows[curID];
+						if(temptr){
+							temptr.addClass(this.options.selectCls);
+						}
 					}
+				} else {
+					// Simple selection
+					// Remove selected style from previous ones
+					for(i=0; i<this.cur.length; i++) {
+						var temptr = this.rows[this.cur[i]];
+						if(temptr){
+							temptr.removeClass(this.options.selectCls);
+						}
+					}
+					// Add selected style to new one
+					temptr = this.rows[id];
+					if(temptr){
+						temptr.addClass(this.options.selectCls);
+					}
+					this.cur[0] = id;
 				}
-				// Add selected style to new one
-				temptr = this.rows[id];
-				if(temptr){
-					temptr.addClass(this.options.selectCls);
-				}
-				this.cur[0] = id;
 			}
 		}.bind(this));
 
