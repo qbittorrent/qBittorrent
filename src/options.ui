@@ -778,408 +778,157 @@
              </layout>
             </widget>
            </item>
-           <item>
-            <widget class="QGroupBox" name="bandwidthBox" >
-             <property name="title" >
-              <string>Global bandwidth limiting</string>
-             </property>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="bandwidthBox" >
+         <property name="title" >
+          <string>Global bandwidth limiting</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <layout class="QVBoxLayout" >
+              <item>
+               <widget class="QCheckBox" name="checkUploadLimit" >
+                <property name="minimumSize" >
+                 <size>
+                  <width>0</width>
+                  <height>45</height>
+                 </size>
+                </property>
+                <property name="text" >
+                 <string>Upload:</string>
+                </property>
+                <property name="checked" >
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkDownloadLimit" >
+                <property name="minimumSize" >
+                 <size>
+                  <width>0</width>
+                  <height>37</height>
+                 </size>
+                </property>
+                <property name="text" >
+                 <string>Download:</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
              <layout class="QVBoxLayout" >
               <item>
                <layout class="QHBoxLayout" >
                 <item>
-                 <layout class="QVBoxLayout" >
-                  <item>
-                   <widget class="QCheckBox" name="checkUploadLimit" >
-                    <property name="minimumSize" >
-                     <size>
-                      <width>0</width>
-                      <height>45</height>
-                     </size>
-                    </property>
-                    <property name="text" >
-                     <string>Upload:</string>
-                    </property>
-                    <property name="checked" >
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QCheckBox" name="checkDownloadLimit" >
-                    <property name="minimumSize" >
-                     <size>
-                      <width>0</width>
-                      <height>37</height>
-                     </size>
-                    </property>
-                    <property name="text" >
-                     <string>Download:</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
+                 <widget class="QSpinBox" name="spinUploadLimit" >
+                  <property name="enabled" >
+                   <bool>true</bool>
+                  </property>
+                  <property name="minimumSize" >
+                   <size>
+                    <width>0</width>
+                    <height>27</height>
+                   </size>
+                  </property>
+                  <property name="suffix" >
+                   <string/>
+                  </property>
+                  <property name="minimum" >
+                   <number>1</number>
+                  </property>
+                  <property name="maximum" >
+                   <number>1000000</number>
+                  </property>
+                  <property name="value" >
+                   <number>50</number>
+                  </property>
+                 </widget>
                 </item>
                 <item>
-                 <layout class="QVBoxLayout" >
-                  <item>
-                   <layout class="QHBoxLayout" >
-                    <item>
-                     <widget class="QSpinBox" name="spinUploadLimit" >
-                      <property name="enabled" >
-                       <bool>true</bool>
-                      </property>
-                      <property name="minimumSize" >
-                       <size>
-                        <width>0</width>
-                        <height>27</height>
-                       </size>
-                      </property>
-                      <property name="suffix" >
-                       <string/>
-                      </property>
-                      <property name="minimum" >
-                       <number>1</number>
-                      </property>
-                      <property name="maximum" >
-                       <number>1000000</number>
-                      </property>
-                      <property name="value" >
-                       <number>50</number>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="label_10" >
-                      <property name="text" >
-                       <string>KiB/s</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <layout class="QHBoxLayout" >
-                    <item>
-                     <widget class="QSpinBox" name="spinDownloadLimit" >
-                      <property name="enabled" >
-                       <bool>false</bool>
-                      </property>
-                      <property name="minimumSize" >
-                       <size>
-                        <width>0</width>
-                        <height>27</height>
-                       </size>
-                      </property>
-                      <property name="suffix" >
-                       <string/>
-                      </property>
-                      <property name="minimum" >
-                       <number>1</number>
-                      </property>
-                      <property name="maximum" >
-                       <number>1000000</number>
-                      </property>
-                      <property name="value" >
-                       <number>100</number>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="label_13" >
-                      <property name="text" >
-                       <string>KiB/s</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                 </layout>
+                 <widget class="QLabel" name="label_10" >
+                  <property name="text" >
+                   <string>KiB/s</string>
+                  </property>
+                 </widget>
                 </item>
                </layout>
-              </item>
-             </layout>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QGroupBox" name="groupProxy" >
-           <property name="enabled" >
-            <bool>true</bool>
-           </property>
-           <property name="title" >
-            <string>Proxy Settings</string>
-           </property>
-           <layout class="QVBoxLayout" >
-            <item>
-             <layout class="QHBoxLayout" >
-              <item>
-               <widget class="QLabel" name="ProxyType_lbl" >
-                <property name="text" >
-                 <string>Type:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="comboProxyType" >
-                <item>
-                 <property name="text" >
-                  <string>(None)</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text" >
-                  <string>HTTP</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text" >
-                  <string>SOCKS5</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="lblProxyIP" >
-                <property name="enabled" >
-                 <bool>false</bool>
-                </property>
-                <property name="text" >
-                 <string>Proxy:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="textProxyIP" >
-                <property name="enabled" >
-                 <bool>false</bool>
-                </property>
-                <property name="text" >
-                 <string/>
-                </property>
-                <property name="maxLength" >
-                 <number>75</number>
-                </property>
-                <property name="echoMode" >
-                 <enum>QLineEdit::Normal</enum>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="lblProxyPort" >
-                <property name="enabled" >
-                 <bool>false</bool>
-                </property>
-                <property name="text" >
-                 <string>Port:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QSpinBox" name="spinProxyPort" >
-                <property name="enabled" >
-                 <bool>false</bool>
-                </property>
-                <property name="maximum" >
-                 <number>65525</number>
-                </property>
-                <property name="value" >
-                 <number>8080</number>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer>
-                <property name="orientation" >
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" >
-                 <size>
-                  <width>21</width>
-                  <height>29</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" >
-              <item>
-               <widget class="QCheckBox" name="checkProxyAuth" >
-                <property name="enabled" >
-                 <bool>false</bool>
-                </property>
-                <property name="text" >
-                 <string>Authentication</string>
-                </property>
-               </widget>
               </item>
               <item>
                <layout class="QHBoxLayout" >
                 <item>
-                 <layout class="QVBoxLayout" >
-                  <item>
-                   <widget class="QLabel" name="lblProxyUsername" >
-                    <property name="enabled" >
-                     <bool>false</bool>
-                    </property>
-                    <property name="text" >
-                     <string>Username:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="lblProxyPassword" >
-                    <property name="enabled" >
-                     <bool>false</bool>
-                    </property>
-                    <property name="text" >
-                     <string>Password:</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QVBoxLayout" >
-                  <item>
-                   <widget class="QLineEdit" name="textProxyUsername" >
-                    <property name="enabled" >
-                     <bool>false</bool>
-                    </property>
-                    <property name="text" >
-                     <string/>
-                    </property>
-                    <property name="maxLength" >
-                     <number>1000</number>
-                    </property>
-                    <property name="echoMode" >
-                     <enum>QLineEdit::Normal</enum>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="textProxyPassword" >
-                    <property name="enabled" >
-                     <bool>false</bool>
-                    </property>
-                    <property name="text" >
-                     <string/>
-                    </property>
-                    <property name="maxLength" >
-                     <number>1000</number>
-                    </property>
-                    <property name="echoMode" >
-                     <enum>QLineEdit::Password</enum>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <spacer>
-                  <property name="orientation" >
-                   <enum>Qt::Horizontal</enum>
+                 <widget class="QSpinBox" name="spinDownloadLimit" >
+                  <property name="enabled" >
+                   <bool>false</bool>
                   </property>
-                  <property name="sizeHint" >
+                  <property name="minimumSize" >
                    <size>
-                    <width>40</width>
-                    <height>20</height>
+                    <width>0</width>
+                    <height>27</height>
                    </size>
                   </property>
-                 </spacer>
+                  <property name="suffix" >
+                   <string/>
+                  </property>
+                  <property name="minimum" >
+                   <number>1</number>
+                  </property>
+                  <property name="maximum" >
+                   <number>1000000</number>
+                  </property>
+                  <property name="value" >
+                   <number>100</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_13" >
+                  <property name="text" >
+                   <string>KiB/s</string>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </item>
              </layout>
             </item>
             <item>
-             <widget class="QGroupBox" name="ProxyConnecsBox" >
-              <property name="enabled" >
-               <bool>false</bool>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
               </property>
-              <property name="minimumSize" >
+              <property name="sizeHint" >
                <size>
-                <width>0</width>
-                <height>110</height>
+                <width>40</width>
+                <height>20</height>
                </size>
               </property>
-              <property name="title" >
-               <string>Affected connections</string>
-              </property>
-              <layout class="QVBoxLayout" >
-               <item>
-                <widget class="QCheckBox" name="checkProxyTrackers" >
-                 <property name="sizePolicy" >
-                  <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text" >
-                  <string>Use proxy for connections to trackers</string>
-                 </property>
-                 <property name="checked" >
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkProxyPeers" >
-                 <property name="sizePolicy" >
-                  <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text" >
-                  <string>Use proxy for connections to regular peers</string>
-                 </property>
-                 <property name="checked" >
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkProxyDHT" >
-                 <property name="sizePolicy" >
-                  <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text" >
-                  <string>Use proxy for DHT messages</string>
-                 </property>
-                 <property name="checked" >
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkProxyWebseeds" >
-                 <property name="sizePolicy" >
-                  <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text" >
-                  <string>Use proxy for connections to web seeds</string>
-                 </property>
-                 <property name="checked" >
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
+             </spacer>
             </item>
            </layout>
-          </widget>
-         </item>
-        </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>623</width>
+           <height>121</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -1553,6 +1302,480 @@
           </size>
          </property>
         </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_7" >
+      <attribute name="title" >
+       <string>Proxy</string>
+      </attribute>
+      <attribute name="icon" >
+       <iconset resource="icons.qrc" >:/Icons/proxy.png</iconset>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QGroupBox" name="groupBox" >
+         <property name="title" >
+          <string>Search engine proxy settings</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QLabel" name="ProxyType_lbl_2" >
+              <property name="text" >
+               <string>Type:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboProxyType_http" >
+              <item>
+               <property name="text" >
+                <string>(None)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>HTTP</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblProxyIP_http" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="text" >
+               <string>Proxy:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="textProxyIP_http" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="maxLength" >
+               <number>75</number>
+              </property>
+              <property name="echoMode" >
+               <enum>QLineEdit::Normal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblProxyPort_http" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="text" >
+               <string>Port:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinProxyPort_http" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="maximum" >
+               <number>65525</number>
+              </property>
+              <property name="value" >
+               <number>8080</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>21</width>
+                <height>29</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QCheckBox" name="checkProxyAuth_http" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="text" >
+               <string>Authentication</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" >
+              <item>
+               <layout class="QVBoxLayout" >
+                <item>
+                 <widget class="QLabel" name="lblProxyUsername_http" >
+                  <property name="enabled" >
+                   <bool>false</bool>
+                  </property>
+                  <property name="text" >
+                   <string>Username:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="lblProxyPassword_http" >
+                  <property name="enabled" >
+                   <bool>false</bool>
+                  </property>
+                  <property name="text" >
+                   <string>Password:</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" >
+                <item>
+                 <widget class="QLineEdit" name="textProxyUsername_http" >
+                  <property name="enabled" >
+                   <bool>false</bool>
+                  </property>
+                  <property name="text" >
+                   <string/>
+                  </property>
+                  <property name="maxLength" >
+                   <number>1000</number>
+                  </property>
+                  <property name="echoMode" >
+                   <enum>QLineEdit::Normal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="textProxyPassword_http" >
+                  <property name="enabled" >
+                   <bool>false</bool>
+                  </property>
+                  <property name="text" >
+                   <string/>
+                  </property>
+                  <property name="maxLength" >
+                   <number>1000</number>
+                  </property>
+                  <property name="echoMode" >
+                   <enum>QLineEdit::Password</enum>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupProxy" >
+         <property name="enabled" >
+          <bool>true</bool>
+         </property>
+         <property name="title" >
+          <string>Bittorrent proxy settings</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QLabel" name="ProxyType_lbl" >
+              <property name="text" >
+               <string>Type:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboProxyType" >
+              <item>
+               <property name="text" >
+                <string>(None)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>HTTP</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>SOCKS5</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblProxyIP" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="text" >
+               <string>Proxy:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="textProxyIP" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="maxLength" >
+               <number>75</number>
+              </property>
+              <property name="echoMode" >
+               <enum>QLineEdit::Normal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblProxyPort" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="text" >
+               <string>Port:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinProxyPort" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="maximum" >
+               <number>65525</number>
+              </property>
+              <property name="value" >
+               <number>8080</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>21</width>
+                <height>29</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QCheckBox" name="checkProxyAuth" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="text" >
+               <string>Authentication</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" >
+              <item>
+               <layout class="QVBoxLayout" >
+                <item>
+                 <widget class="QLabel" name="lblProxyUsername" >
+                  <property name="enabled" >
+                   <bool>false</bool>
+                  </property>
+                  <property name="text" >
+                   <string>Username:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="lblProxyPassword" >
+                  <property name="enabled" >
+                   <bool>false</bool>
+                  </property>
+                  <property name="text" >
+                   <string>Password:</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" >
+                <item>
+                 <widget class="QLineEdit" name="textProxyUsername" >
+                  <property name="enabled" >
+                   <bool>false</bool>
+                  </property>
+                  <property name="text" >
+                   <string/>
+                  </property>
+                  <property name="maxLength" >
+                   <number>1000</number>
+                  </property>
+                  <property name="echoMode" >
+                   <enum>QLineEdit::Normal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="textProxyPassword" >
+                  <property name="enabled" >
+                   <bool>false</bool>
+                  </property>
+                  <property name="text" >
+                   <string/>
+                  </property>
+                  <property name="maxLength" >
+                   <number>1000</number>
+                  </property>
+                  <property name="echoMode" >
+                   <enum>QLineEdit::Password</enum>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="ProxyConnecsBox" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize" >
+             <size>
+              <width>0</width>
+              <height>110</height>
+             </size>
+            </property>
+            <property name="title" >
+             <string>Affected connections</string>
+            </property>
+            <layout class="QVBoxLayout" >
+             <item>
+              <widget class="QCheckBox" name="checkProxyTrackers" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Use proxy for connections to trackers</string>
+               </property>
+               <property name="checked" >
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkProxyPeers" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Use proxy for connections to regular peers</string>
+               </property>
+               <property name="checked" >
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkProxyDHT" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Use proxy for DHT messages</string>
+               </property>
+               <property name="checked" >
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkProxyWebseeds" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Use proxy for connections to web seeds</string>
+               </property>
+               <property name="checked" >
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -2103,20 +2326,6 @@
   <tabstop>spinPortMax</tabstop>
   <tabstop>checkUPnP</tabstop>
   <tabstop>checkNATPMP</tabstop>
-  <tabstop>checkUploadLimit</tabstop>
-  <tabstop>checkDownloadLimit</tabstop>
-  <tabstop>spinUploadLimit</tabstop>
-  <tabstop>spinDownloadLimit</tabstop>
-  <tabstop>comboProxyType</tabstop>
-  <tabstop>textProxyIP</tabstop>
-  <tabstop>spinProxyPort</tabstop>
-  <tabstop>checkProxyAuth</tabstop>
-  <tabstop>textProxyUsername</tabstop>
-  <tabstop>textProxyPassword</tabstop>
-  <tabstop>checkProxyTrackers</tabstop>
-  <tabstop>checkProxyPeers</tabstop>
-  <tabstop>checkProxyDHT</tabstop>
-  <tabstop>checkProxyWebseeds</tabstop>
   <tabstop>checkMaxConnecs</tabstop>
   <tabstop>spinMaxConnec</tabstop>
   <tabstop>checkMaxConnecsPerTorrent</tabstop>

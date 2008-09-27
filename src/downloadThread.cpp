@@ -91,11 +91,11 @@ void subDownloadThread::run(){
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
     // PROXY SUPPORT
     QSettings settings("qBittorrent", "qBittorrent");
-    int intValue = settings.value(QString::fromUtf8("Preferences/Connection/ProxyType"), 0).toInt();
+    int intValue = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxyType"), 0).toInt();
     if(intValue > 0) {
       // Proxy enabled
-      QString IP = settings.value(QString::fromUtf8("Preferences/Connection/Proxy/IP"), "0.0.0.0").toString();
-      QString port = settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Port"), 8080).toString();
+      QString IP = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/IP"), "0.0.0.0").toString();
+      QString port = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Port"), 8080).toString();
       qDebug("Using proxy: %s", (IP+QString(":")+port).toUtf8().data());
       curl_easy_setopt(curl, CURLOPT_PROXYPORT, (IP+QString(":")+port).toUtf8().data());
       // Default proxy type is HTTP, we must change if it is SOCKS5
@@ -106,8 +106,8 @@ void subDownloadThread::run(){
       // Authentication?
       if(intValue > 2) {
         qDebug("Proxy requires authentication, authenticating");
-        QString username = settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Username"), QString()).toString();
-        QString password = settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Password"), QString()).toString();
+        QString username = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Username"), QString()).toString();
+        QString password = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Password"), QString()).toString();
         curl_easy_setopt(curl, CURLOPT_PROXYUSERPWD, (username+QString(":")+password).toUtf8().data());
       }
     }

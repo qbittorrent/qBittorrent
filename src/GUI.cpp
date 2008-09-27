@@ -974,15 +974,12 @@ void GUI::configureSession(bool deleteOptions) {
       proxySettings.username = options->getProxyUsername().toStdString();
       proxySettings.password = options->getProxyPassword().toStdString();
     }
-    QString proxy_str;
     switch(options->getProxyType()) {
       case HTTP:
         proxySettings.type = proxy_settings::http;
-        proxy_str = misc::toQString("http://")+options->getProxyIp()+":"+misc::toQString(proxySettings.port);
         break;
       case HTTP_PW:
         proxySettings.type = proxy_settings::http_pw;
-        proxy_str = misc::toQString("http://")+options->getProxyUsername()+":"+options->getProxyPassword()+"@"+options->getProxyIp()+":"+misc::toQString(proxySettings.port);
         break;
       case SOCKS5:
         proxySettings.type = proxy_settings::socks5;
@@ -990,6 +987,14 @@ void GUI::configureSession(bool deleteOptions) {
       default:
         proxySettings.type = proxy_settings::socks5_pw;
         break;
+    }
+    QString proxy_str;
+    switch(options->getHTTPProxyType()) {
+      case HTTP_PW:
+        proxy_str = misc::toQString("http://")+options->getProxyUsername()+":"+options->getProxyPassword()+"@"+options->getProxyIp()+":"+misc::toQString(proxySettings.port);
+        break;
+      default:
+        proxy_str = misc::toQString("http://")+options->getProxyIp()+":"+misc::toQString(proxySettings.port);
     }
     if(!proxy_str.isEmpty()) {
       // We need this for urllib in search engine plugins

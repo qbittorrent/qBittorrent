@@ -241,7 +241,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>端口列:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1611"/>
+        <location filename="../options.ui" line="1834"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -261,14 +261,14 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">到</translation>
     </message>
     <message>
-        <location filename="options.ui" line="1195"/>
+        <location filename="../options.ui" line="1310"/>
         <source>Proxy</source>
-        <translation type="obsolete">代理服务器</translation>
+        <translation type="unfinished">代理服务器</translation>
     </message>
     <message>
         <location filename="../options.ui" line="911"/>
         <source>Proxy Settings</source>
-        <translation>代理服务器设置</translation>
+        <translation type="obsolete">代理服务器设置</translation>
     </message>
     <message>
         <location filename="options.ui" line="1251"/>
@@ -276,7 +276,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">服务器IP:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1912"/>
+        <location filename="../options.ui" line="2135"/>
         <source>Port:</source>
         <translation>端口:</translation>
     </message>
@@ -286,7 +286,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">此代理服务器需要身份验证</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1951"/>
+        <location filename="../options.ui" line="2174"/>
         <source>Authentication</source>
         <translation>验证</translation>
     </message>
@@ -296,7 +296,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">用户名:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1972"/>
+        <location filename="../options.ui" line="2195"/>
         <source>Password:</source>
         <translation>密码:</translation>
     </message>
@@ -363,12 +363,12 @@ inside)</source>
         <translation type="obsolete">KB 上传最大值.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1579"/>
+        <location filename="../options.ui" line="1802"/>
         <source>Activate IP Filtering</source>
         <translation>激活IP过滤器</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1573"/>
+        <location filename="../options.ui" line="1796"/>
         <source>Filter Settings</source>
         <translation>过滤器设置</translation>
     </message>
@@ -438,7 +438,7 @@ inside)</source>
         <translation type="obsolete">最小化到系统状态栏</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1561"/>
+        <location filename="../options.ui" line="1784"/>
         <source>Misc</source>
         <translation>其他</translation>
     </message>
@@ -479,7 +479,7 @@ iconified</source>
         <translation type="obsolete">从不显示OSD</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="890"/>
+        <location filename="../options.ui" line="894"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -692,37 +692,37 @@ XP)</translation>
         <translation type="obsolete">代理服务器类型:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="932"/>
+        <location filename="../options.ui" line="1530"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="937"/>
+        <location filename="../options.ui" line="1535"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1109"/>
+        <location filename="../options.ui" line="1707"/>
         <source>Affected connections</source>
         <translation>使用代理服务器的连接</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1121"/>
+        <location filename="../options.ui" line="1719"/>
         <source>Use proxy for connections to trackers</source>
         <translation>使用代理服务器连接到trackers</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1137"/>
+        <location filename="../options.ui" line="1735"/>
         <source>Use proxy for connections to regular peers</source>
         <translation>使用代理服务器连接到其他下载客户</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1169"/>
+        <location filename="../options.ui" line="1767"/>
         <source>Use proxy for connections to web seeds</source>
         <translation>使用代理服务器连接到HTTP种子</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1153"/>
+        <location filename="../options.ui" line="1751"/>
         <source>Use proxy for DHT messages</source>
         <translation>使用DHT消息的代理服务器</translation>
     </message>
@@ -737,17 +737,17 @@ XP)</translation>
         <translation type="obsolete">加密状态:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1394"/>
+        <location filename="../options.ui" line="1143"/>
         <source>Enabled</source>
         <translation>启用</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1399"/>
+        <location filename="../options.ui" line="1148"/>
         <source>Forced</source>
         <translation>强制</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1404"/>
+        <location filename="../options.ui" line="1153"/>
         <source>Disabled</source>
         <translation>禁用</translation>
     </message>
@@ -891,102 +891,102 @@ folder:</source>
         <translation>启用NAT-PMP端口映射</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="784"/>
+        <location filename="../options.ui" line="788"/>
         <source>Global bandwidth limiting</source>
         <translation>总宽带限制</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="800"/>
+        <location filename="../options.ui" line="804"/>
         <source>Upload:</source>
         <translation>上传:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="816"/>
+        <location filename="../options.ui" line="820"/>
         <source>Download:</source>
         <translation>下载:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="919"/>
+        <location filename="../options.ui" line="1517"/>
         <source>Type:</source>
         <translation>类型:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="927"/>
+        <location filename="../options.ui" line="1525"/>
         <source>(None)</source>
         <translation>(无)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="948"/>
+        <location filename="../options.ui" line="1546"/>
         <source>Proxy:</source>
         <translation>代理服务器:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1962"/>
+        <location filename="../options.ui" line="2185"/>
         <source>Username:</source>
         <translation>用户名:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1188"/>
+        <location filename="../options.ui" line="937"/>
         <source>Bittorrent</source>
         <translation>Bittorrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1197"/>
+        <location filename="../options.ui" line="946"/>
         <source>Connections limit</source>
         <translation>连接限度</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1205"/>
+        <location filename="../options.ui" line="954"/>
         <source>Global maximum number of connections:</source>
         <translation>总最大连接数:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1253"/>
+        <location filename="../options.ui" line="1002"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>每torrent最大连接数:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1298"/>
+        <location filename="../options.ui" line="1047"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>每torrent上传位置最大值:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1341"/>
+        <location filename="../options.ui" line="1090"/>
         <source>Additional Bittorrent features</source>
         <translation>附加Bittorrent特征</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1347"/>
+        <location filename="../options.ui" line="1096"/>
         <source>Enable DHT network (decentralized)</source>
         <translation>启用DHT网络（分散）</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1357"/>
+        <location filename="../options.ui" line="1106"/>
         <source>Enable Peer eXchange (PeX)</source>
         <translation>启用资源(PeX)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1367"/>
+        <location filename="../options.ui" line="1116"/>
         <source>Enable Local Peer Discovery</source>
         <translation>启用本地资源搜索</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1386"/>
+        <location filename="../options.ui" line="1135"/>
         <source>Encryption:</source>
         <translation>加密:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1430"/>
+        <location filename="../options.ui" line="1179"/>
         <source>Share ratio settings</source>
         <translation>共享率设置</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1438"/>
+        <location filename="../options.ui" line="1187"/>
         <source>Desired ratio:</source>
         <translation>期望比率:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1594"/>
+        <location filename="../options.ui" line="1817"/>
         <source>Filter file path:</source>
         <translation>过滤文件路径:</translation>
     </message>
@@ -1001,22 +1001,22 @@ folder:</source>
         <translation>ms</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1623"/>
+        <location filename="../options.ui" line="1846"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1676"/>
+        <location filename="../options.ui" line="1899"/>
         <source>RSS feeds refresh interval:</source>
         <translation>RSS消息种子刷新间隔:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1696"/>
+        <location filename="../options.ui" line="1919"/>
         <source>minutes</source>
         <translation>分钟</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1720"/>
+        <location filename="../options.ui" line="1943"/>
         <source>Maximum number of articles per feed:</source>
         <translation>每个订阅源文章数目最大值:</translation>
     </message>
@@ -1026,7 +1026,7 @@ folder:</source>
         <translation>文件系统</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1492"/>
+        <location filename="../options.ui" line="1241"/>
         <source>Remove finished torrents when their ratio reaches:</source>
         <translation>当比率达到时移除完成的torrent:</translation>
     </message>
@@ -1115,58 +1115,68 @@ folder:</source>
         <translation>秒</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1377"/>
+        <location filename="../options.ui" line="1126"/>
         <source>Spoof Azureus to avoid ban (requires restart)</source>
         <translation>假借Azureus名义避免被阻止(需重启)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1878"/>
+        <location filename="../options.ui" line="2101"/>
         <source>Web UI</source>
         <translation>网络操作界面</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1890"/>
+        <location filename="../options.ui" line="2113"/>
         <source>Enable Web User Interface</source>
         <translation>启用网络使用者界面</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1903"/>
+        <location filename="../options.ui" line="2126"/>
         <source>HTTP Server</source>
         <translation>HTTP 服务器</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1629"/>
+        <location filename="../options.ui" line="1852"/>
         <source>Enable RSS support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1639"/>
+        <location filename="../options.ui" line="1862"/>
         <source>RSS settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1768"/>
+        <location filename="../options.ui" line="1991"/>
         <source>Enable queueing system</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1780"/>
+        <location filename="../options.ui" line="2003"/>
         <source>Maximum active downloads:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1762"/>
+        <location filename="../options.ui" line="1985"/>
         <source>Torrent queueing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1823"/>
+        <location filename="../options.ui" line="2046"/>
         <source>Maximum active torrents:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../options.ui" line="215"/>
         <source>Display top toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1319"/>
+        <source>Search engine proxy settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1509"/>
+        <source>Bittorrent proxy settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1540,7 +1550,7 @@ download list?</source>
         <translation type="obsolete">开始</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1153"/>
+        <location filename="../GUI.cpp" line="1158"/>
         <source>Finished</source>
         <translation>完成</translation>
     </message>
@@ -1990,7 +2000,7 @@ download list and in hard drive?</source>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1441"/>
+        <location filename="../GUI.cpp" line="1446"/>
         <source>Connection status:</source>
         <translation>连接状态:</translation>
     </message>
@@ -2065,18 +2075,18 @@ download list and in hard drive?</source>
         <translation type="obsolete">qBittorrent %1开始.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1424"/>
+        <location filename="../GUI.cpp" line="1429"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1427"/>
+        <location filename="../GUI.cpp" line="1432"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>下载速度: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1430"/>
+        <location filename="../GUI.cpp" line="1435"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation> 上传速度: %1 KiB/s</translation>
@@ -2201,12 +2211,12 @@ The disk is probably full, download has been paused</comment>
         <translation type="obsolete">读或写%1过程中出现错误.磁盘已满,下载被暂停</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1438"/>
+        <location filename="../GUI.cpp" line="1443"/>
         <source>Connection Status:</source>
         <translation>连接状态:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1438"/>
+        <location filename="../GUI.cpp" line="1443"/>
         <source>Online</source>
         <translation>联机</translation>
     </message>
@@ -2274,22 +2284,22 @@ paused.</comment>
         <translation>qBittorrent 绑定端口:%1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1034"/>
+        <location filename="../GUI.cpp" line="1039"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT 支持 [开], port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1040"/>
+        <location filename="../GUI.cpp" line="1045"/>
         <source>DHT support [OFF]</source>
         <translation>DHT 支持［关］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1044"/>
+        <location filename="../GUI.cpp" line="1049"/>
         <source>PeX support [ON]</source>
         <translation>PeX 支持［ON］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1048"/>
+        <location filename="../GUI.cpp" line="1053"/>
         <source>PeX support [OFF]</source>
         <translation>PeX 支持［关］</translation>
     </message>
@@ -2301,7 +2311,7 @@ Are you sure you want to quit qBittorrent?</source>
 您确定要离开qBittorrent吗?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1142"/>
+        <location filename="../GUI.cpp" line="1147"/>
         <source>Downloads</source>
         <translation>下载</translation>
     </message>
@@ -2323,17 +2333,17 @@ is against the law.</source>
         <translation type="obsolete">注意，在未经允许情况下共享有版权的材料是违法的.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1068"/>
+        <location filename="../GUI.cpp" line="1073"/>
         <source>Encryption support [ON]</source>
         <translation>加密支持［开］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1073"/>
+        <location filename="../GUI.cpp" line="1078"/>
         <source>Encryption support [FORCED]</source>
         <translation>加密支持［强制］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1078"/>
+        <location filename="../GUI.cpp" line="1083"/>
         <source>Encryption support [OFF]</source>
         <translation>加密支持［关］</translation>
     </message>
@@ -2444,12 +2454,12 @@ finished list and from hard drive?</source>
         <translation>NAT-PMP 支持［关］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1053"/>
+        <location filename="../GUI.cpp" line="1058"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>本地资源搜索[开]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1056"/>
+        <location filename="../GUI.cpp" line="1061"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>本地资源搜索支持[关]</translation>
     </message>
@@ -2461,7 +2471,7 @@ maximum value you set.</source>
         <translation type="obsolete">&apos;%1&apos;被移除因为它的比率达到您设置的最大值.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1404"/>
+        <location filename="../GUI.cpp" line="1409"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (下载: %2KiB/s, 上传: 
@@ -2506,12 +2516,12 @@ maximum value you set.</source>
         <translation>您确定要删除完成列表中选中的项目吗?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1389"/>
+        <location filename="../GUI.cpp" line="1394"/>
         <source>DL: %1 KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1390"/>
+        <location filename="../GUI.cpp" line="1395"/>
         <source>UP: %1 KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2526,7 +2536,7 @@ maximum value you set.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1441"/>
+        <location filename="../GUI.cpp" line="1446"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2536,7 +2546,7 @@ maximum value you set.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1518"/>
+        <location filename="../GUI.cpp" line="1523"/>
         <source>Options were saved successfully.</source>
         <translation type="unfinished">选项保存成功.</translation>
     </message>
@@ -3079,13 +3089,13 @@ list?</source>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="445"/>
+        <location filename="../rss.h" line="452"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>%1前</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="444"/>
+        <location filename="../rss.h" line="451"/>
         <source>Never</source>
         <translation>从不</translation>
     </message>
@@ -4578,7 +4588,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">选项保存成功.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1133"/>
+        <location filename="../options_imp.cpp" line="1257"/>
         <source>Choose scan directory</source>
         <translation>选择监视目录</translation>
     </message>
@@ -4588,7 +4598,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">选择ipfilter.dat文件</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1148"/>
+        <location filename="../options_imp.cpp" line="1272"/>
         <source>Choose a save directory</source>
         <translation>保存到</translation>
     </message>
@@ -4604,12 +4614,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">无法在读状态下打开%1.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1140"/>
+        <location filename="../options_imp.cpp" line="1264"/>
         <source>Choose an ip filter file</source>
         <translation>选择ip过滤文件</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1140"/>
+        <location filename="../options_imp.cpp" line="1264"/>
         <source>Filters</source>
         <translation>过滤器</translation>
     </message>

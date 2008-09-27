@@ -136,14 +136,17 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // Connection tab
   connect(checkUploadLimit, SIGNAL(stateChanged(int)), this, SLOT(enableUploadLimit(int)));
   connect(checkDownloadLimit,  SIGNAL(stateChanged(int)), this, SLOT(enableDownloadLimit(int)));
-  connect(comboProxyType, SIGNAL(currentIndexChanged(int)),this, SLOT(enableProxy(int)));
-  connect(checkProxyAuth,  SIGNAL(stateChanged(int)), this, SLOT(enableProxyAuth(int)));
   // Bittorrent tab
   connect(checkMaxConnecs,  SIGNAL(stateChanged(int)), this, SLOT(enableMaxConnecsLimit(int)));
   connect(checkMaxConnecsPerTorrent,  SIGNAL(stateChanged(int)), this, SLOT(enableMaxConnecsLimitPerTorrent(int)));
   connect(checkMaxUploadsPerTorrent,  SIGNAL(stateChanged(int)), this, SLOT(enableMaxUploadsLimitPerTorrent(int)));
   connect(checkRatioLimit,  SIGNAL(stateChanged(int)), this, SLOT(enableShareRatio(int)));
   connect(checkRatioRemove,  SIGNAL(stateChanged(int)), this, SLOT(enableDeleteRatio(int)));
+  // Proxy tab
+  connect(comboProxyType_http, SIGNAL(currentIndexChanged(int)),this, SLOT(enableProxyHTTP(int)));
+  connect(checkProxyAuth_http,  SIGNAL(stateChanged(int)), this, SLOT(enableProxyAuthHTTP(int)));
+  connect(comboProxyType, SIGNAL(currentIndexChanged(int)),this, SLOT(enableProxy(int)));
+  connect(checkProxyAuth,  SIGNAL(stateChanged(int)), this, SLOT(enableProxyAuth(int)));
   // Misc tab
   connect(checkIPFilter, SIGNAL(stateChanged(int)), this, SLOT(enableFilter(int)));
   connect(checkEnableRSS, SIGNAL(stateChanged(int)), this, SLOT(enableRSS(int)));
@@ -181,16 +184,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkDownloadLimit, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(spinUploadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinDownloadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-  connect(comboProxyType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-  connect(textProxyIP, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-  connect(spinProxyPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-  connect(checkProxyAuth, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
-  connect(textProxyUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-  connect(textProxyPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-  connect(checkProxyTrackers, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
-  connect(checkProxyPeers, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
-  connect(checkProxyWebseeds, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
-  connect(checkProxyDHT, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   // Bittorrent tab
   connect(checkMaxConnecs, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkMaxConnecsPerTorrent, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
@@ -207,6 +200,23 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkRatioRemove, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(spinRatio, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxRatio, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  // Proxy tab
+  connect(comboProxyType_http, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+  connect(textProxyIP_http, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(spinProxyPort_http, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(checkProxyAuth_http, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(textProxyUsername_http, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(textProxyPassword_http, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(comboProxyType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+  connect(textProxyIP, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(spinProxyPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(checkProxyAuth, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(textProxyUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(textProxyPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(checkProxyTrackers, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkProxyPeers, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkProxyWebseeds, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkProxyDHT, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   // Misc tab
   connect(checkIPFilter, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(textFilterPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -325,6 +335,20 @@ void options_imp::saveOptions(){
     settings.setValue(QString::fromUtf8("AffectDHT"), useProxyForDHT());
     settings.endGroup(); // End Proxy
   }
+  settings.setValue(QString::fromUtf8("HTTPProxyType"), getProxyType());
+  if(isProxyEnabled()) {
+    settings.beginGroup("HTTPProxy");
+    // Proxy is enabled, save settings
+    settings.setValue(QString::fromUtf8("IP"), getProxyIp());
+    settings.setValue(QString::fromUtf8("Port"), getProxyPort());
+    settings.setValue(QString::fromUtf8("Authentication"), isProxyAuthEnabled());
+    if(isProxyAuthEnabled()) {
+      // Credentials
+      settings.setValue(QString::fromUtf8("Username"), getProxyUsername());
+      settings.setValue(QString::fromUtf8("Password"), getProxyPassword());
+    }
+    settings.endGroup(); // End HTTPProxy
+  }
   // End Connection preferences
   settings.endGroup();
   // Bittorrent preferences
@@ -401,6 +425,17 @@ int options_imp::getProxyType() const{
       }else{
         return SOCKS5;
       }
+    }
+  }
+  return -1; // disabled
+}
+
+int options_imp::getHTTPProxyType() const {
+  if(comboProxyType_http->currentIndex() == HTTP){
+    if(isHTTPProxyAuthEnabled()){
+      return HTTP_PW;
+    }else{
+      return HTTP;
     }
   }
   return -1; // disabled
@@ -547,6 +582,30 @@ void options_imp::loadOptions(){
     checkProxyWebseeds->setChecked(settings.value(QString::fromUtf8("AffectWebSeeds"), true).toBool());
     checkProxyDHT->setChecked(settings.value(QString::fromUtf8("AffectDHT"), true).toBool());
     settings.endGroup(); // End Proxy
+  }
+  intValue = settings.value(QString::fromUtf8("HTTPProxyType"), 0).toInt();
+  if(intValue <= 0) {
+    intValue = 0;
+  } else {
+      intValue = 1;
+  }
+  comboProxyType_http->setCurrentIndex(intValue);
+  enableProxyHTTP(intValue);
+  if(isProxyEnabled()) {
+    settings.beginGroup("HTTPProxy");
+    // Proxy is enabled, save settings
+    textProxyIP_http->setText(settings.value(QString::fromUtf8("IP"), "0.0.0.0").toString());
+    spinProxyPort_http->setValue(settings.value(QString::fromUtf8("Port"), 8080).toInt());
+    checkProxyAuth_http->setChecked(settings.value(QString::fromUtf8("Authentication"), false).toBool());
+    if(isHTTPProxyAuthEnabled()) {
+      enableProxyAuthHTTP(2); // Enable
+      // Credentials
+      textProxyUsername_http->setText(settings.value(QString::fromUtf8("Username"), QString()).toString());
+      textProxyPassword_http->setText(settings.value(QString::fromUtf8("Password"), QString()).toString());
+    } else {
+      enableProxyAuthHTTP(0); // Disable
+    }
+    settings.endGroup(); // End HTTPProxy
   }
   // End Connection preferences
   settings.endGroup();
@@ -1001,6 +1060,25 @@ void options_imp::enableProxy(int index){
   }
 }
 
+void options_imp::enableProxyHTTP(int index){
+  if(index){
+    //enable
+    lblProxyIP_http->setEnabled(true);
+    textProxyIP_http->setEnabled(true);
+    lblProxyPort_http->setEnabled(true);
+    spinProxyPort_http->setEnabled(true);
+    checkProxyAuth_http->setEnabled(true);
+  }else{
+    //disable
+    lblProxyIP_http->setEnabled(false);
+    textProxyIP_http->setEnabled(false);
+    lblProxyPort_http->setEnabled(false);
+    spinProxyPort_http->setEnabled(false);
+    checkProxyAuth_http->setChecked(false);
+    checkProxyAuth_http->setEnabled(false);
+  }
+}
+
 void options_imp::enableProxyAuth(int checkBoxValue){
   if(checkBoxValue==2){
     //enable
@@ -1014,6 +1092,22 @@ void options_imp::enableProxyAuth(int checkBoxValue){
     lblProxyPassword->setEnabled(false);
     textProxyUsername->setEnabled(false);
     textProxyPassword->setEnabled(false);
+  }
+}
+
+void options_imp::enableProxyAuthHTTP(int checkBoxValue){
+  if(checkBoxValue==2){
+    //enable
+    lblProxyUsername_http->setEnabled(true);
+    lblProxyPassword_http->setEnabled(true);
+    textProxyUsername_http->setEnabled(true);
+    textProxyPassword_http->setEnabled(true);
+  }else{
+    //disable
+    lblProxyUsername_http->setEnabled(false);
+    lblProxyPassword_http->setEnabled(false);
+    textProxyUsername_http->setEnabled(false);
+    textProxyPassword_http->setEnabled(false);
   }
 }
 
@@ -1035,6 +1129,10 @@ void options_imp::enableDirScan(int checkBoxValue){
   }
 }
 
+int options_imp::getFolderScanInterval() const {
+  return FolderScanSpin->value();
+}
+
 bool options_imp::speedInTitleBar() const {
   return checkSpeedInTitle->isChecked();
 }
@@ -1052,8 +1150,16 @@ bool options_imp::isProxyEnabled() const{
   return comboProxyType->currentIndex();
 }
 
+bool options_imp::isHTTPProxyEnabled() const {
+  return comboProxyType_http->currentIndex();
+}
+
 bool options_imp::isProxyAuthEnabled() const{
   return checkProxyAuth->isChecked();
+}
+
+bool options_imp::isHTTPProxyAuthEnabled() const{
+  return checkProxyAuth_http->isChecked();
 }
 
 QString options_imp::getProxyIp() const{
@@ -1062,12 +1168,18 @@ QString options_imp::getProxyIp() const{
   return ip;
 }
 
+QString options_imp::getHTTPProxyIp() const{
+  QString ip = textProxyIP_http->text();
+  ip = ip.trimmed();
+  return ip;
+}
+
 unsigned short options_imp::getProxyPort() const{
   return spinProxyPort->value();
 }
 
-int options_imp::getFolderScanInterval() const {
-  return FolderScanSpin->value();
+unsigned short options_imp::getHTTPProxyPort() const{
+  return spinProxyPort_http->value();
 }
 
 QString options_imp::getProxyUsername() const{
@@ -1076,8 +1188,20 @@ QString options_imp::getProxyUsername() const{
   return username;
 }
 
+QString options_imp::getHTTPProxyUsername() const{
+  QString username = textProxyUsername_http->text();
+  username = username.trimmed();
+  return username;
+}
+
 QString options_imp::getProxyPassword() const{
   QString password = textProxyPassword->text();
+  password = password.trimmed();
+  return password;
+}
+
+QString options_imp::getHTTPProxyPassword() const{
+  QString password = textProxyPassword_http->text();
   password = password.trimmed();
   return password;
 }

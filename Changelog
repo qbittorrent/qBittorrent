@@ -3,6 +3,7 @@
     - FEATURE: The number of DHT nodes is displayed
     - FEATURE: RSS can now be disabled from program preferences
     - FEATURE: Added collapse/expand all buttons in addition dialog
+    - FEATURE: Can have different proxies for Bittorrent and search engine
     - BUGFIX: Disable ETA calculation when ETA column is hidden
     - BUGFIX: Removed "disconnected" connection state, detection was far from perfect
     - COSMETIC: Transfer speed, ratio, connection status and DHT nodes are displayed in status bar    

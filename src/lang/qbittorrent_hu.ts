@@ -207,7 +207,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Port tartomány:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1611"/>
+        <location filename="../options.ui" line="1834"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -222,14 +222,14 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">kapcsolat</translation>
     </message>
     <message>
-        <location filename="translations-v1.1.0" line="7471221"/>
+        <location filename="../options.ui" line="1310"/>
         <source>Proxy</source>
-        <translation type="obsolete">Proxy</translation>
+        <translation type="unfinished">Proxy</translation>
     </message>
     <message>
         <location filename="../options.ui" line="911"/>
         <source>Proxy Settings</source>
-        <translation>Proxy beállítások</translation>
+        <translation type="obsolete">Proxy beállítások</translation>
     </message>
     <message>
         <location filename="translations-v1.1.0" line="7471221"/>
@@ -237,7 +237,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">0.0.0.0</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1912"/>
+        <location filename="../options.ui" line="2135"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
@@ -247,7 +247,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">A proxy kiszolgáló megköveteli a hitelesítést</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1951"/>
+        <location filename="../options.ui" line="2174"/>
         <source>Authentication</source>
         <translation>Felhasználó</translation>
     </message>
@@ -257,7 +257,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Név:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1972"/>
+        <location filename="../options.ui" line="2195"/>
         <source>Password:</source>
         <translation>Jelszó:</translation>
     </message>
@@ -282,12 +282,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Megosztási arány:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1579"/>
+        <location filename="../options.ui" line="1802"/>
         <source>Activate IP Filtering</source>
         <translation>IP-szűrő használata</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1573"/>
+        <location filename="../options.ui" line="1796"/>
         <source>Filter Settings</source>
         <translation>Szűrő beállításai</translation>
     </message>
@@ -337,7 +337,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Panelre helyezés minimalizáláskor</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1561"/>
+        <location filename="../options.ui" line="1784"/>
         <source>Misc</source>
         <translation>Vegyes</translation>
     </message>
@@ -357,7 +357,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Ablakok</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="890"/>
+        <location filename="../options.ui" line="894"/>
         <source>KiB/s</source>
         <translation>KByte/s</translation>
     </message>
@@ -537,37 +537,37 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Proxy típusa:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="932"/>
+        <location filename="../options.ui" line="1530"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="937"/>
+        <location filename="../options.ui" line="1535"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1109"/>
+        <location filename="../options.ui" line="1707"/>
         <source>Affected connections</source>
         <translation>Proxy kapcsolatok</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1121"/>
+        <location filename="../options.ui" line="1719"/>
         <source>Use proxy for connections to trackers</source>
         <translation>Csatlakozás a trackerhez proxyn keresztül</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1137"/>
+        <location filename="../options.ui" line="1735"/>
         <source>Use proxy for connections to regular peers</source>
         <translation>Csatlakozás ügyfelekhez proxyn keresztül</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1169"/>
+        <location filename="../options.ui" line="1767"/>
         <source>Use proxy for connections to web seeds</source>
         <translation>Proxy használata web seedhez</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1153"/>
+        <location filename="../options.ui" line="1751"/>
         <source>Use proxy for DHT messages</source>
         <translation>Proxy a DHT üzenetekhez</translation>
     </message>
@@ -582,17 +582,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Titkosítás állapota:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1394"/>
+        <location filename="../options.ui" line="1143"/>
         <source>Enabled</source>
         <translation>Engedélyez</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1399"/>
+        <location filename="../options.ui" line="1148"/>
         <source>Forced</source>
         <translation>Kényszerít</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1404"/>
+        <location filename="../options.ui" line="1153"/>
         <source>Disabled</source>
         <translation>Tilt</translation>
     </message>
@@ -731,102 +731,102 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>NAT-PMP port átirányítás engedélyezése</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="784"/>
+        <location filename="../options.ui" line="788"/>
         <source>Global bandwidth limiting</source>
         <translation>Sávszélesség korlátozása</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="800"/>
+        <location filename="../options.ui" line="804"/>
         <source>Upload:</source>
         <translation>Feltöltés:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="816"/>
+        <location filename="../options.ui" line="820"/>
         <source>Download:</source>
         <translation>Letöltés:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="919"/>
+        <location filename="../options.ui" line="1517"/>
         <source>Type:</source>
         <translation>Típus:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="927"/>
+        <location filename="../options.ui" line="1525"/>
         <source>(None)</source>
         <translation>(Nincs)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="948"/>
+        <location filename="../options.ui" line="1546"/>
         <source>Proxy:</source>
         <translation>Proxy:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1962"/>
+        <location filename="../options.ui" line="2185"/>
         <source>Username:</source>
         <translation>Felhasználónév:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1188"/>
+        <location filename="../options.ui" line="937"/>
         <source>Bittorrent</source>
         <translation>Bittorrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1197"/>
+        <location filename="../options.ui" line="946"/>
         <source>Connections limit</source>
         <translation>Kapcsolatok korlátozása</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1205"/>
+        <location filename="../options.ui" line="954"/>
         <source>Global maximum number of connections:</source>
         <translation>Kapcsolatok maximális száma:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1253"/>
+        <location filename="../options.ui" line="1002"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Kapcsolatok száma torrentenként:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1298"/>
+        <location filename="../options.ui" line="1047"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Feltöltési szálak száma torrentenként:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1341"/>
+        <location filename="../options.ui" line="1090"/>
         <source>Additional Bittorrent features</source>
         <translation>További Bittorrent jellemzők</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1347"/>
+        <location filename="../options.ui" line="1096"/>
         <source>Enable DHT network (decentralized)</source>
         <translation>DHT hálózati működés engedélyezése</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1357"/>
+        <location filename="../options.ui" line="1106"/>
         <source>Enable Peer eXchange (PeX)</source>
         <translation>Ügyfél csere engedélyezése (PeX)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1367"/>
+        <location filename="../options.ui" line="1116"/>
         <source>Enable Local Peer Discovery</source>
         <translation>Enable Local Peer Discovery</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1386"/>
+        <location filename="../options.ui" line="1135"/>
         <source>Encryption:</source>
         <translation>Titkosítás:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1430"/>
+        <location filename="../options.ui" line="1179"/>
         <source>Share ratio settings</source>
         <translation>Megosztási arány</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1438"/>
+        <location filename="../options.ui" line="1187"/>
         <source>Desired ratio:</source>
         <translation>Megosztási arány:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1594"/>
+        <location filename="../options.ui" line="1817"/>
         <source>Filter file path:</source>
         <translation>Ip szűrő fájl helye:</translation>
     </message>
@@ -841,22 +841,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>ms</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1623"/>
+        <location filename="../options.ui" line="1846"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1676"/>
+        <location filename="../options.ui" line="1899"/>
         <source>RSS feeds refresh interval:</source>
         <translation>RSS csatornák firssítésének időköze:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1696"/>
+        <location filename="../options.ui" line="1919"/>
         <source>minutes</source>
         <translation>Perc</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1720"/>
+        <location filename="../options.ui" line="1943"/>
         <source>Maximum number of articles per feed:</source>
         <translation>Hírek maximális száma csatornánként:</translation>
     </message>
@@ -866,7 +866,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Fájlrendszer</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1492"/>
+        <location filename="../options.ui" line="1241"/>
         <source>Remove finished torrents when their ratio reaches:</source>
         <translation>Torrent eltávolítása, ha elérte ezt az arányt:</translation>
     </message>
@@ -922,58 +922,68 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>másodperc</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1377"/>
+        <location filename="../options.ui" line="1126"/>
         <source>Spoof Azureus to avoid ban (requires restart)</source>
         <translation>Álcázás Azureusnak (újraindítást igényel)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1878"/>
+        <location filename="../options.ui" line="2101"/>
         <source>Web UI</source>
         <translation>Webes felület</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1890"/>
+        <location filename="../options.ui" line="2113"/>
         <source>Enable Web User Interface</source>
         <translation>Webes felület engedélyezése</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1903"/>
+        <location filename="../options.ui" line="2126"/>
         <source>HTTP Server</source>
         <translation>HTTP Szerver</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1629"/>
+        <location filename="../options.ui" line="1852"/>
         <source>Enable RSS support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1639"/>
+        <location filename="../options.ui" line="1862"/>
         <source>RSS settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1768"/>
+        <location filename="../options.ui" line="1991"/>
         <source>Enable queueing system</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1780"/>
+        <location filename="../options.ui" line="2003"/>
         <source>Maximum active downloads:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1762"/>
+        <location filename="../options.ui" line="1985"/>
         <source>Torrent queueing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1823"/>
+        <location filename="../options.ui" line="2046"/>
         <source>Maximum active torrents:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../options.ui" line="215"/>
         <source>Display top toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1319"/>
+        <source>Search engine proxy settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1509"/>
+        <source>Bittorrent proxy settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1330,7 +1340,7 @@ Kérlek előbb azt zárd be.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1441"/>
+        <location filename="../GUI.cpp" line="1446"/>
         <source>Connection status:</source>
         <translation>Kapcsolat állapota:</translation>
     </message>
@@ -1393,18 +1403,18 @@ Kérlek előbb azt zárd be.</translation>
         <translation type="obsolete">qBittorrent %1 elindítva.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1424"/>
+        <location filename="../GUI.cpp" line="1429"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1427"/>
+        <location filename="../GUI.cpp" line="1432"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Letöltés: %1 KByte/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1430"/>
+        <location filename="../GUI.cpp" line="1435"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Feltöltés: %1 KByte/s</translation>
@@ -1509,12 +1519,12 @@ Kérlek előbb azt zárd be.</translation>
         <translation>Hiba történ a(z) %1 írása/olvasása közben. Valószínűleg tele a lemez, így a letöltés megszakítva</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1438"/>
+        <location filename="../GUI.cpp" line="1443"/>
         <source>Connection Status:</source>
         <translation>A kapcsolat állapota:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1438"/>
+        <location filename="../GUI.cpp" line="1443"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
@@ -1558,22 +1568,22 @@ Kérlek előbb azt zárd be.</translation>
         <translation>qBittorrent ezen a porton figyel: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1034"/>
+        <location filename="../GUI.cpp" line="1039"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT funkció [ON], port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1040"/>
+        <location filename="../GUI.cpp" line="1045"/>
         <source>DHT support [OFF]</source>
         <translation>DHT funkció [OFF]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1044"/>
+        <location filename="../GUI.cpp" line="1049"/>
         <source>PeX support [ON]</source>
         <translation>PeX [ON]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1048"/>
+        <location filename="../GUI.cpp" line="1053"/>
         <source>PeX support [OFF]</source>
         <translation>PeX [OFF]</translation>
     </message>
@@ -1585,12 +1595,12 @@ Are you sure you want to quit qBittorrent?</source>
 Mégis leállítod a qBittorrentet?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1142"/>
+        <location filename="../GUI.cpp" line="1147"/>
         <source>Downloads</source>
         <translation>Letöltések</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1153"/>
+        <location filename="../GUI.cpp" line="1158"/>
         <source>Finished</source>
         <translation>Feltöltések</translation>
     </message>
@@ -1615,17 +1625,17 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation type="obsolete">Csak óvatosan a megosztással. Nehogy megsértsd a szerzői jogokat!.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1068"/>
+        <location filename="../GUI.cpp" line="1073"/>
         <source>Encryption support [ON]</source>
         <translation>Titkosítás [ON]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1073"/>
+        <location filename="../GUI.cpp" line="1078"/>
         <source>Encryption support [FORCED]</source>
         <translation>Titkosítás [KÉNYSZERÍTVE]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1078"/>
+        <location filename="../GUI.cpp" line="1083"/>
         <source>Encryption support [OFF]</source>
         <translation>Titkosítás [OFF]</translation>
     </message>
@@ -1728,12 +1738,12 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation>NAT-PMP támogatás [OFF]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1053"/>
+        <location filename="../GUI.cpp" line="1058"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery [ON]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1056"/>
+        <location filename="../GUI.cpp" line="1061"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Local Peer Discovery támogatás [OFF]</translation>
     </message>
@@ -1744,18 +1754,18 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation type="obsolete">&apos;%1&apos; eltávolítva, mivel elérte a kítűzött megosztási arányt.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1404"/>
+        <location filename="../GUI.cpp" line="1409"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1389"/>
+        <location filename="../GUI.cpp" line="1394"/>
         <source>DL: %1 KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1390"/>
+        <location filename="../GUI.cpp" line="1395"/>
         <source>UP: %1 KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1770,7 +1780,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1441"/>
+        <location filename="../GUI.cpp" line="1446"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1780,7 +1790,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1518"/>
+        <location filename="../GUI.cpp" line="1523"/>
         <source>Options were saved successfully.</source>
         <translation type="unfinished">Beállítások sikeresen elmentve.</translation>
     </message>
@@ -2176,13 +2186,13 @@ Mégis leállítod a qBittorrentet?</translation>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="445"/>
+        <location filename="../rss.h" line="452"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>%1 előtt</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="444"/>
+        <location filename="../rss.h" line="451"/>
         <source>Never</source>
         <translation>Soha</translation>
     </message>
@@ -3380,7 +3390,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">Beállítások sikeresen elmentve.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1133"/>
+        <location filename="../options_imp.cpp" line="1257"/>
         <source>Choose scan directory</source>
         <translation>Megfigyelt könyvtár beállítása</translation>
     </message>
@@ -3390,7 +3400,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">Ipfilter.dat fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1148"/>
+        <location filename="../options_imp.cpp" line="1272"/>
         <source>Choose a save directory</source>
         <translation>Letöltési könyvtár megadása</translation>
     </message>
@@ -3406,12 +3416,12 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">%1 olvasása sikertelen.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1140"/>
+        <location filename="../options_imp.cpp" line="1264"/>
         <source>Choose an ip filter file</source>
         <translation>Válassz egy ip szűrő fájlt</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1140"/>
+        <location filename="../options_imp.cpp" line="1264"/>
         <source>Filters</source>
         <translation>Szűrők</translation>
     </message>

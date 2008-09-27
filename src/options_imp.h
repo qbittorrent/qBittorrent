@@ -82,17 +82,6 @@ class options_imp : public QDialog, private Ui::Dialog {
     bool isUPnPEnabled() const;
     bool isNATPMPEnabled() const;
     QPair<int,int> getGlobalBandwidthLimits() const;
-    bool isProxyEnabled() const;
-    bool isProxyAuthEnabled() const;
-    QString getProxyIp() const;
-    unsigned short getProxyPort() const;
-    QString getProxyUsername() const;
-    QString getProxyPassword() const;
-    int getProxyType() const;
-    bool useProxyForTrackers() const;
-    bool useProxyForPeers() const;
-    bool useProxyForWebseeds() const;
-    bool useProxyForDHT() const;
     // Bittorrent options
     int getMaxConnecs() const;
     int getMaxConnecsPerTorrent() const;
@@ -105,6 +94,25 @@ class options_imp : public QDialog, private Ui::Dialog {
     int getEncryptionSetting() const;
     float getDesiredRatio() const;
     float getDeleteRatio() const;
+    // Proxy options
+    bool isHTTPProxyEnabled() const;
+    bool isHTTPProxyAuthEnabled() const;
+    QString getHTTPProxyIp() const;
+    unsigned short getHTTPProxyPort() const;
+    QString getHTTPProxyUsername() const;
+    QString getHTTPProxyPassword() const;
+    int getHTTPProxyType() const;
+    bool isProxyEnabled() const;
+    bool isProxyAuthEnabled() const;
+    QString getProxyIp() const;
+    unsigned short getProxyPort() const;
+    QString getProxyUsername() const;
+    QString getProxyPassword() const;
+    int getProxyType() const;
+    bool useProxyForTrackers() const;
+    bool useProxyForPeers() const;
+    bool useProxyForWebseeds() const;
+    bool useProxyForDHT() const;
     // IP Filter
     bool isFilteringEnabled() const;
     QString getFilter() const;
@@ -123,6 +131,8 @@ class options_imp : public QDialog, private Ui::Dialog {
     void enableDirScan(int checkBoxValue);
     void enableProxy(int comboIndex);
     void enableProxyAuth(int checkBoxValue);
+    void enableProxyHTTP(int comboIndex);
+    void enableProxyAuthHTTP(int checkBoxValue);
     void enableMaxConnecsLimit(int);
     void enableMaxConnecsLimitPerTorrent(int checkBoxValue);
     void enableMaxUploadsLimitPerTorrent(int checkBoxValue);
