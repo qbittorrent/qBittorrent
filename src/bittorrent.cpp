@@ -264,18 +264,18 @@ int bittorrent::loadTorrentPriority(QString hash) {
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio")) {
     // Read .queued file
     QFile prio_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio");
-    if(!prio_file.exists()) {
-      return -1;
-    }
     prio_file.open(QIODevice::ReadOnly | QIODevice::Text);
     bool ok = false;
     int prio = prio_file.readAll().toInt(&ok);
     prio_file.close();
     if(!ok) {
+      qDebug("Could not convert prio to integer !!!!!!!");
       return -1;
     }
+    qDebug("Prio is %d", prio);
     return prio;
   }
+  qDebug(".prio file does not exist !!!!!");
   return -1;
 }
 
