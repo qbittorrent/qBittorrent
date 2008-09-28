@@ -73,6 +73,12 @@ void EventManager::addedTorrent(QTorrentHandle& h)
 	event["hash"] = QVariant(hash);
 	event["name"] = QVariant(h.name());
 	event["seed"] = QVariant(h.is_seed());
+	event["size"] = QVariant((qlonglong)h.actual_size());
+	if(!h.is_seed()) {
+		event["progress"] = QVariant(h.progress());
+		event["dlspeed"] = QVariant(h.download_payload_rate());
+	}
+	event["upspeed"] = QVariant(h.upload_payload_rate());
 	if(h.is_paused()) {
 		if(BTSession->isQueueingEnabled() && (BTSession->isDownloadQueued(hash) || BTSession->isUploadQueued(hash)))
 			event["state"] = QVariant("queued");
@@ -267,6 +273,9 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
 	if(modify(hash, "state", v))
 		event["state"] = v;
 	
+	v = QVariant(h.name());
+	if(modify(hash, "name", v))
+		event["name"] = v;
 	v = QVariant((qlonglong)h.actual_size());
 	if(modify(hash, "size", v))
 		event["size"] = v;
@@ -280,14 +289,8 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
 			event["dlspeed"] = v;
 	}
 	v = QVariant(h.upload_payload_rate());
-	if(modify(hash, "upspeed", v)) {
+	if(modify(hash, "upspeed", v))
 		event["upspeed"] = v;
-		if(h.is_seed())
-		  qDebug("upspeed changed for seed");
-	} else {
-		if(h.is_seed())
-		  qDebug("upspeed did not change for seed");
-	}
 	v = QVariant(h.is_seed());
 	event["seed"] = v;
 	

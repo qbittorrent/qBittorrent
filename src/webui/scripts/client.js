@@ -88,6 +88,20 @@ window.addEvent('domready', function(){
                   break;
                 }
 								row[1] = event.name;
+                row[2] = fsize(event.size);
+                if(!event.seed) {
+                  if($defined(event.progress))
+                  {
+                    row[3] = round1(event.progress*100) + ' %';
+                  }
+                  if($defined(event.dlspeed))
+                  row[4] = fspeed(event.dlspeed);
+                  if($defined(event.upspeed))
+                    row[5] = fspeed(event.upspeed);
+                } else {
+                  if($defined(event.upspeed))
+                  row[3] = fspeed(event.upspeed);
+                }
                 if(event.seed)
                   myTableUP.insertRow(event.hash, row);
                 else
@@ -122,6 +136,9 @@ window.addEvent('domready', function(){
 										break;
 									}
 								}
+                if($defined(event.name)) {
+                  row[1] = event.name;
+                }
 								if($defined(event.size)){
 									row[2] = fsize(event.size);
 								}
