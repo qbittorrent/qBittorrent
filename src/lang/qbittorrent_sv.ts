@@ -98,14 +98,14 @@
         <translation>Tack till</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="" line="135225332"/>
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
 &lt;br&gt;
 Copyright &#xa9; 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
         <translation type="obsolete">En bittorrent-klient som använder Qt4 och libtorrent, programmerad i C++.&lt;br&gt;
 &lt;br&gt;
-Copyright © 2006 Christophe Dumez&lt;br&gt;
+Copyright © 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Webbplats:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message encoding="UTF-8">
@@ -146,17 +146,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../console.ui" line="13"/>
         <source>qBittorrent console</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent-konsoll</translation>
     </message>
     <message>
         <location filename="../console.ui" line="26"/>
         <source>General</source>
-        <translation type="unfinished">Allmänt</translation>
+        <translation>Allmänt</translation>
     </message>
     <message>
         <location filename="../console.ui" line="39"/>
         <source>Blocked IPs</source>
-        <translation type="unfinished"></translation>
+        <translation>Blockerade IP</translation>
     </message>
 </context>
 <context>
@@ -183,11 +183,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="1834"/>
         <source>...</source>
         <translation>...</translation>
-    </message>
-    <message>
-        <location filename="../options.ui" line="911"/>
-        <source>Proxy Settings</source>
-        <translation type="obsolete">Proxyinställningar</translation>
     </message>
     <message>
         <location filename="../options.ui" line="2135"/>
@@ -642,52 +637,52 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1852"/>
         <source>Enable RSS support</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivera RSS-stöd</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1862"/>
         <source>RSS settings</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS-inställningar</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1991"/>
         <source>Enable queueing system</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivera kösystem</translation>
     </message>
     <message>
         <location filename="../options.ui" line="2003"/>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximalt antal aktiva hämtningar:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1985"/>
         <source>Torrent queueing</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentkö</translation>
     </message>
     <message>
         <location filename="../options.ui" line="2046"/>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximalt antal aktiva torrent:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="215"/>
         <source>Display top toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa övre verktygsrad</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1310"/>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1319"/>
         <source>Search engine proxy settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxyinställningar för sökmotor</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1509"/>
         <source>Bittorrent proxy settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxyinställningar för Bittorrent</translation>
     </message>
 </context>
 <context>
@@ -746,80 +741,14 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>qBittorrent %1 startad.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="152"/>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
-        <comment>x.y.z.w was blocked</comment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blockerades&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <location filename="../downloadingTorrents.cpp" line="238"/>
-        <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="obsolete">Snabb återupptagning av data nekades för torrent-filen %1, kontrollerar igen...</translation>
-    </message>
-    <message>
-        <location filename="../downloadingTorrents.cpp" line="242"/>
-        <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="obsolete">Uppslagning av url misslyckades för: %1, meddelande: %2</translation>
-    </message>
-    <message>
-        <location filename="../downloadingTorrents.cpp" line="895"/>
-        <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="obsolete">&quot;%1&quot; lades till i hämtningslistan.</translation>
-    </message>
-    <message>
-        <location filename="../downloadingTorrents.cpp" line="897"/>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="obsolete">&quot;%1&quot; återupptogs. (snabbt läge)</translation>
-    </message>
-    <message>
-        <location filename="../downloadingTorrents.cpp" line="905"/>
-        <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="obsolete">&quot;%1&quot; finns redan i hämtningslistan.</translation>
-    </message>
-    <message>
-        <location filename="../downloadingTorrents.cpp" line="909"/>
-        <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="obsolete">Kunde inte avkoda torrent-fil: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <location filename="../downloadingTorrents.cpp" line="910"/>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">Denna fil är antingen skadad eller så är den inte en torrent-fil.</translation>
-    </message>
-    <message>
-        <location filename="../downloadingTorrents.cpp" line="924"/>
-        <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="obsolete">Kunde inte lyssna på någon av de angivna portarna.</translation>
-    </message>
-    <message>
-        <location filename="../downloadingTorrents.cpp" line="948"/>
-        <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="obsolete">Hämtar &quot;%1&quot;, var god vänta...</translation>
-    </message>
-    <message>
         <location filename="../downloadingTorrents.cpp" line="289"/>
         <source>Hide or Show Column</source>
         <translation>Dölj eller visa kolumn</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="218"/>
-        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="obsolete">UPnP/NAT-PMP: Fel i portmappning, meddelande: %1</translation>
-    </message>
-    <message>
-        <location filename="../downloadingTorrents.cpp" line="222"/>
-        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="obsolete">UPnP/NAT-PMP: Portmappning lyckades, meddelande: %1</translation>
-    </message>
-    <message>
         <location filename="../downloadingTorrents.cpp" line="60"/>
         <source>Priority</source>
-        <translation type="unfinished">Prioritet</translation>
+        <translation>Prioritet</translation>
     </message>
 </context>
 <context>
@@ -898,7 +827,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedTorrents.cpp" line="47"/>
         <source>Priority</source>
-        <translation type="unfinished">Prioritet</translation>
+        <translation>Prioritet</translation>
     </message>
 </context>
 <context>
@@ -950,16 +879,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Anslutningsstatus:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1474"/>
-        <source>Offline</source>
-        <translation type="obsolete">Frånkopplad</translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="1474"/>
-        <source>No peers found...</source>
-        <translation type="obsolete">Inga klienter hittades...</translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="1429"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
@@ -980,34 +899,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../GUI.cpp" line="620"/>
         <source>Are you sure you want to quit?</source>
         <translation>Är du säker på att du vill avsluta?</translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="869"/>
-        <source>&apos;%1&apos; was removed.</source>
-        <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation type="obsolete">&quot;%1&quot; togs bort.</translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="1278"/>
-        <source>All downloads were paused.</source>
-        <translation type="obsolete">Alla hämtningar har pausats.</translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="1349"/>
-        <source>&apos;%1&apos; paused.</source>
-        <comment>xxx.avi paused.</comment>
-        <translation type="obsolete">&quot;%1&quot; pausad.</translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="1382"/>
-        <source>All downloads were resumed.</source>
-        <translation type="obsolete">Alla hämtningar har återupptagits.</translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="1408"/>
-        <source>&apos;%1&apos; resumed.</source>
-        <comment>e.g: xxx.avi resumed.</comment>
-        <translation type="obsolete">&quot;%1&quot; återupptogs.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="358"/>
@@ -1036,17 +927,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../GUI.cpp" line="1443"/>
         <source>Online</source>
         <translation>Ansluten</translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="1470"/>
-        <source>Firewalled?</source>
-        <comment>i.e: Behind a firewall/router?</comment>
-        <translation type="obsolete">Brandvägg?</translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="1470"/>
-        <source>No incoming connections...</source>
-        <translation type="obsolete">Inga inkommande anslutningar...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="379"/>
@@ -1171,12 +1051,6 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Är du säker på att du vill ta bort de markerade färdiga objekt(en) från listan och från hårddisken?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="809"/>
-        <source>&apos;%1&apos; was removed permanently.</source>
-        <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation type="obsolete">&quot;%1&quot; togs bort permanent.</translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="390"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
@@ -1214,12 +1088,6 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Stöd för identifiering av lokala klienter [AV]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="815"/>
-        <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
-        <comment>%1 is a file name</comment>
-        <translation type="obsolete">&quot;%1&quot; togs bort därför att dess förhållande nådde det maximala värdet du ställde in.</translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="1409"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
@@ -1228,37 +1096,37 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../GUI.cpp" line="1394"/>
         <source>DL: %1 KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>Ned: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1395"/>
         <source>UP: %1 KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>Upp: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="315"/>
         <source>Ratio: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Förhållande: %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="317"/>
         <source>DHT: %1 nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT: %1 noder</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1446"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inga direktanslutningar. Detta kan betyda problem med nätverkskonfigurationen.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="147"/>
         <source>Uploads</source>
-        <translation type="unfinished"></translation>
+        <translation>Sändningar</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1523"/>
         <source>Options were saved successfully.</source>
-        <translation type="unfinished">Inställningarna har sparats.</translation>
+        <translation>Inställningarna sparades.</translation>
     </message>
 </context>
 <context>
@@ -1394,39 +1262,19 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Inställningar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="52"/>
-        <source>Total DL Speed:</source>
-        <translation type="obsolete">Total hämtningshastighet:</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui" line="185"/>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui" line="110"/>
-        <source>Session ratio: </source>
-        <translation type="obsolete">Sessionsförhållande: </translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui" line="156"/>
-        <source>Total UP Speed:</source>
-        <translation type="obsolete">Total sändningshastighet:</translation>
-    </message>
-    <message>
         <location filename="../MainWindow.ui" line="242"/>
         <source>Decrease priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Sänk prioriteten</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="253"/>
         <source>Increase priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Öka prioriteten</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="264"/>
         <source>Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Konsoll</translation>
     </message>
 </context>
 <context>
@@ -1810,12 +1658,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../addTorrentDialog.ui" line="116"/>
         <source>Collapse all</source>
-        <translation type="unfinished"></translation>
+        <translation>Fäll in alla</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
         <source>Expand All</source>
-        <translation type="unfinished"></translation>
+        <translation>Fäll ut alla</translation>
     </message>
 </context>
 <context>
@@ -1874,103 +1722,103 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../bittorrent.cpp" line="151"/>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 har nått maximalt angivet förhållande.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="670"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation type="unfinished">&quot;%1&quot; togs bort permanent.</translation>
+        <translation>&quot;%1&quot; togs bort permanent.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="672"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation type="unfinished">&quot;%1&quot; togs bort.</translation>
+        <translation>&quot;%1&quot; togs bort.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="812"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>e.g: xxx.avi paused.</comment>
-        <translation type="unfinished">&quot;%1&quot; pausad.</translation>
+        <translation>&quot;%1&quot; pausad.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="841"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
-        <translation type="unfinished">&quot;%1&quot; återupptogs.</translation>
+        <translation>&quot;%1&quot; återupptogs.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="939"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">&quot;%1&quot; finns redan i hämtningslistan.</translation>
+        <translation>&quot;%1&quot; finns redan i hämtningslistan.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1044"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">&quot;%1&quot; återupptogs. (snabbt läge)</translation>
+        <translation>&quot;%1&quot; återupptogs. (snabbt läge)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1046"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">&quot;%1&quot; lades till i hämtningslistan.</translation>
+        <translation>&quot;%1&quot; lades till i hämtningslistan.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1093"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">Kunde inte avkoda torrent-fil: &quot;%1&quot;</translation>
+        <translation>Kunde inte avkoda torrent-fil: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1059"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Denna fil är antingen skadad eller så är den inte en torrent-fil.</translation>
+        <translation>Denna fil är antingen skadad eller så är den inte en torrent-fil.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1459"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blockerades på grund av ditt IP-filter&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1461"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;har bannlysts på grund av skadade delar&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1751"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="unfinished">Kunde inte lyssna på någon av de angivna portarna.</translation>
+        <translation>Kunde inte lyssna på någon av de angivna portarna.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1783"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Fel i portmappning, meddelande: %1</translation>
+        <translation>UPnP/NAT-PMP: Fel i portmappning, meddelande: %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1788"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Portmappning lyckades, meddelande: %1</translation>
+        <translation>UPnP/NAT-PMP: Portmappning lyckades, meddelande: %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1803"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Snabb återupptagning av data nekades för torrent-filen %1, kontrollerar igen...</translation>
+        <translation>Snabb återupptagning av data nekades för torrent-filen %1, kontrollerar igen...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1808"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Uppslagning av url misslyckades för: %1, meddelande: %2</translation>
+        <translation>Uppslagning av url misslyckades för: %1, meddelande: %2</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1939"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished">Hämtar &quot;%1&quot;, var god vänta...</translation>
+        <translation>Hämtar &quot;%1&quot;, vänta...</translation>
     </message>
 </context>
 <context>
@@ -2211,16 +2059,6 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Sök</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="76"/>
-        <source>Log</source>
-        <translation type="obsolete">Logg</translation>
-    </message>
-    <message>
-        <location filename="../download.ui" line="117"/>
-        <source>IP filter</source>
-        <translation type="obsolete">IP-filter</translation>
-    </message>
-    <message>
         <location filename="../download.ui" line="63"/>
         <source>Start</source>
         <translation>Starta</translation>
@@ -2234,11 +2072,6 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../download.ui" line="73"/>
         <source>Delete</source>
         <translation>Ta bort</translation>
-    </message>
-    <message>
-        <location filename="../download.ui" line="167"/>
-        <source>Clear</source>
-        <translation type="obsolete">Töm</translation>
     </message>
     <message>
         <location filename="../download.ui" line="78"/>
@@ -2318,17 +2151,17 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../download.ui" line="159"/>
         <source>Priority</source>
-        <translation type="unfinished">Prioritet</translation>
+        <translation>Prioritet</translation>
     </message>
     <message>
         <location filename="../download.ui" line="167"/>
         <source>Increase priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Öka prioriteten</translation>
     </message>
     <message>
         <location filename="../download.ui" line="175"/>
         <source>Decrease priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Sänk prioriteten</translation>
     </message>
 </context>
 <context>
@@ -2550,11 +2383,6 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="303"/>
-        <source>Unknown</source>
-        <translation type="obsolete">Okänd</translation>
-    </message>
-    <message>
         <location filename="../misc.h" line="110"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
@@ -2587,11 +2415,6 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
 </context>
 <context>
     <name>options_imp</name>
-    <message>
-        <location filename="../options_imp.cpp" line="829"/>
-        <source>Options were saved successfully.</source>
-        <translation type="obsolete">Inställningarna har sparats.</translation>
-    </message>
     <message>
         <location filename="../options_imp.cpp" line="1257"/>
         <source>Choose scan directory</source>
@@ -2953,11 +2776,6 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <source>Search engines...</source>
         <translation>Sökmotorer...</translation>
     </message>
-    <message>
-        <location filename="" line="0"/>
-        <source>Close tab</source>
-        <translation type="obsolete">Stäng flik</translation>
-    </message>
 </context>
 <context>
     <name>seeding</name>
@@ -2965,11 +2783,6 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <location filename="../seeding.ui" line="13"/>
         <source>Search</source>
         <translation>Sök</translation>
-    </message>
-    <message>
-        <location filename="../seeding.ui" line="34"/>
-        <source>The following torrents are finished and shared:</source>
-        <translation type="obsolete">Följande torrent-filer är färdiga och delas ut:</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="49"/>
@@ -3049,17 +2862,17 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <location filename="../seeding.ui" line="132"/>
         <source>Priority</source>
-        <translation type="unfinished">Prioritet</translation>
+        <translation>Prioritet</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="140"/>
         <source>Increase priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Öka prioriteten</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="148"/>
         <source>Decrease priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Sänk prioriteten</translation>
     </message>
 </context>
 <context>
