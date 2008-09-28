@@ -1,6 +1,7 @@
 /*
  * MIT License
- * Copyright (c) 2008 Ishan Arora <ishan@qbittorrent.org>
+ * Copyright (c) 2008 Ishan Arora <ishan@qbittorrent.org>,
+ * Christophe Dumez <chris@qbittorrent.org>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,8 +29,8 @@ window.addEvent('domready', function(){
       height: '100%'
   });
   // Download list
-	myTable = new dynamicTable('myTable', {overCls: 'over', selectCls: 'selected', altCls: 'alt', type: 'DL'});
-  myTableUP = new dynamicTable('myTableUP', {overCls: 'over', selectCls: 'selected', altCls: 'alt', type: 'UP'});
+	myTable = new dynamicTable('myTable', {overCls: 'over', selectCls: 'selected', altCls: 'alt'});
+  myTableUP = new dynamicTable('myTableUP', {overCls: 'over', selectCls: 'selected', altCls: 'alt'});
 	var r=0;
 	var waiting=false;
   var stateToImg = function(state){

@@ -274,17 +274,17 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../console.ui" line="13"/>
         <source>qBittorrent console</source>
-        <translation type="unfinished"></translation>
+        <translation>Console qBittorrent</translation>
     </message>
     <message>
         <location filename="../console.ui" line="26"/>
         <source>General</source>
-        <translation type="unfinished">Général</translation>
+        <translation>Général</translation>
     </message>
     <message>
         <location filename="../console.ui" line="39"/>
         <source>Blocked IPs</source>
-        <translation type="unfinished"></translation>
+        <translation>IPs bloquées</translation>
     </message>
 </context>
 <context>
@@ -1220,22 +1220,22 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="215"/>
         <source>Display top toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../options.ui" line="1310"/>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Serveur mandataire</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1319"/>
         <source>Search engine proxy settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Paramètres du proxy (moteur de recherche)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1509"/>
         <source>Bittorrent proxy settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Paramètres du proxy (Bittorrent)</translation>
     </message>
 </context>
 <context>
@@ -2582,17 +2582,17 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     <message>
         <location filename="../GUI.cpp" line="1446"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucune connexion directe. Ceci peut être signe d&apos;une mauvaise configuration réseau.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="147"/>
         <source>Uploads</source>
-        <translation type="unfinished"></translation>
+        <translation>Partages</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1523"/>
         <source>Options were saved successfully.</source>
-        <translation type="unfinished">Préférences sauvegardées avec succès.</translation>
+        <translation>Préférences sauvegardées avec succès.</translation>
     </message>
 </context>
 <context>
@@ -2915,7 +2915,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     <message>
         <location filename="../MainWindow.ui" line="264"/>
         <source>Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Console</translation>
     </message>
 </context>
 <context>
@@ -3550,12 +3550,12 @@ Changements:
     <message>
         <location filename="../addTorrentDialog.ui" line="116"/>
         <source>Collapse all</source>
-        <translation type="unfinished"></translation>
+        <translation>Tout réduire</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
         <source>Expand All</source>
-        <translation type="unfinished"></translation>
+        <translation>Tout développer</translation>
     </message>
 </context>
 <context>
@@ -3614,103 +3614,103 @@ Changements:
     <message>
         <location filename="../bittorrent.cpp" line="151"/>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 a atteint le ratio maximum défini.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="670"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation type="unfinished">&apos;%1&apos; a été supprimé de manière permanente.</translation>
+        <translation>&apos;%1&apos; a été supprimé de manière permanente.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="672"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation type="unfinished">&apos;%1&apos; a été supprimé.</translation>
+        <translation>&apos;%1&apos; a été supprimé.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="812"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>e.g: xxx.avi paused.</comment>
-        <translation type="unfinished">&apos;%1&apos; a été mis en pause.</translation>
+        <translation>&apos;%1&apos; a été mis en pause.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="841"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
-        <translation type="unfinished">&apos;%1&apos; a été relancé.</translation>
+        <translation>&apos;%1&apos; a été relancé.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="939"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; est déjà présent dans la liste de téléchargement.</translation>
+        <translation>&apos;%1&apos; est déjà présent dans la liste de téléchargement.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1044"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">&apos;%1&apos; a été relancé. (relancement rapide)</translation>
+        <translation>&apos;%1&apos; a été relancé. (relancement rapide)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1046"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; a été ajouté à la liste de téléchargement.</translation>
+        <translation>&apos;%1&apos; a été ajouté à la liste de téléchargement.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1093"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">Impossible de décoder le torrent : &apos;%1&apos;</translation>
+        <translation>Impossible de décoder le torrent : &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1059"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Ce fichier est corrompu ou il ne s&apos;agit pas d&apos;un torrent.</translation>
+        <translation>Ce fichier est corrompu ou il ne s&apos;agit pas d&apos;un torrent.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1459"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été bloqué par votre filtrage IP&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1461"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été banni suite à l&apos;envoi de données corrompues&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1751"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="unfinished">Impossible d&apos;écouter sur les ports donnés.</translation>
+        <translation>Impossible d&apos;écouter sur les ports donnés.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1783"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP : Echec de mapping du port, message : %1</translation>
+        <translation>UPnP/NAT-PMP : Echec de mapping du port, message : %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1788"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP : Réussite du mapping de port, message : %1</translation>
+        <translation>UPnP/NAT-PMP : Réussite du mapping de port, message : %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1803"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Le relancement rapide a échoué pour le torrent %1, revérification...</translation>
+        <translation>Le relancement rapide a échoué pour le torrent %1, revérification...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1808"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Le contact de la source HTTP a échoué à l&apos;url : %1, message : %2</translation>
+        <translation>Le contact de la source HTTP a échoué à l&apos;url : %1, message : %2</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1939"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished">Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
+        <translation>Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
     </message>
 </context>
 <context>
@@ -4208,12 +4208,12 @@ Changements:
     <message>
         <location filename="../download.ui" line="167"/>
         <source>Increase priority</source>
-        <translation type="unfinished">Augmenter la priorité</translation>
+        <translation>Augmenter la priorité</translation>
     </message>
     <message>
         <location filename="../download.ui" line="175"/>
         <source>Decrease priority</source>
-        <translation type="unfinished">Diminuer la priorité</translation>
+        <translation>Diminuer la priorité</translation>
     </message>
 </context>
 <context>
@@ -5362,12 +5362,12 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../seeding.ui" line="140"/>
         <source>Increase priority</source>
-        <translation type="unfinished">Augmenter la priorité</translation>
+        <translation>Augmenter la priorité</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="148"/>
         <source>Decrease priority</source>
-        <translation type="unfinished">Diminuer la priorité</translation>
+        <translation>Diminuer la priorité</translation>
     </message>
 </context>
 <context>

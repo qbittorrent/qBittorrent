@@ -1,6 +1,6 @@
 /*
  * MIT License
- * Copyright (c) 2008 Ishan Arora <ishan@qbittorrent.org>
+ * Copyright (c) 2008 Ishan Arora <ishan@qbittorrent.org> & Christophe Dumez <chris@qbittorrent.org>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,8 @@
 /**************************************************************
 
 	Script		: Dynamic Table
-	Version		: 0.4
-	Authors		: Ishan Arora
+	Version		: 0.5
+	Authors		: Ishan Arora & Christophe Dumez
 	Desc			: Programable sortable table
 	Licence		: Open Source MIT Licence
 
@@ -37,8 +37,7 @@ var dynamicTable = new Class	({
 		this.setOptions({
 			overCls: false,
 			selectCls: false,
-			altCls: false,
-			type: 'DL'
+			altCls: false
 		}, options);
 		this.table = $(table);
 		this.rows = new Object();

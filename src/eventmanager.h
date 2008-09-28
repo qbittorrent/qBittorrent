@@ -1,6 +1,6 @@
 /*
- *   Copyright (C) 2007 by Ishan Arora
- *   ishanarora@gmail.com
+ *   Copyright (C) 2007 by Ishan Arora & Christophe Dumez
+ *   <ishan@qbittorrent.org>, <chris@qbittorrent.org>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
