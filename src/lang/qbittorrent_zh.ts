@@ -3599,85 +3599,85 @@ previewing)</source>
         <translation type="unfinished">&apos;%1&apos;已移除.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="810"/>
+        <location filename="../bittorrent.cpp" line="812"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>e.g: xxx.avi paused.</comment>
         <translation type="unfinished">&apos;%1&apos;暂停.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="839"/>
+        <location filename="../bittorrent.cpp" line="841"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation type="unfinished">&apos;%1&apos;重新开始.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="937"/>
+        <location filename="../bittorrent.cpp" line="939"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="unfinished">&apos;%1&apos;已存在于下载列表中.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1042"/>
+        <location filename="../bittorrent.cpp" line="1044"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1044"/>
+        <location filename="../bittorrent.cpp" line="1046"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">&apos;%1&apos;添加到下载列表.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1091"/>
+        <location filename="../bittorrent.cpp" line="1093"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="unfinished">无法解码torrent文件:&apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1057"/>
+        <location filename="../bittorrent.cpp" line="1059"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished">该文件不是torrent文件或已经损坏.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1457"/>
+        <location filename="../bittorrent.cpp" line="1459"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1459"/>
+        <location filename="../bittorrent.cpp" line="1461"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1749"/>
+        <location filename="../bittorrent.cpp" line="1751"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="unfinished">所给端口无响应.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1781"/>
+        <location filename="../bittorrent.cpp" line="1783"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: 端口映射失败, 消息: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1786"/>
+        <location filename="../bittorrent.cpp" line="1788"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: 端口映射成功, 消息: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1801"/>
+        <location filename="../bittorrent.cpp" line="1803"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">快速继续数据torrent %1失败,再次检查...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1806"/>
+        <location filename="../bittorrent.cpp" line="1808"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1937"/>
+        <location filename="../bittorrent.cpp" line="1939"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">&apos;%1&apos;下载中,请等待...</translation>
