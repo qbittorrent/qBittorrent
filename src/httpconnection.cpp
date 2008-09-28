@@ -115,12 +115,7 @@ void HttpConnection::respond()
 		{
 			if (list[1] == "events")
 			{
-				EventManager* manager =  parent->eventManager();
-				uint r = parser.get("r").toUInt();
-				if(manager->isUpdated(r))
-					respondJson();
-				else
-					connect(manager, SIGNAL(updated()), this, SLOT(respondJson()));
+				respondJson();
 				return;
 			}
 		}
@@ -166,9 +161,7 @@ void HttpConnection::respondNotFound()
 void HttpConnection::respondJson()
 {
 	EventManager* manager =  parent->eventManager();
-	QString temp = parser.get("r");
-	uint r = parser.get("r").toUInt();
-	QVariant data = manager->querySince(r);
+	QVariant data = manager->getEventList();
 	QString string = toJson(data);
 	generator.setStatusLine(200, "OK");
 	generator.setContentTypeByExt("js");

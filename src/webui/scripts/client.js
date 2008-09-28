@@ -32,6 +32,26 @@ window.addEvent('domready', function(){
   myTableUP = new dynamicTable('myTableUP', {overCls: 'over', selectCls: 'selected', altCls: 'alt', type: 'UP'});
 	var r=0;
 	var waiting=false;
+  var stateToImg = function(state){
+    switch (state)
+    {
+      case 'paused':
+          return '<img src="images/skin/paused.png"/>';
+      case 'seeding':
+          return '<img src="images/skin/seeding.png"/>';
+      case 'checking':
+          return '<img src="images/time.png"/>';
+      case 'downloading':
+          return '<img src="images/skin/downloading.png"/>';
+      case 'connecting':
+          return '<img src="images/skin/connecting.png"/>';
+      case 'stalled':
+          return '<img src="images/skin/stalled.png"/>';
+      case 'queued':
+          return '<img src="images/skin/queued.png"/>';
+    }
+    return '';
+  };
 	var round1 = function(val){return Math.round(val*10)/10};
 	var fspeed = function(val){return round1(val/1024) + ' KiB/s';};
 	var fsize = function(val){
@@ -45,197 +65,77 @@ window.addEvent('domready', function(){
 		return round1(val) + ' TiB';
 	};
 	var ajaxfn = function(){
-		var url = 'json/events?r='+r;
+		var url = 'json/events';
 		if (!waiting){
 			waiting=true;
 			var request = new Request.JSON({
                                 url: url,
 				method: 'get',
-				onComplete: function(jsonObj) {
-					if(jsonObj){
-						r=jsonObj.revision;
-						var events=jsonObj.events;
-						events.each(function(event){
-							switch(event.type){
-							case 'add':
-								var row = new Array();
-                if(event.seed)
-                  row.length = 4;
-                else
-                  row.length = 6;
-                switch (event.state)
-                {
-                  case 'paused':
-                      row[0] = '<img src="images/skin/paused.png"/>';
-                  break;
-                  case 'seeding':
-                      row[0] = '<img src="images/skin/seeding.png"/>';
-                  break;
-                  case 'checking':
-                      row[0] = '<img src="images/time.png"/>';
-                  break;
-                  case 'downloading':
-                      row[0] = '<img src="images/skin/downloading.png"/>';
-                  break;
-                  case 'connecting':
-                      row[0] = '<img src="images/skin/connecting.png"/>';
-                  break;
-                  case 'stalled':
-                      row[0] = '<img src="images/skin/stalled.png"/>';
-                  break;
-                  case 'queued':
-                      row[0] = '<img src="images/skin/queued.png"/>';
-                  break;
-                }
-								row[1] = event.name;
-                row[2] = fsize(event.size);
-                if(!event.seed) {
-                  if($defined(event.progress))
-                  {
-                    row[3] = round1(event.progress*100) + ' %';
-                  }
-                  if($defined(event.dlspeed))
-                  row[4] = fspeed(event.dlspeed);
-                  if($defined(event.upspeed))
-                    row[5] = fspeed(event.upspeed);
-                } else {
-                  if($defined(event.upspeed))
-                  row[3] = fspeed(event.upspeed);
-                }
-                if(event.seed)
-                  myTableUP.insertRow(event.hash, row);
-                else
-								  myTable.insertRow(event.hash, row);
-								break;
-							case 'modify':
-								var row = new Array();
-								if($defined(event.state))
-								{
-									switch (event.state)
-									{
-										case 'paused':
-												row[0] = '<img src="images/skin/paused.png"/>';
-										break;
-										case 'seeding':
-												row[0] = '<img src="images/skin/seeding.png"/>';
-										break;
-										case 'checking':
-												row[0] = '<img src="images/time.png"/>';
-										break;
-										case 'downloading':
-												row[0] = '<img src="images/skin/downloading.png"/>';
-										break;
-										case 'connecting':
-												row[0] = '<img src="images/skin/connecting.png"/>';
-										break;
-										case 'stalled':
-												row[0] = '<img src="images/skin/stalled.png"/>';
-										break;
-										case 'queued':
-												row[0] = '<img src="images/skin/queued.png"/>';
-										break;
-									}
-								}
-                if($defined(event.name)) {
-                  row[1] = event.name;
-                }
-								if($defined(event.size)){
-									row[2] = fsize(event.size);
-								}
-                if(!event.seed) {
-                  if($defined(event.progress))
-                  {
-                    row[3] = round1(event.progress*100) + ' %';
-                  }
-                  if($defined(event.dlspeed))
-                  row[4] = fspeed(event.dlspeed);
-                  if($defined(event.upspeed))
-                    row[5] = fspeed(event.upspeed);
-                } else {
-                  if($defined(event.upspeed))
-                  row[3] = fspeed(event.upspeed);
-                }
-                if(event.seed)
-                  myTableUP.updateRow(event.hash, row);
-                else
-								  myTable.updateRow(event.hash, row);
-								break;
-							case 'delete':
-                if(event.seed)
-                  myTableUP.removeRow(event.hash);
-                else
-								  myTable.removeRow(event.hash);
-								break;
-              case 'finish':
-                myTable.removeRow(event.hash);
+				onComplete: function(events) {
+					if(events){
+            // Add new torrents or update them
+            unfinished_hashes = myTable.getRowIds();
+            finished_hashes = myTableUP.getRowIds();
+            events_hashes = new Array();
+            events.each(function(event){
+              events_hashes[events_hashes.length] = event.hash;
+              if(event.seed) {
                 var row = new Array();
-								row.length = 4;
-                switch (event.state)
-                {
-                  case 'paused':
-                      row[0] = '<img src="images/skin/paused.png"/>';
-                  break;
-                  case 'seeding':
-                      row[0] = '<img src="images/skin/seeding.png"/>';
-                  break;
-                  case 'checking':
-                      row[0] = '<img src="images/time.png"/>';
-                  break;
-                  case 'downloading':
-                      row[0] = '<img src="images/skin/downloading.png"/>';
-                  break;
-                  case 'connecting':
-                      row[0] = '<img src="images/skin/connecting.png"/>';
-                  break;
-                  case 'stalled':
-                      row[0] = '<img src="images/skin/stalled.png"/>';
-                  break;
-                  case 'queued':
-                      row[0] = '<img src="images/skin/queued.png"/>';
-                  break;
-                }
-								row[1] = event.name;
+                row.length = 4;
+                row[0] = stateToImg(event.state);
+                row[1] = event.name;
                 row[2] = fsize(event.size);
                 row[3] = fspeed(event.upspeed);
-                myTableUP.insertRow(event.hash, row);
-                break;
-              case 'unfinish':
-                myTableUP.removeRow(event.hash);
-                var row = new Array();
-								row.length = 6;
-                switch (event.state)
-                {
-                  case 'paused':
-                      row[0] = '<img src="images/skin/paused.png"/>';
-                  break;
-                  case 'seeding':
-                      row[0] = '<img src="images/skin/seeding.png"/>';
-                  break;
-                  case 'checking':
-                      row[0] = '<img src="images/time.png"/>';
-                  break;
-                  case 'downloading':
-                      row[0] = '<img src="images/skin/downloading.png"/>';
-                  break;
-                  case 'connecting':
-                      row[0] = '<img src="images/skin/connecting.png"/>';
-                  break;
-                  case 'stalled':
-                      row[0] = '<img src="images/skin/stalled.png"/>';
-                  break;
-                  case 'queued':
-                      row[0] = '<img src="images/skin/queued.png"/>';
-                  break;
+                if(!finished_hashes.contains(event.hash)) {
+                  // New finished torrent
+                  finished_hashes[finished_hashes.length] = event.hash;
+                  myTableUP.insertRow(event.hash, row);
+                  if(unfinished_hashes.contains(event.hash)) {
+                    // Torrent used to be in unfinished list
+                    // Remove it
+                    myTable.removeRow(event.hash);
+                    unfinished_hashes.erase(event.hash);
+                  }
+                } else {
+                  // Update torrent data
+                  myTableUP.updateRow(event.hash, row);
                 }
-								row[1] = event.name;
+              } else {
+                var row = new Array();
+                row.length = 6;
+                row[0] = stateToImg(event.state);
+                row[1] = event.name;
                 row[2] = fsize(event.size);
                 row[3] = round1(event.progress*100) + ' %';
                 row[4] = fspeed(event.dlspeed);
                 row[5] = fspeed(event.upspeed);
-                myTable.insertRow(event.hash, row);
-                break;
-							}
-						});
+               if(!unfinished_hashes.contains(event.hash)) {
+                  // New unfinished torrent
+                  unfinished_hashes[unfinished_hashes.length] = event.hash;
+                  myTable.insertRow(event.hash, row);
+                  if(finished_hashes.contains(event.hash)) {
+                    // Torrent used to be in unfinished list
+                    // Remove it
+                    myTableUP.removeRow(event.hash);
+                    finished_hashes.erase(event.hash);
+                  }
+                } else {
+                  // Update torrent data
+                  myTable.updateRow(event.hash, row);
+                }
+              }
+            });
+						// Remove deleted torrents
+            unfinished_hashes.each(function(hash){
+              if(!events_hashes.contains(hash)) {
+                myTable.removeRow(hash);
+              }
+            });
+            finished_hashes.each(function(hash){
+              if(!events_hashes.contains(hash)) {
+                myTableUP.removeRow(hash);
+              }
+            });
 					}
 					waiting=false;
 					ajaxfn.delay(1000);

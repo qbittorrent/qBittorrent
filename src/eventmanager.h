@@ -23,8 +23,7 @@
 #define EVENTMANAGER_H
 
 #include "qtorrenthandle.h"
-#include <QLinkedList>
-#include <QPair>
+#include <QHash>
 #include <QVariant>
 
 struct bittorrent;
@@ -33,9 +32,7 @@ class EventManager : public QObject
 {
 	Q_OBJECT
 	private:
-		ulong revision;
-		QLinkedList<QPair <ulong, QVariantMap> > events;
-		bool modify(QString hash, QString key, QVariant value);
+		QHash<QString, QVariantMap> event_list;
 		bittorrent* BTSession;
 
 	protected:
@@ -43,18 +40,12 @@ class EventManager : public QObject
 
 	public:
 		EventManager(QObject *parent, bittorrent* BTSession);
-		QVariant querySince(ulong r) const;
-		bool isUpdated(ulong r) const;
-
-	signals:
-		void updated();
+		QVariant getEventList() const;
 
 	public slots:
 		void addedTorrent(QTorrentHandle& h);
 		void deletedTorrent(QString hash);
 		void modifiedTorrent(QTorrentHandle h);
-		void torrentSwitchedtoUnfinished(QString hash);
-		void torrentSwitchedtoFinished(QString hash);
 };
 
 #endif
