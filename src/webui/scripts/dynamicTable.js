@@ -106,6 +106,12 @@ var dynamicTable = new Class	({
 					ids = this.getRowIds();
 					beginIndex = ids.indexOf(this.cur[0]);
 					endIndex = ids.indexOf(id);
+					if(beginIndex > endIndex) {
+						// Backward shift
+						tmp = beginIndex;
+						beginIndex = endIndex-1;
+						endIndex = tmp-1;
+					}
 					for(i=beginIndex+1; i<(endIndex+1); i++) {
 						curID = ids[i];
 						this.cur[this.cur.length] = curID;
@@ -124,6 +130,7 @@ var dynamicTable = new Class	({
 							temptr.removeClass(this.options.selectCls);
 						}
 					}
+					this.cur.empty();
 					// Add selected style to new one
 					temptr = this.rows[id];
 					if(temptr){
@@ -136,6 +143,19 @@ var dynamicTable = new Class	({
 
 		tr.injectInside(this.table);
 		this.altRow();
+	},
+	
+	selectAll: function() {
+		this.cur.empty();
+		for (var id in this.rows) {
+			this.cur[this.cur.length] = id;
+			temptr = this.rows[id];
+			if(temptr){
+				if(!temptr.hasClass(this.options.selectCls)) {
+					temptr.addClass(this.options.selectCls);
+				}
+			}
+		}
 	},
 
 	updateRow: function(id, row){

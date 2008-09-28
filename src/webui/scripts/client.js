@@ -147,3 +147,13 @@ window.addEvent('domready', function(){
 	ajaxfn();
 // 	ajaxfn.periodical(5000);
 });
+
+window.addEvent('keydown', function(event){
+  if (event.key == 'a' && event.control) {
+    if($("Tab1").hasClass('active')) {
+      myTable.selectAll();
+    } else {
+      myTableUP.selectAll();
+    }
+  }
+});
