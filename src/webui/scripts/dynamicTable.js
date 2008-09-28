@@ -82,6 +82,7 @@ var dynamicTable = new Class	({
 			}.bind(this));
 		}
 		tr.addEvent('click', function(e){
+			e.stop();
 			if(e.control) {
 				// CTRL key was pressed
 				if(this.cur.contains(id)) {
@@ -139,6 +140,7 @@ var dynamicTable = new Class	({
 					this.cur[0] = id;
 				}
 			}
+			return false;
 		}.bind(this));
 
 		tr.injectInside(this.table);
