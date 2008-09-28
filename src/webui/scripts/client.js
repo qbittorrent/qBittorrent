@@ -150,6 +150,7 @@ window.addEvent('domready', function(){
 
 window.addEvent('keydown', function(event){
   if (event.key == 'a' && event.control) {
+    event.stop();
     if($("Tab1").hasClass('active')) {
       myTable.selectAll();
     } else {
