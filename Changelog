@@ -2,7 +2,7 @@
     - FEATURE: Torrent queueing system (with priorities)
     - FEATURE: The number of DHT nodes is displayed
     - FEATURE: RSS can now be disabled from program preferences
-    - FEATURE: Added collapse/expand all buttons in addition dialog
+    - FEATURE: Added collapse/expand all buttons in addition and properties dialogs
     - FEATURE: Can have different proxies for Bittorrent and search engine
     - FEATURE: Allow multiple item selection in Web UI transfer list
     - FEATURE: Moved uploads to a separate list in Web UI

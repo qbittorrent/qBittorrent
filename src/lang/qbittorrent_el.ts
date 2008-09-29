@@ -4688,7 +4688,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Περιεχόμενο τορεντ</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1008"/>
+        <location filename="../properties.ui" line="1167"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -4738,7 +4738,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Προσδιορίζει</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="79"/>
+        <location filename="../properties_imp.cpp" line="81"/>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>
@@ -4753,7 +4753,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete"> Μερικό:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="933"/>
+        <location filename="../properties.ui" line="1039"/>
         <source>Files contained in current torrent:</source>
         <translation>Αρχεία που περιέχονται στο παρόν τορεντ:</translation>
     </message>
@@ -4798,12 +4798,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Ιχνηλάτης</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="533"/>
+        <location filename="../properties.ui" line="607"/>
         <source>Trackers:</source>
         <translation>Ιχνηλάτες:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="632"/>
+        <location filename="../properties_imp.cpp" line="634"/>
         <source>None - Unreachable?</source>
         <translation>Κανένα - Απροσπέλαστο?</translation>
     </message>
@@ -4818,7 +4818,7 @@ However, those plugins were disabled.</source>
         <translation>Πρόοδος</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="37"/>
+        <location filename="../properties.ui" line="38"/>
         <source>Main infos</source>
         <translation>Γενικές πληροφορίες</translation>
     </message>
@@ -4828,27 +4828,27 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Αριθμός διαμοιραστών:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="738"/>
+        <location filename="../properties.ui" line="848"/>
         <source>Current tracker:</source>
         <translation>Τρέχων ιχνηλάτης:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="362"/>
+        <location filename="../properties.ui" line="426"/>
         <source>Total uploaded:</source>
         <translation>Σύνολο ανεβασμένων:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="380"/>
+        <location filename="../properties.ui" line="444"/>
         <source>Total downloaded:</source>
         <translation>Σύνολο κατεβασμένων:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="416"/>
+        <location filename="../properties.ui" line="480"/>
         <source>Total failed:</source>
         <translation>Σύνολο αποτυχημένων:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="910"/>
+        <location filename="../properties.ui" line="1022"/>
         <source>Torrent content</source>
         <translation>Περιεχόμενο τορεντ</translation>
     </message>
@@ -4858,7 +4858,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Επιλογές</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="492"/>
+        <location filename="../properties.ui" line="565"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Κατέβασμα στη σωστή σειρά (πιο αργό αλλα καλό για προεπισκόπηση)</translation>
     </message>
@@ -4878,42 +4878,42 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Συνδέσεις:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="123"/>
+        <location filename="../properties.ui" line="151"/>
         <source>Save path:</source>
         <translation>Αποθήκευση σε:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="83"/>
+        <location filename="../properties.ui" line="84"/>
         <source>Torrent infos</source>
         <translation>Πληροφορίες τορεντ</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="142"/>
+        <location filename="../properties.ui" line="170"/>
         <source>Creator:</source>
         <translation>Δημιουργός:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="161"/>
+        <location filename="../properties.ui" line="189"/>
         <source>Torrent hash:</source>
         <translation>Τορεντ hash:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="186"/>
+        <location filename="../properties.ui" line="214"/>
         <source>Comment:</source>
         <translation>Σχόλιο:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="323"/>
+        <location filename="../properties.ui" line="360"/>
         <source>Current session</source>
         <translation>Τρέχουσα συνεδρία</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="398"/>
+        <location filename="../properties.ui" line="462"/>
         <source>Share ratio:</source>
         <translation>Ποσοστό μοιράσματος:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="508"/>
+        <location filename="../properties.ui" line="573"/>
         <source>Trackers</source>
         <translation>Ιχνηλάτες</translation>
     </message>
@@ -4953,17 +4953,17 @@ However, those plugins were disabled.</source>
         <translation>Όνομα αρχείου</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="361"/>
+        <location filename="../properties_imp.cpp" line="363"/>
         <source>Priority</source>
         <translation>Προτεραιότητα</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="534"/>
+        <location filename="../properties_imp.cpp" line="536"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="535"/>
+        <location filename="../properties_imp.cpp" line="537"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>Η λίστα των ιχνηλατών δεν γίνεται να είναι άδεισ.</translation>
     </message>
@@ -4973,37 +4973,37 @@ However, those plugins were disabled.</source>
         <translation>Αγνοέιται: το αρχείο δεν κατεβάζεται καθόλου</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1030"/>
+        <location filename="../properties.ui" line="1189"/>
         <source>Ignored</source>
         <translation>Αγνοείται</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1035"/>
+        <location filename="../properties.ui" line="1194"/>
         <source>Normal</source>
         <translation>Κανονικό</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1040"/>
+        <location filename="../properties.ui" line="1199"/>
         <source>Maximum</source>
         <translation>Μέγιστο</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1045"/>
+        <location filename="../properties.ui" line="1204"/>
         <source>High</source>
         <translation>Υψηλό</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="798"/>
+        <location filename="../properties.ui" line="900"/>
         <source>Url seeds</source>
         <translation>Url μοιράσματα</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="465"/>
+        <location filename="../properties_imp.cpp" line="467"/>
         <source>New url seed:</source>
         <translation>Νέο url μοιράσματος:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="471"/>
+        <location filename="../properties_imp.cpp" line="473"/>
         <source>This url seed is already in the list.</source>
         <translation>Αυτό το url μοιράσματος είναι ήδη στη λίστα.</translation>
     </message>
@@ -5019,30 +5019,40 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Κανένα</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="464"/>
+        <location filename="../properties_imp.cpp" line="466"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Νέο url μοιράσματος</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="816"/>
+        <location filename="../properties.ui" line="927"/>
         <source>The following url seeds are available for this torrent:</source>
         <translation>Τα ακόλουθα url μοιράσματος είναι διαθέσιμα για αυτό το τορεντ:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="723"/>
+        <location filename="../properties_imp.cpp" line="725"/>
         <source>Priorities error</source>
         <translation>Σφάλμα προτεραιοτήτων</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="723"/>
+        <location filename="../properties_imp.cpp" line="725"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Σφάλμα, δεν μπορείτε να φιλτράρετε όλα τα αρχεία σε ένα τορεντ.</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="293"/>
+        <location filename="../properties.ui" line="330"/>
         <source>Downloaded pieces</source>
         <translation>Κατεβασμένα κομμάτια</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="1080"/>
+        <source>Collapse all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="1087"/>
+        <source>Expand all</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -59,6 +59,8 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   PropDelegate = new PropListDelegate(0, &changedFilteredfiles);
   filesList->setItemDelegate(PropDelegate);
   connect(filesList, SIGNAL(clicked(const QModelIndex&)), filesList, SLOT(edit(const QModelIndex&)));
+  connect(collapseAllButton, SIGNAL(clicked()), filesList, SLOT(collapseAll()));
+  connect(expandAllButton, SIGNAL(clicked()), filesList, SLOT(expandAll()));
   connect(filesList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
   connect(addTracker_button, SIGNAL(clicked()), this, SLOT(askForTracker()));
   connect(removeTracker_button, SIGNAL(clicked()), this, SLOT(deleteSelectedTrackers()));

@@ -2523,17 +2523,17 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <translation>Egenskaper om torrent</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1008"/>
+        <location filename="../properties.ui" line="1167"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="79"/>
+        <location filename="../properties_imp.cpp" line="81"/>
         <source>Unknown</source>
         <translation>Okänd</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="933"/>
+        <location filename="../properties.ui" line="1039"/>
         <source>Files contained in current torrent:</source>
         <translation>Filer i aktuell torrent:</translation>
     </message>
@@ -2543,12 +2543,12 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <translation>Storlek</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="533"/>
+        <location filename="../properties.ui" line="607"/>
         <source>Trackers:</source>
         <translation>Bevakare:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="632"/>
+        <location filename="../properties_imp.cpp" line="634"/>
         <source>None - Unreachable?</source>
         <translation>Ingen - Ej nåbar?</translation>
     </message>
@@ -2558,77 +2558,77 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <translation>Förlopp</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="37"/>
+        <location filename="../properties.ui" line="38"/>
         <source>Main infos</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="738"/>
+        <location filename="../properties.ui" line="848"/>
         <source>Current tracker:</source>
         <translation>Aktuell bevakare:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="362"/>
+        <location filename="../properties.ui" line="426"/>
         <source>Total uploaded:</source>
         <translation>Totalt skickat:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="380"/>
+        <location filename="../properties.ui" line="444"/>
         <source>Total downloaded:</source>
         <translation>Totalt hämtat:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="416"/>
+        <location filename="../properties.ui" line="480"/>
         <source>Total failed:</source>
         <translation>Totalt misslyckade:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="910"/>
+        <location filename="../properties.ui" line="1022"/>
         <source>Torrent content</source>
         <translation>Torrent-innehåll</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="492"/>
+        <location filename="../properties.ui" line="565"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Hämta i korrekt ordning (långsammare men bra för förhandsvisning)</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="123"/>
+        <location filename="../properties.ui" line="151"/>
         <source>Save path:</source>
         <translation>Sökväg att spara i:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="83"/>
+        <location filename="../properties.ui" line="84"/>
         <source>Torrent infos</source>
         <translation>Torrent-information</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="142"/>
+        <location filename="../properties.ui" line="170"/>
         <source>Creator:</source>
         <translation>Skapare:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="161"/>
+        <location filename="../properties.ui" line="189"/>
         <source>Torrent hash:</source>
         <translation>Torrent-hash:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="186"/>
+        <location filename="../properties.ui" line="214"/>
         <source>Comment:</source>
         <translation>Kommentar:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="323"/>
+        <location filename="../properties.ui" line="360"/>
         <source>Current session</source>
         <translation>Aktuell session</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="398"/>
+        <location filename="../properties.ui" line="462"/>
         <source>Share ratio:</source>
         <translation>Utdelningsförhållande:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="508"/>
+        <location filename="../properties.ui" line="573"/>
         <source>Trackers</source>
         <translation>Bevakare</translation>
     </message>
@@ -2658,17 +2658,17 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <translation>Filnamn</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="361"/>
+        <location filename="../properties_imp.cpp" line="363"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="534"/>
+        <location filename="../properties_imp.cpp" line="536"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="535"/>
+        <location filename="../properties_imp.cpp" line="537"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>Listan över bevakare får inte vara tom.</translation>
     </message>
@@ -2678,65 +2678,75 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <translation>Ignoreras: filen hämtas inte alls</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1030"/>
+        <location filename="../properties.ui" line="1189"/>
         <source>Ignored</source>
         <translation>Ignoreras</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1035"/>
+        <location filename="../properties.ui" line="1194"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1040"/>
+        <location filename="../properties.ui" line="1199"/>
         <source>Maximum</source>
         <translation>Maximal</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1045"/>
+        <location filename="../properties.ui" line="1204"/>
         <source>High</source>
         <translation>Hög</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="798"/>
+        <location filename="../properties.ui" line="900"/>
         <source>Url seeds</source>
         <translation>Url-distributioner</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="465"/>
+        <location filename="../properties_imp.cpp" line="467"/>
         <source>New url seed:</source>
         <translation>Ny url-distribution:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="471"/>
+        <location filename="../properties_imp.cpp" line="473"/>
         <source>This url seed is already in the list.</source>
         <translation>Den här url-distributionen finns redan i listan.</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="464"/>
+        <location filename="../properties_imp.cpp" line="466"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Ny url-distribution</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="816"/>
+        <location filename="../properties.ui" line="927"/>
         <source>The following url seeds are available for this torrent:</source>
         <translation>Följande url-distributioner finns tillgängliga för denna torrent:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="723"/>
+        <location filename="../properties_imp.cpp" line="725"/>
         <source>Priorities error</source>
         <translation>Prioriteringsfel</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="723"/>
+        <location filename="../properties_imp.cpp" line="725"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Fel, du kan inte filtrera alla filerna i en torrent.</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="293"/>
+        <location filename="../properties.ui" line="330"/>
         <source>Downloaded pieces</source>
         <translation>Hämtade delar</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="1080"/>
+        <source>Collapse all</source>
+        <translation type="unfinished">Fäll in alla</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="1087"/>
+        <source>Expand all</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

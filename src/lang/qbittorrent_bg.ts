@@ -4588,7 +4588,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Съдържание на Торента</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1008"/>
+        <location filename="../properties.ui" line="1167"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -4638,7 +4638,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Уточняване</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="79"/>
+        <location filename="../properties_imp.cpp" line="81"/>
         <source>Unknown</source>
         <translation>Неизвестен</translation>
     </message>
@@ -4653,7 +4653,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete"> Частично:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="933"/>
+        <location filename="../properties.ui" line="1039"/>
         <source>Files contained in current torrent:</source>
         <translation>Файлове включени в торента:</translation>
     </message>
@@ -4698,12 +4698,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Тракер</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="533"/>
+        <location filename="../properties.ui" line="607"/>
         <source>Trackers:</source>
         <translation>Тракери:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="632"/>
+        <location filename="../properties_imp.cpp" line="634"/>
         <source>None - Unreachable?</source>
         <translation>Няма - Недостъпни?</translation>
     </message>
@@ -4718,7 +4718,7 @@ However, those plugins were disabled.</source>
         <translation>Изпълнение</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="37"/>
+        <location filename="../properties.ui" line="38"/>
         <source>Main infos</source>
         <translation>Основна информация</translation>
     </message>
@@ -4728,27 +4728,27 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Брой връзки:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="738"/>
+        <location filename="../properties.ui" line="848"/>
         <source>Current tracker:</source>
         <translation>Текущ тракер:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="362"/>
+        <location filename="../properties.ui" line="426"/>
         <source>Total uploaded:</source>
         <translation>Общо качени:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="380"/>
+        <location filename="../properties.ui" line="444"/>
         <source>Total downloaded:</source>
         <translation>Общо свалени:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="416"/>
+        <location filename="../properties.ui" line="480"/>
         <source>Total failed:</source>
         <translation>Общо неуспешни:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="910"/>
+        <location filename="../properties.ui" line="1022"/>
         <source>Torrent content</source>
         <translation>Съдържание на Торента</translation>
     </message>
@@ -4758,7 +4758,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Опции</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="492"/>
+        <location filename="../properties.ui" line="565"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Сваляне в правилен ред (по-бавен, но добър за оглед на файловете)</translation>
     </message>
@@ -4778,42 +4778,42 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Вземащи:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="123"/>
+        <location filename="../properties.ui" line="151"/>
         <source>Save path:</source>
         <translation>Съхрани Път:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="83"/>
+        <location filename="../properties.ui" line="84"/>
         <source>Torrent infos</source>
         <translation>Торент бележки</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="142"/>
+        <location filename="../properties.ui" line="170"/>
         <source>Creator:</source>
         <translation>Автор:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="161"/>
+        <location filename="../properties.ui" line="189"/>
         <source>Torrent hash:</source>
         <translation>Торент раздробяване:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="186"/>
+        <location filename="../properties.ui" line="214"/>
         <source>Comment:</source>
         <translation>Коментар:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="323"/>
+        <location filename="../properties.ui" line="360"/>
         <source>Current session</source>
         <translation>Текуща сесия</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="398"/>
+        <location filename="../properties.ui" line="462"/>
         <source>Share ratio:</source>
         <translation>Процент на споделяне:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="508"/>
+        <location filename="../properties.ui" line="573"/>
         <source>Trackers</source>
         <translation>Тракери</translation>
     </message>
@@ -4853,17 +4853,17 @@ However, those plugins were disabled.</source>
         <translation>Име файл</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="361"/>
+        <location filename="../properties_imp.cpp" line="363"/>
         <source>Priority</source>
         <translation>Предимство</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="534"/>
+        <location filename="../properties_imp.cpp" line="536"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="535"/>
+        <location filename="../properties_imp.cpp" line="537"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>Листата на тракери не може да бъде празна.</translation>
     </message>
@@ -4873,37 +4873,37 @@ However, those plugins were disabled.</source>
         <translation>Игнорирано: файла изобщо не е свален</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1030"/>
+        <location filename="../properties.ui" line="1189"/>
         <source>Ignored</source>
         <translation>Игнорирано</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1035"/>
+        <location filename="../properties.ui" line="1194"/>
         <source>Normal</source>
         <translation>Нормален</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1040"/>
+        <location filename="../properties.ui" line="1199"/>
         <source>Maximum</source>
         <translation>Максимален</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1045"/>
+        <location filename="../properties.ui" line="1204"/>
         <source>High</source>
         <translation>Висок</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="798"/>
+        <location filename="../properties.ui" line="900"/>
         <source>Url seeds</source>
         <translation>Url даващи</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="465"/>
+        <location filename="../properties_imp.cpp" line="467"/>
         <source>New url seed:</source>
         <translation>Нов url на даващ:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="471"/>
+        <location filename="../properties_imp.cpp" line="473"/>
         <source>This url seed is already in the list.</source>
         <translation>Този url на даващ е вече в списъка.</translation>
     </message>
@@ -4914,30 +4914,40 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Няма</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="464"/>
+        <location filename="../properties_imp.cpp" line="466"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Нов url на даващ</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="816"/>
+        <location filename="../properties.ui" line="927"/>
         <source>The following url seeds are available for this torrent:</source>
         <translation>Следните url на даващи са налични за този торент:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="723"/>
+        <location filename="../properties_imp.cpp" line="725"/>
         <source>Priorities error</source>
         <translation>Грешни предимства</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="723"/>
+        <location filename="../properties_imp.cpp" line="725"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Грешка, не можете да филтрирате всички файлове в един торент.</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="293"/>
+        <location filename="../properties.ui" line="330"/>
         <source>Downloaded pieces</source>
         <translation>Свалени парчета</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="1080"/>
+        <source>Collapse all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="1087"/>
+        <source>Expand all</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

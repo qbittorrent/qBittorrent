@@ -3907,12 +3907,12 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Session tiedot</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="738"/>
+        <location filename="../properties.ui" line="848"/>
         <source>Current tracker:</source>
         <translation>Nykyinen seurantapalvelin:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="492"/>
+        <location filename="../properties.ui" line="565"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Lataa lineaarisesti (hitaampi, mutta mahdollistaa aikaisemman esikatselun)</translation>
     </message>
@@ -3942,7 +3942,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Tiedostonimi</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="933"/>
+        <location filename="../properties.ui" line="1039"/>
         <source>Files contained in current torrent:</source>
         <translation>Torrentin tiedostot:</translation>
     </message>
@@ -3957,17 +3957,17 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Lataajia:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="37"/>
+        <location filename="../properties.ui" line="38"/>
         <source>Main infos</source>
         <translation>Perustiedot</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="632"/>
+        <location filename="../properties_imp.cpp" line="634"/>
         <source>None - Unreachable?</source>
         <translation>ei yhtään</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1008"/>
+        <location filename="../properties.ui" line="1167"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -3987,7 +3987,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Tarkastusjonossa</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="123"/>
+        <location filename="../properties.ui" line="151"/>
         <source>Save path:</source>
         <translation>Tallennuskansio:</translation>
     </message>
@@ -4022,7 +4022,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation>Koko</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="910"/>
+        <location filename="../properties.ui" line="1022"/>
         <source>Torrent content</source>
         <translation>Torrentin sisältö</translation>
     </message>
@@ -4032,17 +4032,17 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation>Torrentin tiedot</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="380"/>
+        <location filename="../properties.ui" line="444"/>
         <source>Total downloaded:</source>
         <translation>Ladattu yhteensä:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="416"/>
+        <location filename="../properties.ui" line="480"/>
         <source>Total failed:</source>
         <translation>Epäonnistumisia yhteensä:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="362"/>
+        <location filename="../properties.ui" line="426"/>
         <source>Total uploaded:</source>
         <translation>Lähetetty yhteensä:</translation>
     </message>
@@ -4052,12 +4052,12 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Seurantapalvelin</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="533"/>
+        <location filename="../properties.ui" line="607"/>
         <source>Trackers:</source>
         <translation>Seurantapalvelimet:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="79"/>
+        <location filename="../properties_imp.cpp" line="81"/>
         <source>Unknown</source>
         <translation>Tuntematon</translation>
     </message>
@@ -4072,37 +4072,37 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Voit valita tiedostot, jotka ladataan tästä torrentista.</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="83"/>
+        <location filename="../properties.ui" line="84"/>
         <source>Torrent infos</source>
         <translation>Torrentit tiedot</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="142"/>
+        <location filename="../properties.ui" line="170"/>
         <source>Creator:</source>
         <translation>Luoja:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="161"/>
+        <location filename="../properties.ui" line="189"/>
         <source>Torrent hash:</source>
         <translation>Tarkistustiiviste:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="186"/>
+        <location filename="../properties.ui" line="214"/>
         <source>Comment:</source>
         <translation>Kommentti:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="323"/>
+        <location filename="../properties.ui" line="360"/>
         <source>Current session</source>
         <translation>Nykyinen istunto</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="398"/>
+        <location filename="../properties.ui" line="462"/>
         <source>Share ratio:</source>
         <translation>Jakosuhde:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="508"/>
+        <location filename="../properties.ui" line="573"/>
         <source>Trackers</source>
         <translation>Seurantapalvelimet</translation>
     </message>
@@ -4142,17 +4142,17 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation>Tiedostonimi</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="361"/>
+        <location filename="../properties_imp.cpp" line="363"/>
         <source>Priority</source>
         <translation>Prioriteetti</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="534"/>
+        <location filename="../properties_imp.cpp" line="536"/>
         <source>qBittorrent</source>
         <translation> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="535"/>
+        <location filename="../properties_imp.cpp" line="537"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>Seurantapalvelinlista ei voi olla tyhjä.</translation>
     </message>
@@ -4162,37 +4162,37 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation>Ei huomioitu: tiedostoa ei ladata</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1030"/>
+        <location filename="../properties.ui" line="1189"/>
         <source>Ignored</source>
         <translation>Ei huomioitu</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1035"/>
+        <location filename="../properties.ui" line="1194"/>
         <source>Normal</source>
         <translation>Normaali</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1040"/>
+        <location filename="../properties.ui" line="1199"/>
         <source>Maximum</source>
         <translation>Korkein</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1045"/>
+        <location filename="../properties.ui" line="1204"/>
         <source>High</source>
         <translation>Korkea</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="798"/>
+        <location filename="../properties.ui" line="900"/>
         <source>Url seeds</source>
         <translation>URL-jakajat</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="465"/>
+        <location filename="../properties_imp.cpp" line="467"/>
         <source>New url seed:</source>
         <translation>Uusi URL-jakaja:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="471"/>
+        <location filename="../properties_imp.cpp" line="473"/>
         <source>This url seed is already in the list.</source>
         <translation>Jakaja on jo listassa.</translation>
     </message>
@@ -4203,30 +4203,40 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Ei mikään</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="464"/>
+        <location filename="../properties_imp.cpp" line="466"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Uusi HTTP-lähde</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="816"/>
+        <location filename="../properties.ui" line="927"/>
         <source>The following url seeds are available for this torrent:</source>
         <translation>Seuraavat HTTP-jakajat ovat saatavilla:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="723"/>
+        <location filename="../properties_imp.cpp" line="725"/>
         <source>Priorities error</source>
         <translation>Prioriteettivirhe</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="723"/>
+        <location filename="../properties_imp.cpp" line="725"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Et voi suodattaa torrentin kaikkia tiedostoja.</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="293"/>
+        <location filename="../properties.ui" line="330"/>
         <source>Downloaded pieces</source>
         <translation>Ladatus osat</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="1080"/>
+        <source>Collapse all</source>
+        <translation type="unfinished">Pienennä kaikki</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="1087"/>
+        <source>Expand all</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

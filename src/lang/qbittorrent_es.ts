@@ -4630,7 +4630,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Contenido del Torrent</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1008"/>
+        <location filename="../properties.ui" line="1167"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -4700,7 +4700,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete"> MB</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="79"/>
+        <location filename="../properties_imp.cpp" line="81"/>
         <source>Unknown</source>
         <translation>Desconocido</translation>
     </message>
@@ -4720,12 +4720,12 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Tracker</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="533"/>
+        <location filename="../properties.ui" line="607"/>
         <source>Trackers:</source>
         <translation>Trackers:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="933"/>
+        <location filename="../properties.ui" line="1039"/>
         <source>Files contained in current torrent:</source>
         <translation>Archivos que contiene el torrent actual:</translation>
     </message>
@@ -4755,7 +4755,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Seleccionado</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="632"/>
+        <location filename="../properties_imp.cpp" line="634"/>
         <source>None - Unreachable?</source>
         <translation>Nada - ¿Inaccesible?</translation>
     </message>
@@ -4780,7 +4780,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation>Progreso</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="37"/>
+        <location filename="../properties.ui" line="38"/>
         <source>Main infos</source>
         <translation>Información Principal</translation>
     </message>
@@ -4790,27 +4790,27 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Numero de amigos:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="738"/>
+        <location filename="../properties.ui" line="848"/>
         <source>Current tracker:</source>
         <translation>Pista actual:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="362"/>
+        <location filename="../properties.ui" line="426"/>
         <source>Total uploaded:</source>
         <translation>Subida Total:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="380"/>
+        <location filename="../properties.ui" line="444"/>
         <source>Total downloaded:</source>
         <translation>Descarga Total:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="416"/>
+        <location filename="../properties.ui" line="480"/>
         <source>Total failed:</source>
         <translation>Fallos Totales:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="910"/>
+        <location filename="../properties.ui" line="1022"/>
         <source>Torrent content</source>
         <translation>Contenido del torrent</translation>
     </message>
@@ -4820,7 +4820,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Opciones</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="492"/>
+        <location filename="../properties.ui" line="565"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Descargar por orden (mas lento pero mas bueno para previsualizar)</translation>
     </message>
@@ -4840,42 +4840,42 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Leechers:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="123"/>
+        <location filename="../properties.ui" line="151"/>
         <source>Save path:</source>
         <translation>Ruta de guardado:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="83"/>
+        <location filename="../properties.ui" line="84"/>
         <source>Torrent infos</source>
         <translation>Informaciones de torrent</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="142"/>
+        <location filename="../properties.ui" line="170"/>
         <source>Creator:</source>
         <translation>Creador:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="161"/>
+        <location filename="../properties.ui" line="189"/>
         <source>Torrent hash:</source>
         <translation>Dispersión del torrent:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="186"/>
+        <location filename="../properties.ui" line="214"/>
         <source>Comment:</source>
         <translation>Comentario:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="323"/>
+        <location filename="../properties.ui" line="360"/>
         <source>Current session</source>
         <translation>Sesión actual</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="398"/>
+        <location filename="../properties.ui" line="462"/>
         <source>Share ratio:</source>
         <translation>Radio de Compartición:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="508"/>
+        <location filename="../properties.ui" line="573"/>
         <source>Trackers</source>
         <translation>Trackers</translation>
     </message>
@@ -4915,17 +4915,17 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation>Nombre del archivo</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="361"/>
+        <location filename="../properties_imp.cpp" line="363"/>
         <source>Priority</source>
         <translation>Prioridad</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="534"/>
+        <location filename="../properties_imp.cpp" line="536"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="535"/>
+        <location filename="../properties_imp.cpp" line="537"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>La lista de trackers no puede estar vacía.</translation>
     </message>
@@ -4935,37 +4935,37 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation>Ignorado: el archivo no se ha descargado en lo absoluto</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1030"/>
+        <location filename="../properties.ui" line="1189"/>
         <source>Ignored</source>
         <translation>Ignorado</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1035"/>
+        <location filename="../properties.ui" line="1194"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1040"/>
+        <location filename="../properties.ui" line="1199"/>
         <source>Maximum</source>
         <translation>Máxima</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1045"/>
+        <location filename="../properties.ui" line="1204"/>
         <source>High</source>
         <translation>Alta</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="798"/>
+        <location filename="../properties.ui" line="900"/>
         <source>Url seeds</source>
         <translation>Semillas Url</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="465"/>
+        <location filename="../properties_imp.cpp" line="467"/>
         <source>New url seed:</source>
         <translation>Nueva semilla url:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="471"/>
+        <location filename="../properties_imp.cpp" line="473"/>
         <source>This url seed is already in the list.</source>
         <translation>Esta semilla url ya está en la lista.</translation>
     </message>
@@ -4981,30 +4981,40 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Ninguno</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="464"/>
+        <location filename="../properties_imp.cpp" line="466"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nueva semilla url</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="816"/>
+        <location filename="../properties.ui" line="927"/>
         <source>The following url seeds are available for this torrent:</source>
         <translation>Las siguientes semillas url están disponibles para este torrent:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="723"/>
+        <location filename="../properties_imp.cpp" line="725"/>
         <source>Priorities error</source>
         <translation>Error de propiedades</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="723"/>
+        <location filename="../properties_imp.cpp" line="725"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Error, no puedes filtrar todos los archivos en un torrent.</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="293"/>
+        <location filename="../properties.ui" line="330"/>
         <source>Downloaded pieces</source>
         <translation>Piezas descargadas</translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="1080"/>
+        <source>Collapse all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties.ui" line="1087"/>
+        <source>Expand all</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
