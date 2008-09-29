@@ -120,7 +120,7 @@
      <item>
       <widget class="QPushButton" name="expandAllButton" >
        <property name="text" >
-        <string>Expand All</string>
+        <string>Expand all</string>
        </property>
       </widget>
      </item>

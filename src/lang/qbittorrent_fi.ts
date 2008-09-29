@@ -2781,7 +2781,12 @@ Muutoshistoria:
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
         <source>Expand All</source>
-        <translation>Laajenna kaikki</translation>
+        <translation type="obsolete">Laajenna kaikki</translation>
+    </message>
+    <message>
+        <location filename="../addTorrentDialog.ui" line="123"/>
+        <source>Expand all</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -3446,7 +3446,7 @@ Changelog:
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
-        <source>Expand All</source>
+        <source>Expand all</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

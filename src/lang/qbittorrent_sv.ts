@@ -1663,7 +1663,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
         <source>Expand All</source>
-        <translation>Fäll ut alla</translation>
+        <translation type="obsolete">Fäll ut alla</translation>
+    </message>
+    <message>
+        <location filename="../addTorrentDialog.ui" line="123"/>
+        <source>Expand all</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

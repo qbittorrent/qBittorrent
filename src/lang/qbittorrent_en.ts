@@ -1650,7 +1650,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
-        <source>Expand All</source>
+        <source>Expand all</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

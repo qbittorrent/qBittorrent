@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr">
+<defaultcodec></defaultcodec>
 <context>
     <name>@default</name>
     <message>
@@ -3555,6 +3556,11 @@ Changements:
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
         <source>Expand All</source>
+        <translation type="obsolete">Tout développer</translation>
+    </message>
+    <message>
+        <location filename="../addTorrentDialog.ui" line="123"/>
+        <source>Expand all</source>
         <translation>Tout développer</translation>
     </message>
 </context>
@@ -5206,12 +5212,12 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../properties.ui" line="1080"/>
         <source>Collapse all</source>
-        <translation type="unfinished">Tout réduire</translation>
+        <translation>Tout réduire</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1087"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Tout développer</translation>
     </message>
 </context>
 <context>
