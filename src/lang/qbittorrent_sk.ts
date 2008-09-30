@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS><TS version="1.1" language="sk">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -140,17 +140,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../console.ui" line="13"/>
         <source>qBittorrent console</source>
-        <translation type="unfinished"></translation>
+        <translation>Konzola qBittorrent</translation>
     </message>
     <message>
         <location filename="../console.ui" line="26"/>
         <source>General</source>
-        <translation type="unfinished">Všeobecné</translation>
+        <translation>Všeobecné</translation>
     </message>
     <message>
         <location filename="../console.ui" line="39"/>
         <source>Blocked IPs</source>
-        <translation type="unfinished"></translation>
+        <translation>Zablokované IP</translation>
     </message>
 </context>
 <context>
@@ -226,10 +226,10 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1310"/>
         <source>Proxy</source>
-        <translation type="unfinished">Proxy</translation>
+        <translation>Proxy</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="911"/>
+        <location filename="" line="0"/>
         <source>Proxy Settings</source>
         <translation type="obsolete">Nastavenia proxy</translation>
     </message>
@@ -1041,47 +1041,47 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1852"/>
         <source>Enable RSS support</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../options.ui" line="1862"/>
         <source>RSS settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenia RSS</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1991"/>
         <source>Enable queueing system</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnúť systém frontu</translation>
     </message>
     <message>
         <location filename="../options.ui" line="2003"/>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximum aktívnych sťahovaní:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1985"/>
         <source>Torrent queueing</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaraďovanie torrentov do frontu</translation>
     </message>
     <message>
         <location filename="../options.ui" line="2046"/>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximum aktívnych torrentov:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="215"/>
         <source>Display top toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazovať horný panel nástrojov</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1319"/>
         <source>Search engine proxy settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy nastavenie vyhľadávača</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1509"/>
         <source>Bittorrent proxy settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenie Bittorrent proxy</translation>
     </message>
 </context>
 <context>
@@ -1145,57 +1145,57 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Buďte opatrní, zdieľanie materiálu chráneného autorskými právami bez povolenia je protizákonné.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="152"/>
+        <location filename="" line="0"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;bol zablokovaný&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="238"/>
+        <location filename="" line="0"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="obsolete">Rýchle obnovenie torrentu torrent %1 bolo odmietnuté, skúšam znova...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="242"/>
+        <location filename="" line="0"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="obsolete">Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="895"/>
+        <location filename="" line="0"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="obsolete">„%1“ bol pridaný do zoznamu na sťahovanie.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="897"/>
+        <location filename="" line="0"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="obsolete">„%1“ bol obnovený. (rýchle obnovenie)</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="905"/>
+        <location filename="" line="0"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="obsolete">„%1“ sa už nachádza v zozname sťahovaných.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="909"/>
+        <location filename="" line="0"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="obsolete">Nebol omožné dekodovať torrent súbor: „%1“</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="910"/>
+        <location filename="" line="0"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="obsolete">Tento súbor je buď poškodený alebo to nie je torrent.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="924"/>
+        <location filename="" line="0"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="obsolete">Nepodarilo sa počúvať na žiadnom zo zadaných portov.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="948"/>
+        <location filename="" line="0"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="obsolete">Sťahuje sa „%1“, čakajte prosím...</translation>
@@ -1206,19 +1206,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Skryť alebo zobraziť stĺpec</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="218"/>
+        <location filename="" line="0"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="obsolete">UPnP/NAT-PMP: Zlyhanie mapovania portov, správa: %1</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="222"/>
+        <location filename="" line="0"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="obsolete">UPnP/NAT-PMP: Mapovanie portov úspešné, správa: %1</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="60"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorita</translation>
+        <translation>Priorita</translation>
     </message>
 </context>
 <context>
@@ -1320,7 +1320,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedTorrents.cpp" line="47"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorita</translation>
+        <translation>Priorita</translation>
     </message>
 </context>
 <context>
@@ -1818,12 +1818,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Stav spojenia:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1474"/>
+        <location filename="" line="0"/>
         <source>Offline</source>
         <translation type="obsolete">Offline</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1474"/>
+        <location filename="" line="0"/>
         <source>No peers found...</source>
         <translation type="obsolete">Neboli nájdení rovesníci...</translation>
     </message>
@@ -1923,7 +1923,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Ste si istý, že chcete skončiť?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="869"/>
+        <location filename="" line="0"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation type="obsolete">„%1“ bol odstránený.</translation>
@@ -1965,12 +1965,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">Počúvam na porte: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1278"/>
+        <location filename="" line="0"/>
         <source>All downloads were paused.</source>
         <translation type="obsolete">Všetky sťahovania pozastavené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1349"/>
+        <location filename="" line="0"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation type="obsolete">„%1“ pozastavené.</translation>
@@ -1982,12 +1982,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">pripája sa...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1382"/>
+        <location filename="" line="0"/>
         <source>All downloads were resumed.</source>
         <translation type="obsolete">Všetky sťahovania obnovené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1408"/>
+        <location filename="" line="0"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation type="obsolete">„%1“ obnovené.</translation>
@@ -2027,13 +2027,13 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1470"/>
+        <location filename="" line="0"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation type="obsolete">Za firewallom?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1470"/>
+        <location filename="" line="0"/>
         <source>No incoming connections...</source>
         <translation type="obsolete">Žiadne prichádzajúce spojenia...</translation>
     </message>
@@ -2209,7 +2209,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Ste si istý, že chcete zmazať vybrané položky zo zoznamu dokončených a z pevného disku?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="809"/>
+        <location filename="" line="0"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation type="obsolete">„%1“ bol permanentne odstránený.</translation>
@@ -2257,7 +2257,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Podpora Local Peer Discovery support [vypnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="815"/>
+        <location filename="" line="0"/>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
         <comment>%1 is a file name</comment>
         <translation type="obsolete">„%1“ bol odstránený, pretože jeho pomer dosiahol maximálnu hodonotu, ktorú ste nastavili.</translation>
@@ -2271,37 +2271,37 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <location filename="../GUI.cpp" line="1394"/>
         <source>DL: %1 KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>Sťah: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1395"/>
         <source>UP: %1 KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahr: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="315"/>
         <source>Ratio: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomer: %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="317"/>
         <source>DHT: %1 nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT: %1 uzlov</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1446"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation type="unfinished"></translation>
+        <translation>Žiadne priame spojenia. To môže znamenať problém s pripojením.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="147"/>
         <source>Uploads</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávania</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1523"/>
         <source>Options were saved successfully.</source>
-        <translation type="unfinished">Nastavenia úspešne uložené.</translation>
+        <translation>Nastavenia boli úspešne uložené.</translation>
     </message>
 </context>
 <context>
@@ -2312,12 +2312,12 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Záznam:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="52"/>
+        <location filename="" line="0"/>
         <source>Total DL Speed:</source>
         <translation type="obsolete">Celková rýchlosť sťahovania:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="156"/>
+        <location filename="" line="0"/>
         <source>Total UP Speed:</source>
         <translation type="obsolete">Celková rýchlosť nahrávania:</translation>
     </message>
@@ -2512,7 +2512,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Vyčistiť</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="185"/>
+        <location filename="" line="0"/>
         <source>KiB/s</source>
         <translation type="obsolete">KiB/s</translation>
     </message>
@@ -2527,7 +2527,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Aktualizovať vyhľadávací zásuvný modul</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="110"/>
+        <location filename="" line="0"/>
         <source>Session ratio: </source>
         <translation type="obsolete">Pomer relácie: </translation>
     </message>
@@ -2599,17 +2599,17 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <location filename="../MainWindow.ui" line="242"/>
         <source>Decrease priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Znížiť prioritu</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="253"/>
         <source>Increase priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvýšiť prioritu</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="264"/>
         <source>Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Konzola</translation>
     </message>
 </context>
 <context>
@@ -3213,7 +3213,12 @@ Záznam zmien:</translation>
     <message>
         <location filename="../addTorrentDialog.ui" line="116"/>
         <source>Collapse all</source>
-        <translation type="unfinished"></translation>
+        <translation>Zbaliť všetko</translation>
+    </message>
+    <message>
+        <location filename="" line="0"/>
+        <source>Expand All</source>
+        <translation type="obsolete">Rozbaliť všetko</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
@@ -3277,103 +3282,103 @@ Záznam zmien:</translation>
     <message>
         <location filename="../bittorrent.cpp" line="151"/>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 dosiahol maximálny požadovaný pomer.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="670"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation type="unfinished">„%1“ bol permanentne odstránený.</translation>
+        <translation>„%1“ bol permanentne odstránený.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="672"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation type="unfinished">„%1“ bol odstránený.</translation>
+        <translation>„%1“ bol odstránený.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="812"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>e.g: xxx.avi paused.</comment>
-        <translation type="unfinished">„%1“ pozastavené.</translation>
+        <translation>„%1“ pozastavený.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="841"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
-        <translation type="unfinished">„%1“ obnovené.</translation>
+        <translation>„%1“ obnovený.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="939"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">„%1“ sa už nachádza v zozname sťahovaných.</translation>
+        <translation>„%1“ sa už nachádza v zozname sťahovaných.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1044"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">„%1“ bol obnovený. (rýchle obnovenie)</translation>
+        <translation>„%1“ bol obnovený. (rýchle obnovenie)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1046"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">„%1“ bol pridaný do zoznamu na sťahovanie.</translation>
+        <translation>„%1“ bol pridaný do zoznamu na sťahovanie.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1093"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">Nebol omožné dekodovať torrent súbor: „%1“</translation>
+        <translation>Nebolo možné dekódovať torrent súbor: „%1“</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1059"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento súbor je buď poškodený alebo to nie je torrent.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1459"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokoval váš filter IP adries&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1461"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokovaný kvôli posielaniu poškodených častí&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1751"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="unfinished">Nepodarilo sa počúvať na žiadnom zo zadaných portov.</translation>
+        <translation>Nepodarilo sa počúvať na žiadnom zo zadaných portov.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1783"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Zlyhanie mapovania portov, správa: %1</translation>
+        <translation>UPnP/NAT-PMP: Zlyhanie mapovania portov, správa: %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1788"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Mapovanie portov úspešné, správa: %1</translation>
+        <translation>UPnP/NAT-PMP: Mapovanie portov úspešné, správa: %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1803"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Rýchle obnovenie torrentu torrent %1 bolo odmietnuté, skúšam znova...</translation>
+        <translation>Rýchle obnovenie torrentu torrent %1 bolo odmietnuté, prebieha opätovný pokus...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1808"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
+        <translation>Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1939"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sťahuje sa „%1“, čakajte prosím...</translation>
     </message>
 </context>
 <context>
@@ -3744,12 +3749,12 @@ Záznam zmien:</translation>
         <translation type="obsolete">Celková rýchlosť nahrávania:</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="76"/>
+        <location filename="" line="0"/>
         <source>Log</source>
         <translation type="obsolete">Záznam</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="117"/>
+        <location filename="" line="0"/>
         <source>IP filter</source>
         <translation type="obsolete">IP filter</translation>
     </message>
@@ -3769,7 +3774,7 @@ Záznam zmien:</translation>
         <translation>Zmazať</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="167"/>
+        <location filename="" line="0"/>
         <source>Clear</source>
         <translation type="obsolete">Vyčistiť</translation>
     </message>
@@ -3851,17 +3856,17 @@ Záznam zmien:</translation>
     <message>
         <location filename="../download.ui" line="159"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorita</translation>
+        <translation>Priorita</translation>
     </message>
     <message>
         <location filename="../download.ui" line="167"/>
         <source>Increase priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvýšiť prioritu</translation>
     </message>
     <message>
         <location filename="../download.ui" line="175"/>
         <source>Decrease priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Znížiť prioritu</translation>
     </message>
 </context>
 <context>
@@ -4117,7 +4122,7 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">h </translation>
     </message>
     <message>
-        <location filename="../misc.h" line="303"/>
+        <location filename="" line="0"/>
         <source>Unknown</source>
         <translation type="obsolete">Neznámy</translation>
     </message>
@@ -4335,7 +4340,7 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Táto IP je neplatná.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="829"/>
+        <location filename="" line="0"/>
         <source>Options were saved successfully.</source>
         <translation type="obsolete">Nastavenia úspešne uložené.</translation>
     </message>
@@ -4867,7 +4872,7 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../properties.ui" line="1080"/>
         <source>Collapse all</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zbaliť všetko</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1087"/>
@@ -4946,7 +4951,7 @@ Tieto moduly však boli vypnuté.</translation>
         <translation>Vyhľadávanie</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="34"/>
+        <location filename="" line="0"/>
         <source>The following torrents are finished and shared:</source>
         <translation type="obsolete">Sťahovanie nasledovných torrentov skončilo a sú zdieľané:</translation>
     </message>
@@ -5028,17 +5033,17 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../seeding.ui" line="132"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorita</translation>
+        <translation>Priorita</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="140"/>
         <source>Increase priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvýšiť prioritu</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="148"/>
         <source>Decrease priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Znížiť prioritu</translation>
     </message>
 </context>
 <context>
