@@ -625,6 +625,7 @@ void FinishedTorrents::sortFinishedList(int index, Qt::SortOrder sortOrder){
   switch(index) {
     case F_SIZE:
     case F_UPSPEED:
+    case F_PRIORITY:
       sortFinishedListFloat(index, sortOrder);
       break;
     default:
