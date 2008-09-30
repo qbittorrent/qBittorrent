@@ -809,8 +809,7 @@ void DownloadingTorrents::torrentAdded(QTorrentHandle& h) {
   DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
   DLListModel->setData(DLListModel->index(row, HASH), QVariant(hash));
   // Pause torrent if it was paused last time
-  // Not using isPaused function because torrents are paused after checking now
-  if(QFile::exists(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".paused"))) {
+  if(h.is_paused()) {
     DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)BTSession->getUncheckedTorrentProgress(hash)));
     DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/paused.png"))), Qt::DecorationRole);
     setRowColor(row, QString::fromUtf8("red"));

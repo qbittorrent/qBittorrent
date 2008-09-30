@@ -798,11 +798,10 @@ bool bittorrent::pauseTorrent(QString hash) {
     }
   }
   // Create .paused file if necessary
-  if(!QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")) {
-    QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
-    paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
-    paused_file.close();
-  }
+  QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
+  paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
+  paused_file.write(QByteArray::number((double)h.progress()));
+  paused_file.close();
   // Remove it from TorrentsStartTime hash table
   if(calculateETA) {
     TorrentsStartTime.remove(hash);
@@ -1346,11 +1345,22 @@ void bittorrent::loadDownloadUploadForTorrent(QString hash) {
 }
 
 float bittorrent::getUncheckedTorrentProgress(QString hash) const {
-  /*if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished"))
-    return 1.;*/
-  QTorrentHandle h = getTorrentHandle(hash);
-  QPair<size_type,size_type> downUpInfo = ratioData.value(hash, QPair<size_type,size_type>(0,0));
-  return (float)downUpInfo.first / (float)h.actual_size();
+  QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
+  paused_file.open(QIODevice::ReadOnly | QIODevice::Text);
+  if(!paused_file.exists()) {
+    return 0.;
+  }
+  QByteArray progress_char = paused_file.readAll();
+  qDebug("Read progress: %s", (const char*)progress_char.data());
+  paused_file.close();
+  bool ok = false;
+  float progress = progress_char.toFloat(&ok);
+  if(!ok) {
+    qDebug("Error converting progress in .paused file!");
+    return 0.;
+  }
+  qDebug("Unchecked torrent progress is %f", progress);
+  return progress;
 }
 
 float bittorrent::getRealRatio(QString hash) const{
