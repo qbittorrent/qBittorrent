@@ -3400,85 +3400,85 @@ Changelog:
         <translation type="unfinished">&apos;%1&apos; был удален.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="812"/>
+        <location filename="../bittorrent.cpp" line="811"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>e.g: xxx.avi paused.</comment>
         <translation type="unfinished">&apos;%1&apos; приостановлен.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="841"/>
+        <location filename="../bittorrent.cpp" line="840"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation type="unfinished">&apos;%1&apos; возобновлен.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="939"/>
+        <location filename="../bittorrent.cpp" line="938"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="unfinished">&apos;%1&apos; уже присутствует в списке закачек.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1044"/>
+        <location filename="../bittorrent.cpp" line="1043"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1046"/>
+        <location filename="../bittorrent.cpp" line="1045"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">&apos;%1&apos; добавлен в список закачек.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1093"/>
+        <location filename="../bittorrent.cpp" line="1092"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1059"/>
+        <location filename="../bittorrent.cpp" line="1058"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished">Этот файл либо поврежден, либо не torrent типа.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1459"/>
+        <location filename="../bittorrent.cpp" line="1469"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1461"/>
+        <location filename="../bittorrent.cpp" line="1471"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1751"/>
+        <location filename="../bittorrent.cpp" line="1761"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="unfinished">Невозможно прослушать ни один из заданных портов.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1783"/>
+        <location filename="../bittorrent.cpp" line="1793"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">Распределение портов UPnP/NAT-PMP не удалось с сообщением: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1788"/>
+        <location filename="../bittorrent.cpp" line="1798"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">Распределение портов UPnP/NAT-PMP прошло успешно: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1803"/>
+        <location filename="../bittorrent.cpp" line="1813"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">Быстрое восстановление данных для torrentа %1 было невозможно, проверка заново...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1808"/>
+        <location filename="../bittorrent.cpp" line="1818"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">Поиск раздающего Url не удался: %1, сообщение: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1939"/>
+        <location filename="../bittorrent.cpp" line="1949"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">Скачивание &apos;%1&apos;, подождите...</translation>
