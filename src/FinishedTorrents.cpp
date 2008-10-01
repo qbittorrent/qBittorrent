@@ -281,6 +281,9 @@ void FinishedTorrents::updateFinishedList(){
     }
     if(h.is_paused()) continue;
     if(h.state() == torrent_status::downloading || (h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking && h.progress() < 1.)) {
+      if(h.state() == torrent_status::downloading)
+        qDebug("DOWNLOADING STATE");
+      qDebug("h.progress(): %f", h.progress());
       // What are you doing here? go back to download tab!
       int reponse = QMessageBox::question(this, tr("Incomplete torrent in seeding list"), tr("It appears that the state of '%1' torrent changed from 'seeding' to 'downloading'. Would you like to move it back to download list? (otherwise the torrent will simply be deleted)").arg(h.name()), QMessageBox::Yes | QMessageBox::No);
       if (reponse == QMessageBox::Yes) {
