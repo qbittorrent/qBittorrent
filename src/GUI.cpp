@@ -264,6 +264,7 @@ GUI::~GUI() {
     delete myTrayIconMenu;
   }
   qDebug("2");
+  localServer->close();
   delete localServer;
   delete connecStatusLblIcon;
   delete tabs;
