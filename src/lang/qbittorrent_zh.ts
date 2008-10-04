@@ -1502,7 +1502,7 @@ wait...</comment>
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="726"/>
+        <location filename="../GUI.cpp" line="727"/>
         <source>Open Torrent Files</source>
         <translation>打开Torrent文件</translation>
     </message>
@@ -1524,12 +1524,12 @@ list?</source>
         <translation type="obsolete">确定删除下载列表中的所有文件?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="827"/>
+        <location filename="../GUI.cpp" line="828"/>
         <source>&amp;Yes</source>
         <translation>&amp;是</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="827"/>
+        <location filename="../GUI.cpp" line="828"/>
         <source>&amp;No</source>
         <translation>&amp;否</translation>
     </message>
@@ -1550,7 +1550,7 @@ download list?</source>
         <translation type="obsolete">开始</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1158"/>
+        <location filename="../GUI.cpp" line="1159"/>
         <source>Finished</source>
         <translation>完成</translation>
     </message>
@@ -1605,7 +1605,7 @@ download list?</source>
         <translation type="obsolete">无法创建文档:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="727"/>
+        <location filename="../GUI.cpp" line="728"/>
         <source>Torrent Files</source>
         <translation>Torrent文件</translation>
     </message>
@@ -1654,7 +1654,7 @@ download list?</source>
         <translation type="obsolete"> 使用端口:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="825"/>
+        <location filename="../GUI.cpp" line="826"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>确定? -- qBittorrent</translation>
     </message>
@@ -1973,7 +1973,7 @@ download list and in hard drive?</source>
         <translation type="obsolete">确定从硬盘及下载列表中删除所选中的项目?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="358"/>
+        <location filename="../GUI.cpp" line="359"/>
         <source>Download finished</source>
         <translation> 下载完毕</translation>
     </message>
@@ -1994,13 +1994,13 @@ download list and in hard drive?</source>
         <translation type="obsolete">完整种子/不完整种子</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="901"/>
+        <location filename="../GUI.cpp" line="902"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1446"/>
+        <location filename="../GUI.cpp" line="1447"/>
         <source>Connection status:</source>
         <translation>连接状态:</translation>
     </message>
@@ -2075,18 +2075,18 @@ download list and in hard drive?</source>
         <translation type="obsolete">qBittorrent %1开始.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1429"/>
+        <location filename="../GUI.cpp" line="1430"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1432"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>下载速度: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation> 上传速度: %1 KiB/s</translation>
@@ -2111,7 +2111,7 @@ download list and in hard drive?</source>
         <translation type="obsolete">等待中</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="620"/>
+        <location filename="../GUI.cpp" line="621"/>
         <source>Are you sure you want to quit?</source>
         <translation>确实要退出吗?</translation>
     </message>
@@ -2191,13 +2191,13 @@ list.</comment>
         <translation type="obsolete">&apos;%1&apos;重新开始.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="358"/>
+        <location filename="../GUI.cpp" line="359"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation> &apos;%1&apos;下载完毕.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="367"/>
+        <location filename="../GUI.cpp" line="368"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>输入/输出错误</translation>
@@ -2211,12 +2211,12 @@ The disk is probably full, download has been paused</comment>
         <translation type="obsolete">读或写%1过程中出现错误.磁盘已满,下载被暂停</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1443"/>
+        <location filename="../GUI.cpp" line="1444"/>
         <source>Connection Status:</source>
         <translation>连接状态:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1443"/>
+        <location filename="../GUI.cpp" line="1444"/>
         <source>Online</source>
         <translation>联机</translation>
     </message>
@@ -2273,45 +2273,45 @@ paused.</comment>
         <translation>搜索</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="290"/>
+        <location filename="../GUI.cpp" line="291"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="933"/>
+        <location filename="../GUI.cpp" line="934"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent 绑定端口:%1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1039"/>
+        <location filename="../GUI.cpp" line="1040"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT 支持 [开], port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1045"/>
+        <location filename="../GUI.cpp" line="1046"/>
         <source>DHT support [OFF]</source>
         <translation>DHT 支持［关］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1049"/>
+        <location filename="../GUI.cpp" line="1050"/>
         <source>PeX support [ON]</source>
         <translation>PeX 支持［ON］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1053"/>
+        <location filename="../GUI.cpp" line="1054"/>
         <source>PeX support [OFF]</source>
         <translation>PeX 支持［关］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="621"/>
+        <location filename="../GUI.cpp" line="622"/>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
         <translation>下载列表不为空
 您确定要离开qBittorrent吗?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1147"/>
+        <location filename="../GUI.cpp" line="1148"/>
         <source>Downloads</source>
         <translation>下载</translation>
     </message>
@@ -2322,7 +2322,7 @@ finished list?</source>
         <translation type="obsolete">您确定要删除完成列表中选中的项目吗?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="955"/>
+        <location filename="../GUI.cpp" line="956"/>
         <source>UPnP support [ON]</source>
         <translation>UPnP 支持［开］</translation>
     </message>
@@ -2333,17 +2333,17 @@ is against the law.</source>
         <translation type="obsolete">注意，在未经允许情况下共享有版权的材料是违法的.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1073"/>
+        <location filename="../GUI.cpp" line="1074"/>
         <source>Encryption support [ON]</source>
         <translation>加密支持［开］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1078"/>
+        <location filename="../GUI.cpp" line="1079"/>
         <source>Encryption support [FORCED]</source>
         <translation>加密支持［强制］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1084"/>
         <source>Encryption support [OFF]</source>
         <translation>加密支持［关］</translation>
     </message>
@@ -2362,13 +2362,13 @@ color=&apos;red&apos;&gt;%1&lt;/font&gt;
         <translation type="obsolete"> 比率</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="386"/>
+        <location filename="../GUI.cpp" line="387"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="388"/>
+        <location filename="../GUI.cpp" line="389"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
         <translation>Alt+2</translation>
@@ -2380,18 +2380,18 @@ color=&apos;red&apos;&gt;%1&lt;/font&gt;
         <translation type="obsolete">Alt+3, Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="394"/>
+        <location filename="../GUI.cpp" line="395"/>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="464"/>
+        <location filename="../GUI.cpp" line="465"/>
         <source>Url download error</source>
         <translation>网址下载错误</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="464"/>
+        <location filename="../GUI.cpp" line="465"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>无法在网址:%1下载文件,原因:%2.</translation>
     </message>
@@ -2427,39 +2427,39 @@ finished list and from hard drive?</source>
 消息:%2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="390"/>
+        <location filename="../GUI.cpp" line="391"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="392"/>
+        <location filename="../GUI.cpp" line="393"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="958"/>
+        <location filename="../GUI.cpp" line="959"/>
         <source>UPnP support [OFF]</source>
         <translation>UPnP 支持［关］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="963"/>
+        <location filename="../GUI.cpp" line="964"/>
         <source>NAT-PMP support [ON]</source>
         <translation>NAT-PMP 支持［开］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="966"/>
+        <location filename="../GUI.cpp" line="967"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>NAT-PMP 支持［关］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1058"/>
+        <location filename="../GUI.cpp" line="1059"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>本地资源搜索[开]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1061"/>
+        <location filename="../GUI.cpp" line="1062"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>本地资源搜索支持[关]</translation>
     </message>
@@ -2471,31 +2471,31 @@ maximum value you set.</source>
         <translation type="obsolete">&apos;%1&apos;被移除因为它的比率达到您设置的最大值.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1409"/>
+        <location filename="../GUI.cpp" line="1410"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (下载: %2KiB/s, 上传: 
 %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="367"/>
+        <location filename="../GUI.cpp" line="368"/>
         <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
         <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
         <translation>读或写%1过程中出现错误.磁盘可能已满,下载被暂停</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="379"/>
+        <location filename="../GUI.cpp" line="380"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>出现错误(磁盘已满?),&apos;%1&apos;暂停.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="766"/>
+        <location filename="../GUI.cpp" line="767"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
         <translation>您确定要从下载列表和硬盘中删除选中的项目吗?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="773"/>
+        <location filename="../GUI.cpp" line="774"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
         <translation>您确定要从完成列表和硬盘中删除选中的项目吗?</translation>
     </message>
@@ -2506,37 +2506,37 @@ maximum value you set.</source>
         <translation type="obsolete">&apos;%1&apos;被移除因为它的比率达到您设置的最大值.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="819"/>
+        <location filename="../GUI.cpp" line="820"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>您确定要删除下载列表中选中的项目吗?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="826"/>
+        <location filename="../GUI.cpp" line="827"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
         <translation>您确定要删除完成列表中选中的项目吗?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1394"/>
+        <location filename="../GUI.cpp" line="1395"/>
         <source>DL: %1 KiB/s</source>
         <translation>下载: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1395"/>
+        <location filename="../GUI.cpp" line="1396"/>
         <source>UP: %1 KiB/s</source>
         <translation>上传: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="315"/>
+        <location filename="../GUI.cpp" line="316"/>
         <source>Ratio: %1</source>
         <translation>比率:%1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="317"/>
+        <location filename="../GUI.cpp" line="318"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 结点</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1446"/>
+        <location filename="../GUI.cpp" line="1447"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>无直接连接.这也许指示网络设置问题.</translation>
     </message>
@@ -2546,7 +2546,7 @@ maximum value you set.</source>
         <translation>上传</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1523"/>
+        <location filename="../GUI.cpp" line="1524"/>
         <source>Options were saved successfully.</source>
         <translation>选项保存成功.</translation>
     </message>
@@ -3592,97 +3592,97 @@ previewing)</source>
         <translation>&apos;%1&apos;达到您设置的最大比率.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="670"/>
+        <location filename="../bittorrent.cpp" line="676"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos;已永久移除.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="672"/>
+        <location filename="../bittorrent.cpp" line="678"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos;已移除.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="811"/>
+        <location filename="../bittorrent.cpp" line="817"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>e.g: xxx.avi paused.</comment>
         <translation>&apos;%1&apos;暂停.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="840"/>
+        <location filename="../bittorrent.cpp" line="846"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation>&apos;%1&apos;重新开始.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="938"/>
+        <location filename="../bittorrent.cpp" line="944"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos;已存在于下载列表中.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1043"/>
+        <location filename="../bittorrent.cpp" line="1055"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; 重新开始. (快速)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1045"/>
+        <location filename="../bittorrent.cpp" line="1057"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos;添加到下载列表.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1092"/>
+        <location filename="../bittorrent.cpp" line="1104"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>无法解码torrent文件:&apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1058"/>
+        <location filename="../bittorrent.cpp" line="1070"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>该文件不是torrent文件或已经损坏.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1469"/>
+        <location filename="../bittorrent.cpp" line="1481"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;被您的IP过滤器阻止&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1471"/>
+        <location filename="../bittorrent.cpp" line="1483"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;因损坏碎片被禁止&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1761"/>
+        <location filename="../bittorrent.cpp" line="1773"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>所给端口无响应.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1793"/>
+        <location filename="../bittorrent.cpp" line="1805"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: 端口映射失败, 消息: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1798"/>
+        <location filename="../bittorrent.cpp" line="1810"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: 端口映射成功, 消息: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1813"/>
+        <location filename="../bittorrent.cpp" line="1825"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>快速重新开始数据torrent %1失败,再次检查...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1818"/>
+        <location filename="../bittorrent.cpp" line="1830"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>找不到网址种子:%1, 消息:%2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1949"/>
+        <location filename="../bittorrent.cpp" line="1961"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;下载中,请等待...</translation>

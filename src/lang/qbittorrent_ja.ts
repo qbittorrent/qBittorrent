@@ -1282,7 +1282,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="726"/>
+        <location filename="../GUI.cpp" line="727"/>
         <source>Open Torrent Files</source>
         <translation>Torrent ファイルを開く</translation>
     </message>
@@ -1292,17 +1292,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">このファイルは壊れているかこれは torrent ではないかのどちらかです。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="827"/>
+        <location filename="../GUI.cpp" line="828"/>
         <source>&amp;Yes</source>
         <translation>はい(&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="827"/>
+        <location filename="../GUI.cpp" line="828"/>
         <source>&amp;No</source>
         <translation>いいえ(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="819"/>
+        <location filename="../GUI.cpp" line="820"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>ダウンロードの一覧にある選択されたアイテムを削除してもよろしいですか?</translation>
     </message>
@@ -1317,12 +1317,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">ダウンロードしています....</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="727"/>
+        <location filename="../GUI.cpp" line="728"/>
         <source>Torrent Files</source>
         <translation>Torrent ファイル</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="825"/>
+        <location filename="../GUI.cpp" line="826"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>よろしいですか? -- qBittorrent</translation>
     </message>
@@ -1354,7 +1354,7 @@ Please close the other one first.</source>
 まず他の 1 つを閉じてください。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="358"/>
+        <location filename="../GUI.cpp" line="359"/>
         <source>Download finished</source>
         <translation>ダウンロードが完了しました</translation>
     </message>
@@ -1364,13 +1364,13 @@ Please close the other one first.</source>
         <translation type="obsolete">ダウンロードの一覧およびハード ドライブにある選択されたアイテムを削除してもよろしいですか?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="901"/>
+        <location filename="../GUI.cpp" line="902"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1446"/>
+        <location filename="../GUI.cpp" line="1447"/>
         <source>Connection status:</source>
         <translation>接続状態:</translation>
     </message>
@@ -1433,18 +1433,18 @@ Please close the other one first.</source>
         <translation type="obsolete">qBittorrent %1 が開始されました。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1429"/>
+        <location filename="../GUI.cpp" line="1430"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1432"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL 速度: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP 速度: %1 KiB/s</translation>
@@ -1462,7 +1462,7 @@ Please close the other one first.</source>
         <translation type="obsolete">失速しました</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="620"/>
+        <location filename="../GUI.cpp" line="621"/>
         <source>Are you sure you want to quit?</source>
         <translation>終了してもよろしいですか?</translation>
     </message>
@@ -1531,30 +1531,30 @@ Please close the other one first.</source>
         <translation type="obsolete">&apos;%1&apos; が再開されました。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="358"/>
+        <location filename="../GUI.cpp" line="359"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 はダウンロードが完了しました。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="367"/>
+        <location filename="../GUI.cpp" line="368"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O エラー</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="367"/>
+        <location filename="../GUI.cpp" line="368"/>
         <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
         <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
         <translation>%1 の読み込みまたは書き込みを試行にエラーが発生しました。ディスクはおそらくいっぱいです、ダウンロードは一時停止されました</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1443"/>
+        <location filename="../GUI.cpp" line="1444"/>
         <source>Connection Status:</source>
         <translation>接続状態:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1443"/>
+        <location filename="../GUI.cpp" line="1444"/>
         <source>Online</source>
         <translation>オンライン</translation>
     </message>
@@ -1576,7 +1576,7 @@ Please close the other one first.</source>
         <translation type="obsolete">&apos;%1&apos; をダウンロードしています、お待ちください...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="379"/>
+        <location filename="../GUI.cpp" line="380"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>エラーが発生しました (ディスクいっぱい?)、&apos;%1&apos; が停止されました。</translation>
@@ -1587,7 +1587,7 @@ Please close the other one first.</source>
         <translation>検索</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="290"/>
+        <location filename="../GUI.cpp" line="291"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
@@ -1602,18 +1602,18 @@ Please close the other one first.</source>
         <translation type="obsolete">UPnP: WAN が検出されました!</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="933"/>
+        <location filename="../GUI.cpp" line="934"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent は次のポートに拘束されています: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1039"/>
+        <location filename="../GUI.cpp" line="1040"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT サポート [オン]、ポート: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1045"/>
+        <location filename="../GUI.cpp" line="1046"/>
         <source>DHT support [OFF]</source>
         <translation>DHT サポート [オフ]</translation>
     </message>
@@ -1623,34 +1623,34 @@ Please close the other one first.</source>
         <translation type="obsolete">UPnP サポート [オン]、ポート: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="958"/>
+        <location filename="../GUI.cpp" line="959"/>
         <source>UPnP support [OFF]</source>
         <translation>UPnP サポート [オフ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1049"/>
+        <location filename="../GUI.cpp" line="1050"/>
         <source>PeX support [ON]</source>
         <translation>PeX サポート [オン]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1053"/>
+        <location filename="../GUI.cpp" line="1054"/>
         <source>PeX support [OFF]</source>
         <translation>PeX サポート [オフ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="621"/>
+        <location filename="../GUI.cpp" line="622"/>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
         <translation>ダウンロードの一覧は空ではありません。
 qBittorrent を終了してもよろしいですか?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1147"/>
+        <location filename="../GUI.cpp" line="1148"/>
         <source>Downloads</source>
         <translation>ダウンロード</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1158"/>
+        <location filename="../GUI.cpp" line="1159"/>
         <source>Finished</source>
         <translation>完了しました</translation>
     </message>
@@ -1660,12 +1660,12 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">完了済みの一覧およびハード ドライブにある選択されたアイテムを削除してもよろしいですか?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="826"/>
+        <location filename="../GUI.cpp" line="827"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
         <translation>ダウンロードの一覧にある選択されたアイテムを削除してもよろしいですか?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="955"/>
+        <location filename="../GUI.cpp" line="956"/>
         <source>UPnP support [ON]</source>
         <translation>UPnP サポート [オン]</translation>
     </message>
@@ -1675,17 +1675,17 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">ご用心ください、許可なしの著作権のある材料の共有は法律に違反しています。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1073"/>
+        <location filename="../GUI.cpp" line="1074"/>
         <source>Encryption support [ON]</source>
         <translation>暗号化サポート [オン]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1078"/>
+        <location filename="../GUI.cpp" line="1079"/>
         <source>Encryption support [FORCED]</source>
         <translation>暗号化サポート [強制済み]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1083"/>
+        <location filename="../GUI.cpp" line="1084"/>
         <source>Encryption support [OFF]</source>
         <translation>暗号化サポート [オフ]</translation>
     </message>
@@ -1701,13 +1701,13 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">率</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="386"/>
+        <location filename="../GUI.cpp" line="387"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="388"/>
+        <location filename="../GUI.cpp" line="389"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
         <translation>Alt+2</translation>
@@ -1719,18 +1719,18 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">Alt+3、Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="394"/>
+        <location filename="../GUI.cpp" line="395"/>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="464"/>
+        <location filename="../GUI.cpp" line="465"/>
         <source>Url download error</source>
         <translation>Url のダウンロード エラー</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="464"/>
+        <location filename="../GUI.cpp" line="465"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>次の url にあるファイルをダウンロードできませんでした: %1、理由: %2。</translation>
     </message>
@@ -1740,12 +1740,12 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">高速再開データは torrent %1 を拒絶しました、再びチェックしています...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="766"/>
+        <location filename="../GUI.cpp" line="767"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
         <translation>ダウンロードの一覧とハード ドライブから選択されたアイテムを削除してもよろしいですか?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="773"/>
+        <location filename="../GUI.cpp" line="774"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
         <translation>完了済みの一覧とハード ドライブから選択されたアイテムを削除してもよろしいですか?</translation>
     </message>
@@ -1761,13 +1761,13 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">次の url の url シードの参照に失敗しました: %1、メッセージ: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="390"/>
+        <location filename="../GUI.cpp" line="391"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="392"/>
+        <location filename="../GUI.cpp" line="393"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
@@ -1779,53 +1779,53 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">&apos;%1&apos; はその率が設定した最大値を達成したので削除されました。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="963"/>
+        <location filename="../GUI.cpp" line="964"/>
         <source>NAT-PMP support [ON]</source>
         <translation>NAT-PMP サポート [オン]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="966"/>
+        <location filename="../GUI.cpp" line="967"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>NAT-PMP サポート [オフ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1058"/>
+        <location filename="../GUI.cpp" line="1059"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>ローカル ピア ディスカバリ [オン]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1061"/>
+        <location filename="../GUI.cpp" line="1062"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>ローカル ピア ディスカバリ [オフ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1409"/>
+        <location filename="../GUI.cpp" line="1410"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (DL: %2KiB/s、UP: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1394"/>
+        <location filename="../GUI.cpp" line="1395"/>
         <source>DL: %1 KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1395"/>
+        <location filename="../GUI.cpp" line="1396"/>
         <source>UP: %1 KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="315"/>
+        <location filename="../GUI.cpp" line="316"/>
         <source>Ratio: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="317"/>
+        <location filename="../GUI.cpp" line="318"/>
         <source>DHT: %1 nodes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1446"/>
+        <location filename="../GUI.cpp" line="1447"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1835,7 +1835,7 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1523"/>
+        <location filename="../GUI.cpp" line="1524"/>
         <source>Options were saved successfully.</source>
         <translation type="unfinished">オプションの保存に成功しました。</translation>
     </message>
@@ -2694,97 +2694,97 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="670"/>
+        <location filename="../bittorrent.cpp" line="676"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation type="unfinished">&apos;%1&apos; は永久に削除されました。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="672"/>
+        <location filename="../bittorrent.cpp" line="678"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation type="unfinished">&apos;%1&apos; は削除されました。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="811"/>
+        <location filename="../bittorrent.cpp" line="817"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>e.g: xxx.avi paused.</comment>
         <translation type="unfinished">&apos;%1&apos; が停止されました。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="840"/>
+        <location filename="../bittorrent.cpp" line="846"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation type="unfinished">&apos;%1&apos; が再開されました。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="938"/>
+        <location filename="../bittorrent.cpp" line="944"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="unfinished">&apos;%1&apos; はすでにダウンロードの一覧にあります。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1043"/>
+        <location filename="../bittorrent.cpp" line="1055"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished">&apos;%1&apos; が再開されました。 (高速再開)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1045"/>
+        <location filename="../bittorrent.cpp" line="1057"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">&apos;%1&apos; がダウンロードの一覧に追加されました。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1092"/>
+        <location filename="../bittorrent.cpp" line="1104"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="unfinished">Torrent ファイルをデコードすることができません: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1058"/>
+        <location filename="../bittorrent.cpp" line="1070"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished">このファイルは壊れているかこれは torrent ではないかのどちらかです。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1469"/>
+        <location filename="../bittorrent.cpp" line="1481"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1471"/>
+        <location filename="../bittorrent.cpp" line="1483"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1761"/>
+        <location filename="../bittorrent.cpp" line="1773"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="unfinished">所定のポートで記入できませんでした。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1793"/>
+        <location filename="../bittorrent.cpp" line="1805"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1798"/>
+        <location filename="../bittorrent.cpp" line="1810"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1813"/>
+        <location filename="../bittorrent.cpp" line="1825"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">高速再開データは torrent %1 を拒絶しました、再びチェックしています...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1818"/>
+        <location filename="../bittorrent.cpp" line="1830"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">次の url の url シードの参照に失敗しました: %1、メッセージ: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1949"/>
+        <location filename="../bittorrent.cpp" line="1961"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">&apos;%1&apos; をダウンロードしています、お待ちください...</translation>
