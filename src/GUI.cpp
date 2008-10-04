@@ -162,10 +162,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   refresher = new QTimer(this);
   connect(refresher, SIGNAL(timeout()), this, SLOT(updateLists()));
   refresher->start(1500);
-  // Resume unfinished torrents
-  BTSession->resumeUnfinishedTorrents();
   // Configure BT session according to options
   configureSession(true);
+  // Resume unfinished torrents
+  BTSession->resumeUnfinishedTorrents();
   // Add torrent given on command line
   processParams(torrentCmdLine);
   // Initialize Web UI
