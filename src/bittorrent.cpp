@@ -957,6 +957,13 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
       catch (fs::filesystem_error&) {}
     }
     QString savePath = getSavePath(hash);
+    // Save save_path to hard drive
+    QFile savepath_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".savepath"));
+    if(!savepath_file.exists()) {
+      savepath_file.open(QIODevice::WriteOnly | QIODevice::Text);
+      savepath_file.write(savePath.toUtf8());
+      savepath_file.close();
+    }
     // Adding files to bittorrent session
     if(preAllocateAll) {
       h = s->add_torrent(t, fs::path(savePath.toUtf8().data()), resume_data, storage_mode_allocate, true);
