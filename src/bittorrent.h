@@ -187,6 +187,7 @@ class bittorrent : public QObject {
     void setETACalculation(bool enable);
     void addConsoleMessage(QString msg, QColor color=QApplication::palette().color(QPalette::WindowText));
     void addPeerBanMessage(QString msg, bool from_ipfilter);
+    void fixTorrentPriorities();
 
   protected slots:
     void scanDirectory();

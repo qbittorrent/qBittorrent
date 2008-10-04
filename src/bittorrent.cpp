@@ -260,11 +260,63 @@ void bittorrent::saveTorrentPriority(QString hash, int prio) {
   prio_file.close();
 }
 
+void bittorrent::fixTorrentPriorities() {
+  Q_ASSERT(queueingEnabled);
+  // Load priorities
+  QList<QPair<int, QString> > tmp_list;
+  QStringList noprio;
+  foreach(QString hash, unfinishedTorrents) {
+    int prio = loadTorrentPriority(hash);
+    if(prio != -1) {
+      misc::insertSort2<QString>(tmp_list, QPair<int,QString>(prio,hash), Qt::AscendingOrder);
+    } else {
+      noprio << hash;
+    }
+  }
+  downloadQueue->clear();
+  QPair<int,QString> couple;
+  foreach(couple, tmp_list) {
+    downloadQueue->append(couple.second);
+  }
+  (*downloadQueue)<<noprio;
+  // Cleanup
+  tmp_list.clear();
+  noprio.clear();
+  // save priorities
+  int i=0;
+  foreach(QString hash, *downloadQueue) {
+    saveTorrentPriority(hash, i);
+    ++i;
+  }
+  queuedDownloads->clear();
+  updateDownloadQueue();
+  foreach(QString hash, finishedTorrents) {
+    int prio = loadTorrentPriority(hash);
+    if(prio != -1) {
+      misc::insertSort2<QString>(tmp_list, QPair<int,QString>(prio,hash), Qt::AscendingOrder);
+    } else {
+      noprio << hash;
+    }
+  }
+  uploadQueue->clear();
+  foreach(couple, tmp_list) {
+    uploadQueue->append(couple.second);
+  }
+  (*uploadQueue)<<noprio;
+  // save priorities
+  i=0;
+  foreach(QString hash, *uploadQueue) {
+    saveTorrentPriority(hash, i);
+    ++i;
+  }
+  queuedUploads->clear();
+  updateUploadQueue();
+}
+
 int bittorrent::loadTorrentPriority(QString hash) {
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio")) {
-    // Read .queued file
-    QFile prio_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio");
-    prio_file.open(QIODevice::ReadOnly | QIODevice::Text);
+  // Read .prio file
+  QFile prio_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio");
+  if(prio_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
     bool ok = false;
     int prio = prio_file.readAll().toInt(&ok);
     prio_file.close();
@@ -318,57 +370,11 @@ void bittorrent::setQueueingEnabled(bool enable) {
     qDebug("Queueing system is changing state...");
     queueingEnabled = enable;
     if(enable) {
-      // Load priorities
-      QList<QPair<int, QString> > tmp_list;
-      QStringList noprio;
-      QStringList unfinished = getUnfinishedTorrents();
-      foreach(QString hash, unfinished) {
-        int prio = loadTorrentPriority(hash);
-        if(prio != -1) {
-          misc::insertSort2<QString>(tmp_list, QPair<int,QString>(prio,hash), Qt::AscendingOrder);
-        } else {
-          noprio << hash;
-        }
-      }
       downloadQueue = new QStringList();
-      QPair<int,QString> couple;
-      foreach(couple, tmp_list) {
-        downloadQueue->append(couple.second);
-      }
-      (*downloadQueue)<<noprio;
-      // save priorities
-      int i=0;
-      foreach(QString hash, *downloadQueue) {
-        saveTorrentPriority(hash, i);
-        ++i;
-      }
-      queuedDownloads = new QStringList();
-      updateDownloadQueue();
-      QList<QPair<int, QString> > tmp_list2;
-      QStringList noprio2;
-      QStringList finished = getFinishedTorrents();
-      foreach(QString hash, finished) {
-        int prio = loadTorrentPriority(hash);
-        if(prio != -1) {
-          misc::insertSort2<QString>(tmp_list2, QPair<int,QString>(prio,hash), Qt::AscendingOrder);
-        } else {
-          noprio2 << hash;
-        }
-      }
       uploadQueue = new QStringList();
-      QPair<int,QString> couple2;
-      foreach(couple2, tmp_list2) {
-        uploadQueue->append(couple2.second);
-      }
-      (*uploadQueue)<<noprio2;
-      // save priorities
-      int j=0;
-      foreach(QString hash, *uploadQueue) {
-        saveTorrentPriority(hash, j);
-        ++j;
-      }
       queuedUploads = new QStringList();
-      updateUploadQueue();
+      queuedDownloads = new QStringList();
+      fixTorrentPriorities();
     } else {
       // Unqueue torrents
       foreach(QString hash, *queuedDownloads) {
@@ -707,11 +713,11 @@ void bittorrent::setUnfinishedTorrent(QString hash) {
     // Remove it from uploadQueue
     if(uploadQueue->contains(hash)) {
       uploadQueue->removeAll(hash);
-      queuedDownloads->removeAll(hash);
-      if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio"))
+      queuedUploads->removeAll(hash);
+      /*if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio"))
         QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio");
       if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued"))
-        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
+        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");*/
       updateUploadQueue();
     }
     // Add it to downloadQueue
@@ -747,10 +753,10 @@ void bittorrent::setFinishedTorrent(QString hash) {
   if(queueingEnabled) {
     downloadQueue->removeAll(hash);
     queuedDownloads->removeAll(hash);
-    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio"))
+    /*if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio"))
       QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio");
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued"))
-      QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");
+      QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".queued");*/
     updateDownloadQueue();
     if(!uploadQueue->contains(hash)) {
       uploadQueue->append(hash);
@@ -886,7 +892,7 @@ void bittorrent::loadWebSeeds(QString hash) {
 }
 
 // Add a torrent to the bittorrent session
-void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bool) {
+void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bool resumed) {
   QTorrentHandle h;
   entry resume_data;
   bool fastResume=false;
@@ -1017,15 +1023,14 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
     }
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")) {
       finishedTorrents << hash;
-      if(queueingEnabled) {
+      if(!resumed && queueingEnabled) {
         uploadQueue->append(hash);
         saveTorrentPriority(hash, uploadQueue->size()-1);
         updateUploadQueue();
       }
     }else{
       unfinishedTorrents << hash;
-      // Add it to downloadQueue
-      if(queueingEnabled) {
+      if(!resumed && queueingEnabled) {
         downloadQueue->append(hash);
         saveTorrentPriority(hash, downloadQueue->size()-1);
         updateDownloadQueue();
@@ -2040,6 +2045,9 @@ void bittorrent::resumeUnfinishedTorrents() {
   // Resume downloads
   foreach(fileName, filePaths) {
     addTorrent(fileName, false, QString(), true);
+  }
+  if(queueingEnabled) {
+    fixTorrentPriorities();
   }
   qDebug("Unfinished torrents resumed");
 }
