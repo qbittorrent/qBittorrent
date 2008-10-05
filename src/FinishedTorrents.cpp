@@ -291,7 +291,7 @@ void FinishedTorrents::updateFinishedList(){
       }
       else if (reponse == QMessageBox::No) {
 		    qDebug("Deleted from the finished");
-		    BTSession->deleteTorrent(hash, true);
+		    BTSession->deleteTorrent(hash, false);
       }
       continue;
     }
