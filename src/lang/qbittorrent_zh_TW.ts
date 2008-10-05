@@ -20,12 +20,12 @@
     <message>
         <location filename="../about.ui" line="181"/>
         <source>Name:</source>
-        <translation>名稱:</translation>
+        <translation>姓名:</translation>
     </message>
     <message>
         <location filename="../about.ui" line="199"/>
         <source>Country:</source>
-        <translation>國家:</translation>
+        <translation>國籍:</translation>
     </message>
     <message>
         <location filename="../about.ui" line="253"/>
@@ -1771,7 +1771,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>全部展開</translation>
     </message>
 </context>
 <context>
@@ -2869,12 +2869,12 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../properties.ui" line="1080"/>
         <source>Collapse all</source>
-        <translation type="unfinished">全部折疊</translation>
+        <translation>全部折疊</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1087"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>全部展開</translation>
     </message>
 </context>
 <context>
