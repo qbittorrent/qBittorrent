@@ -1165,7 +1165,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation>ETA</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="109"/>
+        <location filename="../downloadingTorrents.cpp" line="110"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
         <translation>qBittorrent %1 başladı.</translation>
@@ -1232,7 +1232,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Download ediliyor &apos;%1&apos;, lütfen bekleyin...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="289"/>
+        <location filename="../downloadingTorrents.cpp" line="290"/>
         <source>Hide or Show Column</source>
         <translation>Sütunu Gizle veya Göster</translation>
     </message>

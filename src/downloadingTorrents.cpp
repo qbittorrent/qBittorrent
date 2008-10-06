@@ -69,6 +69,7 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
 
   connect(BTSession, SIGNAL(addedTorrent(QTorrentHandle&)), this, SLOT(torrentAdded(QTorrentHandle&)));
   connect(BTSession, SIGNAL(forceUnfinishedListUpdate()), this, SLOT(updateDlList()));
+  connect(BTSession, SIGNAL(torrentFinishedChecking(QString)), this, SLOT(sortProgressColumn(QString)));
 
   // Load last columns width for download list
   if(!loadColWidthDLList()) {
@@ -621,6 +622,7 @@ void DownloadingTorrents::addTorrent(QString hash) {
     DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/paused.png"))), Qt::DecorationRole);
     setRowColor(row, QString::fromUtf8("red"));
   }else{
+    DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
     DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/connecting.png"))), Qt::DecorationRole);
     setRowColor(row, QString::fromUtf8("grey"));
   }
@@ -700,6 +702,19 @@ void DownloadingTorrents::toggleDownloadListSortOrder(int index) {
   else
     sortOrderLetter = QString::fromUtf8("d");
   settings.setValue(QString::fromUtf8("DownloadListSortedCol"), misc::toQString(index)+sortOrderLetter);
+}
+
+void DownloadingTorrents::sortProgressColumn(QString hash) {
+  int index = downloadList->header()->sortIndicatorSection();
+  if(index == PROGRESS) {
+    int row = getRowFromHash(hash);
+    if(row >= 0) {
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
+      DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+      Qt::SortOrder sortOrder = downloadList->header()->sortIndicatorOrder();
+      sortDownloadListFloat(index, sortOrder);
+    }
+  }
 }
 
 void DownloadingTorrents::sortDownloadList(int index, Qt::SortOrder sortOrder) {

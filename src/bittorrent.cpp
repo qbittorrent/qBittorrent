@@ -1842,7 +1842,7 @@ void bittorrent::readAlerts() {
             TorrentsStartData[hash] = h.total_payload_download();
           }
 	}
-        //emit torrentFinishedChecking(hash);
+        emit torrentFinishedChecking(hash);
       }
     }
     a = s->pop_alert();

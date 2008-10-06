@@ -724,13 +724,13 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="109"/>
+        <location filename="../downloadingTorrents.cpp" line="110"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="289"/>
+        <location filename="../downloadingTorrents.cpp" line="290"/>
         <source>Hide or Show Column</source>
         <translation type="unfinished"></translation>
     </message>

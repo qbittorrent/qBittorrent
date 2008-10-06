@@ -95,6 +95,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void updateFileSizeAndProgress(QString hash);
     void showPropertiesFromHash(QString hash);
     void hidePriorityColumn(bool hide);
+    void sortProgressColumn(QString hash);
 
 };
 

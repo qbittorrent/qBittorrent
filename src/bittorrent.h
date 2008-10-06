@@ -217,7 +217,7 @@ class bittorrent : public QObject {
     void downloadFromUrlFailure(QString url, QString reason);
     //void fastResumeDataRejected(QString name);
     //void urlSeedProblem(QString url, QString msg);
-    //void torrentFinishedChecking(QString hash);
+    void torrentFinishedChecking(QString hash);
     //void torrent_ratio_deleted(QString fileName);
     //void UPnPError(QString msg);
     //void UPnPSuccess(QString msg);
