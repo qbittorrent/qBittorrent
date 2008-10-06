@@ -1017,7 +1017,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
       qDebug("Incremental download enabled for %s", t->name().c_str());
       h.set_sequenced_download_threshold(1);
     }
-    if(!addInPause && !QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")) {
+    if((resumed || !addInPause) && !QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")) {
       // Start torrent because it was added in paused state
       h.resume();
     }
