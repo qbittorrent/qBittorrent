@@ -3,23 +3,23 @@
 <context>
     <name>@default</name>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="135232812"/>
         <source>b</source>
         <comment> bytes</comment>
         <translation type="obsolete">b</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="135232812"/>
         <source>KB</source>
         <translation type="obsolete">КB</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="135232812"/>
         <source>MB</source>
         <translation type="obsolete">MB</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
+        <location filename="" line="135232812"/>
         <source>GB</source>
         <translation type="obsolete">GB</translation>
     </message>
@@ -193,17 +193,17 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../console.ui" line="13"/>
         <source>qBittorrent console</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent конзола</translation>
     </message>
     <message>
         <location filename="../console.ui" line="26"/>
         <source>General</source>
-        <translation type="unfinished">Общи</translation>
+        <translation>Общи</translation>
     </message>
     <message>
         <location filename="../console.ui" line="39"/>
         <source>Blocked IPs</source>
-        <translation type="unfinished"></translation>
+        <translation>Блокирани IP</translation>
     </message>
 </context>
 <context>
@@ -284,7 +284,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1310"/>
         <source>Proxy</source>
-        <translation type="unfinished">Прокси</translation>
+        <translation>Прокси</translation>
     </message>
     <message>
         <location filename="../options.ui" line="911"/>
@@ -1139,47 +1139,47 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1852"/>
         <source>Enable RSS support</source>
-        <translation type="unfinished"></translation>
+        <translation>Разреши RSS поддръжка</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1862"/>
         <source>RSS settings</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS настройки</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1985"/>
         <source>Torrent queueing</source>
-        <translation type="unfinished"></translation>
+        <translation>Серия торенти </translation>
     </message>
     <message>
         <location filename="../options.ui" line="1991"/>
         <source>Enable queueing system</source>
-        <translation type="unfinished"></translation>
+        <translation>Включи система за серии</translation>
     </message>
     <message>
         <location filename="../options.ui" line="2003"/>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимум активни сваляния:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="2046"/>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимум активни торенти:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="215"/>
         <source>Display top toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Покажи горна лента с инструменти</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1319"/>
         <source>Search engine proxy settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Прокси настройки на търсачката</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1509"/>
         <source>Bittorrent proxy settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittorent прокси настройки</translation>
     </message>
 </context>
 <context>
@@ -1316,7 +1316,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../downloadingTorrents.cpp" line="60"/>
         <source>Priority</source>
-        <translation type="unfinished">Предимство</translation>
+        <translation>Предимство</translation>
     </message>
 </context>
 <context>
@@ -1441,7 +1441,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedTorrents.cpp" line="47"/>
         <source>Priority</source>
-        <translation type="unfinished">Предимство</translation>
+        <translation>Предимство</translation>
     </message>
 </context>
 <context>
@@ -2395,37 +2395,37 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../GUI.cpp" line="1395"/>
         <source>DL: %1 KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>DL: %1 KB/с</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1396"/>
         <source>UP: %1 KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>UP: %1 KB/с</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="316"/>
         <source>Ratio: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Съотношение: %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="318"/>
         <source>DHT: %1 nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT: %1 възли</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1447"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation type="unfinished"></translation>
+        <translation>Няма директни връзки. Това може да е от проблеми в мрежовата настройка.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="147"/>
         <source>Uploads</source>
-        <translation type="unfinished"></translation>
+        <translation>Качени</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1524"/>
         <source>Options were saved successfully.</source>
-        <translation type="unfinished">Опциите бяха съхранени успешно.</translation>
+        <translation>Опциите бяха съхранени успешно.</translation>
     </message>
 </context>
 <context>
@@ -2733,17 +2733,17 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../MainWindow.ui" line="242"/>
         <source>Decrease priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Намали предимството</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="253"/>
         <source>Increase priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Увеличи предимството</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="264"/>
         <source>Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Конзола</translation>
     </message>
 </context>
 <context>
@@ -3348,7 +3348,12 @@ Changelog:
     <message>
         <location filename="../addTorrentDialog.ui" line="116"/>
         <source>Collapse all</source>
-        <translation type="unfinished"></translation>
+        <translation>Свий всички</translation>
+    </message>
+    <message>
+        <location filename="../addTorrentDialog.ui" line="123"/>
+        <source>Expand All</source>
+        <translation type="obsolete">Разшири всички</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
@@ -3412,103 +3417,103 @@ Changelog:
     <message>
         <location filename="../bittorrent.cpp" line="151"/>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 използва максималното разрешено от вас отношение.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="676"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation type="unfinished">&apos;%1&apos; бе премахнат завинаги.</translation>
+        <translation>&apos;%1&apos; бе премахнат завинаги.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="678"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation type="unfinished">&apos;%1&apos; бе премахнат.</translation>
+        <translation>&apos;%1&apos; бе премахнат.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="817"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>e.g: xxx.avi paused.</comment>
-        <translation type="unfinished">&apos;%1&apos; е в пауза.</translation>
+        <translation>&apos;%1&apos; е в пауза.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="846"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
-        <translation type="unfinished">&apos;%1&apos; бе възстановен.</translation>
+        <translation>&apos;%1&apos; бе възстановен.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="944"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; вече е в листа за сваляне.</translation>
+        <translation>&apos;%1&apos; вече е в листа за сваляне.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1055"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">&apos;%1&apos; бе възстановен. (бързо възстановяване)</translation>
+        <translation>&apos;%1&apos; бе възстановен. (бързо възстановяване)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1057"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; добавен в листа за сваляне.</translation>
+        <translation>&apos;%1&apos; добавен в листа за сваляне.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1104"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">Не мога да декодирам торент-файла: &apos;%1&apos;</translation>
+        <translation>Не мога да декодирам торент-файла: &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1070"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Този файла или е разрушен или не е торент.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1481"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;бе блокиран от вашия IP филтър&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1483"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;бе прекъснат поради разрушени части&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1773"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="unfinished">Невъзможно изчакване от дадените портове.</translation>
+        <translation>Невъзможно изчакване от дадените портове.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1805"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Грешка при следене на порт, съобщение: %1</translation>
+        <translation>UPnP/NAT-PMP: Грешка при следене на порт, съобщение: %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1810"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Следене на порт успешно, съобщение: %1</translation>
+        <translation>UPnP/NAT-PMP: Следене на порт успешно, съобщение: %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1825"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Бърза пауза бе отхвърлена за торент %1, нова проверка...</translation>
+        <translation>Бърза пауза бе отхвърлена за торент %1, нова проверка...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1830"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Url споделяне провалено за url: %1, съобщение: %2</translation>
+        <translation>Url споделяне провалено за url: %1, съобщение: %2</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1961"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished">Сваляне на &apos;%1&apos;, моля изчакайте...</translation>
+        <translation>Сваляне на &apos;%1&apos;, моля изчакайте...</translation>
     </message>
 </context>
 <context>
@@ -3981,17 +3986,17 @@ Changelog:
     <message>
         <location filename="../download.ui" line="159"/>
         <source>Priority</source>
-        <translation type="unfinished">Предимство</translation>
+        <translation>Предимство</translation>
     </message>
     <message>
         <location filename="../download.ui" line="167"/>
         <source>Increase priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Увеличи предимството</translation>
     </message>
     <message>
         <location filename="../download.ui" line="175"/>
         <source>Decrease priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Намали предимството</translation>
     </message>
 </context>
 <context>
@@ -4942,7 +4947,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../properties.ui" line="1080"/>
         <source>Collapse all</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Свий всички</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1087"/>
@@ -5103,17 +5108,17 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../seeding.ui" line="132"/>
         <source>Priority</source>
-        <translation type="unfinished">Предимство</translation>
+        <translation>Предимство</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="140"/>
         <source>Increase priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Увеличи предимството</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="148"/>
         <source>Decrease priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Намали предимството</translation>
     </message>
 </context>
 <context>
