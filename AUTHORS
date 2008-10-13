@@ -17,13 +17,14 @@ Images Authors:
   license: Creative Commons Public Domain Dedication
   url: http://www.openclipart.org
 
-* files: src/Icons/skins/*.png
+* files: src/Icons/skin/*.png
+  files: src/menuicons/YYxYY/*.png
   copyright: Mateusz Tobola <tobejodok@qbittorrent.org>
   license: GPLv2
 
-* files: src/menuicons/YYxYY/*.png
-  copyright: Mateusz Tobola <tobejodok@qbittorrent.org>
-  license: GPLv2
+* file: src/Icons/skin/tabs.gif
+  copyright: Greg Houston <gregory.houston@gmail.com>
+  license: MIT
 
 * file: src/search_engine/engines/btjunkie.png
   copyright: Downloaded from btjunkie.org
@@ -46,7 +47,7 @@ Translations authors:
   - Brazilian: Nick Marinho (nickmarinho@gmail.com)
   - Bulgarian: Tsvetan & Boiko Bankov (emerge_life@users.sourceforge.net)
   - Catalan: Gekko Dam Beer (gekko04@users.sourceforge.net)
-  - Chinese (Simplified): Guo Yue (guoyue0418@hotmail.com)
+  - Chinese (Simplified): Guo Yue (yue.guo0418@gmail.com)
   - Chinese (Traditional): Yi-Shun Wang (dnextstep@gmail.com)
   - Czech: Jirka Vilim (web@tets.cz)
   - Danish: Mathias Nielsen (comoneo@gmail.com)
