@@ -2786,7 +2786,7 @@ Muutoshistoria:
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Laajenna kaikki</translation>
     </message>
 </context>
 <context>
@@ -4236,12 +4236,12 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     <message>
         <location filename="../properties.ui" line="1080"/>
         <source>Collapse all</source>
-        <translation type="unfinished">Pienennä kaikki</translation>
+        <translation>Pienennä kaikki</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1087"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Laajenna kaikki</translation>
     </message>
 </context>
 <context>

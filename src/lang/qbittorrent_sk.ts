@@ -3223,7 +3223,7 @@ Záznam zmien:</translation>
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbaliť všetko</translation>
     </message>
 </context>
 <context>
@@ -4872,12 +4872,12 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../properties.ui" line="1080"/>
         <source>Collapse all</source>
-        <translation type="unfinished">Zbaliť všetko</translation>
+        <translation>Zbaliť všetko</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1087"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbaliť všetko</translation>
     </message>
 </context>
 <context>

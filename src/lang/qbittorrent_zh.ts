@@ -3530,7 +3530,7 @@ previewing)</source>
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>展开所有</translation>
     </message>
 </context>
 <context>
@@ -5206,12 +5206,12 @@ torrent.</source>
     <message>
         <location filename="../properties.ui" line="1080"/>
         <source>Collapse all</source>
-        <translation type="unfinished">隐藏所有</translation>
+        <translation>隐藏所有</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1087"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>展开所有</translation>
     </message>
 </context>
 <context>

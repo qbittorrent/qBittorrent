@@ -2489,7 +2489,7 @@ Changelog:
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Kibontás</translation>
     </message>
 </context>
 <context>
@@ -3767,12 +3767,12 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
     <message>
         <location filename="../properties.ui" line="1080"/>
         <source>Collapse all</source>
-        <translation type="unfinished">Elrejtés</translation>
+        <translation>Elrejtés</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1087"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Kibontás</translation>
     </message>
 </context>
 <context>

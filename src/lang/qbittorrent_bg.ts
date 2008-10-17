@@ -3,23 +3,23 @@
 <context>
     <name>@default</name>
     <message>
-        <location filename="" line="135232812"/>
+        <location filename="" line="0"/>
         <source>b</source>
         <comment> bytes</comment>
         <translation type="obsolete">b</translation>
     </message>
     <message>
-        <location filename="" line="135232812"/>
+        <location filename="" line="0"/>
         <source>KB</source>
         <translation type="obsolete">КB</translation>
     </message>
     <message>
-        <location filename="" line="135232812"/>
+        <location filename="" line="0"/>
         <source>MB</source>
         <translation type="obsolete">MB</translation>
     </message>
     <message>
-        <location filename="" line="135232812"/>
+        <location filename="" line="0"/>
         <source>GB</source>
         <translation type="obsolete">GB</translation>
     </message>
@@ -3358,7 +3358,7 @@ Changelog:
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Разшири всички</translation>
     </message>
 </context>
 <context>
@@ -4947,12 +4947,12 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../properties.ui" line="1080"/>
         <source>Collapse all</source>
-        <translation type="unfinished">Свий всички</translation>
+        <translation>Свий всички</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1087"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Разшири всички</translation>
     </message>
 </context>
 <context>
