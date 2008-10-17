@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="it">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDlg</name>
     <message>
@@ -2206,7 +2207,7 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
     <message>
         <location filename="../GUI.cpp" line="147"/>
         <source>Uploads</source>
-        <translation>Uploads</translation>
+        <translation>Upload</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1524"/>
@@ -3066,7 +3067,7 @@ Changelog:
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Espandi tutto</translation>
     </message>
 </context>
 <context>
@@ -4606,12 +4607,12 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     <message>
         <location filename="../properties.ui" line="1080"/>
         <source>Collapse all</source>
-        <translation type="unfinished">Riduci tutto</translation>
+        <translation>Riduci tutto</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1087"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Espandi tutto</translation>
     </message>
 </context>
 <context>
