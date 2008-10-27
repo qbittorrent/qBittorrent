@@ -83,7 +83,7 @@ window.addEvent('domready', function(){
               if(event.seed) {
                 var row = new Array();
                 row.length = 4;
-                row[0] = stateToImg(event.state);
+                row[0] = '<img src="images/skin/seeding.png"/>';
                 row[1] = event.name;
                 row[2] = fsize(event.size);
                 row[3] = fspeed(event.upspeed);
