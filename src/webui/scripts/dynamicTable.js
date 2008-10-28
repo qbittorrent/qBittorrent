@@ -166,7 +166,9 @@ var dynamicTable = new Class	({
 		{
 			var tds = tr.getElements('td');
 			row.each(function(el, i){
-				tds[i].set('html', el);
+                                if(tds[i].get('html') != el) {
+				      tds[i].set('html', el);
+                                }
 			});
 			return true;
 		}
