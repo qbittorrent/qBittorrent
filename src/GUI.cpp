@@ -181,6 +181,13 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
 #ifdef QT_4_4
   localServer = new QLocalServer();
   QString uid = QString::number(getuid());
+#ifdef Q_WS_X11
+  if(QFile::exists(QDir::tempPath()+QDir::separator()+QString("qBittorrent-")+uid)) {
+    // Socket was not closed cleanly
+    std::cerr << "Warning: Local domain socket was not closed cleanly, deleting file...\n";
+    QFile::remove(QDir::tempPath()+QDir::separator()+QString("qBittorrent-")+uid);
+  }
+#endif
   if (!localServer->listen("qBittorrent-"+uid)) {
 #else
   localServer = new QTcpServer();
@@ -188,7 +195,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
 #endif
     std::cerr  << "Couldn't create socket, single instance mode won't work...\n";
   }
-#ifndef QT_4_4  
+#ifndef QT_4_4
   else {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.setValue(QString::fromUtf8("uniqueInstancePort"), localServer->serverPort());
