@@ -1,3 +1,6 @@
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.2.1
+    - BUGFIX: Fixed possible crash when deleting a torrent permanently
+
 * Wed Oct 29th 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.2.0
     - FEATURE: Torrent queueing system (with priorities)
     - FEATURE: The number of DHT nodes is displayed

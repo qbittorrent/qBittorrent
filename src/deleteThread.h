@@ -42,8 +42,8 @@ class subDeleteThread : public QThread {
     }
 
     ~subDeleteThread(){
+      wait();
       qDebug("subDeleteThread successfuly deleted");
-      //wait();
     }
 
   signals:
@@ -58,8 +58,8 @@ class subDeleteThread : public QThread {
       else
         emit deletionFailureST(this);*/
       arb->removeFromFS(save_path);
-      emit deletionSuccessST(this);
       delete arb;
+      emit deletionSuccessST(this);
     }
 };
 
