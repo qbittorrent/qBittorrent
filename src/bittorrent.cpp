@@ -54,7 +54,8 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
     s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0));
   }
   // Set severity level of libtorrent session
-  s->set_alert_mask(alert::error_notification|alert::peer_notification|alert::port_mapping_notification|alert::storage_notification|alert::tracker_notification|alert::status_notification|alert::ip_block_notification);
+  //s->set_alert_mask(alert::all_categories & ~alert::progress_notification);
+  s->set_alert_mask(alert::error_notification | alert::peer_notification | alert::port_mapping_notification | alert::storage_notification | alert::tracker_notification | alert::status_notification | alert::ip_block_notification);
   // Enabling metadata plugin
   s->add_extension(&create_metadata_plugin);
   timerAlerts = new QTimer();
@@ -739,8 +740,6 @@ void bittorrent::setFinishedTorrent(QString hash) {
       updateUploadQueue();
     }
   }
-  // Save fast resume data
-  saveFastResumeData(hash);
   //emit torrentSwitchedtoFinished(hash);
 }
 
@@ -943,9 +942,11 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
   add_torrent_params p;
   //Getting fast resume data if existing
   std::vector<char> buf;
-  if (load_file((torrentBackup.path()+hash+QString(".fastresume")).toUtf8().data(), buf) == 0) {
+  qDebug("Trying to load fastresume data: %s", (torrentBackup.path()+QDir::separator()+hash+QString(".fastresume")).toUtf8().data());
+  if (load_file((torrentBackup.path()+QDir::separator()+hash+QString(".fastresume")).toUtf8().data(), buf) == 0) {
       fastResume = true;
       p.resume_data = &buf;
+      qDebug("Successfuly loaded");
   }
   QString savePath = getSavePath(hash);
   // Save save_path to hard drive
@@ -1299,31 +1300,46 @@ float bittorrent::getRealRatio(QString hash) const{
 // Only save fast resume data for unfinished and unpaused torrents (Optimization)
 // Called periodically and on exit
 void bittorrent::saveFastResumeData() {
-  QString hash;
-  QStringList hashes = getUnfinishedTorrents();
-  foreach(hash, hashes) {
-    QTorrentHandle h = getTorrentHandle(hash);
-    if(!h.is_valid()) {
-      qDebug("/!\\ Error: Invalid handle");
-      continue;
-    }
-    if(h.is_paused()) {
-      // Do not need to save fast resume data for paused torrents
-      continue;
-    }
-    saveFastResumeData(hash);
+  // Stop listening for alerts
+  timerAlerts->stop();
+  int num_resume_data = 0;
+  s->pause();
+  std::vector<torrent_handle> torrents =  s->get_torrents();
+  for(unsigned int i=0; i<torrents.size(); ++i) {
+    QTorrentHandle h(torrents[i]);
+    if(!h.is_valid()) continue;
+    if(h.is_paused()) continue;
+    if (!h.has_metadata()) continue;
+    h.save_resume_data();
+    ++num_resume_data;
   }
-  hashes = getFinishedTorrents();
-  foreach(hash, hashes) {
-    QTorrentHandle h = getTorrentHandle(hash);
-    if(!h.is_valid()) {
-      qDebug("/!\\ Error: Invalid handle");
-      continue;
-    }
-    if(h.is_paused()) {
-      // Do not need to save ratio data for paused torrents
-      continue;
-    }
+  while (num_resume_data > 0)
+  {
+      alert const* a = s->wait_for_alert(seconds(30));
+      if (a == 0)
+      {
+          std::cerr << " aborting with " << num_resume_data << " outstanding "
+                  "torrents to save resume data for" << std::endl;
+          break;
+      }
+      qDebug("Received an alert...");
+      save_resume_data_alert const* rd = dynamic_cast<save_resume_data_alert const*>(a);
+      if (!rd) {
+          s->pop_alert();
+          continue;
+      }
+      qDebug("Alert is for resume data");
+      --num_resume_data;
+      if (!rd->resume_data) continue;
+      qDebug("saving resume data: %d", num_resume_data);
+      QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+      QTorrentHandle h(rd->handle);
+      QFile::remove(torrentBackup.path()+QDir::separator()+ h.hash() + ".fastresume");
+      QString file = h.hash()+".fastresume";
+      boost::filesystem::ofstream out(fs::path(torrentBackup.path().toUtf8().data()) / file.toUtf8().data(), std::ios_base::binary);
+      out.unsetf(std::ios_base::skipws);
+      bencode(std::ostream_iterator<char>(out), *rd->resume_data);
+      s->pop_alert();
   }
 }
 
@@ -1355,11 +1371,6 @@ void bittorrent::addPeerBanMessage(QString ip, bool from_ipfilter) {
 void bittorrent::saveFastResumeData(QString hash) {
   QString file;
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  // Checking if torrentBackup Dir exists
-  // create it if it is not
-  if(! torrentBackup.exists()) {
-    torrentBackup.mkpath(torrentBackup.path());
-  }
   // Extracting resume data
   QTorrentHandle h = getTorrentHandle(hash);
   if(!h.is_valid()) {
@@ -1367,12 +1378,10 @@ void bittorrent::saveFastResumeData(QString hash) {
     return;
   }
   if (h.has_metadata() && h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking) {
-    if(QFile::exists(torrentBackup.path()+QDir::separator()+hash+".torrent")) {
       // Remove old .fastresume data in case it exists
       QFile::remove(torrentBackup.path()+QDir::separator()+hash + ".fastresume");
       // Write fast resume data
       h.save_resume_data();
-    }
   }
 }
 
@@ -1620,6 +1629,7 @@ void bittorrent::readAlerts() {
       QTorrentHandle h(p->handle);
       if(h.is_valid()){
         QString hash = h.hash();
+        h.save_resume_data();
         qDebug("Received finished alert for %s", h.name().toUtf8().data());
         setFinishedTorrent(hash);
         emit finishedTorrent(h);
@@ -1628,7 +1638,8 @@ void bittorrent::readAlerts() {
     else if (save_resume_data_alert* p = dynamic_cast<save_resume_data_alert*>(a.get())) {
         QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
         QTorrentHandle h(p->handle);
-        QString file = torrentBackup.path()+QDir::separator()+h.hash()+".torrent";
+        QString file = h.hash()+".fastresume";
+        qDebug("Saving fastresume data in %s", file.toUtf8().data());
         TORRENT_ASSERT(p->resume_data);
         if (p->resume_data)
         {
