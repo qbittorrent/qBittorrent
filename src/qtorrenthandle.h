@@ -87,6 +87,8 @@ class QTorrentHandle {
     void file_progress(std::vector<size_type>& fp);
     size_type total_payload_download();
     size_type total_payload_upload();
+    size_type all_time_upload();
+    size_type all_time_download();
     QStringList files_path() const;
     int num_uploads() const;
     bool is_seed() const;

@@ -644,7 +644,7 @@ void GUI::closeEvent(QCloseEvent *e) {
   writeSettings();
   // Do some BT related saving
   BTSession->saveDHTEntry();
-  BTSession->saveFastResumeAndRatioData();
+  BTSession->saveFastResumeData();
   // Accept exit
   e->accept();
   qApp->exit();

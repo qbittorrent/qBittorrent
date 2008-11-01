@@ -56,7 +56,6 @@ class bittorrent : public QObject {
     QString defaultSavePath;
     QHash<QString, QDateTime> TorrentsStartTime;
     QHash<QString, size_type> TorrentsStartData;
-    QHash<QString, QPair<size_type,size_type> > ratioData;
     QHash<QString, QHash<QString, QString> > trackersErrors;
     QStringList consoleMessages;
     QStringList peerBanMessages;
@@ -133,8 +132,8 @@ class bittorrent : public QObject {
     void resumeAllTorrents();
     void saveDHTEntry();
     void preAllocateAllFiles(bool b);
-    void saveFastResumeAndRatioData();
-    void saveFastResumeAndRatioData(QString hash);
+    void saveFastResumeData();
+    void saveFastResumeData(QString hash);
     void enableDirectoryScanning(QString scan_dir);
     void disableDirectoryScanning();
     void enablePeerExchange();
@@ -144,8 +143,6 @@ class bittorrent : public QObject {
     void resumeUnfinishedTorrents();
     void saveTorrentSpeedLimits(QString hash);
     void loadTorrentSpeedLimits(QString hash);
-    void saveDownloadUploadForTorrent(QString hash);
-    void loadDownloadUploadForTorrent(QString hash);
     void handleDownloadFailure(QString url, QString reason);
     void loadWebSeeds(QString fileHash);
     void updateDownloadQueue();

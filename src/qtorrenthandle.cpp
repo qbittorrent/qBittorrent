@@ -232,6 +232,16 @@ void QTorrentHandle::file_progress(std::vector<size_type>& fp) {
   return h.file_progress(fp);
 }
 
+size_type QTorrentHandle::all_time_download() {
+    Q_ASSERT(h.is_valid());
+    return h.status().all_time_download;
+}
+
+size_type QTorrentHandle::all_time_upload() {
+    Q_ASSERT(h.is_valid());
+    return h.status().all_time_upload;
+}
+
 size_type QTorrentHandle::total_payload_download() {
   Q_ASSERT(h.is_valid());
   return h.status().total_payload_download;

@@ -620,8 +620,6 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   }
   // Remove tracker errors
   trackersErrors.remove(hash);
-  // Remove it from ratio table
-  ratioData.remove(hash);
   int index = finishedTorrents.indexOf(hash);
   if(index != -1) {
     finishedTorrents.removeAt(index);
@@ -742,7 +740,7 @@ void bittorrent::setFinishedTorrent(QString hash) {
     }
   }
   // Save fast resume data
-  saveFastResumeAndRatioData(hash);
+  saveFastResumeData(hash);
   //emit torrentSwitchedtoFinished(hash);
 }
 
@@ -754,7 +752,7 @@ bool bittorrent::pauseTorrent(QString hash) {
     h.pause();
     change = true;
     // Save fast resume data
-    saveFastResumeAndRatioData(hash);
+    saveFastResumeData(hash);
     if(queueingEnabled) {
       updateDownloadQueue();
       updateUploadQueue();
@@ -988,8 +986,6 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
   loadWebSeeds(hash);
   // Load speed limit from hard drive
   loadTorrentSpeedLimits(hash);
-  // Load ratio data
-  loadDownloadUploadForTorrent(hash);
   // Load trackers
   bool loaded_trackers = loadTrackerFile(hash);
   // Doing this to order trackers well
@@ -1265,35 +1261,6 @@ void bittorrent::loadFilesPriorities(QTorrentHandle &h) {
   h.prioritize_files(v);
 }
 
-void bittorrent::loadDownloadUploadForTorrent(QString hash) {
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  // Checking if torrentBackup Dir exists
-  // create it if it is not
-  if(! torrentBackup.exists()) {
-    torrentBackup.mkpath(torrentBackup.path());
-  }
-//   qDebug("Loading ratio data for %s", hash.toUtf8().data());
-  QFile ratio_file(torrentBackup.path()+QDir::separator()+ hash + ".ratio");
-  if(!ratio_file.exists() || !ratio_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-    return;
-  }
-  QByteArray data = ratio_file.readAll();
-  QList<QByteArray> data_list = data.split(' ');
-  if(data_list.size() != 2) {
-    std::cerr << "Corrupted ratio file for torrent: " << hash.toStdString() << '\n';
-    return;
-  }
-  QPair<size_type,size_type> downUp;
-  downUp.first = (size_type)data_list.at(0).toLongLong();
-  downUp.second = (size_type)data_list.at(1).toLongLong();
-  if(downUp.first < 0 || downUp.second < 0) {
-    qDebug("** Overflow in ratio!!! fixing...");
-    downUp.first = 0;
-    downUp.second = 0;
-  }
-  ratioData[hash] = downUp;
-}
-
 float bittorrent::getUncheckedTorrentProgress(QString hash) const {
   QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
   paused_file.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -1314,59 +1281,24 @@ float bittorrent::getUncheckedTorrentProgress(QString hash) const {
 }
 
 float bittorrent::getRealRatio(QString hash) const{
-  QPair<size_type,size_type> downUpInfo = ratioData.value(hash, QPair<size_type,size_type>(0,0));
-  size_type download = downUpInfo.first;
-  size_type upload =  downUpInfo.second;
   QTorrentHandle h = getTorrentHandle(hash);
-  download += h.total_payload_download();
-  Q_ASSERT(download >= 0);
-  upload += h.total_payload_upload();
-  Q_ASSERT(upload >= 0);
-  if(download == 0){
-    if(upload == 0)
-      return 1.;
-    return 10.;
+  Q_ASSERT(h.all_time_download() >= 0);
+  Q_ASSERT(h.all_time_upload() >= 0);
+  if(h.all_time_download() == 0) {
+      if(h.all_time_upload() == 0)
+          return 1.;
+      return 10.;
   }
-  float ratio = (double)upload / (double)download;
+  float ratio = (float)h.all_time_upload()/(float)h.all_time_download();
   Q_ASSERT(ratio >= 0.);
   if(ratio > 10.)
     ratio = 10.;
   return ratio;
 }
 
-// To remember share ratio or a torrent, we must save current
-// total_upload and total_upload and reload them on startup
-void bittorrent::saveDownloadUploadForTorrent(QString hash) {
-  qDebug("Saving ratio data for torrent %s", hash.toUtf8().data());
-  QDir torrentBackup(misc::qBittorrentPath() + QString::fromUtf8("BT_backup"));
-  // Checking if torrentBackup Dir exists
-  // create it if it is not
-  if(! torrentBackup.exists()) {
-    torrentBackup.mkpath(torrentBackup.path());
-  }
-  QTorrentHandle h = getTorrentHandle(hash);
-  if(!h.is_valid()) {
-    qDebug("/!\\ Error: Invalid handle");
-    return;
-  }
-  QPair<size_type,size_type> ratioInfo = ratioData.value(hash, QPair<size_type, size_type>(0,0));
-  size_type download = h.total_payload_download();
-  download += ratioInfo.first;
-  size_type upload = h.total_payload_upload();
-  upload += ratioInfo.second;
-  Q_ASSERT(download >= 0 && upload >= 0);
-  QFile ratio_file(torrentBackup.path()+QDir::separator()+ hash + QString::fromUtf8(".ratio"));
-  if(!ratio_file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-    std::cerr << "Couldn't save ratio data for torrent: " << hash.toStdString() << '\n';
-    return;
-  }
-  ratio_file.write(misc::toQByteArray(download) + QByteArray(" ") + misc::toQByteArray(upload));
-  ratio_file.close();
-}
-
 // Only save fast resume data for unfinished and unpaused torrents (Optimization)
 // Called periodically and on exit
-void bittorrent::saveFastResumeAndRatioData() {
+void bittorrent::saveFastResumeData() {
   QString hash;
   QStringList hashes = getUnfinishedTorrents();
   foreach(hash, hashes) {
@@ -1379,7 +1311,7 @@ void bittorrent::saveFastResumeAndRatioData() {
       // Do not need to save fast resume data for paused torrents
       continue;
     }
-    saveFastResumeAndRatioData(hash);
+    saveFastResumeData(hash);
   }
   hashes = getFinishedTorrents();
   foreach(hash, hashes) {
@@ -1392,7 +1324,6 @@ void bittorrent::saveFastResumeAndRatioData() {
       // Do not need to save ratio data for paused torrents
       continue;
     }
-    saveDownloadUploadForTorrent(hash);
   }
 }
 
@@ -1421,7 +1352,7 @@ void bittorrent::addPeerBanMessage(QString ip, bool from_ipfilter) {
     peerBanMessages.append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - ")+tr("<font color='red'>%1</font> <i>was banned due to corrupt pieces</i>", "x.y.z.w was banned").arg(ip));
 }
 
-void bittorrent::saveFastResumeAndRatioData(QString hash) {
+void bittorrent::saveFastResumeData(QString hash) {
   QString file;
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
   // Checking if torrentBackup Dir exists
@@ -1442,8 +1373,6 @@ void bittorrent::saveFastResumeAndRatioData(QString hash) {
       // Write fast resume data
       h.save_resume_data();
     }
-    // Save ratio data
-    saveDownloadUploadForTorrent(hash);
   }
 }
 
