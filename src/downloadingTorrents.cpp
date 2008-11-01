@@ -172,7 +172,7 @@ void DownloadingTorrents::showPropertiesFromHash(QString hash) {
 void DownloadingTorrents::resumeTorrent(QString hash){
     int row = getRowFromHash(hash);
     Q_ASSERT(row != -1);
-    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/connecting.png"))), Qt::DecorationRole);
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
     setRowColor(row, QString::fromUtf8("grey"));
 }
 
@@ -598,7 +598,7 @@ void DownloadingTorrents::addTorrent(QString hash) {
     setRowColor(row, QString::fromUtf8("red"));
   }else{
     DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
-    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/connecting.png"))), Qt::DecorationRole);
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
     setRowColor(row, QString::fromUtf8("grey"));
   }
   ++nbTorrents;
@@ -804,7 +804,7 @@ void DownloadingTorrents::torrentAdded(QTorrentHandle& h) {
     DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/paused.png"))), Qt::DecorationRole);
     setRowColor(row, QString::fromUtf8("red"));
   }else{
-    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/connecting.png"))), Qt::DecorationRole);
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
     setRowColor(row, QString::fromUtf8("grey"));
   }
   ++nbTorrents;
