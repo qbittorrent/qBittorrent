@@ -64,7 +64,7 @@ float QTorrentHandle::progress() const {
   return progress;
 }
 
-const std::vector<bool>* QTorrentHandle::pieces() const {
+bitfield QTorrentHandle::pieces() const {
 	Q_ASSERT(h.is_valid());
 	return h.status().pieces;
 }
@@ -185,9 +185,9 @@ bool QTorrentHandle::has_metadata() const {
   return h.has_metadata();
 }
 
-entry QTorrentHandle::write_resume_data() const {
+void QTorrentHandle::save_resume_data() const {
   Q_ASSERT(h.is_valid());
-  return h.write_resume_data();
+  return h.save_resume_data();
 }
 
 QString QTorrentHandle::file_at(unsigned int index) const {
@@ -227,7 +227,7 @@ size_type QTorrentHandle::total_failed_bytes() const {
   return h.status().total_failed_bytes;
 }
 
-void QTorrentHandle::file_progress(std::vector<float>& fp) {
+void QTorrentHandle::file_progress(std::vector<size_type>& fp) {
   Q_ASSERT(h.is_valid());
   return h.file_progress(fp);
 }
@@ -330,9 +330,9 @@ void QTorrentHandle::force_reannounce() {
   h.force_reannounce();
 }
 
-void QTorrentHandle::set_sequenced_download_threshold(int val) {
+void QTorrentHandle::set_sequential_download(bool b) {
   Q_ASSERT(h.is_valid());
-  h.set_sequenced_download_threshold(val);
+  h.set_sequential_download(b);
 }
 
 void QTorrentHandle::set_tracker_login(QString username, QString password) {

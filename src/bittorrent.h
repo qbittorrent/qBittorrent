@@ -180,7 +180,6 @@ class bittorrent : public QObject {
     void enableNATPMP(bool b);
     void enableLSD(bool b);
     bool enableDHT(bool b);
-    void reloadTorrent(const QTorrentHandle &h, bool full_alloc);
     void setTimerScanInterval(int secs);
     void setMaxActiveDownloads(int val);
     void setMaxActiveTorrents(int val);

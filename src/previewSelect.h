@@ -90,7 +90,7 @@ class previewSelect: public QDialog, private Ui::preview {
       previewList->setItemDelegate(listDelegate);
       previewList->header()->resizeSection(0, 200);
       // Fill list in
-      std::vector<float> fp;
+      std::vector<size_type> fp;
       h.file_progress(fp);
       unsigned int nbFiles = h.num_files();
       for(unsigned int i=0; i<nbFiles; ++i){
@@ -101,7 +101,7 @@ class previewSelect: public QDialog, private Ui::preview {
           previewListModel->insertRow(row);
           previewListModel->setData(previewListModel->index(row, NAME), QVariant(fileName));
           previewListModel->setData(previewListModel->index(row, SIZE), QVariant((qlonglong)h.filesize_at(i)));
-          previewListModel->setData(previewListModel->index(row, PROGRESS), QVariant((double)fp[i]));
+          previewListModel->setData(previewListModel->index(row, PROGRESS), QVariant((double)fp[i]/h.filesize_at(i)));
           indexes << i;
         }
       }

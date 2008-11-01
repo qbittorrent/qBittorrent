@@ -65,9 +65,9 @@ void RealProgressBarThread::run(){
 		size_type total_size = thandle.total_size();
 		size_type piece_length = thandle.piece_length();
 		int num_pieces = thandle.num_pieces();
-		const std::vector<bool>* pieces = thandle.pieces();
+                bitfield pieces = thandle.pieces();
 		//pieces not returned
-		if (pieces == 0)
+                if (pieces.empty())
 		{
 			qDebug("pieces vector not returned");
 			return;
@@ -97,7 +97,7 @@ void RealProgressBarThread::run(){
 			}
 			qreal start = i * fraction;
 			qreal end = start + fraction;
-			if((*pieces)[i])
+                        if(pieces[i])
 				mark(start, end);
 		}
 		if (success)

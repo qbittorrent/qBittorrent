@@ -376,13 +376,13 @@ class qc_libtorrent_rasterbar : public ConfObj
 {
 public:
 	qc_libtorrent_rasterbar(Conf *c) : ConfObj(c) {}
-	QString name() const { return "libtorrent-rasterbar >= 0.13"; }
+	QString name() const { return "libtorrent-rasterbar >= 0.14"; }
 	QString shortname() const { return "libtorrent-rasterbar"; }
 	bool exec(){
         	QString s;
 		s = conf->getenv("QC_WITH_LIBTORRENT_INC");
 		if(!s.isEmpty()) {
-			if(!conf->checkHeader(s, "libtorrent/lsd.hpp")) {
+			if(!conf->checkHeader(s, "libtorrent/magnet_uri.hpp")) {
 				return false;
       			}
 		}else{
@@ -391,7 +391,7 @@ public:
 			sl << "/usr/local/include";
 			bool found = false;
 			foreach(s, sl){
-				if(conf->checkHeader(s, "libtorrent/lsd.hpp")){
+				if(conf->checkHeader(s, "libtorrent/magnet_uri.hpp")){
 					found = true;
 					break;
 				}

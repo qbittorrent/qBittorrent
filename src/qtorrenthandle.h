@@ -54,7 +54,7 @@ class QTorrentHandle {
     QString hash() const;
     QString name() const;
     float progress() const;
-    const std::vector<bool>* pieces() const;
+    bitfield pieces() const;
     void get_download_queue(std::vector<partial_piece_info>& queue) const;
     QString current_tracker() const;
     bool is_valid() const;
@@ -76,7 +76,7 @@ class QTorrentHandle {
     int upload_limit() const;
     int num_files() const;
     bool has_metadata() const;
-    entry write_resume_data() const;
+    void save_resume_data() const;
     QString file_at(unsigned int index) const;
     size_type filesize_at(unsigned int index) const;
     std::vector<announce_entry> const& trackers() const;
@@ -84,7 +84,7 @@ class QTorrentHandle {
     QString creator() const;
     QString comment() const;
     size_type total_failed_bytes() const;
-    void file_progress(std::vector<float>& fp);
+    void file_progress(std::vector<size_type>& fp);
     size_type total_payload_download();
     size_type total_payload_upload();
     QStringList files_path() const;
@@ -107,7 +107,7 @@ class QTorrentHandle {
     void set_ratio(float ratio) const;
     void replace_trackers(std::vector<announce_entry> const&) const;
     void force_reannounce();
-    void set_sequenced_download_threshold(int val);
+    void set_sequential_download(bool);
     void set_tracker_login(QString username, QString password);
 
     //

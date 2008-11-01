@@ -44,8 +44,6 @@ window.addEvent('domready', function(){
           return '<img src="images/time.png"/>';
       case 'downloading':
           return '<img src="images/skin/downloading.png"/>';
-      case 'connecting':
-          return '<img src="images/skin/connecting.png"/>';
       case 'stalled':
           return '<img src="images/skin/stalled.png"/>';
       case 'queued':

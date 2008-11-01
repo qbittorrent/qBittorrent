@@ -529,31 +529,6 @@ void DownloadingTorrents::updateDlList() {
             DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
           }
           break;
-        case torrent_status::connecting_to_tracker:
-          if(h.download_payload_rate() > 0) {
-            // Display "Downloading" status when connecting if download speed > 0
-            if(!downloadList->isColumnHidden(ETA)) {
-              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)BTSession->getETA(hash)));
-            }
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png"))), Qt::DecorationRole);
-            setRowColor(row, QString::fromUtf8("green"));
-          }else{
-            if(!downloadList->isColumnHidden(ETA)) {
-              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-            }
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/connecting.png"))), Qt::DecorationRole);
-            setRowColor(row, QString::fromUtf8("grey"));
-          }
-          if(!downloadList->isColumnHidden(PROGRESS)) {
-            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
-          }
-          if(!downloadList->isColumnHidden(DLSPEED)) {
-            DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
-          }
-          if(!downloadList->isColumnHidden(UPSPEED)) {
-            DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
-          }
-          break;
         case torrent_status::downloading:
         case torrent_status::downloading_metadata:
           if(h.download_payload_rate() > 0) {

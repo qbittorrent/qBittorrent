@@ -102,7 +102,7 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
     }
   }
   shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
-  std::vector<float> fp;
+  std::vector<size_type> fp;
   h.file_progress(fp);
   int *prioritiesTab = loadPiecesPriorities();
   // List files in torrent
@@ -669,11 +669,11 @@ void properties::on_incrementalDownload_stateChanged(int){
       QFile incremental_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".incremental"));
       incremental_file.open(QIODevice::WriteOnly | QIODevice::Text);
       incremental_file.close();
-      h.set_sequenced_download_threshold(1);
+      h.set_sequential_download(true);
     }
   }else{
     QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental");
-    h.set_sequenced_download_threshold(100); // Disabled
+    h.set_sequential_download(false);
   }
 }
 

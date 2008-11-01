@@ -95,26 +95,32 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
     }
 
     void showLoad(QString filePath, bool fromScanDir=false, QString from_url=QString::null){
-      this->filePath = filePath;
-      this->fromScanDir = fromScanDir;
-      this->from_url = from_url;
-      std::ifstream in(filePath.toUtf8().data(), std::ios_base::binary);
-      in.unsetf(std::ios_base::skipws);
-      try{
-        // Decode torrent file
-        entry e = bdecode(std::istream_iterator<char>(in), std::istream_iterator<char>());
+        this->filePath = filePath;
+        this->fromScanDir = fromScanDir;
+        this->from_url = from_url;
         // Getting torrent file informations
-        torrent_info t(e);
-        nbFiles = t.num_files();
+        boost::intrusive_ptr<torrent_info> t;
+        try {
+            t = new torrent_info(filePath.toUtf8().data());
+        } catch(std::exception&) {
+            if(!from_url.isNull()){
+                BTSession->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
+                QFile::remove(filePath);
+            }else{
+                BTSession->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+filePath+QString::fromUtf8("'"), QString::fromUtf8("red"));
+            }
+            close();
+        }
+        nbFiles = t->num_files();
         // Setting file name
-        fileName = misc::toQString(t.name());
-        hash = misc::toQString(t.info_hash());
+        fileName = misc::toQString(t->name());
+        hash = misc::toQString(t->info_hash());
         // Use left() to remove .old extension
         QString newFileName;
         if(fileName.endsWith(QString::fromUtf8(".old"))){
-          newFileName = fileName.left(fileName.size()-4);
+            newFileName = fileName.left(fileName.size()-4);
         }else{
-          newFileName = fileName;
+            newFileName = fileName;
         }
         fileNameLbl->setText(QString::fromUtf8("<center><b>")+newFileName+QString::fromUtf8("</b></center>"));
         // List files in torrent
@@ -123,62 +129,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         delete arb;
         connect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
         torrentContentList->expandAll();
-      }
-      catch (invalid_torrent_file&){ // Raised by torrent_info constructor
-        // Display warning to tell user we can't decode the torrent file
-        if(!from_url.isNull()){
-          BTSession->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
-          QFile::remove(filePath);
-        }else{
-          BTSession->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+filePath+QString::fromUtf8("'"), QString::fromUtf8("red"));
-        }
-        BTSession->addConsoleMessage(tr("This file is either corrupted or this isn't a torrent."), QString::fromUtf8("red"));
-        if(fromScanDir){
-          // Remove .corrupt file in case it already exists
-          QFile::remove(filePath+QString::fromUtf8(".corrupt"));
-          //Rename file extension so that it won't display error message more than once
-          QFile::rename(filePath,filePath+QString::fromUtf8(".corrupt"));
-        }
-        close();
-      }
-      catch(invalid_encoding& e){
-        std::cerr << "Could not decode file, reason: " << e.what() << '\n';
-        // Display warning to tell user we can't decode the torrent file
-        if(!from_url.isNull()){
-          BTSession->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
-          QFile::remove(filePath);
-        }else{
-          BTSession->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+filePath+QString::fromUtf8("'"), QString::fromUtf8("red"));
-        }
-        qDebug("path is %s", filePath.toUtf8().data());
-        BTSession->addConsoleMessage(tr("This file is either corrupted or this isn't a torrent."), QString::fromUtf8("red"));
-        if(fromScanDir){
-          // Remove .corrupt file in case it already exists
-          QFile::remove(filePath+QString::fromUtf8(".corrupt"));
-          //Rename file extension so that it won't display error message more than once
-          QFile::rename(filePath,filePath+QString::fromUtf8(".corrupt"));
-        }
-        close();
-      }
-      catch(std::exception& e){
-        std::cerr << "Could not decode file, reason: " << e.what() << '\n';
-        if(!from_url.isNull()){
-          BTSession->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
-          QFile::remove(filePath);
-        }else{
-          BTSession->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+filePath+QString::fromUtf8("'"), QString::fromUtf8("red"));
-        }
-        qDebug("path is %s", filePath.toUtf8().data());
-        BTSession->addConsoleMessage(tr("This file is either corrupted or this isn't a torrent."), QString::fromUtf8("red"));
-        if(fromScanDir){
-          // Remove .corrupt file in case it already exists
-          QFile::remove(filePath+QString::fromUtf8(".corrupt"));
-          //Rename file extension so that it won't display error message more than once
-          QFile::rename(filePath,filePath+QString::fromUtf8(".corrupt"));
-        }
-        close();
-      }
-      show();
+        show();
     }
 
     void addFilesToTree(torrent_file *root, QStandardItem *parent) {

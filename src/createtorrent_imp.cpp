@@ -26,6 +26,7 @@
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/path.hpp>
 #include <boost/filesystem/fstream.hpp>
+#include <boost/bind.hpp>
 
 #include <libtorrent/entry.hpp>
 #include <libtorrent/bencode.hpp>
@@ -34,6 +35,7 @@
 #include <libtorrent/storage.hpp>
 #include <libtorrent/hasher.hpp>
 #include <libtorrent/file_pool.hpp>
+#include <libtorrent/create_torrent.hpp>
 
 #include "createtorrent_imp.h"
 #include "misc.h"
@@ -41,13 +43,23 @@
 using namespace libtorrent;
 using namespace boost::filesystem;
 
+// do not include files and folders whose
+// name starts with a .
+bool file_filter(boost::filesystem::path const& filename)
+{
+        if (filename.leaf()[0] == '.') return false;
+        std::cerr << filename << std::endl;
+        return true;
+}
+
 createtorrent::createtorrent(QWidget *parent): QDialog(parent){
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
-  creatorThread = new torrentCreatorThread();
-  connect(creatorThread, SIGNAL(creationSuccess(QString, const char*, QString)), this, SLOT(handleCreationSuccess(QString, const char*, QString)));
+  creatorThread = new torrentCreatorThread(this);
+  connect(creatorThread, SIGNAL(creationSuccess(QString, const char*)), this, SLOT(handleCreationSuccess(QString, const char*)));
   connect(creatorThread, SIGNAL(creationFailure(QString)), this, SLOT(handleCreationFailure(QString)));
   connect(creatorThread, SIGNAL(updateProgress(int)), this, SLOT(updateProgressBar(int)));
+  path::default_name_check(no_check);
   show();
 }
 
@@ -126,31 +138,6 @@ void createtorrent::on_addURLSeed_button_clicked(){
   }
 }
 
-// Subfunction to add files to a torrent_info structure
-// Written by Arvid Norberg (libtorrent Author)
-void add_files(torrent_info& t, path const& p, path const& l){
-  using boost::filesystem::path;
-  using boost::filesystem::directory_iterator;
-#if BOOST_VERSION < 103600
-  std::string const& leaf = l.leaf();
-#else
-  std::string const& leaf = l.filename();
-#endif
-  if (leaf == ".." || leaf == ".") return;
-  path f(p / l);
-  if (is_directory(f)) {
-    for (directory_iterator i(f), end; i != end; ++i)
-#if BOOST_VERSION < 103600
-      add_files(t, p, l / i->leaf());
-#else
-      add_files(t, p, l / i->filename());
-#endif
-  } else {
-    qDebug("Adding %s", l.string().c_str());
-    t.add_file(l, file_size(f));
-  }
-}
-
 QStringList createtorrent::allItems(QListWidget *list){
   QStringList res;
   unsigned int nbItems = list->count();
@@ -191,17 +178,25 @@ void createtorrent::handleCreationFailure(QString msg) {
   hide();
 }
 
-void createtorrent::handleCreationSuccess(QString path, const char* branch_path, QString hash) {
-  if(checkStartSeeding->isChecked()) {
-    // Create save path file
-    QFile savepath_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".savepath"));
-    savepath_file.open(QIODevice::WriteOnly | QIODevice::Text);
-    savepath_file.write(branch_path);
-    savepath_file.close();
-    emit torrent_to_seed(path);
-  }
-  QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+path);
-  hide();
+void createtorrent::handleCreationSuccess(QString path, const char* branch_path) {
+    if(checkStartSeeding->isChecked()) {
+        // Create save path file
+        boost::intrusive_ptr<torrent_info> t;
+        try {
+            t = new torrent_info(path.toUtf8().data());
+        } catch(std::exception&) {
+            QMessageBox::critical(0, tr("Torrent creation"), tr("Created torrent file is invalid. It won't be added to download list."));
+            return;
+        }
+        QString hash = misc::toQString(t->info_hash());
+        QFile savepath_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".savepath"));
+        savepath_file.open(QIODevice::WriteOnly | QIODevice::Text);
+        savepath_file.write(branch_path);
+        savepath_file.close();
+        emit torrent_to_seed(path);
+    }
+    QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+path);
+    hide();
 }
 
 void createtorrent::updateProgressBar(int progress) {
@@ -224,58 +219,47 @@ void torrentCreatorThread::create(QString _input_path, QString _save_path, QStri
   start();
 }
 
+void sendProgressUpdateSignal(int i, int num, QDialog *parent){
+    ((createtorrent*)parent)->updateProgressBar((int)(i*100./(float)num));
+}
+
 void torrentCreatorThread::run() {
   emit updateProgress(0);
   char const* creator_str = "qBittorrent "VERSION;
   try {
-    boost::intrusive_ptr<torrent_info> t(new torrent_info);
-    ofstream out(complete(path((const char*)save_path.toUtf8())), std::ios_base::binary);
-    // Adding files to the torrent
+    file_storage fs;
+    file_pool fp;
     path full_path = complete(path(input_path.toUtf8().data()));
-#if BOOST_VERSION < 103600
-    add_files(*t, full_path.branch_path(), full_path.leaf());
-#else
-    add_files(*t, full_path.branch_path(), full_path.filename());
-#endif
+    // Adding files to the torrent
+    add_files(fs, full_path, file_filter);
     if(abort) return;
-    // Set piece size
-    t->set_piece_size(piece_size);
+    create_torrent t(fs, piece_size);
+
     // Add url seeds
     QString seed;
     foreach(seed, url_seeds){
-      t->add_url_seed(seed.toUtf8().data());
+      t.add_url_seed(seed.toUtf8().data());
     }
     for(int i=0; i<trackers.size(); ++i){
-      t->add_tracker(trackers.at(i).toUtf8().data());
+      t.add_tracker(trackers.at(i).toUtf8().data());
     }
     if(abort) return;
     // calculate the hash for all pieces
-    file_pool fp;
-    boost::scoped_ptr<storage_interface> st(default_storage_constructor(t, full_path.branch_path(), fp));
-    int num = t->num_pieces();
-    std::vector<char> buf(piece_size);
-    for (int i = 0; i < num; ++i) {
-      st->read(&buf[0], i, 0, t->piece_size(i));
-      hasher h(&buf[0], t->piece_size(i));
-      t->set_hash(i, h.final());
-      emit updateProgress((int)(i*100./(float)num));
-      if(abort) return;
-    }
+    set_piece_hashes(t, full_path.branch_path(), boost::bind(&sendProgressUpdateSignal, _1, t.num_pieces(), parent));
     // Set qBittorrent as creator and add user comment to
     // torrent_info structure
-    t->set_creator(creator_str);
-    t->set_comment((const char*)comment.toUtf8());
+    t.set_creator(creator_str);
+    t.set_comment((const char*)comment.toUtf8());
     // Is private ?
     if(is_private){
-      t->set_priv(true);
+      t.set_priv(true);
     }
     if(abort) return;
     // create the torrent and print it to out
-    entry e = t->create_torrent();
-    libtorrent::bencode(std::ostream_iterator<char>(out), e);
-    out.flush();
+    ofstream out(complete(path((const char*)save_path.toUtf8())), std::ios_base::binary);
+    bencode(std::ostream_iterator<char>(out), t.generate());
     emit updateProgress(100);
-    emit creationSuccess(save_path, full_path.branch_path().string().c_str(), misc::toQString(t->info_hash()));
+    emit creationSuccess(save_path, full_path.branch_path().string().c_str());
   }
   catch (std::exception& e){
     emit creationFailure(QString::fromUtf8(e.what()));

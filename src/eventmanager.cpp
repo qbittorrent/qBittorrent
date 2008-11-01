@@ -66,12 +66,6 @@ void EventManager::addedTorrent(QTorrentHandle& h)
 			case torrent_status::queued_for_checking:
 				event["state"] = QVariant("checking");
 				break;
-			case torrent_status::connecting_to_tracker:
-				if(h.download_payload_rate() > 0)
-					event["state"] = QVariant("downloading");
-				else
-					event["state"] = QVariant("connecting");
-				break;
 			case torrent_status::downloading:
 			case torrent_status::downloading_metadata:
 				if(h.download_payload_rate() > 0)
@@ -112,12 +106,6 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
 			case torrent_status::checking_files:
 			case torrent_status::queued_for_checking:
 				event["state"] = QVariant("checking");
-				break;
-			case torrent_status::connecting_to_tracker:
-				if(h.download_payload_rate() > 0)
-					event["state"] = QVariant("downloading");
-				else
-					event["state"] = QVariant("connecting");
 				break;
 			case torrent_status::downloading:
 			case torrent_status::downloading_metadata:

@@ -37,9 +37,12 @@ class torrentCreatorThread : public QThread {
   bool is_private;
   int piece_size;
   bool abort;
+  QDialog *parent;
   
   public:
-    torrentCreatorThread() {}
+    torrentCreatorThread(QDialog *_parent) {
+        parent = _parent;
+    }
     ~torrentCreatorThread() {
       abort = true;
       wait();
@@ -51,7 +54,7 @@ class torrentCreatorThread : public QThread {
     
   signals:
     void creationFailure(QString msg);
-    void creationSuccess(QString path, const char* branch_path, QString hash);
+    void creationSuccess(QString path, const char* branch_path);
     void updateProgress(int progress);
 };
 
@@ -70,6 +73,9 @@ class createtorrent : public QDialog, private Ui::createTorrentDialog{
   signals:
     void torrent_to_seed(QString path);
 
+  public slots:
+    void updateProgressBar(int progress);
+
   protected slots:
     void on_createButton_clicked();
     void on_addFile_button_clicked();
@@ -79,8 +85,7 @@ class createtorrent : public QDialog, private Ui::createTorrentDialog{
     void on_addURLSeed_button_clicked();
     void on_removeURLSeed_button_clicked();
     void handleCreationFailure(QString msg);
-    void handleCreationSuccess(QString path, const char* branch_path, QString hash);
-    void updateProgressBar(int progress);
+    void handleCreationSuccess(QString path, const char* branch_path);
 };
 
 #endif
