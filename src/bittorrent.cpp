@@ -1323,16 +1323,13 @@ void bittorrent::saveFastResumeData() {
                   "torrents to save resume data for" << std::endl;
           break;
       }
-      qDebug("Received an alert...");
       save_resume_data_alert const* rd = dynamic_cast<save_resume_data_alert const*>(a);
       if (!rd) {
           s->pop_alert();
           continue;
       }
-      qDebug("Alert is for resume data");
       --num_resume_data;
       if (!rd->resume_data) continue;
-      qDebug("saving resume data: %d", num_resume_data);
       QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
       QTorrentHandle h(rd->handle);
       QFile::remove(torrentBackup.path()+QDir::separator()+ h.hash() + ".fastresume");
