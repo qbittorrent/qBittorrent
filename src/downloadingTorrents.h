@@ -84,7 +84,6 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void hideOrShowColumnRatio();
     void hideOrShowColumnEta();
     void hideOrShowColumnPriority();
-    void loadLastSortedColumn();
 
   public slots:
     void updateDlList();
@@ -96,6 +95,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void showPropertiesFromHash(QString hash);
     void hidePriorityColumn(bool hide);
     void sortProgressColumn(QString hash);
+    void loadLastSortedColumn();
 
 };
 

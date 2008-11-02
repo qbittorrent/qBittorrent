@@ -628,7 +628,6 @@ void DownloadingTorrents::addTorrent(QString hash) {
   }
   ++nbTorrents;
   emit unfinishedTorrentsNumberChanged(nbTorrents);
-  sortDownloadList();
 }
 
 void DownloadingTorrents::sortDownloadListFloat(int index, Qt::SortOrder sortOrder) {
@@ -784,7 +783,6 @@ bool DownloadingTorrents::loadColWidthDLList() {
   for(unsigned int i=0; i<listSize; ++i) {
         downloadList->header()->resizeSection(i, width_list.at(i).toInt());
   }
-  loadLastSortedColumn();
   qDebug("Download list columns width loaded");
   return true;
 }
@@ -834,7 +832,6 @@ void DownloadingTorrents::torrentAdded(QTorrentHandle& h) {
   }
   ++nbTorrents;
   emit unfinishedTorrentsNumberChanged(nbTorrents);
-  sortDownloadList();
 }
 
 void DownloadingTorrents::updateFileSizeAndProgress(QString hash) {

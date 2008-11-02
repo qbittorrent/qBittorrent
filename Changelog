@@ -1,6 +1,7 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.2.1
     - BUGFIX: Fixed possible crash when deleting a torrent permanently
     - BUGFIX: Queued_for_checking torrents were not displayed as checking in seeding list
+    - BUGFIX: Speed up startup time when having a lot of torrents
 
 * Wed Oct 29th 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.2.0
     - FEATURE: Torrent queueing system (with priorities)
