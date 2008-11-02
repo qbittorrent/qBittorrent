@@ -35,6 +35,7 @@
 #include <QStandardItemModel>
 #include <QSettings>
 #include <QDesktopWidget>
+#include <QFileDialog>
 
 // Constructor
 properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h): QDialog(parent), h(h), BTSession(BTSession), changedFilteredfiles(false), hash(h.hash()) {
@@ -675,6 +676,35 @@ void properties::on_incrementalDownload_stateChanged(int){
     QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental");
     h.set_sequential_download(false);
   }
+}
+
+void properties::on_changeSavePathButton_clicked() {
+    QString dir;
+    QDir saveDir(h.save_path());
+    if(saveDir.exists()){
+        dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), h.save_path());
+    }else{
+        dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
+    }
+    if(!dir.isNull()){
+        // Check if savePath exists
+        QDir savePath(dir);
+        if(!savePath.exists()){
+            if(!savePath.mkpath(savePath.path())){
+                QMessageBox::critical(0, tr("Save path creation error"), tr("Could not create the save path"));
+                return;
+            }
+        }
+        // Save savepath
+        QFile savepath_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".savepath"));
+        savepath_file.open(QIODevice::WriteOnly | QIODevice::Text);
+        savepath_file.write(savePath.path().toUtf8());
+        savepath_file.close();
+        // Actually move storage
+        h.move_storage(savePath.path());
+        // Update save_path in dialog
+        save_path->setText(savePath.path());
+    }
 }
 
 void properties::on_okButton_clicked(){

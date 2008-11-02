@@ -80,6 +80,7 @@ class properties : public QDialog, private Ui::properties{
     void addTrackerList(QStringList myTrackers);
     void writeSettings();
     void loadSettings();
+    void on_changeSavePathButton_clicked();
 
   signals:
     void filteredFilesChanged(QString hash);

@@ -119,6 +119,7 @@ class QTorrentHandle {
     void queue_position_up() const;
     void auto_managed(bool) const;
     void force_recheck() const;
+    void move_storage(QString path) const;
 
     //
     // Operators

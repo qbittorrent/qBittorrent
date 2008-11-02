@@ -393,6 +393,11 @@ void QTorrentHandle::force_recheck() const {
     h.force_recheck();
 }
 
+void QTorrentHandle::move_storage(QString new_path) const {
+   Q_ASSERT(h.is_valid());
+   h.move_storage(new_path.toUtf8().data());
+}
+
 //
 // Operators
 //
