@@ -95,6 +95,7 @@ class QTorrentHandle {
     int num_uploads() const;
     bool is_seed() const;
     bool is_auto_managed() const;
+    int active_time() const;
 
     //
     // Setters

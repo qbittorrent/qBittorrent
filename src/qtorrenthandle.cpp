@@ -291,6 +291,11 @@ bool QTorrentHandle::is_auto_managed() const {
     return h.is_auto_managed();
 }
 
+int QTorrentHandle::active_time() const {
+    Q_ASSERT(h.is_valid());
+    return h.status().active_time;
+}
+
 //
 // Setters
 //

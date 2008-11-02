@@ -54,8 +54,6 @@ class bittorrent : public QObject {
     bool DHTEnabled;
     downloadThread *downloader;
     QString defaultSavePath;
-    QHash<QString, QDateTime> TorrentsStartTime;
-    QHash<QString, size_type> TorrentsStartData;
     QHash<QString, QHash<QString, QString> > trackersErrors;
     QStringList consoleMessages;
     QStringList peerBanMessages;
@@ -74,7 +72,6 @@ class bittorrent : public QObject {
     QString filterPath;
     int folderScanInterval; // in seconds
     bool queueingEnabled;
-    bool calculateETA;
     QStringList url_skippingDlg;
 
   protected:
@@ -92,7 +89,6 @@ class bittorrent : public QObject {
     float getPayloadUploadRate() const;
     session_status getSessionStatus() const;
     int getListenPort() const;
-    qlonglong getETA(QString hash) const;
     float getRealRatio(QString hash) const;
     session* getSession() const;
     QHash<QString, QString> getTrackersErrors(QString hash) const;
@@ -113,6 +109,7 @@ class bittorrent : public QObject {
     QStringList getConsoleMessages() const;
     QStringList getPeerBanMessages() const;
     float getUncheckedTorrentProgress(QString hash) const;
+    qlonglong getETA(QString hash) const;
 
   public slots:
     void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
@@ -166,7 +163,6 @@ class bittorrent : public QObject {
     void enableLSD(bool b);
     bool enableDHT(bool b);
     void setTimerScanInterval(int secs);
-    void setETACalculation(bool enable);
     void addConsoleMessage(QString msg, QColor color=QApplication::palette().color(QPalette::WindowText));
     void addPeerBanMessage(QString msg, bool from_ipfilter);
 
