@@ -124,7 +124,6 @@ void FinishedTorrents::addTorrent(QString hash){
   // Update the number of finished torrents
   ++nbFinished;
   emit finishedTorrentsNumberChanged(nbFinished);
-  sortFinishedList();
 }
 
 void FinishedTorrents::torrentAdded(QTorrentHandle& h) {

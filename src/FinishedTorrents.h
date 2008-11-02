@@ -60,7 +60,6 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void displayFinishedHoSMenu(const QPoint&);
     void setRowColor(int row, QString color);
     void saveColWidthFinishedList() const;
-    void loadLastSortedColumn();
     void toggleFinishedListSortOrder(int index);
     void sortFinishedList(int index=-1, Qt::SortOrder sortOrder=Qt::AscendingOrder);
     void sortFinishedListFloat(int index, Qt::SortOrder sortOrder);
@@ -84,6 +83,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void propertiesSelection();
     void deleteTorrent(QString hash);
     void showPropertiesFromHash(QString hash);
+    void loadLastSortedColumn();
 
   signals:
     void torrentMovedFromFinishedList(QString);
