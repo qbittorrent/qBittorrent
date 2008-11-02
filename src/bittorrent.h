@@ -113,6 +113,8 @@ class bittorrent : public QObject {
 
   public slots:
     void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
+    void loadSessionState();
+    void saveSessionState();
     void downloadFromUrl(QString url);
     void downloadFromURLList(const QStringList& url_list);
     void deleteTorrent(QString hash, bool permanent = false);

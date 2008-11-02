@@ -56,6 +56,8 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   // Set severity level of libtorrent session
   //s->set_alert_mask(alert::all_categories & ~alert::progress_notification);
   s->set_alert_mask(alert::error_notification | alert::peer_notification | alert::port_mapping_notification | alert::storage_notification | alert::tracker_notification | alert::status_notification | alert::ip_block_notification);
+  // Load previous state
+  loadSessionState();
   // Enabling metadata plugin
   s->add_extension(&create_metadata_plugin);
   timerAlerts = new QTimer();
@@ -76,15 +78,19 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
 // Main destructor
 bittorrent::~bittorrent() {
   qDebug("BTSession deletion");
+  // Do some BT related saving
+  saveDHTEntry();
+  saveSessionState();
+  saveFastResumeData();
   // Set Session settings
-  session_settings ss;
+  /*session_settings ss;
   ss.tracker_receive_timeout = 1;
   ss.stop_tracker_timeout = 1;
   ss.tracker_completion_timeout = 1;
   ss.piece_timeout = 1;
   ss.peer_timeout = 1;
   ss.urlseed_timeout = 1;
-  s->set_settings(ss);
+  s->set_settings(ss);*/
   // Disable directory scanning
   disableDirectoryScanning();
   // Delete our objects
@@ -708,6 +714,24 @@ void bittorrent::enableLSD(bool b) {
       LSDEnabled = false;
     }
   }
+}
+
+void bittorrent::loadSessionState() {
+    boost::filesystem::ifstream ses_state_file((misc::qBittorrentPath()+QString::fromUtf8("ses_state")).toUtf8().data()
+                                               , std::ios_base::binary);
+    ses_state_file.unsetf(std::ios_base::skipws);
+    s->load_state(bdecode(
+            std::istream_iterator<char>(ses_state_file)
+            , std::istream_iterator<char>()));
+}
+
+void bittorrent::saveSessionState() {
+    qDebug("Saving session state to disk...");
+    entry session_state = s->state();
+    boost::filesystem::ofstream out((misc::qBittorrentPath()+QString::fromUtf8("ses_state")).toUtf8().data()
+                                    , std::ios_base::binary);
+    out.unsetf(std::ios_base::skipws);
+    bencode(std::ostream_iterator<char>(out), session_state);
 }
 
 // Enable DHT

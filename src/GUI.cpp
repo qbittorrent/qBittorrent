@@ -642,9 +642,6 @@ void GUI::closeEvent(QCloseEvent *e) {
   }
   // Save window size, columns size
   writeSettings();
-  // Do some BT related saving
-  BTSession->saveDHTEntry();
-  BTSession->saveFastResumeData();
   // Accept exit
   e->accept();
   qApp->exit();
