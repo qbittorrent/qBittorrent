@@ -266,6 +266,11 @@ QStringList QTorrentHandle::files_path() const {
   return res;
 }
 
+int QTorrentHandle::queue_position() const {
+    Q_ASSERT(h.is_valid());
+    return h.queue_position();
+}
+
 int QTorrentHandle::num_uploads() const {
   Q_ASSERT(h.is_valid());
   return h.status().num_uploads;
@@ -333,6 +338,17 @@ void QTorrentHandle::set_ratio(float ratio) const {
 void QTorrentHandle::replace_trackers(std::vector<announce_entry> const& v) const {
   Q_ASSERT(h.is_valid());
   h.replace_trackers(v);
+}
+
+void QTorrentHandle::queue_position_down() const {
+    Q_ASSERT(h.is_valid());
+    h.queue_position_down();
+}
+
+void QTorrentHandle::queue_position_up() const {
+    Q_ASSERT(h.is_valid());
+    h.queue_position_up();
+
 }
 
 void QTorrentHandle::force_reannounce() {

@@ -74,13 +74,6 @@ class bittorrent : public QObject {
     QString filterPath;
     int folderScanInterval; // in seconds
     bool queueingEnabled;
-    int maxActiveDownloads;
-    int maxActiveTorrents;
-    int currentActiveDownloads;
-    QStringList *downloadQueue;
-    QStringList *queuedDownloads;
-    QStringList *uploadQueue;
-    QStringList *queuedUploads;
     bool calculateETA;
     QStringList url_skippingDlg;
 
@@ -145,13 +138,10 @@ class bittorrent : public QObject {
     void loadTorrentSpeedLimits(QString hash);
     void handleDownloadFailure(QString url, QString reason);
     void loadWebSeeds(QString fileHash);
-    void updateDownloadQueue();
-    void updateUploadQueue();
     void increaseDlTorrentPriority(QString hash);
     void decreaseDlTorrentPriority(QString hash);
     void increaseUpTorrentPriority(QString hash);
     void decreaseUpTorrentPriority(QString hash);
-    void saveTorrentPriority(QString hash, int prio);
     void downloadUrlAndSkipDialog(QString);
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
@@ -178,12 +168,9 @@ class bittorrent : public QObject {
     void enableLSD(bool b);
     bool enableDHT(bool b);
     void setTimerScanInterval(int secs);
-    void setMaxActiveDownloads(int val);
-    void setMaxActiveTorrents(int val);
     void setETACalculation(bool enable);
     void addConsoleMessage(QString msg, QColor color=QApplication::palette().color(QPalette::WindowText));
     void addPeerBanMessage(QString msg, bool from_ipfilter);
-    void fixTorrentPriorities();
 
   protected slots:
     void scanDirectory();

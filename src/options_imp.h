@@ -119,6 +119,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     // Queueing system
     bool isQueueingSystemEnabled() const;
     int getMaxActiveDownloads() const;
+    int getMaxActiveUploads() const;
     int getMaxActiveTorrents() const;
     bool isWebUiEnabled() const;
     quint16 webUiPort() const;

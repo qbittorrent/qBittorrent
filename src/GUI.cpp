@@ -1031,6 +1031,39 @@ void GUI::configureSession(bool deleteOptions) {
   }
   sessionSettings.upnp_ignore_nonrouters = true;
   sessionSettings.use_dht_as_fallback = false;
+  // Queueing System
+  if(options->isQueueingSystemEnabled()) {
+      if(!BTSession->isQueueingEnabled()) {
+          downloadingTorrentTab->hidePriorityColumn(false);
+          finishedTorrentTab->hidePriorityColumn(false);
+          actionDecreasePriority->setVisible(true);
+          actionIncreasePriority->setVisible(true);
+          prioSeparator->setVisible(true);
+          prioSeparator2->setVisible(true);
+          toolBar->layout()->setSpacing(7);
+      }
+      int max_torrents = options->getMaxActiveTorrents();
+      int max_downloads = options->getMaxActiveDownloads();
+      int max_seeds = options->getMaxActiveUploads();
+      sessionSettings.active_limit = max_torrents;
+      sessionSettings.active_downloads = max_downloads;
+      sessionSettings.active_seeds = max_seeds;
+      BTSession->setQueueingEnabled(true);
+  } else {
+      if(BTSession->isQueueingEnabled()) {
+          sessionSettings.active_limit = -1;
+          sessionSettings.active_downloads = -1;
+          sessionSettings.active_seeds = -1;
+          BTSession->setQueueingEnabled(false);
+          downloadingTorrentTab->hidePriorityColumn(true);
+          finishedTorrentTab->hidePriorityColumn(true);
+          actionDecreasePriority->setVisible(false);
+          actionIncreasePriority->setVisible(false);
+          prioSeparator->setVisible(false);
+          prioSeparator2->setVisible(false);
+          toolBar->layout()->setSpacing(7);
+      }
+  }
   BTSession->setSessionSettings(sessionSettings);
   // Bittorrent
   // * Max connections limit
@@ -1106,36 +1139,6 @@ void GUI::configureSession(bool deleteOptions) {
     displayRSSTab(true);
   } else {
     displayRSSTab(false);
-  }
-  // Queueing System
-  if(options->isQueueingSystemEnabled()) {
-    if(!BTSession->isQueueingEnabled()) {
-      downloadingTorrentTab->hidePriorityColumn(false);
-      finishedTorrentTab->hidePriorityColumn(false);
-      actionDecreasePriority->setVisible(true);
-      actionIncreasePriority->setVisible(true);
-      prioSeparator->setVisible(true);
-      prioSeparator2->setVisible(true);
-      toolBar->layout()->setSpacing(7);
-    }
-    int max_torrents = options->getMaxActiveTorrents();
-    int max_downloads = options->getMaxActiveDownloads();
-    if(max_torrents < max_downloads)
-      max_torrents = max_downloads;
-    BTSession->setMaxActiveTorrents(max_torrents);
-    BTSession->setMaxActiveDownloads(max_downloads);
-    BTSession->setQueueingEnabled(true);
-  } else {
-    if(BTSession->isQueueingEnabled()) {
-      BTSession->setQueueingEnabled(false);
-      downloadingTorrentTab->hidePriorityColumn(true);
-      finishedTorrentTab->hidePriorityColumn(true);
-      actionDecreasePriority->setVisible(false);
-      actionIncreasePriority->setVisible(false);
-      prioSeparator->setVisible(false);
-      prioSeparator2->setVisible(false);
-      toolBar->layout()->setSpacing(7);
-    }
   }
   // Clean up
   if(deleteOptions) {

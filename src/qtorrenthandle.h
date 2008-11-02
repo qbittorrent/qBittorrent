@@ -77,6 +77,7 @@ class QTorrentHandle {
     int num_files() const;
     bool has_metadata() const;
     void save_resume_data() const;
+    int queue_position() const;
     QString file_at(unsigned int index) const;
     size_type filesize_at(unsigned int index) const;
     std::vector<announce_entry> const& trackers() const;
@@ -111,6 +112,8 @@ class QTorrentHandle {
     void force_reannounce();
     void set_sequential_download(bool);
     void set_tracker_login(QString username, QString password);
+    void queue_position_down() const;
+    void queue_position_up() const;
 
     //
     // Operators
