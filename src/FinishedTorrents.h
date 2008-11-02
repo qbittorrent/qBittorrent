@@ -74,6 +74,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void hideOrShowColumnUpSpeed();
     void hideOrShowColumnLeechers();
     void hideOrShowColumnRatio();
+    void forceRecheck();
 
   public slots:
     void addTorrent(QString hash);

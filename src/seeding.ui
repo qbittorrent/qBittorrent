@@ -120,6 +120,15 @@
     <string>Buy it</string>
    </property>
   </action>
+  <action name="actionForce_recheck" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >
+     <normaloff>:/Icons/gear.png</normaloff>:/Icons/gear.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Force recheck</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="icons.qrc" />

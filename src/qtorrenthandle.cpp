@@ -388,6 +388,11 @@ void QTorrentHandle::set_tracker_login(QString username, QString password) {
   h.set_tracker_login(std::string(username.toUtf8().data()), std::string(password.toUtf8().data()));
 }
 
+void QTorrentHandle::force_recheck() const {
+    Q_ASSERT(h.is_valid());
+    h.force_recheck();
+}
+
 //
 // Operators
 //

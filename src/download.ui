@@ -18,16 +18,7 @@
      <property name="spacing" >
       <number>6</number>
      </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin" >
       <number>0</number>
      </property>
      <item>
@@ -100,7 +91,8 @@
   </action>
   <action name="actionOpen_destination_folder" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/Icons/folder.png</iconset>
+    <iconset resource="icons.qrc" >
+     <normaloff>:/Icons/folder.png</normaloff>:/Icons/folder.png</iconset>
    </property>
    <property name="text" >
     <string>Open destination folder</string>
@@ -148,7 +140,8 @@
   </action>
   <action name="actionBuy_it" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/Icons/money.png</iconset>
+    <iconset resource="icons.qrc" >
+     <normaloff>:/Icons/money.png</normaloff>:/Icons/money.png</iconset>
    </property>
    <property name="text" >
     <string>Buy it</string>
@@ -161,7 +154,8 @@
   </action>
   <action name="actionIncreasePriority" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/Icons/skin/increase.png</iconset>
+    <iconset resource="icons.qrc" >
+     <normaloff>:/Icons/skin/increase.png</normaloff>:/Icons/skin/increase.png</iconset>
    </property>
    <property name="text" >
     <string>Increase priority</string>
@@ -169,10 +163,20 @@
   </action>
   <action name="actionDecreasePriority" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/Icons/skin/decrease.png</iconset>
+    <iconset resource="icons.qrc" >
+     <normaloff>:/Icons/skin/decrease.png</normaloff>:/Icons/skin/decrease.png</iconset>
    </property>
    <property name="text" >
     <string>Decrease priority</string>
+   </property>
+  </action>
+  <action name="actionForce_recheck" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >
+     <normaloff>:/Icons/gear.png</normaloff>:/Icons/gear.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Force recheck</string>
    </property>
   </action>
  </widget>

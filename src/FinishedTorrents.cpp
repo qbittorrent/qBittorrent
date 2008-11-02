@@ -76,6 +76,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   connect(actionOpen_destination_folder, SIGNAL(triggered()), (GUI*)parent, SLOT(openDestinationFolder()));
   connect(actionBuy_it, SIGNAL(triggered()), (GUI*)parent, SLOT(goBuyPage()));
   connect(actionTorrent_Properties, SIGNAL(triggered()), this, SLOT(propertiesSelection()));
+  connect(actionForce_recheck, SIGNAL(triggered()), this, SLOT(forceRecheck()));
 
   connect(actionHOSColName, SIGNAL(triggered()), this, SLOT(hideOrShowColumnName()));
   connect(actionHOSColSize, SIGNAL(triggered()), this, SLOT(hideOrShowColumnSize()));
@@ -257,7 +258,11 @@ void FinishedTorrents::updateFinishedList(){
     Q_ASSERT(row != -1);
     // Update queued torrent
     if(BTSession->isQueueingEnabled() && BTSession->isTorrentQueued(hash)) {
-        finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queued.png"))), Qt::DecorationRole);
+        if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking){
+            finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
+        } else {
+            finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queued.png"))), Qt::DecorationRole);
+        }
         setRowColor(row, QString::fromUtf8("grey"));
     }
     if(h.is_paused() || h.is_queued()) continue;
@@ -276,7 +281,7 @@ void FinishedTorrents::updateFinishedList(){
       }
       continue;
     }
-    if(h.state() == torrent_status::checking_files){
+    if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking){
       finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
       setRowColor(row, QString::fromUtf8("grey"));
       continue;
@@ -370,6 +375,18 @@ void FinishedTorrents::propertiesSelection(){
   }
 }
 
+void FinishedTorrents::forceRecheck(){
+  QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
+  QModelIndex index;
+  foreach(index, selectedIndexes){
+      if(index.column() == F_NAME){
+          QString hash = finishedListModel->data(finishedListModel->index(index.row(), F_HASH)).toString();
+          QTorrentHandle h = BTSession->getTorrentHandle(hash);
+          h.force_recheck();
+      }
+  }
+}
+
 void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
   QMenu myFinishedListMenu(this);
   QModelIndex index;
@@ -406,6 +423,8 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
   myFinishedListMenu.addAction(actionDelete_Permanently);
   myFinishedListMenu.addSeparator();
   myFinishedListMenu.addAction(actionSet_upload_limit);
+  myFinishedListMenu.addSeparator();
+  myFinishedListMenu.addAction(actionForce_recheck);
   myFinishedListMenu.addSeparator();
   myFinishedListMenu.addAction(actionOpen_destination_folder);
   myFinishedListMenu.addAction(actionTorrent_Properties);
