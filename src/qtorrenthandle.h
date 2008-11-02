@@ -78,6 +78,7 @@ class QTorrentHandle {
     bool has_metadata() const;
     void save_resume_data() const;
     int queue_position() const;
+    bool is_queued() const;
     QString file_at(unsigned int index) const;
     size_type filesize_at(unsigned int index) const;
     std::vector<announce_entry> const& trackers() const;
@@ -93,6 +94,7 @@ class QTorrentHandle {
     QStringList files_path() const;
     int num_uploads() const;
     bool is_seed() const;
+    bool is_auto_managed() const;
 
     //
     // Setters
@@ -114,6 +116,7 @@ class QTorrentHandle {
     void set_tracker_login(QString username, QString password);
     void queue_position_down() const;
     void queue_position_up() const;
+    void auto_managed(bool) const;
 
     //
     // Operators

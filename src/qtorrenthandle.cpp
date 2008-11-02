@@ -85,7 +85,12 @@ bool QTorrentHandle::is_valid() const {
 
 bool QTorrentHandle::is_paused() const {
   Q_ASSERT(h.is_valid());
-  return h.is_paused();
+  return h.is_paused() && !h.is_auto_managed();
+}
+
+bool QTorrentHandle::is_queued() const {
+    Q_ASSERT(h.is_valid());
+    return h.is_paused() && h.is_auto_managed();
 }
 
 size_type QTorrentHandle::total_size() const {
@@ -281,6 +286,11 @@ bool QTorrentHandle::is_seed() const {
   return h.is_seed();
 }
 
+bool QTorrentHandle::is_auto_managed() const {
+    Q_ASSERT(h.is_valid());
+    return h.is_auto_managed();
+}
+
 //
 // Setters
 //
@@ -297,11 +307,13 @@ void QTorrentHandle::set_upload_limit(int limit) {
 
 void QTorrentHandle::pause() {
   Q_ASSERT(h.is_valid());
+  h.auto_managed(false);
   h.pause();
 }
 
 void QTorrentHandle::resume() {
   Q_ASSERT(h.is_valid());
+  h.auto_managed(true);
   h.resume();
 }
 
@@ -338,6 +350,11 @@ void QTorrentHandle::set_ratio(float ratio) const {
 void QTorrentHandle::replace_trackers(std::vector<announce_entry> const& v) const {
   Q_ASSERT(h.is_valid());
   h.replace_trackers(v);
+}
+
+void QTorrentHandle::auto_managed(bool b) const {
+    Q_ASSERT(h.is_valid());
+    h.auto_managed(b);
 }
 
 void QTorrentHandle::queue_position_down() const {

@@ -501,7 +501,7 @@ void DownloadingTorrents::updateDlList() {
       // Update Priority
       if(BTSession->isQueueingEnabled()) {
         DLListModel->setData(DLListModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
-        if(h.is_paused() && BTSession->isDownloadQueued(hash)) {
+        if(BTSession->isTorrentQueued(hash)) {
           DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queued.png"))), Qt::DecorationRole);
           if(!downloadList->isColumnHidden(ETA)) {
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
@@ -510,7 +510,7 @@ void DownloadingTorrents::updateDlList() {
         }
       }
       // No need to update a paused torrent
-      if(h.is_paused()) continue;
+      if(h.is_paused() || h.is_queued()) continue;
       // Parse download state
       // Setting download state
       switch(h.state()) {

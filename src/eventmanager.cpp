@@ -49,76 +49,78 @@ void EventManager::addedTorrent(QTorrentHandle& h)
 		event["progress"] = QVariant(h.progress());
 		event["dlspeed"] = QVariant(h.download_payload_rate());
 	}
-	event["upspeed"] = QVariant(h.upload_payload_rate());
-	if(h.is_paused()) {
-		if(BTSession->isQueueingEnabled() && (BTSession->isDownloadQueued(hash) || BTSession->isUploadQueued(hash)))
-			event["state"] = QVariant("queued");
-		else
-			event["state"] = QVariant("paused");
-	} else {
-		switch(h.state())
-		{
-			case torrent_status::finished:
-			case torrent_status::seeding:
-				event["state"] = QVariant("seeding");
-				break;
-			case torrent_status::checking_files:
-			case torrent_status::queued_for_checking:
-				event["state"] = QVariant("checking");
-				break;
-			case torrent_status::downloading:
-			case torrent_status::downloading_metadata:
-				if(h.download_payload_rate() > 0)
-					event["state"] = QVariant("downloading");
-				else
-					event["state"] = QVariant("stalled");
-				break;
-			default:
-				qDebug("No status, should not happen!!! status is %d", h.state());
-				event["state"] = QVariant();
-		}
-	}
-	event_list[hash] = event;
-}
+        event["upspeed"] = QVariant(h.upload_payload_rate());
+        if(h.is_paused()) {
+            event["state"] = QVariant("paused");
+        } else {
+            if(BTSession->isQueueingEnabled() && h.is_queued()) {
+                event["state"] = QVariant("queued");
+            } else{
+                switch(h.state())
+                {
+                        case torrent_status::finished:
+                        case torrent_status::seeding:
+                    event["state"] = QVariant("seeding");
+                    break;
+                        case torrent_status::checking_files:
+                        case torrent_status::queued_for_checking:
+                    event["state"] = QVariant("checking");
+                    break;
+                        case torrent_status::downloading:
+                        case torrent_status::downloading_metadata:
+                    if(h.download_payload_rate() > 0)
+                        event["state"] = QVariant("downloading");
+                    else
+                        event["state"] = QVariant("stalled");
+                    break;
+                        default:
+                    qDebug("No status, should not happen!!! status is %d", h.state());
+                    event["state"] = QVariant();
+                }
+            }
+        }
+        event_list[hash] = event;
+    }
 
 void EventManager::deletedTorrent(QString hash)
 {
-	event_list.remove(hash);
+    event_list.remove(hash);
 }
 
 void EventManager::modifiedTorrent(QTorrentHandle h)
 {
-	QString hash = h.hash();
-	QVariantMap event;
-	
-	if(h.is_paused()) {
-		if(BTSession->isQueueingEnabled() && (BTSession->isDownloadQueued(hash) || BTSession->isUploadQueued(hash)))
-			event["state"] = QVariant("queued");
-		else
-			event["state"] = QVariant("paused");
-	} else {
-		switch(h.state())
-		{
-			case torrent_status::finished:
-			case torrent_status::seeding:
-				event["state"] = QVariant("seeding");
-				break;
-			case torrent_status::checking_files:
-			case torrent_status::queued_for_checking:
-				event["state"] = QVariant("checking");
-				break;
-			case torrent_status::downloading:
-			case torrent_status::downloading_metadata:
-				if(h.download_payload_rate() > 0)
-					event["state"] = QVariant("downloading");
-				else
-					event["state"] = QVariant("stalled");
-				break;
-			default:
-			  qDebug("No status, should not happen!!! status is %d", h.state());
-				event["state"] = QVariant();
-		}
-	}
+    QString hash = h.hash();
+    QVariantMap event;
+
+    if(h.is_paused()) {
+        event["state"] = QVariant("paused");
+    } else {
+        if(BTSession->isQueueingEnabled() && h.is_queued()) {
+            event["state"] = QVariant("queued");
+        } else {
+            switch(h.state())
+            {
+                        case torrent_status::finished:
+                        case torrent_status::seeding:
+                event["state"] = QVariant("seeding");
+                break;
+                        case torrent_status::checking_files:
+                        case torrent_status::queued_for_checking:
+                event["state"] = QVariant("checking");
+                break;
+                        case torrent_status::downloading:
+                        case torrent_status::downloading_metadata:
+                if(h.download_payload_rate() > 0)
+                    event["state"] = QVariant("downloading");
+                else
+                    event["state"] = QVariant("stalled");
+                break;
+                        default:
+                qDebug("No status, should not happen!!! status is %d", h.state());
+                event["state"] = QVariant();
+            }
+        }
+    }
 	event["name"] = QVariant(h.name());
 	event["size"] = QVariant((qlonglong)h.actual_size());
 	if(!h.is_seed()) {

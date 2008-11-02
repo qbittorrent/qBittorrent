@@ -1035,7 +1035,6 @@ void GUI::configureSession(bool deleteOptions) {
   if(options->isQueueingSystemEnabled()) {
       if(!BTSession->isQueueingEnabled()) {
           downloadingTorrentTab->hidePriorityColumn(false);
-          finishedTorrentTab->hidePriorityColumn(false);
           actionDecreasePriority->setVisible(true);
           actionIncreasePriority->setVisible(true);
           prioSeparator->setVisible(true);
@@ -1056,8 +1055,6 @@ void GUI::configureSession(bool deleteOptions) {
           sessionSettings.active_seeds = -1;
           BTSession->setQueueingEnabled(false);
           downloadingTorrentTab->hidePriorityColumn(true);
-          finishedTorrentTab->hidePriorityColumn(true);
-          actionDecreasePriority->setVisible(false);
           actionIncreasePriority->setVisible(false);
           prioSeparator->setVisible(false);
           prioSeparator2->setVisible(false);
@@ -1208,7 +1205,7 @@ void GUI::togglePausedState(QString hash) {
   if(tabs->currentIndex() == 1)
     inDownloadList = false;
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
-  if(BTSession->isPaused(hash) && !(BTSession->isQueueingEnabled() && (BTSession->isDownloadQueued(hash) || BTSession->isUploadQueued(hash)))) {
+  if(BTSession->isPaused(hash)) {
     BTSession->resumeTorrent(hash);
     if(inDownloadList) {
       downloadingTorrentTab->resumeTorrent(hash);
@@ -1268,9 +1265,6 @@ void GUI::on_actionIncreasePriority_triggered() {
     if(inDownloadList) {
       BTSession->increaseDlTorrentPriority(hash);
       downloadingTorrentTab->updateDlList();
-    } else {
-      BTSession->increaseUpTorrentPriority(hash);
-      finishedTorrentTab->updateFinishedList();
     }
   }
 }
@@ -1291,9 +1285,6 @@ void GUI::on_actionDecreasePriority_triggered() {
     if(inDownloadList) {
       BTSession->decreaseDlTorrentPriority(hash);
       downloadingTorrentTab->updateDlList();
-    } else {
-      BTSession->decreaseUpTorrentPriority(hash);
-      finishedTorrentTab->updateFinishedList();
     }
   }
 }

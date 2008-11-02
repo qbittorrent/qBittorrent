@@ -163,35 +163,16 @@ void bittorrent::increaseDlTorrentPriority(QString hash) {
   h.queue_position_up();
 }
 
-void bittorrent::increaseUpTorrentPriority(QString hash) {
-  Q_ASSERT(queueingEnabled);
-  QTorrentHandle h = getTorrentHandle(hash);
-  h.queue_position_up();
-}
-
 void bittorrent::decreaseDlTorrentPriority(QString hash) {
   Q_ASSERT(queueingEnabled);
   QTorrentHandle h = getTorrentHandle(hash);
   h.queue_position_down();
 }
 
-void bittorrent::decreaseUpTorrentPriority(QString hash) {
+bool bittorrent::isTorrentQueued(QString hash) const {
   Q_ASSERT(queueingEnabled);
   QTorrentHandle h = getTorrentHandle(hash);
-  h.queue_position_down();
-}
-
-bool bittorrent::isDownloadQueued(QString hash) const {
-  Q_ASSERT(queueingEnabled);
-  QTorrentHandle h = getTorrentHandle(hash);
-  return h.queue_position() >= 0;
-}
-
-bool bittorrent::isUploadQueued(QString hash) const {
-  // FIXME: libtorrent does not support this.
-  Q_ASSERT(queueingEnabled);
-  QTorrentHandle h = getTorrentHandle(hash);
-  return h.queue_position() >= 0;
+  return h.is_queued();
 }
 
 void bittorrent::setUploadLimit(QString hash, long val) {
@@ -220,6 +201,7 @@ void bittorrent::setQueueingEnabled(bool enable) {
 int bittorrent::getDlTorrentPriority(QString hash) const {
   Q_ASSERT(queueingEnabled);
   QTorrentHandle h = getTorrentHandle(hash);
+  qDebug("Priority for %s is %d", h.name().toUtf8().data(), h.queue_position());
   return h.queue_position();
 }
 

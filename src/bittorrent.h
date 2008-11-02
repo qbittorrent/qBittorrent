@@ -107,8 +107,8 @@ class bittorrent : public QObject {
     int getUpTorrentPriority(QString hash) const;
     int getMaximumActiveDownloads() const;
     int getMaximumActiveTorrents() const;
-    bool isDownloadQueued(QString hash) const;
-    bool isUploadQueued(QString hash) const;
+    bool isTorrentQueued(QString hash) const;
+    bool is_auto_managed() const;
     int loadTorrentPriority(QString hash);
     QStringList getConsoleMessages() const;
     QStringList getPeerBanMessages() const;
@@ -140,8 +140,6 @@ class bittorrent : public QObject {
     void loadWebSeeds(QString fileHash);
     void increaseDlTorrentPriority(QString hash);
     void decreaseDlTorrentPriority(QString hash);
-    void increaseUpTorrentPriority(QString hash);
-    void decreaseUpTorrentPriority(QString hash);
     void downloadUrlAndSkipDialog(QString);
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
