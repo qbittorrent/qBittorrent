@@ -295,7 +295,7 @@ void FinishedTorrents::updateFinishedList(){
       }
       continue;
     }
-    if(h.state() == torrent_status::checking_files){
+    if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking){
       finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
       setRowColor(row, QString::fromUtf8("grey"));
       continue;
