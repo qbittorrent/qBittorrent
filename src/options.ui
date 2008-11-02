@@ -1069,16 +1069,6 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="checkPeX" >
-            <property name="text" >
-             <string>Enable Peer eXchange (PeX)</string>
-            </property>
-            <property name="checked" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QCheckBox" name="checkLSD" >
             <property name="text" >
              <string>Enable Local Peer Discovery</string>
@@ -2339,7 +2329,6 @@
   <tabstop>checkMaxUploadsPerTorrent</tabstop>
   <tabstop>spinMaxUploadsPerTorrent</tabstop>
   <tabstop>checkDHT</tabstop>
-  <tabstop>checkPeX</tabstop>
   <tabstop>checkLSD</tabstop>
   <tabstop>comboEncryption</tabstop>
   <tabstop>checkRatioLimit</tabstop>

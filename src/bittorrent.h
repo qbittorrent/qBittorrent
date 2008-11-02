@@ -128,7 +128,6 @@ class bittorrent : public QObject {
     void saveFastResumeData(QString hash);
     void enableDirectoryScanning(QString scan_dir);
     void disableDirectoryScanning();
-    void enablePeerExchange();
     void enableIPFilter(QString filter);
     void disableIPFilter();
     void setQueueingEnabled(bool enable);

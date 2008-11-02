@@ -29,9 +29,10 @@
 #include "misc.h"
 #include "downloadThread.h"
 #include "filterParserThread.h"
-
-#include <libtorrent/extensions/metadata_transfer.hpp>
+#include <libtorrent/extensions/ut_metadata.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
+#include <libtorrent/extensions/smart_ban.hpp>
+#include <libtorrent/extensions/metadata_transfer.hpp>
 #include <libtorrent/entry.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/identify_client.hpp>
@@ -58,8 +59,11 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   s->set_alert_mask(alert::error_notification | alert::peer_notification | alert::port_mapping_notification | alert::storage_notification | alert::tracker_notification | alert::status_notification | alert::ip_block_notification);
   // Load previous state
   loadSessionState();
-  // Enabling metadata plugin
+  // Enabling plugins
   s->add_extension(&create_metadata_plugin);
+  s->add_extension(&create_ut_metadata_plugin);
+  s->add_extension(&create_ut_pex_plugin);
+  s->add_extension(&create_smart_ban_plugin);
   timerAlerts = new QTimer();
   connect(timerAlerts, SIGNAL(timeout()), this, SLOT(readAlerts()));
   timerAlerts->start(3000);
@@ -1132,12 +1136,6 @@ void bittorrent::saveTrackerFile(QString hash) {
     tracker_file.write(QByteArray(trackers[i].url.c_str())+QByteArray("|")+QByteArray(misc::toString(i).c_str())+QByteArray("\n"));
   }
   tracker_file.close();
-}
-
-// Add uT PeX extension to bittorrent session
-void bittorrent::enablePeerExchange() {
-  qDebug("Enabling Peer eXchange");
-  s->add_extension(&create_ut_pex_plugin);
 }
 
 // Set DHT port (>= 1000)

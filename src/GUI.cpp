@@ -1082,13 +1082,7 @@ void GUI::configureSession(bool deleteOptions) {
     BTSession->addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
   }
   // * PeX
-  if(options->isPeXEnabled()) {
-    BTSession->addConsoleMessage(tr("PeX support [ON]"), QString::fromUtf8("blue"));
-    BTSession->enablePeerExchange();
-  }else{
-    // TODO: How can we remove the extension?
-    BTSession->addConsoleMessage(tr("PeX support [OFF]"), QString::fromUtf8("blue"));
-  }
+  BTSession->addConsoleMessage(tr("PeX support [ON]"), QString::fromUtf8("blue"));
   // * LSD
   if(options->isLSDEnabled()) {
     BTSession->enableLSD(true);

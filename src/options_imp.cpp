@@ -192,7 +192,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(spinMaxConnecPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxUploadsPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkDHT, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
-  connect(checkPeX, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkLSD, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkAzureusSpoof, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(comboEncryption, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
@@ -357,7 +356,6 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("MaxConnecsPerTorrent"), getMaxConnecsPerTorrent());
   settings.setValue(QString::fromUtf8("MaxUploadsPerTorrent"), getMaxUploadsPerTorrent());
   settings.setValue(QString::fromUtf8("DHT"), isDHTEnabled());
-  settings.setValue(QString::fromUtf8("PeX"), isPeXEnabled());
   settings.setValue(QString::fromUtf8("LSD"), isLSDEnabled());
   settings.setValue(QString::fromUtf8("AzureusSpoof"), shouldSpoofAzureus());
   settings.setValue(QString::fromUtf8("Encryption"), getEncryptionSetting());
@@ -646,7 +644,6 @@ void options_imp::loadOptions(){
     spinMaxUploadsPerTorrent->setEnabled(false);
   }
   checkDHT->setChecked(settings.value(QString::fromUtf8("DHT"), true).toBool());
-  checkPeX->setChecked(settings.value(QString::fromUtf8("PeX"), true).toBool());
   checkLSD->setChecked(settings.value(QString::fromUtf8("LSD"), true).toBool());
   checkAzureusSpoof->setChecked(settings.value(QString::fromUtf8("AzureusSpoof"), false).toBool());
   comboEncryption->setCurrentIndex(settings.value(QString::fromUtf8("Encryption"), 0).toInt());
@@ -776,10 +773,6 @@ bool options_imp::isDHTEnabled() const{
 
 bool options_imp::isRSSEnabled() const{
   return checkEnableRSS->isChecked();
-}
-
-bool options_imp::isPeXEnabled() const{
-  return checkPeX->isChecked();
 }
 
 bool options_imp::isLSDEnabled() const{
