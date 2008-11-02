@@ -1310,6 +1310,7 @@ void bittorrent::saveFastResumeData() {
     if(!h.is_valid()) continue;
     if(h.is_paused()) continue;
     if (!h.has_metadata()) continue;
+    if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
     h.save_resume_data();
     ++num_resume_data;
   }
