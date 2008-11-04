@@ -9,6 +9,7 @@
     - FEATURE: Allow to force rechecking torrents
     - FEATURE: Added support for 2 new extensions (uTorrent metadata and smart ban plugin)
     - FEATURE: Allow to change the save path of torrents after addition
+    - FEATURE: Got rid of libmagick++ dependency
 
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.2.1
     - BUGFIX: Fixed possible crash when deleting a torrent permanently

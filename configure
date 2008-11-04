@@ -26,9 +26,6 @@ Dependency options:
   --with-libboost-inc=[path]              Path to libboost include files
   --with-libcurl-inc=[path]               Path to libcurl include files
   --with-libcurl-lib=[path]               Path to libcurl library files
-  --disable-libmagick                    Disable use of libmagick
-  --with-libmagick-inc=[path]             Path to libmagick++ include files
-  --with-libmagick-lib=[path]             Path to libmagick++ library files
   --disable-libzzip                      Disable use of libzzip
   --with-libzzip-inc=[path]               Path to libzzip++ include files
   --with-libzzip-lib=[path]               Path to libzzip++ library files
@@ -178,21 +175,6 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
-		--disable-libmagick)
-			QC_DISABLE_libmagick="Y"
-			shift
-			;;
-
-		--with-libmagick-inc=*)
-			QC_WITH_LIBMAGICK_INC=$optarg
-			shift
-			;;
-
-		--with-libmagick-lib=*)
-			QC_WITH_LIBMAGICK_LIB=$optarg
-			shift
-			;;
-
 		--disable-libzzip)
 			QC_DISABLE_libzzip="Y"
 			shift
@@ -235,9 +217,6 @@ echo QC_WITH_LIBTORRENT_STATIC_LIB=$QC_WITH_LIBTORRENT_STATIC_LIB
 echo QC_WITH_LIBBOOST_INC=$QC_WITH_LIBBOOST_INC
 echo QC_WITH_LIBCURL_INC=$QC_WITH_LIBCURL_INC
 echo QC_WITH_LIBCURL_LIB=$QC_WITH_LIBCURL_LIB
-echo QC_DISABLE_libmagick=$QC_DISABLE_libmagick
-echo QC_WITH_LIBMAGICK_INC=$QC_WITH_LIBMAGICK_INC
-echo QC_WITH_LIBMAGICK_LIB=$QC_WITH_LIBMAGICK_LIB
 echo QC_DISABLE_libzzip=$QC_DISABLE_libzzip
 echo QC_WITH_LIBZZIP_INC=$QC_WITH_LIBZZIP_INC
 echo QC_WITH_LIBZZIP_LIB=$QC_WITH_LIBZZIP_LIB
@@ -553,86 +532,6 @@ public:
 		return true;
 	}
 };
-#line 1 "libmagick.qcm"
-/*
------BEGIN QCMOD-----
-name: libmagick
-arg: with-libmagick-inc=[path], Path to libmagick++ include files
-arg: with-libmagick-lib=[path], Path to libmagick++ library files
------END QCMOD-----
-*/
-#include <QProcess>
-class qc_libmagick : public ConfObj
-{
-public:
-	qc_libmagick(Conf *c) : ConfObj(c) {}
-	QString name() const { return "ImageMagick library (libmagick++)"; }
-	QString shortname() const { return "libmagick++"; }
-	QString checkString() const {
-		if(!conf->getenv("QC_DISABLE_libmagick").isEmpty())
-			return "";
-		return ConfObj::checkString();
-	}
-	bool exec(){
-		if(!conf->getenv("QC_DISABLE_libmagick").isEmpty())
-			return false;
-		QString s;
-		s = conf->getenv("QC_WITH_LIBMAGICK_INC");
-		if(!s.isEmpty()) {
-			if(!conf->checkHeader(s, "Magick++.h")) {
-				return false;
-    			}
-		}else{
-			QStringList sl;
-			sl << "/usr/include";
-			sl << "/usr/local/include";
-			bool found = false;
-			foreach(s, sl){
-				if(conf->checkHeader(s, "Magick++.h")){
-					found = true;
-					break;
-				}
-			}
-			if(!found)
-				return false;
-		}
-		conf->addIncludePath(s);
-
-		s = conf->getenv("QC_WITH_LIBMAGICK_LIB");
-		if(!s.isEmpty()) {
-                        if(!conf->checkLibrary(s, "Magick++")) {
-				return false;
-			}
-		}else{
-			QStringList sl;
-			sl << "/usr/lib/";
-			sl << "/usr/lib64/";
-			sl << "/usr/local/lib/";
-			sl << "/usr/local/lib64/";
-			bool found = false;
-			foreach(s, sl){
-				if(conf->checkLibrary(s, "Magick++")) {
-					found = true;
-                                        break;
-				}
-			}
-			if(!found)
-                         	return false;
-		}
-		conf->addLib(QString("-L") + s);
-		QProcess magickConfig;
-		QStringList params;
-		params << "--libs";
-		magickConfig.start("Magick++-config", params, QIODevice::ReadOnly);
-		magickConfig.waitForStarted();
-		magickConfig.waitForFinished();
-		QByteArray result = magickConfig.readAll();
-		result = result.replace("\n", "");
-		conf->addLib(result.data());
-		conf->addDefine("HAVE_MAGICK");
-		return true;
-	}
-};
 #line 1 "libzzip.qcm"
 /*
 -----BEGIN QCMOD-----
@@ -719,9 +618,6 @@ cat >$1/modules_new.cpp <<EOT
     o->disabled = false;
     o = new qc_libcurl(conf);
     o->required = true;
-    o->disabled = false;
-    o = new qc_libmagick(conf);
-    o->required = false;
     o->disabled = false;
     o = new qc_libzzip(conf);
     o->required = false;
@@ -1677,9 +1573,6 @@ export QC_WITH_LIBTORRENT_STATIC_LIB
 export QC_WITH_LIBBOOST_INC
 export QC_WITH_LIBCURL_INC
 export QC_WITH_LIBCURL_LIB
-export QC_DISABLE_libmagick
-export QC_WITH_LIBMAGICK_INC
-export QC_WITH_LIBMAGICK_LIB
 export QC_DISABLE_libzzip
 export QC_WITH_LIBZZIP_INC
 export QC_WITH_LIBZZIP_LIB

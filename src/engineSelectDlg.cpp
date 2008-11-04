@@ -32,11 +32,6 @@
 #include <QDropEvent>
 #include <QInputDialog>
 
-#ifdef HAVE_MAGICK
-  #include <Magick++.h>
-  using namespace Magick;
-#endif
-
 #ifdef HAVE_ZZIP
   #include <zzip/zzip.h>
 #endif
@@ -611,20 +606,6 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
   if(url.endsWith("favicon.ico", Qt::CaseInsensitive)){
     // Icon downloaded
     QImage fileIcon;
-#ifdef HAVE_MAGICK
-    try{
-      QFile::copy(filePath, filePath+".ico");
-      Image image(QDir::cleanPath(filePath+".ico").toUtf8().data());
-        // Convert to PNG since we can't read ICO format
-      image.magick("PNG");
-        // Resize to 16x16px
-      image.sample(Geometry(16, 16));
-      image.write(filePath.toUtf8().data());
-      QFile::remove(filePath+".ico");
-    }catch(Magick::Exception &error_){
-      qDebug("favicon conversion to PNG failure: %s", error_.what());
-    }
-#endif
     if(fileIcon.load(filePath)) {
       QList<QTreeWidgetItem*> items = findItemsWithUrl(url);
       QTreeWidgetItem *item;

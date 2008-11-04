@@ -15,6 +15,5 @@
   <dep type='libcurl'>
     <required/>
   </dep>
-  <dep type='libmagick'/>
   <dep type='libzzip'/>
 </qconf>

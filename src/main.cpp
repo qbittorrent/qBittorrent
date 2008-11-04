@@ -48,6 +48,8 @@
 
 #include "GUI.h"
 #include "misc.h"
+#include "ico.h"
+
 
 void useStyle(QApplication *app, int style){
   switch(style) {

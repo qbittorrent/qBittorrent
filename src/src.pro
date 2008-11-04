@@ -2,30 +2,29 @@
 LANG_PATH = lang
 ICONS_PATH = Icons
 
-#Set the following variable to 1 to enable debug
+# Set the following variable to 1 to enable debug
 DEBUG_MODE = 1
 
 # Global
 TEMPLATE = app
 TARGET = qbittorrent
-CONFIG += qt thread x11 network
+CONFIG += qt \
+    thread \
+    x11 \
+    network
 
 # Update this VERSION for each release
 DEFINES += VERSION=\\\"v1.3.0alpha\\\"
 DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=3
 DEFINES += VERSION_BUGFIX=0
-
-!mac {
-	QMAKE_LFLAGS += -Wl,--as-needed
-}
-
-contains(DEBUG_MODE, 1){
+!mac:QMAKE_LFLAGS += -Wl,--as-needed
+contains(DEBUG_MODE, 1) { 
     CONFIG += debug
     CONFIG -= release
     message(Debug build!)
 }
-contains(DEBUG_MODE, 0){
+contains(DEBUG_MODE, 0) { 
     CONFIG -= debug
     CONFIG += release
     DEFINES += QT_NO_DEBUG_OUTPUT
@@ -37,11 +36,11 @@ contains(DEBUG_MODE, 0){
 DEFINES += NDEBUG
 
 # Install
-
-!win32 {
+!win32 { 
     # Binary
-    exists(../conf.pri){
+    exists(../conf.pri) { 
         include(../conf.pri)
+        
         # Target
         target.path = $$BINDIR
         INSTALLS += target
@@ -49,12 +48,12 @@ DEFINES += NDEBUG
     
     # DBUS
     QT += dbus
-
+    
     # Man page
     man.files = ../doc/qbittorrent.1
     man.path = $$PREFIX/share/man/man1/
     INSTALLS += man
-
+    
     # Menu Icon
     menuicon.files = Icons/qBittorrent.desktop
     menuicon.path = $$PREFIX/share/applications/
@@ -81,112 +80,154 @@ DEFINES += NDEBUG
     icon128.path = $$PREFIX/share/icons/hicolor/128x128/apps/
     icon192.files = menuicons/192x192/apps/qbittorrent.png
     icon192.path = $$PREFIX/share/icons/hicolor/192x192/apps/
-    INSTALLS += icon16 icon22 icon24 icon32 icon36 icon48 icon64 icon72 icon96 icon128 icon192
+    INSTALLS += icon16 \
+        icon22 \
+        icon24 \
+        icon32 \
+        icon36 \
+        icon48 \
+        icon64 \
+        icon72 \
+        icon96 \
+        icon128 \
+        icon192
 }
-
-QMAKE_CXXFLAGS_RELEASE += -fwrapv -O2
-QMAKE_CXXFLAGS_DEBUG += -fwrapv -O1
-
+QMAKE_CXXFLAGS_RELEASE += -fwrapv \
+    -O2
+QMAKE_CXXFLAGS_DEBUG += -fwrapv \
+    -O1
 CONFIG += link_pkgconfig
 PKGCONFIG += "libtorrent-rasterbar libcurl"
 
-!contains(DEFINES, HAVE_MAGICK){
-    message(ImageMagick disabled)
-}
-
-QT += network xml
-
+QT += network \
+    xml
 DEFINES += QT_NO_CAST_TO_ASCII
-#QT_NO_CAST_FROM_ASCII
 
+# QT_NO_CAST_FROM_ASCII
 # Windows
-win32 {
-    LIBS += -ltorrent -lccext2 -lccgnu2
-    #-lMagick++ -lWand -lMagick
-}
+win32:LIBS += -ltorrent \
+    -lccext2 \
+    -lccgnu2
 
+# -lMagick++ -lWand -lMagick
 RESOURCES = icons.qrc \
-            lang.qrc \
-            search.qrc \
-            webui.qrc
+    lang.qrc \
+    search.qrc \
+    webui.qrc
 
 # Translations
 TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
-	       $$LANG_PATH/qbittorrent_zh.ts \
-               $$LANG_PATH/qbittorrent_zh_TW.ts \
-	       $$LANG_PATH/qbittorrent_en.ts \
-               $$LANG_PATH/qbittorrent_ca.ts \
-	       $$LANG_PATH/qbittorrent_es.ts \
-               $$LANG_PATH/qbittorrent_pl.ts \
-	       $$LANG_PATH/qbittorrent_ko.ts \
-               $$LANG_PATH/qbittorrent_de.ts \
-               $$LANG_PATH/qbittorrent_nl.ts \
-               $$LANG_PATH/qbittorrent_tr.ts \
-               $$LANG_PATH/qbittorrent_sv.ts \
-               $$LANG_PATH/qbittorrent_el.ts \
-               $$LANG_PATH/qbittorrent_ru.ts \
-               $$LANG_PATH/qbittorrent_uk.ts \
-               $$LANG_PATH/qbittorrent_bg.ts \
-	       $$LANG_PATH/qbittorrent_it.ts \
-	       $$LANG_PATH/qbittorrent_sk.ts \
-               $$LANG_PATH/qbittorrent_ro.ts \
-               $$LANG_PATH/qbittorrent_pt.ts \
-	       $$LANG_PATH/qbittorrent_nb.ts \
-	       $$LANG_PATH/qbittorrent_fi.ts \
-	       $$LANG_PATH/qbittorrent_da.ts \
-	       $$LANG_PATH/qbittorrent_ja.ts \
-               $$LANG_PATH/qbittorrent_hu.ts \
-               $$LANG_PATH/qbittorrent_pt_BR.ts \
-               $$LANG_PATH/qbittorrent_cs.ts
+    $$LANG_PATH/qbittorrent_zh.ts \
+    $$LANG_PATH/qbittorrent_zh_TW.ts \
+    $$LANG_PATH/qbittorrent_en.ts \
+    $$LANG_PATH/qbittorrent_ca.ts \
+    $$LANG_PATH/qbittorrent_es.ts \
+    $$LANG_PATH/qbittorrent_pl.ts \
+    $$LANG_PATH/qbittorrent_ko.ts \
+    $$LANG_PATH/qbittorrent_de.ts \
+    $$LANG_PATH/qbittorrent_nl.ts \
+    $$LANG_PATH/qbittorrent_tr.ts \
+    $$LANG_PATH/qbittorrent_sv.ts \
+    $$LANG_PATH/qbittorrent_el.ts \
+    $$LANG_PATH/qbittorrent_ru.ts \
+    $$LANG_PATH/qbittorrent_uk.ts \
+    $$LANG_PATH/qbittorrent_bg.ts \
+    $$LANG_PATH/qbittorrent_it.ts \
+    $$LANG_PATH/qbittorrent_sk.ts \
+    $$LANG_PATH/qbittorrent_ro.ts \
+    $$LANG_PATH/qbittorrent_pt.ts \
+    $$LANG_PATH/qbittorrent_nb.ts \
+    $$LANG_PATH/qbittorrent_fi.ts \
+    $$LANG_PATH/qbittorrent_da.ts \
+    $$LANG_PATH/qbittorrent_ja.ts \
+    $$LANG_PATH/qbittorrent_hu.ts \
+    $$LANG_PATH/qbittorrent_pt_BR.ts \
+    $$LANG_PATH/qbittorrent_cs.ts
 
 # Source code
-HEADERS += GUI.h misc.h options_imp.h about_imp.h \
-           properties_imp.h createtorrent_imp.h \
-           DLListDelegate.h SearchListDelegate.h \
-           PropListDelegate.h previewSelect.h \
-           PreviewListDelegate.h trackerLogin.h \
-           downloadThread.h downloadFromURLImp.h \
-           torrentAddition.h \
-           bittorrent.h searchEngine.h \
-           rss.h rss_imp.h FinishedTorrents.h \
-           allocationDlg.h FinishedListDelegate.h \
-           qtorrenthandle.h downloadingTorrents.h \
-           engineSelectDlg.h pluginSource.h \
-           arborescence.h qgnomelook.h realprogressbar.h \
-           realprogressbarthread.h qrealarray.h \
-           httpserver.h httpconnection.h \
-           httprequestparser.h httpresponsegenerator.h \
-           json.h eventmanager.h filterParserThread.h \
-           TrackersAdditionDlg.h searchTab.h console_imp.h
-FORMS += MainWindow.ui options.ui about.ui \
-         properties.ui createtorrent.ui preview.ui \
-         login.ui downloadFromURL.ui addTorrentDialog.ui \
-         search.ui rss.ui seeding.ui bandwidth_limit.ui \
-         download.ui engineSelect.ui pluginSource.ui \
-         trackersAdd.ui console.ui
+HEADERS += GUI.h \
+    misc.h \
+    options_imp.h \
+    about_imp.h \
+    properties_imp.h \
+    createtorrent_imp.h \
+    DLListDelegate.h \
+    SearchListDelegate.h \
+    PropListDelegate.h \
+    previewSelect.h \
+    PreviewListDelegate.h \
+    trackerLogin.h \
+    downloadThread.h \
+    downloadFromURLImp.h \
+    torrentAddition.h \
+    bittorrent.h \
+    searchEngine.h \
+    rss.h \
+    rss_imp.h \
+    FinishedTorrents.h \
+    allocationDlg.h \
+    FinishedListDelegate.h \
+    qtorrenthandle.h \
+    downloadingTorrents.h \
+    engineSelectDlg.h \
+    pluginSource.h \
+    arborescence.h \
+    qgnomelook.h \
+    realprogressbar.h \
+    realprogressbarthread.h \
+    qrealarray.h \
+    httpserver.h \
+    httpconnection.h \
+    httprequestparser.h \
+    httpresponsegenerator.h \
+    json.h \
+    eventmanager.h \
+    filterParserThread.h \
+    TrackersAdditionDlg.h \
+    searchTab.h \
+    console_imp.h \
+    ico.h
+FORMS += MainWindow.ui \
+    options.ui \
+    about.ui \
+    properties.ui \
+    createtorrent.ui \
+    preview.ui \
+    login.ui \
+    downloadFromURL.ui \
+    addTorrentDialog.ui \
+    search.ui \
+    rss.ui \
+    seeding.ui \
+    bandwidth_limit.ui \
+    download.ui \
+    engineSelect.ui \
+    pluginSource.ui \
+    trackersAdd.ui \
+    console.ui
 SOURCES += GUI.cpp \
-           main.cpp \
-           options_imp.cpp \
-           properties_imp.cpp \
-           createtorrent_imp.cpp \
-           bittorrent.cpp \
-           searchEngine.cpp \
-           rss_imp.cpp \
-           FinishedTorrents.cpp \
-           qtorrenthandle.cpp \
-           downloadingTorrents.cpp \
-           engineSelectDlg.cpp \
-           downloadThread.cpp \
-           realprogressbar.cpp \
-           realprogressbarthread.cpp \
-           qrealarray.cpp \
-           httpserver.cpp \
-           httpconnection.cpp \
-           httprequestparser.cpp \
-           httpresponsegenerator.cpp \
-           json.cpp \
-           eventmanager.cpp \
-           SearchTab.cpp
+    main.cpp \
+    options_imp.cpp \
+    properties_imp.cpp \
+    createtorrent_imp.cpp \
+    bittorrent.cpp \
+    searchEngine.cpp \
+    rss_imp.cpp \
+    FinishedTorrents.cpp \
+    qtorrenthandle.cpp \
+    downloadingTorrents.cpp \
+    engineSelectDlg.cpp \
+    downloadThread.cpp \
+    realprogressbar.cpp \
+    realprogressbarthread.cpp \
+    qrealarray.cpp \
+    httpserver.cpp \
+    httpconnection.cpp \
+    httprequestparser.cpp \
+    httpresponsegenerator.cpp \
+    json.cpp \
+    eventmanager.cpp \
+    SearchTab.cpp \
+    ico.cpp
 
 DESTDIR = .
-
