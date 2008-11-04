@@ -22,10 +22,7 @@
 #define __BITTORRENT_H__
 
 #include <QHash>
-#include <QList>
-#include <QPair>
 #include <QStringList>
-#include <QDateTime>
 #include <QApplication>
 #include <QPalette>
 #include <QPointer>
@@ -48,7 +45,6 @@ class bittorrent : public QObject {
     QString scan_dir;
     QPointer<QTimer> timerScan;
     QPointer<QTimer> timerAlerts;
-    QPointer<QTimer> fastResumeSaver;
     QPointer<QTimer> BigRatioTimer;
     bool DHTEnabled;
     QPointer<downloadThread> downloader;
@@ -174,8 +170,6 @@ class bittorrent : public QObject {
     void deleteBigRatios();
 
   signals:
-    //void invalidTorrent(QString path);
-    //void duplicateTorrent(QString path);
     void addedTorrent(QTorrentHandle& h);
     void deletedTorrent(QString hash);
     void pausedTorrent(QString hash);
@@ -183,26 +177,16 @@ class bittorrent : public QObject {
     void finishedTorrent(QTorrentHandle& h);
     void fullDiskError(QTorrentHandle& h);
     void trackerError(QString hash, QString time, QString msg);
-    //void portListeningFailure();
     void trackerAuthenticationRequired(QTorrentHandle& h);
     void scanDirFoundTorrents(const QStringList& pathList);
     void newDownloadedTorrent(QString path, QString url);
-    //void aboutToDownloadFromUrl(QString url);
     void updateFileSize(QString hash);
-    //void peerBlocked(QString);
     void downloadFromUrlFailure(QString url, QString reason);
-    //void fastResumeDataRejected(QString name);
-    //void urlSeedProblem(QString url, QString msg);
     void torrentFinishedChecking(QString hash);
-    //void torrent_ratio_deleted(QString fileName);
-    //void UPnPError(QString msg);
-    //void UPnPSuccess(QString msg);
     void updateFinishedTorrentNumber();
     void updateUnfinishedTorrentNumber();
     void forceUnfinishedListUpdate();
     void forceFinishedListUpdate();
-    /*void torrentSwitchedtoFinished(QString hash);
-    void torrentSwitchedtoUnfinished(QString hash);*/
 };
 
 #endif

@@ -67,9 +67,6 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   timerAlerts = new QTimer();
   connect(timerAlerts, SIGNAL(timeout()), this, SLOT(readAlerts()));
   timerAlerts->start(3000);
-  fastResumeSaver = new QTimer();
-  connect(fastResumeSaver, SIGNAL(timeout()), this, SLOT(saveFastResumeAndRatioData()));
-  fastResumeSaver->start(60000);
   // To download from urls
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
@@ -98,7 +95,6 @@ bittorrent::~bittorrent() {
   // Disable directory scanning
   disableDirectoryScanning();
   // Delete our objects
-  delete fastResumeSaver;
   delete timerAlerts;
   if(BigRatioTimer)
     delete BigRatioTimer;
