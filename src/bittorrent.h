@@ -37,7 +37,6 @@
 using namespace libtorrent;
 
 class downloadThread;
-class deleteThread;
 class QTimer;
 class FilterParserThread;
 
@@ -48,16 +47,15 @@ class bittorrent : public QObject {
     session *s;
     QString scan_dir;
     QPointer<QTimer> timerScan;
-    QTimer *timerAlerts;
-    QTimer *fastResumeSaver;
+    QPointer<QTimer> timerAlerts;
+    QPointer<QTimer> fastResumeSaver;
     QPointer<QTimer> BigRatioTimer;
     bool DHTEnabled;
-    downloadThread *downloader;
+    QPointer<downloadThread> downloader;
     QString defaultSavePath;
     QHash<QString, QHash<QString, QString> > trackersErrors;
     QStringList consoleMessages;
     QStringList peerBanMessages;
-    deleteThread *deleter;
     QStringList finishedTorrents;
     QStringList unfinishedTorrents;
     bool preAllocateAll;
