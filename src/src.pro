@@ -11,10 +11,10 @@ TARGET = qbittorrent
 CONFIG += qt thread x11 network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v1.2.0\\\"
+DEFINES += VERSION=\\\"v1.2.1\\\"
 DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=2
-DEFINES += VERSION_BUGFIX=0
+DEFINES += VERSION_BUGFIX=1
 
 !mac {
 	QMAKE_LFLAGS += -Wl,--as-needed
