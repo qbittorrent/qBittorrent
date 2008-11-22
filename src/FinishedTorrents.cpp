@@ -582,6 +582,7 @@ void FinishedTorrents::toggleFinishedListSortOrder(int index) {
   switch(index) {
     case F_SIZE:
     case F_UPSPEED:
+    case F_RATIO:
       sortFinishedListFloat(index, sortOrder);
       break;
     default:

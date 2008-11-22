@@ -678,6 +678,7 @@ void DownloadingTorrents::toggleDownloadListSortOrder(int index) {
     case DLSPEED:
     case PROGRESS:
     case PRIORITY:
+    case RATIO:
       sortDownloadListFloat(index, sortOrder);
       break;
     default:
