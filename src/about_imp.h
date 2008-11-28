@@ -76,7 +76,7 @@ class about : public QDialog, private Ui::AboutDlg{
           - <u>Slovak:</u>  helix84<br>\
           - <u>Spanish:</u> Vicente Raul Plata Fonseca (silverxnt@users.sourceforge.net) and Gabriel de Oliveira (deadloop@hotmail.com)<br>\
           - <u>Swedish:</u> Daniel Nylander (po@danielnylander.se)<br>\
-          - <u>Turkish:</u> Erdem Bingöl (erdem84@gmail.com)<br>\
+          - <u>Turkish:</u> Hasan YILMAZ (iletisim@hedefturkce.com) and Erdem Bingöl (erdem84@gmail.com)<br>\
           - <u>Ukrainian:</u> Andrey Shpachenko (masterfix@users.sourceforge.net)<br><br>"));
       te_translation->append(tr("Please contact me if you would like to translate qBittorrent into your own language."));
       te_translation->scrollToAnchor(QString::fromUtf8("top"));
