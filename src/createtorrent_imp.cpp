@@ -245,7 +245,7 @@ void torrentCreatorThread::run() {
     }
     if(abort) return;
     // calculate the hash for all pieces
-    set_piece_hashes(t, full_path.branch_path(), boost::bind(&sendProgressUpdateSignal, _1, t.num_pieces(), parent));
+    set_piece_hashes(t, full_path.branch_path(), boost::bind<void>(&sendProgressUpdateSignal, _1, t.num_pieces(), parent));
     // Set qBittorrent as creator and add user comment to
     // torrent_info structure
     t.set_creator(creator_str);
