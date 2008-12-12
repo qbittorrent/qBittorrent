@@ -250,8 +250,9 @@ class FilterParserThread : public QThread  {
     int getlineInStream(QDataStream& stream, string& name, char delim) {
       char c;
       int total_read = 0;
+      int read;
       do {
-        int read = stream.readRawData(&c, 1);
+        read = stream.readRawData(&c, 1);
         total_read += read;
         if(read > 0) {
           if(c != delim) {
