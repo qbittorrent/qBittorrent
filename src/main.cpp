@@ -45,7 +45,6 @@
 #endif
 
 #include <stdlib.h>
-
 #include "GUI.h"
 #include "misc.h"
 #include "ico.h"
@@ -96,7 +95,7 @@ int main(int argc, char *argv[]){
     }
   }
   // Set environment variable
-  if(putenv("QBITTORRENT="VERSION)){
+  if(putenv((char*)"QBITTORRENT="VERSION)) {
     std::cerr << "Couldn't set environment variable...\n";
   }
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));

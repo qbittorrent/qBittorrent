@@ -6,13 +6,6 @@
  *
  */
 
-// remove when QImage::jumpTable is ported
-#define QT3_SUPPORT
-#define QT3_SUPPORT_WARNINGS
-#ifdef __GNUC__
-#warning TODO: remove QT3_SUPPORT
-#endif
-
 #include "ico.h"
 
 #include <cstring>
@@ -185,12 +178,11 @@ namespace
         unsigned bpl = ( rec.width * header.biBitCount + 31 ) / 32 * 4;
 
         unsigned char* buf = new unsigned char[ bpl ];
-        unsigned char** lines = icon.jumpTable();
         for ( unsigned y = rec.height; !stream.atEnd() && y--; )
         {
             stream.readRawData( reinterpret_cast< char* >( buf ), bpl );
             unsigned char* pixel = buf;
-            QRgb* p = reinterpret_cast< QRgb* >( lines[ y ] );
+            QRgb* p = reinterpret_cast< QRgb* >( icon.scanLine(y));
             switch ( header.biBitCount )
             {
                 case 1:
@@ -232,7 +224,7 @@ namespace
             for ( unsigned y = rec.height; y--; )
             {
                 stream.readRawData( reinterpret_cast< char* >( buf ), bpl );
-                QRgb* p = reinterpret_cast< QRgb* >( lines[ y ] );
+                QRgb* p = reinterpret_cast< QRgb* >(icon.scanLine(y));
                 for ( unsigned x = 0; x < rec.width; ++x, ++p )
                     if ( ( ( buf[ x / 8 ] >> ( 7 - ( x & 0x07 ) ) ) & 1 ) )
                         *p &= RGB_MASK;
