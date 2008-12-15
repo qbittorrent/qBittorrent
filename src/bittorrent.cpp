@@ -738,12 +738,15 @@ void bittorrent::saveSessionState() {
 bool bittorrent::enableDHT(bool b) {
   if(b) {
     if(!DHTEnabled) {
-      boost::filesystem::ifstream dht_state_file((misc::qBittorrentPath()+QString::fromUtf8("dht_state")).toUtf8().data(), std::ios_base::binary);
-      dht_state_file.unsetf(std::ios_base::skipws);
       entry dht_state;
-      try{
-        dht_state = bdecode(std::istream_iterator<char>(dht_state_file), std::istream_iterator<char>());
-      }catch (std::exception&) {}
+      QString dht_state_path = misc::qBittorrentPath()+QString::fromUtf8("dht_state");
+      if(QFile::exists(dht_state_path)) {
+        boost::filesystem::ifstream dht_state_file(dht_state_path.toUtf8().data(), std::ios_base::binary);
+        dht_state_file.unsetf(std::ios_base::skipws);
+        try{
+          dht_state = bdecode(std::istream_iterator<char>(dht_state_file), std::istream_iterator<char>());
+        }catch (std::exception&) {}
+     }
       try {
   s->start_dht(dht_state);
   s->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
