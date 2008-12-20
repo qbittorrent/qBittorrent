@@ -1356,18 +1356,18 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
 <context>
     <name>FilterParserThread</name>
     <message>
-        <location filename="../filterParserThread.h" line="357"/>
+        <location filename="../filterParserThread.h" line="358"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>I/O Fout</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="273"/>
+        <location filename="../filterParserThread.h" line="274"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>Kon %1 niet openen om te lezen.</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="357"/>
+        <location filename="../filterParserThread.h" line="358"/>
         <source>%1 is not a valid PeerGuardian P2B file.</source>
         <translation>%1 is geen geldig PeerGuardian P2B bestand.</translation>
     </message>
@@ -3451,44 +3451,44 @@ Changelog:
         <translation>Dit bestand is beschadigd of is geen torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="938"/>
+        <location filename="../bittorrent.cpp" line="941"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;is geblokkeerd door de IP filter&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="940"/>
+        <location filename="../bittorrent.cpp" line="943"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;is verbannen door verkeerde stukjes&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1225"/>
+        <location filename="../bittorrent.cpp" line="1228"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Kan niet luisteren op de aangegeven poorten.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1257"/>
+        <location filename="../bittorrent.cpp" line="1260"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping fout, bericht: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1262"/>
+        <location filename="../bittorrent.cpp" line="1265"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping succesvol, bericht: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1277"/>
+        <location filename="../bittorrent.cpp" line="1280"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Snelle vervatting voor torrent %1 mislukt. Bezig opnieuw te controleren...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1282"/>
+        <location filename="../bittorrent.cpp" line="1285"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url seed raadpleging mislukt voor url: %1, bericht: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1340"/>
+        <location filename="../bittorrent.cpp" line="1343"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Bezig met downloaden van &apos;%1&apos;, even geduld alstublieft...</translation>

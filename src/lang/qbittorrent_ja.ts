@@ -1162,18 +1162,18 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>FilterParserThread</name>
     <message>
-        <location filename="../filterParserThread.h" line="357"/>
+        <location filename="../filterParserThread.h" line="358"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation type="unfinished">I/O エラー</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="273"/>
+        <location filename="../filterParserThread.h" line="274"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation type="unfinished">読み込みモードで %1 を開くことができませんでした。</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="357"/>
+        <location filename="../filterParserThread.h" line="358"/>
         <source>%1 is not a valid PeerGuardian P2B file.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2752,44 +2752,44 @@ Changelog:
         <translation type="unfinished">このファイルは壊れているかこれは torrent ではないかのどちらかです。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="938"/>
+        <location filename="../bittorrent.cpp" line="941"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="940"/>
+        <location filename="../bittorrent.cpp" line="943"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1225"/>
+        <location filename="../bittorrent.cpp" line="1228"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="unfinished">所定のポートで記入できませんでした。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1257"/>
+        <location filename="../bittorrent.cpp" line="1260"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1262"/>
+        <location filename="../bittorrent.cpp" line="1265"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1277"/>
+        <location filename="../bittorrent.cpp" line="1280"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">高速再開データは torrent %1 を拒絶しました、再びチェックしています...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1282"/>
+        <location filename="../bittorrent.cpp" line="1285"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">次の url の url シードの参照に失敗しました: %1、メッセージ: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1340"/>
+        <location filename="../bittorrent.cpp" line="1343"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">&apos;%1&apos; をダウンロードしています、お待ちください...</translation>

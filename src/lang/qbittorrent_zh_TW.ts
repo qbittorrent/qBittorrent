@@ -822,18 +822,18 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>FilterParserThread</name>
     <message>
-        <location filename="../filterParserThread.h" line="357"/>
+        <location filename="../filterParserThread.h" line="358"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>I/O 錯誤</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="273"/>
+        <location filename="../filterParserThread.h" line="274"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>無法在讀取狀態下開啟 %1 。</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="357"/>
+        <location filename="../filterParserThread.h" line="358"/>
         <source>%1 is not a valid PeerGuardian P2B file.</source>
         <translation>%1 不是一個有效的 PeerGuardian P2B 檔案。</translation>
     </message>
@@ -1891,44 +1891,44 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>這個檔案不是損壞就是不是 torrent 檔案。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="938"/>
+        <location filename="../bittorrent.cpp" line="941"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;因為你的 IP 過濾器而被封鎖了&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="940"/>
+        <location filename="../bittorrent.cpp" line="943"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;因為有損壞的分塊而被踢出&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1225"/>
+        <location filename="../bittorrent.cpp" line="1228"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>無法監聽任何給定的埠。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1257"/>
+        <location filename="../bittorrent.cpp" line="1260"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: 埠映射失敗, 訊息: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1262"/>
+        <location filename="../bittorrent.cpp" line="1265"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: 埠映射成功, 訊息: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1277"/>
+        <location filename="../bittorrent.cpp" line="1280"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>快速恢復資料被 torrent %1 拒絕, 重新檢查...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1282"/>
+        <location filename="../bittorrent.cpp" line="1285"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>找不到 URL: %1 的 URL 種子, 訊息: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1340"/>
+        <location filename="../bittorrent.cpp" line="1343"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>下載 &apos;%1&apos; 中, 請稍候...</translation>

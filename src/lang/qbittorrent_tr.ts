@@ -1260,18 +1260,18 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
 <context>
     <name>FilterParserThread</name>
     <message>
-        <location filename="../filterParserThread.h" line="357"/>
+        <location filename="../filterParserThread.h" line="358"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>I/O Hatası</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="273"/>
+        <location filename="../filterParserThread.h" line="274"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>%1 okuma kipinde açılamadı.</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="357"/>
+        <location filename="../filterParserThread.h" line="358"/>
         <source>%1 is not a valid PeerGuardian P2B file.</source>
         <translation>%1 geçerli bir PeerGuardian P2B dosyası değil.</translation>
     </message>
@@ -3420,44 +3420,44 @@ Changelog:
         <translation>Bu dosya bozuk ya da torrent dosyası değil.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="938"/>
+        <location filename="../bittorrent.cpp" line="941"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt;, &lt;i&gt;IP süzgeciniz tarafından engellendi&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="940"/>
+        <location filename="../bittorrent.cpp" line="943"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt;, &lt;i&gt;bozuk parçalar sebebiyle engellendi&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1225"/>
+        <location filename="../bittorrent.cpp" line="1228"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Verilen kapıların hiçbiri tanınmadı.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1257"/>
+        <location filename="../bittorrent.cpp" line="1260"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Kapı haritalama hatası, ileti: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1262"/>
+        <location filename="../bittorrent.cpp" line="1265"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Kapı haritalama başarıyla tamamlandı, ileti: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1277"/>
+        <location filename="../bittorrent.cpp" line="1280"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Hızlı devam ettirme verisi %1 torrenti için reddedildi, yeniden denetleniyor...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1282"/>
+        <location filename="../bittorrent.cpp" line="1285"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Gönderen adresi araması bu adres için başarılamadı: %1, ileti: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1340"/>
+        <location filename="../bittorrent.cpp" line="1343"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos; indiriliyor, lütfen bekleyin...</translation>

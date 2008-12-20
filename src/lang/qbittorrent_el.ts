@@ -1345,18 +1345,18 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
 <context>
     <name>FilterParserThread</name>
     <message>
-        <location filename="../filterParserThread.h" line="357"/>
+        <location filename="../filterParserThread.h" line="358"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>I/O Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="273"/>
+        <location filename="../filterParserThread.h" line="274"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>Αδύνατο το άνοιγμα του %1 σε λειτουργία ανάγνωσης.</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="357"/>
+        <location filename="../filterParserThread.h" line="358"/>
         <source>%1 is not a valid PeerGuardian P2B file.</source>
         <translation>Το %1 δεν είναι έγκυρο αρχείο PeerGuardian P2.</translation>
     </message>
@@ -3572,44 +3572,44 @@ Changelog:
         <translation>Το αρχείο είτε είναι κατεστραμμένο, ή δεν ειναι τορεντ.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="938"/>
+        <location filename="../bittorrent.cpp" line="941"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;μπλοκαρίστηκε εξαιτίας του IP φίλτρου&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="940"/>
+        <location filename="../bittorrent.cpp" line="943"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;απαγορεύτηκε εξαιτίας κατεστραμμένων κομματιών&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1225"/>
+        <location filename="../bittorrent.cpp" line="1228"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Δεν &quot;ακροάστηκα&quot; καμία σπό τις δωσμένες θύρες.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1257"/>
+        <location filename="../bittorrent.cpp" line="1260"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Σφάλμα χαρτογράφησης θυρών, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1262"/>
+        <location filename="../bittorrent.cpp" line="1265"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Χαρτογράφηση θυρών επιτυχής, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1277"/>
+        <location filename="../bittorrent.cpp" line="1280"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Γρήγορη συνέχεια κατεβάσματος αρχείων απορρίφθηκε για το τορεντ %1, επανέλεγχος...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1282"/>
+        <location filename="../bittorrent.cpp" line="1285"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Αποτυχία ελέγχου url μοιράσματος για το url: %1, μήνυμα: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1340"/>
+        <location filename="../bittorrent.cpp" line="1343"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Κατέβασμα του &apos;%1&apos;, παρακαλώ περιμένετε...</translation>
