@@ -13,11 +13,11 @@
 #include <algorithm>
 #include <vector>
 
-#include <QtGui/QImage>
-#include <QtGui/QBitmap>
-#include <QtGui/QApplication>
-#include <QtCore/QVector>
-#include <QtGui/QDesktopWidget>
+#include <QImage>
+#include <QBitmap>
+#include <QApplication>
+#include <QVector>
+#include <QDesktopWidget>
 
 namespace
 {
