@@ -9,7 +9,7 @@
 
    ----------------------------------------------------------------- */
 
-function attachMochaLinkEvents(){
+initializeWindows = function(){
 	
 	function addClickEvent(el, fn){
 		['Link','Button'].each(function(item) {
@@ -21,7 +21,7 @@ function attachMochaLinkEvents(){
 	
 	addClickEvent('download', function(e){
 		new Event(e).stop();
-		document.mochaUI.newWindow({
+		new MochaUI.Window({
 			id: 'downloadPage',
 			title: 'Download from URLs',
 			loadMethod: 'iframe',
@@ -29,6 +29,7 @@ function attachMochaLinkEvents(){
 			scrollbars: false,
 			resizable: false,
 			maximizable: false,
+			closable: true,
 			paddingVertical: 0,
 			paddingHorizontal: 0,
 			width: 500,
@@ -38,7 +39,7 @@ function attachMochaLinkEvents(){
 	
 	addClickEvent('upload', function(e){
 		new Event(e).stop();
-		document.mochaUI.newWindow({
+		new MochaUI.Window({
 			id: 'uploadPage',
 			title: 'Upload torrent file',
 			loadMethod: 'iframe',
@@ -90,7 +91,7 @@ function attachMochaLinkEvents(){
 	
 	addClickEvent('bug', function(e){
 		new Event(e).stop();
-		document.mochaUI.newWindow({
+		new MochaUI.Window({
 			id: 'bugPage',
 			title: 'Report a Bug',
 			loadMethod: 'iframe',
@@ -102,7 +103,7 @@ function attachMochaLinkEvents(){
 	
 	addClickEvent('site', function(e){
 		new Event(e).stop();
-		document.mochaUI.newWindow({
+		new MochaUI.Window({
 			id: 'sitePage',
 			title: 'qBittorrent Website',
 			loadMethod: 'iframe',
@@ -114,7 +115,7 @@ function attachMochaLinkEvents(){
 	
 	addClickEvent('docs', function(e){
 		new Event(e).stop();
-		document.mochaUI.newWindow({
+		new MochaUI.Window({
 			id: 'docsPage',
 			title: 'qBittorrent official wiki',
 			loadMethod: 'iframe',
@@ -126,7 +127,7 @@ function attachMochaLinkEvents(){
 	
 	addClickEvent('about', function(e){
 		new Event(e).stop();
-		document.mochaUI.newWindow({
+		new MochaUI.Window({
 			id: 'aboutpage',
 			title: 'About',
 			loadMethod: 'iframe',

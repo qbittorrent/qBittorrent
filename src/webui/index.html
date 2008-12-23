@@ -13,18 +13,18 @@
 		<script type="text/javascript" src="scripts/excanvas-compressed.js"></script>
 	<![endif]-->
 	<script type="text/javascript" src="scripts/mootabs1.2.js" charset="utf-8"></script>
-	<script type="text/javascript" src="scripts/mocha-events.js" charset="utf-8"></script>
-	<script type="text/javascript" src="scripts/mocha.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/mocha.js"></script>
+	<script type="text/javascript" src="scripts/mocha-init.js"></script>
 	<script type="text/javascript" src="scripts/dynamicTable.js" charset="utf-8"></script>
 	<script type="text/javascript" src="scripts/client.js" charset="utf-8"></script>
 </head>
 <body>
-	<div id="mochaDesktop">
-		<div id="mochaDesktopHeader">
-			<div id="mochaDesktopTitlebar">
-				<h1>qBittorrent Web User Interface <span class="version">version 1.2</span></h1>
+	<div id="desktop">
+		<div id="desktopHeader">
+			<div id="desktopTitlebar">
+				<h1 class="applicationTitle">qBittorrent Web User Interface <span class="version">version 1.2</span></h1>
 			</div>
-			<div id="mochaDesktopNavbar">
+			<div id="desktopNavbar">
 				<ul>
 					<li>
 						<a class="returnFalse">File</a>
@@ -64,7 +64,7 @@
 				<a id="pauseAllButton"><img class="mochaToolButton" title="Pause All" src="images/skin/pause_all.png"/></a>
 			</div>
 		</div>
-								
+		<div id="pageWrapper">							
 		<div id="myTabs" class="toolbarTabs">
 			<ul class="mootabs_title">
 				<li title="Tab1"><a>Downloads</a></li>
@@ -107,7 +107,7 @@
 					</div>
 				</div>
 		</div><!-- tabs -->
-
+	</div>
 	</div>
 </body>
 </html>

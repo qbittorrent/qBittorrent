@@ -1,5 +1,8 @@
 See https://blueprints.launchpad.net/qbittorrent/
 
+- Use tabs from MochaUI 0.9.5
+- Test new MochaUI on IE7
+
 // translations done
 - Romanian
 - Russian

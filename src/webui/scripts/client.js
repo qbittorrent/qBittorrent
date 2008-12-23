@@ -23,6 +23,12 @@
  */
 
 window.addEvent('domready', function(){
+  MochaUI.Desktop = new MochaUI.Desktop();
+  MochaUI.Desktop.desktop.setStyles({
+	'background': '#fff',
+	'visibility': 'visible'
+  });
+  initializeWindows();
   // Tabs
   myTabs1 = new mootabs('myTabs', {
       width: '100%',
@@ -144,6 +150,12 @@ window.addEvent('domready', function(){
 	};
 	ajaxfn();
 // 	ajaxfn.periodical(5000);
+});
+
+// This runs when a person leaves your page.
+
+window.addEvent('unload', function(){
+	if (MochaUI) MochaUI.garbageCleanUp();
 });
 
 window.addEvent('keydown', function(event){
