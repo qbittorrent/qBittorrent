@@ -96,6 +96,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
 
     ~torrentAdditionDialog() {
         delete PropDelegate;
+        delete PropListModel;
     }
 
     void showLoad(QString filePath, bool fromScanDir=false, QString from_url=QString::null){
@@ -157,10 +158,11 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       // TODO: row Color?
       // Add the child to the tree
       parent->appendRow(child);
-      // Add childs
-      torrent_file *childFile;
-      foreach(childFile, root->getChildren()) {
-        addFilesToTree(childFile, first);
+      // Add children
+      QList<torrent_file*> children = root->getChildren();
+      unsigned int nbChildren = children.size();
+      for(unsigned int i=0; i < nbChildren; ++i) {
+        addFilesToTree(children.at(i), first);
       }
     }
 
