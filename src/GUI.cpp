@@ -1535,7 +1535,7 @@ bool GUI::initWebUi(QString username, QString password, int port)
     httpServer->close();
   }
   else
-    httpServer = new HttpServer(BTSession, 2000, this);
+    httpServer = new HttpServer(BTSession, 3000, this);
   httpServer->setAuthorization(username, password);
   bool success = httpServer->listen(QHostAddress::Any, port);
   if (success)

@@ -92,13 +92,13 @@ void HttpRequestParser::write(QByteArray str)
 				data.clear();
 				QUrl url = QUrl::fromEncoded(QHttpRequestHeader::path().toAscii());
 				path = url.path();
-				qDebug() << path;
+                                //() << path;
 				QListIterator<QPair<QString, QString> > i(url.queryItems());
 				while (i.hasNext())
 				{
 					QPair<QString, QString> pair = i.next();
 					getMap[pair.first] = pair.second;
-					qDebug() << pair.first << "=" << get(pair.first);
+                                        //qDebug() << pair.first << "=" << get(pair.first);
 				}
 			}
 		}
@@ -122,7 +122,7 @@ void HttpRequestParser::write(QByteArray str)
 					{
 						QPair<QString, QString> pair = i.next();
 						postMap[pair.first] = pair.second;
-						qDebug() << pair.first << "=" << post(pair.first);
+                                                //qDebug() << pair.first << "=" << post(pair.first);
 					}
 				}
 				if(contentType() == "multipart/form-data")
@@ -134,6 +134,5 @@ void HttpRequestParser::write(QByteArray str)
 		}
 		else
 			error = true;
-	}
-	qDebug() << "isError: " << isError();
+        }
 }
