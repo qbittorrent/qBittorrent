@@ -496,7 +496,7 @@ class RssStream : public QObject{
               if(!itemAlreadyExists(item->getHash()))
                 listItem.append(item);
               else
-                detete item;
+                delete item;
 	    }
 	    property = property.nextSibling().toElement();
 	  }
