@@ -989,7 +989,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="2007"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximális aktív feltöltés:</translation>
     </message>
 </context>
 <context>
@@ -2891,7 +2891,7 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="188"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Az elkészült torrent fájl hibás. Nem lesz felvéve a listára.</translation>
     </message>
 </context>
 <context>
@@ -3082,7 +3082,7 @@ Changelog:
     <message>
         <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Kényszerített ellenőrzés</translation>
     </message>
 </context>
 <context>
@@ -3792,22 +3792,22 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
     <message>
         <location filename="../properties.ui" line="204"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="687"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Mentés helye</translation>
+        <translation>Mentés helye</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Járhatatlan ösvény</translation>
+        <translation>Járhatatlan ösvény</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Nem sikerült létrehozni a letöltési könyvtárat. (Írásvédett?)</translation>
+        <translation>Nem sikerült létrehozni a letöltési könyvtárat. (Írásvédett?)</translation>
     </message>
 </context>
 <context>
@@ -3978,7 +3978,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
     <message>
         <location filename="../seeding.ui" line="129"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Kényszerített ellenőrzés</translation>
     </message>
 </context>
 <context>

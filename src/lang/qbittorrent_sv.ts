@@ -85,7 +85,7 @@
     <message>
         <location filename="../about.ui" line="315"/>
         <source>03/05/1985</source>
-        <translation>03/05/1985</translation>
+        <translation>1985-05-03</translation>
     </message>
     <message>
         <location filename="../about.ui" line="322"/>
@@ -687,7 +687,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="2007"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximalt antal aktiva sändningar:</translation>
     </message>
 </context>
 <context>
@@ -2025,7 +2025,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../createtorrent_imp.cpp" line="188"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapad torrentfil är ogiltig. Den kommer inte att läggas till i hämtningslistan.</translation>
     </message>
 </context>
 <context>
@@ -2181,7 +2181,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Tvinga återkontroll</translation>
     </message>
 </context>
 <context>
@@ -2771,22 +2771,22 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <location filename="../properties.ui" line="204"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="687"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Välj sökväg att spara i</translation>
+        <translation>Välj sökväg att spara i</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Fel vid skapandet av sökväg</translation>
+        <translation>Fel vid skapandet av sökväg</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Kunde inte skapa sökväg att spara i</translation>
+        <translation>Kunde inte skapa sökväg att spara i</translation>
     </message>
 </context>
 <context>
@@ -2927,7 +2927,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <location filename="../seeding.ui" line="129"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Tvinga återkontroll</translation>
     </message>
 </context>
 <context>

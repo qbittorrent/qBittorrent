@@ -3,40 +3,40 @@
 <context>
     <name>@default</name>
     <message>
-        <location filename="" line="135232812"/>
+        <location filename="" line="0"/>
         <source>b</source>
         <comment> bytes</comment>
         <translation type="obsolete">б</translation>
     </message>
     <message>
-        <location filename="" line="135232812"/>
+        <location filename="" line="0"/>
         <source>KB</source>
         <translation type="obsolete">КБ</translation>
     </message>
     <message>
-        <location filename="" line="135232812"/>
+        <location filename="" line="0"/>
         <source>MB</source>
         <translation type="obsolete">МБ</translation>
     </message>
     <message>
-        <location filename="" line="135232812"/>
+        <location filename="" line="0"/>
         <source>GB</source>
         <translation type="obsolete">ГБ</translation>
     </message>
     <message>
-        <location filename="" line="135232812"/>
+        <location filename="" line="0"/>
         <source>KB</source>
         <comment>kilobytes</comment>
         <translation type="obsolete">КБ</translation>
     </message>
     <message>
-        <location filename="" line="135232812"/>
+        <location filename="" line="0"/>
         <source>MB</source>
         <comment>megabytes</comment>
         <translation type="obsolete">МБ</translation>
     </message>
     <message>
-        <location filename="" line="135232812"/>
+        <location filename="" line="0"/>
         <source>GB</source>
         <comment>gigabytes</comment>
         <translation type="obsolete">ГБ</translation>
@@ -1136,7 +1136,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="2007"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное число активных раздач</translation>
     </message>
 </context>
 <context>
@@ -3778,7 +3778,7 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="188"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Созданный torrent файл испорчен. Он не будет добавлен в список закачек.</translation>
     </message>
 </context>
 <context>
@@ -3969,7 +3969,7 @@ Changelog:
     <message>
         <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Проверить принудительно</translation>
     </message>
 </context>
 <context>
@@ -4941,22 +4941,22 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../properties.ui" line="204"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="687"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Выберите путь сохранения</translation>
+        <translation>Выберите путь сохранения</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Ошибка создания пути сохранения</translation>
+        <translation>Ошибка создания пути сохранения</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Невозможно создать путь сохранения</translation>
+        <translation>Невозможно создать путь сохранения</translation>
     </message>
 </context>
 <context>
@@ -5122,7 +5122,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../seeding.ui" line="129"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Проверить принудительно</translation>
     </message>
 </context>
 <context>

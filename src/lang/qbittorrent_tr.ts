@@ -141,7 +141,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation>Qt4 ve libtorrent kullanan, C++ da derlenmiş bir bittorrent istemcisi.&lt;br&gt;
+        <translation>Qt4 ve libtorrent kullanan, C++&apos;da derlenmiş bir bittorrent istemcisi.&lt;br&gt;
 &lt;br&gt;
 Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Anasayfa:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
@@ -272,7 +272,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="670"/>
         <source>Port range:</source>
-        <translation>Kapı aralığı:</translation>
+        <translation>Kapı erimi:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1795"/>
@@ -607,7 +607,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="134"/>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation>&lt;b&gt;Not:&lt;/b&gt; Değişiklikler qBittorrent yeniden başlatıldıktan sonra etkili olacaktır.</translation>
+        <translation>&lt;b&gt;Not:&lt;/b&gt; Değişiklikler qBittorrent yeniden başlatıldıktan sonra uygulanacaktır.</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1012"/>
@@ -667,7 +667,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="159"/>
         <source>Plastique style (KDE like)</source>
-        <translation>Plastiik biçemi (KDE benzeri)</translation>
+        <translation>Plastik biçem (KDE benzeri)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="174"/>
@@ -747,7 +747,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="164"/>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation>Cleanlooks biçemi (Gnome benzeri)</translation>
+        <translation>Temiz görünüşler biçemi (Gnome benzeri)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="169"/>
@@ -861,7 +861,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="755"/>
         <source>Global bandwidth limiting</source>
-        <translation>Global bant genişliği sınırlama</translation>
+        <translation>Genel bant genişliği sınırlama</translation>
     </message>
     <message>
         <location filename="../options.ui" line="771"/>
@@ -901,12 +901,12 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="914"/>
         <source>Connections limit</source>
-        <translation>Bağlantı sınırı</translation>
+        <translation>Bağlantıların sınırı</translation>
     </message>
     <message>
         <location filename="../options.ui" line="922"/>
         <source>Global maximum number of connections:</source>
-        <translation>Global azami bağlantı sayısı:</translation>
+        <translation>Genel azami bağlantı sayısı:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="970"/>
@@ -1082,7 +1082,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1952"/>
         <source>Enable queueing system</source>
-        <translation>Sorgulama sistemini etkinleştir</translation>
+        <translation>Sıralama sistemini etkinleştir</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1964"/>
@@ -1117,7 +1117,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="2007"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Azami etkin gönderimler:</translation>
     </message>
 </context>
 <context>
@@ -1239,7 +1239,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../downloadingTorrents.cpp" line="305"/>
         <source>Hide or Show Column</source>
-        <translation>Sütunu Gizle veya Göster</translation>
+        <translation>Sütunu Gizle ya da Göster</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="218"/>
@@ -3323,7 +3323,7 @@ Changelog:
     <message>
         <location filename="../login.ui" line="127"/>
         <source>Login</source>
-        <translation>Giriş</translation>
+        <translation>Oturum aç</translation>
     </message>
     <message>
         <location filename="../login.ui" line="147"/>
@@ -3747,7 +3747,7 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="188"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Oluşturulmuş torrent dosyası geçersiz. İndirme listesine eklenmeyecek.</translation>
     </message>
 </context>
 <context>
@@ -3938,7 +3938,7 @@ Changelog:
     <message>
         <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeniden denetlemeye çalış</translation>
     </message>
 </context>
 <context>
@@ -4794,12 +4794,12 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <message>
         <location filename="../properties_imp.cpp" line="43"/>
         <source>Ignored: file is not downloaded at all</source>
-        <translation>Önemsiz: dosya hiç indirilmedi</translation>
+        <translation>Yoksayıldı: dosya hiç indirilmedi</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1041"/>
         <source>Ignored</source>
-        <translation>Önemsiz</translation>
+        <translation>Yoksayıldı</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="1046"/>
@@ -4876,22 +4876,22 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <message>
         <location filename="../properties.ui" line="204"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="687"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Kayıt klasörünü seçin</translation>
+        <translation>Kayıt yolunu seçin</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Kayıt yolu oluşturulmada hata</translation>
+        <translation>Kayıt yolu oluşturulmada hata</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Kayıt yolu oluşturulamıyor</translation>
+        <translation>Kayıt yolu oluşturulamadı</translation>
     </message>
 </context>
 <context>
@@ -5062,7 +5062,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <message>
         <location filename="../seeding.ui" line="129"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeniden denetlemeye çalış</translation>
     </message>
 </context>
 <context>

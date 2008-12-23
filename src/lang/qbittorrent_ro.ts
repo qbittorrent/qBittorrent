@@ -1079,7 +1079,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="2007"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numărul maxim de upload-uri active :</translation>
     </message>
 </context>
 <context>
@@ -3556,7 +3556,7 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="188"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fişierul torrent creat este deteriorat. El nu va fi adăugat în lista de download-uri.</translation>
     </message>
 </context>
 <context>
@@ -3747,7 +3747,7 @@ Changelog:
     <message>
         <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Reverificarea forţată</translation>
     </message>
 </context>
 <context>
@@ -4679,22 +4679,22 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     <message>
         <location filename="../properties.ui" line="204"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="687"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Alegeţi calea de salvare</translation>
+        <translation>Alegeţi calea de salvare</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Salvează calea care crează erori</translation>
+        <translation>Salvează calea care crează erori</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Nu pot crea calea de salvare</translation>
+        <translation>Nu pot crea calea de salvare</translation>
     </message>
 </context>
 <context>
@@ -4865,7 +4865,7 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     <message>
         <location filename="../seeding.ui" line="129"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Reverificarea forţată</translation>
     </message>
 </context>
 <context>

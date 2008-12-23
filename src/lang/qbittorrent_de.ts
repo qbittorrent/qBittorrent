@@ -1121,7 +1121,7 @@ qBittorrent beobachtet das Verzeichniss und starten den Download von vorhandenen
     <message>
         <location filename="../options.ui" line="2007"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale aktive Uploads:</translation>
     </message>
 </context>
 <context>
@@ -3819,7 +3819,7 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="188"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die erstellte Torrent-Datei ist ungültig. Sie wird nicht der Donwload-Liste hinzugefügt.</translation>
     </message>
 </context>
 <context>
@@ -4010,7 +4010,7 @@ Changelog:
     <message>
         <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzwinge erneutes Überprüfen</translation>
     </message>
 </context>
 <context>
@@ -5009,22 +5009,22 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     <message>
         <location filename="../properties.ui" line="204"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="687"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Wählen Sie den Speicher-Pfad</translation>
+        <translation>Wählen Sie den Speicher-Pfad</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Fehler beim erstellen des Speicher-Pfades</translation>
+        <translation>Fehler beim erstellen des Speicher-Pfades</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Speicher-Pfad konnte nicht erstellt werden</translation>
+        <translation>Speicher-Pfad konnte nicht erstellt werden</translation>
     </message>
 </context>
 <context>
@@ -5195,7 +5195,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     <message>
         <location filename="../seeding.ui" line="129"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzwinge erneutes Überprüfen</translation>
     </message>
 </context>
 <context>

@@ -684,7 +684,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="2007"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>最大活躍的上傳數:</translation>
     </message>
 </context>
 <context>
@@ -2128,7 +2128,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../createtorrent_imp.cpp" line="188"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>建立的 torrent 檔案是無效的。它不會被加入到下載清單。</translation>
     </message>
 </context>
 <context>
@@ -2299,7 +2299,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>強迫重新檢查</translation>
     </message>
 </context>
 <context>
@@ -2894,22 +2894,22 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../properties.ui" line="204"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="687"/>
         <source>Choose save path</source>
-        <translation type="unfinished">選擇儲存路徑</translation>
+        <translation>選擇儲存路徑</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">建立儲存路徑錯誤</translation>
+        <translation>建立儲存路徑錯誤</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">無法建立儲存路徑</translation>
+        <translation>無法建立儲存路徑</translation>
     </message>
 </context>
 <context>
@@ -3055,7 +3055,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../seeding.ui" line="129"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>強迫重新檢查</translation>
     </message>
 </context>
 <context>

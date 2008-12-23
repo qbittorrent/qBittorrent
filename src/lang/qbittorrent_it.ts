@@ -1070,7 +1070,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="2007"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numero massimo di upload attivi:</translation>
     </message>
 </context>
 <context>
@@ -3513,7 +3513,7 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="188"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il torrent creato non è valido. Non sarà aggiunto alla lista dei download.</translation>
     </message>
 </context>
 <context>
@@ -3704,7 +3704,7 @@ Changelog:
     <message>
         <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza ricontrollo</translation>
     </message>
 </context>
 <context>
@@ -4631,22 +4631,22 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     <message>
         <location filename="../properties.ui" line="204"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="687"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Scegliere una directory di salvataggio</translation>
+        <translation>Scegliere una directory di salvataggio</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Errore nella creazione della directory di salvataggio</translation>
+        <translation>Errore nella creazione della directory di salvataggio</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Impossibile creare la directory di salvataggio</translation>
+        <translation>Impossibile creare la directory di salvataggio</translation>
     </message>
 </context>
 <context>
@@ -4817,7 +4817,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     <message>
         <location filename="../seeding.ui" line="129"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza ricontrollo</translation>
     </message>
 </context>
 <context>
