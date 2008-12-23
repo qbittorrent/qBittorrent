@@ -94,6 +94,10 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       }
     }
 
+    ~torrentAdditionDialog() {
+        delete PropDelegate;
+    }
+
     void showLoad(QString filePath, bool fromScanDir=false, QString from_url=QString::null){
         this->filePath = filePath;
         this->fromScanDir = fromScanDir;
