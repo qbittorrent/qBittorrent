@@ -239,7 +239,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">0.0.0.0</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2140"/>
+        <location filename="../options.ui" line="2097"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
@@ -249,7 +249,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Proxy serveren kræver godkendelse</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2179"/>
+        <location filename="../options.ui" line="2136"/>
         <source>Authentication</source>
         <translation>Godkendelse</translation>
     </message>
@@ -259,7 +259,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Brugernavn:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2200"/>
+        <location filename="../options.ui" line="2157"/>
         <source>Password:</source>
         <translation>Kodeord:</translation>
     </message>
@@ -708,7 +708,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2190"/>
+        <location filename="../options.ui" line="2147"/>
         <source>Username:</source>
         <translation type="unfinished">Brugernavn:</translation>
     </message>
@@ -869,17 +869,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2105"/>
+        <location filename="../options.ui" line="2062"/>
         <source>Web UI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2118"/>
+        <location filename="../options.ui" line="2075"/>
         <source>Enable Web User Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2131"/>
+        <location filename="../options.ui" line="2088"/>
         <source>HTTP Server</source>
         <translation type="unfinished"></translation>
     </message>
@@ -909,7 +909,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2050"/>
+        <location filename="../options.ui" line="2007"/>
         <source>Maximum active torrents:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -926,11 +926,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1468"/>
         <source>Bittorrent proxy settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../options.ui" line="2007"/>
-        <source>Maximum active uploads:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1337,7 +1332,7 @@ Luk venglist denne først.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1428"/>
+        <location filename="../GUI.cpp" line="1426"/>
         <source>Connection status:</source>
         <translation>Forbindelses status:</translation>
     </message>
@@ -1412,18 +1407,18 @@ Luk venglist denne først.</translation>
         <translation type="obsolete">qBittorrent %1 startet.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1411"/>
+        <location filename="../GUI.cpp" line="1409"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1414"/>
+        <location filename="../GUI.cpp" line="1412"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL hastighed: %1 KB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1417"/>
+        <location filename="../GUI.cpp" line="1415"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP hastighed: %1 KB/s</translation>
@@ -1540,12 +1535,12 @@ Luk venglist denne først.</translation>
         <translation>Der opstod en fejl under forsøget på at skrive %1. Disken er måske fuld, downloaden er sat på pause</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1425"/>
+        <location filename="../GUI.cpp" line="1423"/>
         <source>Connection Status:</source>
         <translation>Forbindelses Status:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1425"/>
+        <location filename="../GUI.cpp" line="1423"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
@@ -1610,17 +1605,17 @@ Luk venglist denne først.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1063"/>
+        <location filename="../GUI.cpp" line="1061"/>
         <source>DHT support [ON], port: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1069"/>
+        <location filename="../GUI.cpp" line="1067"/>
         <source>DHT support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1072"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>PeX support [ON]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1631,12 +1626,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1135"/>
+        <location filename="../GUI.cpp" line="1133"/>
         <source>Downloads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1146"/>
+        <location filename="../GUI.cpp" line="1144"/>
         <source>Finished</source>
         <translation type="unfinished">Færdig</translation>
     </message>
@@ -1651,17 +1646,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1091"/>
+        <location filename="../GUI.cpp" line="1089"/>
         <source>Encryption support [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1096"/>
+        <location filename="../GUI.cpp" line="1094"/>
         <source>Encryption support [FORCED]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1101"/>
+        <location filename="../GUI.cpp" line="1099"/>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1731,28 +1726,28 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1076"/>
+        <location filename="../GUI.cpp" line="1074"/>
         <source>Local Peer Discovery [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1077"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1391"/>
+        <location filename="../GUI.cpp" line="1389"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1376"/>
+        <location filename="../GUI.cpp" line="1374"/>
         <source>DL: %1 KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1377"/>
+        <location filename="../GUI.cpp" line="1375"/>
         <source>UP: %1 KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1767,7 +1762,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1428"/>
+        <location filename="../GUI.cpp" line="1426"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1777,7 +1772,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1505"/>
+        <location filename="../GUI.cpp" line="1503"/>
         <source>Options were saved successfully.</source>
         <translation type="unfinished">Indstillingerne blev gemt.</translation>
     </message>
@@ -3491,7 +3486,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Indstillingerne blev gemt.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1260"/>
+        <location filename="../options_imp.cpp" line="1250"/>
         <source>Choose scan directory</source>
         <translation>Vælg mappe til scan</translation>
     </message>
@@ -3501,7 +3496,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Vælg en ipfilter.dat fil</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1275"/>
+        <location filename="../options_imp.cpp" line="1265"/>
         <source>Choose a save directory</source>
         <translation>Vælg en standart mappe</translation>
     </message>
@@ -3517,12 +3512,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Kunne ikke åbne %1 til læsning.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1267"/>
+        <location filename="../options_imp.cpp" line="1257"/>
         <source>Choose an ip filter file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1267"/>
+        <location filename="../options_imp.cpp" line="1257"/>
         <source>Filters</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4113,7 +4108,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Sandt</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="110"/>
+        <location filename="../torrentAddition.h" line="115"/>
         <source>Unable to decode torrent file:</source>
         <translation>Kan ikke dekode torrent filen:</translation>
     </message>
@@ -4123,7 +4118,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Denne fil er enten korrupt eller ikke en torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="248"/>
+        <location filename="../torrentAddition.h" line="254"/>
         <source>Choose save path</source>
         <translation>Gem til denne mappe</translation>
     </message>
@@ -4133,32 +4128,32 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Falsk</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="382"/>
+        <location filename="../torrentAddition.h" line="388"/>
         <source>Empty save path</source>
         <translation>Ingen mappe</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="382"/>
+        <location filename="../torrentAddition.h" line="388"/>
         <source>Please enter a save path</source>
         <translation>Vælg venligst en mappe som der skal hentes til</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="394"/>
         <source>Save path creation error</source>
         <translation>Fejl ved oprettelse af mappe</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="394"/>
         <source>Could not create the save path</source>
         <translation>Kunne ikke oprette mappe svarende til den indtastede sti</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="418"/>
+        <location filename="../torrentAddition.h" line="424"/>
         <source>Invalid file selection</source>
         <translation>Valg af filer ugyldigt</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="418"/>
+        <location filename="../torrentAddition.h" line="424"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Du skal vælge mindst en fil per torrent</translation>
     </message>
@@ -4178,7 +4173,7 @@ However, those plugins were disabled.</source>
         <translation type="unfinished">Hentet</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="281"/>
+        <location filename="../torrentAddition.h" line="287"/>
         <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>

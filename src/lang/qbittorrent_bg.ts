@@ -302,7 +302,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">0.0.0.0</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2140"/>
+        <location filename="../options.ui" line="2097"/>
         <source>Port:</source>
         <translation>Порт:</translation>
     </message>
@@ -312,7 +312,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Прокси сървъра иска удостоверяване</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2179"/>
+        <location filename="../options.ui" line="2136"/>
         <source>Authentication</source>
         <translation>Удостоверяване</translation>
     </message>
@@ -322,7 +322,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Име на Потребител:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2200"/>
+        <location filename="../options.ui" line="2157"/>
         <source>Password:</source>
         <translation>Парола:</translation>
     </message>
@@ -956,7 +956,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation>Прокси:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2190"/>
+        <location filename="../options.ui" line="2147"/>
         <source>Username:</source>
         <translation>Име на потребителя:</translation>
     </message>
@@ -1122,17 +1122,17 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation>Направи се на Azureus за да избегнеш изхвърляне (изисква рестарт)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2105"/>
+        <location filename="../options.ui" line="2062"/>
         <source>Web UI</source>
         <translation>Web UI</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2118"/>
+        <location filename="../options.ui" line="2075"/>
         <source>Enable Web User Interface</source>
         <translation>Включи Интерфейс на Web Потребител</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2131"/>
+        <location filename="../options.ui" line="2088"/>
         <source>HTTP Server</source>
         <translation>Сървър HTTP</translation>
     </message>
@@ -1162,7 +1162,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation>Максимум активни сваляния:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2050"/>
+        <location filename="../options.ui" line="2007"/>
         <source>Maximum active torrents:</source>
         <translation>Максимум активни торенти:</translation>
     </message>
@@ -1180,11 +1180,6 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="1468"/>
         <source>Bittorrent proxy settings</source>
         <translation>Bittorent прокси настройки</translation>
-    </message>
-    <message>
-        <location filename="../options.ui" line="2007"/>
-        <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1507,7 +1502,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">kb/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1146"/>
+        <location filename="../GUI.cpp" line="1144"/>
         <source>Finished</source>
         <translation>Завършен</translation>
     </message>
@@ -1634,7 +1629,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1411"/>
+        <location filename="../GUI.cpp" line="1409"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1974,7 +1969,7 @@ Please close the other one first.</source>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1428"/>
+        <location filename="../GUI.cpp" line="1426"/>
         <source>Connection status:</source>
         <translation>Състояние на връзката:</translation>
     </message>
@@ -2049,13 +2044,13 @@ Please close the other one first.</source>
         <translation type="obsolete">qBittorrent %1 стартиран.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1414"/>
+        <location filename="../GUI.cpp" line="1412"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL Скорост %1 KB/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1417"/>
+        <location filename="../GUI.cpp" line="1415"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UL Скорост %1 KB/с</translation>
@@ -2178,12 +2173,12 @@ Please close the other one first.</source>
         <translation type="obsolete">Намерена грешка (пълен диск?), &apos;%1&apos; е в пауза.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1425"/>
+        <location filename="../GUI.cpp" line="1423"/>
         <source>Connection Status:</source>
         <translation>Състояние на връзката:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1425"/>
+        <location filename="../GUI.cpp" line="1423"/>
         <source>Online</source>
         <translation>Свързан</translation>
     </message>
@@ -2248,17 +2243,17 @@ Please close the other one first.</source>
         <translation>qBittorrent е свързан с порт: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1063"/>
+        <location filename="../GUI.cpp" line="1061"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT поддръжка [ВКЛ], порт: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1069"/>
+        <location filename="../GUI.cpp" line="1067"/>
         <source>DHT support [OFF]</source>
         <translation>DHT поддръжка [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1072"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>PeX support [ON]</source>
         <translation>PeX поддръжка [ВКЛ]</translation>
     </message>
@@ -2275,7 +2270,7 @@ Are you sure you want to quit qBittorrent?</source>
 Сигурни ли сте че искате да напуснете qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1135"/>
+        <location filename="../GUI.cpp" line="1133"/>
         <source>Downloads</source>
         <translation>Сваляне</translation>
     </message>
@@ -2290,17 +2285,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>UPnP поддръжка [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1091"/>
+        <location filename="../GUI.cpp" line="1089"/>
         <source>Encryption support [ON]</source>
         <translation>Поддръжка кодиране [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1096"/>
+        <location filename="../GUI.cpp" line="1094"/>
         <source>Encryption support [FORCED]</source>
         <translation>Поддръжка кодиране [ФОРСИРАНА]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1101"/>
+        <location filename="../GUI.cpp" line="1099"/>
         <source>Encryption support [OFF]</source>
         <translation>Поддръжка кодиране [ИЗКЛ]</translation>
     </message>
@@ -2376,12 +2371,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>NAT-PMP поддръжка [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1076"/>
+        <location filename="../GUI.cpp" line="1074"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Търсене на локални връзки [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1077"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Търсене на локални връзки [ИЗКЛ]</translation>
     </message>
@@ -2392,18 +2387,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">&apos;%1&apos; бе премахнат защото съотношението му надвишава определеното.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1391"/>
+        <location filename="../GUI.cpp" line="1389"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1376"/>
+        <location filename="../GUI.cpp" line="1374"/>
         <source>DL: %1 KiB/s</source>
         <translation>DL: %1 KB/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1377"/>
+        <location filename="../GUI.cpp" line="1375"/>
         <source>UP: %1 KiB/s</source>
         <translation>UP: %1 KB/с</translation>
     </message>
@@ -2418,7 +2413,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>DHT: %1 възли</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1428"/>
+        <location filename="../GUI.cpp" line="1426"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Няма директни връзки. Това може да е от проблеми в мрежовата настройка.</translation>
     </message>
@@ -2428,7 +2423,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Качени</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1505"/>
+        <location filename="../GUI.cpp" line="1503"/>
         <source>Options were saved successfully.</source>
         <translation>Опциите бяха съхранени успешно.</translation>
     </message>
@@ -4440,7 +4435,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Опциите бяха съхранени успешно.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1260"/>
+        <location filename="../options_imp.cpp" line="1250"/>
         <source>Choose scan directory</source>
         <translation>Изберете директория за сканиране</translation>
     </message>
@@ -4450,7 +4445,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Изберете ipfilter.dat файл </translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1275"/>
+        <location filename="../options_imp.cpp" line="1265"/>
         <source>Choose a save directory</source>
         <translation>Изберете директория за съхранение</translation>
     </message>
@@ -4466,12 +4461,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Не мога да отворя %1 в режим четене.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1267"/>
+        <location filename="../options_imp.cpp" line="1257"/>
         <source>Choose an ip filter file</source>
         <translation>Избери файл за ip филтър</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1267"/>
+        <location filename="../options_imp.cpp" line="1257"/>
         <source>Filters</source>
         <translation>Филтри</translation>
     </message>
@@ -5232,7 +5227,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Вярно</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="110"/>
+        <location filename="../torrentAddition.h" line="115"/>
         <source>Unable to decode torrent file:</source>
         <translation>Не мога да декодирам торент-файла:</translation>
     </message>
@@ -5242,7 +5237,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Този файла или е разрушен или не е торент.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="248"/>
+        <location filename="../torrentAddition.h" line="254"/>
         <source>Choose save path</source>
         <translation>Избери път за съхранение</translation>
     </message>
@@ -5252,32 +5247,32 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Грешка</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="382"/>
+        <location filename="../torrentAddition.h" line="388"/>
         <source>Empty save path</source>
         <translation>Празен път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="382"/>
+        <location filename="../torrentAddition.h" line="388"/>
         <source>Please enter a save path</source>
         <translation>Моля въведете път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="394"/>
         <source>Save path creation error</source>
         <translation>Грешка при създаване на път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="394"/>
         <source>Could not create the save path</source>
         <translation>Не мога да създам път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="418"/>
+        <location filename="../torrentAddition.h" line="424"/>
         <source>Invalid file selection</source>
         <translation>Невалиден избор на файл</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="418"/>
+        <location filename="../torrentAddition.h" line="424"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Трябва да изберете поне един файл в торента</translation>
     </message>
@@ -5297,7 +5292,7 @@ However, those plugins were disabled.</source>
         <translation>Изпълнение</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="281"/>
+        <location filename="../torrentAddition.h" line="287"/>
         <source>Priority</source>
         <translation>Предимство</translation>
     </message>

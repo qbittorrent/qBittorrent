@@ -319,7 +319,7 @@ Wszystkie prawa zastrzeżone © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">0.0.0.0</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2140"/>
+        <location filename="../options.ui" line="2097"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
@@ -329,7 +329,7 @@ Wszystkie prawa zastrzeżone © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Serwer proxy wymaga autentykacji</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2179"/>
+        <location filename="../options.ui" line="2136"/>
         <source>Authentication</source>
         <translation>Autentykacja</translation>
     </message>
@@ -339,7 +339,7 @@ Wszystkie prawa zastrzeżone © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Użytkownik:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2200"/>
+        <location filename="../options.ui" line="2157"/>
         <source>Password:</source>
         <translation>Hasło:</translation>
     </message>
@@ -973,7 +973,7 @@ Wszystkie prawa zastrzeżone © 2006 Christophe Dumez&lt;br&gt;
         <translation>Proxy:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2190"/>
+        <location filename="../options.ui" line="2147"/>
         <source>Username:</source>
         <translation>Nazwa użytkownika:</translation>
     </message>
@@ -1139,17 +1139,17 @@ Wszystkie prawa zastrzeżone © 2006 Christophe Dumez&lt;br&gt;
         <translation>Podrabianie Azureusa pozwala ominąć blokadę (wymagany restart)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2105"/>
+        <location filename="../options.ui" line="2062"/>
         <source>Web UI</source>
         <translation>Web UI</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2118"/>
+        <location filename="../options.ui" line="2075"/>
         <source>Enable Web User Interface</source>
         <translation>Włącz interfejs Web</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2131"/>
+        <location filename="../options.ui" line="2088"/>
         <source>HTTP Server</source>
         <translation>Serwer HTTP</translation>
     </message>
@@ -1179,7 +1179,7 @@ Wszystkie prawa zastrzeżone © 2006 Christophe Dumez&lt;br&gt;
         <translation>Kolejkowanie torrentów</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2050"/>
+        <location filename="../options.ui" line="2007"/>
         <source>Maximum active torrents:</source>
         <translation>Maksymalna ilość aktywnych torrentów:</translation>
     </message>
@@ -1196,11 +1196,6 @@ Wszystkie prawa zastrzeżone © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1468"/>
         <source>Bittorrent proxy settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../options.ui" line="2007"/>
-        <source>Maximum active uploads:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1608,7 +1603,7 @@ Wszystkie prawa zastrzeżone © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">wznowiony.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1146"/>
+        <location filename="../GUI.cpp" line="1144"/>
         <source>Finished</source>
         <translation>Ukończone</translation>
     </message>
@@ -1651,7 +1646,7 @@ Wszystkie prawa zastrzeżone © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1411"/>
+        <location filename="../GUI.cpp" line="1409"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -2003,7 +1998,7 @@ Zamknij najpierw okno podglądu.</translation>
         <translation>qBittorent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1428"/>
+        <location filename="../GUI.cpp" line="1426"/>
         <source>Connection status:</source>
         <translation>Status połączenia:</translation>
     </message>
@@ -2078,13 +2073,13 @@ Zamknij najpierw okno podglądu.</translation>
         <translation type="obsolete">qBittorrent %1 uruchomiony.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1414"/>
+        <location filename="../GUI.cpp" line="1412"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Prędkość DL: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1417"/>
+        <location filename="../GUI.cpp" line="1415"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Prędkość UP: %1 KiB/</translation>
@@ -2207,12 +2202,12 @@ Zamknij najpierw okno podglądu.</translation>
         <translation type="obsolete">Wystąpił błąd (brak miejsca?), &apos;%1&apos; wstrzymany.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1425"/>
+        <location filename="../GUI.cpp" line="1423"/>
         <source>Connection Status:</source>
         <translation>Status połączenia:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1425"/>
+        <location filename="../GUI.cpp" line="1423"/>
         <source>Online</source>
         <translation>Połączony</translation>
     </message>
@@ -2277,17 +2272,17 @@ Zamknij najpierw okno podglądu.</translation>
         <translation>qBittorrent jest podłączony do portu: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1063"/>
+        <location filename="../GUI.cpp" line="1061"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Wsparcie DHT [WŁ], port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1069"/>
+        <location filename="../GUI.cpp" line="1067"/>
         <source>DHT support [OFF]</source>
         <translation>Wsparcie DHT [WYŁ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1072"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>PeX support [ON]</source>
         <translation>Wsparcie PeX [WŁ]</translation>
     </message>
@@ -2304,7 +2299,7 @@ Are you sure you want to quit qBittorrent?</source>
 Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1135"/>
+        <location filename="../GUI.cpp" line="1133"/>
         <source>Downloads</source>
         <translation>Pobieranie</translation>
     </message>
@@ -2329,17 +2324,17 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation type="obsolete">Bądź ostrożny, wymiana plików chronionych prawami autorskimi jest niezgodna z prawem.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1091"/>
+        <location filename="../GUI.cpp" line="1089"/>
         <source>Encryption support [ON]</source>
         <translation>Wsparcie szyfrowania [WŁ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1096"/>
+        <location filename="../GUI.cpp" line="1094"/>
         <source>Encryption support [FORCED]</source>
         <translation>Wsparcie szyfrowania [WYMUSZONE]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1101"/>
+        <location filename="../GUI.cpp" line="1099"/>
         <source>Encryption support [OFF]</source>
         <translation>Wsparcie szyfrowania [WYŁ]</translation>
     </message>
@@ -2442,12 +2437,12 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation>Obsługa NAT-PMP [WYŁ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1076"/>
+        <location filename="../GUI.cpp" line="1074"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery [WŁ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1077"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Obsługa Local Peer Discovery [WYŁ]</translation>
     </message>
@@ -2458,18 +2453,18 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation type="obsolete">&apos;%1&apos; został usunięty ponieważ ratio osiągnęło ustawioną wartość.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1391"/>
+        <location filename="../GUI.cpp" line="1389"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1376"/>
+        <location filename="../GUI.cpp" line="1374"/>
         <source>DL: %1 KiB/s</source>
         <translation>DL: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1377"/>
+        <location filename="../GUI.cpp" line="1375"/>
         <source>UP: %1 KiB/s</source>
         <translation>UP: %1 KiB/s</translation>
     </message>
@@ -2484,7 +2479,7 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation>DHT: %1 węzły</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1428"/>
+        <location filename="../GUI.cpp" line="1426"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Brak bezposrednich połączeń. Może to oznaczać problem z konfiguracją sieci.</translation>
     </message>
@@ -2494,7 +2489,7 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation>Wysyłane</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1505"/>
+        <location filename="../GUI.cpp" line="1503"/>
         <source>Options were saved successfully.</source>
         <translation>Ustawienia zapisane.</translation>
     </message>
@@ -4543,7 +4538,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Ustawienia zapisane.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1260"/>
+        <location filename="../options_imp.cpp" line="1250"/>
         <source>Choose scan directory</source>
         <translation>Wybierz katalog przeszukiwania</translation>
     </message>
@@ -4553,7 +4548,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Wybierz plik ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1275"/>
+        <location filename="../options_imp.cpp" line="1265"/>
         <source>Choose a save directory</source>
         <translation>Wybierz katalog docelowy</translation>
     </message>
@@ -4569,7 +4564,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Nie można otworzyć %1 w trybie odczytu.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1267"/>
+        <location filename="../options_imp.cpp" line="1257"/>
         <source>Choose an ip filter file</source>
         <translation>Wybierz plik ip filter</translation>
     </message>
@@ -4579,7 +4574,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Filtry (*.dat *.p2p *.p2b)</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1267"/>
+        <location filename="../options_imp.cpp" line="1257"/>
         <source>Filters</source>
         <translation>Filtry</translation>
     </message>
@@ -5345,7 +5340,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Tak</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="110"/>
+        <location filename="../torrentAddition.h" line="115"/>
         <source>Unable to decode torrent file:</source>
         <translation>Problem z odkodowaniem pliku torrent:</translation>
     </message>
@@ -5355,7 +5350,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Plik jest uszkodzony lub nie jest plikiem torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="248"/>
+        <location filename="../torrentAddition.h" line="254"/>
         <source>Choose save path</source>
         <translation>Wybierz katalog docelowy</translation>
     </message>
@@ -5365,32 +5360,32 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Nie</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="382"/>
+        <location filename="../torrentAddition.h" line="388"/>
         <source>Empty save path</source>
         <translation>Niepoprawny katalog docelowy</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="382"/>
+        <location filename="../torrentAddition.h" line="388"/>
         <source>Please enter a save path</source>
         <translation>Podaj katalog docelowy</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="394"/>
         <source>Save path creation error</source>
         <translation>Błąd tworzenia katalogu docelowego</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="394"/>
         <source>Could not create the save path</source>
         <translation>Nie można założyć katalogu docelowego</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="418"/>
+        <location filename="../torrentAddition.h" line="424"/>
         <source>Invalid file selection</source>
         <translation>Wybrano niepoprawny plik</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="418"/>
+        <location filename="../torrentAddition.h" line="424"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Musisz wybrać przynajmniej jeden plik z pliku torrent</translation>
     </message>
@@ -5410,7 +5405,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation>Postęp</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="281"/>
+        <location filename="../torrentAddition.h" line="287"/>
         <source>Priority</source>
         <translation>Priorytet</translation>
     </message>

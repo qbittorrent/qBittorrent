@@ -182,17 +182,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">代理伺服器設定</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2140"/>
+        <location filename="../options.ui" line="2097"/>
         <source>Port:</source>
         <translation>埠:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2179"/>
+        <location filename="../options.ui" line="2136"/>
         <source>Authentication</source>
         <translation>驗證</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2200"/>
+        <location filename="../options.ui" line="2157"/>
         <source>Password:</source>
         <translation>密碼:</translation>
     </message>
@@ -446,7 +446,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>代理伺服器:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2190"/>
+        <location filename="../options.ui" line="2147"/>
         <source>Username:</source>
         <translation>使用者名稱:</translation>
     </message>
@@ -617,17 +617,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>假裝為 Azureus 以避免被踢出 (需要重新啟動)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2105"/>
+        <location filename="../options.ui" line="2062"/>
         <source>Web UI</source>
         <translation>Web UI</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2118"/>
+        <location filename="../options.ui" line="2075"/>
         <source>Enable Web User Interface</source>
         <translation>啟用 Web UI</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2131"/>
+        <location filename="../options.ui" line="2088"/>
         <source>HTTP Server</source>
         <translation>HTTP 伺服器</translation>
     </message>
@@ -657,7 +657,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>torrent 排程</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2050"/>
+        <location filename="../options.ui" line="2007"/>
         <source>Maximum active torrents:</source>
         <translation>最大活躍的 torrent:</translation>
     </message>
@@ -684,7 +684,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="2007"/>
         <source>Maximum active uploads:</source>
-        <translation>最大活躍的上傳數:</translation>
+        <translation type="obsolete">最大活躍的上傳數:</translation>
     </message>
 </context>
 <context>
@@ -942,23 +942,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1428"/>
+        <location filename="../GUI.cpp" line="1426"/>
         <source>Connection status:</source>
         <translation>連線狀態:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1411"/>
+        <location filename="../GUI.cpp" line="1409"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1414"/>
+        <location filename="../GUI.cpp" line="1412"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>下載速度: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1417"/>
+        <location filename="../GUI.cpp" line="1415"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>上傳速度: %1 KiB/s</translation>
@@ -1015,12 +1015,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>讀取或寫入 %1 時發生錯誤。硬碟可能已經滿了, 將暫停下載</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1425"/>
+        <location filename="../GUI.cpp" line="1423"/>
         <source>Connection Status:</source>
         <translation>連線狀態:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1425"/>
+        <location filename="../GUI.cpp" line="1423"/>
         <source>Online</source>
         <translation>線上</translation>
     </message>
@@ -1047,17 +1047,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>qBittorrent 綁定埠: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1063"/>
+        <location filename="../GUI.cpp" line="1061"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT 支援 [開啟], 埠: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1069"/>
+        <location filename="../GUI.cpp" line="1067"/>
         <source>DHT support [OFF]</source>
         <translation>DHT 支援 [關閉]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1072"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>PeX support [ON]</source>
         <translation>PeX 支援 [開啟]</translation>
     </message>
@@ -1074,12 +1074,12 @@ Are you sure you want to quit qBittorrent?</source>
 你確定要離開 qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1135"/>
+        <location filename="../GUI.cpp" line="1133"/>
         <source>Downloads</source>
         <translation>下載</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1146"/>
+        <location filename="../GUI.cpp" line="1144"/>
         <source>Finished</source>
         <translation>完成</translation>
     </message>
@@ -1094,17 +1094,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>UPnP 支援 [開啟]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1091"/>
+        <location filename="../GUI.cpp" line="1089"/>
         <source>Encryption support [ON]</source>
         <translation>加密支援 [開啟]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1096"/>
+        <location filename="../GUI.cpp" line="1094"/>
         <source>Encryption support [FORCED]</source>
         <translation>加密支援 [強迫]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1101"/>
+        <location filename="../GUI.cpp" line="1099"/>
         <source>Encryption support [OFF]</source>
         <translation>加密支援 [關閉]</translation>
     </message>
@@ -1180,12 +1180,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>NAT-PMP 支援 [關閉]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1076"/>
+        <location filename="../GUI.cpp" line="1074"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>本地下載者搜尋 [開啟]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1077"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>本地下載者搜尋支援 [關閉]</translation>
     </message>
@@ -1196,18 +1196,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">&apos;%1&apos; 已經移除, 因為其分享率已經達到你設定的最大值了。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1391"/>
+        <location filename="../GUI.cpp" line="1389"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (下載速度: %2KiB/s, 上傳速度: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1376"/>
+        <location filename="../GUI.cpp" line="1374"/>
         <source>DL: %1 KiB/s</source>
         <translation>下載: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1377"/>
+        <location filename="../GUI.cpp" line="1375"/>
         <source>UP: %1 KiB/s</source>
         <translation>上傳: %1 KiB/s</translation>
     </message>
@@ -1222,7 +1222,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>DHT: %1 個節點</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1428"/>
+        <location filename="../GUI.cpp" line="1426"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>沒有直接的連線。這表示你的網路設置可能有問題。</translation>
     </message>
@@ -1232,7 +1232,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>上傳</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1505"/>
+        <location filename="../GUI.cpp" line="1503"/>
         <source>Options were saved successfully.</source>
         <translation>選項儲存成功。</translation>
     </message>
@@ -2559,22 +2559,22 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">選項儲存成功。</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1260"/>
+        <location filename="../options_imp.cpp" line="1250"/>
         <source>Choose scan directory</source>
         <translation>選擇掃描的目錄</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1275"/>
+        <location filename="../options_imp.cpp" line="1265"/>
         <source>Choose a save directory</source>
         <translation>選擇儲存的目錄</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1267"/>
+        <location filename="../options_imp.cpp" line="1257"/>
         <source>Choose an ip filter file</source>
         <translation>選擇一個 IP 過濾檔案</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1267"/>
+        <location filename="../options_imp.cpp" line="1257"/>
         <source>Filters</source>
         <translation>過濾器</translation>
     </message>
@@ -3109,7 +3109,7 @@ However, those plugins were disabled.</source>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentAddition.h" line="110"/>
+        <location filename="../torrentAddition.h" line="115"/>
         <source>Unable to decode torrent file:</source>
         <translation>無法解碼 torrent 檔案:</translation>
     </message>
@@ -3119,37 +3119,37 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">這個檔案不是損壞就是不是 torrent 檔案。</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="248"/>
+        <location filename="../torrentAddition.h" line="254"/>
         <source>Choose save path</source>
         <translation>選擇儲存路徑</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="382"/>
+        <location filename="../torrentAddition.h" line="388"/>
         <source>Empty save path</source>
         <translation>輸入儲存路徑</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="382"/>
+        <location filename="../torrentAddition.h" line="388"/>
         <source>Please enter a save path</source>
         <translation>請輸入儲存路徑</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="394"/>
         <source>Save path creation error</source>
         <translation>建立儲存路徑錯誤</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="394"/>
         <source>Could not create the save path</source>
         <translation>無法建立儲存路徑</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="418"/>
+        <location filename="../torrentAddition.h" line="424"/>
         <source>Invalid file selection</source>
         <translation>無效的選擇檔案</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="418"/>
+        <location filename="../torrentAddition.h" line="424"/>
         <source>You must select at least one file in the torrent</source>
         <translation>你必須至少選擇 torrent 裡的一個檔案</translation>
     </message>
@@ -3169,7 +3169,7 @@ However, those plugins were disabled.</source>
         <translation>進度</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="281"/>
+        <location filename="../torrentAddition.h" line="287"/>
         <source>Priority</source>
         <translation>優先度</translation>
     </message>

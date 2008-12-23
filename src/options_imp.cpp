@@ -383,8 +383,10 @@ void options_imp::saveOptions(){
   settings.beginGroup("Queueing");
   settings.setValue(QString::fromUtf8("QueueingEnabled"), isQueueingSystemEnabled());
   settings.setValue(QString::fromUtf8("MaxActiveDownloads"), spinMaxActiveDownloads->value());
-  settings.setValue(QString::fromUtf8("MaxActiveUploads"), spinMaxActiveUploads->value());
-  settings.setValue(QString::fromUtf8("MaxActiveTorrents"), spinMaxActiveTorrents->value());
+  if(spinMaxActiveTorrents->value() >= spinMaxActiveDownloads->value())
+    settings.setValue(QString::fromUtf8("MaxActiveTorrents"), spinMaxActiveTorrents->value());
+  else
+    settings.setValue(QString::fromUtf8("MaxActiveTorrents"), spinMaxActiveDownloads->value());
   // End Queueing system preferences
   settings.endGroup();
   // Web UI
@@ -701,7 +703,6 @@ void options_imp::loadOptions(){
   if(isQueueingSystemEnabled()) {
     enableQueueingSystem(2); // Enable
     spinMaxActiveDownloads->setValue(settings.value(QString::fromUtf8("MaxActiveDownloads"), 3).toInt());
-    spinMaxActiveUploads->setValue(settings.value(QString::fromUtf8("MaxActiveUploads"), 3).toInt());
     spinMaxActiveTorrents->setValue(settings.value(QString::fromUtf8("MaxActiveTorrents"), 5).toInt());
   } else {
     enableQueueingSystem(0); // Disable
@@ -731,10 +732,6 @@ int options_imp::getEncryptionSetting() const{
 
 int options_imp::getMaxActiveDownloads() const {
   return spinMaxActiveDownloads->value();
-}
-
-int options_imp::getMaxActiveUploads() const {
-  return spinMaxActiveUploads->value();
 }
 
 int options_imp::getMaxActiveTorrents() const {
@@ -926,17 +923,13 @@ void options_imp::enableQueueingSystem(int checkBoxValue) {
   if(checkBoxValue != 2) {
     //Disable
     spinMaxActiveDownloads->setEnabled(false);
-    spinMaxActiveUploads->setEnabled(false);
     label_max_active_dl->setEnabled(false);
-    label_max_active_up->setEnabled(false);
     maxActiveTorrents_lbl->setEnabled(false);
     spinMaxActiveTorrents->setEnabled(false);
   }else{
     //enable
     spinMaxActiveDownloads->setEnabled(true);
-    spinMaxActiveUploads->setEnabled(true);
     label_max_active_dl->setEnabled(true);
-    label_max_active_up->setEnabled(true);
     maxActiveTorrents_lbl->setEnabled(true);
     spinMaxActiveTorrents->setEnabled(true);
   }

@@ -1033,14 +1033,12 @@ void GUI::configureSession(bool deleteOptions) {
       }
       int max_torrents = options->getMaxActiveTorrents();
       int max_downloads = options->getMaxActiveDownloads();
-      int max_seeds = options->getMaxActiveUploads();
-      sessionSettings.active_limit = max_torrents;
       sessionSettings.active_downloads = max_downloads;
-      sessionSettings.active_seeds = max_seeds;
+      sessionSettings.active_seeds = max_torrents;
+      sessionSettings.dont_count_slow_torrents = false;
       BTSession->setQueueingEnabled(true);
   } else {
       if(BTSession->isQueueingEnabled()) {
-          sessionSettings.active_limit = -1;
           sessionSettings.active_downloads = -1;
           sessionSettings.active_seeds = -1;
           BTSession->setQueueingEnabled(false);
