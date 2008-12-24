@@ -1480,7 +1480,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> gestart.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1409"/>
+        <location filename="../GUI.cpp" line="1414"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1660,7 +1660,7 @@ Copyright  2006 door Christophe Dumez&lt;br&gt;
         <translation type="obsolete">/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1144"/>
+        <location filename="../GUI.cpp" line="1149"/>
         <source>Finished</source>
         <translation>Klaar</translation>
     </message>
@@ -1958,7 +1958,7 @@ Stop het eerste proccess eerst.
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1426"/>
+        <location filename="../GUI.cpp" line="1431"/>
         <source>Connection status:</source>
         <translation>Verbindingsstatus:</translation>
     </message>
@@ -2033,13 +2033,13 @@ Stop het eerste proccess eerst.
         <translation type="obsolete">qBittorrent %1 gestart.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1412"/>
+        <location filename="../GUI.cpp" line="1417"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL snelheid: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1415"/>
+        <location filename="../GUI.cpp" line="1420"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP snelheid: %1 KiB/s</translation>
@@ -2156,12 +2156,12 @@ Stop het eerste proccess eerst.
         <translation>Een fout is opgetreden tijdens het lezen of schrijven van %1. De schijf is waarschijnlijk vol, de download is gepauzeerd</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1423"/>
+        <location filename="../GUI.cpp" line="1428"/>
         <source>Connection Status:</source>
         <translation>Verbindingsstatus:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1423"/>
+        <location filename="../GUI.cpp" line="1428"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
@@ -2220,23 +2220,23 @@ Stop het eerste proccess eerst.
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="936"/>
+        <location filename="../GUI.cpp" line="939"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent is verbonden aan poort: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1061"/>
+        <location filename="../GUI.cpp" line="1064"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT ondersteuning [AAN], poort: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1067"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>DHT support [OFF]</source>
         <translation>DHT ondersteuning [UIT]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1070"/>
+        <location filename="../GUI.cpp" line="1073"/>
         <source>PeX support [ON]</source>
         <translation>PeX ondersteuning [AAN]</translation>
     </message>
@@ -2253,7 +2253,7 @@ Are you sure you want to quit qBittorrent?</source>
 Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1133"/>
+        <location filename="../GUI.cpp" line="1138"/>
         <source>Downloads</source>
         <translation>Downloads</translation>
     </message>
@@ -2263,22 +2263,22 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
         <translation>Weet u zeker dat u de geselecteerde item(s) wilt verwijderen van de voltooidlijst?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="958"/>
+        <location filename="../GUI.cpp" line="961"/>
         <source>UPnP support [ON]</source>
         <translation>UPnP ondersteuning [AAN]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1092"/>
         <source>Encryption support [ON]</source>
         <translation>Encryptie ondersteuning [AAN]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1094"/>
+        <location filename="../GUI.cpp" line="1097"/>
         <source>Encryption support [FORCED]</source>
         <translation>Encryptie ondersteuning [GEFORCEERD]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1099"/>
+        <location filename="../GUI.cpp" line="1102"/>
         <source>Encryption support [OFF]</source>
         <translation>Encryptie ondersteuning [UIT]</translation>
     </message>
@@ -2339,27 +2339,27 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="961"/>
+        <location filename="../GUI.cpp" line="964"/>
         <source>UPnP support [OFF]</source>
         <translation>UPnP ondersteuning [UIT]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="966"/>
+        <location filename="../GUI.cpp" line="969"/>
         <source>NAT-PMP support [ON]</source>
         <translation>NAT-PMP ondersteuning [AAN]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="969"/>
+        <location filename="../GUI.cpp" line="972"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>NAT-PMP ondersteuning [UIT]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1077"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery [AAN]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1077"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Local Peer Discovery ondersteuning [UIT]</translation>
     </message>
@@ -2370,18 +2370,18 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
         <translation type="obsolete">&apos;%1&apos; is verwijderd omdat de ratio de maximale ingestelde waarde heeft bereikt.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1389"/>
+        <location filename="../GUI.cpp" line="1394"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1374"/>
+        <location filename="../GUI.cpp" line="1379"/>
         <source>DL: %1 KiB/s</source>
         <translation>DL: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1375"/>
+        <location filename="../GUI.cpp" line="1380"/>
         <source>UP: %1 KiB/s</source>
         <translation>UP: %1 KiB/s</translation>
     </message>
@@ -2396,7 +2396,7 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
         <translation>DHT: %1 nodes</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1426"/>
+        <location filename="../GUI.cpp" line="1431"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation type="unfinished">Geen directe verbindingen. Dit kan komen door netwerk configuratie problemen.</translation>
     </message>
@@ -2406,7 +2406,7 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
         <translation>Uploads</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1503"/>
+        <location filename="../GUI.cpp" line="1508"/>
         <source>Options were saved successfully.</source>
         <translation>Opties zijn succesvol opgeslagen.</translation>
     </message>
@@ -4405,7 +4405,7 @@ De plugins zijn uitgeschakeld.</translation>
         <translation type="obsolete">Opties zijn succesvol opgeslagen.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1250"/>
+        <location filename="../options_imp.cpp" line="1253"/>
         <source>Choose scan directory</source>
         <translation>Kies scanmap</translation>
     </message>
@@ -4415,7 +4415,7 @@ De plugins zijn uitgeschakeld.</translation>
         <translation type="obsolete">Kies een ipfilter.dat bestand</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1265"/>
+        <location filename="../options_imp.cpp" line="1268"/>
         <source>Choose a save directory</source>
         <translation>Kies een opslagmap</translation>
     </message>
@@ -4431,12 +4431,12 @@ De plugins zijn uitgeschakeld.</translation>
         <translation type="obsolete">Kon %1 niet openen om te lezen.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1257"/>
+        <location filename="../options_imp.cpp" line="1260"/>
         <source>Choose an ip filter file</source>
         <translation>Kies een ip filter bestand</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1257"/>
+        <location filename="../options_imp.cpp" line="1260"/>
         <source>Filters</source>
         <translation>Filters</translation>
     </message>

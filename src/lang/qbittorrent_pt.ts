@@ -1377,7 +1377,7 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">iniciado</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1144"/>
+        <location filename="../GUI.cpp" line="1149"/>
         <source>Finished</source>
         <translation>Concluído</translation>
     </message>
@@ -1486,7 +1486,7 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1409"/>
+        <location filename="../GUI.cpp" line="1414"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1782,7 +1782,7 @@ Por favor feche o outro primeiro.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1426"/>
+        <location filename="../GUI.cpp" line="1431"/>
         <source>Connection status:</source>
         <translation>Estado da conexão:</translation>
     </message>
@@ -1857,13 +1857,13 @@ Por favor feche o outro primeiro.</translation>
         <translation type="obsolete">qBittorrent %1 iniciado.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1412"/>
+        <location filename="../GUI.cpp" line="1417"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Velocidade de download: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1415"/>
+        <location filename="../GUI.cpp" line="1420"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Velocidade de Upload: %1 KiB/s</translation>
@@ -1986,12 +1986,12 @@ Por favor feche o outro primeiro.</translation>
         <translation type="obsolete">Ocorreu um erro (disco cheio?), &apos;%1&apos; pausado.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1423"/>
+        <location filename="../GUI.cpp" line="1428"/>
         <source>Connection Status:</source>
         <translation>Estado da conexão:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1423"/>
+        <location filename="../GUI.cpp" line="1428"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
@@ -2050,23 +2050,23 @@ Por favor feche o outro primeiro.</translation>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="936"/>
+        <location filename="../GUI.cpp" line="939"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent escuta a porta: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1061"/>
+        <location filename="../GUI.cpp" line="1064"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Suporte DHT [Ligado], porta: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1067"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>DHT support [OFF]</source>
         <translation>Suporte DHT [Desligado]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1070"/>
+        <location filename="../GUI.cpp" line="1073"/>
         <source>PeX support [ON]</source>
         <translation>Suporte PeX [Ligado]</translation>
     </message>
@@ -2083,7 +2083,7 @@ Are you sure you want to quit qBittorrent?</source>
 Deseja mesmo sair do qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1133"/>
+        <location filename="../GUI.cpp" line="1138"/>
         <source>Downloads</source>
         <translation>Downloads</translation>
     </message>
@@ -2093,7 +2093,7 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation>Quer mesmo deletar os ítems selecionados na lista de finalizados?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="958"/>
+        <location filename="../GUI.cpp" line="961"/>
         <source>UPnP support [ON]</source>
         <translation>Suporte UPnP [Ligado]</translation>
     </message>
@@ -2103,17 +2103,17 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Esteja ciente, compartilhar material protejido sem permissão é contra a lei.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1092"/>
         <source>Encryption support [ON]</source>
         <translation>Suporte a encriptação [Ligado]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1094"/>
+        <location filename="../GUI.cpp" line="1097"/>
         <source>Encryption support [FORCED]</source>
         <translation>Suporte a encriptação [FORÇADO]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1099"/>
+        <location filename="../GUI.cpp" line="1102"/>
         <source>Encryption support [OFF]</source>
         <translation>Suporte a encriptação [Desligado]</translation>
     </message>
@@ -2201,27 +2201,27 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="961"/>
+        <location filename="../GUI.cpp" line="964"/>
         <source>UPnP support [OFF]</source>
         <translation>Suporte UPnP [desligado]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="966"/>
+        <location filename="../GUI.cpp" line="969"/>
         <source>NAT-PMP support [ON]</source>
         <translation>Suporte NAT-PMP [ligado]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="969"/>
+        <location filename="../GUI.cpp" line="972"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>Suporte NAT-PMP [desligado]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1077"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Peer discovery [ligado]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1077"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Peer discovery [desligado]</translation>
     </message>
@@ -2232,18 +2232,18 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">&apos;%1&apos; foi removido sua taxa atingiu o valor máximo que você configurou.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1389"/>
+        <location filename="../GUI.cpp" line="1394"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Down: %2Kb/s, Up: %3kb/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1374"/>
+        <location filename="../GUI.cpp" line="1379"/>
         <source>DL: %1 KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1375"/>
+        <location filename="../GUI.cpp" line="1380"/>
         <source>UP: %1 KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2258,7 +2258,7 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1426"/>
+        <location filename="../GUI.cpp" line="1431"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2268,7 +2268,7 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1503"/>
+        <location filename="../GUI.cpp" line="1508"/>
         <source>Options were saved successfully.</source>
         <translation type="unfinished">Opções salvas com sucesso.</translation>
     </message>
@@ -4349,7 +4349,7 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Opções salvas com sucesso.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1250"/>
+        <location filename="../options_imp.cpp" line="1253"/>
         <source>Choose scan directory</source>
         <translation>Selecione diretório para varredura</translation>
     </message>
@@ -4359,7 +4359,7 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Selecione um arquivo ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1265"/>
+        <location filename="../options_imp.cpp" line="1268"/>
         <source>Choose a save directory</source>
         <translation>Selecione um diretório de salvamento</translation>
     </message>
@@ -4375,12 +4375,12 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Não posso abrir %1 no modo de leitura.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1257"/>
+        <location filename="../options_imp.cpp" line="1260"/>
         <source>Choose an ip filter file</source>
         <translation>Escolha um arquivo de filtro de ip</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1257"/>
+        <location filename="../options_imp.cpp" line="1260"/>
         <source>Filters</source>
         <translation>Filtros</translation>
     </message>

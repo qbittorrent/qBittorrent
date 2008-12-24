@@ -1502,7 +1502,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete">kb/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1144"/>
+        <location filename="../GUI.cpp" line="1149"/>
         <source>Finished</source>
         <translation>Завършен</translation>
     </message>
@@ -1629,7 +1629,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1409"/>
+        <location filename="../GUI.cpp" line="1414"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1969,7 +1969,7 @@ Please close the other one first.</source>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1426"/>
+        <location filename="../GUI.cpp" line="1431"/>
         <source>Connection status:</source>
         <translation>Състояние на връзката:</translation>
     </message>
@@ -2044,13 +2044,13 @@ Please close the other one first.</source>
         <translation type="obsolete">qBittorrent %1 стартиран.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1412"/>
+        <location filename="../GUI.cpp" line="1417"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL Скорост %1 KB/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1415"/>
+        <location filename="../GUI.cpp" line="1420"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UL Скорост %1 KB/с</translation>
@@ -2173,12 +2173,12 @@ Please close the other one first.</source>
         <translation type="obsolete">Намерена грешка (пълен диск?), &apos;%1&apos; е в пауза.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1423"/>
+        <location filename="../GUI.cpp" line="1428"/>
         <source>Connection Status:</source>
         <translation>Състояние на връзката:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1423"/>
+        <location filename="../GUI.cpp" line="1428"/>
         <source>Online</source>
         <translation>Свързан</translation>
     </message>
@@ -2237,23 +2237,23 @@ Please close the other one first.</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="936"/>
+        <location filename="../GUI.cpp" line="939"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent е свързан с порт: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1061"/>
+        <location filename="../GUI.cpp" line="1064"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT поддръжка [ВКЛ], порт: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1067"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>DHT support [OFF]</source>
         <translation>DHT поддръжка [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1070"/>
+        <location filename="../GUI.cpp" line="1073"/>
         <source>PeX support [ON]</source>
         <translation>PeX поддръжка [ВКЛ]</translation>
     </message>
@@ -2270,7 +2270,7 @@ Are you sure you want to quit qBittorrent?</source>
 Сигурни ли сте че искате да напуснете qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1133"/>
+        <location filename="../GUI.cpp" line="1138"/>
         <source>Downloads</source>
         <translation>Сваляне</translation>
     </message>
@@ -2280,22 +2280,22 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Сигурни ли сте че искате да изтриете избраните файлове от списъка на завършените сваляния?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="958"/>
+        <location filename="../GUI.cpp" line="961"/>
         <source>UPnP support [ON]</source>
         <translation>UPnP поддръжка [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1092"/>
         <source>Encryption support [ON]</source>
         <translation>Поддръжка кодиране [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1094"/>
+        <location filename="../GUI.cpp" line="1097"/>
         <source>Encryption support [FORCED]</source>
         <translation>Поддръжка кодиране [ФОРСИРАНА]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1099"/>
+        <location filename="../GUI.cpp" line="1102"/>
         <source>Encryption support [OFF]</source>
         <translation>Поддръжка кодиране [ИЗКЛ]</translation>
     </message>
@@ -2356,27 +2356,27 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="961"/>
+        <location filename="../GUI.cpp" line="964"/>
         <source>UPnP support [OFF]</source>
         <translation>UPnP поддръжка [ИЗКЛ] </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="966"/>
+        <location filename="../GUI.cpp" line="969"/>
         <source>NAT-PMP support [ON]</source>
         <translation>NAT-PMP поддръжка [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="969"/>
+        <location filename="../GUI.cpp" line="972"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>NAT-PMP поддръжка [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1077"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Търсене на локални връзки [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1077"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Търсене на локални връзки [ИЗКЛ]</translation>
     </message>
@@ -2387,18 +2387,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">&apos;%1&apos; бе премахнат защото съотношението му надвишава определеното.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1389"/>
+        <location filename="../GUI.cpp" line="1394"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1374"/>
+        <location filename="../GUI.cpp" line="1379"/>
         <source>DL: %1 KiB/s</source>
         <translation>DL: %1 KB/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1375"/>
+        <location filename="../GUI.cpp" line="1380"/>
         <source>UP: %1 KiB/s</source>
         <translation>UP: %1 KB/с</translation>
     </message>
@@ -2413,7 +2413,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>DHT: %1 възли</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1426"/>
+        <location filename="../GUI.cpp" line="1431"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Няма директни връзки. Това може да е от проблеми в мрежовата настройка.</translation>
     </message>
@@ -2423,7 +2423,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Качени</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1503"/>
+        <location filename="../GUI.cpp" line="1508"/>
         <source>Options were saved successfully.</source>
         <translation>Опциите бяха съхранени успешно.</translation>
     </message>
@@ -4435,7 +4435,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Опциите бяха съхранени успешно.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1250"/>
+        <location filename="../options_imp.cpp" line="1253"/>
         <source>Choose scan directory</source>
         <translation>Изберете директория за сканиране</translation>
     </message>
@@ -4445,7 +4445,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Изберете ipfilter.dat файл </translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1265"/>
+        <location filename="../options_imp.cpp" line="1268"/>
         <source>Choose a save directory</source>
         <translation>Изберете директория за съхранение</translation>
     </message>
@@ -4461,12 +4461,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Не мога да отворя %1 в режим четене.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1257"/>
+        <location filename="../options_imp.cpp" line="1260"/>
         <source>Choose an ip filter file</source>
         <translation>Избери файл за ip филтър</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1257"/>
+        <location filename="../options_imp.cpp" line="1260"/>
         <source>Filters</source>
         <translation>Филтри</translation>
     </message>

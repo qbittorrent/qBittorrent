@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="sk">
+<!DOCTYPE TS><TS version="1.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -741,23 +741,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="277"/>
         <source>Disable system tray icon</source>
-        <translation>Vypnúť ikonu v oznamovacej oblasti (systray)</translation>
+        <translation>Vypnúť ikonu v oznamovacej oblasti</translation>
     </message>
     <message>
         <location filename="../options.ui" line="284"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Zatvoriť do oznamovacej oblasti (systray)</translation>
+        <translation>Zatvoriť do oznamovacej oblasti</translation>
     </message>
     <message>
         <location filename="../options.ui" line="291"/>
         <source>Minimize to tray</source>
-        <translation>Minimalizovať do oznamovacej oblasti (systray)</translation>
+        <translation>Minimalizovať do oznamovacej oblasti</translation>
     </message>
     <message>
         <location filename="../options.ui" line="308"/>
         <source>Show notification balloons in tray</source>
-        <translation>Zobrazovať bublinové upozornenia v oblasti upozornení (systray)</translation>
+        <translation>Zobrazovať bublinové upozornenia v oblasti upozornení</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -898,7 +898,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Zapnúť sieť DHT (decentralizovaná)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1106"/>
+        <location filename="" line="0"/>
         <source>Enable Peer eXchange (PeX)</source>
         <translation type="obsolete">Zapnúť Peer eXchange (PeX)</translation>
     </message>
@@ -1082,6 +1082,11 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="1468"/>
         <source>Bittorrent proxy settings</source>
         <translation>Nastavenie Bittorrent proxy</translation>
+    </message>
+    <message>
+        <location filename="" line="0"/>
+        <source>Maximum active uploads:</source>
+        <translation type="obsolete">Max. aktívnych nahrávaní:</translation>
     </message>
 </context>
 <context>
@@ -1318,7 +1323,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Zdá sa, že stav torrentu „%1” sa zmenil zo „seedovanie” na „sťahovanie”. Chcete ho presunúť naspäť do zoznamu sťahovaných? (inak bude jednoducho zmazaný)</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="47"/>
+        <location filename="" line="0"/>
         <source>Priority</source>
         <translation type="obsolete">Priorita</translation>
     </message>
@@ -1371,7 +1376,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">spusten</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1144"/>
+        <location filename="../GUI.cpp" line="1149"/>
         <source>Finished</source>
         <translation>Dokončené</translation>
     </message>
@@ -1476,7 +1481,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1409"/>
+        <location filename="../GUI.cpp" line="1414"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1813,7 +1818,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1426"/>
+        <location filename="../GUI.cpp" line="1431"/>
         <source>Connection status:</source>
         <translation>Stav spojenia:</translation>
     </message>
@@ -1888,13 +1893,13 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">qBittorrent %1 spustený.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1412"/>
+        <location filename="../GUI.cpp" line="1417"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Rýchlosť sťahovania: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1415"/>
+        <location filename="../GUI.cpp" line="1420"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Rýchlosť nahrávania: %1 KiB/s</translation>
@@ -2017,12 +2022,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">Vyskytla sa chyba (plný disk?), „%1“ pozastavené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1423"/>
+        <location filename="../GUI.cpp" line="1428"/>
         <source>Connection Status:</source>
         <translation>Stav spojenia:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1423"/>
+        <location filename="../GUI.cpp" line="1428"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
@@ -2081,7 +2086,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1133"/>
+        <location filename="../GUI.cpp" line="1138"/>
         <source>Downloads</source>
         <translation>Sťahovania</translation>
     </message>
@@ -2098,33 +2103,33 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Ste si istý, že chcete zmazať vybrané položky zo zoznamu dokončených?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="936"/>
+        <location filename="../GUI.cpp" line="939"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent sa viaže (bind) na port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1061"/>
+        <location filename="../GUI.cpp" line="1064"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Podpora DHT [zapnutá], port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1067"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>DHT support [OFF]</source>
         <translation>Podpora DHT [vypnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="958"/>
+        <location filename="../GUI.cpp" line="961"/>
         <source>UPnP support [ON]</source>
         <translation>Podpora UPnP [zapnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1070"/>
+        <location filename="../GUI.cpp" line="1073"/>
         <source>PeX support [ON]</source>
         <translation>Podpora PeX [zapnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1054"/>
+        <location filename="" line="0"/>
         <source>PeX support [OFF]</source>
         <translation type="obsolete">Podpora PeX [vypnutá]</translation>
     </message>
@@ -2134,17 +2139,17 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Buďte opatrní, zdieľanie materiálu chráneného autorskými právami bez povolenia je protizákonné.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1092"/>
         <source>Encryption support [ON]</source>
         <translation>Podpora šifrovania [zapnuté]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1094"/>
+        <location filename="../GUI.cpp" line="1097"/>
         <source>Encryption support [FORCED]</source>
         <translation>Podpora šifrovania [vynútené]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1099"/>
+        <location filename="../GUI.cpp" line="1102"/>
         <source>Encryption support [OFF]</source>
         <translation>Podpora šifrovania [vypnuté]</translation>
     </message>
@@ -2232,27 +2237,27 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="961"/>
+        <location filename="../GUI.cpp" line="964"/>
         <source>UPnP support [OFF]</source>
         <translation>Podpora UPnP [vypnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="966"/>
+        <location filename="../GUI.cpp" line="969"/>
         <source>NAT-PMP support [ON]</source>
         <translation>Podpora NAT-PMP [zapnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="969"/>
+        <location filename="../GUI.cpp" line="972"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>Podpora NAT-PMP [vypnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1074"/>
+        <location filename="../GUI.cpp" line="1077"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery [zapnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1077"/>
+        <location filename="../GUI.cpp" line="1080"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Podpora Local Peer Discovery support [vypnutá]</translation>
     </message>
@@ -2263,18 +2268,18 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">„%1“ bol odstránený, pretože jeho pomer dosiahol maximálnu hodonotu, ktorú ste nastavili.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1389"/>
+        <location filename="../GUI.cpp" line="1394"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1374"/>
+        <location filename="../GUI.cpp" line="1379"/>
         <source>DL: %1 KiB/s</source>
         <translation>Sťah: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1375"/>
+        <location filename="../GUI.cpp" line="1380"/>
         <source>UP: %1 KiB/s</source>
         <translation>Nahr: %1 KiB/s</translation>
     </message>
@@ -2289,7 +2294,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>DHT: %1 uzlov</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1426"/>
+        <location filename="../GUI.cpp" line="1431"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Žiadne priame spojenia. To môže znamenať problém s pripojením.</translation>
     </message>
@@ -2299,7 +2304,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Nahrávania</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1503"/>
+        <location filename="../GUI.cpp" line="1508"/>
         <source>Options were saved successfully.</source>
         <translation>Nastavenia boli úspešne uložené.</translation>
     </message>
@@ -3685,7 +3690,7 @@ Záznam zmien:</translation>
     <message>
         <location filename="../createtorrent_imp.cpp" line="188"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvorený torrent je neplatný. Nebude pridaný do zoznamu sťahovaných.</translation>
     </message>
 </context>
 <context>
@@ -3876,7 +3881,7 @@ Záznam zmien:</translation>
     <message>
         <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Vynútiť opätovnú kontrolu</translation>
     </message>
 </context>
 <context>
@@ -4355,7 +4360,7 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Nastavenia úspešne uložené.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1250"/>
+        <location filename="../options_imp.cpp" line="1253"/>
         <source>Choose scan directory</source>
         <translation>Zvoliť adresár pre prezeranie</translation>
     </message>
@@ -4365,7 +4370,7 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Vyberte súbor ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1265"/>
+        <location filename="../options_imp.cpp" line="1268"/>
         <source>Choose a save directory</source>
         <translation>Vyberte adresár, kde sa bude ukladať</translation>
     </message>
@@ -4381,12 +4386,12 @@ Tieto moduly však boli vypnuté.</translation>
         <translation type="obsolete">Nebolo možné otvoriť %1 v režime pre čítanie.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1257"/>
+        <location filename="../options_imp.cpp" line="1260"/>
         <source>Choose an ip filter file</source>
         <translation>Zvoliť súbor IP filtra</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1257"/>
+        <location filename="../options_imp.cpp" line="1260"/>
         <source>Filters</source>
         <translation>Filtre</translation>
     </message>
@@ -4892,22 +4897,22 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../properties.ui" line="204"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="687"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Zvoľte cestu pre uloženie</translation>
+        <translation>Zvoľte cestu pre uloženie</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Chyba pri vytváraní cesty pre uloženie</translation>
+        <translation>Chyba pri vytváraní cesty pre uloženie</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Nemohol som vytvoriť cestu pre uloženie</translation>
+        <translation>Nebolo možné vytvoriť cestu pre uloženie</translation>
     </message>
 </context>
 <context>
@@ -5061,24 +5066,24 @@ Tieto moduly však boli vypnuté.</translation>
         <translation>Kúpiť</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="132"/>
+        <location filename="" line="0"/>
         <source>Priority</source>
         <translation type="obsolete">Priorita</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="140"/>
+        <location filename="" line="0"/>
         <source>Increase priority</source>
         <translation type="obsolete">Zvýšiť prioritu</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="148"/>
+        <location filename="" line="0"/>
         <source>Decrease priority</source>
         <translation type="obsolete">Znížiť prioritu</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="129"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Vynútiť opätovnú kontrolu</translation>
     </message>
 </context>
 <context>
@@ -5157,7 +5162,7 @@ Tieto moduly však boli vypnuté.</translation>
         <translation>Nemohol som dekódovať torrent súbor:</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="172"/>
+        <location filename="" line="0"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="obsolete">Tento súbor je buď poškodený alebo nie je torrent.</translation>
     </message>
