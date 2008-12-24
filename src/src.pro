@@ -109,7 +109,6 @@ win32:LIBS += -ltorrent \
     -lccext2 \
     -lccgnu2
 
-# -lMagick++ -lWand -lMagick
 RESOURCES = icons.qrc \
     lang.qrc \
     search.qrc \
