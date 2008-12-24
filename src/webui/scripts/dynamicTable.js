@@ -32,13 +32,11 @@
 **************************************************************/
 
 var dynamicTable = new Class	({
+
+	initialize: function(){
+	},
 	
-	initialize: function(table, options){
-		this.setOptions({
-			overCls: false,
-			selectCls: false,
-			altCls: false
-		}, options);
+	setup: function(table){
 		this.table = $(table);
 		this.rows = new Object();
 		this.cur = new Array();
@@ -47,16 +45,13 @@ var dynamicTable = new Class	({
 	altRow: function()
 	{
 		var trs = this.table.getElements('tr');
-		if(this.options.altCls)
-		{
 			trs.each(function(el,i){
 				if(i % 2){
-					el.addClass(this.options.altCls);
+					el.addClass('alt');
 				}else{
-					el.removeClass(this.options.altCls);
+					el.removeClass('alt');
 				}
 			}.bind(this));
-		}
 	},
 
 	insertRow: function(id, row){
@@ -73,14 +68,12 @@ var dynamicTable = new Class	({
 			td.injectInside(tr);
 		};
 
-		if(this.options.overCls){
 			tr.addEvent('mouseover', function(e){
-				tr.addClass(this.options.overCls);
+				tr.addClass('over');
 			}.bind(this));
 			tr.addEvent('mouseout', function(e){
-				tr.removeClass(this.options.overCls);
+				tr.removeClass('over');
 			}.bind(this));
-		}
 		tr.addEvent('click', function(e){
 			e.stop();
 			if(e.control) {
@@ -91,14 +84,14 @@ var dynamicTable = new Class	({
 					// Remove selected style
 					temptr = this.rows[id];
 			    if(temptr){
-				    temptr.removeClass(this.options.selectCls);
+				    temptr.removeClass('selected');
 			    }
 				} else {
 					this.cur[this.cur.length] = id;
 					// Add selected style
 					temptr = this.rows[id];
 					if(temptr){
-						temptr.addClass(this.options.selectCls);
+						temptr.addClass('selected');
 					}
 				}
 			} else {
@@ -119,7 +112,7 @@ var dynamicTable = new Class	({
 						// Add selected style
 						temptr = this.rows[curID];
 						if(temptr){
-							temptr.addClass(this.options.selectCls);
+							temptr.addClass('selected');
 						}
 					}
 				} else {
@@ -128,14 +121,14 @@ var dynamicTable = new Class	({
 					for(i=0; i<this.cur.length; i++) {
 						var temptr = this.rows[this.cur[i]];
 						if(temptr){
-							temptr.removeClass(this.options.selectCls);
+							temptr.removeClass('selected');
 						}
 					}
 					this.cur.empty();
 					// Add selected style to new one
 					temptr = this.rows[id];
 					if(temptr){
-						temptr.addClass(this.options.selectCls);
+						temptr.addClass('selected');
 					}
 					this.cur[0] = id;
 				}
@@ -153,8 +146,8 @@ var dynamicTable = new Class	({
 			this.cur[this.cur.length] = id;
 			temptr = this.rows[id];
 			if(temptr){
-				if(!temptr.hasClass(this.options.selectCls)) {
-					temptr.addClass(this.options.selectCls);
+				if(!temptr.hasClass('selected')) {
+					temptr.addClass('selected');
 				}
 			}
 		}
@@ -204,7 +197,7 @@ var dynamicTable = new Class	({
 		return ids;
 	}
 });
-dynamicTable.implement(new Options);
-dynamicTable.implement(new Events);
+//dynamicTable.implement(new Options);
+//dynamicTable.implement(new Events);
 
 /*************************************************************/

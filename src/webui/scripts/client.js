@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+myTable = new dynamicTable();
+myTableUP = new dynamicTable();
+
 window.addEvent('domready', function(){
   MochaUI.Desktop = new MochaUI.Desktop();
   MochaUI.Desktop.desktop.setStyles({
@@ -34,9 +37,8 @@ window.addEvent('domready', function(){
       width: '100%',
       height: '100%'
   });
-  // Download list
-  myTable = new dynamicTable('myTable', {overCls: 'over', selectCls: 'selected', altCls: 'alt'});
-  myTableUP = new dynamicTable('myTableUP', {overCls: 'over', selectCls: 'selected', altCls: 'alt'});
+  myTable.setup('myTable');
+  myTableUP.setup('myTableUP');
   var r=0;
   var waiting=false;
   var stateToImg = function(state){
