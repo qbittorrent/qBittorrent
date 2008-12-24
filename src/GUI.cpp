@@ -904,10 +904,13 @@ void GUI::configureSession(bool deleteOptions) {
     setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   }
   displaySpeedInTitle = new_displaySpeedInTitle;
-  if(options->isToolbarDisplayed()) {
-    toolBar->setVisible(true);
-  } else {
-    toolBar->setVisible(false);
+  if(options->isToolbarDisplayed() != toolBar->isVisible()) {
+      if(options->isToolbarDisplayed()) {
+        toolBar->setVisible(true);
+        toolBar->layout()->setSpacing(7);
+      } else {
+        toolBar->setVisible(false);
+    }
   }
   unsigned int new_refreshInterval = options->getRefreshInterval();
   if(refreshInterval != new_refreshInterval) {
@@ -1502,38 +1505,33 @@ void GUI::on_actionOptions_triggered() {
 void GUI::OptionsSaved(bool deleteOptions) {
   BTSession->addConsoleMessage(tr("Options were saved successfully."));
   bool newSystrayIntegration = options->systrayIntegration();
-  if(newSystrayIntegration && !systrayIntegration) {
-    // create the trayicon
-    createTrayIcon();
+  if(newSystrayIntegration != systrayIntegration) {
+    if(newSystrayIntegration) {
+      // create the trayicon
+      createTrayIcon();
+    } else {
+      // Destroy trayicon
+      delete myTrayIcon;
+      delete myTrayIconMenu;
+    }
+    systrayIntegration = newSystrayIntegration;
   }
-  if(!newSystrayIntegration && systrayIntegration) {
-    // Destroy trayicon
-    delete myTrayIcon;
-    delete myTrayIconMenu;
-  }
-  systrayIntegration = newSystrayIntegration;
   // Update Web UI
-  if (options->isWebUiEnabled())
-  {
+  if (options->isWebUiEnabled()) {
     quint16 port = options->webUiPort();
     QString username = options->webUiUsername();
     QString password = options->webUiPassword();
     initWebUi(username, password, port);
-  }
-  else if(httpServer)
-  {
+  } else if(httpServer) {
     delete httpServer;
   }
   // Update session
   configureSession(deleteOptions);
 }
 
-bool GUI::initWebUi(QString username, QString password, int port)
-{
+bool GUI::initWebUi(QString username, QString password, int port) {
   if(httpServer)
-  {
     httpServer->close();
-  }
   else
     httpServer = new HttpServer(BTSession, 3000, this);
   httpServer->setAuthorization(username, password);
