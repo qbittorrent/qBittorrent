@@ -35,10 +35,10 @@ window.addEvent('domready', function(){
       height: '100%'
   });
   // Download list
-	myTable = new dynamicTable('myTable', {overCls: 'over', selectCls: 'selected', altCls: 'alt'});
+  myTable = new dynamicTable('myTable', {overCls: 'over', selectCls: 'selected', altCls: 'alt'});
   myTableUP = new dynamicTable('myTableUP', {overCls: 'over', selectCls: 'selected', altCls: 'alt'});
-	var r=0;
-	var waiting=false;
+  var r=0;
+  var waiting=false;
   var stateToImg = function(state){
     switch (state)
     {
@@ -130,7 +130,7 @@ window.addEvent('domready', function(){
                 }
               }
             });
-						// Remove deleted torrents
+            // Remove deleted torrents
             unfinished_hashes.each(function(hash){
               if(!events_hashes.contains(hash)) {
                 myTable.removeRow(hash);
