@@ -1119,8 +1119,10 @@ void GUI::configureSession(bool deleteOptions) {
     displayRSSTab(false);
   }
   // Clean up
-  if(deleteOptions) {
-    delete options;
+  if(deleteOptions && options) {
+    qDebug("Deleting options");
+    //delete options;
+    options->deleteLater();
   }
   qDebug("Session configured");
 }

@@ -64,7 +64,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers;
     // GUI related
     QTabWidget *tabs;
-    options_imp *options;
+    QPointer<options_imp> options;
     QSystemTrayIcon *myTrayIcon;
     QPointer<QTimer> systrayCreator;
     QMenu *myTrayIconMenu;
