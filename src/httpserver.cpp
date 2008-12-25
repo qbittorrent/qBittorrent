@@ -25,11 +25,11 @@
 #include "bittorrent.h"
 #include <QTimer>
 
-HttpServer::HttpServer(bittorrent *BTSession, int msec, QObject* parent) : QTcpServer(parent)
+HttpServer::HttpServer(bittorrent *_BTSession, int msec, QObject* parent) : QTcpServer(parent)
 {
 	base64 = QByteArray(":").toBase64();
 	connect(this, SIGNAL(newConnection()), this, SLOT(newHttpConnection()));
-	HttpServer::BTSession = BTSession;
+        BTSession = _BTSession;
 	manager = new EventManager(this, BTSession);
 	//add torrents
 	QStringList list = BTSession->getUnfinishedTorrents();
@@ -37,11 +37,11 @@ HttpServer::HttpServer(bittorrent *BTSession, int msec, QObject* parent) : QTcpS
 		QTorrentHandle h = BTSession->getTorrentHandle(hash);
 		if(h.is_valid()) manager->addedTorrent(h);
 	}
-  list = BTSession->getFinishedTorrents();
+        list = BTSession->getFinishedTorrents();
 	foreach(QString hash, list) {   
-    QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid()) manager->addedTorrent(h);
-  }
+            QTorrentHandle h = BTSession->getTorrentHandle(hash);
+            if(h.is_valid()) manager->addedTorrent(h);
+          }
 	//connect BTSession to manager
 	connect(BTSession, SIGNAL(addedTorrent(QTorrentHandle&)), manager, SLOT(addedTorrent(QTorrentHandle&)));
 	connect(BTSession, SIGNAL(deletedTorrent(QString)), manager, SLOT(deletedTorrent(QString)));
@@ -99,7 +99,7 @@ bool HttpServer::isAuthorized(QByteArray auth) const
 	return (auth == base64);
 }
 
-EventManager *HttpServer::eventManager() const
+EventManager* HttpServer::eventManager() const
 {
 	return manager;
 }

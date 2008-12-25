@@ -24,6 +24,73 @@
 
 #include <QVariant>
 
-QString toJson(QVariant v);
+namespace json {
+
+    QString toJson(QVariant v) {
+        if (v.isNull())
+            return "null";
+        switch(v.type())
+        {
+                case QVariant::Bool:
+                case QVariant::Double:
+                case QVariant::Int:
+                case QVariant::LongLong:
+                case QVariant::UInt:
+                case QVariant::ULongLong:
+            return v.value<QString>();
+                case QVariant::String:
+            {
+                QString s = v.value<QString>();
+                QString result = "\"";
+                for(int i=0; i<s.size(); i++)
+                {
+                    QChar ch = s[i];
+                    switch(ch.toAscii())
+                    {
+                                        case '\b':
+                        result += "\\b";
+                        break;
+                                        case '\f':
+                        result += "\\f";
+                        break;
+                                        case '\n':
+                        result += "\\n";
+                        break;
+                                        case '\r':
+                        result += "\\r";
+                        break;
+                                        case '\t':
+                        result += "\\t";
+                        break;
+                                        case '\"':
+                                        case '\'':
+                                        case '\\':
+                                        case '&':
+                        result += '\\';
+                                        case '\0':
+                                        default:
+                        result += ch;
+                    }
+                }
+                result += "\"";
+                return result;
+            }
+            default:
+                return "undefined";
+        }
+    }
+
+   QString toJson(QList<QVariantMap> v) {
+        QStringList res;
+        foreach(QVariantMap m, v) {
+            QStringList vlist;
+            foreach(QString key, m.keys()) {
+                vlist << toJson(key)+":"+toJson(m[key]);
+            }
+            res << "{"+vlist.join(",")+"}";
+        }
+        return "["+res.join(",")+"]";
+    }
+}
 
 #endif

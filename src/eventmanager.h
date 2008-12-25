@@ -40,7 +40,7 @@ class EventManager : public QObject
 
 	public:
 		EventManager(QObject *parent, bittorrent* BTSession);
-		QVariant getEventList() const;
+                QList<QVariantMap> getEventList() const;
 
 	public slots:
 		void addedTorrent(QTorrentHandle& h);

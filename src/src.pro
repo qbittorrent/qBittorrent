@@ -224,7 +224,6 @@ SOURCES += GUI.cpp \
     httpconnection.cpp \
     httprequestparser.cpp \
     httpresponsegenerator.cpp \
-    json.cpp \
     eventmanager.cpp \
     SearchTab.cpp \
     ico.cpp

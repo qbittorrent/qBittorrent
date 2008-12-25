@@ -160,9 +160,8 @@ void HttpConnection::respondNotFound()
 
 void HttpConnection::respondJson()
 {
-	EventManager* manager =  parent->eventManager();
-	QVariant data = manager->getEventList();
-	QString string = toJson(data);
+        EventManager* manager =  parent->eventManager();
+        QString string = json::toJson(manager->getEventList());
 	generator.setStatusLine(200, "OK");
 	generator.setContentTypeByExt("js");
 	generator.setMessage(string);

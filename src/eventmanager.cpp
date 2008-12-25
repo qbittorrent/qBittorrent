@@ -21,7 +21,6 @@
 
 #include "eventmanager.h"
 #include "bittorrent.h"
-#include "json.h"
 #include <QDebug>
 
 EventManager::EventManager(QObject *parent, bittorrent *BTSession)
@@ -29,12 +28,8 @@ EventManager::EventManager(QObject *parent, bittorrent *BTSession)
 {
 }
 
-QVariant EventManager::getEventList() const {
-	QVariantList list;
-	foreach(QVariantMap event, event_list.values()) {
-		list << QVariant(event);
-	}
-	return QVariant(list);
+QList<QVariantMap> EventManager::getEventList() const {
+        return event_list.values();
 }
 
 void EventManager::addedTorrent(QTorrentHandle& h)
