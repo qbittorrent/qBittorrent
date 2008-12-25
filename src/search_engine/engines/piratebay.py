@@ -1,4 +1,4 @@
-#VERSION: 1.01
+#VERSION: 1.04
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 
 # Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@ class piratebay(object):
 			if params['href'].startswith('/browse'):
 				self.current_item = {}
 				self.td_counter = 0
-                        elif params['href'].startswith('/tor'):
+			elif params['href'].startswith('/tor'):
 				self.code = params['href'].split('/')[2]
 			elif params['href'].startswith('http://torrents.thepiratebay.org/%s'%self.code):
 				self.current_item['link']=params['href'].strip()
@@ -96,7 +96,7 @@ class piratebay(object):
 		while True and i<11:
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
-			dat = urllib.urlopen(self.url+'/search/%s/%u/0/0' % (what, i)).read()
+			dat = urllib.urlopen(self.url+'/search/%s/%u/7' % (what, i)).read()
 			parser.feed(dat)
 			parser.close()
 			if len(results) <= 0:
