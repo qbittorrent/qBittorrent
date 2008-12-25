@@ -1179,6 +1179,11 @@ folder:</source>
         <source>Bittorrent proxy settings</source>
         <translation>Bittorrent代理设置</translation>
     </message>
+    <message>
+        <location filename="../options.ui" line="2007"/>
+        <source>Maximum active uploads:</source>
+        <translation type="obsolete">使激活的上传最大化:</translation>
+    </message>
 </context>
 <context>
     <name>DownloadingTorrents</name>
@@ -3987,7 +3992,7 @@ enabled)</source>
     <message>
         <location filename="../createtorrent_imp.cpp" line="188"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>创建的torrent文件无效.它将不会被添加到下载列表中.</translation>
     </message>
 </context>
 <context>
@@ -4178,7 +4183,7 @@ enabled)</source>
     <message>
         <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>强制再次核对</translation>
     </message>
 </context>
 <context>
@@ -5226,22 +5231,22 @@ torrent.</source>
     <message>
         <location filename="../properties.ui" line="204"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="687"/>
         <source>Choose save path</source>
-        <translation type="unfinished">选择保存路径</translation>
+        <translation>选择保存路径</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">创建保存路径时出现错误</translation>
+        <translation>创建保存路径时出现错误</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">无法创建保存路径</translation>
+        <translation>无法创建保存路径</translation>
     </message>
 </context>
 <context>
@@ -5415,7 +5420,7 @@ network.</source>
     <message>
         <location filename="../seeding.ui" line="129"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>强制再次核对</translation>
     </message>
 </context>
 <context>
