@@ -1,5 +1,5 @@
-#VERSION: 1.01
-#AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
+#VERSION: 1.1
+#AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -26,78 +26,35 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from novaprinter import prettyPrinter
-import sgmllib
+import re
 import urllib
 
 class isohunt(object):
 	url = 'http://isohunt.com'
 	name = 'isoHunt'
 
-	class SimpleSGMLParser(sgmllib.SGMLParser):
-		def __init__(self, results, url, *args):
-			sgmllib.SGMLParser.__init__(self)
-			self.td_counter = None
-			self.current_item = None
-			self.results = results
-			self.url = url
-
-		def start_tr(self, attr):
-			params = dict(attr)
-			if 'onclick' in params:
-				Durl='http://isohunt.com/download'
-				self.current_item = {}
-				self.td_counter = 0
-				try:
-					self.current_item['link'] = '%s/%s'%(Durl, params['onclick'].split('/')[2])
-				except IndexError:
-					self.current_item['link'] = None
-
-		def handle_data(self, data):
-			if self.td_counter == 3:
-				if not self.current_item.has_key('name'):
-					self.current_item['name'] = ''
-				self.current_item['name']+= data.strip()
-			if self.td_counter == 4:
-				if not self.current_item.has_key('size'):
-					self.current_item['size'] = ''
-				self.current_item['size']+= data.strip()
-			if self.td_counter == 5:
-				if not self.current_item.has_key('seeds'):
-					self.current_item['seeds'] = ''
-				self.current_item['seeds']+= data.strip()
-			if self.td_counter == 6:
-				if not self.current_item.has_key('leech'):
-					self.current_item['leech'] = ''
-				self.current_item['leech']+= data.strip()
-
-		def start_td(self,attr):
-			if isinstance(self.td_counter,int):
-				self.td_counter += 1
-				if self.td_counter > 7:
-					self.td_counter = None
-					# add item to results
-					if self.current_item:
-						self.current_item['engine_url'] = self.url
-						if not self.current_item.has_key('seeds') or not self.current_item['seeds'].isdigit():
-							self.current_item['seeds'] = 0
-						if not self.current_item.has_key('leech') or not self.current_item['leech'].isdigit():
-							self.current_item['leech'] = 0
-						if self.current_item['link'] is not None:
-							prettyPrinter(self.current_item)
-							self.results.append('a')
-
-	def __init__(self):
-		self.results = []
-		self.parser = self.SimpleSGMLParser(self.results, self.url)
-
 	def search(self, what):
 		i = 1
 		while True and i<11:
-			results = []
-			parser = self.SimpleSGMLParser(results, self.url)
-			dat = urllib.urlopen(self.url+'/torrents.php?ihq=%s&ihp=%s'%(what,i)).read().decode('utf-8', 'replace')
-			parser.feed(dat)
-			parser.close()
-			if len(results) <= 0:
+			res = 0
+			dat = urllib.urlopen(self.url+'/torrents.php?ihq=%s&ihp=%s&ihs1=2&iho1=d'%(what,i)).read().decode('utf8', 'replace')
+			# I know it's not very readable, but the SGML parser feels in pain
+			section_re = re.compile('(?s)id=link.*?</tr><tr')
+			torrent_re = re.compile('(?s)torrent_details/(?P<link>.*?[^/]+).*?'
+			'>(?P<name>.*?)</a>.*?'
+			'>(?P<size>[\d,\.]+\s+MB)</td>.*?'
+			'>(?P<seeds>\d+)</td>.*?'
+			'>(?P<leech>\d+)</td>')
+			for match in section_re.finditer(dat):
+				txt = match.group(0)
+				m = torrent_re.search(txt)
+				if m:
+					torrent_infos = m.groupdict()
+					torrent_infos['name'] = re.sub('<.*?>', '', torrent_infos['name'])
+					torrent_infos['engine_url'] = self.url
+					torrent_infos['link'] = 'http://isohunt.com/download/'+torrent_infos['link']
+					prettyPrinter(torrent_infos)
+					res = res + 1
+			if res == 0:
 				break
-			i += 1
+			i = i + 1
