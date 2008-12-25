@@ -1,4 +1,4 @@
-#VERSION: 1.12
+#VERSION: 1.13
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 
 # Redistribution and use in source and binary forms, with or without
@@ -39,10 +39,11 @@ class btjunkie(object):
 			res = 0
 			dat = urllib.urlopen(self.url+'/search?q=%s&o=52&p=%d'%(what,i)).read().decode('utf8', 'replace')
 			# I know it's not very readable, but the SGML parser feels in pain
-			section_re = re.compile('(?s)href="http://dl.btjunkie.org/torrent/.*?<tr>')
+			section_re = re.compile('(?s)href="http://dl.btjunkie.org/torrent/.*?</tr><tr')
 			torrent_re = re.compile('(?s)href="(?P<link>.*?[^"]+).*?'
 			'class="BlckUnd">(?P<name>.*?)</a>.*?'
 			'>(?P<size>\d+MB)</font>.*?'
+			'>.*</font>.*'
 			'>(?P<seeds>\d+)</font>.*?'
 			'>(?P<leech>\d+)</font>')
 			for match in section_re.finditer(dat):
@@ -50,7 +51,7 @@ class btjunkie(object):
 				m = torrent_re.search(txt)
 				if m:
 					torrent_infos = m.groupdict()
-					torrent_infos['name'] = re.sub('</?font.*?>', '', torrent_infos['name'])
+					torrent_infos['name'] = re.sub('<.*?>', '', torrent_infos['name'])
 					torrent_infos['engine_url'] = self.url
 					#torrent_infos['link'] = self.url+torrent_infos['link']
 					prettyPrinter(torrent_infos)
