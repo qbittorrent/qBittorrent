@@ -39,48 +39,8 @@ QVariant EventManager::getEventList() const {
 
 void EventManager::addedTorrent(QTorrentHandle& h)
 {
-	QVariantMap event;
-	QString hash = h.hash();
-	event["hash"] = QVariant(hash);
-	event["name"] = QVariant(h.name());
-	event["seed"] = QVariant(h.is_seed());
-	event["size"] = QVariant((qlonglong)h.actual_size());
-	if(!h.is_seed()) {
-		event["progress"] = QVariant(h.progress());
-		event["dlspeed"] = QVariant(h.download_payload_rate());
-	}
-        event["upspeed"] = QVariant(h.upload_payload_rate());
-        if(h.is_paused()) {
-            event["state"] = QVariant("paused");
-        } else {
-            if(BTSession->isQueueingEnabled() && h.is_queued()) {
-                event["state"] = QVariant("queued");
-            } else{
-                switch(h.state())
-                {
-                        case torrent_status::finished:
-                        case torrent_status::seeding:
-                    event["state"] = QVariant("seeding");
-                    break;
-                        case torrent_status::checking_files:
-                        case torrent_status::queued_for_checking:
-                    event["state"] = QVariant("checking");
-                    break;
-                        case torrent_status::downloading:
-                        case torrent_status::downloading_metadata:
-                    if(h.download_payload_rate() > 0)
-                        event["state"] = QVariant("downloading");
-                    else
-                        event["state"] = QVariant("stalled");
-                    break;
-                        default:
-                    qDebug("No status, should not happen!!! status is %d", h.state());
-                    event["state"] = QVariant();
-                }
-            }
-        }
-        event_list[hash] = event;
-    }
+    modifiedTorrent(h);
+}
 
 void EventManager::deletedTorrent(QString hash)
 {
@@ -123,12 +83,12 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
     }
 	event["name"] = QVariant(h.name());
 	event["size"] = QVariant((qlonglong)h.actual_size());
-	if(!h.is_seed()) {
+        if(h.progress() < 1.) {
 		event["progress"] = QVariant(h.progress());
 		event["dlspeed"] = QVariant(h.download_payload_rate());
 	}
 	event["upspeed"] = QVariant(h.upload_payload_rate());
-	event["seed"] = QVariant(h.is_seed());
+        event["seed"] = QVariant(h.progress() == 1.);
 	event["hash"] = QVariant(hash);
 	event_list[hash] = event;
 }
