@@ -78,7 +78,13 @@ window.addEvent('domready', function(){
 			var request = new Request.JSON({
                                 url: url,
 				method: 'get',
-				onComplete: function(events) {
+				onFailure: function() {
+					$('error_div').set('html', 'qBittorrent client is not reachable');
+					waiting=false;
+					ajaxfn.delay(2000);
+				},
+				onSuccess: function(events) {
+					 $('error_div').set('html', '');
 					if(events){
             // Add new torrents or update them
             unfinished_hashes = myTable.getRowIds();
@@ -145,7 +151,7 @@ window.addEvent('domready', function(){
             });
 					}
 					waiting=false;
-					ajaxfn.delay(1000);
+					ajaxfn.delay(2000);
 				}
 			}).send();
 		}

@@ -44,6 +44,11 @@ h2 {
 	border-bottom: 1px solid #bbb;
 }
 
+#error_div {
+	color: #f00;
+	font-weight: bold;
+}
+
 h4 {
 	font-size: 11px;
 }
