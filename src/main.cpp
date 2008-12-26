@@ -179,13 +179,16 @@ int main(int argc, char *argv[]){
   QStringList torrentCmdLine = app->arguments();
   // Remove first argument (program name)
   torrentCmdLine.removeFirst();
-  GUI window(0, torrentCmdLine);
-  splash->finish(&window);
+  GUI *window = new GUI(0, torrentCmdLine);
+  splash->finish(window);
   delete splash;
 #ifndef Q_WS_WIN
   signal(SIGTERM, sigtermHandler);
 #endif
-  return app->exec();
+  int ret =  app->exec();
+  delete window;
+  delete app;
+  return ret;
 }
 
 
