@@ -283,7 +283,9 @@ int QTorrentHandle::num_uploads() const {
 
 bool QTorrentHandle::is_seed() const {
   Q_ASSERT(h.is_valid());
-  return h.is_seed();
+  // Affected by bug http://code.rasterbar.com/libtorrent/ticket/402
+  //return h.is_seed();
+  return (progress() == 1.);
 }
 
 bool QTorrentHandle::is_auto_managed() const {
