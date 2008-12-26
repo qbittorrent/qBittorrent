@@ -43,12 +43,23 @@
 #ifdef Q_WS_MAC
   #include <QMacStyle>
 #endif
+#ifndef Q_WS_WIN
+  #include <signal.h>
+#endif
 
 #include <stdlib.h>
 #include "GUI.h"
 #include "misc.h"
 #include "ico.h"
 
+QApplication *app;
+
+#ifndef Q_WS_WIN
+  void sigtermHandler(int) {
+    qDebug("Catching SIGTERM, exiting cleanly");
+    app->exit();
+  }
+#endif
 
 void useStyle(QApplication *app, int style){
   switch(style) {
@@ -144,9 +155,9 @@ int main(int argc, char *argv[]){
 #ifndef QT_4_4
   }
 #endif
-  QApplication app(argc, argv);
-  useStyle(&app, settings.value("Preferences/General/Style", 0).toInt());
-  app.setStyleSheet("QStatusBar::item { border-width: 0; }");
+  app = new QApplication(argc, argv);
+  useStyle(app, settings.value("Preferences/General/Style", 0).toInt());
+  app->setStyleSheet("QStatusBar::item { border-width: 0; }");
   QSplashScreen *splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/splash.png")));
   splash->show();
   // Open options file to read locale
@@ -161,17 +172,20 @@ int main(int argc, char *argv[]){
   }else{
     qDebug("%s locale unrecognized, using default (en_GB).", (const char*)locale.toUtf8());
   }
-  app.installTranslator(&translator);
-  app.setApplicationName(QString::fromUtf8("qBittorrent"));
-  app.setQuitOnLastWindowClosed(false);
+  app->installTranslator(&translator);
+  app->setApplicationName(QString::fromUtf8("qBittorrent"));
+  app->setQuitOnLastWindowClosed(false);
   // Read torrents given on command line
-  QStringList torrentCmdLine = app.arguments();
+  QStringList torrentCmdLine = app->arguments();
   // Remove first argument (program name)
   torrentCmdLine.removeFirst();
   GUI window(0, torrentCmdLine);
   splash->finish(&window);
   delete splash;
-  return app.exec();
+#ifndef Q_WS_WIN
+  signal(SIGTERM, sigtermHandler);
+#endif
+  return app->exec();
 }
 
 

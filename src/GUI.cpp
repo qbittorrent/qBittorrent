@@ -244,6 +244,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
 // Destructor
 GUI::~GUI() {
   qDebug("GUI destruction");
+  hide();
   delete dlSpeedLbl;
   delete upSpeedLbl;
   delete ratioLbl;
