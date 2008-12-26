@@ -484,7 +484,8 @@ QStringList DownloadingTorrents::getSelectedTorrents(bool only_one) const{
 
 // get information from torrent handles and
 // update download list accordingly
-void DownloadingTorrents::updateTorrent(QTorrentHandle h) {
+bool DownloadingTorrents::updateTorrent(QTorrentHandle h) {
+    bool added = false;
     try{
       QString hash = h.hash();
       int row = getRowFromHash(hash);
@@ -492,6 +493,7 @@ void DownloadingTorrents::updateTorrent(QTorrentHandle h) {
         qDebug("Info: Could not find filename in download list, adding it...");
         addTorrent(hash);
         row = getRowFromHash(hash);
+        added = true;
       }
       Q_ASSERT(row != -1);
       // Update Priority
@@ -514,11 +516,11 @@ void DownloadingTorrents::updateTorrent(QTorrentHandle h) {
               DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
               DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
               setRowColor(row, QString::fromUtf8("grey"));
-              return;
+              return added;
           }
       }
       // No need to update a paused torrent
-      if(h.is_paused()) return;
+      if(h.is_paused()) return added;
       // Parse download state
       // Setting download state
       switch(h.state()) {
@@ -567,6 +569,7 @@ void DownloadingTorrents::updateTorrent(QTorrentHandle h) {
         DLListModel->setData(DLListModel->index(row, RATIO), QVariant(misc::toQString(BTSession->getRealRatio(hash))));
       }
     }catch(invalid_handle e) {}
+    return added;
 }
 
 void DownloadingTorrents::addTorrent(QString hash) {

@@ -1365,7 +1365,11 @@ void GUI::updateLists(bool force) {
                 finishedTorrentTab->updateTorrent(h);
             } else {
                 // Update in download list
-                downloadingTorrentTab->updateTorrent(h);
+                if(downloadingTorrentTab->updateTorrent(h)) {
+                    // Torrent was added, we may need to remove it from finished tab
+                    finishedTorrentTab->deleteTorrent(h.hash());
+                    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".finished");
+                }
             }
         }
     }
