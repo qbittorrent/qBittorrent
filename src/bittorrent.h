@@ -54,8 +54,6 @@ class bittorrent : public QObject {
     QHash<QString, QHash<QString, QString> > trackersErrors;
     QStringList consoleMessages;
     QStringList peerBanMessages;
-    QStringList finishedTorrents;
-    QStringList unfinishedTorrents;
     bool preAllocateAll;
     bool addInPause;
     int maxConnecsPerTorrent;
@@ -77,6 +75,7 @@ class bittorrent : public QObject {
     bittorrent();
     ~bittorrent();
     QTorrentHandle getTorrentHandle(QString hash) const;
+    std::vector<torrent_handle> getTorrents() const;
     bool isPaused(QString hash) const;
     bool isFilePreviewPossible(QString fileHash) const;
     bool isDHTEnabled() const;
@@ -87,8 +86,6 @@ class bittorrent : public QObject {
     float getRealRatio(QString hash) const;
     session* getSession() const;
     QHash<QString, QString> getTrackersErrors(QString hash) const;
-    QStringList getFinishedTorrents() const;
-    QStringList getUnfinishedTorrents() const;
     bool isFinished(QString hash) const;
     bool has_filtered_files(QString hash) const;
     unsigned int getFinishedPausedTorrentsNb() const;
@@ -152,8 +149,6 @@ class bittorrent : public QObject {
     void loadFilesPriorities(QTorrentHandle& h);
     void setDownloadLimit(QString hash, long val);
     void setUploadLimit(QString hash, long val);
-    void setUnfinishedTorrent(QString hash);
-    void setFinishedTorrent(QString hash);
     void enableUPnP(bool b);
     void enableNATPMP(bool b);
     void enableLSD(bool b);
@@ -182,8 +177,6 @@ class bittorrent : public QObject {
     void updateFileSize(QString hash);
     void downloadFromUrlFailure(QString url, QString reason);
     void torrentFinishedChecking(QString hash);
-    void updateFinishedTorrentNumber();
-    void updateUnfinishedTorrentNumber();
     void forceUnfinishedListUpdate();
     void forceFinishedListUpdate();
 };

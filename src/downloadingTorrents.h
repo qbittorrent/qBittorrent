@@ -58,7 +58,6 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
   signals:
     void unfinishedTorrentsNumberChanged(unsigned int);
     void torrentDoubleClicked(QString hash, bool finished);
-    void torrentFinished(QString hash);
 
   protected slots:
     void on_actionSet_download_limit_triggered();
@@ -66,13 +65,11 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void on_actionSet_upload_limit_triggered();
     void displayDLListMenu(const QPoint& pos);
     void displayDLHoSMenu(const QPoint&);
-    void addTorrent(QString hash);
     void sortDownloadList(int index=-1, Qt::SortOrder startSortOrder=Qt::AscendingOrder);
     void toggleDownloadListSortOrder(int index);
     void sortDownloadListFloat(int index, Qt::SortOrder sortOrder);
     void sortDownloadListString(int index, Qt::SortOrder sortOrder);
     void saveColWidthDLList() const;
-    void torrentAdded(QTorrentHandle& h);
     void setRowColor(int row, QColor color);
     void showProperties(const QModelIndex &index);
     void hideOrShowColumnName();
@@ -87,7 +84,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void forceRecheck();
 
   public slots:
-    void updateDlList();
+    void updateTorrent(QTorrentHandle h);
     void pauseTorrent(QString hash);
     void resumeTorrent(QString hash);
     void deleteTorrent(QString hash);
@@ -97,6 +94,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void hidePriorityColumn(bool hide);
     void sortProgressColumn(QString hash);
     void loadLastSortedColumn();
+    void addTorrent(QString hash);
 
 };
 

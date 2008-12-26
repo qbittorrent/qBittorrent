@@ -99,9 +99,6 @@ void FinishedTorrents::notifyTorrentDoubleClicked(const QModelIndex& index) {
 }
 
 void FinishedTorrents::addTorrent(QString hash){
-  if(!BTSession->isFinished(hash)){
-    BTSession->setFinishedTorrent(hash);
-  }
   int row = getRowFromHash(hash);
   if(row != -1) return;
   row = finishedListModel->rowCount();
@@ -124,13 +121,6 @@ void FinishedTorrents::addTorrent(QString hash){
   // Update the number of finished torrents
   ++nbFinished;
   emit finishedTorrentsNumberChanged(nbFinished);
-}
-
-void FinishedTorrents::torrentAdded(QTorrentHandle& h) {
-  QString hash = h.hash();
-  if(BTSession->isFinished(hash)) {
-    addTorrent(hash);
-  }
 }
 
 // Set the color of a row in data model
@@ -239,15 +229,8 @@ void FinishedTorrents::on_actionSet_upload_limit_triggered(){
   new BandwidthAllocationDialog(this, true, BTSession, hashes);
 }
 
-void FinishedTorrents::updateFinishedList(){
-  QString hash;
-  QStringList finishedSHAs = BTSession->getFinishedTorrents();
-  foreach(hash, finishedSHAs){
-    QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(!h.is_valid()){
-      qDebug("Problem: This torrent is not valid in finished list");
-      continue;
-    }
+void FinishedTorrents::updateTorrent(QTorrentHandle h) {
+    QString hash = h.hash();
     int row = getRowFromHash(hash);
     if(row == -1){
       qDebug("Cannot find torrent in finished list, adding it");
@@ -256,7 +239,7 @@ void FinishedTorrents::updateFinishedList(){
     }
     Q_ASSERT(row != -1);
     // Update queued torrent
-    if(BTSession->isQueueingEnabled() && BTSession->isTorrentQueued(hash)) {
+    if(BTSession->isQueueingEnabled() && h.is_queued()) {
         if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking){
             finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
         } else {
@@ -266,27 +249,13 @@ void FinishedTorrents::updateFinishedList(){
         finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), 0.);
         finishedListModel->setData(finishedListModel->index(row, F_LEECH), "0");
         setRowColor(row, QString::fromUtf8("grey"));
+        return;
     }
-    if(h.is_paused() || h.is_queued()) continue;
-    if(h.state() == torrent_status::downloading || (h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking && h.progress() < 1.)) {
-      // What are you doing here? go back to download tab!
-      int reponse = QMessageBox::question(this, tr("Incomplete torrent in seeding list"), tr("It appears that the state of '%1' torrent changed from 'seeding' to 'downloading'. Would you like to move it back to download list? (otherwise the torrent will simply be deleted)").arg(h.name()), QMessageBox::Yes | QMessageBox::No);
-      if (reponse == QMessageBox::Yes) {
-        qDebug("Info: a torrent was moved from finished to download tab");
-        deleteTorrent(hash);
-        BTSession->setUnfinishedTorrent(hash);
-        emit torrentMovedFromFinishedList(hash);
-      }
-      else if (reponse == QMessageBox::No) {
-		    qDebug("Deleted from the finished");
-		    BTSession->deleteTorrent(hash, false);
-      }
-      continue;
-    }
+    if(h.is_paused()) return;
     if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking){
       finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
       setRowColor(row, QString::fromUtf8("grey"));
-      continue;
+      return;
     }
     setRowColor(row, QString::fromUtf8("orange"));
     finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png"))), Qt::DecorationRole);
@@ -299,7 +268,6 @@ void FinishedTorrents::updateFinishedList(){
     if(!finishedList->isColumnHidden(F_RATIO)) {
       finishedListModel->setData(finishedListModel->index(row, F_RATIO), QVariant(misc::toQString(BTSession->getRealRatio(hash))));
     }
-  }
 }
 
 int FinishedTorrents::getRowFromHash(QString hash) const{

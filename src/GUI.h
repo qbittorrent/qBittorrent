@@ -126,8 +126,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void readSettings();
     void on_actionExit_triggered();
     void createTrayIcon();
-    void updateUnfinishedTorrentNumberCalc();
-    void updateFinishedTorrentNumberCalc();
     void updateUnfinishedTorrentNumber(unsigned int nb);
     void updateFinishedTorrentNumber(unsigned int nb);
     void fullDiskError(QTorrentHandle& h) const;
@@ -160,6 +158,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void downloadFromURLList(const QStringList& urls);
     void deleteTorrent(QString hash);
     void finishedTorrent(QTorrentHandle& h) const;
+    void addedTorrent(QTorrentHandle& h) const;
+    void checkedTorrent(QTorrentHandle& h) const;
     void updateLists();
     bool initWebUi(QString username, QString password, int port);
     void pauseTorrent(QString hash);

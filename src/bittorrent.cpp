@@ -124,21 +124,21 @@ void bittorrent::preAllocateAllFiles(bool b) {
 
 void bittorrent::deleteBigRatios() {
   if(max_ratio == -1) return;
-  QString hash;
-  foreach(hash, finishedTorrents) {
-    QTorrentHandle h = getTorrentHandle(hash);
-    if(!h.is_valid()) {
-      qDebug("/!\\ Error: Invalid handle");
-      continue;
+    std::vector<torrent_handle> torrents = getTorrents();
+    std::vector<torrent_handle>::iterator torrentIT;
+    for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+        QTorrentHandle h = QTorrentHandle(*torrentIT);
+        if(!h.is_valid()) continue;
+        if(h.is_seed()) {
+            QString hash = h.hash();
+            if(getRealRatio(hash) > max_ratio) {
+              QString fileName = h.name();
+              addConsoleMessage(tr("%1 reached the maximum ratio you set.").arg(fileName));
+              deleteTorrent(hash);
+              //emit torrent_ratio_deleted(fileName);
+            }
+        }
     }
-    QString hash = h.hash();
-    if(getRealRatio(hash) > max_ratio) {
-      QString fileName = h.name();
-      addConsoleMessage(tr("%1 reached the maximum ratio you set.").arg(fileName));
-      deleteTorrent(hash);
-      //emit torrent_ratio_deleted(fileName);
-    }
-  }
 }
 
 void bittorrent::setDownloadLimit(QString hash, long val) {
@@ -222,6 +222,10 @@ qlonglong bittorrent::getETA(QString hash) const {
     }
 }
 
+std::vector<torrent_handle> bittorrent::getTorrents() const {
+    return s->get_torrents();
+}
+
 // Return the torrent handle, given its hash
 QTorrentHandle bittorrent::getTorrentHandle(QString hash) const{
   return QTorrentHandle(s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString()))));
@@ -240,21 +244,29 @@ bool bittorrent::isPaused(QString hash) const{
 
 unsigned int bittorrent::getFinishedPausedTorrentsNb() const {
   unsigned int nbPaused = 0;
-  foreach(QString hash, finishedTorrents) {
-    if(isPaused(hash)) {
-      ++nbPaused;
+  std::vector<torrent_handle> torrents = getTorrents();
+    std::vector<torrent_handle>::iterator torrentIT;
+    for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+        QTorrentHandle h = QTorrentHandle(*torrentIT);
+        if(!h.is_valid()) continue;
+        if(h.is_seed() && h.is_paused()) {
+            ++nbPaused;
+        }
     }
-  }
   return nbPaused;
 }
 
 unsigned int bittorrent::getUnfinishedPausedTorrentsNb() const {
   unsigned int nbPaused = 0;
-  foreach(QString hash, unfinishedTorrents) {
-    if(isPaused(hash)) {
-      ++nbPaused;
+  std::vector<torrent_handle> torrents = getTorrents();
+    std::vector<torrent_handle>::iterator torrentIT;
+    for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+        QTorrentHandle h = QTorrentHandle(*torrentIT);
+        if(!h.is_valid()) continue;
+        if(!h.is_seed() && h.is_paused()) {
+            ++nbPaused;
+        }
     }
-  }
   return nbPaused;
 }
 
@@ -285,17 +297,6 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   }
   // Remove tracker errors
   trackersErrors.remove(hash);
-  int index = finishedTorrents.indexOf(hash);
-  if(index != -1) {
-    finishedTorrents.removeAt(index);
-  }else{
-    index = unfinishedTorrents.indexOf(hash);
-    if(index != -1) {
-      unfinishedTorrents.removeAt(index);
-    }else{
-      std::cerr << "Error: Torrent " << hash.toStdString() << " is neither in finished or unfinished list\n";
-    }
-  }
   if(permanent)
     addConsoleMessage(tr("'%1' was removed permanently.", "'xxx.avi' was removed permanently.").arg(fileName));
   else
@@ -303,50 +304,8 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   emit deletedTorrent(hash);
 }
 
-// Return a list of hashes for the finished torrents
-QStringList bittorrent::getFinishedTorrents() const {
-  return finishedTorrents;
-}
-
-QStringList bittorrent::getUnfinishedTorrents() const {
-  return unfinishedTorrents;
-}
-
 bool bittorrent::isFinished(QString hash) const {
-  return finishedTorrents.contains(hash);
-}
-
-// Remove the given hash from the list of finished torrents
-void bittorrent::setUnfinishedTorrent(QString hash) {
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")){
-    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
-  }
-  int index = finishedTorrents.indexOf(hash);
-  if(index != -1) {
-    finishedTorrents.removeAt(index);
-  }
-  if(!unfinishedTorrents.contains(hash)) {
-    unfinishedTorrents << hash;
-    QTorrentHandle h = getTorrentHandle(hash);
-  }
-  //emit torrentSwitchedtoUnfinished(hash);
-}
-
-// Add the given hash to the list of finished torrents
-void bittorrent::setFinishedTorrent(QString hash) {
-  if(!QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")) {
-    QFile finished_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
-    finished_file.open(QIODevice::WriteOnly | QIODevice::Text);
-    finished_file.close();
-  }
-  if(!finishedTorrents.contains(hash)) {
-    finishedTorrents << hash;
-  }
-  int index = unfinishedTorrents.indexOf(hash);
-  if(index != -1) {
-    unfinishedTorrents.removeAt(index);
-  }
-  //emit torrentSwitchedtoFinished(hash);
+  return getTorrentHandle(hash).is_seed();
 }
 
 // Pause a running torrent
@@ -397,15 +356,27 @@ bool bittorrent::resumeTorrent(QString hash) {
 }
 
 void bittorrent::pauseAllTorrents() {
-  QStringList list = getUnfinishedTorrents() + getFinishedTorrents();
-  foreach(QString hash, list)
-    pauseTorrent(hash);
+    std::vector<torrent_handle> torrents = getTorrents();
+    std::vector<torrent_handle>::iterator torrentIT;
+    for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+        QTorrentHandle h = QTorrentHandle(*torrentIT);
+        if(!h.is_valid()) continue;
+        if(!h.is_paused()) {
+            h.pause();
+        }
+    }
 }
 
 void bittorrent::resumeAllTorrents() {
-  QStringList list = getUnfinishedTorrents() + getFinishedTorrents();
-  foreach(QString hash, list)
-    resumeTorrent(hash);
+    std::vector<torrent_handle> torrents = getTorrents();
+    std::vector<torrent_handle>::iterator torrentIT;
+    for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+        QTorrentHandle h = QTorrentHandle(*torrentIT);
+        if(!h.is_valid()) continue;
+        if(h.is_paused()) {
+            h.resume();
+        }
+    }
 }
 
 void bittorrent::loadWebSeeds(QString hash) {
@@ -582,11 +553,6 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
   if((resumed || !addInPause) && !QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")) {
       // Start torrent because it was added in paused state
       h.resume();
-  }
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")) {
-      finishedTorrents << hash;
-  }else{
-      unfinishedTorrents << hash;
   }
   // If download from url, remove temp file
   if(!from_url.isNull()) QFile::remove(file);
@@ -1197,9 +1163,13 @@ void bittorrent::readAlerts() {
       QTorrentHandle h(p->handle);
       if(h.is_valid()){
         QString hash = h.hash();
+        // Create .paused file if necessary
+        QFile finished_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
+        finished_file.open(QIODevice::WriteOnly | QIODevice::Text);
+        finished_file.write(" ");
+        finished_file.close();
         h.save_resume_data();
         qDebug("Received finished alert for %s", h.name().toUtf8().data());
-        setFinishedTorrent(hash);
         emit finishedTorrent(h);
       }
     }
