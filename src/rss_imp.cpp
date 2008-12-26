@@ -357,7 +357,9 @@
     }
 
     RSSImp::~RSSImp(){
+      qDebug("Deleting RSSImp...");
       delete refreshTimeTimer;
       delete rssmanager;
+      qDebug("RSSImp deleted");
     }
 
