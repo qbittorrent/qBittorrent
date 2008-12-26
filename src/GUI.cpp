@@ -376,6 +376,13 @@ void GUI::checkedTorrent(QTorrentHandle& h) const {
         // Move torrent to finished tab
         downloadingTorrentTab->deleteTorrent(h.hash());
         finishedTorrentTab->addTorrent(h.hash());
+    } else {
+        // Move torrent back to download list (if necessary)
+        if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".finished")) {
+            QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".finished");
+            finishedTorrentTab->deleteTorrent(h.hash());
+            downloadingTorrentTab->addTorrent(h.hash());
+        }
     }
 }
 
@@ -1358,13 +1365,6 @@ void GUI::updateLists(bool force) {
                 // Update in finished list
                 finishedTorrentTab->updateTorrent(h);
             } else {
-                // Delete from finished list, if it moved back
-                if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".finished")) {
-                    if(h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking) {
-                        finishedTorrentTab->deleteTorrent(h.hash());
-                        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".finished");
-                    }
-                }
                 // Update in download list
                 downloadingTorrentTab->updateTorrent(h);
             }
