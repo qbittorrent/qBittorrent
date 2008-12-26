@@ -150,9 +150,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   readSettings();
   // RSS Tab
   rssWidget = 0;
-  // Smooth torrent switching between tabs Downloading <--> Finished
-  connect(downloadingTorrentTab, SIGNAL(torrentFinished(QString)), finishedTorrentTab, SLOT(addTorrent(QString)));
-  connect(finishedTorrentTab, SIGNAL(torrentMovedFromFinishedList(QString)), downloadingTorrentTab, SLOT(addTorrent(QString)));
   // Start download list refresher
   refresher = new QTimer(this);
   connect(refresher, SIGNAL(timeout()), this, SLOT(updateLists()));
