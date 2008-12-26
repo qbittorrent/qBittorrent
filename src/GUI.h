@@ -160,7 +160,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void finishedTorrent(QTorrentHandle& h) const;
     void addedTorrent(QTorrentHandle& h) const;
     void checkedTorrent(QTorrentHandle& h) const;
-    void updateLists();
+    void updateLists(bool force=false);
     bool initWebUi(QString username, QString password, int port);
     void pauseTorrent(QString hash);
     void on_actionIncreasePriority_triggered();
@@ -181,6 +181,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
 
   protected:
     void closeEvent(QCloseEvent *);
+    void showEvent(QShowEvent *);
     bool event(QEvent * event);
     void displayRSSTab(bool enable);
 

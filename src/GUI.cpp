@@ -205,9 +205,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   checkConnect->start(5000);
   // Accept drag 'n drops
   setAcceptDrops(true);
-  if(!settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), false).toBool()) {
-    show();
-  }
   createKeyboardShortcuts();
   connecStatusLblIcon = new QLabel();
   connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
@@ -238,6 +235,9 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   QMainWindow::statusBar()->addPermanentWidget(upSpeedLbl);
   QMainWindow::statusBar()->addPermanentWidget(statusSep4);
   QMainWindow::statusBar()->addPermanentWidget(ratioLbl);
+  if(!settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), false).toBool()) {
+    show();
+  }
   qDebug("GUI Built");
 }
 
@@ -619,6 +619,12 @@ QPoint GUI::screenCenter() const{
 void GUI::on_actionAbout_triggered() {
   //About dialog
   new about(this);
+}
+
+void GUI::showEvent(QShowEvent *e) {
+    qDebug("** Show Event **");
+    updateLists(true);
+    e->accept();
 }
 
 // Called when we close the program
@@ -1338,28 +1344,30 @@ void GUI::on_actionTorrent_Properties_triggered() {
   }
 }
 
-void GUI::updateLists() {
-    // update global informations
-    dlSpeedLbl->setText(tr("DL: %1 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1))));
-    upSpeedLbl->setText(tr("UP: %1 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1))));
-    std::vector<torrent_handle> torrents = BTSession->getTorrents();
-    std::vector<torrent_handle>::iterator torrentIT;
-    for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
-        QTorrentHandle h = QTorrentHandle(*torrentIT);
-        if(!h.is_valid()) continue;
-        if(h.is_seed()) {
-            // Update in finished list
-            finishedTorrentTab->updateTorrent(h);
-        } else {
-            // Delete from finished list, if it moved back
-            if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".finished")) {
-                if(h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking) {
-                    finishedTorrentTab->deleteTorrent(h.hash());
-                    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".finished");
+void GUI::updateLists(bool force) {
+    if(isVisible() || force) {
+        // update global informations
+        dlSpeedLbl->setText(tr("DL: %1 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1))));
+        upSpeedLbl->setText(tr("UP: %1 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1))));
+        std::vector<torrent_handle> torrents = BTSession->getTorrents();
+        std::vector<torrent_handle>::iterator torrentIT;
+        for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+            QTorrentHandle h = QTorrentHandle(*torrentIT);
+            if(!h.is_valid()) continue;
+            if(h.is_seed()) {
+                // Update in finished list
+                finishedTorrentTab->updateTorrent(h);
+            } else {
+                // Delete from finished list, if it moved back
+                if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".finished")) {
+                    if(h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking) {
+                        finishedTorrentTab->deleteTorrent(h.hash());
+                        QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".finished");
+                    }
                 }
+                // Update in download list
+                downloadingTorrentTab->updateTorrent(h);
             }
-            // Update in download list
-            downloadingTorrentTab->updateTorrent(h);
         }
     }
     if(displaySpeedInTitle) {
