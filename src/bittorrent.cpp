@@ -1162,15 +1162,14 @@ void bittorrent::readAlerts() {
     if (torrent_finished_alert* p = dynamic_cast<torrent_finished_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
       if(h.is_valid()){
+        emit finishedTorrent(h);
         QString hash = h.hash();
         // Create .paused file if necessary
         QFile finished_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
         finished_file.open(QIODevice::WriteOnly | QIODevice::Text);
-        finished_file.write(" ");
         finished_file.close();
         h.save_resume_data();
         qDebug("Received finished alert for %s", h.name().toUtf8().data());
-        emit finishedTorrent(h);
       }
     }
     else if (save_resume_data_alert* p = dynamic_cast<save_resume_data_alert*>(a.get())) {
