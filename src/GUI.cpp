@@ -1215,6 +1215,7 @@ void GUI::on_actionPause_All_triggered() {
         QTorrentHandle h = QTorrentHandle(*torrentIT);
         if(!h.is_valid() || h.is_paused()) continue;
         change = true;
+        h.pause();
         if(h.is_seed()) {
             // Update in finished list
             finishedTorrentTab->pauseTorrent(h.hash());
@@ -1289,6 +1290,7 @@ void GUI::on_actionStart_All_triggered() {
         QTorrentHandle h = QTorrentHandle(*torrentIT);
         if(!h.is_valid() || !h.is_paused()) continue;
         change = true;
+        h.resume();
         if(h.is_seed()) {
             // Update in finished list
             finishedTorrentTab->resumeTorrent(h.hash());
