@@ -670,7 +670,7 @@ class RssManager : public QObject{
       saveStreamList();
       qDeleteAll(streams);
       delete downloader;
-      qDebug("RSSManger deleted");
+      qDebug("RSSManager deleted");
     }
 
     // load the list of the rss stream
