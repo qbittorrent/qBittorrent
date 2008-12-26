@@ -156,7 +156,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void processParams(const QStringList& params);
     void addTorrent(QString path);
     void addUnauthenticatedTracker(QPair<QTorrentHandle,QString> tracker);
-    void processScannedFiles(const QStringList& params);
     void processDownloadedFiles(QString path, QString url);
     void downloadFromURLList(const QStringList& urls);
     void deleteTorrent(QString hash);

@@ -36,7 +36,6 @@ class mininova(object):
 	table_items = 'added cat name size seeds leech'.split()
 
 	def search(self, what):
-		order = 'seeds' # must be one in self.table_items
 
 		def get_link(lnk):
 			lnks = lnk.getElementsByTagName('a')

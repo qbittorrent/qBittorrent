@@ -12,10 +12,12 @@
     - FEATURE: Got rid of libmagick++ dependency
     - FEATURE: Updated Web interface to MochaUI v0.9.5
     - FEATURE: Added notification in WebUI when qBittorrent is not reachable
+    - FEATURE: Rewrote folder scanning code (Now uses a filesystem watcher)
     - BUGFIX: Fixed several memory leaks
     - BUGFIX: WebUI is now working with IE7
     - BUGFIX: Fixed spacing problem in toolbar when toggling its visibility
     - BUGFIX: Fixed some compilation and Qt4 warnings
+    - BUGFIX: Do not use an addition dialog for torrents from folder scanning
 
 * Sun Nov 9 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.2.1
     - BUGFIX: Fixed possible crash when deleting a torrent permanently

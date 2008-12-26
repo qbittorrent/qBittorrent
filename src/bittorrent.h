@@ -35,6 +35,8 @@ using namespace libtorrent;
 
 class downloadThread;
 class QTimer;
+class QFileSystemWatcher;
+class QMutex;
 class FilterParserThread;
 
 class bittorrent : public QObject {
@@ -42,8 +44,8 @@ class bittorrent : public QObject {
 
   private:
     session *s;
-    QString scan_dir;
-    QPointer<QTimer> timerScan;
+    QPointer<QFileSystemWatcher> FSWatcher;
+    QMutex* FSMutex;
     QPointer<QTimer> timerAlerts;
     QPointer<QTimer> BigRatioTimer;
     bool DHTEnabled;
@@ -64,7 +66,6 @@ class bittorrent : public QObject {
     bool LSDEnabled;
     QPointer<FilterParserThread> filterParser;
     QString filterPath;
-    int folderScanInterval; // in seconds
     bool queueingEnabled;
     QStringList url_skippingDlg;
 
@@ -157,12 +158,11 @@ class bittorrent : public QObject {
     void enableNATPMP(bool b);
     void enableLSD(bool b);
     bool enableDHT(bool b);
-    void setTimerScanInterval(int secs);
     void addConsoleMessage(QString msg, QColor color=QApplication::palette().color(QPalette::WindowText));
     void addPeerBanMessage(QString msg, bool from_ipfilter);
 
   protected slots:
-    void scanDirectory();
+    void scanDirectory(QString);
     void readAlerts();
     void processDownloadedFile(QString, QString);
     bool loadTrackerFile(QString hash);
@@ -178,7 +178,6 @@ class bittorrent : public QObject {
     void fullDiskError(QTorrentHandle& h);
     void trackerError(QString hash, QString time, QString msg);
     void trackerAuthenticationRequired(QTorrentHandle& h);
-    void scanDirFoundTorrents(const QStringList& pathList);
     void newDownloadedTorrent(QString path, QString url);
     void updateFileSize(QString hash);
     void downloadFromUrlFailure(QString url, QString reason);

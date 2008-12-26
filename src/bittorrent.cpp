@@ -23,7 +23,9 @@
 #include <QTime>
 #include <QString>
 #include <QTimer>
+#include <QFileSystemWatcher>
 #include <QSettings>
+#include <QMutex>
 
 #include "bittorrent.h"
 #include "misc.h"
@@ -43,7 +45,7 @@
 #define MAX_TRACKER_ERRORS 2
 
 // Main constructor
-bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), max_ratio(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), folderScanInterval(5), queueingEnabled(false) {
+bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), max_ratio(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), queueingEnabled(false) {
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
   // Creating bittorrent session
@@ -73,6 +75,7 @@ bittorrent::bittorrent() : timerScan(0), DHTEnabled(false), preAllocateAll(false
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
   BigRatioTimer = 0;
   filterParser = 0;
+  FSWatcher = 0;
   qDebug("* BTSession constructed");
 }
 
@@ -437,7 +440,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
   QTorrentHandle h;
   bool fastResume=false;
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  QString file, dest_file, scan_dir;
+  QString file, dest_file;
 
   // Checking if BT_backup Dir exists
   // create it if it is not
@@ -469,11 +472,10 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
       }
       addConsoleMessage(tr("This file is either corrupted or this isn't a torrent."),QString::fromUtf8("red"));
       if(fromScanDir) {
-          // Remove .corrupt file in case it already exists
-          QFile::remove(file+".corrupt");
-          //Rename file extension so that it won't display error message more than once
-          QFile::rename(file,file+".corrupt");
+          // Remove file
+          QFile::remove(file);
       }
+      return;
   }
   qDebug(" -> Hash: %s", misc::toString(t->info_hash()).c_str());
   qDebug(" -> Name: %s", t->name().c_str());
@@ -979,56 +981,49 @@ bool bittorrent::isFilePreviewPossible(QString hash) const{
 
 // Scan the first level of the directory for torrent files
 // and add them to download list
-void bittorrent::scanDirectory() {
+void bittorrent::scanDirectory(QString scan_dir) {
+  FSMutex->lock();
+  qDebug("Scanning directory: %s", scan_dir.toUtf8().data());
   QString file;
-  if(!scan_dir.isNull()) {
-    QStringList to_add;
-    QDir dir(scan_dir);
-    QStringList filters;
-    filters << "*.torrent";
-    QStringList files = dir.entryList(filters, QDir::Files, QDir::Unsorted);
-    foreach(file, files) {
+  QDir dir(scan_dir);
+  QStringList filters;
+  filters << "*.torrent";
+  QStringList files = dir.entryList(filters, QDir::Files, QDir::Unsorted);
+  foreach(file, files) {
       QString fullPath = dir.path()+QDir::separator()+file;
-      QFile::rename(fullPath, fullPath+QString::fromUtf8(".old"));
-      to_add << fullPath+QString::fromUtf8(".old");
-    }
-    emit scanDirFoundTorrents(to_add);
+      QFile torrent(fullPath);
+      if(torrent.size() != 0) {
+        qDebug("Adding for scan_dir: %s", fullPath.toUtf8().data());
+        addTorrent(fullPath, true);
+      } else {
+          qDebug("Ignoring empty file: %s", fullPath.toUtf8().data());
+      }
   }
+  FSMutex->unlock();
 }
 
 void bittorrent::setDefaultSavePath(QString savepath) {
   defaultSavePath = savepath;
 }
 
-void bittorrent::setTimerScanInterval(int secs) {
-  if(folderScanInterval != secs) {
-    folderScanInterval = secs;
-    if(!scan_dir.isNull()) {
-      timerScan->start(folderScanInterval*1000);
-    }
-  }
-}
-
 // Enable directory scanning
-void bittorrent::enableDirectoryScanning(QString _scan_dir) {
-  if(!_scan_dir.isEmpty()) {
-    scan_dir = _scan_dir;
-    timerScan = new QTimer(this);
-    connect(timerScan, SIGNAL(timeout()), this, SLOT(scanDirectory()));
-    timerScan->start(folderScanInterval*1000);
+void bittorrent::enableDirectoryScanning(QString scan_dir) {
+  if(!scan_dir.isEmpty()) {
+    Q_ASSERT(FSWatcher == 0);
+    FSMutex = new QMutex();
+    FSWatcher = new QFileSystemWatcher(QStringList(scan_dir), this);
+    connect(FSWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(scanDirectory(QString)));
+    // Initial scan
+    scanDirectory(scan_dir);
   }
 }
 
 // Disable directory scanning
 void bittorrent::disableDirectoryScanning() {
-  if(!scan_dir.isNull()) {
-    scan_dir = QString::null;
-    if(timerScan->isActive()) {
-      timerScan->stop();
-    }
+  if(FSWatcher) {
+      delete FSWatcher;
+      delete FSMutex;
   }
-  if(timerScan)
-    delete timerScan;
 }
 
 // Set the ports range in which is chosen the port the bittorrent

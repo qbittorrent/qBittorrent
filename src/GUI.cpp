@@ -122,7 +122,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(BTSession, SIGNAL(fullDiskError(QTorrentHandle&)), this, SLOT(fullDiskError(QTorrentHandle&)));
   connect(BTSession, SIGNAL(finishedTorrent(QTorrentHandle&)), this, SLOT(finishedTorrent(QTorrentHandle&)));
   connect(BTSession, SIGNAL(trackerAuthenticationRequired(QTorrentHandle&)), this, SLOT(trackerAuthenticationRequired(QTorrentHandle&)));
-  connect(BTSession, SIGNAL(scanDirFoundTorrents(const QStringList&)), this, SLOT(processScannedFiles(const QStringList&)));
   connect(BTSession, SIGNAL(newDownloadedTorrent(QString, QString)), this, SLOT(processDownloadedFiles(QString, QString)));
   connect(BTSession, SIGNAL(downloadFromUrlFailure(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
   connect(BTSession, SIGNAL(deletedTorrent(QString)), this, SLOT(deleteTorrent(QString)));
@@ -869,20 +868,6 @@ void GUI::addTorrent(QString path) {
   BTSession->addTorrent(path);
 }
 
-void GUI::processScannedFiles(const QStringList& params) {
-  QString param;
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
-  foreach(param, params) {
-    if(useTorrentAdditionDialog) {
-      torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
-      dialog->showLoad(param, true);
-    }else{
-      BTSession->addTorrent(param, true);
-    }
-  }
-}
-
 void GUI::processDownloadedFiles(QString path, QString url) {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
@@ -927,7 +912,6 @@ void GUI::configureSession(bool deleteOptions) {
     BTSession->disableDirectoryScanning();
   }else{
     //Interval first
-    BTSession->setTimerScanInterval(options->getFolderScanInterval());
     BTSession->enableDirectoryScanning(options->getScanDir());
   }
   // Connection

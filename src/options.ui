@@ -497,37 +497,6 @@
             </item>
            </layout>
           </item>
-          <item>
-           <layout class="QHBoxLayout" >
-            <item>
-             <widget class="QLabel" name="FolderScanLbl" >
-              <property name="text" >
-               <string>Folder scan interval:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="FolderScanSpin" >
-              <property name="minimum" >
-               <number>1</number>
-              </property>
-              <property name="maximum" >
-               <number>9999</number>
-              </property>
-              <property name="value" >
-               <number>5</number>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="FolderScanLbl2" >
-              <property name="text" >
-               <string>seconds</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
          </layout>
         </widget>
        </item>
