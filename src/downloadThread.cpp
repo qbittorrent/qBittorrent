@@ -81,7 +81,7 @@ void subDownloadThread::run(){
     return;
   }
   CURL *curl;
-  CURLcode res;
+  CURLcode res = (CURLcode)-1;
   curl = curl_easy_init();
   if(curl) {
     std::string c_url = url.toUtf8().data();
@@ -123,10 +123,13 @@ void subDownloadThread::run(){
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
     curl_easy_setopt(curl, CURLOPT_MAXREDIRS, -1);
     qDebug("Downloading %s", url.toUtf8().data());
-    res = curl_easy_perform(curl);
+    if(!abort)
+        res = curl_easy_perform(curl);
     /* always cleanup */
     curl_easy_cleanup(curl);
     fclose(f);
+    if(abort)
+        return;
     if(res) {
       emit downloadFailureST(this, url, errorCodeToString(res));
     } else {

@@ -668,7 +668,9 @@ class RssManager : public QObject{
     ~RssManager(){
       qDebug("Deleting RSSManager");
       saveStreamList();
+      qDebug("Deleting all streams");
       qDeleteAll(streams);
+      qDebug("Deleting downloader thread");
       delete downloader;
       qDebug("RSSManager deleted");
     }
