@@ -61,7 +61,6 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   finishedList->header()->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(finishedList->header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFinishedHoSMenu(const QPoint&)));
   connect(finishedList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(notifyTorrentDoubleClicked(const QModelIndex&)));
-  connect(BTSession, SIGNAL(forceFinishedListUpdate()), this, SLOT(updateFinishedList()));
   actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")));
   actionPreview_file->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")));
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));

@@ -67,7 +67,7 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   downloadList->hideColumn(HASH);
   loadHiddenColumns();
 
-  connect(BTSession, SIGNAL(torrentFinishedChecking(QString)), this, SLOT(sortProgressColumn(QString)));
+  connect(BTSession, SIGNAL(torrentFinishedChecking(QTorrentHandle&)), this, SLOT(sortProgressColumn(QTorrentHandle&)));
 
   // Load last columns width for download list
   if(!loadColWidthDLList()) {
@@ -674,12 +674,12 @@ void DownloadingTorrents::toggleDownloadListSortOrder(int index) {
   settings.setValue(QString::fromUtf8("DownloadListSortedCol"), misc::toQString(index)+sortOrderLetter);
 }
 
-void DownloadingTorrents::sortProgressColumn(QString hash) {
+void DownloadingTorrents::sortProgressColumn(QTorrentHandle& h) {
+  QString hash = h.hash();
   int index = downloadList->header()->sortIndicatorSection();
   if(index == PROGRESS) {
     int row = getRowFromHash(hash);
     if(row >= 0) {
-      QTorrentHandle h = BTSession->getTorrentHandle(hash);
       DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
       Qt::SortOrder sortOrder = downloadList->header()->sortIndicatorOrder();
       sortDownloadListFloat(index, sortOrder);
