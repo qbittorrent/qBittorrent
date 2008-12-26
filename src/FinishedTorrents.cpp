@@ -262,6 +262,9 @@ void FinishedTorrents::updateFinishedList(){
         } else {
             finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queued.png"))), Qt::DecorationRole);
         }
+        // Reset upload speed and seeds/leech
+        finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), 0.);
+        finishedListModel->setData(finishedListModel->index(row, F_LEECH), "0");
         setRowColor(row, QString::fromUtf8("grey"));
     }
     if(h.is_paused() || h.is_queued()) continue;

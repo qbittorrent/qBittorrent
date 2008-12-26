@@ -520,6 +520,10 @@ void DownloadingTorrents::updateDlList() {
                       DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
                   }
               }
+              // Reset speeds and seeds/leech
+              DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
+              DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
+              DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
               setRowColor(row, QString::fromUtf8("grey"));
           }
       }
