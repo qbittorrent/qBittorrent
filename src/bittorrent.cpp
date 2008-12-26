@@ -1258,7 +1258,7 @@ void bittorrent::readAlerts() {
       if(h.is_valid()){
         QString hash = h.hash();
         qDebug("%s have just finished checking", hash.toUtf8().data());
-        emit torrentFinishedChecking(hash);
+        emit torrentFinishedChecking(h);
       }
     }
     a = s->pop_alert();

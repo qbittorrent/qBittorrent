@@ -176,7 +176,7 @@ class bittorrent : public QObject {
     void newDownloadedTorrent(QString path, QString url);
     void updateFileSize(QString hash);
     void downloadFromUrlFailure(QString url, QString reason);
-    void torrentFinishedChecking(QString hash);
+    void torrentFinishedChecking(QTorrentHandle& h);
     void forceUnfinishedListUpdate();
     void forceFinishedListUpdate();
 };
