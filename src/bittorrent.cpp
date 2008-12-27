@@ -924,12 +924,21 @@ void bittorrent::setDefaultSavePath(QString savepath) {
 // Enable directory scanning
 void bittorrent::enableDirectoryScanning(QString scan_dir) {
   if(!scan_dir.isEmpty()) {
-    Q_ASSERT(FSWatcher == 0);
-    FSMutex = new QMutex();
-    FSWatcher = new QFileSystemWatcher(QStringList(scan_dir), this);
-    connect(FSWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(scanDirectory(QString)));
-    // Initial scan
-    scanDirectory(scan_dir);
+    if(FSWatcher == 0) {
+        FSMutex = new QMutex();
+        FSWatcher = new QFileSystemWatcher(QStringList(scan_dir), this);
+        connect(FSWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(scanDirectory(QString)));
+        // Initial scan
+        scanDirectory(scan_dir);
+    } else {
+        QString old_scan_dir = FSWatcher->directories().first();
+        if(old_scan_dir != scan_dir) {
+            FSWatcher->removePath(old_scan_dir);
+            FSWatcher->addPath(scan_dir);
+            // Initial scan
+            scanDirectory(scan_dir);
+        }
+    }
   }
 }
 
