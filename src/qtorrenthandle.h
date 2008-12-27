@@ -103,7 +103,7 @@ class QTorrentHandle {
 
     void set_download_limit(int limit);
     void set_upload_limit(int limit);
-    void pause(bool create_file=true);
+    void pause();
     void resume();
     void remove_url_seed(QString seed);
     void add_url_seed(QString seed);

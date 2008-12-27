@@ -456,11 +456,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
   p.duplicate_is_error = false; // Already checked
   p.auto_managed = false; // Because it is added in paused state
   // Adding torrent to bittorrent session
-  h =  s->add_torrent(p);
-  // XXX: Workaround for http://code.rasterbar.com/libtorrent/ticket/454
-  h.pause(false);
-  //Q_ASSERT(!h.is_auto_managed());
-  //Q_ASSERT(h.is_paused());
+  h =  QTorrentHandle(s->add_torrent(p));
   // Check if it worked
   if(!h.is_valid()) {
       // No need to keep on, it failed.
@@ -806,7 +802,7 @@ void bittorrent::saveFastResumeData() {
   for(unsigned int i=0; i<torrents.size(); ++i) {
     QTorrentHandle h(torrents[i]);
     if(!h.is_valid()) continue;
-    if(h.is_paused()) continue;
+    //if(h.is_paused()) continue;
     if (!h.has_metadata()) continue;
     if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
     h.save_resume_data();
