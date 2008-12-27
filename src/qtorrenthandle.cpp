@@ -285,7 +285,10 @@ bool QTorrentHandle::is_seed() const {
   Q_ASSERT(h.is_valid());
   // Affected by bug http://code.rasterbar.com/libtorrent/ticket/402
   //return h.is_seed();
-  return (progress() == 1.);
+  // May suffer from approximation problems
+  //return (progress() == 1.);
+  // This looks safe
+  return (state() == torrent_status::finished || state() == torrent_status::seeding);
 }
 
 bool QTorrentHandle::is_auto_managed() const {

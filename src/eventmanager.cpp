@@ -78,12 +78,12 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
     }
 	event["name"] = QVariant(h.name());
 	event["size"] = QVariant((qlonglong)h.actual_size());
-        if(h.progress() < 1.) {
+        if(!h.is_seed()) {
 		event["progress"] = QVariant(h.progress());
 		event["dlspeed"] = QVariant(h.download_payload_rate());
 	}
 	event["upspeed"] = QVariant(h.upload_payload_rate());
-        event["seed"] = QVariant(h.progress() == 1.);
+        event["seed"] = QVariant(h.is_seed());
 	event["hash"] = QVariant(hash);
 	event_list[hash] = event;
 }
