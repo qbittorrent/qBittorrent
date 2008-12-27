@@ -454,9 +454,13 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
   // Start in pause
   p.paused = true;
   p.duplicate_is_error = false; // Already checked
-  p.auto_managed = true;
+  p.auto_managed = false; // Because it is added in paused state
   // Adding torrent to bittorrent session
   h =  s->add_torrent(p);
+  // XXX: Workaround for http://code.rasterbar.com/libtorrent/ticket/454
+  h.pause(false);
+  //Q_ASSERT(!h.is_auto_managed());
+  //Q_ASSERT(h.is_paused());
   // Check if it worked
   if(!h.is_valid()) {
       // No need to keep on, it failed.
@@ -1118,7 +1122,7 @@ void bittorrent::readAlerts() {
       if(h.is_valid()){
         emit finishedTorrent(h);
         QString hash = h.hash();
-        // Create .paused file if necessary
+        // Create .finished file if necessary
         QFile finished_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
         finished_file.open(QIODevice::WriteOnly | QIODevice::Text);
         finished_file.close();

@@ -315,16 +315,26 @@ void QTorrentHandle::set_upload_limit(int limit) {
   h.set_upload_limit(limit);
 }
 
-void QTorrentHandle::pause() {
+void QTorrentHandle::pause(bool create_file) {
   Q_ASSERT(h.is_valid());
   h.auto_managed(false);
   h.pause();
+  // Create .paused file if necessary
+  if(create_file && !QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash()+".paused")) {
+        QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash()+".paused");
+        paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
+        paused_file.close();
+  }
 }
 
 void QTorrentHandle::resume() {
   Q_ASSERT(h.is_valid());
   h.auto_managed(true);
   h.resume();
+  // Delete .paused file if necessary
+  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash()+".paused")) {
+      QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash()+".paused");
+  }
 }
 
 void QTorrentHandle::remove_url_seed(QString seed) {

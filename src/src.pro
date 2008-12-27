@@ -92,10 +92,8 @@ DEFINES += NDEBUG
         icon128 \
         icon192
 }
-QMAKE_CXXFLAGS_RELEASE += -fwrapv \
-    -O2
-QMAKE_CXXFLAGS_DEBUG += -fwrapv \
-    -O0
+QMAKE_CXXFLAGS_RELEASE += -fwrapv
+QMAKE_CXXFLAGS_DEBUG += -fwrapv
 CONFIG += link_pkgconfig
 PKGCONFIG += "libtorrent-rasterbar libcurl"
 
