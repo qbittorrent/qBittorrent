@@ -76,7 +76,6 @@ class bittorrent : public QObject {
     ~bittorrent();
     QTorrentHandle getTorrentHandle(QString hash) const;
     std::vector<torrent_handle> getTorrents() const;
-    bool isPaused(QString hash) const;
     bool isFilePreviewPossible(QString fileHash) const;
     bool isDHTEnabled() const;
     float getPayloadDownloadRate() const;
@@ -107,8 +106,6 @@ class bittorrent : public QObject {
     void downloadFromUrl(QString url);
     void downloadFromURLList(const QStringList& url_list);
     void deleteTorrent(QString hash, bool permanent = false);
-    bool pauseTorrent(QString hash);
-    bool resumeTorrent(QString hash);
     void pauseAllTorrents();
     void resumeAllTorrents();
     void saveDHTEntry();

@@ -589,8 +589,8 @@ void DownloadingTorrents::addTorrent(QString hash) {
   if(BTSession->isQueueingEnabled())
     DLListModel->setData(DLListModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
   DLListModel->setData(DLListModel->index(row, HASH), QVariant(hash));
-  // Pause torrent if it was paused last time
-  if(BTSession->isPaused(hash)) {
+  // Pause torrent if it is
+  if(h.is_paused()) {
     DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)BTSession->getUncheckedTorrentProgress(hash)));
     DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/paused.png"))), Qt::DecorationRole);
     setRowColor(row, QString::fromUtf8("red"));

@@ -225,17 +225,6 @@ QTorrentHandle bittorrent::getTorrentHandle(QString hash) const{
   return QTorrentHandle(s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString()))));
 }
 
-// Return true if the torrent corresponding to the
-// hash is paused
-bool bittorrent::isPaused(QString hash) const{
-  QTorrentHandle h = getTorrentHandle(hash);
-  if(!h.is_valid()) {
-    qDebug("/!\\ Error: Invalid handle");
-    return true;
-  }
-  return h.is_paused();
-}
-
 unsigned int bittorrent::getFinishedPausedTorrentsNb() const {
   unsigned int nbPaused = 0;
   std::vector<torrent_handle> torrents = getTorrents();
@@ -296,53 +285,6 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   else
     addConsoleMessage(tr("'%1' was removed.", "'xxx.avi' was removed.").arg(fileName));
   emit deletedTorrent(hash);
-}
-
-// Pause a running torrent
-bool bittorrent::pauseTorrent(QString hash) {
-  bool change = false;
-  QTorrentHandle h = getTorrentHandle(hash);
-  if(h.is_valid() && !h.is_paused()) {
-    h.pause();
-    change = true;
-    // Save fast resume data
-    saveFastResumeData(hash);
-    qDebug("Torrent paused successfully");
-    emit pausedTorrent(hash);
-  }else{
-    if(!h.is_valid()) {
-      qDebug("Could not pause torrent %s, reason: invalid", hash.toUtf8().data());
-    }else{
-        qDebug("Could not pause torrent %s, reason: already paused", hash.toUtf8().data());
-    }
-  }
-  // Create .paused file if necessary
-  QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
-  paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
-  paused_file.write(QByteArray::number((double)h.progress()));
-  paused_file.close();
-  if(change) {
-    addConsoleMessage(tr("'%1' paused.", "e.g: xxx.avi paused.").arg(h.name()));
-  }
-  return change;
-}
-
-// Resume a torrent in paused state
-bool bittorrent::resumeTorrent(QString hash) {
-  bool change = false;
-  QTorrentHandle h = getTorrentHandle(hash);
-  if(h.is_valid() && h.is_paused()) {
-      h.resume();
-      change = true;
-      emit resumedTorrent(hash);
-  }
-  // Delete .paused file
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused"))
-    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
-  if(change) {
-    addConsoleMessage(tr("'%1' resumed.", "e.g: xxx.avi resumed.").arg(h.name()));
-  }
-  return change;
 }
 
 void bittorrent::pauseAllTorrents() {

@@ -127,7 +127,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(BTSession, SIGNAL(newDownloadedTorrent(QString, QString)), this, SLOT(processDownloadedFiles(QString, QString)));
   connect(BTSession, SIGNAL(downloadFromUrlFailure(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
   connect(BTSession, SIGNAL(deletedTorrent(QString)), this, SLOT(deleteTorrent(QString)));
-  connect(BTSession, SIGNAL(pausedTorrent(QString)), this, SLOT(pauseTorrent(QString)));
   qDebug("create tabWidget");
   tabs = new QTabWidget();
   // Download torrents tab
@@ -1185,8 +1184,8 @@ void GUI::togglePausedState(QString hash) {
   if(tabs->currentIndex() == 1)
     inDownloadList = false;
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
-  if(BTSession->isPaused(hash)) {
-    BTSession->resumeTorrent(hash);
+  if(h.is_paused()) {
+    h.resume();
     if(inDownloadList) {
       downloadingTorrentTab->resumeTorrent(hash);
       updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
@@ -1195,7 +1194,7 @@ void GUI::togglePausedState(QString hash) {
       updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
     }
   }else{
-    BTSession->pauseTorrent(hash);
+    h.pause();
     if(inDownloadList) {
       downloadingTorrentTab->pauseTorrent(hash);
       updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
@@ -1262,7 +1261,9 @@ void GUI::on_actionPause_triggered() {
   }
   QString hash;
   foreach(hash, hashes) {
-    if(BTSession->pauseTorrent(hash)){
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(!h.is_paused()){
+      h.pause();
       if(inDownloadList) {
         downloadingTorrentTab->pauseTorrent(hash);
         updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
@@ -1319,7 +1320,9 @@ void GUI::on_actionStart_triggered() {
   }
   QString hash;
   foreach(hash, hashes) {
-    if(BTSession->resumeTorrent(hash)){
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(!h.is_paused()){
+      h.resume();
       if(inDownloadList) {
         downloadingTorrentTab->resumeTorrent(hash);
         updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
