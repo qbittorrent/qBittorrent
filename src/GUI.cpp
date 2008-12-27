@@ -901,7 +901,7 @@ void GUI::processDownloadedFiles(QString path, QString url) {
   bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   if(useTorrentAdditionDialog) {
     torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
-    dialog->showLoad(path, false, url);
+    dialog->showLoad(path, url);
   }else{
     BTSession->addTorrent(path, false, url);
   }

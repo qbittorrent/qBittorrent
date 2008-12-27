@@ -50,7 +50,6 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
     QString fileName;
     QString hash;
     QString filePath;
-    bool fromScanDir;
     QString from_url;
     QStandardItemModel *PropListModel;
     PropListDelegate *PropDelegate;
@@ -99,13 +98,12 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         delete PropListModel;
     }
 
-    void showLoad(QString filePath, bool fromScanDir=false, QString from_url=QString::null){
+    void showLoad(QString filePath, QString from_url=QString::null){
         if(!QFile::exists(filePath)) {
             close();
             return;
         }
         this->filePath = filePath;
-        this->fromScanDir = fromScanDir;
         this->from_url = from_url;
         // Getting torrent file informations
         boost::intrusive_ptr<torrent_info> t;
@@ -433,7 +431,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       // save filtered files
       savePiecesPriorities();
       // Add to download list
-      BTSession->addTorrent(filePath, fromScanDir, from_url);
+      BTSession->addTorrent(filePath, false, from_url);
       close();
     }
 };
