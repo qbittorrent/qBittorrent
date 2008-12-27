@@ -1325,7 +1325,7 @@ void GUI::on_actionStart_triggered() {
   QString hash;
   foreach(hash, hashes) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(!h.is_paused()){
+    if(h.is_paused()){
       h.resume();
       if(inDownloadList) {
         downloadingTorrentTab->resumeTorrent(hash);
