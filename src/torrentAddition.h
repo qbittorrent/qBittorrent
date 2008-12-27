@@ -100,6 +100,10 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
     }
 
     void showLoad(QString filePath, bool fromScanDir=false, QString from_url=QString::null){
+        if(!QFile::exists(filePath)) {
+            close();
+            return;
+        }
         this->filePath = filePath;
         this->fromScanDir = fromScanDir;
         this->from_url = from_url;
@@ -108,6 +112,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         try {
             t = new torrent_info(filePath.toUtf8().data());
         } catch(std::exception&) {
+            qDebug("Caught error loading torrent");
             if(!from_url.isNull()){
                 BTSession->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
                 QFile::remove(filePath);
@@ -115,6 +120,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
                 BTSession->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+filePath+QString::fromUtf8("'"), QString::fromUtf8("red"));
             }
             close();
+            return;
         }
         nbFiles = t->num_files();
         // Setting file name
