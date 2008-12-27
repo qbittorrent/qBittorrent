@@ -312,6 +312,18 @@ void bittorrent::resumeAllTorrents() {
     }
 }
 
+void bittorrent::pauseTorrent(QString hash) {
+    QTorrentHandle h = getTorrentHandle(hash);
+    if(!h.is_paused())
+        h.pause();
+}
+
+void bittorrent::resumeTorrent(QString hash) {
+    QTorrentHandle h = getTorrentHandle(hash);
+    if(h.is_paused())
+        h.resume();
+}
+
 void bittorrent::loadWebSeeds(QString hash) {
   QFile urlseeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".urlseeds");
   if(!urlseeds_file.open(QIODevice::ReadOnly | QIODevice::Text)) return;

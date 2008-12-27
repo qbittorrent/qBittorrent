@@ -106,8 +106,12 @@ class bittorrent : public QObject {
     void downloadFromUrl(QString url);
     void downloadFromURLList(const QStringList& url_list);
     void deleteTorrent(QString hash, bool permanent = false);
+    /* Needed by Web UI */
     void pauseAllTorrents();
     void resumeAllTorrents();
+    void pauseTorrent(QString hash);
+    void resumeTorrent(QString hash);
+    /* End Web UI */
     void saveDHTEntry();
     void preAllocateAllFiles(bool b);
     void saveFastResumeData();
