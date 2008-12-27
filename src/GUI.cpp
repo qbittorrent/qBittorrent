@@ -231,6 +231,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   QMainWindow::statusBar()->addPermanentWidget(upSpeedLbl);
   QMainWindow::statusBar()->addPermanentWidget(statusSep4);
   QMainWindow::statusBar()->addPermanentWidget(ratioLbl);
+  // Force list update before showing
+  updateLists(true);
   if(!settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), false).toBool()) {
     show();
   }
