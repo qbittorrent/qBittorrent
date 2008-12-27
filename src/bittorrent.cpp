@@ -456,7 +456,11 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
   p.duplicate_is_error = false; // Already checked
   p.auto_managed = false; // Because it is added in paused state
   // Adding torrent to bittorrent session
-  h =  QTorrentHandle(s->add_torrent(p));
+  try {
+     h =  QTorrentHandle(s->add_torrent(p));
+  }catch(std::exception e){
+    qDebug("Error: %s", e.what());
+  }
   // Check if it worked
   if(!h.is_valid()) {
       // No need to keep on, it failed.
