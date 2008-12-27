@@ -83,9 +83,10 @@ bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(
 bittorrent::~bittorrent() {
   qDebug("BTSession deletion");
   // Do some BT related saving
-  saveDHTEntry();
+  // XXX: Done in GUI now (earlier = safer)
+  /*saveDHTEntry();
   saveSessionState();
-  saveFastResumeData();
+  saveFastResumeData();*/
   // Set Session settings
   session_settings ss;
   ss.tracker_receive_timeout = 1;

@@ -241,6 +241,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
 GUI::~GUI() {
   qDebug("GUI destruction");
   hide();
+  // Do this as soon as possible
+  BTSession->saveDHTEntry();
+  BTSession->saveSessionState();
+  BTSession->saveFastResumeData();
   delete dlSpeedLbl;
   delete upSpeedLbl;
   delete ratioLbl;
