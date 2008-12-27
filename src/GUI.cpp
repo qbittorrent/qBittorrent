@@ -1047,9 +1047,10 @@ void GUI::configureSession(bool deleteOptions) {
           downloadingTorrentTab->hidePriorityColumn(false);
       }
       int max_torrents = options->getMaxActiveTorrents();
+      int max_uploads = options->getMaxActiveUploads();
       int max_downloads = options->getMaxActiveDownloads();
       sessionSettings.active_downloads = max_downloads;
-      sessionSettings.active_seeds = -1;
+      sessionSettings.active_seeds = max_uploads;
       sessionSettings.active_limit = max_torrents;
       sessionSettings.dont_count_slow_torrents = false;
       BTSession->setQueueingEnabled(true);

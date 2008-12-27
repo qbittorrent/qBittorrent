@@ -1940,7 +1940,50 @@
                <bool>false</bool>
               </property>
               <property name="minimum" >
-               <number>1</number>
+               <number>-1</number>
+              </property>
+              <property name="maximum" >
+               <number>999</number>
+              </property>
+              <property name="value" >
+               <number>3</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="_2" >
+            <item>
+             <widget class="QLabel" name="label_max_active_up" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="text" >
+               <string>Maximum active uploads:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinMaxActiveUploads" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="minimum" >
+               <number>-1</number>
               </property>
               <property name="maximum" >
                <number>999</number>
@@ -1983,7 +2026,7 @@
                <bool>false</bool>
               </property>
               <property name="minimum" >
-               <number>1</number>
+               <number>-1</number>
               </property>
               <property name="maximum" >
                <number>999</number>
