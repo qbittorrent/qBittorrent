@@ -236,6 +236,7 @@ void FinishedTorrents::updateTorrent(QTorrentHandle h) {
       row = getRowFromHash(hash);
     }
     Q_ASSERT(row != -1);
+    if(h.is_paused()) return;
     // Update queued torrent
     if(BTSession->isQueueingEnabled() && h.is_queued()) {
         if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking){
@@ -249,7 +250,6 @@ void FinishedTorrents::updateTorrent(QTorrentHandle h) {
         setRowColor(row, QString::fromUtf8("grey"));
         return;
     }
-    if(h.is_paused()) return;
     if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking){
       finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
       setRowColor(row, QString::fromUtf8("grey"));
