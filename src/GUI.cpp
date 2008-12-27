@@ -231,8 +231,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   QMainWindow::statusBar()->addPermanentWidget(upSpeedLbl);
   QMainWindow::statusBar()->addPermanentWidget(statusSep4);
   QMainWindow::statusBar()->addPermanentWidget(ratioLbl);
-  // Force list update before showing
-  updateLists(true);
   if(!settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), false).toBool()) {
     show();
   }
@@ -1364,6 +1362,7 @@ void GUI::on_actionTorrent_Properties_triggered() {
 
 void GUI::updateLists(bool force) {
     if(isVisible() || force) {
+        qDebug("Update LISTS");
         // update global informations
         dlSpeedLbl->setText(tr("DL: %1 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1))));
         upSpeedLbl->setText(tr("UP: %1 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1))));
