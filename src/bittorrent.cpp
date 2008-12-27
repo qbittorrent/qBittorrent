@@ -164,12 +164,6 @@ void bittorrent::decreaseDlTorrentPriority(QString hash) {
   h.queue_position_down();
 }
 
-bool bittorrent::isTorrentQueued(QString hash) const {
-  Q_ASSERT(queueingEnabled);
-  QTorrentHandle h = getTorrentHandle(hash);
-  return h.is_queued();
-}
-
 void bittorrent::setUploadLimit(QString hash, long val) {
   qDebug("Set upload limit rate to %ld", val);
   QTorrentHandle h = getTorrentHandle(hash);
@@ -302,10 +296,6 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   else
     addConsoleMessage(tr("'%1' was removed.", "'xxx.avi' was removed.").arg(fileName));
   emit deletedTorrent(hash);
-}
-
-bool bittorrent::isFinished(QString hash) const {
-  return getTorrentHandle(hash).is_seed();
 }
 
 // Pause a running torrent

@@ -86,7 +86,6 @@ class bittorrent : public QObject {
     float getRealRatio(QString hash) const;
     session* getSession() const;
     QHash<QString, QString> getTrackersErrors(QString hash) const;
-    bool isFinished(QString hash) const;
     bool has_filtered_files(QString hash) const;
     unsigned int getFinishedPausedTorrentsNb() const;
     unsigned int getUnfinishedPausedTorrentsNb() const;
@@ -95,8 +94,6 @@ class bittorrent : public QObject {
     int getUpTorrentPriority(QString hash) const;
     int getMaximumActiveDownloads() const;
     int getMaximumActiveTorrents() const;
-    bool isTorrentQueued(QString hash) const;
-    bool is_auto_managed() const;
     int loadTorrentPriority(QString hash);
     QStringList getConsoleMessages() const;
     QStringList getPeerBanMessages() const;

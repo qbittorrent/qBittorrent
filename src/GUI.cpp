@@ -393,7 +393,7 @@ void GUI::fullDiskError(QTorrentHandle& h) const {
   // Download will be paused by libtorrent. Updating GUI information accordingly
   QString hash = h.hash();
   qDebug("Full disk error, pausing torrent %s", hash.toUtf8().data());
-  if(BTSession->isFinished(hash)) {
+  if(h.is_seed()) {
     // In finished list
     qDebug("Automatically paused torrent was in finished list");
     finishedTorrentTab->pauseTorrent(hash);
