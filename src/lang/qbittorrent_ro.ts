@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="ro">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDlg</name>
     <message>
@@ -3157,18 +3156,18 @@ Changelog:
 <context>
     <name>bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="137"/>
+        <location filename="../bittorrent.cpp" line="128"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>%1 a ajuns la rata maximă</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="285"/>
+        <location filename="../bittorrent.cpp" line="276"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos; a fost şters pentru totdeauna.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="287"/>
+        <location filename="../bittorrent.cpp" line="278"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; a fost şters.</translation>
@@ -3186,73 +3185,73 @@ Changelog:
         <translation type="obsolete">&apos;%1&apos; reluat.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="421"/>
+        <location filename="../bittorrent.cpp" line="412"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; este de acum in lista de descărcare.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="518"/>
+        <location filename="../bittorrent.cpp" line="513"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; resumat. (resumare rapidă)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="520"/>
+        <location filename="../bittorrent.cpp" line="515"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; adăugat la lista de descărcare.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="390"/>
+        <location filename="../bittorrent.cpp" line="381"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Nu pot decodifica torrent-ul : &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="393"/>
+        <location filename="../bittorrent.cpp" line="384"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Acest fişier este deteriorat sau nu este torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="858"/>
+        <location filename="../bittorrent.cpp" line="853"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a fost blocat conform IP filtrului&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="860"/>
+        <location filename="../bittorrent.cpp" line="855"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a fost banat din cauza fragmentelor eronate&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1150"/>
+        <location filename="../bittorrent.cpp" line="1145"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Nu pot asculta pe orice port dat.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1182"/>
+        <location filename="../bittorrent.cpp" line="1177"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping failure, message: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1187"/>
+        <location filename="../bittorrent.cpp" line="1182"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping successful, message: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1202"/>
+        <location filename="../bittorrent.cpp" line="1197"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Resumarea rapidă a fost respinsă pentru torrent-ul %1, verific încă o dată...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1207"/>
+        <location filename="../bittorrent.cpp" line="1202"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Conectarea la seed a eşuat pentru : %1, mesajul : %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1265"/>
+        <location filename="../bittorrent.cpp" line="1260"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Descarc &apos;%1&apos;, vă rugăm să aşteptaţi...</translation>
@@ -4148,7 +4147,7 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
         <translation type="obsolete">Opţiunile salvate cu success.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1247"/>
+        <location filename="../options_imp.cpp" line="1248"/>
         <source>Choose scan directory</source>
         <translation>Selectează directoriul de scanare</translation>
     </message>
@@ -4158,7 +4157,7 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
         <translation type="obsolete">Selectează fişierul ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1262"/>
+        <location filename="../options_imp.cpp" line="1263"/>
         <source>Choose a save directory</source>
         <translation>Selectează directoriul de salvare</translation>
     </message>
@@ -4174,12 +4173,12 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
         <translation type="obsolete">Nu pot deschide %1 în mod de citire.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1254"/>
+        <location filename="../options_imp.cpp" line="1255"/>
         <source>Choose an ip filter file</source>
         <translation>Alageţi un fişier ip filtru</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1254"/>
+        <location filename="../options_imp.cpp" line="1255"/>
         <source>Filters</source>
         <translation>Filtre</translation>
     </message>
@@ -4940,7 +4939,7 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
         <translation type="obsolete">Adevărat</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="115"/>
+        <location filename="../torrentAddition.h" line="118"/>
         <source>Unable to decode torrent file:</source>
         <translation>Nu pot decoda fişierul torrent:</translation>
     </message>
@@ -4950,7 +4949,7 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
         <translation type="obsolete">Acest fişier este deteriorat sau nu este torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="254"/>
+        <location filename="../torrentAddition.h" line="258"/>
         <source>Choose save path</source>
         <translation>Alegeţi calea de salvare</translation>
     </message>
@@ -4960,52 +4959,52 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
         <translation type="obsolete">Fals</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="392"/>
         <source>Empty save path</source>
         <translation>Calea de salvare vidă</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="392"/>
         <source>Please enter a save path</source>
         <translation>Vă rugăm să introduceţi calea de salvare</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="394"/>
+        <location filename="../torrentAddition.h" line="398"/>
         <source>Save path creation error</source>
         <translation>Salvează calea care crează erori</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="394"/>
+        <location filename="../torrentAddition.h" line="398"/>
         <source>Could not create the save path</source>
         <translation>Nu pot crea calea de salvare</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="428"/>
         <source>Invalid file selection</source>
         <translation>Selecţia fişierului invalidă</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="428"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Trebuie să selectaţi cel puţin un fişier din torrent</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="66"/>
+        <location filename="../torrentAddition.h" line="65"/>
         <source>File name</source>
         <translation>Numele fişierului</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="67"/>
+        <location filename="../torrentAddition.h" line="66"/>
         <source>Size</source>
         <translation>Capacitate</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="68"/>
+        <location filename="../torrentAddition.h" line="67"/>
         <source>Progress</source>
         <translation>Progress</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="287"/>
+        <location filename="../torrentAddition.h" line="291"/>
         <source>Priority</source>
         <translation>Prioritate</translation>
     </message>

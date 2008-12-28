@@ -1,83 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr">
-<defaultcodec></defaultcodec>
 <context>
     <name>@default</name>
     <message>
+        <location filename="" line="0"/>
         <source> b</source>
         <comment> bytes</comment>
         <translation type="obsolete"> o</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source> KB</source>
         <translation type="obsolete"> Ko</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source> MB</source>
         <translation type="obsolete"> Mo</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source> GB</source>
         <translation type="obsolete"> Go</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>b</source>
         <comment> bytes</comment>
         <translation type="obsolete">o</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>KB</source>
         <translation type="obsolete">Ko</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>MB</source>
         <translation type="obsolete">Mo</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>GB</source>
         <translation type="obsolete">Go</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation type="obsolete">o</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>KB</source>
         <comment>kilobytes</comment>
         <translation type="obsolete">Ko</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>MB</source>
         <comment>megabytes</comment>
         <translation type="obsolete">Mo</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>GB</source>
         <comment>gigabytes</comment>
         <translation type="obsolete">Go</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>TB</source>
         <comment>terabytes</comment>
         <translation type="obsolete">To</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation type="obsolete">Ko</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation type="obsolete">Mo</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation type="obsolete">Go</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation type="obsolete">To</translation>
@@ -96,6 +112,7 @@
         <translation>A Propos</translation>
     </message>
     <message encoding="UTF-8">
+        <location filename="" line="0"/>
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
@@ -111,6 +128,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation>Auteur</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>qBitorrent Author</source>
         <translation type="obsolete">Auteur de qBittorrent</translation>
     </message>
@@ -165,6 +183,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation></translation>
     </message>
     <message encoding="UTF-8">
+        <location filename="" line="0"/>
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
@@ -175,6 +194,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Site Internet :&lt;/u&gt; &lt;i&gt;http://qbittorrent.sourceforge.net&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>qBittorrent Author</source>
         <translation type="obsolete">Auteur de qBittorrent</translation>
     </message>
@@ -323,6 +343,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation>...</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Kb/s</source>
         <translation type="obsolete">Ko/s</translation>
     </message>
@@ -337,6 +358,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">connexions</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>to</source>
         <translation type="obsolete">à</translation>
     </message>
@@ -386,6 +408,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Langue</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Please choose your preferred language in the following list:</source>
         <translation type="obsolete">Veuillez choisir votre langue dans la liste suivante :</translation>
     </message>
@@ -395,6 +418,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Annuler</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Language settings will take effect after restart.</source>
         <translation type="obsolete">Les réglages linguistiques prennent effet au redémarrage.</translation>
     </message>
@@ -419,14 +443,17 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Ratio Partage :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>1 KB DL = </source>
         <translation type="obsolete"> 1 Ko DL =</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>KB UP max.</source>
         <translation type="obsolete">Ko UP max.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Ip filter</source>
         <translation type="obsolete">Filtre IP</translation>
     </message>
@@ -441,14 +468,17 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation>Paramètres de filtrage</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Add Range</source>
         <translation type="obsolete">Ajouter Rangée</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Remove Range</source>
         <translation type="obsolete">Supprimer Rangée</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>ipfilter.dat URL or PATH:</source>
         <translation type="obsolete">Url ou chemin de ipfilter.dat :</translation>
     </message>
@@ -498,10 +528,12 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Chemin ipfilter.dat :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Go to systray on minimizing window</source>
         <translation type="obsolete">Iconifier lors de la minimisation de la fenêtre</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Clear finished downloads on exit</source>
         <translation type="obsolete">Enlever les téléchargements terminés à la fermeture</translation>
     </message>
@@ -536,14 +568,17 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Comportement</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Always display OSD</source>
         <translation type="obsolete">Toujours afficher les OSD</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Display OSD only if window is minimized or iconified</source>
         <translation type="obsolete">Afficher les OSD uniquement lorsque la fenêtre n&apos;est pas visible</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Never display OSD</source>
         <translation type="obsolete">Ne jamais afficher d&apos;OSD</translation>
     </message>
@@ -563,6 +598,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Ko UP max.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>DHT (Trackerless):</source>
         <translation type="obsolete">DHT (Trackerless) :</translation>
     </message>
@@ -1472,6 +1508,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
+        <location filename="" line="0"/>
         <source>Couldn&apos;t create the directory: &apos;</source>
         <translation type="obsolete">Impossible de trouver le dossier : &apos;</translation>
     </message>
@@ -1481,22 +1518,27 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation>Ouvrir fichiers torrent</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Torrent Files (*.torrent)</source>
         <translation type="obsolete">Fichiers Torrent (*.torrent)</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source> MB</source>
         <translation type="obsolete"> Mo</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source> kb/s</source>
         <translation type="obsolete"> ko/s</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Unknown</source>
         <translation type="obsolete">Inconnu</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Unable to decode torrent file: &apos;</source>
         <translation type="obsolete">Impossible de décoder le fichier torrent : &apos;</translation>
     </message>
@@ -1511,6 +1553,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation>Etes vous sûr ? -- qBittorrent</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Are you sure you want to delete all files in download list?</source>
         <translation type="obsolete">Etes-vous sûr de vouloir enlever tous les fichiers de la liste de téléchargement ?</translation>
     </message>
@@ -1530,18 +1573,22 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation>Etes-vous sûr de vouloir enlever tous les fichiers sélectionnés de la liste de téléchargement ?</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>paused</source>
         <translation type="obsolete">en pause</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>started</source>
         <translation type="obsolete">démarré</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>All Downloads Resumed!</source>
         <translation type="obsolete">Continuation de tous les téléchargements!</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>kb/s</source>
         <translation type="obsolete">ko/s</translation>
     </message>
@@ -1566,6 +1613,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Téléchargement...</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Download list cleared.</source>
         <translation type="obsolete">Liste de téléchargement vidée.</translation>
     </message>
@@ -1580,6 +1628,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Tous les téléchargements ont été relancés.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>DL Speed: </source>
         <translation type="obsolete"> Vitesse DL :</translation>
     </message>
@@ -1625,6 +1674,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Impossible de décoder le fichier torrent :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Are you sure?</source>
         <translation type="obsolete">Etes-vous sûr ?</translation>
     </message>
@@ -1647,16 +1697,19 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">relancé.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>m</source>
         <comment>minutes</comment>
         <translation type="obsolete">m</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>h </source>
         <comment>hours</comment>
         <translation type="obsolete"> h</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>d </source>
         <comment>days</comment>
         <translation type="obsolete"> j</translation>
@@ -1667,6 +1720,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> Ecoute sur le port:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Couldn&apos;t listen on any of the given ports</source>
         <translation type="obsolete">Impossible d&apos;écouter sur les ports donnés</translation>
     </message>
@@ -1676,6 +1730,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> &lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;Vitesse DL :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source> :: By Christophe Dumez :: Copyright (c) 2006</source>
         <translation type="obsolete"> :: Par Christophe Dumez :: Copyright (c) 2006</translation>
     </message>
@@ -1685,10 +1740,12 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">&lt;b&gt;Statut Connexion :&lt;/b&gt;&lt;br&gt;En Ligne</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connexions...&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;Statut Connexion :&lt;/b&gt;&lt;br&gt;Derrière un pare-feu ?&lt;br&gt;&lt;i&gt;Aucune connexion entrante...&lt;/i&gt;</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;Statut Connexion :&lt;/b&gt;&lt;br&gt;Déconnecté&lt;br&gt;&lt;i&gt;Aucun peer trouvé...&lt;/i&gt;</translation>
     </message>
@@ -1743,14 +1800,17 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Recherche en cours...</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Could not create search plugin.</source>
         <translation type="obsolete">Impossible de créer le greffon de recherche.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Error during search</source>
         <translation type="obsolete">Erreur durant la recherche</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Stopped</source>
         <translation type="obsolete">Stoppé</translation>
     </message>
@@ -1760,34 +1820,42 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Erreur E/S</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Couldn&apos;t create temporary file on hard drive.</source>
         <translation type="obsolete">Impossible de créer le fichier temporaire sur le disque dur.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Torrent file URL</source>
         <translation type="obsolete">URL du fichier torrent</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>KB/s</source>
         <translation type="obsolete">Ko/s</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source> KB/s</source>
         <translation type="obsolete"> Ko/s</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Downloading using HTTP: </source>
         <translation type="obsolete"> Téléchargement via HTTP :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Torrent file URL:</source>
         <translation type="obsolete">URL du fichier torrent :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>A http download failed...</source>
         <translation type="obsolete">Un téléchargement http a échoué...</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>A http download failed, reason: </source>
         <translation type="obsolete"> Un téléchargement http a échoué, raison :</translation>
     </message>
@@ -1797,18 +1865,22 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Etes-vous sûr ? -- qBittorrent</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Are you sure you want to quit qbittorrent?</source>
         <translation type="obsolete">Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Timed out</source>
         <translation type="obsolete">Délai écoulé</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Error during search...</source>
         <translation type="obsolete">Erreur durant la recherche...</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Failed to download: </source>
         <translation type="obsolete"> Echec lors du téléchargement de :</translation>
     </message>
@@ -1818,18 +1890,22 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Ko/s</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source> KiB/s</source>
         <translation type="obsolete"> Ko/s</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>A http download failed, reason:</source>
         <translation type="obsolete">Un téléchargement http a échoué, raison :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Stalled</source>
         <translation type="obsolete">En attente</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Your search is finished</source>
         <translation type="obsolete">Votre recherche s&apos;est terminée</translation>
     </message>
@@ -1854,6 +1930,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">La recherche n&apos;a retourné aucun résultat</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Search is Finished</source>
         <translation type="obsolete">La recherche est terminée</translation>
     </message>
@@ -2526,6 +2603,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
 <context>
     <name>MainWindow</name>
     <message>
+        <location filename="" line="0"/>
         <source>qBittorrent :: By Christophe Dumez</source>
         <translation type="obsolete">qBittorrent :: Par Christophe Dumez</translation>
     </message>
@@ -2540,6 +2618,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Vitesse DL totale :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Kb/s</source>
         <translation type="obsolete">ko/s</translation>
     </message>
@@ -2549,26 +2628,32 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Vitesse UP totale :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Name</source>
         <translation type="obsolete">Nom</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Size</source>
         <translation type="obsolete">Taille</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>DL Speed</source>
         <translation type="obsolete">Vitesse DL</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>UP Speed</source>
         <translation type="obsolete">Vitesse UP</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Status</source>
         <translation type="obsolete">Statut</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>ETA</source>
         <translation type="obsolete">Restant</translation>
     </message>
@@ -2638,10 +2723,12 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation>Démarrer tous</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Connexion Status</source>
         <translation type="obsolete">Statut Connexion</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Delete All</source>
         <translation type="obsolete">Supprimer tous</translation>
     </message>
@@ -2651,6 +2738,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation>Propriétés du Torrent</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Connection Status</source>
         <translation type="obsolete">Statut Connexion</translation>
     </message>
@@ -2695,14 +2783,17 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Stopper</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Seeds</source>
         <translation type="obsolete">Sources entières</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Leechers</source>
         <translation type="obsolete">Sources partielles</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Search Engine</source>
         <translation type="obsolete">Moteur de recherche</translation>
     </message>
@@ -2732,6 +2823,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation>Créer torrent</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Ratio: </source>
         <translation type="obsolete"> Ratio :</translation>
     </message>
@@ -2870,6 +2962,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
 <context>
     <name>QTextEdit</name>
     <message>
+        <location filename="" line="0"/>
         <source>Clear</source>
         <translation type="obsolete">Vider</translation>
     </message>
@@ -3274,6 +3367,7 @@ Changements:
 <context>
     <name>Ui</name>
     <message>
+        <location filename="" line="0"/>
         <source>I would like to thank the following people who volonteered to translate qBittorrent:</source>
         <translation type="obsolete">Je tiens à remercier les personnes suivantes pour avoir traduit qBittorrent :</translation>
     </message>
@@ -3283,6 +3377,7 @@ Changements:
         <translation type="obsolete">Veuillez me contacter si vous désirez traduire qBittorrent dans votre langue natale.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>I would like to thank sourceforge.net for hosting qBittorrent project.</source>
         <translation type="obsolete">Un grand merci à sourceforge.net qui héberge le projet qBittorrent.</translation>
     </message>
@@ -3292,10 +3387,12 @@ Changements:
         <translation type="obsolete">Je tiens à remercier les personnes suivantes pour avoir traduit qBittorrent :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&lt;ul&gt;&lt;li&gt;I would like to thank sourceforge.net for hosting qBittorrent project.&lt;/li&gt;</source>
         <translation type="obsolete">&lt;ul&gt;&lt;li&gt;J&apos;aimerai remercier sourceforge.net qui héberge le projet de qBittorrent.&lt;/li&gt;</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&lt;li&gt;I also like to thank Jeffery Fernandez (developer@jefferyfernandez.id.au), our RPM packager, for his great work.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation type="obsolete">&lt;li&gt;Je tiens églement à remercier Jeffery Fernandez (developer@jefferyfernandez.id.au), notre packager RPM, pour son travail.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
@@ -3421,6 +3518,7 @@ Changements:
         <translation>Annuler</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>select</source>
         <translation type="obsolete">Select</translation>
     </message>
@@ -3524,18 +3622,18 @@ Changements:
 <context>
     <name>bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="137"/>
+        <location filename="../bittorrent.cpp" line="128"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>%1 a atteint le ratio maximum défini.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="285"/>
+        <location filename="../bittorrent.cpp" line="276"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos; a été supprimé de manière permanente.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="287"/>
+        <location filename="../bittorrent.cpp" line="278"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; a été supprimé.</translation>
@@ -3553,73 +3651,73 @@ Changements:
         <translation type="obsolete">&apos;%1&apos; a été relancé.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="421"/>
+        <location filename="../bittorrent.cpp" line="412"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; est déjà présent dans la liste de téléchargement.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="518"/>
+        <location filename="../bittorrent.cpp" line="513"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; a été relancé. (relancement rapide)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="520"/>
+        <location filename="../bittorrent.cpp" line="515"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; a été ajouté à la liste de téléchargement.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="390"/>
+        <location filename="../bittorrent.cpp" line="381"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Impossible de décoder le torrent : &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="393"/>
+        <location filename="../bittorrent.cpp" line="384"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Ce fichier est corrompu ou il ne s&apos;agit pas d&apos;un torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="858"/>
+        <location filename="../bittorrent.cpp" line="853"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été bloqué par votre filtrage IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="860"/>
+        <location filename="../bittorrent.cpp" line="855"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été banni suite à l&apos;envoi de données corrompues&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1150"/>
+        <location filename="../bittorrent.cpp" line="1145"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Impossible d&apos;écouter sur les ports donnés.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1182"/>
+        <location filename="../bittorrent.cpp" line="1177"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP : Echec de mapping du port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1187"/>
+        <location filename="../bittorrent.cpp" line="1182"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP : Réussite du mapping de port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1202"/>
+        <location filename="../bittorrent.cpp" line="1197"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Le relancement rapide a échoué pour le torrent %1, revérification...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1207"/>
+        <location filename="../bittorrent.cpp" line="1202"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Le contact de la source HTTP a échoué à l&apos;url : %1, message : %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1265"/>
+        <location filename="../bittorrent.cpp" line="1260"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
@@ -3643,6 +3741,7 @@ Changements:
         <translation type="obsolete">Fichier ou dossier à inclure :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Comment:</source>
         <translation type="obsolete">Commentaire :</translation>
     </message>
@@ -3662,6 +3761,7 @@ Changements:
         <translation>Annuler</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Announce url (Tracker):</source>
         <translation type="obsolete">URL du tracker :</translation>
     </message>
@@ -3854,6 +3954,7 @@ Changements:
         <translation type="obsolete">Le fichier ou le dossier à inclure est introuvable</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Please type a correct input path first</source>
         <translation type="obsolete">Veuillez vérifier la chemin du fichier/dossier à inclure</translation>
     </message>
@@ -3942,6 +4043,7 @@ Changements:
 <context>
     <name>downloadFromURL</name>
     <message>
+        <location filename="" line="0"/>
         <source>Download from url</source>
         <translation type="obsolete">Téléchargement depuis une url</translation>
     </message>
@@ -4400,6 +4502,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete"> h</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>d </source>
         <comment>days</comment>
         <translation type="obsolete"> j</translation>
@@ -4490,14 +4593,17 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">en mode lecture.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Invalid Line</source>
         <translation type="obsolete">Ligne invalide</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Line</source>
         <translation type="obsolete">La ligne</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>is malformed.</source>
         <translation type="obsolete">est mal formée.</translation>
     </message>
@@ -4512,10 +4618,12 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">IP de début :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Incorrect IP</source>
         <translation type="obsolete">IP incorrecte</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>This IP is incorrect.</source>
         <translation type="obsolete">Cette IP est incorrecte.</translation>
     </message>
@@ -4566,7 +4674,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Préférences sauvegardées avec succès.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1247"/>
+        <location filename="../options_imp.cpp" line="1248"/>
         <source>Choose scan directory</source>
         <translation>Choisir le dossier à surveiller</translation>
     </message>
@@ -4576,7 +4684,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Choisir un fichier ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1262"/>
+        <location filename="../options_imp.cpp" line="1263"/>
         <source>Choose a save directory</source>
         <translation>Choisir un répertoire de sauvegarde</translation>
     </message>
@@ -4592,7 +4700,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Impossible d&apos;ouvrir %1 en lecture.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1254"/>
+        <location filename="../options_imp.cpp" line="1255"/>
         <source>Choose an ip filter file</source>
         <translation>Choisir un fichier de filtrage IP</translation>
     </message>
@@ -4602,7 +4710,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Filtres (*.dat *.p2p *.p2b)</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1254"/>
+        <location filename="../options_imp.cpp" line="1255"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>
@@ -4694,6 +4802,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation>Propriétés du Torrent</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Main Infos</source>
         <translation type="obsolete">Infos Principales</translation>
     </message>
@@ -4708,10 +4817,12 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Session Actuelle</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Total Uploaded:</source>
         <translation type="obsolete">Total Uploadé :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Total Downloaded:</source>
         <translation type="obsolete">Total Downloadé :</translation>
     </message>
@@ -4721,14 +4832,17 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Etat du téléchargement :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Current Tracker:</source>
         <translation type="obsolete">Tracker Actuel :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Number of Peers:</source>
         <translation type="obsolete">Nombre de peers :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Torrent Content</source>
         <translation type="obsolete">Contenu du Torrent</translation>
     </message>
@@ -4738,10 +4852,12 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation></translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Cancel</source>
         <translation type="obsolete">Annuler</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Total Failed:</source>
         <translation type="obsolete">Total échoué :</translation>
     </message>
@@ -4786,10 +4902,12 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Allocation</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Unreachable?</source>
         <translation type="obsolete">Injoignable ?</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source> MB</source>
         <translation type="obsolete"> Mo</translation>
     </message>
@@ -4799,10 +4917,12 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation>Inconnu</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Complete: </source>
         <translation type="obsolete"> Complet :</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Partial: </source>
         <translation type="obsolete"> Partiel :</translation>
     </message>
@@ -4837,10 +4957,12 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Vous pouvez sélectionner ici quels fichiers vous désirez télécharger dans le torrent actuel.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>False</source>
         <translation type="obsolete">Non</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>True</source>
         <translation type="obsolete">Oui</translation>
     </message>
@@ -4870,6 +4992,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation>Infos principales</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Number of peers:</source>
         <translation type="obsolete">Nombre de sources :</translation>
     </message>
@@ -4899,6 +5022,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation>Contenu du torrent</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Options</source>
         <translation type="obsolete">Options</translation>
     </message>
@@ -5372,7 +5496,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Oui</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="115"/>
+        <location filename="../torrentAddition.h" line="118"/>
         <source>Unable to decode torrent file:</source>
         <translation>Impossible de décoder le fichier torrent :</translation>
     </message>
@@ -5382,7 +5506,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Ce fichier est corrompu ou il ne s&apos;agit pas d&apos;un torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="254"/>
+        <location filename="../torrentAddition.h" line="258"/>
         <source>Choose save path</source>
         <translation>Choix du répertoire de destination</translation>
     </message>
@@ -5392,52 +5516,52 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Non</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="392"/>
         <source>Empty save path</source>
         <translation>Chemin de destination vide</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="392"/>
         <source>Please enter a save path</source>
         <translation>Veuillez entrer un répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="394"/>
+        <location filename="../torrentAddition.h" line="398"/>
         <source>Save path creation error</source>
         <translation>Erreur lors de la création du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="394"/>
+        <location filename="../torrentAddition.h" line="398"/>
         <source>Could not create the save path</source>
         <translation>Impossible de créer le répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="428"/>
         <source>Invalid file selection</source>
         <translation>Sélection de fichiers invalide</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="428"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Veuillez sélectionner au moins un fichier dans le torrent</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="66"/>
+        <location filename="../torrentAddition.h" line="65"/>
         <source>File name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="67"/>
+        <location filename="../torrentAddition.h" line="66"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="68"/>
+        <location filename="../torrentAddition.h" line="67"/>
         <source>Progress</source>
         <translation>Progression</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="287"/>
+        <location filename="../torrentAddition.h" line="291"/>
         <source>Priority</source>
         <translation>Priorité</translation>
     </message>

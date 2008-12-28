@@ -3452,18 +3452,18 @@ Changelog:
 <context>
     <name>bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="137"/>
+        <location filename="../bittorrent.cpp" line="128"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>&apos;%1&apos; 는 설정된 최대 공유 비율에 도달했습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="285"/>
+        <location filename="../bittorrent.cpp" line="276"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos; 는 영구삭제 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="287"/>
+        <location filename="../bittorrent.cpp" line="278"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; 가 삭제되었습니다.</translation>
@@ -3481,73 +3481,73 @@ Changelog:
         <translation type="obsolete">&apos;%1&apos; 가 다운로드를 다시 시작되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="421"/>
+        <location filename="../bittorrent.cpp" line="412"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos;는/은 이미 다운로드 목록에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="518"/>
+        <location filename="../bittorrent.cpp" line="513"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos;가 다시 시작되었습니다. (빠른 재개)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="520"/>
+        <location filename="../bittorrent.cpp" line="515"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos;가 다운로드 목록에 추가되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="390"/>
+        <location filename="../bittorrent.cpp" line="381"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>다음 파일은 해독 할수가 없습니다: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="393"/>
+        <location filename="../bittorrent.cpp" line="384"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>이 파일은 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="858"/>
+        <location filename="../bittorrent.cpp" line="853"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 IP 필터에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="860"/>
+        <location filename="../bittorrent.cpp" line="855"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1150"/>
+        <location filename="../bittorrent.cpp" line="1145"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>설정하신 포트에 연결할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1182"/>
+        <location filename="../bittorrent.cpp" line="1177"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1187"/>
+        <location filename="../bittorrent.cpp" line="1182"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1202"/>
+        <location filename="../bittorrent.cpp" line="1197"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>토렌트 %1는 빨리 이어받기가 사용될수 없습니다, 확인중입니다... </translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1207"/>
+        <location filename="../bittorrent.cpp" line="1202"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>다음 Url 완전체(Url seed)의 검색이 실패하였습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1265"/>
+        <location filename="../bittorrent.cpp" line="1260"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;을 다운 중입니다, 잠시 기다려 주세요...</translation>
@@ -4457,7 +4457,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">환경설정이 성공적으로 저장되었습니다.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1247"/>
+        <location filename="../options_imp.cpp" line="1248"/>
         <source>Choose scan directory</source>
         <translation>스켄할 곳을 선택해주세요</translation>
     </message>
@@ -4467,7 +4467,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">ipfilter.dat의 경로를 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1262"/>
+        <location filename="../options_imp.cpp" line="1263"/>
         <source>Choose a save directory</source>
         <translation>파일을 저장할 경로를 선택해주세요</translation>
     </message>
@@ -4483,12 +4483,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">%1을 읽기전용 모드로 열수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1254"/>
+        <location filename="../options_imp.cpp" line="1255"/>
         <source>Choose an ip filter file</source>
         <translation>ip filter 파일 선택</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1254"/>
+        <location filename="../options_imp.cpp" line="1255"/>
         <source>Filters</source>
         <translation>필터</translation>
     </message>
@@ -5265,7 +5265,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">맞음</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="115"/>
+        <location filename="../torrentAddition.h" line="118"/>
         <source>Unable to decode torrent file:</source>
         <translation>토런트 파일을 해독 할 수가 없습니다:</translation>
     </message>
@@ -5275,7 +5275,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">이 파일은 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="254"/>
+        <location filename="../torrentAddition.h" line="258"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
@@ -5285,52 +5285,52 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">틀림</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="392"/>
         <source>Empty save path</source>
         <translation>저장 경로 지우기</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="392"/>
         <source>Please enter a save path</source>
         <translation>저장 경로를 지정해주십시오</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="394"/>
+        <location filename="../torrentAddition.h" line="398"/>
         <source>Save path creation error</source>
         <translation>저장 경로 설정이 잘못되었습니다</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="394"/>
+        <location filename="../torrentAddition.h" line="398"/>
         <source>Could not create the save path</source>
         <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="428"/>
         <source>Invalid file selection</source>
         <translation>부적당한 파일 선택</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="428"/>
         <source>You must select at least one file in the torrent</source>
         <translation>토렌트에서 적어도 하나 이상의 파일을 선택해야 합니다 </translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="66"/>
+        <location filename="../torrentAddition.h" line="65"/>
         <source>File name</source>
         <translation>파일 이름</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="67"/>
+        <location filename="../torrentAddition.h" line="66"/>
         <source>Size</source>
         <translation>크기</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="68"/>
+        <location filename="../torrentAddition.h" line="67"/>
         <source>Progress</source>
         <translation>진행상황</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="287"/>
+        <location filename="../torrentAddition.h" line="291"/>
         <source>Priority</source>
         <translation>우선순위</translation>
     </message>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="sv">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDlg</name>
     <message>
@@ -1731,18 +1730,18 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="137"/>
+        <location filename="../bittorrent.cpp" line="128"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>%1 har nått maximalt angivet förhållande.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="285"/>
+        <location filename="../bittorrent.cpp" line="276"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&quot;%1&quot; togs bort permanent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="287"/>
+        <location filename="../bittorrent.cpp" line="278"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&quot;%1&quot; togs bort.</translation>
@@ -1760,73 +1759,73 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">&quot;%1&quot; återupptogs.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="421"/>
+        <location filename="../bittorrent.cpp" line="412"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&quot;%1&quot; finns redan i hämtningslistan.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="518"/>
+        <location filename="../bittorrent.cpp" line="513"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&quot;%1&quot; återupptogs. (snabbt läge)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="520"/>
+        <location filename="../bittorrent.cpp" line="515"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&quot;%1&quot; lades till i hämtningslistan.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="390"/>
+        <location filename="../bittorrent.cpp" line="381"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Kunde inte avkoda torrent-fil: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="393"/>
+        <location filename="../bittorrent.cpp" line="384"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Denna fil är antingen skadad eller så är den inte en torrent-fil.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="858"/>
+        <location filename="../bittorrent.cpp" line="853"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blockerades på grund av ditt IP-filter&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="860"/>
+        <location filename="../bittorrent.cpp" line="855"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;har bannlysts på grund av skadade delar&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1150"/>
+        <location filename="../bittorrent.cpp" line="1145"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Kunde inte lyssna på någon av de angivna portarna.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1182"/>
+        <location filename="../bittorrent.cpp" line="1177"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Fel i portmappning, meddelande: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1187"/>
+        <location filename="../bittorrent.cpp" line="1182"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Portmappning lyckades, meddelande: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1202"/>
+        <location filename="../bittorrent.cpp" line="1197"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Snabb återupptagning av data nekades för torrent-filen %1, kontrollerar igen...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1207"/>
+        <location filename="../bittorrent.cpp" line="1202"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Uppslagning av url misslyckades för: %1, meddelande: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1265"/>
+        <location filename="../bittorrent.cpp" line="1260"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Hämtar &quot;%1&quot;, vänta...</translation>
@@ -2437,22 +2436,22 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="1247"/>
+        <location filename="../options_imp.cpp" line="1248"/>
         <source>Choose scan directory</source>
         <translation>Välj en avsökningskatalog</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1262"/>
+        <location filename="../options_imp.cpp" line="1263"/>
         <source>Choose a save directory</source>
         <translation>Välj en katalog att spara i</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1254"/>
+        <location filename="../options_imp.cpp" line="1255"/>
         <source>Choose an ip filter file</source>
         <translation>Välj en IP-filterfil</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1254"/>
+        <location filename="../options_imp.cpp" line="1255"/>
         <source>Filters</source>
         <translation>Filter</translation>
     </message>
@@ -2982,7 +2981,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentAddition.h" line="115"/>
+        <location filename="../torrentAddition.h" line="118"/>
         <source>Unable to decode torrent file:</source>
         <translation>Kunde inte avkoda torrent-fil:</translation>
     </message>
@@ -2992,57 +2991,57 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <translation type="obsolete">Denna fil är antingen skadad eller så är den inte en torrent-fil.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="254"/>
+        <location filename="../torrentAddition.h" line="258"/>
         <source>Choose save path</source>
         <translation>Välj sökväg att spara i</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="392"/>
         <source>Empty save path</source>
         <translation>Tom sökväg för att spara i</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="392"/>
         <source>Please enter a save path</source>
         <translation>Ange en sökväg att spara i</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="394"/>
+        <location filename="../torrentAddition.h" line="398"/>
         <source>Save path creation error</source>
         <translation>Fel vid skapandet av sökväg</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="394"/>
+        <location filename="../torrentAddition.h" line="398"/>
         <source>Could not create the save path</source>
         <translation>Kunde inte skapa sökväg att spara i</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="428"/>
         <source>Invalid file selection</source>
         <translation>Ogiltig filmarkering</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="428"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Du måste välja åtminstone en fil i torrent-filen</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="66"/>
+        <location filename="../torrentAddition.h" line="65"/>
         <source>File name</source>
         <translation>Filnamn</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="67"/>
+        <location filename="../torrentAddition.h" line="66"/>
         <source>Size</source>
         <translation>Storlek</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="68"/>
+        <location filename="../torrentAddition.h" line="67"/>
         <source>Progress</source>
         <translation>Förlopp</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="287"/>
+        <location filename="../torrentAddition.h" line="291"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
     </message>

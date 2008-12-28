@@ -135,17 +135,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../console.ui" line="13"/>
         <source>qBittorrent console</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent konzole</translation>
     </message>
     <message>
         <location filename="../console.ui" line="26"/>
         <source>General</source>
-        <translation type="unfinished">Obecné</translation>
+        <translation>Obecné</translation>
     </message>
     <message>
         <location filename="../console.ui" line="39"/>
         <source>Blocked IPs</source>
-        <translation type="unfinished"></translation>
+        <translation>Blokované IP</translation>
     </message>
 </context>
 <context>
@@ -666,22 +666,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1237"/>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1247"/>
         <source>Search engine proxy settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastvení proxy pro vyhledávače</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1437"/>
         <source>Bittorrent proxy settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavení proxy pro bittorrent</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1976"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Max. počet aktivních nahrávání:</translation>
     </message>
 </context>
 <context>
@@ -1247,12 +1247,12 @@ Opravdu chcete ukončit qBittorrent?</translation>
     <message>
         <location filename="../GUI.cpp" line="141"/>
         <source>Uploads</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávání</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1503"/>
         <source>Options were saved successfully.</source>
-        <translation type="unfinished">Nastavení bylo úspěšně uloženo.</translation>
+        <translation>Nastavení bylo úspěšně uloženo.</translation>
     </message>
 </context>
 <context>
@@ -1400,7 +1400,7 @@ Opravdu chcete ukončit qBittorrent?</translation>
     <message>
         <location filename="../MainWindow.ui" line="264"/>
         <source>Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Konzole</translation>
     </message>
 </context>
 <context>
@@ -1784,12 +1784,12 @@ Opravdu chcete ukončit qBittorrent?</translation>
     <message>
         <location filename="../addTorrentDialog.ui" line="116"/>
         <source>Collapse all</source>
-        <translation type="unfinished"></translation>
+        <translation>Sbalit vše</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="123"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbalit vše</translation>
     </message>
 </context>
 <context>
@@ -1846,21 +1846,21 @@ Opravdu chcete ukončit qBittorrent?</translation>
 <context>
     <name>bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="137"/>
+        <location filename="../bittorrent.cpp" line="128"/>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; - poměr dosáhl nastaveného maxima.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="285"/>
+        <location filename="../bittorrent.cpp" line="276"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation type="unfinished">&apos;%1&apos; byl trvale odstraněn.</translation>
+        <translation>&apos;%1&apos; byl trvale odstraněn.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="287"/>
+        <location filename="../bittorrent.cpp" line="278"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation type="unfinished">&apos;%1&apos; byl odstraněn.</translation>
+        <translation>&apos;%1&apos; byl odstraněn.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="369"/>
@@ -1875,76 +1875,76 @@ Opravdu chcete ukončit qBittorrent?</translation>
         <translation type="obsolete">&apos;%1&apos; obnoven.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="421"/>
+        <location filename="../bittorrent.cpp" line="412"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; už je v seznamu stahování.</translation>
+        <translation>&apos;%1&apos; už je v seznamu stahování.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="518"/>
+        <location filename="../bittorrent.cpp" line="513"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">&apos;%1&apos; obnoven. (rychlé obnovení)</translation>
+        <translation>&apos;%1&apos; obnoven. (rychlé obnovení)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="520"/>
+        <location filename="../bittorrent.cpp" line="515"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; přidán do seznamu stahování.</translation>
+        <translation>&apos;%1&apos; přidán do seznamu stahování.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="390"/>
+        <location filename="../bittorrent.cpp" line="381"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">Nelze dekódovat soubor torrentu: &apos;%1&apos;</translation>
+        <translation>Nelze dekódovat soubor torrentu: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="393"/>
+        <location filename="../bittorrent.cpp" line="384"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Tento soubor je buď poškozen, nebo to není soubor torrentu.</translation>
+        <translation>Tento soubor je buď poškozen, nebo to není soubor torrentu.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="858"/>
+        <location filename="../bittorrent.cpp" line="853"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zablokován kvůli filtru IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="860"/>
+        <location filename="../bittorrent.cpp" line="855"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zakázán kvůli poškozeným částem&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1150"/>
+        <location filename="../bittorrent.cpp" line="1145"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="unfinished">Nelze naslouchat na žádném z udaných portů.</translation>
+        <translation>Nelze naslouchat na žádném z udaných portů.</translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="1177"/>
+        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
+        <translation>UPnP/NAT-PMP: Namapování portů selhalo, zpráva: %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1182"/>
-        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Namapování portů selhalo, zpráva: %1</translation>
+        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
+        <translation>UPnP/NAT-PMP: Namapování portů bylo úspěšné, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1187"/>
-        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Namapování portů bylo úspěšné, zpráva: %1</translation>
+        <location filename="../bittorrent.cpp" line="1197"/>
+        <source>Fast resume data was rejected for torrent %1, checking again...</source>
+        <translation>Rychlé obnovení torrentu %1 bylo odmítnuto, zkouším znovu...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1202"/>
-        <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Rychlé obnovení torrentu %1 bylo odmítnuto, zkouším znovu...</translation>
-    </message>
-    <message>
-        <location filename="../bittorrent.cpp" line="1207"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Vyhledání URL seedu selhalo pro URL: %1, zpráva: %2</translation>
+        <translation>Vyhledání URL seedu selhalo pro URL: %1, zpráva: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1265"/>
+        <location filename="../bittorrent.cpp" line="1260"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished">Stahuji  &apos;%1&apos;, prosím čekejte...</translation>
+        <translation>Stahuji  &apos;%1&apos;, prosím čekejte...</translation>
     </message>
 </context>
 <context>
@@ -2141,7 +2141,7 @@ Opravdu chcete ukončit qBittorrent?</translation>
     <message>
         <location filename="../createtorrent_imp.cpp" line="188"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořený torrent soubor je špatný. Nebude přidán do seznamu stahování.</translation>
     </message>
 </context>
 <context>
@@ -2312,7 +2312,7 @@ Opravdu chcete ukončit qBittorrent?</translation>
     <message>
         <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Překontrolovat platnost</translation>
     </message>
 </context>
 <context>
@@ -2572,22 +2572,22 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <translation type="obsolete">Nastavení bylo úspěšně uloženo.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1247"/>
+        <location filename="../options_imp.cpp" line="1248"/>
         <source>Choose scan directory</source>
         <translation>Vyberte adresář ke sledování</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1262"/>
+        <location filename="../options_imp.cpp" line="1263"/>
         <source>Choose a save directory</source>
         <translation>Vyberte adresář pro ukládání</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1254"/>
+        <location filename="../options_imp.cpp" line="1255"/>
         <source>Choose an ip filter file</source>
         <translation>Vyberte soubor IP filtrů</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1254"/>
+        <location filename="../options_imp.cpp" line="1255"/>
         <source>Filters</source>
         <translation>Filtry</translation>
     </message>
@@ -2897,32 +2897,32 @@ Nicméně, tyto moduly byly vypnuty.</translation>
     <message>
         <location filename="../properties.ui" line="941"/>
         <source>Collapse all</source>
-        <translation type="unfinished"></translation>
+        <translation>Sbalit vše</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="948"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbalit vše</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="204"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="687"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Vyberte cestu pro uložení</translation>
+        <translation>Vyberte cestu pro uložení</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Chyba při vytváření cesty pro uložení</translation>
+        <translation>Chyba při vytváření cesty pro uložení</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Nemohu vytvořit cestu pro uložení</translation>
+        <translation>Nemohu vytvořit cestu pro uložení</translation>
     </message>
 </context>
 <context>
@@ -3068,7 +3068,7 @@ Nicméně, tyto moduly byly vypnuty.</translation>
     <message>
         <location filename="../seeding.ui" line="129"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Překontrolovat platnost</translation>
     </message>
 </context>
 <context>
@@ -3122,7 +3122,7 @@ Nicméně, tyto moduly byly vypnuty.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentAddition.h" line="115"/>
+        <location filename="../torrentAddition.h" line="118"/>
         <source>Unable to decode torrent file:</source>
         <translation>Nelze dekódovat soubor torrentu:</translation>
     </message>
@@ -3132,57 +3132,57 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <translation type="obsolete">Tento soubor je buď poškozen, nebo to není soubor torrentu.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="254"/>
+        <location filename="../torrentAddition.h" line="258"/>
         <source>Choose save path</source>
         <translation>Vyberte cestu pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="392"/>
         <source>Empty save path</source>
         <translation>Prázdná cesta pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="388"/>
+        <location filename="../torrentAddition.h" line="392"/>
         <source>Please enter a save path</source>
         <translation>Vložte prosím cestu pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="394"/>
+        <location filename="../torrentAddition.h" line="398"/>
         <source>Save path creation error</source>
         <translation>Chyba při vytváření cesty pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="394"/>
+        <location filename="../torrentAddition.h" line="398"/>
         <source>Could not create the save path</source>
         <translation>Nemohu vytvořit cestu pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="428"/>
         <source>Invalid file selection</source>
         <translation>Neplatný výběr souboru</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="428"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Musíte v torrentu vybrat alespoň jeden soubor</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="66"/>
+        <location filename="../torrentAddition.h" line="65"/>
         <source>File name</source>
         <translation>Název souboru</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="67"/>
+        <location filename="../torrentAddition.h" line="66"/>
         <source>Size</source>
         <translation>Velikost</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="68"/>
+        <location filename="../torrentAddition.h" line="67"/>
         <source>Progress</source>
         <translation>Průběh</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="287"/>
+        <location filename="../torrentAddition.h" line="291"/>
         <source>Priority</source>
         <translation>Priorita</translation>
     </message>
