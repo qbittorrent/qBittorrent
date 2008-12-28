@@ -63,7 +63,7 @@ void HttpServer::newHttpConnection()
 		//connect connection to BTSession
 		connect(connection, SIGNAL(UrlReadyToBeDownloaded(QString)), BTSession, SLOT(downloadUrlAndSkipDialog(QString)));
 		connect(connection, SIGNAL(torrentReadyToBeDownloaded(QString, bool, QString, bool)), BTSession, SLOT(addTorrent(QString, bool, QString, bool)));
-		connect(connection, SIGNAL(deleteTorrent(QString)), BTSession, SLOT(deleteTorrent(QString)));
+                connect(connection, SIGNAL(deleteTorrent(QString, bool)), BTSession, SLOT(deleteTorrent(QString, bool)));
 		connect(connection, SIGNAL(pauseTorrent(QString)), BTSession, SLOT(pauseTorrent(QString)));
 		connect(connection, SIGNAL(resumeTorrent(QString)), BTSession, SLOT(resumeTorrent(QString)));
 		connect(connection, SIGNAL(pauseAllTorrents()), BTSession, SLOT(pauseAllTorrents()));

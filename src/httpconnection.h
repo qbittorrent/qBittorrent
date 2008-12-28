@@ -59,7 +59,7 @@ class HttpConnection : public QObject
 	signals:
                 void UrlReadyToBeDownloaded(QString url);
 		void torrentReadyToBeDownloaded(QString, bool, QString, bool);
-		void deleteTorrent(QString hash);
+                void deleteTorrent(QString hash, bool permanently);
 		void resumeTorrent(QString hash);
 		void pauseTorrent(QString hash);
 		void resumeAllTorrents();

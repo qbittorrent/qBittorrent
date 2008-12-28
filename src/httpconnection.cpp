@@ -224,7 +224,12 @@ void HttpConnection::respondCommand(QString command)
 	}
 	if(command == "delete")
 	{
-		emit deleteTorrent(parser.post("hash"));
+                emit deleteTorrent(parser.post("hash"), false);
 		return;
 	}
+        if(command == "deletePerm")
+        {
+                emit deleteTorrent(parser.post("hash"), true);
+                return;
+        }
 }
