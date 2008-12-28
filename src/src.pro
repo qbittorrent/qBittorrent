@@ -31,10 +31,6 @@ contains(DEBUG_MODE, 0) {
     message(Release build!)
 }
 
-# For libtorrent stuff
-# (comment this if you are using libtorrent with debug enabled)
-DEFINES += NDEBUG
-
 # Install
 !win32 { 
     # Binary
@@ -92,8 +88,9 @@ DEFINES += NDEBUG
         icon128 \
         icon192
 }
-QMAKE_CXXFLAGS_RELEASE += -fwrapv
-QMAKE_CXXFLAGS_DEBUG += -fwrapv
+#QMAKE_CXXFLAGS_RELEASE += -fwrapv
+#QMAKE_CXXFLAGS_DEBUG += -fwrapv
+
 CONFIG += link_pkgconfig
 PKGCONFIG += "libtorrent-rasterbar libcurl"
 
