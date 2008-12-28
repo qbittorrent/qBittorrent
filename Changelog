@@ -13,6 +13,7 @@
     - FEATURE: Updated Web interface to MochaUI v0.9.5
     - FEATURE: Added notification in WebUI when qBittorrent is not reachable
     - FEATURE: Rewrote folder scanning code (Now uses a filesystem watcher)
+    - FEATURE: Added torrent deletion from hard drive function in Web UI
     - BUGFIX: Fixed several memory leaks
     - BUGFIX: WebUI is now working with IE7
     - BUGFIX: Fixed spacing problem in toolbar when toggling its visibility
