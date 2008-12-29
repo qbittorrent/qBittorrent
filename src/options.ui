@@ -126,7 +126,7 @@
            <widget class="QLabel" name="lbl_i18n_info_2" >
             <property name="font" >
              <font>
-              <pointsize>6</pointsize>
+              <pointsize>8</pointsize>
               <italic>true</italic>
              </font>
             </property>
