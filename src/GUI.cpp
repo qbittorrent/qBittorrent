@@ -122,6 +122,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(BTSession, SIGNAL(fullDiskError(QTorrentHandle&)), this, SLOT(fullDiskError(QTorrentHandle&)));
   connect(BTSession, SIGNAL(finishedTorrent(QTorrentHandle&)), this, SLOT(finishedTorrent(QTorrentHandle&)));
   connect(BTSession, SIGNAL(addedTorrent(QTorrentHandle&)), this, SLOT(addedTorrent(QTorrentHandle&)));
+  connect(BTSession, SIGNAL(pausedTorrent(QTorrentHandle&)), this, SLOT(pausedTorrent(QTorrentHandle&)));
+  connect(BTSession, SIGNAL(resumedTorrent(QTorrentHandle&)), this, SLOT(resumedTorrent(QTorrentHandle&)));
   connect(BTSession, SIGNAL(torrentFinishedChecking(QTorrentHandle&)), this, SLOT(checkedTorrent(QTorrentHandle&)));
   connect(BTSession, SIGNAL(trackerAuthenticationRequired(QTorrentHandle&)), this, SLOT(trackerAuthenticationRequired(QTorrentHandle&)));
   connect(BTSession, SIGNAL(newDownloadedTorrent(QString, QString)), this, SLOT(processDownloadedFiles(QString, QString)));
@@ -368,6 +370,22 @@ void GUI::addedTorrent(QTorrentHandle& h) const {
         finishedTorrentTab->addTorrent(h.hash());
     } else {
         downloadingTorrentTab->addTorrent(h.hash());
+    }
+}
+
+void GUI::pausedTorrent(QTorrentHandle& h) const {
+    if(h.is_seed()) {
+        finishedTorrentTab->pauseTorrent(h.hash());
+    } else {
+        downloadingTorrentTab->pauseTorrent(h.hash());
+    }
+}
+
+void GUI::resumedTorrent(QTorrentHandle& h) const {
+    if(h.is_seed()) {
+        finishedTorrentTab->updateTorrent(h);
+    } else {
+        downloadingTorrentTab->updateTorrent(h);
     }
 }
 
@@ -1193,20 +1211,18 @@ void GUI::togglePausedState(QString hash) {
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   if(h.is_paused()) {
     h.resume();
+    resumedTorrent(h);
     if(inDownloadList) {
-      downloadingTorrentTab->resumeTorrent(hash);
       updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
     }else{
-      finishedTorrentTab->resumeTorrent(hash);
       updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
     }
   }else{
     h.pause();
+    pausedTorrent(h);
     if(inDownloadList) {
-      downloadingTorrentTab->pauseTorrent(hash);
       updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
     }else{
-      finishedTorrentTab->pauseTorrent(hash);
       updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
     }
   }
@@ -1222,13 +1238,7 @@ void GUI::on_actionPause_All_triggered() {
         if(!h.is_valid() || h.is_paused()) continue;
         change = true;
         h.pause();
-        if(h.is_seed()) {
-            // Update in finished list
-            finishedTorrentTab->pauseTorrent(h.hash());
-        } else {
-            // Update in download list
-            downloadingTorrentTab->pauseTorrent(h.hash());
-        }
+        pausedTorrent(h);
     }
     if(change) {
         updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
@@ -1271,11 +1281,10 @@ void GUI::on_actionPause_triggered() {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if(!h.is_paused()){
       h.pause();
+      pausedTorrent(h);
       if(inDownloadList) {
-        downloadingTorrentTab->pauseTorrent(hash);
         updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
       } else {
-        finishedTorrentTab->pauseTorrent(hash);
         updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
       }
     }
@@ -1299,13 +1308,7 @@ void GUI::on_actionStart_All_triggered() {
         if(!h.is_valid() || !h.is_paused()) continue;
         change = true;
         h.resume();
-        if(h.is_seed()) {
-            // Update in finished list
-            finishedTorrentTab->resumeTorrent(h.hash());
-        } else {
-            // Update in download list
-            downloadingTorrentTab->resumeTorrent(h.hash());
-        }
+        resumedTorrent(h);
     }
   if(change) {
     updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
@@ -1330,11 +1333,10 @@ void GUI::on_actionStart_triggered() {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if(h.is_paused()){
       h.resume();
+      resumedTorrent(h);
       if(inDownloadList) {
-        downloadingTorrentTab->resumeTorrent(hash);
         updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
       } else {
-        finishedTorrentTab->resumeTorrent(hash);
         updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
       }
     }

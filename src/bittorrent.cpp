@@ -287,6 +287,7 @@ void bittorrent::pauseAllTorrents() {
         if(!h.is_valid()) continue;
         if(!h.is_paused()) {
             h.pause();
+            emit pausedTorrent(h);
         }
     }
 }
@@ -299,20 +300,25 @@ void bittorrent::resumeAllTorrents() {
         if(!h.is_valid()) continue;
         if(h.is_paused()) {
             h.resume();
+            emit resumedTorrent(h);
         }
     }
 }
 
 void bittorrent::pauseTorrent(QString hash) {
     QTorrentHandle h = getTorrentHandle(hash);
-    if(!h.is_paused())
+    if(!h.is_paused()) {
         h.pause();
+        emit pausedTorrent(h);
+    }
 }
 
 void bittorrent::resumeTorrent(QString hash) {
     QTorrentHandle h = getTorrentHandle(hash);
-    if(h.is_paused())
+    if(h.is_paused()) {
         h.resume();
+        emit resumedTorrent(h);
+    }
 }
 
 void bittorrent::loadWebSeeds(QString hash) {
@@ -502,18 +508,17 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
   }
   // Send torrent addition signal
   if(!from_url.isNull()) {
-      emit addedTorrent(h);
       if(fastResume)
           addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(from_url));
       else
           addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(from_url));
   }else{
-      emit addedTorrent(h);
       if(fastResume)
           addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(file));
       else
           addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(file));
   }
+  emit addedTorrent(h);
 }
 
 // Check in .priorities file if the user filtered files

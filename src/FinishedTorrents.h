@@ -78,7 +78,6 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void addTorrent(QString hash);
     void updateTorrent(QTorrentHandle h);
     void pauseTorrent(QString hash);
-    void resumeTorrent(QString hash);
     void propertiesSelection();
     void deleteTorrent(QString hash);
     void showPropertiesFromHash(QString hash);

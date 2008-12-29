@@ -289,13 +289,6 @@ void FinishedTorrents::pauseTorrent(QString hash) {
   setRowColor(row, QString::fromUtf8("red"));
 }
 
-void FinishedTorrents::resumeTorrent(QString hash) {
-    int row = getRowFromHash(hash);
-    Q_ASSERT(row != -1);
-    finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png"))), Qt::DecorationRole);
-    setRowColor(row, QString::fromUtf8("orange"));
-}
-
 QString FinishedTorrents::getHashFromRow(unsigned int row) const {
   Q_ASSERT(row < (unsigned int)finishedListModel->rowCount());
   return finishedListModel->data(finishedListModel->index(row, F_HASH)).toString();

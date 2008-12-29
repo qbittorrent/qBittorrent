@@ -168,13 +168,6 @@ void DownloadingTorrents::showPropertiesFromHash(QString hash) {
   prop->show();
 }
 
-void DownloadingTorrents::resumeTorrent(QString hash){
-    int row = getRowFromHash(hash);
-    Q_ASSERT(row != -1);
-    DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
-    setRowColor(row, QString::fromUtf8("grey"));
-}
-
 // Remove a torrent from the download list but NOT from the BT Session
 void DownloadingTorrents::deleteTorrent(QString hash) {
   int row = getRowFromHash(hash);

@@ -86,7 +86,6 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
   public slots:
     bool updateTorrent(QTorrentHandle h);
     void pauseTorrent(QString hash);
-    void resumeTorrent(QString hash);
     void deleteTorrent(QString hash);
     void propertiesSelection();
     void updateFileSizeAndProgress(QString hash);

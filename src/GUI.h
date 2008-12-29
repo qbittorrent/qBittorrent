@@ -160,6 +160,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void finishedTorrent(QTorrentHandle& h) const;
     void addedTorrent(QTorrentHandle& h) const;
     void checkedTorrent(QTorrentHandle& h) const;
+    void pausedTorrent(QTorrentHandle& h) const;
+    void resumedTorrent(QTorrentHandle& h) const;
     void updateLists(bool force=false);
     bool initWebUi(QString username, QString password, int port);
     void pauseTorrent(QString hash);

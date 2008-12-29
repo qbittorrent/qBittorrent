@@ -165,6 +165,8 @@ class bittorrent : public QObject {
   signals:
     void addedTorrent(QTorrentHandle& h);
     void deletedTorrent(QString hash);
+    void pausedTorrent(QTorrentHandle& h);
+    void resumedTorrent(QTorrentHandle& h);
     void finishedTorrent(QTorrentHandle& h);
     void fullDiskError(QTorrentHandle& h);
     void trackerError(QString hash, QString time, QString msg);
