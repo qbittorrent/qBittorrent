@@ -323,6 +323,7 @@ void QTorrentHandle::pause() {
   if(!QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash()+".paused")) {
         QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash()+".paused");
         paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
+        paused_file.write(QByteArray::number((double)progress()));
         paused_file.close();
   }
 }
