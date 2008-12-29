@@ -110,6 +110,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   actionSet_global_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
   actionDocumentation->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/qb_question.png")));
+  prioSeparator = toolBar->insertSeparator(actionDecreasePriority);
+  prioSeparator2 = menu_Edit->insertSeparator(actionDecreasePriority);
+  prioSeparator->setVisible(false);
+  prioSeparator2->setVisible(false);
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
   actionCreate_torrent->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/new.png")));
@@ -1063,6 +1067,11 @@ void GUI::configureSession(bool deleteOptions) {
   if(options->isQueueingSystemEnabled()) {
       if(!BTSession->isQueueingEnabled()) {
           downloadingTorrentTab->hidePriorityColumn(false);
+          actionDecreasePriority->setVisible(true);
+          actionIncreasePriority->setVisible(true);
+          prioSeparator->setVisible(true);
+          prioSeparator2->setVisible(true);
+          toolBar->layout()->setSpacing(7);
       }
       int max_torrents = options->getMaxActiveTorrents();
       int max_uploads = options->getMaxActiveUploads();
@@ -1079,6 +1088,10 @@ void GUI::configureSession(bool deleteOptions) {
           sessionSettings.active_limit = -1;
           BTSession->setQueueingEnabled(false);
           downloadingTorrentTab->hidePriorityColumn(true);
+          actionIncreasePriority->setVisible(false);
+          prioSeparator->setVisible(false);
+          prioSeparator2->setVisible(false);
+          toolBar->layout()->setSpacing(7);
       }
   }
   BTSession->setSessionSettings(sessionSettings);
@@ -1247,7 +1260,8 @@ void GUI::on_actionPause_All_triggered() {
 }
 
 void GUI::on_actionIncreasePriority_triggered() {
-  Q_ASSERT(tabs->currentIndex() == 0);
+  if(tabs->currentIndex() != 0)
+      return;
   QStringList hashes = downloadingTorrentTab->getSelectedTorrents();
   foreach(QString hash, hashes) {
       BTSession->increaseDlTorrentPriority(hash);
