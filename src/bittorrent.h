@@ -115,7 +115,6 @@ class bittorrent : public QObject {
     void saveDHTEntry();
     void preAllocateAllFiles(bool b);
     void saveFastResumeData();
-    void saveFastResumeData(QString hash);
     void enableDirectoryScanning(QString scan_dir);
     void disableDirectoryScanning();
     void enableIPFilter(QString filter);

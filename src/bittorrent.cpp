@@ -797,35 +797,41 @@ void bittorrent::saveFastResumeData() {
   // Stop listening for alerts
   timerAlerts->stop();
   int num_resume_data = 0;
+  // Pause session
   s->pause();
   std::vector<torrent_handle> torrents =  s->get_torrents();
-  for(unsigned int i=0; i<torrents.size(); ++i) {
-    QTorrentHandle h(torrents[i]);
-    if(!h.is_valid()) continue;
-    //if(h.is_paused()) continue;
-    if (!h.has_metadata()) continue;
+  std::vector<torrent_handle>::iterator torrentIT;
+  for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+    QTorrentHandle h = QTorrentHandle(*torrentIT);
+    if(!h.is_valid() || !h.has_metadata()) continue;
     if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
     h.save_resume_data();
     ++num_resume_data;
   }
-  while (num_resume_data > 0)
-  {
+  while (num_resume_data > 0) {
       alert const* a = s->wait_for_alert(seconds(30));
-      if (a == 0)
-      {
+      if (a == 0) {
           std::cerr << " aborting with " << num_resume_data << " outstanding "
                   "torrents to save resume data for" << std::endl;
           break;
+      }
+      // Saving fastresume data can fail
+      if (dynamic_cast<save_resume_data_failed_alert const*>(a)) {
+        --num_resume_data;
+        s->pop_alert();
+        continue;
       }
       save_resume_data_alert const* rd = dynamic_cast<save_resume_data_alert const*>(a);
       if (!rd) {
           s->pop_alert();
           continue;
       }
+      // Saving fast resume data was successful
       --num_resume_data;
       if (!rd->resume_data) continue;
       QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
       QTorrentHandle h(rd->handle);
+      // Remove old fastresume file if it exists
       QFile::remove(torrentBackup.path()+QDir::separator()+ h.hash() + ".fastresume");
       QString file = h.hash()+".fastresume";
       boost::filesystem::ofstream out(fs::path(torrentBackup.path().toUtf8().data()) / file.toUtf8().data(), std::ios_base::binary);
@@ -858,23 +864,6 @@ void bittorrent::addPeerBanMessage(QString ip, bool from_ipfilter) {
     peerBanMessages.append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - ")+tr("<font color='red'>%1</font> <i>was blocked due to your IP filter</i>", "x.y.z.w was blocked").arg(ip));
   else
     peerBanMessages.append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - ")+tr("<font color='red'>%1</font> <i>was banned due to corrupt pieces</i>", "x.y.z.w was banned").arg(ip));
-}
-
-void bittorrent::saveFastResumeData(QString hash) {
-  QString file;
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  // Extracting resume data
-  QTorrentHandle h = getTorrentHandle(hash);
-  if(!h.is_valid()) {
-    qDebug("/!\\ Error: Invalid handle");
-    return;
-  }
-  if (h.has_metadata() && h.state() != torrent_status::checking_files && h.state() != torrent_status::queued_for_checking) {
-      // Remove old .fastresume data in case it exists
-      QFile::remove(torrentBackup.path()+QDir::separator()+hash + ".fastresume");
-      // Write fast resume data
-      h.save_resume_data();
-  }
 }
 
 bool bittorrent::isFilePreviewPossible(QString hash) const{
@@ -1131,7 +1120,6 @@ void bittorrent::readAlerts() {
         QTorrentHandle h(p->handle);
         QString file = h.hash()+".fastresume";
         qDebug("Saving fastresume data in %s", file.toUtf8().data());
-        TORRENT_ASSERT(p->resume_data);
         if (p->resume_data)
         {
             boost::filesystem::ofstream out(fs::path(torrentBackup.path().toUtf8().data()) / file.toUtf8().data(), std::ios_base::binary);
