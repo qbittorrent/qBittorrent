@@ -1088,6 +1088,7 @@ void GUI::configureSession(bool deleteOptions) {
           sessionSettings.active_limit = -1;
           BTSession->setQueueingEnabled(false);
           downloadingTorrentTab->hidePriorityColumn(true);
+          actionDecreasePriority->setVisible(false);
           actionIncreasePriority->setVisible(false);
           prioSeparator->setVisible(false);
           prioSeparator2->setVisible(false);
