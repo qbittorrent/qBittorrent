@@ -1256,7 +1256,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Скачивание &apos;%1&apos;, подождите...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="303"/>
+        <location filename="../downloadingTorrents.cpp" line="296"/>
         <source>Hide or Show Column</source>
         <translation>Скрыть или показать столбец</translation>
     </message>
@@ -1375,7 +1375,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Качающие</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="415"/>
+        <location filename="../FinishedTorrents.cpp" line="408"/>
         <source>Hide or Show Column</source>
         <translation>Скрыть или показать столбец</translation>
     </message>
@@ -1413,7 +1413,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> начат.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1409"/>
+        <location filename="../GUI.cpp" line="1418"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1433,12 +1433,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> Скорость Загр.:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="756"/>
+        <location filename="../GUI.cpp" line="778"/>
         <source>Open Torrent Files</source>
         <translation>Открыть файлы Torrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="757"/>
+        <location filename="../GUI.cpp" line="779"/>
         <source>Torrent Files</source>
         <translation>Файлы Torrent</translation>
     </message>
@@ -1484,7 +1484,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Этот файл либо поврежден, либо не torrent типа.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="855"/>
+        <location filename="../GUI.cpp" line="877"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Вы уверены? -- qBittorrent</translation>
     </message>
@@ -1494,12 +1494,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Вы уверены что хотите удалить все файлы из списка закачек?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="857"/>
+        <location filename="../GUI.cpp" line="879"/>
         <source>&amp;Yes</source>
         <translation>&amp;Да</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="857"/>
+        <location filename="../GUI.cpp" line="879"/>
         <source>&amp;No</source>
         <translation>&amp;Нет</translation>
     </message>
@@ -1509,7 +1509,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Список закачек очищен.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="849"/>
+        <location filename="../GUI.cpp" line="871"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>Вы уверены что хотите удалить выделенные пункты из списка закачек?</translation>
     </message>
@@ -1593,7 +1593,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1152"/>
+        <location filename="../GUI.cpp" line="1183"/>
         <source>Finished</source>
         <translation>Закончено</translation>
     </message>
@@ -1888,7 +1888,7 @@ Please close the other one first.</source>
         <translation type="obsolete">Вы действительно хотите удалить выбранный(-е) элемент(ы) из списка скачек и с жесткого диска?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="362"/>
+        <location filename="../GUI.cpp" line="368"/>
         <source>Download finished</source>
         <translation>Скачивание завершено</translation>
     </message>
@@ -1904,13 +1904,13 @@ Please close the other one first.</source>
         <translation type="obsolete">Поисковый движок</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="917"/>
+        <location filename="../GUI.cpp" line="939"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1426"/>
+        <location filename="../GUI.cpp" line="1435"/>
         <source>Connection status:</source>
         <translation>Состояние связи:</translation>
     </message>
@@ -1985,13 +1985,13 @@ Please close the other one first.</source>
         <translation type="obsolete">qBittorrent %1 запущен.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1412"/>
+        <location filename="../GUI.cpp" line="1421"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Скорость скач.: %1 KiB/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1415"/>
+        <location filename="../GUI.cpp" line="1424"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Скорость загр.: %1 KiB/с</translation>
@@ -2015,7 +2015,7 @@ Please close the other one first.</source>
         <translation type="obsolete">Простаивает</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="653"/>
+        <location filename="../GUI.cpp" line="675"/>
         <source>Are you sure you want to quit?</source>
         <translation>Вы действительно хотите выйти?</translation>
     </message>
@@ -2090,19 +2090,19 @@ Please close the other one first.</source>
         <translation type="obsolete">&apos;%1&apos; возобновлен.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="362"/>
+        <location filename="../GUI.cpp" line="368"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>скачивание %1 завершено.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="394"/>
+        <location filename="../GUI.cpp" line="416"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Ошибка ввода/вывода</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="394"/>
+        <location filename="../GUI.cpp" line="416"/>
         <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
         <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
         <translation>При попытке чтения/записи %1 произошла ошибка. Возможно, на диске не хватает места, закачка приостановлена</translation>
@@ -2114,12 +2114,12 @@ Please close the other one first.</source>
         <translation type="obsolete">Произошла ошибка (нет места?), &apos;%1&apos; остановлен.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1423"/>
+        <location filename="../GUI.cpp" line="1432"/>
         <source>Connection Status:</source>
         <translation>Состояние связи:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1423"/>
+        <location filename="../GUI.cpp" line="1432"/>
         <source>Online</source>
         <translation>В сети</translation>
     </message>
@@ -2162,39 +2162,39 @@ Please close the other one first.</source>
         <translation type="obsolete">Скачивание &apos;%1&apos;, подождите...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="406"/>
+        <location filename="../GUI.cpp" line="428"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Произошла ошибка (нет места?), &apos;%1&apos; приостановлен.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="147"/>
+        <location filename="../GUI.cpp" line="153"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="296"/>
+        <location filename="../GUI.cpp" line="302"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="951"/>
+        <location filename="../GUI.cpp" line="973"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent привязан к порту: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1079"/>
+        <location filename="../GUI.cpp" line="1110"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Поддержка DHT [Вкл], порт: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1085"/>
+        <location filename="../GUI.cpp" line="1116"/>
         <source>DHT support [OFF]</source>
         <translation>Поддержка DHT [Выкл]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1088"/>
+        <location filename="../GUI.cpp" line="1119"/>
         <source>PeX support [ON]</source>
         <translation>Поддержка PeX [Вкл]</translation>
     </message>
@@ -2204,24 +2204,24 @@ Please close the other one first.</source>
         <translation type="obsolete">Поддержка PeX [Выкл]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="654"/>
+        <location filename="../GUI.cpp" line="676"/>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Список закачек не пуст.
 Вы хотите выйти из qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1147"/>
+        <location filename="../GUI.cpp" line="1178"/>
         <source>Downloads</source>
         <translation>Закачки</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="856"/>
+        <location filename="../GUI.cpp" line="878"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
         <translation>Вы уверены что хотите удалить выделенные пункты из списка завершенных?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="973"/>
+        <location filename="../GUI.cpp" line="995"/>
         <source>UPnP support [ON]</source>
         <translation>Поддержка UPnP [Вкл]</translation>
     </message>
@@ -2231,17 +2231,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Осторожнее, раздача материалов защищенных авторскими правами, преследуется по закону.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1107"/>
+        <location filename="../GUI.cpp" line="1138"/>
         <source>Encryption support [ON]</source>
         <translation>Поддержка шифрования [Вкл]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1112"/>
+        <location filename="../GUI.cpp" line="1143"/>
         <source>Encryption support [FORCED]</source>
         <translation>Поддержка шифрования [Принудительно]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1117"/>
+        <location filename="../GUI.cpp" line="1148"/>
         <source>Encryption support [OFF]</source>
         <translation>Поддержка шифрования [Выкл]</translation>
     </message>
@@ -2257,13 +2257,13 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Соотношение</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="413"/>
+        <location filename="../GUI.cpp" line="435"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="415"/>
+        <location filename="../GUI.cpp" line="437"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
         <translation>Alt+2</translation>
@@ -2275,18 +2275,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Alt+3, Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="421"/>
+        <location filename="../GUI.cpp" line="443"/>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="491"/>
+        <location filename="../GUI.cpp" line="513"/>
         <source>Url download error</source>
         <translation>Ошибка при скачивании URL</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="491"/>
+        <location filename="../GUI.cpp" line="513"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Невозможно скачать файл по URL: %1, причина: %2.</translation>
     </message>
@@ -2296,12 +2296,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Быстрое восстановление данных для torrentа %1 было невозможно, проверка заново...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="796"/>
+        <location filename="../GUI.cpp" line="818"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
         <translation>Вы действительно хотите удалить выбранный(-е) элемент(ы) из списка скачек и с жесткого диска?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="803"/>
+        <location filename="../GUI.cpp" line="825"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
         <translation>Вы действительно хотите удалить выбранный(-е) элемент(ы) из списка законченных скачек и с жесткого диска?</translation>
     </message>
@@ -2317,39 +2317,39 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Поиск раздающего Url не удался: %1, сообщение: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="417"/>
+        <location filename="../GUI.cpp" line="439"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="419"/>
+        <location filename="../GUI.cpp" line="441"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="976"/>
+        <location filename="../GUI.cpp" line="998"/>
         <source>UPnP support [OFF]</source>
         <translation>Поддержка UPnP [Выкл]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="981"/>
+        <location filename="../GUI.cpp" line="1003"/>
         <source>NAT-PMP support [ON]</source>
         <translation>Поддержка NAT-PMP [Вкл]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="984"/>
+        <location filename="../GUI.cpp" line="1006"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>Поддержка NAT-PMP [Выкл]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1092"/>
+        <location filename="../GUI.cpp" line="1123"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Обнаружение локальных пиров [Вкл]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1095"/>
+        <location filename="../GUI.cpp" line="1126"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Обнаружение локальных пиров [Выкл]</translation>
     </message>
@@ -2360,43 +2360,43 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">&apos;%1&apos; был удален, так как его соотношение достигло максимально установленного вами.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1389"/>
+        <location filename="../GUI.cpp" line="1398"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Скач: %2КиБ/с, Загр: %3КиБ/с)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1366"/>
+        <location filename="../GUI.cpp" line="1375"/>
         <source>DL: %1 KiB/s</source>
         <translation>Скач: %1 КиБ/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1367"/>
+        <location filename="../GUI.cpp" line="1376"/>
         <source>UP: %1 KiB/s</source>
         <translation>Загр: %1 КиБ/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="321"/>
+        <location filename="../GUI.cpp" line="327"/>
         <source>Ratio: %1</source>
         <translation>Соотношение: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="323"/>
+        <location filename="../GUI.cpp" line="329"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 узлов</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1426"/>
+        <location filename="../GUI.cpp" line="1435"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Нет прямых соединений. Причиной этого могут быть проблемы в настройке сети.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="141"/>
+        <location filename="../GUI.cpp" line="147"/>
         <source>Uploads</source>
         <translation>Раздачи</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1503"/>
+        <location filename="../GUI.cpp" line="1512"/>
         <source>Options were saved successfully.</source>
         <translation>Настройки были успешно сохранены.</translation>
     </message>
@@ -3417,73 +3417,73 @@ Changelog:
         <translation type="obsolete">&apos;%1&apos; возобновлен.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="412"/>
+        <location filename="../bittorrent.cpp" line="418"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; уже присутствует в списке закачек.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="513"/>
+        <location filename="../bittorrent.cpp" line="517"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; возобновлен. (быстрое возобновление)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="515"/>
+        <location filename="../bittorrent.cpp" line="519"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; добавлен в список закачек.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="381"/>
+        <location filename="../bittorrent.cpp" line="387"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Не удалось декодировать torrent файл: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="384"/>
+        <location filename="../bittorrent.cpp" line="390"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Этот файл либо поврежден, либо не torrent типа.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="853"/>
+        <location filename="../bittorrent.cpp" line="869"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;был заблокирован в соответствии с вашим IP фильтром&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="855"/>
+        <location filename="../bittorrent.cpp" line="871"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;был заблокирован из-за поврежденных кусочков&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1145"/>
+        <location filename="../bittorrent.cpp" line="1143"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Невозможно прослушать ни один из заданных портов.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1177"/>
+        <location filename="../bittorrent.cpp" line="1175"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>Распределение портов UPnP/NAT-PMP не удалось с сообщением: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1182"/>
+        <location filename="../bittorrent.cpp" line="1180"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>Распределение портов UPnP/NAT-PMP прошло успешно: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1197"/>
+        <location filename="../bittorrent.cpp" line="1195"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Быстрое восстановление данных для torrentа %1 было невозможно, проверка заново...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1202"/>
+        <location filename="../bittorrent.cpp" line="1200"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Поиск раздающего Url не удался: %1, сообщение: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1260"/>
+        <location filename="../bittorrent.cpp" line="1258"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Скачивание &apos;%1&apos;, подождите...</translation>
