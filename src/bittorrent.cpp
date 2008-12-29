@@ -816,9 +816,12 @@ void bittorrent::saveFastResumeData() {
           break;
       }
       // Saving fastresume data can fail
-      if (dynamic_cast<save_resume_data_failed_alert const*>(a)) {
+      save_resume_data_failed_alert const* rda = dynamic_cast<save_resume_data_failed_alert const*>(a);
+      if (rda) {
         --num_resume_data;
         s->pop_alert();
+        // Remove torrent from session
+        s->remove_torrent(rda->handle);
         continue;
       }
       save_resume_data_alert const* rd = dynamic_cast<save_resume_data_alert const*>(a);
@@ -837,6 +840,8 @@ void bittorrent::saveFastResumeData() {
       boost::filesystem::ofstream out(fs::path(torrentBackup.path().toUtf8().data()) / file.toUtf8().data(), std::ios_base::binary);
       out.unsetf(std::ios_base::skipws);
       bencode(std::ostream_iterator<char>(out), *rd->resume_data);
+      // Remove torrent from session
+      s->remove_torrent(rd->handle);
       s->pop_alert();
   }
 }
