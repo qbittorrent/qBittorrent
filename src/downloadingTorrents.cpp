@@ -489,8 +489,6 @@ bool DownloadingTorrents::updateTorrent(QTorrentHandle h) {
         added = true;
       }
       Q_ASSERT(row != -1);
-      // No need to update a paused torrent
-      if(h.is_paused()) return added;
       // Update Priority
       if(BTSession->isQueueingEnabled()) {
           DLListModel->setData(DLListModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
@@ -514,6 +512,8 @@ bool DownloadingTorrents::updateTorrent(QTorrentHandle h) {
               return added;
           }
       }
+      // No need to update a paused torrent
+      if(h.is_paused()) return added;
       // Parse download state
       // Setting download state
       switch(h.state()) {
