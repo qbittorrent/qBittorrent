@@ -153,10 +153,13 @@ window.addEvent('domready', function(){
                 myTableUP.removeRow(hash);
               }
             });
-	    if(queueing_enabled)
+	    if(queueing_enabled) {
 		$('queueingButtons').removeClass('invisible');
-	    else
+		myTable.showPriority();
+	    } else {
 		$('queueingButtons').addClass('invisible');
+		myTable.hidePriority();
+	    }
 					}
 					waiting=false;
 					ajaxfn.delay(1000);

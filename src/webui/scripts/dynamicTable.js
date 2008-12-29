@@ -40,6 +40,7 @@ var dynamicTable = new Class	({
 		this.table = $(table);
 		this.rows = new Object();
 		this.cur = new Array();
+		this.priority_hidden = false;
 	},
 
 	altRow: function()
@@ -53,6 +54,28 @@ var dynamicTable = new Class	({
 				}
 			}.bind(this));
 	},
+
+	hidePriority: function(){
+		if(this.priority_hidden) return;
+		$('prioHeader').addClass('invisible');
+		 var trs = this.table.getElements('tr');
+                        trs.each(function(tr,i){
+				var tds = tr.getElements('td');
+				tds.getLast().addClass('invisible');
+                        }.bind(this));
+		this.priority_hidden = true;
+	},
+
+	showPriority: function(){
+                if(!this.priority_hidden) return;
+		$('prioHeader').removeClass('invisible');
+                 var trs = this.table.getElements('tr');
+                        trs.each(function(tr,i){
+                                var tds = tr.getElements('td');
+                                tds.getLast().removeClass('invisible');
+                        }.bind(this));
+                this.priority_hidden = false;
+        },
 
 	insertRow: function(id, row){
 		var tr = this.rows[id];
