@@ -1291,13 +1291,6 @@ void GUI::on_actionPause_triggered() {
   }
 }
 
-void GUI::pauseTorrent(QString hash) {
-  downloadingTorrentTab->pauseTorrent(hash);
-  finishedTorrentTab->pauseTorrent(hash);
-  updateUnfinishedTorrentNumber(downloadingTorrentTab->getNbTorrentsInList());
-  updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
-}
-
 // Resume All Downloads in DL list
 void GUI::on_actionStart_All_triggered() {
   bool change = false;

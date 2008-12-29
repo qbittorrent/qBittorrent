@@ -164,7 +164,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void resumedTorrent(QTorrentHandle& h) const;
     void updateLists(bool force=false);
     bool initWebUi(QString username, QString password, int port);
-    void pauseTorrent(QString hash);
     void on_actionIncreasePriority_triggered();
     void on_actionDecreasePriority_triggered();
     // Options slots
