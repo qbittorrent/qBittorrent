@@ -82,12 +82,14 @@ initializeWindows = function(){
                 }
         });
 
-	['pause','resume'].each(function(item) {
+	['pause','resume','decreasePrio','increasePrio'].each(function(item) {
 		addClickEvent(item, function(e){
 			new Event(e).stop();
 			if($("Tab1").hasClass('active')) {
 			  var h = myTable.selectedIds();
 			} else {
+				if(item=='decreasePrio' || item=='increasePrio')
+					return;
 				var h = myTableUP.selectedIds();
 			}
 			if(h.length){

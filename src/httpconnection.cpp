@@ -202,34 +202,36 @@ void HttpConnection::respondCommand(QString command)
 		emit torrentReadyToBeDownloaded(filePath, false, QString(), false);
 		return;
 	}
-	if(command == "resumeall")
-	{
+        if(command == "resumeall") {
 		emit resumeAllTorrents();
 		return;
 	}
-	if(command == "pauseall")
-	{
+        if(command == "pauseall") {
 		emit pauseAllTorrents();
 		return;
 	}
-	if(command == "resume")
-	{
+	if(command == "resume")	{
 		emit resumeTorrent(parser.post("hash"));
 		return;
 	}
-	if(command == "pause")
-	{
+        if(command == "pause") {
 		emit pauseTorrent(parser.post("hash"));
 		return;
 	}
-	if(command == "delete")
-	{
+        if(command == "delete") {
                 emit deleteTorrent(parser.post("hash"), false);
 		return;
 	}
-        if(command == "deletePerm")
-        {
+        if(command == "deletePerm") {
                 emit deleteTorrent(parser.post("hash"), true);
+                return;
+        }
+        if(command == "increasePrio") {
+                emit increasePrioTorrent(parser.post("hash"));
+                return;
+        }
+        if(command == "decreasePrio") {
+                emit decreasePrioTorrent(parser.post("hash"));
                 return;
         }
 }

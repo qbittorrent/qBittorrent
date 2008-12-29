@@ -62,6 +62,8 @@ class HttpConnection : public QObject
                 void deleteTorrent(QString hash, bool permanently);
 		void resumeTorrent(QString hash);
 		void pauseTorrent(QString hash);
+                void increasePrioTorrent(QString hash);
+                void decreasePrioTorrent(QString hash);
 		void resumeAllTorrents();
 		void pauseAllTorrents();
 };

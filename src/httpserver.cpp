@@ -68,6 +68,8 @@ void HttpServer::newHttpConnection()
 		connect(connection, SIGNAL(resumeTorrent(QString)), BTSession, SLOT(resumeTorrent(QString)));
 		connect(connection, SIGNAL(pauseAllTorrents()), BTSession, SLOT(pauseAllTorrents()));
 		connect(connection, SIGNAL(resumeAllTorrents()), BTSession, SLOT(resumeAllTorrents()));
+                connect(connection, SIGNAL(increasePrioTorrent(QString)), BTSession, SLOT(increaseDlTorrentPriority(QString)));
+                connect(connection, SIGNAL(decreasePrioTorrent(QString)), BTSession, SLOT(decreaseDlTorrentPriority(QString)));
 	}
 }
 

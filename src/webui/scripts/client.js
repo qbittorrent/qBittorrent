@@ -72,6 +72,7 @@ window.addEvent('domready', function(){
 		return round1(val) + ' TiB';
 	};
 	var ajaxfn = function(){
+		var queueing_enabled = false;
 		var url = 'json/events';
 		if (!waiting){
 			waiting=true;
@@ -122,6 +123,9 @@ window.addEvent('domready', function(){
                 row[3] = round1(event.progress*100) + ' %';
                 row[4] = fspeed(event.dlspeed);
                 row[5] = fspeed(event.upspeed);
+		row[6] = event.priority
+		if(row[6] != -1)
+			queueing_enabled = true;
                if(!unfinished_hashes.contains(event.hash)) {
                   // New unfinished torrent
                   unfinished_hashes[unfinished_hashes.length] = event.hash;
@@ -149,6 +153,10 @@ window.addEvent('domready', function(){
                 myTableUP.removeRow(hash);
               }
             });
+	    if(queueing_enabled)
+		$('queueingButtons').removeClass('invisible');
+	    else
+		$('queueingButtons').addClass('invisible');
 					}
 					waiting=false;
 					ajaxfn.delay(1000);

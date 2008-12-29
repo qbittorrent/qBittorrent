@@ -20,6 +20,10 @@ body {
 	width: 300px;
 }
 
+.invisible {
+	display: none;
+}
+
 /* Typography */
 	
 h2, h3, h4 {

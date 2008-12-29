@@ -81,6 +81,11 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
         if(!h.is_seed()) {
 		event["progress"] = QVariant(h.progress());
 		event["dlspeed"] = QVariant(h.download_payload_rate());
+                if(BTSession->isQueueingEnabled()) {
+                    event["priority"] = QVariant(h.queue_position());
+                } else {
+                    event["priority"] = -1;
+                }
 	}
 	event["upspeed"] = QVariant(h.upload_payload_rate());
         event["seed"] = QVariant(h.is_seed());
