@@ -353,7 +353,7 @@ void bittorrent::loadWebSeeds(QString hash) {
 }
 
 // Add a torrent to the bittorrent session
-QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bool resumed) {
+QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bool) {
   QTorrentHandle h;
   bool fastResume=false;
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
