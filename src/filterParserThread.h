@@ -35,7 +35,11 @@ using namespace std;
 
 // P2B Stuff
 #include <string.h>
-#include <arpa/inet.h>
+#ifdef Q_WS_WIN
+    #include <Winsock2.h>
+#else
+    #include <arpa/inet.h>
+#endif
 // End of P2B stuff
 
 class FilterParserThread : public QThread  {
