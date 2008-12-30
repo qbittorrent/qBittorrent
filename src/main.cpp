@@ -85,8 +85,8 @@ void useStyle(QApplication *app, int style){
     app->setStyle(new QWindowsXPStyle());
     break;
 #endif
-   default:
-    app->setStyle(new QPlastiqueStyle());
+   /*default:
+    app->setStyle(new QPlastiqueStyle());*/
   }
 }
 
