@@ -96,7 +96,6 @@ class bittorrent : public QObject {
     int loadTorrentPriority(QString hash);
     QStringList getConsoleMessages() const;
     QStringList getPeerBanMessages() const;
-    float getUncheckedTorrentProgress(QString hash) const;
     qlonglong getETA(QString hash) const;
 
   public slots:

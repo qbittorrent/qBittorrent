@@ -756,25 +756,6 @@ void bittorrent::loadFilesPriorities(QTorrentHandle &h) {
   h.prioritize_files(v);
 }
 
-float bittorrent::getUncheckedTorrentProgress(QString hash) const {
-  QFile paused_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused");
-  paused_file.open(QIODevice::ReadOnly | QIODevice::Text);
-  if(!paused_file.exists()) {
-    return 0.;
-  }
-  QByteArray progress_char = paused_file.readAll();
-  qDebug("Read progress: %s", (const char*)progress_char.data());
-  paused_file.close();
-  bool ok = false;
-  float progress = progress_char.toFloat(&ok);
-  if(!ok) {
-    qDebug("Error converting progress in .paused file!");
-    return 0.;
-  }
-  qDebug("Unchecked torrent progress is %f", progress);
-  return progress;
-}
-
 float bittorrent::getRealRatio(QString hash) const{
   QTorrentHandle h = getTorrentHandle(hash);
   Q_ASSERT(h.all_time_download() >= 0);

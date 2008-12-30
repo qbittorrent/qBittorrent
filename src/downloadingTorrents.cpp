@@ -512,6 +512,8 @@ bool DownloadingTorrents::updateTorrent(QTorrentHandle h) {
               return added;
           }
       }
+      if(!downloadList->isColumnHidden(PROGRESS))
+        DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
       // No need to update a paused torrent
       if(h.is_paused()) return added;
       // Parse download state
@@ -521,9 +523,6 @@ bool DownloadingTorrents::updateTorrent(QTorrentHandle h) {
         case torrent_status::queued_for_checking:
           DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
           setRowColor(row, QString::fromUtf8("grey"));
-          if(!downloadList->isColumnHidden(PROGRESS)) {
-            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
-          }
           break;
         case torrent_status::downloading:
         case torrent_status::downloading_metadata:
@@ -539,9 +538,6 @@ bool DownloadingTorrents::updateTorrent(QTorrentHandle h) {
               DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
             }
             setRowColor(row, QApplication::palette().color(QPalette::WindowText));
-          }
-          if(!downloadList->isColumnHidden(PROGRESS)) {
-            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
           }
           if(!downloadList->isColumnHidden(DLSPEED)) {
             DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
@@ -578,17 +574,16 @@ void DownloadingTorrents::addTorrent(QString hash) {
   DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
   DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
   DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
+  DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
   DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
   if(BTSession->isQueueingEnabled())
     DLListModel->setData(DLListModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
   DLListModel->setData(DLListModel->index(row, HASH), QVariant(hash));
   // Pause torrent if it is
   if(h.is_paused()) {
-    DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)BTSession->getUncheckedTorrentProgress(hash)));
     DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/paused.png"))), Qt::DecorationRole);
     setRowColor(row, QString::fromUtf8("red"));
   }else{
-    DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
     DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
     setRowColor(row, QString::fromUtf8("grey"));
   }
