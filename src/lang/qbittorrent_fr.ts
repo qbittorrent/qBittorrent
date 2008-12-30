@@ -1593,7 +1593,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">ko/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1183"/>
+        <location filename="../GUI.cpp" line="1184"/>
         <source>Finished</source>
         <translation>Terminé</translation>
     </message>
@@ -2099,7 +2099,7 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>Connection status:</source>
         <translation>Statut de la connexion :</translation>
     </message>
@@ -2174,18 +2174,18 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">qBittorrent %1 démarré.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1418"/>
+        <location filename="../GUI.cpp" line="1419"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1421"/>
+        <location filename="../GUI.cpp" line="1422"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Vitesse DL : %1 Ko/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1424"/>
+        <location filename="../GUI.cpp" line="1425"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Vitesse UP : %1 Ko/s</translation>
@@ -2308,12 +2308,12 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Une erreur s&apos;est produite (disque plein ?), &apos;%1&apos; a été mis en pause.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1432"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>Connection Status:</source>
         <translation>Etat de la connexion :</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1432"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>Online</source>
         <translation>Connecté</translation>
     </message>
@@ -2378,17 +2378,17 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation>qBittorrent écoute sur le port : %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1110"/>
+        <location filename="../GUI.cpp" line="1111"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Support DHT [ON], port : %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1116"/>
+        <location filename="../GUI.cpp" line="1117"/>
         <source>DHT support [OFF]</source>
         <translation>Support DHT [OFF]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1119"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>PeX support [ON]</source>
         <translation>Support PeX [ON]</translation>
     </message>
@@ -2405,7 +2405,7 @@ Are you sure you want to quit qBittorrent?</source>
 Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1178"/>
+        <location filename="../GUI.cpp" line="1179"/>
         <source>Downloads</source>
         <translation>Téléchargements</translation>
     </message>
@@ -2430,17 +2430,17 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Attention, partager des oeuvres sous copyright sans en avoir la permission est illégal.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1138"/>
+        <location filename="../GUI.cpp" line="1139"/>
         <source>Encryption support [ON]</source>
         <translation>Support cryptage [ON]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1143"/>
+        <location filename="../GUI.cpp" line="1144"/>
         <source>Encryption support [FORCED]</source>
         <translation>Support cryptage [Forcé]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1148"/>
+        <location filename="../GUI.cpp" line="1149"/>
         <source>Encryption support [OFF]</source>
         <translation>Support cryptage [OFF]</translation>
     </message>
@@ -2543,12 +2543,12 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation>Support NAT-PMP [OFF]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1123"/>
+        <location filename="../GUI.cpp" line="1124"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Découverte locale de sources [ON]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1126"/>
+        <location filename="../GUI.cpp" line="1127"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Découverte locale de sources [OFF]</translation>
     </message>
@@ -2559,18 +2559,18 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">&apos;%1&apos; a été supprimé car son ratio a atteint la limite que vous avez fixée.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1398"/>
+        <location filename="../GUI.cpp" line="1399"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (DL: %2Ko/s, UP: %3Ko/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1375"/>
+        <location filename="../GUI.cpp" line="1376"/>
         <source>DL: %1 KiB/s</source>
         <translation>R : %1 Ko/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1376"/>
+        <location filename="../GUI.cpp" line="1377"/>
         <source>UP: %1 KiB/s</source>
         <translation>E : %1 Ko/s</translation>
     </message>
@@ -2585,7 +2585,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation>DHT : %1 noeuds</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Aucune connexion directe. Ceci peut être signe d&apos;une mauvaise configuration réseau.</translation>
     </message>
@@ -2595,7 +2595,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation>Partages</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1512"/>
+        <location filename="../GUI.cpp" line="1513"/>
         <source>Options were saved successfully.</source>
         <translation>Préférences sauvegardées avec succès.</translation>
     </message>
@@ -3680,44 +3680,44 @@ Changements:
         <translation>Ce fichier est corrompu ou il ne s&apos;agit pas d&apos;un torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="869"/>
+        <location filename="../bittorrent.cpp" line="851"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été bloqué par votre filtrage IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="871"/>
+        <location filename="../bittorrent.cpp" line="853"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été banni suite à l&apos;envoi de données corrompues&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1143"/>
+        <location filename="../bittorrent.cpp" line="1125"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Impossible d&apos;écouter sur les ports donnés.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1175"/>
+        <location filename="../bittorrent.cpp" line="1157"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP : Echec de mapping du port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1180"/>
+        <location filename="../bittorrent.cpp" line="1162"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP : Réussite du mapping de port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1195"/>
+        <location filename="../bittorrent.cpp" line="1177"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Le relancement rapide a échoué pour le torrent %1, revérification...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1200"/>
+        <location filename="../bittorrent.cpp" line="1182"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Le contact de la source HTTP a échoué à l&apos;url : %1, message : %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1258"/>
+        <location filename="../bittorrent.cpp" line="1240"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
@@ -5536,12 +5536,12 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation>Impossible de créer le répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="428"/>
+        <location filename="../torrentAddition.h" line="420"/>
         <source>Invalid file selection</source>
         <translation>Sélection de fichiers invalide</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="428"/>
+        <location filename="../torrentAddition.h" line="420"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Veuillez sélectionner au moins un fichier dans le torrent</translation>
     </message>

@@ -1392,7 +1392,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">început</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1183"/>
+        <location filename="../GUI.cpp" line="1184"/>
         <source>Finished</source>
         <translation>Finişat</translation>
     </message>
@@ -1501,7 +1501,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1418"/>
+        <location filename="../GUI.cpp" line="1419"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1820,7 +1820,7 @@ Vă rugăm să-l opriţi.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>Connection status:</source>
         <translation>Starea conectării:</translation>
     </message>
@@ -1877,13 +1877,13 @@ Vă rugăm să-l opriţi.</translation>
         <translation type="obsolete">Seederi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1421"/>
+        <location filename="../GUI.cpp" line="1422"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Viteza DL: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1424"/>
+        <location filename="../GUI.cpp" line="1425"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Viteza IP: %1 KiB/s</translation>
@@ -1970,12 +1970,12 @@ Vă rugăm să-l opriţi.</translation>
         <translation>O eroare a fost detectată la citire sau scriere în %1. Discul probabil este plin, descărcarea a fost pauzată</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1432"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>Connection Status:</source>
         <translation>Starea conectării:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1432"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>Online</source>
         <translation>Conectat</translation>
     </message>
@@ -2019,17 +2019,17 @@ Vă rugăm să-l opriţi.</translation>
         <translation>qBittorrent foloseşte portul: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1110"/>
+        <location filename="../GUI.cpp" line="1111"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Suport DHT[Activat], port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1116"/>
+        <location filename="../GUI.cpp" line="1117"/>
         <source>DHT support [OFF]</source>
         <translation>Suport DHT[Dezactivat]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1119"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>PeX support [ON]</source>
         <translation>Suport PeX[Activat]</translation>
     </message>
@@ -2046,7 +2046,7 @@ Are you sure you want to quit qBittorrent?</source>
 Doriţi să ieşiţi din qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1178"/>
+        <location filename="../GUI.cpp" line="1179"/>
         <source>Downloads</source>
         <translation>Descărcări</translation>
     </message>
@@ -2061,17 +2061,17 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation>Suport UPnP[Activat]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1138"/>
+        <location filename="../GUI.cpp" line="1139"/>
         <source>Encryption support [ON]</source>
         <translation>Suport de codificate[Activat]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1143"/>
+        <location filename="../GUI.cpp" line="1144"/>
         <source>Encryption support [FORCED]</source>
         <translation>Suport de codificare[Forţat]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1148"/>
+        <location filename="../GUI.cpp" line="1149"/>
         <source>Encryption support [OFF]</source>
         <translation>Suport de codificare [Dezactivat]</translation>
     </message>
@@ -2147,12 +2147,12 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation>suport NAT-PMP[Dezactivat]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1123"/>
+        <location filename="../GUI.cpp" line="1124"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Căutare peer locali[Activat]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1126"/>
+        <location filename="../GUI.cpp" line="1127"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Căutarea peer locali[Dezactivat]</translation>
     </message>
@@ -2163,18 +2163,18 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation type="obsolete">&apos;%1&apos; a fost şters deoarece ratio lui a ajuns la valoarea maximă setată de dvs.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1398"/>
+        <location filename="../GUI.cpp" line="1399"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1375"/>
+        <location filename="../GUI.cpp" line="1376"/>
         <source>DL: %1 KiB/s</source>
         <translation>DL: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1376"/>
+        <location filename="../GUI.cpp" line="1377"/>
         <source>UP: %1 KiB/s</source>
         <translation>UP:%1 Kib/s</translation>
     </message>
@@ -2189,7 +2189,7 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation>DHT: %1 noduri</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Nu sunt connectări directe. Aceasta poate indica la probleme cu rețeaua.</translation>
     </message>
@@ -2199,7 +2199,7 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation>Upload-uri</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1512"/>
+        <location filename="../GUI.cpp" line="1513"/>
         <source>Options were saved successfully.</source>
         <translation>Opţiunile salvate cu success.</translation>
     </message>
@@ -3214,44 +3214,44 @@ Changelog:
         <translation>Acest fişier este deteriorat sau nu este torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="869"/>
+        <location filename="../bittorrent.cpp" line="851"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a fost blocat conform IP filtrului&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="871"/>
+        <location filename="../bittorrent.cpp" line="853"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a fost banat din cauza fragmentelor eronate&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1143"/>
+        <location filename="../bittorrent.cpp" line="1125"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Nu pot asculta pe orice port dat.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1175"/>
+        <location filename="../bittorrent.cpp" line="1157"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping failure, message: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1180"/>
+        <location filename="../bittorrent.cpp" line="1162"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping successful, message: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1195"/>
+        <location filename="../bittorrent.cpp" line="1177"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Resumarea rapidă a fost respinsă pentru torrent-ul %1, verific încă o dată...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1200"/>
+        <location filename="../bittorrent.cpp" line="1182"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Conectarea la seed a eşuat pentru : %1, mesajul : %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1258"/>
+        <location filename="../bittorrent.cpp" line="1240"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Descarc &apos;%1&apos;, vă rugăm să aşteptaţi...</translation>
@@ -4979,12 +4979,12 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
         <translation>Nu pot crea calea de salvare</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="428"/>
+        <location filename="../torrentAddition.h" line="420"/>
         <source>Invalid file selection</source>
         <translation>Selecţia fişierului invalidă</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="428"/>
+        <location filename="../torrentAddition.h" line="420"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Trebuie să selectaţi cel puţin un fişier din torrent</translation>
     </message>

@@ -942,23 +942,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>Connection status:</source>
         <translation>連線狀態:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1418"/>
+        <location filename="../GUI.cpp" line="1419"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1421"/>
+        <location filename="../GUI.cpp" line="1422"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>下載速度: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1424"/>
+        <location filename="../GUI.cpp" line="1425"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>上傳速度: %1 KiB/s</translation>
@@ -1015,12 +1015,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>讀取或寫入 %1 時發生錯誤。硬碟可能已經滿了, 將暫停下載</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1432"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>Connection Status:</source>
         <translation>連線狀態:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1432"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>Online</source>
         <translation>線上</translation>
     </message>
@@ -1047,17 +1047,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>qBittorrent 綁定埠: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1110"/>
+        <location filename="../GUI.cpp" line="1111"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT 支援 [開啟], 埠: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1116"/>
+        <location filename="../GUI.cpp" line="1117"/>
         <source>DHT support [OFF]</source>
         <translation>DHT 支援 [關閉]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1119"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>PeX support [ON]</source>
         <translation>PeX 支援 [開啟]</translation>
     </message>
@@ -1074,12 +1074,12 @@ Are you sure you want to quit qBittorrent?</source>
 你確定要離開 qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1178"/>
+        <location filename="../GUI.cpp" line="1179"/>
         <source>Downloads</source>
         <translation>下載</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1183"/>
+        <location filename="../GUI.cpp" line="1184"/>
         <source>Finished</source>
         <translation>完成</translation>
     </message>
@@ -1094,17 +1094,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>UPnP 支援 [開啟]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1138"/>
+        <location filename="../GUI.cpp" line="1139"/>
         <source>Encryption support [ON]</source>
         <translation>加密支援 [開啟]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1143"/>
+        <location filename="../GUI.cpp" line="1144"/>
         <source>Encryption support [FORCED]</source>
         <translation>加密支援 [強迫]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1148"/>
+        <location filename="../GUI.cpp" line="1149"/>
         <source>Encryption support [OFF]</source>
         <translation>加密支援 [關閉]</translation>
     </message>
@@ -1180,12 +1180,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>NAT-PMP 支援 [關閉]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1123"/>
+        <location filename="../GUI.cpp" line="1124"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>本地下載者搜尋 [開啟]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1126"/>
+        <location filename="../GUI.cpp" line="1127"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>本地下載者搜尋支援 [關閉]</translation>
     </message>
@@ -1196,18 +1196,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">&apos;%1&apos; 已經移除, 因為其分享率已經達到你設定的最大值了。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1398"/>
+        <location filename="../GUI.cpp" line="1399"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (下載速度: %2KiB/s, 上傳速度: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1375"/>
+        <location filename="../GUI.cpp" line="1376"/>
         <source>DL: %1 KiB/s</source>
         <translation>下載: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1376"/>
+        <location filename="../GUI.cpp" line="1377"/>
         <source>UP: %1 KiB/s</source>
         <translation>上傳: %1 KiB/s</translation>
     </message>
@@ -1222,7 +1222,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>DHT: %1 個節點</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>沒有直接的連線。這表示你的網路設置可能有問題。</translation>
     </message>
@@ -1232,7 +1232,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>上傳</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1512"/>
+        <location filename="../GUI.cpp" line="1513"/>
         <source>Options were saved successfully.</source>
         <translation>選項儲存成功。</translation>
     </message>
@@ -1891,44 +1891,44 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>這個檔案不是損壞就是不是 torrent 檔案。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="869"/>
+        <location filename="../bittorrent.cpp" line="851"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;因為你的 IP 過濾器而被封鎖了&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="871"/>
+        <location filename="../bittorrent.cpp" line="853"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;因為有損壞的分塊而被踢出&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1143"/>
+        <location filename="../bittorrent.cpp" line="1125"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>無法監聽任何給定的埠。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1175"/>
+        <location filename="../bittorrent.cpp" line="1157"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: 埠映射失敗, 訊息: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1180"/>
+        <location filename="../bittorrent.cpp" line="1162"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: 埠映射成功, 訊息: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1195"/>
+        <location filename="../bittorrent.cpp" line="1177"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>快速恢復資料被 torrent %1 拒絕, 重新檢查...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1200"/>
+        <location filename="../bittorrent.cpp" line="1182"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>找不到 URL: %1 的 URL 種子, 訊息: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1258"/>
+        <location filename="../bittorrent.cpp" line="1240"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>下載 &apos;%1&apos; 中, 請稍候...</translation>
@@ -3144,12 +3144,12 @@ However, those plugins were disabled.</source>
         <translation>無法建立儲存路徑</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="428"/>
+        <location filename="../torrentAddition.h" line="420"/>
         <source>Invalid file selection</source>
         <translation>無效的選擇檔案</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="428"/>
+        <location filename="../torrentAddition.h" line="420"/>
         <source>You must select at least one file in the torrent</source>
         <translation>你必須至少選擇 torrent 裡的一個檔案</translation>
     </message>

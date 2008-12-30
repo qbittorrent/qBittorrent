@@ -1376,7 +1376,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">spusten</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1183"/>
+        <location filename="../GUI.cpp" line="1184"/>
         <source>Finished</source>
         <translation>Dokončené</translation>
     </message>
@@ -1481,7 +1481,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1418"/>
+        <location filename="../GUI.cpp" line="1419"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1818,7 +1818,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>Connection status:</source>
         <translation>Stav spojenia:</translation>
     </message>
@@ -1893,13 +1893,13 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">qBittorrent %1 spustený.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1421"/>
+        <location filename="../GUI.cpp" line="1422"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Rýchlosť sťahovania: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1424"/>
+        <location filename="../GUI.cpp" line="1425"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Rýchlosť nahrávania: %1 KiB/s</translation>
@@ -2022,12 +2022,12 @@ Najskôr ho prosím zatvorte.</translation>
         <translation type="obsolete">Vyskytla sa chyba (plný disk?), „%1“ pozastavené.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1432"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>Connection Status:</source>
         <translation>Stav spojenia:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1432"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
@@ -2086,7 +2086,7 @@ Najskôr ho prosím zatvorte.</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1178"/>
+        <location filename="../GUI.cpp" line="1179"/>
         <source>Downloads</source>
         <translation>Sťahovania</translation>
     </message>
@@ -2109,12 +2109,12 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>qBittorrent sa viaže (bind) na port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1110"/>
+        <location filename="../GUI.cpp" line="1111"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Podpora DHT [zapnutá], port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1116"/>
+        <location filename="../GUI.cpp" line="1117"/>
         <source>DHT support [OFF]</source>
         <translation>Podpora DHT [vypnutá]</translation>
     </message>
@@ -2124,7 +2124,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Podpora UPnP [zapnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1119"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>PeX support [ON]</source>
         <translation>Podpora PeX [zapnutá]</translation>
     </message>
@@ -2139,17 +2139,17 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">Buďte opatrní, zdieľanie materiálu chráneného autorskými právami bez povolenia je protizákonné.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1138"/>
+        <location filename="../GUI.cpp" line="1139"/>
         <source>Encryption support [ON]</source>
         <translation>Podpora šifrovania [zapnuté]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1143"/>
+        <location filename="../GUI.cpp" line="1144"/>
         <source>Encryption support [FORCED]</source>
         <translation>Podpora šifrovania [vynútené]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1148"/>
+        <location filename="../GUI.cpp" line="1149"/>
         <source>Encryption support [OFF]</source>
         <translation>Podpora šifrovania [vypnuté]</translation>
     </message>
@@ -2252,12 +2252,12 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Podpora NAT-PMP [vypnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1123"/>
+        <location filename="../GUI.cpp" line="1124"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery [zapnutá]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1126"/>
+        <location filename="../GUI.cpp" line="1127"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Podpora Local Peer Discovery support [vypnutá]</translation>
     </message>
@@ -2268,18 +2268,18 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation type="obsolete">„%1“ bol odstránený, pretože jeho pomer dosiahol maximálnu hodonotu, ktorú ste nastavili.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1398"/>
+        <location filename="../GUI.cpp" line="1399"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1375"/>
+        <location filename="../GUI.cpp" line="1376"/>
         <source>DL: %1 KiB/s</source>
         <translation>Sťah: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1376"/>
+        <location filename="../GUI.cpp" line="1377"/>
         <source>UP: %1 KiB/s</source>
         <translation>Nahr: %1 KiB/s</translation>
     </message>
@@ -2294,7 +2294,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>DHT: %1 uzlov</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Žiadne priame spojenia. To môže znamenať problém s pripojením.</translation>
     </message>
@@ -2304,7 +2304,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <translation>Nahrávania</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1512"/>
+        <location filename="../GUI.cpp" line="1513"/>
         <source>Options were saved successfully.</source>
         <translation>Nastavenia boli úspešne uložené.</translation>
     </message>
@@ -3343,44 +3343,44 @@ Záznam zmien:</translation>
         <translation>Tento súbor je buď poškodený alebo to nie je torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="869"/>
+        <location filename="../bittorrent.cpp" line="851"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokoval váš filter IP adries&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="871"/>
+        <location filename="../bittorrent.cpp" line="853"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokovaný kvôli posielaniu poškodených častí&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1143"/>
+        <location filename="../bittorrent.cpp" line="1125"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Nepodarilo sa počúvať na žiadnom zo zadaných portov.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1175"/>
+        <location filename="../bittorrent.cpp" line="1157"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Zlyhanie mapovania portov, správa: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1180"/>
+        <location filename="../bittorrent.cpp" line="1162"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Mapovanie portov úspešné, správa: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1195"/>
+        <location filename="../bittorrent.cpp" line="1177"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Rýchle obnovenie torrentu torrent %1 bolo odmietnuté, prebieha opätovný pokus...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1200"/>
+        <location filename="../bittorrent.cpp" line="1182"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1258"/>
+        <location filename="../bittorrent.cpp" line="1240"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Sťahuje sa „%1“, čakajte prosím...</translation>
@@ -5197,12 +5197,12 @@ Tieto moduly však boli vypnuté.</translation>
         <translation>Nemohol som vytvoriť cestu pre uloženie</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="428"/>
+        <location filename="../torrentAddition.h" line="420"/>
         <source>Invalid file selection</source>
         <translation>Neplatný výber súboru</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="428"/>
+        <location filename="../torrentAddition.h" line="420"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Musíte vybrať aspoň jeden súbor z torrentu</translation>
     </message>

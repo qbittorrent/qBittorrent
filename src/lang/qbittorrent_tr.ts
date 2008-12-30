@@ -1440,7 +1440,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete">kb/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1183"/>
+        <location filename="../GUI.cpp" line="1184"/>
         <source>Finished</source>
         <translation>Tamamlandı</translation>
     </message>
@@ -1567,7 +1567,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation type="obsolete"> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1418"/>
+        <location filename="../GUI.cpp" line="1419"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1927,7 +1927,7 @@ Lütfen önce diğerini kapatın.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>Connection status:</source>
         <translation>Bağlantı durumu:</translation>
     </message>
@@ -2002,13 +2002,13 @@ Lütfen önce diğerini kapatın.</translation>
         <translation type="obsolete">qBittorrent %1 başladı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1421"/>
+        <location filename="../GUI.cpp" line="1422"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>İND hızı: %1 KB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1424"/>
+        <location filename="../GUI.cpp" line="1425"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>GÖN hızı: %1 KB/s</translation>
@@ -2125,12 +2125,12 @@ Lütfen önce diğerini kapatın.</translation>
         <translation>%1 okunmaya veya yazılmaya çalışılırken bir hata oluştu. Disk muhtemelen dolu, indirme duraklatıldı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1432"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>Connection Status:</source>
         <translation>Bağlantı Durumu:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1432"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>Online</source>
         <translation>Çevrimiçi</translation>
     </message>
@@ -2189,7 +2189,7 @@ Lütfen önce diğerini kapatın.</translation>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1178"/>
+        <location filename="../GUI.cpp" line="1179"/>
         <source>Downloads</source>
         <translation>İndirilenler</translation>
     </message>
@@ -2212,17 +2212,17 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>qBittorrent&apos;in bağlandığı kapı: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1110"/>
+        <location filename="../GUI.cpp" line="1111"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT desteği [AÇIK], kapı: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1116"/>
+        <location filename="../GUI.cpp" line="1117"/>
         <source>DHT support [OFF]</source>
         <translation>DHT desteği [KAPALI]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1119"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>PeX support [ON]</source>
         <translation>EşD desteği [AÇIK]</translation>
     </message>
@@ -2237,17 +2237,17 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>UPnP desteği [AÇIK]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1138"/>
+        <location filename="../GUI.cpp" line="1139"/>
         <source>Encryption support [ON]</source>
         <translation>Şifreleme desteği [AÇIK]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1143"/>
+        <location filename="../GUI.cpp" line="1144"/>
         <source>Encryption support [FORCED]</source>
         <translation>Şifreleme desteği [ZORLANDI]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1148"/>
+        <location filename="../GUI.cpp" line="1149"/>
         <source>Encryption support [OFF]</source>
         <translation>Şifreleme desteği [KAPALI]</translation>
     </message>
@@ -2323,12 +2323,12 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>NAT-PMP desteği [KAPALI]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1123"/>
+        <location filename="../GUI.cpp" line="1124"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Yerel Eş Keşfi [AÇIK]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1126"/>
+        <location filename="../GUI.cpp" line="1127"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Yerel Eş Keşfi desteği [KAPALI]</translation>
     </message>
@@ -2339,18 +2339,18 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation type="obsolete">&apos;%1&apos; kaldırıldı çünkü oranı ayarladığınız maksimum değere ulaştı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1398"/>
+        <location filename="../GUI.cpp" line="1399"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (İND: %2KB/s, GÖN: %3KB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1375"/>
+        <location filename="../GUI.cpp" line="1376"/>
         <source>DL: %1 KiB/s</source>
         <translation>İND: %1 KB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1376"/>
+        <location filename="../GUI.cpp" line="1377"/>
         <source>UP: %1 KiB/s</source>
         <translation>GÖN: %1 KB/s</translation>
     </message>
@@ -2365,7 +2365,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>DHT: %1 düğüm</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Doğrudan bağlantı yok. Bu, ağ yapılandırma problemi olduğunu gösteriyor.</translation>
     </message>
@@ -2375,7 +2375,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>Gönderilenler</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1512"/>
+        <location filename="../GUI.cpp" line="1513"/>
         <source>Options were saved successfully.</source>
         <translation>Seçenekler başarıyla kaydedildi.</translation>
     </message>
@@ -3420,44 +3420,44 @@ Changelog:
         <translation>Bu dosya bozuk ya da torrent dosyası değil.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="869"/>
+        <location filename="../bittorrent.cpp" line="851"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt;, &lt;i&gt;IP süzgeciniz tarafından engellendi&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="871"/>
+        <location filename="../bittorrent.cpp" line="853"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt;, &lt;i&gt;bozuk parçalar sebebiyle engellendi&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1143"/>
+        <location filename="../bittorrent.cpp" line="1125"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Verilen kapıların hiçbiri tanınmadı.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1175"/>
+        <location filename="../bittorrent.cpp" line="1157"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Kapı haritalama hatası, ileti: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1180"/>
+        <location filename="../bittorrent.cpp" line="1162"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Kapı haritalama başarıyla tamamlandı, ileti: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1195"/>
+        <location filename="../bittorrent.cpp" line="1177"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Hızlı devam ettirme verisi %1 torrenti için reddedildi, yeniden denetleniyor...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1200"/>
+        <location filename="../bittorrent.cpp" line="1182"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Gönderen adresi araması bu adres için başarılamadı: %1, ileti: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1258"/>
+        <location filename="../bittorrent.cpp" line="1240"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos; indiriliyor, lütfen bekleyin...</translation>
@@ -5176,12 +5176,12 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Kayıt yolu oluşturulamıyor</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="428"/>
+        <location filename="../torrentAddition.h" line="420"/>
         <source>Invalid file selection</source>
         <translation>Geçersiz dosya seçimi</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="428"/>
+        <location filename="../torrentAddition.h" line="420"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Torrent içinde en az bir dosya seçmek zorundasınız</translation>
     </message>

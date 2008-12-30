@@ -1139,7 +1139,7 @@ list:</source>
     <message>
         <location filename="../options.ui" line="1976"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>최대 활성 업로드(Maximum active downloads):</translation>
     </message>
 </context>
 <context>
@@ -1562,7 +1562,7 @@ download list?</source>
         <translation type="obsolete">다시 시작됨.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1183"/>
+        <location filename="../GUI.cpp" line="1184"/>
         <source>Finished</source>
         <translation>완료</translation>
     </message>
@@ -1625,7 +1625,7 @@ download list?</source>
         <translation type="obsolete"> 개발자: 크리스토프 두메스 :: Copyright (c) 2006</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1418"/>
+        <location filename="../GUI.cpp" line="1419"/>
         <source>qBittorrent</source>
         <translation>큐비토런트</translation>
     </message>
@@ -1970,7 +1970,7 @@ Please close the other one first.</source>
         <translation>큐비토런트 %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>Connection status:</source>
         <translation>연결 상태:</translation>
     </message>
@@ -2045,13 +2045,13 @@ Please close the other one first.</source>
         <translation type="obsolete">큐비토런트 %1가 시작되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1421"/>
+        <location filename="../GUI.cpp" line="1422"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>다운로딩 속도: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1424"/>
+        <location filename="../GUI.cpp" line="1425"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>업로딩 속도: %1 KiB/s</translation>
@@ -2174,12 +2174,12 @@ Please close the other one first.</source>
         <translation type="obsolete">오류 발생 (디스크가 꽉찼습니까?), &apos;%1&apos;가 정지 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1432"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>Connection Status:</source>
         <translation>연결 상태:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1432"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>Online</source>
         <translation>온라인</translation>
     </message>
@@ -2244,17 +2244,17 @@ Please close the other one first.</source>
         <translation>큐비토런트는 다음 포트을  사용하고 있습니다: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1110"/>
+        <location filename="../GUI.cpp" line="1111"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT 지원 [사용함], 포트: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1116"/>
+        <location filename="../GUI.cpp" line="1117"/>
         <source>DHT support [OFF]</source>
         <translation>DHT 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1119"/>
+        <location filename="../GUI.cpp" line="1120"/>
         <source>PeX support [ON]</source>
         <translation>Pes 지원 [사용함]</translation>
     </message>
@@ -2271,7 +2271,7 @@ Are you sure you want to quit qBittorrent?</source>
 큐비토런트를 종료하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1178"/>
+        <location filename="../GUI.cpp" line="1179"/>
         <source>Downloads</source>
         <translation>다운로드</translation>
     </message>
@@ -2291,17 +2291,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">허락없이 저작권이 있는 자료를 공유하는 것은 법에 저촉됩니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1138"/>
+        <location filename="../GUI.cpp" line="1139"/>
         <source>Encryption support [ON]</source>
         <translation>암호화(Encryption) 지원 [사용함]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1143"/>
+        <location filename="../GUI.cpp" line="1144"/>
         <source>Encryption support [FORCED]</source>
         <translation>암호화(Encryption) 지원 [강압적으로 사용]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1148"/>
+        <location filename="../GUI.cpp" line="1149"/>
         <source>Encryption support [OFF]</source>
         <translation>암호화(Encryption) 지원 [사용안함]</translation>
     </message>
@@ -2398,12 +2398,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>NAT-PMP 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1123"/>
+        <location filename="../GUI.cpp" line="1124"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery (로컬 네트웍크내 공유자 찾기) [사용함]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1126"/>
+        <location filename="../GUI.cpp" line="1127"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Local Peer Discovery (로컬 네트웍크내 공유자 찾기) [사용안함]</translation>
     </message>
@@ -2414,18 +2414,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">사용자께거 지정하신 할당율에 도달하였기에 &apos;%1&apos;는(은) 목록에서 삭제되었습니다. </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1398"/>
+        <location filename="../GUI.cpp" line="1399"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>큐비토런트 버젼: %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1375"/>
+        <location filename="../GUI.cpp" line="1376"/>
         <source>DL: %1 KiB/s</source>
         <translation>다운로딩 속도: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1376"/>
+        <location filename="../GUI.cpp" line="1377"/>
         <source>UP: %1 KiB/s</source>
         <translation>업로딩 속도: %1 KiB/s</translation>
     </message>
@@ -2440,7 +2440,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>DHT: %1 노드(nodes)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>직접적으로 연결된 네트워크를 찾지 못했습니다. 네트워크 설정에 의해 발생된 오류일 가능성이 있습니다.</translation>
     </message>
@@ -2450,7 +2450,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>업로드</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1512"/>
+        <location filename="../GUI.cpp" line="1513"/>
         <source>Options were saved successfully.</source>
         <translation>설정이 성공적으로 저장되었습니다.</translation>
     </message>
@@ -3510,44 +3510,44 @@ Changelog:
         <translation>이 파일은 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="869"/>
+        <location filename="../bittorrent.cpp" line="851"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 IP 필터에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="871"/>
+        <location filename="../bittorrent.cpp" line="853"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1143"/>
+        <location filename="../bittorrent.cpp" line="1125"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>설정하신 포트에 연결할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1175"/>
+        <location filename="../bittorrent.cpp" line="1157"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1180"/>
+        <location filename="../bittorrent.cpp" line="1162"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1195"/>
+        <location filename="../bittorrent.cpp" line="1177"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>토렌트 %1는 빨리 이어받기가 사용될수 없습니다, 확인중입니다... </translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1200"/>
+        <location filename="../bittorrent.cpp" line="1182"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>다음 Url 완전체(Url seed)의 검색이 실패하였습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1258"/>
+        <location filename="../bittorrent.cpp" line="1240"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;을 다운 중입니다, 잠시 기다려 주세요...</translation>
@@ -3852,7 +3852,7 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="188"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>토렌트 파일 목록 생성하기(다운로드 목록에 추가하지 않음).</translation>
     </message>
 </context>
 <context>
@@ -4038,7 +4038,7 @@ Changelog:
     <message>
         <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>강제로 재확인하기</translation>
     </message>
 </context>
 <context>
@@ -5005,22 +5005,22 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../properties.ui" line="204"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="687"/>
         <source>Choose save path</source>
-        <translation type="unfinished">저장 경로 선택</translation>
+        <translation>저장 경로 선택</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">저장 경로 설정이 잘못되었습니다</translation>
+        <translation>저장 경로 설정이 잘못되었습니다</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">저장 경로를 생성할수가 없습니다</translation>
+        <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>
 </context>
 <context>
@@ -5191,7 +5191,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../seeding.ui" line="129"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>강제로 재확인하기</translation>
     </message>
 </context>
 <context>
@@ -5305,12 +5305,12 @@ However, those plugins were disabled.</source>
         <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="428"/>
+        <location filename="../torrentAddition.h" line="420"/>
         <source>Invalid file selection</source>
         <translation>부적당한 파일 선택</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="428"/>
+        <location filename="../torrentAddition.h" line="420"/>
         <source>You must select at least one file in the torrent</source>
         <translation>토렌트에서 적어도 하나 이상의 파일을 선택해야 합니다 </translation>
     </message>
