@@ -37,8 +37,8 @@ window.addEvent('domready', function(){
       width: '100%',
       height: '100%'
   });
-  myTable.setup('myTable');
-  myTableUP.setup('myTableUP');
+  myTable.setup('myTable', 3);
+  myTableUP.setup('myTableUP', -1);
   var r=0;
   var waiting=false;
   var stateToImg = function(state){
@@ -120,7 +120,7 @@ window.addEvent('domready', function(){
                 row[0] = stateToImg(event.state);
                 row[1] = event.name;
                 row[2] = fsize(event.size);
-                row[3] = round1(event.progress*100) + ' %';
+                row[3] = round1(event.progress*100);
                 row[4] = fspeed(event.dlspeed);
                 row[5] = fspeed(event.upspeed);
 		row[6] = event.priority

@@ -15,6 +15,7 @@
     - FEATURE: Rewrote folder scanning code (Now uses a filesystem watcher)
     - FEATURE: Added torrent deletion from hard drive function in Web UI
     - FEATURE: Added queueing priority actions in Web UI
+    - FEATURE: Display progress using progress bars in Web UI
     - BUGFIX: Made usage of fastresume data more reliable
     - BUGFIX: qBittorrent shutdown is now faster
     - BUGFIX: Fixed several memory leaks

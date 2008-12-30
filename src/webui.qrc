@@ -17,5 +17,6 @@
   <file>webui/scripts/client.js</file>
   <file>webui/scripts/download.js</file>
   <file>webui/scripts/mootabs1.2.js</file>
+  <file>webui/scripts/progressbar.js</file>
 </qresource>
 </RCC>

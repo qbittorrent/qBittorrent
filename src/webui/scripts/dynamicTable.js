@@ -36,11 +36,12 @@ var dynamicTable = new Class	({
 	initialize: function(){
 	},
 	
-	setup: function(table){
+	setup: function(table, progressIndex){
 		this.table = $(table);
 		this.rows = new Object();
 		this.cur = new Array();
 		this.priority_hidden = false;
+		this.progressIndex = progressIndex;
 	},
 
 	altRow: function()
@@ -87,7 +88,11 @@ var dynamicTable = new Class	({
 		for(var i=0; i<row.length; i++)
 		{
 			var td = new Element('td');
-			td.set('html', row[i]);
+			if(i==this.progressIndex) {
+				td.adopt(new ProgressBar(row[i].toFloat(), {width:80}));
+			} else {
+				td.set('html', row[i]);
+			}
 			td.injectInside(tr);
 		};
 
@@ -181,11 +186,14 @@ var dynamicTable = new Class	({
 		if($defined(tr))
 		{
 			var tds = tr.getElements('td');
-			row.each(function(el, i){
-                                if(tds[i].get('html') != el) {
-				      tds[i].set('html', el);
-                                }
-			});
+			for(var i=0; i<row.length; i++) {
+        	                if(i==this.progressIndex) {
+					tds[i].set('html', '');
+                	                tds[i].adopt(new ProgressBar(row[i].toFloat(), {width:80}));
+                        	} else {
+                                	tds[i].set('html', row[i]);
+	                        }
+                	};
 			return true;
 		}
 		return false;
