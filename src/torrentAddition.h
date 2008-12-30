@@ -415,14 +415,6 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       }else{
         QFile::remove(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".incremental"));
       }
-      // Create .paused file if necessary
-      if(addInPause->isChecked()){
-        QFile paused_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".paused"));
-        paused_file.open(QIODevice::WriteOnly | QIODevice::Text);
-        paused_file.close();
-      }else{
-        QFile::remove(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".paused"));
-      }
       // Check if there is at least one selected file
       if(allFiltered()){
           QMessageBox::warning(0, tr("Invalid file selection"), tr("You must select at least one file in the torrent"));
@@ -431,7 +423,9 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       // save filtered files
       savePiecesPriorities();
       // Add to download list
-      BTSession->addTorrent(filePath, false, from_url);
+      QTorrentHandle h = BTSession->addTorrent(filePath, false, from_url);
+      if(addInPause->isChecked() && h.is_valid())
+          h.pause();
       close();
     }
 };

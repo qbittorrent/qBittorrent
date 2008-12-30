@@ -99,7 +99,7 @@ class bittorrent : public QObject {
     qlonglong getETA(QString hash) const;
 
   public slots:
-    void addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
+    QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
     void loadSessionState();
     void saveSessionState();
     void downloadFromUrl(QString url);

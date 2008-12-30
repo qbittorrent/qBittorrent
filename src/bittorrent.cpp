@@ -353,7 +353,7 @@ void bittorrent::loadWebSeeds(QString hash) {
 }
 
 // Add a torrent to the bittorrent session
-void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bool resumed) {
+QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bool resumed) {
   QTorrentHandle h;
   bool fastResume=false;
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
@@ -370,7 +370,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
   // Processing torrents
   file = path.trimmed().replace("file://", "", Qt::CaseInsensitive);
   if(file.isEmpty()) {
-    return;
+    return h;
   }
   Q_ASSERT(!file.startsWith("http://", Qt::CaseInsensitive) && !file.startsWith("https://", Qt::CaseInsensitive) && !file.startsWith("ftp://", Qt::CaseInsensitive));
   qDebug("Adding %s to download list", file.toUtf8().data());
@@ -392,7 +392,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
           // Remove file
           QFile::remove(file);
       }
-      return;
+      return h;
   }
   qDebug(" -> Hash: %s", misc::toString(t->info_hash()).c_str());
   qDebug(" -> Name: %s", t->name().c_str());
@@ -422,7 +422,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
           // Delete torrent from scan dir
           QFile::remove(file);
       }
-      return;
+      return h;
   }
   add_torrent_params p;
   //Getting fast resume data if existing
@@ -464,7 +464,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
       qDebug("/!\\ Error: Invalid handle");
       // If download from url, remove temp file
       if(!from_url.isNull()) QFile::remove(file);
-      return;
+      return h;
   }
   // Connections limit per torrent
   h.set_max_connections(maxConnecsPerTorrent);
@@ -496,7 +496,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
       qDebug("Incremental download enabled for %s", t->name().c_str());
       h.set_sequential_download(true);
   }
-  if((resumed || !addInPause) && !QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".paused")) {
+  if(!addInPause && !fastResume) {
       // Start torrent because it was added in paused state
       h.resume();
   }
@@ -519,6 +519,7 @@ void bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bo
           addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(file));
   }
   emit addedTorrent(h);
+  return h;
 }
 
 // Check in .priorities file if the user filtered files
