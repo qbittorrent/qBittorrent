@@ -56,6 +56,8 @@ window.addEvent('domready', function(){
           return '<img src="images/skin/stalled.png"/>';
       case 'queued':
           return '<img src="images/skin/queued.png"/>';
+      default:
+	  return '<img src="images/skin/stalled.png"/>';
     }
     return '';
   };

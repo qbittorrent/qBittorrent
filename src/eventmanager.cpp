@@ -63,6 +63,7 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
                         case torrent_status::queued_for_checking:
                 event["state"] = QVariant("checking");
                 break;
+                        case torrent_status::allocating:
                         case torrent_status::downloading:
                         case torrent_status::downloading_metadata:
                 if(h.download_payload_rate() > 0)
