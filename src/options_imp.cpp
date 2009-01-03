@@ -333,17 +333,17 @@ void options_imp::saveOptions(){
     settings.setValue(QString::fromUtf8("AffectDHT"), useProxyForDHT());
     settings.endGroup(); // End Proxy
   }
-  settings.setValue(QString::fromUtf8("HTTPProxyType"), getProxyType());
+  settings.setValue(QString::fromUtf8("HTTPProxyType"), getHTTPProxyType());
   if(isProxyEnabled()) {
     settings.beginGroup("HTTPProxy");
     // Proxy is enabled, save settings
-    settings.setValue(QString::fromUtf8("IP"), getProxyIp());
-    settings.setValue(QString::fromUtf8("Port"), getProxyPort());
-    settings.setValue(QString::fromUtf8("Authentication"), isProxyAuthEnabled());
+    settings.setValue(QString::fromUtf8("IP"), getHTTPProxyIp());
+    settings.setValue(QString::fromUtf8("Port"), getHTTPProxyPort());
+    settings.setValue(QString::fromUtf8("Authentication"), isHTTPProxyAuthEnabled());
     if(isProxyAuthEnabled()) {
       // Credentials
-      settings.setValue(QString::fromUtf8("Username"), getProxyUsername());
-      settings.setValue(QString::fromUtf8("Password"), getProxyPassword());
+      settings.setValue(QString::fromUtf8("Username"), getHTTPProxyUsername());
+      settings.setValue(QString::fromUtf8("Password"), getHTTPProxyPassword());
     }
     settings.endGroup(); // End HTTPProxy
   }
@@ -588,7 +588,7 @@ void options_imp::loadOptions(){
   }
   comboProxyType_http->setCurrentIndex(intValue);
   enableProxyHTTP(intValue);
-  if(isProxyEnabled()) {
+  if(isHTTPProxyEnabled()) {
     settings.beginGroup("HTTPProxy");
     // Proxy is enabled, save settings
     textProxyIP_http->setText(settings.value(QString::fromUtf8("IP"), "0.0.0.0").toString());
