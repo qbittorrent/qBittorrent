@@ -1008,6 +1008,7 @@ void GUI::configureSession(bool deleteOptions) {
   // * Proxy settings
   proxy_settings proxySettings;
   if(options->isProxyEnabled()) {
+    qDebug("Enabling P2P proxy");
     proxySettings.hostname = options->getProxyIp().toStdString();
     proxySettings.port = options->getProxyPort();
     if(options->isProxyAuthEnabled()) {
@@ -1029,8 +1030,12 @@ void GUI::configureSession(bool deleteOptions) {
         break;
     }
     BTSession->setProxySettings(proxySettings, options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
-}
+  } else {
+    qDebug("Disabling P2P proxy");
+    BTSession->setProxySettings(proxySettings, false, false, false, false);
+  }
   if(options->isHTTPProxyEnabled()) {
+    qDebug("Enabling Search HTTP proxy");
     // HTTP Proxy
     QString proxy_str;
     switch(options->getHTTPProxyType()) {
@@ -1049,13 +1054,13 @@ void GUI::configureSession(bool deleteOptions) {
     setenv("http_proxy", proxy_str.toUtf8().data(), 1);
 #endif
   } else {
+    qDebug("Disabling search proxy");
 #ifdef Q_WS_WIN
     putenv("http_proxy=");
 #else
     unsetenv("http_proxy");
 #endif
   }
-
   // * Session settings
   session_settings sessionSettings;
   if(options->shouldSpoofAzureus()) {
