@@ -1075,14 +1075,26 @@ void bittorrent::setSessionSettings(session_settings sessionSettings) {
 // Set Proxy
 void bittorrent::setProxySettings(proxy_settings proxySettings, bool trackers, bool peers, bool web_seeds, bool dht) {
   qDebug("Set Proxy settings");
+  proxy_settings ps_null;
+  ps_null.type = proxy_settings::none;
   if(trackers)
     s->set_tracker_proxy(proxySettings);
+  else
+    s->set_tracker_proxy(ps_null);
+
   if(peers)
     s->set_peer_proxy(proxySettings);
+  else
+    s->set_peer_proxy(ps_null);
   if(web_seeds)
     s->set_web_seed_proxy(proxySettings);
-  if(DHTEnabled && dht) {
-    s->set_dht_proxy(proxySettings);
+  else
+    s->set_web_seed_proxy(ps_null);
+  if(DHTEnabled) {
+    if(dht)
+      s->set_dht_proxy(proxySettings);
+    else
+      s->set_dht_proxy(ps_null);
   }
 }
 
