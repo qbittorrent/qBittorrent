@@ -589,6 +589,8 @@ void DownloadingTorrents::addTorrent(QString hash) {
   }
   ++nbTorrents;
   emit unfinishedTorrentsNumberChanged(nbTorrents);
+  // sort List
+  sortDownloadList();
 }
 
 void DownloadingTorrents::sortDownloadListFloat(int index, Qt::SortOrder sortOrder) {

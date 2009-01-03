@@ -119,6 +119,8 @@ void FinishedTorrents::addTorrent(QString hash){
   // Update the number of finished torrents
   ++nbFinished;
   emit finishedTorrentsNumberChanged(nbFinished);
+  // Sort List
+  sortFinishedList();
 }
 
 // Set the color of a row in data model
