@@ -1028,6 +1028,10 @@ void GUI::configureSession(bool deleteOptions) {
         proxySettings.type = proxy_settings::socks5_pw;
         break;
     }
+    BTSession->setProxySettings(proxySettings, options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
+}
+  if(options->isHTTPProxyEnabled()) {
+    // HTTP Proxy
     QString proxy_str;
     switch(options->getHTTPProxyType()) {
       case HTTP_PW:
@@ -1053,7 +1057,7 @@ void GUI::configureSession(bool deleteOptions) {
     unsetenv("http_proxy");
 #endif
   }
-  BTSession->setProxySettings(proxySettings, options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
+
   // * Session settings
   session_settings sessionSettings;
   if(options->shouldSpoofAzureus()) {
