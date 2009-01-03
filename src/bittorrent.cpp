@@ -147,7 +147,9 @@ bool bittorrent::isQueueingEnabled() const {
 void bittorrent::increaseDlTorrentPriority(QString hash) {
   Q_ASSERT(queueingEnabled);
   QTorrentHandle h = getTorrentHandle(hash);
-  h.queue_position_up();
+  // Check due to bug http://code.rasterbar.com/libtorrent/ticket/455
+  if(h.queue_position() > 0)
+    h.queue_position_up();
 }
 
 void bittorrent::decreaseDlTorrentPriority(QString hash) {
