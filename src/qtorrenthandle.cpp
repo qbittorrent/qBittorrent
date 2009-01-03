@@ -319,6 +319,7 @@ void QTorrentHandle::pause() {
   Q_ASSERT(h.is_valid());
   h.auto_managed(false);
   h.pause();
+  h.save_resume_data();
 }
 
 void QTorrentHandle::resume() {
