@@ -334,7 +334,7 @@ void options_imp::saveOptions(){
     settings.endGroup(); // End Proxy
   }
   settings.setValue(QString::fromUtf8("HTTPProxyType"), getHTTPProxyType());
-  if(isProxyEnabled()) {
+  if(isHTTPProxyEnabled()) {
     settings.beginGroup("HTTPProxy");
     // Proxy is enabled, save settings
     settings.setValue(QString::fromUtf8("IP"), getHTTPProxyIp());
