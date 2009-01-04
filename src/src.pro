@@ -91,17 +91,15 @@ contains(DEBUG_MODE, 0) {
 CONFIG += link_pkgconfig
 PKGCONFIG += "libtorrent-rasterbar libcurl"
 
-QT += network \
-    xml
+QT += network xml
 DEFINES += QT_NO_CAST_TO_ASCII
 
 # QT_NO_CAST_FROM_ASCII
 # Windows
-win32:LIBS += -ltorrent \
-    -lcurl \
-    -lboost_system \
-    -lz \
-    -lssl32
+# usually built as static
+#win32:LIBS += -ltorrent -lcurl -lboost_system
+#win32:LIBS += -lz ?
+win32:LIBS += -lssl32 -lws2_32 -lwsock32 -ladvapi32 -lwinmm
 
 RESOURCES = icons.qrc \
     lang.qrc \
