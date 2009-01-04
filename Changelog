@@ -24,6 +24,7 @@
     - BUGFIX: Fixed some compilation and Qt4 warnings
     - BUGFIX: Do not use an addition dialog for torrents from folder scanning
     - BUGFIX: Catch SIGTERM to exit cleanly (e.g. computer shutdown)
+    - BUGFIX: Improved proxy support code
 
 * Sun Nov 9 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.2.1
     - BUGFIX: Fixed possible crash when deleting a torrent permanently
