@@ -100,7 +100,7 @@ DEFINES += QT_NO_CAST_TO_ASCII
 win32:LIBS += -ltorrent \
     -lcurl
     -lboost_system \
-    -lz
+    -lz \
     -lssl32
 
 RESOURCES = icons.qrc \
