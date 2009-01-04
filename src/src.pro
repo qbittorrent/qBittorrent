@@ -98,8 +98,10 @@ DEFINES += QT_NO_CAST_TO_ASCII
 # QT_NO_CAST_FROM_ASCII
 # Windows
 win32:LIBS += -ltorrent \
-    -lccext2 \
-    -lccgnu2
+    -lcurl
+    -lboost_system \
+    -lz
+    -lssl32
 
 RESOURCES = icons.qrc \
     lang.qrc \
