@@ -1116,6 +1116,13 @@ void bittorrent::readAlerts() {
         qDebug("Received finished alert for %s", h.name().toUtf8().data());
       }
     }
+    if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())) {
+      QTorrentHandle h(p->handle);
+      if(h.is_valid()){
+        h.save_resume_data();
+        qDebug("Received paused alert for %s", h.name().toUtf8().data());
+      }
+    }
     else if (save_resume_data_alert* p = dynamic_cast<save_resume_data_alert*>(a.get())) {
         QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
         QTorrentHandle h(p->handle);
