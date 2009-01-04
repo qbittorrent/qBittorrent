@@ -98,7 +98,7 @@ DEFINES += QT_NO_CAST_TO_ASCII
 # QT_NO_CAST_FROM_ASCII
 # Windows
 win32:LIBS += -ltorrent \
-    -lcurl
+    -lcurl \
     -lboost_system \
     -lz \
     -lssl32
