@@ -1422,6 +1422,12 @@ void GUI::checkConnectionStatus() {
   updateRatio();
   // update global informations
   if(systrayIntegration) {
+#ifdef Q_WS_WIN
+      // Windows does not support html here
+      QString html =tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1)));
+      html += "\n";
+      html += tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1)));
+#else
     QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
     html += tr("qBittorrent");
     html += "</div>";
@@ -1431,6 +1437,7 @@ void GUI::checkConnectionStatus() {
     html += "<div style='vertical-align: baseline; height: 18px;'>";
     html += "<img src=':/Icons/skin/seeding.png'/>&nbsp;"+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1)));
     html += "</div>";
+#endif
     myTrayIcon->setToolTip(html); // tray icon
   }
   session_status sessionStatus = BTSession->getSessionStatus();
