@@ -493,7 +493,11 @@ void options_imp::loadOptions(){
   settings.endGroup();
   // Downloads preferences
   settings.beginGroup("Downloads");
+#ifdef Q_WS_WIN
+  QString home = QDir::rootPath();
+#else
   QString home = QDir::homePath();
+#endif
   if(home[home.length()-1] != QDir::separator()){
     home += QDir::separator();
   }
@@ -831,7 +835,11 @@ float options_imp::getDeleteRatio() const{
 
 // Return Save Path
 QString options_imp::getSavePath() const{
+#ifdef Q_WS_WIN
+  QString home = QDir::rootPath();
+#else
   QString home = QDir::homePath();
+#endif
   if(home[home.length()-1] != QDir::separator()){
     home += QDir::separator();
   }
@@ -1245,14 +1253,22 @@ int options_imp::getActionOnDblClOnTorrentFn() const {
 
 // Display dialog to choose scan dir
 void options_imp::on_browseScanDirButton_clicked() {
+#ifdef Q_WS_WIN
+  QString dir = QFileDialog::getExistingDirectory(this, tr("Choose scan directory"), QDir::rootPath());
+#else
   QString dir = QFileDialog::getExistingDirectory(this, tr("Choose scan directory"), QDir::homePath());
+#endif
   if(!dir.isNull()){
     textScanDir->setText(dir);
   }
 }
 
 void options_imp::on_browseFilterButton_clicked() {
+#ifdef Q_WS_WIN
+  QString ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), QDir::rootPath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
+#else
   QString ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), QDir::homePath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
+#endif
   if(!ipfilter.isNull()){
     textFilterPath->setText(ipfilter);
   }
@@ -1260,7 +1276,11 @@ void options_imp::on_browseFilterButton_clicked() {
 
 // Display dialog to choose save dir
 void options_imp::on_browseSaveDirButton_clicked(){
+#ifdef Q_WS_WIN
+  QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::rootPath());
+#else
   QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
+#endif
   if(!dir.isNull()){
     textSavePath->setText(dir);
   }
