@@ -1077,20 +1077,23 @@ void bittorrent::setProxySettings(proxy_settings proxySettings, bool trackers, b
   qDebug("Set Proxy settings");
   proxy_settings ps_null;
   ps_null.type = proxy_settings::none;
+  qDebug("Setting trackers proxy");
   if(trackers)
     s->set_tracker_proxy(proxySettings);
   else
     s->set_tracker_proxy(ps_null);
-
+  qDebug("Setting peers proxy");
   if(peers)
     s->set_peer_proxy(proxySettings);
   else
     s->set_peer_proxy(ps_null);
+  qDebug("Setting web seeds proxy");
   if(web_seeds)
     s->set_web_seed_proxy(proxySettings);
   else
     s->set_web_seed_proxy(ps_null);
   if(DHTEnabled) {
+    qDebug("Setting DHT proxy");
     if(dht)
       s->set_dht_proxy(proxySettings);
     else
@@ -1127,6 +1130,9 @@ void bittorrent::readAlerts() {
         QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
         QTorrentHandle h(p->handle);
         QString file = h.hash()+".fastresume";
+        // Delete old fastresume file if necessary
+        if(QFile::exists(file))
+            QFile::remove(file);
         qDebug("Saving fastresume data in %s", file.toUtf8().data());
         if (p->resume_data)
         {
