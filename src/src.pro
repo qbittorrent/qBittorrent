@@ -42,9 +42,6 @@ contains(DEBUG_MODE, 0) {
         INSTALLS += target
     }
     
-    # DBUS
-    QT += dbus
-    
     # Man page
     man.files = ../doc/qbittorrent.1
     man.path = $$PREFIX/share/man/man1/
