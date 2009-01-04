@@ -494,7 +494,7 @@ void properties::addTrackerList(QStringList myTrackers) {
   // Add the trackers to the list
   std::vector<announce_entry> trackers = h.trackers();
   foreach(QString tracker, myTrackers) {
-    announce_entry new_tracker(misc::toString(tracker.toUtf8().data()));
+    announce_entry new_tracker(misc::toString(tracker.trimmed().toUtf8().data()));
     new_tracker.tier = 0; // Will be fixed a bit later
     trackers.push_back(new_tracker);
     misc::fixTrackersTiers(trackers);
