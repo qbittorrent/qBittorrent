@@ -340,7 +340,7 @@ void options_imp::saveOptions(){
     settings.setValue(QString::fromUtf8("IP"), getHTTPProxyIp());
     settings.setValue(QString::fromUtf8("Port"), getHTTPProxyPort());
     settings.setValue(QString::fromUtf8("Authentication"), isHTTPProxyAuthEnabled());
-    if(isProxyAuthEnabled()) {
+    if(isHTTPProxyAuthEnabled()) {
       // Credentials
       settings.setValue(QString::fromUtf8("Username"), getHTTPProxyUsername());
       settings.setValue(QString::fromUtf8("Password"), getHTTPProxyPassword());
