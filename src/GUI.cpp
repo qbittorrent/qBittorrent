@@ -1010,25 +1010,35 @@ void GUI::configureSession(bool deleteOptions) {
   if(options->isProxyEnabled()) {
     qDebug("Enabling P2P proxy");
     proxySettings.hostname = options->getProxyIp().toStdString();
+    qDebug("hostname is %s", proxySettings.hostname.c_str());
     proxySettings.port = options->getProxyPort();
+    qDebug("port is %d", proxySettings.port);
     if(options->isProxyAuthEnabled()) {
+
       proxySettings.username = options->getProxyUsername().toStdString();
       proxySettings.password = options->getProxyPassword().toStdString();
+      qDebug("username is %s", proxySettings.username.c_str());
+      qDebug("password is %s", proxySettings.password.c_str());
     }
     switch(options->getProxyType()) {
       case HTTP:
+        qDebug("type: http");
         proxySettings.type = proxy_settings::http;
         break;
       case HTTP_PW:
+        qDebug("type: http_pw");
         proxySettings.type = proxy_settings::http_pw;
         break;
       case SOCKS5:
+        qDebug("type: socks5");
         proxySettings.type = proxy_settings::socks5;
         break;
       default:
+        qDebug("type: socks5_pw");
         proxySettings.type = proxy_settings::socks5_pw;
         break;
     }
+    qDebug("booleans: %d %d %d %d", options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
     BTSession->setProxySettings(proxySettings, options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
   } else {
     qDebug("Disabling P2P proxy");
