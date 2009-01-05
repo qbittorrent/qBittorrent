@@ -315,38 +315,38 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("GlobalDLLimit"), getGlobalBandwidthLimits().first);
   settings.setValue(QString::fromUtf8("GlobalUPLimit"), getGlobalBandwidthLimits().second);
   settings.setValue(QString::fromUtf8("ProxyType"), getProxyType());
-  if(isProxyEnabled()) {
+  //if(isProxyEnabled()) {
     settings.beginGroup("Proxy");
     // Proxy is enabled, save settings
     settings.setValue(QString::fromUtf8("IP"), getProxyIp());
     settings.setValue(QString::fromUtf8("Port"), getProxyPort());
     settings.setValue(QString::fromUtf8("Authentication"), isProxyAuthEnabled());
-    if(isProxyAuthEnabled()) {
+    //if(isProxyAuthEnabled()) {
       // Credentials
       settings.setValue(QString::fromUtf8("Username"), getProxyUsername());
       settings.setValue(QString::fromUtf8("Password"), getProxyPassword());
-    }
+    //}
     // Affected connections
     settings.setValue(QString::fromUtf8("AffectTrackers"), useProxyForTrackers());
     settings.setValue(QString::fromUtf8("AffectPeers"), useProxyForPeers());
     settings.setValue(QString::fromUtf8("AffectWebSeeds"), useProxyForWebseeds());
     settings.setValue(QString::fromUtf8("AffectDHT"), useProxyForDHT());
     settings.endGroup(); // End Proxy
-  }
+  //}
   settings.setValue(QString::fromUtf8("HTTPProxyType"), getHTTPProxyType());
-  if(isHTTPProxyEnabled()) {
+  //if(isHTTPProxyEnabled()) {
     settings.beginGroup("HTTPProxy");
     // Proxy is enabled, save settings
     settings.setValue(QString::fromUtf8("IP"), getHTTPProxyIp());
     settings.setValue(QString::fromUtf8("Port"), getHTTPProxyPort());
     settings.setValue(QString::fromUtf8("Authentication"), isHTTPProxyAuthEnabled());
-    if(isHTTPProxyAuthEnabled()) {
+    //if(isHTTPProxyAuthEnabled()) {
       // Credentials
       settings.setValue(QString::fromUtf8("Username"), getHTTPProxyUsername());
       settings.setValue(QString::fromUtf8("Password"), getHTTPProxyPassword());
-    }
+    //}
     settings.endGroup(); // End HTTPProxy
-  }
+  //}
   // End Connection preferences
   settings.endGroup();
   // Bittorrent preferences
@@ -563,17 +563,17 @@ void options_imp::loadOptions(){
   }
   comboProxyType->setCurrentIndex(intValue);
   enableProxy(intValue);
-  if(isProxyEnabled()) {
+  //if(isProxyEnabled()) {
     settings.beginGroup("Proxy");
     // Proxy is enabled, save settings
     textProxyIP->setText(settings.value(QString::fromUtf8("IP"), "0.0.0.0").toString());
     spinProxyPort->setValue(settings.value(QString::fromUtf8("Port"), 8080).toInt());
     checkProxyAuth->setChecked(settings.value(QString::fromUtf8("Authentication"), false).toBool());
+    textProxyUsername->setText(settings.value(QString::fromUtf8("Username"), QString()).toString());
+    textProxyPassword->setText(settings.value(QString::fromUtf8("Password"), QString()).toString());
     if(isProxyAuthEnabled()) {
       enableProxyAuth(2); // Enable
       // Credentials
-      textProxyUsername->setText(settings.value(QString::fromUtf8("Username"), QString()).toString());
-      textProxyPassword->setText(settings.value(QString::fromUtf8("Password"), QString()).toString());
     } else {
       enableProxyAuth(0); // Disable
     }
@@ -583,7 +583,7 @@ void options_imp::loadOptions(){
     checkProxyWebseeds->setChecked(settings.value(QString::fromUtf8("AffectWebSeeds"), true).toBool());
     checkProxyDHT->setChecked(settings.value(QString::fromUtf8("AffectDHT"), true).toBool());
     settings.endGroup(); // End Proxy
-  }
+  //}
   intValue = settings.value(QString::fromUtf8("HTTPProxyType"), 0).toInt();
   if(intValue <= 0) {
     intValue = 0;
@@ -592,22 +592,22 @@ void options_imp::loadOptions(){
   }
   comboProxyType_http->setCurrentIndex(intValue);
   enableProxyHTTP(intValue);
+  settings.beginGroup("HTTPProxy");
+  textProxyUsername_http->setText(settings.value(QString::fromUtf8("Username"), QString()).toString());
+  textProxyPassword_http->setText(settings.value(QString::fromUtf8("Password"), QString()).toString());
+  textProxyIP_http->setText(settings.value(QString::fromUtf8("IP"), "0.0.0.0").toString());
+  spinProxyPort_http->setValue(settings.value(QString::fromUtf8("Port"), 8080).toInt());
+  checkProxyAuth_http->setChecked(settings.value(QString::fromUtf8("Authentication"), false).toBool());
   if(isHTTPProxyEnabled()) {
-    settings.beginGroup("HTTPProxy");
-    // Proxy is enabled, save settings
-    textProxyIP_http->setText(settings.value(QString::fromUtf8("IP"), "0.0.0.0").toString());
-    spinProxyPort_http->setValue(settings.value(QString::fromUtf8("Port"), 8080).toInt());
-    checkProxyAuth_http->setChecked(settings.value(QString::fromUtf8("Authentication"), false).toBool());
     if(isHTTPProxyAuthEnabled()) {
       enableProxyAuthHTTP(2); // Enable
-      // Credentials
-      textProxyUsername_http->setText(settings.value(QString::fromUtf8("Username"), QString()).toString());
-      textProxyPassword_http->setText(settings.value(QString::fromUtf8("Password"), QString()).toString());
     } else {
       enableProxyAuthHTTP(0); // Disable
     }
-    settings.endGroup(); // End HTTPProxy
+  } else {
+      enableProxyAuthHTTP(0); // Disable
   }
+  settings.endGroup(); // End HTTPProxy
   // End Connection preferences
   settings.endGroup();
   // Bittorrent preferences
@@ -1063,7 +1063,7 @@ void options_imp::enableProxy(int index){
     textProxyIP->setEnabled(false);
     lblProxyPort->setEnabled(false);
     spinProxyPort->setEnabled(false);
-    checkProxyAuth->setChecked(false);
+    checkProxyAuth->setEnabled(false);
     checkProxyAuth->setEnabled(false);
     ProxyConnecsBox->setEnabled(false);
   }
@@ -1083,7 +1083,7 @@ void options_imp::enableProxyHTTP(int index){
     textProxyIP_http->setEnabled(false);
     lblProxyPort_http->setEnabled(false);
     spinProxyPort_http->setEnabled(false);
-    checkProxyAuth_http->setChecked(false);
+    checkProxyAuth_http->setEnabled(false);
     checkProxyAuth_http->setEnabled(false);
   }
 }
@@ -1154,11 +1154,11 @@ bool options_imp::isHTTPProxyEnabled() const {
 }
 
 bool options_imp::isProxyAuthEnabled() const{
-  return checkProxyAuth->isChecked();
+  return checkProxyAuth->isEnabled() && checkProxyAuth->isChecked();
 }
 
 bool options_imp::isHTTPProxyAuthEnabled() const{
-  return checkProxyAuth_http->isChecked();
+  return checkProxyAuth_http->isEnabled() && checkProxyAuth_http->isChecked();
 }
 
 QString options_imp::getProxyIp() const{
