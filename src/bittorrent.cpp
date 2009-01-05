@@ -45,16 +45,16 @@
 #define MAX_TRACKER_ERRORS 2
 
 // Main constructor
-bittorrent::bittorrent() : DHTEnabled(true), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), max_ratio(-1), UPnPEnabled(true), NATPMPEnabled(true), LSDEnabled(true), queueingEnabled(false) {
+bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), max_ratio(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), queueingEnabled(false) {
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
   // Creating bittorrent session
   // Check if we should spoof azureus
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   if(settings.value(QString::fromUtf8("AzureusSpoof"), false).toBool()) {
-    s = new session(fingerprint("AZ", 3, 0, 5, 2));
+    s = new session(fingerprint("AZ", 3, 0, 5, 2), 0);
   } else {
-    s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0));
+    s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0), 0);
   }
   // Set severity level of libtorrent session
   //s->set_alert_mask(alert::all_categories & ~alert::progress_notification);
@@ -147,7 +147,6 @@ bool bittorrent::isQueueingEnabled() const {
 void bittorrent::increaseDlTorrentPriority(QString hash) {
   Q_ASSERT(queueingEnabled);
   QTorrentHandle h = getTorrentHandle(hash);
-  // Check due to bug http://code.rasterbar.com/libtorrent/ticket/455
   if(h.queue_position() > 0)
     h.queue_position_up();
 }
