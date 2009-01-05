@@ -86,7 +86,7 @@ bittorrent::~bittorrent() {
   // XXX: Done in GUI now (earlier = safer)
   /*saveDHTEntry();
   saveSessionState();
-  saveFastResumeData();*/
+  tResumeData();*/
   // Disable directory scanning
   disableDirectoryScanning();
   // Delete our objects
@@ -786,7 +786,10 @@ void bittorrent::saveFastResumeData() {
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
-    if(!h.is_valid() || !h.has_metadata() || h.is_paused()) continue;
+    if(!h.is_valid() || !h.has_metadata()) continue;
+    if(isQueueingEnabled())
+        saveTorrentPriority(h.hash(), h.queue_position());
+    if(h.is_paused()) continue;
     if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
     h.save_resume_data();
     ++num_resume_data;
@@ -1333,23 +1336,58 @@ void bittorrent::applyEncryptionSettings(pe_settings se) {
   s->set_pe_settings(se);
 }
 
+void bittorrent::saveTorrentPriority(QString hash, int prio) {
+  // Write .queued file
+  QFile prio_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".prio");
+  prio_file.open(QIODevice::WriteOnly | QIODevice::Text);
+  prio_file.write(QByteArray::number(prio));
+  prio_file.close();
+}
+
 // Will fast resume torrents in
 // backup directory
 void bittorrent::resumeUnfinishedTorrents() {
   qDebug("Resuming unfinished torrents");
   QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  QStringList fileNames, filePaths;
+  QStringList fileNames;
   // Scan torrentBackup directory
   QStringList filters;
   filters << "*.torrent";
   fileNames = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
-  QString fileName;
-  foreach(fileName, fileNames) {
-    filePaths.append(torrentBackup.path()+QDir::separator()+fileName);
-  }
-  // Resume downloads
-  foreach(fileName, filePaths) {
-    addTorrent(fileName, false, QString(), true);
-  }
+  if(isQueueingEnabled()) {
+      QList<QPair<int, QString> > filePaths;
+      foreach(QString fileName, fileNames) {
+        QString filePath = torrentBackup.path()+QDir::separator()+fileName;
+        int prio = 99999;
+        // Get priority
+        QString prioPath = filePath;
+        prioPath.replace(".torrent", ".prio");
+        if(QFile::exists(prioPath)) {
+            QFile prio_file(prioPath);
+            if(prio_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                bool ok = false;
+                prio = prio_file.readAll().toInt(&ok);
+                if(!ok)
+                    prio = 99999;
+                prio_file.close();
+            }
+        }
+        misc::insertSort2<QString>(filePaths, qMakePair(prio, filePath));
+      }
+      // Resume downloads
+      QPair<int, QString> fileName;
+      foreach(fileName, filePaths) {
+        addTorrent(fileName.second, false, QString(), true);
+      }
+    } else {
+        QStringList filePaths;
+        foreach(QString fileName, fileNames) {
+            filePaths.append(torrentBackup.path()+QDir::separator()+fileName);
+        }
+        // Resume downloads
+          foreach(QString fileName, filePaths) {
+            addTorrent(fileName, false, QString(), true);
+          }
+    }
   qDebug("Unfinished torrents resumed");
 }

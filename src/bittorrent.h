@@ -120,6 +120,7 @@ class bittorrent : public QObject {
     void disableIPFilter();
     void setQueueingEnabled(bool enable);
     void resumeUnfinishedTorrents();
+    void saveTorrentPriority(QString hash, int prio);
     void saveTorrentSpeedLimits(QString hash);
     void loadTorrentSpeedLimits(QString hash);
     void handleDownloadFailure(QString url, QString reason);

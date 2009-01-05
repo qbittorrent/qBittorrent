@@ -243,7 +243,7 @@ class misc : public QObject{
       list.insert(i, value);
     }
 
-    template <class T> static void insertSort2(QList<QPair<int, T> > &list, const QPair<int, T>& value, Qt::SortOrder sortOrder) {
+    template <class T> static void insertSort2(QList<QPair<int, T> > &list, const QPair<int, T>& value, Qt::SortOrder sortOrder=Qt::AscendingOrder) {
       int i = 0;
       if(sortOrder == Qt::AscendingOrder) {
         while(i < list.size() and value.first > list.at(i).first) {
