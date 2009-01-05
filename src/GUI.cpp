@@ -1040,10 +1040,10 @@ void GUI::configureSession(bool deleteOptions) {
     QString proxy_str;
     switch(options->getHTTPProxyType()) {
       case HTTP_PW:
-        proxy_str = misc::toQString("http://")+options->getProxyUsername()+":"+options->getProxyPassword()+"@"+options->getProxyIp()+":"+misc::toQString(proxySettings.port);
+        proxy_str = misc::toQString("http://")+options->getHTTPProxyUsername()+":"+options->getHTTPProxyPassword()+"@"+options->getHTTPProxyIp()+":"+misc::toQString(options->getHTTPProxyPort());
         break;
       default:
-        proxy_str = misc::toQString("http://")+options->getProxyIp()+":"+misc::toQString(proxySettings.port);
+        proxy_str = misc::toQString("http://")+options->getHTTPProxyIp()+":"+misc::toQString(options->getHTTPProxyPort());
     }
     // We need this for urllib in search engine plugins
 #ifdef Q_WS_WIN
@@ -1051,6 +1051,7 @@ void GUI::configureSession(bool deleteOptions) {
     snprintf(proxystr, 512, "http_proxy=%s", proxy_str.toUtf8().data());
     putenv(proxystr);
 #else
+    qDebug("HTTP: proxy string: %s", proxy_str.toUtf8().data());
     setenv("http_proxy", proxy_str.toUtf8().data(), 1);
 #endif
   } else {
