@@ -1095,7 +1095,7 @@ void bittorrent::setProxySettings(proxy_settings proxySettings, bool trackers, b
   else
     s->set_web_seed_proxy(ps_null);
   if(DHTEnabled) {
-    qDebug("Setting DHT proxy");
+    qDebug("Setting DHT proxy, %d", dht);
     if(dht)
       s->set_dht_proxy(proxySettings);
     else

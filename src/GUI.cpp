@@ -1005,73 +1005,6 @@ void GUI::configureSession(bool deleteOptions) {
     BTSession->enableNATPMP(false);
     BTSession->addConsoleMessage(tr("NAT-PMP support [OFF]"), QString::fromUtf8("blue"));
   }
-  // * Proxy settings
-  proxy_settings proxySettings;
-  if(options->isProxyEnabled()) {
-    qDebug("Enabling P2P proxy");
-    proxySettings.hostname = options->getProxyIp().toStdString();
-    qDebug("hostname is %s", proxySettings.hostname.c_str());
-    proxySettings.port = options->getProxyPort();
-    qDebug("port is %d", proxySettings.port);
-    if(options->isProxyAuthEnabled()) {
-
-      proxySettings.username = options->getProxyUsername().toStdString();
-      proxySettings.password = options->getProxyPassword().toStdString();
-      qDebug("username is %s", proxySettings.username.c_str());
-      qDebug("password is %s", proxySettings.password.c_str());
-    }
-    switch(options->getProxyType()) {
-      case HTTP:
-        qDebug("type: http");
-        proxySettings.type = proxy_settings::http;
-        break;
-      case HTTP_PW:
-        qDebug("type: http_pw");
-        proxySettings.type = proxy_settings::http_pw;
-        break;
-      case SOCKS5:
-        qDebug("type: socks5");
-        proxySettings.type = proxy_settings::socks5;
-        break;
-      default:
-        qDebug("type: socks5_pw");
-        proxySettings.type = proxy_settings::socks5_pw;
-        break;
-    }
-    qDebug("booleans: %d %d %d %d", options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
-    BTSession->setProxySettings(proxySettings, options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
-  } else {
-    qDebug("Disabling P2P proxy");
-    BTSession->setProxySettings(proxySettings, false, false, false, false);
-  }
-  if(options->isHTTPProxyEnabled()) {
-    qDebug("Enabling Search HTTP proxy");
-    // HTTP Proxy
-    QString proxy_str;
-    switch(options->getHTTPProxyType()) {
-      case HTTP_PW:
-        proxy_str = misc::toQString("http://")+options->getHTTPProxyUsername()+":"+options->getHTTPProxyPassword()+"@"+options->getHTTPProxyIp()+":"+misc::toQString(options->getHTTPProxyPort());
-        break;
-      default:
-        proxy_str = misc::toQString("http://")+options->getHTTPProxyIp()+":"+misc::toQString(options->getHTTPProxyPort());
-    }
-    // We need this for urllib in search engine plugins
-#ifdef Q_WS_WIN
-    char proxystr[512];
-    snprintf(proxystr, 512, "http_proxy=%s", proxy_str.toUtf8().data());
-    putenv(proxystr);
-#else
-    qDebug("HTTP: proxy string: %s", proxy_str.toUtf8().data());
-    setenv("http_proxy", proxy_str.toUtf8().data(), 1);
-#endif
-  } else {
-    qDebug("Disabling search proxy");
-#ifdef Q_WS_WIN
-    putenv("http_proxy=");
-#else
-    unsetenv("http_proxy");
-#endif
-  }
   // * Session settings
   session_settings sessionSettings;
   if(options->shouldSpoofAzureus()) {
@@ -1182,6 +1115,73 @@ void GUI::configureSession(bool deleteOptions) {
     displayRSSTab(true);
   } else {
     displayRSSTab(false);
+  }
+  // * Proxy settings
+  proxy_settings proxySettings;
+  if(options->isProxyEnabled()) {
+    qDebug("Enabling P2P proxy");
+    proxySettings.hostname = options->getProxyIp().toStdString();
+    qDebug("hostname is %s", proxySettings.hostname.c_str());
+    proxySettings.port = options->getProxyPort();
+    qDebug("port is %d", proxySettings.port);
+    if(options->isProxyAuthEnabled()) {
+
+      proxySettings.username = options->getProxyUsername().toStdString();
+      proxySettings.password = options->getProxyPassword().toStdString();
+      qDebug("username is %s", proxySettings.username.c_str());
+      qDebug("password is %s", proxySettings.password.c_str());
+    }
+    switch(options->getProxyType()) {
+      case HTTP:
+        qDebug("type: http");
+        proxySettings.type = proxy_settings::http;
+        break;
+      case HTTP_PW:
+        qDebug("type: http_pw");
+        proxySettings.type = proxy_settings::http_pw;
+        break;
+      case SOCKS5:
+        qDebug("type: socks5");
+        proxySettings.type = proxy_settings::socks5;
+        break;
+      default:
+        qDebug("type: socks5_pw");
+        proxySettings.type = proxy_settings::socks5_pw;
+        break;
+    }
+    qDebug("booleans: %d %d %d %d", options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
+    BTSession->setProxySettings(proxySettings, options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
+  } else {
+    qDebug("Disabling P2P proxy");
+    BTSession->setProxySettings(proxySettings, false, false, false, false);
+  }
+  if(options->isHTTPProxyEnabled()) {
+    qDebug("Enabling Search HTTP proxy");
+    // HTTP Proxy
+    QString proxy_str;
+    switch(options->getHTTPProxyType()) {
+      case HTTP_PW:
+        proxy_str = misc::toQString("http://")+options->getHTTPProxyUsername()+":"+options->getHTTPProxyPassword()+"@"+options->getHTTPProxyIp()+":"+misc::toQString(options->getHTTPProxyPort());
+        break;
+      default:
+        proxy_str = misc::toQString("http://")+options->getHTTPProxyIp()+":"+misc::toQString(options->getHTTPProxyPort());
+    }
+    // We need this for urllib in search engine plugins
+#ifdef Q_WS_WIN
+    char proxystr[512];
+    snprintf(proxystr, 512, "http_proxy=%s", proxy_str.toUtf8().data());
+    putenv(proxystr);
+#else
+    qDebug("HTTP: proxy string: %s", proxy_str.toUtf8().data());
+    setenv("http_proxy", proxy_str.toUtf8().data(), 1);
+#endif
+  } else {
+    qDebug("Disabling search proxy");
+#ifdef Q_WS_WIN
+    putenv("http_proxy=");
+#else
+    unsetenv("http_proxy");
+#endif
   }
   // Clean up
   if(deleteOptions && options) {
