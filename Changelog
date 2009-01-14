@@ -1,3 +1,6 @@
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.3.1
+    - I18N: Updated Bulgarian and Greek translations
+
 * Fri Jan 9 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.0
     - FEATURE: Based on libtorrent-rasterbar v0.14.2
     - FEATURE: Improved ratio calculation system

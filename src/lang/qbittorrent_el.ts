@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="el">
+<!DOCTYPE TS><TS version="1.1">
 <context>
     <name>@default</name>
     <message>
@@ -1014,7 +1014,7 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
         <translation>Ενεργοποίηση δικτύου DHT (αποκεντροποιημένο)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1106"/>
+        <location filename="" line="0"/>
         <source>Enable Peer eXchange (PeX)</source>
         <translation type="obsolete">Ενεργοποίηση Μοιράσματος Συνδέσεων (PeX)</translation>
     </message>
@@ -1125,12 +1125,12 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
         <translation>Στη λίστα διαμοιράσματος:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="505"/>
+        <location filename="" line="0"/>
         <source>Folder scan interval:</source>
         <translation type="obsolete">Χρονική περίοδος σάρωσης φακέλου:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="525"/>
+        <location filename="" line="0"/>
         <source>seconds</source>
         <translation type="obsolete">δευτερόλεπτα</translation>
     </message>
@@ -1202,7 +1202,7 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1976"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Μέγιστα ενεργά ανεβάσματα:</translation>
     </message>
 </context>
 <context>
@@ -1446,17 +1446,17 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
         <translation>Απόκρυψη ή Εμφάνιση Στήλης</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="270"/>
+        <location filename="" line="0"/>
         <source>Incomplete torrent in seeding list</source>
         <translation type="obsolete">Μη τελειωμένο τορεντ στη λίστα μοιράσματος</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="270"/>
+        <location filename="" line="0"/>
         <source>It appears that the state of &apos;%1&apos; torrent changed from &apos;seeding&apos; to &apos;downloading&apos;. Would you like to move it back to download list? (otherwise the torrent will simply be deleted)</source>
         <translation type="obsolete">Φαίνεται πως η κατάσταση του τορεντ &apos;%1&apos; έχει αλλάξει από &apos;μοίρασμα&apos; σε &apos;λήψη&apos;. Θα θέλατε να το μεταφέρετε πίσω στη λίστα κατεβάσματος; (αλλιώς το τορεντ απλά θα διαγραφεί)</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="47"/>
+        <location filename="" line="0"/>
         <source>Priority</source>
         <translation type="obsolete">Προτεραιότητα</translation>
     </message>
@@ -2305,7 +2305,7 @@ Please close the other one first.</source>
         <translation>Υποστήριξη PeX [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1054"/>
+        <location filename="" line="0"/>
         <source>PeX support [OFF]</source>
         <translation type="obsolete">Υποστήριξη PeX [ΟΧΙ]</translation>
     </message>
@@ -3531,13 +3531,13 @@ Changelog:
         <translation>Το &apos;%1&apos; αφαιρέθηκε.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="369"/>
+        <location filename="" line="0"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>e.g: xxx.avi paused.</comment>
         <translation type="obsolete">&apos;%1&apos; σε παύση.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="387"/>
+        <location filename="" line="0"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation type="obsolete">Το &apos;%1&apos; ξανάρχισε.</translation>
@@ -3914,7 +3914,7 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="188"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Το αρχείο τορεντ που δημιουργήσατε δεν είναι έγκυρο. Δε θα προστεθεί στη λίστα κατεβασμάτων.</translation>
     </message>
 </context>
 <context>
@@ -4105,7 +4105,7 @@ Changelog:
     <message>
         <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Αναγκαστικός επανέλεγχος</translation>
     </message>
 </context>
 <context>
@@ -5077,22 +5077,22 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../properties.ui" line="204"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="687"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Επιλέξτε διαδρομή αποθήκευσης</translation>
+        <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Σφάλμα δημιουργίας διαδρομής αποθήκευσης</translation>
+        <translation>Σφάλμα δημιουργίας διαδρομής αποθήκευσης</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Δεν μπόρεσε να δημιουργηθεί η διαδρομή αποθήκευσης</translation>
+        <translation>Δεν μπόρεσε να δημιουργηθεί η διαδρομή αποθήκευσης</translation>
     </message>
 </context>
 <context>
@@ -5246,24 +5246,24 @@ However, those plugins were disabled.</source>
         <translation>Αγόρασέ το</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="132"/>
+        <location filename="" line="0"/>
         <source>Priority</source>
         <translation type="obsolete">Προτεραιότητα</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="140"/>
+        <location filename="" line="0"/>
         <source>Increase priority</source>
         <translation type="obsolete">Μεγαλύτερη προτεραιότητα</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="148"/>
+        <location filename="" line="0"/>
         <source>Decrease priority</source>
         <translation type="obsolete">Μικρότερη προτεραιότητα</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="129"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Αναγκαστικός επανέλεγχος</translation>
     </message>
 </context>
 <context>
@@ -5342,7 +5342,7 @@ However, those plugins were disabled.</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο τορεντ:</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="172"/>
+        <location filename="" line="0"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="obsolete">Το αρχείο είτε είναι κατεστραμμένο, ή δεν ειναι ενα τορεντ.</translation>
     </message>

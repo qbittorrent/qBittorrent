@@ -1184,7 +1184,7 @@ Copyright © 2006 на Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1976"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимум активни качвания:</translation>
     </message>
 </context>
 <context>
@@ -3820,7 +3820,7 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="188"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Създаденият торент файл е невалиден. Няма да бъде добавен в листа за сваляне.</translation>
     </message>
 </context>
 <context>
@@ -4011,7 +4011,7 @@ Changelog:
     <message>
         <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Включени проверки за промени</translation>
     </message>
 </context>
 <context>
@@ -4972,22 +4972,22 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../properties.ui" line="204"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="687"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Избери път за съхранение</translation>
+        <translation>Избери път за съхранение</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Грешка при създаване на път за съхранение</translation>
+        <translation>Грешка при създаване на път за съхранение</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="694"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Не мога да създам път за съхранение</translation>
+        <translation>Не мога да създам път за съхранение</translation>
     </message>
 </context>
 <context>
@@ -5158,7 +5158,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../seeding.ui" line="129"/>
         <source>Force recheck</source>
-        <translation type="unfinished"></translation>
+        <translation>Включени проверки за промени</translation>
     </message>
 </context>
 <context>
