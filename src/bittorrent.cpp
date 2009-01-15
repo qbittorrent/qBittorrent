@@ -1138,6 +1138,7 @@ void bittorrent::readAlerts() {
     }
     else if (file_error_alert* p = dynamic_cast<file_error_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
+      h.auto_managed(false);
       qDebug("File Error: %s", p->message().c_str());
       if(h.is_valid())
         emit fullDiskError(h);
