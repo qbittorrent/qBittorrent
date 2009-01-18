@@ -45,6 +45,8 @@
 #endif
 #ifndef Q_WS_WIN
   #include <signal.h>
+  #include <execinfo.h>
+  #include "stacktrace.h"
 #endif
 
 #include <stdlib.h>
@@ -58,6 +60,13 @@ QApplication *app;
   void sigtermHandler(int) {
     qDebug("Catching SIGTERM, exiting cleanly");
     app->exit();
+  }
+  void sigsegvHandler(int) {
+    std::cerr << "\n\n*************************************************************\n";
+    std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
+    print_stacktrace();
+    std::raise(SIGINT);
+    std::abort();
   }
 #endif
 
@@ -177,6 +186,10 @@ int main(int argc, char *argv[]){
   app->installTranslator(&translator);
   app->setApplicationName(QString::fromUtf8("qBittorrent"));
   app->setQuitOnLastWindowClosed(false);
+#ifndef Q_WS_WIN
+  signal(SIGTERM, sigtermHandler);
+  signal(SIGSEGV, sigsegvHandler);
+#endif
   // Read torrents given on command line
   QStringList torrentCmdLine = app->arguments();
   // Remove first argument (program name)
@@ -184,9 +197,6 @@ int main(int argc, char *argv[]){
   GUI *window = new GUI(0, torrentCmdLine);
   splash->finish(window);
   delete splash;
-#ifndef Q_WS_WIN
-  signal(SIGTERM, sigtermHandler);
-#endif
   int ret =  app->exec();
   delete window;
   delete app;

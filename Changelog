@@ -1,5 +1,6 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.3.1
     - BUGFIX: Torrents paused due to an I/O error were displayed as queued
+    - BUGFIX: qBittorrent now prints backtrace in terminal when segfaulting
     - I18N: Updated Bulgarian and Greek translations
 
 * Fri Jan 9 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.0

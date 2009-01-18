@@ -6,6 +6,7 @@ arg: with-libtorrent-lib=[path], Path to libtorrent-rasterbar library files
 arg: with-libtorrent-static-lib=[path], Path to libtorrent-rasterbar .a file
 -----END QCMOD-----
 */
+// see  Conf::findPkgConfig
 class qc_libtorrent_rasterbar : public ConfObj
 {
 public:

@@ -87,6 +87,7 @@ contains(DEBUG_MODE, 0) {
 }
 #QMAKE_CXXFLAGS_RELEASE += -fwrapv
 #QMAKE_CXXFLAGS_DEBUG += -fwrapv
+unix:QMAKE_LFLAGS_SHAPP += -rdynamic
 
 CONFIG += link_pkgconfig
 PKGCONFIG += "libtorrent-rasterbar libcurl"
@@ -177,7 +178,8 @@ HEADERS += GUI.h \
     TrackersAdditionDlg.h \
     searchTab.h \
     console_imp.h \
-    ico.h
+    ico.h \
+    stacktrace.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \
