@@ -200,13 +200,13 @@ class arborescence {
       } else {
         // XXX: Will crash if there is no file in torrent
         qDebug("one file in the torrent, setting it as root with index 0");
-        root = new torrent_file(0, misc::toQString(t.name()), false, fi->size, 0, fp[0]/t.file_at(0).size, prioritiesTab[0]);
+        root = new torrent_file(0, misc::toQString(t.name()), false, fi->size, 0, ((float)fp[0])/t.file_at(0).size, prioritiesTab[0]);
         return;
       }
       int i = 0;
       while(fi != t.end_files()) {
         QString path = QDir::cleanPath(misc::toQString(fi->path.string()));
-        addFile(path, fi->size, i, fp[i]/t.file_at(i).size, prioritiesTab[i]);
+        addFile(path, fi->size, i, ((float)fp[i])/t.file_at(i).size, prioritiesTab[i]);
         fi++;
         ++i;
       }
