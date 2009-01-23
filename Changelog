@@ -2,6 +2,7 @@
     - BUGFIX: Torrents paused due to an I/O error were displayed as queued
     - BUGFIX: qBittorrent now prints backtrace in terminal when segfaulting
     - BUGFIX: Fixed files progress display in torrent properties
+    - BUGFIX: Improved torrent ratio calculation
     - I18N: Updated Bulgarian and Greek translations
 
 * Fri Jan 9 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.0

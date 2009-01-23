@@ -63,7 +63,10 @@ class FinishedListDelegate: public QItemDelegate {
         case F_RATIO:{
           QItemDelegate::drawBackground(painter, opt, index);
           double ratio = index.data().toDouble();
-          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString(QByteArray::number(ratio, 'f', 1)));
+          if(ratio > 100.)
+            QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
+          else
+            QItemDelegate::drawDisplay(painter, opt, opt.rect, QString(QByteArray::number(ratio, 'f', 1)));
           break;
         }
         default:

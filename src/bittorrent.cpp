@@ -763,14 +763,12 @@ float bittorrent::getRealRatio(QString hash) const{
   Q_ASSERT(h.all_time_download() >= 0);
   Q_ASSERT(h.all_time_upload() >= 0);
   if(h.all_time_download() == 0) {
-      if(h.all_time_upload() == 0)
-          return 1.;
-      return 10.;
+      return 101;
   }
   float ratio = (float)h.all_time_upload()/(float)h.all_time_download();
   Q_ASSERT(ratio >= 0.);
-  if(ratio > 10.)
-    ratio = 10.;
+  if(ratio > 100.)
+    ratio = 100.;
   return ratio;
 }
 
