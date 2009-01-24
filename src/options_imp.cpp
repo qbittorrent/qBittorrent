@@ -49,8 +49,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   setupUi(this);
   // Get apply button in button box
   QList<QAbstractButton *> buttons = buttonBox->buttons();
-  QAbstractButton *button;
-  foreach(button, buttons){
+  foreach(QAbstractButton *button, buttons){
     if(buttonBox->buttonRole(button) == QDialogButtonBox::ApplyRole){
       applyButton = button;
       break;

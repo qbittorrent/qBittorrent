@@ -174,7 +174,7 @@ void HttpConnection::respondCommand(QString command)
 	{
 		QString urls = parser.post("urls");
 		QStringList list = urls.split('\n');
-		foreach(QString url, list){
+                foreach(QString url, list){
 			url = url.trimmed();
 			if(!url.isEmpty()){
 				qDebug("Downloading url: %s", (const char*)url.toUtf8());
