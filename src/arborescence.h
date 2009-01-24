@@ -32,7 +32,7 @@ class torrent_file {
     torrent_file *parent;
     bool is_dir;
     QString rel_path;
-    QList<torrent_file*> children;
+    QList<const torrent_file*> children;
     size_type size;
     float progress;
     int priority;
@@ -68,8 +68,7 @@ class torrent_file {
       }
       float wanted = 0.;
       float done = 0.;
-      torrent_file *child;
-      foreach(child, children) {
+      foreach(const torrent_file *child, children) {
         wanted += child->getSize();
         done += child->getSize()*child->getProgress();
       }
@@ -80,8 +79,7 @@ class torrent_file {
 
     void updatePriority(int prio) {
       Q_ASSERT(is_dir);
-      torrent_file *child;
-      foreach(child, children) {
+      foreach(const torrent_file *child, children) {
         if(child->getPriority() != prio) return;
       }
       priority = prio;
@@ -111,14 +109,13 @@ class torrent_file {
       return (!children.isEmpty());
     }
 
-    QList<torrent_file*> getChildren() const {
+    QList<const torrent_file*> getChildren() const {
       return children;
     }
 
-    torrent_file* getChild(QString fileName) const {
+    const torrent_file* getChild(QString fileName) const {
       Q_ASSERT(is_dir);
-      torrent_file* f;
-      foreach(f, children) {
+      foreach(const torrent_file *f, children) {
         if(f->name() == fileName) return f;
       }
       return 0;
@@ -141,16 +138,15 @@ class torrent_file {
       return f;
     }
 
-    bool removeFromFS(QString saveDir) {
+    bool removeFromFS(QString saveDir) const {
       QString full_path = saveDir + QDir::separator() + rel_path;
       if(!QFile::exists(full_path)) {
         qDebug("%s does not exist, no need to remove it", full_path.toUtf8().data());
         return true;
       }
       bool success = true;
-      torrent_file *f;
       qDebug("We have %d children", children.size());
-      foreach(f, children) {
+      foreach(const torrent_file *f, children) {
         bool s = f->removeFromFS(saveDir);
         success = s && success;
       }
@@ -239,14 +235,13 @@ class arborescence {
       if(relative_path.at(0) ==QDir::separator())
         relative_path.remove(0, 1);
       QStringList fileNames = relative_path.split(QDir::separator());
-      QString fileName;
       torrent_file *dad = root;
       unsigned int nb_i = 0;
       unsigned int size = fileNames.size();
-      foreach(fileName, fileNames) {
+      foreach(const QString &fileName, fileNames) {
         ++nb_i;
         if(fileName == ".") continue;
-        torrent_file* child = dad->getChild(fileName);
+        const torrent_file* child = dad->getChild(fileName);
         if(!child) {
           if(nb_i != size) {
             // Folder
@@ -256,7 +251,7 @@ class arborescence {
             child = dad->addChild(fileName, false, file_size, index, progress, priority);
           }
         }
-        dad = child;
+        dad = (torrent_file*)child;
       }
     }
 };

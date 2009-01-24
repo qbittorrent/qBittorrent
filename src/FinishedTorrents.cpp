@@ -133,9 +133,8 @@ void FinishedTorrents::setRowColor(int row, QString color){
 
 QStringList FinishedTorrents::getSelectedTorrents(bool only_one) const{
   QStringList res;
-  QModelIndex index;
   QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
-  foreach(index, selectedIndexes) {
+  foreach(const QModelIndex &index, selectedIndexes) {
     if(index.column() == F_NAME) {
       // Get the file hash
       QString hash = finishedListModel->data(finishedListModel->index(index.row(), F_HASH)).toString();
@@ -218,9 +217,8 @@ void FinishedTorrents::saveColWidthFinishedList() const{
 
 void FinishedTorrents::on_actionSet_upload_limit_triggered(){
   QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
-  QModelIndex index;
   QStringList hashes;
-  foreach(index, selectedIndexes){
+  foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == F_NAME){
       // Get the file hash
       hashes << finishedListModel->data(finishedListModel->index(index.row(), F_HASH)).toString();
@@ -330,8 +328,7 @@ void FinishedTorrents::updateFileSize(QString hash){
 // display properties of selected items
 void FinishedTorrents::propertiesSelection(){
   QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
-  QModelIndex index;
-  foreach(index, selectedIndexes){
+  foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == F_NAME){
       showProperties(index);
     }
@@ -340,8 +337,7 @@ void FinishedTorrents::propertiesSelection(){
 
 void FinishedTorrents::forceRecheck(){
   QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
-  QModelIndex index;
-  foreach(index, selectedIndexes){
+  foreach(const QModelIndex &index, selectedIndexes){
       if(index.column() == F_NAME){
           QString hash = finishedListModel->data(finishedListModel->index(index.row(), F_HASH)).toString();
           QTorrentHandle h = BTSession->getTorrentHandle(hash);
@@ -352,11 +348,10 @@ void FinishedTorrents::forceRecheck(){
 
 void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
   QMenu myFinishedListMenu(this);
-  QModelIndex index;
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
   bool has_pause = false, has_start = false, has_preview = false;
-  foreach(index, selectedIndexes) {
+  foreach(const QModelIndex &index, selectedIndexes) {
     if(index.column() == F_NAME) {
       // Get the file name
       QString hash = finishedListModel->data(finishedListModel->index(index.row(), F_HASH)).toString();

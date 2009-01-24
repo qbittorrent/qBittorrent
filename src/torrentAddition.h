@@ -141,7 +141,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         show();
     }
 
-    void addFilesToTree(torrent_file *root, QStandardItem *parent) {
+    void addFilesToTree(const torrent_file *root, QStandardItem *parent) {
       QList<QStandardItem*> child;
       // Name
       QStandardItem *first;
@@ -163,10 +163,9 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       // Add the child to the tree
       parent->appendRow(child);
       // Add children
-      QList<torrent_file*> children = root->getChildren();
-      unsigned int nbChildren = children.size();
-      for(unsigned int i=0; i < nbChildren; ++i) {
-        addFilesToTree(children.at(i), first);
+      QList<const torrent_file*> children = root->getChildren();
+      foreach(const torrent_file *child, children) {
+        addFilesToTree(child, first);
       }
     }
 

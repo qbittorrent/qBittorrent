@@ -146,7 +146,7 @@ properties::~properties(){
   delete progressBar;
 }
 
-void properties::addFilesToTree(torrent_file *root, QStandardItem *parent) {
+void properties::addFilesToTree(const torrent_file *root, QStandardItem *parent) {
   QList<QStandardItem*> child;
   // Name
   QStandardItem *first;
@@ -168,8 +168,7 @@ void properties::addFilesToTree(torrent_file *root, QStandardItem *parent) {
   // Add the child to the tree
   parent->appendRow(child);
   // Add childs
-  torrent_file *childFile;
-  foreach(childFile, root->getChildren()) {
+  foreach(const torrent_file *childFile, root->getChildren()) {
     addFilesToTree(childFile, first);
   }
 }

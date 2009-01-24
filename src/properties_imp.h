@@ -72,7 +72,7 @@ class properties : public QDialog, private Ui::properties{
     void saveWebSeeds();
     void loadWebSeedsFromFile();
     void deleteSelectedUrlSeeds();
-    void addFilesToTree(torrent_file *root, QStandardItem *parent);
+    void addFilesToTree(const torrent_file *root, QStandardItem *parent);
     void updateChildrenPriority(QStandardItem *item, int priority);
     void updateParentsPriority(QStandardItem *item, int priority);
     void updatePriorities(QStandardItem *item);
