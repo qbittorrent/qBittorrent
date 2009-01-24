@@ -267,8 +267,7 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   QStringList filters;
   filters << hash+".*";
   QStringList files = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
-  QString file;
-  foreach(file, files) {
+  foreach(const QString &file, files) {
     torrentBackup.remove(file);
   }
   // Remove tracker errors
@@ -328,23 +327,21 @@ void bittorrent::loadWebSeeds(QString hash) {
   QByteArray urlseeds_lines = urlseeds_file.readAll();
   urlseeds_file.close();
   QList<QByteArray> url_seeds = urlseeds_lines.split('\n');
-  QByteArray url_seed;
   QTorrentHandle h = getTorrentHandle(hash);
   // First remove from the torrent the url seeds that were deleted
   // in a previous session
   QStringList seeds_to_delete;
   QStringList existing_seeds = h.url_seeds();
-  QString existing_seed;
-  foreach(existing_seed, existing_seeds) {
+  foreach(const QString &existing_seed, existing_seeds) {
     if(!url_seeds.contains(existing_seed.toUtf8())) {
       seeds_to_delete << existing_seed;
     }
   }
-  foreach(existing_seed, seeds_to_delete) {
+  foreach(const QString &existing_seed, seeds_to_delete) {
     h.remove_url_seed(existing_seed);
   }
   // Add the ones that were added in a previous session
-  foreach(url_seed, url_seeds) {
+  foreach(const QByteArray &url_seed, url_seeds) {
     if(!url_seed.isEmpty()) {
       // XXX: Should we check if it is already in the list before adding it
       // or is libtorrent clever enough to know
@@ -877,12 +874,11 @@ bool bittorrent::isFilePreviewPossible(QString hash) const{
 void bittorrent::scanDirectory(QString scan_dir) {
   FSMutex->lock();
   qDebug("Scanning directory: %s", scan_dir.toUtf8().data());
-  QString file;
   QDir dir(scan_dir);
   QStringList filters;
   filters << "*.torrent";
   QStringList files = dir.entryList(filters, QDir::Files, QDir::Unsorted);
-  foreach(file, files) {
+  foreach(const QString &file, files) {
       QString fullPath = dir.path()+QDir::separator()+file;
       QFile torrent(fullPath);
       if(torrent.size() != 0) {
@@ -1000,8 +996,7 @@ bool bittorrent::loadTrackerFile(QString hash) {
   tracker_file.open(QIODevice::ReadOnly | QIODevice::Text);
   QStringList lines = QString::fromUtf8(tracker_file.readAll().data()).split("\n");
   std::vector<announce_entry> trackers;
-  QString line;
-  foreach(line, lines) {
+  foreach(const QString &line, lines) {
     QStringList parts = line.split("|");
     if(parts.size() != 2) continue;
     announce_entry t(parts[0].toStdString());
@@ -1284,9 +1279,8 @@ void bittorrent::processDownloadedFile(QString url, QString file_path) {
 }
 
 void bittorrent::downloadFromURLList(const QStringList& url_list) {
-  QString url;
   qDebug("DownloadFromUrlList");
-  foreach(url, url_list) {
+  foreach(const QString url, url_list) {
     downloadFromUrl(url);
   }
 }
@@ -1348,7 +1342,7 @@ void bittorrent::resumeUnfinishedTorrents() {
   fileNames = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
   if(isQueueingEnabled()) {
       QList<QPair<int, QString> > filePaths;
-      foreach(QString fileName, fileNames) {
+      foreach(const QString &fileName, fileNames) {
         QString filePath = torrentBackup.path()+QDir::separator()+fileName;
         int prio = 99999;
         // Get priority
@@ -1373,11 +1367,11 @@ void bittorrent::resumeUnfinishedTorrents() {
       }
     } else {
         QStringList filePaths;
-        foreach(QString fileName, fileNames) {
+        foreach(const QString &fileName, fileNames) {
             filePaths.append(torrentBackup.path()+QDir::separator()+fileName);
         }
         // Resume downloads
-          foreach(QString fileName, filePaths) {
+          foreach(const QString &fileName, filePaths) {
             addTorrent(fileName, false, QString(), true);
           }
     }
