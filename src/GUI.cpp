@@ -555,9 +555,8 @@ void GUI::openDestinationFolder() const {
     default:
       return;
   }
-  QString hash;
   QStringList pathsList;
-  foreach(hash, hashes) {
+  foreach(const QString &hash, hashes) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     QString savePath = h.save_path();
     if(!pathsList.contains(savePath)) {
@@ -579,9 +578,8 @@ void GUI::goBuyPage() const {
     default:
       return;
   }
-  QString hash;
   QStringList pathsList;
-  foreach(hash, hashes) {
+  foreach(const QString &hash, hashes) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     QDesktopServices::openUrl("http://match.sharemonkey.com/?info_hash="+hash+"&n="+h.name()+"&cid=33");
   }
@@ -721,8 +719,7 @@ void GUI::dropEvent(QDropEvent *event) {
   QStringList files;
   if(event->mimeData()->hasUrls()) {
     QList<QUrl> urls = event->mimeData()->urls();
-    QUrl url;
-    foreach(url, urls) {
+    foreach(const QUrl &url, urls) {
       QString tmp = url.toString();
       tmp.trimmed();
       if(!tmp.isEmpty())
@@ -732,10 +729,9 @@ void GUI::dropEvent(QDropEvent *event) {
     files = event->mimeData()->text().split(QString::fromUtf8("\n"));
   }
   // Add file to download list
-  QString file;
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
-  foreach(file, files) {
+  foreach(QString file, files) {
     file = file.trimmed().replace(QString::fromUtf8("file://"), QString::fromUtf8(""), Qt::CaseInsensitive);
     qDebug("Dropped file %s on download list", file.toUtf8().data());
     if(file.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || file.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || file.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
@@ -753,8 +749,7 @@ void GUI::dropEvent(QDropEvent *event) {
 
 // Decode if we accept drag 'n drop or not
 void GUI::dragEnterEvent(QDragEnterEvent *event) {
-  QString mime;
-  foreach(mime, event->mimeData()->formats()){
+  foreach(const QString &mime, event->mimeData()->formats()){
     qDebug("mimeData: %s", mime.toUtf8().data());
   }
   if (event->mimeData()->hasFormat(QString::fromUtf8("text/plain")) || event->mimeData()->hasFormat(QString::fromUtf8("text/uri-list"))) {
@@ -828,8 +823,7 @@ void GUI::on_actionDelete_Permanently_triggered() {
   }
   if(ret) return;
   //User clicked YES
-  QString hash;
-  foreach(hash, hashes) {
+  foreach(const QString &hash, hashes) {
     // Get the file name
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     QString fileName = h.name();
@@ -881,8 +875,7 @@ void GUI::on_actionDelete_triggered() {
   }
   if(ret) return;
   //User clicked YES
-  QString hash;
-  foreach(hash, hashes) {
+  foreach(const QString &hash, hashes) {
     // Get the file name
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     QString fileName = h.name();
@@ -896,10 +889,9 @@ void GUI::on_actionDelete_triggered() {
 // the right addTorrent function, considering
 // the parameter type.
 void GUI::processParams(const QStringList& params) {
-  QString param;
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
-  foreach(param, params) {
+  foreach(QString param, params) {
     param = param.trimmed();
     if(param.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
       BTSession->downloadFromUrl(param);
@@ -1282,7 +1274,7 @@ void GUI::on_actionIncreasePriority_triggered() {
   if(tabs->currentIndex() != 0)
       return;
   QStringList hashes = downloadingTorrentTab->getSelectedTorrents();
-  foreach(QString hash, hashes) {
+  foreach(const QString &hash, hashes) {
       BTSession->increaseDlTorrentPriority(hash);
   }
   updateLists();
@@ -1291,7 +1283,7 @@ void GUI::on_actionIncreasePriority_triggered() {
 void GUI::on_actionDecreasePriority_triggered() {
   Q_ASSERT(tabs->currentIndex() == 0);
   QStringList hashes = downloadingTorrentTab->getSelectedTorrents();
-  foreach(QString hash, hashes) {
+  foreach(const QString &hash, hashes) {
       BTSession->decreaseDlTorrentPriority(hash);
   }
   updateLists();
@@ -1309,8 +1301,7 @@ void GUI::on_actionPause_triggered() {
   } else {
     hashes = finishedTorrentTab->getSelectedTorrents();
   }
-  QString hash;
-  foreach(hash, hashes) {
+  foreach(const QString &hash, hashes) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if(!h.is_paused()){
       h.pause();
@@ -1354,8 +1345,7 @@ void GUI::on_actionStart_triggered() {
   } else {
     hashes = finishedTorrentTab->getSelectedTorrents();
   }
-  QString hash;
-  foreach(hash, hashes) {
+  foreach(const QString &hash, hashes) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if(h.is_paused()){
       h.resume();
