@@ -281,11 +281,10 @@ void properties::updatePriorities(QStandardItem *item) {
 }
 
 void properties::loadWebSeeds(){
-  QString url_seed;
   // Clear url seeds list
   listWebSeeds->clear();
   // Add manually added url seeds
-  foreach(url_seed, urlSeeds){
+  foreach(const QString &url_seed, urlSeeds){
     listWebSeeds->addItem(url_seed);
     qDebug("Added custom url seed to list: %s", url_seed.toUtf8().data());
   }
@@ -372,8 +371,7 @@ void properties::displayFilesListMenu(const QPoint& pos){
 
 void properties::ignoreSelection(){
   QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
-  QModelIndex index;
-  foreach(index, selectedIndexes){
+  foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == PRIORITY){
       if(PropListModel->data(index) != QVariant(IGNORED)){
         PropListModel->setData(index, QVariant(IGNORED));
@@ -388,8 +386,7 @@ void properties::ignoreSelection(){
 
 void properties::normalSelection(){
   QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
-  QModelIndex index;
-  foreach(index, selectedIndexes){
+  foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == PRIORITY){
       if(PropListModel->data(index) != QVariant(NORMAL)){
         PropListModel->setData(index, QVariant(NORMAL));
@@ -404,8 +401,7 @@ void properties::normalSelection(){
 
 void properties::highSelection(){
   QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
-  QModelIndex index;
-  foreach(index, selectedIndexes){
+  foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == PRIORITY){
       if(PropListModel->data(index) != QVariant(HIGH)){
         PropListModel->setData(index, QVariant(HIGH));
@@ -420,8 +416,7 @@ void properties::highSelection(){
 
 void properties::maximumSelection(){
   QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
-  QModelIndex index;
-  foreach(index, selectedIndexes){
+  foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == PRIORITY){
       if(PropListModel->data(index) != QVariant(MAXIMUM)){
         PropListModel->setData(index, QVariant(MAXIMUM));
@@ -492,7 +487,7 @@ void properties::askForTracker(){
 void properties::addTrackerList(QStringList myTrackers) {
   // Add the trackers to the list
   std::vector<announce_entry> trackers = h.trackers();
-  foreach(QString tracker, myTrackers) {
+  foreach(const QString& tracker, myTrackers) {
     announce_entry new_tracker(misc::toString(tracker.trimmed().toUtf8().data()));
     new_tracker.tier = 0; // Will be fixed a bit later
     trackers.push_back(new_tracker);
@@ -506,11 +501,9 @@ void properties::addTrackerList(QStringList myTrackers) {
 }
 
 void properties::deleteSelectedUrlSeeds(){
-  QList<QListWidgetItem *> selectedItems;
-  selectedItems = listWebSeeds->selectedItems();
-  QListWidgetItem *item;
+  QList<QListWidgetItem *> selectedItems = listWebSeeds->selectedItems();
   bool change = false;
-  foreach(item, selectedItems){
+  foreach(QListWidgetItem *item, selectedItems){
     QString url_seed = item->text();
     int index = urlSeeds.indexOf(url_seed);
     Q_ASSERT(index != -1);
@@ -530,7 +523,6 @@ void properties::deleteSelectedTrackers(){
   QList<QListWidgetItem *> selectedItems = trackersURLS->selectedItems();
   if(!selectedItems.size()) return;
   std::vector<announce_entry> trackers = h.trackers();
-  QListWidgetItem *item;
   unsigned int nbTrackers = trackers.size();
   if(nbTrackers == (unsigned int) selectedItems.size()){
     QMessageBox::warning(this, tr("qBittorrent"),
@@ -538,7 +530,7 @@ void properties::deleteSelectedTrackers(){
                         QMessageBox::Ok);
     return;
   }
-  foreach(item, selectedItems){
+  foreach(QListWidgetItem *item, selectedItems){
     QString url = item->text();
     for(unsigned int i=0; i<nbTrackers; ++i){
       if(misc::toQString(trackers.at(i).url) == url){
@@ -557,12 +549,10 @@ void properties::deleteSelectedTrackers(){
 void properties::riseSelectedTracker(){
   unsigned int i = 0;
   std::vector<announce_entry> trackers = h.trackers();
-  QList<QListWidgetItem *> selectedItems;
-  selectedItems = trackersURLS->selectedItems();
-  QListWidgetItem *item;
+  QList<QListWidgetItem *> selectedItems = trackersURLS->selectedItems();
   bool change = false;
   unsigned int nbTrackers = trackers.size();
-  foreach(item, selectedItems){
+  foreach(QListWidgetItem *item, selectedItems){
     QString url = item->text();
     for(i=0; i<nbTrackers; ++i){
       if(misc::toQString(trackers.at(i).url) == url){
@@ -592,12 +582,10 @@ void properties::riseSelectedTracker(){
 void properties::lowerSelectedTracker(){
   unsigned int i = 0;
   std::vector<announce_entry> trackers = h.trackers();
-  QList<QListWidgetItem *> selectedItems;
-  selectedItems = trackersURLS->selectedItems();
-  QListWidgetItem *item;
+  QList<QListWidgetItem *> selectedItems = trackersURLS->selectedItems();
   bool change = false;
   unsigned int nbTrackers = trackers.size();
-  foreach(item, selectedItems){
+  foreach(QListWidgetItem *item, selectedItems){
     QString url = item->text();
     for(i=0; i<nbTrackers; ++i){
       if(misc::toQString(trackers.at(i).url) == url){
@@ -718,16 +706,14 @@ void properties::loadWebSeedsFromFile(){
   urlseeds_file.close();
   QList<QByteArray> url_seeds = urlseeds_lines.split('\n');
   urlSeeds.clear();
-  QByteArray url_seed;
-  foreach(url_seed, url_seeds){
+  foreach(const QByteArray &url_seed, url_seeds){
     if(!url_seed.isEmpty())
       urlSeeds << url_seed;
   }
   // Load the hard-coded url seeds
   QStringList hc_seeds = h.url_seeds();
-  QString hc_seed;
   // Add hard coded url seeds
-  foreach(hc_seed, hc_seeds){
+  foreach(const QString &hc_seed, hc_seeds){
     if(urlSeeds.indexOf(hc_seed) == -1){
       urlSeeds << hc_seed;
     }
@@ -740,8 +726,7 @@ void properties::saveWebSeeds(){
     std::cerr << "Error: Could not save url seeds\n";
     return;
   }
-  QString url_seed;
-  foreach(url_seed, urlSeeds){
+  foreach(const QString &url_seed, urlSeeds){
     urlseeds_file.write((url_seed+"\n").toUtf8());
   }
   urlseeds_file.close();

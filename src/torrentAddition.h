@@ -299,8 +299,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
 
     void ignoreSelection(){
       QModelIndexList selectedIndexes = torrentContentList->selectionModel()->selectedIndexes();
-      QModelIndex index;
-      foreach(index, selectedIndexes){
+      foreach(const QModelIndex &index, selectedIndexes){
         if(index.column() == PRIORITY){
           PropListModel->setData(index, QVariant(IGNORED));
         }
@@ -312,8 +311,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
 
     void normalSelection(){
       QModelIndexList selectedIndexes = torrentContentList->selectionModel()->selectedIndexes();
-      QModelIndex index;
-      foreach(index, selectedIndexes){
+      foreach(const QModelIndex &index, selectedIndexes){
         if(index.column() == PRIORITY){
           PropListModel->setData(index, QVariant(NORMAL));
         }
@@ -325,8 +323,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
 
     void highSelection(){
       QModelIndexList selectedIndexes = torrentContentList->selectionModel()->selectedIndexes();
-      QModelIndex index;
-      foreach(index, selectedIndexes){
+      foreach(const QModelIndex &index, selectedIndexes){
         if(index.column() == PRIORITY){
           PropListModel->setData(index, QVariant(HIGH));
         }
@@ -338,8 +335,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
 
     void maximumSelection(){
       QModelIndexList selectedIndexes = torrentContentList->selectionModel()->selectedIndexes();
-      QModelIndex index;
-      foreach(index, selectedIndexes){
+      foreach(const QModelIndex &index, selectedIndexes){
         if(index.column() == PRIORITY){
           PropListModel->setData(index, QVariant(MAXIMUM));
         }
