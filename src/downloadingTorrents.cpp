@@ -182,9 +182,8 @@ void DownloadingTorrents::deleteTorrent(QString hash) {
 
 void DownloadingTorrents::on_actionSet_download_limit_triggered() {
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
-  QModelIndex index;
   QStringList hashes;
-  foreach(index, selectedIndexes) {
+  foreach(const QModelIndex &index, selectedIndexes) {
     if(index.column() == NAME) {
       // Get the file hash
       hashes << DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
@@ -196,9 +195,8 @@ void DownloadingTorrents::on_actionSet_download_limit_triggered() {
 
 void DownloadingTorrents::on_actionSet_upload_limit_triggered() {
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
-  QModelIndex index;
   QStringList hashes;
-  foreach(index, selectedIndexes) {
+  foreach(const QModelIndex &index, selectedIndexes) {
     if(index.column() == NAME) {
       // Get the file hash
       hashes << DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
@@ -211,8 +209,7 @@ void DownloadingTorrents::on_actionSet_upload_limit_triggered() {
 // display properties of selected items
 void DownloadingTorrents::propertiesSelection(){
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
-  QModelIndex index;
-  foreach(index, selectedIndexes){
+  foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == NAME){
       showProperties(index);
     }
@@ -221,8 +218,7 @@ void DownloadingTorrents::propertiesSelection(){
 
 void DownloadingTorrents::forceRecheck() {
     QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
-    QModelIndex index;
-    foreach(index, selectedIndexes){
+    foreach(const QModelIndex &index, selectedIndexes){
         if(index.column() == NAME){
             QString hash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
             QTorrentHandle h = BTSession->getTorrentHandle(hash);
@@ -233,11 +229,10 @@ void DownloadingTorrents::forceRecheck() {
 
 void DownloadingTorrents::displayDLListMenu(const QPoint& pos) {
   QMenu myDLLlistMenu(this);
-  QModelIndex index;
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   bool has_pause = false, has_start = false, has_preview = false;
-  foreach(index, selectedIndexes) {
+  foreach(const QModelIndex &index, selectedIndexes) {
     if(index.column() == NAME) {
       // Get the file name
       QString hash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
@@ -462,9 +457,8 @@ QAction* DownloadingTorrents::getActionHoSCol(int index) {
 
 QStringList DownloadingTorrents::getSelectedTorrents(bool only_one) const{
   QStringList res;
-  QModelIndex index;
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
-  foreach(index, selectedIndexes) {
+  foreach(const QModelIndex &index, selectedIndexes) {
     if(index.column() == NAME) {
       // Get the file hash
       QString hash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
