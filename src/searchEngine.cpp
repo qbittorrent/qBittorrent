@@ -115,9 +115,8 @@ void SearchEngine::loadEngineSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QStringList known_engines = settings.value(QString::fromUtf8("SearchEngines/knownEngines"), QStringList()).toStringList();
   QVariantList known_enginesEnabled = settings.value(QString::fromUtf8("SearchEngines/knownEnginesEnabled"), QList<QVariant>()).toList();
-  QString engine;
   unsigned int i = 0;
-  foreach(engine, known_engines) {
+  foreach(const QString &engine, known_engines) {
     if(known_enginesEnabled.at(i).toBool())
       enabled_engines << engine;
     ++i;
@@ -219,13 +218,12 @@ void SearchEngine::readSearchOutput(){
   QByteArray output = searchProcess->readAllStandardOutput();
   output.replace("\r", "");
   QList<QByteArray> lines_list = output.split('\n');
-  QByteArray line;
   if(!search_result_line_truncated.isEmpty()){
     QByteArray end_of_line = lines_list.takeFirst();
     lines_list.prepend(search_result_line_truncated+end_of_line);
   }
   search_result_line_truncated = lines_list.takeLast().trimmed();
-  foreach(line, lines_list){
+  foreach(const QByteArray &line, lines_list){
     appendSearchResult(QString(line));
   }
   currentSearchTab->getCurrentLabel()->setText(tr("Results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
@@ -268,8 +266,7 @@ void SearchEngine::updateNova() {
   QString destDir = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator();
   QDir shipped_subDir(":/search_engine/engines/");
   QStringList files = shipped_subDir.entryList();
-  QString file;
-  foreach(file, files){
+  foreach(const QString &file, files){
     QString shipped_file = shipped_subDir.path()+"/"+file;
     // Copy python classes
     if(file.endsWith(".py")) {
@@ -393,8 +390,7 @@ void SearchEngine::on_clearPatternButton_clicked() {
 void SearchEngine::on_download_button_clicked(){
   //QModelIndexList selectedIndexes = currentSearchTab->getCurrentTreeView()->selectionModel()->selectedIndexes();
   QModelIndexList selectedIndexes = all_tab.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
-  QModelIndex index;
-  foreach(index, selectedIndexes){
+  foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == NAME){
       // Get Item url
       QString url = searchResultsUrls.value(index.data().toString());
