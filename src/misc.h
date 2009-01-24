@@ -106,17 +106,13 @@ class misc : public QObject{
     // see http://en.wikipedia.org/wiki/Kilobyte
     // value must be given in bytes
     static QString friendlyUnit(float val) {
-      if(val < 0) {
+      if(val < 0)
         return tr("Unknown", "Unknown (size)");
-      }
-      const QString units[4] = {tr("B", "bytes"), tr("KiB", "kibibytes (1024 bytes)"), tr("MiB", "mebibytes (1024 kibibytes)"), tr("GiB", "gibibytes (1024 mibibytes)")};
-      for(unsigned int i=0; i<5; ++i) {
-        if (val < 1024.) {
-          return QString(QByteArray::number(val, 'f', 1)) + units[i];
-        }
-        val /= 1024.;
-      }
-      return  QString(QByteArray::number(val, 'f', 1)) + tr("TiB", "tebibytes (1024 gibibytes)");
+      const QString units[5] = {tr("B", "bytes"), tr("KiB", "kibibytes (1024 bytes)"), tr("MiB", "mebibytes (1024 kibibytes)"), tr("GiB", "gibibytes (1024 mibibytes)"), tr("TiB", "tebibytes (1024 gibibytes)")};
+      char i = 0;
+      while(val > 1024. && i++<6)
+          val /= 1024.;
+      return QString(QByteArray::number(val, 'f', 1)) + units[(int)i];
     }
 
     static bool isPreviewable(QString extension){
