@@ -1006,6 +1006,8 @@ void GUI::configureSession(bool deleteOptions) {
   }
   sessionSettings.upnp_ignore_nonrouters = true;
   sessionSettings.use_dht_as_fallback = false;
+  // To keep same behavior as in qbittorrent v1.2.0
+  sessionSettings.rate_limit_ip_overhead = false;
   // Queueing System
   if(options->isQueueingSystemEnabled()) {
       if(!BTSession->isQueueingEnabled()) {

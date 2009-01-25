@@ -5,6 +5,7 @@
     - BUGFIX: Improved torrent ratio calculation
     - BUGFIX: Fixed possible crash when parsing filter file
     - BUGFIX: Made some code optimization
+    - BUGFIX: Fixed download/upload speed decrease problems
     - I18N: Updated Bulgarian and Greek translations
 
 * Fri Jan 9 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.0
