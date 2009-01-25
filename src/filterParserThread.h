@@ -178,22 +178,26 @@ class FilterParserThread : public QThread  {
           }
           // Now Add to the filter
           QStringList IP;
-          if(IPv4) {
-            //IPv4 addresses
-            IP = strStartIP.split('.');
-            address_v4 start((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
-            IP = strEndIP.split('.');
-            address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
-            // Apply to bittorrent session
-            filter.add_rule(start, last, ip_filter::blocked);
-          } else {
-            // IPv6, ex :   1fff:0000:0a88:85a3:0000:0000:ac1f:8001
-            IP = strStartIP.split(':');
-            address_v6 start = address_v6::from_string(strStartIP.remove(':', 0).toUtf8().data());
-            IP = strEndIP.split(':');
-            address_v6 last = address_v6::from_string(strEndIP.remove(':', 0).toUtf8().data());
-            // Apply to bittorrent session
-            filter.add_rule(start, last, ip_filter::blocked);
+          try {
+              if(IPv4) {
+                //IPv4 addresses
+                IP = strStartIP.split('.');
+                address_v4 start((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
+                IP = strEndIP.split('.');
+                address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
+                // Apply to bittorrent session
+                filter.add_rule(start, last, ip_filter::blocked);
+              } else {
+                // IPv6, ex :   1fff:0000:0a88:85a3:0000:0000:ac1f:8001
+                IP = strStartIP.split(':');
+                address_v6 start = address_v6::from_string(strStartIP.remove(':', 0).toUtf8().data());
+                IP = strEndIP.split(':');
+                address_v6 last = address_v6::from_string(strEndIP.remove(':', 0).toUtf8().data());
+                // Apply to bittorrent session
+                filter.add_rule(start, last, ip_filter::blocked);
+              }
+          }catch(exception){
+                qDebug("Bad line in filter file, avoided crash...");
           }
         }
         file.close();
