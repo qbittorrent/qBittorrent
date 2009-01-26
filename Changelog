@@ -6,7 +6,7 @@
     - BUGFIX: Fixed possible crash when parsing filter file
     - BUGFIX: Made some code optimization
     - BUGFIX: Fixed download/upload speed decrease problems
-    - I18N: Updated Bulgarian and Greek translations
+    - I18N: Updated Finnish, Bulgarian and Greek translations
 
 * Fri Jan 9 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.0
     - FEATURE: Based on libtorrent-rasterbar v0.14.2
