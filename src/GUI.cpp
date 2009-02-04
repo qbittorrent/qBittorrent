@@ -931,13 +931,11 @@ void GUI::configureSession(bool deleteOptions) {
     setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   }
   displaySpeedInTitle = new_displaySpeedInTitle;
-  if(options->isToolbarDisplayed() != toolBar->isVisible()) {
-      if(options->isToolbarDisplayed()) {
-        toolBar->setVisible(true);
-        toolBar->layout()->setSpacing(7);
-      } else {
-        toolBar->setVisible(false);
-    }
+  if(options->isToolbarDisplayed()) {
+    toolBar->setVisible(true);
+    toolBar->layout()->setSpacing(7);
+  } else {
+    toolBar->setVisible(false);
   }
   unsigned int new_refreshInterval = options->getRefreshInterval();
   if(refreshInterval != new_refreshInterval) {
