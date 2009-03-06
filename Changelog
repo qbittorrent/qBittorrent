@@ -1,3 +1,7 @@
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.3.2
+    - BUGFIX: Fix top toolbar disabling
+    - BUGFIX: Fix building with Qt 4.5
+
 * Mon Jan 26 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.1
     - BUGFIX: Torrents paused due to an I/O error were displayed as queued
     - BUGFIX: qBittorrent now prints backtrace in terminal when segfaulting

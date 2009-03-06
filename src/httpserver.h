@@ -22,6 +22,7 @@
 #ifndef HTTPSERVER_H
 #define HTTPSERVER_H
 
+#include <QPair>
 #include <QTcpServer>
 #include <QByteArray>
 
