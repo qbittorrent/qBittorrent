@@ -1,4 +1,4 @@
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.3.2
+* Sat Mar 7 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.2
     - BUGFIX: Fix top toolbar disabling
     - BUGFIX: Fix building with Qt 4.5
     - BUGFIX: RSS items read status is now remembered upon restart
