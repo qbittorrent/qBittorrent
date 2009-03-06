@@ -320,11 +320,22 @@ class RssStream : public QObject{
     }
 
     ~RssStream(){
+      QSettings qBTRSS("qBittorrent-rss");
+      qBTRSS.setValue(url, getAllReadHashes());
       removeAllItems();
       if(QFile::exists(filePath))
         QFile::remove(filePath);
       if(QFile::exists(iconPath) && !iconPath.startsWith(":/"))
         QFile::remove(iconPath);
+    }
+
+    QStringList getAllReadHashes() {
+        QStringList hashes;
+        foreach(RssItem *item, listItem) {
+            if(item->isRead())
+                hashes << item->getHash();
+        }
+        return hashes;
     }
 
     // delete all the items saved
@@ -462,6 +473,11 @@ class RssStream : public QObject{
   private:
     // read and create items from a rss document
     short readDoc(const QDomDocument& doc) {
+      QStringList old_items;
+      if(!refreshed) {
+        QSettings qBTRSS("qBittorrent-rss");
+        old_items = qBTRSS.value(this->url, QVariant()).toStringList();
+      }
       // is it a rss file ?
       QDomElement root = doc.documentElement();
       if(root.tagName() == QString::fromUtf8("html")){
@@ -493,10 +509,13 @@ class RssStream : public QObject{
 	      image = property.text();
 	    else if(property.tagName() == "item") {
               RssItem * item = new RssItem(property);
-              if(!itemAlreadyExists(item->getHash()))
+              if(!itemAlreadyExists(item->getHash())) {
+                if(!refreshed && old_items.contains(item->getHash()))
+                    item->setRead();
                 listItem.append(item);
-              else
+              } else {
                 delete item;
+              }
 	    }
 	    property = property.nextSibling().toElement();
 	  }
