@@ -133,7 +133,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkScanDir, SIGNAL(stateChanged(int)), this, SLOT(enableDirScan(int)));
   connect(actionTorrentDlOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(actionTorrentFnOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-  connect(checkTempFolder, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkTempFolder, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   // Connection tab
   connect(checkUploadLimit, SIGNAL(stateChanged(int)), this, SLOT(enableUploadLimit(int)));
   connect(checkDownloadLimit,  SIGNAL(stateChanged(int)), this, SLOT(enableDownloadLimit(int)));
