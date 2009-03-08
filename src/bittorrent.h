@@ -51,6 +51,7 @@ class bittorrent : public QObject {
     bool DHTEnabled;
     QPointer<downloadThread> downloader;
     QString defaultSavePath;
+    QString defaultTempPath;
     QHash<QString, QHash<QString, QString> > trackersErrors;
     QStringList consoleMessages;
     QStringList peerBanMessages;
@@ -142,6 +143,7 @@ class bittorrent : public QObject {
     void setSessionSettings(session_settings sessionSettings);
     void startTorrentsInPause(bool b);
     void setDefaultSavePath(QString savepath);
+    void setDefaultTempPath(QString temppath);
     void applyEncryptionSettings(pe_settings se);
     void loadFilesPriorities(QTorrentHandle& h);
     void setDownloadLimit(QString hash, long val);

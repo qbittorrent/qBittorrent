@@ -515,11 +515,13 @@ void options_imp::loadOptions(){
   textSavePath->setText(settings.value(QString::fromUtf8("SavePath"), home+"qBT_dir").toString());
   if(settings.value(QString::fromUtf8("TempPathEnabled"), false).toBool()) {
     // enable
+    checkTempFolder->setChecked(true);
     enableTempPathInput(2);
   } else {
+    checkTempFolder->setChecked(false);
     enableTempPathInput(0);
   }
-  textTempPath->setText(settings.value(QString::fromUtf8("TempPath"), home+"qBT_dir").toString());
+  textTempPath->setText(settings.value(QString::fromUtf8("TempPath"), home+"qBT_dir"+QDir::separator()+"temp").toString());
   checkPreallocateAll->setChecked(settings.value(QString::fromUtf8("PreAllocation"), false).toBool());
   checkAdditionDialog->setChecked(settings.value(QString::fromUtf8("AdditionDialog"), true).toBool());
   checkStartPaused->setChecked(settings.value(QString::fromUtf8("StartInPause"), false).toBool());

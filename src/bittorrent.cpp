@@ -439,7 +439,11 @@ QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
       savepath_file.write(savePath.toUtf8());
       savepath_file.close();
   }
-  p.save_path = savePath.toUtf8().data();
+  if(defaultTempPath.isEmpty()) {
+    p.save_path = savePath.toUtf8().data();
+  } else {
+    p.save_path = defaultTempPath.toUtf8().data();
+  }
   p.ti = t;
   // Preallocate all?
   if(preAllocateAll)
@@ -895,6 +899,31 @@ void bittorrent::setDefaultSavePath(QString savepath) {
   defaultSavePath = savepath;
 }
 
+void bittorrent::setDefaultTempPath(QString temppath) {
+  if(defaultTempPath == temppath)
+    return;
+  if(temppath.isEmpty()) {
+    // Disabling temp dir
+    // Moving all torrents to their destination folder
+    std::vector<torrent_handle> torrents = getTorrents();
+    std::vector<torrent_handle>::iterator torrentIT;
+    for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+      QTorrentHandle h = QTorrentHandle(*torrentIT);
+      if(!h.is_valid()) continue;
+      h.move_storage(getSavePath(h.hash()));
+    }
+  } else {
+    std::vector<torrent_handle> torrents = getTorrents();
+    std::vector<torrent_handle>::iterator torrentIT;
+    for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+      QTorrentHandle h = QTorrentHandle(*torrentIT);
+      if(!h.is_valid()) continue;
+      h.move_storage(temppath);
+    }
+  }
+  defaultTempPath = temppath;
+}
+
 // Enable directory scanning
 void bittorrent::enableDirectoryScanning(QString scan_dir) {
   if(!scan_dir.isEmpty()) {
@@ -1111,6 +1140,15 @@ void bittorrent::readAlerts() {
         finished_file.open(QIODevice::WriteOnly | QIODevice::Text);
         finished_file.close();
         h.save_resume_data();
+        // Move to download directory if necessary
+        if(!defaultTempPath.isEmpty()) {
+          // Check if directory is different
+          QDir current_dir(h.save_path());
+          QDir save_dir(getSavePath(h.hash()));
+          if(current_dir != save_dir) {
+            h.move_storage(save_dir.path());
+          }
+        }
         qDebug("Received finished alert for %s", h.name().toUtf8().data());
       }
     }

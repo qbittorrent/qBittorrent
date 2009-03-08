@@ -945,6 +945,11 @@ void GUI::configureSession(bool deleteOptions) {
   // Downloads
   // * Save path
   BTSession->setDefaultSavePath(options->getSavePath());
+  if(options->isTempPathEnabled()) {
+    BTSession->setDefaultTempPath(options->getTempPath());
+  } else {
+    BTSession->setDefaultTempPath(QString::null);
+  }
   BTSession->preAllocateAllFiles(options->preAllocateAllFiles());
   BTSession->startTorrentsInPause(options->addTorrentsInPause());
   // * Scan dir
