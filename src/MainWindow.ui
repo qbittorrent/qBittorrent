@@ -258,7 +258,7 @@
   </action>
   <action name="actionShow_console" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/Icons/log.png</iconset>
+	   <iconset resource="icons.qrc" >:/Icons/oxygen/log.png</iconset>
    </property>
    <property name="text" >
     <string>Console</string>

@@ -68,7 +68,7 @@
        </property>
        <property name="icon" >
         <iconset resource="icons.qrc" >
-         <normaloff>:/Icons/edit_clear.png</normaloff>:/Icons/edit_clear.png</iconset>
+		<normaloff>:/Icons/oxygen/edit_clear.png</normaloff>:/Icons/oxygen/edit_clear.png</iconset>
        </property>
        <property name="iconSize" >
         <size>

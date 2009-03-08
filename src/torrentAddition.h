@@ -146,9 +146,9 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       // Name
       QStandardItem *first;
       if(root->isDir()) {
-        first = new QStandardItem(QIcon(":/Icons/folder.png"), root->name());
+        first = new QStandardItem(QIcon(":/Icons/oxygen/folder.png"), root->name());
       } else {
-        first = new QStandardItem(QIcon(":/Icons/file.png"), root->name());
+        first = new QStandardItem(QIcon(":/Icons/oxygen/file.png"), root->name());
       }
       child << first;
       // Size

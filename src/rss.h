@@ -410,7 +410,7 @@ class RssStream : public QObject{
 
     QString getIconPath() const{
       if(downloadFailure)
-        return ":/Icons/unavailable.png";
+        return ":/Icons/oxygen/unavailable.png";
       return iconPath;
     }
 

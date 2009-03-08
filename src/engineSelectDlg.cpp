@@ -47,8 +47,8 @@ engineSelectDlg::engineSelectDlg(QWidget *parent) : QDialog(parent) {
   pluginsTree->header()->resizeSection(0, 170);
   pluginsTree->header()->resizeSection(1, 220);
   pluginsTree->hideColumn(ENGINE_ID);
-  actionEnable->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
-  actionDisable->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
+  actionEnable->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_ok.png")));
+  actionDisable->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_cancel.png")));
   actionUninstall->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
   connect(actionEnable, SIGNAL(triggered()), this, SLOT(enableSelection()));
   connect(actionDisable, SIGNAL(triggered()), this, SLOT(disableSelection()));

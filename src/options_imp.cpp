@@ -236,12 +236,20 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     checkSystrayBalloons->setChecked(false);
     checkSystrayBalloons->setEnabled(false);
   }
+  // Tab selection mecanism
+  connect(tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
 }
 
 // Main destructor
 options_imp::~options_imp(){
   qDebug("-> destructing Options");
 }
+
+void options_imp::changePage(QListWidgetItem *current, QListWidgetItem *previous) {
+     if (!current)
+         current = previous;
+     tabOption->setCurrentIndex(tabSelection->row(current));
+ }
 
 void options_imp::useStyle(){
   int style = getStyle();

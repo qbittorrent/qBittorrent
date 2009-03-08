@@ -2,51 +2,19 @@
 <qresource>
   <file>Icons/add_file.png</file>
   <file>Icons/add_folder.png</file>
-  <file>Icons/bt_settings.png</file>
-  <file>Icons/button_cancel.png</file>
-  <file>Icons/button_ok.png</file>
-  <file>Icons/configure.png</file>
-  <file>Icons/connection.png</file>
-  <file>Icons/description.png</file>
   <file>Icons/downarrow.png</file>
-  <file>Icons/download.png</file>
-  <file>Icons/edit_clear.png</file>
-  <file>Icons/encrypted.png</file>
-  <file>Icons/file.png</file>
-  <file>Icons/filter.png</file>
-  <file>Icons/folder.png</file>
-  <file>Icons/gear.png</file>
   <file>Icons/gnome-shutdown.png</file>
-  <file>Icons/home.png</file>
   <file>Icons/loading.png</file>
   <file>Icons/locale.png</file>
-  <file>Icons/log.png</file>
-  <file>Icons/mascot.png</file>
   <file>Icons/money.png</file>
-  <file>Icons/newmsg.png</file>
-  <file>Icons/password.png</file>
   <file>Icons/proxy.png</file>
-  <file>Icons/qbittorrent16.png</file>
-  <file>Icons/qbittorrent22.png</file>
-  <file>Icons/qbittorrent32.png</file>
   <file>Icons/refresh.png</file>
   <file>Icons/rss16.png</file>
   <file>Icons/rss32.png</file>
   <file>Icons/sphere.png</file>
   <file>Icons/sphere2.png</file>
-  <file>Icons/splash.png</file>
-  <file>Icons/star.png</file>
-  <file>Icons/style.png</file>
-  <file>Icons/subscribe.png</file>
-  <file>Icons/subscribe16.png</file>
-  <file>Icons/systemtray.png</file>
-  <file>Icons/time.png</file>
-  <file>Icons/unavailable.png</file>
-  <file>Icons/unsubscribe.png</file>
-  <file>Icons/unsubscribe16.png</file>
   <file>Icons/uparrow.png</file>
   <file>Icons/url.png</file>
-  <file>Icons/wizard.png</file>
   <file>Icons/flags/brazil.png</file>
   <file>Icons/flags/bulgaria.png</file>
   <file>Icons/flags/china.png</file>
@@ -74,6 +42,27 @@
   <file>Icons/flags/turkey.png</file>
   <file>Icons/flags/ukraine.png</file>
   <file>Icons/flags/united_kingdom.png</file>
+  <file>Icons/oxygen/bt_settings.png</file>
+  <file>Icons/oxygen/bug.png</file>
+  <file>Icons/oxygen/button_cancel.png</file>
+  <file>Icons/oxygen/button_ok.png</file>
+  <file>Icons/oxygen/configure.png</file>
+  <file>Icons/oxygen/connection.png</file>
+  <file>Icons/oxygen/download.png</file>
+  <file>Icons/oxygen/edit_clear.png</file>
+  <file>Icons/oxygen/encrypted.png</file>
+  <file>Icons/oxygen/file.png</file>
+  <file>Icons/oxygen/filter.png</file>
+  <file>Icons/oxygen/folder.png</file>
+  <file>Icons/oxygen/gear.png</file>
+  <file>Icons/oxygen/log.png</file>
+  <file>Icons/oxygen/subscribe.png</file>
+  <file>Icons/oxygen/subscribe16.png</file>
+  <file>Icons/oxygen/time.png</file>
+  <file>Icons/oxygen/unavailable.png</file>
+  <file>Icons/oxygen/unsubscribe.png</file>
+  <file>Icons/oxygen/unsubscribe16.png</file>
+  <file>Icons/oxygen/webui.png</file>
   <file>Icons/skin/add.png</file>
   <file>Icons/skin/connected.png</file>
   <file>Icons/skin/decrease.png</file>
@@ -85,6 +74,7 @@
   <file>Icons/skin/firewalled.png</file>
   <file>Icons/skin/increase.png</file>
   <file>Icons/skin/info.png</file>
+  <file>Icons/skin/mascot.png</file>
   <file>Icons/skin/new.png</file>
   <file>Icons/skin/open.png</file>
   <file>Icons/skin/pause.png</file>
@@ -95,11 +85,15 @@
   <file>Icons/skin/preview.png</file>
   <file>Icons/skin/properties.png</file>
   <file>Icons/skin/qb_question.png</file>
+  <file>Icons/skin/qbittorrent16.png</file>
+  <file>Icons/skin/qbittorrent22.png</file>
+  <file>Icons/skin/qbittorrent32.png</file>
   <file>Icons/skin/queued.png</file>
   <file>Icons/skin/remove.png</file>
   <file>Icons/skin/search.png</file>
   <file>Icons/skin/seeding.png</file>
   <file>Icons/skin/settings.png</file>
+  <file>Icons/skin/splash.png</file>
   <file>Icons/skin/stalled.png</file>
   <file>Icons/skin/tabs.gif</file>
   <file>Icons/skin/url.png</file>

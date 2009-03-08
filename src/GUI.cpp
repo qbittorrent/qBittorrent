@@ -90,14 +90,14 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     qDebug("Info: System tray unavailable");
   }
   // Setting icons
-  this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent32.png")));
+  this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
   actionOpen->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/open.png")));
   actionExit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/exit.png")));
   actionDownload_from_URL->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/url.png")));
   actionOptions->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/settings.png")));
   actionAbout->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/info.png")));
-  actionWebsite->setIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent32.png")));
-  actionBugReport->setIcon(QIcon(QString::fromUtf8(":/Icons/newmsg.png")));
+  actionWebsite->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/qbittorrent32.png")));
+  actionBugReport->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/bug.png")));
   actionStart->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play.png")));
   actionPause->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")));
   actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")));
@@ -1492,10 +1492,10 @@ void GUI::createSystrayDelayed() {
 void GUI::createTrayIcon() {
   // Tray icon
  #ifdef Q_WS_WIN
-  myTrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent16.png")), this);
+  myTrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent16.png")), this);
  #endif
  #ifndef Q_WS_WIN
-  myTrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/qbittorrent22.png")), this);
+  myTrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent22.png")), this);
 #endif
   // Tray icon Menu
   myTrayIconMenu = new QMenu(this);

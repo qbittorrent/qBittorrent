@@ -17,6 +17,11 @@ Images Authors:
   license: GPLv2
   url: http://ftp.acc.umu.se/pub/GNOME/sources/gnome-icon-theme
 
+* files: src/oxygen/*.png
+  copyright: Oxygen Icon Theme (KDE)
+  license: LGPL
+  url: http://www.oxygen-icons.org
+
 * files: src/Icons/flags/*.png
   copyright: Open Clip Art Library
   license: Creative Commons Public Domain Dedication

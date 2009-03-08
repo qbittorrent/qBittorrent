@@ -92,7 +92,7 @@
   <action name="actionOpen_destination_folder" >
    <property name="icon" >
     <iconset resource="icons.qrc" >
-     <normaloff>:/Icons/folder.png</normaloff>:/Icons/folder.png</iconset>
+	    <normaloff>:/Icons/oxygen/folder.png</normaloff>:/Icons/oxygen/folder.png</iconset>
    </property>
    <property name="text" >
     <string>Open destination folder</string>
@@ -173,7 +173,7 @@
   <action name="actionForce_recheck" >
    <property name="icon" >
     <iconset resource="icons.qrc" >
-     <normaloff>:/Icons/gear.png</normaloff>:/Icons/gear.png</iconset>
+	    <normaloff>:/Icons/oxygen/gear.png</normaloff>:/Icons/oxygen/gear.png</iconset>
    </property>
    <property name="text" >
     <string>Force recheck</string>

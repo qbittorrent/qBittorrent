@@ -240,7 +240,7 @@ void FinishedTorrents::updateTorrent(QTorrentHandle h) {
     // Update queued torrent
     if(BTSession->isQueueingEnabled() && h.is_queued()) {
         if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking){
-            finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
+            finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/time.png"))), Qt::DecorationRole);
         } else {
             finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queued.png"))), Qt::DecorationRole);
         }
@@ -251,7 +251,7 @@ void FinishedTorrents::updateTorrent(QTorrentHandle h) {
         return;
     }
     if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking){
-      finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
+      finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/time.png"))), Qt::DecorationRole);
       setRowColor(row, QString::fromUtf8("grey"));
       return;
     }
@@ -426,12 +426,12 @@ void FinishedTorrents::hideOrShowColumn(int index) {
     if(nbVisibleColumns <= 1) return;
     // User can hide the column, do it.
     finishedList->setColumnHidden(index, true);
-    getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
+    getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_cancel.png")));
     --nbVisibleColumns;
   } else {
     // User want to display the column
     finishedList->setColumnHidden(index, false);
-    getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
+    getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_ok.png")));
     ++nbVisibleColumns;
   }
   //resize all others non-hidden columns
@@ -481,9 +481,9 @@ bool FinishedTorrents::loadHiddenColumns() {
   for(int i=0; i<finishedListModel->columnCount()-1; i++) {
     if(loaded && ishidden_list.at(i) == "0") {
       finishedList->setColumnHidden(i, true);
-      getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
+      getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_cancel.png")));
     } else {
-      getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
+      getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_ok.png")));
     }
   }
   return loaded;

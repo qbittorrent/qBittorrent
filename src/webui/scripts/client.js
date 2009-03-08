@@ -49,7 +49,7 @@ window.addEvent('domready', function(){
       case 'seeding':
           return '<img src="images/skin/seeding.png"/>';
       case 'checking':
-          return '<img src="images/time.png"/>';
+          return '<img src="images/oxygen/time.png"/>';
       case 'downloading':
           return '<img src="images/skin/downloading.png"/>';
       case 'stalled':

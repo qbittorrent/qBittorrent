@@ -44,8 +44,8 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
-//   tabBottom->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/log.png")));
-//   tabBottom->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/filter.png")));
+//   tabBottom->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/oxygen/log.png")));
+//   tabBottom->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/oxygen/filter.png")));
 
   // Set Download list model
   DLListModel = new QStandardItemModel(0,10);
@@ -317,12 +317,12 @@ void DownloadingTorrents::hideOrShowColumn(int index) {
     if(nbVisibleColumns <= 1) return;
     // User can hide the column, do it.
     downloadList->setColumnHidden(index, true);
-    getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
+    getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_cancel.png")));
     --nbVisibleColumns;
   } else {
     // User want to display the column
     downloadList->setColumnHidden(index, false);
-    getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
+    getActionHoSCol(index)->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_ok.png")));
     ++nbVisibleColumns;
   }
   //resize all others non-hidden columns
@@ -336,9 +336,9 @@ void DownloadingTorrents::hideOrShowColumn(int index) {
 void DownloadingTorrents::hidePriorityColumn(bool hide) {
   downloadList->setColumnHidden(PRIORITY, hide);
   if(hide)
-    getActionHoSCol(PRIORITY)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
+    getActionHoSCol(PRIORITY)->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_cancel.png")));
   else
-    getActionHoSCol(PRIORITY)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
+    getActionHoSCol(PRIORITY)->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_ok.png")));
 }
 
 // save the hidden columns in settings
@@ -376,9 +376,9 @@ bool DownloadingTorrents::loadHiddenColumns() {
   for(int i=0; i<DLListModel->columnCount()-1; i++) {
     if(loaded && ishidden_list.at(i) == "0") {
       downloadList->setColumnHidden(i, true);
-      getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_cancel.png")));
+      getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_cancel.png")));
     } else {
-      getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
+      getActionHoSCol(i)->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_ok.png")));
     }
   }
   return loaded;
@@ -488,7 +488,7 @@ bool DownloadingTorrents::updateTorrent(QTorrentHandle h) {
           DLListModel->setData(DLListModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
           if(h.is_queued()) {
               if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) {
-                  DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
+                  DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/time.png"))), Qt::DecorationRole);
                   if(!downloadList->isColumnHidden(PROGRESS)) {
                       DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
                   }
@@ -515,7 +515,7 @@ bool DownloadingTorrents::updateTorrent(QTorrentHandle h) {
       switch(h.state()) {
         case torrent_status::checking_files:
         case torrent_status::queued_for_checking:
-          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/time.png"))), Qt::DecorationRole);
+          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/time.png"))), Qt::DecorationRole);
           setRowColor(row, QString::fromUtf8("grey"));
           break;
         case torrent_status::downloading:

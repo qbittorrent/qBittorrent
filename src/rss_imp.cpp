@@ -298,15 +298,15 @@
     RSSImp::RSSImp() : QWidget(){
       setupUi(this);
       // icons of bottom buttons
-      addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/subscribe.png")));
-      delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/unsubscribe.png")));
+      addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/subscribe.png")));
+      delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/unsubscribe.png")));
       refreshAll_button->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
-      actionMark_all_as_read->setIcon(QIcon(QString::fromUtf8(":/Icons/button_ok.png")));
+      actionMark_all_as_read->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_ok.png")));
       // icons of right-click menu
-      actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/unsubscribe16.png")));
-      actionRename->setIcon(QIcon(QString::fromUtf8(":/Icons/log.png")));
+      actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/unsubscribe16.png")));
+      actionRename->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/log.png")));
       actionRefresh->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
-      actionCreate->setIcon(QIcon(QString::fromUtf8(":/Icons/subscribe16.png")));
+      actionCreate->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/subscribe16.png")));
       actionRefreshAll->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
 
       // Hide second column (url)

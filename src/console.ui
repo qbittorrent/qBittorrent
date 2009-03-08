@@ -13,7 +13,7 @@
    <string>qBittorrent console</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="icons.qrc" >:/Icons/log.png</iconset>
+	  <iconset resource="icons.qrc" >:/Icons/oxygen/log.png</iconset>
   </property>
   <layout class="QVBoxLayout" >
    <item>
@@ -26,7 +26,7 @@
        <string>General</string>
       </attribute>
       <attribute name="icon" >
-       <iconset resource="icons.qrc" >:/Icons/log.png</iconset>
+	      <iconset resource="icons.qrc" >:/Icons/oxygen/log.png</iconset>
       </attribute>
       <layout class="QVBoxLayout" >
        <item>
