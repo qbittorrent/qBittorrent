@@ -69,6 +69,8 @@ class options_imp : public QDialog, private Ui::Dialog {
     bool isToolbarDisplayed() const;
     // Downloads
     QString getSavePath() const;
+    bool isTempPathEnabled() const;
+    QString getTempPath() const;
     bool preAllocateAllFiles() const;
     bool useAdditionDialog() const;
     bool addTorrentsInPause() const;
@@ -128,6 +130,7 @@ class options_imp : public QDialog, private Ui::Dialog {
   protected slots:
     void enableUploadLimit(int checkBoxValue);
     void enableDownloadLimit(int checkBoxValue);
+    void enableTempPathInput(int checkBoxValue);
     void enableDirScan(int checkBoxValue);
     void enableProxy(int comboIndex);
     void enableProxyAuth(int checkBoxValue);

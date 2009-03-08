@@ -129,9 +129,11 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // General tab
   connect(checkNoSystray, SIGNAL(stateChanged(int)), this, SLOT(setSystrayOptionsState(int)));
   // Downloads tab
+  connect(checkTempFolder, SIGNAL(stateChanged(int)), this, SLOT(enableTempPathInput(int)));
   connect(checkScanDir, SIGNAL(stateChanged(int)), this, SLOT(enableDirScan(int)));
   connect(actionTorrentDlOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(actionTorrentFnOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkTempFolder, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   // Connection tab
   connect(checkUploadLimit, SIGNAL(stateChanged(int)), this, SLOT(enableUploadLimit(int)));
   connect(checkDownloadLimit,  SIGNAL(stateChanged(int)), this, SLOT(enableDownloadLimit(int)));
@@ -305,6 +307,8 @@ void options_imp::saveOptions(){
   // Downloads preferences
   settings.beginGroup("Downloads");
   settings.setValue(QString::fromUtf8("SavePath"), getSavePath());
+  settings.setValue(QString::fromUtf8("TempPathEnabled"), isTempPathEnabled());
+  settings.setValue(QString::fromUtf8("TempPath"), getTempPath());
   settings.setValue(QString::fromUtf8("PreAllocation"), preAllocateAllFiles());
   settings.setValue(QString::fromUtf8("AdditionDialog"), useAdditionDialog());
   settings.setValue(QString::fromUtf8("StartInPause"), addTorrentsInPause());
@@ -509,6 +513,13 @@ void options_imp::loadOptions(){
     home += QDir::separator();
   }
   textSavePath->setText(settings.value(QString::fromUtf8("SavePath"), home+"qBT_dir").toString());
+  if(settings.value(QString::fromUtf8("TempPathEnabled"), false).toBool()) {
+    // enable
+    enableTempPathInput(2);
+  } else {
+    enableTempPathInput(0);
+  }
+  textTempPath->setText(settings.value(QString::fromUtf8("TempPath"), home+"qBT_dir").toString());
   checkPreallocateAll->setChecked(settings.value(QString::fromUtf8("PreAllocation"), false).toBool());
   checkAdditionDialog->setChecked(settings.value(QString::fromUtf8("AdditionDialog"), true).toBool());
   checkStartPaused->setChecked(settings.value(QString::fromUtf8("StartInPause"), false).toBool());
@@ -856,6 +867,14 @@ QString options_imp::getSavePath() const{
   return textSavePath->text();
 }
 
+QString options_imp::getTempPath() const {
+    return textTempPath->text();
+}
+
+bool options_imp::isTempPathEnabled() const {
+    return checkTempFolder->isChecked();
+}
+
 // Return max connections number
 int options_imp::getMaxConnecs() const{
   if(!checkMaxConnecs->isChecked()){
@@ -912,12 +931,24 @@ void options_imp::on_buttonBox_rejected(){
 }
 
 void options_imp::enableDownloadLimit(int checkBoxValue){
-  if(checkBoxValue!=2){
+  if(checkBoxValue != 2){
     //Disable
     spinDownloadLimit->setEnabled(false);
   }else{
     //enable
     spinDownloadLimit->setEnabled(true);
+  }
+}
+
+void options_imp::enableTempPathInput(int checkBoxValue){
+  if(checkBoxValue != 2){
+    //Disable
+    textTempPath->setEnabled(false);
+    browseTempDirButton->setEnabled(false);
+  }else{
+    //enable
+    textTempPath->setEnabled(true);
+    browseTempDirButton->setEnabled(true);
   }
 }
 

@@ -200,7 +200,7 @@
      <item>
       <widget class="QStackedWidget" name="tabOption">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tabOptionPage1">
         <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -663,14 +663,14 @@
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_7">
               <item>
-               <widget class="QCheckBox" name="checkBox">
+               <widget class="QCheckBox" name="checkTempFolder">
                 <property name="text">
                  <string>Temp folder:</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="tempSavePath">
+               <widget class="QLineEdit" name="textTempPath">
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
@@ -691,6 +691,12 @@
                  <size>
                   <width>22</width>
                   <height>22</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>25</width>
+                  <height>27</height>
                  </size>
                 </property>
                 <property name="icon">
