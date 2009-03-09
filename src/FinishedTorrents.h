@@ -71,6 +71,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void hideOrShowColumnSize();
     void hideOrShowColumnUpSpeed();
     void hideOrShowColumnLeechers();
+    void hideOrShowColumnUpload();
     void hideOrShowColumnRatio();
     void forceRecheck();
 

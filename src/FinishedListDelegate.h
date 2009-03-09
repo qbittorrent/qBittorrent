@@ -36,8 +36,9 @@
 #define F_SIZE 1
 #define F_UPSPEED 2
 #define F_LEECH 3
-#define F_RATIO 4
-#define F_HASH 5
+#define F_UPLOAD 4
+#define F_RATIO 5
+#define F_HASH 6
 
 class FinishedListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -51,6 +52,7 @@ class FinishedListDelegate: public QItemDelegate {
       QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
       switch(index.column()){
         case F_SIZE:
+        case F_UPLOAD:
           QItemDelegate::drawBackground(painter, opt, index);
           QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
           break;

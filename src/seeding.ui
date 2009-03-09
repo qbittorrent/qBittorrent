@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>seeding</class>
- <widget class="QWidget" name="seeding" >
-  <property name="geometry" >
+ <widget class="QWidget" name="seeding">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,129 +10,134 @@
     <height>453</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Search</string>
   </property>
-  <layout class="QVBoxLayout" >
-   <property name="spacing" >
+  <layout class="QVBoxLayout">
+   <property name="spacing">
     <number>6</number>
    </property>
-   <property name="margin" >
+   <property name="margin">
     <number>9</number>
    </property>
    <item>
-    <widget class="QTreeView" name="finishedList" >
-     <property name="contextMenuPolicy" >
+    <widget class="QTreeView" name="finishedList">
+     <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
      </property>
-     <property name="selectionMode" >
+     <property name="selectionMode">
       <enum>QAbstractItemView::ExtendedSelection</enum>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="lbl_note" >
-     <property name="font" >
+    <widget class="QLabel" name="lbl_note">
+     <property name="font">
       <font>
        <italic>true</italic>
       </font>
      </property>
-     <property name="text" >
-      <string>&lt;u>Note:&lt;/u> It is important that you keep sharing your torrents after they are finished for the well being of the network.</string>
+     <property name="text">
+      <string>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</string>
      </property>
     </widget>
    </item>
   </layout>
-  <action name="actionStart" >
-   <property name="text" >
+  <action name="actionStart">
+   <property name="text">
     <string>Start</string>
    </property>
   </action>
-  <action name="actionPause" >
-   <property name="text" >
+  <action name="actionPause">
+   <property name="text">
     <string>Pause</string>
    </property>
   </action>
-  <action name="actionDelete" >
-   <property name="text" >
+  <action name="actionDelete">
+   <property name="text">
     <string>Delete</string>
    </property>
   </action>
-  <action name="actionDelete_Permanently" >
-   <property name="text" >
+  <action name="actionDelete_Permanently">
+   <property name="text">
     <string>Delete Permanently</string>
    </property>
   </action>
-  <action name="actionTorrent_Properties" >
-   <property name="text" >
+  <action name="actionTorrent_Properties">
+   <property name="text">
     <string>Torrent Properties</string>
    </property>
   </action>
-  <action name="actionPreview_file" >
-   <property name="text" >
+  <action name="actionPreview_file">
+   <property name="text">
     <string>Preview file</string>
    </property>
   </action>
-  <action name="actionSet_upload_limit" >
-   <property name="text" >
+  <action name="actionSet_upload_limit">
+   <property name="text">
     <string>Set upload limit</string>
    </property>
   </action>
-  <action name="actionOpen_destination_folder" >
-   <property name="icon" >
-    <iconset resource="icons.qrc" >
-	    <normaloff>:/Icons/oxygen/folder.png</normaloff>:/Icons/oxygen/folder.png</iconset>
+  <action name="actionOpen_destination_folder">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/Icons/oxygen/folder.png</normaloff>:/Icons/oxygen/folder.png</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Open destination folder</string>
    </property>
   </action>
-  <action name="actionHOSColName" >
-   <property name="text" >
+  <action name="actionHOSColName">
+   <property name="text">
     <string>Name</string>
    </property>
   </action>
-  <action name="actionHOSColSize" >
-   <property name="text" >
+  <action name="actionHOSColSize">
+   <property name="text">
     <string>Size</string>
    </property>
   </action>
-  <action name="actionHOSColUpSpeed" >
-   <property name="text" >
+  <action name="actionHOSColUpSpeed">
+   <property name="text">
     <string>Upload Speed</string>
    </property>
   </action>
-  <action name="actionHOSColLeechers" >
-   <property name="text" >
+  <action name="actionHOSColLeechers">
+   <property name="text">
     <string>Leechers</string>
    </property>
   </action>
-  <action name="actionHOSColRatio" >
-   <property name="text" >
+  <action name="actionHOSColRatio">
+   <property name="text">
     <string>Ratio</string>
    </property>
   </action>
-  <action name="actionBuy_it" >
-   <property name="icon" >
-    <iconset resource="icons.qrc" >
+  <action name="actionBuy_it">
+   <property name="icon">
+    <iconset resource="icons.qrc">
      <normaloff>:/Icons/money.png</normaloff>:/Icons/money.png</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Buy it</string>
    </property>
   </action>
-  <action name="actionForce_recheck" >
-   <property name="icon" >
-    <iconset resource="icons.qrc" >
-	    <normaloff>:/Icons/oxygen/gear.png</normaloff>:/Icons/oxygen/gear.png</iconset>
+  <action name="actionForce_recheck">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/Icons/oxygen/gear.png</normaloff>:/Icons/oxygen/gear.png</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Force recheck</string>
+   </property>
+  </action>
+  <action name="actionHOSColUpload">
+   <property name="text">
+    <string>Total uploaded</string>
    </property>
   </action>
  </widget>
  <resources>
-  <include location="icons.qrc" />
+  <include location="icons.qrc"/>
  </resources>
  <connections/>
 </ui>

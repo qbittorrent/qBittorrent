@@ -1,42 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="tr_TR">
+<!DOCTYPE TS>
+<TS version="2.0" language="tr_TR">
 <context>
     <name>@default</name>
     <message>
-        <location filename="" line="0"/>
         <source>b</source>
         <comment> bytes</comment>
         <translation type="obsolete">b</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>KB</source>
         <translation type="obsolete">KB</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>MB</source>
         <translation type="obsolete">MB</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>GB</source>
         <translation type="obsolete">GB</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>KB</source>
         <comment>kilobytes</comment>
         <translation type="obsolete">KB</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>MB</source>
         <comment>megabytes</comment>
         <translation type="obsolete">MB</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>GB</source>
         <comment>gigabytes</comment>
         <translation type="obsolete">GB</translation>
@@ -90,17 +84,14 @@
         <translation>Fransa</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="308"/>
         <source>chris@dchris.eu</source>
         <translation type="obsolete">chris@dchris.eu</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="308"/>
         <source>http://dchris.eu</source>
         <translation type="obsolete">http://dchris.eu</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="362"/>
         <source>Thanks To</source>
         <translation type="obsolete">Teşekkürler</translation>
     </message>
@@ -119,8 +110,7 @@
         <source>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</source>
         <translation>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../about.ui" line="59"/>
+    <message utf8="true">
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
@@ -131,11 +121,10 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Anasayfa:&lt;/u&gt; &lt;i&gt;http://qbittorrent.sourceforge.net&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="59"/>
         <source>qBittorrent Author</source>
         <translation type="obsolete">qBittorrent Yazarı</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../about.ui" line="119"/>
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
 &lt;br&gt;
@@ -195,6 +184,9 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation>İndirme Sınırı:</translation>
     </message>
     <message>
+        <location filename="../allocationDlg.h" line="81"/>
+        <location filename="../allocationDlg.h" line="89"/>
+        <location filename="../allocationDlg.h" line="105"/>
         <location filename="../allocationDlg.h" line="122"/>
         <source>Unlimited</source>
         <comment>Unlimited (bandwidth)</comment>
@@ -235,887 +227,855 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
 <context>
     <name>Dialog</name>
     <message>
-        <location filename="../options.ui" line="19"/>
         <source>Options -- qBittorrent</source>
-        <translation>Seçenekler -- qBittorrent</translation>
+        <translation type="obsolete">Seçenekler -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="42"/>
         <source>Options</source>
         <translation type="obsolete">Ayarlar</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="90"/>
         <source>Main</source>
         <translation type="obsolete">Ana</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="781"/>
         <source>Save Path:</source>
         <translation type="obsolete">Kayıt Yolu:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="118"/>
         <source>Download Limit:</source>
         <translation type="obsolete">Download Limiti:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="128"/>
         <source>Upload Limit:</source>
         <translation type="obsolete">Upload Limiti:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="135"/>
         <source>Max Connects:</source>
         <translation type="obsolete">Max Bağlantı:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="639"/>
+        <location filename="../options.ui" line="1046"/>
         <source>Port range:</source>
         <translation>Kapı erimi:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1764"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1611"/>
         <source>Kb/s</source>
         <translation type="obsolete">Kb/s</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="479"/>
         <source>Disable</source>
         <translation type="obsolete">Etkisizleştir</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="332"/>
         <source>connections</source>
         <translation type="obsolete">bağlantı</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="332"/>
         <source>to</source>
         <translation type="obsolete">buraya</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1237"/>
         <source>Proxy</source>
-        <translation>Vekil</translation>
+        <translation type="obsolete">Vekil</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="911"/>
         <source>Proxy Settings</source>
         <translation type="obsolete">Proxy Ayarları</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1251"/>
         <source>Server IP:</source>
         <translation type="obsolete">Sunucu Adresi:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="919"/>
         <source>0.0.0.0</source>
         <translation type="obsolete">0.0.0.0</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2109"/>
+        <location filename="../options.ui" line="1698"/>
+        <location filename="../options.ui" line="1893"/>
+        <location filename="../options.ui" line="2230"/>
         <source>Port:</source>
         <translation>Kapı:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1346"/>
         <source>Proxy server requires authentication</source>
         <translation type="obsolete">Proxy sunucusu kimlik denetimi gerektiriyor</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2148"/>
+        <location filename="../options.ui" line="1738"/>
+        <location filename="../options.ui" line="1933"/>
+        <location filename="../options.ui" line="2269"/>
         <source>Authentication</source>
         <translation>Kimlik Denetimi</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1384"/>
         <source>User Name:</source>
         <translation type="obsolete">Kullanıcı Adı:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2169"/>
+        <location filename="../options.ui" line="1762"/>
+        <location filename="../options.ui" line="1957"/>
+        <location filename="../options.ui" line="2290"/>
         <source>Password:</source>
         <translation>Parola:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1207"/>
         <source>Enable connection through a proxy server</source>
         <translation type="obsolete">Proxy sunucusu üzerinden bağlantı kurmayı etkinleştir</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="925"/>
         <source>Language</source>
         <translation type="obsolete">Dil</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="925"/>
         <source>Please choose your preferred language in the following list:</source>
         <translation type="obsolete">Lütfen aşağıdaki listeden tercih ettiğiniz dili seçin:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="925"/>
         <source>English</source>
         <translation type="obsolete">İngilizce</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="925"/>
         <source>French</source>
         <translation type="obsolete">Fransızca</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="925"/>
         <source>Simplified Chinese</source>
         <translation type="obsolete">Basitleştirilmiş Çince</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1658"/>
         <source>OK</source>
         <translation type="obsolete">TAMAM</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1665"/>
         <source>Cancel</source>
         <translation type="obsolete">İptal</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1665"/>
         <source>Language settings will take effect after restart.</source>
         <translation type="obsolete">Dil ayarları program yeniden başlatıldıktan sonra devreye girecektir.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1577"/>
         <source>Scanned Dir:</source>
         <translation type="obsolete">Taranmış Klasör:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1559"/>
         <source>Enable directory scan (auto add torrent files inside)</source>
         <translation type="obsolete">Klasör taramayı etkinleştir (otomatik torrent dosyası ekleme)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1559"/>
         <source>Korean</source>
         <translation type="obsolete">Korece</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1559"/>
         <source>Spanish</source>
         <translation type="obsolete">İspanyolca</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1559"/>
         <source>German</source>
         <translation type="obsolete">Almanca</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="87"/>
         <source>Connection Settings</source>
         <translation type="obsolete">Bağlantı Ayarları</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="155"/>
         <source>Share ratio:</source>
         <translation type="obsolete">Paylaşım oranı:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="155"/>
         <source>1 KB DL = </source>
         <translation type="obsolete"> 1 KB DL =</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="155"/>
         <source>KB UP max.</source>
         <translation type="obsolete">KB UP max.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1731"/>
+        <location filename="../options.ui" line="2130"/>
         <source>Activate IP Filtering</source>
         <translation>IP Süzgeçlemeyi Etkinleştir</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1725"/>
+        <location filename="../options.ui" line="2124"/>
         <source>Filter Settings</source>
         <translation>Süzgeç Ayarları</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1572"/>
         <source>ipfilter.dat URL or PATH:</source>
         <translation type="obsolete">ipfilter.dat URL veya KLASÖR:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1586"/>
         <source>Start IP</source>
         <translation type="obsolete">Başlangıç IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1591"/>
         <source>End IP</source>
         <translation type="obsolete">Bitiş IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1596"/>
         <source>Origin</source>
         <translation type="obsolete">Merkez</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1601"/>
         <source>Comment</source>
         <translation type="obsolete">Yorum</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1675"/>
         <source>Apply</source>
         <translation type="obsolete">Uygula</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1375"/>
+        <location filename="../options.ui" line="155"/>
         <source>IP Filter</source>
-        <translation type="obsolete">IP Filtresi</translation>
+        <translation type="unfinished">IP Filtresi</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1642"/>
         <source> Add Range</source>
         <translation type="obsolete"> Aralık Ekle</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1655"/>
         <source> Remove Range</source>
         <translation type="obsolete"> Aralığı Kaldır</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1655"/>
         <source>Catalan</source>
         <translation type="obsolete">Catalan</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1172"/>
         <source>ipfilter.dat Path:</source>
         <translation type="obsolete">ipfilter.dat KLASÖR:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1172"/>
         <source>Clear finished downloads on exit</source>
         <translation type="obsolete">Çıkarken biten downloadları temizle</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1245"/>
         <source>Ask for confirmation on exit</source>
         <translation type="obsolete">Çıkarken onaylama sor</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="845"/>
         <source>Go to systray when minimizing window</source>
         <translation type="obsolete">Pencereyi sistem çubuğuna küçült</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1712"/>
         <source>Misc</source>
-        <translation>Çeşitli</translation>
+        <translation type="obsolete">Çeşitli</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="937"/>
         <source>Localization</source>
         <translation type="obsolete">Yerelleştirme</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="96"/>
+        <location filename="../options.ui" line="218"/>
         <source>Language:</source>
         <translation>Dil:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="724"/>
         <source>Behaviour</source>
         <translation type="obsolete">Davranış</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="724"/>
         <source>OSD</source>
         <translation type="obsolete">OSD</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="724"/>
         <source>Always display OSD</source>
         <translation type="obsolete">Her zaman OSD yi göster</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="724"/>
         <source>Display OSD only if window is minimized or iconified</source>
         <translation type="obsolete">OSD yi sadece pencere küçültülmüşken ya da simge durumundayken göster</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="724"/>
         <source>Never display OSD</source>
         <translation type="obsolete">OSD yi asla gösterme</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="830"/>
+        <location filename="../options.ui" line="1345"/>
+        <location filename="../options.ui" line="1381"/>
         <source>KiB/s</source>
         <translation>KB/s</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="434"/>
         <source>1 KiB DL = </source>
         <translation type="obsolete"> 1 KiB DL =</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="472"/>
         <source>KiB UP max.</source>
         <translation type="obsolete">KiB UP max.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="472"/>
         <source>DHT (Trackerless):</source>
         <translation type="obsolete">DHT (Trackersız):</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="508"/>
         <source>Disable DHT (Trackerless) support</source>
         <translation type="obsolete">DHT (Trackersız) desteğini etkisizleştir</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1255"/>
         <source>Automatically clear finished downloads</source>
         <translation type="obsolete">Tamamlanan downloadları otomatik temizle</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="312"/>
         <source>Preview program</source>
         <translation type="obsolete">Önizleme programı</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1639"/>
         <source>Audio/Video player:</source>
         <translation type="obsolete">Ses/Video oynatıcısı:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="560"/>
         <source>DHT configuration</source>
         <translation type="obsolete">DHT ayarları</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="580"/>
         <source>DHT port:</source>
         <translation type="obsolete">DHT portu:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="134"/>
+        <location filename="../options.ui" line="262"/>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
         <translation>&lt;b&gt;Not:&lt;/b&gt; Değişiklikler qBittorrent yeniden başlatıldıktan sonra uygulanacaktır.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1012"/>
         <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
         <translation type="obsolete">&lt;b&gt;Çevirmenlerin notu:&lt;/b&gt; Eğer qBittorrent dilinizde mevcut değilse,&lt;br/&gt;ve eğer anadilinize çevirmek istiyorsanız, &lt;br/&gt;lütfen iletişime geçin (chris@qbittorrent.org).</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="748"/>
         <source>Display a torrent addition dialog everytime I add a torrent</source>
         <translation type="obsolete">Her torrent eklendiğinde torrent ekleme penceresini görüntüle</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="761"/>
         <source>Default save path</source>
         <translation type="obsolete">Varsayılan kayıt yolu</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1327"/>
         <source>Systray Messages</source>
         <translation type="obsolete">Systray Mesajları</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="884"/>
         <source>Always display systray messages</source>
         <translation type="obsolete">Her zaman systray mesajlarını göster</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="894"/>
         <source>Display systray messages only when window is hidden</source>
         <translation type="obsolete">Systray mesajlarını sadece pencere gizlenmişken göster</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="901"/>
         <source>Never display systray messages</source>
         <translation type="obsolete">Systray mesajlarını asla gösterme</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="553"/>
         <source>Disable DHT (Trackerless)</source>
         <translation type="obsolete">DHT yi etkisizleştir (Trackersız)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="523"/>
         <source>Disable Peer eXchange (PeX)</source>
         <translation type="obsolete">Peer eXchange i (PeX) etkisizleştir</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="855"/>
         <source>Go to systray when closing main window</source>
         <translation type="obsolete">Ana pencereyi kapatınca systray e küçült</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="617"/>
         <source>Connection</source>
-        <translation>Bağlantı</translation>
+        <translation type="obsolete">Bağlantı</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="159"/>
+        <location filename="../options.ui" line="287"/>
         <source>Plastique style (KDE like)</source>
         <translation>Plastik biçem (KDE benzeri)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="174"/>
+        <location filename="../options.ui" line="302"/>
         <source>CDE style (Common Desktop Environment like)</source>
         <translation>CDE biçemi (Common Desktop Environment benzeri)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1458"/>
+        <location filename="../options.ui" line="1661"/>
+        <location filename="../options.ui" line="1851"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1463"/>
+        <location filename="../options.ui" line="1856"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1635"/>
+        <location filename="../options.ui" line="2028"/>
         <source>Affected connections</source>
         <translation>Etkilenen bağlantılar</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1647"/>
+        <location filename="../options.ui" line="2040"/>
         <source>Use proxy for connections to trackers</source>
         <translation>İzleyicilere bağlantı için vekil kullan</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1663"/>
+        <location filename="../options.ui" line="2056"/>
         <source>Use proxy for connections to regular peers</source>
         <translation>Düzenli eşlere bağlantı için vekil kullan</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1695"/>
+        <location filename="../options.ui" line="2088"/>
         <source>Use proxy for connections to web seeds</source>
         <translation>Ağ göndericilerine bağlantı için vekil kullan</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1679"/>
+        <location filename="../options.ui" line="2072"/>
         <source>Use proxy for DHT messages</source>
         <translation>DHT iletileri için vekil kullan</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1070"/>
+        <location filename="../options.ui" line="1470"/>
         <source>Enabled</source>
         <translation>Etkin</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1075"/>
+        <location filename="../options.ui" line="1475"/>
         <source>Forced</source>
         <translation>Zorlandı</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1080"/>
+        <location filename="../options.ui" line="1480"/>
         <source>Disabled</source>
         <translation>Etkisiz</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="42"/>
+        <location filename="../options.ui" line="20"/>
         <source>Preferences</source>
         <translation>Yeğlenenler</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="78"/>
+        <location filename="../options.ui" line="95"/>
         <source>General</source>
         <translation>Genel</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="88"/>
+        <location filename="../options.ui" line="125"/>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="210"/>
         <source>User interface settings</source>
         <translation>Kullanıcı arayüzü ayarları</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="146"/>
+        <location filename="../options.ui" line="274"/>
         <source>Visual style:</source>
         <translation>Görsel biçem:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="164"/>
+        <location filename="../options.ui" line="292"/>
         <source>Cleanlooks style (Gnome like)</source>
         <translation>Temiz görünüşler biçemi (Gnome benzeri)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="169"/>
+        <location filename="../options.ui" line="297"/>
         <source>Motif style (Unix like)</source>
         <translation>Motif biçemi (Unix benzeri)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="197"/>
+        <location filename="../options.ui" line="325"/>
         <source>Ask for confirmation on exit when download list is not empty</source>
         <translation>İndirme listesi boş değilse çıkışta onay iste</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="217"/>
+        <location filename="../options.ui" line="345"/>
         <source>Display current speed in title bar</source>
         <translation>Başlık çubuğunda şimdiki hızı göster</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="271"/>
+        <location filename="../options.ui" line="401"/>
         <source>System tray icon</source>
         <translation>Sistem tepsisi simgesi</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="277"/>
+        <location filename="../options.ui" line="407"/>
         <source>Disable system tray icon</source>
         <translation>Sistem tepsisi simgesini etkisizleştir</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="284"/>
+        <location filename="../options.ui" line="414"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation>Sistem tepsisine kapat</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="291"/>
+        <location filename="../options.ui" line="421"/>
         <source>Minimize to tray</source>
         <translation>Sistem tepsisine küçült</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="308"/>
+        <location filename="../options.ui" line="438"/>
         <source>Show notification balloons in tray</source>
         <translation>Sistem tepsisinde bildiri balonları göster</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="335"/>
         <source>Media player:</source>
         <translation type="obsolete">Media player:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="335"/>
+        <location filename="../options.ui" line="110"/>
         <source>Downloads</source>
         <translation>İndirilenler</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="357"/>
         <source>Put downloads in this folder:</source>
-        <translation>İndirilenleri bu klasöre koy:</translation>
+        <translation type="obsolete">İndirilenleri bu klasöre koy:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="398"/>
+        <location filename="../options.ui" line="713"/>
         <source>Pre-allocate all files</source>
         <translation>Bütün dosyalar için alan tahsisi yap</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="414"/>
+        <location filename="../options.ui" line="940"/>
         <source>When adding a torrent</source>
         <translation>Bir torrent eklerken</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="422"/>
+        <location filename="../options.ui" line="948"/>
         <source>Display torrent content and some options</source>
         <translation>Torrent içeriğini ve bazı seçenekleri göster</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="445"/>
+        <location filename="../options.ui" line="975"/>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>İndirmeyi otomatik olarak başlatma</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="463"/>
+        <location filename="../options.ui" line="729"/>
         <source>Folder watching</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
         <translation>Klasör izleme</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="469"/>
+        <location filename="../options.ui" line="459"/>
+        <source>Transfer lists double-click</source>
+        <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="467"/>
+        <source>Download list:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="519"/>
+        <source>Seeding list:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="625"/>
+        <source>Download folder:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="668"/>
+        <source>Temp folder:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="735"/>
         <source>Automatically download torrents present in this folder:</source>
         <translation>Bu klasörde bulunan torrentleri otomatik indir:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="631"/>
+        <location filename="../options.ui" line="1038"/>
         <source>Listening port</source>
         <translation>Kullanılan kapı</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="659"/>
+        <location filename="../options.ui" line="1066"/>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
         <translation>den</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="697"/>
+        <location filename="../options.ui" line="1104"/>
         <source>Enable UPnP port mapping</source>
         <translation>UPnP kapı haritalamayı etkinleştir</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="707"/>
+        <location filename="../options.ui" line="1114"/>
         <source>Enable NAT-PMP port mapping</source>
         <translation>NAT-PMP kapı haritalamayı etkinleştir</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="724"/>
+        <location filename="../options.ui" line="1275"/>
         <source>Global bandwidth limiting</source>
         <translation>Genel bant genişliği sınırlama</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="740"/>
+        <location filename="../options.ui" line="1291"/>
         <source>Upload:</source>
         <translation>Gönderme:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="756"/>
+        <location filename="../options.ui" line="1307"/>
         <source>Download:</source>
         <translation>İndirme:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1445"/>
+        <location filename="../options.ui" line="1427"/>
+        <source>Bittorrent features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1648"/>
+        <location filename="../options.ui" line="1838"/>
         <source>Type:</source>
         <translation>Tip:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1453"/>
+        <location filename="../options.ui" line="1656"/>
+        <location filename="../options.ui" line="1846"/>
         <source>(None)</source>
         <translation>(Hiçbiri)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1474"/>
+        <location filename="../options.ui" line="1672"/>
+        <location filename="../options.ui" line="1867"/>
         <source>Proxy:</source>
         <translation>Vekil:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2159"/>
+        <location filename="../options.ui" line="1752"/>
+        <location filename="../options.ui" line="1947"/>
+        <location filename="../options.ui" line="2280"/>
         <source>Username:</source>
         <translation>Kullanıcı adı:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="873"/>
+        <location filename="../options.ui" line="140"/>
         <source>Bittorrent</source>
         <translation>Bittorrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="883"/>
+        <location filename="../options.ui" line="1131"/>
         <source>Connections limit</source>
         <translation>Bağlantıların sınırı</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="891"/>
+        <location filename="../options.ui" line="1139"/>
         <source>Global maximum number of connections:</source>
         <translation>Genel azami bağlantı sayısı:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="939"/>
+        <location filename="../options.ui" line="1187"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Torrent başına azami bağlantı sayısı:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="984"/>
+        <location filename="../options.ui" line="1232"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Torrent başına azami gönderme yuvası sayısı:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1027"/>
         <source>Additional Bittorrent features</source>
-        <translation>İlave Bittorrent özellikleri</translation>
+        <translation type="obsolete">İlave Bittorrent özellikleri</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1033"/>
+        <location filename="../options.ui" line="1433"/>
         <source>Enable DHT network (decentralized)</source>
         <translation>DHT ağını etkinleştir (dağıtılmış)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1106"/>
         <source>Enable Peer eXchange (PeX)</source>
         <translation type="obsolete">Eş Değişimini Etkinleştir (EşD)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1043"/>
+        <location filename="../options.ui" line="1443"/>
         <source>Enable Local Peer Discovery</source>
         <translation>Yerel Eş Keşfini Etkinleştir</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1062"/>
+        <location filename="../options.ui" line="1462"/>
         <source>Encryption:</source>
         <translation>Şifreleme:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1106"/>
+        <location filename="../options.ui" line="1506"/>
         <source>Share ratio settings</source>
         <translation>Oran ayarlarını paylaş</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1114"/>
+        <location filename="../options.ui" line="1514"/>
         <source>Desired ratio:</source>
         <translation>İstenen oran:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1747"/>
+        <location filename="../options.ui" line="2146"/>
         <source>Filter file path:</source>
         <translation>Dosya yolunu süzgeçle:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="226"/>
+        <location filename="../options.ui" line="354"/>
         <source>transfer lists refresh interval:</source>
         <translation>aktarım listeleri yenileme süresi:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="246"/>
+        <location filename="../options.ui" line="374"/>
         <source>ms</source>
         <translation>ms</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1776"/>
+        <location filename="../options.ui" line="185"/>
+        <location filename="../options.ui" line="2368"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1829"/>
+        <location filename="../options.ui" line="2421"/>
         <source>RSS feeds refresh interval:</source>
         <translation>RSS beslemeleri yenileme süresi:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1849"/>
+        <location filename="../options.ui" line="2441"/>
         <source>minutes</source>
         <translation>dakika</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1873"/>
+        <location filename="../options.ui" line="2465"/>
         <source>Maximum number of articles per feed:</source>
         <translation>Besleme başına azami makale sayısı:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="351"/>
+        <location filename="../options.ui" line="603"/>
         <source>File system</source>
         <translation>Dosya sistemi</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1168"/>
+        <location filename="../options.ui" line="1568"/>
         <source>Remove finished torrents when their ratio reaches:</source>
         <translation>Tamamlanan torrentleri oranları erişince kaldır:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="154"/>
+        <location filename="../options.ui" line="282"/>
         <source>System default</source>
         <translation>Sistem varsayılanı</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="301"/>
+        <location filename="../options.ui" line="431"/>
         <source>Start minimized</source>
         <translation>Küçültülmüş başlat</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="512"/>
         <source>Action on double click in transfer lists</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation>Aktarım listelerine çift tıklandığında yapılacak işlem</translation>
+        <translation type="obsolete">Aktarım listelerine çift tıklandığında yapılacak işlem</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="520"/>
         <source>In download list:</source>
-        <translation>İndirilen listesinde:</translation>
+        <translation type="obsolete">İndirilen listesinde:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="580"/>
+        <location filename="../options.ui" line="484"/>
+        <location filename="../options.ui" line="527"/>
         <source>Pause/Start torrent</source>
         <translation>Torrenti duraklat/başlat</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="585"/>
+        <location filename="../options.ui" line="489"/>
+        <location filename="../options.ui" line="532"/>
         <source>Open destination folder</source>
         <translation>Hedef klasörü aç</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="590"/>
+        <location filename="../options.ui" line="494"/>
+        <location filename="../options.ui" line="537"/>
         <source>Display torrent properties</source>
         <translation>Torrent özelliklerini göster</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="572"/>
         <source>In seeding list:</source>
-        <translation>Gönderilen listesinde:</translation>
+        <translation type="obsolete">Gönderilen listesinde:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="505"/>
         <source>Folder scan interval:</source>
         <translation type="obsolete">Klasör tarama süresi:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="525"/>
         <source>seconds</source>
         <translation type="obsolete">saniye</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1053"/>
+        <location filename="../options.ui" line="1453"/>
         <source>Spoof Azureus to avoid ban (requires restart)</source>
         <translation>Yasaklamadan sakınmak için Azureus&apos;u kandır (yeniden başlatma gerektirir)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2074"/>
+        <location filename="../options.ui" line="170"/>
         <source>Web UI</source>
         <translation>Web KA</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2087"/>
+        <location filename="../options.ui" line="2208"/>
         <source>Enable Web User Interface</source>
         <translation>Web Kullanıcı Arayüzünü Etkinleştir</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2100"/>
+        <location filename="../options.ui" line="2221"/>
         <source>HTTP Server</source>
         <translation>HTTP Sunucu</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1782"/>
+        <location filename="../options.ui" line="2374"/>
         <source>Enable RSS support</source>
         <translation>RSS desteğini etkinleştir</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1792"/>
+        <location filename="../options.ui" line="2384"/>
         <source>RSS settings</source>
         <translation>RSS ayarları</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1921"/>
+        <location filename="../options.ui" line="793"/>
         <source>Enable queueing system</source>
         <translation>Sıralama sistemini etkinleştir</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1933"/>
+        <location filename="../options.ui" line="805"/>
         <source>Maximum active downloads:</source>
         <translation>Azami etkin indirilen:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1915"/>
+        <location filename="../options.ui" line="787"/>
         <source>Torrent queueing</source>
         <translation>Torrent kuyruğu</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2019"/>
+        <location filename="../options.ui" line="891"/>
         <source>Maximum active torrents:</source>
         <translation>Azami etkin torrent:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="207"/>
+        <location filename="../options.ui" line="335"/>
         <source>Display top toolbar</source>
         <translation>Üst araç çubuğunu göster</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1247"/>
+        <location filename="../options.ui" line="1640"/>
         <source>Search engine proxy settings</source>
         <translation>Arama motoru vekil ayarları</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1437"/>
+        <location filename="../options.ui" line="1830"/>
         <source>Bittorrent proxy settings</source>
         <translation>Bittorrent vekil ayarları</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1976"/>
+        <location filename="../options.ui" line="848"/>
         <source>Maximum active uploads:</source>
         <translation>Azami etkin gönderimler:</translation>
     </message>
@@ -1176,62 +1136,51 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation>qBittorrent %1 başladı.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="116"/>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
         <translation type="obsolete">Dikkat edin, telif hakkı olan materyalleri izinsiz paylaşmak yasalara aykırıdır.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="152"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;engellendi&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="238"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="obsolete">Fast resume verisi %1 torrent i için reddedildi, tekrar kontrol ediliyor...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="242"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="obsolete">Url seed araması bu url için başarılamadı: %1, mesaj: %2</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="895"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="obsolete">&apos;%1&apos; download listesine eklendi.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="897"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="obsolete">&apos;%1&apos; devam ettirildi. (fast resume)</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="905"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="obsolete">&apos;%1&apos; zaten download listesinde var.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="909"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="obsolete">Torrent dosyası çözümlenemiyor: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="910"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="obsolete">Bu dosya bozuk ya da torrent dosyası değil.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="924"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="obsolete">Verilen portların hiçbiri dinlenemedi.</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="948"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="obsolete">Download ediliyor &apos;%1&apos;, lütfen bekleyin...</translation>
@@ -1242,12 +1191,10 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation>Sütunu Gizle ya da Göster</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="218"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="obsolete">UPnP/NAT-PMP: Port mapping hatası, mesaj: %1</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="222"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="obsolete">UPnP/NAT-PMP: Port mapping başarıyla tamamlandı, mesaj: %1</translation>
     </message>
@@ -1260,17 +1207,34 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
 <context>
     <name>FilterParserThread</name>
     <message>
+        <location filename="../filterParserThread.h" line="97"/>
+        <location filename="../filterParserThread.h" line="214"/>
+        <location filename="../filterParserThread.h" line="282"/>
+        <location filename="../filterParserThread.h" line="294"/>
+        <location filename="../filterParserThread.h" line="308"/>
+        <location filename="../filterParserThread.h" line="324"/>
+        <location filename="../filterParserThread.h" line="332"/>
+        <location filename="../filterParserThread.h" line="340"/>
+        <location filename="../filterParserThread.h" line="353"/>
         <location filename="../filterParserThread.h" line="366"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>I/O Hatası</translation>
     </message>
     <message>
+        <location filename="../filterParserThread.h" line="97"/>
+        <location filename="../filterParserThread.h" line="214"/>
         <location filename="../filterParserThread.h" line="282"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>%1 okuma kipinde açılamadı.</translation>
     </message>
     <message>
+        <location filename="../filterParserThread.h" line="294"/>
+        <location filename="../filterParserThread.h" line="308"/>
+        <location filename="../filterParserThread.h" line="324"/>
+        <location filename="../filterParserThread.h" line="332"/>
+        <location filename="../filterParserThread.h" line="340"/>
+        <location filename="../filterParserThread.h" line="353"/>
         <location filename="../filterParserThread.h" line="366"/>
         <source>%1 is not a valid PeerGuardian P2B file.</source>
         <translation>%1 geçerli bir PeerGuardian P2B dosyası değil.</translation>
@@ -1279,7 +1243,7 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
 <context>
     <name>FinishedListDelegate</name>
     <message>
-        <location filename="../FinishedListDelegate.h" line="60"/>
+        <location filename="../FinishedListDelegate.h" line="62"/>
         <source>KiB/s</source>
         <translation>KB/s</translation>
     </message>
@@ -1299,13 +1263,11 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation>Boyut</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="43"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation type="obsolete">İlerleme</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="38"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
         <translation type="obsolete">DL Hızı</translation>
@@ -1317,41 +1279,35 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation>GÖN Hızı</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="45"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
         <translation type="obsolete">Seeds/Leechs</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="41"/>
         <source>Status</source>
         <translation type="obsolete">Durum</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="42"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation type="obsolete">ETA</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="102"/>
         <source>Finished</source>
         <comment>i.e: Torrent has finished downloading</comment>
         <translation type="obsolete">Tamamlandı</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="209"/>
         <source>Finished</source>
         <translation type="obsolete">Tamamlandı</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="240"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
         <translation type="obsolete">Yok</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="45"/>
+        <location filename="../FinishedTorrents.cpp" line="46"/>
         <source>Ratio</source>
         <translation>Oran</translation>
     </message>
@@ -1362,22 +1318,25 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation>Çekenler</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="405"/>
+        <location filename="../FinishedTorrents.cpp" line="45"/>
+        <source>Total uploaded</source>
+        <comment>i.e: Total amount of uploaded data</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FinishedTorrents.cpp" line="411"/>
         <source>Hide or Show Column</source>
         <translation>Sütunu Gizle veya Göster</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="270"/>
         <source>Incomplete torrent in seeding list</source>
         <translation type="obsolete">Gönderilen listesinde tamamlanmamış torrent</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="270"/>
         <source>It appears that the state of &apos;%1&apos; torrent changed from &apos;seeding&apos; to &apos;downloading&apos;. Would you like to move it back to download list? (otherwise the torrent will simply be deleted)</source>
         <translation type="obsolete">Görünüşe göre &apos;%1&apos; torrentinin durumu &apos;gönderilen&apos;den &apos;indirilen&apos;e değişmiş. Yeniden indirme listesine taşınmasını ister misiniz? (yoksa torrent silinecek)</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="47"/>
         <source>Priority</source>
         <translation type="obsolete">Öncelik</translation>
     </message>
@@ -1390,31 +1349,35 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation>Torrent Dosyasını Aç</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="696"/>
         <source> kb/s</source>
         <translation type="obsolete"> kb/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="696"/>
         <source>Unknown</source>
         <translation type="obsolete">Bilinmeyen</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1161"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="obsolete">Bu dosya bozuk ya da torrent dosyası değil.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1161"/>
         <source>Are you sure you want to delete all files in download list?</source>
         <translation type="obsolete">Download listesindeki bütün dosyaları silmek istediğinizden emin misiniz?</translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="675"/>
+        <location filename="../GUI.cpp" line="814"/>
+        <location filename="../GUI.cpp" line="821"/>
+        <location filename="../GUI.cpp" line="866"/>
         <location filename="../GUI.cpp" line="873"/>
         <source>&amp;Yes</source>
         <translation>&amp;Evet</translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="675"/>
+        <location filename="../GUI.cpp" line="814"/>
+        <location filename="../GUI.cpp" line="821"/>
+        <location filename="../GUI.cpp" line="866"/>
         <location filename="../GUI.cpp" line="873"/>
         <source>&amp;No</source>
         <translation>&amp;Hayır</translation>
@@ -1425,72 +1388,59 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation>İndirme listesindeki seçili öğeleri silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="798"/>
         <source>paused</source>
         <translation type="obsolete">duraklatıldı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="798"/>
         <source>started</source>
         <translation type="obsolete">başlatıldı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="798"/>
         <source>kb/s</source>
         <translation type="obsolete">kb/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1196"/>
+        <location filename="../GUI.cpp" line="1199"/>
         <source>Finished</source>
         <translation>Tamamlandı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="498"/>
         <source>Checking...</source>
         <translation type="obsolete">Kontrol ediliyor...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1411"/>
         <source>Connecting...</source>
         <translation type="obsolete">Bağlanılıyor...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="583"/>
         <source>Downloading...</source>
         <translation type="obsolete">Download ediliyor...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="583"/>
         <source>Download list cleared.</source>
         <translation type="obsolete">Download listesi temizlendi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1692"/>
         <source>All Downloads Paused.</source>
         <translation type="obsolete">Bütün Downloadlar Duraklatıldı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1751"/>
         <source>All Downloads Resumed.</source>
         <translation type="obsolete">Bütün Downloadlar Devam Ettirildi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1751"/>
         <source>DL Speed: </source>
         <translation type="obsolete"> DL Hızı:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="257"/>
         <source> started.</source>
         <translation type="obsolete"> başlatıldı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="462"/>
         <source>UP Speed: </source>
         <translation type="obsolete"> UP Hızı:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1217"/>
         <source>Couldn&apos;t create the directory:</source>
         <translation type="obsolete">Klasör yaratılamıyor:</translation>
     </message>
@@ -1500,275 +1450,228 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
         <translation>Torrent Dosyaları</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1043"/>
         <source>already in download list.</source>
         <comment>&lt;file&gt; already in download list.</comment>
         <translation type="obsolete">zaten download listesinde bulunuyor.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1033"/>
         <source>added to download list.</source>
         <translation type="obsolete">download listesine eklendi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1035"/>
         <source>resumed. (fast resume)</source>
         <translation type="obsolete">devam ettirildi. (fast resume)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1047"/>
         <source>Unable to decode torrent file:</source>
         <translation type="obsolete">Torrent dosyası çözülemiyor:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1001"/>
         <source>removed.</source>
         <comment>&lt;file&gt; removed.</comment>
         <translation type="obsolete">silindi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1338"/>
         <source>paused.</source>
         <comment>&lt;file&gt; paused.</comment>
         <translation type="obsolete">duraklatıldı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1292"/>
         <source>resumed.</source>
         <comment>&lt;file&gt; resumed.</comment>
         <translation type="obsolete">devam ettirildi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1292"/>
         <source>m</source>
         <comment>minutes</comment>
         <translation type="obsolete">d</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1292"/>
         <source>h </source>
         <comment>hours</comment>
         <translation type="obsolete">sa</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1292"/>
         <source>d </source>
         <comment>days</comment>
         <translation type="obsolete">g</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1568"/>
         <source>Listening on port: </source>
         <translation type="obsolete"> Port dinleniyor:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="257"/>
         <source>qBittorrent </source>
         <translation type="obsolete"> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="673"/>
+        <location filename="../GUI.cpp" line="1438"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="812"/>
+        <location filename="../GUI.cpp" line="819"/>
+        <location filename="../GUI.cpp" line="864"/>
         <location filename="../GUI.cpp" line="871"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Emin misiniz? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="462"/>
         <source>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </source>
         <translation type="obsolete"> &lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Hızı:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="462"/>
         <source> :: By Christophe Dumez :: Copyright (c) 2006</source>
         <translation type="obsolete">.: Cristophe Dumez tarafından hazırlanmıştır :: Telif Hakkı (c) 2006</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1395"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Online</source>
         <translation type="obsolete">&lt;b&gt;Bağlantı Durumu:&lt;/b&gt;&lt;br&gt; Bağlı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1400"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Firewalled?&lt;br&gt;&lt;i&gt;No incoming connections...&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;Bağlantı Durumu:&lt;/b&gt;&lt;br&gt;Güvenlik Duvarınız mı açık?&lt;br&gt;&lt;i&gt;Gelen bağlantı yok...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1404"/>
         <source>&lt;b&gt;Connection Status:&lt;/b&gt;&lt;br&gt;Offline&lt;br&gt;&lt;i&gt;No peers found...&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;Bağlantı Durumu:&lt;/b&gt;&lt;br&gt;Bağlı Değil&lt;br&gt;&lt;i&gt;Kullanıcı bulunamadı...&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1404"/>
         <source>/s</source>
         <comment>&lt;unit&gt;/seconds</comment>
         <translation type="obsolete">/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1321"/>
         <source> has finished downloading.</source>
         <translation type="obsolete"> download tamamlandı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1691"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="obsolete">Verilen portların hiçbiri dinlenemedi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1129"/>
         <source>None</source>
         <translation type="obsolete">Yok</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1451"/>
         <source>Empty search pattern</source>
         <translation type="obsolete">Boş arama sorgusu</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1451"/>
         <source>Please type a search pattern first</source>
         <translation type="obsolete">Lütfen önce bir arama sorgusu girin</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1457"/>
         <source>No seach engine selected</source>
         <translation type="obsolete">Arama motoru seçilmedi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1469"/>
         <source>You must select at least one search engine.</source>
         <translation type="obsolete">En az bir arama motoru seçmelisiniz.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1509"/>
         <source>Searching...</source>
         <translation type="obsolete">Aranıyor...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1509"/>
         <source>Could not create search plugin.</source>
         <translation type="obsolete">Arama eklentisi oluşturulamıyor.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1509"/>
         <source>Stopped</source>
         <translation type="obsolete">Durdu</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1330"/>
         <source>I/O Error</source>
         <translation type="obsolete">I/O Hatası</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1330"/>
         <source>Couldn&apos;t create temporary file on hard drive.</source>
         <translation type="obsolete">Sabit diskte geçici klasör oluşturulamıyor.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1330"/>
         <source>Torrent file URL</source>
         <translation type="obsolete">Torrent dosya URLsi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1330"/>
         <source>KB/s</source>
         <translation type="obsolete">KB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1330"/>
         <source> KB/s</source>
         <translation type="obsolete"> KB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1330"/>
         <source>Downloading using HTTP: </source>
         <translation type="obsolete"> HTTP kullanılarak download ediliyor:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1330"/>
         <source>Torrent file URL:</source>
         <translation type="obsolete">Torrent dosyası URLsi:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1330"/>
         <source>A http download failed...</source>
         <translation type="obsolete">Bir http download u başarısız...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1330"/>
         <source>A http download failed, reason: </source>
         <translation type="obsolete"> Bir http download u başarısız, neden:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="814"/>
         <source>Are you sure you want to quit? -- qBittorrent</source>
         <translation type="obsolete">Çıkmak istediğinize emin misiniz? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="814"/>
         <source>Are you sure you want to quit qbittorrent?</source>
         <translation type="obsolete">qBittorrentten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="814"/>
         <source>Timed out</source>
         <translation type="obsolete">Zaman aşıldı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="814"/>
         <source>Error during search...</source>
         <translation type="obsolete">Arama yapılırken hata...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="462"/>
         <source>KiB/s</source>
         <translation type="obsolete">KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="462"/>
         <source> KiB/s</source>
         <translation type="obsolete"> KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="462"/>
         <source>Stalled</source>
         <translation type="obsolete">Hız kaybetti</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1716"/>
         <source>Search is finished</source>
         <translation type="obsolete">Arama tamamlandı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1722"/>
         <source>An error occured during search...</source>
         <translation type="obsolete">Arama yapılırken bir hata oluştu...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1725"/>
         <source>Search aborted</source>
         <translation type="obsolete">Arama iptal edildi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1728"/>
         <source>Search returned no results</source>
         <translation type="obsolete">Arama sonuç bulamadı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1728"/>
         <source>Search is Finished</source>
         <translation type="obsolete">Arama Tamamlandı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1704"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation type="obsolete">Arama plugini güncellemesi -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1688"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -1779,128 +1682,104 @@ Changelog:
 </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1702"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation type="obsolete">Üzgünüz, güncelleme sunucusu geçici olarak servis dışı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1705"/>
         <source>Your search plugin is already up to date.</source>
         <translation type="obsolete">Arama plugini zaten güncel durumda.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1545"/>
         <source>Results</source>
         <translation type="obsolete">Sonuçlar</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="203"/>
         <source>Name</source>
         <translation type="obsolete">İsim</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="204"/>
         <source>Size</source>
         <translation type="obsolete">Boyut</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="106"/>
         <source>Progress</source>
         <translation type="obsolete">İlerleme</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="107"/>
         <source>DL Speed</source>
         <translation type="obsolete">DL Hızı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="108"/>
         <source>UP Speed</source>
         <translation type="obsolete">UP Hızı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="134"/>
         <source>Status</source>
         <translation type="obsolete">Durum</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="111"/>
         <source>ETA</source>
         <translation type="obsolete">ETA</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="205"/>
         <source>Seeders</source>
         <translation type="obsolete">Seeders</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="206"/>
         <source>Leechers</source>
         <translation type="obsolete">Leechers</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="203"/>
         <source>Search engine</source>
         <translation type="obsolete">Arama motoru</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="528"/>
         <source>Stalled</source>
         <comment>state of a torrent whose DL Speed is 0</comment>
         <translation type="obsolete">Hız kaybetti</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1477"/>
         <source>Paused</source>
         <translation type="obsolete">Duraklatıldı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="418"/>
         <source>Preview process already running</source>
         <translation type="obsolete">Önizleme işlemi zaten çalışıyor</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="418"/>
         <source>There is already another preview process running.
 Please close the other one first.</source>
         <translation type="obsolete">Zaten başka bir önizleme işlemi çalışıyor.
 Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2325"/>
         <source>Couldn&apos;t download</source>
         <comment>Couldn&apos;t download &lt;file&gt;</comment>
         <translation type="obsolete">Download edilemedi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2325"/>
         <source>reason:</source>
         <comment>Reason why the download failed</comment>
         <translation type="obsolete">neden:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2344"/>
         <source>Downloading</source>
         <comment>Example: Downloading www.example.com/test.torrent</comment>
         <translation type="obsolete">Download ediliyor</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="2344"/>
         <source>Please wait...</source>
         <translation type="obsolete">Lütfen bekleyin...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1058"/>
         <source>Transfers</source>
         <translation type="obsolete">Aktarımlar</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="830"/>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">qBittorrent ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1005"/>
         <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
         <translation type="obsolete">Seçilenleri download listesinden ve sabit diskinizden silmek istediğinize emin misiniz?</translation>
     </message>
@@ -1910,123 +1789,110 @@ Lütfen önce diğerini kapatın.</translation>
         <translation>İndirme tamamlandı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1323"/>
         <source> has finished downloading.</source>
         <comment>&lt;filename&gt; has finished downloading.</comment>
         <translation type="obsolete"> download tamamlandı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1719"/>
         <source>Search Engine</source>
         <translation type="obsolete">Arama Motoru</translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="73"/>
         <location filename="../GUI.cpp" line="931"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1453"/>
+        <location filename="../GUI.cpp" line="214"/>
+        <location filename="../GUI.cpp" line="1456"/>
         <source>Connection status:</source>
         <translation>Bağlantı durumu:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1474"/>
         <source>Offline</source>
         <translation type="obsolete">Çevrimdışı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1474"/>
         <source>No peers found...</source>
         <translation type="obsolete">Kullanıcı bulunamadı...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="124"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation type="obsolete">İsim</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="125"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation type="obsolete">Boyut</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="126"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation type="obsolete">İlerleme</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="127"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
         <translation type="obsolete">DL Hızı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="128"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation type="obsolete">UP Hızı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="129"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
         <translation type="obsolete">Seeds/Leechs</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="131"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation type="obsolete">ETA</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="201"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation type="obsolete">Seeders</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="202"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
         <translation type="obsolete">Leechers</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="203"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
         <translation type="obsolete">qBittorrent %1 başladı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1438"/>
+        <location filename="../GUI.cpp" line="1433"/>
+        <location filename="../GUI.cpp" line="1441"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>İND hızı: %1 KB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1441"/>
+        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1444"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>GÖN hızı: %1 KB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="499"/>
         <source>Finished</source>
         <comment>i.e: Torrent has finished downloading</comment>
         <translation type="obsolete">Tamamlandı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="558"/>
         <source>Checking...</source>
         <comment>i.e: Checking already downloaded parts...</comment>
         <translation type="obsolete">Kontrol ediliyor...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="588"/>
         <source>Stalled</source>
         <comment>i.e: State of a torrent whose download speed is 0kb/s</comment>
         <translation type="obsolete">Hız kaybetti</translation>
@@ -2037,76 +1903,65 @@ Lütfen önce diğerini kapatın.</translation>
         <translation>Çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="869"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation type="obsolete">&apos;%1&apos; silindi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1146"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="obsolete">&apos;%1&apos; download listesine eklendi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1148"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="obsolete">&apos;%1&apos; devam ettirildi. (fast resume)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1156"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="obsolete">&apos;%1&apos; zaten download listesinde var.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1160"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="obsolete">Torrent dosyası çözümlenemiyor: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1234"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
         <translation type="obsolete">Yok</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1148"/>
         <source>Listening on port: %1</source>
         <comment>e.g: Listening on port: 1666</comment>
         <translation type="obsolete">Port dinleniyor: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1278"/>
         <source>All downloads were paused.</source>
         <translation type="obsolete">Bütün downloadlar duraklatıldı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1349"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>xxx.avi paused.</comment>
         <translation type="obsolete">&apos;%1&apos; duraklatıldı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1388"/>
         <source>Connecting...</source>
         <comment>i.e: Connecting to the tracker...</comment>
         <translation type="obsolete">Bağlanılıyor...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1382"/>
         <source>All downloads were resumed.</source>
         <translation type="obsolete">Bütün downloadlar devam ettirildi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1408"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation type="obsolete">&apos;%1&apos; devam ettirildi.</translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="364"/>
         <location filename="../GUI.cpp" line="368"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
@@ -2125,49 +1980,42 @@ Lütfen önce diğerini kapatın.</translation>
         <translation>%1 okunmaya veya yazılmaya çalışılırken bir hata oluştu. Disk muhtemelen dolu, indirme duraklatıldı</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1450"/>
+        <location filename="../GUI.cpp" line="1453"/>
         <source>Connection Status:</source>
         <translation>Bağlantı Durumu:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1450"/>
+        <location filename="../GUI.cpp" line="1453"/>
         <source>Online</source>
         <translation>Çevrimiçi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1470"/>
         <source>Firewalled?</source>
         <comment>i.e: Behind a firewall/router?</comment>
         <translation type="obsolete">Firewall açık mı?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1470"/>
         <source>No incoming connections...</source>
         <translation type="obsolete">Gelen bağlantı yok...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1469"/>
         <source>No search engine selected</source>
         <translation type="obsolete">Arama motoru seçildi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1701"/>
         <source>Search plugin update</source>
         <translation type="obsolete">Eklenti güncellemesi ara</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1730"/>
         <source>Search has finished</source>
         <translation type="obsolete">Arama bitti</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1734"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation type="obsolete">Sonuçlar</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1778"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="obsolete">Download ediliyor &apos;%1&apos;, lütfen bekleyin...</translation>
@@ -2189,7 +2037,8 @@ Lütfen önce diğerini kapatın.</translation>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1191"/>
+        <location filename="../GUI.cpp" line="140"/>
+        <location filename="../GUI.cpp" line="1194"/>
         <source>Downloads</source>
         <translation>İndirilenler</translation>
     </message>
@@ -2206,48 +2055,48 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>Seçilenleri tamamlanan listesinden silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="965"/>
+        <location filename="../GUI.cpp" line="968"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent&apos;in bağlandığı kapı: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1056"/>
+        <location filename="../GUI.cpp" line="1059"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT desteği [AÇIK], kapı: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1062"/>
+        <location filename="../GUI.cpp" line="1061"/>
+        <location filename="../GUI.cpp" line="1065"/>
         <source>DHT support [OFF]</source>
         <translation>DHT desteği [KAPALI]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1065"/>
+        <location filename="../GUI.cpp" line="1068"/>
         <source>PeX support [ON]</source>
         <translation>EşD desteği [AÇIK]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1054"/>
         <source>PeX support [OFF]</source>
         <translation type="obsolete">EşD desteği [KAPALI]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="987"/>
+        <location filename="../GUI.cpp" line="990"/>
         <source>UPnP support [ON]</source>
         <translation>UPnP desteği [AÇIK]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1084"/>
+        <location filename="../GUI.cpp" line="1087"/>
         <source>Encryption support [ON]</source>
         <translation>Şifreleme desteği [AÇIK]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1092"/>
         <source>Encryption support [FORCED]</source>
         <translation>Şifreleme desteği [ZORLANDI]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1094"/>
+        <location filename="../GUI.cpp" line="1097"/>
         <source>Encryption support [OFF]</source>
         <translation>Şifreleme desteği [KAPALI]</translation>
     </message>
@@ -2290,7 +2139,6 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>Seçilenleri tamamlanan listesinden ve sabit diskinizden silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="809"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation type="obsolete">&apos;%1&apos; kalıcı olarak kaldırıldı.</translation>
@@ -2308,64 +2156,68 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="990"/>
+        <location filename="../GUI.cpp" line="993"/>
         <source>UPnP support [OFF]</source>
         <translation>UPnP desteği [KAPALI]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="995"/>
+        <location filename="../GUI.cpp" line="998"/>
         <source>NAT-PMP support [ON]</source>
         <translation>NAT-PMP desteği [AÇIK]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="998"/>
+        <location filename="../GUI.cpp" line="1001"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>NAT-PMP desteği [KAPALI]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1069"/>
+        <location filename="../GUI.cpp" line="1072"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Yerel Eş Keşfi [AÇIK]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1072"/>
+        <location filename="../GUI.cpp" line="1075"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Yerel Eş Keşfi desteği [KAPALI]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="815"/>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
         <comment>%1 is a file name</comment>
         <translation type="obsolete">&apos;%1&apos; kaldırıldı çünkü oranı ayarladığınız maksimum değere ulaştı.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1409"/>
+        <location filename="../GUI.cpp" line="1412"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (İND: %2KB/s, GÖN: %3KB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1386"/>
+        <location filename="../GUI.cpp" line="215"/>
+        <location filename="../GUI.cpp" line="1389"/>
         <source>DL: %1 KiB/s</source>
         <translation>İND: %1 KB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1387"/>
+        <location filename="../GUI.cpp" line="216"/>
+        <location filename="../GUI.cpp" line="1390"/>
         <source>UP: %1 KiB/s</source>
         <translation>GÖN: %1 KB/s</translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="217"/>
         <location filename="../GUI.cpp" line="327"/>
         <source>Ratio: %1</source>
         <translation>Oran: %1</translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="218"/>
         <location filename="../GUI.cpp" line="329"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 düğüm</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1453"/>
+        <location filename="../GUI.cpp" line="214"/>
+        <location filename="../GUI.cpp" line="1456"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Doğrudan bağlantı yok. Bu, ağ yapılandırma problemi olduğunu gösteriyor.</translation>
     </message>
@@ -2375,7 +2227,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>Gönderilenler</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1530"/>
+        <location filename="../GUI.cpp" line="1533"/>
         <source>Options were saved successfully.</source>
         <translation>Seçenekler başarıyla kaydedildi.</translation>
     </message>
@@ -2383,67 +2235,54 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../GUI.cpp" line="1300"/>
         <source>qBittorrent :: By Christophe Dumez</source>
         <translation type="obsolete">qBittorrent :: By Christophe Dumez</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="305"/>
         <source>Log:</source>
         <translation type="obsolete">Log:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="52"/>
         <source>Total DL Speed:</source>
         <translation type="obsolete">Toplam DL Hızı:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="52"/>
         <source>Kb/s</source>
         <translation type="obsolete">Kb/s</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="156"/>
         <source>Total UP Speed:</source>
         <translation type="obsolete">Toplam UP Hızı:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="156"/>
         <source>Name</source>
         <translation type="obsolete">İsim</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="156"/>
         <source>Size</source>
         <translation type="obsolete">Boyut</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="156"/>
         <source>% DL</source>
         <translation type="obsolete">% DL</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="156"/>
         <source>DL Speed</source>
         <translation type="obsolete">DL Hızı</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="156"/>
         <source>UP Speed</source>
         <translation type="obsolete">UP Hızı</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="156"/>
         <source>Status</source>
         <translation type="obsolete">Durum</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="156"/>
         <source>ETA</source>
         <translation type="obsolete">ETA</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="373"/>
         <source>&amp;Options</source>
         <translation type="obsolete">&amp;Ayarlar</translation>
     </message>
@@ -2513,12 +2352,10 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>Belgeleme</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="410"/>
         <source>Connexion Status</source>
         <translation type="obsolete">Bağlantı Durumu</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="410"/>
         <source>Delete All</source>
         <translation type="obsolete">Hepsini Sil</translation>
     </message>
@@ -2528,62 +2365,50 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>Torrent Özellikleri</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="370"/>
         <source>Connection Status</source>
         <translation type="obsolete">Bağlantı Durumu</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="36"/>
         <source>Downloads</source>
         <translation type="obsolete">Downloadlar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="488"/>
         <source>Search</source>
         <translation type="obsolete">Arama</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="465"/>
         <source>Search Pattern:</source>
         <translation type="obsolete">Arama Sorgusu:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="538"/>
         <source>Status:</source>
         <translation type="obsolete">Durum:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="568"/>
         <source>Stopped</source>
         <translation type="obsolete">Durdu</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="386"/>
         <source>Search Engines</source>
         <translation type="obsolete">Arama Motorları</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="627"/>
         <source>Results:</source>
         <translation type="obsolete">Sonuçlar:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="504"/>
         <source>Stop</source>
         <translation type="obsolete">Dur</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="504"/>
         <source>Seeds</source>
         <translation type="obsolete">Seeds</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="504"/>
         <source>Leechers</source>
         <translation type="obsolete">Leechers</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="504"/>
         <source>Search Engine</source>
         <translation type="obsolete">Arama Motoru</translation>
     </message>
@@ -2593,17 +2418,14 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>Adresten indir</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="685"/>
         <source>Download</source>
         <translation type="obsolete">Download</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="695"/>
         <source>Clear</source>
         <translation type="obsolete">Temizle</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="185"/>
         <source>KiB/s</source>
         <translation type="obsolete">KiB/s</translation>
     </message>
@@ -2613,22 +2435,18 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>Torrent oluştur</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="380"/>
         <source>Ratio: </source>
         <translation type="obsolete"> Oran:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="715"/>
         <source>Update search plugin</source>
         <translation type="obsolete">Arama pluginini güncelle</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="110"/>
         <source>Session ratio: </source>
         <translation type="obsolete"> Oturum oranı:</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="36"/>
         <source>Transfers</source>
         <translation type="obsolete">Aktarımlar</translation>
     </message>
@@ -2701,33 +2519,36 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../PropListDelegate.h" line="136"/>
         <source>False</source>
         <translation type="obsolete">Hayır</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="135"/>
         <source>True</source>
         <translation type="obsolete">Evet</translation>
     </message>
     <message>
+        <location filename="../PropListDelegate.h" line="87"/>
         <location filename="../PropListDelegate.h" line="119"/>
         <source>Ignored</source>
         <translation>Önemsiz</translation>
     </message>
     <message>
+        <location filename="../PropListDelegate.h" line="90"/>
+        <location filename="../PropListDelegate.h" line="100"/>
         <location filename="../PropListDelegate.h" line="120"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normal</translation>
     </message>
     <message>
+        <location filename="../PropListDelegate.h" line="93"/>
         <location filename="../PropListDelegate.h" line="121"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Yüksek</translation>
     </message>
     <message>
+        <location filename="../PropListDelegate.h" line="96"/>
         <location filename="../PropListDelegate.h" line="122"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
@@ -2737,7 +2558,6 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
 <context>
     <name>QTextEdit</name>
     <message>
-        <location filename="../PropListDelegate.h" line="122"/>
         <source>Clear</source>
         <translation type="obsolete">Temizle</translation>
     </message>
@@ -2765,7 +2585,6 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>Yenile</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="219"/>
         <source>Create</source>
         <translation type="obsolete">Oluştur</translation>
     </message>
@@ -2858,16 +2677,25 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>Bu akımı listeden silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
+        <location filename="../rss_imp.cpp" line="157"/>
+        <location filename="../rss_imp.cpp" line="180"/>
+        <location filename="../rss_imp.cpp" line="194"/>
         <location filename="../rss_imp.cpp" line="291"/>
         <source>Description:</source>
         <translation>Betimleme:</translation>
     </message>
     <message>
+        <location filename="../rss_imp.cpp" line="157"/>
+        <location filename="../rss_imp.cpp" line="180"/>
+        <location filename="../rss_imp.cpp" line="194"/>
         <location filename="../rss_imp.cpp" line="291"/>
         <source>url:</source>
         <translation>adres:</translation>
     </message>
     <message>
+        <location filename="../rss_imp.cpp" line="157"/>
+        <location filename="../rss_imp.cpp" line="180"/>
+        <location filename="../rss_imp.cpp" line="194"/>
         <location filename="../rss_imp.cpp" line="291"/>
         <source>Last refresh:</source>
         <translation>Son yenileme:</translation>
@@ -2904,13 +2732,13 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="447"/>
+        <location filename="../rss.h" line="458"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>%1 önce</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="446"/>
+        <location filename="../rss.h" line="457"/>
         <source>Never</source>
         <translation>Asla</translation>
     </message>
@@ -2918,31 +2746,26 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
 <context>
     <name>SearchEngine</name>
     <message>
-        <location filename="../searchEngine.cpp" line="51"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation type="obsolete">İsim</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="52"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation type="obsolete">Boyut</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="53"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation type="obsolete">Seeders</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="54"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
         <translation type="obsolete">Leechers</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="55"/>
         <source>Search engine</source>
         <translation type="obsolete">Arama motoru</translation>
     </message>
@@ -2957,16 +2780,15 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>Lütfen önce bir arama örüntüsü girin</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="286"/>
         <source>No search engine selected</source>
         <translation type="obsolete">Arama motoru seçildi</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="286"/>
         <source>You must select at least one search engine.</source>
         <translation type="obsolete">En az bir arama motoru seçmelisiniz.</translation>
     </message>
     <message>
+        <location filename="../searchEngine.cpp" line="185"/>
         <location filename="../searchEngine.cpp" line="229"/>
         <source>Results</source>
         <translation>Sonuçlar</translation>
@@ -2977,12 +2799,10 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>Aranıyor...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="469"/>
         <source>Search plugin update -- qBittorrent</source>
         <translation type="obsolete">Arama plugini güncellemesi -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="448"/>
         <source>Search plugin can be updated, do you want to update it?
 
 Changelog:
@@ -2993,32 +2813,26 @@ Changelog:
 </translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="449"/>
         <source>&amp;Yes</source>
         <translation type="obsolete">&amp;Evet</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="449"/>
         <source>&amp;No</source>
         <translation type="obsolete">&amp;Hayır</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="465"/>
         <source>Search plugin update</source>
         <translation type="obsolete">Eklenti güncellemesi ara</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="465"/>
         <source>qBittorrent</source>
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="466"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation type="obsolete">Üzgünüz, güncelleme sunucusu geçici olarak servis dışı.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="470"/>
         <source>Your search plugin is already up to date.</source>
         <translation type="obsolete">Arama plugini zaten güncel durumda.</translation>
     </message>
@@ -3028,6 +2842,7 @@ Changelog:
         <translation>Arama Motoru</translation>
     </message>
     <message>
+        <location filename="../searchEngine.cpp" line="300"/>
         <location filename="../searchEngine.cpp" line="311"/>
         <source>Search has finished</source>
         <translation>Arama bitti</translation>
@@ -3107,82 +2922,66 @@ Changelog:
 <context>
     <name>Ui</name>
     <message>
-        <location filename="../trackersAdd.ui" line="19"/>
         <source>I would like to thank the following people who volonteered to translate qBittorrent:</source>
         <translation type="obsolete">qBittorrent için gönüllü olarak çevirmenlik yapanlara teşekkürlerimi sunarım:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="67"/>
         <source>Please contact me if you would like to translate qBittorrent to your own language.</source>
         <translation type="obsolete">Eğer qBittorrent i kendi dilinize çevirmek istiyorsanız lütfen benimle iletişim kurun.</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="67"/>
         <source>I would like to thank sourceforge.net for hosting qBittorrent project.</source>
         <translation type="obsolete">qBittorrent projesini barındırdıkları için sourceforge.net e teşekkürlerimi sunarım.</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="38"/>
         <source>qBittorrent </source>
         <translation type="obsolete"> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="44"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
         <translation type="obsolete">qBittorrent için gönüllü olarak çevirmenlik yapanlara teşekkürlerimi sunarım:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="44"/>
         <source>&lt;ul&gt;&lt;li&gt;I would like to thank sourceforge.net for hosting qBittorrent project.&lt;/li&gt;</source>
         <translation type="obsolete">&lt;ul&gt;&lt;li&gt;qBittorrent projesini barındırdıkları için sourceforge.net e teşekkürlerimi sunarım.&lt;/li&gt;</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="44"/>
         <source>&lt;li&gt;I also like to thank Jeffery Fernandez (developer@jefferyfernandez.id.au), our RPM packager, for his great work.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation type="obsolete">&lt;li&gt;RPM paketleyicimiz olan Jeffery Fernandez (developer@jefferyfernandez.id.au) e de ayrıca üstün çalışmalarından dolayı teşekkürlerimi sunarım.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
         <source>Preview impossible</source>
         <translation type="obsolete">Önizleme yapılamıyor</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="126"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation type="obsolete">Üzgünüz, bu dosyaya önizleme yapılamıyor</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="98"/>
         <source>Name</source>
         <translation type="obsolete">İsim</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="99"/>
         <source>Size</source>
         <translation type="obsolete">Boyut</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="100"/>
         <source>Progress</source>
         <translation type="obsolete">İlerleme</translation>
     </message>
     <message>
-        <location filename="../downloadFromURLImp.h" line="64"/>
         <source>No URL entered</source>
         <translation type="obsolete">URL girilmedi</translation>
     </message>
     <message>
-        <location filename="../downloadFromURLImp.h" line="64"/>
         <source>Please type at least one URL.</source>
         <translation type="obsolete">Lütfen en az bir URL girin.</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="37"/>
         <source>qBittorrent</source>
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="68"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="obsolete">Eğer qBittorrent i kendi dilinize çevirmek isterseniz benimle iletişim kurun.</translation>
     </message>
@@ -3228,17 +3027,14 @@ Changelog:
         <translation>Torrent içeriği:</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="95"/>
         <source>File name</source>
         <translation type="obsolete">Dosya adı</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="100"/>
         <source>File size</source>
         <translation type="obsolete">Dosya boyutu</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="105"/>
         <source>Selected</source>
         <translation type="obsolete">Seçildi</translation>
     </message>
@@ -3263,17 +3059,14 @@ Changelog:
         <translation>Vazgeç</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="167"/>
         <source>select</source>
         <translation type="obsolete">Seç</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="188"/>
         <source>Unselect</source>
         <translation type="obsolete">Seçimi Kaldır</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="183"/>
         <source>Select</source>
         <translation type="obsolete">Seç</translation>
     </message>
@@ -3311,6 +3104,7 @@ Changelog:
 <context>
     <name>authentication</name>
     <message>
+        <location filename="../login.ui" line="16"/>
         <location filename="../login.ui" line="66"/>
         <source>Tracker authentication</source>
         <translation>İzleyici kimlik denetimi</translation>
@@ -3379,36 +3173,38 @@ Changelog:
         <translation>&apos;%1&apos; kaldırıldı.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="369"/>
         <source>&apos;%1&apos; paused.</source>
         <comment>e.g: xxx.avi paused.</comment>
         <translation type="obsolete">&apos;%1&apos; duraklatıldı.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="387"/>
         <source>&apos;%1&apos; resumed.</source>
         <comment>e.g: xxx.avi resumed.</comment>
         <translation type="obsolete">&apos;%1&apos; devam ettirildi.</translation>
     </message>
     <message>
+        <location filename="../bittorrent.cpp" line="413"/>
         <location filename="../bittorrent.cpp" line="416"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; zaten indirme listesinde var.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="515"/>
+        <location filename="../bittorrent.cpp" line="514"/>
+        <location filename="../bittorrent.cpp" line="519"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; devam ettirildi. (hızlı devam ettir)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="517"/>
+        <location filename="../bittorrent.cpp" line="516"/>
+        <location filename="../bittorrent.cpp" line="521"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; indirme listesine eklendi.</translation>
     </message>
     <message>
+        <location filename="../bittorrent.cpp" line="381"/>
         <location filename="../bittorrent.cpp" line="385"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
@@ -3420,44 +3216,44 @@ Changelog:
         <translation>Bu dosya bozuk ya da torrent dosyası değil.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="850"/>
+        <location filename="../bittorrent.cpp" line="854"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt;, &lt;i&gt;IP süzgeciniz tarafından engellendi&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="852"/>
+        <location filename="../bittorrent.cpp" line="856"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt;, &lt;i&gt;bozuk parçalar sebebiyle engellendi&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1141"/>
+        <location filename="../bittorrent.cpp" line="1179"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Verilen kapıların hiçbiri tanınmadı.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1173"/>
+        <location filename="../bittorrent.cpp" line="1211"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Kapı haritalama hatası, ileti: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1178"/>
+        <location filename="../bittorrent.cpp" line="1216"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Kapı haritalama başarıyla tamamlandı, ileti: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1193"/>
+        <location filename="../bittorrent.cpp" line="1231"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Hızlı devam ettirme verisi %1 torrenti için reddedildi, yeniden denetleniyor...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1198"/>
+        <location filename="../bittorrent.cpp" line="1236"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Gönderen adresi araması bu adres için başarılamadı: %1, ileti: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1256"/>
+        <location filename="../bittorrent.cpp" line="1294"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos; indiriliyor, lütfen bekleyin...</translation>
@@ -3466,32 +3262,26 @@ Changelog:
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../createtorrent.ui" line="51"/>
         <source>Create Torrent file</source>
         <translation type="obsolete">Torrent dosyası oluştur</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="517"/>
         <source>Destination torrent file:</source>
         <translation type="obsolete">Kaynak torrent dosyası:</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="93"/>
         <source>Input file or directory:</source>
         <translation type="obsolete">Girdi dosyası veya klasör:</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="93"/>
         <source>Comment:</source>
         <translation type="obsolete">Yorum:</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="538"/>
         <source>...</source>
         <translation type="obsolete">...</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="578"/>
         <source>Create</source>
         <translation type="obsolete">Oluştur</translation>
     </message>
@@ -3501,12 +3291,10 @@ Changelog:
         <translation>Vazgeç</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="534"/>
         <source>Announce url (Tracker):</source>
         <translation type="obsolete">İlan URLsi (Tracker):</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="176"/>
         <source>Directory</source>
         <translation type="obsolete">Klasör</translation>
     </message>
@@ -3516,22 +3304,18 @@ Changelog:
         <translation>Torrent Oluşturma Aracı</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="83"/>
         <source>&lt;center&gt;Destination torrent file:&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Kaynak Torrent dosyası:&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="99"/>
         <source>&lt;center&gt;Input file or directory:&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Girdi dosyası ya da klasörü:&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="115"/>
         <source>&lt;center&gt;Announce url:&lt;br&gt;(One per line)&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Announce url:&lt;br&gt;(Satır başına bir tane)&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="125"/>
         <source>&lt;center&gt;Comment:&lt;/center&gt;</source>
         <translation type="obsolete">&lt;center&gt;Yorum:&lt;/center&gt;</translation>
     </message>
@@ -3649,17 +3433,14 @@ Changelog:
         <translation>Torrent Dosyaları</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="61"/>
         <source>Select input directory or file</source>
         <translation type="obsolete">Girdi klasörü veya dosyası seç</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="156"/>
         <source>No destination path set</source>
         <translation type="obsolete">Kaynak yolu seçilmemiş</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="156"/>
         <source>Please type a destination path first</source>
         <translation type="obsolete">Lütfen önce bir kaynak yolu seçin</translation>
     </message>
@@ -3674,16 +3455,16 @@ Changelog:
         <translation>Lütfen önce bir girdi yolu yazın</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="99"/>
         <source>Input path does not exist</source>
         <translation type="obsolete">Kayıt yolu bulunamadı</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="99"/>
         <source>Please type a correct input path first</source>
         <translation type="obsolete">Lütfen önce düzgün bir girdi yolu seçin</translation>
     </message>
     <message>
+        <location filename="../createtorrent_imp.cpp" line="177"/>
+        <location filename="../createtorrent_imp.cpp" line="188"/>
         <location filename="../createtorrent_imp.cpp" line="198"/>
         <source>Torrent creation</source>
         <translation>Torrent oluşturma</translation>
@@ -3694,7 +3475,6 @@ Changelog:
         <translation>Torrent başarıyla oluşturuldu:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="99"/>
         <source>Please type a valid input path first</source>
         <translation type="obsolete">Lütfen önce geçerli bir kayıt yolu seçin</translation>
     </message>
@@ -3796,32 +3576,26 @@ Changelog:
         <translation>Ara</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="66"/>
         <source>Total DL Speed:</source>
         <translation type="obsolete">Toplam DL Hızı:</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="199"/>
         <source>KiB/s</source>
         <translation type="obsolete">KiB/s</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="124"/>
         <source>Session ratio: </source>
         <translation type="obsolete"> Oturum oranı:</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="170"/>
         <source>Total UP Speed:</source>
         <translation type="obsolete">Toplam UP Hızı:</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="76"/>
         <source>Log</source>
         <translation type="obsolete">Log</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="117"/>
         <source>IP filter</source>
         <translation type="obsolete">IP filtresi</translation>
     </message>
@@ -3841,7 +3615,6 @@ Changelog:
         <translation>Sil</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="167"/>
         <source>Clear</source>
         <translation type="obsolete">Temizle</translation>
     </message>
@@ -4007,11 +3780,16 @@ Changelog:
 <context>
     <name>engineSelectDlg</name>
     <message>
+        <location filename="../engineSelectDlg.cpp" line="135"/>
+        <location filename="../engineSelectDlg.cpp" line="219"/>
         <location filename="../engineSelectDlg.cpp" line="314"/>
         <source>True</source>
         <translation>Evet</translation>
     </message>
     <message>
+        <location filename="../engineSelectDlg.cpp" line="138"/>
+        <location filename="../engineSelectDlg.cpp" line="185"/>
+        <location filename="../engineSelectDlg.cpp" line="232"/>
         <location filename="../engineSelectDlg.cpp" line="316"/>
         <source>False</source>
         <translation>Hayır</translation>
@@ -4041,16 +3819,36 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Arama eklentilerini seç</translation>
     </message>
     <message>
+        <location filename="../engineSelectDlg.cpp" line="538"/>
         <location filename="../engineSelectDlg.cpp" line="540"/>
         <source>qBittorrent search plugins</source>
         <translation>qBittorrent arama eklentileri</translation>
     </message>
     <message>
+        <location filename="../engineSelectDlg.cpp" line="369"/>
+        <location filename="../engineSelectDlg.cpp" line="418"/>
+        <location filename="../engineSelectDlg.cpp" line="429"/>
+        <location filename="../engineSelectDlg.cpp" line="473"/>
+        <location filename="../engineSelectDlg.cpp" line="495"/>
+        <location filename="../engineSelectDlg.cpp" line="500"/>
+        <location filename="../engineSelectDlg.cpp" line="511"/>
         <location filename="../engineSelectDlg.cpp" line="514"/>
         <source>Search plugin install</source>
         <translation>Arama eklentisi yüklemesi</translation>
     </message>
     <message>
+        <location filename="../engineSelectDlg.cpp" line="369"/>
+        <location filename="../engineSelectDlg.cpp" line="418"/>
+        <location filename="../engineSelectDlg.cpp" line="429"/>
+        <location filename="../engineSelectDlg.cpp" line="473"/>
+        <location filename="../engineSelectDlg.cpp" line="495"/>
+        <location filename="../engineSelectDlg.cpp" line="500"/>
+        <location filename="../engineSelectDlg.cpp" line="511"/>
+        <location filename="../engineSelectDlg.cpp" line="514"/>
+        <location filename="../engineSelectDlg.cpp" line="599"/>
+        <location filename="../engineSelectDlg.cpp" line="633"/>
+        <location filename="../engineSelectDlg.cpp" line="667"/>
+        <location filename="../engineSelectDlg.cpp" line="675"/>
         <location filename="../engineSelectDlg.cpp" line="681"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
@@ -4062,11 +3860,16 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>%1 arama motoru eklentisinin daha güncel sürümü zaten yüklü durumda.</translation>
     </message>
     <message>
+        <location filename="../engineSelectDlg.cpp" line="599"/>
+        <location filename="../engineSelectDlg.cpp" line="633"/>
+        <location filename="../engineSelectDlg.cpp" line="667"/>
+        <location filename="../engineSelectDlg.cpp" line="675"/>
         <location filename="../engineSelectDlg.cpp" line="681"/>
         <source>Search plugin update</source>
         <translation>Eklenti güncellemesi ara</translation>
     </message>
     <message>
+        <location filename="../engineSelectDlg.cpp" line="633"/>
         <location filename="../engineSelectDlg.cpp" line="667"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Üzgünüz, güncelleme sunucusu geçici olarak servis dışı.</translation>
@@ -4083,6 +3886,8 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>%1 arama motoru eklentisi güncellenemedi, eski sürüm tutulacak.</translation>
     </message>
     <message>
+        <location filename="../engineSelectDlg.cpp" line="418"/>
+        <location filename="../engineSelectDlg.cpp" line="429"/>
         <location filename="../engineSelectDlg.cpp" line="500"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
@@ -4111,6 +3916,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Arama motoru eklenti arşivi okunamadı.</translation>
     </message>
     <message>
+        <location filename="../engineSelectDlg.cpp" line="675"/>
         <location filename="../engineSelectDlg.cpp" line="681"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
@@ -4160,36 +3966,30 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>TB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="220"/>
         <source>m</source>
         <comment>minutes</comment>
         <translation type="obsolete">d</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="220"/>
         <source>h </source>
         <comment>hours</comment>
         <translation type="obsolete">sa</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="220"/>
         <source>d </source>
         <comment>days</comment>
         <translation type="obsolete">g</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="322"/>
         <source>Unknown</source>
         <translation type="obsolete">Bilinmeyen</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="215"/>
         <source>h</source>
         <comment>hours</comment>
         <translation type="obsolete">sa</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="220"/>
         <source>d</source>
         <comment>days</comment>
         <translation type="obsolete">g</translation>
@@ -4228,154 +4028,132 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="239"/>
         <source>Options saved successfully!</source>
         <translation type="obsolete">Ayarlar başarıyla kaydedildi!</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="706"/>
         <source>Choose Scan Directory</source>
         <translation type="obsolete">Taranacak Klasörü Seçin</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="729"/>
         <source>Choose save Directory</source>
         <translation type="obsolete">Kayıt klasörünü seçin</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="713"/>
         <source>Choose ipfilter.dat file</source>
         <translation type="obsolete">IPfilter.dat dosyasını seçin</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="761"/>
         <source>I/O Error</source>
         <translation type="obsolete">I/O Hatası</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="761"/>
         <source>Couldn&apos;t open:</source>
         <translation type="obsolete">Açılamadı:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="761"/>
         <source>in read mode.</source>
         <translation type="obsolete">salt okunur durumda.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="761"/>
         <source>Invalid Line</source>
         <translation type="obsolete">Geçersiz Satır</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="761"/>
         <source>Line</source>
         <translation type="obsolete">Satır</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="761"/>
         <source>is malformed.</source>
         <translation type="obsolete">bozulmuş.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1156"/>
         <source>Range Start IP</source>
         <translation type="obsolete">IP Başlangıç Aralığı</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1157"/>
         <source>Start IP:</source>
         <translation type="obsolete">Başlangıç IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1157"/>
         <source>Incorrect IP</source>
         <translation type="obsolete">Yanlış IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1157"/>
         <source>This IP is incorrect.</source>
         <translation type="obsolete">Bu IP Adresi yanlıştır.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1180"/>
         <source>Range End IP</source>
         <translation type="obsolete">IP Bitiş Aralığı</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1181"/>
         <source>End IP:</source>
         <translation type="obsolete">Bitiş IP:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1195"/>
         <source>IP Range Comment</source>
         <translation type="obsolete">IP Aralığı Yorumu</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1196"/>
         <source>Comment:</source>
         <translation type="obsolete">Yorum:</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="72"/>
         <source>to</source>
         <comment>&lt;min port&gt; to &lt;max port&gt;</comment>
         <translation type="obsolete">dan</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1000"/>
         <source>Choose your favourite preview program</source>
         <translation type="obsolete">Favori önizleme programınızı seçin</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1190"/>
         <source>Invalid IP</source>
         <translation type="obsolete">Geçersiz IP</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1190"/>
         <source>This IP is invalid.</source>
         <translation type="obsolete">Bu IP geçersizdir.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="829"/>
         <source>Options were saved successfully.</source>
         <translation type="obsolete">Ayarlar başarıyla kaydedildi.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1258"/>
+        <location filename="../options_imp.cpp" line="1297"/>
+        <location filename="../options_imp.cpp" line="1299"/>
         <source>Choose scan directory</source>
         <translation>Tarama dizinini seçin</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1021"/>
         <source>Choose an ipfilter.dat file</source>
         <translation type="obsolete">Bir ipfilter.dat dosyası seç</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1281"/>
+        <location filename="../options_imp.cpp" line="1320"/>
+        <location filename="../options_imp.cpp" line="1322"/>
         <source>Choose a save directory</source>
         <translation>Bir kayıt dizini seçin</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1062"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation type="obsolete">I/O Hatası</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1062"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation type="obsolete">%1 okuma modunda açılamadı.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1269"/>
+        <location filename="../options_imp.cpp" line="1308"/>
+        <location filename="../options_imp.cpp" line="1310"/>
         <source>Choose an ip filter file</source>
         <translation>Bir ip süzgeç dosyası seçin</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1269"/>
+        <location filename="../options_imp.cpp" line="1308"/>
+        <location filename="../options_imp.cpp" line="1310"/>
         <source>Filters</source>
         <translation>Süzgeçler</translation>
     </message>
@@ -4434,11 +4212,13 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
 <context>
     <name>previewSelect</name>
     <message>
+        <location filename="../previewSelect.h" line="71"/>
         <location filename="../previewSelect.h" line="112"/>
         <source>Preview impossible</source>
         <translation>Önizleme yapılamıyor</translation>
     </message>
     <message>
+        <location filename="../previewSelect.h" line="71"/>
         <location filename="../previewSelect.h" line="112"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Üzgünüz, bu dosyanın önizlemesi yapılamıyor</translation>
@@ -4467,47 +4247,38 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Torrent Özellikleri</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="13"/>
         <source>Main Infos</source>
         <translation type="obsolete">Ana Bilgiler</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="40"/>
         <source>File Name</source>
         <translation type="obsolete">Dosya Adı</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="315"/>
         <source>Current Session</source>
         <translation type="obsolete">Şimdiki Oturum</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="315"/>
         <source>Total Uploaded:</source>
         <translation type="obsolete">Toplam Upload:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="315"/>
         <source>Total Downloaded:</source>
         <translation type="obsolete">Toplam Download:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="102"/>
         <source>Download state:</source>
         <translation type="obsolete">Download durumu:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="102"/>
         <source>Current Tracker:</source>
         <translation type="obsolete">Şimdiki Tracker:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="102"/>
         <source>Number of Peers:</source>
         <translation type="obsolete">Kullanıcı Sayısı:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="102"/>
         <source>Torrent Content</source>
         <translation type="obsolete">Torrent İçeriği</translation>
     </message>
@@ -4517,47 +4288,38 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>TAMAM</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1008"/>
         <source>Total Failed:</source>
         <translation type="obsolete">Toplam Başarısız:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
         <source>Finished</source>
         <translation type="obsolete">Tamamlandı</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="55"/>
         <source>Queued for checking</source>
         <translation type="obsolete">Kontrol işlemi için sıralandırıldı</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="58"/>
         <source>Checking files</source>
         <translation type="obsolete">Dosyalar kontrol ediliyor</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="61"/>
         <source>Connecting to tracker</source>
         <translation type="obsolete">Tracker a bağlanılıyor</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="64"/>
         <source>Downloading Metadata</source>
         <translation type="obsolete">Metadata Download Ediliyor</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="67"/>
         <source>Downloading</source>
         <translation type="obsolete">Download ediliyor</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="70"/>
         <source>Seeding</source>
         <translation type="obsolete">Oluşturuluyor</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="73"/>
         <source>Allocating</source>
         <translation type="obsolete">Ayrılıyor</translation>
     </message>
@@ -4567,12 +4329,10 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Bilinmeyen</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="79"/>
         <source>Complete: </source>
         <translation type="obsolete"> Tamamlandı:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="79"/>
         <source>Partial: </source>
         <translation type="obsolete"> Kısmi:</translation>
     </message>
@@ -4587,37 +4347,30 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Boyut</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="43"/>
         <source>Selected</source>
         <translation type="obsolete">Seçildi</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="900"/>
         <source> Unselect</source>
         <translation type="obsolete"> Seçimi kaldır</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="907"/>
         <source> Select</source>
         <translation type="obsolete"> Seç</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="940"/>
         <source>You can select here precisely which files you want to download in current torrent.</source>
         <translation type="obsolete">Şimdiki torrentte özellikle hangi dosyaları download edeceğinizi buradan seçebilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="940"/>
         <source>False</source>
         <translation type="obsolete">Hayır</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="940"/>
         <source>True</source>
         <translation type="obsolete">Evet</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="617"/>
         <source>Tracker</source>
         <translation type="obsolete">Tracker</translation>
     </message>
@@ -4627,12 +4380,12 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>İzleyiciler:</translation>
     </message>
     <message>
+        <location filename="../properties_imp.cpp" line="454"/>
         <location filename="../properties_imp.cpp" line="622"/>
         <source>None - Unreachable?</source>
         <translation>Yok - Erişilemez?</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="898"/>
         <source>Errors:</source>
         <translation type="obsolete">Hata(lar):</translation>
     </message>
@@ -4647,7 +4400,6 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Genel bilgiler</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="37"/>
         <source>Number of peers:</source>
         <translation type="obsolete">Kullanıcı sayısı:</translation>
     </message>
@@ -4677,7 +4429,6 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Torrent içeriği</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="910"/>
         <source>Options</source>
         <translation type="obsolete">Ayarlar</translation>
     </message>
@@ -4687,17 +4438,14 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Doğru düzende indir (yavaş ama önizleme için iyi)</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="432"/>
         <source>Share Ratio:</source>
         <translation type="obsolete">Paylaşım Oranı:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="160"/>
         <source>Seeders:</source>
         <translation type="obsolete">Seeders:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="185"/>
         <source>Leechers:</source>
         <translation type="obsolete">Leechers:</translation>
     </message>
@@ -4742,12 +4490,10 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>İzleyiciler</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="491"/>
         <source>New tracker</source>
         <translation type="obsolete">Yeni tracker</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="492"/>
         <source>New tracker url:</source>
         <translation type="obsolete">Yeni tracker url:</translation>
     </message>
@@ -4777,11 +4523,13 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Dosya adı</translation>
     </message>
     <message>
+        <location filename="../properties_imp.cpp" line="57"/>
         <location filename="../properties_imp.cpp" line="362"/>
         <source>Priority</source>
         <translation>Öncelik</translation>
     </message>
     <message>
+        <location filename="../properties_imp.cpp" line="467"/>
         <location filename="../properties_imp.cpp" line="528"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
@@ -4832,7 +4580,6 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Bu gönderen adresi zaten listede.</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="291"/>
         <source>None</source>
         <comment>i.e: No error message</comment>
         <translation type="obsolete">Yok</translation>
@@ -4879,6 +4626,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>...</translation>
     </message>
     <message>
+        <location filename="../properties_imp.cpp" line="672"/>
         <location filename="../properties_imp.cpp" line="674"/>
         <source>Choose save path</source>
         <translation>Kayıt yolunu seçin</translation>
@@ -4897,12 +4645,12 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
 <context>
     <name>search_engine</name>
     <message>
+        <location filename="../search.ui" line="13"/>
         <location filename="../search.ui" line="90"/>
         <source>Search</source>
         <translation>Ara</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="45"/>
         <source>Search Engines</source>
         <translation type="obsolete">Arama Motorları</translation>
     </message>
@@ -4927,7 +4675,6 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Durdu</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="252"/>
         <source>Results:</source>
         <translation type="obsolete">Sonuçlar:</translation>
     </message>
@@ -4937,12 +4684,10 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>İndir</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="329"/>
         <source>Clear</source>
         <translation type="obsolete">Temizle</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="374"/>
         <source>Update search plugin</source>
         <translation type="obsolete">Arama pluginini güncelle</translation>
     </message>
@@ -4952,7 +4697,6 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Arama motorları...</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="225"/>
         <source>Close tab</source>
         <translation type="obsolete">Sekmeyi kapat</translation>
     </message>
@@ -4960,107 +4704,108 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
 <context>
     <name>seeding</name>
     <message>
-        <location filename="../seeding.ui" line="13"/>
+        <location filename="../seeding.ui" line="14"/>
         <source>Search</source>
         <translation>Ara</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="34"/>
         <source>The following torrents are finished and shared:</source>
         <translation type="obsolete">Aşağıdaki torrentler tamamlandı ve paylaşıldı:</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="40"/>
+        <location filename="../seeding.ui" line="41"/>
         <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
         <translation>&lt;u&gt;Not:&lt;/u&gt; Torrentlerinizi bittikten sonra da paylaşmak ağın iyi olması açısından önemlidir.</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="47"/>
+        <location filename="../seeding.ui" line="48"/>
         <source>Start</source>
         <translation>Başlat</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="52"/>
+        <location filename="../seeding.ui" line="53"/>
         <source>Pause</source>
         <translation>Duraklat</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="57"/>
+        <location filename="../seeding.ui" line="58"/>
         <source>Delete</source>
         <translation>Sil</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="62"/>
+        <location filename="../seeding.ui" line="63"/>
         <source>Delete Permanently</source>
         <translation>Kalıcı Olarak Sil</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="67"/>
+        <location filename="../seeding.ui" line="68"/>
         <source>Torrent Properties</source>
         <translation>Torrent Özellikleri</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="72"/>
+        <location filename="../seeding.ui" line="73"/>
         <source>Preview file</source>
         <translation>Dosya önizleme</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="77"/>
+        <location filename="../seeding.ui" line="78"/>
         <source>Set upload limit</source>
         <translation>Gönderme sınırını ayarla</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="86"/>
+        <location filename="../seeding.ui" line="87"/>
         <source>Open destination folder</source>
         <translation>Hedef klasörü aç</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="91"/>
+        <location filename="../seeding.ui" line="92"/>
         <source>Name</source>
         <translation>Ad</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="96"/>
+        <location filename="../seeding.ui" line="97"/>
         <source>Size</source>
         <translation>Boyut</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="101"/>
+        <location filename="../seeding.ui" line="102"/>
         <source>Upload Speed</source>
         <translation>Gönderme Hızı</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="106"/>
+        <location filename="../seeding.ui" line="107"/>
         <source>Leechers</source>
         <translation>Çeken</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="111"/>
+        <location filename="../seeding.ui" line="112"/>
         <source>Ratio</source>
         <translation>Oran</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="120"/>
+        <location filename="../seeding.ui" line="121"/>
         <source>Buy it</source>
         <translation>Satın al</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="132"/>
+        <location filename="../seeding.ui" line="135"/>
+        <source>Total uploaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Priority</source>
         <translation type="obsolete">Öncelik</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="140"/>
         <source>Increase priority</source>
         <translation type="obsolete">Önceliği arttır</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="148"/>
         <source>Decrease priority</source>
         <translation type="obsolete">Önceliği düşür</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="129"/>
+        <location filename="../seeding.ui" line="130"/>
         <source>Force recheck</source>
         <translation>Yeniden denetlemeye çalış</translation>
     </message>
@@ -5088,17 +4833,14 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Adres geçersiz</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="37"/>
         <source>Connection forbidden (403)</source>
         <translation type="obsolete">Bağlantı yasak (403)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="39"/>
         <source>Connection was not authorized (401)</source>
         <translation type="obsolete">Bağlantıya izin verilmedi (401)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="41"/>
         <source>Content has moved (301)</source>
         <translation type="obsolete">İçerik taşındı (301)</translation>
     </message>
@@ -5131,27 +4873,26 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentAddition.h" line="197"/>
         <source>True</source>
         <translation type="obsolete">Evet</translation>
     </message>
     <message>
+        <location filename="../torrentAddition.h" line="115"/>
         <location filename="../torrentAddition.h" line="118"/>
         <source>Unable to decode torrent file:</source>
         <translation>Torrent dosyası çözülemiyor:</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="172"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="obsolete">Bu dosya bozuk ya da torrent dosyası değil.</translation>
     </message>
     <message>
+        <location filename="../torrentAddition.h" line="255"/>
         <location filename="../torrentAddition.h" line="257"/>
         <source>Choose save path</source>
         <translation>Kayıt klasörünü seçin</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="193"/>
         <source>False</source>
         <translation type="obsolete">Hayır</translation>
     </message>
@@ -5201,6 +4942,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>İlerleme</translation>
     </message>
     <message>
+        <location filename="../torrentAddition.h" line="68"/>
         <location filename="../torrentAddition.h" line="290"/>
         <source>Priority</source>
         <translation>Öncelik</translation>

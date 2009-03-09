@@ -37,11 +37,12 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   setupUi(this);
   actionStart->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play.png")));
   actionPause->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")));
-  finishedListModel = new QStandardItemModel(0,6);
+  finishedListModel = new QStandardItemModel(0,7);
   finishedListModel->setHeaderData(F_NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
   finishedListModel->setHeaderData(F_SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
   finishedListModel->setHeaderData(F_UPSPEED, Qt::Horizontal, tr("UP Speed", "i.e: Upload speed"));
   finishedListModel->setHeaderData(F_LEECH, Qt::Horizontal, tr("Leechers", "i.e: full/partial sources"));
+  finishedListModel->setHeaderData(F_UPLOAD, Qt::Horizontal, tr("Total uploaded", "i.e: Total amount of uploaded data"));
   finishedListModel->setHeaderData(F_RATIO, Qt::Horizontal, tr("Ratio"));
   finishedList->setModel(finishedListModel);
   loadHiddenColumns();
@@ -80,6 +81,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   connect(actionHOSColSize, SIGNAL(triggered()), this, SLOT(hideOrShowColumnSize()));
   connect(actionHOSColUpSpeed, SIGNAL(triggered()), this, SLOT(hideOrShowColumnUpSpeed()));
   connect(actionHOSColLeechers, SIGNAL(triggered()), this, SLOT(hideOrShowColumnLeechers()));
+  connect(actionHOSColUpload, SIGNAL(triggered()), this, SLOT(hideOrShowColumnUpload()));
   connect(actionHOSColRatio, SIGNAL(triggered()), this, SLOT(hideOrShowColumnRatio()));
 }
 
@@ -107,6 +109,7 @@ void FinishedTorrents::addTorrent(QString hash){
   finishedListModel->setData(finishedListModel->index(row, F_SIZE), QVariant((qlonglong)h.actual_size()));
   finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), QVariant((double)0.));
   finishedListModel->setData(finishedListModel->index(row, F_LEECH), QVariant("0"));
+  finishedListModel->setData(finishedListModel->index(row, F_UPLOAD), QVariant((qlonglong)h.all_time_upload()));
   finishedListModel->setData(finishedListModel->index(row, F_RATIO), QVariant(QString::fromUtf8(misc::toString(BTSession->getRealRatio(hash)).c_str())));
   finishedListModel->setData(finishedListModel->index(row, F_HASH), QVariant(hash));
   if(h.is_paused()) {
@@ -262,6 +265,9 @@ void FinishedTorrents::updateTorrent(QTorrentHandle h) {
     }
     if(!finishedList->isColumnHidden(F_LEECH)) {
       finishedListModel->setData(finishedListModel->index(row, F_LEECH), misc::toQString(h.num_peers() - h.num_seeds(), true));
+    }
+    if(!finishedList->isColumnHidden(F_UPLOAD)) {
+      finishedListModel->setData(finishedListModel->index(row, F_UPLOAD), QVariant((double)h.all_time_upload()));
     }
     if(!finishedList->isColumnHidden(F_RATIO)) {
       finishedListModel->setData(finishedListModel->index(row, F_RATIO), QVariant(misc::toQString(BTSession->getRealRatio(hash))));
@@ -458,6 +464,10 @@ void FinishedTorrents::hideOrShowColumnLeechers() {
   hideOrShowColumn(F_LEECH);
 }
 
+void FinishedTorrents::hideOrShowColumnUpload() {
+  hideOrShowColumn(F_UPLOAD);
+}
+
 void FinishedTorrents::hideOrShowColumnRatio() {
   hideOrShowColumn(F_RATIO);
 }
@@ -520,6 +530,9 @@ QAction* FinishedTorrents::getActionHoSCol(int index) {
     case F_LEECH :
       return actionHOSColLeechers;
       break;
+    case F_UPLOAD :
+      return actionHOSColUpload;
+      break;
     case F_RATIO :
       return actionHOSColRatio;
       break;
@@ -542,6 +555,7 @@ void FinishedTorrents::toggleFinishedListSortOrder(int index) {
     case F_SIZE:
     case F_UPSPEED:
     case F_RATIO:
+    case F_UPLOAD:
       sortFinishedListFloat(index, sortOrder);
       break;
     default:
@@ -566,6 +580,8 @@ void FinishedTorrents::sortFinishedList(int index, Qt::SortOrder sortOrder){
   switch(index) {
     case F_SIZE:
     case F_UPSPEED:
+    case F_UPLOAD:
+    case F_RATIO:
       sortFinishedListFloat(index, sortOrder);
       break;
     default:
