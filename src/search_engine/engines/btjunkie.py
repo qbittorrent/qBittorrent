@@ -1,5 +1,5 @@
-#VERSION: 1.13
-#AUTHORS: Fabien Devaux (fab@gnux.info)
+#VERSION: 2.0
+#AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -25,37 +25,88 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+
 from novaprinter import prettyPrinter
+import sgmllib
 import urllib
 import re
 
 class btjunkie(object):
-	url = 'http://btjunkie.org'
-	name = 'btjunkie'
+  url = 'http://btjunkie.org'
+  name = 'btjunkie'
+  
+  def __init__(self):
+    self.results = []
+    self.parser = self.SimpleSGMLParser(self.results, self.url)
+    
+  class SimpleSGMLParser(sgmllib.SGMLParser):
+    def __init__(self, results, url, *args):
+      sgmllib.SGMLParser.__init__(self)
+      self.url = url
+      self.th_counter = None
+      self.current_item = None
+      self.results = results
+      
+    def start_a(self, attr):
+      params = dict(attr)
+      #print params
+      if params.has_key('href') and params['href'].startswith("http://dl.btjunkie.org/torrent"):
+        self.current_item = {}
+        self.th_counter = 0
+        self.current_item['link']=params['href'].strip()
+    
+    def handle_data(self, data):
+      if self.th_counter == 0:
+        if not self.current_item.has_key('name'):
+          self.current_item['name'] = ''
+        self.current_item['name']+= data.strip()
+      elif self.th_counter == 3:
+        if not self.current_item.has_key('size'):
+          self.current_item['size'] = ''
+        self.current_item['size']+= data.strip()
+      elif self.th_counter == 5:
+        if not self.current_item.has_key('seeds'):
+          self.current_item['seeds'] = ''
+        self.current_item['seeds']+= data.strip()
+      elif self.th_counter == 6:
+        if not self.current_item.has_key('leech'):
+          self.current_item['leech'] = ''
+        self.current_item['leech']+= data.strip()
+        
+    def start_font(self, attr):
+      if isinstance(self.th_counter,int):
+        if self.th_counter == 0:
+          self.current_item['name'] += ' '
+      
+    def start_th(self,attr):
+        if isinstance(self.th_counter,int):
+          self.th_counter += 1
+          if self.th_counter > 6:
+            self.th_counter = None
+            # Display item
+            if self.current_item:
+              self.current_item['engine_url'] = self.url
+              if not self.current_item['seeds'].isdigit():
+                self.current_item['seeds'] = 0
+              if not self.current_item['leech'].isdigit():
+                self.current_item['leech'] = 0
+              prettyPrinter(self.current_item)
+              self.results.append('a')
 
-	def search(self, what):
-		i = 1
-		while True and i<11:
-			res = 0
-			dat = urllib.urlopen(self.url+'/search?q=%s&o=52&p=%d'%(what,i)).read().decode('utf8', 'replace')
-			# I know it's not very readable, but the SGML parser feels in pain
-			section_re = re.compile('(?s)href="http://dl.btjunkie.org/torrent/.*?</tr><tr')
-			torrent_re = re.compile('(?s)href="(?P<link>.*?[^"]+).*?'
-			'class="BlckUnd">(?P<name>.*?)</a>.*?'
-			'>(?P<size>\d+MB)</font>.*?'
-			'>.*</font>.*'
-			'>(?P<seeds>\d+)</font>.*?'
-			'>(?P<leech>\d+)</font>')
-			for match in section_re.finditer(dat):
-				txt = match.group(0)
-				m = torrent_re.search(txt)
-				if m:
-					torrent_infos = m.groupdict()
-					torrent_infos['name'] = re.sub('<.*?>', '', torrent_infos['name'])
-					torrent_infos['engine_url'] = self.url
-					#torrent_infos['link'] = self.url+torrent_infos['link']
-					prettyPrinter(torrent_infos)
-					res = res + 1
-			if res == 0:
-				break
-			i = i + 1
+  def search(self, what):
+    ret = []
+    i = 1
+    while True and i<11:
+      results = []
+      parser = self.SimpleSGMLParser(results, self.url)
+      dat = urllib.urlopen(self.url+'/search?q=%s&o=52&p=%d'%(what,i)).read()
+      results_re = re.compile('(?s)class="tab_results">.*')
+      for match in results_re.finditer(dat):
+        res_tab = match.group(0)
+        parser.feed(res_tab)
+        parser.close()
+        break
+      if len(results) <= 0:
+        break
+      i += 1
+      
