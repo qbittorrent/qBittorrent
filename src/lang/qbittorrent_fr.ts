@@ -3058,7 +3058,7 @@ Changements:
     <message>
         <location filename="../searchEngine.cpp" line="306"/>
         <source>Search aborted</source>
-        <translation>La recherché a été interrompue</translation>
+        <translation>La recherche a été interrompue</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="309"/>
