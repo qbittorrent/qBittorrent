@@ -1,6 +1,8 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.4.0
     - FEATURE: Allow to define temporary download folder
     - FEATURE: Display total amount of uploaded data in finished list
+    - FEATURE: Resizing a column in a search results tab affects all tabs
+    - FEATURE: Search results tab columns are now remembered upon startup
     - COSMETIC: Redesigned program preferences
     - COSMETIC: Updated icons set
 

@@ -81,6 +81,8 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     void saveSearchHistory();
     void on_enginesButton_clicked();
     void on_clearPatternButton_clicked();
+    void propagateSectionResized(int index, int oldsize , int newsize);
+    void saveResultsColumnsWidth();
 };
 
 #endif

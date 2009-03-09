@@ -65,17 +65,34 @@ SearchTab::SearchTab(SearchEngine *parent) : QWidget()
     connect(resultsBrowser->header(), SIGNAL(sectionPressed(int)), this, SLOT(sortSearchList(int)));
     
     // Load last columns width for search results list
-    if(!loadColWidthSearchList()){
+    if(!loadColWidthResultsList()){
       resultsBrowser->header()->resizeSection(0, 275);
     }
 }
 
-SearchTab::~SearchTab()
-{
-    saveColWidthSearchList();
+SearchTab::~SearchTab() {
     delete resultsBrowser;
     delete SearchListModel;
     delete SearchDelegate;
+}
+
+QHeaderView* SearchTab::header() const {
+  return resultsBrowser->header();
+}
+
+bool SearchTab::loadColWidthResultsList() {
+  QSettings settings("qBittorrent", "qBittorrent");
+  QString line = settings.value("SearchResultsColsWidth", QString()).toString();
+  if(line.isEmpty())
+    return false;
+  QStringList width_list = line.split(' ');
+  if(width_list.size() < SearchListModel->columnCount())
+    return false;
+  unsigned int listSize = width_list.size();
+  for(unsigned int i=0; i<listSize; ++i){
+        resultsBrowser->header()->resizeSection(i, width_list.at(i).toInt());
+  }
+  return true;
 }
 
 QLabel* SearchTab::getCurrentLabel()
@@ -157,33 +174,3 @@ void SearchTab::sortSearchListString(int index, Qt::SortOrder sortOrder){
   SearchListModel->removeRows(0, nbRows_old);
 }
 
-// Save columns width in a file to remember them
-// (download list)
-void SearchTab::saveColWidthSearchList() const{
-  qDebug("Saving columns width in search list");
-  QSettings settings("qBittorrent", "qBittorrent");
-  QStringList width_list;
-  for(int i=0; i<SearchListModel->columnCount(); ++i){
-    width_list << misc::toQString(resultsBrowser->columnWidth(i));
-  }
-  settings.setValue("SearchListColsWidth", width_list.join(" "));
-  qDebug("Search list columns width saved");
-}
-
-// Load columns width in a file that were saved previously
-// (search list)
-bool SearchTab::loadColWidthSearchList(){
-  qDebug("Loading columns width for search list");
-  QSettings settings("qBittorrent", "qBittorrent");
-  QString line = settings.value("SearchListColsWidth", QString()).toString();
-  if(line.isEmpty())
-    return false;
-  QStringList width_list = line.split(' ');
-  if(width_list.size() != SearchListModel->columnCount())
-    return false;
-  for(int i=0; i<width_list.size(); ++i){
-        resultsBrowser->header()->resizeSection(i, width_list.at(i).toInt());
-  }
-  qDebug("Search list columns width loaded");
-  return true;
-}

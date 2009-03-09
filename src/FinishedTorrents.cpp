@@ -202,7 +202,7 @@ void FinishedTorrents::saveColWidthFinishedList() const{
     width_list = line.split(' ');
   }
   for(short i=0; i<nbColumns; ++i){
-    if(finishedList->columnWidth(i)<1 && width_list.size() == finishedListModel->columnCount()-1 && width_list.at(i).toInt()>=1) {
+    if(finishedList->columnWidth(i)<1 && width_list.size() == nbColumns && width_list.at(i).toInt()>=1) {
       // load the former width
       new_width_list << width_list.at(i);
     } else if(finishedList->columnWidth(i)>=1) { 

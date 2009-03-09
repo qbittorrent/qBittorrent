@@ -152,6 +152,7 @@ void SearchEngine::on_search_button_clicked(){
   }
   // Tab Addition
   currentSearchTab=new SearchTab(this);
+  connect(currentSearchTab->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(propagateSectionResized(int,int,int)));
   all_tab.append(currentSearchTab);
   tabWidget->addTab(currentSearchTab, pattern);
   tabWidget->setCurrentWidget(currentSearchTab);
@@ -186,6 +187,42 @@ void SearchEngine::on_search_button_clicked(){
   // Launch search
   searchProcess->start("python", params, QIODevice::ReadOnly);
   searchTimeout->start(180000); // 3min
+}
+
+void SearchEngine::propagateSectionResized(int index, int , int newsize) {
+  foreach(SearchTab * tab, all_tab) {
+    tab->getCurrentTreeView()->setColumnWidth(index, newsize);
+  }
+  saveResultsColumnsWidth();
+}
+
+void SearchEngine::saveResultsColumnsWidth() {
+  if(all_tab.size() > 0) {
+    QTreeView* treeview = all_tab.first()->getCurrentTreeView();
+    QSettings settings("qBittorrent", "qBittorrent");
+    QStringList width_list;
+    QStringList new_width_list;
+    short nbColumns = all_tab.first()->getCurrentSearchListModel()->columnCount();
+
+    QString line = settings.value("SearchResultsColsWidth", QString()).toString();
+    if(!line.isEmpty()) {
+      width_list = line.split(' ');
+    }
+    for(short i=0; i<nbColumns; ++i){
+      if(treeview->columnWidth(i)<1 && width_list.size() == nbColumns && width_list.at(i).toInt()>=1) {
+        // load the former width
+        new_width_list << width_list.at(i);
+      } else if(treeview->columnWidth(i)>=1) {
+        // usual case, save the current width
+        new_width_list << QString::fromUtf8(misc::toString(treeview->columnWidth(i)).c_str());
+      } else {
+        // default width
+        treeview->resizeColumnToContents(i);
+        new_width_list << QString::fromUtf8(misc::toString(treeview->columnWidth(i)).c_str());
+      }
+    }
+    settings.setValue("SearchResultsColsWidth", new_width_list.join(" "));
+  }
 }
 
 void SearchEngine::searchStarted(){
