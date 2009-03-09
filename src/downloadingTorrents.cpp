@@ -708,7 +708,7 @@ void DownloadingTorrents::saveColWidthDLList() const{
     width_list = line.split(' ');
   }
   for(short i=0; i<nbColumns; ++i){
-    if(downloadList->columnWidth(i)<1 && width_list.size() == DLListModel->columnCount()-1 && width_list.at(i).toInt()>=1) {
+    if(downloadList->columnWidth(i)<1 && width_list.size() == nbColumns && width_list.at(i).toInt()>=1) {
       // load the former width
       new_width_list << width_list.at(i);
     } else if(downloadList->columnWidth(i)>=1) { 
