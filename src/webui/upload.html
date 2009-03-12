@@ -7,15 +7,23 @@
 	<link rel="stylesheet" href="css/mocha.css" type="text/css" />
 	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
 	<!-- <script type="text/javascript" src="scripts/upload.js" charset="utf-8"></script> -->
+<script type="text/javascript">
+function showSuccess() {
+  $('myiframe').addClass('invisible');
+  $('successMessage').removeClass('invisible');
+}
+</script>
 </head>
 <body>
 <center>
 	<h1 class="vcenter"><img class="vcenter" title="Download local torrent" src="images/skin/open.png"/>Download local torrent</h1>
-	<form action="/command/upload" enctype="multipart/form-data" method="post" name="uploadForm">
-
-	<input type="file" name="torrentfile" id="torrentfile" size="40"/><p>Point to torrent file</p><!--<input type="submit" value="Download"/> -->
- <a id="upButton" onclick="document.uploadForm.submit();window.parent.document.getElementById('uploadPage').parentNode.removeChild(window.parent.document.getElementById('uploadPage'));">Download</a>
-	</form>
-	</center>
+<span style="padding: 10px;" class="invisible" id="successMessage">
+<br/><br/>
+Torrent files were correctly uploaded.
+</span>
+<iframe src="uploadframe.html" width="100%" frameborder="0" style="padding: 10px;" id="myiframe">
+<p>Your Web browser does not support iframes</p>
+</iframe>	
+</center>
 </body>
 </html>

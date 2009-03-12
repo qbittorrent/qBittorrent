@@ -1,3 +1,6 @@
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.3.3
+    - BUGFIX: Fixed Web UI torrent upload form
+
 * Sat Mar 7 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.2
     - BUGFIX: Fix top toolbar disabling
     - BUGFIX: Fix building with Qt 4.5
