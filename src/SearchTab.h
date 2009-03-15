@@ -27,6 +27,7 @@
 class SearchListDelegate;
 class SearchEngine;
 class QTreeView;
+class QHeaderView;
 class QStandardItemModel;
 
 class SearchTab : public QWidget, public Ui::search_engine
