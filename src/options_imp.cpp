@@ -31,6 +31,7 @@
 #include <QCDEStyle>
 #include <QDialogButtonBox>
 #include <QCloseEvent>
+#include <QDesktopWidget>
 #ifdef Q_WS_WIN
   #include <QWindowsXPStyle>
 #endif
@@ -240,6 +241,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   }
   // Tab selection mecanism
   connect(tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
+  // Adapt size
+  adaptToScreenSize();
 }
 
 // Main destructor
@@ -278,6 +281,24 @@ void options_imp::useStyle(){
     QApplication::setStyle(new QWindowsXPStyle());
     break;
 #endif
+  }
+}
+
+void options_imp::adaptToScreenSize() {
+  int scrn = 0;
+  QWidget *w = this->topLevelWidget();
+
+  if(w)
+    scrn = QApplication::desktop()->screenNumber(w);
+  else if(QApplication::desktop()->isVirtualDesktop())
+    scrn = QApplication::desktop()->screenNumber(QCursor::pos());
+  else
+    scrn = QApplication::desktop()->screenNumber(this);
+
+  QRect desk(QApplication::desktop()->availableGeometry(scrn));
+  if(width() > desk.width() || height() > desk.height()) {
+    if(desk.width() > 0 && desk.height() > 0)
+      resize(desk.width(), desk.height());
   }
 }
 

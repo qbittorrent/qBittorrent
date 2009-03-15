@@ -159,6 +159,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     void setSystrayOptionsState(int checkBoxValue);
     void enableWebUi(bool checkBoxValue);
     void changePage(QListWidgetItem*, QListWidgetItem*);
+    void adaptToScreenSize();
 
   public slots:
     void setLocale(QString locale);
