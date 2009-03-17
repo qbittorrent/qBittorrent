@@ -918,7 +918,8 @@ void bittorrent::setDefaultTempPath(QString temppath) {
     for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
       QTorrentHandle h = QTorrentHandle(*torrentIT);
       if(!h.is_valid()) continue;
-      h.move_storage(temppath);
+      if(!h.is_seed())
+        h.move_storage(temppath);
     }
   }
   defaultTempPath = temppath;
