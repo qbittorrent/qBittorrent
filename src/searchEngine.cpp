@@ -336,8 +336,8 @@ void SearchEngine::appendSearchResult(QString line){
   if(parts.size() != 6){
     return;
   }
-  QString url = parts.takeFirst();
-  QString filename = parts.first();
+  QString url = parts.takeFirst().trimmed();
+  QString filename = parts.first().trimmed();
   // XXX: Two results can't have the same name (right?)
   if(searchResultsUrls.contains(filename)){
     return;
@@ -346,10 +346,10 @@ void SearchEngine::appendSearchResult(QString line){
   int row = currentSearchTab->getCurrentSearchListModel()->rowCount();
   currentSearchTab->getCurrentSearchListModel()->insertRow(row);
   for(int i=0; i<5; ++i){
-    if(parts.at(i).toFloat() == -1 && i != SIZE)
+    if(parts.at(i).trimmed().toFloat() == -1 && i != SIZE)
       currentSearchTab->getCurrentSearchListModel()->setData(currentSearchTab->getCurrentSearchListModel()->index(row, i), tr("Unknown"));
     else
-      currentSearchTab->getCurrentSearchListModel()->setData(currentSearchTab->getCurrentSearchListModel()->index(row, i), QVariant(parts.at(i)));
+      currentSearchTab->getCurrentSearchListModel()->setData(currentSearchTab->getCurrentSearchListModel()->index(row, i), QVariant(parts.at(i).trimmed()));
   }
   // Add url to searchResultsUrls associative array
   searchResultsUrls.insert(filename, url);
