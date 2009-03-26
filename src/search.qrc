@@ -2,6 +2,7 @@
 <qresource>
   <file>search_engine/nova2.py</file>
   <file>search_engine/novaprinter.py</file>
+  <file>search_engine/helpers.py</file>
   <file>search_engine/engines/btjunkie.png</file>
   <file>search_engine/engines/btjunkie.py</file>
   <file>search_engine/engines/isohunt.png</file>

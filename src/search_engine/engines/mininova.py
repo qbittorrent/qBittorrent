@@ -1,4 +1,4 @@
-#VERSION: 1.13
+#VERSION: 1.2
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 
 # Redistribution and use in source and binary forms, with or without
@@ -26,7 +26,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from novaprinter import prettyPrinter
-import urllib
+from helpers import retrieve_url
 from xml.dom import minidom
 import re
 
@@ -64,12 +64,15 @@ class mininova(object):
 				return ''.join([ get_text(n) for n in txt.childNodes])
 		page = 1
 		while True and page<11:
+			file = open('/home/chris/mytest.txt', 'w')
+			file.write(self.url+'/search/%s/seeds/%d'%(what, page))
+			file.close()
 			res = 0
-			dat = urllib.urlopen(self.url+'/search/%s/seeds/%d'%(what, page)).read().decode('utf-8', 'replace')
+			dat = retrieve_url(self.url+'/search/%s/seeds/%d'%(what, page))
 			dat = re.sub("<a href=\"http://www.boardreader.com/index.php.*\"", "<a href=\"plop\"", dat)
 			dat = re.sub("<=", "&lt;=", dat)
 			dat = re.sub("&\s", "&amp; ", dat)
-			x = minidom.parseString(dat.encode('utf-8', 'replace'))
+			x = minidom.parseString(dat)
 			table = x.getElementsByTagName('table').item(0)
 			if not table: return
 			for tr in table.getElementsByTagName('tr'):

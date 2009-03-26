@@ -1,4 +1,4 @@
-#VERSION: 1.2
+#VERSION: 1.0
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -24,33 +24,36 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-def prettyPrinter(dictionnary):
-	dictionnary['size'] = anySizeToBytes(dictionnary['size'])
-	if isinstance(dictionnary['name'], unicode):
-		dictionnary['name'] = dictionnary['name'].encode('utf-8')
-	print  dictionnary['link'],'|',dictionnary['name'],'|',dictionnary['size'],'|',dictionnary['seeds'],'|',dictionnary['leech'],'|',dictionnary['engine_url']
+import re, htmlentitydefs
+import urllib2
 
-def anySizeToBytes(size_string):
-	"""
-	Convert a string like '1 KB' to '1024' (bytes)
-	"""
-	# separate integer from unit
-	try:
-		size, unit = size_string.split()
-	except:
-		try:
-			size = size_string.strip()
-			unit = ''.join([c for c in size if c.isalpha()])
-			size = size[:-len(unit)]
-		except:
-			return -1
-	if len(size) == 0:
-		return -1
-	size = float(size)
-	short_unit = unit.upper()[0]
-
-	# convert
-	units_dict = { 'T': 40, 'G': 30, 'M': 20, 'K': 10 }
-	if units_dict.has_key( short_unit ):
-		size = size * 2**units_dict[short_unit]
-	return int(size)
+def htmlentitydecode(s):
+    # First convert alpha entities (such as &eacute;)
+    # (Inspired from http://mail.python.org/pipermail/python-list/2007-June/443813.html)
+    def entity2char(m):
+        entity = m.group(1)
+        if entity in htmlentitydefs.name2codepoint:
+            return unichr(htmlentitydefs.name2codepoint[entity])
+        return u" "  # Unknown entity: We replace with a space.
+    t = re.sub(u'&(%s);' % u'|'.join(htmlentitydefs.name2codepoint), entity2char, s)
+  
+    # Then convert numerical entities (such as &#233;)
+    t = re.sub(u'&#(\d+);', lambda x: unichr(int(x.group(1))), t)
+   
+    # Then convert hexa entities (such as &#x00E9;)
+    return re.sub(u'&#x(\w+);', lambda x: unichr(int(x.group(1),16)), t)
+    
+def retrieve_url(url):
+    """ Return the content of the url page as a string """
+    req = urllib2.Request(url)
+    response = urllib2.urlopen(req)
+    dat = response.read()
+    info = response.info()
+    charset = 'utf-8'
+    try:
+        ignore, charset = info['Content-Type'].split('charset=')
+    except:
+        pass
+    dat = dat.decode(charset)
+    dat = htmlentitydecode(dat)
+    return dat.encode('utf-8', 'replace')
