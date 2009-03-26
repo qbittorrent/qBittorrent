@@ -1,4 +1,4 @@
-#VERSION: 1.04
+#VERSION: 1.1
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 
 # Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
 
 from novaprinter import prettyPrinter
 import sgmllib
-import urllib
+from helpers import retrieve_url
 
 class piratebay(object):
 	url = 'http://thepiratebay.org'
@@ -96,7 +96,7 @@ class piratebay(object):
 		while True and i<11:
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
-			dat = urllib.urlopen(self.url+'/search/%s/%u/7' % (what, i)).read()
+			dat = retrieve_url(self.url+'/search/%s/%u/7' % (what, i))
 			parser.feed(dat)
 			parser.close()
 			if len(results) <= 0:

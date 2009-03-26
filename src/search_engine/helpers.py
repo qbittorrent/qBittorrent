@@ -54,6 +54,6 @@ def retrieve_url(url):
         ignore, charset = info['Content-Type'].split('charset=')
     except:
         pass
-    dat = dat.decode(charset)
+    dat = dat.decode(charset, 'replace')
     dat = htmlentitydecode(dat)
     return dat.encode('utf-8', 'replace')
