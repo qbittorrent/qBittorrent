@@ -1,4 +1,4 @@
-#VERSION: 2.0
+#VERSION: 2.1
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -27,8 +27,8 @@
 
 
 from novaprinter import prettyPrinter
+from helpers import retrieve_url
 import sgmllib
-import urllib
 import re
 
 class btjunkie(object):
@@ -72,11 +72,6 @@ class btjunkie(object):
         if not self.current_item.has_key('leech'):
           self.current_item['leech'] = ''
         self.current_item['leech']+= data.strip()
-        
-    def start_font(self, attr):
-      if isinstance(self.th_counter,int):
-        if self.th_counter == 0:
-          self.current_item['name'] += ' '
       
     def start_th(self,attr):
         if isinstance(self.th_counter,int):
@@ -99,7 +94,12 @@ class btjunkie(object):
     while True and i<11:
       results = []
       parser = self.SimpleSGMLParser(results, self.url)
-      dat = urllib.urlopen(self.url+'/search?q=%s&o=52&p=%d'%(what,i)).read()
+      dat = retrieve_url(self.url+'/search?q=%s&o=52&p=%d'%(what,i))
+      # Remove <font> tags from page
+      p = re.compile( '<[/]?font.*?>')
+      dat = p.sub('', dat)
+      #print dat
+      #return
       results_re = re.compile('(?s)class="tab_results">.*')
       for match in results_re.finditer(dat):
         res_tab = match.group(0)

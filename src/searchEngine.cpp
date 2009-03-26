@@ -303,6 +303,14 @@ void SearchEngine::updateNova() {
     }
     QFile::copy(":/search_engine/novaprinter.py", filePath);
   }
+  QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"helpers.py").setPermissions(perm);
+  filePath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"helpers.py";
+  if(misc::getPluginVersion(":/search_engine/helpers.py") > misc::getPluginVersion(filePath)) {
+    if(QFile::exists(filePath)){
+      QFile::remove(filePath);
+    }
+    QFile::copy(":/search_engine/helpers.py", filePath);
+  }
   QString destDir = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator();
   QDir shipped_subDir(":/search_engine/engines/");
   QStringList files = shipped_subDir.entryList();
