@@ -25,6 +25,8 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 def prettyPrinter(dictionnary):
+	if isinstance(dictionnary['size'], str):
+		dictionnary['size'] = dictionnary['size'].decode('utf-8')
 	dictionnary['size'] = anySizeToBytes(dictionnary['size'])
 	if isinstance(dictionnary['name'], unicode):
 		dictionnary['name'] = dictionnary['name'].encode('utf-8')

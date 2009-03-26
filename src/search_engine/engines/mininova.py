@@ -1,4 +1,4 @@
-#VERSION: 1.2
+#VERSION: 1.21
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 
 # Redistribution and use in source and binary forms, with or without
@@ -64,14 +64,12 @@ class mininova(object):
 				return ''.join([ get_text(n) for n in txt.childNodes])
 		page = 1
 		while True and page<11:
-			file = open('/home/chris/mytest.txt', 'w')
-			file.write(self.url+'/search/%s/seeds/%d'%(what, page))
-			file.close()
 			res = 0
 			dat = retrieve_url(self.url+'/search/%s/seeds/%d'%(what, page))
 			dat = re.sub("<a href=\"http://www.boardreader.com/index.php.*\"", "<a href=\"plop\"", dat)
 			dat = re.sub("<=", "&lt;=", dat)
 			dat = re.sub("&\s", "&amp; ", dat)
+			dat = re.sub("&(?!amp)", "&amp;", dat)
 			x = minidom.parseString(dat)
 			table = x.getElementsByTagName('table').item(0)
 			if not table: return

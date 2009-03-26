@@ -1,4 +1,4 @@
-#VERSION: 1.02
+#VERSION: 1.1
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
 
 # Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
 
 from novaprinter import prettyPrinter
 import sgmllib
-import urllib
+from helpers import retrieve_url
 
 class torrentreactor(object):
 	url = 'http://www.torrentreactor.net'
@@ -92,8 +92,7 @@ class torrentreactor(object):
 		while True and i<11:
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
-			dat = urllib.urlopen(self.url+'/search.php?search=&words=%s&cid=&sid=&type=2&orderby=a.seeds&asc=0&skip=%s'%(what,(i*35))).read().decode('utf-8', 'replace')
-			#print "loading page: "+self.url+'/search.php?search=&words=%s&cid=&sid=&type=2&orderby=a.seeds&asc=0&skip=%s'%(what,(i*35))
+			dat = retrieve_url(self.url+'/search.php?search=&words=%s&cid=&sid=&type=2&orderby=a.seeds&asc=0&skip=%s'%(what,(i*35)))
 			parser.feed(dat)
 			parser.close()
 			if len(results) <= 0:

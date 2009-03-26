@@ -1,4 +1,4 @@
-#VERSION: 1.1
+#VERSION: 1.2
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
 
 from novaprinter import prettyPrinter
 import re
-import urllib
+from helpers import retrieve_url
 
 class isohunt(object):
 	url = 'http://isohunt.com'
@@ -37,7 +37,7 @@ class isohunt(object):
 		i = 1
 		while True and i<11:
 			res = 0
-			dat = urllib.urlopen(self.url+'/torrents.php?ihq=%s&ihp=%s&ihs1=2&iho1=d'%(what,i)).read().decode('utf8', 'replace')
+			dat = retrieve_url(self.url+'/torrents.php?ihq=%s&ihp=%s&ihs1=2&iho1=d'%(what,i))
 			# I know it's not very readable, but the SGML parser feels in pain
 			section_re = re.compile('(?s)id=link.*?</tr><tr')
 			torrent_re = re.compile('(?s)torrent_details/(?P<link>.*?[^/]+).*?'
