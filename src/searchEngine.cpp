@@ -58,6 +58,8 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   search_stopped = false;
   // Creating Search Process
   searchProcess = new QProcess(this);
+  QStringList env = QProcess::systemEnvironment();
+  searchProcess->setEnvironment(env);
   connect(searchProcess, SIGNAL(started()), this, SLOT(searchStarted()));
   connect(searchProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readSearchOutput()));
   connect(searchProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(searchFinished(int,QProcess::ExitStatus)));
@@ -253,6 +255,7 @@ void SearchEngine::downloadSelectedItem(const QModelIndex& index){
 // line to search results calling appendSearchResult().
 void SearchEngine::readSearchOutput(){
   QByteArray output = searchProcess->readAllStandardOutput();
+  std::cerr << searchProcess->readAllStandardError().data() << std::endl;
   output.replace("\r", "");
   QList<QByteArray> lines_list = output.split('\n');
   if(!search_result_line_truncated.isEmpty()){
@@ -261,7 +264,7 @@ void SearchEngine::readSearchOutput(){
   }
   search_result_line_truncated = lines_list.takeLast().trimmed();
   foreach(const QByteArray &line, lines_list){
-    appendSearchResult(QString(line));
+    appendSearchResult(QString::fromUtf8(line));
   }
   currentSearchTab->getCurrentLabel()->setText(tr("Results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
 }
