@@ -14,10 +14,10 @@ CONFIG += qt \
     network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v1.3.2\\\"
+DEFINES += VERSION=\\\"v1.3.3\\\"
 DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=3
-DEFINES += VERSION_BUGFIX=2
+DEFINES += VERSION_BUGFIX=3
 !mac:QMAKE_LFLAGS += -Wl,--as-needed
 contains(DEBUG_MODE, 1) { 
     CONFIG += debug
