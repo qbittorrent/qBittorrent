@@ -1,4 +1,4 @@
-#VERSION: 1.2
+#VERSION: 1.3
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -24,13 +24,21 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import sys
+
+# Force UTF-8 printing
+from ctypes import pythonapi, py_object, c_char_p
+PyFile_SetEncoding = pythonapi.PyFile_SetEncoding
+PyFile_SetEncoding.argtypes = (py_object, c_char_p)
+PyFile_SetEncoding(sys.stdout, "UTF-8")
+
 def prettyPrinter(dictionnary):
-	if isinstance(dictionnary['size'], str):
-		dictionnary['size'] = dictionnary['size'].decode('utf-8')
+	# Convert everything to unicode for safe printing
+	for key,value in dictionnary.items():
+		if isinstance(dictionnary[key], str):
+			dictionnary[key] = unicode(dictionnary[key], 'utf-8')
 	dictionnary['size'] = anySizeToBytes(dictionnary['size'])
-	if isinstance(dictionnary['name'], unicode):
-		dictionnary['name'] = dictionnary['name'].encode('utf-8')
-	print  dictionnary['link'],'|',dictionnary['name'],'|',dictionnary['size'],'|',dictionnary['seeds'],'|',dictionnary['leech'],'|',dictionnary['engine_url']
+	print u"%s|%s|%s|%s|%s|%s"%(dictionnary['link'],dictionnary['name'],dictionnary['size'],dictionnary['seeds'],dictionnary['leech'],dictionnary['engine_url'])
 
 def anySizeToBytes(size_string):
 	"""
