@@ -1,5 +1,5 @@
-#VERSION: 1.21
-#AUTHORS: Christophe Dumez (chris@qbittorrent.org)
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -25,39 +25,36 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-from novaprinter import prettyPrinter
-import re
-from helpers import retrieve_url, download_file
+#VERSION: 1.00
 
-class isohunt(object):
-	url = 'http://isohunt.com'
-	name = 'isoHunt'
+# Author:
+#  Christophe DUMEZ (chris@qbittorrent.org)
 
-	def download_torrent(self, info):
-		print download_file(info)
+import sys
+import os
+import glob
 
-	def search(self, what):
-		i = 1
-		while True and i<11:
-			res = 0
-			dat = retrieve_url(self.url+'/torrents.php?ihq=%s&ihp=%s&ihs1=2&iho1=d'%(what,i))
-			# I know it's not very readable, but the SGML parser feels in pain
-			section_re = re.compile('(?s)id=link.*?</tr><tr')
-			torrent_re = re.compile('(?s)torrent_details/(?P<link>.*?[^/]+).*?'
-			'>(?P<name>.*?)</a>.*?'
-			'>(?P<size>[\d,\.]+\s+MB)</td>.*?'
-			'>(?P<seeds>\d+)</td>.*?'
-			'>(?P<leech>\d+)</td>')
-			for match in section_re.finditer(dat):
-				txt = match.group(0)
-				m = torrent_re.search(txt)
-				if m:
-					torrent_infos = m.groupdict()
-					torrent_infos['name'] = re.sub('<.*?>', '', torrent_infos['name'])
-					torrent_infos['engine_url'] = self.url
-					torrent_infos['link'] = 'http://isohunt.com/download/'+torrent_infos['link']
-					prettyPrinter(torrent_infos)
-					res = res + 1
-			if res == 0:
-				break
-			i = i + 1
+supported_engines = dict()
+
+engines = glob.glob(os.path.join(os.path.dirname(__file__), 'engines','*.py'))
+for engine in engines:
+	e = engine.split(os.sep)[-1][:-3]
+	if len(e.strip()) == 0: continue
+	if e.startswith('_'): continue
+	try:
+		exec "from engines.%s import %s"%(e,e)
+		exec "engine_url = %s.url"%e
+		supported_engines[engine_url] = e
+	except:
+		pass
+
+if __name__ == '__main__':
+	if len(sys.argv) < 3:
+		raise SystemExit('./nova2dl.py engine_url download_parameter')
+	engine_url = sys.argv[1].strip()
+	download_param = sys.argv[2].strip()
+	if engine_url not in supported_engines.keys():
+		raise SystemExit('./nova2dl.py: this engine_url was not recognized')
+	exec "engine = %s()"%supported_engines[engine_url]
+	engine.download_torrent(download_param)
+	sys.exit(0)

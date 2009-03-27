@@ -78,6 +78,11 @@ SearchEngine::~SearchEngine(){
   saveSearchHistory();
   searchProcess->kill();
   searchProcess->waitForFinished();
+	foreach(QProcess *downloader, downloaders) {
+		downloader->kill();
+		downloader->waitForFinished();
+		delete downloader;
+	}
   delete searchTimeout;
   delete searchProcess;
   delete searchCompleter;
@@ -225,6 +230,18 @@ void SearchEngine::saveResultsColumnsWidth() {
   }
 }
 
+void SearchEngine::downloadTorrent(QString engine_url, QString torrent_url) {
+		QProcess *downloadProcess = new QProcess(this);
+		connect(downloadProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(downloadFinished(int,QProcess::ExitStatus)));
+		downloaders << downloadProcess;
+		QStringList params;
+		params << misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2dl.py";
+		params << engine_url;
+		params << torrent_url;
+		// Launch search
+		downloadProcess->start("python", params, QIODevice::ReadOnly);
+}
+
 void SearchEngine::searchStarted(){
   // Update SearchEngine widgets
   search_status->setText(tr("Searching..."));
@@ -242,9 +259,10 @@ void SearchEngine::downloadSelectedItem(const QModelIndex& index){
   int row = index.row();
   // Get Item url
   QStandardItemModel *model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel();
-  QString url = model->data(model->index(index.row(), URL_COLUMN)).toString();
+	QString engine_url = model->data(model->index(index.row(), ENGINE_URL_COLUMN)).toString();
+  QString torrent_url = model->data(model->index(index.row(), URL_COLUMN)).toString();
   // Download from url
-  BTSession->downloadFromUrl(url);
+  downloadTorrent(engine_url, torrent_url);
   // Set item color to RED
   all_tab.at(tabWidget->currentIndex())->setRowColor(row, "red");
 }
@@ -265,6 +283,22 @@ void SearchEngine::readSearchOutput(){
     appendSearchResult(QString::fromUtf8(line));
   }
   currentSearchTab->getCurrentLabel()->setText(tr("Results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
+}
+
+void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
+		QProcess *downloadProcess = (QProcess*)sender();
+		if(exitcode == 0) {
+				QString line = QString::fromUtf8(downloadProcess->readAllStandardOutput()).trimmed();
+				QStringList parts = line.split(' ');
+				if(parts.length() == 2) {
+						QString path = parts[0];
+						QString url = parts[1];
+						BTSession->processDownloadedFile(url, path);
+				}
+		}
+		qDebug("Deleting downloadProcess");
+		downloaders.removeOne(downloadProcess);
+		delete downloadProcess;
 }
 
 // Update nova.py search plugin if necessary
@@ -294,6 +328,14 @@ void SearchEngine::updateNova() {
   // Set permissions
   QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;
   QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py").setPermissions(perm);
+	filePath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2dl.py";
+	if(misc::getPluginVersion(":/search_engine/nova2dl.py") > misc::getPluginVersion(filePath)) {
+    if(QFile::exists(filePath)){
+      QFile::remove(filePath);
+    }
+    QFile::copy(":/search_engine/nova2dl.py", filePath);
+  }
+  QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2dl.py").setPermissions(perm);
   filePath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"novaprinter.py";
   if(misc::getPluginVersion(":/search_engine/novaprinter.py") > misc::getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
@@ -301,7 +343,7 @@ void SearchEngine::updateNova() {
     }
     QFile::copy(":/search_engine/novaprinter.py", filePath);
   }
-  QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"helpers.py").setPermissions(perm);
+  QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"novaprinter.py").setPermissions(perm);
   filePath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"helpers.py";
   if(misc::getPluginVersion(":/search_engine/helpers.py") > misc::getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
@@ -309,6 +351,7 @@ void SearchEngine::updateNova() {
     }
     QFile::copy(":/search_engine/helpers.py", filePath);
   }
+	QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"helpers.py").setPermissions(perm);
   QString destDir = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator();
   QDir shipped_subDir(":/search_engine/engines/");
   QStringList files = shipped_subDir.entryList();
@@ -436,8 +479,9 @@ void SearchEngine::on_download_button_clicked(){
     if(index.column() == NAME){
       // Get Item url
       QStandardItemModel *model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel();
-      QString url = model->data(model->index(index.row(), URL_COLUMN)).toString();
-      BTSession->downloadFromUrl(url);
+      QString torrent_url = model->data(model->index(index.row(), URL_COLUMN)).toString();
+			QString engine_url = model->data(model->index(index.row(), ENGINE_URL_COLUMN)).toString();
+      downloadTorrent(engine_url, torrent_url);
       all_tab.at(tabWidget->currentIndex())->setRowColor(index.row(), "red");
     }
   }

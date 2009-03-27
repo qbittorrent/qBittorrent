@@ -154,11 +154,11 @@ class bittorrent : public QObject {
     bool enableDHT(bool b);
     void addConsoleMessage(QString msg, QColor color=QApplication::palette().color(QPalette::WindowText));
     void addPeerBanMessage(QString msg, bool from_ipfilter);
+    void processDownloadedFile(QString, QString);
 
   protected slots:
     void scanDirectory(QString);
     void readAlerts();
-    void processDownloadedFile(QString, QString);
     bool loadTrackerFile(QString hash);
     void saveTrackerFile(QString hash);
     void deleteBigRatios();

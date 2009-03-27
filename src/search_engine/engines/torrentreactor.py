@@ -1,4 +1,4 @@
-#VERSION: 1.1
+#VERSION: 1.11
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
 
 # Redistribution and use in source and binary forms, with or without
@@ -27,12 +27,15 @@
 
 from novaprinter import prettyPrinter
 import sgmllib
-from helpers import retrieve_url
+from helpers import retrieve_url, download_file
 
 class torrentreactor(object):
 	url = 'http://www.torrentreactor.net'
 	name = 'TorrentReactor.Net'
 
+	def download_torrent(self, info):
+		print download_file(info)
+		
 	class SimpleSGMLParser(sgmllib.SGMLParser):
 		def __init__(self, results, url, *args):
 			sgmllib.SGMLParser.__init__(self)
