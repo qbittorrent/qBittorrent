@@ -910,7 +910,6 @@ void bittorrent::setDefaultTempPath(QString temppath) {
     for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
       QTorrentHandle h = QTorrentHandle(*torrentIT);
       if(!h.is_valid()) continue;
-      std::cout << "Moving storage for " << h.hash().toUtf8().data() << ", from " << h.save_path().toUtf8().data() << " to " << getSavePath(h.hash()).toUtf8().data() << std::endl;
       h.move_storage(getSavePath(h.hash()));
     }
   } else {
