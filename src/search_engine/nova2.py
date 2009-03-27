@@ -100,16 +100,15 @@ if __name__ == '__main__':
 	what = '+'.join(sys.argv[2:])
 	threads = []
 	for engine in engines_list:
-		if 1:
-		#try:
+		try:
 			if THREADED:
 				exec "l = EngineLauncher(%s(), what)" % engine
 				threads.append(l)
 				l.start()
 			else:
 				engine().search(what)
-		#except:
-		#	pass
+		except:
+			pass
 	if THREADED:
 		for t in threads:
 			t.join()
