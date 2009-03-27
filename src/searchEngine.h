@@ -51,7 +51,6 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     bittorrent *BTSession;
     QSystemTrayIcon *myTrayIcon;
     bool systrayIntegration;
-    downloadThread *downloader;
     QStringList enabled_engines;
     QTimer *searchTimeout;
     SearchTab *currentSearchTab;
