@@ -24,6 +24,8 @@
 
 #include "ui_search.h"
 
+#define URL_COLUMN 5
+
 class SearchListDelegate;
 class SearchEngine;
 class QTreeView;

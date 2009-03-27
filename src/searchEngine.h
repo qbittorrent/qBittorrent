@@ -41,7 +41,6 @@ class SearchEngine : public QWidget, public Ui::search_engine{
 
   private:
     // Search related
-    QHash<QString, QString> searchResultsUrls;
     QProcess *searchProcess;
     bool search_stopped;
     bool no_search_results;
