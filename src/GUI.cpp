@@ -139,7 +139,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   downloadingTorrentTab = new DownloadingTorrents(this, BTSession);
   tabs->addTab(downloadingTorrentTab, tr("Downloads") + QString::fromUtf8(" (0/0)"));
   tabs->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
-  propertiesSplitter->insertWidget(0, tabs);
+  vboxLayout->addWidget(tabs);
   connect(downloadingTorrentTab, SIGNAL(unfinishedTorrentsNumberChanged(unsigned int)), this, SLOT(updateUnfinishedTorrentNumber(unsigned int)));
   connect(downloadingTorrentTab, SIGNAL(torrentDoubleClicked(QString, bool)), this, SLOT(torrentDoubleClicked(QString, bool)));
   // Finished torrents tab
@@ -237,10 +237,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   QMainWindow::statusBar()->addPermanentWidget(upSpeedLbl);
   QMainWindow::statusBar()->addPermanentWidget(statusSep4);
   QMainWindow::statusBar()->addPermanentWidget(ratioLbl);
-  // Properties code
-  propertiesSplitter->handle(1)->setVisible(false);
-  stackedProperties->setVisible(false);
-  // Display window if necessary
   if(!settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), false).toBool()) {
     show();
   }
@@ -296,16 +292,6 @@ GUI::~GUI() {
   qDebug("4");
   delete BTSession;
   qDebug("5");
-}
-
-void GUI::on_prop_infos_button_clicked() {
-  if(stackedProperties->isVisible()) {
-    propertiesSplitter->handle(1)->setVisible(false);
-    stackedProperties->setVisible(false);
-  } else {
-    stackedProperties->setVisible(true);
-    propertiesSplitter->handle(1)->setVisible(true);
-  }
 }
 
 void GUI::displayRSSTab(bool enable) {

@@ -173,8 +173,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void OptionsSaved(bool deleteOptions);
     // HTTP slots
     void on_actionDownload_from_URL_triggered();
-    // Properties
-    void on_prop_infos_button_clicked();
+
 
   public slots:
     void trackerAuthenticationRequired(QTorrentHandle& h);
