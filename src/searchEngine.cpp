@@ -206,7 +206,8 @@ void SearchEngine::searchStarted(){
 void SearchEngine::downloadSelectedItem(const QModelIndex& index){
   int row = index.row();
   // Get Item url
-  QString url = searchResultsUrls.value(all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel()->data(all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel()->index(row, NAME)).toString());
+  QStandardItemModel *model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel();
+  QString url = model->data(model->index(index.row(), URL_COLUMN)).toString();
   // Download from url
   BTSession->downloadFromUrl(url);
   // Set item color to RED
@@ -338,21 +339,17 @@ void SearchEngine::appendSearchResult(QString line){
   }
   QString url = parts.takeFirst().trimmed();
   QString filename = parts.first().trimmed();
-  // XXX: Two results can't have the same name (right?)
-  if(searchResultsUrls.contains(filename)){
-    return;
-  }
+  parts << url;
   // Add item to search result list
   int row = currentSearchTab->getCurrentSearchListModel()->rowCount();
   currentSearchTab->getCurrentSearchListModel()->insertRow(row);
-  for(int i=0; i<5; ++i){
+  for(int i=0; i<6; ++i){
     if(parts.at(i).trimmed().toFloat() == -1 && i != SIZE)
       currentSearchTab->getCurrentSearchListModel()->setData(currentSearchTab->getCurrentSearchListModel()->index(row, i), tr("Unknown"));
     else
       currentSearchTab->getCurrentSearchListModel()->setData(currentSearchTab->getCurrentSearchListModel()->index(row, i), QVariant(parts.at(i).trimmed()));
   }
   // Add url to searchResultsUrls associative array
-  searchResultsUrls.insert(filename, url);
   no_search_results = false;
   ++nb_search_results;
   // Enable clear & download buttons
@@ -403,7 +400,8 @@ void SearchEngine::on_download_button_clicked(){
   foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == NAME){
       // Get Item url
-      QString url = searchResultsUrls.value(index.data().toString());
+      QStandardItemModel *model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel();
+      QString url = model->data(model->index(index.row(), URL_COLUMN)).toString();
       BTSession->downloadFromUrl(url);
       all_tab.at(tabWidget->currentIndex())->setRowColor(index.row(), "red");
     }

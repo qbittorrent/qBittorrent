@@ -1,6 +1,7 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.3.3
     - BUGFIX: Fixed Web UI torrent upload form
     - BUGFIX: Fixed unicode support in search engine
+    - BUGFIX: Fixed search engine bug that prevented a torrent from appearing more than once among all tabs
 
 * Sat Mar 7 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.2
     - BUGFIX: Fix top toolbar disabling

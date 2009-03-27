@@ -47,13 +47,14 @@ SearchTab::SearchTab(SearchEngine *parent) : QWidget()
     
     setLayout(box);
     // Set Search results list model
-    SearchListModel = new QStandardItemModel(0,5);
+    SearchListModel = new QStandardItemModel(0,6);
     SearchListModel->setHeaderData(SEARCH_NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
     SearchListModel->setHeaderData(SEARCH_SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
     SearchListModel->setHeaderData(SEARCH_SEEDERS, Qt::Horizontal, tr("Seeders", "i.e: Number of full sources"));
     SearchListModel->setHeaderData(SEARCH_LEECHERS, Qt::Horizontal, tr("Leechers", "i.e: Number of partial sources"));
     SearchListModel->setHeaderData(SEARCH_ENGINE, Qt::Horizontal, tr("Search engine"));
     resultsBrowser->setModel(SearchListModel);
+    resultsBrowser->hideColumn(URL_COLUMN); // Hide url column
     SearchDelegate = new SearchListDelegate();
     resultsBrowser->setItemDelegate(SearchDelegate);
     // Make search list header clickable for sorting
