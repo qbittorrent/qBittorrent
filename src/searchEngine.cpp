@@ -42,7 +42,6 @@
 /*SEARCH ENGINE START*/
 SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration) : QWidget(), BTSession(BTSession), myTrayIcon(myTrayIcon), systrayIntegration(systrayIntegration){
   setupUi(this);
-  downloader = new downloadThread(this);
   // new qCompleter to the search pattern
   startSearchHistory();
   searchCompleter = new QCompleter(searchHistory, this);
@@ -82,7 +81,6 @@ SearchEngine::~SearchEngine(){
   delete searchTimeout;
   delete searchProcess;
   delete searchCompleter;
-  delete downloader;
 }
 
 void SearchEngine::tab_changed(int t)
