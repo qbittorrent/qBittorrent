@@ -1,4 +1,4 @@
-#VERSION: 1.21
+#VERSION: 1.22
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 
 # Redistribution and use in source and binary forms, with or without
@@ -26,7 +26,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from novaprinter import prettyPrinter
-from helpers import retrieve_url
+from helpers import retrieve_url, download_file
 from xml.dom import minidom
 import re
 
@@ -34,6 +34,9 @@ class mininova(object):
 	url = 'http://www.mininova.org'
 	name = 'Mininova'
 	table_items = 'added cat name size seeds leech'.split()
+	
+	def download_torrent(self, info):
+		print download_file(info)
 
 	def search(self, what):
 

@@ -1,4 +1,4 @@
-#VERSION: 1.1
+#VERSION: 1.11
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 
 # Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
 
 from novaprinter import prettyPrinter
 import sgmllib
-from helpers import retrieve_url
+from helpers import retrieve_url, download_file
 
 class piratebay(object):
 	url = 'http://thepiratebay.org'
@@ -36,6 +36,9 @@ class piratebay(object):
 	def __init__(self):
 		self.results = []
 		self.parser = self.SimpleSGMLParser(self.results, self.url)
+		
+	def download_torrent(self, info):
+		print download_file(info)
 
 	class SimpleSGMLParser(sgmllib.SGMLParser):
 		def __init__(self, results, url, *args):

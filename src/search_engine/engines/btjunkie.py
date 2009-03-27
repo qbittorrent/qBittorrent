@@ -1,4 +1,4 @@
-#VERSION: 2.1
+#VERSION: 2.11
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
 
 
 from novaprinter import prettyPrinter
-from helpers import retrieve_url
+from helpers import retrieve_url, download_file
 import sgmllib
 import re
 
@@ -38,7 +38,10 @@ class btjunkie(object):
   def __init__(self):
     self.results = []
     self.parser = self.SimpleSGMLParser(self.results, self.url)
-    
+
+  def download_torrent(self, info):
+    print download_file(info)
+
   class SimpleSGMLParser(sgmllib.SGMLParser):
     def __init__(self, results, url, *args):
       sgmllib.SGMLParser.__init__(self)

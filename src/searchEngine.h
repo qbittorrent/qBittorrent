@@ -26,6 +26,7 @@
 
 #include <QProcess>
 #include <QList>
+#include <QPair>
 #include "ui_search.h"
 #include "engineSelectDlg.h"
 #include "SearchTab.h"
@@ -42,6 +43,7 @@ class SearchEngine : public QWidget, public Ui::search_engine{
   private:
     // Search related
     QProcess *searchProcess;
+		QList<QProcess*> downloaders;
     bool search_stopped;
     bool no_search_results;
     QByteArray search_result_line_truncated;
@@ -79,6 +81,8 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     void saveSearchHistory();
     void on_enginesButton_clicked();
     void on_clearPatternButton_clicked();
+		void downloadFinished(int exitcode, QProcess::ExitStatus);
+		void downloadTorrent(QString engine_url, QString torrent_url);
 };
 
 #endif

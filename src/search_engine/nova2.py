@@ -75,7 +75,7 @@ class EngineLauncher(threading.Thread):
 
 if __name__ == '__main__':
 	if len(sys.argv) < 2:
-		raise SystemExit('./nova.py [all|engine1[,engine2]*] <keywords>\navailable engines: %s'%
+		raise SystemExit('./nova2.py [all|engine1[,engine2]*] <keywords>\navailable engines: %s'%
 				(','.join(supported_engines)))
 
 	if len(sys.argv) == 2:

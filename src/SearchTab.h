@@ -24,6 +24,7 @@
 
 #include "ui_search.h"
 
+#define ENGINE_URL_COLUMN 4
 #define URL_COLUMN 5
 
 class SearchListDelegate;
