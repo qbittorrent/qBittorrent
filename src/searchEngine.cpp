@@ -290,7 +290,7 @@ void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
 		if(exitcode == 0) {
 				QString line = QString::fromUtf8(downloadProcess->readAllStandardOutput()).trimmed();
 				QStringList parts = line.split(' ');
-				if(parts.length() == 2) {
+				if(parts.size() == 2) {
 						QString path = parts[0];
 						QString url = parts[1];
 						BTSession->processDownloadedFile(url, path);
