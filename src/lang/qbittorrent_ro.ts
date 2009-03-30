@@ -1392,7 +1392,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">început</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1196"/>
+        <location filename="../GUI.cpp" line="1194"/>
         <source>Finished</source>
         <translation>Finişat</translation>
     </message>
@@ -1501,7 +1501,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1820,7 +1820,7 @@ Vă rugăm să-l opriţi.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1453"/>
+        <location filename="../GUI.cpp" line="1451"/>
         <source>Connection status:</source>
         <translation>Starea conectării:</translation>
     </message>
@@ -1877,13 +1877,13 @@ Vă rugăm să-l opriţi.</translation>
         <translation type="obsolete">Seederi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1438"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Viteza DL: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1441"/>
+        <location filename="../GUI.cpp" line="1439"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Viteza IP: %1 KiB/s</translation>
@@ -1970,12 +1970,12 @@ Vă rugăm să-l opriţi.</translation>
         <translation>O eroare a fost detectată la citire sau scriere în %1. Discul probabil este plin, descărcarea a fost pauzată</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1450"/>
+        <location filename="../GUI.cpp" line="1448"/>
         <source>Connection Status:</source>
         <translation>Starea conectării:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1450"/>
+        <location filename="../GUI.cpp" line="1448"/>
         <source>Online</source>
         <translation>Conectat</translation>
     </message>
@@ -2013,23 +2013,23 @@ Vă rugăm să-l opriţi.</translation>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="965"/>
+        <location filename="../GUI.cpp" line="963"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent foloseşte portul: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1056"/>
+        <location filename="../GUI.cpp" line="1054"/>
         <source>DHT support [ON], port: %1</source>
         <translation>Suport DHT[Activat], port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1062"/>
+        <location filename="../GUI.cpp" line="1060"/>
         <source>DHT support [OFF]</source>
         <translation>Suport DHT[Dezactivat]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1065"/>
+        <location filename="../GUI.cpp" line="1063"/>
         <source>PeX support [ON]</source>
         <translation>Suport PeX[Activat]</translation>
     </message>
@@ -2046,7 +2046,7 @@ Are you sure you want to quit qBittorrent?</source>
 Doriţi să ieşiţi din qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1191"/>
+        <location filename="../GUI.cpp" line="1189"/>
         <source>Downloads</source>
         <translation>Descărcări</translation>
     </message>
@@ -2056,22 +2056,22 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation>Doriţi să ştergeţi itemii selectaţi ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="987"/>
+        <location filename="../GUI.cpp" line="985"/>
         <source>UPnP support [ON]</source>
         <translation>Suport UPnP[Activat]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1084"/>
+        <location filename="../GUI.cpp" line="1082"/>
         <source>Encryption support [ON]</source>
         <translation>Suport de codificate[Activat]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1087"/>
         <source>Encryption support [FORCED]</source>
         <translation>Suport de codificare[Forţat]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1094"/>
+        <location filename="../GUI.cpp" line="1092"/>
         <source>Encryption support [OFF]</source>
         <translation>Suport de codificare [Dezactivat]</translation>
     </message>
@@ -2132,27 +2132,27 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="990"/>
+        <location filename="../GUI.cpp" line="988"/>
         <source>UPnP support [OFF]</source>
         <translation>suport de UPnP[Dezactivat]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="995"/>
+        <location filename="../GUI.cpp" line="993"/>
         <source>NAT-PMP support [ON]</source>
         <translation>suport NAT-PMP[Activat]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="998"/>
+        <location filename="../GUI.cpp" line="996"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>suport NAT-PMP[Dezactivat]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1069"/>
+        <location filename="../GUI.cpp" line="1067"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Căutare peer locali[Activat]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1072"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Căutarea peer locali[Dezactivat]</translation>
     </message>
@@ -2163,18 +2163,18 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation type="obsolete">&apos;%1&apos; a fost şters deoarece ratio lui a ajuns la valoarea maximă setată de dvs.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1409"/>
+        <location filename="../GUI.cpp" line="1407"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1386"/>
+        <location filename="../GUI.cpp" line="1384"/>
         <source>DL: %1 KiB/s</source>
         <translation>DL: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1387"/>
+        <location filename="../GUI.cpp" line="1385"/>
         <source>UP: %1 KiB/s</source>
         <translation>UP:%1 Kib/s</translation>
     </message>
@@ -2189,7 +2189,7 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation>DHT: %1 noduri</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1453"/>
+        <location filename="../GUI.cpp" line="1451"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Nu sunt connectări directe. Aceasta poate indica la probleme cu rețeaua.</translation>
     </message>
@@ -2199,7 +2199,7 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation>Upload-uri</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1530"/>
+        <location filename="../GUI.cpp" line="1528"/>
         <source>Options were saved successfully.</source>
         <translation>Opţiunile salvate cu success.</translation>
     </message>
@@ -2713,13 +2713,13 @@ Doriţi să ieşiţi din qBittorrent?</translation>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="447"/>
+        <location filename="../rss.h" line="458"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>%1 în urmă</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="446"/>
+        <location filename="../rss.h" line="457"/>
         <source>Never</source>
         <translation>Niciodată</translation>
     </message>
@@ -2756,12 +2756,12 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation type="obsolete">Motorul de căutare</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="150"/>
+        <location filename="../searchEngine.cpp" line="155"/>
         <source>Empty search pattern</source>
         <translation>Şablonul de căutat este vid</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="150"/>
+        <location filename="../searchEngine.cpp" line="155"/>
         <source>Please type a search pattern first</source>
         <translation>Vă rugăm să completaţi şablonul de căutare</translation>
     </message>
@@ -2776,12 +2776,12 @@ Doriţi să ieşiţi din qBittorrent?</translation>
         <translation type="obsolete">Trebuie să selectaţi cel puţin un motor de căutare.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="229"/>
+        <location filename="../searchEngine.cpp" line="248"/>
         <source>Results</source>
         <translation>Rezultate</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="193"/>
+        <location filename="../searchEngine.cpp" line="210"/>
         <source>Searching...</source>
         <translation>Căutare...</translation>
     </message>
@@ -2832,32 +2832,32 @@ Changelog:
         <translation type="obsolete">Plugin-ul cautat este de acum înnoit.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="300"/>
+        <location filename="../searchEngine.cpp" line="352"/>
         <source>Search Engine</source>
         <translation>Motor de Căutare</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="311"/>
+        <location filename="../searchEngine.cpp" line="363"/>
         <source>Search has finished</source>
         <translation>Căutarea a fost terminată</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="303"/>
+        <location filename="../searchEngine.cpp" line="355"/>
         <source>An error occured during search...</source>
         <translation>Eroare în timpul căutării...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="306"/>
+        <location filename="../searchEngine.cpp" line="358"/>
         <source>Search aborted</source>
         <translation>Cautarea abordată</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="309"/>
+        <location filename="../searchEngine.cpp" line="361"/>
         <source>Search returned no results</source>
         <translation>Cautarea nu a returnat rezultate</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="316"/>
+        <location filename="../searchEngine.cpp" line="368"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Rezultate</translation>
@@ -2873,7 +2873,7 @@ Changelog:
         <translation type="obsolete">Nu pot descărca plugin-ul de căutare reînoit prin url: %1, motivul: %2.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="340"/>
+        <location filename="../searchEngine.cpp" line="389"/>
         <source>Unknown</source>
         <translation>Necunoscut</translation>
     </message>

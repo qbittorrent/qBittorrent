@@ -1555,7 +1555,7 @@ download list?</source>
         <translation type="obsolete">开始</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1196"/>
+        <location filename="../GUI.cpp" line="1194"/>
         <source>Finished</source>
         <translation>完成</translation>
     </message>
@@ -2005,7 +2005,7 @@ download list and in hard drive?</source>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1453"/>
+        <location filename="../GUI.cpp" line="1451"/>
         <source>Connection status:</source>
         <translation>连接状态:</translation>
     </message>
@@ -2080,18 +2080,18 @@ download list and in hard drive?</source>
         <translation type="obsolete">qBittorrent %1开始.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1435"/>
+        <location filename="../GUI.cpp" line="1433"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1438"/>
+        <location filename="../GUI.cpp" line="1436"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>下载速度: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1441"/>
+        <location filename="../GUI.cpp" line="1439"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation> 上传速度: %1 KiB/s</translation>
@@ -2216,12 +2216,12 @@ The disk is probably full, download has been paused</comment>
         <translation type="obsolete">读或写%1过程中出现错误.磁盘已满,下载被暂停</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1450"/>
+        <location filename="../GUI.cpp" line="1448"/>
         <source>Connection Status:</source>
         <translation>连接状态:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1450"/>
+        <location filename="../GUI.cpp" line="1448"/>
         <source>Online</source>
         <translation>联机</translation>
     </message>
@@ -2283,23 +2283,23 @@ paused.</comment>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="965"/>
+        <location filename="../GUI.cpp" line="963"/>
         <source>qBittorrent is bind to port: %1</source>
         <comment>e.g: qBittorrent is bind to port: 1666</comment>
         <translation>qBittorrent 绑定端口:%1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1056"/>
+        <location filename="../GUI.cpp" line="1054"/>
         <source>DHT support [ON], port: %1</source>
         <translation>DHT 支持 [开], port: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1062"/>
+        <location filename="../GUI.cpp" line="1060"/>
         <source>DHT support [OFF]</source>
         <translation>DHT 支持［关］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1065"/>
+        <location filename="../GUI.cpp" line="1063"/>
         <source>PeX support [ON]</source>
         <translation>PeX 支持［ON］</translation>
     </message>
@@ -2316,7 +2316,7 @@ Are you sure you want to quit qBittorrent?</source>
 您确定要离开qBittorrent吗?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1191"/>
+        <location filename="../GUI.cpp" line="1189"/>
         <source>Downloads</source>
         <translation>下载</translation>
     </message>
@@ -2327,7 +2327,7 @@ finished list?</source>
         <translation type="obsolete">您确定要删除完成列表中选中的项目吗?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="987"/>
+        <location filename="../GUI.cpp" line="985"/>
         <source>UPnP support [ON]</source>
         <translation>UPnP 支持［开］</translation>
     </message>
@@ -2338,17 +2338,17 @@ is against the law.</source>
         <translation type="obsolete">注意，在未经允许情况下共享有版权的材料是违法的.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1084"/>
+        <location filename="../GUI.cpp" line="1082"/>
         <source>Encryption support [ON]</source>
         <translation>加密支持［开］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
+        <location filename="../GUI.cpp" line="1087"/>
         <source>Encryption support [FORCED]</source>
         <translation>加密支持［强制］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1094"/>
+        <location filename="../GUI.cpp" line="1092"/>
         <source>Encryption support [OFF]</source>
         <translation>加密支持［关］</translation>
     </message>
@@ -2444,27 +2444,27 @@ finished list and from hard drive?</source>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="990"/>
+        <location filename="../GUI.cpp" line="988"/>
         <source>UPnP support [OFF]</source>
         <translation>UPnP 支持［关］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="995"/>
+        <location filename="../GUI.cpp" line="993"/>
         <source>NAT-PMP support [ON]</source>
         <translation>NAT-PMP 支持［开］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="998"/>
+        <location filename="../GUI.cpp" line="996"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>NAT-PMP 支持［关］</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1069"/>
+        <location filename="../GUI.cpp" line="1067"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>本地资源搜索[开]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1072"/>
+        <location filename="../GUI.cpp" line="1070"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>本地资源搜索支持[关]</translation>
     </message>
@@ -2476,7 +2476,7 @@ maximum value you set.</source>
         <translation type="obsolete">&apos;%1&apos;被移除因为它的比率达到您设置的最大值.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1409"/>
+        <location filename="../GUI.cpp" line="1407"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (下载: %2KiB/s, 上传: 
@@ -2521,12 +2521,12 @@ maximum value you set.</source>
         <translation>您确定要删除完成列表中选中的项目吗?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1386"/>
+        <location filename="../GUI.cpp" line="1384"/>
         <source>DL: %1 KiB/s</source>
         <translation>下载: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1387"/>
+        <location filename="../GUI.cpp" line="1385"/>
         <source>UP: %1 KiB/s</source>
         <translation>上传: %1 KiB/s</translation>
     </message>
@@ -2541,7 +2541,7 @@ maximum value you set.</source>
         <translation>DHT: %1 结点</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1453"/>
+        <location filename="../GUI.cpp" line="1451"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>无直接连接.这也许指示网络设置问题.</translation>
     </message>
@@ -2551,7 +2551,7 @@ maximum value you set.</source>
         <translation>上传</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1530"/>
+        <location filename="../GUI.cpp" line="1528"/>
         <source>Options were saved successfully.</source>
         <translation>选项保存成功.</translation>
     </message>
@@ -3094,13 +3094,13 @@ list?</source>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="447"/>
+        <location filename="../rss.h" line="458"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>%1前</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="446"/>
+        <location filename="../rss.h" line="457"/>
         <source>Never</source>
         <translation>从不</translation>
     </message>
@@ -3137,12 +3137,12 @@ list?</source>
         <translation type="obsolete">搜索引擎</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="150"/>
+        <location filename="../searchEngine.cpp" line="155"/>
         <source>Empty search pattern</source>
         <translation>无搜索关键词</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="150"/>
+        <location filename="../searchEngine.cpp" line="155"/>
         <source>Please type a search pattern first</source>
         <translation>请先输入关键词</translation>
     </message>
@@ -3157,12 +3157,12 @@ list?</source>
         <translation type="obsolete">请选择至少一个搜索引擎.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="229"/>
+        <location filename="../searchEngine.cpp" line="248"/>
         <source>Results</source>
         <translation>结果</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="193"/>
+        <location filename="../searchEngine.cpp" line="210"/>
         <source>Searching...</source>
         <translation>搜索中...</translation>
     </message>
@@ -3213,32 +3213,32 @@ Changelog:
         <translation type="obsolete">您的搜索插件已是最新的.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="300"/>
+        <location filename="../searchEngine.cpp" line="352"/>
         <source>Search Engine</source>
         <translation>搜索引擎</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="311"/>
+        <location filename="../searchEngine.cpp" line="363"/>
         <source>Search has finished</source>
         <translation>搜索完毕</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="303"/>
+        <location filename="../searchEngine.cpp" line="355"/>
         <source>An error occured during search...</source>
         <translation>搜索中出现错误...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="306"/>
+        <location filename="../searchEngine.cpp" line="358"/>
         <source>Search aborted</source>
         <translation>搜索失败</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="309"/>
+        <location filename="../searchEngine.cpp" line="361"/>
         <source>Search returned no results</source>
         <translation>搜索无结果</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="316"/>
+        <location filename="../searchEngine.cpp" line="368"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>结果</translation>
@@ -3255,7 +3255,7 @@ reason: %2.</source>
         <translation type="obsolete">无法在网址:%1下载更新搜索插件,原因:%2.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="340"/>
+        <location filename="../searchEngine.cpp" line="389"/>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
