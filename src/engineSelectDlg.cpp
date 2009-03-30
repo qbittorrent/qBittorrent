@@ -22,6 +22,7 @@
 #include "engineSelectDlg.h"
 #include "downloadThread.h"
 #include "misc.h"
+#include "ico.h"
 #include "pluginSource.h"
 #include <QProcess>
 #include <QHeaderView>
@@ -122,7 +123,7 @@ void engineSelectDlg::saveSettings() {
 
 void engineSelectDlg::on_updateButton_clicked() {
   // Download version file from primary server
-  downloader->downloadUrl("http://www.dchris.eu/search_engine/versions.txt");
+  downloader->downloadUrl("http://www.dchris.eu/search_engine2/versions.txt");
 }
 
 void engineSelectDlg::toggleEngineState(QTreeWidgetItem *item, int) {
@@ -323,8 +324,13 @@ void engineSelectDlg::loadSupportedSearchEngines(bool first) {
       // Good, we already have the icon
       item->setData(ENGINE_NAME, Qt::DecorationRole, QVariant(QIcon(iconPath)));
     } else {
-      // Icon is missing, we must download it
-      downloader->downloadUrl(line.at(1)+"/favicon.ico");
+      iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+id+".ico";
+      if(QFile::exists(iconPath)) { // ICO support
+        item->setData(ENGINE_NAME, Qt::DecorationRole, QVariant(QIcon(iconPath)));
+      } else {
+        // Icon is missing, we must download it
+        downloader->downloadUrl(line.at(1)+"/favicon.ico");
+      }
     }
     if(installed_engines.value(id, true))
       setRowColor(i, "green");
@@ -439,7 +445,9 @@ void engineSelectDlg::installZipPlugin(QString path) {
       continue;
     // Check if we already have a favicon for this plugin
     QString iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+plugin_name+".png";
-    if(QFile::exists(iconPath)) continue;
+    if(QFile::exists(iconPath)) {
+      QFile::remove(iconPath);
+    }
     ZZIP_FILE* fp = zzip_file_open(dir, favicon.toUtf8().data(), 0);
     if(fp) {
       QFile dest_icon(iconPath);
@@ -611,7 +619,13 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
       QTreeWidgetItem *item;
       foreach(item, items){
         QString id = item->text(ENGINE_ID);
-        QString iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+id+".png";
+        QString iconPath;
+        QFile icon(filePath);
+        icon.open(QIODevice::ReadOnly);
+        if(ICOHandler::canRead(&icon))
+          iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+id+".ico";
+        else
+          iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+id+".png";
         QFile::copy(filePath, iconPath);
         item->setData(ENGINE_NAME, Qt::DecorationRole, QVariant(QIcon(iconPath)));
       }
@@ -620,16 +634,16 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
     QFile::remove(filePath);
     return;
   }
-  if(url == "http://www.dchris.eu/search_engine/versions.txt") {
-    if(!parseVersionsFile(filePath, "http://www.dchris.eu/search_engine/")) {
+  if(url == "http://www.dchris.eu/search_engine2/versions.txt") {
+    if(!parseVersionsFile(filePath, "http://www.dchris.eu/search_engine2/")) {
       qDebug("Primary update server failed, try secondary");
-      downloader->downloadUrl("http://hydr0g3n.free.fr/search_engine/versions.txt");
+      downloader->downloadUrl("http://hydr0g3n.free.fr/search_engine2/versions.txt");
     }
     QFile::remove(filePath);
     return;
   }
-  if(url == "http://hydr0g3n.free.fr/search_engine/versions.txt") {
-    if(!parseVersionsFile(filePath, "http://hydr0g3n.free.fr/search_engine/")) {
+  if(url == "http://hydr0g3n.free.fr/search_engine2/versions.txt") {
+    if(!parseVersionsFile(filePath, "http://hydr0g3n.free.fr/search_engine2/")) {
       QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, update server is temporarily unavailable."));
     }
     QFile::remove(filePath);
@@ -657,13 +671,13 @@ void engineSelectDlg::handleDownloadFailure(QString url, QString reason) {
     qDebug("Could not download favicon: %s, reason: %s", url.toUtf8().data(), reason.toUtf8().data());
     return;
   }
-  if(url == "http://www.dchris.eu/search_engine/versions.txt") {
+  if(url == "http://www.dchris.eu/search_engine2/versions.txt") {
     // Primary update server failed, try secondary
     qDebug("Primary update server failed, try secondary");
-    downloader->downloadUrl("http://hydr0g3n.free.fr/search_engine/versions.txt");
+    downloader->downloadUrl("http://hydr0g3n.free.fr/search_engine2/versions.txt");
     return;
   }
-  if(url == "http://hydr0g3n.free.fr/search_engine/versions.txt") {
+  if(url == "http://hydr0g3n.free.fr/search_engine2/versions.txt") {
     QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, update server is temporarily unavailable."));
     return;
   }
