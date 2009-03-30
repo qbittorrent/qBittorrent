@@ -1140,7 +1140,6 @@ void bittorrent::readAlerts() {
         QFile finished_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
         finished_file.open(QIODevice::WriteOnly | QIODevice::Text);
         finished_file.close();
-        h.save_resume_data();
         // Move to download directory if necessary
         if(!defaultTempPath.isEmpty()) {
           // Check if directory is different
@@ -1150,6 +1149,7 @@ void bittorrent::readAlerts() {
             h.move_storage(save_dir.path());
           }
         }
+        h.save_resume_data();
         qDebug("Received finished alert for %s", h.name().toUtf8().data());
       }
     }
