@@ -129,7 +129,7 @@ void SearchTab::sortSearchListInt(int index, Qt::SortOrder sortOrder){
   for(int row=0; row<lines.size(); ++row){
     SearchListModel->insertRow(SearchListModel->rowCount());
     int sourceRow = lines[row].first;
-    for(int col=0; col<5; ++col){
+    for(int col=0; col<6; ++col){
       SearchListModel->setData(SearchListModel->index(nbRows_old+row, col), SearchListModel->data(SearchListModel->index(sourceRow, col)));
       SearchListModel->setData(SearchListModel->index(nbRows_old+row, col), SearchListModel->data(SearchListModel->index(sourceRow, col), Qt::ForegroundRole), Qt::ForegroundRole);
     }
@@ -149,7 +149,7 @@ void SearchTab::sortSearchListString(int index, Qt::SortOrder sortOrder){
   for(int row=0; row<nbRows_old; ++row){
     SearchListModel->insertRow(SearchListModel->rowCount());
     int sourceRow = lines[row].first;
-    for(int col=0; col<5; ++col){
+    for(int col=0; col<6; ++col){
       SearchListModel->setData(SearchListModel->index(nbRows_old+row, col), SearchListModel->data(SearchListModel->index(sourceRow, col)));
       SearchListModel->setData(SearchListModel->index(nbRows_old+row, col), SearchListModel->data(SearchListModel->index(sourceRow, col), Qt::ForegroundRole), Qt::ForegroundRole);
     }
