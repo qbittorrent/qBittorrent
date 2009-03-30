@@ -328,6 +328,7 @@ void SearchEngine::updateNova() {
   // Set permissions
   QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;
   QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py").setPermissions(perm);
+
 	filePath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2dl.py";
 	if(misc::getPluginVersion(":/search_engine/nova2dl.py") > misc::getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){

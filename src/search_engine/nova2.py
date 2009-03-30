@@ -26,7 +26,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
-#VERSION: 1.00
+#VERSION: 1.10
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
