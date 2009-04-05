@@ -1,4 +1,4 @@
-#VERSION: 1.3
+#VERSION: 1.31
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -32,13 +32,13 @@ PyFile_SetEncoding = pythonapi.PyFile_SetEncoding
 PyFile_SetEncoding.argtypes = (py_object, c_char_p)
 PyFile_SetEncoding(sys.stdout, "UTF-8")
 
-def prettyPrinter(dictionnary):
+def prettyPrinter(dictionary):
 	# Convert everything to unicode for safe printing
-	for key,value in dictionnary.items():
-		if isinstance(dictionnary[key], str):
-			dictionnary[key] = unicode(dictionnary[key], 'utf-8')
-	dictionnary['size'] = anySizeToBytes(dictionnary['size'])
-	print u"%s|%s|%s|%s|%s|%s"%(dictionnary['link'],dictionnary['name'],dictionnary['size'],dictionnary['seeds'],dictionnary['leech'],dictionnary['engine_url'])
+	for key,value in dictionary.items():
+		if isinstance(dictionary[key], str):
+			dictionary[key] = unicode(dictionary[key], 'utf-8')
+	dictionary['size'] = anySizeToBytes(dictionary['size'])
+	print u"%s|%s|%s|%s|%s|%s"%(dictionary['link'],dictionary['name'],dictionary['size'],dictionary['seeds'],dictionary['leech'],dictionary['engine_url'])
 
 def anySizeToBytes(size_string):
 	"""
