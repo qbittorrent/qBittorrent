@@ -178,7 +178,7 @@ class bittorrent : public QObject {
     void pausedTorrent(QTorrentHandle& h);
     void resumedTorrent(QTorrentHandle& h);
     void finishedTorrent(QTorrentHandle& h);
-    void fullDiskError(QTorrentHandle& h);
+    void fullDiskError(QTorrentHandle& h, QString msg);
     void trackerError(QString hash, QString time, QString msg);
     void trackerAuthenticationRequired(QTorrentHandle& h);
     void newDownloadedTorrent(QString path, QString url);

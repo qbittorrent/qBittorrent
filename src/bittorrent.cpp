@@ -1182,7 +1182,7 @@ void bittorrent::readAlerts() {
       h.auto_managed(false);
       std::cerr << "File Error: " << p->message().c_str() << std::endl;
       if(h.is_valid())
-        emit fullDiskError(h);
+        emit fullDiskError(h, misc::toQString(p->message()));
     }
     else if (dynamic_cast<listen_failed_alert*>(a.get())) {
       // Level: fatal

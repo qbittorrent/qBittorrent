@@ -139,7 +139,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void createTrayIcon();
     void updateUnfinishedTorrentNumber(unsigned int nb);
     void updateFinishedTorrentNumber(unsigned int nb);
-    void fullDiskError(QTorrentHandle& h) const;
+    void fullDiskError(QTorrentHandle& h, QString msg) const;
     void handleDownloadFromUrlFailure(QString, QString) const;
     void createSystrayDelayed();
     // Keyboard shortcuts

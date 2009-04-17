@@ -132,7 +132,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   options = new options_imp(this);
   connect(options, SIGNAL(status_changed(bool)), this, SLOT(OptionsSaved(bool)));
   BTSession = new bittorrent();
-  connect(BTSession, SIGNAL(fullDiskError(QTorrentHandle&)), this, SLOT(fullDiskError(QTorrentHandle&)));
+  connect(BTSession, SIGNAL(fullDiskError(QTorrentHandle&, QString)), this, SLOT(fullDiskError(QTorrentHandle&, QString)));
   connect(BTSession, SIGNAL(finishedTorrent(QTorrentHandle&)), this, SLOT(finishedTorrent(QTorrentHandle&)));
   connect(BTSession, SIGNAL(addedTorrent(QTorrentHandle&)), this, SLOT(addedTorrent(QTorrentHandle&)));
   connect(BTSession, SIGNAL(pausedTorrent(QTorrentHandle&)), this, SLOT(pausedTorrent(QTorrentHandle&)));
@@ -418,11 +418,11 @@ void GUI::checkedTorrent(QTorrentHandle& h) const {
 }
 
 // Notification when disk is full
-void GUI::fullDiskError(QTorrentHandle& h) const {
+void GUI::fullDiskError(QTorrentHandle& h, QString msg) const {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   bool useNotificationBalloons = settings.value(QString::fromUtf8("Preferences/General/NotificationBaloons"), true).toBool();
   if(systrayIntegration && useNotificationBalloons) {
-    myTrayIcon->showMessage(tr("I/O Error", "i.e: Input/Output Error"), tr("An error occured when trying to read or write %1. The disk is probably full, download has been paused", "e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused").arg(h.name()), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
+    myTrayIcon->showMessage(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occured for torrent %1.\n Reason: %2", "e.g: An error occured for torrent xxx.avi.\n Reason: disk is full.").arg(h.name()).arg(msg), QSystemTrayIcon::Critical, TIME_TRAY_BALLOON);
   }
   // Download will be paused by libtorrent. Updating GUI information accordingly
   QString hash = h.hash();
