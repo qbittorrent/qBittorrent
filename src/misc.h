@@ -92,24 +92,6 @@ class misc : public QObject{
       return x;
     }
 
-//     template <class T> static T fromQString::fromUtf8(const QString& s) {
-//       T x;
-//       std::istringstream i((const char*)s.toUtf8());
-//       if(!(i>>x)) {
-//         throw std::runtime_error("::fromString()");
-//       }
-//       return x;
-//     }
-// 
-//     template <class T> static T fromQByteArray(const QByteArray& s) {
-//       T x;
-//       std::istringstream i((const char*)s);
-//       if(!(i>>x)) {
-//         throw std::runtime_error("::fromString()");
-//       }
-//       return x;
-//     }
-
     // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
     // use Binary prefix standards from IEC 60027-2
     // see http://en.wikipedia.org/wiki/Kilobyte
@@ -178,51 +160,6 @@ class misc : public QObject{
         dir.mkpath(qBtPath);
       }
       return qBtPath;
-    }
-
-// Not used anymore because it is not safe
-//     static bool removePath(QString path) {
-//       qDebug((QString::fromUtf8("file to delete:") + path).toUtf8());
-//       if(!QFile::remove(path)) {
-//         // Probably a folder
-//         QDir current_dir(path);
-//         if(current_dir.exists()) {
-//           //Remove sub items
-//           QStringList subItems = current_dir.entryList();
-//           QString item;
-//           foreach(item, subItems) {
-//             if(item != QString::fromUtf8(".") && item != QString::fromUtf8("..")) {
-//               qDebug("-> Removing "+(path+QDir::separator()+item).toUtf8());
-//               removePath(path+QDir::separator()+item);
-//             }
-//           }
-//           // Remove empty folder
-//           if(current_dir.rmdir(path)) {
-//             return true;
-//           }else{
-//             return false;
-//           }
-//         }else{
-//           return false;
-//         }
-//       }
-//       return true;
-//     }
-
-    static QString findFileInDir(QString dir_path, QString fileName) {
-      QDir dir(dir_path);
-      if(dir.exists(fileName)) {
-        return dir.filePath(fileName);
-      }
-      QStringList subDirs = dir.entryList(QDir::Dirs);
-      QString subdir_name;
-      foreach(subdir_name, subDirs) {
-        QString result = findFileInDir(dir.path()+QDir::separator()+subdir_name, fileName);
-        if(!result.isNull()) {
-          return result;
-        }
-      }
-      return QString();
     }
 
     static void fixTrackersTiers(std::vector<announce_entry> trackers) {
