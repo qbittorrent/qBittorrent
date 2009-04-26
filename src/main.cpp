@@ -178,7 +178,7 @@ int main(int argc, char *argv[]){
   app = new QApplication(argc, argv);
   useStyle(app, settings.value("Preferences/General/Style", 0).toInt());
   app->setStyleSheet("QStatusBar::item { border-width: 0; }");
-  QSplashScreen *splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/oxygen/splash.png")));
+  QSplashScreen *splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/skin/splash.png")));
   splash->show();
   // Open options file to read locale
   locale = settings.value(QString::fromUtf8("Preferences/General/Locale"), QString()).toString();
