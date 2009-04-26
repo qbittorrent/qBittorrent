@@ -88,7 +88,7 @@
         <bool>false</bool>
        </property>
        <property name="currentRow">
-        <number>0</number>
+        <number>-1</number>
        </property>
        <item>
         <property name="text">
@@ -148,6 +148,15 @@
         </property>
         <property name="flags">
          <set>ItemIsSelectable|ItemIsEnabled</set>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Proxy</string>
+        </property>
+        <property name="icon">
+         <iconset resource="icons.qrc">
+          <normaloff>:/Icons/oxygen/proxy.png</normaloff>:/Icons/oxygen/proxy.png</iconset>
         </property>
        </item>
        <item>

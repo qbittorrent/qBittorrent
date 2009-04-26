@@ -7,7 +7,6 @@
   <file>Icons/loading.png</file>
   <file>Icons/locale.png</file>
   <file>Icons/money.png</file>
-  <file>Icons/proxy.png</file>
   <file>Icons/refresh.png</file>
   <file>Icons/rss16.png</file>
   <file>Icons/rss32.png</file>
@@ -57,6 +56,7 @@
   <file>Icons/oxygen/folder.png</file>
   <file>Icons/oxygen/gear.png</file>
   <file>Icons/oxygen/log.png</file>
+  <file>Icons/oxygen/proxy.png</file>
   <file>Icons/oxygen/subscribe.png</file>
   <file>Icons/oxygen/subscribe16.png</file>
   <file>Icons/oxygen/time.png</file>
