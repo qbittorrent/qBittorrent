@@ -670,7 +670,8 @@ void GUI::closeEvent(QCloseEvent *e) {
   bool goToSystrayOnExit = settings.value(QString::fromUtf8("Preferences/General/CloseToTray"), false).toBool();
   if(!force_exit && systrayIntegration && goToSystrayOnExit && !this->isHidden()) {
     hide();
-    e->ignore();
+    //e->ignore();
+    e->accept();
     return;
   }
   if(settings.value(QString::fromUtf8("Preferences/General/ExitConfirm"), true).toBool() && downloadingTorrentTab->getNbTorrentsInList()) {
