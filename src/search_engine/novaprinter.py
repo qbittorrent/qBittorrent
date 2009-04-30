@@ -1,4 +1,4 @@
-#VERSION: 1.31
+#VERSION: 1.32
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -24,13 +24,10 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-import sys
+import sys, codecs
 
 # Force UTF-8 printing
-from ctypes import pythonapi, py_object, c_char_p
-PyFile_SetEncoding = pythonapi.PyFile_SetEncoding
-PyFile_SetEncoding.argtypes = (py_object, c_char_p)
-PyFile_SetEncoding(sys.stdout, "UTF-8")
+sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
 
 def prettyPrinter(dictionary):
 	# Convert everything to unicode for safe printing
