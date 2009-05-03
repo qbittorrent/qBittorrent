@@ -191,9 +191,9 @@ class FilterParserThread : public QThread  {
               if(IPv4) {
                 //IPv4 addresses
                 IP = strStartIP.split('.');
-                address_v4 start((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
+                address_v4 start((IP.at(0).toUInt() << 24) + (IP.at(1).toUInt() << 16) + (IP.at(2).toUInt() << 8) + IP.at(3).toUInt());
                 IP = strEndIP.split('.');
-                address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
+                address_v4 last((IP.at(0).toUInt() << 24) + (IP.at(1).toUInt() << 16) + (IP.at(2).toUInt() << 8) + IP.at(3).toUInt());
                 // Apply to bittorrent session
                 filter.add_rule(start, last, ip_filter::blocked);
               } else {
@@ -250,9 +250,9 @@ class FilterParserThread : public QThread  {
           if(strStartIP.contains(is_ipv4) && strEndIP.contains(is_ipv4)) {
             // IPv4
             IP = strStartIP.split('.');
-            address_v4 start((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
+            address_v4 start((IP.at(0).toUInt() << 24) + (IP.at(1).toUInt() << 16) + (IP.at(2).toUInt() << 8) + IP.at(3).toUInt());
             IP = strEndIP.split('.');
-            address_v4 last((IP.at(0).toInt() << 24) + (IP.at(1).toInt() << 16) + (IP.at(2).toInt() << 8) + IP.at(3).toInt());
+            address_v4 last((IP.at(0).toUInt() << 24) + (IP.at(1).toUInt() << 16) + (IP.at(2).toUInt() << 8) + IP.at(3).toUInt());
             // Apply to bittorrent session
             filter.add_rule(start, last, ip_filter::blocked);
           } else {
