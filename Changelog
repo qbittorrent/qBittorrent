@@ -1,3 +1,6 @@
+* Unknown - Christophe DUMEZ <chris@qbittorrent.org> - v1.3.4
+    - BUGFIX: Fixed IP filter file parsing on 64bits
+
 * Sun Apr 5 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.3
     - BUGFIX: Fixed Web UI torrent upload form
     - BUGFIX: Fixed unicode support in search engine
