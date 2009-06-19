@@ -22,7 +22,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-#VERSION: 1.01
+#VERSION: 1.02
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -69,7 +69,7 @@ def download_file(url):
 		file = os.fdopen(file, "wb")
 		# Download url
 		req = urllib2.Request(url)
-		response = urllib2.urlopen(url)
+		response = urllib2.urlopen(req)
 		dat = response.read()
 		# Write it to a file
 		file.write(dat)
