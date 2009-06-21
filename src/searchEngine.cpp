@@ -269,7 +269,7 @@ void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
 				}
 		}
 		qDebug("Deleting downloadProcess");
-		downloaders.removeOne(downloadProcess);
+		downloaders.removeAll(downloadProcess);
 		delete downloadProcess;
 }
 
