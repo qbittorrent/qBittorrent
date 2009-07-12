@@ -142,6 +142,21 @@ int QTorrentHandle::num_seeds() const {
   return h.status().num_seeds;
 }
 
+int QTorrentHandle::num_complete() const {
+  Q_ASSERT(h.is_valid());
+  return h.status().num_complete;
+}
+
+void QTorrentHandle::scrape_tracker() const {
+  Q_ASSERT(h.is_valid());
+  h.scrape_tracker();
+}
+
+int QTorrentHandle::num_incomplete() const {
+  Q_ASSERT(h.is_valid());
+  return h.status().num_incomplete;
+}
+
 QString QTorrentHandle::save_path() const {
   Q_ASSERT(h.is_valid());
   return misc::toQString(h.save_path().string());

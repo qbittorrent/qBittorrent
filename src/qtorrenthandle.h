@@ -77,6 +77,9 @@ class QTorrentHandle {
     float upload_payload_rate() const;
     int num_peers() const;
     int num_seeds() const;
+    int num_complete() const;
+    int num_incomplete() const;
+    void scrape_tracker() const;
     QString save_path() const;
     fs::path save_path_boost() const;
     QStringList url_seeds() const;

@@ -102,9 +102,12 @@
     <string>Upload Speed</string>
    </property>
   </action>
-  <action name="actionHOSColLeechers">
+  <action name="actionHOSColPeers">
    <property name="text">
-    <string>Leechers</string>
+    <string>Connected peers</string>
+   </property>
+   <property name="toolTip">
+    <string>Peers</string>
    </property>
   </action>
   <action name="actionHOSColRatio">
@@ -133,6 +136,14 @@
   <action name="actionHOSColUpload">
    <property name="text">
     <string>Total uploaded</string>
+   </property>
+  </action>
+  <action name="actionHOSColSwarm">
+   <property name="text">
+    <string>Seeds / Leechers</string>
+   </property>
+   <property name="toolTip">
+    <string>Seeds / Leechers</string>
    </property>
   </action>
  </widget>

@@ -40,17 +40,19 @@
 #include <QStandardItemModel>
 #include <QHeaderView>
 #include <QMenu>
+#include <QTimer>
 #include <QMessageBox>
 
 FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : parent(parent), BTSession(BTSession), nbFinished(0){
   setupUi(this);
   actionStart->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play.png")));
   actionPause->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")));
-  finishedListModel = new QStandardItemModel(0,7);
+  finishedListModel = new QStandardItemModel(0,8);
   finishedListModel->setHeaderData(F_NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
   finishedListModel->setHeaderData(F_SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
   finishedListModel->setHeaderData(F_UPSPEED, Qt::Horizontal, tr("UP Speed", "i.e: Upload speed"));
-  finishedListModel->setHeaderData(F_LEECH, Qt::Horizontal, tr("Leechers", "i.e: full/partial sources"));
+  finishedListModel->setHeaderData(F_SWARM, Qt::Horizontal, tr("Seeds / Leechers"));
+  finishedListModel->setHeaderData(F_PEERS, Qt::Horizontal, tr("Connected peers"));
   finishedListModel->setHeaderData(F_UPLOAD, Qt::Horizontal, tr("Total uploaded", "i.e: Total amount of uploaded data"));
   finishedListModel->setHeaderData(F_RATIO, Qt::Horizontal, tr("Ratio"));
   finishedList->setModel(finishedListModel);
@@ -89,16 +91,35 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   connect(actionHOSColName, SIGNAL(triggered()), this, SLOT(hideOrShowColumnName()));
   connect(actionHOSColSize, SIGNAL(triggered()), this, SLOT(hideOrShowColumnSize()));
   connect(actionHOSColUpSpeed, SIGNAL(triggered()), this, SLOT(hideOrShowColumnUpSpeed()));
-  connect(actionHOSColLeechers, SIGNAL(triggered()), this, SLOT(hideOrShowColumnLeechers()));
+  connect(actionHOSColSwarm, SIGNAL(triggered()), this, SLOT(hideOrShowColumnSwarm()));
+  connect(actionHOSColPeers, SIGNAL(triggered()), this, SLOT(hideOrShowColumnPeers()));
   connect(actionHOSColUpload, SIGNAL(triggered()), this, SLOT(hideOrShowColumnUpload()));
   connect(actionHOSColRatio, SIGNAL(triggered()), this, SLOT(hideOrShowColumnRatio()));
+
+  scrapeTimer = new QTimer(this);
+  connect(scrapeTimer, SIGNAL(timeout()), this, SLOT(scrapeTrackers()));
+  scrapeTimer->start(20000);
 }
 
 FinishedTorrents::~FinishedTorrents(){
   saveColWidthFinishedList();
   saveHiddenColumns();
+  scrapeTimer->stop();
+  delete scrapeTimer;
   delete finishedListDelegate;
   delete finishedListModel;
+}
+
+void FinishedTorrents::scrapeTrackers() {
+  std::vector<torrent_handle> torrents = BTSession->getTorrents();
+  std::vector<torrent_handle>::iterator torrentIT;
+  for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+    QTorrentHandle h = QTorrentHandle(*torrentIT);
+    if(!h.is_valid()) continue;
+    if(h.is_seed()) {
+      h.scrape_tracker();
+    }
+  }
 }
 
 void FinishedTorrents::notifyTorrentDoubleClicked(const QModelIndex& index) {
@@ -117,7 +138,8 @@ void FinishedTorrents::addTorrent(QString hash){
   finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(h.name()));
   finishedListModel->setData(finishedListModel->index(row, F_SIZE), QVariant((qlonglong)h.actual_size()));
   finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), QVariant((double)0.));
-  finishedListModel->setData(finishedListModel->index(row, F_LEECH), QVariant("0"));
+  finishedListModel->setData(finishedListModel->index(row, F_SWARM), QVariant("-1/-1"));
+  finishedListModel->setData(finishedListModel->index(row, F_PEERS), QVariant("0"));
   finishedListModel->setData(finishedListModel->index(row, F_UPLOAD), QVariant((qlonglong)h.all_time_upload()));
   finishedListModel->setData(finishedListModel->index(row, F_RATIO), QVariant(QString::fromUtf8(misc::toString(BTSession->getRealRatio(hash)).c_str())));
   finishedListModel->setData(finishedListModel->index(row, F_HASH), QVariant(hash));
@@ -248,6 +270,9 @@ void FinishedTorrents::updateTorrent(QTorrentHandle h) {
       row = getRowFromHash(hash);
     }
     Q_ASSERT(row != -1);
+    if(!finishedList->isColumnHidden(F_SWARM)) {
+      finishedListModel->setData(finishedListModel->index(row, F_SWARM), misc::toQString(h.num_complete())+QString("/")+misc::toQString(h.num_incomplete()));
+    }
     if(h.is_paused()) return;
     // Update queued torrent
     if(BTSession->isQueueingEnabled() && h.is_queued()) {
@@ -258,7 +283,7 @@ void FinishedTorrents::updateTorrent(QTorrentHandle h) {
         }
         // Reset upload speed and seeds/leech
         finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), 0.);
-        finishedListModel->setData(finishedListModel->index(row, F_LEECH), "0");
+        finishedListModel->setData(finishedListModel->index(row, F_PEERS), "0");
         setRowColor(row, QString::fromUtf8("grey"));
         return;
     }
@@ -272,8 +297,8 @@ void FinishedTorrents::updateTorrent(QTorrentHandle h) {
     if(!finishedList->isColumnHidden(F_UPSPEED)) {
       finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), QVariant((double)h.upload_payload_rate()));
     }
-    if(!finishedList->isColumnHidden(F_LEECH)) {
-      finishedListModel->setData(finishedListModel->index(row, F_LEECH), misc::toQString(h.num_peers() - h.num_seeds(), true));
+    if(!finishedList->isColumnHidden(F_PEERS)) {
+      finishedListModel->setData(finishedListModel->index(row, F_PEERS), misc::toQString(h.num_peers() - h.num_seeds(), true));
     }
     if(!finishedList->isColumnHidden(F_UPLOAD)) {
       finishedListModel->setData(finishedListModel->index(row, F_UPLOAD), QVariant((double)h.all_time_upload()));
@@ -300,7 +325,7 @@ void FinishedTorrents::pauseTorrent(QString hash) {
     return;
   finishedListModel->setData(finishedListModel->index(row, F_UPSPEED), QVariant((double)0.0));
   finishedListModel->setData(finishedListModel->index(row, F_NAME), QIcon(QString::fromUtf8(":/Icons/skin/paused.png")), Qt::DecorationRole);
-  finishedListModel->setData(finishedListModel->index(row, F_LEECH), QVariant(QString::fromUtf8("0")));
+  finishedListModel->setData(finishedListModel->index(row, F_PEERS), QVariant(QString::fromUtf8("0")));
   setRowColor(row, QString::fromUtf8("red"));
 }
 
@@ -470,8 +495,12 @@ void FinishedTorrents::hideOrShowColumnUpSpeed() {
   hideOrShowColumn(F_UPSPEED);
 }
 
-void FinishedTorrents::hideOrShowColumnLeechers() {
-  hideOrShowColumn(F_LEECH);
+void FinishedTorrents::hideOrShowColumnSwarm() {
+  hideOrShowColumn(F_SWARM);
+}
+
+void FinishedTorrents::hideOrShowColumnPeers() {
+  hideOrShowColumn(F_PEERS);
 }
 
 void FinishedTorrents::hideOrShowColumnUpload() {
@@ -537,8 +566,11 @@ QAction* FinishedTorrents::getActionHoSCol(int index) {
     case F_UPSPEED :
       return actionHOSColUpSpeed;
       break;
-    case F_LEECH :
-      return actionHOSColLeechers;
+    case F_SWARM :
+      return actionHOSColSwarm;
+      break;
+    case F_PEERS :
+      return actionHOSColPeers;
       break;
     case F_UPLOAD :
       return actionHOSColUpload;

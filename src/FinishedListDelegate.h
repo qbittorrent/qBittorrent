@@ -44,10 +44,11 @@
 #define F_NAME 0
 #define F_SIZE 1
 #define F_UPSPEED 2
-#define F_LEECH 3
-#define F_UPLOAD 4
-#define F_RATIO 5
-#define F_HASH 6
+#define F_SWARM 3
+#define F_PEERS 4
+#define F_UPLOAD 5
+#define F_RATIO 6
+#define F_HASH 7
 
 class FinishedListDelegate: public QItemDelegate {
   Q_OBJECT
