@@ -6,6 +6,7 @@
     - BUGFIX: Percentages no longer disapear with default cleanlooks style
     - BUGFIX: Cleanly fixed popup menus position in lists (no more workarounds)
     - BUGFIX: Fixed memory leak in search engine
+    - BUGFIX: Torrents with an infinite ratio are no longer affected by ratio_limit set in program preferences
 
 * Sun Apr 5 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.3
     - BUGFIX: Fixed Web UI torrent upload form

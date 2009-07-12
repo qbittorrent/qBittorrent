@@ -48,6 +48,8 @@
 #define F_RATIO 4
 #define F_HASH 5
 
+#define MAX_RATIO 100.
+
 class FinishedListDelegate: public QItemDelegate {
   Q_OBJECT
 
@@ -72,7 +74,7 @@ class FinishedListDelegate: public QItemDelegate {
         case F_RATIO:{
           QItemDelegate::drawBackground(painter, opt, index);
           double ratio = index.data().toDouble();
-          if(ratio > 100.)
+          if(ratio > MAX_RATIO)
             QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
           else
             QItemDelegate::drawDisplay(painter, opt, opt.rect, QString(QByteArray::number(ratio, 'f', 1)));

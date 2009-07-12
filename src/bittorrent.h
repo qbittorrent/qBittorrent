@@ -67,7 +67,7 @@ class bittorrent : public QObject {
     bool addInPause;
     int maxConnecsPerTorrent;
     int maxUploadsPerTorrent;
-    float max_ratio;
+    float ratio_limit;
     bool UPnPEnabled;
     bool NATPMPEnabled;
     bool LSDEnabled;
