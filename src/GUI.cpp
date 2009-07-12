@@ -441,7 +441,7 @@ void GUI::fullDiskError(QTorrentHandle& h, QString msg) const {
   }
   // Download will be paused by libtorrent. Updating GUI information accordingly
   QString hash = h.hash();
-  qDebug("Full disk error, pausing torrent %s", hash.toUtf8().data());
+  qDebug("Full disk error, pausing torrent %s", hash.toLocal8Bit().data());
   if(h.is_seed()) {
     // In finished list
     qDebug("Automatically paused torrent was in finished list");
@@ -758,7 +758,7 @@ void GUI::dropEvent(QDropEvent *event) {
   bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(QString file, files) {
     file = file.trimmed().replace(QString::fromUtf8("file://"), QString::fromUtf8(""), Qt::CaseInsensitive);
-    qDebug("Dropped file %s on download list", file.toUtf8().data());
+    qDebug("Dropped file %s on download list", file.toLocal8Bit().data());
     if(file.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || file.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || file.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
       BTSession->downloadFromUrl(file);
       continue;
@@ -775,7 +775,7 @@ void GUI::dropEvent(QDropEvent *event) {
 // Decode if we accept drag 'n drop or not
 void GUI::dragEnterEvent(QDragEnterEvent *event) {
   foreach(const QString &mime, event->mimeData()->formats()){
-    qDebug("mimeData: %s", mime.toUtf8().data());
+    qDebug("mimeData: %s", mime.toLocal8Bit().data());
   }
   if (event->mimeData()->hasFormat(QString::fromUtf8("text/plain")) || event->mimeData()->hasFormat(QString::fromUtf8("text/uri-list"))) {
     event->acceptProposedAction();
@@ -1191,11 +1191,11 @@ void GUI::configureSession(bool deleteOptions) {
     // We need this for urllib in search engine plugins
 #ifdef Q_WS_WIN
     char proxystr[512];
-    snprintf(proxystr, 512, "http_proxy=%s", proxy_str.toUtf8().data());
+    snprintf(proxystr, 512, "http_proxy=%s", proxy_str.toLocal8Bit().data());
     putenv(proxystr);
 #else
-    qDebug("HTTP: proxy string: %s", proxy_str.toUtf8().data());
-    setenv("http_proxy", proxy_str.toUtf8().data(), 1);
+    qDebug("HTTP: proxy string: %s", proxy_str.toLocal8Bit().data());
+    setenv("http_proxy", proxy_str.toLocal8Bit().data(), 1);
 #endif
   } else {
     qDebug("Disabling search proxy");

@@ -150,7 +150,7 @@ class torrent_file {
     bool removeFromFS(QString saveDir) const {
       QString full_path = saveDir + QDir::separator() + rel_path;
       if(!QFile::exists(full_path)) {
-        qDebug("%s does not exist, no need to remove it", full_path.toUtf8().data());
+        qDebug("%s does not exist, no need to remove it", full_path.toLocal8Bit().data());
         return true;
       }
       bool success = true;
@@ -160,11 +160,11 @@ class torrent_file {
         success = s && success;
       }
       if(is_dir) {
-        qDebug("trying to remove directory: %s", full_path.toUtf8().data());
+        qDebug("trying to remove directory: %s", full_path.toLocal8Bit().data());
         QDir dir(full_path);
         dir.rmdir(full_path);
       } else {
-        qDebug("trying to remove file: %s", full_path.toUtf8().data());
+        qDebug("trying to remove file: %s", full_path.toLocal8Bit().data());
         bool s = QFile::remove(full_path);
         success = s && success;
       }

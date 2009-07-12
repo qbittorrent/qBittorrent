@@ -96,7 +96,7 @@ void HttpServer::onTimer() {
 void HttpServer::setAuthorization(QString username, QString password)
 {
 	QString cat = username + ":" + password;
-	base64 = QByteArray(cat.toUtf8()).toBase64();
+  base64 = QByteArray(cat.toLocal8Bit()).toBase64();
 }
 
 bool HttpServer::isAuthorized(QByteArray auth) const

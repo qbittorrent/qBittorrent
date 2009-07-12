@@ -572,7 +572,7 @@ bool DownloadingTorrents::updateTorrent(QTorrentHandle h) {
 void DownloadingTorrents::addTorrent(QString hash) {
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   int row = getRowFromHash(hash);
-  qDebug("DL: addTorrent(): %s, row: %d", (const char*)hash.toUtf8(), row);
+  qDebug("DL: addTorrent(): %s, row: %d", (const char*)hash.toLocal8Bit(), row);
   if(row != -1) return;
   row = DLListModel->rowCount();
   // Adding torrent to download list

@@ -199,9 +199,9 @@ class FilterParserThread : public QThread  {
               } else {
                 // IPv6, ex :   1fff:0000:0a88:85a3:0000:0000:ac1f:8001
                 IP = strStartIP.split(':');
-                address_v6 start = address_v6::from_string(strStartIP.remove(':', 0).toUtf8().data());
+                address_v6 start = address_v6::from_string(strStartIP.remove(':', 0).toLocal8Bit().data());
                 IP = strEndIP.split(':');
-                address_v6 last = address_v6::from_string(strEndIP.remove(':', 0).toUtf8().data());
+                address_v6 last = address_v6::from_string(strEndIP.remove(':', 0).toLocal8Bit().data());
                 // Apply to bittorrent session
                 filter.add_rule(start, last, ip_filter::blocked);
               }

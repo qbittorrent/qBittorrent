@@ -295,7 +295,7 @@ void properties::loadWebSeeds(){
   // Add manually added url seeds
   foreach(const QString &url_seed, urlSeeds){
     listWebSeeds->addItem(url_seed);
-    qDebug("Added custom url seed to list: %s", url_seed.toUtf8().data());
+    qDebug("Added custom url seed to list: %s", url_seed.toLocal8Bit().data());
   }
 }
 
@@ -470,7 +470,7 @@ void properties::askWebSeed(){
                                              tr("New url seed:"), QLineEdit::Normal,
                                                  QString::fromUtf8("http://www."), &ok);
   if(!ok) return;
-  qDebug("Adding %s web seed", url_seed.toUtf8().data());
+  qDebug("Adding %s web seed", url_seed.toLocal8Bit().data());
   if(urlSeeds.indexOf(url_seed) != -1) {
     QMessageBox::warning(this, tr("qBittorrent"),
                          tr("This url seed is already in the list."),
@@ -496,7 +496,7 @@ void properties::addTrackerList(QStringList myTrackers) {
   // Add the trackers to the list
   std::vector<announce_entry> trackers = h.trackers();
   foreach(const QString& tracker, myTrackers) {
-    announce_entry new_tracker(misc::toString(tracker.trimmed().toUtf8().data()));
+    announce_entry new_tracker(misc::toString(tracker.trimmed().toLocal8Bit().data()));
     new_tracker.tier = 0; // Will be fixed a bit later
     trackers.push_back(new_tracker);
     misc::fixTrackersTiers(trackers);
@@ -693,7 +693,7 @@ void properties::on_changeSavePathButton_clicked() {
         // Save savepath
         QFile savepath_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".savepath"));
         savepath_file.open(QIODevice::WriteOnly | QIODevice::Text);
-        savepath_file.write(savePath.path().toUtf8());
+        savepath_file.write(savePath.path().toLocal8Bit());
         savepath_file.close();
         // Actually move storage
         h.move_storage(savePath.path());
@@ -735,7 +735,7 @@ void properties::saveWebSeeds(){
     return;
   }
   foreach(const QString &url_seed, urlSeeds){
-    urlseeds_file.write((url_seed+"\n").toUtf8());
+    urlseeds_file.write((url_seed+"\n").toLocal8Bit());
   }
   urlseeds_file.close();
   qDebug("url seeds were saved");

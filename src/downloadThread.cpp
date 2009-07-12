@@ -84,7 +84,7 @@ void subDownloadThread::run(){
     filePath = tmpfile->fileName();
   }
   delete tmpfile;
-  FILE *f = fopen(filePath.toUtf8().data(), "wb");
+  FILE *f = fopen(filePath.toLocal8Bit().data(), "wb");
   if(!f) {
     std::cerr << "couldn't open destination file" << "\n";
     return;
@@ -93,7 +93,7 @@ void subDownloadThread::run(){
   CURLcode res = (CURLcode)-1;
   curl = curl_easy_init();
   if(curl) {
-    std::string c_url = url.toUtf8().data();
+    std::string c_url = url.toLocal8Bit().data();
     curl_easy_setopt(curl, CURLOPT_URL, c_url.c_str());
     // SSL support
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
@@ -105,8 +105,8 @@ void subDownloadThread::run(){
       // Proxy enabled
       QString IP = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/IP"), "0.0.0.0").toString();
       QString port = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Port"), 8080).toString();
-      qDebug("Using proxy: %s", (IP+QString(":")+port).toUtf8().data());
-      curl_easy_setopt(curl, CURLOPT_PROXYPORT, (IP+QString(":")+port).toUtf8().data());
+      qDebug("Using proxy: %s", (IP+QString(":")+port).toLocal8Bit().data());
+      curl_easy_setopt(curl, CURLOPT_PROXYPORT, (IP+QString(":")+port).toLocal8Bit().data());
       // Default proxy type is HTTP, we must change if it is SOCKS5
       if(intValue%2==0) {
         qDebug("Proxy is SOCKS5, not HTTP");
@@ -117,7 +117,7 @@ void subDownloadThread::run(){
         qDebug("Proxy requires authentication, authenticating");
         QString username = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Username"), QString()).toString();
         QString password = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Password"), QString()).toString();
-        curl_easy_setopt(curl, CURLOPT_PROXYUSERPWD, (username+QString(":")+password).toUtf8().data());
+        curl_easy_setopt(curl, CURLOPT_PROXYUSERPWD, (username+QString(":")+password).toLocal8Bit().data());
       }
     }
     // We have to define CURLOPT_WRITEFUNCTION or it will crash on windows
@@ -131,7 +131,7 @@ void subDownloadThread::run(){
     curl_easy_setopt(curl, CURLOPT_AUTOREFERER, 1);
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
     curl_easy_setopt(curl, CURLOPT_MAXREDIRS, -1);
-    qDebug("Downloading %s", url.toUtf8().data());
+    qDebug("Downloading %s", url.toLocal8Bit().data());
     if(!abort)
         res = curl_easy_perform(curl);
     /* always cleanup */

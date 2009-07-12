@@ -362,7 +362,7 @@ void FinishedTorrents::forceRecheck(){
       if(index.column() == F_NAME){
           QString hash = finishedListModel->data(finishedListModel->index(index.row(), F_HASH)).toString();
           QTorrentHandle h = BTSession->getTorrentHandle(hash);
-          qDebug("Forcing recheck for torrent %s", hash.toUtf8().data());
+          qDebug("Forcing recheck for torrent %s", hash.toLocal8Bit().data());
           h.force_recheck();
       }
   }

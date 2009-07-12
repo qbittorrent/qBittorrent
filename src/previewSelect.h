@@ -76,7 +76,7 @@ class previewSelect: public QDialog, private Ui::preview {
           return;
         }
       }
-      qDebug("Cannot find file: %s", path.toUtf8().data());
+      qDebug("Cannot find file: %s", path.toLocal8Bit().data());
       QMessageBox::critical(0, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
       close();
     }

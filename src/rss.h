@@ -239,7 +239,7 @@ class RssItem : public QObject {
           author = property.text();
 	property = property.nextSibling().toElement();
       }
-      hash = QCryptographicHash::hash(QByteArray(title.toUtf8())+QByteArray(description.toUtf8()), QCryptographicHash::Md5);
+      hash = QCryptographicHash::hash(QByteArray(title.toLocal8Bit())+QByteArray(description.toLocal8Bit()), QCryptographicHash::Md5);
     }
 
     ~RssItem(){
@@ -374,26 +374,26 @@ class RssStream : public QObject{
     }
 
     QString getAlias() const{
-      qDebug("getAlias() returned Alias: %s", (const char*)alias.toUtf8());
+      qDebug("getAlias() returned Alias: %s", (const char*)alias.toLocal8Bit());
       return alias;
     }
 
     void setAlias(QString _alias){
-      qDebug("setAlias() to %s", (const char*)_alias.toUtf8());
+      qDebug("setAlias() to %s", (const char*)_alias.toLocal8Bit());
       alias = _alias;
     }
 
     // Return the alias if the stream has one, the url if it has no alias
     QString getAliasOrUrl() const{
       if(!alias.isEmpty()) {
-        qDebug("getAliasOrUrl() returned alias: %s", (const char*)alias.toUtf8());
+        qDebug("getAliasOrUrl() returned alias: %s", (const char*)alias.toLocal8Bit());
         return alias;
       }
       if(!title.isEmpty()) {
-        qDebug("getAliasOrUrl() returned title: %s", (const char*)title.toUtf8());
+        qDebug("getAliasOrUrl() returned title: %s", (const char*)title.toLocal8Bit());
         return title;
       }
-      qDebug("getAliasOrUrl() returned url: %s", (const char*)url.toUtf8());
+      qDebug("getAliasOrUrl() returned url: %s", (const char*)url.toLocal8Bit());
       return url;
     }
 
@@ -494,7 +494,7 @@ class RssStream : public QObject{
 	return -1;
       }
       else if(root.tagName() != QString::fromUtf8("rss")){
-	qDebug("the file is not a rss stream, <rss> omitted: %s", root.tagName().toUtf8().data());
+  qDebug("the file is not a rss stream, <rss> omitted: %s", root.tagName().toLocal8Bit().data());
 	return -1;
       }
       QDomNode rss = root.firstChild();
@@ -569,7 +569,7 @@ class RssStream : public QObject{
       QDomDocument doc("Rss Seed");
       QFile fileRss(filePath);
       if(!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug("openRss error : open failed, no file or locked, %s", (const char*)filePath.toUtf8());
+        qDebug("openRss error : open failed, no file or locked, %s", (const char*)filePath.toLocal8Bit());
         if(QFile::exists(filePath)) {
           fileRss.remove();
         }
@@ -622,7 +622,7 @@ class RssManager : public QObject{
               emit feedIconChanged(stream->getUrl(), stream->getIconPath());
           }
         }else{
-          qDebug("Unsupported icon format at %s", (const char*)url.toUtf8());
+          qDebug("Unsupported icon format at %s", (const char*)url.toLocal8Bit());
         }
         return;
       }
@@ -645,7 +645,7 @@ class RssManager : public QObject{
     void handleDownloadFailure(QString url, QString reason) {
       if(url.endsWith("favicon.ico")){
         // Icon download failure
-        qDebug("Could not download icon at %s, reason: %s", (const char*)url.toUtf8(), (const char*)reason.toUtf8());
+        qDebug("Could not download icon at %s, reason: %s", (const char*)url.toLocal8Bit(), (const char*)reason.toLocal8Bit());
         return;
       }
       RssStream *stream = streams.value(url, 0);
@@ -654,7 +654,7 @@ class RssManager : public QObject{
         return;
       }
       stream->setLoading(false);
-      qDebug("Could not download Rss at %s, reason: %s", (const char*)url.toUtf8(), (const char*)reason.toUtf8());
+      qDebug("Could not download Rss at %s, reason: %s", (const char*)url.toLocal8Bit(), (const char*)reason.toLocal8Bit());
       stream->setDownloadFailed();
       emit feedInfosChanged(url, stream->getAliasOrUrl(), stream->getNbUnRead());
     }
@@ -665,7 +665,7 @@ class RssManager : public QObject{
         QString url = stream->getUrl();
         if(stream->isLoading()) return;
         if(stream->getLastRefreshElapsed() != -1 && stream->getLastRefreshElapsed() < (int)refreshInterval) return;
-        qDebug("Refreshing old feed: %s...", (const char*)url.toUtf8());
+        qDebug("Refreshing old feed: %s...", (const char*)url.toLocal8Bit());
         stream->setLoading(true);
         downloader->downloadUrl(url);
         if(!stream->hasCustomIcon()){
@@ -801,7 +801,7 @@ class RssManager : public QObject{
       foreach(stream, streams){
         QString url = stream->getUrl();
         if(stream->isLoading()) return;
-        qDebug("Refreshing feed: %s...", (const char*)url.toUtf8());
+        qDebug("Refreshing feed: %s...", (const char*)url.toLocal8Bit());
         stream->setLoading(true);
         downloader->downloadUrl(url);
         if(!stream->hasCustomIcon()){

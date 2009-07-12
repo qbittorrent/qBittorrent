@@ -39,7 +39,7 @@ void HttpResponseGenerator::setMessage(const QByteArray message)
 
 void HttpResponseGenerator::setMessage(const QString message)
 {
-	setMessage(message.QString::toUtf8());
+  setMessage(message.QString::toLocal8Bit());
 }
 
 void HttpResponseGenerator::stripMessage()
@@ -49,7 +49,7 @@ void HttpResponseGenerator::stripMessage()
 
 QByteArray HttpResponseGenerator::toByteArray() const
 {
-	return QHttpResponseHeader::toString().toUtf8() + message;
+  return QHttpResponseHeader::toString().toLocal8Bit() + message;
 }
 
 void HttpResponseGenerator::setContentTypeByExt(const QString ext)

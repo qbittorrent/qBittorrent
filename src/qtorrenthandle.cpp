@@ -354,12 +354,12 @@ void QTorrentHandle::resume() {
 
 void QTorrentHandle::remove_url_seed(QString seed) {
   Q_ASSERT(h.is_valid());
-  h.remove_url_seed(misc::toString((const char*)seed.toUtf8()));
+  h.remove_url_seed(misc::toString((const char*)seed.toLocal8Bit()));
 }
 
 void QTorrentHandle::add_url_seed(QString seed) {
   Q_ASSERT(h.is_valid());
-  h.add_url_seed(misc::toString((const char*)seed.toUtf8()));
+  h.add_url_seed(misc::toString((const char*)seed.toLocal8Bit()));
 }
 
 void QTorrentHandle::set_max_uploads(int val) {
@@ -415,7 +415,7 @@ void QTorrentHandle::set_sequential_download(bool b) {
 
 void QTorrentHandle::set_tracker_login(QString username, QString password) {
   Q_ASSERT(h.is_valid());
-  h.set_tracker_login(std::string(username.toUtf8().data()), std::string(password.toUtf8().data()));
+  h.set_tracker_login(std::string(username.toLocal8Bit().data()), std::string(password.toLocal8Bit().data()));
 }
 
 void QTorrentHandle::force_recheck() const {
@@ -425,7 +425,7 @@ void QTorrentHandle::force_recheck() const {
 
 void QTorrentHandle::move_storage(QString new_path) const {
    Q_ASSERT(h.is_valid());
-   h.move_storage(new_path.toUtf8().data());
+   h.move_storage(new_path.toLocal8Bit().data());
 }
 
 //

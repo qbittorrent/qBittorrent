@@ -276,7 +276,7 @@
         if(item->text(1) == url)
           return item;
       }
-      qDebug("Cannot find url %s in feeds list", (const char*)url.toUtf8());
+      qDebug("Cannot find url %s in feeds list", (const char*)url.toLocal8Bit());
       Q_ASSERT(false); // Should never go through here
       return (QTreeWidgetItem*)0;
     }

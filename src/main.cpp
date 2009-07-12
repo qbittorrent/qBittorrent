@@ -154,10 +154,10 @@ int main(int argc, char *argv[]){
     if(argc > 1){
       QStringList params;
       for(int i=1;i<argc;++i){
-        params << QString::fromUtf8(argv[i]);
+        params << QString::fromLocal8Bit(argv[i]);
         std::cout << argv[i] << '\n';
       }
-      QByteArray block = params.join("\n").toUtf8();
+      QByteArray block = params.join("\n").toLocal8Bit();
       std::cout << "writting: " << block.data() << '\n';
       std::cout << "size: " << block.size() << '\n';
       uint val = localSocket.write(block);
@@ -192,9 +192,9 @@ int main(int argc, char *argv[]){
     settings.setValue(QString::fromUtf8("Preferences/General/Locale"), locale);
   }
   if(translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
-    qDebug("%s locale recognized, using translation.", (const char*)locale.toUtf8());
+    qDebug("%s locale recognized, using translation.", (const char*)locale.toLocal8Bit());
   }else{
-    qDebug("%s locale unrecognized, using default (en_GB).", (const char*)locale.toUtf8());
+    qDebug("%s locale unrecognized, using default (en_GB).", (const char*)locale.toLocal8Bit());
   }
   app->installTranslator(&translator);
   app->setApplicationName(QString::fromUtf8("qBittorrent"));

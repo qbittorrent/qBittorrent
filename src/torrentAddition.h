@@ -117,7 +117,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         // Getting torrent file informations
         boost::intrusive_ptr<torrent_info> t;
         try {
-            t = new torrent_info(filePath.toUtf8().data());
+            t = new torrent_info(filePath.toLocal8Bit().data());
         } catch(std::exception&) {
             qDebug("Caught error loading torrent");
             if(!from_url.isNull()){
@@ -405,7 +405,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       // Save savepath
       QFile savepath_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".savepath"));
       savepath_file.open(QIODevice::WriteOnly | QIODevice::Text);
-      savepath_file.write(savePath.path().toUtf8());
+      savepath_file.write(savePath.path().toLocal8Bit());
       savepath_file.close();
       // Save last dir to remember it
       QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));

@@ -6,6 +6,7 @@
     - FEATURE: Search results tab columns are now remembered upon startup
     - FEATURE: Added right click menu in search engine to clear completion history
     - BUGFIX: Provide more helpful explanation when an I/O error occured
+    - BUGFIX: Stop enforcing UTF-8 and use system locale instead
     - COSMETIC: Redesigned program preferences
     - COSMETIC: Updated icons set
 

@@ -192,7 +192,7 @@ void createtorrent::handleCreationSuccess(QString path, const char* branch_path)
         // Create save path file
         boost::intrusive_ptr<torrent_info> t;
         try {
-            t = new torrent_info(path.toUtf8().data());
+            t = new torrent_info(path.toLocal8Bit().data());
         } catch(std::exception&) {
             QMessageBox::critical(0, tr("Torrent creation"), tr("Created torrent file is invalid. It won't be added to download list."));
             return;
@@ -238,7 +238,7 @@ void torrentCreatorThread::run() {
   try {
     file_storage fs;
     file_pool fp;
-    path full_path = complete(path(input_path.toUtf8().data()));
+    path full_path = complete(path(input_path.toLocal8Bit().data()));
     // Adding files to the torrent
     add_files(fs, full_path, file_filter);
     if(abort) return;
@@ -247,10 +247,10 @@ void torrentCreatorThread::run() {
     // Add url seeds
     QString seed;
     foreach(seed, url_seeds){
-      t.add_url_seed(seed.toUtf8().data());
+      t.add_url_seed(seed.toLocal8Bit().data());
     }
     for(int i=0; i<trackers.size(); ++i){
-      t.add_tracker(trackers.at(i).toUtf8().data());
+      t.add_tracker(trackers.at(i).toLocal8Bit().data());
     }
     if(abort) return;
     // calculate the hash for all pieces
@@ -258,14 +258,14 @@ void torrentCreatorThread::run() {
     // Set qBittorrent as creator and add user comment to
     // torrent_info structure
     t.set_creator(creator_str);
-    t.set_comment((const char*)comment.toUtf8());
+    t.set_comment((const char*)comment.toLocal8Bit());
     // Is private ?
     if(is_private){
       t.set_priv(true);
     }
     if(abort) return;
     // create the torrent and print it to out
-    ofstream out(complete(path((const char*)save_path.toUtf8())), std::ios_base::binary);
+    ofstream out(complete(path((const char*)save_path.toLocal8Bit())), std::ios_base::binary);
     bencode(std::ostream_iterator<char>(out), t.generate());
     emit updateProgress(100);
     emit creationSuccess(save_path, full_path.branch_path().string().c_str());

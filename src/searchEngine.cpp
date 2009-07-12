@@ -421,12 +421,12 @@ void SearchEngine::updateNova() {
     // Copy python classes
     if(file.endsWith(".py")) {
       if(misc::getPluginVersion(shipped_file) > misc::getPluginVersion(destDir+file) ) {
-        qDebug("shippped %s is more recent then local plugin, updating", file.toUtf8().data());
+        qDebug("shippped %s is more recent then local plugin, updating", file.toLocal8Bit().data());
         if(QFile::exists(destDir+file)) {
-          qDebug("Removing old %s", (destDir+file).toUtf8().data());
+          qDebug("Removing old %s", (destDir+file).toLocal8Bit().data());
           QFile::remove(destDir+file);
         }
-        qDebug("%s copied to %s", shipped_file.toUtf8().data(), (destDir+file).toUtf8().data());
+        qDebug("%s copied to %s", shipped_file.toLocal8Bit().data(), (destDir+file).toLocal8Bit().data());
         QFile::copy(shipped_file, destDir+file);
       }
     } else {
