@@ -577,6 +577,7 @@ void DownloadingTorrents::addTorrent(QString hash) {
   DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
   DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
   DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+  DLListModel->setData(DLListModel->index(row, RATIO), QVariant((double)0.));
   DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
   if(BTSession->isQueueingEnabled())
     DLListModel->setData(DLListModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
