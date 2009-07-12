@@ -36,6 +36,7 @@
 #include <QProcess>
 #include <QList>
 #include <QPair>
+#include <QPointer>
 #include "ui_search.h"
 #include "engineSelectDlg.h"
 #include "SearchTab.h"
@@ -57,7 +58,7 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     bool no_search_results;
     QByteArray search_result_line_truncated;
     unsigned long nb_search_results;
-    QCompleter *searchCompleter;
+    QPointer<QCompleter> searchCompleter;
     QStringList searchHistory;
     bittorrent *BTSession;
     QSystemTrayIcon *myTrayIcon;
@@ -94,6 +95,8 @@ class SearchEngine : public QWidget, public Ui::search_engine{
     void saveResultsColumnsWidth();
 		void downloadFinished(int exitcode, QProcess::ExitStatus);
 		void downloadTorrent(QString engine_url, QString torrent_url);
+    void displayPatternContextMenu(QPoint);
+    void createCompleter();
 };
 
 #endif

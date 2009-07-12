@@ -39,6 +39,7 @@
 #include <iostream>
 #include <QTimer>
 #include <QDir>
+#include <QMenu>
 
 #include "searchEngine.h"
 #include "bittorrent.h"
@@ -53,9 +54,8 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   setupUi(this);
   // new qCompleter to the search pattern
   startSearchHistory();
-  searchCompleter = new QCompleter(searchHistory, this);
-  searchCompleter->setCaseSensitivity(Qt::CaseInsensitive);
-  search_pattern->setCompleter(searchCompleter);
+  searchCompleter = 0;
+  createCompleter();
   // Add close tab button
   closeTab_button = new QPushButton();
   closeTab_button->setIcon(QIcon(QString::fromUtf8(":/Icons/gnome-shutdown.png")));
@@ -79,6 +79,7 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   loadEngineSettings();
   // Update nova.py search plugin if necessary
   updateNova();
+  connect(search_pattern, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(displayPatternContextMenu(QPoint)));
 }
 
 SearchEngine::~SearchEngine(){
@@ -94,7 +95,21 @@ SearchEngine::~SearchEngine(){
 	}
   delete searchTimeout;
   delete searchProcess;
-  delete searchCompleter;
+  if(searchCompleter)
+    delete searchCompleter;
+}
+
+void SearchEngine::displayPatternContextMenu(QPoint) {
+  QMenu myMenu(this);
+  QAction clearHistoryAct(tr("Clear history"), &myMenu);
+  myMenu.addAction(&clearHistoryAct);
+  QAction *act = myMenu.exec(QCursor::pos());
+  if(act != 0) {
+    if(act == &clearHistoryAct) {
+      searchHistory.clear();
+      createCompleter();
+    }
+  }
 }
 
 void SearchEngine::tab_changed(int t)
@@ -178,11 +193,8 @@ void SearchEngine::on_search_button_clicked(){
     // verify the max size of the history
     if(searchHistory.size() > SEARCHHISTORY_MAXSIZE)
       searchHistory = searchHistory.mid(searchHistory.size()/2,searchHistory.size()/2);
-    searchCompleter = new QCompleter(searchHistory, this);
-    searchCompleter->setCaseSensitivity(Qt::CaseInsensitive);
-    search_pattern->setCompleter(searchCompleter);
+    createCompleter();
   }
-
 
   // Getting checked search engines
   Q_ASSERT(!enabled_engines.empty());
@@ -201,6 +213,14 @@ void SearchEngine::on_search_button_clicked(){
   // Launch search
   searchProcess->start("python", params, QIODevice::ReadOnly);
   searchTimeout->start(180000); // 3min
+}
+
+void SearchEngine::createCompleter() {
+  if(searchCompleter)
+    delete searchCompleter;
+  searchCompleter = new QCompleter(searchHistory, this);
+  searchCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+  search_pattern->setCompleter(searchCompleter);
 }
 
 void SearchEngine::propagateSectionResized(int index, int , int newsize) {

@@ -4,6 +4,7 @@
     - FEATURE: Display total amount of uploaded data in finished list
     - FEATURE: Resizing a column in a search results tab affects all tabs
     - FEATURE: Search results tab columns are now remembered upon startup
+    - FEATURE: Added right click menu in search engine to clear completion history
     - BUGFIX: Provide more helpful explanation when an I/O error occured
     - COSMETIC: Redesigned program preferences
     - COSMETIC: Updated icons set
