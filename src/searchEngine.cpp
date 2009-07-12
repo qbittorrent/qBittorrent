@@ -101,7 +101,8 @@ SearchEngine::~SearchEngine(){
 
 void SearchEngine::displayPatternContextMenu(QPoint) {
   QMenu myMenu(this);
-  QAction clearHistoryAct(tr("Clear history"), &myMenu);
+  QAction PasteAct(tr("Paste"), &myMenu);
+  QAction clearHistoryAct(tr("Clear completion history"), &myMenu);
   myMenu.addAction(&clearHistoryAct);
   QAction *act = myMenu.exec(QCursor::pos());
   if(act != 0) {
