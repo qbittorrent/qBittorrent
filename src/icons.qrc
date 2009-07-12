@@ -49,6 +49,10 @@
   <file>Icons/oxygen/configure.png</file>
   <file>Icons/oxygen/connection.png</file>
   <file>Icons/oxygen/download.png</file>
+  <file>Icons/oxygen/edit-clear.png</file>
+  <file>Icons/oxygen/edit-copy.png</file>
+  <file>Icons/oxygen/edit-cut.png</file>
+  <file>Icons/oxygen/edit-paste.png</file>
   <file>Icons/oxygen/edit_clear.png</file>
   <file>Icons/oxygen/encrypted.png</file>
   <file>Icons/oxygen/file.png</file>

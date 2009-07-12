@@ -40,6 +40,8 @@
 #include <QTimer>
 #include <QDir>
 #include <QMenu>
+#include <QClipboard>
+#include <QMimeData>
 
 #include "searchEngine.h"
 #include "bittorrent.h"
@@ -101,14 +103,42 @@ SearchEngine::~SearchEngine(){
 
 void SearchEngine::displayPatternContextMenu(QPoint) {
   QMenu myMenu(this);
-  QAction PasteAct(tr("Paste"), &myMenu);
-  QAction clearHistoryAct(tr("Clear completion history"), &myMenu);
+  QAction cutAct(QIcon(":/Icons/oxygen/edit-cut.png"), tr("Cut"), &myMenu);
+  QAction copyAct(QIcon(":/Icons/oxygen/edit-copy.png"), tr("Copy"), &myMenu);
+  QAction pasteAct(QIcon(":/Icons/oxygen/edit-paste.png"), tr("Paste"), &myMenu);
+  QAction clearAct(QIcon(":/Icons/oxygen/edit_clear.png"), tr("Clear field"), &myMenu);
+  QAction clearHistoryAct(QIcon(":/Icons/oxygen/edit-clear.png"), tr("Clear completion history"), &myMenu);
+  bool hasCopyAct = false;
+  if(search_pattern->hasSelectedText()) {
+    myMenu.addAction(&cutAct);
+    myMenu.addAction(&copyAct);
+    hasCopyAct = true;
+  }
+  if(qApp->clipboard()->mimeData()->hasText()) {
+    myMenu.addAction(&pasteAct);
+    hasCopyAct = true;
+  }
+  if(hasCopyAct)
+    myMenu.addSeparator();
   myMenu.addAction(&clearHistoryAct);
+  myMenu.addAction(&clearAct);
   QAction *act = myMenu.exec(QCursor::pos());
   if(act != 0) {
     if(act == &clearHistoryAct) {
       searchHistory.clear();
       createCompleter();
+    } else if (act == &pasteAct) {
+    } else if (act == &pasteAct) {
+      search_pattern->paste();
+    }
+    else if (act == &cutAct) {
+      search_pattern->cut();
+    }
+    else if (act == &copyAct) {
+      search_pattern->copy();
+    }
+    else if (act == &clearAct) {
+      search_pattern->clear();
     }
   }
 }
