@@ -55,6 +55,8 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   finishedListModel->setHeaderData(F_UPLOAD, Qt::Horizontal, tr("Total uploaded", "i.e: Total amount of uploaded data"));
   finishedListModel->setHeaderData(F_RATIO, Qt::Horizontal, tr("Ratio"));
   finishedList->setModel(finishedListModel);
+  finishedList->setRootIsDecorated(false);
+  finishedList->setAllColumnsShowFocus(true);
   loadHiddenColumns();
   // Hide hash column
   finishedList->hideColumn(F_HASH);
