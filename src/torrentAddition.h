@@ -290,7 +290,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       return true;
     }
 
-    void displayFilesListMenu(const QPoint& pos){
+    void displayFilesListMenu(const QPoint&){
       if(nbFiles == 1) return;
       QMenu myFilesLlistMenu(this);
       QModelIndex index;
@@ -302,8 +302,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
       myFilesLlistMenu.addAction(actionHigh);
       myFilesLlistMenu.addAction(actionMaximum);
       // Call menu
-      // XXX: why mapToGlobal() is not enough?
-      myFilesLlistMenu.exec(mapToGlobal(pos)+QPoint(10,145));
+      myFilesLlistMenu.exec(QCursor::pos());
     }
 
     void ignoreSelection(){

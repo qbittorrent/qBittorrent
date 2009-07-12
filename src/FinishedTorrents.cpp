@@ -355,7 +355,7 @@ void FinishedTorrents::forceRecheck(){
   }
 }
 
-void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
+void FinishedTorrents::displayFinishedListMenu(const QPoint&){
   QMenu myFinishedListMenu(this);
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
@@ -399,8 +399,7 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
   myFinishedListMenu.addAction(actionBuy_it);
 
   // Call menu
-  // XXX: why mapToGlobal() is not enough?
-  myFinishedListMenu.exec(mapToGlobal(pos)+QPoint(10,58));
+  myFinishedListMenu.exec(QCursor::pos());
 }
 
 
