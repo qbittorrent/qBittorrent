@@ -10,6 +10,27 @@
     - COSMETIC: Redesigned program preferences
     - COSMETIC: Updated icons set
 
+* Sun Jul 12 2009 - Christophe DUMEZ <chris@qbittorrent.org> - v1.3.4
+    - BUGFIX: Fixed IP filter file parsing on 64bits
+    - BUGFIX: Suppressed QLayout: Attempting to add QLayout "" to properties "properties" warning message when opening a properties dialog
+    - BUGFIX: Fixed a little bug in search engine plugins helper file
+    - BUGFIX: Fixed compilation problems with Qt 4.3
+    - BUGFIX: Percentages no longer disapear with default cleanlooks style
+    - BUGFIX: Cleanly fixed popup menus position in lists (no more workarounds)
+    - BUGFIX: Fixed memory leak in search engine
+    - BUGFIX: Torrents with an infinite ratio are no longer affected by ratio_limit set in program preferences
+    - BUGFIX: Display a ratio of 0.0 if total_upload and total_download are both 0
+    - BUGFIX: Remove last separator in top tool bar
+    - BUGFIX: Tuned lists properties to make sure display is correct
+    - COSMETIC: Display date as well as time in log window
+
+* Sun Apr 5 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.3
+    - BUGFIX: Fixed Web UI torrent upload form
+    - BUGFIX: Fixed unicode support in search engine
+    - BUGFIX: Fixed search engine bug that prevented a torrent from appearing more than once among all tabs
+    - LICENSE: Added an exception to the license regarding OpenSSL.
+    - I18N: Updated Finnish translation
+
 * Sat Mar 7 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.2
     - BUGFIX: Fix top toolbar disabling
     - BUGFIX: Fix building with Qt 4.5
