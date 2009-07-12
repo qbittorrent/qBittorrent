@@ -1,4 +1,4 @@
-* Unknown - Christophe DUMEZ <chris@qbittorrent.org> - v1.3.4
+* Sun Jul 12 2009 - Christophe DUMEZ <chris@qbittorrent.org> - v1.3.4
     - BUGFIX: Fixed IP filter file parsing on 64bits
     - BUGFIX: Suppressed QLayout: Attempting to add QLayout "" to properties "properties" warning message when opening a properties dialog
     - BUGFIX: Fixed a little bug in search engine plugins helper file
