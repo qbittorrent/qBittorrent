@@ -52,9 +52,10 @@
 #include <boost/filesystem/exception.hpp>
 
 #define MAX_TRACKER_ERRORS 2
+#define MAX_RATIO 100.
 
 // Main constructor
-bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), max_ratio(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), queueingEnabled(false) {
+bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), queueingEnabled(false) {
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
   // Creating bittorrent session
@@ -124,7 +125,7 @@ void bittorrent::preAllocateAllFiles(bool b) {
 }
 
 void bittorrent::deleteBigRatios() {
-  if(max_ratio == -1) return;
+  if(ratio_limit == -1) return;
     std::vector<torrent_handle> torrents = getTorrents();
     std::vector<torrent_handle>::iterator torrentIT;
     for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
@@ -132,7 +133,8 @@ void bittorrent::deleteBigRatios() {
         if(!h.is_valid()) continue;
         if(h.is_seed()) {
             QString hash = h.hash();
-            if(getRealRatio(hash) > max_ratio) {
+            float ratio = getRealRatio(hash);
+            if(ratio <= MAX_RATIO && ratio > ratio_limit) {
               QString fileName = h.name();
               addConsoleMessage(tr("%1 reached the maximum ratio you set.").arg(fileName));
               deleteTorrent(hash);
@@ -1011,19 +1013,19 @@ void bittorrent::setGlobalRatio(float ratio) {
 // be automatically deleted
 void bittorrent::setDeleteRatio(float ratio) {
   if(ratio != -1 && ratio < 1.) ratio = 1.;
-  if(max_ratio == -1 && ratio != -1) {
+  if(ratio_limit == -1 && ratio != -1) {
     Q_ASSERT(!BigRatioTimer);
     BigRatioTimer = new QTimer(this);
     connect(BigRatioTimer, SIGNAL(timeout()), this, SLOT(deleteBigRatios()));
     BigRatioTimer->start(5000);
   } else {
-    if(max_ratio != -1 && ratio == -1) {
+    if(ratio_limit != -1 && ratio == -1) {
       delete BigRatioTimer;
     }
   }
-  if(max_ratio != ratio) {
-    max_ratio = ratio;
-    qDebug("* Set deleteRatio to %.1f", max_ratio);
+  if(ratio_limit != ratio) {
+    ratio_limit = ratio;
+    qDebug("* Set deleteRatio to %.1f", ratio_limit);
     deleteBigRatios();
   }
 }
