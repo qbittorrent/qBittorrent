@@ -29,7 +29,7 @@
  */
 
 #include <QDir>
-#include <QTime>
+#include <QDateTime>
 #include <QString>
 #include <QTimer>
 #include <QFileSystemWatcher>
@@ -852,7 +852,7 @@ void bittorrent::addConsoleMessage(QString msg, QColor color) {
   if(consoleMessages.size() > 100) {
     consoleMessages.removeFirst(); 
   }
-  consoleMessages.append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color.name() +QString::fromUtf8("'><i>") + msg + QString::fromUtf8("</i></font>"));
+  consoleMessages.append(QString::fromUtf8("<font color='grey'>")+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color.name() +QString::fromUtf8("'><i>") + msg + QString::fromUtf8("</i></font>"));
 }
 
 void bittorrent::addPeerBanMessage(QString ip, bool from_ipfilter) {
@@ -860,9 +860,9 @@ void bittorrent::addPeerBanMessage(QString ip, bool from_ipfilter) {
     peerBanMessages.removeFirst(); 
   }
   if(from_ipfilter)
-    peerBanMessages.append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - ")+tr("<font color='red'>%1</font> <i>was blocked due to your IP filter</i>", "x.y.z.w was blocked").arg(ip));
+    peerBanMessages.append(QString::fromUtf8("<font color='grey'>")+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + QString::fromUtf8("</font> - ")+tr("<font color='red'>%1</font> <i>was blocked due to your IP filter</i>", "x.y.z.w was blocked").arg(ip));
   else
-    peerBanMessages.append(QString::fromUtf8("<font color='grey'>")+ QTime::currentTime().toString(QString::fromUtf8("hh:mm:ss")) + QString::fromUtf8("</font> - ")+tr("<font color='red'>%1</font> <i>was banned due to corrupt pieces</i>", "x.y.z.w was banned").arg(ip));
+    peerBanMessages.append(QString::fromUtf8("<font color='grey'>")+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + QString::fromUtf8("</font> - ")+tr("<font color='red'>%1</font> <i>was banned due to corrupt pieces</i>", "x.y.z.w was banned").arg(ip));
 }
 
 bool bittorrent::isFilePreviewPossible(QString hash) const{
