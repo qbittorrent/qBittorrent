@@ -177,6 +177,7 @@ void SearchEngine::on_search_button_clicked(){
     // verify the max size of the history
     if(searchHistory.size() > SEARCHHISTORY_MAXSIZE)
       searchHistory = searchHistory.mid(searchHistory.size()/2,searchHistory.size()/2);
+    delete searchCompleter;
     searchCompleter = new QCompleter(searchHistory, this);
     searchCompleter->setCaseSensitivity(Qt::CaseInsensitive);
     search_pattern->setCompleter(searchCompleter);

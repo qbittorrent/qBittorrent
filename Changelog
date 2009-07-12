@@ -5,6 +5,7 @@
     - BUGFIX: Fixed compilation problems with Qt 4.3
     - BUGFIX: Percentages no longer disapear with default cleanlooks style
     - BUGFIX: Cleanly fixed popup menus position in lists (no more workarounds)
+    - BUGFIX: Fixed memory leak in search engine
 
 * Sun Apr 5 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.3
     - BUGFIX: Fixed Web UI torrent upload form
