@@ -40,7 +40,6 @@
 #include <QStandardItemModel>
 #include <QHeaderView>
 #include <QMenu>
-#include <QTimer>
 #include <QMessageBox>
 
 FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : parent(parent), BTSession(BTSession), nbFinished(0){
@@ -95,31 +94,13 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   connect(actionHOSColPeers, SIGNAL(triggered()), this, SLOT(hideOrShowColumnPeers()));
   connect(actionHOSColUpload, SIGNAL(triggered()), this, SLOT(hideOrShowColumnUpload()));
   connect(actionHOSColRatio, SIGNAL(triggered()), this, SLOT(hideOrShowColumnRatio()));
-
-  scrapeTimer = new QTimer(this);
-  connect(scrapeTimer, SIGNAL(timeout()), this, SLOT(scrapeTrackers()));
-  scrapeTimer->start(20000);
 }
 
 FinishedTorrents::~FinishedTorrents(){
   saveColWidthFinishedList();
   saveHiddenColumns();
-  scrapeTimer->stop();
-  delete scrapeTimer;
   delete finishedListDelegate;
   delete finishedListModel;
-}
-
-void FinishedTorrents::scrapeTrackers() {
-  std::vector<torrent_handle> torrents = BTSession->getTorrents();
-  std::vector<torrent_handle>::iterator torrentIT;
-  for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
-    QTorrentHandle h = QTorrentHandle(*torrentIT);
-    if(!h.is_valid()) continue;
-    if(h.is_seed()) {
-      h.scrape_tracker();
-    }
-  }
 }
 
 void FinishedTorrents::notifyTorrentDoubleClicked(const QModelIndex& index) {

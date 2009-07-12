@@ -249,6 +249,9 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   if(!settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), false).toBool()) {
     show();
   }
+  scrapeTimer = new QTimer(this);
+  connect(scrapeTimer, SIGNAL(timeout()), this, SLOT(scrapeTrackers()));
+  scrapeTimer->start(20000);
   qDebug("GUI Built");
 }
 
@@ -260,6 +263,8 @@ GUI::~GUI() {
   BTSession->saveDHTEntry();
   BTSession->saveSessionState();
   BTSession->saveFastResumeData();
+  scrapeTimer->stop();
+  delete scrapeTimer;
   delete dlSpeedLbl;
   delete upSpeedLbl;
   delete ratioLbl;
@@ -316,6 +321,16 @@ void GUI::displayRSSTab(bool enable) {
       delete rssWidget;
       rssWidget = 0;
     }
+  }
+}
+
+void GUI::scrapeTrackers() {
+  std::vector<torrent_handle> torrents = BTSession->getTorrents();
+  std::vector<torrent_handle>::iterator torrentIT;
+  for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+    QTorrentHandle h = QTorrentHandle(*torrentIT);
+    if(!h.is_valid()) continue;
+    h.scrape_tracker();
   }
 }
 

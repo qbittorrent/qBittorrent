@@ -37,7 +37,6 @@
 class QStandardItemModel;
 class bittorrent;
 class FinishedListDelegate;
-class QTimer;
 
 using namespace libtorrent;
 
@@ -53,7 +52,6 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     bool loadHiddenColumns();
     void saveHiddenColumns();
     QAction* getActionHoSCol(int index);
-    QTimer *scrapeTimer;
 
   public:
     FinishedTorrents(QObject *parent, bittorrent *BTSession);
@@ -85,7 +83,6 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void hideOrShowColumnPeers();
     void hideOrShowColumnUpload();
     void hideOrShowColumnRatio();
-    void scrapeTrackers();
     void forceRecheck();
 
   public slots:

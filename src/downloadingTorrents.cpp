@@ -554,7 +554,13 @@ bool DownloadingTorrents::updateTorrent(QTorrentHandle h) {
           }
       }
       if(!downloadList->isColumnHidden(SEEDSLEECH)) {
-        DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(misc::toQString(h.num_seeds(), true)+QString::fromUtf8("/")+misc::toQString(h.num_peers() - h.num_seeds(), true)));
+        QString tmp = misc::toQString(h.num_seeds(), true);
+        if(h.num_complete() >= 0)
+          tmp.append(QString("(")+misc::toQString(h.num_complete())+QString(")"));
+        tmp.append(QString("/")+misc::toQString(h.num_peers() - h.num_seeds(), true));
+        if(h.num_incomplete() >= 0)
+          tmp.append(QString("(")+misc::toQString(h.num_incomplete())+QString(")"));
+        DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(tmp));
       }
       if(!downloadList->isColumnHidden(RATIO)) {
         DLListModel->setData(DLListModel->index(row, RATIO), QVariant(misc::toQString(BTSession->getRealRatio(hash))));
