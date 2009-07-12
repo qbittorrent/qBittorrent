@@ -432,7 +432,7 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint& pos){
 
   // Call menu
   // XXX: why mapToGlobal() is not enough?
-  myFinishedListMenu.exec(mapToGlobal(pos)+QPoint(10,58));
+  myFinishedListMenu.exec(mapToGlobal(pos)+QPoint(12,35));
 }
 
 
