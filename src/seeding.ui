@@ -107,7 +107,7 @@
     <string>Connected peers</string>
    </property>
    <property name="toolTip">
-    <string>Peers</string>
+    <string>Connected peers</string>
    </property>
   </action>
   <action name="actionHOSColRatio">
