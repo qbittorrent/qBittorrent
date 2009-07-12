@@ -59,6 +59,7 @@ class properties : public QDialog, private Ui::properties{
     QStringList urlSeeds;
     RealProgressBar *progressBar;
     RealProgressBarThread *progressBarUpdater;
+    QVBoxLayout *progressBarVbox;
 
   protected slots:
     void on_okButton_clicked();

@@ -136,9 +136,8 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   updateInfosTimer->start(3000);
   progressBar = new RealProgressBar(this);
   progressBar->setForegroundColor(Qt::blue);
-  QVBoxLayout *vbox = new QVBoxLayout(this);
-  vbox->addWidget(progressBar);
-  RealProgressBox->setLayout(vbox);
+  progressBarVbox = new QVBoxLayout(RealProgressBox);
+  progressBarVbox->addWidget(progressBar);
   progressBarUpdater = new RealProgressBarThread(progressBar, h);
   progressBarUpdater->start();
 //  progressBarUpdater->refresh();
@@ -153,6 +152,7 @@ properties::~properties(){
   delete PropListModel;
   delete progressBarUpdater;
   delete progressBar;
+  delete progressBarVbox;
 }
 
 void properties::addFilesToTree(const torrent_file *root, QStandardItem *parent) {
