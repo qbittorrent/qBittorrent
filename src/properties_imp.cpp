@@ -362,7 +362,7 @@ void properties::getPriorities(QStandardItem *parent, int *priorities) {
   }
 }
 
-void properties::displayFilesListMenu(const QPoint& pos){
+void properties::displayFilesListMenu(const QPoint&){
   if(h.get_torrent_info().num_files() == 1) return;
   QMenu myFilesLlistMenu(this);
   QModelIndex index;
@@ -374,8 +374,7 @@ void properties::displayFilesListMenu(const QPoint& pos){
   myFilesLlistMenu.addAction(actionHigh);
   myFilesLlistMenu.addAction(actionMaximum);
   // Call menu
-  // XXX: why mapToGlobal() is not enough?
-  myFilesLlistMenu.exec(mapToGlobal(pos)+QPoint(22,95));
+  myFilesLlistMenu.exec(QCursor::pos());
 }
 
 void properties::ignoreSelection(){

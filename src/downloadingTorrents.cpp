@@ -236,7 +236,7 @@ void DownloadingTorrents::forceRecheck() {
     }
 }
 
-void DownloadingTorrents::displayDLListMenu(const QPoint& pos) {
+void DownloadingTorrents::displayDLListMenu(const QPoint&) {
   QMenu myDLLlistMenu(this);
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
@@ -285,8 +285,7 @@ void DownloadingTorrents::displayDLListMenu(const QPoint& pos) {
   myDLLlistMenu.addSeparator();
   myDLLlistMenu.addAction(actionBuy_it);
   // Call menu
-  // XXX: why mapToGlobal() is not enough?
-  myDLLlistMenu.exec(mapToGlobal(pos)+QPoint(10,35));
+  myDLLlistMenu.exec(QCursor::pos());
 }
 
 
