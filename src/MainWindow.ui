@@ -121,7 +121,6 @@
    <addaction name="actionIncreasePriority" />
    <addaction name="separator" />
    <addaction name="actionExit" />
-   <addaction name="separator" />
   </widget>
   <widget class="QStatusBar" name="statusBar" />
   <action name="actionOpen" >
