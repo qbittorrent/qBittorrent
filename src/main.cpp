@@ -103,8 +103,12 @@ void useStyle(QApplication *app, int style){
     app->setStyle(new QWindowsXPStyle());
     break;
 #endif
-   /*default:
-    app->setStyle(new QPlastiqueStyle());*/
+   default:
+    if(app->style()->objectName() == "cleanlooks") {
+      // Force our own cleanlooks style
+      qDebug("Forcing our own cleanlooks style");
+      app->setStyle(new QGnomeLookStyle());
+    }
   }
 }
 
