@@ -9,6 +9,7 @@
     - BUGFIX: Torrents with an infinite ratio are no longer affected by ratio_limit set in program preferences
     - BUGFIX: Display a ratio of 0.0 if total_upload and total_download are both 0
     - BUGFIX: Remove last separator in top tool bar
+    - BUGFIX: Tuned lists properties to make sure display is correct
 
 * Sun Apr 5 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.3
     - BUGFIX: Fixed Web UI torrent upload form

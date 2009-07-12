@@ -53,6 +53,8 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   finishedListModel->setHeaderData(F_LEECH, Qt::Horizontal, tr("Leechers", "i.e: full/partial sources"));
   finishedListModel->setHeaderData(F_RATIO, Qt::Horizontal, tr("Ratio"));
   finishedList->setModel(finishedListModel);
+  finishedList->setRootIsDecorated(false);
+  finishedList->setAllColumnsShowFocus(true);
   loadHiddenColumns();
   // Hide hash column
   finishedList->hideColumn(F_HASH);

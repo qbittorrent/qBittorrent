@@ -68,6 +68,8 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   DLListModel->setHeaderData(ETA, Qt::Horizontal, tr("ETA", "i.e: Estimated Time of Arrival / Time left"));
   DLListModel->setHeaderData(PRIORITY, Qt::Horizontal, tr("Priority"));
   downloadList->setModel(DLListModel);
+  downloadList->setRootIsDecorated(false);
+  downloadList->setAllColumnsShowFocus(true);
   DLDelegate = new DLListDelegate(downloadList);
   downloadList->setItemDelegate(DLDelegate);
   // Hide priority column
