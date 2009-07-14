@@ -1123,7 +1123,7 @@ void options_imp::enableShareRatio(int checkBoxValue){
 }
 
 void options_imp::enableDHTPortSettings(int checkBoxValue) {
-if(checkBoxValue != 2){
+if(checkBoxValue == 2){
     //Disable
     spinDHTPort->setEnabled(false);
     dh_port_lbl->setEnabled(false);
