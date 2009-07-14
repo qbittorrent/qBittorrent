@@ -1429,13 +1429,13 @@
         </layout>
        </widget>
        <widget class="QWidget" name="tabOptionPage4">
-        <layout class="QVBoxLayout">
+        <layout class="QVBoxLayout" name="verticalLayout_15">
          <item>
           <widget class="QGroupBox" name="AddBTFeaturesBox">
            <property name="title">
             <string>Bittorrent features</string>
            </property>
-           <layout class="QVBoxLayout">
+           <layout class="QVBoxLayout" name="verticalLayout_14">
             <item>
              <widget class="QCheckBox" name="checkDHT">
               <property name="text">
@@ -1445,6 +1445,75 @@
                <bool>true</bool>
               </property>
              </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkSameDHTPort">
+              <property name="text">
+               <string>Use the same port for DHT and Bittorrent</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <spacer name="horizontalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>13</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="dh_port_lbl">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="text">
+                 <string>DHT port:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinDHTPort">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="minimum">
+                 <number>1000</number>
+                </property>
+                <property name="maximum">
+                 <number>65525</number>
+                </property>
+                <property name="value">
+                 <number>6882</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_5">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
             </item>
             <item>
              <widget class="QCheckBox" name="checkLSD">

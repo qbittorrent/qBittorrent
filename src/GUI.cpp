@@ -990,7 +990,7 @@ void GUI::configureSession(bool deleteOptions) {
   BTSession->setListeningPortsRange(options->getPorts());
   unsigned short new_listenPort = BTSession->getListenPort();
   if(new_listenPort != old_listenPort) {
-    BTSession->addConsoleMessage(tr("qBittorrent is bind to port: %1", "e.g: qBittorrent is bind to port: 1666").arg( misc::toQString(new_listenPort)));
+    BTSession->addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg( misc::toQString(new_listenPort)));
   }
   // * Global download limit
   QPair<int, int> limits = options->getGlobalBandwidthLimits();
@@ -1079,9 +1079,12 @@ void GUI::configureSession(bool deleteOptions) {
   // * DHT
   if(options->isDHTEnabled()) {
     // Set DHT Port
-    BTSession->setDHTPort(new_listenPort);
+    BTSession->setDHTPort(options->getDHTPort());
     if(BTSession->enableDHT(true)) {
-      BTSession->addConsoleMessage(tr("DHT support [ON], port: %1").arg(new_listenPort), QString::fromUtf8("blue"));
+      int dht_port = new_listenPort;
+      if(options->getDHTPort())
+        dht_port = options->getDHTPort();
+      BTSession->addConsoleMessage(tr("DHT support [ON], port: UDP/%1").arg(dht_port), QString::fromUtf8("blue"));
     } else {
       BTSession->addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("red"));
     }

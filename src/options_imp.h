@@ -97,6 +97,8 @@ class options_imp : public QDialog, private Ui::Dialog {
     int getMaxConnecsPerTorrent() const;
     int getMaxUploadsPerTorrent() const;
     bool isDHTEnabled() const;
+    bool isDHTPortSameAsBT() const;
+    int getDHTPort() const;
     bool isPeXEnabled() const;
     bool isLSDEnabled() const;
     bool isRSSEnabled() const;
@@ -152,6 +154,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     void enableDeleteRatio(int checkBoxValue);
     void enableFilter(int checkBoxValue);
     void enableRSS(int checkBoxValue);
+    void enableDHTPortSettings(int checkBoxValue);
     void enableQueueingSystem(int checkBoxValue);
     void setStyle(int style);
     void on_buttonBox_accepted();

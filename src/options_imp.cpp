@@ -153,6 +153,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkMaxUploadsPerTorrent,  SIGNAL(stateChanged(int)), this, SLOT(enableMaxUploadsLimitPerTorrent(int)));
   connect(checkRatioLimit,  SIGNAL(stateChanged(int)), this, SLOT(enableShareRatio(int)));
   connect(checkRatioRemove,  SIGNAL(stateChanged(int)), this, SLOT(enableDeleteRatio(int)));
+  connect(checkSameDHTPort, SIGNAL(stateChanged(int)), this, SLOT(enableDHTPortSettings(int)));
   // Proxy tab
   connect(comboProxyType_http, SIGNAL(currentIndexChanged(int)),this, SLOT(enableProxyHTTP(int)));
   connect(checkProxyAuth_http,  SIGNAL(stateChanged(int)), this, SLOT(enableProxyAuthHTTP(int)));
@@ -202,6 +203,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(spinMaxConnecPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxUploadsPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkDHT, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkSameDHTPort, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(spinDHTPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkLSD, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkAzureusSpoof, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(comboEncryption, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
@@ -396,6 +399,8 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("MaxConnecsPerTorrent"), getMaxConnecsPerTorrent());
   settings.setValue(QString::fromUtf8("MaxUploadsPerTorrent"), getMaxUploadsPerTorrent());
   settings.setValue(QString::fromUtf8("DHT"), isDHTEnabled());
+  settings.setValue(QString::fromUtf8("sameDHTPortAsBT"), isDHTPortSameAsBT());
+  settings.setValue(QString::fromUtf8("DHTPort"), getDHTPort());
   settings.setValue(QString::fromUtf8("LSD"), isLSDEnabled());
   settings.setValue(QString::fromUtf8("AzureusSpoof"), shouldSpoofAzureus());
   settings.setValue(QString::fromUtf8("Encryption"), getEncryptionSetting());
@@ -696,6 +701,9 @@ void options_imp::loadOptions(){
     spinMaxUploadsPerTorrent->setEnabled(false);
   }
   checkDHT->setChecked(settings.value(QString::fromUtf8("DHT"), true).toBool());
+  checkSameDHTPort->setChecked(settings.value(QString::fromUtf8("sameDHTPortAsBT"), true).toBool());
+  enableDHTPortSettings(checkSameDHTPort->checkState());
+  spinDHTPort->setValue(settings.value(QString::fromUtf8("DHTPort"), 6882).toInt());
   checkLSD->setChecked(settings.value(QString::fromUtf8("LSD"), true).toBool());
   checkAzureusSpoof->setChecked(settings.value(QString::fromUtf8("AzureusSpoof"), false).toBool());
   comboEncryption->setCurrentIndex(settings.value(QString::fromUtf8("Encryption"), 0).toInt());
@@ -865,6 +873,12 @@ bool options_imp::startMinimized() const {
 bool options_imp::systrayIntegration() const{
   if (!QSystemTrayIcon::isSystemTrayAvailable()) return false;
   return (!checkNoSystray->isChecked());
+}
+
+int options_imp::getDHTPort() const {
+if(isDHTPortSameAsBT())
+  return 0;
+return spinDHTPort->value();
 }
 
 // Return Share ratio
@@ -1108,6 +1122,18 @@ void options_imp::enableShareRatio(int checkBoxValue){
   }
 }
 
+void options_imp::enableDHTPortSettings(int checkBoxValue) {
+if(checkBoxValue != 2){
+    //Disable
+    spinDHTPort->setEnabled(false);
+    dh_port_lbl->setEnabled(false);
+  }else{
+    //enable
+    spinDHTPort->setEnabled(true);
+    dh_port_lbl->setEnabled(true);
+  }
+}
+
 void options_imp::enableDeleteRatio(int checkBoxValue){
   if(checkBoxValue != 2){
     //Disable
@@ -1212,6 +1238,10 @@ bool options_imp::preAllocateAllFiles() const {
 
 bool options_imp::addTorrentsInPause() const {
   return checkStartPaused->isChecked();
+}
+
+bool options_imp::isDHTPortSameAsBT() const {
+  return checkSameDHTPort->isChecked();
 }
 
 // Proxy settings
