@@ -191,8 +191,12 @@ class FilterParserThread : public QThread  {
               if(IPv4) {
                 //IPv4 addresses
                 IP = strStartIP.split('.');
+                if(IP.size() != 4)
+                  throw exception();
                 address_v4 start((IP.at(0).toUInt() << 24) + (IP.at(1).toUInt() << 16) + (IP.at(2).toUInt() << 8) + IP.at(3).toUInt());
                 IP = strEndIP.split('.');
+                if(IP.size() != 4)
+                  throw exception();
                 address_v4 last((IP.at(0).toUInt() << 24) + (IP.at(1).toUInt() << 16) + (IP.at(2).toUInt() << 8) + IP.at(3).toUInt());
                 // Apply to bittorrent session
                 filter.add_rule(start, last, ip_filter::blocked);
