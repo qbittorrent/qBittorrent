@@ -1,27 +1,2 @@
 See https://blueprints.launchpad.net/qbittorrent/
 
-// TODO in v1.4.0
-- Display peers information (disabled as a default)
-- Automatically move torrent to another directory on completion (disabled as a default)
-- Rework program preferences (make easier)
-- Provide better errors messages to make debugging easier
-
-// translations done in v1.3.0
-- Romanian
-- Russian
-- Hungarian
-- German
-- Chinese (traditional)
-- Chinese (simplified)
-- Italian
-- Swedish
-- Turkish
-- French
-- Slovak
-- Czech
-- Korean
-- Portuguese
-- Brazilian
-- Greek
-- Bulgarian
-- Finnish
