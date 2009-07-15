@@ -105,7 +105,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   actionDownload_from_URL->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/url.png")));
   actionOptions->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/settings.png")));
   actionAbout->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/info.png")));
-  actionWebsite->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/qbittorrent32.png")));
+  actionWebsite->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
   actionBugReport->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/bug.png")));
   actionStart->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play.png")));
   actionPause->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")));
