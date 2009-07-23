@@ -57,6 +57,7 @@ class torrentCreatorThread : public QThread {
       wait();
     }
     void create(QString _input_path, QString _save_path, QStringList _trackers, QStringList _url_seeds, QString _comment, bool _is_private, int _piece_size);
+    void sendProgressSignal(int progress);
   
   protected:
     void run();
@@ -64,6 +65,8 @@ class torrentCreatorThread : public QThread {
   signals:
     void creationFailure(QString msg);
     void creationSuccess(QString path, const char* branch_path);
+
+  signals:
     void updateProgress(int progress);
 };
 
