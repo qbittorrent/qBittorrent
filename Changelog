@@ -1,5 +1,6 @@
 * Unknown - Christophe DUMEZ <chris@qbittorrent.org> - 1.3.5
     - BUGFIX: Made IP filter parser more robust
+    - BUGFIX: Fixed torrent creation tool
 
 * Sun Jul 12 2009 - Christophe DUMEZ <chris@qbittorrent.org> - v1.3.4
     - BUGFIX: Fixed IP filter file parsing on 64bits

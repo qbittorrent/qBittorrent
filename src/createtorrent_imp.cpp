@@ -184,7 +184,6 @@ void createtorrent::on_createButton_clicked(){
 
 void createtorrent::handleCreationFailure(QString msg) {
   QMessageBox::information(0, tr("Torrent creation"), tr("Torrent creation was unsuccessful, reason: %1").arg(msg));
-  hide();
 }
 
 void createtorrent::handleCreationSuccess(QString path, const char* branch_path) {
@@ -205,7 +204,7 @@ void createtorrent::handleCreationSuccess(QString path, const char* branch_path)
         emit torrent_to_seed(path);
     }
     QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+path);
-    hide();
+    close();
 }
 
 void createtorrent::updateProgressBar(int progress) {
@@ -228,8 +227,12 @@ void torrentCreatorThread::create(QString _input_path, QString _save_path, QStri
   start();
 }
 
-void sendProgressUpdateSignal(int i, int num, QDialog *parent){
-    ((createtorrent*)parent)->updateProgressBar((int)(i*100./(float)num));
+void sendProgressUpdateSignal(int i, int num, torrentCreatorThread *parent){
+    parent->sendProgressSignal((int)(i*100./(float)num));
+}
+
+void torrentCreatorThread::sendProgressSignal(int progress) {
+  emit updateProgress(progress);
 }
 
 void torrentCreatorThread::run() {
@@ -254,15 +257,13 @@ void torrentCreatorThread::run() {
     }
     if(abort) return;
     // calculate the hash for all pieces
-    set_piece_hashes(t, full_path.branch_path(), boost::bind<void>(&sendProgressUpdateSignal, _1, t.num_pieces(), parent));
+    set_piece_hashes(t, full_path.branch_path(), boost::bind<void>(&sendProgressUpdateSignal, _1, t.num_pieces(), this));
     // Set qBittorrent as creator and add user comment to
     // torrent_info structure
     t.set_creator(creator_str);
     t.set_comment((const char*)comment.toUtf8());
     // Is private ?
-    if(is_private){
-      t.set_priv(true);
-    }
+    t.set_prive(is_private);
     if(abort) return;
     // create the torrent and print it to out
     ofstream out(complete(path((const char*)save_path.toUtf8())), std::ios_base::binary);
