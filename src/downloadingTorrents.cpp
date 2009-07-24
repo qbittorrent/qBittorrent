@@ -732,6 +732,11 @@ void DownloadingTorrents::saveColWidthDLList() const{
     }
   }
   settings.setValue(QString::fromUtf8("DownloadListColsWidth"), new_width_list.join(QString::fromUtf8(" ")));
+  QVariantList visualIndexes;
+  for(int i=0; i<nbColumns; ++i) {
+    visualIndexes.append(downloadList->header()->visualIndex(i));
+  }
+  settings.setValue(QString::fromUtf8("DownloadListVisualIndexes"), visualIndexes);
   qDebug("Download list columns width saved");
 }
 
@@ -752,6 +757,23 @@ bool DownloadingTorrents::loadColWidthDLList() {
   for(unsigned int i=0; i<listSize; ++i) {
         downloadList->header()->resizeSection(i, width_list.at(i).toInt());
   }
+  QVariantList visualIndexes = settings.value(QString::fromUtf8("DownloadListVisualIndexes"), QVariantList()).toList();
+  if(visualIndexes.size() != DLListModel->columnCount()-1) {
+    qDebug("Corrupted values for download list columns sizes");
+    return false;
+  }
+  bool change = false;
+  do {
+    change = false;
+    for(int i=0;i<visualIndexes.size(); ++i) {
+      int new_visual_index = visualIndexes.at(downloadList->header()->logicalIndex(i)).toInt();
+      if(i != new_visual_index) {
+        qDebug("Moving column from %d to %d", downloadList->header()->logicalIndex(i), new_visual_index);
+        downloadList->header()->moveSection(i, new_visual_index);
+        change = true;
+      }
+    }
+  }while(change);
   qDebug("Download list columns width loaded");
   return true;
 }

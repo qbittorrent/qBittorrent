@@ -176,6 +176,23 @@ bool FinishedTorrents::loadColWidthFinishedList(){
         finishedList->header()->resizeSection(i, width_list.at(i).toInt());
   }
   loadLastSortedColumn();
+  QVariantList visualIndexes = settings.value(QString::fromUtf8("FinishedListVisualIndexes"), QVariantList()).toList();
+  if(visualIndexes.size() != finishedListModel->columnCount()-1) {
+    qDebug("Corrupted values for download list columns sizes");
+    return false;
+  }
+  bool change = false;
+  do {
+    change = false;
+    for(int i=0;i<visualIndexes.size(); ++i) {
+      int new_visual_index = visualIndexes.at(finishedList->header()->logicalIndex(i)).toInt();
+      if(i != new_visual_index) {
+        qDebug("Moving column from %d to %d", finishedList->header()->logicalIndex(i), new_visual_index);
+        finishedList->header()->moveSection(i, new_visual_index);
+        change = true;
+      }
+    }
+  }while(change);
   qDebug("Finished list columns width loaded");
   return true;
 }
@@ -223,6 +240,11 @@ void FinishedTorrents::saveColWidthFinishedList() const{
     }
   }
   settings.setValue("FinishedListColsWidth", new_width_list.join(" "));
+  QVariantList visualIndexes;
+  for(int i=0; i<nbColumns; ++i) {
+    visualIndexes.append(finishedList->header()->visualIndex(i));
+  }
+  settings.setValue(QString::fromUtf8("FinishedListVisualIndexes"), visualIndexes);
   qDebug("Finished list columns width saved");
 }
 
