@@ -263,7 +263,7 @@ void torrentCreatorThread::run() {
     t.set_creator(creator_str);
     t.set_comment((const char*)comment.toUtf8());
     // Is private ?
-    t.set_prive(is_private);
+    t.set_priv(is_private);
     if(abort) return;
     // create the torrent and print it to out
     ofstream out(complete(path((const char*)save_path.toUtf8())), std::ios_base::binary);
