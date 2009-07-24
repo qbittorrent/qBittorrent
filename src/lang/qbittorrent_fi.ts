@@ -249,7 +249,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1483"/>
         <source>DHT port:</source>
-        <translation type="unfinished">DHT-portti:</translation>
+        <translation>DHT-portti:</translation>
     </message>
     <message>
         <source>DHT (Trackerless):</source>
@@ -299,7 +299,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="164"/>
         <source>IP Filter</source>
-        <translation type="unfinished">IP-suodatin</translation>
+        <translation>IP-suodatin</translation>
     </message>
     <message>
         <source>ipfilter.dat Path:</source>
@@ -386,7 +386,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="155"/>
         <source>Proxy</source>
-        <translation type="unfinished">Välityspalvelin</translation>
+        <translation>Välityspalvelin</translation>
     </message>
     <message>
         <source>Proxy server requires authentication</source>
@@ -651,7 +651,8 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1452"/>
         <source>Use the same port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>I didn&apos;t find in 1.4.0beta3, but I take it as this text is not a question but a choice.</translatorcomment>
+        <translation>Käytä samaa porttia DHT:lle ja Bittorrentille</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1726"/>
@@ -904,38 +905,38 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="125"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Verkko</translation>
     </message>
     <message>
         <location filename="../options.ui" line="468"/>
         <source>Transfer lists double-click</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tuplanapsauta siirtolistaan</translation>
     </message>
     <message>
         <location filename="../options.ui" line="476"/>
         <source>Download list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Latauslista:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="528"/>
         <source>Seeding list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähetyslista:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="634"/>
         <source>Download folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Latauskansio:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="677"/>
         <source>Temp folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Väliaikaiskansio:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1436"/>
         <source>Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittorrent-piirteet</translation>
     </message>
 </context>
 <context>
@@ -1127,12 +1128,12 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedTorrents.cpp" line="53"/>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähettäjät / Lataajat</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="54"/>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Liittyneet asiakkaat</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -1200,7 +1201,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
         <location filename="../FinishedTorrents.cpp" line="55"/>
         <source>Total uploaded</source>
         <comment>i.e: Total amount of uploaded data</comment>
-        <translation type="unfinished"></translation>
+        <translation>Lähetetty yhteensä</translation>
     </message>
 </context>
 <context>
@@ -1811,7 +1812,8 @@ Haluatko varmasti lopettaa?</translation>
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Torrentissa %1 tapahtui I/O-virhe.
+ Syy: %2</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="461"/>
@@ -1866,7 +1868,7 @@ Haluatko varmasti lopettaa?</translation>
         <location filename="../GUI.cpp" line="993"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent käyttää porttia: TCP/%1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1018"/>
@@ -1886,7 +1888,7 @@ Haluatko varmasti lopettaa?</translation>
     <message>
         <location filename="../GUI.cpp" line="1087"/>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT-tuki [KÄYTÖSSÄ], portti: UDP/%1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1100"/>
@@ -2478,27 +2480,27 @@ Muutoshistoria:
     <message>
         <location filename="../searchEngine.cpp" line="106"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Leikkaa</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="107"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopioi</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="108"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Liitä</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="109"/>
         <source>Clear field</source>
-        <translation type="unfinished"></translation>
+        <translation>Tyhjennä kenttä</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="110"/>
         <source>Clear completion history</source>
-        <translation type="unfinished"></translation>
+        <translation>Tyhjennä hakuhistoria</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="450"/>
@@ -3978,12 +3980,12 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     <message>
         <location filename="../properties.ui" line="30"/>
         <source>Main info</source>
-        <translation type="unfinished"></translation>
+        <translation>Yleiset tiedot</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="76"/>
         <source>Torrent information</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentin tiedot</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="378"/>
@@ -4343,13 +4345,13 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <location filename="../seeding.ui" line="107"/>
         <location filename="../seeding.ui" line="110"/>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Liittyneet asiakkaat</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="143"/>
         <location filename="../seeding.ui" line="146"/>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähettäjät / Lataajat</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -4385,7 +4387,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     <message>
         <location filename="../seeding.ui" line="138"/>
         <source>Total uploaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähetetty yhteensä</translation>
     </message>
 </context>
 <context>
@@ -4466,7 +4468,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     <message>
         <location filename="../torrentAddition.h" line="395"/>
         <source>Please enter a save path</source>
-        <translation>Tallennuskansio:</translation>
+        <translation>Anna tallennuskansio</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="401"/>
