@@ -146,6 +146,7 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
 }
 
 properties::~properties(){
+  writeSettings();
   qDebug("Properties destroyed");
   delete updateInfosTimer;
   delete PropDelegate;
@@ -187,6 +188,11 @@ void properties::writeSettings() {
   settings.beginGroup(QString::fromUtf8("PropWindow"));
   settings.setValue(QString::fromUtf8("size"), size());
   settings.setValue(QString::fromUtf8("pos"), pos());
+  QVariantList contentColsWidths;
+  for(int i=0; i<PropListModel->columnCount()-1; ++i) {
+    contentColsWidths.append(filesList->columnWidth(i));
+  }
+  settings.setValue(QString::fromUtf8("contentColsWidths"), contentColsWidths);
   settings.endGroup();
 }
 
@@ -194,6 +200,14 @@ void properties::loadSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   resize(settings.value(QString::fromUtf8("PropWindow/size"), size()).toSize());
   move(settings.value(QString::fromUtf8("PropWindow/pos"), screenCenter()).toPoint());
+  QVariantList contentColsWidths = settings.value(QString::fromUtf8("PropWindow/contentColsWidths"), QVariantList()).toList();
+  if(contentColsWidths.empty()) {
+    filesList->header()->resizeSection(NAME, 200);
+  } else {
+    for(int i=0; i<contentColsWidths.size(); ++i) {
+      filesList->setColumnWidth(i, contentColsWidths.at(i).toInt());
+    }
+  }
 }
 
 // Center window

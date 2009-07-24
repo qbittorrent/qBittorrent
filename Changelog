@@ -2,6 +2,8 @@
     - BUGFIX: Made IP filter parser more robust
     - BUGFIX: Fixed torrent creation tool
     - BUGFIX: Fixed possible overflow in progress calculation in arborescence.h
+    - BUGFIX: Save properties window size, position, columns width and restore them
+    - BUGFIX: Set a minimum default width for NAME column in properties
 
 * Sun Jul 12 2009 - Christophe DUMEZ <chris@qbittorrent.org> - v1.3.4
     - BUGFIX: Fixed IP filter file parsing on 64bits
