@@ -1349,7 +1349,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Всего закачано</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="428"/>
+        <location filename="../FinishedTorrents.cpp" line="450"/>
         <source>Hide or Show Column</source>
         <translation>Скрыть или показать столбец</translation>
     </message>
@@ -4468,8 +4468,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Нахождение</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="462"/>
-        <location filename="../properties_imp.cpp" line="630"/>
+        <location filename="../properties_imp.cpp" line="476"/>
+        <location filename="../properties_imp.cpp" line="644"/>
         <source>None - Unreachable?</source>
         <translation>Нет - Недостигаемо?</translation>
     </message>
@@ -4637,18 +4637,18 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="66"/>
-        <location filename="../properties_imp.cpp" line="371"/>
+        <location filename="../properties_imp.cpp" line="385"/>
         <source>Priority</source>
         <translation>Приоритет</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="475"/>
-        <location filename="../properties_imp.cpp" line="536"/>
+        <location filename="../properties_imp.cpp" line="489"/>
+        <location filename="../properties_imp.cpp" line="550"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="537"/>
+        <location filename="../properties_imp.cpp" line="551"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>Список трекеров не может быть пуст.</translation>
     </message>
@@ -4683,12 +4683,12 @@ However, those plugins were disabled.</source>
         <translation>URL раздающих</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="470"/>
+        <location filename="../properties_imp.cpp" line="484"/>
         <source>New url seed:</source>
         <translation>URL нового раздающего:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="476"/>
+        <location filename="../properties_imp.cpp" line="490"/>
         <source>This url seed is already in the list.</source>
         <translation>Этот URL раздающего уже в списке.</translation>
     </message>
@@ -4702,7 +4702,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Нет</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="469"/>
+        <location filename="../properties_imp.cpp" line="483"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Новый URL раздачи</translation>
@@ -4713,12 +4713,12 @@ However, those plugins were disabled.</source>
         <translation>Для данного torrentа доступны следующие URL раздач:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="747"/>
+        <location filename="../properties_imp.cpp" line="761"/>
         <source>Priorities error</source>
         <translation>Ошибка приоритетов</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="747"/>
+        <location filename="../properties_imp.cpp" line="761"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Ошибка, вы не можете отфильтровать все файлы в torrentе.</translation>
     </message>
@@ -4743,18 +4743,18 @@ However, those plugins were disabled.</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="680"/>
-        <location filename="../properties_imp.cpp" line="682"/>
+        <location filename="../properties_imp.cpp" line="694"/>
+        <location filename="../properties_imp.cpp" line="696"/>
         <source>Choose save path</source>
         <translation>Выберите путь сохранения</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="689"/>
+        <location filename="../properties_imp.cpp" line="703"/>
         <source>Save path creation error</source>
         <translation>Ошибка создания пути сохранения</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="689"/>
+        <location filename="../properties_imp.cpp" line="703"/>
         <source>Could not create the save path</source>
         <translation>Невозможно создать путь сохранения</translation>
     </message>

@@ -1251,7 +1251,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="428"/>
+        <location filename="../FinishedTorrents.cpp" line="450"/>
         <source>Hide or Show Column</source>
         <translation>列の非表示または表示</translation>
     </message>
@@ -3762,8 +3762,8 @@ However, those plugins were disabled.</source>
         <translation>トラッカ:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="462"/>
-        <location filename="../properties_imp.cpp" line="630"/>
+        <location filename="../properties_imp.cpp" line="476"/>
+        <location filename="../properties_imp.cpp" line="644"/>
         <source>None - Unreachable?</source>
         <translation>なし - アンリーチ可能ですか?</translation>
     </message>
@@ -3898,18 +3898,18 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="66"/>
-        <location filename="../properties_imp.cpp" line="371"/>
+        <location filename="../properties_imp.cpp" line="385"/>
         <source>Priority</source>
         <translation>優先度</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="475"/>
-        <location filename="../properties_imp.cpp" line="536"/>
+        <location filename="../properties_imp.cpp" line="489"/>
+        <location filename="../properties_imp.cpp" line="550"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="537"/>
+        <location filename="../properties_imp.cpp" line="551"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>トラッカの一覧を空にできません。</translation>
     </message>
@@ -3944,12 +3944,12 @@ However, those plugins were disabled.</source>
         <translation>Url シード</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="470"/>
+        <location filename="../properties_imp.cpp" line="484"/>
         <source>New url seed:</source>
         <translation>新しい url シード:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="476"/>
+        <location filename="../properties_imp.cpp" line="490"/>
         <source>This url seed is already in the list.</source>
         <translation>この url シードはすでに一覧にあります。</translation>
     </message>
@@ -3963,7 +3963,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">なし</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="469"/>
+        <location filename="../properties_imp.cpp" line="483"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>新しい url シード</translation>
@@ -3974,12 +3974,12 @@ However, those plugins were disabled.</source>
         <translation>以下の url シードはこの torrent に利用可能です:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="747"/>
+        <location filename="../properties_imp.cpp" line="761"/>
         <source>Priorities error</source>
         <translation>優先度エラー</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="747"/>
+        <location filename="../properties_imp.cpp" line="761"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>エラーです、torrent のすべてのファイルをフィルタできません。</translation>
     </message>
@@ -4004,18 +4004,18 @@ However, those plugins were disabled.</source>
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="680"/>
-        <location filename="../properties_imp.cpp" line="682"/>
+        <location filename="../properties_imp.cpp" line="694"/>
+        <location filename="../properties_imp.cpp" line="696"/>
         <source>Choose save path</source>
         <translation type="unfinished">保存パスの選択</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="689"/>
+        <location filename="../properties_imp.cpp" line="703"/>
         <source>Save path creation error</source>
         <translation type="unfinished">保存パスの作成エラー</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="689"/>
+        <location filename="../properties_imp.cpp" line="703"/>
         <source>Could not create the save path</source>
         <translation type="unfinished">保存パスを作成できませんでした</translation>
     </message>

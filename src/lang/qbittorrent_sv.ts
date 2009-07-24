@@ -896,7 +896,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Reciprokörer</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="428"/>
+        <location filename="../FinishedTorrents.cpp" line="450"/>
         <source>Hide or Show Column</source>
         <translation>Dölj eller visa kolumn</translation>
     </message>
@@ -2769,8 +2769,8 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <translation>Bevakare:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="462"/>
-        <location filename="../properties_imp.cpp" line="630"/>
+        <location filename="../properties_imp.cpp" line="476"/>
+        <location filename="../properties_imp.cpp" line="644"/>
         <source>None - Unreachable?</source>
         <translation>Ingen - Ej nåbar?</translation>
     </message>
@@ -2889,18 +2889,18 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="66"/>
-        <location filename="../properties_imp.cpp" line="371"/>
+        <location filename="../properties_imp.cpp" line="385"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="475"/>
-        <location filename="../properties_imp.cpp" line="536"/>
+        <location filename="../properties_imp.cpp" line="489"/>
+        <location filename="../properties_imp.cpp" line="550"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="537"/>
+        <location filename="../properties_imp.cpp" line="551"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>Listan över bevakare får inte vara tom.</translation>
     </message>
@@ -2935,17 +2935,17 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <translation>Url-distributioner</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="470"/>
+        <location filename="../properties_imp.cpp" line="484"/>
         <source>New url seed:</source>
         <translation>Ny url-distribution:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="476"/>
+        <location filename="../properties_imp.cpp" line="490"/>
         <source>This url seed is already in the list.</source>
         <translation>Den här url-distributionen finns redan i listan.</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="469"/>
+        <location filename="../properties_imp.cpp" line="483"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Ny url-distribution</translation>
@@ -2956,12 +2956,12 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <translation>Följande url-distributioner finns tillgängliga för denna torrent:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="747"/>
+        <location filename="../properties_imp.cpp" line="761"/>
         <source>Priorities error</source>
         <translation>Prioriteringsfel</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="747"/>
+        <location filename="../properties_imp.cpp" line="761"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Fel, du kan inte filtrera alla filerna i en torrent.</translation>
     </message>
@@ -2986,18 +2986,18 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="680"/>
-        <location filename="../properties_imp.cpp" line="682"/>
+        <location filename="../properties_imp.cpp" line="694"/>
+        <location filename="../properties_imp.cpp" line="696"/>
         <source>Choose save path</source>
         <translation>Välj sökväg att spara i</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="689"/>
+        <location filename="../properties_imp.cpp" line="703"/>
         <source>Save path creation error</source>
         <translation>Fel vid skapandet av sökväg</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="689"/>
+        <location filename="../properties_imp.cpp" line="703"/>
         <source>Could not create the save path</source>
         <translation>Kunde inte skapa sökväg att spara i</translation>
     </message>

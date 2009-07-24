@@ -1337,7 +1337,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="428"/>
+        <location filename="../FinishedTorrents.cpp" line="450"/>
         <source>Hide or Show Column</source>
         <translation>Sütunu Gizle veya Göster</translation>
     </message>
@@ -4434,8 +4434,8 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>İzleyiciler:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="462"/>
-        <location filename="../properties_imp.cpp" line="630"/>
+        <location filename="../properties_imp.cpp" line="476"/>
+        <location filename="../properties_imp.cpp" line="644"/>
         <source>None - Unreachable?</source>
         <translation>Yok - Erişilemez?</translation>
     </message>
@@ -4586,18 +4586,18 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="66"/>
-        <location filename="../properties_imp.cpp" line="371"/>
+        <location filename="../properties_imp.cpp" line="385"/>
         <source>Priority</source>
         <translation>Öncelik</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="475"/>
-        <location filename="../properties_imp.cpp" line="536"/>
+        <location filename="../properties_imp.cpp" line="489"/>
+        <location filename="../properties_imp.cpp" line="550"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="537"/>
+        <location filename="../properties_imp.cpp" line="551"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>İzleyici listesi boş olamaz.</translation>
     </message>
@@ -4632,12 +4632,12 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Gönderen adresleri</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="470"/>
+        <location filename="../properties_imp.cpp" line="484"/>
         <source>New url seed:</source>
         <translation>Yeni gönderen adresi:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="476"/>
+        <location filename="../properties_imp.cpp" line="490"/>
         <source>This url seed is already in the list.</source>
         <translation>Bu gönderen adresi zaten listede.</translation>
     </message>
@@ -4647,7 +4647,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation type="obsolete">Yok</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="469"/>
+        <location filename="../properties_imp.cpp" line="483"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Yeni gönderen adresi</translation>
@@ -4658,12 +4658,12 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>Bu gönderen adresleri bu torrent için kullanılabilir:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="747"/>
+        <location filename="../properties_imp.cpp" line="761"/>
         <source>Priorities error</source>
         <translation>Öncelik hatası</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="747"/>
+        <location filename="../properties_imp.cpp" line="761"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Hata, torrentteki bütün dosyaları süzgeçleyemezsiniz.</translation>
     </message>
@@ -4688,18 +4688,18 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="680"/>
-        <location filename="../properties_imp.cpp" line="682"/>
+        <location filename="../properties_imp.cpp" line="694"/>
+        <location filename="../properties_imp.cpp" line="696"/>
         <source>Choose save path</source>
         <translation>Kayıt yolunu seçin</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="689"/>
+        <location filename="../properties_imp.cpp" line="703"/>
         <source>Save path creation error</source>
         <translation>Kayıt yolu oluşturulmada hata</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="689"/>
+        <location filename="../properties_imp.cpp" line="703"/>
         <source>Could not create the save path</source>
         <translation>Kayıt yolu oluşturulamadı</translation>
     </message>

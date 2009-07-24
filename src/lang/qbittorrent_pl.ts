@@ -1404,7 +1404,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="428"/>
+        <location filename="../FinishedTorrents.cpp" line="450"/>
         <source>Hide or Show Column</source>
         <translation>Ukryj lub pokaż kolumny</translation>
     </message>
@@ -4598,8 +4598,8 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation>Trackery:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="462"/>
-        <location filename="../properties_imp.cpp" line="630"/>
+        <location filename="../properties_imp.cpp" line="476"/>
+        <location filename="../properties_imp.cpp" line="644"/>
         <source>None - Unreachable?</source>
         <translation>Brak - Nieosiągalny?</translation>
     </message>
@@ -4750,18 +4750,18 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="66"/>
-        <location filename="../properties_imp.cpp" line="371"/>
+        <location filename="../properties_imp.cpp" line="385"/>
         <source>Priority</source>
         <translation>Priorytet</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="475"/>
-        <location filename="../properties_imp.cpp" line="536"/>
+        <location filename="../properties_imp.cpp" line="489"/>
+        <location filename="../properties_imp.cpp" line="550"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="537"/>
+        <location filename="../properties_imp.cpp" line="551"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>Lista trackerów nie może być pusta.</translation>
     </message>
@@ -4796,12 +4796,12 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation>Url seeda</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="470"/>
+        <location filename="../properties_imp.cpp" line="484"/>
         <source>New url seed:</source>
         <translation>Nowy url seeda:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="476"/>
+        <location filename="../properties_imp.cpp" line="490"/>
         <source>This url seed is already in the list.</source>
         <translation>Ten url seeda już jest na liście.</translation>
     </message>
@@ -4815,7 +4815,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Brak</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="469"/>
+        <location filename="../properties_imp.cpp" line="483"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nowy url seeda</translation>
@@ -4826,12 +4826,12 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation>Dla tego torrenta dostępne są następujące url seeda:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="747"/>
+        <location filename="../properties_imp.cpp" line="761"/>
         <source>Priorities error</source>
         <translation>Błąd priorytetu</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="747"/>
+        <location filename="../properties_imp.cpp" line="761"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Błąd, nie można filtrować wszystkich plików torrencie.</translation>
     </message>
@@ -4856,18 +4856,18 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="680"/>
-        <location filename="../properties_imp.cpp" line="682"/>
+        <location filename="../properties_imp.cpp" line="694"/>
+        <location filename="../properties_imp.cpp" line="696"/>
         <source>Choose save path</source>
         <translation type="unfinished">Wybierz katalog docelowy</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="689"/>
+        <location filename="../properties_imp.cpp" line="703"/>
         <source>Save path creation error</source>
         <translation type="unfinished">Błąd tworzenia katalogu docelowego</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="689"/>
+        <location filename="../properties_imp.cpp" line="703"/>
         <source>Could not create the save path</source>
         <translation type="unfinished">Nie można założyć katalogu docelowego</translation>
     </message>
