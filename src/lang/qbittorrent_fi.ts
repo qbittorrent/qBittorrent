@@ -745,7 +745,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="363"/>
         <source>transfer lists refresh interval:</source>
-        <translation>siirtolistan päivitystihous:</translation>
+        <translation>siirtolistan päivitystiheys:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="383"/>
@@ -911,7 +911,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="468"/>
         <source>Transfer lists double-click</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation>Tuplanapsauta siirtolistaan</translation>
+        <translation>Tuplanapsautus siirtolistassa</translation>
     </message>
     <message>
         <location filename="../options.ui" line="476"/>
