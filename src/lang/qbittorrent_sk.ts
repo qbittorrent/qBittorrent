@@ -73,7 +73,10 @@
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="unfinished">Klient protokolu bittorrent za pomoci Qt4 a libtorrent, naprogramovaný v C++.&lt;br&gt;&lt;br&gt;Copyright © 2006, Christophe Dumez&lt;br&gt;&lt;br&gt; &lt;u&gt;Homepage:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
+        <translation>Klient protokolu bittorrent za pomoci Qt4 a libtorrent, naprogramovaný v C++.&lt;br&gt;
+&lt;br&gt;
+Copyright © 2006, Christophe Dumez&lt;br&gt;
+&lt;br&gt; &lt;u&gt;Homepage:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="329"/>
@@ -218,7 +221,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="155"/>
         <source>Proxy</source>
-        <translation type="unfinished">Proxy</translation>
+        <translation>Proxy</translation>
     </message>
     <message>
         <source>Proxy Settings</source>
@@ -342,7 +345,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="164"/>
         <source>IP Filter</source>
-        <translation type="unfinished">IP filter</translation>
+        <translation>IP filter</translation>
     </message>
     <message>
         <source> Add Range</source>
@@ -442,7 +445,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1483"/>
         <source>DHT port:</source>
-        <translation type="unfinished">Port DHT:</translation>
+        <translation>Port DHT:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="271"/>
@@ -635,7 +638,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="125"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Sieť</translation>
     </message>
     <message>
         <location filename="../options.ui" line="219"/>
@@ -737,27 +740,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="468"/>
         <source>Transfer lists double-click</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dvojité kliknutie v zozname prenosov</translation>
     </message>
     <message>
         <location filename="../options.ui" line="476"/>
         <source>Download list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoznam sťahovaní:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="528"/>
         <source>Seeding list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoznam seedovaní:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="634"/>
         <source>Download folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cieľový priečinok:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="677"/>
         <source>Temp folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať priečinok</translation>
     </message>
     <message>
         <location filename="../options.ui" line="744"/>
@@ -803,12 +806,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1436"/>
         <source>Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation>Možnosti siete Bittorrent</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1452"/>
         <source>Use the same port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť rovnaký port pre DHT a Bittorrent</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1726"/>
@@ -1244,12 +1247,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedTorrents.cpp" line="53"/>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>Seederi/Leecheri</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="54"/>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Pripojení</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -1290,7 +1293,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../FinishedTorrents.cpp" line="55"/>
         <source>Total uploaded</source>
         <comment>i.e: Total amount of uploaded data</comment>
-        <translation type="unfinished"></translation>
+        <translation>Celkovo nahrané</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="450"/>
@@ -1976,7 +1979,8 @@ Najskôr ho prosím zatvorte.</translation>
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa V/V chyba pri torrente %1.
+ Dôvod: %2</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="699"/>
@@ -2119,7 +2123,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <location filename="../GUI.cpp" line="993"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent sa viaže na port: TCP/%1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1018"/>
@@ -2139,7 +2143,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <location filename="../GUI.cpp" line="1087"/>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Podpora DHT [ZAP], port: UDP/%1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1100"/>
@@ -2801,27 +2805,27 @@ Záznam zmien:</translation>
     <message>
         <location filename="../searchEngine.cpp" line="106"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Vystrihnúť</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="107"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="108"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložiť</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="109"/>
         <source>Clear field</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistiť pole</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="110"/>
         <source>Clear completion history</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistiť históriu dopĺňania</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="450"/>
@@ -4481,12 +4485,12 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../properties.ui" line="30"/>
         <source>Main info</source>
-        <translation type="unfinished"></translation>
+        <translation>Hlavné info</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="76"/>
         <source>Torrent information</source>
-        <translation type="unfinished"></translation>
+        <translation>Info o torrente</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="378"/>
@@ -4854,13 +4858,13 @@ Tieto moduly však boli vypnuté.</translation>
         <location filename="../seeding.ui" line="107"/>
         <location filename="../seeding.ui" line="110"/>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Pripojení</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="143"/>
         <location filename="../seeding.ui" line="146"/>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>Seederi/Leecheri</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -4879,7 +4883,7 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../seeding.ui" line="138"/>
         <source>Total uploaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Celkovo nahrané</translation>
     </message>
     <message>
         <source>Priority</source>
