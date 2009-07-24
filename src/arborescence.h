@@ -51,6 +51,8 @@ class torrent_file {
     torrent_file(torrent_file *parent, QString path, bool dir, size_type size=0, int index=-1, float progress=0., int priority=1): parent(parent), is_dir(dir), size(size), progress(progress), priority(priority), index(index){
       qDebug("created a file with index %d", index);
       rel_path = QDir::cleanPath(path);
+      Q_ASSERT(progress >= 0.);
+      Q_ASSERT(progress <= 1.);
       if(parent) {
         parent->updateProgress();
         parent->updatePriority(priority);
@@ -75,8 +77,8 @@ class torrent_file {
         progress = 0.;
         return;
       }
-      float wanted = 0.;
-      float done = 0.;
+      double wanted = 0.;
+      double done = 0.;
       foreach(const torrent_file *child, children) {
         wanted += child->getSize();
         done += child->getSize()*child->getProgress();
@@ -205,13 +207,13 @@ class arborescence {
       } else {
         // XXX: Will crash if there is no file in torrent
         qDebug("one file in the torrent, setting it as root with index 0");
-        root = new torrent_file(0, misc::toQString(t.name()), false, fi->size, 0, ((float)fp[0])/t.file_at(0).size, prioritiesTab[0]);
+        root = new torrent_file(0, misc::toQString(t.name()), false, fi->size, 0, ((double)fp[0])/t.file_at(0).size, prioritiesTab[0]);
         return;
       }
       int i = 0;
       while(fi != t.end_files()) {
         QString path = QDir::cleanPath(misc::toQString(fi->path.string()));
-        addFile(path, fi->size, i, ((float)fp[i])/t.file_at(i).size, prioritiesTab[i]);
+        addFile(path, fi->size, i, ((double)fp[i])/t.file_at(i).size, prioritiesTab[i]);
         fi++;
         ++i;
       }
