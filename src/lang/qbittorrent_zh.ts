@@ -128,7 +128,10 @@ Copyright © 2006 by Christophe Dumez
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>bittorrent的用户使用由C++语言编写的Qt4和libtorrent&lt;br&gt;
+&lt;br&gt;
+Copyright © 2006 Christophe Dumez&lt;br&gt;
+&lt;br&gt; &lt;u&gt;主页:&lt;/u&gt; &lt;i&gt;http://qbittorrent.sourceforge.net&lt;/i&gt;&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -238,7 +241,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="155"/>
         <source>Proxy</source>
-        <translation type="unfinished">代理服务器</translation>
+        <translation>代理服务器</translation>
     </message>
     <message>
         <source>Proxy Settings</source>
@@ -364,7 +367,7 @@ inside)</source>
     <message>
         <location filename="../options.ui" line="164"/>
         <source>IP Filter</source>
-        <translation type="unfinished">IP过滤器</translation>
+        <translation>IP过滤器</translation>
     </message>
     <message>
         <source> Add Range</source>
@@ -465,7 +468,7 @@ iconified</source>
     <message>
         <location filename="../options.ui" line="1483"/>
         <source>DHT port:</source>
-        <translation type="unfinished">DHT端口:</translation>
+        <translation>DHT端口:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after 
@@ -674,7 +677,7 @@ XP)</translation>
     <message>
         <location filename="../options.ui" line="125"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>局域网</translation>
     </message>
     <message>
         <location filename="../options.ui" line="219"/>
@@ -816,12 +819,12 @@ folder:</source>
     <message>
         <location filename="../options.ui" line="1436"/>
         <source>Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittorrent 功能</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1452"/>
         <source>Use the same port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT和Bittorrent使用同一端口</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1726"/>
@@ -857,27 +860,27 @@ folder:</source>
         <location filename="../options.ui" line="468"/>
         <source>Transfer lists double-click</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>双击传输列表显示活动</translation>
     </message>
     <message>
         <location filename="../options.ui" line="476"/>
         <source>Download list:</source>
-        <translation type="unfinished"></translation>
+        <translation>下载列表:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="528"/>
         <source>Seeding list:</source>
-        <translation type="unfinished"></translation>
+        <translation>上传列表: </translation>
     </message>
     <message>
         <location filename="../options.ui" line="634"/>
         <source>Download folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>下载文件夹:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="677"/>
         <source>Temp folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>临时文件夹:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1140"/>
@@ -1369,12 +1372,12 @@ wait...</comment>
     <message>
         <location filename="../FinishedTorrents.cpp" line="53"/>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>完整种子/不完整种子</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="54"/>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>连接的用户</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -1430,7 +1433,7 @@ wait...</comment>
         <location filename="../FinishedTorrents.cpp" line="55"/>
         <source>Total uploaded</source>
         <comment>i.e: Total amount of uploaded data</comment>
-        <translation type="unfinished"></translation>
+        <translation>总上传</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="450"/>
@@ -2129,7 +2132,8 @@ paused.</comment>
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished"></translation>
+        <translation>torrent %1 出现输入/输出错误.
+原因: %2</translation>
     </message>
     <message>
         <source>qBittorrent is bind to port: %1</source>
@@ -2285,7 +2289,7 @@ finished list and from hard drive?</source>
         <location filename="../GUI.cpp" line="993"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent 绑定端口: TCP/%1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1018"/>
@@ -2305,7 +2309,7 @@ finished list and from hard drive?</source>
     <message>
         <location filename="../GUI.cpp" line="1087"/>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT 支持 [开], 端口: UDP/%1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1100"/>
@@ -3026,27 +3030,27 @@ Changelog:
     <message>
         <location filename="../searchEngine.cpp" line="106"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>剪切</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="107"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>复制</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="108"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>粘贴</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="109"/>
         <source>Clear field</source>
-        <translation type="unfinished"></translation>
+        <translation>清除信息</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="110"/>
         <source>Clear completion history</source>
-        <translation type="unfinished"></translation>
+        <translation>清除搜索历史</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="450"/>
@@ -4732,12 +4736,12 @@ download in current torrent.</source>
     <message>
         <location filename="../properties.ui" line="30"/>
         <source>Main info</source>
-        <translation type="unfinished"></translation>
+        <translation>主要信息</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="76"/>
         <source>Torrent information</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent信息</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="378"/>
@@ -5114,13 +5118,13 @@ network.</source>
         <location filename="../seeding.ui" line="107"/>
         <location filename="../seeding.ui" line="110"/>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>连接的用户</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="143"/>
         <location filename="../seeding.ui" line="146"/>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>完整种子/不完整种子</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="41"/>
@@ -5164,7 +5168,7 @@ network.</source>
     <message>
         <location filename="../seeding.ui" line="138"/>
         <source>Total uploaded</source>
-        <translation type="unfinished"></translation>
+        <translation>总上传</translation>
     </message>
     <message>
         <source>Priority</source>
