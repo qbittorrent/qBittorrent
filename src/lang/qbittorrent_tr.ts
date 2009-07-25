@@ -165,7 +165,10 @@ Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt4 ve libtorrent kullanan, C++ ile programlanan bir bittorrent istemcisidir.&lt;br&gt;
+&lt;br&gt;
+Telif Hakkı © 2006 Christophe Dumez&lt;br&gt;
+&lt;br&gt; &lt;u&gt;Ana Sayfa:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -279,7 +282,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="155"/>
         <source>Proxy</source>
-        <translation type="unfinished">Vekil</translation>
+        <translation>Vekil</translation>
     </message>
     <message>
         <source>Proxy Settings</source>
@@ -431,7 +434,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="164"/>
         <source>IP Filter</source>
-        <translation type="unfinished">IP Filtresi</translation>
+        <translation>IP Süzgeci</translation>
     </message>
     <message>
         <source> Add Range</source>
@@ -535,7 +538,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1483"/>
         <source>DHT port:</source>
-        <translation type="unfinished">DHT portu:</translation>
+        <translation>DHT portu:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="271"/>
@@ -660,7 +663,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="125"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Ağ</translation>
     </message>
     <message>
         <location filename="../options.ui" line="219"/>
@@ -762,27 +765,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="468"/>
         <source>Transfer lists double-click</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>Aktarım listesinde çift-tıklamada yapılacak </translation>
     </message>
     <message>
         <location filename="../options.ui" line="476"/>
         <source>Download list:</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirme listesi:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="528"/>
         <source>Seeding list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gönderme listesi:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="634"/>
         <source>Download folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirme klasörü:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="677"/>
         <source>Temp folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçici klasör:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="744"/>
@@ -828,12 +831,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1436"/>
         <source>Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittorrent özellikleri</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1452"/>
         <source>Use the same port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT ve Bittorrent için aynı portu kullan</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1726"/>
@@ -1269,12 +1272,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedTorrents.cpp" line="53"/>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>Gönderen / Çeken</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="54"/>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Bağlı eşler</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -1334,7 +1337,8 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../FinishedTorrents.cpp" line="55"/>
         <source>Total uploaded</source>
         <comment>i.e: Total amount of uploaded data</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Gönderilen toplam veri</translatorcomment>
+        <translation>Toplam gönderilen</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="450"/>
@@ -2060,7 +2064,9 @@ Lütfen önce diğerini kapatın.</translation>
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>G/Ç: Girdi/Çıktı</translatorcomment>
+        <translation>%1 torrenti için bir G/Ç hatası meydana geldi.
+ Sebep: %2</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="699"/>
@@ -2177,7 +2183,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <location filename="../GUI.cpp" line="993"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent&apos;in bağlı olduğu port: TCP/%1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1018"/>
@@ -2197,7 +2203,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     <message>
         <location filename="../GUI.cpp" line="1087"/>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT desteği [Açık], port: UDP/%1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1100"/>
@@ -2868,27 +2874,27 @@ Changelog:
     <message>
         <location filename="../searchEngine.cpp" line="106"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Kes</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="107"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopyala</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="108"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Yapıştır</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="109"/>
         <source>Clear field</source>
-        <translation type="unfinished"></translation>
+        <translation>Temizle</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="110"/>
         <source>Clear completion history</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamamlanma geçmişini temizle</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="450"/>
@@ -4469,12 +4475,12 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <message>
         <location filename="../properties.ui" line="30"/>
         <source>Main info</source>
-        <translation type="unfinished"></translation>
+        <translation>Ana bilgi</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="76"/>
         <source>Torrent information</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent bilgisi</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="378"/>
@@ -4838,13 +4844,13 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <location filename="../seeding.ui" line="107"/>
         <location filename="../seeding.ui" line="110"/>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Bağlı eş</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="143"/>
         <location filename="../seeding.ui" line="146"/>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>Gönderen / Çeken</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -4863,7 +4869,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <message>
         <location filename="../seeding.ui" line="138"/>
         <source>Total uploaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Toplam gönderilen</translation>
     </message>
     <message>
         <source>Priority</source>
