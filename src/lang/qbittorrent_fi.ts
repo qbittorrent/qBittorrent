@@ -151,7 +151,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../console.ui" line="26"/>
         <source>General</source>
-        <translation>Perusasetukset</translation>
+        <translation>Yleistä tietoa</translation>
     </message>
     <message>
         <location filename="../console.ui" line="39"/>
@@ -483,7 +483,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="2166"/>
         <source>Use proxy for connections to web seeds</source>
-        <translation>Käytä välityspalvelinta web-lähettäjiin</translation>
+        <translation>Käytä välityspalvelinta web-jakoihin</translation>
     </message>
     <message>
         <location filename="../options.ui" line="2150"/>
@@ -553,23 +553,23 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="416"/>
         <source>Disable system tray icon</source>
-        <translation>Älä näytä kuvaketta huomautusalueella</translation>
+        <translation>Älä näytä kuvaketta ilmoitusalueella</translation>
     </message>
     <message>
         <location filename="../options.ui" line="423"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Sulje huomautusalueen kuvakkeeseen</translation>
+        <translation>Sulje ilmoitusalueen kuvakkeeseen</translation>
     </message>
     <message>
         <location filename="../options.ui" line="430"/>
         <source>Minimize to tray</source>
-        <translation>Pienennä huomautusalueen kuvakkeeseen</translation>
+        <translation>Pienennä ilmoitusalueen kuvakkeeseen</translation>
     </message>
     <message>
         <location filename="../options.ui" line="447"/>
         <source>Show notification balloons in tray</source>
-        <translation>Näytä ilmoitukset huomautusalueen kuvakkeesta</translation>
+        <translation>Näytä ilmoitukset ilmoitusalueen kuvakkeesta</translation>
     </message>
     <message>
         <location filename="../options.ui" line="110"/>
@@ -911,7 +911,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="468"/>
         <source>Transfer lists double-click</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation>Tuplanapsautus siirtolistassa</translation>
+        <translation>Kaksoisnapsautus siirtolistassa</translation>
     </message>
     <message>
         <location filename="../options.ui" line="476"/>
@@ -975,7 +975,7 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
         <location filename="../downloadingTorrents.cpp" line="66"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation>Jakajia/lähettäjiä</translation>
+        <translation>Jakajat / Lataajat</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="67"/>
@@ -1128,12 +1128,12 @@ Tekijänoikeus © 2006 Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedTorrents.cpp" line="53"/>
         <source>Seeds / Leechers</source>
-        <translation>Lähettäjät / Lataajat</translation>
+        <translation>Jakajat / Lataajat</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="54"/>
         <source>Connected peers</source>
-        <translation>Liittyneet asiakkaat</translation>
+        <translation>Liittyneet vertaiset</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -2259,7 +2259,7 @@ Haluatko varmasti lopettaa?</translation>
     <message>
         <location filename="../rss.ui" line="169"/>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
-        <translation>&lt;b&gt;Uutiset:&lt;/b&gt; &lt;i&gt;(avaa selaimessa kaksoisnapsauttamalla)&lt;/i&gt;</translation>
+        <translation>&lt;b&gt;Uutiset:&lt;/b&gt; &lt;i&gt;(avaa linkki selaimessa kaksoisnapsauttamalla)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="204"/>
@@ -3302,7 +3302,7 @@ Muutoshistoria:
     <message>
         <location filename="../download.ui" line="128"/>
         <source>Seeds/Leechs</source>
-        <translation>Jakajia/lataajia</translation>
+        <translation>Jakajat / Lataajat</translation>
     </message>
     <message>
         <location filename="../download.ui" line="133"/>
@@ -4136,7 +4136,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     <message>
         <location filename="../properties.ui" line="780"/>
         <source>Url seeds</source>
-        <translation>URL-jakajat</translation>
+        <translation>URL-jaot</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="484"/>
@@ -4162,7 +4162,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     <message>
         <location filename="../properties.ui" line="798"/>
         <source>The following url seeds are available for this torrent:</source>
-        <translation>Seuraavat URL-jakajat ovat saatavilla:</translation>
+        <translation>Seuraavat URL-jaot ovat saatavilla:</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="761"/>
@@ -4345,13 +4345,13 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <location filename="../seeding.ui" line="107"/>
         <location filename="../seeding.ui" line="110"/>
         <source>Connected peers</source>
-        <translation>Liittyneet asiakkaat</translation>
+        <translation>Liittyneet vertaiset</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="143"/>
         <location filename="../seeding.ui" line="146"/>
         <source>Seeds / Leechers</source>
-        <translation>Lähettäjät / Lataajat</translation>
+        <translation>Jakajat / Lataajat</translation>
     </message>
     <message>
         <source>Leechers</source>
