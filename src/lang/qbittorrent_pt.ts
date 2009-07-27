@@ -1,96 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt">
+<TS version="2.0">
 <context>
     <name>AboutDlg</name>
     <message>
-        <location filename="../about.ui" line="26"/>
         <source>About qBittorrent</source>
         <translation>Sobre qBittorrent</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="59"/>
         <source>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</source>
         <translation>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="88"/>
         <source>About</source>
         <translation>Sobre</translation>
     </message>
     <message utf8="true">
-        <location filename="../about.ui" line="119"/>
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="unfinished">Um cliente bittorrent usando Qt4 e libtorrent, programado em C++.&lt;br&gt;
+        <translation>Um cliente bittorrent usando Qt4 e libtorrent, programado em C++.&lt;br&gt;
 &lt;br&gt;
-Copyright ©2007 por Christophe Dumez&lt;br&gt;
+Copyright ©2006 por Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="134"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="181"/>
         <source>Name:</source>
         <translation>Nome:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="199"/>
         <source>Country:</source>
         <translation>País:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="217"/>
         <source>Birthday:</source>
         <translation>Aniversário:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="235"/>
         <source>Occupation:</source>
         <translation>Profissão:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="253"/>
         <source>E-mail:</source>
         <translation>E-mail:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="271"/>
         <source>Home page:</source>
         <translation>Site:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="301"/>
         <source>Christophe Dumez</source>
         <translation>Christophe Dumez</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="308"/>
         <source>France</source>
         <translation>França</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="315"/>
         <source>03/05/1985</source>
         <translation>03/05/1985</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="322"/>
         <source>Student in computer science</source>
         <translation>Estudante em Ciências da Computação</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="329"/>
         <source>chris@qbittorrent.org</source>
         <translation>chris@qbittorrent.org</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="336"/>
         <source>http://www.dchris.eu</source>
         <translation>http://www.dcrhis.eu</translation>
     </message>
@@ -99,17 +82,14 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Agradecimentos</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="375"/>
         <source>Translation</source>
         <translation>Tradução</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="392"/>
         <source>License</source>
         <translation>Licença</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="362"/>
         <source>Thanks to</source>
         <translation>Agradecimentos para</translation>
     </message>
@@ -117,26 +97,19 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>BandwidthAllocationDialog</name>
     <message>
-        <location filename="../allocationDlg.h" line="57"/>
         <source>Upload limit:</source>
         <translation>Limite de upload:</translation>
     </message>
     <message>
-        <location filename="../allocationDlg.h" line="59"/>
         <source>Download limit:</source>
         <translation>Limite de download:</translation>
     </message>
     <message>
-        <location filename="../allocationDlg.h" line="90"/>
-        <location filename="../allocationDlg.h" line="98"/>
-        <location filename="../allocationDlg.h" line="114"/>
-        <location filename="../allocationDlg.h" line="131"/>
         <source>Unlimited</source>
         <comment>Unlimited (bandwidth)</comment>
         <translation>Ilimitado</translation>
     </message>
     <message>
-        <location filename="../allocationDlg.h" line="135"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -144,17 +117,14 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>ConsoleDlg</name>
     <message>
-        <location filename="../console.ui" line="13"/>
         <source>qBittorrent console</source>
         <translation>qBittorrent console</translation>
     </message>
     <message>
-        <location filename="../console.ui" line="26"/>
         <source>General</source>
         <translation>Gerais</translation>
     </message>
     <message>
-        <location filename="../console.ui" line="39"/>
         <source>Blocked IPs</source>
         <translation>IPs bloqueados</translation>
     </message>
@@ -162,7 +132,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>DLListDelegate</name>
     <message>
-        <location filename="../DLListDelegate.h" line="78"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -198,7 +167,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Conexões Máximas:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1055"/>
         <source>Port range:</source>
         <translation>Range da porta:</translation>
     </message>
@@ -219,9 +187,8 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">conexões</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="155"/>
         <source>Proxy</source>
-        <translation type="unfinished">Proxy</translation>
+        <translation>Proxy</translation>
     </message>
     <message>
         <source>Proxy Settings</source>
@@ -236,9 +203,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">0.0.0.0</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1776"/>
-        <location filename="../options.ui" line="1971"/>
-        <location filename="../options.ui" line="2308"/>
         <source>Port:</source>
         <translation>Porta:</translation>
     </message>
@@ -247,9 +211,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Servidor proxy requer autenticação</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1816"/>
-        <location filename="../options.ui" line="2011"/>
-        <location filename="../options.ui" line="2347"/>
         <source>Authentication</source>
         <translation>Autenticação</translation>
     </message>
@@ -258,9 +219,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Usuário:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1840"/>
-        <location filename="../options.ui" line="2035"/>
-        <location filename="../options.ui" line="2368"/>
         <source>Password:</source>
         <translation>Senha:</translation>
     </message>
@@ -301,12 +259,10 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">KB UP máx.</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2208"/>
         <source>Activate IP Filtering</source>
         <translation>Ativar filtragem de IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2202"/>
         <source>Filter Settings</source>
         <translation>Configurações do Filtro</translation>
     </message>
@@ -331,9 +287,8 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Aplicar</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="164"/>
         <source>IP Filter</source>
-        <translation type="unfinished">Filtro de IP</translation>
+        <translation>Filtro de IP</translation>
     </message>
     <message>
         <source> Add Range</source>
@@ -368,7 +323,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Localização</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="227"/>
         <source>Language:</source>
         <translation>Língua:</translation>
     </message>
@@ -393,8 +347,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Nunca mostrar OSD</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1354"/>
-        <location filename="../options.ui" line="1390"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -439,16 +391,14 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Configuração DHT</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1483"/>
         <source>DHT port:</source>
-        <translation type="unfinished">Porta DHT:</translation>
+        <translation>Porta DHT:</translation>
     </message>
     <message>
         <source>Language</source>
         <translation type="obsolete">Línguagem</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="271"/>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
         <translation>&lt;b&gt;Atenção:&lt;/b&gt; Mudanças somente serão aplicadas depois que o qBittorrent for reiniciado.</translation>
     </message>
@@ -509,7 +459,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Estilo (Aparência)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="296"/>
         <source>Plastique style (KDE like)</source>
         <translation>Estilo Plastique (tipo KDE)</translation>
     </message>
@@ -522,7 +471,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Estilo Motif (Estilo padrão do Qt no Unix)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="311"/>
         <source>CDE style (Common Desktop Environment like)</source>
         <translation>Estilo CDE (Tipo ambiente Desktop comum)</translation>
     </message>
@@ -551,38 +499,30 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Tipo de Proxy:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1739"/>
-        <location filename="../options.ui" line="1929"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1934"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2106"/>
         <source>Affected connections</source>
         <translation>Conexões afetadas</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2118"/>
         <source>Use proxy for connections to trackers</source>
         <translation>Usar proxy para conexões em trackers</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2134"/>
         <source>Use proxy for connections to regular peers</source>
         <translation>Usar proxy para conexões em pares regulares</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2166"/>
         <source>Use proxy for connections to web seeds</source>
         <translation>Usar proxy para conexões em pares da web</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2150"/>
         <source>Use proxy for DHT messages</source>
         <translation>Usar proxy para mensagens DHT</translation>
     </message>
@@ -595,88 +535,71 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Estado da encriptação:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1548"/>
         <source>Enabled</source>
         <translation>Habilitado</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1553"/>
         <source>Forced</source>
         <translation>Forçado</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1558"/>
         <source>Disabled</source>
         <translation>Desabilitado</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="20"/>
         <source>Preferences</source>
         <translation>Preferências</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="95"/>
         <source>General</source>
         <translation>Gerais</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="125"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Network</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="219"/>
         <source>User interface settings</source>
         <translation>Configurações visuais de usuário</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="283"/>
         <source>Visual style:</source>
         <translation>Estilo visual:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="301"/>
         <source>Cleanlooks style (Gnome like)</source>
         <translation>Estilo Cleanlooks (Gnome)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="306"/>
         <source>Motif style (Unix like)</source>
         <translation>Estilo Motif (Unix)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="334"/>
         <source>Ask for confirmation on exit when download list is not empty</source>
         <translation>Pedir confirmação ao sair quando a lista de downloads não está vazia</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="354"/>
         <source>Display current speed in title bar</source>
         <translation>Exibir velocidade atual na barra de titulo</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="410"/>
         <source>System tray icon</source>
         <translation>Ícone do sistema</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="416"/>
         <source>Disable system tray icon</source>
         <translation>Desabilitar ícone do sistema</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="423"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation>Fechar na bandeja</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="430"/>
         <source>Minimize to tray</source>
         <translation>Minimizar para a bandeja</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="447"/>
         <source>Show notification balloons in tray</source>
         <translation>Mostrar balões de notificação no systray</translation>
     </message>
@@ -685,7 +608,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Tocador de media:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="110"/>
         <source>Downloads</source>
         <translation>Downloads</translation>
     </message>
@@ -694,156 +616,123 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Colocar downloads nesta pasta:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="722"/>
         <source>Pre-allocate all files</source>
         <translation>Pré-alocar todos arquivos</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="949"/>
         <source>When adding a torrent</source>
         <translation>Adicionando um torrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="957"/>
         <source>Display torrent content and some options</source>
         <translation>Mostrar conteúdo torrent e as opções</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="984"/>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>Não iniciar downloads automáticamente</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="738"/>
         <source>Folder watching</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
         <translation>Varredura de pasta</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="468"/>
         <source>Transfer lists double-click</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>Duplo clique na lista de transferência
+qBittorrent irá procurar no diretório e baixará automaticamente torrents present</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="476"/>
         <source>Download list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de downloads:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="528"/>
         <source>Seeding list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de compartilhamento:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="634"/>
         <source>Download folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta de Download:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="677"/>
         <source>Temp folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta temporária:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="744"/>
         <source>Automatically download torrents present in this folder:</source>
         <translation>Baixar automaticamente torrents presentes nesta pasta:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1047"/>
         <source>Listening port</source>
         <translation>Escutando porta</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1075"/>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
         <translation>a</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1113"/>
         <source>Enable UPnP port mapping</source>
         <translation>Habilitar mapeamento de porta UPnP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1123"/>
         <source>Enable NAT-PMP port mapping</source>
         <translation>Habilitar mapeamento de porta NAT-PMP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1284"/>
         <source>Global bandwidth limiting</source>
         <translation>Limite global de banda</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1300"/>
         <source>Upload:</source>
         <translation>Upload:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1316"/>
         <source>Download:</source>
         <translation>Download:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1436"/>
         <source>Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation>Características Bittorrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1452"/>
         <source>Use the same port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar a mesma porta para o DHT e o Bittorrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1726"/>
-        <location filename="../options.ui" line="1916"/>
         <source>Type:</source>
         <translation>Tipo:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1734"/>
-        <location filename="../options.ui" line="1924"/>
         <source>(None)</source>
         <translation>(Nenhum)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1750"/>
-        <location filename="../options.ui" line="1945"/>
         <source>Proxy:</source>
         <translation>Proxy:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1830"/>
-        <location filename="../options.ui" line="2025"/>
-        <location filename="../options.ui" line="2358"/>
         <source>Username:</source>
         <translation>Usuário:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="140"/>
         <source>Bittorrent</source>
         <translation>Bittorrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1140"/>
         <source>Connections limit</source>
         <translation>Limites de conexão</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1148"/>
         <source>Global maximum number of connections:</source>
         <translation>Número máximo global de conexões:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1196"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Número máximo global de conexões por torrent:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1241"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Número máximo de slots de upload por torrent:</translation>
     </message>
@@ -852,7 +741,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Características Bittorrent adicionais</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1442"/>
         <source>Enable DHT network (decentralized)</source>
         <translation>Habilitar DHT (decentralizado)</translation>
     </message>
@@ -861,78 +749,62 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Habilitar Peer eXchange (PeX)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1521"/>
         <source>Enable Local Peer Discovery</source>
         <translation>Habilitar Peer Discovery Local</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1540"/>
         <source>Encryption:</source>
         <translation>Encriptação:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1584"/>
         <source>Share ratio settings</source>
         <translation>Configurações de taxa de compartilhamento</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1592"/>
         <source>Desired ratio:</source>
         <translation>Taxa designada:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2224"/>
         <source>Filter file path:</source>
         <translation>Caminho do arquivo do filtro:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="363"/>
         <source>transfer lists refresh interval:</source>
         <translation>Intervalo de atualização da lista de transferência:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="383"/>
         <source>ms</source>
         <translation>ms</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="194"/>
-        <location filename="../options.ui" line="2446"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2499"/>
         <source>RSS feeds refresh interval:</source>
         <translation>Intervalo de atualização dos RSS feeds:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2519"/>
         <source>minutes</source>
         <translation>minutos</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2543"/>
         <source>Maximum number of articles per feed:</source>
         <translation>Número máximo de artigos por feed:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="612"/>
         <source>File system</source>
         <translation>Sistema de arquivo</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1646"/>
         <source>Remove finished torrents when their ratio reaches:</source>
         <translation>Remover torrents finalizados quando sua taxa atingir:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="291"/>
         <source>System default</source>
         <translation>Padrão do Sistema</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="440"/>
         <source>Start minimized</source>
         <translation>Iniciar minimizado</translation>
     </message>
@@ -946,20 +818,14 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Na lista de download:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="493"/>
-        <location filename="../options.ui" line="536"/>
         <source>Pause/Start torrent</source>
         <translation>Pausar/Iniciar torrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="498"/>
-        <location filename="../options.ui" line="541"/>
         <source>Open destination folder</source>
         <translation>Abrir pasta de destino</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="503"/>
-        <location filename="../options.ui" line="546"/>
         <source>Display torrent properties</source>
         <translation>Mostrar propriedades do torrent</translation>
     </message>
@@ -976,72 +842,58 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">segundos</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1531"/>
         <source>Spoof Azureus to avoid ban (requires restart)</source>
         <translation>Parar Azureus para evitar ser banido</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="179"/>
         <source>Web UI</source>
         <translation>Caminho web</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2286"/>
         <source>Enable Web User Interface</source>
         <translation>Habilitar interface de usuário web</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2299"/>
         <source>HTTP Server</source>
         <translation>Servidor web</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2452"/>
         <source>Enable RSS support</source>
         <translation>Habilitar suporte RSS</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2462"/>
         <source>RSS settings</source>
         <translation>Configurações RSS</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="802"/>
         <source>Enable queueing system</source>
         <translation>Habilitar sistema de espera</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="814"/>
         <source>Maximum active downloads:</source>
         <translation>Downloads máximos ativos:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="796"/>
         <source>Torrent queueing</source>
         <translation>Torrent em espera</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="900"/>
         <source>Maximum active torrents:</source>
         <translation>Downloads máximos ativos:</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="344"/>
         <source>Display top toolbar</source>
         <translation>Exibir barra acima</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1718"/>
         <source>Search engine proxy settings</source>
         <translation>Configurações de proxy de barra de busca</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1908"/>
         <source>Bittorrent proxy settings</source>
         <translation>Configurações de proxy do Bittorrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="857"/>
         <source>Maximum active uploads:</source>
         <translation>Uploads máximos ativos:</translation>
     </message>
@@ -1049,54 +901,45 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>DownloadingTorrents</name>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="61"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="62"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Tamanho</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="63"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation>Progresso</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="64"/>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Velocidade de download</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="65"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Velocidade de Upload</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="66"/>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
         <translation>Seeds/Leechs</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="67"/>
         <source>Ratio</source>
         <translation>Taxa</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="68"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation>ETA</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="120"/>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
         <translation>qBittorrent %1 iniciado.</translation>
@@ -1152,7 +995,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">baixando &apos;%1&apos;, por favor espere...</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="301"/>
         <source>Hide or Show Column</source>
         <translation>Esconder ou mostrar coluna</translation>
     </message>
@@ -1165,7 +1007,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">UPnP/NAT-PMP: Portas mapeadas com sucesso, mensagem: %1</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="69"/>
         <source>Priority</source>
         <translation>Prioridade</translation>
     </message>
@@ -1173,35 +1014,15 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>FilterParserThread</name>
     <message>
-        <location filename="../filterParserThread.h" line="106"/>
-        <location filename="../filterParserThread.h" line="227"/>
-        <location filename="../filterParserThread.h" line="295"/>
-        <location filename="../filterParserThread.h" line="307"/>
-        <location filename="../filterParserThread.h" line="321"/>
-        <location filename="../filterParserThread.h" line="337"/>
-        <location filename="../filterParserThread.h" line="345"/>
-        <location filename="../filterParserThread.h" line="353"/>
-        <location filename="../filterParserThread.h" line="366"/>
-        <location filename="../filterParserThread.h" line="379"/>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
         <translation>Erro de entrada e saída</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="106"/>
-        <location filename="../filterParserThread.h" line="227"/>
-        <location filename="../filterParserThread.h" line="295"/>
         <source>Couldn&apos;t open %1 in read mode.</source>
         <translation>Não posso abrir %1 no modo de leitura.</translation>
     </message>
     <message>
-        <location filename="../filterParserThread.h" line="307"/>
-        <location filename="../filterParserThread.h" line="321"/>
-        <location filename="../filterParserThread.h" line="337"/>
-        <location filename="../filterParserThread.h" line="345"/>
-        <location filename="../filterParserThread.h" line="353"/>
-        <location filename="../filterParserThread.h" line="366"/>
-        <location filename="../filterParserThread.h" line="379"/>
         <source>%1 is not a valid PeerGuardian P2B file.</source>
         <translation>%1 não é um arquivo P2B válido de PeerGuardian.</translation>
     </message>
@@ -1209,7 +1030,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>FinishedListDelegate</name>
     <message>
-        <location filename="../FinishedListDelegate.h" line="74"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -1221,26 +1041,22 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Concluído</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="50"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="51"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Tamanho</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="53"/>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>Seeds / Leechers</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="54"/>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Peers conectados</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -1253,7 +1069,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Velocidade de download</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="52"/>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Velocidade de Upload</translation>
@@ -1283,7 +1098,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Nenhum</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="56"/>
         <source>Ratio</source>
         <translation>Taxa</translation>
     </message>
@@ -1293,13 +1107,13 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Compartilhadores parciais</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="55"/>
         <source>Total uploaded</source>
         <comment>i.e: Total amount of uploaded data</comment>
-        <translation type="unfinished"></translation>
+        <translation>Total uploaded
+
+ex.: Quantidade total de dados transferidos</translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="450"/>
         <source>Hide or Show Column</source>
         <translation>Esconder ou mostrar coluna</translation>
     </message>
@@ -1319,7 +1133,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="798"/>
         <source>Open Torrent Files</source>
         <translation>Abrir Arquivos Torrent</translation>
     </message>
@@ -1336,25 +1149,14 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Tem certeza que deseja apagar todos os arquivos na lista de downloads?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="700"/>
-        <location filename="../GUI.cpp" line="839"/>
-        <location filename="../GUI.cpp" line="846"/>
-        <location filename="../GUI.cpp" line="891"/>
-        <location filename="../GUI.cpp" line="898"/>
         <source>&amp;Yes</source>
         <translation>&amp;Sim</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="700"/>
-        <location filename="../GUI.cpp" line="839"/>
-        <location filename="../GUI.cpp" line="846"/>
-        <location filename="../GUI.cpp" line="891"/>
-        <location filename="../GUI.cpp" line="898"/>
         <source>&amp;No</source>
         <translation>&amp;Não</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="890"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>Tem certeza que deseja apagar o(s) arquivo(s) selecionado(s) na lista de downloads?</translation>
     </message>
@@ -1367,7 +1169,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">iniciado</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1227"/>
         <source>Finished</source>
         <translation>Concluído</translation>
     </message>
@@ -1412,7 +1213,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Não pode criar o diretório:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="799"/>
         <source>Torrent Files</source>
         <translation>Arquivos Torrent</translation>
     </message>
@@ -1457,16 +1257,10 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="698"/>
-        <location filename="../GUI.cpp" line="1466"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="837"/>
-        <location filename="../GUI.cpp" line="844"/>
-        <location filename="../GUI.cpp" line="889"/>
-        <location filename="../GUI.cpp" line="896"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Tem certeza? -- qBittorrent</translation>
     </message>
@@ -1672,7 +1466,6 @@ Por favor feche o outro primeiro.</translation>
         <translation type="obsolete">Transferências</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="392"/>
         <source>Download finished</source>
         <translation>Download finalizado</translation>
     </message>
@@ -1698,15 +1491,11 @@ Por favor feche o outro primeiro.</translation>
         <translation type="obsolete">Erro de Entrada/Saída</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="82"/>
-        <location filename="../GUI.cpp" line="956"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="223"/>
-        <location filename="../GUI.cpp" line="1484"/>
         <source>Connection status:</source>
         <translation>Estado da conexão:</translation>
     </message>
@@ -1769,15 +1558,11 @@ Por favor feche o outro primeiro.</translation>
         <translation type="obsolete">qBittorrent %1 iniciado.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1461"/>
-        <location filename="../GUI.cpp" line="1469"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Velocidade de download: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1463"/>
-        <location filename="../GUI.cpp" line="1472"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Velocidade de Upload: %1 KiB/s</translation>
@@ -1798,7 +1583,6 @@ Por favor feche o outro primeiro.</translation>
         <translation type="obsolete">Parado</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="698"/>
         <source>Are you sure you want to quit?</source>
         <translation>Você tem certeza que quer sair?</translation>
     </message>
@@ -1861,14 +1645,11 @@ Por favor feche o outro primeiro.</translation>
         <translation type="obsolete">&apos;%1&apos; resumido.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="388"/>
-        <location filename="../GUI.cpp" line="392"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 download finalizado.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="440"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Erro de Entrada/Saída</translation>
@@ -1884,12 +1665,10 @@ Por favor feche o outro primeiro.</translation>
         <translation type="obsolete">Ocorreu um erro (disco cheio?), &apos;%1&apos; pausado.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1481"/>
         <source>Connection Status:</source>
         <translation>Estado da conexão:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1481"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
@@ -1925,28 +1704,25 @@ Por favor feche o outro primeiro.</translation>
         <translation type="obsolete">baixando &apos;%1&apos;, por favor espere...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="452"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Ocorreu um erro (disco cheio?), &apos;%1&apos; pausado.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="162"/>
         <source>Search</source>
         <translation>Busca</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="316"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="440"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Erro de I/O no torrent %1.
+Motivo: %2</translation>
     </message>
     <message>
         <source>qBittorrent is bind to port: %1</source>
@@ -1958,13 +1734,10 @@ Por favor feche o outro primeiro.</translation>
         <translation type="obsolete">Suporte DHT [Ligado], porta: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1089"/>
-        <location filename="../GUI.cpp" line="1093"/>
         <source>DHT support [OFF]</source>
         <translation>Suporte DHT [Desligado]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1096"/>
         <source>PeX support [ON]</source>
         <translation>Suporte PeX [Ligado]</translation>
     </message>
@@ -1973,25 +1746,20 @@ Por favor feche o outro primeiro.</translation>
         <translation type="obsolete">Suporte PeX [Desligado]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="699"/>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
         <translation>A lista de download não está vazia.
 Deseja mesmo sair do qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="149"/>
-        <location filename="../GUI.cpp" line="1222"/>
         <source>Downloads</source>
         <translation>Downloads</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="897"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
         <translation>Quer mesmo deletar os ítems selecionados na lista de finalizados?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1015"/>
         <source>UPnP support [ON]</source>
         <translation>Suporte UPnP [Ligado]</translation>
     </message>
@@ -2000,17 +1768,14 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Esteja ciente, compartilhar material protejido sem permissão é contra a lei.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1115"/>
         <source>Encryption support [ON]</source>
         <translation>Suporte a encriptação [Ligado]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1120"/>
         <source>Encryption support [FORCED]</source>
         <translation>Suporte a encriptação [FORÇADO]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1125"/>
         <source>Encryption support [OFF]</source>
         <translation>Suporte a encriptação [Desligado]</translation>
     </message>
@@ -2024,13 +1789,11 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Taxa</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="459"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="461"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
         <translation>Alt+2</translation>
@@ -2041,18 +1804,15 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Alt+3, Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="467"/>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="537"/>
         <source>Url download error</source>
         <translation>Erro no download da URL</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="537"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Não pude baixar arquivo em: %1, motivo: %2.</translation>
     </message>
@@ -2061,12 +1821,10 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Resumo rápido rejeitado para o torrent %1, tente novamente...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="838"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
         <translation>Quer mesmo deletar o(s) arquivo(s) selecionado(s) da lista e do seu HD ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="845"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
         <translation>Quer mesmo deletar o(s) arquivo(s) selecionado(s) da lista finalizada e do seu HD ?</translation>
     </message>
@@ -2080,50 +1838,41 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Url falhou para: %1, mensagem: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="463"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="465"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="993"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent está limitado a porta: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1018"/>
         <source>UPnP support [OFF]</source>
         <translation>Suporte UPnP [desligado]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1023"/>
         <source>NAT-PMP support [ON]</source>
         <translation>Suporte NAT-PMP [ligado]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1026"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>Suporte NAT-PMP [desligado]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1087"/>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Suporte DHT [ON], porta: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1100"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Peer discovery [ligado]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1103"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Peer discovery [desligado]</translation>
     </message>
@@ -2133,48 +1882,35 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">&apos;%1&apos; foi removido sua taxa atingiu o valor máximo que você configurou.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1440"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Down: %2Kb/s, Up: %3kb/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="224"/>
-        <location filename="../GUI.cpp" line="1417"/>
         <source>DL: %1 KiB/s</source>
         <translation>DL: %1 Kbps</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="225"/>
-        <location filename="../GUI.cpp" line="1418"/>
         <source>UP: %1 KiB/s</source>
         <translation>UP: %1 Kpbs</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="226"/>
-        <location filename="../GUI.cpp" line="351"/>
         <source>Ratio: %1</source>
         <translation>Taxa: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="227"/>
-        <location filename="../GUI.cpp" line="353"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 nos</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="223"/>
-        <location filename="../GUI.cpp" line="1484"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Sem conexões diretas. Talvez tenha algo errado em sua configuração.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="156"/>
         <source>Uploads</source>
         <translation>Uploads</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1561"/>
         <source>Options were saved successfully.</source>
         <translation>Opções salvas com sucesso.</translation>
     </message>
@@ -2226,67 +1962,54 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">&amp;Opções</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="33"/>
         <source>&amp;Edit</source>
         <translation>&amp;Editar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="66"/>
         <source>&amp;File</source>
         <translation>&amp;Arquivo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="50"/>
         <source>&amp;Help</source>
         <translation>&amp;Ajuda</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="129"/>
         <source>Open</source>
         <translation>Abrir</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="134"/>
         <source>Exit</source>
         <translation>Sair</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="139"/>
         <source>Preferences</source>
         <translation>Preferências</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="144"/>
         <source>About</source>
         <translation>Sobre</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="149"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="154"/>
         <source>Pause</source>
         <translation>Pausar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="159"/>
         <source>Delete</source>
         <translation>Apagar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="164"/>
         <source>Pause All</source>
         <translation>Pausar todos</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="169"/>
         <source>Start All</source>
         <translation>Iniciar todos</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="224"/>
         <source>Documentation</source>
         <translation>Documentação</translation>
     </message>
@@ -2295,7 +2018,6 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Apagar todos</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="184"/>
         <source>Torrent Properties</source>
         <translation>Propriedades do Torrent</translation>
     </message>
@@ -2348,7 +2070,6 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Mecanismo de Busca</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="189"/>
         <source>Download from URL</source>
         <translation>Baixar da URL</translation>
     </message>
@@ -2365,7 +2086,6 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">KiB/s</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="194"/>
         <source>Create torrent</source>
         <translation>Criar torrent</translation>
     </message>
@@ -2386,37 +2106,30 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Transferências</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="199"/>
         <source>Preview file</source>
         <translation>Arquivo de pré-visualização</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="204"/>
         <source>Clear log</source>
         <translation>Limpar log</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="179"/>
         <source>Delete Permanently</source>
         <translation>Apagar permanentemente</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="174"/>
         <source>Visit website</source>
         <translation>Visitar site</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="209"/>
         <source>Report a bug</source>
         <translation>Reportar um bug</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="214"/>
         <source>Set upload limit</source>
         <translation>Setar limite de upload</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="219"/>
         <source>Set download limit</source>
         <translation>Setar limite de download</translation>
     </message>
@@ -2429,32 +2142,26 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Filtro IP</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="229"/>
         <source>Set global download limit</source>
         <translation>Setar limite global de download</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="234"/>
         <source>Set global upload limit</source>
         <translation>Setar limite global de upload</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="59"/>
         <source>Options</source>
         <translation>Opções</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="243"/>
         <source>Decrease priority</source>
         <translation>Diminuir prioridade</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="255"/>
         <source>Increase priority</source>
         <translation>Aumentar prioridade</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="267"/>
         <source>Console</source>
         <translation>Console</translation>
     </message>
@@ -2470,29 +2177,20 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Verdadeiro</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="96"/>
-        <location filename="../PropListDelegate.h" line="128"/>
         <source>Ignored</source>
         <translation>Ignorado</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="99"/>
-        <location filename="../PropListDelegate.h" line="109"/>
-        <location filename="../PropListDelegate.h" line="129"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="102"/>
-        <location filename="../PropListDelegate.h" line="130"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Alta</translation>
     </message>
     <message>
-        <location filename="../PropListDelegate.h" line="105"/>
-        <location filename="../PropListDelegate.h" line="131"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Máxima</translation>
@@ -2508,22 +2206,18 @@ Deseja mesmo sair do qBittorrent?</translation>
 <context>
     <name>RSS</name>
     <message>
-        <location filename="../rss.ui" line="13"/>
         <source>Search</source>
         <translation>Busca</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="189"/>
         <source>Delete</source>
         <translation>Apagar</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="194"/>
         <source>Rename</source>
         <translation>Renomear</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="199"/>
         <source>Refresh</source>
         <translation>Atualizar</translation>
     </message>
@@ -2532,47 +2226,38 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Criar</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="82"/>
         <source>Delete selected streams</source>
         <translation>Deletar streams selecionadas</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="104"/>
         <source>Refresh RSS streams</source>
         <translation>Atualizar RSS streams</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="126"/>
         <source>Add a new RSS stream</source>
         <translation>Adicionar um novo stream de RSS</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="169"/>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
         <translation>&lt;b&gt;Info:&lt;/b&gt; &lt;i&gt;(clique-duplo para abrir o link no seu browser)&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="204"/>
         <source>Add RSS stream</source>
         <translation>Adicionar stream RSS</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="209"/>
         <source>Refresh all streams</source>
         <translation>Atualizar todos streams</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="42"/>
         <source>RSS streams:</source>
         <translation>streams RSS:</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="47"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="214"/>
         <source>Mark all as read</source>
         <translation>Marcar todos como lido</translation>
     </message>
@@ -2580,27 +2265,22 @@ Deseja mesmo sair do qBittorrent?</translation>
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="173"/>
         <source>Please type a rss stream url</source>
         <translation>Digite uma url de stream rss</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="173"/>
         <source>Stream URL:</source>
         <translation>Stream URL:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="113"/>
         <source>Please choose a new name for this stream</source>
         <translation>Escolha um novo nome para esse stream</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="113"/>
         <source>New stream name:</source>
         <translation>Novo nome do stream:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="70"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Tem certeza? -- qBittorrent</translation>
     </message>
@@ -2609,61 +2289,42 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Quer mesmo deletar este stream da lista ?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="71"/>
         <source>&amp;Yes</source>
         <translation>&amp;Sim</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="71"/>
         <source>&amp;No</source>
         <translation>&amp;Não</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="70"/>
         <source>Are you sure you want to delete this stream from the list?</source>
         <translation>Quer mesmo deletar este stream da lista ?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="166"/>
-        <location filename="../rss_imp.cpp" line="189"/>
-        <location filename="../rss_imp.cpp" line="203"/>
-        <location filename="../rss_imp.cpp" line="300"/>
         <source>Description:</source>
         <translation>Descrição:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="166"/>
-        <location filename="../rss_imp.cpp" line="189"/>
-        <location filename="../rss_imp.cpp" line="203"/>
-        <location filename="../rss_imp.cpp" line="300"/>
         <source>url:</source>
         <translation>url:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="166"/>
-        <location filename="../rss_imp.cpp" line="189"/>
-        <location filename="../rss_imp.cpp" line="203"/>
-        <location filename="../rss_imp.cpp" line="300"/>
         <source>Last refresh:</source>
         <translation>Última atualização:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="180"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="181"/>
         <source>This rss feed is already in the list.</source>
         <translation>Este rss feed já está na lista.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="238"/>
         <source>Date: </source>
         <translation>Data:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="241"/>
         <source>Author: </source>
         <translation>Autor:</translation>
     </message>
@@ -2671,7 +2332,6 @@ Deseja mesmo sair do qBittorrent?</translation>
 <context>
     <name>RssItem</name>
     <message>
-        <location filename="../rss.h" line="266"/>
         <source>No description available</source>
         <translation>Nenhuma descrição disponível</translation>
     </message>
@@ -2679,13 +2339,11 @@ Deseja mesmo sair do qBittorrent?</translation>
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="467"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>%1 atrás</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="466"/>
         <source>Never</source>
         <translation>Nunca</translation>
     </message>
@@ -2717,12 +2375,10 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Mecanismo de busca</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="210"/>
         <source>Empty search pattern</source>
         <translation>Padrão de busca vazio</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="210"/>
         <source>Please type a search pattern first</source>
         <translation>Por favor digite um padrão de busca primeiro</translation>
     </message>
@@ -2735,13 +2391,10 @@ Deseja mesmo sair do qBittorrent?</translation>
         <translation type="obsolete">Você deve selecionar pelo menos um mecanismo de busca.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="243"/>
-        <location filename="../searchEngine.cpp" line="345"/>
         <source>Results</source>
         <translation>Resultados</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="307"/>
         <source>Searching...</source>
         <translation>Buscando...</translation>
     </message>
@@ -2783,58 +2436,46 @@ Log de mudanças:</translation>
         <translation type="obsolete">Seu plugin de busca já está atualizado.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="106"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Corta</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="107"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="108"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Cola</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="109"/>
         <source>Clear field</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpa campo</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="110"/>
         <source>Clear completion history</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar lista dos completados</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="450"/>
         <source>Search Engine</source>
         <translation>Mecanismo de Busca</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="450"/>
-        <location filename="../searchEngine.cpp" line="461"/>
         <source>Search has finished</source>
         <translation>Busca finalizada</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
         <source>An error occured during search...</source>
         <translation>Um erro ocorreu durante a busca...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="456"/>
         <source>Search aborted</source>
         <translation>Busca abortada</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="459"/>
         <source>Search returned no results</source>
         <translation>A busca não retornou resultados</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="466"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Resultados</translation>
@@ -2848,7 +2489,6 @@ Log de mudanças:</translation>
         <translation type="obsolete">Não pude baixar a atualização do plugin de busca na url: %1, motivo: %2.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="487"/>
         <source>Unknown</source>
         <translation>Desconhecido</translation>
     </message>
@@ -2856,31 +2496,26 @@ Log de mudanças:</translation>
 <context>
     <name>SearchTab</name>
     <message>
-        <location filename="../SearchTab.cpp" line="60"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../SearchTab.cpp" line="61"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Tamanho</translation>
     </message>
     <message>
-        <location filename="../SearchTab.cpp" line="62"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation>Compartilhadores completos</translation>
     </message>
     <message>
-        <location filename="../SearchTab.cpp" line="63"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
         <translation>Compartilhadores parciais</translation>
     </message>
     <message>
-        <location filename="../SearchTab.cpp" line="64"/>
         <source>Search engine</source>
         <translation>Mecanismo de busca</translation>
     </message>
@@ -2939,16 +2574,6 @@ Log de mudanças:</translation>
         <source>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</source>
         <translation type="obsolete">&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</translation>
     </message>
-    <message utf8="true">
-        <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
-&lt;br&gt;
-Copyright © 2006 by Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="obsolete">Um cliente bittorrent usando Qt4 e libtorrent, programado em C++.&lt;br&gt;
-&lt;br&gt;
-Copyright ©2007 por Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
-    </message>
     <message>
         <source>chris@qbittorrent.org</source>
         <translation type="obsolete">chris@qbittorrent.org</translation>
@@ -2977,12 +2602,10 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>TrackersAdditionDlg</name>
     <message>
-        <location filename="../trackersAdd.ui" line="13"/>
         <source>Trackers addition dialog</source>
         <translation>Diálogo de adição de Trackers</translation>
     </message>
     <message>
-        <location filename="../trackersAdd.ui" line="19"/>
         <source>List of trackers to add (one per line):</source>
         <translation>Lista Trackers para adicionar (um por linha):</translation>
     </message>
@@ -3049,17 +2672,14 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>about</name>
     <message>
-        <location filename="../about_imp.h" line="52"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="63"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
         <translation>Gostaria de agradecer às seguintes pessoas por voluntariamente terem traduzido o qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="90"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Por favor contate-me se você deseja traduzir o qBittorrent no seu idioma.</translation>
     </message>
@@ -3067,22 +2687,18 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>addTorrentDialog</name>
     <message>
-        <location filename="../addTorrentDialog.ui" line="13"/>
         <source>Torrent addition dialog</source>
         <translation>Dialogo de adicionar torrent</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="39"/>
         <source>Save path:</source>
         <translation>Caminho de salvamento:</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="66"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="81"/>
         <source>Torrent content:</source>
         <translation>Conteúdo do torrent:</translation>
     </message>
@@ -3099,22 +2715,18 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Selecionado</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="145"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Baixar em ordem (lento mas bom para pré-visualizar)</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="152"/>
         <source>Add to download list in paused state</source>
         <translation>Adicionar a lista de download em pausa</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="189"/>
         <source>Add</source>
         <translation>Adicionar</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="196"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -3127,32 +2739,26 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Selecionar</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="218"/>
         <source>Ignored</source>
         <translation>Ignorado</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="223"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="228"/>
         <source>High</source>
         <translation>Alto</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="233"/>
         <source>Maximum</source>
         <translation>Máximo</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="116"/>
         <source>Collapse all</source>
         <translation>Fechar todos</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="123"/>
         <source>Expand all</source>
         <translation>Expandir todos</translation>
     </message>
@@ -3160,38 +2766,30 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>authentication</name>
     <message>
-        <location filename="../login.ui" line="16"/>
-        <location filename="../login.ui" line="66"/>
         <source>Tracker authentication</source>
         <translation>Autenticação de tracker</translation>
     </message>
     <message>
-        <location filename="../login.ui" line="94"/>
         <source>Tracker:</source>
         <translation>Tracker:</translation>
     </message>
     <message>
-        <location filename="../login.ui" line="127"/>
         <source>Login</source>
         <translation>Login</translation>
     </message>
     <message>
-        <location filename="../login.ui" line="147"/>
         <source>Username:</source>
         <translation>Usuário:</translation>
     </message>
     <message>
-        <location filename="../login.ui" line="176"/>
         <source>Password:</source>
         <translation>Senha:</translation>
     </message>
     <message>
-        <location filename="../login.ui" line="219"/>
         <source>Log in</source>
         <translation>Logar</translation>
     </message>
     <message>
-        <location filename="../login.ui" line="226"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -3199,12 +2797,10 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>bandwidth_dlg</name>
     <message>
-        <location filename="../bandwidth_limit.ui" line="13"/>
         <source>Bandwidth allocation</source>
         <translation>Alocação de banda</translation>
     </message>
     <message>
-        <location filename="../bandwidth_limit.ui" line="47"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -3212,18 +2808,15 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="139"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>%1 atingiu a taxa máxima que você configurou.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="287"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos; foi removido permanentemente.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="289"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; foi deletado.</translation>
@@ -3239,77 +2832,60 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">&apos;%1&apos; resumido.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="424"/>
-        <location filename="../bittorrent.cpp" line="427"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; já está na lista de download.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="525"/>
-        <location filename="../bittorrent.cpp" line="530"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; continuando. (continue rápido)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="527"/>
-        <location filename="../bittorrent.cpp" line="532"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; adicionado a lista de download.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="392"/>
-        <location filename="../bittorrent.cpp" line="396"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Incapaz de decodificar arquivo torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="399"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Este arquivo está corrompido ou não é um torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="867"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;foi bloqueado pelo seu filtro de IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="869"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;foi banido por corromper partes&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1193"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Não foi possível escutar nenhuma das portas informadas.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1225"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Falha no mapeamento de porta, mensagem: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1230"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Portas mapeadas com sucesso, mensagem: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1245"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Resumo rápido rejeitado para o torrent %1, tente novamente...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1250"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url falhou para: %1, mensagem: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1308"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>baixando &apos;%1&apos;, por favor espere...</translation>
@@ -3342,7 +2918,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Criar</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="534"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -3355,7 +2930,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Diretório</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="13"/>
         <source>Torrent Creation Tool</source>
         <translation>Ferramenta de Criação de Torrent</translation>
     </message>
@@ -3376,7 +2950,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">&lt;center&gt;Comentário:&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="42"/>
         <source>Torrent file creation</source>
         <translation>Criando arquivo Torrent</translation>
     </message>
@@ -3385,12 +2958,10 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Insira arquivos ou diretórios:</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="102"/>
         <source>Announce urls (trackers):</source>
         <translation>Urls (trackers):</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="137"/>
         <source>Comment (optional):</source>
         <translation>Comentário (opcional):</translation>
     </message>
@@ -3399,87 +2970,70 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Privado (Não pode ser distribuido na rede trackerless / se DHT habilitado)</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="118"/>
         <source>Web seeds urls (optional):</source>
         <translation>Urls de compartilhadores web (opcional):</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="52"/>
         <source>File or folder to add to the torrent:</source>
         <translation>Arquivo ou pasta para adicionar ao torrent:</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="64"/>
         <source>Add a file</source>
         <translation>Adicionar um arquivo</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="74"/>
         <source>Add a folder</source>
         <translation>Adicionar uma pasta</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="400"/>
         <source>Piece size:</source>
         <translation>Tamanho:</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="411"/>
         <source>32 KiB</source>
         <translation>32kb</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="416"/>
         <source>64 KiB</source>
         <translation>64kb</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="421"/>
         <source>128 KiB</source>
         <translation>128kb</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="426"/>
         <source>256 KiB</source>
         <translation>256kb</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="431"/>
         <source>512 KiB</source>
         <translation>512kb</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="436"/>
         <source>1 MiB</source>
         <translation>1mb</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="441"/>
         <source>2 MiB</source>
         <translation>2mb</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="446"/>
         <source>4 MiB</source>
         <translation>4mb</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="469"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
         <translation>Privado (não distribuir em DHT se habilitado)</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="476"/>
         <source>Start seeding after creation</source>
         <translation>Iniciar compartilhamento depois de criar</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="527"/>
         <source>Create and save...</source>
         <translation>Criar e salvar...</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="483"/>
         <source>Progress:</source>
         <translation>Progresso:</translation>
     </message>
@@ -3487,12 +3041,10 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>createtorrent</name>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="173"/>
         <source>Select destination torrent file</source>
         <translation>Selecione o arquivo torrent de destino</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="173"/>
         <source>Torrent Files</source>
         <translation>Arquivos Torrent</translation>
     </message>
@@ -3509,12 +3061,10 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Digite primeiro um caminho de destino</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="165"/>
         <source>No input path set</source>
         <translation>Nenhum caminho de entrada selecionado</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="165"/>
         <source>Please type an input path first</source>
         <translation>Digite primeiro um caminho de entrada</translation>
     </message>
@@ -3527,14 +3077,10 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Digite primeiro um caminho de entrada correto</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="186"/>
-        <location filename="../createtorrent_imp.cpp" line="196"/>
-        <location filename="../createtorrent_imp.cpp" line="206"/>
         <source>Torrent creation</source>
         <translation>Criação de torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="206"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent foi criado com sucesso:</translation>
     </message>
@@ -3543,7 +3089,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Por favor insira um caminho válido primeiro</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="80"/>
         <source>Select a folder to add to the torrent</source>
         <translation>Selecione uma pasta para adicionar ao torrent</translation>
     </message>
@@ -3552,48 +3097,39 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Selecione arquivos para adicionar ao torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="122"/>
         <source>Please type an announce URL</source>
         <translation>Digite uma url anunciada</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="186"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>A criação do torrent não foi possível, motivo: %1</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="123"/>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
         <translation>Url anunciada:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="141"/>
         <source>Please type a web seed url</source>
         <translation>Digite uma url de compartilhador web</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="142"/>
         <source>Web seed URL:</source>
         <translation>Url de compartilhador web:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="86"/>
         <source>Select a file to add to the torrent</source>
         <translation>Selecione um arquivo para adicionar ao torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>No tracker path set</source>
         <translation>Nenhum tracker setado</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>Please set at least one tracker</source>
         <translation>Por favor, adicione ao menos um tracker</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="196"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
         <translation>Torrent criado é inválido. Não será adicionado a lista de download.</translation>
     </message>
@@ -3601,37 +3137,30 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>downloadFromURL</name>
     <message>
-        <location filename="../downloadFromURL.ui" line="66"/>
         <source>Download Torrents from URLs</source>
         <translation>Baixar torrents de URLs</translation>
     </message>
     <message>
-        <location filename="../downloadFromURL.ui" line="99"/>
         <source>Only one URL per line</source>
         <translation>Somente uma URL por linha</translation>
     </message>
     <message>
-        <location filename="../downloadFromURL.ui" line="127"/>
         <source>Download</source>
         <translation>Baixar</translation>
     </message>
     <message>
-        <location filename="../downloadFromURL.ui" line="134"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../downloadFromURL.ui" line="16"/>
         <source>Download from urls</source>
         <translation>Baixar de URLs</translation>
     </message>
     <message>
-        <location filename="../downloadFromURLImp.h" line="72"/>
         <source>No URL entered</source>
         <translation>Nenhuma URL inserida</translation>
     </message>
     <message>
-        <location filename="../downloadFromURLImp.h" line="72"/>
         <source>Please type at least one URL.</source>
         <translation>Por favor digite uma URL.</translation>
     </message>
@@ -3639,7 +3168,6 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>downloading</name>
     <message>
-        <location filename="../download.ui" line="13"/>
         <source>Search</source>
         <translation>Busca</translation>
     </message>
@@ -3668,17 +3196,14 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Filtro IP</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="54"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="59"/>
         <source>Pause</source>
         <translation>Pausar</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="64"/>
         <source>Delete</source>
         <translation>Apagar</translation>
     </message>
@@ -3687,97 +3212,78 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Limpar</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="69"/>
         <source>Preview file</source>
         <translation>Arquivo de pré-visualização</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="74"/>
         <source>Set upload limit</source>
         <translation>Setar limite de upload</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="79"/>
         <source>Set download limit</source>
         <translation>Setar limite de download</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="84"/>
         <source>Delete Permanently</source>
         <translation>Apagar permanentemente</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="89"/>
         <source>Torrent Properties</source>
         <translation>Propriedades do Torrent</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="98"/>
         <source>Open destination folder</source>
         <translation>Abrir pasta de destino</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="103"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="108"/>
         <source>Size</source>
         <translation>Tamanho</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="113"/>
         <source>Progress</source>
         <translation>Progresso</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="118"/>
         <source>DLSpeed</source>
         <translation>Velocidade de download</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="123"/>
         <source>UpSpeed</source>
         <translation>Velocidade de upload</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="128"/>
         <source>Seeds/Leechs</source>
         <translation>Compartilhadores</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="133"/>
         <source>Ratio</source>
         <translation>Taxa</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="138"/>
         <source>ETA</source>
         <translation>ETA</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="147"/>
         <source>Buy it</source>
         <translation>Compre isso</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="152"/>
         <source>Priority</source>
         <translation>Prioridade</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="161"/>
         <source>Increase priority</source>
         <translation>Aumentar prioridade</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="170"/>
         <source>Decrease priority</source>
         <translation>Diminuir prioridade</translation>
     </message>
     <message>
-        <location filename="../download.ui" line="179"/>
         <source>Force recheck</source>
         <translation>Forçar re-checagem</translation>
     </message>
@@ -3785,62 +3291,50 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>engineSelect</name>
     <message>
-        <location filename="../engineSelect.ui" line="16"/>
         <source>Search plugins</source>
         <translation>Plugins de busca</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="29"/>
         <source>Installed search engines:</source>
         <translation>Plugins de busca instalados:</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="49"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="54"/>
         <source>Url</source>
         <translation>Url</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="59"/>
         <source>Enabled</source>
         <translation>Habilitado</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="77"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
         <translation>Você pode encontrar novos plugins de busca aqui: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="86"/>
         <source>Install a new one</source>
         <translation>Instalar um novo</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="93"/>
         <source>Check for updates</source>
         <translation>Verificar atualizações</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="100"/>
         <source>Close</source>
         <translation>Fechar</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="109"/>
         <source>Enable</source>
         <translation>Habilitar</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="114"/>
         <source>Disable</source>
         <translation>Desabilitar</translation>
     </message>
     <message>
-        <location filename="../engineSelect.ui" line="119"/>
         <source>Uninstall</source>
         <translation>Desinstalar</translation>
     </message>
@@ -3848,27 +3342,18 @@ Copyright ©2007 por Christophe Dumez&lt;br&gt;
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="145"/>
-        <location filename="../engineSelectDlg.cpp" line="229"/>
-        <location filename="../engineSelectDlg.cpp" line="324"/>
         <source>True</source>
         <translation>Verdadeiro</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="148"/>
-        <location filename="../engineSelectDlg.cpp" line="195"/>
-        <location filename="../engineSelectDlg.cpp" line="242"/>
-        <location filename="../engineSelectDlg.cpp" line="326"/>
         <source>False</source>
         <translation>Falso</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="216"/>
         <source>Uninstall warning</source>
         <translation>Aviso de desinstalação</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="216"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -3877,126 +3362,80 @@ However, those plugins were disabled.</source>
 Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="218"/>
         <source>Uninstall success</source>
         <translation>Desinstalado com sucesso</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="553"/>
         <source>Select search plugins</source>
         <translation>Selecionar plugins de busca</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="555"/>
-        <location filename="../engineSelectDlg.cpp" line="557"/>
         <source>qBittorrent search plugins</source>
         <translation>Plugins de busca qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="384"/>
-        <location filename="../engineSelectDlg.cpp" line="433"/>
-        <location filename="../engineSelectDlg.cpp" line="444"/>
-        <location filename="../engineSelectDlg.cpp" line="490"/>
-        <location filename="../engineSelectDlg.cpp" line="512"/>
-        <location filename="../engineSelectDlg.cpp" line="517"/>
-        <location filename="../engineSelectDlg.cpp" line="528"/>
-        <location filename="../engineSelectDlg.cpp" line="531"/>
         <source>Search plugin install</source>
         <translation>Instalação de plugin de busca</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="384"/>
-        <location filename="../engineSelectDlg.cpp" line="433"/>
-        <location filename="../engineSelectDlg.cpp" line="444"/>
-        <location filename="../engineSelectDlg.cpp" line="490"/>
-        <location filename="../engineSelectDlg.cpp" line="512"/>
-        <location filename="../engineSelectDlg.cpp" line="517"/>
-        <location filename="../engineSelectDlg.cpp" line="528"/>
-        <location filename="../engineSelectDlg.cpp" line="531"/>
-        <location filename="../engineSelectDlg.cpp" line="616"/>
-        <location filename="../engineSelectDlg.cpp" line="656"/>
-        <location filename="../engineSelectDlg.cpp" line="690"/>
-        <location filename="../engineSelectDlg.cpp" line="698"/>
-        <location filename="../engineSelectDlg.cpp" line="704"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="490"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Uma versão mais recente de plugin de busca %1 já está instalado.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="616"/>
-        <location filename="../engineSelectDlg.cpp" line="656"/>
-        <location filename="../engineSelectDlg.cpp" line="690"/>
-        <location filename="../engineSelectDlg.cpp" line="698"/>
-        <location filename="../engineSelectDlg.cpp" line="704"/>
         <source>Search plugin update</source>
         <translation>Atualização de plugin de busca</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="656"/>
-        <location filename="../engineSelectDlg.cpp" line="690"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Desculpe, servidor de atualizações está temporariamente indisponível.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="616"/>
         <source>All your plugins are already up to date.</source>
         <translation>Todos os plugins já estão atuais.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="512"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 esse aí não pôde ser atualizado, vai ficar o véio.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="433"/>
-        <location filename="../engineSelectDlg.cpp" line="444"/>
-        <location filename="../engineSelectDlg.cpp" line="517"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Plugin de busca %1 não pode ser instalado.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="218"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>Plugins selecionados desinstalados com sucesso</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="528"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Plugin de busca %1 atualizado com sucesso.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="531"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Plugin de busca %1 instalado com sucesso.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="384"/>
         <source>Search engine plugin archive could not be read.</source>
         <translation>Arquivo de plugin de busca não pode ser lido.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="698"/>
-        <location filename="../engineSelectDlg.cpp" line="704"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Sinto muito mas a instalação do plugin de busca %1 falhou.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="544"/>
         <source>New search engine plugin URL</source>
         <translation>Url de novo plugin de busca</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="545"/>
         <source>URL:</source>
         <translation>Url:</translation>
     </message>
@@ -4004,31 +3443,26 @@ Portanto os plugins foram desabilitados.</translation>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.h" line="102"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="102"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>Kib</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="102"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="102"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="102"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
@@ -4058,31 +3492,26 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">d</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="101"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Desconhecido</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="248"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 minuto</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="252"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="257"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="262"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1d%2h%3m</translation>
@@ -4184,8 +3613,6 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Opções salvas com sucesso.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1357"/>
-        <location filename="../options_imp.cpp" line="1359"/>
         <source>Choose scan directory</source>
         <translation>Selecione diretório para varredura</translation>
     </message>
@@ -4194,8 +3621,6 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Selecione um arquivo ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1380"/>
-        <location filename="../options_imp.cpp" line="1382"/>
         <source>Choose a save directory</source>
         <translation>Selecione um diretório de salvamento</translation>
     </message>
@@ -4209,14 +3634,10 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Não posso abrir %1 no modo de leitura.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1368"/>
-        <location filename="../options_imp.cpp" line="1370"/>
         <source>Choose an ip filter file</source>
         <translation>Escolha um arquivo de filtro de ip</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1368"/>
-        <location filename="../options_imp.cpp" line="1370"/>
         <source>Filters</source>
         <translation>Filtros</translation>
     </message>
@@ -4224,22 +3645,18 @@ Portanto os plugins foram desabilitados.</translation>
 <context>
     <name>pluginSourceDlg</name>
     <message>
-        <location filename="../pluginSource.ui" line="13"/>
         <source>Plugin source</source>
         <translation>Fonte do plugin</translation>
     </message>
     <message>
-        <location filename="../pluginSource.ui" line="26"/>
         <source>Search plugin source:</source>
         <translation>Busca de plugin de busca:</translation>
     </message>
     <message>
-        <location filename="../pluginSource.ui" line="35"/>
         <source>Local file</source>
         <translation>Arquivo local</translation>
     </message>
     <message>
-        <location filename="../pluginSource.ui" line="42"/>
         <source>Web link</source>
         <translation>Link da net</translation>
     </message>
@@ -4247,27 +3664,22 @@ Portanto os plugins foram desabilitados.</translation>
 <context>
     <name>preview</name>
     <message>
-        <location filename="../preview.ui" line="16"/>
         <source>Preview selection</source>
         <translation>Seleção de pré-visualização</translation>
     </message>
     <message>
-        <location filename="../preview.ui" line="51"/>
         <source>File preview</source>
         <translation>Pré-visualização de arquivo</translation>
     </message>
     <message>
-        <location filename="../preview.ui" line="67"/>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
         <translation>Os seguintes arquivos suportam pré-visualização, &lt;br&gt;por favor selecione um deles:</translation>
     </message>
     <message>
-        <location filename="../preview.ui" line="101"/>
         <source>Preview</source>
         <translation>Pré-visualização</translation>
     </message>
     <message>
-        <location filename="../preview.ui" line="108"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -4275,29 +3687,22 @@ Portanto os plugins foram desabilitados.</translation>
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewSelect.h" line="80"/>
-        <location filename="../previewSelect.h" line="121"/>
         <source>Preview impossible</source>
         <translation>Pré-visualização impossível</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="80"/>
-        <location filename="../previewSelect.h" line="121"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Arquivo sem possível pré-visualização</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="94"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="95"/>
         <source>Size</source>
         <translation>Tamanho</translation>
     </message>
     <message>
-        <location filename="../previewSelect.h" line="96"/>
         <source>Progress</source>
         <translation>Progresso</translation>
     </message>
@@ -4305,7 +3710,6 @@ Portanto os plugins foram desabilitados.</translation>
 <context>
     <name>properties</name>
     <message>
-        <location filename="../properties.ui" line="14"/>
         <source>Torrent Properties</source>
         <translation>Propriedades do Torrent</translation>
     </message>
@@ -4346,7 +3750,6 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Conteúdo do Torrent</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1020"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -4387,7 +3790,6 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Alocando</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="91"/>
         <source>Unknown</source>
         <translation>Desconhecido</translation>
     </message>
@@ -4400,12 +3802,10 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Parcial:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="901"/>
         <source>Files contained in current torrent:</source>
         <translation>Arquivos contidos no torrent atual:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="64"/>
         <source>Size</source>
         <translation>Tamanho</translation>
     </message>
@@ -4438,13 +3838,10 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Rastreador</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="523"/>
         <source>Trackers:</source>
         <translation>Rastreadores:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="476"/>
-        <location filename="../properties_imp.cpp" line="644"/>
         <source>None - Unreachable?</source>
         <translation>Nenhum - Inatingível?</translation>
     </message>
@@ -4453,7 +3850,6 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Erros:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="65"/>
         <source>Progress</source>
         <translation>Progresso</translation>
     </message>
@@ -4462,37 +3858,30 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Informações principais</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="728"/>
         <source>Current tracker:</source>
         <translation>Rastreador atual:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="360"/>
         <source>Total uploaded:</source>
         <translation>Total de Upload:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="30"/>
         <source>Main info</source>
-        <translation type="unfinished"></translation>
+        <translation>Início da informação</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="76"/>
         <source>Torrent information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação do Torrent</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="378"/>
         <source>Total downloaded:</source>
         <translation>Total baixado:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="414"/>
         <source>Total failed:</source>
         <translation>Total falhado:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="884"/>
         <source>Torrent content</source>
         <translation>Conteúdo torrent</translation>
     </message>
@@ -4501,7 +3890,6 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Opções</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="490"/>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation>Baixar em ordem correta (lento mas bom para pré-visualizar)</translation>
     </message>
@@ -4518,7 +3906,6 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Leechers:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="104"/>
         <source>Save path:</source>
         <translation>Caminho de salvamento:</translation>
     </message>
@@ -4527,32 +3914,26 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Infos do Torrent</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="123"/>
         <source>Creator:</source>
         <translation>Criador:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="142"/>
         <source>Torrent hash:</source>
         <translation>Mistura do Torrent:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="167"/>
         <source>Comment:</source>
         <translation>Comentário:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="321"/>
         <source>Current session</source>
         <translation>Sessão atual</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="396"/>
         <source>Share ratio:</source>
         <translation>Taxa de Compartilhamento:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="498"/>
         <source>Trackers</source>
         <translation>Rastreadores</translation>
     </message>
@@ -4565,84 +3946,66 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Novo url de rastreador:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
         <source>Priorities:</source>
         <translation>Prioridades:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
         <source>Normal: normal priority. Download order is dependent on availability</source>
         <translation>Normal: prioridade normal. Ordem de download é dependente da disponibilidade</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
         <translation>Alta: Maior que a prioridade normal. As partes são preferidas sobre partes com a mesma disponibilidade, mas não em excesso das com disponibilidade mais baixa</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
         <translation>Máxima: prioridade máxima, disponibilidade é desconsiderada, a parte é preferida mais que outra parte com prioridade baixa</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="63"/>
         <source>File name</source>
         <translation>Nome do arquivo</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="66"/>
-        <location filename="../properties_imp.cpp" line="385"/>
         <source>Priority</source>
         <translation>Prioridade</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="489"/>
-        <location filename="../properties_imp.cpp" line="550"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="551"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>Lista de rastreadores não pode estar vazia.</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
         <source>Ignored: file is not downloaded at all</source>
         <translation>Ignorado: arquivo não foi baixado completamente</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1042"/>
         <source>Ignored</source>
         <translation>Ignorado</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1047"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1052"/>
         <source>Maximum</source>
         <translation>Máxima</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="1057"/>
         <source>High</source>
         <translation>Alta</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="780"/>
         <source>Url seeds</source>
         <translation>Url de compartilhadores</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="484"/>
         <source>New url seed:</source>
         <translation>Nova url de compartilhador:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="490"/>
         <source>This url seed is already in the list.</source>
         <translation>Essa url de compartilhador já está na lista.</translation>
     </message>
@@ -4656,59 +4019,47 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Nenhum</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="483"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nova url de compartilhador</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="798"/>
         <source>The following url seeds are available for this torrent:</source>
         <translation>As urls a seguir estão disponíveis para este torrent:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="761"/>
         <source>Priorities error</source>
         <translation>Erro de prioridades</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="761"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Erro, você não pode filtrar todos arquivos no torrent.</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="291"/>
         <source>Downloaded pieces</source>
         <translation>Partes baixadas</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="942"/>
         <source>Collapse all</source>
         <translation>Fechar todos</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="949"/>
         <source>Expand all</source>
         <translation>Expandir todos</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="205"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="694"/>
-        <location filename="../properties_imp.cpp" line="696"/>
         <source>Choose save path</source>
         <translation>Escolha um caminho de salvamento</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="703"/>
         <source>Save path creation error</source>
         <translation>Erro ao criar caminho de salvamento</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="703"/>
         <source>Could not create the save path</source>
         <translation>Não foi possível criar caminho de salvamento</translation>
     </message>
@@ -4716,8 +4067,6 @@ Portanto os plugins foram desabilitados.</translation>
 <context>
     <name>search_engine</name>
     <message>
-        <location filename="../search.ui" line="14"/>
-        <location filename="../search.ui" line="94"/>
         <source>Search</source>
         <translation>Busca</translation>
     </message>
@@ -4726,22 +4075,18 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Mecanismos de Busca</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="45"/>
         <source>Search Pattern:</source>
         <translation>Padrão de busca:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="110"/>
         <source>Stop</source>
         <translation>Parar</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="145"/>
         <source>Status:</source>
         <translation>Estado:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="175"/>
         <source>Stopped</source>
         <translation>Parado</translation>
     </message>
@@ -4750,7 +4095,6 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Resultados:</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="219"/>
         <source>Download</source>
         <translation>Download</translation>
     </message>
@@ -4763,7 +4107,6 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Atualizar plugin de busca</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="117"/>
         <source>Search engines...</source>
         <translation>Máquinas de busca...</translation>
     </message>
@@ -4775,7 +4118,6 @@ Portanto os plugins foram desabilitados.</translation>
 <context>
     <name>seeding</name>
     <message>
-        <location filename="../seeding.ui" line="14"/>
         <source>Search</source>
         <translation>Busca</translation>
     </message>
@@ -4784,102 +4126,82 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Os torrents a seguir terminaram e compartilham:</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="41"/>
         <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
         <translation>&lt;u&gt;Info:&lt;/u&gt; É importante que você mantenha compartilhando seus torrents terminados para o bem estar da rede.</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="48"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="53"/>
         <source>Pause</source>
         <translation>Pausar</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="58"/>
         <source>Delete</source>
         <translation>Apagar</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="63"/>
         <source>Delete Permanently</source>
         <translation>Apagar permanentemente</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="68"/>
         <source>Torrent Properties</source>
         <translation>Propriedades do Torrent</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="73"/>
         <source>Preview file</source>
         <translation>Arquivo de pré-visualização</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="78"/>
         <source>Set upload limit</source>
         <translation>Setar limite de upload</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="87"/>
         <source>Open destination folder</source>
         <translation>Abrir pasta de destino</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="92"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="97"/>
         <source>Size</source>
         <translation>Tamanho</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="102"/>
         <source>Upload Speed</source>
         <translation>Velocidade de upload</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="107"/>
-        <location filename="../seeding.ui" line="110"/>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Peers conectados</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="143"/>
-        <location filename="../seeding.ui" line="146"/>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>Seeds / Leechers</translation>
     </message>
     <message>
         <source>Leechers</source>
         <translation type="obsolete">Compartilhadores</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="115"/>
         <source>Ratio</source>
         <translation>Taxa</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="124"/>
         <source>Buy it</source>
         <translation>Compre isso</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="138"/>
         <source>Total uploaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Total uploaded</translation>
     </message>
     <message>
         <source>Priority</source>
         <translation type="obsolete">Prioridade</translation>
     </message>
     <message>
-        <location filename="../seeding.ui" line="133"/>
         <source>Force recheck</source>
         <translation>Forçar re-checagem</translation>
     </message>
@@ -4887,22 +4209,18 @@ Portanto os plugins foram desabilitados.</translation>
 <context>
     <name>subDownloadThread</name>
     <message>
-        <location filename="../downloadThread.cpp" line="43"/>
         <source>Host is unreachable</source>
         <translation>O host é inalcançável</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="46"/>
         <source>File was not found (404)</source>
         <translation>Arquivo não encontrado (404)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="50"/>
         <source>Connection was denied</source>
         <translation>Conexão foi negada</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="52"/>
         <source>Url is invalid</source>
         <translation>Url é inválida</translation>
     </message>
@@ -4919,27 +4237,22 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Conteúdo foi movido (301)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="62"/>
         <source>Connection failure</source>
         <translation>Conexão falhou</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="64"/>
         <source>Connection was timed out</source>
         <translation>Conexão esgotou o tempo</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="66"/>
         <source>Incorrect network interface</source>
         <translation>Relação da rede incorreta</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="68"/>
         <source>Unknown error</source>
         <translation>Erro desconhecido</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="54"/>
         <source>Could not resolve proxy</source>
         <translation>Não pude resolver proxy</translation>
     </message>
@@ -4951,8 +4264,6 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Verdadeiro</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="124"/>
-        <location filename="../torrentAddition.h" line="127"/>
         <source>Unable to decode torrent file:</source>
         <translation>Incapaz de decodificar o arquivo torrent:</translation>
     </message>
@@ -4961,8 +4272,6 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Este arquivo está corrompido ou não é um arquivo torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="264"/>
-        <location filename="../torrentAddition.h" line="266"/>
         <source>Choose save path</source>
         <translation>Escolha um caminho de salvamento</translation>
     </message>
@@ -4971,53 +4280,42 @@ Portanto os plugins foram desabilitados.</translation>
         <translation type="obsolete">Falso</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="395"/>
         <source>Empty save path</source>
         <translation>Caminho de salvamento vazio</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="395"/>
         <source>Please enter a save path</source>
         <translation>Por favor digite um caminho de salvamento</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="401"/>
         <source>Save path creation error</source>
         <translation>Erro ao criar caminho de salvamento</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="401"/>
         <source>Could not create the save path</source>
         <translation>Não foi possível criar caminho de salvamento</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="423"/>
         <source>Invalid file selection</source>
         <translation>Seleção de arquivo inválida</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="423"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Você deve selecionar um arquivo no torrent</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="74"/>
         <source>File name</source>
         <translation>Nome do arquivo</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="75"/>
         <source>Size</source>
         <translation>Tamanho</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="76"/>
         <source>Progress</source>
         <translation>Progresso</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="77"/>
-        <location filename="../torrentAddition.h" line="299"/>
         <source>Priority</source>
         <translation>Prioridade</translation>
     </message>

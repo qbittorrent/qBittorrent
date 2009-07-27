@@ -56,7 +56,7 @@
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="unfinished">bittorrent 的用戶端軟體, 使用 Qt4 和 libtorrent, 以 C++ 語言編寫。&lt;br&gt;
+        <translation>bittorrent 的用戶端軟體, 使用 Qt4 和 libtorrent, 以 C++ 語言編寫。&lt;br&gt;
 &lt;br&gt;
 版權所有 © 2006 by Christophe Dumez
 &lt;br&gt; &lt;u&gt;首頁:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
@@ -244,11 +244,11 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>網路</translation>
     </message>
     <message>
         <source>IP Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>IP 過濾</translation>
     </message>
     <message>
         <source>User interface settings</source>
@@ -328,23 +328,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>Transfer lists double-click</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>雙擊傳輸清單</translation>
     </message>
     <message>
         <source>Download list:</source>
-        <translation type="unfinished"></translation>
+        <translation>下載清單:</translation>
     </message>
     <message>
         <source>Seeding list:</source>
-        <translation type="unfinished"></translation>
+        <translation>做種清單:</translation>
     </message>
     <message>
         <source>Download folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>下載資料夾:</translation>
     </message>
     <message>
         <source>Temp folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>暫存資料夾:</translation>
     </message>
     <message>
         <source>Automatically download torrents present in this folder:</source>
@@ -381,15 +381,15 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittorrent 特性</translation>
     </message>
     <message>
         <source>Use the same port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT 和 Bittorrent 使用相同的埠</translation>
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT 埠:</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -582,7 +582,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished">代理伺服器</translation>
+        <translation>代理伺服器</translation>
     </message>
     <message>
         <source>Search engine proxy settings</source>
@@ -748,16 +748,16 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>種子/不完整種子</translation>
     </message>
     <message>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>已連接的使用者</translation>
     </message>
     <message>
         <source>Total uploaded</source>
         <comment>i.e: Total amount of uploaded data</comment>
-        <translation type="unfinished"></translation>
+        <translation>全部上傳</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -906,7 +906,8 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Torrent %1 發生了 I/O 錯誤。
+原因: %2</translation>
     </message>
     <message>
         <source>qBittorrent is bind to port: %1</source>
@@ -1012,7 +1013,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent 綁定埠: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
@@ -1028,7 +1029,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT 支援 [開啟], 埠: UDP/%1</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
@@ -1359,23 +1360,23 @@ Are you sure you want to quit qBittorrent?</source>
     <name>SearchEngine</name>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>剪下</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>複製</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>貼上</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation type="unfinished"></translation>
+        <translation>清除欄位</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation type="unfinished"></translation>
+        <translation>清除已完成的紀錄</translation>
     </message>
     <message>
         <source>Empty search pattern</source>
@@ -2301,11 +2302,11 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Main info</source>
-        <translation type="unfinished"></translation>
+        <translation>主要資訊</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent 資訊</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
@@ -2560,11 +2561,11 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>已連接的使用者</translation>
     </message>
     <message>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>種子/不完整種子</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -2580,7 +2581,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Total uploaded</source>
-        <translation type="unfinished"></translation>
+        <translation>全部上傳</translation>
     </message>
     <message>
         <source>Priority</source>
