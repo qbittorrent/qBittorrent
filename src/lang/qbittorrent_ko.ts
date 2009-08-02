@@ -11,17 +11,17 @@
 <context>
     <name>AboutDlg</name>
     <message>
-        <location filename="../about.ui" line="26"/>
+        <location filename="../about.ui" line="27"/>
         <source>About qBittorrent</source>
         <translation>큐비토런트에 대하여</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="88"/>
+        <location filename="../about.ui" line="89"/>
         <source>About</source>
         <translation>정보</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="134"/>
+        <location filename="../about.ui" line="137"/>
         <source>Author</source>
         <translation>저자</translation>
     </message>
@@ -30,32 +30,32 @@
         <translation type="obsolete">큐비토런트 제작자</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="181"/>
+        <location filename="../about.ui" line="184"/>
         <source>Name:</source>
         <translation>이름:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="199"/>
+        <location filename="../about.ui" line="202"/>
         <source>Country:</source>
         <translation>국가:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="253"/>
+        <location filename="../about.ui" line="256"/>
         <source>E-mail:</source>
         <translation>E-메일:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="271"/>
+        <location filename="../about.ui" line="274"/>
         <source>Home page:</source>
         <translation>홈페이지:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="301"/>
+        <location filename="../about.ui" line="304"/>
         <source>Christophe Dumez</source>
         <translation>크리스토프 두메스</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="308"/>
+        <location filename="../about.ui" line="311"/>
         <source>France</source>
         <translation>프랑스</translation>
     </message>
@@ -64,17 +64,17 @@
         <translation type="obsolete">도와주신 분들</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="375"/>
+        <location filename="../about.ui" line="378"/>
         <source>Translation</source>
         <translation>번역</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="392"/>
+        <location filename="../about.ui" line="395"/>
         <source>License</source>
         <translation>라이센스</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="59"/>
+        <location filename="../about.ui" line="60"/>
         <source>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</source>
         <translation>&lt;h3&gt;&lt;b&gt;큐비토런트&lt;/b&gt;&lt;/h3&gt;</translation>
     </message>
@@ -93,47 +93,59 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">큐비토런트 제작자</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="329"/>
+        <location filename="../about.ui" line="332"/>
         <source>chris@qbittorrent.org</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../about.ui" line="336"/>
+        <location filename="../about.ui" line="339"/>
         <source>http://www.dchris.eu</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../about.ui" line="217"/>
+        <location filename="../about.ui" line="220"/>
         <source>Birthday:</source>
         <translation>생일:</translation>
     </message>
+    <message utf8="true">
+        <location filename="../about.ui" line="120"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A Bittorrent client programmed in C++, &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;based on Qt4 toolkit and libtorrent-rasterbar.&lt;br /&gt;&lt;br /&gt;Copyright © 2006-2009 by Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
-        <location filename="../about.ui" line="235"/>
+        <location filename="../about.ui" line="238"/>
         <source>Occupation:</source>
         <translation>직업:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="315"/>
+        <location filename="../about.ui" line="318"/>
         <source>03/05/1985</source>
         <translation>03/05/1985</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="322"/>
+        <location filename="../about.ui" line="325"/>
         <source>Student in computer science</source>
         <translation>컴퓨터과학 대학생</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="362"/>
+        <location filename="../about.ui" line="365"/>
         <source>Thanks to</source>
         <translation>다음 분들에게 감사의 말씀을 드립니다</translation>
     </message>
     <message utf8="true">
-        <location filename="../about.ui" line="119"/>
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">이 프로그램은 비토렌트 클라이언트로 QT4와 libtorrent를 기반으로 C++로 만들어 졌습니다.&lt;br&gt;
+&lt;br&gt;
+저작권 © 2006 크리스토프 두메스&lt;br&gt;
+&lt;br&gt; &lt;u&gt;홈페이지:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -259,7 +271,7 @@ inside)</source>
     <message>
         <location filename="../options.ui" line="155"/>
         <source>Proxy</source>
-        <translation type="unfinished">프럭시 (Proxy)</translation>
+        <translation>프럭시 (Proxy)</translation>
     </message>
     <message>
         <source>Enable connection through a proxy server</source>
@@ -385,7 +397,7 @@ list:</source>
     <message>
         <location filename="../options.ui" line="164"/>
         <source>IP Filter</source>
-        <translation type="unfinished">IP 필터</translation>
+        <translation>IP 필터</translation>
     </message>
     <message>
         <source> Add Range</source>
@@ -485,7 +497,7 @@ list:</source>
     <message>
         <location filename="../options.ui" line="1483"/>
         <source>DHT port:</source>
-        <translation type="unfinished">DHT 포트:</translation>
+        <translation>DHT 포트:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="271"/>
@@ -678,7 +690,7 @@ list:</source>
     <message>
         <location filename="../options.ui" line="125"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>네트웍크</translation>
     </message>
     <message>
         <location filename="../options.ui" line="219"/>
@@ -780,27 +792,27 @@ list:</source>
         <location filename="../options.ui" line="468"/>
         <source>Transfer lists double-click</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>현재 진행중인 파일 더블클릭</translation>
     </message>
     <message>
         <location filename="../options.ui" line="476"/>
         <source>Download list:</source>
-        <translation type="unfinished"></translation>
+        <translation>다운로드 목록:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="528"/>
         <source>Seeding list:</source>
-        <translation type="unfinished"></translation>
+        <translation>완료(seeding) 목록:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="634"/>
         <source>Download folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>다운로드 폴더:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="677"/>
         <source>Temp folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>임시 폴더:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="744"/>
@@ -846,12 +858,12 @@ list:</source>
     <message>
         <location filename="../options.ui" line="1436"/>
         <source>Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation>비토렌트 기능</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1452"/>
         <source>Use the same port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT와 비토렌트에 동일한 포트를 사용하기</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1726"/>
@@ -1291,12 +1303,12 @@ list:</source>
     <message>
         <location filename="../FinishedTorrents.cpp" line="53"/>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>완전체 공유자/부분파일 공유자</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="54"/>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>연결된 사용자</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -1347,7 +1359,7 @@ list:</source>
         <location filename="../FinishedTorrents.cpp" line="55"/>
         <source>Total uploaded</source>
         <comment>i.e: Total amount of uploaded data</comment>
-        <translation type="unfinished"></translation>
+        <translation>총 업로드</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="450"/>
@@ -2096,7 +2108,8 @@ Please close the other one first.</source>
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished"></translation>
+        <translation>다음 파일에서 IO오류가 발생하였습니다 (%1).
+ 이유: %2</translation>
     </message>
     <message>
         <source>qBittorrent is bind to port: %1</source>
@@ -2240,7 +2253,7 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../GUI.cpp" line="993"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>큐비토런트는 다음 포트을  사용하고 있습니다: TCP/%1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1018"/>
@@ -2260,7 +2273,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../GUI.cpp" line="1087"/>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT 지원 [사용함], 포트:&apos;UDP/%1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1100"/>
@@ -2935,27 +2948,27 @@ Changelog:
     <message>
         <location filename="../searchEngine.cpp" line="106"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>잘라내기</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="107"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>복사하기</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="108"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>붙이기</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="109"/>
         <source>Clear field</source>
-        <translation type="unfinished"></translation>
+        <translation>내용 지우기</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="110"/>
         <source>Clear completion history</source>
-        <translation type="unfinished"></translation>
+        <translation>완료 내역 지우기</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="450"/>
@@ -4572,12 +4585,12 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../properties.ui" line="30"/>
         <source>Main info</source>
-        <translation type="unfinished"></translation>
+        <translation>주요 정보</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="76"/>
         <source>Torrent information</source>
-        <translation type="unfinished"></translation>
+        <translation>토렌트 정보</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="378"/>
@@ -4945,13 +4958,13 @@ However, those plugins were disabled.</source>
         <location filename="../seeding.ui" line="107"/>
         <location filename="../seeding.ui" line="110"/>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>연결된 사용자</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="143"/>
         <location filename="../seeding.ui" line="146"/>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>완전체 공유자/부분파일 공유자</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -4970,7 +4983,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../seeding.ui" line="138"/>
         <source>Total uploaded</source>
-        <translation type="unfinished"></translation>
+        <translation>총 업로드</translation>
     </message>
     <message>
         <source>Priority</source>

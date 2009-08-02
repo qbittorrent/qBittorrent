@@ -91,7 +91,19 @@ class about : public QDialog, private Ui::AboutDlg{
       te_translation->scrollToAnchor(QString::fromUtf8("top"));
       // License
       te_license->append(QString::fromUtf8("<a name='top'></a>"));
-      te_license->append(QString::fromUtf8("<center><b>GNU GENERAL PUBLIC LICENSE</b></center><br>\
+      te_license->append(QString::fromUtf8("qBittorrent is licensed under the GNU General Public License version 2 with the\
+addition of the following special exception:\
+<br><br>\
+<i>In addition, as a special exception, the copyright holders give permission to\
+link this program with the OpenSSL project\'s \"OpenSSL\" library (or with\
+modified versions of it that use the same license as the \"OpenSSL\" library),\
+and distribute the linked executables. You must obey the GNU General Public\
+License in all respects for all of the code used other than \"OpenSSL\".  If you\
+modify file(s), you may extend this exception to your version of the file(s),\
+but you are not obligated to do so. If you do not wish to do so, delete this\
+exception statement from your version.</i>\
+<br><br>\
+          <center><b>GNU GENERAL PUBLIC LICENSE</b></center><br>\
           <center>Version 2, June 1991</center><br>\
           Copyright (C) 1989, 1991 Free Software Foundation, Inc.<br>\
           51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA<br>\

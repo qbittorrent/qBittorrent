@@ -1,8 +1,9 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <author>Christophe Dumez</author>
  <class>AboutDlg</class>
- <widget class="QDialog" name="AboutDlg" >
-  <property name="geometry" >
+ <widget class="QDialog" name="AboutDlg">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -10,65 +11,65 @@
     <height>320</height>
    </rect>
   </property>
-  <property name="minimumSize" >
+  <property name="minimumSize">
    <size>
     <width>504</width>
     <height>320</height>
    </size>
   </property>
-  <property name="maximumSize" >
+  <property name="maximumSize">
    <size>
     <width>504</width>
     <height>320</height>
    </size>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>About qBittorrent</string>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout">
    <item>
-    <layout class="QHBoxLayout" >
+    <layout class="QHBoxLayout">
      <item>
-      <widget class="QLabel" name="logo" >
-       <property name="minimumSize" >
+      <widget class="QLabel" name="logo">
+       <property name="minimumSize">
         <size>
          <width>22</width>
          <height>22</height>
         </size>
        </property>
-       <property name="maximumSize" >
+       <property name="maximumSize">
         <size>
          <width>22</width>
          <height>22</height>
         </size>
        </property>
-       <property name="text" >
+       <property name="text">
         <string/>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="lb_name" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+      <widget class="QLabel" name="lb_name">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="text" >
-        <string>&lt;h3>&lt;b>qBittorrent&lt;/b>&lt;/h3></string>
+       <property name="text">
+        <string>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</string>
        </property>
-       <property name="textFormat" >
+       <property name="textFormat">
         <enum>Qt::RichText</enum>
        </property>
       </widget>
      </item>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
          <height>20</height>
@@ -79,79 +80,90 @@
     </layout>
    </item>
    <item>
-    <widget class="QTabWidget" name="tw_tabs" >
-     <property name="currentIndex" >
+    <widget class="QTabWidget" name="tw_tabs">
+     <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab2" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab2">
+      <attribute name="title">
        <string>About</string>
       </attribute>
-      <widget class="QLabel" name="mascot_lbl" >
-       <property name="geometry" >
+      <widget class="QLabel" name="mascot_lbl">
+       <property name="geometry">
         <rect>
          <x>380</x>
-         <y>50</y>
+         <y>70</y>
          <width>94</width>
          <height>162</height>
         </rect>
        </property>
-       <property name="text" >
+       <property name="text">
         <string/>
        </property>
       </widget>
-      <widget class="QLabel" name="lb_about" >
-       <property name="geometry" >
+      <widget class="QLabel" name="lb_about">
+       <property name="geometry">
         <rect>
          <x>0</x>
-         <y>40</y>
+         <y>30</y>
          <width>481</width>
          <height>102</height>
         </rect>
        </property>
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="text" >
-        <string>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br>
-&lt;br>
-Copyright © 2006 by Christophe Dumez&lt;br>
-&lt;br> &lt;u>Home Page:&lt;/u> &lt;i>http://www.qbittorrent.org&lt;/i>&lt;br></string>
+       <property name="text">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'DejaVu Sans'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A bittorrent client programmed in C++, based on Qt4 toolkit &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright © 2006-2009 by Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
-       <property name="textFormat" >
+       <property name="textFormat">
         <enum>Qt::RichText</enum>
        </property>
-       <property name="alignment" >
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
         <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="openExternalLinks">
+        <bool>true</bool>
        </property>
       </widget>
      </widget>
-     <widget class="QWidget" name="tab3" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab3">
+      <attribute name="title">
        <string>Author</string>
       </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
+      <layout class="QVBoxLayout">
+       <property name="spacing">
         <number>6</number>
        </property>
        <item>
-        <widget class="QFrame" name="te_authors" >
-         <layout class="QHBoxLayout" >
-          <property name="spacing" >
+        <widget class="QFrame" name="te_authors">
+         <layout class="QHBoxLayout">
+          <property name="spacing">
            <number>6</number>
           </property>
           <item>
            <spacer>
-            <property name="orientation" >
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeType" >
+            <property name="sizeType">
              <enum>QSizePolicy::Preferred</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
               <height>20</height>
@@ -160,13 +172,13 @@ Copyright © 2006 by Christophe Dumez&lt;br>
            </spacer>
           </item>
           <item>
-           <layout class="QVBoxLayout" >
-            <property name="spacing" >
+           <layout class="QVBoxLayout">
+            <property name="spacing">
              <number>6</number>
             </property>
             <item>
-             <widget class="QLabel" name="label_3" >
-              <property name="font" >
+             <widget class="QLabel" name="label_3">
+              <property name="font">
                <font>
                 <family>Sans Serif</family>
                 <pointsize>9</pointsize>
@@ -177,14 +189,14 @@ Copyright © 2006 by Christophe Dumez&lt;br>
                 <strikeout>false</strikeout>
                </font>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Name:</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_4" >
-              <property name="font" >
+             <widget class="QLabel" name="label_4">
+              <property name="font">
                <font>
                 <family>Sans Serif</family>
                 <pointsize>9</pointsize>
@@ -195,14 +207,14 @@ Copyright © 2006 by Christophe Dumez&lt;br>
                 <strikeout>false</strikeout>
                </font>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Country:</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="lbl_birthday" >
-              <property name="font" >
+             <widget class="QLabel" name="lbl_birthday">
+              <property name="font">
                <font>
                 <family>Sans Serif</family>
                 <pointsize>9</pointsize>
@@ -213,14 +225,14 @@ Copyright © 2006 by Christophe Dumez&lt;br>
                 <strikeout>false</strikeout>
                </font>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Birthday:</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="lbl_occupation" >
-              <property name="font" >
+             <widget class="QLabel" name="lbl_occupation">
+              <property name="font">
                <font>
                 <family>Sans Serif</family>
                 <pointsize>9</pointsize>
@@ -231,14 +243,14 @@ Copyright © 2006 by Christophe Dumez&lt;br>
                 <strikeout>false</strikeout>
                </font>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Occupation:</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_5" >
-              <property name="font" >
+             <widget class="QLabel" name="label_5">
+              <property name="font">
                <font>
                 <family>Sans Serif</family>
                 <pointsize>9</pointsize>
@@ -249,14 +261,14 @@ Copyright © 2006 by Christophe Dumez&lt;br>
                 <strikeout>false</strikeout>
                </font>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>E-mail:</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_8" >
-              <property name="font" >
+             <widget class="QLabel" name="label_8">
+              <property name="font">
                <font>
                 <family>Sans Serif</family>
                 <pointsize>9</pointsize>
@@ -267,7 +279,7 @@ Copyright © 2006 by Christophe Dumez&lt;br>
                 <strikeout>false</strikeout>
                </font>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Home page:</string>
               </property>
              </widget>
@@ -276,13 +288,13 @@ Copyright © 2006 by Christophe Dumez&lt;br>
           </item>
           <item>
            <spacer>
-            <property name="orientation" >
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeType" >
+            <property name="sizeType">
              <enum>QSizePolicy::Preferred</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
               <height>20</height>
@@ -291,48 +303,48 @@ Copyright © 2006 by Christophe Dumez&lt;br>
            </spacer>
           </item>
           <item>
-           <layout class="QVBoxLayout" >
-            <property name="spacing" >
+           <layout class="QVBoxLayout">
+            <property name="spacing">
              <number>6</number>
             </property>
             <item>
-             <widget class="QLabel" name="label_2" >
-              <property name="text" >
+             <widget class="QLabel" name="label_2">
+              <property name="text">
                <string>Christophe Dumez</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_7" >
-              <property name="text" >
+             <widget class="QLabel" name="label_7">
+              <property name="text">
                <string>France</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_11" >
-              <property name="text" >
+             <widget class="QLabel" name="label_11">
+              <property name="text">
                <string>03/05/1985</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_10" >
-              <property name="text" >
+             <widget class="QLabel" name="label_10">
+              <property name="text">
                <string>Student in computer science</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_6" >
-              <property name="text" >
+             <widget class="QLabel" name="label_6">
+              <property name="text">
                <string>chris@qbittorrent.org</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_9" >
-              <property name="text" >
+             <widget class="QLabel" name="label_9">
+              <property name="text">
                <string>http://www.dchris.eu</string>
               </property>
              </widget>
@@ -341,10 +353,10 @@ Copyright © 2006 by Christophe Dumez&lt;br>
           </item>
           <item>
            <spacer>
-            <property name="orientation" >
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>40</width>
               <height>20</height>
@@ -357,46 +369,46 @@ Copyright © 2006 by Christophe Dumez&lt;br>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab4" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab4">
+      <attribute name="title">
        <string>Thanks to</string>
       </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
+      <layout class="QVBoxLayout">
+       <property name="spacing">
         <number>6</number>
        </property>
        <item>
-        <widget class="QTextBrowser" name="te_thanks" />
+        <widget class="QTextBrowser" name="te_thanks"/>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab5" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab5">
+      <attribute name="title">
        <string>Translation</string>
       </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
+      <layout class="QVBoxLayout">
+       <property name="spacing">
         <number>6</number>
        </property>
        <item>
-        <widget class="QTextBrowser" name="te_translation" >
-         <property name="lineWrapMode" >
+        <widget class="QTextBrowser" name="te_translation">
+         <property name="lineWrapMode">
           <enum>QTextEdit::NoWrap</enum>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab1" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab1">
+      <attribute name="title">
        <string>License</string>
       </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
+      <layout class="QVBoxLayout">
+       <property name="spacing">
         <number>6</number>
        </property>
        <item>
-        <widget class="QTextBrowser" name="te_license" />
+        <widget class="QTextBrowser" name="te_license"/>
        </item>
       </layout>
      </widget>
@@ -404,7 +416,7 @@ Copyright © 2006 by Christophe Dumez&lt;br>
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11" />
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
