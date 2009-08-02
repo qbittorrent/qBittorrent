@@ -1,4 +1,4 @@
-#VERSION: 1.22
+#VERSION: 1.23
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 
 # Redistribution and use in source and binary forms, with or without
@@ -58,7 +58,13 @@ class mininova(object):
 					i += 1
 			except:
 				return None
-			return lnks.item(i).firstChild.toxml()
+			name = ""
+			for node in lnks[i].childNodes:
+				if node.hasChildNodes():
+					name += node.firstChild.toxml()
+				else:
+					name += node.toxml()
+			return name
 
 		def get_text(txt):
 			if txt.nodeType == txt.TEXT_NODE:
