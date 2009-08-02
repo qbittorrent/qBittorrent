@@ -13,48 +13,38 @@
         <source>About</source>
         <translation>Om</translation>
     </message>
-    <message utf8="true">
-        <location filename="../about.ui" line="120"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A Bittorrent client programmed in C++, &lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;based on Qt4 toolkit and libtorrent-rasterbar.&lt;br /&gt;&lt;br /&gt;Copyright © 2006-2009 by Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
-        <location filename="../about.ui" line="137"/>
+        <location filename="../about.ui" line="146"/>
         <source>Author</source>
         <translation>Opphavsmann</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="184"/>
+        <location filename="../about.ui" line="193"/>
         <source>Name:</source>
         <translation>Navn:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="202"/>
+        <location filename="../about.ui" line="211"/>
         <source>Country:</source>
         <translation>Land:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="256"/>
+        <location filename="../about.ui" line="265"/>
         <source>E-mail:</source>
         <translation>E-post:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="274"/>
+        <location filename="../about.ui" line="283"/>
         <source>Home page:</source>
         <translation>Hjemmeside:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="304"/>
+        <location filename="../about.ui" line="313"/>
         <source>Christophe Dumez</source>
         <translation>Christophe Dumez</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="311"/>
+        <location filename="../about.ui" line="320"/>
         <source>France</source>
         <translation>Frankrike</translation>
     </message>
@@ -63,12 +53,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Takk til</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="378"/>
+        <location filename="../about.ui" line="387"/>
         <source>Translation</source>
         <translation>Oversettelse</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="395"/>
+        <location filename="../about.ui" line="404"/>
         <source>License</source>
         <translation>Lisens</translation>
     </message>
@@ -88,37 +78,47 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Hjemmeside:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="332"/>
+        <location filename="../about.ui" line="341"/>
         <source>chris@qbittorrent.org</source>
         <translation>chris@qbittorrent.org</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="339"/>
+        <location filename="../about.ui" line="348"/>
         <source>http://www.dchris.eu</source>
         <translation>http://www.dchris.eu</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="220"/>
+        <location filename="../about.ui" line="229"/>
         <source>Birthday:</source>
         <translation>Fødselsdato:</translation>
     </message>
+    <message utf8="true">
+        <location filename="../about.ui" line="120"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A bittorrent client programmed in C++, based on Qt4 toolkit &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright © 2006-2009 by Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
-        <location filename="../about.ui" line="238"/>
+        <location filename="../about.ui" line="247"/>
         <source>Occupation:</source>
         <translation>Yrke:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="318"/>
+        <location filename="../about.ui" line="327"/>
         <source>03/05/1985</source>
         <translation>03. mai 1985</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="325"/>
+        <location filename="../about.ui" line="334"/>
         <source>Student in computer science</source>
         <translation>Datateknologi-student</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="365"/>
+        <location filename="../about.ui" line="374"/>
         <source>Thanks to</source>
         <translation type="unfinished"></translation>
     </message>
