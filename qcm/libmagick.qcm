@@ -64,14 +64,11 @@ public:
                          	return false;
 		}
 		conf->addLib(QString("-L") + s);
-		QProcess magickConfig;
+		QString out = "";
 		QStringList params;
-		params << "--libs";
-		magickConfig.start("Magick++-config", params, QIODevice::ReadOnly);
-		magickConfig.waitForStarted();
-		magickConfig.waitForFinished();
-		QByteArray result = magickConfig.readAll();
-		result = result.replace("\n", "");
+                params << "--libs";
+		qconf->doCommand("Magick++-config", params, &out);
+		out = out.replace("\n", "");
 		conf->addLib(result.data());
 		conf->addDefine("HAVE_MAGICK");
 		return true;

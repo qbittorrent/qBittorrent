@@ -1,9 +1,6 @@
 /*
 -----BEGIN QCMOD-----
 name: libtorrent-rasterbar
-arg: with-libtorrent-inc=[path], Path to libtorrent-rasterbar include files
-arg: with-libtorrent-lib=[path], Path to libtorrent-rasterbar library files
-arg: with-libtorrent-static-lib=[path], Path to libtorrent-rasterbar .a file
 -----END QCMOD-----
 */
 // see  Conf::findPkgConfig
@@ -11,61 +8,22 @@ class qc_libtorrent_rasterbar : public ConfObj
 {
 public:
 	qc_libtorrent_rasterbar(Conf *c) : ConfObj(c) {}
-	QString name() const { return "libtorrent-rasterbar >= 0.14"; }
+	QString name() const { return "libtorrent-rasterbar >= 0.14.0 (>= 0.14.4 advised)"; }
 	QString shortname() const { return "libtorrent-rasterbar"; }
 	bool exec(){
-        	QString s;
-		s = conf->getenv("QC_WITH_LIBTORRENT_INC");
-		if(!s.isEmpty()) {
-			if(!conf->checkHeader(s, "libtorrent/magnet_uri.hpp")) {
-				return false;
-      			}
-		}else{
-			QStringList sl;
-			sl << "/usr/include";
-			sl << "/usr/local/include";
-			bool found = false;
-			foreach(s, sl){
-				if(conf->checkHeader(s, "libtorrent/magnet_uri.hpp")){
-					found = true;
-					break;
-				}
-			}
-			if(!found) {
-				return false;
-          		}
-		}
-		conf->addIncludePath(s);
-		conf->addIncludePath(s+QDir::separator()+"libtorrent");
-
-		s = conf->getenv("QC_WITH_LIBTORRENT_STATIC_LIB");
-		if(!s.isEmpty() && QFile::exists(s) && s.endsWith(".a")){
-			conf->addLib(s);
-			return true;
-		}
-
-		s = conf->getenv("QC_WITH_LIBTORRENT_LIB");
-		if(!s.isEmpty()) {
-      			if(!conf->checkLibrary(s, "torrent-rasterbar")) {
-			        return false;
-			}
-      			conf->addLib(QString("-L") + s);
-		}else{
-			QStringList sl;
-			sl << "/usr/lib/";
-			sl << "/usr/lib64/";
-			sl << "/usr/local/lib/";
-			sl << "/usr/local/lib64/";
-			bool found = false;
-			foreach(s, sl){
-				if(conf->checkLibrary(s, "torrent-rasterbar")){
-					found = true;
-					break;
-				}
-			}
-			if(!found) return false;
-			conf->addLib(QString("-L") + s);
-		}
+		QStringList incs;
+		QString req_ver = "0.14.0";
+		QString adv_ver = "0.14.4";
+		QString version, libs, other;
+		VersionMode mode = VersionMin;
+		if(!conf->findPkgConfig("libtorrent-rasterbar", mode, req_ver, &version, &incs, &libs, &other))
+			return false;
+		for(int n = 0; n < incs.count(); ++n)
+			conf->addIncludePath(incs[n]);
+		if(!libs.isEmpty())
+			conf->addLib(libs);
+		if(!conf->findPkgConfig("libtorrent-rasterbar", mode, adv_ver, &version, &incs, &libs, &other))
+			printf("\nWarning: libtorrent-rasterbar v%s was detected. Although it will compile and run, you will probably experience some bugs. Please consider updating to v%s!\n", version.toUtf8().data(), adv_ver.toUtf8().data());
 		return true;
 	}
 };
