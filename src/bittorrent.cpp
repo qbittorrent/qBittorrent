@@ -62,7 +62,7 @@ bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(
   // Check if we should spoof azureus
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   if(settings.value(QString::fromUtf8("AzureusSpoof"), false).toBool()) {
-    s = new session(fingerprint("AZ", 3, 0, 5, 2), 0);
+    s = new session(fingerprint("UT", 1, 8, 3, 0), 0);
   } else {
     s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0), 0);
   }
@@ -450,7 +450,7 @@ QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
       savepath_file.write(savePath.toLocal8Bit());
       savepath_file.close();
   }
-  if(defaultTempPath.isEmpty()) {
+  if(defaultTempPath.isEmpty() || QFile::exists(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".finished"))) {
     p.save_path = savePath.toLocal8Bit().data();
   } else {
     p.save_path = defaultTempPath.toLocal8Bit().data();
