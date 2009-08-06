@@ -226,7 +226,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="155"/>
         <source>Proxy</source>
-        <translation type="unfinished">Proxy</translation>
+        <translation>Proxy</translation>
     </message>
     <message>
         <source>Proxy Settings</source>
@@ -310,7 +310,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="164"/>
         <source>IP Filter</source>
-        <translation type="unfinished">IP-szűrő</translation>
+        <translation>IP szűrő</translation>
     </message>
     <message>
         <source> Add Range</source>
@@ -386,7 +386,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1483"/>
         <source>DHT port:</source>
-        <translation type="unfinished">DHT port:</translation>
+        <translation>DHT port:</translation>
     </message>
     <message>
         <source>Language</source>
@@ -567,7 +567,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="125"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Hálózat</translation>
     </message>
     <message>
         <location filename="../options.ui" line="219"/>
@@ -669,27 +669,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="468"/>
         <source>Transfer lists double-click</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dupla klikk esetén</translation>
     </message>
     <message>
         <location filename="../options.ui" line="476"/>
         <source>Download list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltési listán:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="528"/>
         <source>Seeding list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltési listán:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="634"/>
         <source>Download folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltési könyvtár:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="677"/>
         <source>Temp folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Átmeneti könyvtár:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="744"/>
@@ -735,12 +735,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="1436"/>
         <source>Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittorrent funkciók</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1452"/>
         <source>Use the same port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyazon port használata Bittorrenthez és DHT-hoz</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1726"/>
@@ -1180,12 +1180,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FinishedTorrents.cpp" line="53"/>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>Seederek / Leecherek</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="54"/>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Csatlakozott ügyfelek</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -1241,7 +1241,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../FinishedTorrents.cpp" line="55"/>
         <source>Total uploaded</source>
         <comment>i.e: Total amount of uploaded data</comment>
-        <translation type="unfinished"></translation>
+        <translation>Teljes feltöltés</translation>
     </message>
     <message>
         <location filename="../FinishedTorrents.cpp" line="450"/>
@@ -1560,7 +1560,7 @@ Kérlek előbb azt zárd be.</translation>
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished"></translation>
+        <translation>I/O hiba történt ennél a torrentnél %1. Oka: %2</translation>
     </message>
     <message>
         <source>qBittorrent is bind to port: %1</source>
@@ -1718,7 +1718,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <location filename="../GUI.cpp" line="993"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ezen a porton figyel: TCP/%1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1018"/>
@@ -1738,7 +1738,7 @@ Mégis leállítod a qBittorrentet?</translation>
     <message>
         <location filename="../GUI.cpp" line="1087"/>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT támogatás [ON], port: UDP/%1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1100"/>
@@ -2302,27 +2302,27 @@ Changelog:
     <message>
         <location filename="../searchEngine.cpp" line="106"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Kivágás</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="107"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Másolás</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="108"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Beillesztés</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="109"/>
         <source>Clear field</source>
-        <translation type="unfinished"></translation>
+        <translation>Mező törlése</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="110"/>
         <source>Clear completion history</source>
-        <translation type="unfinished"></translation>
+        <translation>Előzmények törlése</translation>
     </message>
     <message>
         <location filename="../searchEngine.cpp" line="450"/>
@@ -3617,12 +3617,12 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
     <message>
         <location filename="../properties.ui" line="30"/>
         <source>Main info</source>
-        <translation type="unfinished"></translation>
+        <translation>Fő adatok</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="76"/>
         <source>Torrent information</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent adatok</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="378"/>
@@ -3974,13 +3974,13 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <location filename="../seeding.ui" line="107"/>
         <location filename="../seeding.ui" line="110"/>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Csatlakozott ügyfelek</translation>
     </message>
     <message>
         <location filename="../seeding.ui" line="143"/>
         <location filename="../seeding.ui" line="146"/>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltők / Letöltők</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -3999,7 +3999,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
     <message>
         <location filename="../seeding.ui" line="138"/>
         <source>Total uploaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Teljes feltöltés</translation>
     </message>
     <message>
         <source>Priority</source>
