@@ -1255,6 +1255,15 @@ void bittorrent::readAlerts() {
       if(h.is_valid()){
         QString hash = h.hash();
         qDebug("%s have just finished checking", hash.toLocal8Bit().data());
+        // Move to temp directory if necessary
+        if(!h.is_seed() && !defaultTempPath.isEmpty()) {
+          // Check if directory is different
+          QDir current_dir(h.save_path());
+          QDir save_dir(getSavePath(h.hash()));
+          if(current_dir == save_dir) {
+            h.move_storage(defaultTempPath);
+          }
+        }
         emit torrentFinishedChecking(h);
       }
     }
