@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>788</width>
+    <width>789</width>
     <height>586</height>
    </rect>
   </property>
@@ -1528,7 +1528,7 @@
             <item>
              <widget class="QCheckBox" name="checkAzureusSpoof">
               <property name="text">
-               <string>Spoof Azureus to avoid ban (requires restart)</string>
+               <string>Spoof µtorrent to avoid ban (requires restart)</string>
               </property>
              </widget>
             </item>

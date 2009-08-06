@@ -939,7 +939,7 @@ folder:</source>
     </message>
     <message>
         <source>Spoof Azureus to avoid ban (requires restart)</source>
-        <translation>假借Azureus名义避免被阻止(需重启)</translation>
+        <translation type="obsolete">假借Azureus名义避免被阻止(需重启)</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -992,6 +992,10 @@ folder:</source>
     <message>
         <source>Maximum active uploads:</source>
         <translation>使激活的上传最大化:</translation>
+    </message>
+    <message utf8="true">
+        <source>Spoof µtorrent to avoid ban (requires restart)</source>
+        <translation>假借µtorrent名义避免被阻止(需重启)</translation>
     </message>
 </context>
 <context>

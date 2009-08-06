@@ -906,7 +906,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Spoof Azureus to avoid ban (requires restart)</source>
-        <translation>&quot;Обманывать&quot; Azureus чтобы избежать бана (требуется перезапуск)</translation>
+        <translation type="obsolete">&quot;Обманывать&quot; Azureus чтобы избежать бана (требуется перезапуск)</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -959,6 +959,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Maximum active uploads:</source>
         <translation>Максимальное число активных раздач:</translation>
+    </message>
+    <message utf8="true">
+        <source>Spoof µtorrent to avoid ban (requires restart)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

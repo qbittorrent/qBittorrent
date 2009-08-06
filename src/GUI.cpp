@@ -745,8 +745,7 @@ void GUI::dropEvent(QDropEvent *event) {
   if(event->mimeData()->hasUrls()) {
     QList<QUrl> urls = event->mimeData()->urls();
     foreach(const QUrl &url, urls) {
-      QString tmp = url.toString();
-      tmp.trimmed();
+      QString tmp = url.toString().trimmed();
       if(!tmp.isEmpty())
         files << url.toString();
     }

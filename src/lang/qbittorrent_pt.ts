@@ -852,7 +852,7 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
     <message>
         <source>Spoof Azureus to avoid ban (requires restart)</source>
-        <translation>Parar Azureus para evitar ser banido</translation>
+        <translation type="obsolete">Parar Azureus para evitar ser banido</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -905,6 +905,10 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     <message>
         <source>Maximum active uploads:</source>
         <translation>Uploads máximos ativos:</translation>
+    </message>
+    <message utf8="true">
+        <source>Spoof µtorrent to avoid ban (requires restart)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

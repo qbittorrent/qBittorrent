@@ -540,7 +540,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Spoof Azureus to avoid ban (requires restart)</source>
-        <translation>Identifiera som Azureus för att undvika bannlysning (kräver omstart)</translation>
+        <translation type="obsolete">Identifiera som Azureus för att undvika bannlysning (kräver omstart)</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -597,6 +597,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Maximum active uploads:</source>
         <translation>Maximalt antal aktiva sändningar:</translation>
+    </message>
+    <message utf8="true">
+        <source>Spoof µtorrent to avoid ban (requires restart)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

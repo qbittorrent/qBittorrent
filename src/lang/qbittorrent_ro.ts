@@ -860,7 +860,7 @@ qBittorrent va monitoriza directoriul și va adăuga în lista de descărcare a 
     </message>
     <message>
         <source>Spoof Azureus to avoid ban (requires restart)</source>
-        <translation>Spoof Azureus to avoid ban (requires restart)</translation>
+        <translation type="obsolete">Spoof Azureus to avoid ban (requires restart)</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -913,6 +913,10 @@ qBittorrent va monitoriza directoriul și va adăuga în lista de descărcare a 
     <message>
         <source>Maximum active uploads:</source>
         <translation>Numărul maxim de upload-uri active :</translation>
+    </message>
+    <message utf8="true">
+        <source>Spoof µtorrent to avoid ban (requires restart)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -547,7 +547,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Spoof Azureus to avoid ban (requires restart)</source>
-        <translation>假裝為 Azureus 以避免被踢出 (需要重新啟動)</translation>
+        <translation type="obsolete">假裝為 Azureus 以避免被踢出 (需要重新啟動)</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -604,6 +604,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Maximum active uploads:</source>
         <translation>最大活躍的上傳數:</translation>
+    </message>
+    <message utf8="true">
+        <source>Spoof µtorrent to avoid ban (requires restart)</source>
+        <translation>假裝為 µtorrent 以避免被踢出 (需要重新啟動)</translation>
     </message>
 </context>
 <context>
