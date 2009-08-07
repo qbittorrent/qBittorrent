@@ -45,6 +45,7 @@
 #include <QSettings>
 #include <QDesktopWidget>
 #include <QFileDialog>
+#include <QHeaderView>
 
 // Constructor
 properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h): QDialog(parent), h(h), BTSession(BTSession), changedFilteredfiles(false), hash(h.hash()) {
