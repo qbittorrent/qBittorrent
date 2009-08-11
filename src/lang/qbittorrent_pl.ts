@@ -4548,7 +4548,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Uzyskiwanie</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="91"/>
+        <location filename="../properties_imp.cpp" line="92"/>
         <source>Unknown</source>
         <translation>Nieznany</translation>
     </message>
@@ -4566,7 +4566,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation>Pliki w torrencie:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="64"/>
+        <location filename="../properties_imp.cpp" line="65"/>
         <source>Size</source>
         <translation>Rozmiar</translation>
     </message>
@@ -4604,8 +4604,8 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation>Trackery:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="476"/>
-        <location filename="../properties_imp.cpp" line="644"/>
+        <location filename="../properties_imp.cpp" line="477"/>
+        <location filename="../properties_imp.cpp" line="645"/>
         <source>None - Unreachable?</source>
         <translation>Brak - Nieosiągalny?</translation>
     </message>
@@ -4614,7 +4614,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Błędy:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="65"/>
+        <location filename="../properties_imp.cpp" line="66"/>
         <source>Progress</source>
         <translation>Postęp</translation>
     </message>
@@ -4730,49 +4730,49 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">URL nowego trackera:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>Priorities:</source>
         <translation>Pierwszeństwa:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>Normal: normal priority. Download order is dependent on availability</source>
         <translation>Normalny: normalny priorytet. Kolejność pobierania zależy od dostępności</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
         <translation>Wysoki: wysoki priorytet. Części są ważniejsze od tych z taką samą dostępnością, lecz nie od części z niższą dostępnością</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
         <translation>Maksymalny: maksymalny priorytet. Dostępność jest zlekceważona, części są ważniejsze od tych z niższym priorytetem</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="63"/>
+        <location filename="../properties_imp.cpp" line="64"/>
         <source>File name</source>
         <translation>Nazwa pliku</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="66"/>
-        <location filename="../properties_imp.cpp" line="385"/>
+        <location filename="../properties_imp.cpp" line="67"/>
+        <location filename="../properties_imp.cpp" line="386"/>
         <source>Priority</source>
         <translation>Priorytet</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="489"/>
-        <location filename="../properties_imp.cpp" line="550"/>
+        <location filename="../properties_imp.cpp" line="490"/>
+        <location filename="../properties_imp.cpp" line="551"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="551"/>
+        <location filename="../properties_imp.cpp" line="552"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>Lista trackerów nie może być pusta.</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>Ignored: file is not downloaded at all</source>
         <translation>Ignorowany: plik nie jest pobierany</translation>
     </message>
@@ -4802,12 +4802,12 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation>Url seeda</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="484"/>
+        <location filename="../properties_imp.cpp" line="485"/>
         <source>New url seed:</source>
         <translation>Nowy url seeda:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="490"/>
+        <location filename="../properties_imp.cpp" line="491"/>
         <source>This url seed is already in the list.</source>
         <translation>Ten url seeda już jest na liście.</translation>
     </message>
@@ -4821,7 +4821,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="obsolete">Brak</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="483"/>
+        <location filename="../properties_imp.cpp" line="484"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nowy url seeda</translation>
@@ -4832,12 +4832,12 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation>Dla tego torrenta dostępne są następujące url seeda:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="761"/>
+        <location filename="../properties_imp.cpp" line="762"/>
         <source>Priorities error</source>
         <translation>Błąd priorytetu</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="761"/>
+        <location filename="../properties_imp.cpp" line="762"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Błąd, nie można filtrować wszystkich plików torrencie.</translation>
     </message>
@@ -4862,18 +4862,18 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="694"/>
-        <location filename="../properties_imp.cpp" line="696"/>
+        <location filename="../properties_imp.cpp" line="695"/>
+        <location filename="../properties_imp.cpp" line="697"/>
         <source>Choose save path</source>
         <translation type="unfinished">Wybierz katalog docelowy</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="703"/>
+        <location filename="../properties_imp.cpp" line="704"/>
         <source>Save path creation error</source>
         <translation type="unfinished">Błąd tworzenia katalogu docelowego</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="703"/>
+        <location filename="../properties_imp.cpp" line="704"/>
         <source>Could not create the save path</source>
         <translation type="unfinished">Nie można założyć katalogu docelowego</translation>
     </message>

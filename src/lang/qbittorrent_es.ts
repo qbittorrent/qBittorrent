@@ -4506,7 +4506,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete"> MB</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="91"/>
+        <location filename="../properties_imp.cpp" line="92"/>
         <source>Unknown</source>
         <translation>Desconocido</translation>
     </message>
@@ -4545,7 +4545,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Puedes seleccionar aquí qué archivos deseas descargar específicamente en el torrent actual.</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="64"/>
+        <location filename="../properties_imp.cpp" line="65"/>
         <source>Size</source>
         <translation>Tamaño</translation>
     </message>
@@ -4554,8 +4554,8 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Seleccionado</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="476"/>
-        <location filename="../properties_imp.cpp" line="644"/>
+        <location filename="../properties_imp.cpp" line="477"/>
+        <location filename="../properties_imp.cpp" line="645"/>
         <source>None - Unreachable?</source>
         <translation>Nada - ¿Inaccesible?</translation>
     </message>
@@ -4572,7 +4572,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Errores:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="65"/>
+        <location filename="../properties_imp.cpp" line="66"/>
         <source>Progress</source>
         <translation>Progreso</translation>
     </message>
@@ -4688,49 +4688,49 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">URL del nuevo tracker:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>Priorities:</source>
         <translation>Prioridades:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>Normal: normal priority. Download order is dependent on availability</source>
         <translation>Normal: prioridad normal. El orden de descarga depende de la disponibilidad</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
         <translation>Alta: más alta que la prioridad normal. Piezas se prefieren sobre piezas con la misma disponibilidad, pero no sobre piezas con menor disponibilidad</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
         <translation>Máxima: prioridad máxima, la disponibilidad no importa, la pieza se prefiere sobre cualquier otra pieza con menor disponibilidad</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="63"/>
+        <location filename="../properties_imp.cpp" line="64"/>
         <source>File name</source>
         <translation>Nombre del archivo</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="66"/>
-        <location filename="../properties_imp.cpp" line="385"/>
+        <location filename="../properties_imp.cpp" line="67"/>
+        <location filename="../properties_imp.cpp" line="386"/>
         <source>Priority</source>
         <translation>Prioridad</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="489"/>
-        <location filename="../properties_imp.cpp" line="550"/>
+        <location filename="../properties_imp.cpp" line="490"/>
+        <location filename="../properties_imp.cpp" line="551"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="551"/>
+        <location filename="../properties_imp.cpp" line="552"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>La lista de trackers no puede estar vacía.</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>Ignored: file is not downloaded at all</source>
         <translation>Ignorado: el archivo no se ha descargado en lo absoluto</translation>
     </message>
@@ -4760,12 +4760,12 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation>Semillas Url</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="484"/>
+        <location filename="../properties_imp.cpp" line="485"/>
         <source>New url seed:</source>
         <translation>Nueva semilla url:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="490"/>
+        <location filename="../properties_imp.cpp" line="491"/>
         <source>This url seed is already in the list.</source>
         <translation>Esta semilla url ya está en la lista.</translation>
     </message>
@@ -4779,7 +4779,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Ninguno</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="483"/>
+        <location filename="../properties_imp.cpp" line="484"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nueva semilla url</translation>
@@ -4790,12 +4790,12 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation>Las siguientes semillas url están disponibles para este torrent:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="761"/>
+        <location filename="../properties_imp.cpp" line="762"/>
         <source>Priorities error</source>
         <translation>Error de propiedades</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="761"/>
+        <location filename="../properties_imp.cpp" line="762"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Error, no puedes filtrar todos los archivos en un torrent.</translation>
     </message>
@@ -4820,18 +4820,18 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="694"/>
-        <location filename="../properties_imp.cpp" line="696"/>
+        <location filename="../properties_imp.cpp" line="695"/>
+        <location filename="../properties_imp.cpp" line="697"/>
         <source>Choose save path</source>
         <translation type="unfinished">Selecciona la ruta de guardado</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="703"/>
+        <location filename="../properties_imp.cpp" line="704"/>
         <source>Save path creation error</source>
         <translation type="unfinished">Error en la creación de ruta de guardado</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="703"/>
+        <location filename="../properties_imp.cpp" line="704"/>
         <source>Could not create the save path</source>
         <translation type="unfinished">No se pudo crear la ruta de guardado</translation>
     </message>

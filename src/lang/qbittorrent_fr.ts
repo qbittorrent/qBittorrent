@@ -4674,7 +4674,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete"> Mo</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="91"/>
+        <location filename="../properties_imp.cpp" line="92"/>
         <source>Unknown</source>
         <translation>Inconnu</translation>
     </message>
@@ -4692,7 +4692,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation>Fichiers contenus dans le torrent actuel :</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="64"/>
+        <location filename="../properties_imp.cpp" line="65"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
@@ -4726,8 +4726,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation>Trackers :</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="476"/>
-        <location filename="../properties_imp.cpp" line="644"/>
+        <location filename="../properties_imp.cpp" line="477"/>
+        <location filename="../properties_imp.cpp" line="645"/>
         <source>None - Unreachable?</source>
         <translation>Aucun - indisponible ?</translation>
     </message>
@@ -4736,7 +4736,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Erreurs :</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="65"/>
+        <location filename="../properties_imp.cpp" line="66"/>
         <source>Progress</source>
         <translation>Progression</translation>
     </message>
@@ -4852,7 +4852,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Nouvelle url de tracker :</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>Priorities:</source>
         <translation>Priorités :</translation>
     </message>
@@ -4861,44 +4861,44 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Ignoré : Le fichier n&apos;est pas téléchargé du tout</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>Normal: normal priority. Download order is dependent on availability</source>
         <translation>Normale : priorité normale. L&apos;ordre de téléchargement dépend de la disponibilité</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
         <translation>Haute : Priorité supérieure à la normale. Les morceaux sont préférés aux autres possédant la même disponibilité, mais pas par rapport à ceux qui ont une disponibilité plus faible</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
         <translation>Maximale : Priorité maximale. La disponibilité n&apos;est pas prise en compte, le morceau est préféré à tous ceux qui ont une priorité inférieure</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="63"/>
+        <location filename="../properties_imp.cpp" line="64"/>
         <source>File name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="66"/>
-        <location filename="../properties_imp.cpp" line="385"/>
+        <location filename="../properties_imp.cpp" line="67"/>
+        <location filename="../properties_imp.cpp" line="386"/>
         <source>Priority</source>
         <translation>Priorité</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="489"/>
-        <location filename="../properties_imp.cpp" line="550"/>
+        <location filename="../properties_imp.cpp" line="490"/>
+        <location filename="../properties_imp.cpp" line="551"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="551"/>
+        <location filename="../properties_imp.cpp" line="552"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>La liste des trackers ne peut pas être vide.</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="52"/>
+        <location filename="../properties_imp.cpp" line="53"/>
         <source>Ignored: file is not downloaded at all</source>
         <translation>Ignoré : le fichier n&apos;est pas téléchargé du tout</translation>
     </message>
@@ -4932,12 +4932,12 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">La source </translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="484"/>
+        <location filename="../properties_imp.cpp" line="485"/>
         <source>New url seed:</source>
         <translation>Nouvelle source HTTP :</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="490"/>
+        <location filename="../properties_imp.cpp" line="491"/>
         <source>This url seed is already in the list.</source>
         <translation>Cette source HTTP est déjà dans la liste.</translation>
     </message>
@@ -4951,7 +4951,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Aucun</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="483"/>
+        <location filename="../properties_imp.cpp" line="484"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nouvelle source HTTP</translation>
@@ -4962,12 +4962,12 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation>Les sources HTTP suivantes sont disponibles pour ce torrent :</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="761"/>
+        <location filename="../properties_imp.cpp" line="762"/>
         <source>Priorities error</source>
         <translation>Erreur de priorité</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="761"/>
+        <location filename="../properties_imp.cpp" line="762"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Erreur, vous ne pouvez pas filtrer tous les fichiers du torrent.</translation>
     </message>
@@ -4992,18 +4992,18 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="694"/>
-        <location filename="../properties_imp.cpp" line="696"/>
+        <location filename="../properties_imp.cpp" line="695"/>
+        <location filename="../properties_imp.cpp" line="697"/>
         <source>Choose save path</source>
         <translation>Choix du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="703"/>
+        <location filename="../properties_imp.cpp" line="704"/>
         <source>Save path creation error</source>
         <translation>Erreur lors de la création du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="703"/>
+        <location filename="../properties_imp.cpp" line="704"/>
         <source>Could not create the save path</source>
         <translation>Impossible de créer le répertoire de destination</translation>
     </message>

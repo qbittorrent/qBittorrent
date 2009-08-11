@@ -93,7 +93,12 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;En Bittorrent-klient programmerad i C++, baserad på Qt4-verktygslådan &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;och libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Webbsida:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -250,11 +255,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Nätverk</translation>
     </message>
     <message>
         <source>IP Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>IP-filter</translation>
     </message>
     <message>
         <source>User interface settings</source>
@@ -334,23 +339,23 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Transfer lists double-click</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dubbelklick i överföringslistan</translation>
     </message>
     <message>
         <source>Download list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hämtningslista:</translation>
     </message>
     <message>
         <source>Seeding list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Distributionslista:</translation>
     </message>
     <message>
         <source>Download folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hämtningsmapp:</translation>
     </message>
     <message>
         <source>Temp folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Temporärmapp:</translation>
     </message>
     <message>
         <source>Automatically download torrents present in this folder:</source>
@@ -382,15 +387,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittorrent-funktioner</translation>
     </message>
     <message>
         <source>Use the same port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd samma port för DHT och Bittorrent</translation>
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT-port:</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -584,7 +589,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished">Proxy</translation>
+        <translation>Proxyserver</translation>
     </message>
     <message>
         <source>Search engine proxy settings</source>
@@ -600,7 +605,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message utf8="true">
         <source>Spoof µtorrent to avoid ban (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Simulera µtorrent för att undvika bannlysning (kräver omstart)</translation>
     </message>
 </context>
 <context>
@@ -700,16 +705,16 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>Distr. / Reciprokörer</translation>
     </message>
     <message>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Anslutna klienter</translation>
     </message>
     <message>
         <source>Total uploaded</source>
         <comment>i.e: Total amount of uploaded data</comment>
-        <translation type="unfinished"></translation>
+        <translation>Totalt skickat</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -926,7 +931,8 @@ Are you sure you want to quit qBittorrent?</source>
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ett in-/ut-fel inträffade för torrentfilen %1.
+ Anledning: %2</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
@@ -936,7 +942,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent är bunden till port: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
@@ -952,7 +958,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT-stöd [PÅ], port: UDP/%1</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
@@ -1278,23 +1284,23 @@ Are you sure you want to quit qBittorrent?</source>
     <name>SearchEngine</name>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Klipp ut</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiera</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Klistra in</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation type="unfinished"></translation>
+        <translation>Töm fältet</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation type="unfinished"></translation>
+        <translation>Töm kompletteringshistorik</translation>
     </message>
     <message>
         <source>Empty search pattern</source>
@@ -2208,11 +2214,11 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Main info</source>
-        <translation type="unfinished"></translation>
+        <translation>Allmän info</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentinformation</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
@@ -2459,11 +2465,11 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Anslutna klienter</translation>
     </message>
     <message>
         <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
+        <translation>Distr. / Reciprokörer</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -2479,7 +2485,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Total uploaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Totalt skickat</translation>
     </message>
     <message>
         <source>Priority</source>
