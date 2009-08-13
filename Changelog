@@ -1,4 +1,4 @@
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.4.0
+* Thu Aug 13 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.4.0
     - FEATURE: Display swarm information in lists
     - FEATURE: Allow to define temporary download folder
     - FEATURE: Display total amount of uploaded data in finished list
@@ -11,6 +11,14 @@
     - BUGFIX: Stop enforcing UTF-8 and use system locale instead
     - COSMETIC: Redesigned program preferences
     - COSMETIC: Updated icons set
+
+* Fri Jul 24 2009 - Christophe DUMEZ <chris@qbittorrent.org> - 1.3.5
+    - BUGFIX: Made IP filter parser more robust
+    - BUGFIX: Fixed torrent creation tool
+    - BUGFIX: Fixed possible overflow in progress calculation in arborescence.h
+    - BUGFIX: Save properties window size, position, columns width and restore them
+    - BUGFIX: Set a minimum default width for NAME column in properties
+    - BUGFIX: Remember visual indexes of columns in transfer lists
 
 * Sun Jul 12 2009 - Christophe DUMEZ <chris@qbittorrent.org> - v1.3.4
     - BUGFIX: Fixed IP filter file parsing on 64bits
