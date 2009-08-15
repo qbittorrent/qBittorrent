@@ -711,7 +711,8 @@ void properties::on_changeSavePathButton_clicked() {
         savepath_file.write(savePath.path().toLocal8Bit());
         savepath_file.close();
         // Actually move storage
-        h.move_storage(savePath.path());
+        if(!BTSession->useTemporaryFolder() || h.is_seed())
+	        h.move_storage(savePath.path());
         // Update save_path in dialog
         save_path->setText(savePath.path());
     }

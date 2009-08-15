@@ -107,6 +107,7 @@ class bittorrent : public QObject {
     QStringList getConsoleMessages() const;
     QStringList getPeerBanMessages() const;
     qlonglong getETA(QString hash) const;
+    bool useTemporaryFolder() const;
 
   public slots:
     QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);

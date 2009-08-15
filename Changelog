@@ -1,3 +1,6 @@
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.4.1
+    - BUGFIX: Fix problems when changing save path (if using temporary download folder)
+
 * Thu Aug 13 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.4.0
     - FEATURE: Display swarm information in lists
     - FEATURE: Allow to define temporary download folder

@@ -151,6 +151,10 @@ void bittorrent::setDownloadLimit(QString hash, long val) {
   saveTorrentSpeedLimits(hash);
 }
 
+bool bittorrent::useTemporaryFolder() const {
+  return !defaultTempPath.isEmpty();
+}
+
 bool bittorrent::isQueueingEnabled() const {
   return queueingEnabled;
 }
