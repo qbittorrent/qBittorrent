@@ -1,6 +1,6 @@
 [Desktop Entry]
 Categories=Qt;Network;P2P
-Comment=V1.4.0
+Comment=V1.5.0
 Exec=qbittorrent %f
 GenericName=Bittorrent client
 GenericName[bg]=Торент клиент
