@@ -77,9 +77,6 @@ class bittorrent : public QObject {
     bool queueingEnabled;
     QStringList url_skippingDlg;
 
-  protected:
-    QString getSavePath(QString hash);
-
   public:
     // Constructor / Destructor
     bittorrent();
@@ -108,6 +105,7 @@ class bittorrent : public QObject {
     QStringList getPeerBanMessages() const;
     qlonglong getETA(QString hash) const;
     bool useTemporaryFolder() const;
+    QString getSavePath(QString hash);
 
   public slots:
     QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);

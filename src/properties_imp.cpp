@@ -86,7 +86,7 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   // get Infos from torrent handle
   fileName->setText(h.name());
   // Torrent Infos
-  save_path->setText(h.save_path());
+  save_path->setText(BTSession->getSavePath(hash));
   QString author = h.creator().trimmed();
   if(author.isEmpty())
     author = tr("Unknown");
