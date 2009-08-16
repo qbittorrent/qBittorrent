@@ -48,6 +48,7 @@
 #include "PropListDelegate.h"
 #include "ui_addTorrentDialog.h"
 #include "arborescence.h"
+#include "torrentPersistentData.h"
 
 using namespace libtorrent;
 
@@ -371,22 +372,14 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
 
     void savePiecesPriorities(){
       qDebug("Saving pieces priorities");
-      QFile pieces_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".priorities"));
-      // First, remove old file
-      pieces_file.remove();
       int *priorities = new int[nbFiles];
       getPriorities(PropListModel->invisibleRootItem(), priorities);
-      // Ok, we have priorities, save them
-      if(!pieces_file.open(QIODevice::WriteOnly | QIODevice::Text)){
-        std::cerr << "Error: Could not save pieces priorities\n";
-        return;
-      }
+      std::vector<int> vect_prio;
       for(unsigned int i=0; i<nbFiles; ++i) {
-        qDebug("%d ", priorities[i]);
-        pieces_file.write(misc::toQByteArray(priorities[i])+misc::toQByteArray("\n"));
+        vect_prio.push_back(priorities[i]);
       }
-      pieces_file.close();
       delete[] priorities;
+      TorrentTempData::setFilesPriority(hash, vect_prio);
     }
 
     void on_OkButton_clicked(){
@@ -403,21 +396,12 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
         }
       }
       // Save savepath
-      QFile savepath_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".savepath"));
-      savepath_file.open(QIODevice::WriteOnly | QIODevice::Text);
-      savepath_file.write(savePath.path().toLocal8Bit());
-      savepath_file.close();
+      TorrentTempData::setSavePath(hash, savePath.path());
       // Save last dir to remember it
       QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
       settings.setValue(QString::fromUtf8("LastDirTorrentAdd"), savePathTxt->text());
       // Create .incremental file if necessary
-      if(checkIncrementalDL->isChecked()){
-        QFile incremental_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".incremental"));
-        incremental_file.open(QIODevice::WriteOnly | QIODevice::Text);
-        incremental_file.close();
-      }else{
-        QFile::remove(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".incremental"));
-      }
+      TorrentTempData::setSequential(hash, checkIncrementalDL->isChecked());
       // Check if there is at least one selected file
       if(allFiltered()){
           QMessageBox::warning(0, tr("Invalid file selection"), tr("You must select at least one file in the torrent"));

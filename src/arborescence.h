@@ -199,7 +199,7 @@ class arborescence {
       Q_ASSERT(root->getSize() == t->total_size());
     }
 
-    arborescence(torrent_info const& t, std::vector<size_type> fp, int *prioritiesTab) {
+    arborescence(torrent_info const& t, std::vector<size_type> fp, std::vector<int> files_priority) {
       torrent_info::file_iterator fi = t.begin_files();
       if(t.num_files() > 1) {
         qDebug("More than one file in the torrent, setting a folder as root");
@@ -207,13 +207,13 @@ class arborescence {
       } else {
         // XXX: Will crash if there is no file in torrent
         qDebug("one file in the torrent, setting it as root with index 0");
-        root = new torrent_file(0, misc::toQString(t.name()), false, fi->size, 0, ((double)fp[0])/t.file_at(0).size, prioritiesTab[0]);
+        root = new torrent_file(0, misc::toQString(t.name()), false, fi->size, 0, ((double)fp[0])/t.file_at(0).size, files_priority.at(0));
         return;
       }
       int i = 0;
       while(fi != t.end_files()) {
         QString path = QDir::cleanPath(misc::toQString(fi->path.string()));
-        addFile(path, fi->size, i, ((double)fp[i])/t.file_at(i).size, prioritiesTab[i]);
+        addFile(path, fi->size, i, ((double)fp[i])/t.file_at(i).size, files_priority.at(i));
         fi++;
         ++i;
       }

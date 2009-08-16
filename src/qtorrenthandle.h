@@ -108,6 +108,8 @@ class QTorrentHandle {
     bool is_seed() const;
     bool is_auto_managed() const;
     int active_time() const;
+    std::vector<int> file_priorities() const;
+    bool is_sequential_download() const;
 
     //
     // Setters
@@ -122,6 +124,7 @@ class QTorrentHandle {
     void set_max_uploads(int val);
     void set_max_connections(int val);
     void prioritize_files(std::vector<int> v);
+    void file_priority(int index, int priority) const;
     void set_ratio(float ratio) const;
     void replace_trackers(std::vector<announce_entry> const&) const;
     void force_reannounce();

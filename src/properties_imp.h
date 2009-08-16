@@ -55,7 +55,6 @@ class properties : public QDialog, private Ui::properties{
     PropListDelegate *PropDelegate;
     QStandardItemModel *PropListModel;
     QTimer *updateInfosTimer;
-    bool has_filtered_files;
     QStringList urlSeeds;
     RealProgressBar *progressBar;
     RealProgressBarThread *progressBarUpdater;
@@ -79,7 +78,6 @@ class properties : public QDialog, private Ui::properties{
     void maximumSelection();
     void loadWebSeeds();
     void askWebSeed();
-    void saveWebSeeds();
     void loadWebSeedsFromFile();
     void deleteSelectedUrlSeeds();
     void addFilesToTree(const torrent_file *root, QStandardItem *parent);
@@ -103,7 +101,7 @@ class properties : public QDialog, private Ui::properties{
     ~properties();
     bool allFiltered() const;
     bool savePiecesPriorities();
-    int* loadPiecesPriorities();
+    std::vector<int> loadFilesPriorities();
 
   protected:
     QPoint screenCenter() const;

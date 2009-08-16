@@ -107,6 +107,7 @@ class bittorrent : public QObject {
     QStringList getConsoleMessages() const;
     QStringList getPeerBanMessages() const;
     qlonglong getETA(QString hash) const;
+    bool useTemporaryFolder() const;
 
   public slots:
     QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
@@ -115,11 +116,12 @@ class bittorrent : public QObject {
     void downloadFromUrl(QString url);
     void downloadFromURLList(const QStringList& url_list);
     void deleteTorrent(QString hash, bool permanent = false);
+    void startUpTorrents();
     /* Needed by Web UI */
     void pauseAllTorrents();
-    void resumeAllTorrents();
     void pauseTorrent(QString hash);
     void resumeTorrent(QString hash);
+    void resumeAllTorrents();
     /* End Web UI */
     void saveDHTEntry();
     void preAllocateAllFiles(bool b);
@@ -129,8 +131,6 @@ class bittorrent : public QObject {
     void enableIPFilter(QString filter);
     void disableIPFilter();
     void setQueueingEnabled(bool enable);
-    void resumeUnfinishedTorrents();
-    void saveTorrentPriority(QString hash, int prio);
     void saveTorrentSpeedLimits(QString hash);
     void loadTorrentSpeedLimits(QString hash);
     void handleDownloadFailure(QString url, QString reason);
@@ -164,12 +164,12 @@ class bittorrent : public QObject {
     void addConsoleMessage(QString msg, QColor color=QApplication::palette().color(QPalette::WindowText));
     void addPeerBanMessage(QString msg, bool from_ipfilter);
     void processDownloadedFile(QString, QString);
+    void saveTrackerFile(QString hash);
 
   protected slots:
     void scanDirectory(QString);
     void readAlerts();
-    bool loadTrackerFile(QString hash);
-    void saveTrackerFile(QString hash);
+    void loadTrackerFile(QString hash);
     void deleteBigRatios();
 
   signals:

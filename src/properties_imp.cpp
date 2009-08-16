@@ -36,6 +36,7 @@
 #include "realprogressbar.h"
 #include "realprogressbarthread.h"
 #include "TrackersAdditionDlg.h"
+#include "torrentPersistentData.h"
 
 #include <QInputDialog>
 #include <QMessageBox>
@@ -86,7 +87,7 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   // get Infos from torrent handle
   fileName->setText(h.name());
   // Torrent Infos
-  save_path->setText(h.save_path());
+  save_path->setText(TorrentPersistentData::getSavePath(hash));
   QString author = h.creator().trimmed();
   if(author.isEmpty())
     author = tr("Unknown");
@@ -115,23 +116,18 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
   std::vector<size_type> fp;
   h.file_progress(fp);
-  int *prioritiesTab = loadPiecesPriorities();
+  std::vector<int> files_priority = loadFilesPriorities();
   // List files in torrent
-  arborescence *arb = new arborescence(h.get_torrent_info(), fp, prioritiesTab);
+  arborescence *arb = new arborescence(h.get_torrent_info(), fp, files_priority);
   addFilesToTree(arb->getRoot(), PropListModel->invisibleRootItem());
   delete arb;
-  delete prioritiesTab;
   connect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
   filesList->expandAll();
   // List web seeds
   loadWebSeedsFromFile();
   loadWebSeeds();
   // Incremental download
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental")){
-    incrementalDownload->setChecked(true);
-  }else{
-    incrementalDownload->setChecked(false);
-  }
+  incrementalDownload->setChecked(TorrentPersistentData::isSequentialDownload(hash));
   updateInfosTimer = new QTimer(this);
   connect(updateInfosTimer, SIGNAL(timeout()), this, SLOT(updateInfos()));
   updateInfosTimer->start(3000);
@@ -314,41 +310,19 @@ void properties::loadWebSeeds(){
   }
 }
 
-int* properties::loadPiecesPriorities(){
-  unsigned int nbFiles = h.num_files();
-  int *prioritiesTab = new int[nbFiles];
-  QString fileName = h.name();
-  QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".priorities");
-  has_filtered_files = false;
-  qDebug("Loading pieces priorities");
-  // Read saved file
-  if(!pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)){
-    qDebug("Could not find pieces file");
-    for(unsigned int i=0; i<nbFiles; ++i)
-      prioritiesTab[i] = NORMAL;
-    return prioritiesTab;
-  }
-  QByteArray pieces_text = pieces_file.readAll();
-  pieces_file.close();
-  QList<QByteArray> pieces_priority_list = pieces_text.split('\n');
-  if((unsigned int)pieces_priority_list.size() != nbFiles+1){
-    std::cerr << "Error: Corrupted pieces file\n";
-    for(unsigned int i=0; i<nbFiles; ++i)
-      prioritiesTab[i] = NORMAL;
-    return prioritiesTab;
-  }
-  for(unsigned int i=0; i<nbFiles; ++i){
-    int priority = pieces_priority_list.at(i).toInt();
+std::vector<int> properties::loadFilesPriorities(){
+  std::vector<int> fp;
+  QVariantList files_priority = TorrentPersistentData::getFilesPriority(hash);
+  foreach(const QVariant &var_prio, files_priority) {
+    int priority = var_prio.toInt();
     if( priority < 0 || priority > 7){
       // Normal priority as default
       priority = 1;
     }
-    if(!priority){
-      has_filtered_files = true;
-    }
-    prioritiesTab[i] = priority;
+    fp.push_back(priority);
   }
-  return prioritiesTab;
+
+  return fp;
 }
 
 bool properties::allFiltered() const {
@@ -494,7 +468,7 @@ void properties::askWebSeed(){
   }
   urlSeeds << url_seed;
   h.add_url_seed(url_seed);
-  saveWebSeeds();
+  TorrentPersistentData::saveUrlSeeds(h);
   // Refresh the seeds list
   loadWebSeeds();
 }
@@ -536,7 +510,7 @@ void properties::deleteSelectedUrlSeeds(){
   }
   if(change){
     // Save them to disk
-    saveWebSeeds();
+    TorrentPersistentData::saveUrlSeeds(h);
     // Refresh list
     loadWebSeeds();
   }
@@ -672,19 +646,16 @@ void properties::setAllPiecesState(unsigned short priority){
   }
 }
 
-void properties::on_incrementalDownload_stateChanged(int){
+void properties::on_incrementalDownload_stateChanged(int state){
   qDebug("Incremental download toggled");
-  if(incrementalDownload->isChecked()){
-    if(!QFile::exists(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".incremental"))) {
-      // Create .incremental file
-      QFile incremental_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".incremental"));
-      incremental_file.open(QIODevice::WriteOnly | QIODevice::Text);
-      incremental_file.close();
+  if(state == Qt::Checked){
+    if(!TorrentPersistentData::isSequentialDownload(hash)) {
       h.set_sequential_download(true);
+      TorrentPersistentData::saveSequentialStatus(h);
     }
   }else{
-    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental");
     h.set_sequential_download(false);
+    TorrentPersistentData::saveSequentialStatus(h);
   }
 }
 
@@ -706,12 +677,10 @@ void properties::on_changeSavePathButton_clicked() {
             }
         }
         // Save savepath
-        QFile savepath_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".savepath"));
-        savepath_file.open(QIODevice::WriteOnly | QIODevice::Text);
-        savepath_file.write(savePath.path().toLocal8Bit());
-        savepath_file.close();
+        TorrentPersistentData::saveSavePath(hash, savePath.path());
         // Actually move storage
-        h.move_storage(savePath.path());
+        if(!BTSession->useTemporaryFolder() || h.is_seed())
+          h.move_storage(savePath.path());
         // Update save_path in dialog
         save_path->setText(savePath.path());
     }
@@ -723,13 +692,10 @@ void properties::on_okButton_clicked(){
 }
 
 void properties::loadWebSeedsFromFile(){
-  QFile urlseeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".urlseeds");
-  if(!urlseeds_file.open(QIODevice::ReadOnly | QIODevice::Text)) return;
-  QByteArray urlseeds_lines = urlseeds_file.readAll();
-  urlseeds_file.close();
-  QList<QByteArray> url_seeds = urlseeds_lines.split('\n');
   urlSeeds.clear();
-  foreach(const QByteArray &url_seed, url_seeds){
+  QVariantList url_seeds = TorrentPersistentData::getUrlSeeds(hash);
+  foreach(const QVariant &var_url_seed, url_seeds){
+    QString url_seed = var_url_seed.toString();
     if(!url_seed.isEmpty())
       urlSeeds << url_seed;
   }
@@ -743,19 +709,6 @@ void properties::loadWebSeedsFromFile(){
   }
 }
 
-void properties::saveWebSeeds(){
-  QFile urlseeds_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".urlseeds"));
-  if(!urlseeds_file.open(QIODevice::WriteOnly | QIODevice::Text)){
-    std::cerr << "Error: Could not save url seeds\n";
-    return;
-  }
-  foreach(const QString &url_seed, urlSeeds){
-    urlseeds_file.write((url_seed+"\n").toLocal8Bit());
-  }
-  urlseeds_file.close();
-  qDebug("url seeds were saved");
-}
-
 bool properties::savePiecesPriorities() {
   if(!changedFilteredfiles) return true;
   if(allFiltered()) {
@@ -763,30 +716,15 @@ bool properties::savePiecesPriorities() {
     return false;
   }
   qDebug("Saving pieces priorities");
-  bool hasFilteredFiles = false;
-  QString fileName = h.name();
-  QFile pieces_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".priorities"));
-  // First, remove old file
-  pieces_file.remove();
   int *priorities = new int[h.get_torrent_info().num_files()];
   getPriorities(PropListModel->invisibleRootItem(), priorities);
-      // Ok, we have priorities, save them
-  if(!pieces_file.open(QIODevice::WriteOnly | QIODevice::Text)){
-    std::cerr << "Error: Could not save pieces priorities\n";
-    return true;
-  }
   unsigned int nbFiles = h.get_torrent_info().num_files();
   for(unsigned int i=0; i<nbFiles; ++i) {
-    if(!priorities[i]) {
-      hasFilteredFiles = true;
-    }
-    pieces_file.write(misc::toQByteArray(priorities[i])+misc::toQByteArray("\n"));
+    h.file_priority(i, priorities[i]);
   }
-  pieces_file.close();
   delete[] priorities;
-  BTSession->loadFilesPriorities(h);
+  TorrentPersistentData::saveFilesPriority(h);
   // Emit a signal so that the GUI updates the size
   emit filteredFilesChanged(hash);
-  has_filtered_files = hasFilteredFiles;
   return true;
 }

@@ -241,6 +241,11 @@ torrent_status::state_t QTorrentHandle::state() const {
   return h.status().state;
 }
 
+std::vector<int> QTorrentHandle::file_priorities() const {
+  Q_ASSERT(h.is_valid());
+  return h.file_priorities();
+}
+
 QString QTorrentHandle::creator() const {
   Q_ASSERT(h.is_valid());
   return misc::toQString(h.get_torrent_info().creator());
@@ -323,6 +328,11 @@ bool QTorrentHandle::is_auto_managed() const {
 int QTorrentHandle::active_time() const {
     Q_ASSERT(h.is_valid());
     return h.status().active_time;
+}
+
+bool QTorrentHandle::is_sequential_download() const {
+  Q_ASSERT(h.is_valid());
+  return h.is_sequential_download();
 }
 
 //
@@ -426,6 +436,11 @@ void QTorrentHandle::force_recheck() const {
 void QTorrentHandle::move_storage(QString new_path) const {
    Q_ASSERT(h.is_valid());
    h.move_storage(new_path.toLocal8Bit().data());
+}
+
+void QTorrentHandle::file_priority(int index, int priority) const {
+  Q_ASSERT(h.is_valid());
+   h.file_priority(index, priority);
 }
 
 //

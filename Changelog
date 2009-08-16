@@ -1,3 +1,6 @@
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.5.0
+    - BUGFIX: torrent resume code rewrited
+
 * Thu Aug 13 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.4.0
     - FEATURE: Display swarm information in lists
     - FEATURE: Allow to define temporary download folder
