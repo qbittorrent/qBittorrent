@@ -53,6 +53,7 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
+  actionCopy_magnet_link->setIcon(QIcon(QString::fromUtf8(":/Icons/magnet.png")));
   //   tabBottom->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/oxygen/log.png")));
   //   tabBottom->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/oxygen/filter.png")));
 
@@ -106,6 +107,7 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   connect(actionTorrent_Properties, SIGNAL(triggered()), this, SLOT(propertiesSelection()));
   connect(actionForce_recheck, SIGNAL(triggered()), this, SLOT(forceRecheck()));
   connect(actionBuy_it, SIGNAL(triggered()), (GUI*)parent, SLOT(goBuyPage()));
+  connect(actionCopy_magnet_link, SIGNAL(triggered()), (GUI*)parent, SLOT(copyMagnetURI()));
 
   connect(actionHOSColName, SIGNAL(triggered()), this, SLOT(hideOrShowColumnName()));
   connect(actionHOSColSize, SIGNAL(triggered()), this, SLOT(hideOrShowColumnSize()));
@@ -298,6 +300,7 @@ void DownloadingTorrents::displayDLListMenu(const QPoint&) {
     myDLLlistMenu.addAction(actionDecreasePriority);
   }
   myDLLlistMenu.addSeparator();
+  myDLLlistMenu.addAction(actionCopy_magnet_link);
   myDLLlistMenu.addAction(actionBuy_it);
   // Call menu
   myDLLlistMenu.exec(QCursor::pos());

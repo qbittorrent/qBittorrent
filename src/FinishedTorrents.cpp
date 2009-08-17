@@ -81,6 +81,8 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
   actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
+  actionCopy_magnet_link->setIcon(QIcon(QString::fromUtf8(":/Icons/magnet.png")));
+
   connect(actionPause, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionPause_triggered()));
   connect(actionStart, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionStart_triggered()));
   connect(actionDelete, SIGNAL(triggered()), (GUI*)parent, SLOT(on_actionDelete_triggered()));
@@ -90,6 +92,7 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   connect(actionBuy_it, SIGNAL(triggered()), (GUI*)parent, SLOT(goBuyPage()));
   connect(actionTorrent_Properties, SIGNAL(triggered()), this, SLOT(propertiesSelection()));
   connect(actionForce_recheck, SIGNAL(triggered()), this, SLOT(forceRecheck()));
+  connect(actionCopy_magnet_link, SIGNAL(triggered()), (GUI*)parent, SLOT(copyMagnetURI()));
 
   connect(actionHOSColName, SIGNAL(triggered()), this, SLOT(hideOrShowColumnName()));
   connect(actionHOSColSize, SIGNAL(triggered()), this, SLOT(hideOrShowColumnSize()));
@@ -446,6 +449,7 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint&){
   myFinishedListMenu.addAction(actionOpen_destination_folder);
   myFinishedListMenu.addAction(actionTorrent_Properties);
   myFinishedListMenu.addSeparator();
+  myFinishedListMenu.addAction(actionCopy_magnet_link);
   myFinishedListMenu.addAction(actionBuy_it);
 
   // Call menu

@@ -34,6 +34,7 @@
 #include <QDesktopServices>
 #include <QStatusBar>
 #include <QFrame>
+#include <QClipboard>
 #ifdef QT_4_4
 #include <QLocalServer>
 #include <QLocalSocket>
@@ -596,6 +597,28 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
         QDesktopServices::openUrl(QString("file://")+savePath);
       }
     }
+  }
+
+  void GUI::copyMagnetURI() const {
+    QStringList hashes;
+    switch(tabs->currentIndex()){
+    case 0:
+      hashes = downloadingTorrentTab->getSelectedTorrents();
+      break;
+    case 1:
+      hashes = finishedTorrentTab->getSelectedTorrents();
+      break;
+    default:
+      return;
+    }
+    QStringList magnet_uris;
+    foreach(QString hash, hashes) {
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
+      if(h.is_valid()) {
+        magnet_uris << misc::toQString(make_magnet_uri(h.get_torrent_info()));
+      }
+    }
+    qApp->clipboard()->setText(magnet_uris.join("\n"));
   }
   
   void GUI::goBuyPage() const {
@@ -1351,6 +1374,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     } else {
       hashes = finishedTorrentTab->getSelectedTorrents();
     }
+    qDebug("nb hashes: %d", hashes.size());
     foreach(const QString &hash, hashes) {
       QTorrentHandle h = BTSession->getTorrentHandle(hash);
       if(!h.is_paused()){

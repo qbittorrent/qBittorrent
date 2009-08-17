@@ -192,6 +192,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void setTabText(int index, QString text) const;
     void openDestinationFolder() const;
     void goBuyPage() const;
+    void copyMagnetURI() const;
     void updateRatio();
 
   protected:

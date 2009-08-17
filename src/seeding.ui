@@ -146,6 +146,11 @@
     <string>Seeds / Leechers</string>
    </property>
   </action>
+  <action name="actionCopy_magnet_link">
+   <property name="text">
+    <string>Copy magnet link</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="icons.qrc"/>
