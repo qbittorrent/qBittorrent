@@ -482,6 +482,7 @@ QStringList DownloadingTorrents::getSelectedTorrents(bool only_one) const{
 // get information from torrent handles and
 // update download list accordingly
 bool DownloadingTorrents::updateTorrent(QTorrentHandle h) {
+    if(!h.is_valid()) return false;
     bool added = false;
     try{
       QString hash = h.hash();

@@ -267,6 +267,7 @@ void FinishedTorrents::on_actionSet_upload_limit_triggered(){
 }
 
 void FinishedTorrents::updateTorrent(QTorrentHandle h) {
+    if(!h.is_valid()) return;
     QString hash = h.hash();
     int row = getRowFromHash(hash);
     if(row == -1){

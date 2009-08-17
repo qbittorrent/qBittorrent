@@ -1420,6 +1420,7 @@ void GUI::updateLists(bool force) {
         for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
             QTorrentHandle h = QTorrentHandle(*torrentIT);
             if(!h.is_valid()) continue;
+            try {
             if(h.is_seed()) {
                 // Update in finished list
                 finishedTorrentTab->updateTorrent(h);
@@ -1431,6 +1432,7 @@ void GUI::updateLists(bool force) {
                     QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".finished");
                 }
             }
+            } catch(invalid_handle) {}
         }
     }
     if(displaySpeedInTitle) {
