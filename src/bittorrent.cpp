@@ -417,7 +417,7 @@ QTorrentHandle bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   else
     p.storage_mode = storage_mode_sparse;
   // Start in pause
-  //p.paused = true;
+  p.paused = false;
   p.duplicate_is_error = false; // Already checked
   p.auto_managed = false; // Because it is added in paused state
   // Adding torrent to bittorrent session
@@ -1341,6 +1341,7 @@ void bittorrent::readAlerts() {
           }
         }
         emit torrentFinishedChecking(h);
+        emit metadataReceived(h);
       }
     }
     a = s->pop_alert();
