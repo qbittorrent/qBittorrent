@@ -143,6 +143,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void fullDiskError(QTorrentHandle& h, QString msg) const;
     void handleDownloadFromUrlFailure(QString, QString) const;
     void createSystrayDelayed();
+    void setPaused(QTorrentHandle &h) const;
     // Keyboard shortcuts
     void createKeyboardShortcuts();
     void displayDownTab() const;

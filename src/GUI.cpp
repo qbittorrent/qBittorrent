@@ -143,6 +143,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(BTSession, SIGNAL(newDownloadedTorrent(QString, QString)), this, SLOT(processDownloadedFiles(QString, QString)));
   connect(BTSession, SIGNAL(downloadFromUrlFailure(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
   connect(BTSession, SIGNAL(deletedTorrent(QString)), this, SLOT(deleteTorrent(QString)));
+  connect(BTSession, SIGNAL(torrentPaused(QTorrentHandle&)), this, SLOT(setPaused(QTorrentHandle&)));
   qDebug("create tabWidget");
   tabs = new QTabWidget();
   // Download torrents tab
@@ -255,7 +256,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     scrapeTimer->start(20000);
     qDebug("GUI Built");
   }
-
+  
   // Destructor
   GUI::~GUI() {
     qDebug("GUI destruction");
@@ -308,7 +309,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     delete BTSession;
     qDebug("5");
   }
-
+  
   void GUI::displayRSSTab(bool enable) {
     if(enable) {
       // RSS tab
@@ -324,7 +325,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       }
     }
   }
-
+  
   void GUI::scrapeTrackers() {
     std::vector<torrent_handle> torrents = BTSession->getTorrents();
     std::vector<torrent_handle>::iterator torrentIT;
@@ -334,7 +335,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       h.scrape_tracker();
     }
   }
-
+  
   void GUI::updateRatio() {
     // Update ratio info
     float ratio = 1.;
@@ -353,19 +354,19 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     // Update DHT nodes
     DHTLbl->setText(tr("DHT: %1 nodes").arg(QString::number(sessionStatus.dht_nodes)));
   }
-
+  
   void GUI::on_actionWebsite_triggered() const {
     QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://www.qbittorrent.org")));
   }
-
+  
   void GUI::on_actionDocumentation_triggered() const {
     QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://wiki.qbittorrent.org")));
   }
-
+  
   void GUI::on_actionBugReport_triggered() const {
     QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://bugs.qbittorrent.org")));
   }
-
+  
   void GUI::writeSettings() {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.beginGroup(QString::fromUtf8("MainWindow"));
@@ -373,7 +374,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     settings.setValue(QString::fromUtf8("pos"), pos());
     settings.endGroup();
   }
-
+  
   // called when a torrent has finished
   void GUI::finishedTorrent(QTorrentHandle& h) const {
     qDebug("In GUI, a torrent has finished");
@@ -393,7 +394,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       myTrayIcon->showMessage(tr("Download finished"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(fileName), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
     }
   }
-
+  
   void GUI::addedTorrent(QTorrentHandle& h) const {
     if(h.is_seed()) {
       finishedTorrentTab->addTorrent(h.hash());
@@ -401,7 +402,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       downloadingTorrentTab->addTorrent(h.hash());
     }
   }
-
+  
   void GUI::pausedTorrent(QTorrentHandle& h) const {
     if(h.is_seed()) {
       finishedTorrentTab->pauseTorrent(h.hash());
@@ -409,7 +410,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       downloadingTorrentTab->pauseTorrent(h.hash());
     }
   }
-
+  
   void GUI::resumedTorrent(QTorrentHandle& h) const {
     if(h.is_seed()) {
       finishedTorrentTab->updateTorrent(h);
@@ -417,7 +418,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       downloadingTorrentTab->updateTorrent(h);
     }
   }
-
+  
   void GUI::checkedTorrent(QTorrentHandle& h) const {
     if(h.is_seed()) {
       // Move torrent to finished tab
@@ -432,7 +433,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       }
     }
   }
-
+  
   // Notification when disk is full
   void GUI::fullDiskError(QTorrentHandle& h, QString msg) const {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
@@ -443,16 +444,22 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     // Download will be paused by libtorrent. Updating GUI information accordingly
     QString hash = h.hash();
     qDebug("Full disk error, pausing torrent %s", hash.toLocal8Bit().data());
+    setPaused(h);
+    BTSession->addConsoleMessage(tr("An error occured (full disk?), '%1' paused.", "e.g: An error occured (full disk?), 'xxx.avi' paused.").arg(h.name()));
+  }
+  
+  void GUI::setPaused(QTorrentHandle &h) const {
+    Q_ASSERT(h.is_paused());
+    qDebug("Marking torrent %s as paused", h.hash().toUtf8().data());
     if(h.is_seed()) {
       // In finished list
       qDebug("Automatically paused torrent was in finished list");
-      finishedTorrentTab->pauseTorrent(hash);
+      finishedTorrentTab->pauseTorrent(h.hash());
     }else{
-      downloadingTorrentTab->pauseTorrent(hash);
+      downloadingTorrentTab->pauseTorrent(h.hash());
     }
-    BTSession->addConsoleMessage(tr("An error occured (full disk?), '%1' paused.", "e.g: An error occured (full disk?), 'xxx.avi' paused.").arg(h.name()));
   }
-
+  
   void GUI::createKeyboardShortcuts() {
     actionCreate_torrent->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+N")));
     actionOpen->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+O")));
@@ -478,26 +485,26 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     actionDecreasePriority->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+-")));
     actionIncreasePriority->setShortcut(QKeySequence(QString::fromUtf8("Ctrl++")));
   }
-
+  
   // Keyboard shortcuts slots
   void GUI::displayDownTab() const {
     tabs->setCurrentIndex(0);
   }
-
+  
   void GUI::displayUpTab() const {
     tabs->setCurrentIndex(1);
   }
-
+  
   void GUI::displaySearchTab() const {
     tabs->setCurrentIndex(2);
   }
-
+  
   void GUI::displayRSSTab() const {
     tabs->setCurrentIndex(3);
   }
-
+  
   // End of keyboard shortcuts slots
-
+  
   void GUI::readSettings() {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.beginGroup(QString::fromUtf8("MainWindow"));
@@ -505,7 +512,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     move(settings.value(QString::fromUtf8("pos"), screenCenter()).toPoint());
     settings.endGroup();
   }
-
+  
   void GUI::balloonClicked() {
     if(isHidden()) {
       show();
@@ -516,13 +523,13 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       activateWindow();
     }
   }
-
+  
   void GUI::acceptConnection() {
     clientConnection = localServer->nextPendingConnection();
     connect(clientConnection, SIGNAL(disconnected()), this, SLOT(readParamsOnSocket()));
     qDebug("accepted connection from another instance");
   }
-
+  
   void GUI::readParamsOnSocket() {
     if(clientConnection) {
       QByteArray params = clientConnection->readAll();
@@ -532,26 +539,26 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       }
     }
   }
-
+  
   void GUI::handleDownloadFromUrlFailure(QString url, QString reason) const{
     // Display a message box
     QMessageBox::critical(0, tr("Url download error"), tr("Couldn't download file at url: %1, reason: %2.").arg(url).arg(reason));
   }
-
+  
   void GUI::on_actionSet_global_upload_limit_triggered() {
     qDebug("actionSet_global_upload_limit_triggered");
     new BandwidthAllocationDialog(this, true, BTSession, QStringList());
   }
-
+  
   void GUI::on_actionShow_console_triggered() {
     new consoleDlg(this, BTSession);
   }
-
+  
   void GUI::on_actionSet_global_download_limit_triggered() {
     qDebug("actionSet_global_download_limit_triggered");
     new BandwidthAllocationDialog(this, false, BTSession, QStringList());
   }
-
+  
   void GUI::on_actionPreview_file_triggered() {
     QString hash;
     switch(tabs->currentIndex()){
@@ -567,7 +574,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     new previewSelect(this, h);
   }
-
+  
   void GUI::openDestinationFolder() const {
     QStringList hashes;
     switch(tabs->currentIndex()){
@@ -590,7 +597,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       }
     }
   }
-
+  
   void GUI::goBuyPage() const {
     QStringList hashes;
     switch(tabs->currentIndex()){
@@ -609,28 +616,28 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       QDesktopServices::openUrl("http://match.sharemonkey.com/?info_hash="+hash+"&n="+h.name()+"&cid=33");
     }
   }
-
+  
   // Necessary if we want to close the window
   // in one time if "close to systray" is enabled
   void GUI::on_actionExit_triggered() {
     force_exit = true;
     close();
   }
-
+  
   void GUI::previewFile(QString filePath) {
     QDesktopServices::openUrl(QString("file://")+filePath);
   }
-
+  
   int GUI::getCurrentTabIndex() const{
     if(isMinimized() || isHidden())
       return -1;
     return tabs->currentIndex();
   }
-
+  
   void GUI::setTabText(int index, QString text) const {
     tabs->setTabText(index, text);
   }
-
+  
   // Toggle Main window visibility
   void GUI::toggleVisibility(QSystemTrayIcon::ActivationReason e) {
     if(e == QSystemTrayIcon::Trigger || e == QSystemTrayIcon::DoubleClick) {
@@ -650,38 +657,38 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       }
     }
   }
-
+  
   // Center window
   QPoint GUI::screenCenter() const{
     int scrn = 0;
     QWidget *w = this->topLevelWidget();
-
+    
     if(w)
       scrn = QApplication::desktop()->screenNumber(w);
     else if(QApplication::desktop()->isVirtualDesktop())
       scrn = QApplication::desktop()->screenNumber(QCursor::pos());
     else
       scrn = QApplication::desktop()->screenNumber(this);
-
+    
     QRect desk(QApplication::desktop()->availableGeometry(scrn));
     return QPoint((desk.width() - this->frameGeometry().width()) / 2, (desk.height() - this->frameGeometry().height()) / 2);
   }
-
+  
   // Display About Dialog
   void GUI::on_actionAbout_triggered() {
     //About dialog
     new about(this);
   }
-
+  
   void GUI::showEvent(QShowEvent *e) {
     qDebug("** Show Event **");
     updateLists(true);
     e->accept();
   }
-
+  
   // Called when we close the program
   void GUI::closeEvent(QCloseEvent *e) {
-
+    
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     bool goToSystrayOnExit = settings.value(QString::fromUtf8("Preferences/General/CloseToTray"), false).toBool();
     if(!force_exit && systrayIntegration && goToSystrayOnExit && !this->isHidden()) {
@@ -717,14 +724,14 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     e->accept();
     qApp->exit();
   }
-
-
+  
+  
   // Display window to create a torrent
   void GUI::on_actionCreate_torrent_triggered() {
     createtorrent *ct = new createtorrent(this);
     connect(ct, SIGNAL(torrent_to_seed(QString)), this, SLOT(addTorrent(QString)));
   }
-
+  
   bool GUI::event(QEvent * e) {
     if(e->type() == QEvent::WindowStateChange) {
       //Now check to see if the window is minimised
@@ -738,7 +745,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     }
     return QMainWindow::event(e);
   }
-
+  
   // Action executed when a file is dropped
   void GUI::dropEvent(QDropEvent *event) {
     event->acceptProposedAction();
@@ -776,7 +783,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       }
     }
   }
-
+  
   // Decode if we accept drag 'n drop or not
   void GUI::dragEnterEvent(QDragEnterEvent *event) {
     foreach(const QString &mime, event->mimeData()->formats()){
@@ -786,13 +793,13 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       event->acceptProposedAction();
     }
   }
-
+  
   /*****************************************************
  *                                                   *
  *                     Torrent                       *
  *                                                   *
  *****************************************************/
-
+  
   // Display a dialog to allow user to add
   // torrents to download list
   void GUI::on_actionOpen_triggered() {
@@ -819,7 +826,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       settings.setValue(QString::fromUtf8("MainWindowLastDir"), top_dir.join(QDir::separator()));
     }
   }
-
+  
   // delete from download list AND from hard drive
   void GUI::on_actionDelete_Permanently_triggered() {
     QStringList hashes;
@@ -861,13 +868,13 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       BTSession->deleteTorrent(hash, true);
     }
   }
-
+  
   void GUI::deleteTorrent(QString hash) {
     // Delete item from list
     downloadingTorrentTab->deleteTorrent(hash);
     finishedTorrentTab->deleteTorrent(hash);
   }
-
+  
   // delete selected items in the list
   void GUI::on_actionDelete_triggered() {
     QStringList hashes;
@@ -913,7 +920,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       BTSession->deleteTorrent(hash, false);
     }
   }
-
+  
   // As program parameters, we can get paths or urls.
   // This function parse the parameters and call
   // the right addTorrent function, considering
@@ -940,11 +947,11 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       }
     }
   }
-
+  
   void GUI::addTorrent(QString path) {
     BTSession->addTorrent(path);
   }
-
+  
   void GUI::processDownloadedFiles(QString path, QString url) {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
@@ -955,7 +962,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       BTSession->addTorrent(path, false, url);
     }
   }
-
+  
   // Set BT session configuration
   void GUI::configureSession(bool deleteOptions) {
     qDebug("Configuring session");
@@ -1160,7 +1167,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       proxySettings.port = options->getProxyPort();
       qDebug("port is %d", proxySettings.port);
       if(options->isProxyAuthEnabled()) {
-
+        
         proxySettings.username = options->getProxyUsername().toStdString();
         proxySettings.password = options->getProxyPassword().toStdString();
         qDebug("username is %s", proxySettings.username.c_str());
@@ -1226,29 +1233,29 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     }
     qDebug("Session configured");
   }
-
+  
   void GUI::updateUnfinishedTorrentNumber(unsigned int nb) {
     unsigned int paused = BTSession->getUnfinishedPausedTorrentsNb();
     tabs->setTabText(0, tr("Downloads") +QString::fromUtf8(" (")+misc::toQString(nb-paused)+"/"+misc::toQString(nb)+QString::fromUtf8(")"));
   }
-
+  
   void GUI::updateFinishedTorrentNumber(unsigned int nb) {
     unsigned int paused = BTSession->getFinishedPausedTorrentsNb();
     tabs->setTabText(1, tr("Finished") +QString::fromUtf8(" (")+misc::toQString(nb-paused)+"/"+misc::toQString(nb)+QString::fromUtf8(")"));
   }
-
+  
   // Allow to change action on double-click
   void GUI::torrentDoubleClicked(QString hash, bool finished) {
     int action;
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
-
+    
     if(finished) {
       action =  settings.value(QString::fromUtf8("Preferences/Downloads/DblClOnTorFN"), 0).toInt();
     } else {
       action = settings.value(QString::fromUtf8("Preferences/Downloads/DblClOnTorDl"), 0).toInt();
     }
-
+    
     switch(action) {
     case TOGGLE_PAUSE:
       this->togglePausedState(hash);
@@ -1268,7 +1275,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       break;
     }
   }
-
+  
   // Toggle paused state of selected torrent
   void GUI::togglePausedState(QString hash) {
     if(tabs->currentIndex() > 1) return;
@@ -1294,7 +1301,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       }
     }
   }
-
+  
   // Pause All Downloads in DL list
   void GUI::on_actionPause_All_triggered() {
     bool change = false;
@@ -1312,7 +1319,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
     }
   }
-
+  
   void GUI::on_actionIncreasePriority_triggered() {
     if(tabs->currentIndex() != 0)
       return;
@@ -1322,7 +1329,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     }
     updateLists();
   }
-
+  
   void GUI::on_actionDecreasePriority_triggered() {
     Q_ASSERT(tabs->currentIndex() == 0);
     QStringList hashes = downloadingTorrentTab->getSelectedTorrents();
@@ -1331,7 +1338,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     }
     updateLists();
   }
-
+  
   // pause selected items in the list
   void GUI::on_actionPause_triggered() {
     bool inDownloadList = true;
@@ -1357,7 +1364,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       }
     }
   }
-
+  
   // Resume All Downloads in DL list
   void GUI::on_actionStart_All_triggered() {
     bool change = false;
@@ -1375,7 +1382,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       updateFinishedTorrentNumber(finishedTorrentTab->getNbTorrentsInList());
     }
   }
-
+  
   // start selected items in the list
   void GUI::on_actionStart_triggered() {
     bool inDownloadList = true;
@@ -1401,14 +1408,14 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       }
     }
   }
-
+  
   void GUI::addUnauthenticatedTracker(QPair<QTorrentHandle,QString> tracker) {
     // Trackers whose authentication was cancelled
     if(unauthenticated_trackers.indexOf(tracker) < 0) {
       unauthenticated_trackers << tracker;
     }
   }
-
+  
   // display properties of selected items
   void GUI::on_actionTorrent_Properties_triggered() {
     if(tabs->currentIndex() > 1) return;
@@ -1420,7 +1427,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       downloadingTorrentTab->propertiesSelection();
     }
   }
-
+  
   void GUI::updateLists(bool force) {
     if(isVisible() || force) {
       // update global informations
@@ -1454,7 +1461,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       setWindowTitle(tr("qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)", "%1 is qBittorrent version").arg(QString::fromUtf8(VERSION)).arg(dl_rate).arg(up_rate));
     }
   }
-
+  
   // Called when a tracker requires authentication
   void GUI::trackerAuthenticationRequired(QTorrentHandle& h) {
     if(unauthenticated_trackers.indexOf(QPair<QTorrentHandle,QString>(h, h.current_tracker())) < 0) {
@@ -1462,7 +1469,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       new trackerLogin(this, h);
     }
   }
-
+  
   // Check connection status and display right icon
   void GUI::checkConnectionStatus() {
     //   qDebug("Checking connection status");
@@ -1498,13 +1505,13 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
     }
   }
-
+  
   /*****************************************************
  *                                                   *
  *                      Utils                        *
  *                                                   *
  *****************************************************/
-
+  
   void GUI::downloadFromURLList(const QStringList& url_list) {
     foreach(const QString url, url_list) {
       if(url.startsWith("magnet:", Qt::CaseInsensitive)) {
@@ -1514,13 +1521,13 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       }
     }
   }
-
+  
   /*****************************************************
  *                                                   *
  *                     Options                       *
  *                                                   *
  *****************************************************/
-
+  
   void GUI::createSystrayDelayed() {
     static int timeout = 10;
     if(QSystemTrayIcon::isSystemTrayAvailable()) {
@@ -1541,7 +1548,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       }
     }
   }
-
+  
   void GUI::createTrayIcon() {
     // Tray icon
 #ifdef Q_WS_WIN
@@ -1568,14 +1575,14 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     connect(myTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
     myTrayIcon->show();
   }
-
+  
   // Display Program Options
   void GUI::on_actionOptions_triggered() {
     options = new options_imp(this);
     connect(options, SIGNAL(status_changed(bool)), this, SLOT(OptionsSaved(bool)));
     options->show();
   }
-
+  
   // Is executed each time options are saved
   void GUI::OptionsSaved(bool deleteOptions) {
     BTSession->addConsoleMessage(tr("Options were saved successfully."));
@@ -1603,7 +1610,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     // Update session
     configureSession(deleteOptions);
   }
-
+  
   bool GUI::initWebUi(QString username, QString password, int port) {
     if(httpServer)
       httpServer->close();
@@ -1617,16 +1624,17 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       QMessageBox::critical(this, "Web User Interface Error", "Unable to initialize HTTP Server on port " + misc::toQString(port));
     return success;
   }
-
+  
   /*****************************************************
  *                                                   *
  *                 HTTP Downloader                   *
  *                                                   *
  *****************************************************/
-
+  
   // Display an input dialog to prompt user for
   // an url
   void GUI::on_actionDownload_from_URL_triggered() {
     downloadFromURL *downloadFromURLDialog = new downloadFromURL(this);
     connect(downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), BTSession, SLOT(downloadFromURLList(const QStringList&)));
   }
+  

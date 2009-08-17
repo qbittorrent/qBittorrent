@@ -1255,7 +1255,15 @@ void bittorrent::readAlerts() {
     }
     else if (metadata_received_alert* p = dynamic_cast<metadata_received_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
-      emit metadataReceived(h);
+      if(h.is_valid()) {
+        qDebug("Received metadata for %s", h.hash().toUtf8().data());
+        emit metadataReceived(h);
+        if(h.is_paused()) {
+          // XXX: Unfortunately libtorrent-rasterbar does not send a torrent_paused_alert
+          // and the torrent can be paused when metadata is received
+          emit torrentPaused(h);
+        }
+      }
     }
     else if (file_error_alert* p = dynamic_cast<file_error_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
@@ -1268,6 +1276,13 @@ void bittorrent::readAlerts() {
       // Level: fatal
       addConsoleMessage(tr("Couldn't listen on any of the given ports."), QString::fromUtf8("red"));
       //emit portListeningFailure();
+    }
+    else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())) {
+      QTorrentHandle h(p->handle);
+      qDebug("Received a torrent_paused_alert for %s", h.hash().toUtf8().data());
+      if(h.is_valid()) {
+        emit torrentPaused(h);
+      }
     }
     else if (tracker_error_alert* p = dynamic_cast<tracker_error_alert*>(a.get())) {
       // Level: fatal
