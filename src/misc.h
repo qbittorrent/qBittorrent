@@ -44,6 +44,8 @@
 
 #ifndef Q_WS_WIN
 #include <sys/vfs.h>
+#else
+#include <winbase.h>
 #endif
 
 #include <libtorrent/torrent_info.hpp>
@@ -103,14 +105,36 @@ public:
     struct statfs stats;
     int ret = statfs ((path+"/.").toUtf8().data(), &stats) ;
     if(ret == 0) {
-    available = ((unsigned long long)stats.f_bavail) *
-                ((unsigned long long)stats.f_bsize) ;
-    return available;
-  } else {
-    return -1;
-  }
+      available = ((unsigned long long)stats.f_bavail) *
+                  ((unsigned long long)stats.f_bsize) ;
+      return available;
+    } else {
+      return -1;
+    }
 #else
-    return -1;
+    typedef BOOL (WINAPI *GetDiskFreeSpaceEx_t)(LPCTSTR,
+                                                PULARGE_INTEGER,
+                                                PULARGE_INTEGER,
+                                                PULARGE_INTEGER);
+    GetDiskFreeSpaceEx_t
+        pGetDiskFreeSpaceEx = (GetDiskFreeSpaceEx_t)::GetProcAddress
+                              (
+                                  ::GetModuleHandle(_T("kernel32.dll")),
+                                  "GetDiskFreeSpaceExW"
+                                  );
+    if ( pGetDiskFreeSpaceEx )
+    {
+      ULARGE_INTEGER bytesFree, bytesTotal;
+      unsigned long long *ret;
+      if (pGetDiskFreeSpaceEx((LPCTSTR)path.ucs2(), &bytesFree, &bytesTotal, NULL)) {
+        tmp = (unsigned long long*)&bytesFree
+        return ret;
+      } else {
+        return -1;
+      }
+    } else {
+      return -1;
+    }
 #endif
   }
 
