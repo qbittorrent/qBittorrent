@@ -465,7 +465,7 @@
                 </sizepolicy>
                </property>
                <property name="title">
-                <string comment="qBittorrent will watch a directory and automatically download torrents present in it">Transfer lists double-click</string>
+                <string comment="Action executed when doucle-clicking on an item in transfer (download/upload) list">Transfer lists double-click action</string>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_4">
                 <item>

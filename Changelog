@@ -1,5 +1,6 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.5.0
     - FEATURE: Added Magnet URI support
+    - FEATURE: Display free disk space in torrent addition dialog
     - BUGFIX: torrent resume code rewrited
 
 * Thu Aug 13 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.4.0

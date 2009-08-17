@@ -42,6 +42,10 @@
 #include <QPair>
 #include <QThread>
 
+#ifndef Q_WS_WIN
+#include <sys/vfs.h>
+#endif
+
 #include <libtorrent/torrent_info.hpp>
 using namespace libtorrent;
 
@@ -90,6 +94,24 @@ public:
       throw std::runtime_error("::fromString()");
     }
     return x;
+  }
+
+
+  static unsigned long long freeDiskSpaceOnPath(QString path) {
+#ifndef Q_WS_WIN
+    unsigned long long available;
+    struct statfs stats;
+    int ret = statfs ((path+"/.").toUtf8().data(), &stats) ;
+    if(ret == 0) {
+    available = ((unsigned long long)stats.f_bavail) *
+                ((unsigned long long)stats.f_bsize) ;
+    return available;
+  } else {
+    return -1;
+  }
+#else
+    return -1;
+#endif
   }
 
   // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
