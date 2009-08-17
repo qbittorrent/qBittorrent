@@ -236,7 +236,8 @@ void DownloadingTorrents::forceRecheck() {
     if(index.column() == NAME){
       QString hash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
       QTorrentHandle h = BTSession->getTorrentHandle(hash);
-      h.force_recheck();
+      if(h.is_valid() && h.has_metadata())
+        h.force_recheck();
     }
   }
 }
@@ -246,7 +247,7 @@ void DownloadingTorrents::displayDLListMenu(const QPoint&) {
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   bool has_pause = false, has_start = false, has_preview = false;
-  bool show_properties_entry = false;
+  bool one_has_metadata = false;
   QTorrentHandle h;
   qDebug("Displaying menu");
   foreach(const QModelIndex &index, selectedIndexes) {
@@ -257,7 +258,7 @@ void DownloadingTorrents::displayDLListMenu(const QPoint&) {
       h = BTSession->getTorrentHandle(hash);
       if(!h.is_valid()) continue;
       if(h.has_metadata()) {
-        show_properties_entry = true;
+        one_has_metadata = true;
       }
       if(h.is_paused()) {
         if(!has_start) {
@@ -284,10 +285,12 @@ void DownloadingTorrents::displayDLListMenu(const QPoint&) {
   myDLLlistMenu.addAction(actionSet_download_limit);
   myDLLlistMenu.addAction(actionSet_upload_limit);
   myDLLlistMenu.addSeparator();
-  myDLLlistMenu.addAction(actionForce_recheck);
-  myDLLlistMenu.addSeparator();
+  if(one_has_metadata) {
+    myDLLlistMenu.addAction(actionForce_recheck);
+    myDLLlistMenu.addSeparator();
+  }
   myDLLlistMenu.addAction(actionOpen_destination_folder);
-  if(show_properties_entry)
+  if(one_has_metadata)
     myDLLlistMenu.addAction(actionTorrent_Properties);
   if(BTSession->isQueueingEnabled()) {
     myDLLlistMenu.addSeparator();
