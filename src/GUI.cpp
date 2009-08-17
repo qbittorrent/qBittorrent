@@ -1431,16 +1431,20 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
         QTorrentHandle h = QTorrentHandle(*torrentIT);
         if(!h.is_valid()) continue;
-        if(h.is_seed()) {
-          // Update in finished list
-          finishedTorrentTab->updateTorrent(h);
-        } else {
-          // Update in download list
-          if(downloadingTorrentTab->updateTorrent(h)) {
-            // Torrent was added, we may need to remove it from finished tab
-            finishedTorrentTab->deleteTorrent(h.hash());
-            TorrentPersistentData::saveSeedStatus(h);
+        try {
+          if(h.is_seed()) {
+            // Update in finished list
+            finishedTorrentTab->updateTorrent(h);
+          } else {
+            // Update in download list
+            if(downloadingTorrentTab->updateTorrent(h)) {
+              // Torrent was added, we may need to remove it from finished tab
+              finishedTorrentTab->deleteTorrent(h.hash());
+              TorrentPersistentData::saveSeedStatus(h);
+            }
           }
+        } catch(invalid_handle e) {
+          qDebug("Caught Invalid handle exception, lucky us.");
         }
       }
     }
