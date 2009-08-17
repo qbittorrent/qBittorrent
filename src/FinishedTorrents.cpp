@@ -279,6 +279,7 @@ void FinishedTorrents::updateMetadata(QTorrentHandle &h) {
 }
 
 void FinishedTorrents::updateTorrent(QTorrentHandle h) {
+    if(!h.is_valid()) return;
     QString hash = h.hash();
     int row = getRowFromHash(hash);
     if(row == -1){
