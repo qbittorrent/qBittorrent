@@ -64,6 +64,8 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   if(!loadColWidthFinishedList()){
     finishedList->header()->resizeSection(0, 200);
   }
+  // Connect BTSession signals
+  connect(BTSession, SIGNAL(metadataReceived(QTorrentHandle&)), this, SLOT(updateMetadata(QTorrentHandle&)));
   // Make download list header clickable for sorting
   finishedList->header()->setClickable(true);
   finishedList->header()->setSortIndicatorShown(true);
@@ -264,6 +266,16 @@ void FinishedTorrents::on_actionSet_upload_limit_triggered(){
     }
   }
   new BandwidthAllocationDialog(this, true, BTSession, hashes);
+}
+
+void FinishedTorrents::updateMetadata(QTorrentHandle &h) {
+  QString hash = h.hash();
+  int row = getRowFromHash(hash);
+  if(row != -1) {
+    qDebug("Updating torrent metadata in download list");
+    finishedListModel->setData(finishedListModel->index(row, F_NAME), QVariant(h.name()));
+    finishedListModel->setData(finishedListModel->index(row, F_SIZE), QVariant((qlonglong)h.actual_size()));
+  }
 }
 
 void FinishedTorrents::updateTorrent(QTorrentHandle h) {

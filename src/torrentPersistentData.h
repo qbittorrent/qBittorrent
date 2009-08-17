@@ -100,7 +100,7 @@ public:
   }
 
   static QString getSavePath(QString hash) {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents-tmp", QHash<QString, QVariant>()).toHash();
     QHash<QString, QVariant> data = all_data[hash].toHash();
     if(data.contains("save_path"))
@@ -144,6 +144,8 @@ public:
   }
 
   static void saveTorrentPersistentData(QTorrentHandle h, bool is_magnet = false) {
+    Q_ASSERT(h.is_valid());
+    qDebug("Saving persistent data for %s", h.hash().toUtf8().data());
     // First, remove temp data
     TorrentTempData::deleteTempData(h.hash());
     Q_ASSERT(!TorrentTempData::hasTempData(h.hash()));
@@ -151,7 +153,6 @@ public:
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
     QHash<QString, QVariant> data;
-    data["hash"] = h.hash();
     data["is_magnet"] = is_magnet;
     if(is_magnet) {
       data["magnet_uri"] = misc::toQString(make_magnet_uri(h.get_torrent_handle()));
@@ -175,15 +176,18 @@ public:
       tr_it++;
     }
     data["trackers"] = trackers;
-    QVariantList url_seeds;
-    foreach(QString url_seed, h.url_seeds()) {
-      url_seeds << url_seed;
+    if(!is_magnet) {
+      QVariantList url_seeds;
+      foreach(QString url_seed, h.url_seeds()) {
+        url_seeds << url_seed;
+      }
+      data["url_seeds"] = url_seeds;
     }
-    data["url_seeds"] = url_seeds;
     data["sequential"] = h.is_sequential_download();
     // Save data
     all_data[h.hash()] = data;
     settings.setValue("torrents", all_data);
+    qDebug("TorrentPersistentData: Saving save_path %s, hash: %s", h.save_path().toUtf8().data(), h.hash().toUtf8().data());
   }
 
   static void saveTrackers(QTorrentHandle h) {
@@ -222,12 +226,14 @@ public:
   }
 
   static void saveSavePath(QString hash, QString save_path) {
+    Q_ASSERT(!hash.isEmpty());
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
     QHash<QString, QVariant> data = all_data[hash].toHash();
     data["save_path"] = save_path;
     all_data[hash] = data;
     settings.setValue("torrents", all_data);
+    qDebug("TorrentPersistentData: Saving save_path: %s, hash: %s", save_path.toUtf8().data(), hash.toUtf8().data());
   }
 
   static void saveUrlSeeds(QTorrentHandle h) {
@@ -289,6 +295,7 @@ public:
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
     QHash<QString, QVariant> data = all_data[hash].toHash();
+    qDebug("TorrentPersistentData: getSavePath %s", data["save_path"].toString().toUtf8().data());
     return data["save_path"].toString();
   }
 
@@ -303,7 +310,10 @@ public:
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
     QHash<QString, QVariant> data = all_data[hash].toHash();
-    return data["url_seeds"].toList();
+    if(data.contains("url_seeds")) {
+      return data["url_seeds"].toList();
+    }
+    return QVariantList();
   }
 
   static bool isSeed(QString hash) {

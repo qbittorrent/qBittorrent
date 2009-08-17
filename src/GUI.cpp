@@ -763,6 +763,11 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
         BTSession->downloadFromUrl(file);
         continue;
       }
+      if(file.startsWith("magnet:", Qt::CaseInsensitive)) {
+        // FIXME: Possibly skipped torrent addition dialog
+        BTSession->addMagnetUri(file);
+        continue;
+      }
       if(useTorrentAdditionDialog) {
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
         dialog->showLoad(file);
@@ -921,11 +926,16 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       if(param.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
         BTSession->downloadFromUrl(param);
       }else{
-        if(useTorrentAdditionDialog) {
-          torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
-          dialog->showLoad(param);
-        }else{
-          BTSession->addTorrent(param);
+        if(param.startsWith("magnet:", Qt::CaseInsensitive)) {
+          // FIXME: Possibily skipped torrent addition dialog
+          BTSession->addMagnetUri(param);
+        } else {
+          if(useTorrentAdditionDialog) {
+            torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
+            dialog->showLoad(param);
+          }else{
+            BTSession->addTorrent(param);
+          }
         }
       }
     }
@@ -1491,8 +1501,14 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
  *                                                   *
  *****************************************************/
 
-  void GUI::downloadFromURLList(const QStringList& urls) {
-    BTSession->downloadFromURLList(urls);
+  void GUI::downloadFromURLList(const QStringList& url_list) {
+    foreach(const QString url, url_list) {
+      if(url.startsWith("magnet:", Qt::CaseInsensitive)) {
+        BTSession->addMagnetUri(url);
+      } else {
+        BTSession->downloadFromUrl(url);
+      }
+    }
   }
 
   /*****************************************************

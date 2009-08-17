@@ -93,6 +93,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void deleteTorrent(QString hash);
     void showPropertiesFromHash(QString hash);
     void loadLastSortedColumn();
+    void updateMetadata(QTorrentHandle &h);
 
   signals:
     void torrentMovedFromFinishedList(QString);

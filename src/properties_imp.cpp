@@ -118,6 +118,7 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   h.file_progress(fp);
   std::vector<int> files_priority = loadFilesPriorities();
   // List files in torrent
+  h.get_torrent_info();
   arborescence *arb = new arborescence(h.get_torrent_info(), fp, files_priority);
   addFilesToTree(arb->getRoot(), PropListModel->invisibleRootItem());
   delete arb;
@@ -137,7 +138,7 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   progressBarVbox->addWidget(progressBar);
   progressBarUpdater = new RealProgressBarThread(progressBar, h);
   progressBarUpdater->start();
-//  progressBarUpdater->refresh();
+  //  progressBarUpdater->refresh();
   connect(updateInfosTimer, SIGNAL(timeout()), progressBarUpdater, SLOT(refresh()));
   loadSettings();
 }
@@ -313,15 +314,20 @@ void properties::loadWebSeeds(){
 std::vector<int> properties::loadFilesPriorities(){
   std::vector<int> fp;
   QVariantList files_priority = TorrentPersistentData::getFilesPriority(hash);
-  foreach(const QVariant &var_prio, files_priority) {
-    int priority = var_prio.toInt();
-    if( priority < 0 || priority > 7){
-      // Normal priority as default
-      priority = 1;
+  if(files_priority.empty()) {
+    for(int i=0; i<h.num_files(); ++i) {
+      fp.push_back(1);
     }
-    fp.push_back(priority);
+  } else {
+    foreach(const QVariant &var_prio, files_priority) {
+      int priority = var_prio.toInt();
+      if( priority < 0 || priority > 7){
+        // Normal priority as default
+        priority = 1;
+      }
+      fp.push_back(priority);
+    }
   }
-
   return fp;
 }
 
@@ -456,8 +462,8 @@ void properties::askWebSeed(){
   bool ok;
   // Ask user for a new url seed
   QString url_seed = QInputDialog::getText(this, tr("New url seed", "New HTTP source"),
-                                             tr("New url seed:"), QLineEdit::Normal,
-                                                 QString::fromUtf8("http://www."), &ok);
+                                           tr("New url seed:"), QLineEdit::Normal,
+                                           QString::fromUtf8("http://www."), &ok);
   if(!ok) return;
   qDebug("Adding %s web seed", url_seed.toLocal8Bit().data());
   if(urlSeeds.indexOf(url_seed) != -1) {
@@ -523,8 +529,8 @@ void properties::deleteSelectedTrackers(){
   unsigned int nbTrackers = trackers.size();
   if(nbTrackers == (unsigned int) selectedItems.size()){
     QMessageBox::warning(this, tr("qBittorrent"),
-                        tr("Trackers list can't be empty."),
-                        QMessageBox::Ok);
+                         tr("Trackers list can't be empty."),
+                         QMessageBox::Ok);
     return;
   }
   foreach(QListWidgetItem *item, selectedItems){
@@ -660,30 +666,30 @@ void properties::on_incrementalDownload_stateChanged(int state){
 }
 
 void properties::on_changeSavePathButton_clicked() {
-    QString dir;
-    QDir saveDir(h.save_path());
-    if(saveDir.exists()){
-        dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), h.save_path());
-    }else{
-        dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
+  QString dir;
+  QDir saveDir(h.save_path());
+  if(saveDir.exists()){
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), h.save_path());
+  }else{
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
+  }
+  if(!dir.isNull()){
+    // Check if savePath exists
+    QDir savePath(dir);
+    if(!savePath.exists()){
+      if(!savePath.mkpath(savePath.path())){
+        QMessageBox::critical(0, tr("Save path creation error"), tr("Could not create the save path"));
+        return;
+      }
     }
-    if(!dir.isNull()){
-        // Check if savePath exists
-        QDir savePath(dir);
-        if(!savePath.exists()){
-            if(!savePath.mkpath(savePath.path())){
-                QMessageBox::critical(0, tr("Save path creation error"), tr("Could not create the save path"));
-                return;
-            }
-        }
-        // Save savepath
-        TorrentPersistentData::saveSavePath(hash, savePath.path());
-        // Actually move storage
-        if(!BTSession->useTemporaryFolder() || h.is_seed())
-          h.move_storage(savePath.path());
-        // Update save_path in dialog
-        save_path->setText(savePath.path());
-    }
+    // Save savepath
+    TorrentPersistentData::saveSavePath(hash, savePath.path());
+    // Actually move storage
+    if(!BTSession->useTemporaryFolder() || h.is_seed())
+      h.move_storage(savePath.path());
+    // Update save_path in dialog
+    save_path->setText(savePath.path());
+  }
 }
 
 void properties::on_okButton_clicked(){

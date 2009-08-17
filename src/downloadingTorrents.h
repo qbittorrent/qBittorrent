@@ -103,6 +103,7 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     void sortProgressColumn(QTorrentHandle& h);
     void loadLastSortedColumn();
     void addTorrent(QString hash);
+    void updateMetadata(QTorrentHandle &h);
 
 };
 

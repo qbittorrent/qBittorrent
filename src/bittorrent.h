@@ -111,10 +111,10 @@ class bittorrent : public QObject {
 
   public slots:
     QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
+    QTorrentHandle addMagnetUri(QString magnet_uri, bool resumed=false);
     void loadSessionState();
     void saveSessionState();
     void downloadFromUrl(QString url);
-    void downloadFromURLList(const QStringList& url_list);
     void deleteTorrent(QString hash, bool permanent = false);
     void startUpTorrents();
     /* Needed by Web UI */
@@ -185,6 +185,7 @@ class bittorrent : public QObject {
     void updateFileSize(QString hash);
     void downloadFromUrlFailure(QString url, QString reason);
     void torrentFinishedChecking(QTorrentHandle& h);
+    void metadataReceived(QTorrentHandle &h);
 };
 
 #endif

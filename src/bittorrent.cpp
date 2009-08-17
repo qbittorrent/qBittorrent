@@ -360,6 +360,123 @@ void bittorrent::loadWebSeeds(QString hash) {
   }
 }
 
+QTorrentHandle bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
+  QTorrentHandle h;
+  QString hash = misc::magnetUriToHash(magnet_uri);
+  if(hash.isEmpty()) {
+    addConsoleMessage(tr("'%1' is not a valid magnet URI.").arg(magnet_uri));
+    return h;
+  }
+  if(resumed) {
+    qDebug("Resuming magnet URI: %s", hash.toUtf8().data());
+  } else {
+    qDebug("Adding new magnet URI");
+  }
+
+  bool fastResume=false;
+  Q_ASSERT(magnet_uri.startsWith("magnet:"));
+  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+  // Checking if BT_backup Dir exists
+  // create it if it is not
+  if(! torrentBackup.exists()) {
+    if(! torrentBackup.mkpath(torrentBackup.path())) {
+      std::cerr << "Couldn't create the directory: '" << torrentBackup.path().toLocal8Bit().data() << "'\n";
+      exit(1);
+    }
+  }
+
+  // Check if torrent is already in download list
+  if(s->find_torrent(sha1_hash(hash.toUtf8().data())).is_valid()) {
+    qDebug("/!\\ Torrent is already in download list");
+    // Update info Bar
+    addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(magnet_uri));
+    return h;
+  }
+
+  add_torrent_params p;
+  //Getting fast resume data if existing
+  std::vector<char> buf;
+  if(resumed) {
+    qDebug("Trying to load fastresume data: %s", (torrentBackup.path()+QDir::separator()+hash+QString(".fastresume")).toLocal8Bit().data());
+    if (load_file((torrentBackup.path()+QDir::separator()+hash+QString(".fastresume")).toLocal8Bit().data(), buf) == 0) {
+      fastResume = true;
+      p.resume_data = &buf;
+      qDebug("Successfuly loaded");
+    }
+  }
+  QString savePath = getSavePath(hash);
+  qDebug("addMagnetURI: using save_path: %s", savePath.toUtf8().data());
+  if(defaultTempPath.isEmpty() || (resumed && TorrentPersistentData::isSeed(hash))) {
+    p.save_path = savePath.toLocal8Bit().data();
+  } else {
+    p.save_path = defaultTempPath.toLocal8Bit().data();
+  }
+  // Preallocate all?
+  if(preAllocateAll)
+    p.storage_mode = storage_mode_allocate;
+  else
+    p.storage_mode = storage_mode_sparse;
+  // Start in pause
+  //p.paused = true;
+  p.duplicate_is_error = false; // Already checked
+  p.auto_managed = false; // Because it is added in paused state
+  // Adding torrent to bittorrent session
+  try {
+    h =  QTorrentHandle(add_magnet_uri(*s, magnet_uri.toStdString(), p));
+  }catch(std::exception e){
+    qDebug("Error: %s", e.what());
+  }
+  // Check if it worked
+  if(!h.is_valid()) {
+    // No need to keep on, it failed.
+    qDebug("/!\\ Error: Invalid handle");
+    return h;
+  }
+  Q_ASSERT(h.hash() == hash);
+  // Connections limit per torrent
+  h.set_max_connections(maxConnecsPerTorrent);
+  // Uploads limit per torrent
+  h.set_max_uploads(maxUploadsPerTorrent);
+  // Load filtered files
+  if(resumed) {
+    // Load custom url seeds
+    loadWebSeeds(hash);
+    // Load speed limit from hard drive
+    loadTorrentSpeedLimits(hash);
+    // Load trackers
+    loadTrackerFile(hash);
+    // XXX: only when resuming because torrentAddition dialog is not supported yet
+    loadFilesPriorities(h);
+  } else {
+    // Sequential download
+    if(TorrentTempData::hasTempData(hash)) {
+      qDebug("addMagnetUri: Setting download as sequential (from tmp data)");
+      h.set_sequential_download(TorrentTempData::isSequential(hash));
+    }
+    // Save persistent data for new torrent
+    Q_ASSERT(h.is_valid());
+    qDebug("addMagnetUri: hash: %s", h.hash().toUtf8().data());
+    TorrentPersistentData::saveTorrentPersistentData(h, true);
+    qDebug("Persistent data saved");
+    // Save save_path
+    if(!defaultTempPath.isEmpty()) {
+      qDebug("addMagnetUri: Saving save_path in persistent data: %s", savePath.toUtf8().data());
+      TorrentPersistentData::saveSavePath(hash, savePath);
+    }
+  }
+  if(!addInPause && !fastResume) {
+    // Start torrent because it was added in paused state
+    h.resume();
+  }
+  // Send torrent addition signal
+  if(fastResume)
+    addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(magnet_uri));
+  else
+    addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(magnet_uri));
+  emit addedTorrent(h);
+  return h;
+}
+
 // Add a torrent to the bittorrent session
 QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bool resumed) {
   QTorrentHandle h;
@@ -406,13 +523,7 @@ QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   qDebug(" -> Hash: %s", misc::toString(t->info_hash()).c_str());
   qDebug(" -> Name: %s", t->name().c_str());
   hash = misc::toQString(t->info_hash());
-  if(file.startsWith(torrentBackup.path())) {
-    QFileInfo fi(file);
-    QString old_hash = fi.baseName();
-    if(old_hash != hash){
-      qDebug("* ERROR: Strange, hash changed from %s to %s", old_hash.toLocal8Bit().data(), hash.toLocal8Bit().data());
-    }
-  }
+
   // Check if torrent is already in download list
   if(s->find_torrent(t->info_hash()).is_valid()) {
     qDebug("/!\\ Torrent is already in download list");
@@ -726,7 +837,7 @@ void bittorrent::loadTorrentSpeedLimits(QString hash) {
 // Read pieces priorities from hard disk
 // and ask QTorrentHandle to consider them
 void bittorrent::loadFilesPriorities(QTorrentHandle &h) {
-  qDebug("Applying pieces priorities");
+  qDebug("Applying files priority");
   if(!h.is_valid()) {
     qDebug("/!\\ Error: Invalid handle");
     return;
@@ -1142,6 +1253,10 @@ void bittorrent::readAlerts() {
         bencode(std::ostream_iterator<char>(out), *p->resume_data);
       }
     }
+    else if (metadata_received_alert* p = dynamic_cast<metadata_received_alert*>(a.get())) {
+      QTorrentHandle h(p->handle);
+      emit metadataReceived(h);
+    }
     else if (file_error_alert* p = dynamic_cast<file_error_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
       h.auto_managed(false);
@@ -1300,13 +1415,6 @@ void bittorrent::processDownloadedFile(QString url, QString file_path) {
   }
 }
 
-void bittorrent::downloadFromURLList(const QStringList& url_list) {
-  qDebug("DownloadFromUrlList");
-  foreach(const QString url, url_list) {
-    downloadFromUrl(url);
-  }
-}
-
 // Return current download rate for the BT
 // session. Payload means that it only take into
 // account "useful" part of the rate
@@ -1352,7 +1460,7 @@ void bittorrent::startUpTorrents() {
   QStringList fileNames;
   QStringList known_torrents = TorrentPersistentData::knownTorrents();
   if(isQueueingEnabled()) {
-    QList<QPair<int, QString> > filePaths;
+    QList<QPair<int, QString> > hashes;
     foreach(const QString &hash, known_torrents) {
       QString filePath;
       if(TorrentPersistentData::isMagnet(hash)) {
@@ -1361,21 +1469,27 @@ void bittorrent::startUpTorrents() {
         filePath = torrentBackup.path()+QDir::separator()+hash+".torrent";
       }
       int prio = TorrentPersistentData::getPriority(hash);
-      misc::insertSort2<QString>(filePaths, qMakePair(prio, filePath));
+      misc::insertSort2<QString>(hashes, qMakePair(prio, hash));
     }
     // Resume downloads
-    QPair<int, QString> fileName;
-    foreach(fileName, filePaths) {
-      addTorrent(fileName.second, false, QString(), true);
+    QPair<int, QString> couple;
+    foreach(couple, hashes) {
+      QString hash = couple.second;
+      qDebug("Starting up torrent %s", hash.toUtf8().data());
+      if(TorrentPersistentData::isMagnet(hash)) {
+        addMagnetUri(TorrentPersistentData::getMagnetUri(hash), true);
+      } else {
+        addTorrent(torrentBackup.path()+QDir::separator()+hash+".torrent", false, QString(), true);
+      }
     }
   } else {
-    QStringList filePaths;
-    foreach(const QString &fileName, fileNames) {
-      filePaths.append(torrentBackup.path()+QDir::separator()+fileName);
-    }
     // Resume downloads
-    foreach(const QString &fileName, filePaths) {
-      addTorrent(fileName, false, QString(), true);
+    foreach(const QString &hash, known_torrents) {
+      qDebug("Starting up torrent %s", hash.toUtf8().data());
+      if(TorrentPersistentData::isMagnet(hash))
+        addMagnetUri(TorrentPersistentData::getMagnetUri(hash), true);
+      else
+        addTorrent(torrentBackup.path()+QDir::separator()+hash+".torrent", false, QString(), true);
     }
   }
   qDebug("Unfinished torrents resumed");

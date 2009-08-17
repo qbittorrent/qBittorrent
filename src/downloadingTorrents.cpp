@@ -53,8 +53,8 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
   actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
   actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
-//   tabBottom->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/oxygen/log.png")));
-//   tabBottom->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/oxygen/filter.png")));
+  //   tabBottom->setTabIcon(0, QIcon(QString::fromUtf8(":/Icons/oxygen/log.png")));
+  //   tabBottom->setTabIcon(1, QIcon(QString::fromUtf8(":/Icons/oxygen/filter.png")));
 
   // Set Download list model
   DLListModel = new QStandardItemModel(0,10);
@@ -79,6 +79,7 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   loadHiddenColumns();
 
   connect(BTSession, SIGNAL(torrentFinishedChecking(QTorrentHandle&)), this, SLOT(sortProgressColumn(QTorrentHandle&)));
+  connect(BTSession, SIGNAL(metadataReceived(QTorrentHandle&)), this, SLOT(updateMetadata(QTorrentHandle&)));
 
   // Load last columns width for download list
   if(!loadColWidthDLList()) {
@@ -173,10 +174,12 @@ void DownloadingTorrents::showProperties(const QModelIndex &index) {
 
 void DownloadingTorrents::showPropertiesFromHash(QString hash) {
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
-  properties *prop = new properties(this, BTSession, h);
-  connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSizeAndProgress(QString)));
-  connect(prop, SIGNAL(trackersChanged(QString)), BTSession, SLOT(saveTrackerFile(QString)));
-  prop->show();
+  if(h.is_valid() && h.has_metadata()) {
+    properties *prop = new properties(this, BTSession, h);
+    connect(prop, SIGNAL(filteredFilesChanged(QString)), this, SLOT(updateFileSizeAndProgress(QString)));
+    connect(prop, SIGNAL(trackersChanged(QString)), BTSession, SLOT(saveTrackerFile(QString)));
+    prop->show();
+  }
 }
 
 // Remove a torrent from the download list but NOT from the BT Session
@@ -228,14 +231,14 @@ void DownloadingTorrents::propertiesSelection(){
 }
 
 void DownloadingTorrents::forceRecheck() {
-    QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
-    foreach(const QModelIndex &index, selectedIndexes){
-        if(index.column() == NAME){
-            QString hash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
-            QTorrentHandle h = BTSession->getTorrentHandle(hash);
-            h.force_recheck();
-        }
+  QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
+  foreach(const QModelIndex &index, selectedIndexes){
+    if(index.column() == NAME){
+      QString hash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
+      h.force_recheck();
     }
+  }
 }
 
 void DownloadingTorrents::displayDLListMenu(const QPoint&) {
@@ -243,13 +246,19 @@ void DownloadingTorrents::displayDLListMenu(const QPoint&) {
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   bool has_pause = false, has_start = false, has_preview = false;
+  bool show_properties_entry = false;
+  QTorrentHandle h;
+  qDebug("Displaying menu");
   foreach(const QModelIndex &index, selectedIndexes) {
     if(index.column() == NAME) {
       // Get the file name
       QString hash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
       // Get handle and pause the torrent
-      QTorrentHandle h = BTSession->getTorrentHandle(hash);
+      h = BTSession->getTorrentHandle(hash);
       if(!h.is_valid()) continue;
+      if(h.has_metadata()) {
+        show_properties_entry = true;
+      }
       if(h.is_paused()) {
         if(!has_start) {
           myDLLlistMenu.addAction(actionStart);
@@ -261,9 +270,9 @@ void DownloadingTorrents::displayDLListMenu(const QPoint&) {
           has_pause = true;
         }
       }
-      if(BTSession->isFilePreviewPossible(hash) && !has_preview) {
-         myDLLlistMenu.addAction(actionPreview_file);
-         has_preview = true;
+      if(h.has_metadata() && BTSession->isFilePreviewPossible(hash) && !has_preview) {
+        myDLLlistMenu.addAction(actionPreview_file);
+        has_preview = true;
       }
       if(has_pause && has_start && has_preview) break;
     }
@@ -278,7 +287,8 @@ void DownloadingTorrents::displayDLListMenu(const QPoint&) {
   myDLLlistMenu.addAction(actionForce_recheck);
   myDLLlistMenu.addSeparator();
   myDLLlistMenu.addAction(actionOpen_destination_folder);
-  myDLLlistMenu.addAction(actionTorrent_Properties);
+  if(show_properties_entry)
+    myDLLlistMenu.addAction(actionTorrent_Properties);
   if(BTSession->isQueueingEnabled()) {
     myDLLlistMenu.addSeparator();
     myDLLlistMenu.addAction(actionIncreasePriority);
@@ -378,7 +388,7 @@ bool DownloadingTorrents::loadHiddenColumns() {
     if(ishidden_list.size() == DLListModel->columnCount()-1) {
       unsigned int listSize = ishidden_list.size();
       for(unsigned int i=0; i<listSize; ++i){
-            downloadList->header()->resizeSection(i, ishidden_list.at(i).toInt());
+        downloadList->header()->resizeSection(i, ishidden_list.at(i).toInt());
       }
       loaded = true;
     }
@@ -433,36 +443,36 @@ void DownloadingTorrents::hideOrShowColumnPriority() {
 // getter, return the action hide or show whose id is index
 QAction* DownloadingTorrents::getActionHoSCol(int index) {
   switch(index) {
-    case NAME :
-      return actionHOSColName;
+  case NAME :
+    return actionHOSColName;
     break;
-    case SIZE :
-      return actionHOSColSize;
+  case SIZE :
+    return actionHOSColSize;
     break;
-    case PROGRESS :
-      return actionHOSColProgress;
+  case PROGRESS :
+    return actionHOSColProgress;
     break;
-    case DLSPEED :
-      return actionHOSColDownSpeed;
+  case DLSPEED :
+    return actionHOSColDownSpeed;
     break;
-    case UPSPEED :
-      return actionHOSColUpSpeed;
+  case UPSPEED :
+    return actionHOSColUpSpeed;
     break;
-    case SEEDSLEECH :
-      return actionHOSColSeedersLeechers;
+  case SEEDSLEECH :
+    return actionHOSColSeedersLeechers;
     break;
-    case RATIO :
-      return actionHOSColRatio;
+  case RATIO :
+    return actionHOSColRatio;
     break;
-    case ETA :
-      return actionHOSColEta;
+  case ETA :
+    return actionHOSColEta;
     break;
-    case PRIORITY :
-      return actionHOSColPriority;
-      break;
-    default :
+  case PRIORITY :
+    return actionHOSColPriority;
+    break;
+  default :
       return NULL;
-  }
+}
 }
 
 QStringList DownloadingTorrents::getSelectedTorrents(bool only_one) const{
@@ -479,96 +489,106 @@ QStringList DownloadingTorrents::getSelectedTorrents(bool only_one) const{
   return res;
 }
 
+void DownloadingTorrents::updateMetadata(QTorrentHandle &h) {
+  QString hash = h.hash();
+  int row = getRowFromHash(hash);
+  if(row != -1) {
+    qDebug("Updating torrent metadata in download list");
+    DLListModel->setData(DLListModel->index(row, NAME), QVariant(h.name()));
+    DLListModel->setData(DLListModel->index(row, SIZE), QVariant((qlonglong)h.actual_size()));
+  }
+}
+
 // get information from torrent handles and
 // update download list accordingly
 bool DownloadingTorrents::updateTorrent(QTorrentHandle h) {
-    bool added = false;
-    try{
-      QString hash = h.hash();
-      int row = getRowFromHash(hash);
-      if(row == -1) {
-        qDebug("Info: Could not find filename in download list, adding it...");
-        addTorrent(hash);
-        row = getRowFromHash(hash);
-        added = true;
-      }
-      Q_ASSERT(row != -1);
-      // Update Priority
-      if(BTSession->isQueueingEnabled()) {
-          DLListModel->setData(DLListModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
-          if(h.is_queued()) {
-              if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) {
-                  DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/time.png"))), Qt::DecorationRole);
-                  if(!downloadList->isColumnHidden(PROGRESS)) {
-                      DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
-                  }
-              }else {
-                  DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queued.png"))), Qt::DecorationRole);
-                  if(!downloadList->isColumnHidden(ETA)) {
-                      DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-                  }
-              }
-              // Reset speeds and seeds/leech
-              DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
-              DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
-              DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
-              setRowColor(row, QString::fromUtf8("grey"));
-              return added;
-          }
-      }
-      if(!downloadList->isColumnHidden(PROGRESS))
-        DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
-      // No need to update a paused torrent
-      if(h.is_paused()) return added;
-      // Parse download state
-      // Setting download state
-      switch(h.state()) {
-        case torrent_status::checking_files:
-        case torrent_status::queued_for_checking:
+  bool added = false;
+  try{
+    QString hash = h.hash();
+    int row = getRowFromHash(hash);
+    if(row == -1) {
+      qDebug("Info: Could not find filename in download list, adding it...");
+      addTorrent(hash);
+      row = getRowFromHash(hash);
+      added = true;
+    }
+    Q_ASSERT(row != -1);
+    // Update Priority
+    if(BTSession->isQueueingEnabled()) {
+      DLListModel->setData(DLListModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
+      if(h.is_queued()) {
+        if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) {
           DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/time.png"))), Qt::DecorationRole);
-          setRowColor(row, QString::fromUtf8("grey"));
-          break;
-        case torrent_status::downloading:
-        case torrent_status::downloading_metadata:
-          if(h.download_payload_rate() > 0) {
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png"))), Qt::DecorationRole);
-            if(!downloadList->isColumnHidden(ETA)) {
-              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)BTSession->getETA(hash)));
-            }
-            setRowColor(row, QString::fromUtf8("green"));
-          }else{
-            DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
-            if(!downloadList->isColumnHidden(ETA)) {
-              DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
-            }
-            setRowColor(row, QApplication::palette().color(QPalette::WindowText));
+          if(!downloadList->isColumnHidden(PROGRESS)) {
+            DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
           }
-          if(!downloadList->isColumnHidden(DLSPEED)) {
-            DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
-          }
-          if(!downloadList->isColumnHidden(UPSPEED)) {
-            DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
-          }
-          break;
-        default:
+        }else {
+          DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queued.png"))), Qt::DecorationRole);
           if(!downloadList->isColumnHidden(ETA)) {
             DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
           }
+        }
+        // Reset speeds and seeds/leech
+        DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)0.));
+        DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)0.));
+        DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant("0/0"));
+        setRowColor(row, QString::fromUtf8("grey"));
+        return added;
       }
-      if(!downloadList->isColumnHidden(SEEDSLEECH)) {
-        QString tmp = misc::toQString(h.num_seeds(), true);
-        if(h.num_complete() >= 0)
-          tmp.append(QString("(")+misc::toQString(h.num_complete())+QString(")"));
-        tmp.append(QString("/")+misc::toQString(h.num_peers() - h.num_seeds(), true));
-        if(h.num_incomplete() >= 0)
-          tmp.append(QString("(")+misc::toQString(h.num_incomplete())+QString(")"));
-        DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(tmp));
+    }
+    if(!downloadList->isColumnHidden(PROGRESS))
+      DLListModel->setData(DLListModel->index(row, PROGRESS), QVariant((double)h.progress()));
+    // No need to update a paused torrent
+    if(h.is_paused()) return added;
+    // Parse download state
+    // Setting download state
+    switch(h.state()) {
+        case torrent_status::checking_files:
+        case torrent_status::queued_for_checking:
+      DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/time.png"))), Qt::DecorationRole);
+      setRowColor(row, QString::fromUtf8("grey"));
+      break;
+        case torrent_status::downloading:
+        case torrent_status::downloading_metadata:
+      if(h.download_payload_rate() > 0) {
+        DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png"))), Qt::DecorationRole);
+        if(!downloadList->isColumnHidden(ETA)) {
+          DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)BTSession->getETA(hash)));
+        }
+        setRowColor(row, QString::fromUtf8("green"));
+      }else{
+        DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
+        if(!downloadList->isColumnHidden(ETA)) {
+          DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+        }
+        setRowColor(row, QApplication::palette().color(QPalette::WindowText));
       }
-      if(!downloadList->isColumnHidden(RATIO)) {
-        DLListModel->setData(DLListModel->index(row, RATIO), QVariant(misc::toQString(BTSession->getRealRatio(hash))));
+      if(!downloadList->isColumnHidden(DLSPEED)) {
+        DLListModel->setData(DLListModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
       }
-    }catch(invalid_handle e) {}
-    return added;
+      if(!downloadList->isColumnHidden(UPSPEED)) {
+        DLListModel->setData(DLListModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
+      }
+      break;
+        default:
+      if(!downloadList->isColumnHidden(ETA)) {
+        DLListModel->setData(DLListModel->index(row, ETA), QVariant((qlonglong)-1));
+      }
+    }
+    if(!downloadList->isColumnHidden(SEEDSLEECH)) {
+      QString tmp = misc::toQString(h.num_seeds(), true);
+      if(h.num_complete() >= 0)
+        tmp.append(QString("(")+misc::toQString(h.num_complete())+QString(")"));
+      tmp.append(QString("/")+misc::toQString(h.num_peers() - h.num_seeds(), true));
+      if(h.num_incomplete() >= 0)
+        tmp.append(QString("(")+misc::toQString(h.num_incomplete())+QString(")"));
+      DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(tmp));
+    }
+    if(!downloadList->isColumnHidden(RATIO)) {
+      DLListModel->setData(DLListModel->index(row, RATIO), QVariant(misc::toQString(BTSession->getRealRatio(hash))));
+    }
+  }catch(invalid_handle e) {}
+  return added;
 }
 
 void DownloadingTorrents::addTorrent(QString hash) {
@@ -657,17 +677,17 @@ void DownloadingTorrents::toggleDownloadListSortOrder(int index) {
     sortOrder = (Qt::SortOrder)!(bool)downloadList->header()->sortIndicatorOrder();
   }
   switch(index) {
-    case SIZE:
-    case ETA:
-    case UPSPEED:
-    case DLSPEED:
-    case PROGRESS:
-    case PRIORITY:
-    case RATIO:
-      sortDownloadListFloat(index, sortOrder);
-      break;
-    default:
-      sortDownloadListString(index, sortOrder);
+  case SIZE:
+  case ETA:
+  case UPSPEED:
+  case DLSPEED:
+  case PROGRESS:
+  case PRIORITY:
+  case RATIO:
+    sortDownloadListFloat(index, sortOrder);
+    break;
+  default:
+    sortDownloadListString(index, sortOrder);
   }
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QString sortOrderLetter;
@@ -699,16 +719,16 @@ void DownloadingTorrents::sortDownloadList(int index, Qt::SortOrder sortOrder) {
     downloadList->header()->setSortIndicator(index, sortOrder);
   }
   switch(index) {
-    case SIZE:
-    case ETA:
-    case UPSPEED:
-    case DLSPEED:
-    case PRIORITY:
-    case PROGRESS:
-      sortDownloadListFloat(index, sortOrder);
-      break;
-    default:
-      sortDownloadListString(index, sortOrder);
+  case SIZE:
+  case ETA:
+  case UPSPEED:
+  case DLSPEED:
+  case PRIORITY:
+  case PROGRESS:
+    sortDownloadListFloat(index, sortOrder);
+    break;
+  default:
+    sortDownloadListString(index, sortOrder);
   }
 }
 
@@ -761,7 +781,7 @@ bool DownloadingTorrents::loadColWidthDLList() {
   }
   unsigned int listSize = width_list.size();
   for(unsigned int i=0; i<listSize; ++i) {
-        downloadList->header()->resizeSection(i, width_list.at(i).toInt());
+    downloadList->header()->resizeSection(i, width_list.at(i).toInt());
   }
   QVariantList visualIndexes = settings.value(QString::fromUtf8("DownloadListVisualIndexes"), QVariantList()).toList();
   if(visualIndexes.size() != DLListModel->columnCount()-1) {

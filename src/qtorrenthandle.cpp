@@ -35,6 +35,7 @@
 #include <QByteArray>
 #include "misc.h"
 #include "qtorrenthandle.h"
+#include <libtorrent/magnet_uri.hpp>
 
 QTorrentHandle::QTorrentHandle(torrent_handle h): h(h) {}
 
@@ -54,7 +55,7 @@ torrent_info QTorrentHandle::get_torrent_info() const {
 
 QString QTorrentHandle::hash() const {
   Q_ASSERT(h.is_valid());
-  return misc::toQString(h.get_torrent_info().info_hash());
+  return misc::toQString(h.info_hash());
 }
 
 QString QTorrentHandle::name() const {
@@ -74,13 +75,13 @@ float QTorrentHandle::progress() const {
 }
 
 bitfield QTorrentHandle::pieces() const {
-	Q_ASSERT(h.is_valid());
-	return h.status().pieces;
+  Q_ASSERT(h.is_valid());
+  return h.status().pieces;
 }
 
 void QTorrentHandle::get_download_queue(std::vector<partial_piece_info>& queue) const {
-	Q_ASSERT(h.is_valid());
-	h.get_download_queue(queue);
+  Q_ASSERT(h.is_valid());
+  h.get_download_queue(queue);
 }
 
 QString QTorrentHandle::current_tracker() const {
@@ -98,8 +99,8 @@ bool QTorrentHandle::is_paused() const {
 }
 
 bool QTorrentHandle::is_queued() const {
-    Q_ASSERT(h.is_valid());
-    return h.is_paused() && h.is_auto_managed();
+  Q_ASSERT(h.is_valid());
+  return h.is_paused() && h.is_auto_managed();
 }
 
 size_type QTorrentHandle::total_size() const {
@@ -109,12 +110,12 @@ size_type QTorrentHandle::total_size() const {
 
 size_type QTorrentHandle::piece_length() const {
   Q_ASSERT(h.is_valid());
-	return h.get_torrent_info().piece_length();
+  return h.get_torrent_info().piece_length();
 }
 
 int QTorrentHandle::num_pieces() const {
   Q_ASSERT(h.is_valid());
-	return h.get_torrent_info().num_pieces();
+  return h.get_torrent_info().num_pieces();
 }
 
 size_type QTorrentHandle::total_wanted_done() const {
@@ -170,12 +171,14 @@ fs::path QTorrentHandle::save_path_boost() const {
 QStringList QTorrentHandle::url_seeds() const {
   Q_ASSERT(h.is_valid());
   QStringList res;
-  std::vector<std::string> existing_seeds = h.get_torrent_info().url_seeds();
-  unsigned int nbSeeds = existing_seeds.size();
-  QString existing_seed;
-  for(unsigned int i=0; i<nbSeeds; ++i) {
-    res << misc::toQString(existing_seeds[i]);
-  }
+  try {
+    std::vector<std::string> existing_seeds = h.get_torrent_info().url_seeds();
+    unsigned int nbSeeds = existing_seeds.size();
+    QString existing_seed;
+    for(unsigned int i=0; i<nbSeeds; ++i) {
+      res << misc::toQString(existing_seeds[i]);
+    }
+  } catch(std::exception e) {}
   return res;
 }
 
@@ -267,13 +270,13 @@ void QTorrentHandle::file_progress(std::vector<size_type>& fp) {
 }
 
 size_type QTorrentHandle::all_time_download() {
-    Q_ASSERT(h.is_valid());
-    return h.status().all_time_download;
+  Q_ASSERT(h.is_valid());
+  return h.status().all_time_download;
 }
 
 size_type QTorrentHandle::all_time_upload() {
-    Q_ASSERT(h.is_valid());
-    return h.status().all_time_upload;
+  Q_ASSERT(h.is_valid());
+  return h.status().all_time_upload;
 }
 
 size_type QTorrentHandle::total_payload_download() {
@@ -301,8 +304,8 @@ QStringList QTorrentHandle::files_path() const {
 }
 
 int QTorrentHandle::queue_position() const {
-    Q_ASSERT(h.is_valid());
-    return h.queue_position();
+  Q_ASSERT(h.is_valid());
+  return h.queue_position();
 }
 
 int QTorrentHandle::num_uploads() const {
@@ -321,13 +324,13 @@ bool QTorrentHandle::is_seed() const {
 }
 
 bool QTorrentHandle::is_auto_managed() const {
-    Q_ASSERT(h.is_valid());
-    return h.is_auto_managed();
+  Q_ASSERT(h.is_valid());
+  return h.is_auto_managed();
 }
 
 int QTorrentHandle::active_time() const {
-    Q_ASSERT(h.is_valid());
-    return h.status().active_time;
+  Q_ASSERT(h.is_valid());
+  return h.status().active_time;
 }
 
 bool QTorrentHandle::is_sequential_download() const {
@@ -398,18 +401,18 @@ void QTorrentHandle::replace_trackers(std::vector<announce_entry> const& v) cons
 }
 
 void QTorrentHandle::auto_managed(bool b) const {
-    Q_ASSERT(h.is_valid());
-    h.auto_managed(b);
+  Q_ASSERT(h.is_valid());
+  h.auto_managed(b);
 }
 
 void QTorrentHandle::queue_position_down() const {
-    Q_ASSERT(h.is_valid());
-    h.queue_position_down();
+  Q_ASSERT(h.is_valid());
+  h.queue_position_down();
 }
 
 void QTorrentHandle::queue_position_up() const {
-    Q_ASSERT(h.is_valid());
-    h.queue_position_up();
+  Q_ASSERT(h.is_valid());
+  h.queue_position_up();
 
 }
 
@@ -429,18 +432,18 @@ void QTorrentHandle::set_tracker_login(QString username, QString password) {
 }
 
 void QTorrentHandle::force_recheck() const {
-    Q_ASSERT(h.is_valid());
-    h.force_recheck();
+  Q_ASSERT(h.is_valid());
+  h.force_recheck();
 }
 
 void QTorrentHandle::move_storage(QString new_path) const {
-   Q_ASSERT(h.is_valid());
-   h.move_storage(new_path.toLocal8Bit().data());
+  Q_ASSERT(h.is_valid());
+  h.move_storage(new_path.toLocal8Bit().data());
 }
 
 void QTorrentHandle::file_priority(int index, int priority) const {
   Q_ASSERT(h.is_valid());
-   h.file_priority(index, priority);
+  h.file_priority(index, priority);
 }
 
 //
@@ -453,6 +456,6 @@ QTorrentHandle& QTorrentHandle::operator =(const torrent_handle& new_h) {
 }
 
 bool QTorrentHandle::operator ==(const QTorrentHandle& new_h) const{
-  QString hash = misc::toQString(h.get_torrent_info().info_hash());
+  QString hash = misc::toQString(h.info_hash());
   return (hash == new_h.hash());
 }
