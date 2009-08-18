@@ -54,7 +54,7 @@
         myFinishedListMenu.addAction(actionCreate);
         myFinishedListMenu.addAction(actionRefreshAll);
       }
-      myFinishedListMenu.exec(mapToGlobal(pos)+QPoint(10,33));
+      myFinishedListMenu.exec(QCursor::pos());
     }
 
     // add a stream by a button
