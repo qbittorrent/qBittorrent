@@ -36,6 +36,7 @@
 #include <QString>
 #include <QRegExp>
 #include <QStringList>
+#include <QClipboard>
 #include "ui_downloadFromURL.h"
 
 class downloadFromURL : public QDialog, private Ui::downloadFromURL{
@@ -47,6 +48,11 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
       setAttribute(Qt::WA_DeleteOnClose);
       icon_lbl->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/url.png")));
       show();
+      // Paste clipboard if there is an URL in it
+      QString clip_txt = qApp->clipboard()->text();
+      if(clip_txt.startsWith("http://", Qt::CaseInsensitive) || clip_txt.startsWith("https://", Qt::CaseInsensitive) || clip_txt.startsWith("ftp://", Qt::CaseInsensitive) || clip_txt.startsWith("magnet:", Qt::CaseInsensitive)) {
+        textUrls->setText(clip_txt);
+      }
     }
 
     ~downloadFromURL(){}
