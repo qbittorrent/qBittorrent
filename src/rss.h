@@ -329,8 +329,10 @@ class RssStream : public QObject{
     }
 
     ~RssStream(){
-      QSettings qBTRSS("qBittorrent-rss");
-      qBTRSS.setValue(url, getAllReadHashes());
+      if(refreshed) {
+        QSettings qBTRSS("qBittorrent-rss");
+        qBTRSS.setValue(url, getAllReadHashes());
+      }
       removeAllItems();
       if(QFile::exists(filePath))
         QFile::remove(filePath);

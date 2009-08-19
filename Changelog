@@ -3,6 +3,7 @@
     - BUGFIX: Display real save path instead of the temporary one in torrent properties
     - BUGFIX: Catching invalid_handle exception to avoid rare crashes
     - BUGFIX: Fixed popup menu position in RSS feeds list
+    - BUGFIX: Don't save RSS feed state if it could not be updated
 
 * Thu Aug 13 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.4.0
     - FEATURE: Display swarm information in lists
