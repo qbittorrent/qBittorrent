@@ -83,7 +83,7 @@ public:
   }
 
   QString getMatchingTokens_str() const {
-    return this->value("matches", "*").toString();
+    return this->value("matches", "").toString();
   }
 
   void setMatchingTokens(QString tokens) {
