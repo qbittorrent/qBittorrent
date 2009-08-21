@@ -52,10 +52,19 @@ public:
   FeedFilter(QHash<QString, QVariant> filter): QHash<QString, QVariant>(filter), valid(true) {}
 
   bool matches(QString s) {
-    QStringList tokens = getMatchingTokens();
-    foreach(const QString& token, tokens) {
+    QStringList match_tokens = getMatchingTokens();
+    foreach(const QString& token, match_tokens) {
+      if(token.isEmpty() || token == "*")
+        continue;
       QRegExp reg(token, Qt::CaseInsensitive);
       if(reg.indexIn(s) < 0) return false;
+    }
+    // Checking not matching
+    QStringList notmatch_tokens = getNotMatchingTokens();
+    foreach(const QString& token, notmatch_tokens) {
+      if(token.isEmpty()) continue;
+      QRegExp reg(token, Qt::CaseInsensitive);
+      if(reg.indexIn(s) > -1) return false;
     }
     return true;
   }
@@ -234,6 +243,8 @@ protected slots:
   void showFilterSettings(QListWidgetItem *item) {
     // First, save current filter settings
     saveCurrentFilterSettings();
+    // Clear all fields
+    clearFields();
     if(!item) {
       qDebug("No new selected item");
       return;
@@ -324,6 +335,24 @@ protected slots:
     match_line->clear();
     notmatch_line->clear();
     savepath_line->clear();
+    test_res_lbl->setText("");
+    test_line->clear();
+  }
+
+  void on_testButton_clicked(bool) {
+    if(selected_filter.isEmpty()) return;
+    QString s = test_line->text().trimmed();
+    if(s.isEmpty()) {
+      QMessageBox::critical(0, tr("Filter testing error"), tr("Please specify a test torrent name."));
+      return;
+    }
+    // Get current filter
+    saveCurrentFilterSettings();
+    FeedFilter f = filters.getFilter(selected_filter);
+    if(f.matches(s))
+      test_res_lbl->setText("<b><font color=\"green\">"+tr("matches")+"</font></b>");
+    else
+      test_res_lbl->setText("<b><font color=\"red\">"+tr("does not match")+"</font></b>");
   }
 
 };

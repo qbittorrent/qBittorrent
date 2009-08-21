@@ -1326,6 +1326,138 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     </message>
 </context>
 <context>
+    <name>FeedDownloader</name>
+    <message>
+        <location filename="../FeedDownloader.ui" line="14"/>
+        <source>RSS Feed downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="29"/>
+        <source>RSS feed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="43"/>
+        <source>Feed name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="65"/>
+        <source>Automatically download torrents from this feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="81"/>
+        <source>Download filters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="99"/>
+        <source>Filters:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="209"/>
+        <source>Filter settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="228"/>
+        <source>Matches:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="241"/>
+        <source>Does not match:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="254"/>
+        <source>Destination folder:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="293"/>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="306"/>
+        <source>Filter testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="322"/>
+        <source>Torrent title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="335"/>
+        <source>Result:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="357"/>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FeedDownloaderDlg</name>
+    <message>
+        <location filename="../FeedDownloader.h" line="292"/>
+        <source>New filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="299"/>
+        <source>Please choose a name for this filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="299"/>
+        <source>Filter name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="307"/>
+        <location filename="../FeedDownloader.h" line="322"/>
+        <source>Invalid filter name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="307"/>
+        <source>The filter name cannot be left empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="322"/>
+        <source>This filter name is already in use.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="343"/>
+        <source>Filter testing error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="343"/>
+        <source>Please specify a test torrent name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="350"/>
+        <source>matches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="352"/>
+        <source>does not match</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FilterParserThread</name>
     <message>
         <location filename="../filterParserThread.h" line="106"/>
@@ -2833,6 +2965,16 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../rss.ui" line="253"/>
+        <source>Copy feed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="262"/>
+        <source>RSS feed downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Create</source>
         <translation type="obsolete">Créer</translation>
     </message>
@@ -2888,22 +3030,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="194"/>
+        <location filename="../rss_imp.cpp" line="219"/>
         <source>Please type a rss stream url</source>
         <translation>Veuillez entrer l&apos;url du flux RSS</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="194"/>
+        <location filename="../rss_imp.cpp" line="219"/>
         <source>Stream URL:</source>
         <translation>URL du flux :</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="134"/>
+        <location filename="../rss_imp.cpp" line="139"/>
         <source>Please choose a new name for this stream</source>
         <translation>Veuillez choisir un nouveau nom pour ce flux</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="134"/>
+        <location filename="../rss_imp.cpp" line="139"/>
         <source>New stream name:</source>
         <translation>Nouveau nom de flux :</translation>
     </message>
@@ -2912,7 +3054,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Aucune description disponible</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="80"/>
+        <location filename="../rss_imp.cpp" line="85"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Etes vous sûr ? -- qBittorrent</translation>
     </message>
@@ -2921,12 +3063,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Etes-vous certain de vouloir supprimer ce flux de la liste ?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="81"/>
+        <location filename="../rss_imp.cpp" line="86"/>
         <source>&amp;Yes</source>
         <translation>&amp;Oui</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="81"/>
+        <location filename="../rss_imp.cpp" line="86"/>
         <source>&amp;No</source>
         <translation>&amp;Non</translation>
     </message>
@@ -2939,51 +3081,51 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Aucune description disponible</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="80"/>
+        <location filename="../rss_imp.cpp" line="85"/>
         <source>Are you sure you want to delete this stream from the list?</source>
         <translation>Etes-vous certain de vouloir supprimer ce flux de la liste ?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="187"/>
-        <location filename="../rss_imp.cpp" line="210"/>
-        <location filename="../rss_imp.cpp" line="224"/>
-        <location filename="../rss_imp.cpp" line="321"/>
+        <location filename="../rss_imp.cpp" line="207"/>
+        <location filename="../rss_imp.cpp" line="235"/>
+        <location filename="../rss_imp.cpp" line="249"/>
+        <location filename="../rss_imp.cpp" line="346"/>
         <source>Description:</source>
         <translation>Description :</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="187"/>
-        <location filename="../rss_imp.cpp" line="210"/>
-        <location filename="../rss_imp.cpp" line="224"/>
-        <location filename="../rss_imp.cpp" line="321"/>
+        <location filename="../rss_imp.cpp" line="207"/>
+        <location filename="../rss_imp.cpp" line="235"/>
+        <location filename="../rss_imp.cpp" line="249"/>
+        <location filename="../rss_imp.cpp" line="346"/>
         <source>url:</source>
         <translation>url :</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="187"/>
-        <location filename="../rss_imp.cpp" line="210"/>
-        <location filename="../rss_imp.cpp" line="224"/>
-        <location filename="../rss_imp.cpp" line="321"/>
+        <location filename="../rss_imp.cpp" line="207"/>
+        <location filename="../rss_imp.cpp" line="235"/>
+        <location filename="../rss_imp.cpp" line="249"/>
+        <location filename="../rss_imp.cpp" line="346"/>
         <source>Last refresh:</source>
         <translation>Dernier rafraîchissement :</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="201"/>
+        <location filename="../rss_imp.cpp" line="226"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="202"/>
+        <location filename="../rss_imp.cpp" line="227"/>
         <source>This rss feed is already in the list.</source>
         <translation>Cette source RSS est déjà dans votre liste.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="259"/>
+        <location filename="../rss_imp.cpp" line="284"/>
         <source>Date: </source>
         <translation>Date : </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="262"/>
+        <location filename="../rss_imp.cpp" line="287"/>
         <source>Author: </source>
         <translation>Auteur : </translation>
     </message>
@@ -2991,7 +3133,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssItem</name>
     <message>
-        <location filename="../rss.h" line="296"/>
+        <location filename="../rss.h" line="327"/>
         <source>No description available</source>
         <translation>Aucune description disponible</translation>
     </message>
@@ -2999,13 +3141,18 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="489"/>
+        <location filename="../rss.h" line="520"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>il y a %1</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="488"/>
+        <location filename="../rss.h" line="586"/>
+        <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.h" line="519"/>
         <source>Never</source>
         <translation>Jamais</translation>
     </message>
@@ -3481,13 +3628,13 @@ Changements:
         <translation>%1 a atteint le ratio maximum défini.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="289"/>
+        <location filename="../bittorrent.cpp" line="295"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos; a été supprimé de manière permanente.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="291"/>
+        <location filename="../bittorrent.cpp" line="297"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; a été supprimé.</translation>
@@ -3503,85 +3650,85 @@ Changements:
         <translation type="obsolete">&apos;%1&apos; a été relancé.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="367"/>
+        <location filename="../bittorrent.cpp" line="373"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="392"/>
-        <location filename="../bittorrent.cpp" line="535"/>
-        <location filename="../bittorrent.cpp" line="538"/>
+        <location filename="../bittorrent.cpp" line="398"/>
+        <location filename="../bittorrent.cpp" line="541"/>
+        <location filename="../bittorrent.cpp" line="544"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; est déjà présent dans la liste de téléchargement.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="473"/>
-        <location filename="../bittorrent.cpp" line="637"/>
-        <location filename="../bittorrent.cpp" line="642"/>
+        <location filename="../bittorrent.cpp" line="479"/>
+        <location filename="../bittorrent.cpp" line="649"/>
+        <location filename="../bittorrent.cpp" line="654"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; a été relancé. (relancement rapide)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="475"/>
-        <location filename="../bittorrent.cpp" line="639"/>
-        <location filename="../bittorrent.cpp" line="644"/>
+        <location filename="../bittorrent.cpp" line="481"/>
+        <location filename="../bittorrent.cpp" line="651"/>
+        <location filename="../bittorrent.cpp" line="656"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; a été ajouté à la liste de téléchargement.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="509"/>
-        <location filename="../bittorrent.cpp" line="513"/>
+        <location filename="../bittorrent.cpp" line="515"/>
+        <location filename="../bittorrent.cpp" line="519"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Impossible de décoder le torrent : &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="516"/>
+        <location filename="../bittorrent.cpp" line="522"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Ce fichier est corrompu ou il ne s&apos;agit pas d&apos;un torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="957"/>
+        <location filename="../bittorrent.cpp" line="969"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été bloqué par votre filtrage IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="959"/>
+        <location filename="../bittorrent.cpp" line="971"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été banni suite à l&apos;envoi de données corrompues&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1277"/>
+        <location filename="../bittorrent.cpp" line="1293"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Impossible d&apos;écouter sur les ports donnés.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1316"/>
+        <location filename="../bittorrent.cpp" line="1332"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP : Echec de mapping du port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1321"/>
+        <location filename="../bittorrent.cpp" line="1337"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP : Réussite du mapping de port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1336"/>
+        <location filename="../bittorrent.cpp" line="1352"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Le relancement rapide a échoué pour le torrent %1, revérification...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1341"/>
+        <location filename="../bittorrent.cpp" line="1357"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Le contact de la source HTTP a échoué à l&apos;url : %1, message : %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1409"/>
+        <location filename="../bittorrent.cpp" line="1425"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
@@ -3614,7 +3761,7 @@ Changements:
         <translation type="obsolete">Créer</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="534"/>
+        <location filename="../createtorrent.ui" line="520"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
@@ -3627,7 +3774,7 @@ Changements:
         <translation type="obsolete">Dossier</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="13"/>
+        <location filename="../createtorrent.ui" line="14"/>
         <source>Torrent Creation Tool</source>
         <translation>Utilitaire de création de torrent</translation>
     </message>
@@ -3648,7 +3795,7 @@ Changements:
         <translation type="obsolete">&lt;center&gt;Commentaire :&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="42"/>
+        <location filename="../createtorrent.ui" line="43"/>
         <source>Torrent file creation</source>
         <translation>Création d&apos;un fichier torrent</translation>
     </message>
@@ -3657,7 +3804,7 @@ Changements:
         <translation type="obsolete">Fichiers ou dossiers à insérer :</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="102"/>
+        <location filename="../createtorrent.ui" line="105"/>
         <source>Announce urls (trackers):</source>
         <translation>Urls des trackers :</translation>
     </message>
@@ -3666,7 +3813,7 @@ Changements:
         <translation type="obsolete">Sources web</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="137"/>
+        <location filename="../createtorrent.ui" line="140"/>
         <source>Comment (optional):</source>
         <translation>Commentaire (facultatif) :</translation>
     </message>
@@ -3675,87 +3822,87 @@ Changements:
         <translation type="obsolete">Privé (ne sera pas partagé sur le réseau DHT si activé)</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="118"/>
+        <location filename="../createtorrent.ui" line="121"/>
         <source>Web seeds urls (optional):</source>
         <translation>Urls sources web (facultatif) :</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="52"/>
+        <location filename="../createtorrent.ui" line="53"/>
         <source>File or folder to add to the torrent:</source>
         <translation>Fichier ou dossier à ajouter au torrent :</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="64"/>
+        <location filename="../createtorrent.ui" line="65"/>
         <source>Add a file</source>
         <translation>Ajouter un fichier</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="74"/>
+        <location filename="../createtorrent.ui" line="76"/>
         <source>Add a folder</source>
         <translation>Ajouter un dossier</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="400"/>
+        <location filename="../createtorrent.ui" line="395"/>
         <source>Piece size:</source>
         <translation>taille des morceaux :</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="411"/>
+        <location filename="../createtorrent.ui" line="406"/>
         <source>32 KiB</source>
         <translation>32 Ko</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="416"/>
+        <location filename="../createtorrent.ui" line="411"/>
         <source>64 KiB</source>
         <translation>64 Ko</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="421"/>
+        <location filename="../createtorrent.ui" line="416"/>
         <source>128 KiB</source>
         <translation>128 Ko</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="426"/>
+        <location filename="../createtorrent.ui" line="421"/>
         <source>256 KiB</source>
         <translation>256 Ko</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="431"/>
+        <location filename="../createtorrent.ui" line="426"/>
         <source>512 KiB</source>
         <translation>512 Ko</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="436"/>
+        <location filename="../createtorrent.ui" line="431"/>
         <source>1 MiB</source>
         <translation>1 Mo</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="441"/>
+        <location filename="../createtorrent.ui" line="436"/>
         <source>2 MiB</source>
         <translation>2 Mo</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="446"/>
+        <location filename="../createtorrent.ui" line="441"/>
         <source>4 MiB</source>
         <translation>4 Mo</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="469"/>
+        <location filename="../createtorrent.ui" line="464"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
         <translation>Privé (ne sera pas distribué sur le réseau DHT si activé)</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="476"/>
+        <location filename="../createtorrent.ui" line="471"/>
         <source>Start seeding after creation</source>
         <translation>Commencer le partage directement</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="527"/>
+        <location filename="../createtorrent.ui" line="513"/>
         <source>Create and save...</source>
         <translation>Créer et sauvegarder...</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="483"/>
+        <location filename="../createtorrent.ui" line="478"/>
         <source>Progress:</source>
         <translation>Progression :</translation>
     </message>

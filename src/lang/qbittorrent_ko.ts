@@ -1248,6 +1248,138 @@ list:</source>
     </message>
 </context>
 <context>
+    <name>FeedDownloader</name>
+    <message>
+        <location filename="../FeedDownloader.ui" line="14"/>
+        <source>RSS Feed downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="29"/>
+        <source>RSS feed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="43"/>
+        <source>Feed name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="65"/>
+        <source>Automatically download torrents from this feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="81"/>
+        <source>Download filters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="99"/>
+        <source>Filters:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="209"/>
+        <source>Filter settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="228"/>
+        <source>Matches:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="241"/>
+        <source>Does not match:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="254"/>
+        <source>Destination folder:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="293"/>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="306"/>
+        <source>Filter testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="322"/>
+        <source>Torrent title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="335"/>
+        <source>Result:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="357"/>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FeedDownloaderDlg</name>
+    <message>
+        <location filename="../FeedDownloader.h" line="292"/>
+        <source>New filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="299"/>
+        <source>Please choose a name for this filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="299"/>
+        <source>Filter name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="307"/>
+        <location filename="../FeedDownloader.h" line="322"/>
+        <source>Invalid filter name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="307"/>
+        <source>The filter name cannot be left empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="322"/>
+        <source>This filter name is already in use.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="343"/>
+        <source>Filter testing error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="343"/>
+        <source>Please specify a test torrent name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="350"/>
+        <source>matches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="352"/>
+        <source>does not match</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FilterParserThread</name>
     <message>
         <location filename="../filterParserThread.h" line="106"/>
@@ -2722,6 +2854,16 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../rss.ui" line="253"/>
+        <source>Copy feed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="262"/>
+        <source>RSS feed downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Create</source>
         <translation type="obsolete">생성하기</translation>
     </message>
@@ -2773,86 +2915,86 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="194"/>
+        <location filename="../rss_imp.cpp" line="219"/>
         <source>Please type a rss stream url</source>
         <translation>RSS 스트림 주소(url)를 입력하세요</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="194"/>
+        <location filename="../rss_imp.cpp" line="219"/>
         <source>Stream URL:</source>
         <translation>스트림 URL:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="134"/>
+        <location filename="../rss_imp.cpp" line="139"/>
         <source>Please choose a new name for this stream</source>
         <translation>이 스트림의 이름을 입력하세요</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="134"/>
+        <location filename="../rss_imp.cpp" line="139"/>
         <source>New stream name:</source>
         <translation>새 스트림 이름:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="80"/>
+        <location filename="../rss_imp.cpp" line="85"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>재확인 해주십시요? -- 큐비토런트</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="81"/>
+        <location filename="../rss_imp.cpp" line="86"/>
         <source>&amp;Yes</source>
         <translation>&amp;예</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="81"/>
+        <location filename="../rss_imp.cpp" line="86"/>
         <source>&amp;No</source>
         <translation>&amp;아니요</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="80"/>
+        <location filename="../rss_imp.cpp" line="85"/>
         <source>Are you sure you want to delete this stream from the list?</source>
         <translation>이 스트림을 리스트에서 지우시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="187"/>
-        <location filename="../rss_imp.cpp" line="210"/>
-        <location filename="../rss_imp.cpp" line="224"/>
-        <location filename="../rss_imp.cpp" line="321"/>
+        <location filename="../rss_imp.cpp" line="207"/>
+        <location filename="../rss_imp.cpp" line="235"/>
+        <location filename="../rss_imp.cpp" line="249"/>
+        <location filename="../rss_imp.cpp" line="346"/>
         <source>Description:</source>
         <translation>설명:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="187"/>
-        <location filename="../rss_imp.cpp" line="210"/>
-        <location filename="../rss_imp.cpp" line="224"/>
-        <location filename="../rss_imp.cpp" line="321"/>
+        <location filename="../rss_imp.cpp" line="207"/>
+        <location filename="../rss_imp.cpp" line="235"/>
+        <location filename="../rss_imp.cpp" line="249"/>
+        <location filename="../rss_imp.cpp" line="346"/>
         <source>url:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="187"/>
-        <location filename="../rss_imp.cpp" line="210"/>
-        <location filename="../rss_imp.cpp" line="224"/>
-        <location filename="../rss_imp.cpp" line="321"/>
+        <location filename="../rss_imp.cpp" line="207"/>
+        <location filename="../rss_imp.cpp" line="235"/>
+        <location filename="../rss_imp.cpp" line="249"/>
+        <location filename="../rss_imp.cpp" line="346"/>
         <source>Last refresh:</source>
         <translation>최근 새로고침:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="201"/>
+        <location filename="../rss_imp.cpp" line="226"/>
         <source>qBittorrent</source>
         <translation>큐비토런트</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="202"/>
+        <location filename="../rss_imp.cpp" line="227"/>
         <source>This rss feed is already in the list.</source>
         <translation>이 RSS 피드는 이미 리스트에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="259"/>
+        <location filename="../rss_imp.cpp" line="284"/>
         <source>Date: </source>
         <translation>날짜: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="262"/>
+        <location filename="../rss_imp.cpp" line="287"/>
         <source>Author: </source>
         <translation>작성자: </translation>
     </message>
@@ -2860,7 +3002,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssItem</name>
     <message>
-        <location filename="../rss.h" line="296"/>
+        <location filename="../rss.h" line="327"/>
         <source>No description available</source>
         <translation>관련 자료가 없습니다</translation>
     </message>
@@ -2868,13 +3010,18 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="489"/>
+        <location filename="../rss.h" line="520"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>%1분전</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="488"/>
+        <location filename="../rss.h" line="586"/>
+        <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.h" line="519"/>
         <source>Never</source>
         <translation>전혀 사용안함</translation>
     </message>
@@ -3350,13 +3497,13 @@ Changelog:
         <translation>&apos;%1&apos; 는 설정된 최대 공유 비율에 도달했습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="289"/>
+        <location filename="../bittorrent.cpp" line="295"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos; 는 영구삭제 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="291"/>
+        <location filename="../bittorrent.cpp" line="297"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; 가 삭제되었습니다.</translation>
@@ -3372,85 +3519,85 @@ Changelog:
         <translation type="obsolete">&apos;%1&apos; 가 다운로드를 다시 시작되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="367"/>
+        <location filename="../bittorrent.cpp" line="373"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="392"/>
-        <location filename="../bittorrent.cpp" line="535"/>
-        <location filename="../bittorrent.cpp" line="538"/>
+        <location filename="../bittorrent.cpp" line="398"/>
+        <location filename="../bittorrent.cpp" line="541"/>
+        <location filename="../bittorrent.cpp" line="544"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos;는/은 이미 다운로드 목록에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="473"/>
-        <location filename="../bittorrent.cpp" line="637"/>
-        <location filename="../bittorrent.cpp" line="642"/>
+        <location filename="../bittorrent.cpp" line="479"/>
+        <location filename="../bittorrent.cpp" line="649"/>
+        <location filename="../bittorrent.cpp" line="654"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos;가 다시 시작되었습니다. (빠른 재개)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="475"/>
-        <location filename="../bittorrent.cpp" line="639"/>
-        <location filename="../bittorrent.cpp" line="644"/>
+        <location filename="../bittorrent.cpp" line="481"/>
+        <location filename="../bittorrent.cpp" line="651"/>
+        <location filename="../bittorrent.cpp" line="656"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos;가 다운로드 목록에 추가되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="509"/>
-        <location filename="../bittorrent.cpp" line="513"/>
+        <location filename="../bittorrent.cpp" line="515"/>
+        <location filename="../bittorrent.cpp" line="519"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>다음 파일은 해독 할수가 없습니다: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="516"/>
+        <location filename="../bittorrent.cpp" line="522"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>이 파일은 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="957"/>
+        <location filename="../bittorrent.cpp" line="969"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 IP 필터에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="959"/>
+        <location filename="../bittorrent.cpp" line="971"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1277"/>
+        <location filename="../bittorrent.cpp" line="1293"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>설정하신 포트에 연결할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1316"/>
+        <location filename="../bittorrent.cpp" line="1332"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1321"/>
+        <location filename="../bittorrent.cpp" line="1337"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1336"/>
+        <location filename="../bittorrent.cpp" line="1352"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>토렌트 %1는 빨리 이어받기가 사용될수 없습니다, 확인중입니다... </translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1341"/>
+        <location filename="../bittorrent.cpp" line="1357"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>다음 Url 완전체(Url seed)의 검색이 실패하였습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1409"/>
+        <location filename="../bittorrent.cpp" line="1425"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;을 다운 중입니다, 잠시 기다려 주세요...</translation>
@@ -3483,7 +3630,7 @@ Changelog:
         <translation type="obsolete">생성하기</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="534"/>
+        <location filename="../createtorrent.ui" line="520"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
@@ -3496,7 +3643,7 @@ Changelog:
         <translation type="obsolete">디렉터리 </translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="13"/>
+        <location filename="../createtorrent.ui" line="14"/>
         <source>Torrent Creation Tool</source>
         <translation>토렌트 파일 생성도구</translation>
     </message>
@@ -3517,7 +3664,7 @@ Changelog:
         <translation type="obsolete">&lt;center&gt;설명:&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="42"/>
+        <location filename="../createtorrent.ui" line="43"/>
         <source>Torrent file creation</source>
         <translation>토렌트 파일 만들기</translation>
     </message>
@@ -3526,12 +3673,12 @@ Changelog:
         <translation type="obsolete">입력할 파일 또는 폴더 경로:</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="102"/>
+        <location filename="../createtorrent.ui" line="105"/>
         <source>Announce urls (trackers):</source>
         <translation>발표 되는 url(Tracker 주소):</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="137"/>
+        <location filename="../createtorrent.ui" line="140"/>
         <source>Comment (optional):</source>
         <translation>의견(옵션):</translation>
     </message>
@@ -3540,87 +3687,87 @@ Changelog:
         <translation type="obsolete">은거하기 (이 기능을 선택하시면 님의 컴퓨터는 trackerless network나 DHT에 알려지지 않을 것입니다)</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="118"/>
+        <location filename="../createtorrent.ui" line="121"/>
         <source>Web seeds urls (optional):</source>
         <translation>웹시드(Web seeds) url (옵션사항):</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="52"/>
+        <location filename="../createtorrent.ui" line="53"/>
         <source>File or folder to add to the torrent:</source>
         <translation>토렌트를 추가할 파일 또는 폴더:</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="64"/>
+        <location filename="../createtorrent.ui" line="65"/>
         <source>Add a file</source>
         <translation>파일 추가</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="74"/>
+        <location filename="../createtorrent.ui" line="76"/>
         <source>Add a folder</source>
         <translation>폴더 추가</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="400"/>
+        <location filename="../createtorrent.ui" line="395"/>
         <source>Piece size:</source>
         <translation>조각 크기:</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="411"/>
+        <location filename="../createtorrent.ui" line="406"/>
         <source>32 KiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="416"/>
+        <location filename="../createtorrent.ui" line="411"/>
         <source>64 KiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="421"/>
+        <location filename="../createtorrent.ui" line="416"/>
         <source>128 KiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="426"/>
+        <location filename="../createtorrent.ui" line="421"/>
         <source>256 KiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="431"/>
+        <location filename="../createtorrent.ui" line="426"/>
         <source>512 KiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="436"/>
+        <location filename="../createtorrent.ui" line="431"/>
         <source>1 MiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="441"/>
+        <location filename="../createtorrent.ui" line="436"/>
         <source>2 MiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="446"/>
+        <location filename="../createtorrent.ui" line="441"/>
         <source>4 MiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="469"/>
+        <location filename="../createtorrent.ui" line="464"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
         <translation>개인적으로 사용하기 (이 기능을 사용하시면 귀하의 파일은 DHT 네트웍크에 배포되지 않을 것입니다)</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="476"/>
+        <location filename="../createtorrent.ui" line="471"/>
         <source>Start seeding after creation</source>
         <translation>생성후 바로 배포 시작하기</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="527"/>
+        <location filename="../createtorrent.ui" line="513"/>
         <source>Create and save...</source>
         <translation>생성 후 저장하기...</translation>
     </message>
     <message>
-        <location filename="../createtorrent.ui" line="483"/>
+        <location filename="../createtorrent.ui" line="478"/>
         <source>Progress:</source>
         <translation>진행:</translation>
     </message>

@@ -1045,6 +1045,112 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>FeedDownloader</name>
+    <message>
+        <source>RSS Feed downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feed name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically download torrents from this feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download filters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filters:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Matches:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Does not match:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Destination folder:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Filter testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Result:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FeedDownloaderDlg</name>
+    <message>
+        <source>New filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please choose a name for this filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid filter name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The filter name cannot be left empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This filter name is already in use.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter testing error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please specify a test torrent name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>matches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>does not match</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FilterParserThread</name>
     <message>
         <source>I/O Error</source>
@@ -2311,6 +2417,14 @@ p, li { white-space: pre-wrap; }
         <source>Open news URL</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Copy feed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feed downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSSImp</name>
@@ -2396,6 +2510,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Never</source>
         <translation>Nikdy</translation>
+    </message>
+    <message>
+        <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
