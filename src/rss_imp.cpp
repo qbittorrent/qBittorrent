@@ -183,8 +183,8 @@ void RSSImp::on_actionMark_all_as_read_triggered() {
     feed->markAllAsRead();
     item->setData(0, Qt::DisplayRole, feed->getAliasOrUrl()+ QString::fromUtf8("  (0)"));
   }
-  /*if(selectedItems.size())
-    refreshNewsList(selectedItems.last());*/
+  if(selectedItems.size())
+    refreshNewsList(listStreams->currentItem());
 }
 
 //right-click somewhere, refresh all the streams
