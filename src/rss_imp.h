@@ -60,7 +60,7 @@ class RSSImp : public QWidget, public Ui::RSS{
     void copySelectedFeedsURL();
     void createStream();
     void refreshAllStreams();
-    void refreshNewsList(QTreeWidgetItem* item, int);
+    void refreshNewsList(QTreeWidgetItem* item);
     void refreshTextBrowser(QListWidgetItem *);
     void updateLastRefreshedTimeForStreams();
     void updateFeedIcon(QString url, QString icon_path);

@@ -188,7 +188,7 @@ void RSSImp::on_actionMark_all_as_read_triggered() {
     item->setData(0, Qt::DisplayRole, feed->getAliasOrUrl()+ QString::fromUtf8("  (0)"));
   }
   if(selectedItems.size())
-    refreshNewsList(selectedItems.last(), 0);
+    refreshNewsList(selectedItems.last());
 }
 
 //right-click somewhere, refresh all the streams
@@ -257,7 +257,8 @@ void RSSImp::updateLastRefreshedTimeForStreams() {
 }
 
 // fills the newsList
-void RSSImp::refreshNewsList(QTreeWidgetItem* item, int) {
+void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
+  if(!item) return;
   selectedFeedUrl = item->text(1);
   RssStream *stream = rssmanager->getFeed(selectedFeedUrl);
   qDebug("Getting the list of news");
@@ -352,7 +353,7 @@ void RSSImp::updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnr
   item->setToolTip(0, QString::fromUtf8("<b>")+tr("Description:")+QString::fromUtf8("</b> ")+stream->getDescription()+QString::fromUtf8("<br/><b>")+tr("url:")+QString::fromUtf8("</b> ")+stream->getUrl()+QString::fromUtf8("<br/><b>")+tr("Last refresh:")+QString::fromUtf8("</b> ")+stream->getLastRefreshElapsedString());
   // If the feed is selected, update the displayed news
   if(selectedFeedUrl == url){
-    refreshNewsList(getTreeItemFromUrl(url), 0);
+    refreshNewsList(item);
   }
 }
 
@@ -392,7 +393,7 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   connect(actionOpen_news_URL, SIGNAL(triggered()), this, SLOT(openNewsUrl()));
   connect(actionDownload_torrent, SIGNAL(triggered()), this, SLOT(downloadTorrent()));
 
-  connect(listStreams, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(refreshNewsList(QTreeWidgetItem*,int)));
+  connect(listStreams, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(refreshNewsList(QTreeWidgetItem*)));
   connect(listNews, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(refreshTextBrowser(QListWidgetItem *)));
   connect(listNews, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(downloadTorrent()));
   refreshTimeTimer = new QTimer(this);

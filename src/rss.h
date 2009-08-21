@@ -367,9 +367,11 @@ public slots :
     void processDownloadedFile(QString file_path) {
   filePath = file_path;
   downloadFailure = false;
+  lastRefresh.start();
   if(openRss() >= 0) {
-    lastRefresh.start();
     refreshed = true;
+  } else {
+    qDebug("OpenRss: Feed update Failed");
   }
 }
 
@@ -381,6 +383,16 @@ void setDownloadFailed(){
   public:
 RssStream(bittorrent *BTSession, QString _url): BTSession(BTSession), url(_url), alias(""), iconPath(":/Icons/rss16.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
   qDebug("RSSStream constructed");
+  QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
+  QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
+  QVariantList old_items = all_old_items.value(url, QVariantList()).toList();
+  qDebug("Loading %d old items for feed %s", old_items.size(), getAliasOrUrl().toLocal8Bit().data());
+  foreach(const QVariant &var_it, old_items) {
+    QHash<QString, QVariant> item = var_it.toHash();
+    RssItem *rss_item = RssItem::fromHash(item);
+    if(rss_item->isValid())
+      listItem << rss_item;
+  }
 }
 
 ~RssStream(){
@@ -537,18 +549,6 @@ QString getIconUrl() {
   private:
 // read and create items from a rss document
 short readDoc(const QDomDocument& doc) {
-  if(!refreshed) {
-    QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-    QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
-    QVariantList old_items = all_old_items.value(url, QVariantList()).toList();
-    qDebug("Loading %d old items for feed %s", old_items.size(), getAliasOrUrl().toLocal8Bit().data());
-    foreach(const QVariant &var_it, old_items) {
-      QHash<QString, QVariant> item = var_it.toHash();
-      RssItem *rss_item = RssItem::fromHash(item);
-      if(rss_item->isValid())
-        listItem << rss_item;
-    }
-  }
   // is it a rss file ?
   QDomElement root = doc.documentElement();
   if(root.tagName() == QString::fromUtf8("html")){
@@ -890,6 +890,7 @@ void refreshAll(){
 }
 
 void refresh(QString url) {
+  qDebug("Refreshing feed: %s", url.toLocal8Bit().data());
   Q_ASSERT(streams.contains(url));
   RssStream *stream = streams[url];
   if(stream->isLoading()) return;
