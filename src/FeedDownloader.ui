@@ -227,6 +227,9 @@
                  <property name="text">
                   <string>Matches:</string>
                  </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -240,6 +243,9 @@
                  <property name="text">
                   <string>Does not match:</string>
                  </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -252,6 +258,9 @@
                  </property>
                  <property name="text">
                   <string>Destination folder:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
@@ -327,6 +336,9 @@
                     <property name="text">
                      <string>Torrent title:</string>
                     </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    </property>
                    </widget>
                   </item>
                   <item>
@@ -339,6 +351,9 @@
                     </property>
                     <property name="text">
                      <string>Result:</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                     </property>
                    </widget>
                   </item>

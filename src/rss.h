@@ -389,9 +389,10 @@ RssStream(bittorrent *BTSession, QString _url): BTSession(BTSession), url(_url),
     foreach(RssItem *item, listItem) {
       old_items << item->toHash();
     }
+    qDebug("Saving %d old items for feed %s", old_items.size(), getAliasOrUrl().toLocal8Bit().data());
     QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
     all_old_items[url] = old_items;
-    qBTRSS.setValue(url, all_old_items);
+    qBTRSS.setValue("old_items", all_old_items);
   }
   removeAllItems();
   if(QFile::exists(filePath))
@@ -539,6 +540,7 @@ short readDoc(const QDomDocument& doc) {
     QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
     QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
     QVariantList old_items = all_old_items.value(url, QVariantList()).toList();
+    qDebug("Loading %d old items for feed %s", old_items.size(), getAliasOrUrl().toLocal8Bit().data());
     foreach(const QVariant &var_it, old_items) {
       QHash<QString, QVariant> item = var_it.toHash();
       RssItem *rss_item = RssItem::fromHash(item);
@@ -583,7 +585,7 @@ short readDoc(const QDomDocument& doc) {
             FeedFilter * matching_filter = FeedFilters::getFeedFilters(url).matches(item->getTitle());
             if(matching_filter != 0) {
               // Download the torrent
-              BTSession->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTorrentUrl()).arg(getAliasOrUrl()));
+              BTSession->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTitle()).arg(getAliasOrUrl()));
               if(matching_filter->isValid()) {
                 QString save_path = matching_filter->getSavePath();
                 if(save_path.isEmpty())
