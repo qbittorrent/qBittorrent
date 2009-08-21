@@ -39,6 +39,7 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QRegExp>
+#include <QMenu>
 
 #include "bittorrent.h"
 #include "ui_FeedDownloader.h"
@@ -173,6 +174,11 @@ public:
     return FeedFilters(url, all_feeds_filters.value(url, QHash<QString, QVariant>()).toHash());
   }
 
+  void rename(QString old_name, QString new_name) {
+    Q_ASSERT(this->contains(old_name));
+    (*this)[new_name] = this->take(old_name);
+  }
+
   void save() {
     QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
     QHash<QString, QVariant> all_feeds_filters = qBTRSS.value("feed_filters", QHash<QString, QVariant>()).toHash();
@@ -201,6 +207,10 @@ public:
     filters = FeedFilters::getFeedFilters(feed_url);
     // Connect Signals/Slots
     connect(filtersList, SIGNAL(currentItemChanged(QListWidgetItem* , QListWidgetItem *)), this, SLOT(showFilterSettings(QListWidgetItem *)));
+    connect(filtersList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFiltersListMenu(const QPoint&)));
+    connect(actionAdd_filter, SIGNAL(triggered()), this, SLOT(addFilter()));
+    connect(actionRemove_filter, SIGNAL(triggered()), this, SLOT(deleteFilter()));
+    connect(actionRename_filter, SIGNAL(triggered()), this, SLOT(renameFilter()));
     connect(del_button, SIGNAL(clicked(bool)), this, SLOT(deleteFilter()));
     connect(add_button, SIGNAL(clicked(bool)), this, SLOT(addFilter()));
     connect(enableDl_cb, SIGNAL(stateChanged(int)), this, SLOT(enableFilterBox(int)));
@@ -240,6 +250,18 @@ protected slots:
     }
   }
 
+  void displayFiltersListMenu(const QPoint&) {
+    QMenu myFiltersListMenu(this);
+    if(filtersList->selectedItems().size() > 0) {
+      myFiltersListMenu.addAction(actionRename_filter);
+      myFiltersListMenu.addAction(actionRemove_filter);
+    } else {
+      myFiltersListMenu.addAction(actionAdd_filter);
+    }
+    // Call menu
+    myFiltersListMenu.exec(QCursor::pos());
+  }
+
   void showFilterSettings(QListWidgetItem *item) {
     // First, save current filter settings
     saveCurrentFilterSettings();
@@ -266,15 +288,39 @@ protected slots:
   void deleteFilter() {
     QList<QListWidgetItem *> items = filtersList->selectedItems();
     if(items.size() == 1) {
-      filters.remove(selected_filter);
-      selected_filter = QString::null;
       QListWidgetItem * item = items.first();
+      filters.remove(item->text());
+      selected_filter = QString::null;
       delete item;
       // Reset Filter settings view
       if(filters.size() == 0) {
         clearFields();
         filterSettingsBox->setEnabled(false);
       }
+    }
+  }
+
+  void renameFilter() {
+    QList<QListWidgetItem *> items = filtersList->selectedItems();
+    if(items.size() == 1) {
+      QListWidgetItem *item = items.first();
+      QString current_name = item->text();
+      QString new_name;
+      bool validated = false;
+      do {
+        new_name = askFilterName(current_name);
+        if(new_name.isNull() || new_name == current_name) return;
+        if(!filters.hasFilter(new_name)) {
+          validated = true;
+        } else {
+          QMessageBox::critical(0, tr("Invalid filter name"), tr("This filter name is already in use."));
+        }
+      }while(!validated);
+      // Rename the filter
+      filters.rename(current_name, new_name);
+      if(selected_filter == current_name)
+        selected_filter = new_name;
+      item->setText(new_name);
     }
   }
 
@@ -319,6 +365,7 @@ protected slots:
     bool validated = false;
     do {
       filter_name = askFilterName();
+      if(filter_name.isNull()) return;
       if(filters.hasFilter(filter_name)) {
         // Filter alread exists
         QMessageBox::critical(0, tr("Invalid filter name"), tr("This filter name is already in use."));
