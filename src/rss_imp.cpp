@@ -420,12 +420,6 @@ void RSSImp::selectFirstFeed(){
   }
 }
 
-void RSSImp::selectFirstNews(){
-  if(listNews->count()){
-    listNews->setCurrentRow(0);
-  }
-}
-
 RSSImp::~RSSImp(){
   qDebug("Deleting RSSImp...");
   delete refreshTimeTimer;
