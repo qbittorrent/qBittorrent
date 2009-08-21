@@ -47,14 +47,20 @@ void RSSImp::displayRSSListMenu(const QPoint&){
   QMenu myFinishedListMenu(this);
   QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
   if(selectedItems.size() > 0) {
+    myFinishedListMenu.addAction(actionRefresh);
     myFinishedListMenu.addAction(actionMark_all_as_read);
+    myFinishedListMenu.addSeparator();
     myFinishedListMenu.addAction(actionDelete);
     if(selectedItems.size() == 1) {
       myFinishedListMenu.addAction(actionRename);
+    }
+    myFinishedListMenu.addSeparator();
+    myFinishedListMenu.addAction(actionCopy_feed_URL);
+    if(selectedItems.size() == 1) {
+      myFinishedListMenu.addSeparator();
       myFinishedListMenu.addAction(actionRSS_feed_downloader);
     }
-    myFinishedListMenu.addAction(actionCopy_feed_URL);
-    myFinishedListMenu.addAction(actionRefresh);
+
   }else{
     myFinishedListMenu.addAction(actionCreate);
     myFinishedListMenu.addAction(actionRefreshAll);
