@@ -741,11 +741,12 @@ void feedIconChanged(QString url, QString icon_path);
   }
 
   void refreshOldFeeds(){
+    qDebug("refresh old feeds");
     RssStream *stream;
     foreach(stream, streams){
       QString url = stream->getUrl();
-      if(stream->isLoading()) return;
-      if(stream->getLastRefreshElapsed() != -1 && stream->getLastRefreshElapsed() < (int)refreshInterval) return;
+      if(stream->isLoading()) continue;
+      if(stream->getLastRefreshElapsed() != -1 && stream->getLastRefreshElapsed() < (int)refreshInterval) continue;
       qDebug("Refreshing old feed: %s...", (const char*)url.toLocal8Bit());
       stream->setLoading(true);
       downloader->downloadUrl(url);
