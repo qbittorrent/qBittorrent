@@ -367,9 +367,10 @@ public slots :
     void processDownloadedFile(QString file_path) {
   filePath = file_path;
   downloadFailure = false;
-  openRss();
-  lastRefresh.start();
-  refreshed = true;
+  if(openRss() >= 0) {
+    lastRefresh.start();
+    refreshed = true;
+  }
 }
 
 void setDownloadFailed(){
