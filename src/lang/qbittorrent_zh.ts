@@ -771,7 +771,7 @@ folder:</source>
     <message>
         <source>Transfer lists double-click</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation>双击传输列表显示活动</translation>
+        <translation type="obsolete">双击传输列表显示活动</translation>
     </message>
     <message>
         <source>Download list:</source>
@@ -996,6 +996,11 @@ folder:</source>
     <message utf8="true">
         <source>Spoof µtorrent to avoid ban (requires restart)</source>
         <translation>假借µtorrent名义避免被阻止(需重启)</translation>
+    </message>
+    <message>
+        <source>Transfer lists double-click action</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2506,7 +2511,23 @@ link in your web browser)&lt;/i&gt;</source>
     </message>
     <message>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
-        <translation>&lt;b&gt;新闻:&lt;/b&gt; &lt;i&gt;(双击以连接到网页浏览器)&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;新闻:&lt;/b&gt; &lt;i&gt;(双击以连接到网页浏览器)&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open news URL</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2962,7 +2983,7 @@ previewing)</source>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation>按递增顺序下载(速度会有所减慢但利于预览)</translation>
+        <translation type="obsolete">按递增顺序下载(速度会有所减慢但利于预览)</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -2975,6 +2996,22 @@ previewing)</source>
     <message>
         <source>Expand all</source>
         <translation>展开所有</translation>
+    </message>
+    <message>
+        <source>Torrent size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Free disk space:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download in sequential order (slower but good for previewing)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3103,6 +3140,10 @@ previewing)</source>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;下载中,请等待...</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is not a valid magnet URI.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3501,6 +3542,10 @@ enabled)</source>
     <message>
         <source>Force recheck</source>
         <translation>强制再次核对</translation>
+    </message>
+    <message>
+        <source>Copy magnet link</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4528,6 +4573,10 @@ network.</source>
         <source>Force recheck</source>
         <translation>强制再次核对</translation>
     </message>
+    <message>
+        <source>Copy magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>subDownloadThread</name>
@@ -4646,6 +4695,20 @@ torrent.</source>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="obsolete">该文件不是torrent文件或已经损坏.</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(%1 left after torrent download)</source>
+        <comment>e.g. (100MiB left after torrent download)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(%1 more are required to download)</source>
+        <comment>e.g. (100MiB more are required to download)</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

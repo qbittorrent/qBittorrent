@@ -179,6 +179,12 @@ void bittorrent::setUploadLimit(QString hash, long val) {
 
 void bittorrent::handleDownloadFailure(QString url, QString reason) {
   emit downloadFromUrlFailure(url, reason);
+  // Clean up
+  int index = url_skippingDlg.indexOf(url);
+  if(index >= 0)
+    url_skippingDlg.removeAt(index);
+  if(savepath_fromurl.contains(url))
+    savepath_fromurl.remove(url);
 }
 
 void bittorrent::startTorrentsInPause(bool b) {
@@ -368,7 +374,7 @@ QTorrentHandle bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
     return h;
   }
   if(resumed) {
-    qDebug("Resuming magnet URI: %s", hash.toUtf8().data());
+    qDebug("Resuming magnet URI: %s", hash.toLocal8Bit().data());
   } else {
     qDebug("Adding new magnet URI");
   }
@@ -386,7 +392,7 @@ QTorrentHandle bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   }
 
   // Check if torrent is already in download list
-  if(s->find_torrent(sha1_hash(hash.toUtf8().data())).is_valid()) {
+  if(s->find_torrent(sha1_hash(hash.toLocal8Bit().data())).is_valid()) {
     qDebug("/!\\ Torrent is already in download list");
     // Update info Bar
     addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(magnet_uri));
@@ -405,7 +411,7 @@ QTorrentHandle bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
     }
   }
   QString savePath = getSavePath(hash);
-  qDebug("addMagnetURI: using save_path: %s", savePath.toUtf8().data());
+  qDebug("addMagnetURI: using save_path: %s", savePath.toLocal8Bit().data());
   if(defaultTempPath.isEmpty() || (resumed && TorrentPersistentData::isSeed(hash))) {
     p.save_path = savePath.toLocal8Bit().data();
   } else {
@@ -455,12 +461,12 @@ QTorrentHandle bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
     }
     // Save persistent data for new torrent
     Q_ASSERT(h.is_valid());
-    qDebug("addMagnetUri: hash: %s", h.hash().toUtf8().data());
+    qDebug("addMagnetUri: hash: %s", h.hash().toLocal8Bit().data());
     TorrentPersistentData::saveTorrentPersistentData(h, true);
     qDebug("Persistent data saved");
     // Save save_path
     if(!defaultTempPath.isEmpty()) {
-      qDebug("addMagnetUri: Saving save_path in persistent data: %s", savePath.toUtf8().data());
+      qDebug("addMagnetUri: Saving save_path in persistent data: %s", savePath.toLocal8Bit().data());
       TorrentPersistentData::saveSavePath(hash, savePath);
     }
   }
@@ -555,8 +561,14 @@ QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
       qDebug("Successfuly loaded");
     }
   }
-  QString savePath = getSavePath(hash);
-  qDebug("addTorrent: using save_path: %s", savePath.toUtf8().data());
+  QString savePath;
+  if(!from_url.isEmpty() && savepath_fromurl.contains(from_url)) {
+    // Enforcing the save path defined before URL download (from RSS for example)
+    savePath = savepath_fromurl.take(from_url);
+  } else {
+    savePath = getSavePath(hash);
+  }
+  qDebug("addTorrent: using save_path: %s", savePath.toLocal8Bit().data());
   if(defaultTempPath.isEmpty() || (resumed && TorrentPersistentData::isSeed(hash))) {
     p.save_path = savePath.toLocal8Bit().data();
   } else {
@@ -609,7 +621,7 @@ QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     TorrentPersistentData::saveTorrentPersistentData(h);
     // Save save_path
     if(!defaultTempPath.isEmpty()) {
-      qDebug("addTorrent: Saving save_path in persistent data: %s", savePath.toUtf8().data());
+      qDebug("addTorrent: Saving save_path in persistent data: %s", savePath.toLocal8Bit().data());
       TorrentPersistentData::saveSavePath(hash, savePath);
     }
   }
@@ -1002,6 +1014,10 @@ void bittorrent::setDefaultSavePath(QString savepath) {
   defaultSavePath = savepath;
 }
 
+QString bittorrent::getDefaultSavePath() const {
+  return defaultSavePath;
+}
+
 bool bittorrent::useTemporaryFolder() const {
   return !defaultTempPath.isEmpty();
 }
@@ -1256,7 +1272,7 @@ void bittorrent::readAlerts() {
     else if (metadata_received_alert* p = dynamic_cast<metadata_received_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
       if(h.is_valid()) {
-        qDebug("Received metadata for %s", h.hash().toUtf8().data());
+        qDebug("Received metadata for %s", h.hash().toLocal8Bit().data());
         emit metadataReceived(h);
         if(h.is_paused()) {
           // XXX: Unfortunately libtorrent-rasterbar does not send a torrent_paused_alert
@@ -1279,7 +1295,7 @@ void bittorrent::readAlerts() {
     }
     else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
-      qDebug("Received a torrent_paused_alert for %s", h.hash().toUtf8().data());
+      qDebug("Received a torrent_paused_alert for %s", h.hash().toLocal8Bit().data());
       if(h.is_valid()) {
         emit torrentPaused(h);
       }
@@ -1379,14 +1395,14 @@ QString bittorrent::getSavePath(QString hash) {
   QString savePath;
   if(TorrentTempData::hasTempData(hash)) {
     savePath = TorrentTempData::getSavePath(hash);
-    qDebug("getSavePath, got save_path from temp data: %s", savePath.toUtf8().data());
+    qDebug("getSavePath, got save_path from temp data: %s", savePath.toLocal8Bit().data());
   } else {
     savePath = TorrentPersistentData::getSavePath(hash);
-    qDebug("getSavePath, got save_path from persistent data: %s", savePath.toUtf8().data());
+    qDebug("getSavePath, got save_path from persistent data: %s", savePath.toLocal8Bit().data());
   }
   if(savePath.isEmpty()) {
     // use default save path if no other can be found
-    qDebug("Using default save path because none was set: %s", defaultSavePath.toUtf8().data());
+    qDebug("Using default save path because none was set: %s", defaultSavePath.toLocal8Bit().data());
     savePath = defaultSavePath;
   }
   // Checking if savePath Dir exists
@@ -1412,8 +1428,10 @@ void bittorrent::downloadFromUrl(QString url) {
   downloader->downloadUrl(url);
 }
 
-void bittorrent::downloadUrlAndSkipDialog(QString url) {
+void bittorrent::downloadUrlAndSkipDialog(QString url, QString save_path) {
   //emit aboutToDownloadFromUrl(url);
+  if(!save_path.isEmpty())
+    savepath_fromurl[url] = save_path;
   url_skippingDlg << url;
   // Launch downloader thread
   downloader->downloadUrl(url);
@@ -1491,7 +1509,7 @@ void bittorrent::startUpTorrents() {
     QPair<int, QString> couple;
     foreach(couple, hashes) {
       QString hash = couple.second;
-      qDebug("Starting up torrent %s", hash.toUtf8().data());
+      qDebug("Starting up torrent %s", hash.toLocal8Bit().data());
       if(TorrentPersistentData::isMagnet(hash)) {
         addMagnetUri(TorrentPersistentData::getMagnetUri(hash), true);
       } else {
@@ -1501,7 +1519,7 @@ void bittorrent::startUpTorrents() {
   } else {
     // Resume downloads
     foreach(const QString &hash, known_torrents) {
-      qDebug("Starting up torrent %s", hash.toUtf8().data());
+      qDebug("Starting up torrent %s", hash.toLocal8Bit().data());
       if(TorrentPersistentData::isMagnet(hash))
         addMagnetUri(TorrentPersistentData::getMagnetUri(hash), true);
       else

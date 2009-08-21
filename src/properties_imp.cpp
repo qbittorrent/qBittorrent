@@ -53,12 +53,12 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   setupUi(this);
   lbl_priorities->setText(tr("Priorities:")+"<ul><li>"+tr("Ignored: file is not downloaded at all")+"</li><li>"+tr("Normal: normal priority. Download order is dependent on availability")+"</li><li>"+tr("High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability")+"</li><li>"+tr("Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority")+"</li></ul>");
   // set icons
-  addTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
-  removeTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
+  addTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/list-add.png")));
+  removeTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/list-remove.png")));
   lowerTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/downarrow.png")));
   riseTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/uparrow.png")));
-  addWS_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/add.png")));
-  deleteWS_button->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/remove.png")));
+  addWS_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/list-add.png")));
+  deleteWS_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/list-remove.png")));
   setAttribute(Qt::WA_DeleteOnClose);
   // Set Properties list model
   PropListModel = new QStandardItemModel(0,5);

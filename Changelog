@@ -1,7 +1,12 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.5.0
     - FEATURE: Added Magnet URI support
+    - FEATURE: Make use of torrent enclosure in RSS feeds for direct download
+    - FEATURE: Implemented a RSS feed downloader with filter support
+    - FEATURE: Save old RSS item to hard disk to remember them on start up
     - FEATURE: Display free disk space in torrent addition dialog
     - FEATURE: In torrent addition from URL, paste clipboard content if it contains an URL
+    - FEATURE: RSS Feeds URLs can now be copied to clipboard
+    - FEATURE: If a torrent contains a torrent file, process downloaded torrent file too [TODO]
     - BUGFIX: torrent resume code rewrited
 
 * Thu Aug 13 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.4.0

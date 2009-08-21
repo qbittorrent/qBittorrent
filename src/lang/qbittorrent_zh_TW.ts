@@ -337,7 +337,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Transfer lists double-click</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation>雙擊傳輸清單</translation>
+        <translation type="obsolete">雙擊傳輸清單</translation>
     </message>
     <message>
         <source>Download list:</source>
@@ -608,6 +608,11 @@ p, li { white-space: pre-wrap; }
     <message utf8="true">
         <source>Spoof µtorrent to avoid ban (requires restart)</source>
         <translation>假裝為 µtorrent 以避免被踢出 (需要重新啟動)</translation>
+    </message>
+    <message>
+        <source>Transfer lists double-click action</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1264,7 +1269,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
-        <translation>&lt;b&gt;新聞:&lt;/b&gt; &lt;i&gt;(雙擊連結從網路瀏覽器打開)&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;新聞:&lt;/b&gt; &lt;i&gt;(雙擊連結從網路瀏覽器打開)&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Add RSS stream</source>
@@ -1285,6 +1290,22 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Mark all as read</source>
         <translation>全部標記為已讀</translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open news URL</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1510,7 +1531,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation>按照順序下載 (較慢但較好預覽)</translation>
+        <translation type="obsolete">按照順序下載 (較慢但較好預覽)</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
@@ -1551,6 +1572,22 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Expand all</source>
         <translation>全部展開</translation>
+    </message>
+    <message>
+        <source>Torrent size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished">未知</translation>
+    </message>
+    <message>
+        <source>Free disk space:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download in sequential order (slower but good for previewing)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1679,6 +1716,10 @@ Are you sure you want to quit qBittorrent?</source>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>下載 &apos;%1&apos; 中, 請稍候...</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is not a valid magnet URI.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1976,6 +2017,10 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Force recheck</source>
         <translation>強迫重新檢查</translation>
+    </message>
+    <message>
+        <source>Copy magnet link</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2612,6 +2657,10 @@ However, those plugins were disabled.</source>
         <source>Force recheck</source>
         <translation>強迫重新檢查</translation>
     </message>
+    <message>
+        <source>Copy magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>subDownloadThread</name>
@@ -2705,6 +2754,20 @@ However, those plugins were disabled.</source>
     <message>
         <source>Priority</source>
         <translation>優先度</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished">未知</translation>
+    </message>
+    <message>
+        <source>(%1 left after torrent download)</source>
+        <comment>e.g. (100MiB left after torrent download)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(%1 more are required to download)</source>
+        <comment>e.g. (100MiB more are required to download)</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

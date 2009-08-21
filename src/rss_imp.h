@@ -36,6 +36,7 @@
 
 class QTimer;
 class RssManager;
+class bittorrent;
 
 class RSSImp : public QWidget, public Ui::RSS{
   Q_OBJECT
@@ -44,6 +45,7 @@ class RSSImp : public QWidget, public Ui::RSS{
     RssManager *rssmanager;
     QTimer *refreshTimeTimer;
     QString selectedFeedUrl;
+    bittorrent *BTSession;
 
   public slots:
     void on_delStream_button_clicked();
@@ -52,8 +54,10 @@ class RSSImp : public QWidget, public Ui::RSS{
     void on_addStream_button_clicked();
     void on_refreshAll_button_clicked();
     void displayRSSListMenu(const QPoint&);
+    void displayItemsListMenu(const QPoint&);
     void renameStream();
     void refreshSelectedStreams();
+    void copySelectedFeedsURL();
     void createStream();
     void refreshAllStreams();
     void refreshNewsList(QTreeWidgetItem* item, int);
@@ -61,7 +65,8 @@ class RSSImp : public QWidget, public Ui::RSS{
     void updateLastRefreshedTimeForStreams();
     void updateFeedIcon(QString url, QString icon_path);
     void updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnread);
-    void openInBrowser(QListWidgetItem *);
+    void openNewsUrl();
+    void downloadTorrent();
     void fillFeedsList();
     void selectFirstFeed();
     void selectFirstNews();
@@ -69,9 +74,10 @@ class RSSImp : public QWidget, public Ui::RSS{
     void on_actionMark_all_as_read_triggered();
     void saveSlidersPosition();
     void restoreSlidersPosition();
+    void showFeedDownloader();
 
   public:
-    RSSImp();
+    RSSImp(bittorrent *BTSession);
     ~RSSImp();
     QTreeWidgetItem* getTreeItemFromUrl(QString url) const;
 };

@@ -690,7 +690,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Transfer lists double-click</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation>Aktarım listesinde çift-tıklamada yapılacak </translation>
+        <translation type="obsolete">Aktarım listesinde çift-tıklamada yapılacak </translation>
     </message>
     <message>
         <source>Download list:</source>
@@ -948,6 +948,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message utf8="true">
         <source>Spoof µtorrent to avoid ban (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer lists double-click action</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2340,7 +2345,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
-        <translation>&lt;b&gt;Haberler:&lt;/b&gt; &lt;i&gt;(bağlantıyı tarayıcınızda açmak için çift tıklayın)&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;Haberler:&lt;/b&gt; &lt;i&gt;(bağlantıyı tarayıcınızda açmak için çift tıklayın)&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Add RSS stream</source>
@@ -2361,6 +2366,22 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     <message>
         <source>Mark all as read</source>
         <translation>Tümünü okunmuş olarak işaretle</translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open news URL</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2735,7 +2756,7 @@ Changelog:
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation>Doğru düzende indir (yavaş ama önizleme için iyi)</translation>
+        <translation type="obsolete">Doğru düzende indir (yavaş ama önizleme için iyi)</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
@@ -2784,6 +2805,22 @@ Changelog:
     <message>
         <source>Expand all</source>
         <translation>Tümünü genişlet</translation>
+    </message>
+    <message>
+        <source>Torrent size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished">Bilinmeyen</translation>
+    </message>
+    <message>
+        <source>Free disk space:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download in sequential order (slower but good for previewing)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2912,6 +2949,10 @@ Changelog:
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos; indiriliyor, lütfen bekleyin...</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is not a valid magnet URI.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3297,6 +3338,10 @@ Changelog:
     <message>
         <source>Force recheck</source>
         <translation>Yeniden denetlemeye çalış</translation>
+    </message>
+    <message>
+        <source>Copy magnet link</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4229,6 +4274,10 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <source>Force recheck</source>
         <translation>Yeniden denetlemeye çalış</translation>
     </message>
+    <message>
+        <source>Copy magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>subDownloadThread</name>
@@ -4342,6 +4391,20 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <message>
         <source>Priority</source>
         <translation>Öncelik</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished">Bilinmeyen</translation>
+    </message>
+    <message>
+        <source>(%1 left after torrent download)</source>
+        <comment>e.g. (100MiB left after torrent download)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(%1 more are required to download)</source>
+        <comment>e.g. (100MiB more are required to download)</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

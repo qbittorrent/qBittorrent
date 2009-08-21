@@ -76,6 +76,7 @@ class bittorrent : public QObject {
     QString filterPath;
     bool queueingEnabled;
     QStringList url_skippingDlg;
+    QHash<QString, QString> savepath_fromurl;
 
   protected:
     QString getSavePath(QString hash);
@@ -108,6 +109,7 @@ class bittorrent : public QObject {
     QStringList getPeerBanMessages() const;
     qlonglong getETA(QString hash) const;
     bool useTemporaryFolder() const;
+    QString getDefaultSavePath() const;
 
   public slots:
     QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
@@ -137,7 +139,7 @@ class bittorrent : public QObject {
     void loadWebSeeds(QString fileHash);
     void increaseDlTorrentPriority(QString hash);
     void decreaseDlTorrentPriority(QString hash);
-    void downloadUrlAndSkipDialog(QString);
+    void downloadUrlAndSkipDialog(QString url, QString save_path=QString::null);
     // Session configuration - Setters
     void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
     void setMaxConnections(int maxConnec);

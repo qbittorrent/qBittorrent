@@ -14,7 +14,7 @@ CONFIG += qt \
     network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v1.5.0alpha\\\"
+DEFINES += VERSION=\\\"v1.5.0beta1\\\"
 DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=5
 DEFINES += VERSION_BUGFIX=0
@@ -183,7 +183,8 @@ HEADERS += GUI.h \
     console_imp.h \
     ico.h \
     stacktrace.h \
-    torrentPersistentData.h
+    torrentPersistentData.h \
+    FeedDownloader.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \
@@ -201,7 +202,8 @@ FORMS += MainWindow.ui \
     engineSelect.ui \
     pluginSource.ui \
     trackersAdd.ui \
-    console.ui
+    console.ui \
+    FeedDownloader.ui
 SOURCES += GUI.cpp \
     main.cpp \
     options_imp.cpp \

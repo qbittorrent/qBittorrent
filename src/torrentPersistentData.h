@@ -145,7 +145,7 @@ public:
 
   static void saveTorrentPersistentData(QTorrentHandle h, bool is_magnet = false) {
     Q_ASSERT(h.is_valid());
-    qDebug("Saving persistent data for %s", h.hash().toUtf8().data());
+    qDebug("Saving persistent data for %s", h.hash().toLocal8Bit().data());
     // First, remove temp data
     TorrentTempData::deleteTempData(h.hash());
     Q_ASSERT(!TorrentTempData::hasTempData(h.hash()));
@@ -187,7 +187,7 @@ public:
     // Save data
     all_data[h.hash()] = data;
     settings.setValue("torrents", all_data);
-    qDebug("TorrentPersistentData: Saving save_path %s, hash: %s", h.save_path().toUtf8().data(), h.hash().toUtf8().data());
+    qDebug("TorrentPersistentData: Saving save_path %s, hash: %s", h.save_path().toLocal8Bit().data(), h.hash().toLocal8Bit().data());
   }
 
   static void saveTrackers(QTorrentHandle h) {
@@ -233,7 +233,7 @@ public:
     data["save_path"] = save_path;
     all_data[hash] = data;
     settings.setValue("torrents", all_data);
-    qDebug("TorrentPersistentData: Saving save_path: %s, hash: %s", save_path.toUtf8().data(), hash.toUtf8().data());
+    qDebug("TorrentPersistentData: Saving save_path: %s, hash: %s", save_path.toLocal8Bit().data(), hash.toLocal8Bit().data());
   }
 
   static void saveUrlSeeds(QTorrentHandle h) {
@@ -295,7 +295,7 @@ public:
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
     QHash<QString, QVariant> data = all_data[hash].toHash();
-    qDebug("TorrentPersistentData: getSavePath %s", data["save_path"].toString().toUtf8().data());
+    qDebug("TorrentPersistentData: getSavePath %s", data["save_path"].toString().toLocal8Bit().data());
     return data["save_path"].toString();
   }
 

@@ -103,7 +103,7 @@ public:
 #ifndef Q_WS_WIN
     unsigned long long available;
     struct statfs stats;
-    int ret = statfs ((path+"/.").toUtf8().data(), &stats) ;
+    int ret = statfs ((path+"/.").toLocal8Bit().data(), &stats) ;
     if(ret == 0) {
       available = ((unsigned long long)stats.f_bavail) *
                   ((unsigned long long)stats.f_bsize) ;
@@ -293,7 +293,7 @@ public:
       sha1.assign(base32decode(reg.cap(1).toStdString()));
       hash = misc::toQString(sha1);
     }
-    qDebug("magnetUriToHash: hash: %s", hash.toUtf8().data());
+    qDebug("magnetUriToHash: hash: %s", hash.toLocal8Bit().data());
     return hash;
   }
 

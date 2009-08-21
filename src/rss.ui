@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>RSS</class>
- <widget class="QWidget" name="RSS" >
-  <property name="geometry" >
+ <widget class="QWidget" name="RSS">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,60 +10,60 @@
     <height>447</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Search</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2" >
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <widget class="QSplitter" name="splitter_h" >
-     <property name="orientation" >
+    <widget class="QSplitter" name="splitter_h">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <widget class="QWidget" name="layoutWidget" >
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
+     <widget class="QWidget" name="layoutWidget">
+      <layout class="QVBoxLayout">
+       <property name="spacing">
         <number>6</number>
        </property>
-       <property name="margin" >
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
-        <widget class="QTreeWidget" name="listStreams" >
-         <property name="contextMenuPolicy" >
+        <widget class="QTreeWidget" name="listStreams">
+         <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
-         <property name="selectionMode" >
+         <property name="selectionMode">
           <enum>QAbstractItemView::ExtendedSelection</enum>
          </property>
-         <property name="columnCount" >
+         <property name="columnCount">
           <number>2</number>
          </property>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>RSS streams:</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>2</string>
           </property>
          </column>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" >
-         <property name="spacing" >
+        <layout class="QHBoxLayout">
+         <property name="spacing">
           <number>6</number>
          </property>
-         <property name="margin" >
+         <property name="margin">
           <number>0</number>
          </property>
          <item>
           <spacer>
-           <property name="orientation" >
+           <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" stdset="0" >
+           <property name="sizeHint" stdset="0">
             <size>
              <width>40</width>
              <height>20</height>
@@ -71,20 +72,20 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="delStream_button" >
-           <property name="minimumSize" >
+          <widget class="QPushButton" name="delStream_button">
+           <property name="minimumSize">
             <size>
              <width>55</width>
              <height>32</height>
             </size>
            </property>
-           <property name="toolTip" >
+           <property name="toolTip">
             <string>Delete selected streams</string>
            </property>
-           <property name="text" >
+           <property name="text">
             <string/>
            </property>
-           <property name="iconSize" >
+           <property name="iconSize">
             <size>
              <width>32</width>
              <height>32</height>
@@ -93,20 +94,20 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="refreshAll_button" >
-           <property name="minimumSize" >
+          <widget class="QPushButton" name="refreshAll_button">
+           <property name="minimumSize">
             <size>
              <width>32</width>
              <height>32</height>
             </size>
            </property>
-           <property name="toolTip" >
+           <property name="toolTip">
             <string>Refresh RSS streams</string>
            </property>
-           <property name="text" >
+           <property name="text">
             <string/>
            </property>
-           <property name="iconSize" >
+           <property name="iconSize">
             <size>
              <width>32</width>
              <height>32</height>
@@ -115,20 +116,20 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="addStream_button" >
-           <property name="minimumSize" >
+          <widget class="QPushButton" name="addStream_button">
+           <property name="minimumSize">
             <size>
              <width>32</width>
              <height>32</height>
             </size>
            </property>
-           <property name="toolTip" >
+           <property name="toolTip">
             <string>Add a new RSS stream</string>
            </property>
-           <property name="text" >
+           <property name="text">
             <string/>
            </property>
-           <property name="iconSize" >
+           <property name="iconSize">
             <size>
              <width>55</width>
              <height>32</height>
@@ -138,10 +139,10 @@
          </item>
          <item>
           <spacer>
-           <property name="orientation" >
+           <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" stdset="0" >
+           <property name="sizeHint" stdset="0">
             <size>
              <width>40</width>
              <height>20</height>
@@ -155,28 +156,39 @@
       <zorder>listStreams</zorder>
       <zorder></zorder>
      </widget>
-     <widget class="QWidget" name="layoutWidget" >
-      <layout class="QVBoxLayout" name="verticalLayout" >
+     <widget class="QWidget" name="layoutWidget">
+      <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QLabel" name="news_lbl" >
-         <property name="font" >
+        <widget class="QLabel" name="news_lbl">
+         <property name="font">
           <font>
            <weight>50</weight>
            <bold>false</bold>
           </font>
          </property>
-         <property name="text" >
-          <string>&lt;b>News:&lt;/b> &lt;i>(double-click to open the link in your web browser)&lt;/i></string>
+         <property name="text">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QSplitter" name="splitter_v" >
-         <property name="orientation" >
+        <widget class="QSplitter" name="splitter_v">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <widget class="QListWidget" name="listNews" />
-         <widget class="QTextBrowser" name="textBrowser" />
+         <widget class="QListWidget" name="listNews">
+          <property name="contextMenuPolicy">
+           <enum>Qt::CustomContextMenu</enum>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::ExtendedSelection</enum>
+          </property>
+         </widget>
+         <widget class="QTextBrowser" name="textBrowser"/>
         </widget>
        </item>
       </layout>
@@ -184,37 +196,75 @@
     </widget>
    </item>
   </layout>
-  <action name="actionDelete" >
-   <property name="text" >
+  <action name="actionDelete">
+   <property name="text">
     <string>Delete</string>
    </property>
   </action>
-  <action name="actionRename" >
-   <property name="text" >
+  <action name="actionRename">
+   <property name="text">
     <string>Rename</string>
    </property>
   </action>
-  <action name="actionRefresh" >
-   <property name="text" >
+  <action name="actionRefresh">
+   <property name="text">
     <string>Refresh</string>
    </property>
   </action>
-  <action name="actionCreate" >
-   <property name="text" >
+  <action name="actionCreate">
+   <property name="text">
     <string>Add RSS stream</string>
    </property>
   </action>
-  <action name="actionRefreshAll" >
-   <property name="text" >
+  <action name="actionRefreshAll">
+   <property name="text">
     <string>Refresh all streams</string>
    </property>
   </action>
-  <action name="actionMark_all_as_read" >
-   <property name="text" >
+  <action name="actionMark_all_as_read">
+   <property name="text">
     <string>Mark all as read</string>
    </property>
   </action>
+  <action name="actionDownload_torrent">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/Icons/oxygen/download.png</normaloff>:/Icons/oxygen/download.png</iconset>
+   </property>
+   <property name="text">
+    <string>Download torrent</string>
+   </property>
+  </action>
+  <action name="actionOpen_news_URL">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/Icons/url.png</normaloff>:/Icons/url.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open news URL</string>
+   </property>
+  </action>
+  <action name="actionCopy_feed_URL">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/Icons/oxygen/edit-copy.png</normaloff>:/Icons/oxygen/edit-copy.png</iconset>
+   </property>
+   <property name="text">
+    <string>Copy feed URL</string>
+   </property>
+  </action>
+  <action name="actionRSS_feed_downloader">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/Icons/oxygen/download.png</normaloff>:/Icons/oxygen/download.png</iconset>
+   </property>
+   <property name="text">
+    <string>RSS feed downloader</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

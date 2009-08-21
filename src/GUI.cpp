@@ -315,7 +315,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     if(enable) {
       // RSS tab
       if(rssWidget == 0) {
-        rssWidget = new RSSImp();
+        rssWidget = new RSSImp(BTSession);
         tabs->addTab(rssWidget, tr("RSS"));
         tabs->setTabIcon(3, QIcon(QString::fromUtf8(":/Icons/rss32.png")));
       }
@@ -450,8 +450,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   }
   
   void GUI::setPaused(QTorrentHandle &h) const {
-    Q_ASSERT(h.is_paused());
-    qDebug("Marking torrent %s as paused", h.hash().toUtf8().data());
+    if(!h.is_paused()) return;
+    qDebug("Marking torrent %s as paused", h.hash().toLocal8Bit().data());
     if(h.is_seed()) {
       // In finished list
       qDebug("Automatically paused torrent was in finished list");
