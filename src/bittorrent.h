@@ -167,6 +167,7 @@ class bittorrent : public QObject {
     void addPeerBanMessage(QString msg, bool from_ipfilter);
     void processDownloadedFile(QString, QString);
     void saveTrackerFile(QString hash);
+    void addMagnetSkipAddDlg(QString uri);
 
   protected slots:
     void scanDirectory(QString);

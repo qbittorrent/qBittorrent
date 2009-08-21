@@ -1445,6 +1445,10 @@ void bittorrent::downloadFromUrl(QString url) {
   downloader->downloadUrl(url);
 }
 
+void bittorrent::addMagnetSkipAddDlg(QString uri) {
+  addMagnetUri(uri, false);
+}
+
 void bittorrent::downloadUrlAndSkipDialog(QString url, QString save_path) {
   //emit aboutToDownloadFromUrl(url);
   if(!save_path.isEmpty())
