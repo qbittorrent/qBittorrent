@@ -597,6 +597,8 @@ short readDoc(const QDomDocument& doc) {
                 // All torrents are downloaded from this feed
                 BTSession->downloadUrlAndSkipDialog(item->getTorrentUrl());
               }
+              // Item was downloaded, consider it as Read
+              item->setRead();
               // Clean up
               delete matching_filter;
             }

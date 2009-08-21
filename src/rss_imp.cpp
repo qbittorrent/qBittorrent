@@ -187,8 +187,8 @@ void RSSImp::on_actionMark_all_as_read_triggered() {
     feed->markAllAsRead();
     item->setData(0, Qt::DisplayRole, feed->getAliasOrUrl()+ QString::fromUtf8("  (0)"));
   }
-  if(selectedItems.size())
-    refreshNewsList(selectedItems.last());
+  /*if(selectedItems.size())
+    refreshNewsList(selectedItems.last());*/
 }
 
 //right-click somewhere, refresh all the streams
@@ -258,7 +258,11 @@ void RSSImp::updateLastRefreshedTimeForStreams() {
 
 // fills the newsList
 void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
-  if(!item) return;
+  if(!item) {
+    selectedFeedUrl = QString::null;
+    listNews->clear();
+    return;
+  }
   selectedFeedUrl = item->text(1);
   RssStream *stream = rssmanager->getFeed(selectedFeedUrl);
   qDebug("Getting the list of news");
@@ -359,6 +363,8 @@ void RSSImp::updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnr
 
 RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   setupUi(this);
+  selectedFeedUrl = QString::null;
+
   // icons of bottom buttons
   addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/subscribe.png")));
   delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/unsubscribe.png")));
@@ -415,7 +421,6 @@ void RSSImp::selectFirstFeed(){
   if(listStreams->topLevelItemCount()){
     QTreeWidgetItem *first = listStreams->topLevelItem(0);
     listStreams->setCurrentItem(first);
-    selectedFeedUrl = first->text(1);
   }
 }
 
