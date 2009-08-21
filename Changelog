@@ -9,6 +9,13 @@
     - FEATURE: If a torrent contains a torrent file, process downloaded torrent file too
     - BUGFIX: torrent resume code rewrited
 
+* Sun Aug 21 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.4.1
+    - BUGFIX: Fix problems when changing save path (if using temporary download folder)
+    - BUGFIX: Display real save path instead of the temporary one in torrent properties
+    - BUGFIX: Catching invalid_handle exception to avoid rare crashes
+    - BUGFIX: Fixed popup menu position in RSS feeds list
+    - BUGFIX: Don't save RSS feed state if it could not be updated
+
 * Thu Aug 13 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.4.0
     - FEATURE: Display swarm information in lists
     - FEATURE: Allow to define temporary download folder
