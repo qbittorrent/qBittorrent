@@ -40,6 +40,9 @@
 #include <QMessageBox>
 #include <QRegExp>
 #include <QMenu>
+#include <QFile>
+#include <QDataStream>
+#include <QFileDialog>
 
 #include "bittorrent.h"
 #include "ui_FeedDownloader.h"
@@ -55,7 +58,7 @@ public:
   bool matches(QString s) {
     QStringList match_tokens = getMatchingTokens();
     foreach(const QString& token, match_tokens) {
-      if(token.isEmpty() || token == "*")
+      if(token.isEmpty() || token == "")
         continue;
       QRegExp reg(token, Qt::CaseInsensitive);
       if(reg.indexIn(s) < 0) return false;
@@ -75,7 +78,7 @@ public:
   }
 
   QStringList getMatchingTokens() const {
-    QString matches = this->value("matches", "*").toString();
+    QString matches = this->value("matches", "").toString();
     return matches.split(" ");
   }
 
@@ -86,7 +89,7 @@ public:
   void setMatchingTokens(QString tokens) {
     tokens = tokens.trimmed();
     if(tokens.isEmpty())
-      (*this)["matches"] = "*";
+      (*this)["matches"] = "";
     else
       (*this)["matches"] = tokens;
   }
@@ -179,6 +182,36 @@ public:
     (*this)[new_name] = this->take(old_name);
   }
 
+  bool serialize(QString path) {
+    QFile f(path);
+    if(f.open(QIODevice::WriteOnly)) {
+      QDataStream out(&f);
+      out.setVersion(QDataStream::Qt_4_3);
+      out << (QHash<QString, QVariant>)(*this);
+      f.close();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool unserialize(QString path) {
+    QFile f(path);
+    if(f.open(QIODevice::ReadOnly)) {
+      QDataStream in(&f);
+      in.setVersion(QDataStream::Qt_4_3);
+      QHash<QString, QVariant> tmp;
+      in >> tmp;
+      qDebug("Unserialized %d filters", tmp.size());
+      foreach(const QString& key, tmp.keys()) {
+        (*this)[key] = tmp[key];
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   void save() {
     QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
     QHash<QString, QVariant> all_feeds_filters = qBTRSS.value("feed_filters", QHash<QString, QVariant>()).toHash();
@@ -216,10 +249,7 @@ public:
     connect(enableDl_cb, SIGNAL(stateChanged(int)), this, SLOT(enableFilterBox(int)));
     // Restore saved info
     enableDl_cb->setChecked(filters.isDownloadingEnabled());
-    // Fill filter list
-    foreach(QString filter_name, filters.names()) {
-      new QListWidgetItem(filter_name, filtersList);
-    }
+    fillFiltersList();
     if(filters.size() > 0) {
       // Select first filter
       filtersList->setCurrentItem(filtersList->item(0));
@@ -250,6 +280,13 @@ protected slots:
     }
   }
 
+  void fillFiltersList() {
+    // Fill filter list
+    foreach(QString filter_name, filters.names()) {
+      new QListWidgetItem(filter_name, filtersList);
+    }
+  }
+
   void displayFiltersListMenu(const QPoint&) {
     QMenu myFiltersListMenu(this);
     if(filtersList->selectedItems().size() > 0) {
@@ -276,6 +313,9 @@ protected slots:
     FeedFilter filter = filters.getFilter(filter_name);
     filterSettingsBox->setEnabled(true);
     match_line->setText(filter.getMatchingTokens_str());
+    if(match_line->text().trimmed().isEmpty()) {
+      match_line->setText(filter_name);
+    }
     notmatch_line->setText(filter.getNotMatchingTokens_str());
     QString save_path = filter.getSavePath();
     if(save_path.isEmpty())
@@ -400,6 +440,39 @@ protected slots:
       test_res_lbl->setText("<b><font color=\"green\">"+tr("matches")+"</font></b>");
     else
       test_res_lbl->setText("<b><font color=\"red\">"+tr("does not match")+"</font></b>");
+  }
+
+  void on_importButton_clicked(bool) {
+    QString source = QFileDialog::getOpenFileName(0, tr("Select file to import"), QDir::homePath(),  tr("Filters Files")+QString::fromUtf8(" (*.filters)"));
+    if(source.isEmpty()) return;
+    if(filters.unserialize(source)) {
+      // Clean up first
+      clearFields();
+      filtersList->clear();
+      selected_filter = QString::null;
+      fillFiltersList();
+      if(filters.size() > 0)
+        filtersList->setCurrentItem(filtersList->item(0));
+      QMessageBox::information(0, tr("Import successful"), tr("Filters import was successful."));
+    } else {
+      QMessageBox::critical(0, tr("Import failure"), tr("Filters could not be imported due to an I/O error."));
+    }
+  }
+
+  void on_exportButton_clicked(bool) {
+    QString destination = QFileDialog::getSaveFileName(this, tr("Select destination file"), QDir::homePath(), tr("Filters Files")+QString::fromUtf8(" (*.filters)"));
+    if(destination.isEmpty()) return;
+    // Append file extension
+    if(!destination.endsWith(".filters"))
+      destination += ".filters";
+    if(QFile::exists(destination)) {
+      int ret = QMessageBox::question(0, tr("Overwriting confirmation"), tr("Are you sure you want to overwrite existing file?"));
+      if(ret != QMessageBox::Yes) return;
+    }
+    if(filters.serialize(destination))
+      QMessageBox::information(0, tr("Export successful"), tr("Filters export was successful."));
+    else
+      QMessageBox::critical(0, tr("Export failure"), tr("Filters could not be exported due to an I/O error."));
   }
 
 };
