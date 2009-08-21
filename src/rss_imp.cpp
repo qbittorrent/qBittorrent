@@ -154,8 +154,6 @@ void RSSImp::refreshSelectedStreams() {
   QTreeWidgetItem* item;
   foreach(item, selectedItems){
     QString url = item->text(1);
-    textBrowser->clear();
-    listNews->clear();
     rssmanager->refresh(url);
     item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
   }
@@ -177,8 +175,6 @@ void RSSImp::showFeedDownloader() {
 }
 
 void RSSImp::on_actionMark_all_as_read_triggered() {
-  textBrowser->clear();
-  listNews->clear();
   QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
   QTreeWidgetItem* item;
   foreach(item, selectedItems){
@@ -193,8 +189,6 @@ void RSSImp::on_actionMark_all_as_read_triggered() {
 
 //right-click somewhere, refresh all the streams
 void RSSImp::refreshAllStreams() {
-  textBrowser->clear();
-  listNews->clear();
   unsigned int nbFeeds = listStreams->topLevelItemCount();
   for(unsigned int i=0; i<nbFeeds; ++i)
     listStreams->topLevelItem(i)->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
@@ -268,6 +262,7 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
   qDebug("Getting the list of news");
   QList<RssItem*> news = stream->getNewsList();
   // Clear the list first
+  textBrowser->clear();
   listNews->clear();
   qDebug("Got the list of news");
   foreach(RssItem* article, news){
@@ -287,6 +282,7 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
 
 // display a news
 void RSSImp::refreshTextBrowser(QListWidgetItem *item) {
+  if(!item) return;
   RssItem* article = rssmanager->getFeed(selectedFeedUrl)->getItem(listNews->row(item));
   QString html;
   html += "<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>";
@@ -400,7 +396,7 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   connect(actionDownload_torrent, SIGNAL(triggered()), this, SLOT(downloadTorrent()));
 
   connect(listStreams, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(refreshNewsList(QTreeWidgetItem*)));
-  connect(listNews, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(refreshTextBrowser(QListWidgetItem *)));
+  connect(listNews, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), this, SLOT(refreshTextBrowser(QListWidgetItem *)));
   connect(listNews, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(downloadTorrent()));
   refreshTimeTimer = new QTimer(this);
   connect(refreshTimeTimer, SIGNAL(timeout()), this, SLOT(updateLastRefreshedTimeForStreams()));
@@ -427,7 +423,6 @@ void RSSImp::selectFirstFeed(){
 void RSSImp::selectFirstNews(){
   if(listNews->count()){
     listNews->setCurrentRow(0);
-    refreshTextBrowser(listNews->currentItem());
   }
 }
 
