@@ -159,31 +159,40 @@ p, li { white-space: pre-wrap; }
     </widget>
    </item>
   </layout>
-  <action name="actionDelete_feed">
+  <action name="actionDelete">
    <property name="icon">
     <iconset resource="icons.qrc">
-     <normaloff>:/Icons/oxygen/unsubscribe16.png</normaloff>:/Icons/oxygen/unsubscribe16.png</iconset>
+     <normaloff>:/Icons/oxygen/remove.png</normaloff>:/Icons/oxygen/remove.png</iconset>
    </property>
    <property name="text">
-    <string>Delete feed</string>
+    <string>Delete</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete</string>
    </property>
   </action>
-  <action name="actionRename_feed">
+  <action name="actionRename">
    <property name="icon">
     <iconset resource="icons.qrc">
      <normaloff>:/Icons/oxygen/edit_clear.png</normaloff>:/Icons/oxygen/edit_clear.png</iconset>
    </property>
    <property name="text">
-    <string>Rename feed</string>
+    <string>Rename</string>
+   </property>
+   <property name="toolTip">
+    <string>Rename</string>
    </property>
   </action>
-  <action name="actionUpdate_feed">
+  <action name="actionUpdate">
    <property name="icon">
     <iconset resource="icons.qrc">
      <normaloff>:/Icons/oxygen/view-refresh.png</normaloff>:/Icons/oxygen/view-refresh.png</iconset>
    </property>
    <property name="text">
-    <string>Update feed</string>
+    <string>Update</string>
+   </property>
+   <property name="toolTip">
+    <string>Update</string>
    </property>
   </action>
   <action name="actionNew_subscription">
@@ -255,7 +264,23 @@ p, li { white-space: pre-wrap; }
     <string>RSS feed downloader</string>
    </property>
   </action>
+  <action name="actionNew_folder">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/Icons/oxygen/folder-new.png</normaloff>:/Icons/oxygen/folder-new.png</iconset>
+   </property>
+   <property name="text">
+    <string>New folder</string>
+   </property>
+  </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKit/QWebView</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="icons.qrc"/>
  </resources>

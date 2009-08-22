@@ -46,28 +46,30 @@ void RSSImp::displayRSSListMenu(const QPoint& pos){
     // No item under the mouse, clear selection
     listStreams->clearSelection();
   }
-  QMenu myFinishedListMenu(this);
+  QMenu myRSSListMenu(this);
   QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
   if(selectedItems.size() > 0) {
-    myFinishedListMenu.addAction(actionUpdate_feed);
-    myFinishedListMenu.addAction(actionMark_items_read);
-    myFinishedListMenu.addSeparator();
+    myRSSListMenu.addAction(actionUpdate);
+    myRSSListMenu.addAction(actionMark_items_read);
+    myRSSListMenu.addSeparator();
     if(selectedItems.size() == 1) {
-      myFinishedListMenu.addAction(actionRename_feed);
+      myRSSListMenu.addAction(actionRename);
     }
-    myFinishedListMenu.addAction(actionDelete_feed);
-    myFinishedListMenu.addSeparator();
-    myFinishedListMenu.addAction(actionCopy_feed_URL);
+    myRSSListMenu.addAction(actionDelete);
+    myRSSListMenu.addSeparator();
+    myRSSListMenu.addAction(actionCopy_feed_URL);
     if(selectedItems.size() == 1) {
-      myFinishedListMenu.addSeparator();
-      myFinishedListMenu.addAction(actionRSS_feed_downloader);
+      myRSSListMenu.addSeparator();
+      myRSSListMenu.addAction(actionRSS_feed_downloader);
     }
 
   }else{
-    myFinishedListMenu.addAction(actionNew_subscription);
-    myFinishedListMenu.addAction(actionUpdate_all_feeds);
+    myRSSListMenu.addAction(actionNew_subscription);
+    myRSSListMenu.addAction(actionNew_folder);
+    myRSSListMenu.addSeparator();
+    myRSSListMenu.addAction(actionUpdate_all_feeds);
   }
-  myFinishedListMenu.exec(QCursor::pos());
+  myRSSListMenu.exec(QCursor::pos());
 }
 
 void RSSImp::displayItemsListMenu(const QPoint&){
@@ -389,9 +391,9 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   connect(listNews, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayItemsListMenu(const QPoint&)));
 
   // Feeds list actions
-  connect(actionDelete_feed, SIGNAL(triggered()), this, SLOT(deleteSelectedItems()));
-  connect(actionRename_feed, SIGNAL(triggered()), this, SLOT(renameFiles()));
-  connect(actionUpdate_feed, SIGNAL(triggered()), this, SLOT(refreshSelectedStreams()));
+  connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedItems()));
+  connect(actionRename, SIGNAL(triggered()), this, SLOT(renameFiles()));
+  connect(actionUpdate, SIGNAL(triggered()), this, SLOT(refreshSelectedStreams()));
   connect(actionNew_subscription, SIGNAL(triggered()), this, SLOT(on_newFeedButton_clicked()));
   connect(actionUpdate_all_feeds, SIGNAL(triggered()), this, SLOT(on_updateAllButton_clicked()));
   connect(actionCopy_feed_URL, SIGNAL(triggered()), this, SLOT(copySelectedFeedsURL()));

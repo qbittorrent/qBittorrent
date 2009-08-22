@@ -62,22 +62,22 @@
      <item>
       <widget class="QPushButton" name="addFile_button">
        <property name="text">
-        <string>Add a file</string>
+        <string>Add file</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
-         <normaloff>:/Icons/add_file.png</normaloff>:/Icons/add_file.png</iconset>
+         <normaloff>:/Icons/oxygen/document-new.png</normaloff>:/Icons/oxygen/document-new.png</iconset>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="addFolder_button">
        <property name="text">
-        <string>Add a folder</string>
+        <string>Add folder</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
-         <normaloff>:/Icons/add_folder.png</normaloff>:/Icons/add_folder.png</iconset>
+         <normaloff>:/Icons/oxygen/folder-new.png</normaloff>:/Icons/oxygen/folder-new.png</iconset>
        </property>
       </widget>
      </item>

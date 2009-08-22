@@ -6,10 +6,8 @@
   <file>Icons/sphere2.png</file>
   <file>Icons/downarrow.png</file>
   <file>Icons/url.png</file>
-  <file>Icons/add_folder.png</file>
   <file>Icons/locale.png</file>
   <file>Icons/loading.png</file>
-  <file>Icons/add_file.png</file>
   <file>Icons/magnet.png</file>
   <file>Icons/sphere.png</file>
   <file>Icons/uparrow.png</file>
@@ -76,6 +74,7 @@
   <file>Icons/oxygen/view-refresh.png</file>
   <file>Icons/oxygen/file.png</file>
   <file>Icons/oxygen/time.png</file>
+  <file>Icons/oxygen/folder-new.png</file>
   <file>Icons/oxygen/edit-paste.png</file>
   <file>Icons/oxygen/proxy.png</file>
   <file>Icons/oxygen/log.png</file>
@@ -88,11 +87,13 @@
   <file>Icons/oxygen/edit_clear.png</file>
   <file>Icons/oxygen/download.png</file>
   <file>Icons/oxygen/gear.png</file>
+  <file>Icons/oxygen/remove.png</file>
   <file>Icons/oxygen/browse.png</file>
   <file>Icons/oxygen/unsubscribe16.png</file>
   <file>Icons/oxygen/subscribe.png</file>
   <file>Icons/oxygen/edit-copy.png</file>
   <file>Icons/oxygen/bt_settings.png</file>
+  <file>Icons/oxygen/document-new.png</file>
   <file>Icons/oxygen/webui.png</file>
   <file>Icons/oxygen/list-remove.png</file>
   <file>Icons/oxygen/connection.png</file>
