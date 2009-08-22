@@ -25,7 +25,7 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  *
- * Contact : chris@qbittorrent.org, arnaud@qbittorrent.org
+ * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
 #ifndef RSS_H
@@ -50,6 +50,8 @@
 #include "downloadThread.h"
 
 class RssManager;
+class RssFile; // Folder or Stream
+class RssFolder;
 class RssStream;
 class RssItem;
 
@@ -75,8 +77,24 @@ static const char longMonth[][10] = {
   "October", "November", "December"
 };
 
+class RssFile: public QObject {
+  Q_OBJECT
+
+public:
+  enum FileType {STREAM, FOLDER};
+
+  RssFile(): QObject() {}
+
+  virtual unsigned int getNbUnRead() const = 0;
+  virtual FileType getType() const = 0;
+  virtual QStringList getPath() const = 0;
+  virtual QString getName() const = 0;
+  virtual void rename(QStringList path, QString new_name) = 0;
+  virtual void markAllAsRead() = 0;
+};
+
 // Item of a rss stream, single information
-class RssItem : public QObject {
+class RssItem: public QObject {
   Q_OBJECT
 private:
 
@@ -161,7 +179,7 @@ protected:
     int i = parts[nyear].size();
     if (i < 4) {
       // It's an obsolete year specification with less than 4 digits
-      year += (i == 2  &&  year < 50) ? 2000 : 1900;
+      year += (i == 2  &&  year < 50) ? 2000: 1900;
     }
 
     // Parse the UTC offset part
@@ -342,10 +360,12 @@ public:
 };
 
 // Rss stream, loaded form an xml file
-class RssStream : public QObject{
+class RssStream: public RssFile {
   Q_OBJECT
 
 private:
+  RssFolder *parent;
+  RssManager *rssmanager;
   bittorrent *BTSession;
   QString title;
   QString link;
@@ -356,579 +376,107 @@ private:
   QString filePath;
   QString iconPath;
   QList<RssItem*> listItem;
-  QTime lastRefresh;
   bool read;
   bool refreshed;
   bool downloadFailure;
   bool currently_loading;
 
-public slots :
-    // read and store the downloaded rss' informations
-    void processDownloadedFile(QString file_path) {
-  filePath = file_path;
-  downloadFailure = false;
-  lastRefresh.start();
-  if(openRss() >= 0) {
-    refreshed = true;
-  } else {
-    qDebug("OpenRss: Feed update Failed");
-  }
-}
+public slots:
+  void processDownloadedFile(QString file_path);
+  void setDownloadFailed();
 
-void setDownloadFailed(){
-  downloadFailure = true;
-  lastRefresh.start();
-}
+public:
+  RssStream(RssFolder* parent, RssManager *rssmanager, bittorrent *BTSession, QString _url);
+  ~RssStream();
+  FileType getType() const;
+  void refresh();
+  QStringList getPath() const;
+  void removeAllItems();
+  bool itemAlreadyExists(QString hash);
+  void setLoading(bool val);
+  bool isLoading();
+  QString getTitle() const;
+  void rename(QStringList path, QString _alias);
+  QString getName() const;
+  QString getLink() const;
+  QString getUrl() const;
+  QString getDescription() const;
+  QString getImage() const;
+  QString getFilePath() const;
+  QString getIconPath() const;
+  bool hasCustomIcon() const;
+  void setIconPath(QString path);
+  RssItem* getItem(unsigned int index) const;
+  unsigned int getNbNews() const;
+  void markAllAsRead();
+  unsigned int getNbUnRead() const;
+  QList<RssItem*> getNewsList() const;
+  QString getIconUrl();
 
-  public:
-RssStream(bittorrent *BTSession, QString _url): BTSession(BTSession), url(_url), alias(""), iconPath(":/Icons/rss16.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
-  qDebug("RSSStream constructed");
-  QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-  QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
-  QVariantList old_items = all_old_items.value(url, QVariantList()).toList();
-  qDebug("Loading %d old items for feed %s", old_items.size(), getAliasOrUrl().toLocal8Bit().data());
-  foreach(const QVariant &var_it, old_items) {
-    QHash<QString, QVariant> item = var_it.toHash();
-    RssItem *rss_item = RssItem::fromHash(item);
-    if(rss_item->isValid())
-      listItem << rss_item;
-  }
-}
-
-~RssStream(){
-  if(refreshed) {
-    QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-    QVariantList old_items;
-    foreach(RssItem *item, listItem) {
-      old_items << item->toHash();
-    }
-    qDebug("Saving %d old items for feed %s", old_items.size(), getAliasOrUrl().toLocal8Bit().data());
-    QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
-    all_old_items[url] = old_items;
-    qBTRSS.setValue("old_items", all_old_items);
-  }
-  removeAllItems();
-  if(QFile::exists(filePath))
-    QFile::remove(filePath);
-  if(QFile::exists(iconPath) && !iconPath.startsWith(":/"))
-    QFile::remove(iconPath);
-}
-
-// delete all the items saved
-void removeAllItems() {
-  qDeleteAll(listItem);
-  listItem.clear();
-}
-
-bool itemAlreadyExists(QString hash) {
-  RssItem * item;
-  foreach(item, listItem) {
-    if(item->getHash() == hash) return true;
-  }
-  return false;
-}
-
-void setLoading(bool val) {
-  currently_loading = val;
-}
-
-bool isLoading() {
-  return currently_loading;
-}
-
-QString getTitle() const{
-  return title;
-}
-
-QString getAlias() const{
-  qDebug("getAlias() returned Alias: %s", (const char*)alias.toLocal8Bit());
-  return alias;
-}
-
-void setAlias(QString _alias){
-  qDebug("setAlias() to %s", (const char*)_alias.toLocal8Bit());
-  alias = _alias;
-}
-
-// Return the alias if the stream has one, the url if it has no alias
-QString getAliasOrUrl() const{
-  if(!alias.isEmpty()) {
-    qDebug("getAliasOrUrl() returned alias: %s", (const char*)alias.toLocal8Bit());
-    return alias;
-  }
-  if(!title.isEmpty()) {
-    qDebug("getAliasOrUrl() returned title: %s", (const char*)title.toLocal8Bit());
-    return title;
-  }
-  qDebug("getAliasOrUrl() returned url: %s", (const char*)url.toLocal8Bit());
-  return url;
-}
-
-QString getLink() const{
-  return link;
-}
-
-QString getUrl() const{
-  return url;
-}
-
-QString getDescription() const{
-  return description;
-}
-
-QString getImage() const{
-  return image;
-}
-
-QString getFilePath() const{
-  return filePath;
-}
-
-QString getIconPath() const{
-  if(downloadFailure)
-    return ":/Icons/oxygen/unavailable.png";
-  return iconPath;
-}
-
-bool hasCustomIcon() const{
-  return !iconPath.startsWith(":/");
-}
-
-void setIconPath(QString path) {
-  iconPath = path;
-}
-
-RssItem* getItem(unsigned int index) const{
-  return listItem.at(index);
-}
-
-unsigned int getNbNews() const{
-  return listItem.size();
-}
-
-void markAllAsRead() {
-  RssItem *item;
-  foreach(item, listItem){
-    if(!item->isRead())
-      item->setRead();
-  }
-}
-
-unsigned int getNbUnRead() const{
-  unsigned int nbUnread=0;
-  RssItem *item;
-  foreach(item, listItem){
-    if(!item->isRead())
-      ++nbUnread;
-  }
-  return nbUnread;
-}
-
-QList<RssItem*> getNewsList() const{
-  return listItem;
-}
-
-QString getLastRefreshElapsedString() const{
-  if(!refreshed)
-    return tr("Never");
-  return tr("%1 ago", "10min ago").arg(misc::userFriendlyDuration((long)(lastRefresh.elapsed()/1000.)).replace("<", "&lt;"));
-}
-
-int getLastRefreshElapsed() const{
-  if(!refreshed)
-    return -1;
-  return lastRefresh.elapsed();
-}
-
-// download the icon from the adress
-QString getIconUrl() {
-  QUrl siteUrl(url);
-  return QString::fromUtf8("http://")+siteUrl.host()+QString::fromUtf8("/favicon.ico");
-}
-
-  private:
-// read and create items from a rss document
-short readDoc(const QDomDocument& doc) {
-  // is it a rss file ?
-  QDomElement root = doc.documentElement();
-  if(root.tagName() == QString::fromUtf8("html")){
-    qDebug("the file is empty, maybe the url is invalid or the server is too busy");
-    return -1;
-  }
-  else if(root.tagName() != QString::fromUtf8("rss")){
-    qDebug("the file is not a rss stream, <rss> omitted: %s", root.tagName().toLocal8Bit().data());
-    return -1;
-  }
-  QDomNode rss = root.firstChild();
-  QDomElement channel = root.firstChild().toElement();
-
-  while(!channel.isNull()) {
-    // we are reading the rss'main info
-    if (channel.tagName() == "channel") {
-      QDomElement property = channel.firstChild().toElement();
-      while(!property.isNull()) {
-        if (property.tagName() == "title") {
-          title = property.text();
-          if(alias==getUrl())
-            setAlias(title);
-        }
-        else if (property.tagName() == "link")
-          link = property.text();
-        else if (property.tagName() == "description")
-          description = property.text();
-        else if (property.tagName() == "image")
-          image = property.text();
-        else if(property.tagName() == "item") {
-          RssItem * item = new RssItem(property);
-          if(item->isValid() && !itemAlreadyExists(item->getHash())) {
-            listItem.append(item);
-            // Check if the item should be automatically downloaded
-            FeedFilter * matching_filter = FeedFilters::getFeedFilters(url).matches(item->getTitle());
-            if(matching_filter != 0) {
-              // Download the torrent
-              BTSession->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTitle()).arg(getAliasOrUrl()));
-              if(matching_filter->isValid()) {
-                QString save_path = matching_filter->getSavePath();
-                if(save_path.isEmpty())
-                  BTSession->downloadUrlAndSkipDialog(item->getTorrentUrl());
-                else
-                  BTSession->downloadUrlAndSkipDialog(item->getTorrentUrl(), save_path);
-              } else {
-                // All torrents are downloaded from this feed
-                BTSession->downloadUrlAndSkipDialog(item->getTorrentUrl());
-              }
-              // Item was downloaded, consider it as Read
-              item->setRead();
-              // Clean up
-              delete matching_filter;
-            }
-          } else {
-            delete item;
-          }
-        }
-        property = property.nextSibling().toElement();
-      }
-    }
-    channel = channel.nextSibling().toElement();
-  }
-  sortList();
-  resizeList();
-  return 0;
-}
-
-static void insertSortElem(QList<RssItem*> &list, RssItem *item) {
-  int i = 0;
-  while(i < list.size() && item->getDate() < list.at(i)->getDate()) {
-    ++i;
-  }
-  list.insert(i, item);
-}
-
-void sortList() {
-  QList<RssItem*> new_list;
-  RssItem *item;
-  foreach(item, listItem) {
-    insertSortElem(new_list, item);
-  }
-  listItem = new_list;
-}
-
-void resizeList() {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  unsigned int max_articles = settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 100).toInt();
-  int excess = listItem.size() - max_articles;
-  if(excess <= 0) return;
-  for(int i=0; i<excess; ++i){
-    delete listItem.takeLast();
-  }
-}
-
-// existing and opening test after download
-short openRss(){
-  qDebug("openRss() called");
-  QDomDocument doc("Rss Seed");
-  QFile fileRss(filePath);
-  if(!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) {
-    qDebug("openRss error : open failed, no file or locked, %s", (const char*)filePath.toLocal8Bit());
-    if(QFile::exists(filePath)) {
-      fileRss.remove();
-    }
-    return -1;
-  }
-  if(!doc.setContent(&fileRss)) {
-    qDebug("can't read temp file, might be empty");
-    fileRss.close();
-    if(QFile::exists(filePath)) {
-      fileRss.remove();
-    }
-    return -1;
-  }
-  // start reading the xml
-  short return_lecture = readDoc(doc);
-  fileRss.close();
-  if(QFile::exists(filePath)) {
-    fileRss.remove();
-  }
-  return return_lecture;
-}
+private:
+  short readDoc(const QDomDocument& doc);
+  void insertSortElem(QList<RssItem*> &list, RssItem *item);
+  void sortList();
+  void resizeList();
+  short openRss();
 };
 
-// global class, manage the whole rss stream
-class RssManager : public QObject{
+class RssFolder: public RssFile, public QHash<QString, RssFile*> {
   Q_OBJECT
 
-private :
-    QHash<QString, RssStream*> streams;
-downloadThread *downloader;
-QTimer newsRefresher;
-unsigned int refreshInterval;
-bittorrent *BTSession;
+private:
+  RssFolder *parent;
+  RssManager *rssmanager;
+  downloadThread *downloader;
+  bittorrent *BTSession;
+  QString name;
 
-  signals:
-void feedInfosChanged(QString url, QString aliasOrUrl, unsigned int nbUnread);
-void feedIconChanged(QString url, QString icon_path);
+public:
+  RssFolder(RssFolder *parent, RssManager *rssmanager, bittorrent *BTSession, QString name);
+  ~RssFolder();
+  unsigned int getNbUnRead() const;
+  FileType getType() const;
+  RssStream* addStream(QStringList full_path);
+  RssFolder* addFolder(QStringList full_path);
+  QList<RssStream*> findFeedsWithIcon(QString icon_url) const;
+  unsigned int getNbFeeds() const;
+  QList<RssFile*> getContent() const;
+  RssFile* getFile(QStringList full_path) const;
+  QList<RssStream*> getAllFeeds() const;
+  QString getName() const;
+  QStringList getPath() const;
 
-  public slots :
+public slots:
+  void refreshAll();
+  void removeFile(QStringList full_path);
+  void refresh(QStringList full_path);
+  void processFinishedDownload(QString url, QString path);
+  void handleDownloadFailure(QString url, QString reason);
+  void rename(QStringList full_path, QString new_name);
+  void markAllAsRead();
+};
 
-      void processFinishedDownload(QString url, QString path) {
-    if(url.endsWith("favicon.ico")){
-      // Icon downloaded
-      QImage fileIcon;
-      if(fileIcon.load(path)) {
-        QList<RssStream*> res = findFeedsWithIcon(url);
-        RssStream* stream;
-        foreach(stream, res){
-          stream->setIconPath(path);
-          if(!stream->isLoading())
-            emit feedIconChanged(stream->getUrl(), stream->getIconPath());
-        }
-      }else{
-        qDebug("Unsupported icon format at %s", (const char*)url.toLocal8Bit());
-      }
-      return;
-    }
-    RssStream *stream = streams.value(url, 0);
-    if(!stream){
-      qDebug("This rss stream was deleted in the meantime, nothing to update");
-      return;
-    }
-    stream->processDownloadedFile(path);
-    stream->setLoading(false);
-    // If the feed has no alias, then we use the title as Alias
-    // this is more user friendly
-    if(stream->getAlias().isEmpty()){
-      if(!stream->getTitle().isEmpty())
-        stream->setAlias(stream->getTitle());
-    }
-    emit feedInfosChanged(url, stream->getAliasOrUrl(), stream->getNbUnRead());
-  }
+class RssManager: public RssFolder{
+  Q_OBJECT
 
-  void handleDownloadFailure(QString url, QString reason) {
-    if(url.endsWith("favicon.ico")){
-      // Icon download failure
-      qDebug("Could not download icon at %s, reason: %s", (const char*)url.toLocal8Bit(), (const char*)reason.toLocal8Bit());
-      return;
-    }
-    RssStream *stream = streams.value(url, 0);
-    if(!stream){
-      qDebug("This rss stream was deleted in the meantime, nothing to update");
-      return;
-    }
-    stream->setLoading(false);
-    qDebug("Could not download Rss at %s, reason: %s", (const char*)url.toLocal8Bit(), (const char*)reason.toLocal8Bit());
-    stream->setDownloadFailed();
-    emit feedInfosChanged(url, stream->getAliasOrUrl(), stream->getNbUnRead());
-  }
+private:
+  QTimer newsRefresher;
+  unsigned int refreshInterval;
+  bittorrent *BTSession;
 
-  void refreshOldFeeds(){
-    qDebug("refresh old feeds");
-    RssStream *stream;
-    foreach(stream, streams){
-      QString url = stream->getUrl();
-      if(stream->isLoading()) continue;
-      if(stream->getLastRefreshElapsed() != -1 && stream->getLastRefreshElapsed() < (int)refreshInterval) continue;
-      qDebug("Refreshing old feed: %s...", (const char*)url.toLocal8Bit());
-      stream->setLoading(true);
-      downloader->downloadUrl(url);
-      if(!stream->hasCustomIcon()){
-        downloader->downloadUrl(stream->getIconUrl());
-      }
-    }
-    // See if refreshInterval has changed
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    unsigned int new_refreshInterval = settings.value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toInt();
-    if(new_refreshInterval != refreshInterval) {
-      refreshInterval = new_refreshInterval;
-      newsRefresher.start(refreshInterval*60000);
-    }
-  }
+signals:
+  void feedInfosChanged(QString url, QString aliasOrUrl, unsigned int nbUnread);
+  void feedIconChanged(QString url, QString icon_path);
 
-public :
-    RssManager(bittorrent *BTSession): BTSession(BTSession){
-  downloader = new downloadThread(this);
-  connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processFinishedDownload(QString, QString)));
-  connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
-  loadStreamList();
-  connect(&newsRefresher, SIGNAL(timeout()), this, SLOT(refreshOldFeeds()));
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  refreshInterval = settings.value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toInt();
-  newsRefresher.start(refreshInterval*60000);
-}
+public slots:
+  void loadStreamList();
+  void saveStreamList();
+  void forwardFeedInfosChanged(QString url, QString aliasOrUrl, unsigned int nbUnread);
+  void forwardFeedIconChanged(QString url, QString icon_path);
 
-~RssManager(){
-  qDebug("Deleting RSSManager");
-  saveStreamList();
-  qDebug("Deleting all streams");
-  qDeleteAll(streams);
-  qDebug("Deleting downloader thread");
-  delete downloader;
-  qDebug("RSSManager deleted");
-}
-
-// load the list of the rss stream
-void loadStreamList(){
-  QSettings settings("qBittorrent", "qBittorrent");
-  QStringList streamsUrl = settings.value("Rss/streamList").toStringList();
-  QStringList aliases =  settings.value("Rss/streamAlias").toStringList();
-  if(streamsUrl.size() != aliases.size()){
-    std::cerr << "Corrupted Rss list, not loading it\n";
-    return;
-  }
-  QString url;
-  unsigned int i = 0;
-  foreach(url, streamsUrl){
-    RssStream *stream = new RssStream(BTSession, url);
-    QString alias = aliases.at(i);
-    if(!alias.isEmpty()) {
-      stream->setAlias(alias);
-    }
-    streams[url] = stream;
-    ++i;
-  }
-  qDebug("NB RSS streams loaded: %d", streamsUrl.size());
-}
-
-// save the list of the rss stream for the next session
-void saveStreamList(){
-  QList<QPair<QString, QString> > streamsList;
-  QStringList streamsUrl;
-  QStringList aliases;
-  RssStream *stream;
-  foreach(stream, streams){
-    streamsUrl << stream->getUrl();
-    aliases << stream->getAlias();
-  }
-  QSettings settings("qBittorrent", "qBittorrent");
-  settings.beginGroup("Rss");
-  settings.setValue("streamList", streamsUrl);
-  settings.setValue("streamAlias", aliases);
-  settings.endGroup();
-}
-
-// add a stream to the manager
-void addStream(RssStream* stream){
-  QString url = stream->getUrl();
-  if(streams.contains(url)){
-    qDebug("Not adding the Rss stream because it is already in the list");
-    return;
-  }
-  streams[url] = stream;
-  emit feedIconChanged(url, stream->getIconPath());
-}
-
-// add a stream to the manager
-RssStream* addStream(QString url){
-  if(streams.contains(url)){
-    qDebug("Not adding the Rss stream because it is already in the list");
-    return 0;
-  }
-  RssStream* stream = new RssStream(BTSession, url);
-  streams[url] = stream;
-  refresh(url);
-  return stream;
-}
-
-// remove a stream from the manager
-void removeStream(RssStream* stream){
-  QString url = stream->getUrl();
-  Q_ASSERT(streams.contains(url));
-  delete streams.take(url);
-}
-
-QList<RssStream*> findFeedsWithIcon(QString icon_url){
-  QList<RssStream*> res;
-  RssStream* stream;
-  foreach(stream, streams){
-    if(stream->getIconUrl() == icon_url)
-      res << stream;
-  }
-  return res;
-}
-
-void removeStream(QString url){
-  Q_ASSERT(streams.contains(url));
-  delete streams.take(url);
-}
-
-// remove all the streams in the manager
-void removeAll(){
-  qDeleteAll(streams);
-  streams.clear();
-}
-
-// reload all the xml files from the web
-void refreshAll(){
-  qDebug("Refreshing all rss feeds");
-  RssStream *stream;
-  foreach(stream, streams){
-    QString url = stream->getUrl();
-    if(stream->isLoading()) return;
-    qDebug("Refreshing feed: %s...", (const char*)url.toLocal8Bit());
-    stream->setLoading(true);
-    downloader->downloadUrl(url);
-    if(!stream->hasCustomIcon()){
-      downloader->downloadUrl(stream->getIconUrl());
-    }
-  }
-}
-
-void refresh(QString url) {
-  qDebug("Refreshing feed: %s", url.toLocal8Bit().data());
-  Q_ASSERT(streams.contains(url));
-  RssStream *stream = streams[url];
-  if(stream->isLoading()) return;
-  stream->setLoading(true);
-  downloader->downloadUrl(url);
-  if(!stream->hasCustomIcon()){
-    downloader->downloadUrl(stream->getIconUrl());
-  }else{
-    qDebug("No need to download this feed's icon, it was already downloaded");
-  }
-}
-
-// XXX: Used?
-unsigned int getNbFeeds() {
-  return streams.size();
-}
-
-RssStream* getFeed(QString url){
-  Q_ASSERT(streams.contains(url));
-  return streams[url];
-}
-
-// Set an alias for a stream and save it for later
-void setAlias(QString url, QString newAlias) {
-  Q_ASSERT(!newAlias.isEmpty());
-  RssStream * stream = streams.value(url, 0);
-  Q_ASSERT(stream != 0);
-  stream->setAlias(newAlias);
-  emit feedInfosChanged(url, stream->getAliasOrUrl(), stream->getNbUnRead());
-}
-
-// Return all the rss feeds we have
-QList<RssStream*> getRssFeeds() const {
-  return streams.values();
-}
+public:
+  RssManager(bittorrent *BTSession);
+  ~RssManager();
 
 };
 

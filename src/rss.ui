@@ -101,7 +101,7 @@
        <enum>QAbstractItemView::ExtendedSelection</enum>
       </property>
       <property name="columnCount">
-       <number>2</number>
+       <number>3</number>
       </property>
       <column>
        <property name="text">
@@ -110,7 +110,12 @@
       </column>
       <column>
        <property name="text">
-        <string>2</string>
+        <string>url</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>type</string>
        </property>
       </column>
      </widget>

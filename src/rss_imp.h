@@ -33,9 +33,8 @@
 #define REFRESH_MAX_LATENCY 600000
 
 #include "ui_rss.h"
+#include "rss.h"
 
-class QTimer;
-class RssManager;
 class bittorrent;
 
 class RSSImp : public QWidget, public Ui::RSS{
@@ -43,11 +42,10 @@ class RSSImp : public QWidget, public Ui::RSS{
 
 private:
   RssManager *rssmanager;
-  QTimer *refreshTimeTimer;
   bittorrent *BTSession;
 
 public slots:
-  void deleteSelectedFeeds();
+  void deleteSelectedItems();
 
 protected slots:
   void on_newFeedButton_clicked();
@@ -55,19 +53,18 @@ protected slots:
   void on_markReadButton_clicked();
   void displayRSSListMenu(const QPoint&);
   void displayItemsListMenu(const QPoint&);
-  void renameStream();
+  void renameFiles();
   void refreshSelectedStreams();
   void copySelectedFeedsURL();
   void refreshNewsList(QTreeWidgetItem* item);
   void refreshTextBrowser(QListWidgetItem *);
-  void updateLastRefreshedTimeForStreams();
   void updateFeedIcon(QString url, QString icon_path);
   void updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnread);
   void openNewsUrl();
   void downloadTorrent();
-  void fillFeedsList();
+  void fillFeedsList(QTreeWidgetItem *parent=0, RssFolder *rss_parent=0);
   void selectFirstFeed();
-  void updateFeedNbNews(QString url);
+  void updateFeedNbNews(RssStream* stream);
   void saveSlidersPosition();
   void restoreSlidersPosition();
   void showFeedDownloader();
@@ -77,6 +74,10 @@ public:
   ~RSSImp();
   QTreeWidgetItem* getTreeItemFromUrl(QString url) const;
   QString getCurrentFeedUrl() const;
+  QTreeWidgetItem* getItemFromPath(QStringList path) const;
+  QStringList getItemPath(QTreeWidgetItem *item) const;
+  QStringList getCurrentFeedPath() const;
+  RssFile::FileType getItemType(QTreeWidgetItem *item) const;
 };
 
 #endif

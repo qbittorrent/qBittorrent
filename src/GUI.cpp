@@ -911,7 +911,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       inDownloadList = false;
       break;
     case 3: //RSSImp
-      rssWidget->deleteSelectedFeeds();
+      rssWidget->deleteSelectedItems();
       return;
     default:
       return;

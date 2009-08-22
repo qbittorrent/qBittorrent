@@ -193,9 +193,11 @@ void downloadThread::run(){
 }
 
 void downloadThread::propagateDownloadedFile(subDownloadThread* st, QString url, QString path){
+  mutex.lock();
   int index = subThreads.indexOf(st);
   Q_ASSERT(index != -1);
   subThreads.removeAt(index);
+  mutex.unlock();
   delete st;
   emit downloadFinished(url, path);
   mutex.lock();
@@ -206,9 +208,11 @@ void downloadThread::propagateDownloadedFile(subDownloadThread* st, QString url,
 }
 
 void downloadThread::propagateDownloadFailure(subDownloadThread* st, QString url, QString reason){
+  mutex.lock();
   int index = subThreads.indexOf(st);
   Q_ASSERT(index != -1);
   subThreads.removeAt(index);
+  mutex.unlock();
   delete st;
   emit downloadFailure(url, reason);
   mutex.lock();

@@ -226,5 +226,6 @@ SOURCES += GUI.cpp \
     httpresponsegenerator.cpp \
     eventmanager.cpp \
     SearchTab.cpp \
-    ico.cpp
+    ico.cpp \
+    rss.cpp
 DESTDIR = .
