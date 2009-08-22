@@ -228,7 +228,7 @@ void RSSImp::fillFeedsList() {
   RssStream* stream;
   foreach(stream, feeds){
     QTreeWidgetItem* item = new QTreeWidgetItem(listStreams);
-    item->setData(0, Qt::DisplayRole, stream->getAliasOrUrl()+ QString::fromUtf8("  (0)"));
+    item->setData(0, Qt::DisplayRole, stream->getAliasOrUrl()+ QString::fromUtf8("  (")+QString::number(stream->getNbUnRead(), 10)+QString(")"));
     item->setData(0,Qt::DecorationRole, QVariant(QIcon(QString::fromUtf8(":/Icons/loading.png"))));
     item->setData(1, Qt::DisplayRole, stream->getUrl());
     item->setToolTip(0, QString::fromUtf8("<b>")+tr("Description:")+QString::fromUtf8("</b> ")+stream->getDescription()+QString::fromUtf8("<br/><b>")+tr("url:")+QString::fromUtf8("</b> ")+stream->getUrl()+QString::fromUtf8("<br/><b>")+tr("Last refresh:")+QString::fromUtf8("</b> ")+stream->getLastRefreshElapsedString());
@@ -380,7 +380,7 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   connect(actionDownload_torrent, SIGNAL(triggered()), this, SLOT(downloadTorrent()));
 
   connect(listStreams, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(refreshNewsList(QTreeWidgetItem*)));
-  connect(listNews, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), this, SLOT(refreshTextBrowser(QListWidgetItem *)));
+  connect(listNews, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(refreshTextBrowser(QListWidgetItem *)));
   connect(listNews, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(downloadTorrent()));
   refreshTimeTimer = new QTimer(this);
   connect(refreshTimeTimer, SIGNAL(timeout()), this, SLOT(updateLastRefreshedTimeForStreams()));
