@@ -8,6 +8,7 @@
     - FEATURE: RSS Feeds URLs can now be copied to clipboard
     - FEATURE: If a torrent contains a torrent file, process downloaded torrent file too
     - BUGFIX: torrent resume code rewrited
+    - COSMETIC: Redesigned RSS tab to improve usability
 
 * Sun Aug 21 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.4.1
     - BUGFIX: Fix problems when changing save path (if using temporary download folder)

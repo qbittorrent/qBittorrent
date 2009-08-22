@@ -43,17 +43,21 @@
 #include "bittorrent.h"
 
 // display a right-click menu
-void RSSImp::displayRSSListMenu(const QPoint&){
+void RSSImp::displayRSSListMenu(const QPoint& pos){
+  if(!listStreams->indexAt(pos).isValid()) {
+    // No item under the mouse, clear selection
+    listStreams->clearSelection();
+  }
   QMenu myFinishedListMenu(this);
   QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
   if(selectedItems.size() > 0) {
-    myFinishedListMenu.addAction(actionRefresh);
-    myFinishedListMenu.addAction(actionMark_all_as_read);
+    myFinishedListMenu.addAction(actionUpdate_feed);
+    myFinishedListMenu.addAction(actionMark_items_read);
     myFinishedListMenu.addSeparator();
-    myFinishedListMenu.addAction(actionDelete);
     if(selectedItems.size() == 1) {
-      myFinishedListMenu.addAction(actionRename);
+      myFinishedListMenu.addAction(actionRename_feed);
     }
+    myFinishedListMenu.addAction(actionDelete_feed);
     myFinishedListMenu.addSeparator();
     myFinishedListMenu.addAction(actionCopy_feed_URL);
     if(selectedItems.size() == 1) {
@@ -62,8 +66,8 @@ void RSSImp::displayRSSListMenu(const QPoint&){
     }
 
   }else{
-    myFinishedListMenu.addAction(actionCreate);
-    myFinishedListMenu.addAction(actionRefreshAll);
+    myFinishedListMenu.addAction(actionNew_subscription);
+    myFinishedListMenu.addAction(actionUpdate_all_feeds);
   }
   myFinishedListMenu.exec(QCursor::pos());
 }
@@ -79,8 +83,36 @@ void RSSImp::displayItemsListMenu(const QPoint&){
 }
 
 // add a stream by a button
-void RSSImp::on_addStream_button_clicked() {
-  createStream();
+void RSSImp::on_newFeedButton_clicked() {
+  bool ok;
+  QString clip_txt = qApp->clipboard()->text();
+  QString default_url = "http://";
+  if(clip_txt.startsWith("http://", Qt::CaseInsensitive) || clip_txt.startsWith("https://", Qt::CaseInsensitive) || clip_txt.startsWith("ftp://", Qt::CaseInsensitive)) {
+    default_url = clip_txt;
+  }
+  QString newUrl = QInputDialog::getText(this, tr("Please type a rss stream url"), tr("Stream URL:"), QLineEdit::Normal, default_url, &ok);
+  if(ok) {
+    newUrl = newUrl.trimmed();
+    if(!newUrl.isEmpty()){
+      RssStream *stream = rssmanager->addStream(newUrl);
+      if(stream == 0){
+        // Already existing
+        QMessageBox::warning(this, tr("qBittorrent"),
+                             tr("This rss feed is already in the list."),
+                             QMessageBox::Ok);
+        return;
+      }
+      QTreeWidgetItem* item = new QTreeWidgetItem(listStreams);
+      item->setText(0, stream->getAliasOrUrl() + QString::fromUtf8("  (0)"));
+      item->setText(1, stream->getUrl());
+      item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+      item->setToolTip(0, QString::fromUtf8("<b>")+tr("Description:")+QString::fromUtf8("</b> ")+stream->getDescription()+QString::fromUtf8("<br/><b>")+tr("url:")+QString::fromUtf8("</b> ")+stream->getUrl()+QString::fromUtf8("<br/><b>")+tr("Last refresh:")+QString::fromUtf8("</b> ")+stream->getLastRefreshElapsedString());
+      if(listStreams->topLevelItemCount() == 1)
+        selectFirstFeed();
+      rssmanager->refresh(newUrl);
+      rssmanager->saveStreamList();
+    }
+  }
 }
 
 // delete a stream by a button
@@ -112,8 +144,12 @@ void RSSImp::on_delStream_button_clicked() {
 }
 
 // refresh all streams by a button
-void RSSImp::on_refreshAll_button_clicked() {
-  refreshAllStreams();
+void RSSImp::on_updateAllButton_clicked() {
+  unsigned int nbFeeds = listStreams->topLevelItemCount();
+  for(unsigned int i=0; i<nbFeeds; ++i)
+    listStreams->topLevelItem(i)->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+  rssmanager->refreshAll();
+  updateLastRefreshedTimeForStreams();
 }
 
 void RSSImp::downloadTorrent() {
@@ -174,7 +210,7 @@ void RSSImp::showFeedDownloader() {
   new FeedDownloaderDlg(this, item->text(1), rssmanager->getFeed(item->text(1))->getAliasOrUrl(), BTSession);
 }
 
-void RSSImp::on_actionMark_all_as_read_triggered() {
+void RSSImp::on_markReadButton_clicked() {
   QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
   QTreeWidgetItem* item;
   foreach(item, selectedItems){
@@ -187,15 +223,6 @@ void RSSImp::on_actionMark_all_as_read_triggered() {
     refreshNewsList(listStreams->currentItem());
 }
 
-//right-click somewhere, refresh all the streams
-void RSSImp::refreshAllStreams() {
-  unsigned int nbFeeds = listStreams->topLevelItemCount();
-  for(unsigned int i=0; i<nbFeeds; ++i)
-    listStreams->topLevelItem(i)->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
-  rssmanager->refreshAll();
-  updateLastRefreshedTimeForStreams();
-}
-
 void RSSImp::fillFeedsList() {
   QList<RssStream*> feeds = rssmanager->getRssFeeds();
   RssStream* stream;
@@ -205,39 +232,6 @@ void RSSImp::fillFeedsList() {
     item->setData(0,Qt::DecorationRole, QVariant(QIcon(QString::fromUtf8(":/Icons/loading.png"))));
     item->setData(1, Qt::DisplayRole, stream->getUrl());
     item->setToolTip(0, QString::fromUtf8("<b>")+tr("Description:")+QString::fromUtf8("</b> ")+stream->getDescription()+QString::fromUtf8("<br/><b>")+tr("url:")+QString::fromUtf8("</b> ")+stream->getUrl()+QString::fromUtf8("<br/><b>")+tr("Last refresh:")+QString::fromUtf8("</b> ")+stream->getLastRefreshElapsedString());
-  }
-}
-
-//right-click, register a new stream
-void RSSImp::createStream() {
-  bool ok;
-  QString clip_txt = qApp->clipboard()->text();
-  QString default_url = "http://";
-  if(clip_txt.startsWith("http://", Qt::CaseInsensitive) || clip_txt.startsWith("https://", Qt::CaseInsensitive) || clip_txt.startsWith("ftp://", Qt::CaseInsensitive)) {
-    default_url = clip_txt;
-  }
-  QString newUrl = QInputDialog::getText(this, tr("Please type a rss stream url"), tr("Stream URL:"), QLineEdit::Normal, default_url, &ok);
-  if(ok) {
-    newUrl = newUrl.trimmed();
-    if(!newUrl.isEmpty()){
-      RssStream *stream = rssmanager->addStream(newUrl);
-      if(stream == 0){
-        // Already existing
-        QMessageBox::warning(this, tr("qBittorrent"),
-                             tr("This rss feed is already in the list."),
-                             QMessageBox::Ok);
-        return;
-      }
-      QTreeWidgetItem* item = new QTreeWidgetItem(listStreams);
-      item->setText(0, stream->getAliasOrUrl() + QString::fromUtf8("  (0)"));
-      item->setText(1, stream->getUrl());
-      item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
-      item->setToolTip(0, QString::fromUtf8("<b>")+tr("Description:")+QString::fromUtf8("</b> ")+stream->getDescription()+QString::fromUtf8("<br/><b>")+tr("url:")+QString::fromUtf8("</b> ")+stream->getUrl()+QString::fromUtf8("<br/><b>")+tr("Last refresh:")+QString::fromUtf8("</b> ")+stream->getLastRefreshElapsedString());
-      if(listStreams->topLevelItemCount() == 1)
-        selectFirstFeed();
-      rssmanager->refresh(newUrl);
-      rssmanager->saveStreamList();
-    }
   }
 }
 
@@ -361,18 +355,6 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   setupUi(this);
   selectedFeedUrl = QString::null;
 
-  // icons of bottom buttons
-  addStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/subscribe.png")));
-  delStream_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/unsubscribe.png")));
-  refreshAll_button->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
-  actionMark_all_as_read->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_ok.png")));
-  // icons of right-click menu
-  actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/unsubscribe16.png")));
-  actionRename->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/log.png")));
-  actionRefresh->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
-  actionCreate->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/subscribe16.png")));
-  actionRefreshAll->setIcon(QIcon(QString::fromUtf8(":/Icons/refresh.png")));
-
   // Hide second column (url)
   listStreams->hideColumn(1);
 
@@ -384,14 +366,16 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   connect(listStreams, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRSSListMenu(const QPoint&)));
   connect(listNews, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayItemsListMenu(const QPoint&)));
 
-  connect(actionDelete, SIGNAL(triggered()), this, SLOT(on_delStream_button_clicked()));
-  connect(actionRename, SIGNAL(triggered()), this, SLOT(renameStream()));
-  connect(actionRefresh, SIGNAL(triggered()), this, SLOT(refreshSelectedStreams()));
-  connect(actionCreate, SIGNAL(triggered()), this, SLOT(createStream()));
-  connect(actionRefreshAll, SIGNAL(triggered()), this, SLOT(refreshAllStreams()));
+  // Feeds list actions
+  connect(actionDelete_feed, SIGNAL(triggered()), this, SLOT(on_delStream_button_clicked()));
+  connect(actionRename_feed, SIGNAL(triggered()), this, SLOT(renameStream()));
+  connect(actionUpdate_feed, SIGNAL(triggered()), this, SLOT(refreshSelectedStreams()));
+  connect(actionNew_subscription, SIGNAL(triggered()), this, SLOT(on_newFeedButton_clicked()));
+  connect(actionUpdate_all_feeds, SIGNAL(triggered()), this, SLOT(on_updateAllButton_clicked()));
   connect(actionCopy_feed_URL, SIGNAL(triggered()), this, SLOT(copySelectedFeedsURL()));
   connect(actionRSS_feed_downloader, SIGNAL(triggered()), this, SLOT(showFeedDownloader()));
-
+  connect(actionMark_items_read, SIGNAL(triggered()), this, SLOT(on_markReadButton_clicked()));
+  // News list actions
   connect(actionOpen_news_URL, SIGNAL(triggered()), this, SLOT(openNewsUrl()));
   connect(actionDownload_torrent, SIGNAL(triggered()), this, SLOT(downloadTorrent()));
 

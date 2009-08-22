@@ -51,15 +51,14 @@ class RSSImp : public QWidget, public Ui::RSS{
     void on_delStream_button_clicked();
 
   protected slots:
-    void on_addStream_button_clicked();
-    void on_refreshAll_button_clicked();
+    void on_newFeedButton_clicked();
+    void on_updateAllButton_clicked();
+    void on_markReadButton_clicked();
     void displayRSSListMenu(const QPoint&);
     void displayItemsListMenu(const QPoint&);
     void renameStream();
     void refreshSelectedStreams();
     void copySelectedFeedsURL();
-    void createStream();
-    void refreshAllStreams();
     void refreshNewsList(QTreeWidgetItem* item);
     void refreshTextBrowser(QListWidgetItem *);
     void updateLastRefreshedTimeForStreams();
@@ -70,7 +69,6 @@ class RSSImp : public QWidget, public Ui::RSS{
     void fillFeedsList();
     void selectFirstFeed();
     void updateFeedNbNews(QString url);
-    void on_actionMark_all_as_read_triggered();
     void saveSlidersPosition();
     void restoreSlidersPosition();
     void showFeedDownloader();

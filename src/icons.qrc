@@ -3,7 +3,6 @@
   <file>Icons/gnome-shutdown.png</file>
   <file>Icons/rss32.png</file>
   <file>Icons/money.png</file>
-  <file>Icons/refresh.png</file>
   <file>Icons/sphere2.png</file>
   <file>Icons/downarrow.png</file>
   <file>Icons/url.png</file>
@@ -74,6 +73,7 @@
   <file>Icons/flags/italy.png</file>
   <file>Icons/flags/south_korea.png</file>
   <file>Icons/flags/japan.png</file>
+  <file>Icons/oxygen/view-refresh.png</file>
   <file>Icons/oxygen/file.png</file>
   <file>Icons/oxygen/time.png</file>
   <file>Icons/oxygen/edit-paste.png</file>

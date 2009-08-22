@@ -13,20 +13,88 @@
   <property name="windowTitle">
    <string>Search</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <widget class="QSplitter" name="splitter_h">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <widget class="QWidget" name="layoutWidget">
-      <layout class="QVBoxLayout">
-       <property name="spacing">
-        <number>6</number>
-       </property>
-       <property name="margin">
-        <number>0</number>
-       </property>
+     <widget class="QWidget" name="">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QToolButton" name="newFeedButton">
+           <property name="text">
+            <string>New subscription</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/Icons/oxygen/subscribe.png</normaloff>:/Icons/oxygen/subscribe.png</iconset>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextUnderIcon</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="markReadButton">
+           <property name="text">
+            <string>Mark items read</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/Icons/oxygen/button_ok.png</normaloff>:/Icons/oxygen/button_ok.png</iconset>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextUnderIcon</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="updateAllButton">
+           <property name="minimumSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string>Refresh RSS streams</string>
+           </property>
+           <property name="text">
+            <string>Update all</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/Icons/oxygen/view-refresh.png</normaloff>:/Icons/oxygen/view-refresh.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextUnderIcon</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
        <item>
         <widget class="QTreeWidget" name="listStreams">
          <property name="contextMenuPolicy">
@@ -50,111 +118,7 @@
          </column>
         </widget>
        </item>
-       <item>
-        <layout class="QHBoxLayout">
-         <property name="spacing">
-          <number>6</number>
-         </property>
-         <property name="margin">
-          <number>0</number>
-         </property>
-         <item>
-          <spacer>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="delStream_button">
-           <property name="minimumSize">
-            <size>
-             <width>55</width>
-             <height>32</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string>Delete selected streams</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>32</width>
-             <height>32</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="refreshAll_button">
-           <property name="minimumSize">
-            <size>
-             <width>32</width>
-             <height>32</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string>Refresh RSS streams</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>32</width>
-             <height>32</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="addStream_button">
-           <property name="minimumSize">
-            <size>
-             <width>32</width>
-             <height>32</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string>Add a new RSS stream</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>55</width>
-             <height>32</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
       </layout>
-      <zorder>listStreams</zorder>
-      <zorder></zorder>
      </widget>
      <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -196,34 +160,64 @@ p, li { white-space: pre-wrap; }
     </widget>
    </item>
   </layout>
-  <action name="actionDelete">
+  <action name="actionDelete_feed">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/Icons/oxygen/unsubscribe16.png</normaloff>:/Icons/oxygen/unsubscribe16.png</iconset>
+   </property>
    <property name="text">
-    <string>Delete</string>
+    <string>Delete feed</string>
    </property>
   </action>
-  <action name="actionRename">
+  <action name="actionRename_feed">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/Icons/oxygen/edit_clear.png</normaloff>:/Icons/oxygen/edit_clear.png</iconset>
+   </property>
    <property name="text">
-    <string>Rename</string>
+    <string>Rename feed</string>
    </property>
   </action>
-  <action name="actionRefresh">
+  <action name="actionUpdate_feed">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/Icons/oxygen/view-refresh.png</normaloff>:/Icons/oxygen/view-refresh.png</iconset>
+   </property>
    <property name="text">
-    <string>Refresh</string>
+    <string>Update feed</string>
    </property>
   </action>
-  <action name="actionCreate">
+  <action name="actionNew_subscription">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/Icons/oxygen/subscribe16.png</normaloff>:/Icons/oxygen/subscribe16.png</iconset>
+   </property>
    <property name="text">
-    <string>Add RSS stream</string>
+    <string>New subscription</string>
    </property>
   </action>
-  <action name="actionRefreshAll">
+  <action name="actionUpdate_all_feeds">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/Icons/oxygen/view-refresh.png</normaloff>:/Icons/oxygen/view-refresh.png</iconset>
+   </property>
    <property name="text">
-    <string>Refresh all streams</string>
+    <string>Update all feeds</string>
+   </property>
+   <property name="toolTip">
+    <string>Update all feeds</string>
    </property>
   </action>
-  <action name="actionMark_all_as_read">
+  <action name="actionMark_items_read">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/Icons/oxygen/button_ok.png</normaloff>:/Icons/oxygen/button_ok.png</iconset>
+   </property>
    <property name="text">
-    <string>Mark all as read</string>
+    <string>Mark items read</string>
+   </property>
+   <property name="toolTip">
+    <string>Mark items read</string>
    </property>
   </action>
   <action name="actionDownload_torrent">
