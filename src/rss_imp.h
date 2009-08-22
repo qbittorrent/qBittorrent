@@ -44,7 +44,6 @@ class RSSImp : public QWidget, public Ui::RSS{
 private:
   RssManager *rssmanager;
   QTimer *refreshTimeTimer;
-  QString selectedFeedUrl;
   bittorrent *BTSession;
 
 public slots:
@@ -77,6 +76,7 @@ public:
   RSSImp(bittorrent *BTSession);
   ~RSSImp();
   QTreeWidgetItem* getTreeItemFromUrl(QString url) const;
+  QString getCurrentFeedUrl() const;
 };
 
 #endif
