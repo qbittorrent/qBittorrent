@@ -54,6 +54,9 @@ void RSSImp::displayRSSListMenu(const QPoint& pos){
     myRSSListMenu.addSeparator();
     if(selectedItems.size() == 1) {
       myRSSListMenu.addAction(actionRename);
+      RssFile *rss_item = rssmanager->getFile(getItemPath(selectedItems.first()));
+      if(rss_item->getType() == RssFile::FOLDER)
+        myRSSListMenu.addAction(actionNew_folder);
     }
     myRSSListMenu.addAction(actionDelete);
     myRSSListMenu.addSeparator();
@@ -103,6 +106,33 @@ RssFile::FileType RSSImp::getItemType(QTreeWidgetItem *item) const {
   return (RssFile::FileType)item->text(2).toInt();
 }
 
+void RSSImp::askNewFolder() {
+  QStringList dest_path;
+  QTreeWidgetItem *parent_item = 0;
+  if(listStreams->selectedItems().size() > 0) {
+    parent_item = listStreams->selectedItems().at(0);
+    foreach(QString name, getItemPath(parent_item)) {
+      dest_path << name;
+    }
+  }
+  bool ok;
+  QString newFolder = QInputDialog::getText(this, tr("Please choose a folder name"), tr("Folder name:"), QLineEdit::Normal, tr("New folder"), &ok);
+  if(ok) {
+    dest_path << newFolder;
+    RssFolder* new_folder = rssmanager->addFolder(dest_path);
+    QTreeWidgetItem* folder_item;
+    if(parent_item)
+      folder_item = new QTreeWidgetItem(parent_item);
+    else
+      folder_item = new QTreeWidgetItem(listStreams);
+    folder_item->setText(0, new_folder->getName() + QString::fromUtf8("  (0)"));
+    folder_item->setText(1, new_folder->getName());
+    folder_item->setData(2,Qt::DisplayRole, QVariant((int)RssFile::FOLDER));
+    folder_item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/oxygen/folder.png")));
+    rssmanager->saveStreamList();
+  }
+}
+
 // add a stream by a button
 void RSSImp::on_newFeedButton_clicked() {
   QStringList dest_path;
@@ -133,6 +163,7 @@ void RSSImp::on_newFeedButton_clicked() {
       QTreeWidgetItem* item = new QTreeWidgetItem(listStreams);
       item->setText(0, stream->getName() + QString::fromUtf8("  (0)"));
       item->setText(1, stream->getUrl());
+      item->setData(2,Qt::DisplayRole, QVariant((int)RssFile::STREAM));
       item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
       if(listStreams->topLevelItemCount() == 1)
         selectFirstFeed();
@@ -276,7 +307,13 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
     listNews->clear();
     return;
   }
-  RssStream *stream = (RssStream*)rssmanager->getFile(getCurrentFeedPath());
+  RssFile *file = rssmanager->getFile(getCurrentFeedPath());
+  if(file->getType() != RssFile::STREAM) {
+    listNews->clear();
+    return;
+  }
+  RssStream *stream = (RssStream*)file;
+
   qDebug("Getting the list of news");
   QList<RssItem*> news = stream->getNewsList();
   // Clear the list first
@@ -394,6 +431,7 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedItems()));
   connect(actionRename, SIGNAL(triggered()), this, SLOT(renameFiles()));
   connect(actionUpdate, SIGNAL(triggered()), this, SLOT(refreshSelectedStreams()));
+  connect(actionNew_folder, SIGNAL(triggered()), this, SLOT(askNewFolder()));
   connect(actionNew_subscription, SIGNAL(triggered()), this, SLOT(on_newFeedButton_clicked()));
   connect(actionUpdate_all_feeds, SIGNAL(triggered()), this, SLOT(on_updateAllButton_clicked()));
   connect(actionCopy_feed_URL, SIGNAL(triggered()), this, SLOT(copySelectedFeedsURL()));

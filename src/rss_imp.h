@@ -68,6 +68,7 @@ protected slots:
   void saveSlidersPosition();
   void restoreSlidersPosition();
   void showFeedDownloader();
+  void askNewFolder();
 
 public:
   RSSImp(bittorrent *BTSession);
