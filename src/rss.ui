@@ -26,7 +26,7 @@
          <normaloff>:/Icons/oxygen/subscribe.png</normaloff>:/Icons/oxygen/subscribe.png</iconset>
        </property>
        <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextUnderIcon</enum>
+        <enum>Qt::ToolButtonTextBesideIcon</enum>
        </property>
       </widget>
      </item>
@@ -40,7 +40,7 @@
          <normaloff>:/Icons/oxygen/button_ok.png</normaloff>:/Icons/oxygen/button_ok.png</iconset>
        </property>
        <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextUnderIcon</enum>
+        <enum>Qt::ToolButtonTextBesideIcon</enum>
        </property>
       </widget>
      </item>
@@ -69,7 +69,7 @@
         </size>
        </property>
        <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextUnderIcon</enum>
+        <enum>Qt::ToolButtonTextBesideIcon</enum>
        </property>
       </widget>
      </item>
