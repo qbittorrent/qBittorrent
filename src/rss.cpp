@@ -104,6 +104,7 @@ RssFolder* RssFolder::addFolder(QStringList full_path) {
     Q_ASSERT(!this->contains(name));
     RssFolder *subfolder = new RssFolder(this, rssmanager, BTSession, name);
     (*this)[name] = subfolder;
+    return subfolder;
   } else {
     QString subfolder_name = full_path.takeFirst();
     // Check if the subfolder exists and create it if it does not
@@ -291,6 +292,26 @@ QList<RssStream*> RssFolder::getAllFeeds() const {
   return streams;
 }
 
+void RssFolder::removeFileRef(RssFile* item) {
+  if(item->getType() == RssFile::STREAM) {
+    Q_ASSERT(this->contains(((RssStream*)item)->getUrl()));
+    this->remove(((RssStream*)item)->getUrl());
+  } else {
+    Q_ASSERT(this->contains(((RssFolder*)item)->getName()));
+    this->remove(((RssFolder*)item)->getName());
+  }
+}
+
+void RssFolder::addFile(RssFile * item) {
+  if(item->getType() == RssFile::STREAM) {
+    Q_ASSERT(!this->contains(((RssStream*)item)->getUrl()));
+    (*this)[((RssStream*)item)->getUrl()] = item;
+  } else {
+    Q_ASSERT(!this->contains(((RssFolder*)item)->getName()));
+    (*this)[((RssFolder*)item)->getName()] = item;
+  }
+}
+
 /** RssManager **/
 
 RssManager::RssManager(bittorrent *BTSession): RssFolder(0, this, BTSession, QString::null) {
@@ -337,6 +358,14 @@ void RssManager::forwardFeedIconChanged(QString url, QString icon_path) {
   emit feedIconChanged(url, icon_path);
 }
 
+void RssManager::moveFile(QStringList old_path, QStringList new_path) {
+  RssFile* item = getFile(old_path);
+  RssFolder* src_folder = item->getParent();
+  QString new_name = new_path.takeLast();
+  RssFolder* dest_folder = (RssFolder*)getFile(new_path);
+  dest_folder->addFile(item);
+  src_folder->removeFileRef(item);
+}
 
 void RssManager::saveStreamList(){
   QList<QPair<QString, QString> > streamsList;

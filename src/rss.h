@@ -91,6 +91,7 @@ public:
   virtual QString getName() const = 0;
   virtual void rename(QStringList path, QString new_name) = 0;
   virtual void markAllAsRead() = 0;
+  virtual RssFolder* getParent() = 0;
 };
 
 // Item of a rss stream, single information
@@ -388,6 +389,7 @@ public slots:
 public:
   RssStream(RssFolder* parent, RssManager *rssmanager, bittorrent *BTSession, QString _url);
   ~RssStream();
+  RssFolder* getParent() { return parent; }
   FileType getType() const;
   void refresh();
   QStringList getPath() const;
@@ -434,6 +436,7 @@ private:
 public:
   RssFolder(RssFolder *parent, RssManager *rssmanager, bittorrent *BTSession, QString name);
   ~RssFolder();
+  RssFolder* getParent() { return parent; }
   unsigned int getNbUnRead() const;
   FileType getType() const;
   RssStream* addStream(QStringList full_path);
@@ -448,6 +451,8 @@ public:
 
 public slots:
   void refreshAll();
+  void removeFileRef(RssFile* item);
+  void addFile(RssFile * item);
   void removeFile(QStringList full_path);
   void refresh(QStringList full_path);
   void processFinishedDownload(QString url, QString path);
@@ -473,6 +478,7 @@ public slots:
   void saveStreamList();
   void forwardFeedInfosChanged(QString url, QString aliasOrUrl, unsigned int nbUnread);
   void forwardFeedIconChanged(QString url, QString icon_path);
+  void moveFile(QStringList old_path, QStringList new_path);
 
 public:
   RssManager(bittorrent *BTSession);
