@@ -2535,7 +2535,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>RSS streams:</source>
-        <translation>RSS akımları:</translation>
+        <translation type="obsolete">RSS akımları:</translation>
     </message>
     <message>
         <source>2</source>
@@ -2595,6 +2595,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Update all feeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feeds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -2463,7 +2463,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     </message>
     <message>
         <source>RSS streams:</source>
-        <translation>RSS streamy:</translation>
+        <translation type="obsolete">RSS streamy:</translation>
     </message>
     <message>
         <source>2</source>
@@ -2523,6 +2523,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Update all feeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feeds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

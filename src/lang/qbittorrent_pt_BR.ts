@@ -2447,7 +2447,7 @@ Deseja mesmo sair do qBittorrent?</translation>
     </message>
     <message>
         <source>RSS streams:</source>
-        <translation>streams RSS:</translation>
+        <translation type="obsolete">streams RSS:</translation>
     </message>
     <message>
         <source>2</source>
@@ -2507,6 +2507,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Update all feeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feeds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

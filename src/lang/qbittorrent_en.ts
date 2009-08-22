@@ -1582,25 +1582,30 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="29"/>
-        <location filename="../rss.ui" line="196"/>
+        <location filename="../rss.ui" line="22"/>
+        <location filename="../rss.ui" line="190"/>
         <source>New subscription</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="43"/>
-        <location filename="../rss.ui" line="217"/>
-        <location filename="../rss.ui" line="220"/>
+        <location filename="../rss.ui" line="36"/>
+        <location filename="../rss.ui" line="211"/>
+        <location filename="../rss.ui" line="214"/>
         <source>Mark items read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="66"/>
+        <location filename="../rss.ui" line="59"/>
         <source>Update all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="134"/>
+        <location filename="../rss.ui" line="108"/>
+        <source>RSS feeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="128"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1609,58 +1614,53 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="169"/>
+        <location filename="../rss.ui" line="163"/>
         <source>Delete feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="178"/>
+        <location filename="../rss.ui" line="172"/>
         <source>Rename feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="187"/>
+        <location filename="../rss.ui" line="181"/>
         <source>Update feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="205"/>
-        <location filename="../rss.ui" line="208"/>
+        <location filename="../rss.ui" line="199"/>
+        <location filename="../rss.ui" line="202"/>
         <source>Update all feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="229"/>
+        <location filename="../rss.ui" line="223"/>
         <source>Download torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="238"/>
+        <location filename="../rss.ui" line="232"/>
         <source>Open news URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="247"/>
+        <location filename="../rss.ui" line="241"/>
         <source>Copy feed URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="256"/>
+        <location filename="../rss.ui" line="250"/>
         <source>RSS feed downloader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="63"/>
+        <location filename="../rss.ui" line="56"/>
         <source>Refresh RSS streams</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="111"/>
-        <source>RSS streams:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../rss.ui" line="116"/>
+        <location filename="../rss.ui" line="113"/>
         <source>2</source>
         <translation type="unfinished"></translation>
     </message>

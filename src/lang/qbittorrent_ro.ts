@@ -2376,7 +2376,7 @@ Motivul : %2</translation>
     </message>
     <message>
         <source>RSS streams:</source>
-        <translation>Fire RSS:</translation>
+        <translation type="obsolete">Fire RSS:</translation>
     </message>
     <message>
         <source>2</source>
@@ -2436,6 +2436,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Update all feeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feeds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
