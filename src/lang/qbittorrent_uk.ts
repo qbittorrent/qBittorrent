@@ -1103,6 +1103,26 @@ p, li { white-space: pre-wrap; }
         <source>Test</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Import...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add filter</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FeedDownloaderDlg</name>
@@ -1144,6 +1164,58 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>does not match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select file to import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filters Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filters import was successful.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filters could not be imported due to an I/O error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select destination file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwriting confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to overwrite existing file?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filters export was successful.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filters could not be exported due to an I/O error.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2398,15 +2470,15 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Видалити</translation>
+        <translation type="obsolete">Видалити</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation>Переіменувати</translation>
+        <translation type="obsolete">Переіменувати</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Обновити</translation>
+        <translation type="obsolete">Обновити</translation>
     </message>
     <message>
         <source>Create</source>
@@ -2414,7 +2486,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Delete selected streams</source>
-        <translation>Видалити вибрані потоки</translation>
+        <translation type="obsolete">Видалити вибрані потоки</translation>
     </message>
     <message>
         <source>Refresh RSS streams</source>
@@ -2422,7 +2494,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Add a new RSS stream</source>
-        <translation>Додати новий потік RSS</translation>
+        <translation type="obsolete">Додати новий потік RSS</translation>
     </message>
     <message>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
@@ -2430,11 +2502,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Add RSS stream</source>
-        <translation>Додать потік RSS</translation>
+        <translation type="obsolete">Додать потік RSS</translation>
     </message>
     <message>
         <source>Refresh all streams</source>
-        <translation>Обновити всі потоки</translation>
+        <translation type="obsolete">Обновити всі потоки</translation>
     </message>
     <message>
         <source>RSS streams:</source>
@@ -2446,7 +2518,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Mark all as read</source>
-        <translation>Позначити всі як прочитані</translation>
+        <translation type="obsolete">Позначити всі як прочитані</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -2470,6 +2542,34 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feed downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New subscription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mark items read</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update all feeds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3049,6 +3149,15 @@ Changelog:
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recursive download of file %1 embedded in torrent %2</source>
+        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

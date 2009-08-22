@@ -1280,102 +1280,197 @@ list:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.ui" line="209"/>
+        <location filename="../FeedDownloader.ui" line="213"/>
         <source>Filter settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.ui" line="228"/>
+        <location filename="../FeedDownloader.ui" line="232"/>
         <source>Matches:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.ui" line="241"/>
+        <location filename="../FeedDownloader.ui" line="248"/>
         <source>Does not match:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.ui" line="254"/>
+        <location filename="../FeedDownloader.ui" line="264"/>
         <source>Destination folder:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.ui" line="293"/>
+        <location filename="../FeedDownloader.ui" line="306"/>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.ui" line="306"/>
+        <location filename="../FeedDownloader.ui" line="319"/>
         <source>Filter testing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.ui" line="322"/>
+        <location filename="../FeedDownloader.ui" line="341"/>
         <source>Torrent title:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.ui" line="335"/>
+        <location filename="../FeedDownloader.ui" line="357"/>
         <source>Result:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.ui" line="357"/>
+        <location filename="../FeedDownloader.ui" line="382"/>
         <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="451"/>
+        <source>Import...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="458"/>
+        <source>Export...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="481"/>
+        <location filename="../FeedDownloader.ui" line="484"/>
+        <source>Rename filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="493"/>
+        <location filename="../FeedDownloader.ui" line="496"/>
+        <source>Remove filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.ui" line="505"/>
+        <source>Add filter</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
-        <location filename="../FeedDownloader.h" line="292"/>
+        <location filename="../FeedDownloader.h" line="380"/>
         <source>New filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.h" line="299"/>
+        <location filename="../FeedDownloader.h" line="387"/>
         <source>Please choose a name for this filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.h" line="299"/>
+        <location filename="../FeedDownloader.h" line="387"/>
         <source>Filter name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.h" line="307"/>
-        <location filename="../FeedDownloader.h" line="322"/>
+        <location filename="../FeedDownloader.h" line="356"/>
+        <location filename="../FeedDownloader.h" line="395"/>
+        <location filename="../FeedDownloader.h" line="411"/>
         <source>Invalid filter name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.h" line="307"/>
+        <location filename="../FeedDownloader.h" line="395"/>
         <source>The filter name cannot be left empty.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.h" line="322"/>
+        <location filename="../FeedDownloader.h" line="356"/>
+        <location filename="../FeedDownloader.h" line="411"/>
         <source>This filter name is already in use.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.h" line="343"/>
+        <location filename="../FeedDownloader.h" line="433"/>
         <source>Filter testing error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.h" line="343"/>
+        <location filename="../FeedDownloader.h" line="433"/>
         <source>Please specify a test torrent name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.h" line="350"/>
+        <location filename="../FeedDownloader.h" line="440"/>
         <source>matches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FeedDownloader.h" line="352"/>
+        <location filename="../FeedDownloader.h" line="442"/>
         <source>does not match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="446"/>
+        <source>Select file to import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="446"/>
+        <location filename="../FeedDownloader.h" line="463"/>
+        <source>Filters Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="456"/>
+        <source>Import successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="456"/>
+        <source>Filters import was successful.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="458"/>
+        <source>Import failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="458"/>
+        <source>Filters could not be imported due to an I/O error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="463"/>
+        <source>Select destination file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="469"/>
+        <source>Overwriting confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="469"/>
+        <source>Are you sure you want to overwrite existing file?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="473"/>
+        <source>Export successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="473"/>
+        <source>Filters export was successful.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="475"/>
+        <source>Export failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../FeedDownloader.h" line="475"/>
+        <source>Filters could not be exported due to an I/O error.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2820,7 +2915,25 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>검색</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="170"/>
+        <location filename="../rss.ui" line="29"/>
+        <location filename="../rss.ui" line="196"/>
+        <source>New subscription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="43"/>
+        <location filename="../rss.ui" line="217"/>
+        <location filename="../rss.ui" line="220"/>
+        <source>Mark items read</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="66"/>
+        <source>Update all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="134"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -2829,37 +2942,55 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="201"/>
+        <location filename="../rss.ui" line="169"/>
+        <source>Delete feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="178"/>
+        <source>Rename feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="187"/>
+        <source>Update feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="205"/>
+        <location filename="../rss.ui" line="208"/>
+        <source>Update all feeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Delete</source>
-        <translation>삭제</translation>
+        <translation type="obsolete">삭제</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="206"/>
         <source>Rename</source>
-        <translation>이름 바꾸기</translation>
+        <translation type="obsolete">이름 바꾸기</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="211"/>
         <source>Refresh</source>
-        <translation>새로 고침</translation>
+        <translation type="obsolete">새로 고침</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="235"/>
+        <location filename="../rss.ui" line="229"/>
         <source>Download torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="244"/>
+        <location filename="../rss.ui" line="238"/>
         <source>Open news URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="253"/>
+        <location filename="../rss.ui" line="247"/>
         <source>Copy feed URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="262"/>
+        <location filename="../rss.ui" line="256"/>
         <source>RSS feed downloader</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2868,133 +2999,128 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">생성하기</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="83"/>
         <source>Delete selected streams</source>
-        <translation>선택된 스트림 삭제하기</translation>
+        <translation type="obsolete">선택된 스트림 삭제하기</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="105"/>
+        <location filename="../rss.ui" line="63"/>
         <source>Refresh RSS streams</source>
         <translation>RSS 스트림 새로고침</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="127"/>
         <source>Add a new RSS stream</source>
-        <translation>새 RSS 스트림 추가</translation>
+        <translation type="obsolete">새 RSS 스트림 추가</translation>
     </message>
     <message>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
         <translation type="obsolete">&lt;b&gt;뉴스:&lt;/b&gt; &lt;i&gt;(링크를 웹브라우저에서 열려면 더블 클릭하세요)&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="216"/>
         <source>Add RSS stream</source>
-        <translation>RSS 스트림 추가</translation>
+        <translation type="obsolete">RSS 스트림 추가</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="221"/>
         <source>Refresh all streams</source>
-        <translation>모든 스트림 새로고침</translation>
+        <translation type="obsolete">모든 스트림 새로고침</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="43"/>
+        <location filename="../rss.ui" line="111"/>
         <source>RSS streams:</source>
         <translation>RSS 스트림:</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="48"/>
+        <location filename="../rss.ui" line="116"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="226"/>
         <source>Mark all as read</source>
-        <translation>읽은 아이템 표식하기</translation>
+        <translation type="obsolete">읽은 아이템 표식하기</translation>
     </message>
 </context>
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="219"/>
+        <location filename="../rss_imp.cpp" line="93"/>
         <source>Please type a rss stream url</source>
         <translation>RSS 스트림 주소(url)를 입력하세요</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="219"/>
+        <location filename="../rss_imp.cpp" line="93"/>
         <source>Stream URL:</source>
         <translation>스트림 URL:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="139"/>
+        <location filename="../rss_imp.cpp" line="181"/>
         <source>Please choose a new name for this stream</source>
         <translation>이 스트림의 이름을 입력하세요</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="139"/>
+        <location filename="../rss_imp.cpp" line="181"/>
         <source>New stream name:</source>
         <translation>새 스트림 이름:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="85"/>
+        <location filename="../rss_imp.cpp" line="123"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>재확인 해주십시요? -- 큐비토런트</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="86"/>
+        <location filename="../rss_imp.cpp" line="124"/>
         <source>&amp;Yes</source>
         <translation>&amp;예</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="86"/>
+        <location filename="../rss_imp.cpp" line="124"/>
         <source>&amp;No</source>
         <translation>&amp;아니요</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="85"/>
+        <location filename="../rss_imp.cpp" line="123"/>
         <source>Are you sure you want to delete this stream from the list?</source>
         <translation>이 스트림을 리스트에서 지우시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
-        <location filename="../rss_imp.cpp" line="235"/>
-        <location filename="../rss_imp.cpp" line="249"/>
-        <location filename="../rss_imp.cpp" line="346"/>
+        <location filename="../rss_imp.cpp" line="109"/>
+        <location filename="../rss_imp.cpp" line="234"/>
+        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="347"/>
         <source>Description:</source>
         <translation>설명:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
-        <location filename="../rss_imp.cpp" line="235"/>
-        <location filename="../rss_imp.cpp" line="249"/>
-        <location filename="../rss_imp.cpp" line="346"/>
+        <location filename="../rss_imp.cpp" line="109"/>
+        <location filename="../rss_imp.cpp" line="234"/>
+        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="347"/>
         <source>url:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
-        <location filename="../rss_imp.cpp" line="235"/>
-        <location filename="../rss_imp.cpp" line="249"/>
-        <location filename="../rss_imp.cpp" line="346"/>
+        <location filename="../rss_imp.cpp" line="109"/>
+        <location filename="../rss_imp.cpp" line="234"/>
+        <location filename="../rss_imp.cpp" line="243"/>
+        <location filename="../rss_imp.cpp" line="347"/>
         <source>Last refresh:</source>
         <translation>최근 새로고침:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="226"/>
+        <location filename="../rss_imp.cpp" line="100"/>
         <source>qBittorrent</source>
         <translation>큐비토런트</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="227"/>
+        <location filename="../rss_imp.cpp" line="101"/>
         <source>This rss feed is already in the list.</source>
         <translation>이 RSS 피드는 이미 리스트에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="284"/>
+        <location filename="../rss_imp.cpp" line="285"/>
         <source>Date: </source>
         <translation>날짜: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="287"/>
+        <location filename="../rss_imp.cpp" line="288"/>
         <source>Author: </source>
         <translation>작성자: </translation>
     </message>
@@ -3010,18 +3136,18 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.h" line="520"/>
+        <location filename="../rss.h" line="534"/>
         <source>%1 ago</source>
         <comment>10min ago</comment>
         <translation>%1분전</translation>
     </message>
     <message>
-        <location filename="../rss.h" line="586"/>
+        <location filename="../rss.h" line="589"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.h" line="519"/>
+        <location filename="../rss.h" line="533"/>
         <source>Never</source>
         <translation>전혀 사용안함</translation>
     </message>
@@ -3572,32 +3698,43 @@ Changelog:
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1293"/>
+        <location filename="../bittorrent.cpp" line="1257"/>
+        <source>Recursive download of file %1 embedded in torrent %2</source>
+        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="1268"/>
+        <source>Unable to decode %1 torrent file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="1310"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>설정하신 포트에 연결할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1332"/>
+        <location filename="../bittorrent.cpp" line="1349"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1337"/>
+        <location filename="../bittorrent.cpp" line="1354"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1352"/>
+        <location filename="../bittorrent.cpp" line="1369"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>토렌트 %1는 빨리 이어받기가 사용될수 없습니다, 확인중입니다... </translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1357"/>
+        <location filename="../bittorrent.cpp" line="1374"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>다음 Url 완전체(Url seed)의 검색이 실패하였습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1425"/>
+        <location filename="../bittorrent.cpp" line="1442"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;을 다운 중입니다, 잠시 기다려 주세요...</translation>

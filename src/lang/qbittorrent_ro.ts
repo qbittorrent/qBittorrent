@@ -1099,6 +1099,26 @@ qBittorrent va monitoriza directoriul și va adăuga în lista de descărcare a 
         <source>Test</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Import...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add filter</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FeedDownloaderDlg</name>
@@ -1140,6 +1160,58 @@ qBittorrent va monitoriza directoriul și va adăuga în lista de descărcare a 
     </message>
     <message>
         <source>does not match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select file to import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filters Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filters import was successful.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filters could not be imported due to an I/O error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select destination file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwriting confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to overwrite existing file?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filters export was successful.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filters could not be exported due to an I/O error.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2264,15 +2336,15 @@ Motivul : %2</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Şterge</translation>
+        <translation type="obsolete">Şterge</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation>Redenumeşte</translation>
+        <translation type="obsolete">Redenumeşte</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Reînnoieşte</translation>
+        <translation type="obsolete">Reînnoieşte</translation>
     </message>
     <message>
         <source>Create</source>
@@ -2280,7 +2352,7 @@ Motivul : %2</translation>
     </message>
     <message>
         <source>Delete selected streams</source>
-        <translation>Şterge itemul selectat</translation>
+        <translation type="obsolete">Şterge itemul selectat</translation>
     </message>
     <message>
         <source>Refresh RSS streams</source>
@@ -2288,7 +2360,7 @@ Motivul : %2</translation>
     </message>
     <message>
         <source>Add a new RSS stream</source>
-        <translation>Adaugă un nou fir RSS</translation>
+        <translation type="obsolete">Adaugă un nou fir RSS</translation>
     </message>
     <message>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
@@ -2296,11 +2368,11 @@ Motivul : %2</translation>
     </message>
     <message>
         <source>Add RSS stream</source>
-        <translation>Adaugă RSS fir</translation>
+        <translation type="obsolete">Adaugă RSS fir</translation>
     </message>
     <message>
         <source>Refresh all streams</source>
-        <translation>Reînnoieşte toate firele</translation>
+        <translation type="obsolete">Reînnoieşte toate firele</translation>
     </message>
     <message>
         <source>RSS streams:</source>
@@ -2312,7 +2384,7 @@ Motivul : %2</translation>
     </message>
     <message>
         <source>Mark all as read</source>
-        <translation>Marchează toate ca citite</translation>
+        <translation type="obsolete">Marchează toate ca citite</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -2336,6 +2408,34 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feed downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New subscription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mark items read</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update all feeds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2899,6 +2999,15 @@ Changelog:
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recursive download of file %1 embedded in torrent %2</source>
+        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
