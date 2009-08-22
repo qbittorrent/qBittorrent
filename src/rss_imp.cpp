@@ -116,7 +116,7 @@ void RSSImp::on_newFeedButton_clicked() {
 }
 
 // delete a stream by a button
-void RSSImp::on_delStream_button_clicked() {
+void RSSImp::deleteSelectedFeeds() {
   QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
   QTreeWidgetItem *item;
   if(!selectedItems.size()) return;
@@ -367,7 +367,7 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   connect(listNews, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayItemsListMenu(const QPoint&)));
 
   // Feeds list actions
-  connect(actionDelete_feed, SIGNAL(triggered()), this, SLOT(on_delStream_button_clicked()));
+  connect(actionDelete_feed, SIGNAL(triggered()), this, SLOT(deleteSelectedFeeds()));
   connect(actionRename_feed, SIGNAL(triggered()), this, SLOT(renameStream()));
   connect(actionUpdate_feed, SIGNAL(triggered()), this, SLOT(refreshSelectedStreams()));
   connect(actionNew_subscription, SIGNAL(triggered()), this, SLOT(on_newFeedButton_clicked()));

@@ -41,42 +41,42 @@ class bittorrent;
 class RSSImp : public QWidget, public Ui::RSS{
   Q_OBJECT
 
-  private:
-    RssManager *rssmanager;
-    QTimer *refreshTimeTimer;
-    QString selectedFeedUrl;
-    bittorrent *BTSession;
+private:
+  RssManager *rssmanager;
+  QTimer *refreshTimeTimer;
+  QString selectedFeedUrl;
+  bittorrent *BTSession;
 
-  public slots:
-    void on_delStream_button_clicked();
+public slots:
+  void deleteSelectedFeeds();
 
-  protected slots:
-    void on_newFeedButton_clicked();
-    void on_updateAllButton_clicked();
-    void on_markReadButton_clicked();
-    void displayRSSListMenu(const QPoint&);
-    void displayItemsListMenu(const QPoint&);
-    void renameStream();
-    void refreshSelectedStreams();
-    void copySelectedFeedsURL();
-    void refreshNewsList(QTreeWidgetItem* item);
-    void refreshTextBrowser(QListWidgetItem *);
-    void updateLastRefreshedTimeForStreams();
-    void updateFeedIcon(QString url, QString icon_path);
-    void updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnread);
-    void openNewsUrl();
-    void downloadTorrent();
-    void fillFeedsList();
-    void selectFirstFeed();
-    void updateFeedNbNews(QString url);
-    void saveSlidersPosition();
-    void restoreSlidersPosition();
-    void showFeedDownloader();
+protected slots:
+  void on_newFeedButton_clicked();
+  void on_updateAllButton_clicked();
+  void on_markReadButton_clicked();
+  void displayRSSListMenu(const QPoint&);
+  void displayItemsListMenu(const QPoint&);
+  void renameStream();
+  void refreshSelectedStreams();
+  void copySelectedFeedsURL();
+  void refreshNewsList(QTreeWidgetItem* item);
+  void refreshTextBrowser(QListWidgetItem *);
+  void updateLastRefreshedTimeForStreams();
+  void updateFeedIcon(QString url, QString icon_path);
+  void updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnread);
+  void openNewsUrl();
+  void downloadTorrent();
+  void fillFeedsList();
+  void selectFirstFeed();
+  void updateFeedNbNews(QString url);
+  void saveSlidersPosition();
+  void restoreSlidersPosition();
+  void showFeedDownloader();
 
-  public:
-    RSSImp(bittorrent *BTSession);
-    ~RSSImp();
-    QTreeWidgetItem* getTreeItemFromUrl(QString url) const;
+public:
+  RSSImp(bittorrent *BTSession);
+  ~RSSImp();
+  QTreeWidgetItem* getTreeItemFromUrl(QString url) const;
 };
 
 #endif
