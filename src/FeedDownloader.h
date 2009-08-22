@@ -466,7 +466,7 @@ protected slots:
     if(!destination.endsWith(".filters"))
       destination += ".filters";
     if(QFile::exists(destination)) {
-      int ret = QMessageBox::question(0, tr("Overwriting confirmation"), tr("Are you sure you want to overwrite existing file?"));
+      int ret = QMessageBox::question(0, tr("Overwriting confirmation"), tr("Are you sure you want to overwrite existing file?"), QMessageBox::Yes|QMessageBox::No);
       if(ret != QMessageBox::Yes) return;
     }
     if(filters.serialize(destination))
