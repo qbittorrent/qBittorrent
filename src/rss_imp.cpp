@@ -129,6 +129,8 @@ void RSSImp::askNewFolder() {
     folder_item->setText(1, new_folder->getName());
     folder_item->setData(2,Qt::DisplayRole, QVariant((int)RssFile::FOLDER));
     folder_item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/oxygen/folder.png")));
+    // Expand parent folder to display new folder
+    parent_item->setExpanded(true);
     rssmanager->saveStreamList();
   }
 }
@@ -230,6 +232,8 @@ void RSSImp::renameFiles() {
   QString newName = QInputDialog::getText(this, tr("Please choose a new name for this RSS feed"), tr("New feed name:"), QLineEdit::Normal, rssmanager->getFile(getItemPath(item))->getName(), &ok);
   if(ok) {
     rssmanager->rename(getItemPath(item), newName);
+    item->setText(0, newName);
+    item->setText(1, newName);
   }
 }
 
