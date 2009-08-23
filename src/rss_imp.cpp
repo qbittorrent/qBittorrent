@@ -202,9 +202,9 @@ void RSSImp::deleteSelectedItems() {
 
 // refresh all streams by a button
 void RSSImp::on_updateAllButton_clicked() {
-  unsigned int nbFeeds = listStreams->topLevelItemCount();
-  for(unsigned int i=0; i<nbFeeds; ++i)
-    listStreams->topLevelItem(i)->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+  foreach(QTreeWidgetItem *item, listStreams->getAllFeedItems()) {
+    item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+  }
   rssmanager->refreshAll();
 }
 
@@ -236,12 +236,12 @@ void RSSImp::renameFiles() {
   bool ok;
   QString newName;
   do {
-  newName = QInputDialog::getText(this, tr("Please choose a new name for this RSS feed"), tr("New feed name:"), QLineEdit::Normal, listStreams->getRSSItem(item)->getName(), &ok);
-  // Check if name is already taken
-  if(ok && rss_item->getParent()->contains(newName)) {
-    QMessageBox::warning(0, tr("Name already in use"), tr("This name is already used by another item, please choose another one."));
-    ok = false;
-  }
+    newName = QInputDialog::getText(this, tr("Please choose a new name for this RSS feed"), tr("New feed name:"), QLineEdit::Normal, listStreams->getRSSItem(item)->getName(), &ok);
+    // Check if name is already taken
+    if(ok && rss_item->getParent()->contains(newName)) {
+      QMessageBox::warning(0, tr("Name already in use"), tr("This name is already used by another item, please choose another one."));
+      ok = false;
+    }
   }while(!ok);
   if(ok) {
     // Rename item
@@ -405,6 +405,9 @@ void RSSImp::updateItemsInfos(QList<QTreeWidgetItem *> items) {
 void RSSImp::updateItemInfos(QTreeWidgetItem *item) {
   RssFile *rss_item = listStreams->getRSSItem(item);
   item->setText(0, rss_item->getName() + QString::fromUtf8("  (") + QString::number(rss_item->getNbUnRead(), 10)+ QString(")"));
+  // If item has a parent, update it too
+  if(item->parent())
+    updateItemInfos(item->parent());
 }
 
 void RSSImp::updateFeedIcon(QString url, QString icon_path){
@@ -422,6 +425,9 @@ void RSSImp::updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnr
   RssStream *stream = (RssStream*)listStreams->getRSSItem(item);
   item->setText(0, aliasOrUrl + QString::fromUtf8("  (") + QString::number(nbUnread, 10)+ QString(")"));
   item->setData(0,Qt::DecorationRole, QVariant(QIcon(stream->getIconPath())));
+  // Update parent
+  if(item->parent())
+    updateItemInfos(item->parent());
   // If the feed is selected, update the displayed news
   if(listStreams->currentItem() == item){
     refreshNewsList(item);

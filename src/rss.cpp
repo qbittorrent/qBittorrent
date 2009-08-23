@@ -49,8 +49,11 @@ RssFolder::~RssFolder() {
 }
 
 unsigned int RssFolder::getNbUnRead() const {
-  // FIXME
-  return 0;
+  unsigned int nb_unread = 0;
+  foreach(RssFile *file, this->values()) {
+    nb_unread += file->getNbUnRead();
+  }
+  return nb_unread;
 }
 
 RssFile::FileType RssFolder::getType() const {

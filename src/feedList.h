@@ -46,6 +46,10 @@ public:
     return feeds_items.contains(QUrl(url).toString());
   }
 
+  QList<QTreeWidgetItem*> getAllFeedItems() {
+    return feeds_items.values();
+  }
+
   RssFile* getRSSItem(QTreeWidgetItem *item) {
     return mapping[item];
   }
