@@ -91,7 +91,8 @@ public:
   virtual QString getName() const = 0;
   virtual void rename(QStringList path, QString new_name) = 0;
   virtual void markAllAsRead() = 0;
-  virtual RssFolder* getParent() = 0;
+  virtual RssFolder* getParent() const = 0;
+  virtual void setParent(RssFolder*) = 0;
 };
 
 // Item of a rss stream, single information
@@ -389,7 +390,8 @@ public slots:
 public:
   RssStream(RssFolder* parent, RssManager *rssmanager, bittorrent *BTSession, QString _url);
   ~RssStream();
-  RssFolder* getParent() { return parent; }
+  RssFolder* getParent() const { return parent; }
+  void setParent(RssFolder* _parent) { parent = _parent; }
   FileType getType() const;
   void refresh();
   QStringList getPath() const;
@@ -436,7 +438,8 @@ private:
 public:
   RssFolder(RssFolder *parent, RssManager *rssmanager, bittorrent *BTSession, QString name);
   ~RssFolder();
-  RssFolder* getParent() { return parent; }
+  RssFolder* getParent() const { return parent; }
+  void setParent(RssFolder* _parent) { parent = _parent; }
   unsigned int getNbUnRead() const;
   FileType getType() const;
   RssStream* addStream(QStringList full_path);

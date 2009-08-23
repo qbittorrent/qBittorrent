@@ -317,6 +317,8 @@ void RssFolder::addFile(RssFile * item) {
     (*this)[((RssFolder*)item)->getName()] = item;
     qDebug("Added folder %s to folder ./%s", ((RssFolder*)item)->getName().toLocal8Bit().data(), name.toLocal8Bit().data());
   }
+  // Update parent
+  item->setParent(this);
 }
 
 /** RssManager **/
@@ -371,7 +373,9 @@ void RssManager::moveFile(QStringList old_path, QStringList new_path) {
   QString new_name = new_path.takeLast();
   RssFolder* dest_folder = (RssFolder*)getFile(new_path);
   if(dest_folder != src_folder) {
+    // Copy to new Folder
     dest_folder->addFile(item);
+    // Remove reference in old folder
     src_folder->removeFileRef(item);
   } else {
     qDebug("Nothing to move, same destination folder");
