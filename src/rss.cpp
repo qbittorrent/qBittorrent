@@ -168,10 +168,12 @@ void RssFolder::refresh(QStringList full_path) {
 
 RssFile* RssFolder::getFile(QStringList full_path) const {
   if(full_path.isEmpty()) return rssmanager;
-  QString name = full_path.last();
+  QString file_name = full_path.last();
+  Q_ASSERT(!file_name.isEmpty());
   if(full_path.size() == 1) {
-    Q_ASSERT(this->contains(name));
-    return (*this)[name];
+    qDebug("getFile: %s from folder %s", file_name.toLocal8Bit().data(), name.toLocal8Bit().data());
+    Q_ASSERT(this->contains(file_name));
+    return (*this)[file_name];
   } else {
     QString subfolder_name = full_path.takeFirst();
     Q_ASSERT(this->contains(subfolder_name));
@@ -309,9 +311,11 @@ void RssFolder::addFile(RssFile * item) {
   if(item->getType() == RssFile::STREAM) {
     Q_ASSERT(!this->contains(((RssStream*)item)->getUrl()));
     (*this)[((RssStream*)item)->getUrl()] = item;
+    qDebug("Added feed %s to folder ./%s", ((RssStream*)item)->getUrl().toLocal8Bit().data(), name.toLocal8Bit().data());
   } else {
     Q_ASSERT(!this->contains(((RssFolder*)item)->getName()));
     (*this)[((RssFolder*)item)->getName()] = item;
+    qDebug("Added folder %s to folder ./%s", ((RssFolder*)item)->getName().toLocal8Bit().data(), name.toLocal8Bit().data());
   }
 }
 

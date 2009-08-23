@@ -34,6 +34,7 @@ public:
       if(item->parent()) {
         path = getItemPath(item->parent());
       }
+      Q_ASSERT(!item->text(1).isEmpty());
       path << item->text(1);
     }
     return path;
@@ -45,7 +46,7 @@ protected:
     if(item && rssmanager->getFile(getItemPath(item))->getType() != RssFile::FOLDER)
       event->ignore();
     else {
-      QAbstractItemView::dragMoveEvent(event);
+      QTreeWidget::dragMoveEvent(event);
     }
   }
 
@@ -61,7 +62,7 @@ protected:
       qDebug("Moving file %s to %s", src_path.join("\\").toLocal8Bit().data(), dest_path.join("\\").toLocal8Bit().data());
       rssmanager->moveFile(src_path, dest_path);
     }
-    QAbstractItemView::dropEvent (event);
+    QTreeWidget::dropEvent (event);
     if(dest_item)
       dest_item->setExpanded(true);
   }

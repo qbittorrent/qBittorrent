@@ -215,7 +215,7 @@ void RSSImp::openNewsUrl() {
   }
 }
 
-//right-click on stream : give him an alias
+//right-click on stream : give it an alias
 void RSSImp::renameFiles() {
   QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
   Q_ASSERT(selectedItems.size() == 1);
@@ -223,9 +223,13 @@ void RSSImp::renameFiles() {
   bool ok;
   QString newName = QInputDialog::getText(this, tr("Please choose a new name for this RSS feed"), tr("New feed name:"), QLineEdit::Normal, rssmanager->getFile(listStreams->getItemPath(item))->getName(), &ok);
   if(ok) {
-    rssmanager->rename(listStreams->getItemPath(item), newName);
+    QStringList item_path = listStreams->getItemPath(item);
+    rssmanager->rename(item_path, newName);
     item->setText(0, newName);
-    item->setText(1, newName);
+    if(rssmanager->getFile(item_path)->getType() == RssFile::FOLDER) {
+      // If it is a folder, we must update second column too
+      item->setText(1, newName);
+    }
   }
 }
 
@@ -303,7 +307,9 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
     listNews->clear();
     return;
   }
-  RssFile *file = rssmanager->getFile(getCurrentFeedPath());
+  qDebug("RefreshNewsList for item: %s", item->text(1).toLocal8Bit().data());
+  qDebug("Item path: %s", listStreams->getItemPath(item).join("\\").toLocal8Bit().data());
+  RssFile *file = rssmanager->getFile(listStreams->getItemPath(item));
   if(file->getType() != RssFile::STREAM) {
     listNews->clear();
     return;
