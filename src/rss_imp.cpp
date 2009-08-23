@@ -156,7 +156,7 @@ void RSSImp::on_newFeedButton_clicked() {
       }
       RssStream *stream = rss_parent->addStream(newUrl);
       // Create TreeWidget item
-      QTreeWidgetItem* item = new QTreeWidgetItem(listStreams);
+      QTreeWidgetItem* item = new QTreeWidgetItem(rss_parent);
       // Notify TreeWidget
       listStreams->itemAdded(item, stream);
       // Set text
