@@ -247,7 +247,7 @@ void RSSImp::renameFiles() {
     // Rename item
     rss_item->rename(newName);
     // Update TreeWidget
-    item->setText(0, newName+ QString("  (")+QString::number(rss_item->getNbUnRead())+QString(")"));
+    updateItemInfos(item);
   }
 }
 
@@ -379,7 +379,8 @@ void RSSImp::refreshTextBrowser(QListWidgetItem *item) {
   article->setRead();
   item->setData(Qt::ForegroundRole, QVariant(QColor("grey")));
   item->setData(Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));
-  updateFeedNbNews(stream);
+  // Decrement feed nb unread news
+  updateItemInfos(listStreams->currentFeed());
 }
 
 void RSSImp::saveSlidersPosition() {
@@ -419,11 +420,6 @@ void RSSImp::updateItemInfos(QTreeWidgetItem *item) {
 void RSSImp::updateFeedIcon(QString url, QString icon_path){
   QTreeWidgetItem *item = listStreams->getTreeItemFromUrl(url);
   item->setData(0,Qt::DecorationRole, QVariant(QIcon(icon_path)));
-}
-
-void RSSImp::updateFeedNbNews(RssStream* stream){
-  QTreeWidgetItem *item = listStreams->getTreeItemFromUrl(stream->getUrl());
-  item->setText(0, stream->getName() + QString::fromUtf8("  (") + QString::number(stream->getNbUnRead(), 10)+ QString(")"));
 }
 
 void RSSImp::updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnread){
