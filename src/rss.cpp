@@ -478,6 +478,7 @@ void RssStream::markAllAsRead() {
     if(!item->isRead())
       item->setRead();
   }
+  rssmanager->forwardFeedInfosChanged(url, getName(), 0);
 }
 
 unsigned int RssStream::getNbUnRead() const{
