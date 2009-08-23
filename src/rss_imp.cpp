@@ -162,8 +162,6 @@ void RSSImp::on_newFeedButton_clicked() {
       // Set text
       item->setText(0, stream->getName() + QString::fromUtf8("  (0)"));
       item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
-      if(listStreams->topLevelItemCount() == 1)
-        selectFirstFeed();
       stream->refresh();
       rssmanager->saveStreamList();
     }
@@ -471,8 +469,6 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   connect(listNews, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(refreshTextBrowser(QListWidgetItem *)));
   connect(listNews, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(downloadTorrent()));
 
-  // Select first news of first feed
-  selectFirstFeed();
   // Refresh all feeds
   rssmanager->refreshAll();
   // Restore sliders position
@@ -482,13 +478,6 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   connect(splitter_h, SIGNAL(splitterMoved(int, int)), this, SLOT(saveSlidersPosition()));
 
   qDebug("RSSImp constructed");
-}
-
-void RSSImp::selectFirstFeed(){
-  if(listStreams->topLevelItemCount()){
-    QTreeWidgetItem *first = listStreams->topLevelItem(0);
-    listStreams->setCurrentItem(first);
-  }
 }
 
 RSSImp::~RSSImp(){

@@ -32,8 +32,11 @@ public:
 
   void itemAdded(QTreeWidgetItem *item, RssFile* file) {
     mapping[item] = file;
-    if(file->getType() == RssFile::STREAM)
+    if(file->getType() == RssFile::STREAM) {
       feeds_items[file->getID()] = item;
+      if(topLevelItemCount() == 1)
+        setCurrentItem(item);
+    }
   }
 
   void itemRemoved(QTreeWidgetItem *item) {

@@ -14,7 +14,7 @@ CONFIG += qt \
     network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v1.5.0beta1\\\"
+DEFINES += VERSION=\\\"v1.5.0beta2\\\"
 DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=5
 DEFINES += VERSION_BUGFIX=0

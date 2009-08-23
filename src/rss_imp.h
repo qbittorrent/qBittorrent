@@ -68,7 +68,6 @@ protected slots:
   void openNewsUrl();
   void downloadTorrent();
   void fillFeedsList(QTreeWidgetItem *parent=0, RssFolder *rss_parent=0);
-  void selectFirstFeed();
   void saveSlidersPosition();
   void restoreSlidersPosition();
   void showFeedDownloader();
