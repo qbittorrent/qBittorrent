@@ -156,7 +156,7 @@ void RSSImp::on_newFeedButton_clicked() {
       }
       RssStream *stream = rss_parent->addStream(newUrl);
       // Create TreeWidget item
-      QTreeWidgetItem* item = new QTreeWidgetItem(rss_parent);
+      QTreeWidgetItem* item = new QTreeWidgetItem(parent_item);
       // Notify TreeWidget
       listStreams->itemAdded(item, stream);
       // Set text
@@ -188,10 +188,10 @@ void RSSImp::deleteSelectedItems() {
         listNews->clear();
       }
       RssFile *rss_item = listStreams->getRSSItem(item);
-      rss_item->getParent()->removeFile(rss_item->getID());
       // Notify TreeWidget
       listStreams->itemRemoved(item);
       // Actually delete the item
+      rss_item->getParent()->removeFile(rss_item->getID());
       delete item;
     }
     rssmanager->saveStreamList();
