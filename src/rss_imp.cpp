@@ -252,15 +252,21 @@ void RSSImp::renameFiles() {
 }
 
 //right-click on stream : refresh it
-void RSSImp::refreshSelectedStreams() {
+void RSSImp::refreshSelectedItems() {
   QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
-  QTreeWidgetItem* item;
-  foreach(item, selectedItems){
+  foreach(QTreeWidgetItem* item, selectedItems){
     RssFile* file = listStreams->getRSSItem(item);
-    file->refresh();
-    // FIXME: Should recursively set icons for feeds in a folder
-    if(file->getType() == RssFile::STREAM)
+    // Update icons
+    if(file->getType() == RssFile::STREAM) {
       item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+    } else {
+      // Update feeds in the folder
+      foreach(QTreeWidgetItem *feed, listStreams->getAllFeedItems(item)) {
+        feed->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+      }
+    }
+    // Actually refresh
+    file->refresh();
   }
 }
 
@@ -452,7 +458,7 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   // Feeds list actions
   connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedItems()));
   connect(actionRename, SIGNAL(triggered()), this, SLOT(renameFiles()));
-  connect(actionUpdate, SIGNAL(triggered()), this, SLOT(refreshSelectedStreams()));
+  connect(actionUpdate, SIGNAL(triggered()), this, SLOT(refreshSelectedItems()));
   connect(actionNew_folder, SIGNAL(triggered()), this, SLOT(askNewFolder()));
   connect(actionNew_subscription, SIGNAL(triggered()), this, SLOT(on_newFeedButton_clicked()));
   connect(actionUpdate_all_feeds, SIGNAL(triggered()), this, SLOT(on_updateAllButton_clicked()));

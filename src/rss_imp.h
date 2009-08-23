@@ -57,7 +57,7 @@ protected slots:
   void displayRSSListMenu(const QPoint&);
   void displayItemsListMenu(const QPoint&);
   void renameFiles();
-  void refreshSelectedStreams();
+  void refreshSelectedItems();
   void copySelectedFeedsURL();
   void refreshNewsList(QTreeWidgetItem* item);
   void refreshTextBrowser(QListWidgetItem *);

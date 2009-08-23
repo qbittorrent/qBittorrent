@@ -50,6 +50,20 @@ public:
     return feeds_items.values();
   }
 
+  QList<QTreeWidgetItem*> getAllFeedItems(QTreeWidgetItem* folder) {
+    QList<QTreeWidgetItem*> feeds;
+    int nbChildren = folder->childCount();
+    for(int i=0; i<nbChildren; ++i) {
+    QTreeWidgetItem *item = folder->child(i);
+      if(getItemType(item) == RssFile::STREAM) {
+        feeds << item;
+      } else {
+        feeds.append(getAllFeedItems(item));
+      }
+    }
+    return feeds;
+  }
+
   RssFile* getRSSItem(QTreeWidgetItem *item) {
     return mapping[item];
   }
