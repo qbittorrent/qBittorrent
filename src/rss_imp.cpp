@@ -396,6 +396,17 @@ void RSSImp::restoreSlidersPosition() {
   }
 }
 
+void RSSImp::updateItemsInfos(QList<QTreeWidgetItem *> items) {
+  foreach(QTreeWidgetItem* item, items) {
+    updateItemInfos(item);
+  }
+}
+
+void RSSImp::updateItemInfos(QTreeWidgetItem *item) {
+  RssFile *rss_item = listStreams->getRSSItem(item);
+  item->setText(0, rss_item->getName() + QString::fromUtf8("  (") + QString::number(rss_item->getNbUnRead(), 10)+ QString(")"));
+}
+
 void RSSImp::updateFeedIcon(QString url, QString icon_path){
   QTreeWidgetItem *item = listStreams->getTreeItemFromUrl(url);
   item->setData(0,Qt::DecorationRole, QVariant(QIcon(icon_path)));
@@ -447,6 +458,8 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   connect(actionDownload_torrent, SIGNAL(triggered()), this, SLOT(downloadTorrent()));
 
   connect(listStreams, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(refreshNewsList(QTreeWidgetItem*)));
+  connect(listStreams, SIGNAL(foldersAltered(QList<QTreeWidgetItem*>)), this, SLOT(updateItemsInfos(QList<QTreeWidgetItem*>)));
+
   connect(listNews, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(refreshTextBrowser(QListWidgetItem *)));
   connect(listNews, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(downloadTorrent()));
 

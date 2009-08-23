@@ -5,7 +5,8 @@
     - FEATURE: Save old RSS item to hard disk to remember them on start up
     - FEATURE: Display free disk space in torrent addition dialog
     - FEATURE: In torrent addition from URL, paste clipboard content if it contains an URL
-    - FEATURE: RSS Feeds URLs can now be copied to clipboard
+    - FEATURE: RSS feeds URLs can now be copied to clipboard
+    - FEATURE: RSS feeds can now be grouped into folders
     - FEATURE: If a torrent contains a torrent file, process downloaded torrent file too
     - BUGFIX: torrent resume code rewrited
     - COSMETIC: Redesigned RSS tab to improve usability

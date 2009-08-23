@@ -10,7 +10,8 @@
 #include <QUrl>
 #include "rss.h"
 
-class FeedList : public QTreeWidget {
+class FeedList: public QTreeWidget {
+  Q_OBJECT
 
 private:
   RssManager *rssmanager;
@@ -73,6 +74,9 @@ public:
     return current_feed;
   }
 
+signals:
+  void foldersAltered(QList<QTreeWidgetItem*> folders);
+
 protected slots:
   void updateCurrentFeed(QTreeWidgetItem* new_item) {
     if(getItemType(new_item) == RssFile::STREAM)
@@ -91,20 +95,30 @@ protected:
 
   void dropEvent(QDropEvent *event) {
     qDebug("dropEvent");
+    QList<QTreeWidgetItem*> folders_altered;
     QTreeWidgetItem *dest_folder_item =  itemAt(event->pos());
     RssFolder *dest_folder;
-    if(dest_folder_item)
+    if(dest_folder_item) {
       dest_folder = (RssFolder*)getRSSItem(dest_folder_item);
-    else
+      folders_altered << dest_folder_item;
+    } else {
       dest_folder = rssmanager;
+    }
     QList<QTreeWidgetItem *> src_items = selectedItems();
     foreach(QTreeWidgetItem *src_item, src_items) {
+      QTreeWidgetItem *parent_folder = src_item->parent();
+      if(parent_folder && !folders_altered.contains(parent_folder))
+        folders_altered << parent_folder;
+      // Actually move the file
       RssFile *file = getRSSItem(src_item);
       rssmanager->moveFile(file, dest_folder);
     }
     QTreeWidget::dropEvent(event);
     if(dest_folder_item)
       dest_folder_item->setExpanded(true);
+    // Emit signal for update
+    if(!folders_altered.empty())
+      emit foldersAltered(folders_altered);
   }
 
 };

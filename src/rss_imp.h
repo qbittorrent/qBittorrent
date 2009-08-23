@@ -63,6 +63,8 @@ protected slots:
   void refreshTextBrowser(QListWidgetItem *);
   void updateFeedIcon(QString url, QString icon_path);
   void updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnread);
+  void updateItemsInfos(QList<QTreeWidgetItem*> items);
+  void updateItemInfos(QTreeWidgetItem *item);
   void openNewsUrl();
   void downloadTorrent();
   void fillFeedsList(QTreeWidgetItem *parent=0, RssFolder *rss_parent=0);
