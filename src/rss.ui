@@ -10,6 +10,9 @@
     <height>447</height>
    </rect>
   </property>
+  <property name="acceptDrops">
+   <bool>false</bool>
+  </property>
   <property name="windowTitle">
    <string>Search</string>
   </property>
@@ -93,32 +96,6 @@
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <widget class="QTreeWidget" name="listStreams">
-      <property name="contextMenuPolicy">
-       <enum>Qt::CustomContextMenu</enum>
-      </property>
-      <property name="selectionMode">
-       <enum>QAbstractItemView::ExtendedSelection</enum>
-      </property>
-      <property name="columnCount">
-       <number>3</number>
-      </property>
-      <column>
-       <property name="text">
-        <string>RSS feeds</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>url</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>type</string>
-       </property>
-      </column>
-     </widget>
      <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
@@ -274,13 +251,6 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QWebView</class>
-   <extends>QWidget</extends>
-   <header>QtWebKit/QWebView</header>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="icons.qrc"/>
  </resources>

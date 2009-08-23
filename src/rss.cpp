@@ -40,9 +40,11 @@ RssFolder::RssFolder(RssFolder *parent, RssManager *rssmanager, bittorrent *BTSe
 }
 
 RssFolder::~RssFolder() {
-  qDebug("Deleting downloader thread");
+  qDebug("Deleting a RSS folder, removing elements");
   qDeleteAll(this->values());
+  qDebug("Deleting downloader thread");
   delete downloader;
+  qDebug("Downloader thread removed");
 }
 
 unsigned int RssFolder::getNbUnRead() const {
@@ -165,6 +167,7 @@ void RssFolder::refresh(QStringList full_path) {
 }
 
 RssFile* RssFolder::getFile(QStringList full_path) const {
+  if(full_path.isEmpty()) return rssmanager;
   QString name = full_path.last();
   if(full_path.size() == 1) {
     Q_ASSERT(this->contains(name));
@@ -363,8 +366,22 @@ void RssManager::moveFile(QStringList old_path, QStringList new_path) {
   RssFolder* src_folder = item->getParent();
   QString new_name = new_path.takeLast();
   RssFolder* dest_folder = (RssFolder*)getFile(new_path);
-  dest_folder->addFile(item);
-  src_folder->removeFileRef(item);
+  if(dest_folder != src_folder) {
+    dest_folder->addFile(item);
+    src_folder->removeFileRef(item);
+  } else {
+    qDebug("Nothing to move, same destination folder");
+  }
+  // Need to rename?
+  QString current_name;
+  if(item->getType() == RssFile::FOLDER)
+    current_name = item->getName();
+  else
+    current_name = ((RssStream*)item)->getUrl();
+  if(current_name != new_name) {
+    qDebug("Renaming file from %s to %s...", current_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
+    dest_folder->rename(item->getPath(), new_name);
+  }
 }
 
 void RssManager::saveStreamList(){
@@ -373,7 +390,9 @@ void RssManager::saveStreamList(){
   QStringList aliases;
   QList<RssStream*> streams = getAllFeeds();
   foreach(RssStream *stream, streams) {
-    streamsUrl << stream->getPath().join("\\");
+    QString stream_path = stream->getPath().join("\\");
+    qDebug("Saving stream path: %s", stream_path.toLocal8Bit().data());
+    streamsUrl << stream_path;
     aliases << stream->getName();
   }
   QSettings settings("qBittorrent", "qBittorrent");
@@ -401,6 +420,7 @@ RssStream::RssStream(RssFolder* parent, RssManager *rssmanager, bittorrent *BTSe
 }
 
 RssStream::~RssStream(){
+  qDebug("Deleting a RSS stream: %s", getName().toLocal8Bit().data());
   if(refreshed) {
     QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
     QVariantList old_items;
@@ -412,7 +432,9 @@ RssStream::~RssStream(){
     all_old_items[url] = old_items;
     qBTRSS.setValue("old_items", all_old_items);
   }
+  qDebug("Removing all item from feed");
   removeAllItems();
+  qDebug("All items were removed");
   if(QFile::exists(filePath))
     QFile::remove(filePath);
   if(QFile::exists(iconPath) && !iconPath.startsWith(":/"))
@@ -469,14 +491,14 @@ void RssStream::rename(QStringList, QString new_name){
 // Return the alias if the stream has one, the url if it has no alias
 QString RssStream::getName() const{
   if(!alias.isEmpty()) {
-    qDebug("getName() returned alias: %s", (const char*)alias.toLocal8Bit());
+    //qDebug("getName() returned alias: %s", (const char*)alias.toLocal8Bit());
     return alias;
   }
   if(!title.isEmpty()) {
-    qDebug("getName() returned title: %s", (const char*)title.toLocal8Bit());
+    //qDebug("getName() returned title: %s", (const char*)title.toLocal8Bit());
     return title;
   }
-  qDebug("getName() returned url: %s", (const char*)url.toLocal8Bit());
+  //qDebug("getName() returned url: %s", (const char*)url.toLocal8Bit());
   return url;
 }
 

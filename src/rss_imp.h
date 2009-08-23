@@ -36,6 +36,8 @@
 #include "rss.h"
 
 class bittorrent;
+class FeedList;
+class QTreeWidgetItem;
 
 class RSSImp : public QWidget, public Ui::RSS{
   Q_OBJECT
@@ -43,6 +45,7 @@ class RSSImp : public QWidget, public Ui::RSS{
 private:
   RssManager *rssmanager;
   bittorrent *BTSession;
+  FeedList *listStreams;
 
 public slots:
   void deleteSelectedItems();
@@ -76,9 +79,9 @@ public:
   QTreeWidgetItem* getTreeItemFromUrl(QString url) const;
   QString getCurrentFeedUrl() const;
   QTreeWidgetItem* getItemFromPath(QStringList path) const;
-  QStringList getItemPath(QTreeWidgetItem *item) const;
   QStringList getCurrentFeedPath() const;
   RssFile::FileType getItemType(QTreeWidgetItem *item) const;
+
 };
 
 #endif
