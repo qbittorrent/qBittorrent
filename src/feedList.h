@@ -53,11 +53,46 @@ public:
     return feeds_items.values();
   }
 
+  QStringList getItemPath(QTreeWidgetItem* item) {
+    QStringList path;
+    if(item) {
+      if(item->parent())
+        path.append(getItemPath(item->parent()));
+      path.append(getRSSItem(item)->getID());
+    }
+    return path;
+  }
+
+  QList<QTreeWidgetItem*> getAllOpenFolders(QTreeWidgetItem *parent=0) {
+    QList<QTreeWidgetItem*> open_folders;
+    int nbChildren;
+    if(parent)
+      nbChildren = parent->childCount();
+    else
+      nbChildren = topLevelItemCount();
+    for(int i=0; i<nbChildren; ++i) {
+      QTreeWidgetItem *item;
+      if(parent)
+        item = parent->child(i);
+      else
+        item = topLevelItem(i);
+      if(getItemType(item) == RssFile::FOLDER && item->isExpanded()) {
+        QList<QTreeWidgetItem*> open_subfolders = getAllOpenFolders(item);
+        if(!open_subfolders.empty()) {
+          open_folders.append(open_subfolders);
+        } else {
+          open_folders << item;
+        }
+      }
+    }
+    return open_folders;
+  }
+
   QList<QTreeWidgetItem*> getAllFeedItems(QTreeWidgetItem* folder) {
     QList<QTreeWidgetItem*> feeds;
     int nbChildren = folder->childCount();
     for(int i=0; i<nbChildren; ++i) {
-    QTreeWidgetItem *item = folder->child(i);
+      QTreeWidgetItem *item = folder->child(i);
       if(getItemType(item) == RssFile::STREAM) {
         feeds << item;
       } else {

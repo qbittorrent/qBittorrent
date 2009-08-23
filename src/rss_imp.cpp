@@ -198,6 +198,52 @@ void RSSImp::deleteSelectedItems() {
   }
 }
 
+void RSSImp::loadFoldersOpenState() {
+  QSettings settings("qBittorrent", "qBittorrent");
+  settings.beginGroup("Rss");
+  QVariantList open_folders = settings.value("open_folders", QVariantList()).toList();
+  settings.endGroup();
+  foreach(QVariant var_path, open_folders) {
+    QStringList path = var_path.toString().split("\\");
+    QTreeWidgetItem *parent = 0;
+    foreach(QString name, path) {
+      QList<QTreeWidgetItem*> children;
+      int nbChildren = 0;
+      if(parent)
+        nbChildren = parent->childCount();
+      else
+        nbChildren = listStreams->topLevelItemCount();
+      for(int i=0; i<nbChildren; ++i) {
+        QTreeWidgetItem* child;
+        if(parent)
+          child = parent->child(i);
+        else
+          child = listStreams->topLevelItem(i);
+        if(listStreams->getRSSItem(child)->getID() == name) {
+          parent = child;
+          parent->setExpanded(true);
+          qDebug("expanding folder %s", name.toLocal8Bit().data());
+          break;
+        }  
+      }
+    }
+  }
+}
+
+void RSSImp::saveFoldersOpenState() {
+  QVariantList open_folders;
+  QList<QTreeWidgetItem*> items = listStreams->getAllOpenFolders();
+  foreach(QTreeWidgetItem* item, items) {
+    QString path = listStreams->getItemPath(item).join("\\");
+    qDebug("saving open folder: %s", path.toLocal8Bit().data());
+    open_folders << path;
+  }
+  QSettings settings("qBittorrent", "qBittorrent");
+  settings.beginGroup("Rss");
+  settings.setValue("open_folders", open_folders);
+  settings.endGroup();
+}
+
 // refresh all streams by a button
 void RSSImp::on_updateAllButton_clicked() {
   foreach(QTreeWidgetItem *item, listStreams->getAllFeedItems()) {
@@ -443,6 +489,7 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   splitter_h->insertWidget(0, listStreams);
 
   fillFeedsList();
+  loadFoldersOpenState();
   connect(rssmanager, SIGNAL(feedInfosChanged(QString, QString, unsigned int)), this, SLOT(updateFeedInfos(QString, QString, unsigned int)));
   connect(rssmanager, SIGNAL(feedIconChanged(QString, QString)), this, SLOT(updateFeedIcon(QString, QString)));
 
@@ -482,6 +529,7 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
 
 RSSImp::~RSSImp(){
   qDebug("Deleting RSSImp...");
+  saveFoldersOpenState();
   delete listStreams;
   delete rssmanager;
   qDebug("RSSImp deleted");

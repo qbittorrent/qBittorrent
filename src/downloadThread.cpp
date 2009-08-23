@@ -158,9 +158,9 @@ downloadThread::~downloadThread(){
   abort = true;
   condition.wakeOne();
   mutex.unlock();
-  qDebug("downloadThread deleting subthreads...");
+  //qDebug("downloadThread deleting subthreads...");
   qDeleteAll(subThreads);
-  qDebug("downloadThread deleted subthreads");
+  //qDebug("downloadThread deleted subthreads");
   wait();
 }
 
@@ -184,16 +184,16 @@ void downloadThread::run(){
     if(!urls_queue.empty() && subThreads.size() < MAX_THREADS){
       QString url = urls_queue.dequeue();
       mutex.unlock();
-      qDebug("DownloadThread downloading %s...", url.toLocal8Bit().data());
+      //qDebug("DownloadThread downloading %s...", url.toLocal8Bit().data());
       subDownloadThread *st = new subDownloadThread(0, url);
       subThreads << st;
       connect(st, SIGNAL(downloadFinishedST(subDownloadThread*, QString, QString)), this, SLOT(propagateDownloadedFile(subDownloadThread*, QString, QString)));
       connect(st, SIGNAL(downloadFailureST(subDownloadThread*, QString, QString)), this, SLOT(propagateDownloadFailure(subDownloadThread*, QString, QString)));
       st->start();
     }else{
-      qDebug("DownloadThread sleeping...");
+      //qDebug("DownloadThread sleeping...");
       condition.wait(&mutex);
-      qDebug("DownloadThread woke up");
+      //qDebug("DownloadThread woke up");
       mutex.unlock();
     }
   }
