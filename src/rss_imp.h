@@ -76,11 +76,6 @@ protected slots:
 public:
   RSSImp(bittorrent *BTSession);
   ~RSSImp();
-  QTreeWidgetItem* getTreeItemFromUrl(QString url) const;
-  QString getCurrentFeedUrl() const;
-  QTreeWidgetItem* getItemFromPath(QStringList path) const;
-  QStringList getCurrentFeedPath() const;
-  RssFile::FileType getItemType(QTreeWidgetItem *item) const;
 
 };
 

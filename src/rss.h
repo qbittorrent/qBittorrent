@@ -87,12 +87,21 @@ public:
 
   virtual unsigned int getNbUnRead() const = 0;
   virtual FileType getType() const = 0;
-  virtual QStringList getPath() const = 0;
   virtual QString getName() const = 0;
-  virtual void rename(QStringList path, QString new_name) = 0;
+  virtual QString getID() const = 0;
+  virtual void rename(QString new_name) = 0;
   virtual void markAllAsRead() = 0;
   virtual RssFolder* getParent() const = 0;
   virtual void setParent(RssFolder*) = 0;
+  virtual void refresh() = 0;
+  QStringList getPath() const {
+    QStringList path;
+    if(getParent()) {
+      path = ((RssFile*)getParent())->getPath();
+      path.append(getID());
+    }
+    return path;
+  }
 };
 
 // Item of a rss stream, single information
@@ -394,13 +403,13 @@ public:
   void setParent(RssFolder* _parent) { parent = _parent; }
   FileType getType() const;
   void refresh();
-  QStringList getPath() const;
+  QString getID() const { return url; }
   void removeAllItems();
   bool itemAlreadyExists(QString hash);
   void setLoading(bool val);
   bool isLoading();
   QString getTitle() const;
-  void rename(QStringList path, QString _alias);
+  void rename(QString _alias);
   QString getName() const;
   QString getLink() const;
   QString getUrl() const;
@@ -442,25 +451,24 @@ public:
   void setParent(RssFolder* _parent) { parent = _parent; }
   unsigned int getNbUnRead() const;
   FileType getType() const;
-  RssStream* addStream(QStringList full_path);
-  RssFolder* addFolder(QStringList full_path);
+  RssStream* addStream(QString url);
+  RssFolder* addFolder(QString name);
   QList<RssStream*> findFeedsWithIcon(QString icon_url) const;
   unsigned int getNbFeeds() const;
   QList<RssFile*> getContent() const;
-  RssFile* getFile(QStringList full_path) const;
   QList<RssStream*> getAllFeeds() const;
   QString getName() const;
-  QStringList getPath() const;
+  QString getID() const { return name; }
 
 public slots:
   void refreshAll();
-  void removeFileRef(RssFile* item);
   void addFile(RssFile * item);
-  void removeFile(QStringList full_path);
-  void refresh(QStringList full_path);
+  void removeFile(QString ID);
+  void refresh();
+  void refreshStream(QString url);
   void processFinishedDownload(QString url, QString path);
   void handleDownloadFailure(QString url, QString reason);
-  void rename(QStringList full_path, QString new_name);
+  void rename(QString new_name);
   void markAllAsRead();
 };
 
@@ -481,7 +489,7 @@ public slots:
   void saveStreamList();
   void forwardFeedInfosChanged(QString url, QString aliasOrUrl, unsigned int nbUnread);
   void forwardFeedIconChanged(QString url, QString icon_path);
-  void moveFile(QStringList old_path, QStringList new_path);
+  void moveFile(RssFile* file, RssFolder* dest_folder);
 
 public:
   RssManager(bittorrent *BTSession);

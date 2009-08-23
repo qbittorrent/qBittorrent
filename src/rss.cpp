@@ -30,6 +30,7 @@
 
 #include "rss.h"
 #include <QTimer>
+#include <QUrl>
 
 /** RssFolder **/
 
@@ -56,15 +57,6 @@ RssFile::FileType RssFolder::getType() const {
   return RssFile::FOLDER;
 }
 
-QStringList RssFolder::getPath() const {
-  QStringList path;
-  if(parent) {
-    path = parent->getPath();
-    path.append(name);
-  }
-  return path;
-}
-
 void RssFolder::refreshAll(){
   qDebug("Refreshing all rss feeds");
   QList<RssFile*> items = this->values();
@@ -87,98 +79,52 @@ void RssFolder::refreshAll(){
   }
 }
 
-void RssFolder::removeFile(QStringList full_path) {
-  QString name = full_path.last();
-  if(full_path.size() == 1) {
-    Q_ASSERT(this->contains(name));
-    delete this->take(name);
-  } else {
-    QString subfolder_name = full_path.takeFirst();
-    Q_ASSERT(this->contains(subfolder_name));
-    RssFolder *subfolder = (RssFolder*)this->value(subfolder_name);
-    subfolder->removeFile(full_path);
-  }
+void RssFolder::removeFile(QString ID) {
+  if(this->contains(ID))
+    delete this->take(ID);
 }
 
-RssFolder* RssFolder::addFolder(QStringList full_path) {
-  QString name = full_path.last();
-  if(full_path.size() == 1) {
-    Q_ASSERT(!this->contains(name));
-    RssFolder *subfolder = new RssFolder(this, rssmanager, BTSession, name);
+RssFolder* RssFolder::addFolder(QString name) {
+  RssFolder *subfolder;
+  if(!this->contains(name)) {
+    subfolder = new RssFolder(this, rssmanager, BTSession, name);
     (*this)[name] = subfolder;
-    return subfolder;
   } else {
-    QString subfolder_name = full_path.takeFirst();
-    // Check if the subfolder exists and create it if it does not
-    if(!this->contains(subfolder_name)) {
-      qDebug("Creating subfolder %s which did not exist", subfolder_name.toLocal8Bit().data());
-      (*this)[subfolder_name] = new RssFolder(this, rssmanager, BTSession, subfolder_name);
-    }
-    Q_ASSERT(this->contains(subfolder_name));
-    RssFolder *subfolder = (RssFolder*)this->value(subfolder_name);
-    return subfolder->addFolder(full_path);
+    subfolder = (RssFolder*)this->value(name);
+  }
+  return subfolder;
+}
+
+RssStream* RssFolder::addStream(QString url) {
+  Q_ASSERT(!this->contains(url));
+  RssStream* stream = new RssStream(this, rssmanager, BTSession, url);
+  (*this)[url] = stream;
+  refreshStream(url);
+  return stream;
+}
+
+// Refresh All Children
+void RssFolder::refresh() {
+  foreach(RssFile *child, this->values()) {
+    // Little optimization child->refresh() would work too
+    if(child->getType() == RssFile::STREAM)
+      refreshStream(child->getID());
+    else
+      child->refresh();
   }
 }
 
-RssStream* RssFolder::addStream(QStringList full_path) {
-  QString url = full_path.last();
-  if(full_path.size() == 1) {
-    if(this->contains(url)){
-      qDebug("Not adding the Rss stream because it is already in the list");
-      return 0;
-    }
-    RssStream* stream = new RssStream(this, rssmanager, BTSession, url);
-    (*this)[url] = stream;
-    refresh(full_path);
-    return stream;
-  } else {
-    QString subfolder_name = full_path.takeFirst();
-    // Check if the subfolder exists and create it if it does not
-    if(!this->contains(subfolder_name)) {
-      qDebug("Creating subfolder %s which did not exist", subfolder_name.toLocal8Bit().data());
-      (*this)[subfolder_name] = new RssFolder(this, rssmanager, BTSession, subfolder_name);
-    }
-    Q_ASSERT(this->contains(subfolder_name));
-    RssFolder *subfolder = (RssFolder*)this->value(subfolder_name);
-    return subfolder->addStream(full_path);
-  }
-}
-
-void RssFolder::refresh(QStringList full_path) {
-  QString url = full_path.last();
-  if(full_path.size() == 1) {
-    qDebug("Refreshing feed: %s", url.toLocal8Bit().data());
-    Q_ASSERT(this->contains(url));
-    RssStream *stream = (RssStream*)this->value(url);
-    if(stream->isLoading()) return;
-    stream->setLoading(true);
-    downloader->downloadUrl(url);
-    if(!stream->hasCustomIcon()){
-      downloader->downloadUrl(stream->getIconUrl());
-    }else{
-      qDebug("No need to download this feed's icon, it was already downloaded");
-    }
-  } else {
-    QString subfolder_name = full_path.takeFirst();
-    Q_ASSERT(this->contains(subfolder_name));
-    RssFolder *subfolder = (RssFolder*)this->value(subfolder_name);
-    subfolder->refresh(full_path);
-  }
-}
-
-RssFile* RssFolder::getFile(QStringList full_path) const {
-  if(full_path.isEmpty()) return rssmanager;
-  QString file_name = full_path.last();
-  Q_ASSERT(!file_name.isEmpty());
-  if(full_path.size() == 1) {
-    qDebug("getFile: %s from folder %s", file_name.toLocal8Bit().data(), name.toLocal8Bit().data());
-    Q_ASSERT(this->contains(file_name));
-    return (*this)[file_name];
-  } else {
-    QString subfolder_name = full_path.takeFirst();
-    Q_ASSERT(this->contains(subfolder_name));
-    RssFolder *subfolder = (RssFolder*)this->value(subfolder_name);
-    return subfolder->getFile(full_path);
+void RssFolder::refreshStream(QString url) {
+  qDebug("Refreshing feed: %s", url.toLocal8Bit().data());
+  Q_ASSERT(this->contains(url));
+  RssStream *stream = (RssStream*)this->value(url);
+  if(stream->isLoading()) return;
+  stream->setLoading(true);
+  downloader->downloadUrl(url);
+  if(!stream->hasCustomIcon()){
+    downloader->downloadUrl(stream->getIconUrl());
+  }else{
+    qDebug("No need to download this feed's icon, it was already downloaded");
   }
 }
 
@@ -225,7 +171,7 @@ void RssFolder::processFinishedDownload(QString url, QString path) {
   // this is more user friendly
   if(stream->getName().isEmpty()){
     if(!stream->getTitle().isEmpty())
-      stream->rename(QStringList(), stream->getTitle());
+      stream->rename(stream->getTitle());
   }
   rssmanager->forwardFeedInfosChanged(url, stream->getName(), stream->getNbUnRead());
 }
@@ -261,19 +207,13 @@ QString RssFolder::getName() const {
   return name;
 }
 
-void RssFolder::rename(QStringList full_path, QString new_name) {
-  if(full_path.size() == 1) {
+void RssFolder::rename(QString new_name) {
+  Q_ASSERT(parent->contains(new_name));
+  if(!parent->contains(new_name)) {
+    // Update parent
+    (*parent)[new_name] = parent->take(name);
+    // Actually rename
     name = new_name;
-  } else {
-    QString child_name = full_path.takeFirst();
-    Q_ASSERT(this->contains(child_name));
-    RssFile *child = (RssFile*)this->value(child_name);
-    if(full_path.empty()) {
-      // Child is renamed, update QHash
-      Q_ASSERT(!this->contains(new_name));
-      (*this)[new_name] = this->take(child_name);
-    }
-    child->rename(full_path, new_name);
   }
 }
 
@@ -295,16 +235,6 @@ QList<RssStream*> RssFolder::getAllFeeds() const {
     }
   }
   return streams;
-}
-
-void RssFolder::removeFileRef(RssFile* item) {
-  if(item->getType() == RssFile::STREAM) {
-    Q_ASSERT(this->contains(((RssStream*)item)->getUrl()));
-    this->remove(((RssStream*)item)->getUrl());
-  } else {
-    Q_ASSERT(this->contains(((RssFolder*)item)->getName()));
-    this->remove(((RssFolder*)item)->getName());
-  }
 }
 
 void RssFolder::addFile(RssFile * item) {
@@ -349,10 +279,17 @@ void RssManager::loadStreamList(){
   foreach(QString s, streamsUrl){
     QStringList path = s.split("\\");
     if(path.empty()) continue;
-    RssStream *stream = this->addStream(path);
+    QString feed_url = path.takeLast();
+    // Create feed path (if it does not exists)
+    RssFolder * feed_parent = this;
+    foreach(QString folder_name, path) {
+      feed_parent = feed_parent->addFolder(folder_name);
+    }
+    // Create feed
+    RssStream *stream = feed_parent->addStream(feed_url);
     QString alias = aliases.at(i);
     if(!alias.isEmpty()) {
-      stream->rename(QStringList(), alias);
+      stream->rename(alias);
     }
     ++i;
   }
@@ -367,28 +304,15 @@ void RssManager::forwardFeedIconChanged(QString url, QString icon_path) {
   emit feedIconChanged(url, icon_path);
 }
 
-void RssManager::moveFile(QStringList old_path, QStringList new_path) {
-  RssFile* item = getFile(old_path);
-  RssFolder* src_folder = item->getParent();
-  QString new_name = new_path.takeLast();
-  RssFolder* dest_folder = (RssFolder*)getFile(new_path);
+void RssManager::moveFile(RssFile* file, RssFolder* dest_folder) {
+  RssFolder* src_folder = file->getParent();
   if(dest_folder != src_folder) {
     // Copy to new Folder
-    dest_folder->addFile(item);
+    dest_folder->addFile(file);
     // Remove reference in old folder
-    src_folder->removeFileRef(item);
+    src_folder->remove(file->getID());
   } else {
     qDebug("Nothing to move, same destination folder");
-  }
-  // Need to rename?
-  QString current_name;
-  if(item->getType() == RssFile::FOLDER)
-    current_name = item->getName();
-  else
-    current_name = ((RssStream*)item)->getUrl();
-  if(current_name != new_name) {
-    qDebug("Renaming file from %s to %s...", current_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
-    dest_folder->rename(item->getPath(), new_name);
   }
 }
 
@@ -413,9 +337,10 @@ void RssManager::saveStreamList(){
 
 /** RssStream **/
 
-RssStream::RssStream(RssFolder* parent, RssManager *rssmanager, bittorrent *BTSession, QString _url): parent(parent), rssmanager(rssmanager), BTSession(BTSession), url(_url), alias(""), iconPath(":/Icons/rss16.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
+RssStream::RssStream(RssFolder* parent, RssManager *rssmanager, bittorrent *BTSession, QString _url): parent(parent), rssmanager(rssmanager), BTSession(BTSession), alias(""), iconPath(":/Icons/rss16.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
   qDebug("RSSStream constructed");
   QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
+  url = QUrl(_url).toString();
   QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
   QVariantList old_items = all_old_items.value(url, QVariantList()).toList();
   qDebug("Loading %d old items for feed %s", old_items.size(), getName().toLocal8Bit().data());
@@ -454,15 +379,7 @@ RssFile::FileType RssStream::getType() const {
 }
 
 void RssStream::refresh() {
-  QStringList path;
-  path << url;
-  parent->refresh(path);
-}
-
-QStringList RssStream::getPath() const {
-  QStringList path = parent->getPath();
-  path.append(url);
-  return path;
+  parent->refreshStream(url);
 }
 
 // delete all the items saved
@@ -491,7 +408,7 @@ QString RssStream::getTitle() const{
   return title;
 }
 
-void RssStream::rename(QStringList, QString new_name){
+void RssStream::rename(QString new_name){
   qDebug("Renaming stream to %s", new_name.toLocal8Bit().data());
   alias = new_name;
 }
@@ -603,7 +520,7 @@ short RssStream::readDoc(const QDomDocument& doc) {
         if (property.tagName() == "title") {
           title = property.text();
           if(alias==getUrl())
-            rename(QStringList(), title);
+            rename(title);
         }
         else if (property.tagName() == "link")
           link = property.text();

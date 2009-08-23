@@ -353,7 +353,7 @@ protected slots:
         if(!filters.hasFilter(new_name)) {
           validated = true;
         } else {
-          QMessageBox::critical(0, tr("Invalid filter name"), tr("This filter name is already in use."));
+          QMessageBox::warning(0, tr("Invalid filter name"), tr("This filter name is already in use."));
         }
       }while(!validated);
       // Rename the filter
@@ -392,7 +392,7 @@ protected slots:
       new_name = new_name.trimmed();
       if(new_name.isEmpty()) {
         // Cannot be left empty
-        QMessageBox::critical(0, tr("Invalid filter name"), tr("The filter name cannot be left empty."));
+        QMessageBox::warning(0, tr("Invalid filter name"), tr("The filter name cannot be left empty."));
       } else {
         validated = true;
       }
@@ -408,7 +408,7 @@ protected slots:
       if(filter_name.isNull()) return;
       if(filters.hasFilter(filter_name)) {
         // Filter alread exists
-        QMessageBox::critical(0, tr("Invalid filter name"), tr("This filter name is already in use."));
+        QMessageBox::warning(0, tr("Invalid filter name"), tr("This filter name is already in use."));
       } else {
         validated = true;
       }
@@ -430,7 +430,7 @@ protected slots:
     if(selected_filter.isEmpty()) return;
     QString s = test_line->text().trimmed();
     if(s.isEmpty()) {
-      QMessageBox::critical(0, tr("Filter testing error"), tr("Please specify a test torrent name."));
+      QMessageBox::warning(0, tr("Filter testing error"), tr("Please specify a test torrent name."));
       return;
     }
     // Get current filter
@@ -455,7 +455,7 @@ protected slots:
         filtersList->setCurrentItem(filtersList->item(0));
       QMessageBox::information(0, tr("Import successful"), tr("Filters import was successful."));
     } else {
-      QMessageBox::critical(0, tr("Import failure"), tr("Filters could not be imported due to an I/O error."));
+      QMessageBox::warning(0, tr("Import failure"), tr("Filters could not be imported due to an I/O error."));
     }
   }
 
@@ -472,7 +472,7 @@ protected slots:
     if(filters.serialize(destination))
       QMessageBox::information(0, tr("Export successful"), tr("Filters export was successful."));
     else
-      QMessageBox::critical(0, tr("Export failure"), tr("Filters could not be exported due to an I/O error."));
+      QMessageBox::warning(0, tr("Export failure"), tr("Filters could not be exported due to an I/O error."));
   }
 
 };
