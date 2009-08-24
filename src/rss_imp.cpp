@@ -131,10 +131,14 @@ void RSSImp::displayOverwriteError(QString filename) {
 // add a stream by a button
 void RSSImp::on_newFeedButton_clicked() {
   // Determine parent folder for new feed
-  QTreeWidgetItem *parent_item =0;
+  QTreeWidgetItem *parent_item = 0;
   QList<QTreeWidgetItem *> selected_items = listStreams->selectedItems();
-  if(!selected_items.empty())
+  if(!selected_items.empty()) {
     parent_item = selected_items.first();
+    // Consider the case where the user clicked on Unread item
+    if(parent_item == listStreams->getUnreadItem())
+      parent_item = 0;
+  }
   RssFolder *rss_parent;
   if(parent_item) {
     RssFile* tmp = listStreams->getRSSItem(parent_item);
