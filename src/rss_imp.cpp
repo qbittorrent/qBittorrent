@@ -136,16 +136,16 @@ void RSSImp::on_newFeedButton_clicked() {
   if(!selected_items.empty()) {
     parent_item = selected_items.first();
     // Consider the case where the user clicked on Unread item
-    if(parent_item == listStreams->getUnreadItem())
+    if(parent_item == listStreams->getUnreadItem()) {
       parent_item = 0;
+    } else {
+      if(listStreams->getItemType(parent_item) != RssFile::FOLDER)
+        parent_item = parent_item->parent();
+    }
   }
   RssFolder *rss_parent;
   if(parent_item) {
-    RssFile* tmp = listStreams->getRSSItem(parent_item);
-    if(tmp->getType() == RssFile::FOLDER)
-      rss_parent = (RssFolder*)tmp;
-    else
-      rss_parent = tmp->getParent();
+    rss_parent = (RssFolder*)listStreams->getRSSItem(parent_item);
   } else {
     rss_parent = rssmanager;
   }
