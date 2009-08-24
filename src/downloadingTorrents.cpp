@@ -718,6 +718,10 @@ void DownloadingTorrents::sortProgressColumn(QTorrentHandle& h) {
   }
 }
 
+bool DownloadingTorrents::isPriorityColumnSorted() {
+  return (downloadList->header()->sortIndicatorSection() == PRIORITY);
+}
+
 void DownloadingTorrents::sortDownloadList(int index, Qt::SortOrder sortOrder) {
   if(index == -1) {
     index = downloadList->header()->sortIndicatorSection();
