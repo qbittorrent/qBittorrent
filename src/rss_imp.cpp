@@ -317,12 +317,20 @@ void RSSImp::refreshSelectedItems() {
   foreach(QTreeWidgetItem* item, selectedItems){
     RssFile* file = listStreams->getRSSItem(item);
     // Update icons
-    if(file->getType() == RssFile::STREAM) {
-      item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
-    } else {
-      // Update feeds in the folder
-      foreach(QTreeWidgetItem *feed, listStreams->getAllFeedItems(item)) {
+    if(item == listStreams->getUnreadItem()) {
+      foreach(QTreeWidgetItem *feed, listStreams->getAllFeedItems()) {
         feed->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+      }
+      file->refresh();
+      break;
+    } else {
+      if(file->getType() == RssFile::STREAM) {
+        item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+      } else {
+        // Update feeds in the folder
+        foreach(QTreeWidgetItem *feed, listStreams->getAllFeedItems(item)) {
+          feed->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+        }
       }
     }
     // Actually refresh
