@@ -2635,11 +2635,11 @@ maximum value you set.</source>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="obsolete">删除</translation>
+        <translation type="unfinished">删除</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation type="obsolete">重命名</translation>
+        <translation type="unfinished">重命名</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -2681,7 +2681,7 @@ link in your web browser)&lt;/i&gt;</source>
     </message>
     <message>
         <source>2</source>
-        <translation>2</translation>
+        <translation type="obsolete">2</translation>
     </message>
     <message>
         <source>Mark all as read</source>
@@ -2728,23 +2728,19 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete feed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rename feed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update feed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Update all feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>RSS feeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New folder</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2760,11 +2756,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please choose a new name for this stream</source>
-        <translation>请选择资源名</translation>
+        <translation type="obsolete">请选择资源名</translation>
     </message>
     <message>
         <source>New stream name:</source>
-        <translation>新资源名:</translation>
+        <translation type="obsolete">新资源名:</translation>
     </message>
     <message>
         <source>Are you sure? -- qBittorrent</source>
@@ -2790,15 +2786,15 @@ list?</source>
     </message>
     <message>
         <source>Description:</source>
-        <translation>声明:</translation>
+        <translation type="obsolete">声明:</translation>
     </message>
     <message>
         <source>url:</source>
-        <translation>网址:</translation>
+        <translation type="obsolete">网址:</translation>
     </message>
     <message>
         <source>Last refresh:</source>
-        <translation>最近重新载入:</translation>
+        <translation type="obsolete">最近重新载入:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
@@ -2818,7 +2814,43 @@ list?</source>
     </message>
     <message>
         <source>Are you sure you want to delete this stream from the list?</source>
-        <translation>您确定要从列表中删除此资源吗?</translation>
+        <translation type="obsolete">您确定要从列表中删除此资源吗?</translation>
+    </message>
+    <message>
+        <source>Please choose a folder name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete these elements from the list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this element from the list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please choose a new name for this RSS feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New feed name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name already in use</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This name is already used by another item, please choose another one.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2833,11 +2865,11 @@ list?</source>
     <message>
         <source>%1 ago</source>
         <comment>10min ago</comment>
-        <translation>%1前</translation>
+        <translation type="obsolete">%1前</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation>从不</translation>
+        <translation type="obsolete">从不</translation>
     </message>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
@@ -3461,11 +3493,11 @@ DHT if enabled)</source>
     </message>
     <message>
         <source>Add a file</source>
-        <translation>添加文件</translation>
+        <translation type="obsolete">添加文件</translation>
     </message>
     <message>
         <source>Add a folder</source>
-        <translation>添加文件夹</translation>
+        <translation type="obsolete">添加文件夹</translation>
     </message>
     <message>
         <source>Piece size:</source>
@@ -3523,6 +3555,14 @@ enabled)</source>
     <message>
         <source>Progress:</source>
         <translation>进度:</translation>
+    </message>
+    <message>
+        <source>Add file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

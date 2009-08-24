@@ -2495,11 +2495,11 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="obsolete">Sil</translation>
+        <translation type="unfinished">Sil</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation type="obsolete">Yeniden adlandır</translation>
+        <translation type="unfinished">Yeniden adlandır</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -2539,7 +2539,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>2</source>
-        <translation>2</translation>
+        <translation type="obsolete">2</translation>
     </message>
     <message>
         <source>Mark all as read</source>
@@ -2582,23 +2582,19 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete feed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rename feed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update feed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Update all feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>RSS feeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New folder</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2614,11 +2610,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please choose a new name for this stream</source>
-        <translation>Lütfen bu akım için yeni bir ad seçin</translation>
+        <translation type="obsolete">Lütfen bu akım için yeni bir ad seçin</translation>
     </message>
     <message>
         <source>New stream name:</source>
-        <translation>Yeni akım adı:</translation>
+        <translation type="obsolete">Yeni akım adı:</translation>
     </message>
     <message>
         <source>Are you sure? -- qBittorrent</source>
@@ -2634,19 +2630,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Are you sure you want to delete this stream from the list?</source>
-        <translation>Bu akımı listeden silmek istediğinize emin misiniz?</translation>
+        <translation type="obsolete">Bu akımı listeden silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation>Betimleme:</translation>
+        <translation type="obsolete">Betimleme:</translation>
     </message>
     <message>
         <source>url:</source>
-        <translation>adres:</translation>
+        <translation type="obsolete">adres:</translation>
     </message>
     <message>
         <source>Last refresh:</source>
-        <translation>Son yenileme:</translation>
+        <translation type="obsolete">Son yenileme:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
@@ -2664,6 +2660,42 @@ p, li { white-space: pre-wrap; }
         <source>Author: </source>
         <translation>Yazar: </translation>
     </message>
+    <message>
+        <source>Please choose a folder name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete these elements from the list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this element from the list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please choose a new name for this RSS feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New feed name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name already in use</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This name is already used by another item, please choose another one.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RssItem</name>
@@ -2677,11 +2709,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>%1 ago</source>
         <comment>10min ago</comment>
-        <translation>%1 önce</translation>
+        <translation type="obsolete">%1 önce</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation>Asla</translation>
+        <translation type="obsolete">Asla</translation>
     </message>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
@@ -3266,11 +3298,11 @@ Changelog:
     </message>
     <message>
         <source>Add a file</source>
-        <translation>Dosya ekle</translation>
+        <translation type="obsolete">Dosya ekle</translation>
     </message>
     <message>
         <source>Add a folder</source>
-        <translation>Klasör ekle</translation>
+        <translation type="obsolete">Klasör ekle</translation>
     </message>
     <message>
         <source>Piece size:</source>
@@ -3323,6 +3355,14 @@ Changelog:
     <message>
         <source>Progress:</source>
         <translation>İlerleme:</translation>
+    </message>
+    <message>
+        <source>Add file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
