@@ -29,7 +29,6 @@
   <file>Icons/skin/open.png</file>
   <file>Icons/skin/qbittorrent16.png</file>
   <file>Icons/skin/downloading.png</file>
-  <file>Icons/skin/search.png</file>
   <file>Icons/skin/pause_all.png</file>
   <file>Icons/skin/play_all.png</file>
   <file>Icons/skin/pause.png</file>
@@ -75,6 +74,7 @@
   <file>Icons/oxygen/file.png</file>
   <file>Icons/oxygen/mail-folder-inbox.png</file>
   <file>Icons/oxygen/time.png</file>
+  <file>Icons/oxygen/edit-find.png</file>
   <file>Icons/oxygen/folder-new.png</file>
   <file>Icons/oxygen/edit-paste.png</file>
   <file>Icons/oxygen/proxy.png</file>

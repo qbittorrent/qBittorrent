@@ -1208,6 +1208,13 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
 </context>
 <context>
+    <name>FeedList</name>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FilterParserThread</name>
     <message>
         <source>I/O Error</source>
@@ -2509,6 +2516,14 @@ p, li { white-space: pre-wrap; }
         <source>New folder</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSSImp</name>
@@ -2610,6 +2625,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This name is already used by another item, please choose another one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwrite attempt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You cannot overwrite %1 item.</source>
+        <comment>You cannot overwrite myFolder item.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unread</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4588,6 +4616,10 @@ Portanto os plugins foram desabilitados.</translation>
     <message>
         <source>Could not resolve proxy</source>
         <translation>Não pude resolver proxy</translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

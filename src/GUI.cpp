@@ -163,7 +163,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   // Search engine tab
   searchEngine = new SearchEngine(BTSession, myTrayIcon, systrayIntegration);
   tabs->addTab(searchEngine, tr("Search"));
-  tabs->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/skin/search.png")));
+  tabs->setTabIcon(2, QIcon(QString::fromUtf8(":/Icons/oxygen/edit-find.png")));
   readSettings();
   // RSS Tab
   rssWidget = 0;

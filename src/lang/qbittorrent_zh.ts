@@ -1344,6 +1344,13 @@ wait...</comment>
     </message>
 </context>
 <context>
+    <name>FeedList</name>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FilterParserThread</name>
     <message>
         <source>I/O Error</source>
@@ -2743,6 +2750,14 @@ p, li { white-space: pre-wrap; }
         <source>New folder</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSSImp</name>
@@ -2850,6 +2865,19 @@ list?</source>
     </message>
     <message>
         <source>This name is already used by another item, please choose another one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwrite attempt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You cannot overwrite %1 item.</source>
+        <comment>You cannot overwrite myFolder item.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unread</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4898,6 +4926,10 @@ network.</source>
     <message>
         <source>Could not resolve proxy</source>
         <translation>无法联系到代理服务器</translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">输入/输出错误</translation>
     </message>
 </context>
 <context>
