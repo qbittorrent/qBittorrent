@@ -60,7 +60,7 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   createCompleter();
   // Add close tab button
   closeTab_button = new QPushButton();
-  closeTab_button->setIcon(QIcon(QString::fromUtf8(":/Icons/gnome-shutdown.png")));
+  closeTab_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/tab-close.png")));
   closeTab_button->setFlat(true);
   connect(closeTab_button, SIGNAL(clicked()), this, SLOT(closeTab_button_clicked()));
   tabWidget->setCornerWidget(closeTab_button);
@@ -200,6 +200,8 @@ void SearchEngine::on_search_button_clicked(){
   if(searchProcess->state() != QProcess::NotRunning){
     searchProcess->kill();
     searchProcess->waitForFinished();
+    search_button->setText("Search");
+    return;
   }
   if(searchTimeout->isActive()) {
     searchTimeout->stop();
@@ -306,12 +308,7 @@ void SearchEngine::searchStarted(){
   // Update SearchEngine widgets
   search_status->setText(tr("Searching..."));
   search_status->repaint();
-  stop_search_button->setEnabled(true);
-  stop_search_button->repaint();
-  // clear results window ... not needed since we got Tabbed
-  //SearchListModel->removeRows(0, SearchListModel->rowCount());
-  // Clear previous results urls too
-  //searchResultsUrls.clear();
+  search_button->setText("Stop");
 }
 
 // Download the given item from search results list
@@ -464,8 +461,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
   }
   if(currentSearchTab)
     currentSearchTab->getCurrentLabel()->setText(tr("Results", "i.e: Search results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
-  search_button->setEnabled(true);
-  stop_search_button->setEnabled(false);
+  search_button->setText("Search");
 }
 
 // SLOT to append one line to search results list
@@ -525,11 +521,6 @@ void SearchEngine::closeTab_button_clicked(){
         download_button->setEnabled(false);
     }
   }
-}
-
-void SearchEngine::on_clearPatternButton_clicked() {
-  search_pattern->clear();
-  search_pattern->setFocus();
 }
 
 // Download selected items in search results list

@@ -1,6 +1,5 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
-  <file>Icons/gnome-shutdown.png</file>
   <file>Icons/rss32.png</file>
   <file>Icons/money.png</file>
   <file>Icons/sphere2.png</file>
@@ -95,6 +94,7 @@
   <file>Icons/oxygen/edit-copy.png</file>
   <file>Icons/oxygen/bt_settings.png</file>
   <file>Icons/oxygen/document-new.png</file>
+  <file>Icons/oxygen/tab-close.png</file>
   <file>Icons/oxygen/webui.png</file>
   <file>Icons/oxygen/list-remove.png</file>
   <file>Icons/oxygen/connection.png</file>

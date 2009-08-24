@@ -13,39 +13,9 @@
   <property name="windowTitle">
    <string>Search</string>
   </property>
-  <layout class="QVBoxLayout">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="margin">
-      <number>0</number>
-     </property>
-     <item>
-      <widget class="QLabel" name="search_lbl">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>35</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Sans Serif</family>
-         <pointsize>9</pointsize>
-         <weight>75</weight>
-         <italic>false</italic>
-         <bold>true</bold>
-         <underline>false</underline>
-         <strikeout>false</strikeout>
-        </font>
-       </property>
-       <property name="text">
-        <string>Search Pattern:</string>
-       </property>
-      </widget>
-     </item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLineEdit" name="search_pattern">
        <property name="maximumSize">
@@ -60,26 +30,52 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="clearPatternButton">
-       <property name="maximumSize">
-        <size>
-         <width>34</width>
-         <height>29</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Icons/oxygen/edit_clear.png</normaloff>:/Icons/oxygen/edit_clear.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>30</width>
-         <height>21</height>
-        </size>
-       </property>
+      <widget class="QComboBox" name="comboCategory">
+       <item>
+        <property name="text">
+         <string>All categories</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Movies</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>TV shows</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Music</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Games</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Anime</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Software</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Pictures</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Books</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>
@@ -95,33 +91,10 @@
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QPushButton" name="stop_search_button">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>29</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Stop</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="enginesButton">
-       <property name="text">
-        <string>Search engines...</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <widget class="QLabel" name="status_lbl">
        <property name="maximumSize">
@@ -150,7 +123,7 @@
       <widget class="QLabel" name="search_status">
        <property name="minimumSize">
         <size>
-         <width>400</width>
+         <width>200</width>
          <height>0</height>
         </size>
        </property>
@@ -232,6 +205,13 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="enginesButton">
+         <property name="text">
+          <string>Search engines...</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
