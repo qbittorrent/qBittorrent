@@ -18,6 +18,7 @@ private:
   QHash<QTreeWidgetItem*, RssFile*> mapping;
   QHash<QString, QTreeWidgetItem*> feeds_items;
   QTreeWidgetItem* current_feed;
+  QTreeWidgetItem *unread_item;
 
 public:
   FeedList(QWidget *parent, RssManager *rssmanager): QTreeWidget(parent), rssmanager(rssmanager) {
@@ -28,14 +29,17 @@ public:
     QTreeWidgetItem *___qtreewidgetitem = headerItem();
     ___qtreewidgetitem->setText(0, QApplication::translate("RSS", "RSS feeds", 0, QApplication::UnicodeUTF8));
     connect(this, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(updateCurrentFeed(QTreeWidgetItem*)));
-  }
+    unread_item = new QTreeWidgetItem(this);
+    unread_item->setText(0, tr("Unread") + QString::fromUtf8("  (") + QString::number(rssmanager->getNbUnRead(), 10)+ QString(")"));
+    unread_item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/oxygen/mail-folder-inbox.png")));
+    itemAdded(unread_item, rssmanager);
+    setCurrentItem(unread_item);
+    }
 
   void itemAdded(QTreeWidgetItem *item, RssFile* file) {
     mapping[item] = file;
     if(file->getType() == RssFile::STREAM) {
       feeds_items[file->getID()] = item;
-      if(topLevelItemCount() == 1)
-        setCurrentItem(item);
     }
   }
 
@@ -45,15 +49,19 @@ public:
       feeds_items.remove(file->getID());
   }
 
-  bool hasFeed(QString url) {
+  bool hasFeed(QString url) const {
     return feeds_items.contains(QUrl(url).toString());
   }
 
-  QList<QTreeWidgetItem*> getAllFeedItems() {
+  QList<QTreeWidgetItem*> getAllFeedItems() const {
     return feeds_items.values();
   }
 
-  QStringList getItemPath(QTreeWidgetItem* item) {
+  QTreeWidgetItem* getUnreadItem() const {
+    return unread_item;
+  }
+
+  QStringList getItemPath(QTreeWidgetItem* item) const {
     QStringList path;
     if(item) {
       if(item->parent())
@@ -63,7 +71,7 @@ public:
     return path;
   }
 
-  QList<QTreeWidgetItem*> getAllOpenFolders(QTreeWidgetItem *parent=0) {
+  QList<QTreeWidgetItem*> getAllOpenFolders(QTreeWidgetItem *parent=0) const {
     QList<QTreeWidgetItem*> open_folders;
     int nbChildren;
     if(parent)
@@ -102,24 +110,24 @@ public:
     return feeds;
   }
 
-  RssFile* getRSSItem(QTreeWidgetItem *item) {
+  RssFile* getRSSItem(QTreeWidgetItem *item) const {
     return mapping[item];
   }
 
-  RssFile* getCurrentRSSItem() {
-    return mapping[current_feed];
-  }
-
-  RssFile::FileType getItemType(QTreeWidgetItem *item) {
+  RssFile::FileType getItemType(QTreeWidgetItem *item) const {
     return mapping[item]->getType();
   }
 
-  QString getItemID(QTreeWidgetItem *item) {
+  QString getItemID(QTreeWidgetItem *item) const {
     return mapping[item]->getID();
   }
 
   QTreeWidgetItem* getTreeItemFromUrl(QString url) const{
     return feeds_items[url];
+  }
+
+  RssStream* getRSSItemFromUrl(QString url) const {
+    return (RssStream*)getRSSItem(getTreeItemFromUrl(url));
   }
 
   QTreeWidgetItem* currentItem() const {
@@ -136,7 +144,7 @@ signals:
 
 protected slots:
   void updateCurrentFeed(QTreeWidgetItem* new_item) {
-    if(new_item && getItemType(new_item) == RssFile::STREAM)
+    if((new_item && getItemType(new_item) == RssFile::STREAM) || new_item == unread_item)
       current_feed = new_item;
   }
 
@@ -146,7 +154,11 @@ protected:
     if(item && getItemType(item) != RssFile::FOLDER)
       event->ignore();
     else {
-      QTreeWidget::dragMoveEvent(event);
+      if(selectedItems().contains(unread_item)) {
+        event->ignore();
+      } else {
+        QTreeWidget::dragMoveEvent(event);
+      }
     }
   }
 

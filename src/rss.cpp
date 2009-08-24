@@ -117,6 +117,22 @@ void RssFolder::refresh() {
   }
 }
 
+QList<RssItem*> RssFolder::getNewsList() const {
+  QList<RssItem*> news;
+  foreach(RssFile *child, this->values()) {
+    news.append(child->getNewsList());
+  }
+  return news;
+}
+
+QList<RssItem*> RssFolder::getUnreadNewsList() const {
+  QList<RssItem*> unread_news;
+  foreach(RssFile *child, this->values()) {
+    unread_news.append(child->getUnreadNewsList());
+  }
+  return unread_news;
+}
+
 void RssFolder::refreshStream(QString url) {
   qDebug("Refreshing feed: %s", url.toLocal8Bit().data());
   Q_ASSERT(this->contains(url));
@@ -349,9 +365,9 @@ RssStream::RssStream(RssFolder* parent, RssManager *rssmanager, bittorrent *BTSe
   qDebug("Loading %d old items for feed %s", old_items.size(), getName().toLocal8Bit().data());
   foreach(const QVariant &var_it, old_items) {
     QHash<QString, QVariant> item = var_it.toHash();
-    RssItem *rss_item = RssItem::fromHash(item);
+    RssItem *rss_item = RssItem::fromHash(this, item);
     if(rss_item->isValid())
-      listItem << rss_item;
+      (*this)[rss_item->getTitle()] = rss_item;
   }
 }
 
@@ -360,7 +376,7 @@ RssStream::~RssStream(){
   if(refreshed) {
     QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
     QVariantList old_items;
-    foreach(RssItem *item, listItem) {
+    foreach(RssItem *item, this->values()) {
       old_items << item->toHash();
     }
     qDebug("Saving %d old items for feed %s", old_items.size(), getName().toLocal8Bit().data());
@@ -387,16 +403,12 @@ void RssStream::refresh() {
 
 // delete all the items saved
 void RssStream::removeAllItems() {
-  qDeleteAll(listItem);
-  listItem.clear();
+  qDeleteAll(this->values());
+  this->clear();
 }
 
-bool RssStream::itemAlreadyExists(QString hash) {
-  RssItem * item;
-  foreach(item, listItem) {
-    if(item->getHash() == hash) return true;
-  }
-  return false;
+bool RssStream::itemAlreadyExists(QString name) {
+  return this->contains(name);
 }
 
 void RssStream::setLoading(bool val) {
@@ -464,27 +476,24 @@ void RssStream::setIconPath(QString path) {
   iconPath = path;
 }
 
-RssItem* RssStream::getItem(unsigned int index) const{
-  return listItem.at(index);
+RssItem* RssStream::getItem(QString name) const{
+  return this->value(name);
 }
 
 unsigned int RssStream::getNbNews() const{
-  return listItem.size();
+  return this->size();
 }
 
 void RssStream::markAllAsRead() {
-  RssItem *item;
-  foreach(item, listItem){
-    if(!item->isRead())
-      item->setRead();
+  foreach(RssItem *item, this->values()){
+    item->setRead();
   }
   rssmanager->forwardFeedInfosChanged(url, getName(), 0);
 }
 
 unsigned int RssStream::getNbUnRead() const{
   unsigned int nbUnread=0;
-  RssItem *item;
-  foreach(item, listItem){
+  foreach(RssItem *item, this->values()) {
     if(!item->isRead())
       ++nbUnread;
   }
@@ -492,7 +501,16 @@ unsigned int RssStream::getNbUnRead() const{
 }
 
 QList<RssItem*> RssStream::getNewsList() const{
-  return listItem;
+  return this->values();
+}
+
+QList<RssItem*> RssStream::getUnreadNewsList() const {
+  QList<RssItem*> unread_news;
+  foreach(RssItem *item, this->values()) {
+    if(!item->isRead())
+      unread_news << item;
+  }
+  return unread_news;
 }
 
 // download the icon from the adress
@@ -533,9 +551,9 @@ short RssStream::readDoc(const QDomDocument& doc) {
         else if (property.tagName() == "image")
           image = property.text();
         else if(property.tagName() == "item") {
-          RssItem * item = new RssItem(property);
-          if(item->isValid() && !itemAlreadyExists(item->getHash())) {
-            listItem.append(item);
+          RssItem * item = new RssItem(this, property);
+          if(item->isValid() && !itemAlreadyExists(item->getTitle())) {
+            (*this)[item->getTitle()] = item;
             // Check if the item should be automatically downloaded
             FeedFilter * matching_filter = FeedFilters::getFeedFilters(url).matches(item->getTitle());
             if(matching_filter != 0) {
@@ -565,35 +583,21 @@ short RssStream::readDoc(const QDomDocument& doc) {
     }
     channel = channel.nextSibling().toElement();
   }
-  sortList();
   resizeList();
   return 0;
-}
-
-void RssStream::insertSortElem(QList<RssItem*> &list, RssItem *item) {
-  int i = 0;
-  while(i < list.size() && item->getDate() < list.at(i)->getDate()) {
-    ++i;
-  }
-  list.insert(i, item);
-}
-
-void RssStream::sortList() {
-  QList<RssItem*> new_list;
-  RssItem *item;
-  foreach(item, listItem) {
-    insertSortElem(new_list, item);
-  }
-  listItem = new_list;
 }
 
 void RssStream::resizeList() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   unsigned int max_articles = settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 100).toInt();
-  int excess = listItem.size() - max_articles;
-  if(excess <= 0) return;
-  for(int i=0; i<excess; ++i){
-    delete listItem.takeLast();
+  unsigned int nb_articles = this->size();
+  if(nb_articles > max_articles) {
+    QList<RssItem*> listItem = sortNewsList(this->values());
+    int excess = nb_articles - max_articles;
+    for(int i=0; i<excess; ++i){
+      RssItem *lastItem = listItem.takeLast();
+      delete this->take(lastItem->getTitle());
+    }
   }
 }
 

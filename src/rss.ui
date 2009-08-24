@@ -120,13 +120,29 @@ p, li { white-space: pre-wrap; }
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <widget class="QListWidget" name="listNews">
+         <widget class="QTreeWidget" name="listNews">
           <property name="contextMenuPolicy">
            <enum>Qt::CustomContextMenu</enum>
           </property>
           <property name="selectionMode">
            <enum>QAbstractItemView::ExtendedSelection</enum>
           </property>
+          <attribute name="headerVisible">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="headerVisible">
+           <bool>false</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>1</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Feed URL</string>
+           </property>
+          </column>
          </widget>
          <widget class="QTextBrowser" name="textBrowser"/>
         </widget>

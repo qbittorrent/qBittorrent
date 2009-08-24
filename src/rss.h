@@ -42,7 +42,6 @@
 #include <QImage>
 #include <QHash>
 #include <QDateTime>
-#include <QCryptographicHash>
 
 #include "misc.h"
 #include "FeedDownloader.h"
@@ -94,6 +93,8 @@ public:
   virtual RssFolder* getParent() const = 0;
   virtual void setParent(RssFolder*) = 0;
   virtual void refresh() = 0;
+  virtual QList<RssItem*> getNewsList() const = 0;
+  virtual QList<RssItem*> getUnreadNewsList() const = 0;
   QStringList getPath() const {
     QStringList path;
     if(getParent()) {
@@ -108,14 +109,13 @@ public:
 class RssItem: public QObject {
   Q_OBJECT
 private:
-
+  RssStream* parent;
   QString title;
   QString torrent_url;
   QString news_link;
   QString description;
   QDateTime date;
   QString author;
-  QString hash;
 
 
   bool is_valid;
@@ -255,7 +255,7 @@ protected:
 
 public:
   // public constructor
-  RssItem(const QDomElement& properties): read(false) {
+  RssItem(RssStream* parent, const QDomElement& properties): parent(parent), read(false) {
     is_valid = false;
     torrent_url = QString::null;
     news_link = QString::null;
@@ -292,18 +292,16 @@ public:
         author = property.text();
       property = property.nextSibling().toElement();
     }
-    hash = QCryptographicHash::hash(QByteArray(title.toLocal8Bit()), QCryptographicHash::Md5);
   }
 
-  RssItem(QString _title, QString _torrent_url, QString _news_link, QString _description, QDateTime _date, QString _author, bool _read):
-      title(_title), torrent_url(_torrent_url), news_link(_news_link), description(_description), date(_date), author(_author), read(_read){
+  RssItem(RssStream* parent, QString _title, QString _torrent_url, QString _news_link, QString _description, QDateTime _date, QString _author, bool _read):
+      parent(parent), title(_title), torrent_url(_torrent_url), news_link(_news_link), description(_description), date(_date), author(_author), read(_read){
     if(!title.isEmpty() && !torrent_url.isEmpty()) {
       is_valid = true;
     } else {
       std::cerr << "ERROR: an invalid RSS item was saved" << std::endl;
       is_valid = false;
     }
-    hash = QCryptographicHash::hash(QByteArray(title.toLocal8Bit()), QCryptographicHash::Md5);
   }
 
   ~RssItem(){
@@ -321,10 +319,14 @@ public:
     return item;
   }
 
-  static RssItem* fromHash(QHash<QString, QVariant> h) {
-    RssItem * item = new RssItem(h["title"].toString(), h["torrent_url"].toString(), h["news_link"].toString(),
+  static RssItem* fromHash(RssStream* parent, QHash<QString, QVariant> h) {
+    RssItem * item = new RssItem(parent, h["title"].toString(), h["torrent_url"].toString(), h["news_link"].toString(),
                                  h["description"].toString(), h["date"].toDateTime(), h["author"].toString(), h["read"].toBool());
     return item;
+  }
+
+  RssStream* getParent() const {
+    return parent;
   }
 
   bool isValid() const {
@@ -341,10 +343,6 @@ public:
 
   QString getTorrentUrl() const{
     return torrent_url;
-  }
-
-  QString getHash() const {
-    return hash;
   }
 
   QString getLink() const {
@@ -371,7 +369,7 @@ public:
 };
 
 // Rss stream, loaded form an xml file
-class RssStream: public RssFile {
+class RssStream: public RssFile, public QHash<QString, RssItem*> {
   Q_OBJECT
 
 private:
@@ -386,7 +384,6 @@ private:
   QString alias;
   QString filePath;
   QString iconPath;
-  QList<RssItem*> listItem;
   bool read;
   bool refreshed;
   bool downloadFailure;
@@ -419,17 +416,16 @@ public:
   QString getIconPath() const;
   bool hasCustomIcon() const;
   void setIconPath(QString path);
-  RssItem* getItem(unsigned int index) const;
+  RssItem* getItem(QString name) const;
   unsigned int getNbNews() const;
   void markAllAsRead();
   unsigned int getNbUnRead() const;
   QList<RssItem*> getNewsList() const;
+  QList<RssItem*> getUnreadNewsList() const;
   QString getIconUrl();
 
 private:
   short readDoc(const QDomDocument& doc);
-  void insertSortElem(QList<RssItem*> &list, RssItem *item);
-  void sortList();
   void resizeList();
   short openRss();
 };
@@ -460,6 +456,8 @@ public:
   QString getName() const;
   QString getID() const { return name; }
   bool hasChild(QString ID) { return this->contains(ID); }
+  QList<RssItem*> getNewsList() const;
+  QList<RssItem*> getUnreadNewsList() const;
 
 public slots:
   void refreshAll();
@@ -497,5 +495,21 @@ public:
   ~RssManager();
 
 };
+
+static void insertSortElem(QList<RssItem*> &list, RssItem *item) {
+  int i = 0;
+  while(i < list.size() && item->getDate() < list.at(i)->getDate()) {
+    ++i;
+  }
+  list.insert(i, item);
+}
+
+static QList<RssItem*> sortNewsList(QList<RssItem*> news_list) {
+  QList<RssItem*> new_list;
+  foreach(RssItem *item, news_list) {
+    insertSortElem(new_list, item);
+  }
+  return new_list;
+}
 
 #endif
