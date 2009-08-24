@@ -345,7 +345,7 @@ void RSSImp::on_markReadButton_clicked() {
   foreach(item, selectedItems){
     RssFile *rss_item = listStreams->getRSSItem(item);
     rss_item->markAllAsRead();
-    item->setData(0, Qt::DisplayRole, rss_item->getName()+ QString::fromUtf8("  (0)"));
+    updateItemInfos(item);
   }
   if(selectedItems.size())
     refreshNewsList(listStreams->currentItem());
