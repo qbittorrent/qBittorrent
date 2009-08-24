@@ -74,6 +74,7 @@ protected slots:
   void askNewFolder();
   void saveFoldersOpenState();
   void loadFoldersOpenState();
+  void displayOverwriteError(QString filename);
 
 public:
   RSSImp(bittorrent *BTSession);

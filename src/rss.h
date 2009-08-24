@@ -459,6 +459,7 @@ public:
   QList<RssStream*> getAllFeeds() const;
   QString getName() const;
   QString getID() const { return name; }
+  bool hasChild(QString ID) { return this->contains(ID); }
 
 public slots:
   void refreshAll();

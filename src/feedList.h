@@ -132,6 +132,7 @@ public:
 
 signals:
   void foldersAltered(QList<QTreeWidgetItem*> folders);
+  void overwriteAttempt(QString filename);
 
 protected slots:
   void updateCurrentFeed(QTreeWidgetItem* new_item) {
@@ -161,6 +162,15 @@ protected:
       dest_folder = rssmanager;
     }
     QList<QTreeWidgetItem *> src_items = selectedItems();
+    // Check if there is not going to overwrite another file
+    foreach(QTreeWidgetItem *src_item, src_items) {
+      RssFile *file = getRSSItem(src_item);
+      if(dest_folder->hasChild(file->getID())) {
+        emit overwriteAttempt(file->getID());
+        return;
+      }
+    }
+    // Proceed with the move
     foreach(QTreeWidgetItem *src_item, src_items) {
       QTreeWidgetItem *parent_folder = src_item->parent();
       if(parent_folder && !folders_altered.contains(parent_folder))
