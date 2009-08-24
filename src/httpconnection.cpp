@@ -200,14 +200,19 @@ void HttpConnection::respondCommand(QString command)
   if(command == "upload")
   {
     QByteArray torrentfile = parser.torrent();
-    // XXX: Trick to get a unique filename
+    // Get a unique filename
     QString filePath;
-    QTemporaryFile *tmpfile = new QTemporaryFile();
-    if (tmpfile->open()) {
-      filePath = tmpfile->fileName();
+    QTemporaryFile tmpfile;
+    tmpfile.setAutoRemove(false);
+    if (tmpfile.open()) {
+      filePath = tmpfile.fileName();
+    } else {
+      std::cerr << "I/O Error: Could not create temporary file" << std::endl;
+      return;
     }
-    delete tmpfile;
-    // write it to HD
+    tmpfile.close();
+    // Now temporary file is created but closed so that it can be used.
+    // write torrent to temporary file
     QFile torrent(filePath);
     if(torrent.open(QIODevice::WriteOnly)) {
       torrent.write(torrentfile);

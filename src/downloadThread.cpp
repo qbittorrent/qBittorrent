@@ -77,13 +77,20 @@ subDownloadThread::~subDownloadThread(){
 }
 
 void subDownloadThread::run(){
-  // XXX: Trick to get a unique filename
+  // Get a unique filename
   QString filePath;
-  QTemporaryFile *tmpfile = new QTemporaryFile();
-  if (tmpfile->open()) {
-    filePath = tmpfile->fileName();
+  QTemporaryFile tmpfile;
+  tmpfile.setAutoRemove(false);
+  if (tmpfile.open()) {
+    filePath = tmpfile.fileName();
+    qDebug("Temporary filename is: %s", filePath.toLocal8Bit().data());
+  } else {
+    emit downloadFailureST(this, url, tr("I/O Error"));
+    return;
   }
-  delete tmpfile;
+  tmpfile.close();
+  // Now temporary file is created but closed so that
+  // curl can use it
   FILE *f = fopen(filePath.toLocal8Bit().data(), "wb");
   if(!f) {
     std::cerr << "couldn't open destination file" << "\n";
