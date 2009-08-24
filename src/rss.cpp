@@ -211,7 +211,7 @@ QString RssFolder::getName() const {
 }
 
 void RssFolder::rename(QString new_name) {
-  Q_ASSERT(parent->contains(new_name));
+  Q_ASSERT(!parent->contains(new_name));
   if(!parent->contains(new_name)) {
     // Update parent
     (*parent)[new_name] = parent->take(name);
