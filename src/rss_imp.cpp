@@ -335,7 +335,8 @@ void RSSImp::copySelectedFeedsURL() {
   QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
   QTreeWidgetItem* item;
   foreach(item, selectedItems){
-    URLs << listStreams->getItemID(item);
+    if(listStreams->getItemType(item) == RssFile::STREAM)
+      URLs << listStreams->getItemID(item);
   }
   qApp->clipboard()->setText(URLs.join("\n"));
 }
