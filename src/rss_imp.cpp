@@ -466,7 +466,12 @@ void RSSImp::updateItemsInfos(QList<QTreeWidgetItem *> items) {
 
 void RSSImp::updateItemInfos(QTreeWidgetItem *item) {
   RssFile *rss_item = listStreams->getRSSItem(item);
-  item->setText(0, rss_item->getName() + QString::fromUtf8("  (") + QString::number(rss_item->getNbUnRead(), 10)+ QString(")"));
+  QString name;
+  if(rss_item == rssmanager)
+    name = tr("Unread");
+  else
+    name = rss_item->getName();
+  item->setText(0, name + QString::fromUtf8("  (") + QString::number(rss_item->getNbUnRead(), 10)+ QString(")"));
   // If item has a parent, update it too
   if(item->parent())
     updateItemInfos(item->parent());
