@@ -34,7 +34,7 @@ public:
     unread_item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/oxygen/mail-folder-inbox.png")));
     itemAdded(unread_item, rssmanager);
     setCurrentItem(unread_item);
-    }
+  }
 
   void itemAdded(QTreeWidgetItem *item, RssFile* file) {
     mapping[item] = file;
@@ -151,13 +151,17 @@ protected slots:
 protected:
   void dragMoveEvent(QDragMoveEvent * event) {
     QTreeWidgetItem *item = itemAt(event->pos());
-    if(item && getItemType(item) != RssFile::FOLDER)
+    if(item == unread_item) {
       event->ignore();
-    else {
-      if(selectedItems().contains(unread_item)) {
+    } else {
+      if(item && getItemType(item) != RssFile::FOLDER)
         event->ignore();
-      } else {
-        QTreeWidget::dragMoveEvent(event);
+      else {
+        if(selectedItems().contains(unread_item)) {
+          event->ignore();
+        } else {
+          QTreeWidget::dragMoveEvent(event);
+        }
       }
     }
   }
