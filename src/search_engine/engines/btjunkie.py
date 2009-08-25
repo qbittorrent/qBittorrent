@@ -1,4 +1,4 @@
-#VERSION: 2.11
+#VERSION: 2.20
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,8 @@ import re
 class btjunkie(object):
   url = 'http://btjunkie.org'
   name = 'btjunkie'
-  
+  supported_categories = {'all': '0', 'movies': '6', 'tv': '4', 'music': '1', 'games': '2', 'anime': '7', 'software': '3'}
+
   def __init__(self):
     self.results = []
     self.parser = self.SimpleSGMLParser(self.results, self.url)
@@ -91,13 +92,13 @@ class btjunkie(object):
               prettyPrinter(self.current_item)
               self.results.append('a')
 
-  def search(self, what):
+  def search(self, what, cat='all'):
     ret = []
     i = 1
     while True and i<11:
       results = []
       parser = self.SimpleSGMLParser(results, self.url)
-      dat = retrieve_url(self.url+'/search?q=%s&o=52&p=%d'%(what,i))
+      dat = retrieve_url(self.url+'/search?q=%s&c=%s&o=52&p=%d'%(what, cat, i))
       # Remove <font> tags from page
       p = re.compile( '<[/]?font.*?>')
       dat = p.sub('', dat)

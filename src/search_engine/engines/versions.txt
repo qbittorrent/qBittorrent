@@ -1,5 +1,5 @@
 isohunt: 1.21
 torrentreactor: 1.11
-btjunkie: 2.11
+btjunkie: 2.20
 mininova: 1.31
 piratebay: 1.11
