@@ -1,4 +1,4 @@
-#VERSION: 1.21
+#VERSION: 1.30
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -32,15 +32,16 @@ from helpers import retrieve_url, download_file
 class isohunt(object):
 	url = 'http://isohunt.com'
 	name = 'isoHunt'
+	supported_categories = {'all': '', 'movies': '1', 'tv': '3', 'music': '2', 'games': '4', 'anime': '7', 'software': '5', 'pictures': '6', 'books': '9'}
 
 	def download_torrent(self, info):
 		print download_file(info)
 
-	def search(self, what):
+	def search(self, what, cat='all'):
 		i = 1
 		while True and i<11:
 			res = 0
-			dat = retrieve_url(self.url+'/torrents.php?ihq=%s&ihp=%s&ihs1=2&iho1=d'%(what,i))
+			dat = retrieve_url(self.url+'/torrents.php?ihq=%s&iht=%s&ihp=%s&ihs1=2&iho1=d'%(what, self.supported_categories[cat],i))
 			# I know it's not very readable, but the SGML parser feels in pain
 			section_re = re.compile('(?s)id=link.*?</tr><tr')
 			torrent_re = re.compile('(?s)torrent_details/(?P<link>.*?[^/]+).*?'
