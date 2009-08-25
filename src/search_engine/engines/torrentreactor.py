@@ -1,5 +1,6 @@
-#VERSION: 1.11
+#VERSION: 1.20
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
+#CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -32,6 +33,7 @@ from helpers import retrieve_url, download_file
 class torrentreactor(object):
 	url = 'http://www.torrentreactor.net'
 	name = 'TorrentReactor.Net'
+	supported_categories = {'all': '', 'movies': '5', 'tv': '8', 'music': '6', 'games': '3', 'anime': '1', 'software': '2'}
 
 	def download_torrent(self, info):
 		print download_file(info)
@@ -90,12 +92,12 @@ class torrentreactor(object):
 		self.results = []
 		self.parser = self.SimpleSGMLParser(self.results, self.url)
 
-	def search(self, what):
+	def search(self, what, cat='all'):
 		i = 0
 		while True and i<11:
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
-			dat = retrieve_url(self.url+'/search.php?search=&words=%s&cid=&sid=&type=2&orderby=a.seeds&asc=0&skip=%s'%(what,(i*35)))
+			dat = retrieve_url(self.url+'/search.php?search=&words=%s&cid=%s&sid=&type=2&orderby=a.seeds&asc=0&skip=%s'%(what, self.supported_categories[cat], (i*35)))
 			parser.feed(dat)
 			parser.close()
 			if len(results) <= 0:

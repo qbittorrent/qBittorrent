@@ -1,4 +1,4 @@
-#VERSION: 2.20
+#VERSION: 2.21
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -98,7 +98,7 @@ class btjunkie(object):
     while True and i<11:
       results = []
       parser = self.SimpleSGMLParser(results, self.url)
-      dat = retrieve_url(self.url+'/search?q=%s&c=%s&o=52&p=%d'%(what, cat, i))
+      dat = retrieve_url(self.url+'/search?q=%s&c=%s&o=52&p=%d'%(what, self.supported_categories[cat], i))
       # Remove <font> tags from page
       p = re.compile( '<[/]?font.*?>')
       dat = p.sub('', dat)
