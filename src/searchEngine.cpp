@@ -76,12 +76,27 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   connect(tabWidget, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
   searchTimeout = new QTimer(this);
   searchTimeout->setSingleShot(true);
-  connect(searchTimeout, SIGNAL(timeout()), this, SLOT(on_stop_search_button_clicked()));
-  // Check last enabled search engines
-  loadEngineSettings();
+  connect(searchTimeout, SIGNAL(timeout()), this, SLOT(on_search_button_clicked()));
   // Update nova.py search plugin if necessary
   updateNova();
+  supported_engines = new SupportedEngines();
+  // Fill in category combobox
+  fillCatCombobox();
   connect(search_pattern, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(displayPatternContextMenu(QPoint)));
+}
+
+void SearchEngine::fillCatCombobox() {
+  comboCategory->clear();
+  comboCategory->addItem(full_cat_names["all"], QVariant("all"));
+  QStringList supported_cat = supported_engines->supportedCategories();
+  foreach(QString cat, supported_cat) {
+    qDebug("Supported category: %s", cat.toLocal8Bit().data());
+    comboCategory->addItem(full_cat_names[cat], QVariant(cat));
+  }
+}
+
+QString SearchEngine::selectedCategory() const {
+  return comboCategory->itemData(comboCategory->currentIndex()).toString();
 }
 
 SearchEngine::~SearchEngine(){
@@ -90,13 +105,14 @@ SearchEngine::~SearchEngine(){
   saveSearchHistory();
   searchProcess->kill();
   searchProcess->waitForFinished();
-	foreach(QProcess *downloader, downloaders) {
-		downloader->kill();
-		downloader->waitForFinished();
-		delete downloader;
-	}
+  foreach(QProcess *downloader, downloaders) {
+    downloader->kill();
+    downloader->waitForFinished();
+    delete downloader;
+  }
   delete searchTimeout;
   delete searchProcess;
+  delete supported_engines;
   if(searchCompleter)
     delete searchCompleter;
 }
@@ -145,20 +161,19 @@ void SearchEngine::displayPatternContextMenu(QPoint) {
 
 void SearchEngine::tab_changed(int t)
 {//when we switch from a tab that is not empty to another that is empty the download button 
-	//doesn't have to be available
-	if(t>-1)
-	{//-1 = no more tab
+  //doesn't have to be available
+  if(t>-1)
+  {//-1 = no more tab
     if(all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel()->rowCount()) {
-        download_button->setEnabled(true);
+      download_button->setEnabled(true);
     } else {
-        download_button->setEnabled(false);
+      download_button->setEnabled(false);
     }
-	}
+  }
 }
 
 void SearchEngine::on_enginesButton_clicked() {
-  engineSelectDlg *dlg = new engineSelectDlg(this);
-  connect(dlg, SIGNAL(enginesChanged()), this, SLOT(loadEngineSettings()));
+  new engineSelectDlg(this, supported_engines);
 }
 
 // get the last searchs from a QSettings to a QStringList
@@ -167,23 +182,6 @@ void SearchEngine::startSearchHistory(){
   settings.beginGroup("Search");
   searchHistory = settings.value("searchHistory",-1).toStringList();
   settings.endGroup();
-}
-
-void SearchEngine::loadEngineSettings() {
-  qDebug("Loading engine settings");
-  enabled_engines.clear();
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QStringList known_engines = settings.value(QString::fromUtf8("SearchEngines/knownEngines"), QStringList()).toStringList();
-  QVariantList known_enginesEnabled = settings.value(QString::fromUtf8("SearchEngines/knownEnginesEnabled"), QList<QVariant>()).toList();
-  unsigned int i = 0;
-  foreach(const QString &engine, known_engines) {
-    if(known_enginesEnabled.at(i).toBool())
-      enabled_engines << engine;
-    ++i;
-  }
-  if(enabled_engines.empty())
-    enabled_engines << "all";
-  qDebug("Engine settings loaded");
 }
 
 // Save the history list into the QSettings for the next session
@@ -198,13 +196,13 @@ void SearchEngine::saveSearchHistory()
 // Function called when we click on search button
 void SearchEngine::on_search_button_clicked(){
   if(searchProcess->state() != QProcess::NotRunning){
-    searchProcess->kill();
-    searchProcess->waitForFinished();
+    searchProcess->terminate();
+    search_stopped = true;
+    if(searchTimeout->isActive()) {
+      searchTimeout->stop();
+    }
     search_button->setText("Search");
     return;
-  }
-  if(searchTimeout->isActive()) {
-    searchTimeout->stop();
   }
   QString pattern = search_pattern->text().trimmed();
   // No search pattern entered
@@ -230,12 +228,13 @@ void SearchEngine::on_search_button_clicked(){
   }
 
   // Getting checked search engines
-  Q_ASSERT(!enabled_engines.empty());
   QStringList params;
   QStringList engineNames;
   search_stopped = false;
   params << misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py";
-  params << enabled_engines.join(",");
+  params << supported_engines->enginesEnabled().join(",");
+  qDebug("Search with category: %s", selectedCategory().toLocal8Bit().data());
+  params << selectedCategory();
   params << pattern.split(" ");
   // Update SearchEngine widgets
   no_search_results = true;
@@ -293,15 +292,15 @@ void SearchEngine::saveResultsColumnsWidth() {
 }
 
 void SearchEngine::downloadTorrent(QString engine_url, QString torrent_url) {
-		QProcess *downloadProcess = new QProcess(this);
-		connect(downloadProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(downloadFinished(int,QProcess::ExitStatus)));
-		downloaders << downloadProcess;
-		QStringList params;
-		params << misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2dl.py";
-		params << engine_url;
-		params << torrent_url;
-		// Launch search
-		downloadProcess->start("python", params, QIODevice::ReadOnly);
+  QProcess *downloadProcess = new QProcess(this);
+  connect(downloadProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(downloadFinished(int,QProcess::ExitStatus)));
+  downloaders << downloadProcess;
+  QStringList params;
+  params << misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2dl.py";
+  params << engine_url;
+  params << torrent_url;
+  // Launch search
+  downloadProcess->start("python", params, QIODevice::ReadOnly);
 }
 
 void SearchEngine::searchStarted(){
@@ -316,7 +315,7 @@ void SearchEngine::downloadSelectedItem(const QModelIndex& index){
   int row = index.row();
   // Get Item url
   QStandardItemModel *model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel();
-	QString engine_url = model->data(model->index(index.row(), ENGINE_URL_COLUMN)).toString();
+  QString engine_url = model->data(model->index(index.row(), ENGINE_URL_COLUMN)).toString();
   QString torrent_url = model->data(model->index(index.row(), URL_COLUMN)).toString();
   // Download from url
   downloadTorrent(engine_url, torrent_url);
@@ -343,19 +342,19 @@ void SearchEngine::readSearchOutput(){
 }
 
 void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
-		QProcess *downloadProcess = (QProcess*)sender();
-		if(exitcode == 0) {
-				QString line = QString::fromUtf8(downloadProcess->readAllStandardOutput()).trimmed();
-				QStringList parts = line.split(' ');
-				if(parts.size() == 2) {
-						QString path = parts[0];
-						QString url = parts[1];
-						BTSession->processDownloadedFile(url, path);
-				}
-		}
-		qDebug("Deleting downloadProcess");
-		downloaders.removeAll(downloadProcess);
-		delete downloadProcess;
+  QProcess *downloadProcess = (QProcess*)sender();
+  if(exitcode == 0) {
+    QString line = QString::fromUtf8(downloadProcess->readAllStandardOutput()).trimmed();
+    QStringList parts = line.split(' ');
+    if(parts.size() == 2) {
+      QString path = parts[0];
+      QString url = parts[1];
+      BTSession->processDownloadedFile(url, path);
+    }
+  }
+  qDebug("Deleting downloadProcess");
+  downloaders.removeAll(downloadProcess);
+  delete downloadProcess;
 }
 
 // Update nova.py search plugin if necessary
@@ -386,8 +385,8 @@ void SearchEngine::updateNova() {
   QFile::Permissions perm=QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadGroup;
   QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py").setPermissions(perm);
 
-	filePath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2dl.py";
-	if(misc::getPluginVersion(":/search_engine/nova2dl.py") > misc::getPluginVersion(filePath)) {
+  filePath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2dl.py";
+  if(misc::getPluginVersion(":/search_engine/nova2dl.py") > misc::getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
       QFile::remove(filePath);
     }
@@ -409,7 +408,7 @@ void SearchEngine::updateNova() {
     }
     QFile::copy(":/search_engine/helpers.py", filePath);
   }
-	QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"helpers.py").setPermissions(perm);
+  QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"helpers.py").setPermissions(perm);
   QString destDir = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator();
   QDir shipped_subDir(":/search_engine/engines/");
   QStringList files = shipped_subDir.entryList();
@@ -462,6 +461,9 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
   if(currentSearchTab)
     currentSearchTab->getCurrentLabel()->setText(tr("Results", "i.e: Search results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
   search_button->setText("Search");
+  if(searchTimeout->isActive()) {
+    searchTimeout->stop();
+  }
 }
 
 // SLOT to append one line to search results list
@@ -491,34 +493,26 @@ void SearchEngine::appendSearchResult(QString line){
   download_button->setEnabled(true);
 }
 
-// Stop search while it is working in background
-void SearchEngine::on_stop_search_button_clicked(){
-  // Kill process
-  searchProcess->terminate();
-  search_stopped = true;
-  searchTimeout->stop();
-}
-
 // Clear search results list
 void SearchEngine::closeTab_button_clicked(){
   if(all_tab.size()) {
     qDebug("currentTab rank: %d", tabWidget->currentIndex());
     qDebug("currentSearchTab rank: %d", tabWidget->indexOf(currentSearchTab));
     if(tabWidget->currentIndex() == tabWidget->indexOf(currentSearchTab)) {
-        qDebug("Deleted current search Tab");
-        if(searchProcess->state() != QProcess::NotRunning){
-            searchProcess->terminate();
-        }
-        if(searchTimeout->isActive()) {
-            searchTimeout->stop();
-        }
-        search_stopped = true;
-        currentSearchTab = 0;
+      qDebug("Deleted current search Tab");
+      if(searchProcess->state() != QProcess::NotRunning){
+        searchProcess->terminate();
+      }
+      if(searchTimeout->isActive()) {
+        searchTimeout->stop();
+      }
+      search_stopped = true;
+      currentSearchTab = 0;
     }
     delete all_tab.takeAt(tabWidget->currentIndex());
     if(!all_tab.size()) {
-        closeTab_button->setEnabled(false);
-        download_button->setEnabled(false);
+      closeTab_button->setEnabled(false);
+      download_button->setEnabled(false);
     }
   }
 }
@@ -532,7 +526,7 @@ void SearchEngine::on_download_button_clicked(){
       // Get Item url
       QStandardItemModel *model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel();
       QString torrent_url = model->data(model->index(index.row(), URL_COLUMN)).toString();
-			QString engine_url = model->data(model->index(index.row(), ENGINE_URL_COLUMN)).toString();
+      QString engine_url = model->data(model->index(index.row(), ENGINE_URL_COLUMN)).toString();
       downloadTorrent(engine_url, torrent_url);
       all_tab.at(tabWidget->currentIndex())->setRowColor(index.row(), "red");
     }

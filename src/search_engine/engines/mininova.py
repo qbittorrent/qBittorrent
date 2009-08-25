@@ -1,4 +1,4 @@
-#VERSION: 1.23
+#VERSION: 1.31
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 
 # Redistribution and use in source and binary forms, with or without
@@ -31,14 +31,15 @@ from xml.dom import minidom
 import re
 
 class mininova(object):
+	# Mandatory properties
 	url = 'http://www.mininova.org'
 	name = 'Mininova'
-	table_items = 'added cat name size seeds leech'.split()
+	supported_categories = {'all': '0', 'movies': '4', 'tv': '8', 'music': '5', 'games': '3', 'anime': '1', 'software': '7', 'pictures': '6', 'books': '2'}
 	
 	def download_torrent(self, info):
 		print download_file(info)
 
-	def search(self, what):
+	def search(self, what, cat='all'):
 
 		def get_link(lnk):
 			lnks = lnk.getElementsByTagName('a')
@@ -71,10 +72,15 @@ class mininova(object):
 				return txt.toxml()
 			else:
 				return ''.join([ get_text(n) for n in txt.childNodes])
+		
+		if cat == 'all':
+			self.table_items = 'added cat name size seeds leech'.split()
+		else:
+			self.table_items = 'added name size seeds leech'.split()
 		page = 1
 		while True and page<11:
 			res = 0
-			dat = retrieve_url(self.url+'/search/%s/seeds/%d'%(what, page))
+			dat = retrieve_url(self.url+'/search/%s/%s/seeds/%d'%(what, self.supported_categories[cat], page))
 			dat = re.sub("<a href=\"http://www.boardreader.com/index.php.*\"", "<a href=\"plop\"", dat)
 			dat = re.sub("<=", "&lt;=", dat)
 			dat = re.sub("&\s", "&amp; ", dat)

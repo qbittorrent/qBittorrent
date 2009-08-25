@@ -32,6 +32,7 @@
 #define ENGINE_SELECT_DLG_H
 
 #include "ui_engineSelect.h"
+#include "supportedEngines.h"
 
 class downloadThread;
 class QDropEvent;
@@ -40,12 +41,11 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
   Q_OBJECT
 
   private:
-    // Search related
-    QHash<QString, bool> installed_engines;
     downloadThread *downloader;
+    SupportedEngines *supported_engines;
 
   public:
-    engineSelectDlg(QWidget *parent);
+    engineSelectDlg(QWidget *parent, SupportedEngines *supported_engines);
     ~engineSelectDlg();
     QList<QTreeWidgetItem*> findItemsWithUrl(QString url);
     QTreeWidgetItem* findItemWithID(QString id);
@@ -53,15 +53,14 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
   protected:
     bool parseVersionsFile(QString versions_file, QString updateServer);
     bool isUpdateNeeded(QString plugin_name, float new_version) const;
-    bool checkInstalled(QString plugin_name) const;
 
   signals:
     void enginesChanged();
 
   protected slots:
-    void saveSettings();
     void on_closeButton_clicked();
-    void loadSupportedSearchEngines(bool first=false);
+    void loadSupportedSearchEngines();
+    void addNewEngine(QString engine_name);
     void toggleEngineState(QTreeWidgetItem*, int);
     void setRowColor(int row, QString color);
     void processDownloadedFile(QString url, QString filePath);

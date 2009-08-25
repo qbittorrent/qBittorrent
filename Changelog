@@ -1,5 +1,6 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.5.0
     - FEATURE: Added Magnet URI support
+    - FEATURE: Search engine supports category-based requests
     - FEATURE: Make use of torrent enclosure in RSS feeds for direct download
     - FEATURE: Implemented a RSS feed downloader with filter support
     - FEATURE: Save old RSS item to hard disk to remember them on start up

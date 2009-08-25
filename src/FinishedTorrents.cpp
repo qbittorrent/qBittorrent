@@ -462,7 +462,7 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint&){
  */
 
 // hide/show columns menu
-void FinishedTorrents::displayFinishedHoSMenu(const QPoint& pos){
+void FinishedTorrents::displayFinishedHoSMenu(const QPoint&){
   QMenu hideshowColumn(this);
   hideshowColumn.setTitle(tr("Hide or Show Column"));
   int lastCol = F_RATIO;
@@ -470,7 +470,7 @@ void FinishedTorrents::displayFinishedHoSMenu(const QPoint& pos){
     hideshowColumn.addAction(getActionHoSCol(i));
   }
   // Call menu
-  hideshowColumn.exec(mapToGlobal(pos)+QPoint(10,34));
+  hideshowColumn.exec(QCursor::pos());
 }
 
 // toggle hide/show a column

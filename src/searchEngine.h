@@ -40,6 +40,7 @@
 #include "ui_search.h"
 #include "engineSelectDlg.h"
 #include "SearchTab.h"
+#include "supportedEngines.h"
 
 class bittorrent;
 class QSystemTrayIcon;
@@ -50,52 +51,55 @@ class SearchEngine;
 class SearchEngine : public QWidget, public Ui::search_engine{
   Q_OBJECT
 
-  private:
-    // Search related
-    QProcess *searchProcess;
-		QList<QProcess*> downloaders;
-    bool search_stopped;
-    bool no_search_results;
-    QByteArray search_result_line_truncated;
-    unsigned long nb_search_results;
-    QPointer<QCompleter> searchCompleter;
-    QStringList searchHistory;
-    bittorrent *BTSession;
-    QSystemTrayIcon *myTrayIcon;
-    bool systrayIntegration;
-    QStringList enabled_engines;
-    QTimer *searchTimeout;
-    SearchTab *currentSearchTab;
-    QPushButton *closeTab_button;
-    QList<SearchTab*> all_tab; // To store all tabs
-  public:
-    SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration);
-    ~SearchEngine();
-    float getPluginVersion(QString filePath) const;
-  public slots:
-    void on_download_button_clicked();
-    void downloadSelectedItem(const QModelIndex& index);
-  protected slots:
-    // Search slots
-    void tab_changed(int);//to prevent the use of the download button when the tab is empty
-    void on_search_button_clicked();
-    void on_stop_search_button_clicked();
-    void closeTab_button_clicked();
-    void appendSearchResult(QString line);
-    void searchFinished(int exitcode,QProcess::ExitStatus);
-    void readSearchOutput();
-    void loadEngineSettings();
-    void searchStarted();
-    void startSearchHistory();
-    void updateNova();
-    void saveSearchHistory();
-    void on_enginesButton_clicked();
-    void propagateSectionResized(int index, int oldsize , int newsize);
-    void saveResultsColumnsWidth();
-		void downloadFinished(int exitcode, QProcess::ExitStatus);
-		void downloadTorrent(QString engine_url, QString torrent_url);
-    void displayPatternContextMenu(QPoint);
-    void createCompleter();
+private:
+  // Search related
+  QProcess *searchProcess;
+  QList<QProcess*> downloaders;
+  bool search_stopped;
+  bool no_search_results;
+  QByteArray search_result_line_truncated;
+  unsigned long nb_search_results;
+  QPointer<QCompleter> searchCompleter;
+  QStringList searchHistory;
+  bittorrent *BTSession;
+  QSystemTrayIcon *myTrayIcon;
+  bool systrayIntegration;
+  SupportedEngines *supported_engines;
+  QTimer *searchTimeout;
+  SearchTab *currentSearchTab;
+  QPushButton *closeTab_button;
+  QList<SearchTab*> all_tab; // To store all tabs
+  const SearchCategories full_cat_names;
+public:
+  SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration);
+  ~SearchEngine();
+  float getPluginVersion(QString filePath) const;
+  QString selectedCategory() const;
+
+public slots:
+  void on_download_button_clicked();
+  void downloadSelectedItem(const QModelIndex& index);
+
+protected slots:
+  // Search slots
+  void tab_changed(int);//to prevent the use of the download button when the tab is empty
+  void on_search_button_clicked();
+  void closeTab_button_clicked();
+  void appendSearchResult(QString line);
+  void searchFinished(int exitcode,QProcess::ExitStatus);
+  void readSearchOutput();
+  void searchStarted();
+  void startSearchHistory();
+  void updateNova();
+  void saveSearchHistory();
+  void on_enginesButton_clicked();
+  void propagateSectionResized(int index, int oldsize , int newsize);
+  void saveResultsColumnsWidth();
+  void downloadFinished(int exitcode, QProcess::ExitStatus);
+  void downloadTorrent(QString engine_url, QString torrent_url);
+  void displayPatternContextMenu(QPoint);
+  void createCompleter();
+  void fillCatCombobox();
 };
 
 #endif

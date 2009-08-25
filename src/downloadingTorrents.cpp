@@ -312,7 +312,7 @@ void DownloadingTorrents::displayDLListMenu(const QPoint&) {
  */
 
 // hide/show columns menu
-void DownloadingTorrents::displayDLHoSMenu(const QPoint& pos){
+void DownloadingTorrents::displayDLHoSMenu(const QPoint&){
   QMenu hideshowColumn(this);
   hideshowColumn.setTitle(tr("Hide or Show Column"));
   int lastCol;
@@ -325,7 +325,7 @@ void DownloadingTorrents::displayDLHoSMenu(const QPoint& pos){
     hideshowColumn.addAction(getActionHoSCol(i));
   }
   // Call menu
-  hideshowColumn.exec(mapToGlobal(pos)+QPoint(10,10));
+  hideshowColumn.exec(QCursor::pos());
 }
 
 // toggle hide/show a column

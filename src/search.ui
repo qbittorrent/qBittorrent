@@ -30,53 +30,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboCategory">
-       <item>
-        <property name="text">
-         <string>All categories</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Movies</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>TV shows</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Music</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Games</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Anime</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Software</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Pictures</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Books</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="comboCategory"/>
      </item>
      <item>
       <widget class="QPushButton" name="search_button">

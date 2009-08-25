@@ -64,15 +64,15 @@ def retrieve_url(url):
     return dat.encode('utf-8', 'replace')
 
 def download_file(url):
-		""" Download file at url and write it to a file, return the path to the file and the url """
-		file, path = tempfile.mkstemp()
-		file = os.fdopen(file, "wb")
-		# Download url
-		req = urllib2.Request(url)
-		response = urllib2.urlopen(req)
-		dat = response.read()
-		# Write it to a file
-		file.write(dat)
-		file.close()
-		# return file path
-		return path+" "+url
+    """ Download file at url and write it to a file, return the path to the file and the url """
+    file, path = tempfile.mkstemp()
+    file = os.fdopen(file, "wb")
+    # Download url
+    req = urllib2.Request(url)
+    response = urllib2.urlopen(req)
+    dat = response.read()
+    # Write it to a file
+    file.write(dat)
+    file.close()
+    # return file path
+    return path+" "+url

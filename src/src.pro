@@ -185,7 +185,8 @@ HEADERS += GUI.h \
     stacktrace.h \
     torrentPersistentData.h \
     FeedDownloader.h \
-    feedList.h
+    feedList.h \
+    supportedEngines.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \
