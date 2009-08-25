@@ -64,10 +64,10 @@ DownloadingTorrents::DownloadingTorrents(QObject *parent, bittorrent *BTSession)
   DLListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress", "i.e: % downloaded"));
   DLListModel->setHeaderData(DLSPEED, Qt::Horizontal, tr("DL Speed", "i.e: Download speed"));
   DLListModel->setHeaderData(UPSPEED, Qt::Horizontal, tr("UP Speed", "i.e: Upload speed"));
-  DLListModel->setHeaderData(SEEDSLEECH, Qt::Horizontal, tr("Seeds/Leechs", "i.e: full/partial sources"));
+  DLListModel->setHeaderData(SEEDSLEECH, Qt::Horizontal, tr("Seeds/Leechers", "i.e: full/partial sources"));
   DLListModel->setHeaderData(RATIO, Qt::Horizontal, tr("Ratio"));
   DLListModel->setHeaderData(ETA, Qt::Horizontal, tr("ETA", "i.e: Estimated Time of Arrival / Time left"));
-  DLListModel->setHeaderData(PRIORITY, Qt::Horizontal, tr("Priority"));
+  DLListModel->setHeaderData(PRIORITY, Qt::Horizontal, "#");
   downloadList->setModel(DLListModel);
   downloadList->setRootIsDecorated(false);
   downloadList->setAllColumnsShowFocus(true);

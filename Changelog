@@ -10,6 +10,7 @@
     - FEATURE: RSS feeds can now be grouped into folders
     - FEATURE: Added "Unread" item to RSS feed list to display all unread news
     - FEATURE: If a torrent contains a torrent file, process downloaded torrent file too
+    - FEATURE: A random listening port can be chosen automatically
     - BUGFIX: torrent resume code rewrited
     - COSMETIC: Redesigned search tab to improve usability
     - COSMETIC: Redesigned RSS tab to improve usability

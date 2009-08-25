@@ -1,5 +1,6 @@
-#VERSION: 1.11
+#VERSION: 1.20
 #AUTHORS: Fabien Devaux (fab@gnux.info)
+#CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -32,7 +33,8 @@ from helpers import retrieve_url, download_file
 class piratebay(object):
 	url = 'http://thepiratebay.org'
 	name = 'The Pirate Bay'
-
+	supported_categories = {'all': '', 'movies': '', 'music': '', 'games': '', 'software': ''}
+	
 	def __init__(self):
 		self.results = []
 		self.parser = self.SimpleSGMLParser(self.results, self.url)
@@ -92,7 +94,7 @@ class piratebay(object):
 							self.current_item['leech'] = 0
 						prettyPrinter(self.current_item)
 						self.results.append('a')
-	def search(self, what):
+	def search(self, what, cat='all'):
 		ret = []
 		i = 0
 		order = 'se'

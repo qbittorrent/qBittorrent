@@ -49,6 +49,9 @@
   #include <QMacStyle>
 #endif
 
+#include <time.h>
+#include <stdlib.h>
+
 #include "options_imp.h"
 #include "misc.h"
 
@@ -187,8 +190,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkScanDir, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(textScanDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   // Connection tab
-  connect(spinPortMin, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-  connect(spinPortMax, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(spinPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkUPnP, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkNATPMP, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkUploadLimit, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
@@ -319,8 +321,6 @@ void options_imp::saveOptions(){
   QSettings settings("qBittorrent", "qBittorrent");
   // Apply style
   useStyle();
-  // Check if min port < max port
-  checkPortsLogic();
   settings.beginGroup("Preferences");
   // General preferences
   settings.beginGroup("General");
@@ -352,8 +352,7 @@ void options_imp::saveOptions(){
   settings.endGroup();
   // Connection preferences
   settings.beginGroup("Connection");
-  settings.setValue(QString::fromUtf8("PortRangeMin"), getPorts().first);
-  settings.setValue(QString::fromUtf8("PortRangeMax"), getPorts().second);
+  settings.setValue(QString::fromUtf8("PortRangeMin"), getPort());
   settings.setValue(QString::fromUtf8("UPnP"), isUPnPEnabled());
   settings.setValue(QString::fromUtf8("NAT-PMP"), isNATPMPEnabled());
   settings.setValue(QString::fromUtf8("GlobalDLLimit"), getGlobalBandwidthLimits().first);
@@ -578,10 +577,7 @@ void options_imp::loadOptions(){
   settings.endGroup();
   // Connection preferences
   settings.beginGroup("Connection");
-  spinPortMin->setValue(settings.value(QString::fromUtf8("PortRangeMin"), 6881).toInt());
-  spinPortMax->setValue(settings.value(QString::fromUtf8("PortRangeMax"), 6889).toInt());
-  // Check if min port < max port
-  checkPortsLogic();
+  spinPort->setValue(settings.value(QString::fromUtf8("PortRangeMin"), 6881).toInt());
   checkUPnP->setChecked(settings.value(QString::fromUtf8("UPnP"), true).toBool());
   checkNATPMP->setChecked(settings.value(QString::fromUtf8("NAT-PMP"), true).toBool());
   intValue = settings.value(QString::fromUtf8("GlobalDLLimit"), -1).toInt();
@@ -777,12 +773,19 @@ void options_imp::loadOptions(){
   textWebUiPassword->setText(settings.value("Password", "").toString());
   // End Web UI
   settings.endGroup();
+  // Random stuff
+  srand(time(0));
 }
 
 // return min & max ports
 // [min, max]
-std::pair<unsigned short, unsigned short> options_imp::getPorts() const{
-  return std::make_pair(spinPortMin->value(), spinPortMax->value());
+int options_imp::getPort() const{
+  return spinPort->value();
+}
+
+void options_imp::on_randomButton_clicked() {
+  // Range [1024: 65535]
+  spinPort->setValue(rand() % 64512 + 1024);
 }
 
 int options_imp::getEncryptionSetting() const{
@@ -1314,15 +1317,6 @@ void options_imp::setLocale(QString locale){
   int indexLocales=locales.indexOf(QRegExp(locale));
   if(indexLocales != -1){
     comboI18n->setCurrentIndex(indexLocales);
-  }
-}
-
-// Is called before saving to check if minPort < maxPort
-void options_imp::checkPortsLogic(){
-  int maxValue = spinPortMax->value();
-  if(spinPortMin->value() > spinPortMax->value()){
-    spinPortMax->setValue(spinPortMin->value());
-    spinPortMin->setValue(maxValue);
   }
 }
 

@@ -122,7 +122,7 @@
        </item>
        <item>
         <property name="text">
-         <string>Network</string>
+         <string>Connection</string>
         </property>
         <property name="textAlignment">
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
@@ -465,7 +465,7 @@
                 </sizepolicy>
                </property>
                <property name="title">
-                <string comment="Action executed when doucle-clicking on an item in transfer (download/upload) list">Transfer lists double-click action</string>
+                <string comment="Action executed when doucle-clicking on an item in transfer (download/upload) list">Action for double click</string>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_4">
                 <item>
@@ -490,17 +490,17 @@
                     </property>
                     <item>
                      <property name="text">
-                      <string>Pause/Start torrent</string>
+                      <string>Start/Stop</string>
                      </property>
                     </item>
                     <item>
                      <property name="text">
-                      <string>Open destination folder</string>
+                      <string>Open folder</string>
                      </property>
                     </item>
                     <item>
                      <property name="text">
-                      <string>Display torrent properties</string>
+                      <string>Show properties</string>
                      </property>
                     </item>
                    </widget>
@@ -533,17 +533,17 @@
                    <widget class="QComboBox" name="actionTorrentFnOnDblClBox">
                     <item>
                      <property name="text">
-                      <string>Pause/Start torrent</string>
+                      <string>Start/Stop</string>
                      </property>
                     </item>
                     <item>
                      <property name="text">
-                      <string>Open destination folder</string>
+                      <string>Open folder</string>
                      </property>
                     </item>
                     <item>
                      <property name="text">
-                      <string>Display torrent properties</string>
+                      <string>Show properties</string>
                      </property>
                     </item>
                    </widget>
@@ -1052,17 +1052,17 @@
                   <item>
                    <widget class="QLabel" name="lbl_ports">
                     <property name="text">
-                     <string>Port range:</string>
+                     <string>Port used for incoming connections:</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QSpinBox" name="spinPortMin">
+                   <widget class="QSpinBox" name="spinPort">
                     <property name="minimum">
                      <number>1000</number>
                     </property>
                     <property name="maximum">
-                     <number>65525</number>
+                     <number>65535</number>
                     </property>
                     <property name="value">
                      <number>6881</number>
@@ -1070,25 +1070,9 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="to_range">
+                   <widget class="QPushButton" name="randomButton">
                     <property name="text">
-                     <string comment="i.e: 1200 to 1300">to</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QSpinBox" name="spinPortMax">
-                    <property name="minimum">
-                     <number>1000</number>
-                    </property>
-                    <property name="maximum">
-                     <number>65525</number>
-                    </property>
-                    <property name="value">
-                     <number>6889</number>
+                     <string>Random</string>
                     </property>
                    </widget>
                   </item>
@@ -1783,7 +1767,7 @@
                  <bool>false</bool>
                 </property>
                 <property name="maximum">
-                 <number>65525</number>
+                 <number>65535</number>
                 </property>
                 <property name="value">
                  <number>8080</number>
@@ -1978,7 +1962,7 @@
                  <bool>false</bool>
                 </property>
                 <property name="maximum">
-                 <number>65525</number>
+                 <number>65535</number>
                 </property>
                 <property name="value">
                  <number>8080</number>
@@ -2315,7 +2299,7 @@
                <bool>true</bool>
               </property>
               <property name="maximum">
-               <number>65525</number>
+               <number>65535</number>
               </property>
               <property name="value">
                <number>80</number>
@@ -2659,8 +2643,7 @@
   <tabstop>checkStartPaused</tabstop>
   <tabstop>checkScanDir</tabstop>
   <tabstop>browseScanDirButton</tabstop>
-  <tabstop>spinPortMin</tabstop>
-  <tabstop>spinPortMax</tabstop>
+  <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>
   <tabstop>checkNATPMP</tabstop>
   <tabstop>checkDHT</tabstop>

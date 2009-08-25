@@ -1027,7 +1027,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     // Connection
     // * Ports binding
     unsigned short old_listenPort = BTSession->getListenPort();
-    BTSession->setListeningPortsRange(options->getPorts());
+    BTSession->setListeningPort(options->getPort());
     unsigned short new_listenPort = BTSession->getListenPort();
     if(new_listenPort != old_listenPort) {
       BTSession->addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg( misc::toQString(new_listenPort)));

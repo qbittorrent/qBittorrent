@@ -1084,7 +1084,8 @@ void bittorrent::disableDirectoryScanning() {
 
 // Set the ports range in which is chosen the port the bittorrent
 // session will listen to
-void bittorrent::setListeningPortsRange(std::pair<unsigned short, unsigned short> ports) {
+void bittorrent::setListeningPort(int port) {
+  std::pair<int,int> ports(port, port);
   s->listen_on(ports);
 }
 

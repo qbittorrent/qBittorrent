@@ -141,7 +141,7 @@ class bittorrent : public QObject {
     void decreaseDlTorrentPriority(QString hash);
     void downloadUrlAndSkipDialog(QString url, QString save_path=QString::null);
     // Session configuration - Setters
-    void setListeningPortsRange(std::pair<unsigned short, unsigned short> ports);
+    void setListeningPort(int port);
     void setMaxConnections(int maxConnec);
     void setMaxConnectionsPerTorrent(int max);
     void setMaxUploadsPerTorrent(int max);

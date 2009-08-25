@@ -88,7 +88,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     int getActionOnDblClOnTorrentDl() const;
     int getActionOnDblClOnTorrentFn() const;
     // Connection options
-    std::pair<unsigned short, unsigned short> getPorts() const;
+    int getPort() const;
     bool isUPnPEnabled() const;
     bool isNATPMPEnabled() const;
     QPair<int,int> getGlobalBandwidthLimits() const;
@@ -165,13 +165,13 @@ class options_imp : public QDialog, private Ui::Dialog {
     void on_browseFilterButton_clicked();
     void on_browseSaveDirButton_clicked();
     void enableApplyButton();
-    void checkPortsLogic();
     void enableSystrayOptions();
     void disableSystrayOptions();
     void setSystrayOptionsState(int checkBoxValue);
     void enableWebUi(bool checkBoxValue);
     void changePage(QListWidgetItem*, QListWidgetItem*);
     void adaptToScreenSize();
+    void on_randomButton_clicked();
 
   public slots:
     void setLocale(QString locale);
