@@ -92,14 +92,14 @@
        </property>
        <item>
         <property name="text">
-         <string>General</string>
+         <string>UI</string>
         </property>
         <property name="textAlignment">
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
          <iconset resource="icons.qrc">
-          <normaloff>:/Icons/oxygen/configure.png</normaloff>:/Icons/oxygen/configure.png</iconset>
+          <normaloff>:/Icons/oxygen/preferences-desktop.png</normaloff>:/Icons/oxygen/preferences-desktop.png</iconset>
         </property>
         <property name="flags">
          <set>ItemIsSelectable|ItemIsEnabled</set>
