@@ -312,9 +312,8 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Connects Max :</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1055"/>
         <source>Port range:</source>
-        <translation>Rangée Ports :</translation>
+        <translation type="obsolete">Rangée Ports :</translation>
     </message>
     <message>
         <source>...</source>
@@ -345,9 +344,9 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">IP du serveur :</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1776"/>
-        <location filename="../options.ui" line="1971"/>
-        <location filename="../options.ui" line="2308"/>
+        <location filename="../options.ui" line="1760"/>
+        <location filename="../options.ui" line="1955"/>
+        <location filename="../options.ui" line="2292"/>
         <source>Port:</source>
         <translation>Port :</translation>
     </message>
@@ -356,9 +355,9 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Le serveur proxy nécessite une authentification</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1816"/>
-        <location filename="../options.ui" line="2011"/>
-        <location filename="../options.ui" line="2347"/>
+        <location filename="../options.ui" line="1800"/>
+        <location filename="../options.ui" line="1995"/>
+        <location filename="../options.ui" line="2331"/>
         <source>Authentication</source>
         <translation>Authentification</translation>
     </message>
@@ -367,9 +366,9 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Nom d&apos;utilisateur :</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1840"/>
-        <location filename="../options.ui" line="2035"/>
-        <location filename="../options.ui" line="2368"/>
+        <location filename="../options.ui" line="1824"/>
+        <location filename="../options.ui" line="2019"/>
+        <location filename="../options.ui" line="2352"/>
         <source>Password:</source>
         <translation>Mot de passe :</translation>
     </message>
@@ -422,12 +421,12 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Filtre IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2208"/>
+        <location filename="../options.ui" line="2192"/>
         <source>Activate IP Filtering</source>
         <translation>Activer le filtrage d&apos;IP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2202"/>
+        <location filename="../options.ui" line="2186"/>
         <source>Filter Settings</source>
         <translation>Paramètres de filtrage</translation>
     </message>
@@ -526,8 +525,8 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Ne jamais afficher d&apos;OSD</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1354"/>
-        <location filename="../options.ui" line="1390"/>
+        <location filename="../options.ui" line="1338"/>
+        <location filename="../options.ui" line="1374"/>
         <source>KiB/s</source>
         <translation>Ko/s</translation>
     </message>
@@ -580,7 +579,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Configuration DHT</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1483"/>
+        <location filename="../options.ui" line="1467"/>
         <source>DHT port:</source>
         <translation>Port DHT :</translation>
     </message>
@@ -614,8 +613,9 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Iconifier lors de la fermeture de la fenêtre</translation>
     </message>
     <message>
+        <location filename="../options.ui" line="125"/>
         <source>Connection</source>
-        <translation type="obsolete">Connexion</translation>
+        <translation type="unfinished">Connexion</translation>
     </message>
     <message>
         <source>Peer eXchange (PeX)</source>
@@ -688,38 +688,38 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Type du Proxy :</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1739"/>
-        <location filename="../options.ui" line="1929"/>
+        <location filename="../options.ui" line="1723"/>
+        <location filename="../options.ui" line="1913"/>
         <source>HTTP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1934"/>
+        <location filename="../options.ui" line="1918"/>
         <source>SOCKS5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2106"/>
+        <location filename="../options.ui" line="2090"/>
         <source>Affected connections</source>
         <translation>Connexions concernées</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2118"/>
+        <location filename="../options.ui" line="2102"/>
         <source>Use proxy for connections to trackers</source>
         <translation>Utiliser le proxy pour les connexions aux trackers</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2134"/>
+        <location filename="../options.ui" line="2118"/>
         <source>Use proxy for connections to regular peers</source>
         <translation>Utiliser le proxy pour les connexions aux autres clients</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2166"/>
+        <location filename="../options.ui" line="2150"/>
         <source>Use proxy for connections to web seeds</source>
         <translation>Utiliser le proxy pour les connexions aux sources web</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2150"/>
+        <location filename="../options.ui" line="2134"/>
         <source>Use proxy for DHT messages</source>
         <translation>Utiliser le proxy pour les connexions DHT (sans tracker)</translation>
     </message>
@@ -732,17 +732,17 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Etat du cryptage :</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1548"/>
+        <location filename="../options.ui" line="1532"/>
         <source>Enabled</source>
         <translation>Activé</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1553"/>
+        <location filename="../options.ui" line="1537"/>
         <source>Forced</source>
         <translation>Forcé</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1558"/>
+        <location filename="../options.ui" line="1542"/>
         <source>Disabled</source>
         <translation>Désactivé</translation>
     </message>
@@ -757,9 +757,8 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation>Général</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="125"/>
         <source>Network</source>
-        <translation>Réseau</translation>
+        <translation type="obsolete">Réseau</translation>
     </message>
     <message>
         <location filename="../options.ui" line="219"/>
@@ -868,6 +867,24 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation>Liste de téléchargement :</translation>
     </message>
     <message>
+        <location filename="../options.ui" line="493"/>
+        <location filename="../options.ui" line="536"/>
+        <source>Start/Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="498"/>
+        <location filename="../options.ui" line="541"/>
+        <source>Open folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="503"/>
+        <location filename="../options.ui" line="546"/>
+        <source>Show properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../options.ui" line="528"/>
         <source>Seeding list:</source>
         <translation>Liste d&apos;envoi :</translation>
@@ -893,73 +910,72 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation>Port d&apos;écoute</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1075"/>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
-        <translation>à</translation>
+        <translation type="obsolete">à</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1113"/>
+        <location filename="../options.ui" line="1097"/>
         <source>Enable UPnP port mapping</source>
         <translation>Activer l&apos;UPnP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1123"/>
+        <location filename="../options.ui" line="1107"/>
         <source>Enable NAT-PMP port mapping</source>
         <translation>Activer le NAT-PMP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1284"/>
+        <location filename="../options.ui" line="1268"/>
         <source>Global bandwidth limiting</source>
         <translation>Limitation globale de bande passante</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1300"/>
+        <location filename="../options.ui" line="1284"/>
         <source>Upload:</source>
         <translation>Envoi :</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1316"/>
+        <location filename="../options.ui" line="1300"/>
         <source>Download:</source>
         <translation>Téléchargement :</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1436"/>
+        <location filename="../options.ui" line="1420"/>
         <source>Bittorrent features</source>
         <translation>Fonctionnalités Bittorrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1452"/>
+        <location filename="../options.ui" line="1436"/>
         <source>Use the same port for DHT and Bittorrent</source>
         <translation>Utiliser le même port pour le DHT et Bittorrent</translation>
     </message>
     <message utf8="true">
-        <location filename="../options.ui" line="1531"/>
+        <location filename="../options.ui" line="1515"/>
         <source>Spoof µtorrent to avoid ban (requires restart)</source>
         <translation>Se faire passer pour µtorrent pour éviter le blocage (redémarrage requis)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1726"/>
-        <location filename="../options.ui" line="1916"/>
+        <location filename="../options.ui" line="1710"/>
+        <location filename="../options.ui" line="1900"/>
         <source>Type:</source>
         <translation>Type :</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1734"/>
-        <location filename="../options.ui" line="1924"/>
+        <location filename="../options.ui" line="1718"/>
+        <location filename="../options.ui" line="1908"/>
         <source>(None)</source>
         <translation>(Aucun)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1750"/>
-        <location filename="../options.ui" line="1945"/>
+        <location filename="../options.ui" line="1734"/>
+        <location filename="../options.ui" line="1929"/>
         <source>Proxy:</source>
         <translation>Serveur mandataire (proxy) :</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1830"/>
-        <location filename="../options.ui" line="2025"/>
-        <location filename="../options.ui" line="2358"/>
+        <location filename="../options.ui" line="1814"/>
+        <location filename="../options.ui" line="2009"/>
+        <location filename="../options.ui" line="2342"/>
         <source>Username:</source>
         <translation>Nom d&apos;utilisateur :</translation>
     </message>
@@ -969,28 +985,22 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="468"/>
-        <source>Transfer lists double-click action</source>
-        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../options.ui" line="1140"/>
+        <location filename="../options.ui" line="1124"/>
         <source>Connections limit</source>
         <translation>Limite de connections</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1148"/>
+        <location filename="../options.ui" line="1132"/>
         <source>Global maximum number of connections:</source>
         <translation>Nombre global maximum de connexions :</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1196"/>
+        <location filename="../options.ui" line="1180"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Nombre maximum de connexions par torrent :</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1241"/>
+        <location filename="../options.ui" line="1225"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Nombre maximum de slots d&apos;envoi par torrent :</translation>
     </message>
@@ -999,7 +1009,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Fonctionnalités Bittorrent additionnelles</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1442"/>
+        <location filename="../options.ui" line="1426"/>
         <source>Enable DHT network (decentralized)</source>
         <translation>Activer le réseau DHT (décentralisé)</translation>
     </message>
@@ -1008,22 +1018,22 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Activer l&apos;échange de sources (PeX)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1521"/>
+        <location filename="../options.ui" line="1505"/>
         <source>Enable Local Peer Discovery</source>
         <translation>Activer la recherche locale de sources</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1540"/>
+        <location filename="../options.ui" line="1524"/>
         <source>Encryption:</source>
         <translation>Chiffrement :</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1584"/>
+        <location filename="../options.ui" line="1568"/>
         <source>Share ratio settings</source>
         <translation>Paramètres du ratio de partage</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1592"/>
+        <location filename="../options.ui" line="1576"/>
         <source>Desired ratio:</source>
         <translation>Ratio désiré :</translation>
     </message>
@@ -1032,7 +1042,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Supprimer les torrent</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2224"/>
+        <location filename="../options.ui" line="2208"/>
         <source>Filter file path:</source>
         <translation>Chemin vers le fichier de filtrage :</translation>
     </message>
@@ -1048,22 +1058,22 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     </message>
     <message>
         <location filename="../options.ui" line="194"/>
-        <location filename="../options.ui" line="2446"/>
+        <location filename="../options.ui" line="2430"/>
         <source>RSS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2499"/>
+        <location filename="../options.ui" line="2483"/>
         <source>RSS feeds refresh interval:</source>
         <translation>Intervalle de rafraîchissement des flux RSS :</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2519"/>
+        <location filename="../options.ui" line="2503"/>
         <source>minutes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2543"/>
+        <location filename="../options.ui" line="2527"/>
         <source>Maximum number of articles per feed:</source>
         <translation>Numbre maximum d&apos;articles par flux :</translation>
     </message>
@@ -1073,7 +1083,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation>Système de fichiers</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1646"/>
+        <location filename="../options.ui" line="1630"/>
         <source>Remove finished torrents when their ratio reaches:</source>
         <translation>Supprimer les torrents terminés lorsque leur ratio atteint :</translation>
     </message>
@@ -1097,22 +1107,16 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Dans la liste de téléchargement :</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="493"/>
-        <location filename="../options.ui" line="536"/>
         <source>Pause/Start torrent</source>
-        <translation>Mettre en pause / Démarrer</translation>
+        <translation type="obsolete">Mettre en pause / Démarrer</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="498"/>
-        <location filename="../options.ui" line="541"/>
         <source>Open destination folder</source>
-        <translation>Ouvrir le répertoire de destination</translation>
+        <translation type="obsolete">Ouvrir le répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="503"/>
-        <location filename="../options.ui" line="546"/>
         <source>Display torrent properties</source>
-        <translation>Afficher les propriétés du torrent</translation>
+        <translation type="obsolete">Afficher les propriétés du torrent</translation>
     </message>
     <message>
         <source>In seeding list:</source>
@@ -1136,22 +1140,38 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation>Interface Web</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2286"/>
+        <location filename="../options.ui" line="468"/>
+        <source>Action for double click</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1055"/>
+        <source>Port used for incoming connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="1075"/>
+        <source>Random</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="2270"/>
         <source>Enable Web User Interface</source>
         <translation>Activer l&apos;interface Web</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2299"/>
+        <location filename="../options.ui" line="2283"/>
         <source>HTTP Server</source>
         <translation>Serveur HTTP</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2452"/>
+        <location filename="../options.ui" line="2436"/>
         <source>Enable RSS support</source>
         <translation>Activer le module RSS</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="2462"/>
+        <location filename="../options.ui" line="2446"/>
         <source>RSS settings</source>
         <translation>Paramètres du RSS</translation>
     </message>
@@ -1186,12 +1206,12 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation>Serveur mandataire</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1718"/>
+        <location filename="../options.ui" line="1702"/>
         <source>Search engine proxy settings</source>
         <translation>Paramètres du proxy (moteur de recherche)</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="1908"/>
+        <location filename="../options.ui" line="1892"/>
         <source>Bittorrent proxy settings</source>
         <translation>Paramètres du proxy (Bittorrent)</translation>
     </message>
@@ -1235,9 +1255,14 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="67"/>
+        <source>Seeds/Leechers</source>
+        <comment>i.e: full/partial sources</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation>Sources complètes / partielles</translation>
+        <translation type="obsolete">Sources complètes / partielles</translation>
     </message>
     <message>
         <location filename="../downloadingTorrents.cpp" line="68"/>
@@ -1320,9 +1345,8 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">UPnP/NAT-PMP : Réussite du mapping de port, message : %1</translation>
     </message>
     <message>
-        <location filename="../downloadingTorrents.cpp" line="70"/>
         <source>Priority</source>
-        <translation>Priorité</translation>
+        <translation type="obsolete">Priorité</translation>
     </message>
 </context>
 <context>
@@ -3173,12 +3197,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="155"/>
+        <location filename="../rss_imp.cpp" line="159"/>
         <source>Please type a rss stream url</source>
         <translation>Veuillez entrer l&apos;url du flux RSS</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="155"/>
+        <location filename="../rss_imp.cpp" line="159"/>
         <source>Stream URL:</source>
         <translation>URL du flux :</translation>
     </message>
@@ -3195,8 +3219,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Aucune description disponible</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="185"/>
-        <location filename="../rss_imp.cpp" line="189"/>
+        <location filename="../rss_imp.cpp" line="193"/>
+        <location filename="../rss_imp.cpp" line="197"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Etes vous sûr ? -- qBittorrent</translation>
     </message>
@@ -3205,14 +3229,14 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Etes-vous certain de vouloir supprimer ce flux de la liste ?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="186"/>
-        <location filename="../rss_imp.cpp" line="190"/>
+        <location filename="../rss_imp.cpp" line="194"/>
+        <location filename="../rss_imp.cpp" line="198"/>
         <source>&amp;Yes</source>
         <translation>&amp;Oui</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="186"/>
-        <location filename="../rss_imp.cpp" line="190"/>
+        <location filename="../rss_imp.cpp" line="194"/>
+        <location filename="../rss_imp.cpp" line="198"/>
         <source>&amp;No</source>
         <translation>&amp;Non</translation>
     </message>
@@ -3267,57 +3291,57 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="160"/>
+        <location filename="../rss_imp.cpp" line="164"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="161"/>
+        <location filename="../rss_imp.cpp" line="165"/>
         <source>This rss feed is already in the list.</source>
         <translation>Cette source RSS est déjà dans votre liste.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="185"/>
+        <location filename="../rss_imp.cpp" line="193"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="189"/>
+        <location filename="../rss_imp.cpp" line="197"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="291"/>
+        <location filename="../rss_imp.cpp" line="299"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="291"/>
+        <location filename="../rss_imp.cpp" line="299"/>
         <source>New feed name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="294"/>
+        <location filename="../rss_imp.cpp" line="302"/>
         <source>Name already in use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="294"/>
+        <location filename="../rss_imp.cpp" line="302"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="425"/>
+        <location filename="../rss_imp.cpp" line="442"/>
         <source>Date: </source>
         <translation>Date : </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="428"/>
+        <location filename="../rss_imp.cpp" line="445"/>
         <source>Author: </source>
         <translation>Auteur : </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="471"/>
+        <location filename="../rss_imp.cpp" line="488"/>
         <source>Unread</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3348,6 +3372,54 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>SearchCategories</name>
+    <message>
+        <location filename="../supportedEngines.h" line="49"/>
+        <source>All categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../supportedEngines.h" line="50"/>
+        <source>Movies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../supportedEngines.h" line="51"/>
+        <source>TV shows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../supportedEngines.h" line="52"/>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../supportedEngines.h" line="53"/>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../supportedEngines.h" line="54"/>
+        <source>Anime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../supportedEngines.h" line="55"/>
+        <source>Software</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../supportedEngines.h" line="56"/>
+        <source>Pictures</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../supportedEngines.h" line="57"/>
+        <source>Books</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchEngine</name>
     <message>
         <source>Name</source>
@@ -3374,12 +3446,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Moteur de recherche</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="210"/>
+        <location filename="../searchEngine.cpp" line="211"/>
         <source>Empty search pattern</source>
         <translation>Motif de recherche vide</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="210"/>
+        <location filename="../searchEngine.cpp" line="211"/>
         <source>Please type a search pattern first</source>
         <translation>Veuillez entrer un motif de recherche d&apos;abord</translation>
     </message>
@@ -3392,13 +3464,13 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Vous devez sélectionner au moins un moteur de recherche.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="243"/>
-        <location filename="../searchEngine.cpp" line="345"/>
+        <location filename="../searchEngine.cpp" line="245"/>
+        <location filename="../searchEngine.cpp" line="342"/>
         <source>Results</source>
         <translation>Résultats</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="307"/>
+        <location filename="../searchEngine.cpp" line="309"/>
         <source>Searching...</source>
         <translation>Recherche en cours...</translation>
     </message>
@@ -3441,58 +3513,58 @@ Changements:
         <translation type="obsolete">Votre greffon de recherche est déjà à jour.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="106"/>
+        <location filename="../searchEngine.cpp" line="122"/>
         <source>Cut</source>
         <translation>Couper</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="107"/>
+        <location filename="../searchEngine.cpp" line="123"/>
         <source>Copy</source>
         <translation>Copier</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="108"/>
+        <location filename="../searchEngine.cpp" line="124"/>
         <source>Paste</source>
         <translation>Coller</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="109"/>
+        <location filename="../searchEngine.cpp" line="125"/>
         <source>Clear field</source>
         <translation>Vider le champ</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="110"/>
+        <location filename="../searchEngine.cpp" line="126"/>
         <source>Clear completion history</source>
         <translation>Vider l&apos;historique d&apos;autocomplétion</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="450"/>
+        <location filename="../searchEngine.cpp" line="447"/>
         <source>Search Engine</source>
         <translation>Moteur de recherche</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="450"/>
-        <location filename="../searchEngine.cpp" line="461"/>
+        <location filename="../searchEngine.cpp" line="447"/>
+        <location filename="../searchEngine.cpp" line="458"/>
         <source>Search has finished</source>
         <translation>Fin de la recherche</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="453"/>
+        <location filename="../searchEngine.cpp" line="450"/>
         <source>An error occured during search...</source>
         <translation>Une erreur s&apos;est produite lors de la recherche...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="456"/>
+        <location filename="../searchEngine.cpp" line="453"/>
         <source>Search aborted</source>
         <translation>La recherche a été interrompue</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="459"/>
+        <location filename="../searchEngine.cpp" line="456"/>
         <source>Search returned no results</source>
         <translation>La recherche n&apos;a retourné aucun résultat</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="466"/>
+        <location filename="../searchEngine.cpp" line="463"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Résultats</translation>
@@ -3506,7 +3578,7 @@ Changements:
         <translation type="obsolete">Impossible de télécharger la mise à jour du greffon de recherche à l&apos;url : %1, raison : %2.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="487"/>
+        <location filename="../searchEngine.cpp" line="486"/>
         <source>Unknown</source>
         <translation>Inconnu</translation>
     </message>
@@ -3893,43 +3965,43 @@ Changements:
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été banni suite à l&apos;envoi de données corrompues&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1257"/>
+        <location filename="../bittorrent.cpp" line="1258"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1268"/>
+        <location filename="../bittorrent.cpp" line="1269"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1310"/>
+        <location filename="../bittorrent.cpp" line="1311"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Impossible d&apos;écouter sur les ports donnés.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1349"/>
+        <location filename="../bittorrent.cpp" line="1350"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP : Echec de mapping du port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1354"/>
+        <location filename="../bittorrent.cpp" line="1355"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP : Réussite du mapping de port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1369"/>
+        <location filename="../bittorrent.cpp" line="1370"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Le relancement rapide a échoué pour le torrent %1, revérification...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1374"/>
+        <location filename="../bittorrent.cpp" line="1375"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Le contact de la source HTTP a échoué à l&apos;url : %1, message : %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1442"/>
+        <location filename="../bittorrent.cpp" line="1443"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
@@ -4497,27 +4569,20 @@ Changements:
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="145"/>
-        <location filename="../engineSelectDlg.cpp" line="229"/>
-        <location filename="../engineSelectDlg.cpp" line="324"/>
         <source>True</source>
-        <translation>Oui</translation>
+        <translation type="obsolete">Oui</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="148"/>
-        <location filename="../engineSelectDlg.cpp" line="195"/>
-        <location filename="../engineSelectDlg.cpp" line="242"/>
-        <location filename="../engineSelectDlg.cpp" line="326"/>
         <source>False</source>
-        <translation>Non</translation>
+        <translation type="obsolete">Non</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="216"/>
+        <location filename="../engineSelectDlg.cpp" line="197"/>
         <source>Uninstall warning</source>
         <translation>Désinstallation</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="216"/>
+        <location filename="../engineSelectDlg.cpp" line="197"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -4526,7 +4591,7 @@ However, those plugins were disabled.</source>
 Cependant, les greffons en question ont été désactivés.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="218"/>
+        <location filename="../engineSelectDlg.cpp" line="199"/>
         <source>Uninstall success</source>
         <translation>Désinstallation réussie</translation>
     </message>
@@ -4535,47 +4600,62 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Tous les greffons sélectionnés ont été désinstallés avec succès</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="553"/>
+        <location filename="../engineSelectDlg.cpp" line="474"/>
         <source>Select search plugins</source>
         <translation>Sélectionnez les greffons</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="555"/>
-        <location filename="../engineSelectDlg.cpp" line="557"/>
+        <location filename="../engineSelectDlg.cpp" line="476"/>
+        <location filename="../engineSelectDlg.cpp" line="478"/>
         <source>qBittorrent search plugins</source>
         <translation>Greffons de recherche de qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="384"/>
-        <location filename="../engineSelectDlg.cpp" line="433"/>
-        <location filename="../engineSelectDlg.cpp" line="444"/>
-        <location filename="../engineSelectDlg.cpp" line="490"/>
-        <location filename="../engineSelectDlg.cpp" line="512"/>
-        <location filename="../engineSelectDlg.cpp" line="517"/>
-        <location filename="../engineSelectDlg.cpp" line="528"/>
-        <location filename="../engineSelectDlg.cpp" line="531"/>
+        <location filename="../engineSelectDlg.cpp" line="268"/>
+        <location filename="../engineSelectDlg.cpp" line="317"/>
+        <location filename="../engineSelectDlg.cpp" line="328"/>
+        <location filename="../engineSelectDlg.cpp" line="374"/>
+        <location filename="../engineSelectDlg.cpp" line="398"/>
+        <location filename="../engineSelectDlg.cpp" line="403"/>
+        <location filename="../engineSelectDlg.cpp" line="412"/>
+        <location filename="../engineSelectDlg.cpp" line="415"/>
         <source>Search plugin install</source>
         <translation>Installation d&apos;un greffon de recherche</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="384"/>
-        <location filename="../engineSelectDlg.cpp" line="433"/>
-        <location filename="../engineSelectDlg.cpp" line="444"/>
-        <location filename="../engineSelectDlg.cpp" line="490"/>
-        <location filename="../engineSelectDlg.cpp" line="512"/>
-        <location filename="../engineSelectDlg.cpp" line="517"/>
-        <location filename="../engineSelectDlg.cpp" line="528"/>
-        <location filename="../engineSelectDlg.cpp" line="531"/>
-        <location filename="../engineSelectDlg.cpp" line="616"/>
-        <location filename="../engineSelectDlg.cpp" line="656"/>
-        <location filename="../engineSelectDlg.cpp" line="690"/>
-        <location filename="../engineSelectDlg.cpp" line="698"/>
-        <location filename="../engineSelectDlg.cpp" line="704"/>
+        <location filename="../engineSelectDlg.cpp" line="127"/>
+        <location filename="../engineSelectDlg.cpp" line="210"/>
+        <location filename="../engineSelectDlg.cpp" line="435"/>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="130"/>
+        <location filename="../engineSelectDlg.cpp" line="176"/>
+        <location filename="../engineSelectDlg.cpp" line="223"/>
+        <location filename="../engineSelectDlg.cpp" line="438"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../engineSelectDlg.cpp" line="268"/>
+        <location filename="../engineSelectDlg.cpp" line="317"/>
+        <location filename="../engineSelectDlg.cpp" line="328"/>
+        <location filename="../engineSelectDlg.cpp" line="374"/>
+        <location filename="../engineSelectDlg.cpp" line="398"/>
+        <location filename="../engineSelectDlg.cpp" line="403"/>
+        <location filename="../engineSelectDlg.cpp" line="412"/>
+        <location filename="../engineSelectDlg.cpp" line="415"/>
+        <location filename="../engineSelectDlg.cpp" line="537"/>
+        <location filename="../engineSelectDlg.cpp" line="577"/>
+        <location filename="../engineSelectDlg.cpp" line="611"/>
+        <location filename="../engineSelectDlg.cpp" line="619"/>
+        <location filename="../engineSelectDlg.cpp" line="625"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="490"/>
+        <location filename="../engineSelectDlg.cpp" line="374"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Une version plus récente du greffon %1 est déjà installée.</translation>
@@ -4591,17 +4671,17 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Le greffon %1 a été installé avec succès.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="616"/>
-        <location filename="../engineSelectDlg.cpp" line="656"/>
-        <location filename="../engineSelectDlg.cpp" line="690"/>
-        <location filename="../engineSelectDlg.cpp" line="698"/>
-        <location filename="../engineSelectDlg.cpp" line="704"/>
+        <location filename="../engineSelectDlg.cpp" line="537"/>
+        <location filename="../engineSelectDlg.cpp" line="577"/>
+        <location filename="../engineSelectDlg.cpp" line="611"/>
+        <location filename="../engineSelectDlg.cpp" line="619"/>
+        <location filename="../engineSelectDlg.cpp" line="625"/>
         <source>Search plugin update</source>
         <translation>Mise à jour du greffon de recherche</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="656"/>
-        <location filename="../engineSelectDlg.cpp" line="690"/>
+        <location filename="../engineSelectDlg.cpp" line="577"/>
+        <location filename="../engineSelectDlg.cpp" line="611"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Désolé, le serveur de mise à jour est temporairement indisponible.</translation>
     </message>
@@ -4616,37 +4696,37 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Désolé, la mise à jour du greffon %1 a échoué.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="616"/>
+        <location filename="../engineSelectDlg.cpp" line="537"/>
         <source>All your plugins are already up to date.</source>
         <translation>Tous vos greffons de recherche sont déjà à jour.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="512"/>
+        <location filename="../engineSelectDlg.cpp" line="398"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Le greffon de recherche %1 n&apos;a pas pu être mis à jour, l&apos;ancienne version est conservée.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="433"/>
-        <location filename="../engineSelectDlg.cpp" line="444"/>
-        <location filename="../engineSelectDlg.cpp" line="517"/>
+        <location filename="../engineSelectDlg.cpp" line="317"/>
+        <location filename="../engineSelectDlg.cpp" line="328"/>
+        <location filename="../engineSelectDlg.cpp" line="403"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Le greffon de recherche %1 n&apos;a pas pu être installé.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="218"/>
+        <location filename="../engineSelectDlg.cpp" line="199"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>Tous les greffons sélectionnés ont été désinstallés avec succès</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="528"/>
+        <location filename="../engineSelectDlg.cpp" line="412"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Le greffon %1 a été mis à jour avec succès.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="531"/>
+        <location filename="../engineSelectDlg.cpp" line="415"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Le greffon %1 a été installé avec succès.</translation>
@@ -4657,24 +4737,24 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Le greffon %1 a été mis à jour avec succès.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="384"/>
+        <location filename="../engineSelectDlg.cpp" line="268"/>
         <source>Search engine plugin archive could not be read.</source>
         <translation>L&apos;archive contenant le greffon de recherche n&apos;a pas pu être lue.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="698"/>
-        <location filename="../engineSelectDlg.cpp" line="704"/>
+        <location filename="../engineSelectDlg.cpp" line="619"/>
+        <location filename="../engineSelectDlg.cpp" line="625"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Désolé, l&apos;installation du greffon de recherche %1 a échouée.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="544"/>
+        <location filename="../engineSelectDlg.cpp" line="465"/>
         <source>New search engine plugin URL</source>
         <translation>Adresse du nouveau greffon de recherche</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="545"/>
+        <location filename="../engineSelectDlg.cpp" line="466"/>
         <source>URL:</source>
         <translation>Adresse :</translation>
     </message>
@@ -4867,8 +4947,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Préférences sauvegardées avec succès.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1357"/>
-        <location filename="../options_imp.cpp" line="1359"/>
+        <location filename="../options_imp.cpp" line="1351"/>
+        <location filename="../options_imp.cpp" line="1353"/>
         <source>Choose scan directory</source>
         <translation>Choisir le dossier à surveiller</translation>
     </message>
@@ -4877,8 +4957,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Choisir un fichier ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1380"/>
-        <location filename="../options_imp.cpp" line="1382"/>
+        <location filename="../options_imp.cpp" line="1374"/>
+        <location filename="../options_imp.cpp" line="1376"/>
         <source>Choose a save directory</source>
         <translation>Choisir un répertoire de sauvegarde</translation>
     </message>
@@ -4892,8 +4972,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Impossible d&apos;ouvrir %1 en lecture.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1368"/>
-        <location filename="../options_imp.cpp" line="1370"/>
+        <location filename="../options_imp.cpp" line="1362"/>
+        <location filename="../options_imp.cpp" line="1364"/>
         <source>Choose an ip filter file</source>
         <translation>Choisir un fichier de filtrage IP</translation>
     </message>
@@ -4902,8 +4982,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Filtres (*.dat *.p2p *.p2b)</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1368"/>
-        <location filename="../options_imp.cpp" line="1370"/>
+        <location filename="../options_imp.cpp" line="1362"/>
+        <location filename="../options_imp.cpp" line="1364"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>
@@ -5424,7 +5504,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <name>search_engine</name>
     <message>
         <location filename="../search.ui" line="14"/>
-        <location filename="../search.ui" line="94"/>
+        <location filename="../search.ui" line="44"/>
         <source>Search</source>
         <translation>Recherche</translation>
     </message>
@@ -5433,22 +5513,20 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Moteur de recherche</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="45"/>
         <source>Search Pattern:</source>
-        <translation>Motif de recherche :</translation>
+        <translation type="obsolete">Motif de recherche :</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="110"/>
         <source>Stop</source>
-        <translation>Stopper</translation>
+        <translation type="obsolete">Stopper</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="145"/>
+        <location filename="../search.ui" line="72"/>
         <source>Status:</source>
         <translation>Statut :</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="175"/>
+        <location filename="../search.ui" line="102"/>
         <source>Stopped</source>
         <translation>Stoppé</translation>
     </message>
@@ -5457,7 +5535,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Résultats :</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="219"/>
+        <location filename="../search.ui" line="146"/>
         <source>Download</source>
         <translation>Télécharger</translation>
     </message>
@@ -5470,7 +5548,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Mettre à jour le greffon de recherche</translation>
     </message>
     <message>
-        <location filename="../search.ui" line="117"/>
+        <location filename="../search.ui" line="166"/>
         <source>Search engines...</source>
         <translation>Moteurs de recherche...</translation>
     </message>

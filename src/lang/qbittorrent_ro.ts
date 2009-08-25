@@ -177,7 +177,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Port range:</source>
-        <translation>Domeniul portului:</translation>
+        <translation type="obsolete">Domeniul portului:</translation>
     </message>
     <message>
         <source>...</source>
@@ -445,7 +445,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connection</source>
-        <translation type="obsolete">Conectare</translation>
+        <translation type="unfinished">Conectare</translation>
     </message>
     <message>
         <source>Peer eXchange (PeX)</source>
@@ -573,7 +573,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Network</source>
-        <translation>Rețea</translation>
+        <translation type="obsolete">Rețea</translation>
     </message>
     <message>
         <source>User interface settings</source>
@@ -687,7 +687,7 @@ qBittorrent va monitoriza directoriul și va adăuga în lista de descărcare a 
     <message>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
-        <translation>la</translation>
+        <translation type="obsolete">la</translation>
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
@@ -836,15 +836,15 @@ qBittorrent va monitoriza directoriul și va adăuga în lista de descărcare a 
     </message>
     <message>
         <source>Pause/Start torrent</source>
-        <translation>Pauza/Pornire torrent</translation>
+        <translation type="obsolete">Pauza/Pornire torrent</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>Deschide directoriul destinaţie</translation>
+        <translation type="obsolete">Deschide directoriul destinaţie</translation>
     </message>
     <message>
         <source>Display torrent properties</source>
-        <translation>Afişeaza proprietăţile torrentului</translation>
+        <translation type="obsolete">Afişeaza proprietăţile torrentului</translation>
     </message>
     <message>
         <source>In seeding list:</source>
@@ -919,8 +919,28 @@ qBittorrent va monitoriza directoriul și va adăuga în lista de descărcare a 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Transfer lists double-click action</source>
+        <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port used for incoming connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Random</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -954,7 +974,7 @@ qBittorrent va monitoriza directoriul și va adăuga în lista de descărcare a 
     <message>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation>Sideri/Licheri</translation>
+        <translation type="obsolete">Sideri/Licheri</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -1034,7 +1054,12 @@ qBittorrent va monitoriza directoriul și va adăuga în lista de descărcare a 
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioritate</translation>
+        <translation type="obsolete">Prioritate</translation>
+    </message>
+    <message>
+        <source>Seeds/Leechers</source>
+        <comment>i.e: full/partial sources</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2590,6 +2615,45 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>SearchCategories</name>
+    <message>
+        <source>All categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TV shows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Software</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pictures</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchEngine</name>
     <message>
         <source>Name</source>
@@ -3539,11 +3603,11 @@ Changelog:
     <name>engineSelectDlg</name>
     <message>
         <source>True</source>
-        <translation>Adevărat</translation>
+        <translation type="obsolete">Adevărat</translation>
     </message>
     <message>
         <source>False</source>
-        <translation>Fals</translation>
+        <translation type="obsolete">Fals</translation>
     </message>
     <message>
         <source>Uninstall warning</source>
@@ -3634,6 +3698,14 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     <message>
         <source>URL:</source>
         <translation>URL:</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4272,11 +4344,11 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     </message>
     <message>
         <source>Search Pattern:</source>
-        <translation>Şablonul Căutării:</translation>
+        <translation type="obsolete">Şablonul Căutării:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation>Oprit</translation>
+        <translation type="obsolete">Oprit</translation>
     </message>
     <message>
         <source>Status:</source>

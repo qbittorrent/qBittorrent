@@ -151,7 +151,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Port range:</source>
-        <translation>Portintervall:</translation>
+        <translation type="obsolete">Portintervall:</translation>
     </message>
     <message>
         <source>...</source>
@@ -195,7 +195,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connection</source>
-        <translation type="obsolete">Anslutning</translation>
+        <translation type="unfinished">Anslutning</translation>
     </message>
     <message>
         <source>Plastique style (KDE like)</source>
@@ -255,7 +255,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Network</source>
-        <translation>Nätverk</translation>
+        <translation type="obsolete">Nätverk</translation>
     </message>
     <message>
         <source>IP Filter</source>
@@ -504,7 +504,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
-        <translation>till</translation>
+        <translation type="obsolete">till</translation>
     </message>
     <message>
         <source>Start minimized</source>
@@ -521,15 +521,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Pause/Start torrent</source>
-        <translation>Pausa/Starta torrent-fil</translation>
+        <translation type="obsolete">Pausa/Starta torrent-fil</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>Öppna målmapp</translation>
+        <translation type="obsolete">Öppna målmapp</translation>
     </message>
     <message>
         <source>Display torrent properties</source>
-        <translation>Visa egenskaper för torrent-fil</translation>
+        <translation type="obsolete">Visa egenskaper för torrent-fil</translation>
     </message>
     <message>
         <source>In seeding list:</source>
@@ -608,8 +608,28 @@ p, li { white-space: pre-wrap; }
         <translation>Simulera µtorrent för att undvika bannlysning (kräver omstart)</translation>
     </message>
     <message>
-        <source>Transfer lists double-click action</source>
+        <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port used for incoming connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Random</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -643,7 +663,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation>Dist/Repr</translation>
+        <translation type="obsolete">Dist/Repr</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -665,7 +685,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioritet</translation>
+        <translation type="obsolete">Prioritet</translation>
+    </message>
+    <message>
+        <source>Seeds/Leechers</source>
+        <comment>i.e: full/partial sources</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1584,6 +1609,45 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>SearchCategories</name>
+    <message>
+        <source>All categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TV shows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Software</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pictures</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchEngine</name>
     <message>
         <source>Cut</source>
@@ -2276,11 +2340,11 @@ p, li { white-space: pre-wrap; }
     <name>engineSelectDlg</name>
     <message>
         <source>True</source>
-        <translation>Sant</translation>
+        <translation type="obsolete">Sant</translation>
     </message>
     <message>
         <source>False</source>
-        <translation>Falskt</translation>
+        <translation type="obsolete">Falskt</translation>
     </message>
     <message>
         <source>Uninstall warning</source>
@@ -2371,6 +2435,14 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <source>URL:</source>
         <translation>Url:</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2730,11 +2802,11 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Search Pattern:</source>
-        <translation>Sökmönster:</translation>
+        <translation type="obsolete">Sökmönster:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation>Stoppa</translation>
+        <translation type="obsolete">Stoppa</translation>
     </message>
     <message>
         <source>Status:</source>

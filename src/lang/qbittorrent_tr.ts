@@ -234,7 +234,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Port range:</source>
-        <translation>Kapı erimi:</translation>
+        <translation type="obsolete">Kapı erimi:</translation>
     </message>
     <message>
         <source>...</source>
@@ -546,7 +546,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connection</source>
-        <translation type="obsolete">Bağlantı</translation>
+        <translation type="unfinished">Bağlantı</translation>
     </message>
     <message>
         <source>Plastique style (KDE like)</source>
@@ -606,7 +606,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Network</source>
-        <translation>Ağ</translation>
+        <translation type="obsolete">Ağ</translation>
     </message>
     <message>
         <source>User interface settings</source>
@@ -719,7 +719,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
-        <translation>den</translation>
+        <translation type="obsolete">den</translation>
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
@@ -868,15 +868,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Pause/Start torrent</source>
-        <translation>Torrenti duraklat/başlat</translation>
+        <translation type="obsolete">Torrenti duraklat/başlat</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>Hedef klasörü aç</translation>
+        <translation type="obsolete">Hedef klasörü aç</translation>
     </message>
     <message>
         <source>Display torrent properties</source>
-        <translation>Torrent özelliklerini göster</translation>
+        <translation type="obsolete">Torrent özelliklerini göster</translation>
     </message>
     <message>
         <source>In seeding list:</source>
@@ -951,8 +951,28 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Transfer lists double-click action</source>
+        <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port used for incoming connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Random</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -986,7 +1006,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation>Gönderen/Çeken</translation>
+        <translation type="obsolete">Gönderen/Çeken</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -1066,7 +1086,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Priority</source>
-        <translation>Öncelik</translation>
+        <translation type="obsolete">Öncelik</translation>
+    </message>
+    <message>
+        <source>Seeds/Leechers</source>
+        <comment>i.e: full/partial sources</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2749,6 +2774,45 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>SearchCategories</name>
+    <message>
+        <source>All categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TV shows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Software</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pictures</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchEngine</name>
     <message>
         <source>Name</source>
@@ -3698,11 +3762,11 @@ Changelog:
     <name>engineSelectDlg</name>
     <message>
         <source>True</source>
-        <translation>Evet</translation>
+        <translation type="obsolete">Evet</translation>
     </message>
     <message>
         <source>False</source>
-        <translation>Hayır</translation>
+        <translation type="obsolete">Hayır</translation>
     </message>
     <message>
         <source>Uninstall warning</source>
@@ -3793,6 +3857,14 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <message>
         <source>URL:</source>
         <translation>Adres:</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4436,11 +4508,11 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     </message>
     <message>
         <source>Search Pattern:</source>
-        <translation>Arama Örüntüsü:</translation>
+        <translation type="obsolete">Arama Örüntüsü:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation>Dur</translation>
+        <translation type="obsolete">Dur</translation>
     </message>
     <message>
         <source>Status:</source>

@@ -197,7 +197,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Port range:</source>
-        <translation>端口列:</translation>
+        <translation type="obsolete">端口列:</translation>
     </message>
     <message>
         <source>...</source>
@@ -486,7 +486,7 @@ torrent</source>
     </message>
     <message>
         <source>Connection</source>
-        <translation type="obsolete">连接</translation>
+        <translation type="unfinished">连接</translation>
     </message>
     <message>
         <source>Peer eXchange (PeX)</source>
@@ -621,7 +621,7 @@ XP)</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation>局域网</translation>
+        <translation type="obsolete">局域网</translation>
     </message>
     <message>
         <source>User interface settings</source>
@@ -718,7 +718,7 @@ folder:</source>
     <message>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
-        <translation>到</translation>
+        <translation type="obsolete">到</translation>
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
@@ -915,15 +915,15 @@ folder:</source>
     </message>
     <message>
         <source>Pause/Start torrent</source>
-        <translation>暂停/开始 torren</translation>
+        <translation type="obsolete">暂停/开始 torren</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>打开目的文件夹</translation>
+        <translation type="obsolete">打开目的文件夹</translation>
     </message>
     <message>
         <source>Display torrent properties</source>
-        <translation>显示torrent属性</translation>
+        <translation type="obsolete">显示torrent属性</translation>
     </message>
     <message>
         <source>In seeding list:</source>
@@ -998,8 +998,28 @@ folder:</source>
         <translation>假借µtorrent名义避免被阻止(需重启)</translation>
     </message>
     <message>
-        <source>Transfer lists double-click action</source>
+        <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port used for incoming connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Random</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1033,7 +1053,7 @@ folder:</source>
     <message>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation>完整种子/不完整种子</translation>
+        <translation type="obsolete">完整种子/不完整种子</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -1162,7 +1182,12 @@ wait...</comment>
     </message>
     <message>
         <source>Priority</source>
-        <translation>优先</translation>
+        <translation type="obsolete">优先</translation>
+    </message>
+    <message>
+        <source>Seeds/Leechers</source>
+        <comment>i.e: full/partial sources</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2905,6 +2930,45 @@ list?</source>
     </message>
 </context>
 <context>
+    <name>SearchCategories</name>
+    <message>
+        <source>All categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TV shows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Software</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pictures</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchEngine</name>
     <message>
         <source>Name</source>
@@ -3907,11 +3971,11 @@ href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&
     <name>engineSelectDlg</name>
     <message>
         <source>True</source>
-        <translation>正确</translation>
+        <translation type="obsolete">正确</translation>
     </message>
     <message>
         <source>False</source>
-        <translation>错误</translation>
+        <translation type="obsolete">错误</translation>
     </message>
     <message>
         <source>Uninstall warning</source>
@@ -4024,6 +4088,14 @@ However, those plugins were disabled.</source>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1搜索引擎插件不能被更新,保留旧版本.</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4732,11 +4804,11 @@ torrent.</source>
     </message>
     <message>
         <source>Search Pattern:</source>
-        <translation>搜索关键词:</translation>
+        <translation type="obsolete">搜索关键词:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation>停止</translation>
+        <translation type="obsolete">停止</translation>
     </message>
     <message>
         <source>Status:</source>

@@ -212,7 +212,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Port range:</source>
-        <translation>Діапазон портів:</translation>
+        <translation type="obsolete">Діапазон портів:</translation>
     </message>
     <message>
         <source>...</source>
@@ -488,7 +488,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connection</source>
-        <translation type="obsolete">З&apos;єднання</translation>
+        <translation type="unfinished">З&apos;єднання</translation>
     </message>
     <message>
         <source>Peer eXchange (PeX)</source>
@@ -615,10 +615,6 @@ p, li { white-space: pre-wrap; }
         <translation>Загальні</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>User interface settings</source>
         <translation>Налаштування інтерфейсу</translation>
     </message>
@@ -724,7 +720,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
-        <translation>до</translation>
+        <translation type="obsolete">до</translation>
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
@@ -863,18 +859,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Pause/Start torrent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display torrent properties</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Web UI</source>
         <translation type="unfinished"></translation>
     </message>
@@ -931,8 +915,28 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Transfer lists double-click action</source>
+        <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port used for incoming connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Random</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -966,7 +970,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation>Сідерів/Лічерів</translation>
+        <translation type="obsolete">Сідерів/Лічерів</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -1038,7 +1042,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Пріоритет</translation>
+        <translation type="obsolete">Пріоритет</translation>
+    </message>
+    <message>
+        <source>Seeds/Leechers</source>
+        <comment>i.e: full/partial sources</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2728,6 +2737,45 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>SearchCategories</name>
+    <message>
+        <source>All categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TV shows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Software</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pictures</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchEngine</name>
     <message>
         <source>Name</source>
@@ -3689,11 +3737,11 @@ Changelog:
     <name>engineSelectDlg</name>
     <message>
         <source>True</source>
-        <translation>Так</translation>
+        <translation type="obsolete">Так</translation>
     </message>
     <message>
         <source>False</source>
-        <translation>Ні</translation>
+        <translation type="obsolete">Ні</translation>
     </message>
     <message>
         <source>Uninstall warning</source>
@@ -3794,6 +3842,14 @@ However, those plugins were disabled.</source>
     <message>
         <source>URL:</source>
         <translation>URL:</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4441,11 +4497,11 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Search Pattern:</source>
-        <translation>Шаблон пошуку:</translation>
+        <translation type="obsolete">Шаблон пошуку:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation>Зупинити</translation>
+        <translation type="obsolete">Зупинити</translation>
     </message>
     <message>
         <source>Status:</source>

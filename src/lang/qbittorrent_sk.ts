@@ -177,7 +177,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Port range:</source>
-        <translation>Rozsah portov:</translation>
+        <translation type="obsolete">Rozsah portov:</translation>
     </message>
     <message>
         <source>...</source>
@@ -453,7 +453,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connection</source>
-        <translation type="obsolete">Spojenie</translation>
+        <translation type="unfinished">Spojenie</translation>
     </message>
     <message>
         <source>Peer eXchange (PeX)</source>
@@ -581,7 +581,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Network</source>
-        <translation>Sieť</translation>
+        <translation type="obsolete">Sieť</translation>
     </message>
     <message>
         <source>User interface settings</source>
@@ -694,7 +694,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
-        <translation>až</translation>
+        <translation type="obsolete">až</translation>
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
@@ -843,15 +843,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Pause/Start torrent</source>
-        <translation>Pozastaviť/spustiť torrent</translation>
+        <translation type="obsolete">Pozastaviť/spustiť torrent</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>Otvoriť cieľový priečinok</translation>
+        <translation type="obsolete">Otvoriť cieľový priečinok</translation>
     </message>
     <message>
         <source>Display torrent properties</source>
-        <translation>Zobraziť vlastnosti torrentu</translation>
+        <translation type="obsolete">Zobraziť vlastnosti torrentu</translation>
     </message>
     <message>
         <source>In seeding list:</source>
@@ -926,8 +926,28 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Transfer lists double-click action</source>
+        <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port used for incoming connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Random</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -961,7 +981,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation>Seederi/Leecheri</translation>
+        <translation type="obsolete">Seederi/Leecheri</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -1041,7 +1061,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorita</translation>
+        <translation type="obsolete">Priorita</translation>
+    </message>
+    <message>
+        <source>Seeds/Leechers</source>
+        <comment>i.e: full/partial sources</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2681,6 +2706,45 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>SearchCategories</name>
+    <message>
+        <source>All categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TV shows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Software</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pictures</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchEngine</name>
     <message>
         <source>Name</source>
@@ -3649,11 +3713,11 @@ Záznam zmien:</translation>
     <name>engineSelectDlg</name>
     <message>
         <source>True</source>
-        <translation>Áno</translation>
+        <translation type="obsolete">Áno</translation>
     </message>
     <message>
         <source>False</source>
-        <translation>Nie</translation>
+        <translation type="obsolete">Nie</translation>
     </message>
     <message>
         <source>Uninstall warning</source>
@@ -3768,6 +3832,14 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <source>URL:</source>
         <translation>URL:</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4450,11 +4522,11 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Search Pattern:</source>
-        <translation>Vyhľadávací vzor:</translation>
+        <translation type="obsolete">Vyhľadávací vzor:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation>Zastaviť</translation>
+        <translation type="obsolete">Zastaviť</translation>
     </message>
     <message>
         <source>Status:</source>

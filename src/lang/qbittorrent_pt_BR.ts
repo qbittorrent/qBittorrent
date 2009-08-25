@@ -177,7 +177,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Port range:</source>
-        <translation>Range da porta:</translation>
+        <translation type="obsolete">Range da porta:</translation>
     </message>
     <message>
         <source>...</source>
@@ -437,7 +437,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connection</source>
-        <translation type="obsolete">Conexão</translation>
+        <translation type="unfinished">Conexão</translation>
     </message>
     <message>
         <source>Peer eXchange (PeX)</source>
@@ -565,7 +565,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Network</source>
-        <translation>Network</translation>
+        <translation type="obsolete">Network</translation>
     </message>
     <message>
         <source>User interface settings</source>
@@ -679,7 +679,7 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     <message>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
-        <translation>a</translation>
+        <translation type="obsolete">a</translation>
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
@@ -828,15 +828,15 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
     <message>
         <source>Pause/Start torrent</source>
-        <translation>Pausar/Iniciar torrent</translation>
+        <translation type="obsolete">Pausar/Iniciar torrent</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>Abrir pasta de destino</translation>
+        <translation type="obsolete">Abrir pasta de destino</translation>
     </message>
     <message>
         <source>Display torrent properties</source>
-        <translation>Mostrar propriedades do torrent</translation>
+        <translation type="obsolete">Mostrar propriedades do torrent</translation>
     </message>
     <message>
         <source>In seeding list:</source>
@@ -911,8 +911,28 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Transfer lists double-click action</source>
+        <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port used for incoming connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Random</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -946,7 +966,7 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     <message>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation>Seeds/Leechs</translation>
+        <translation type="obsolete">Seeds/Leechs</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -1026,7 +1046,12 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioridade</translation>
+        <translation type="obsolete">Prioridade</translation>
+    </message>
+    <message>
+        <source>Seeds/Leechers</source>
+        <comment>i.e: full/partial sources</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2665,6 +2690,45 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>SearchCategories</name>
+    <message>
+        <source>All categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TV shows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Software</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pictures</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchEngine</name>
     <message>
         <source>Name</source>
@@ -3700,11 +3764,11 @@ Log de mudanças:</translation>
     <name>engineSelectDlg</name>
     <message>
         <source>True</source>
-        <translation>Verdadeiro</translation>
+        <translation type="obsolete">Verdadeiro</translation>
     </message>
     <message>
         <source>False</source>
-        <translation>Falso</translation>
+        <translation type="obsolete">Falso</translation>
     </message>
     <message>
         <source>Uninstall warning</source>
@@ -3795,6 +3859,14 @@ Portanto os plugins foram desabilitados.</translation>
     <message>
         <source>URL:</source>
         <translation>Url:</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4433,11 +4505,11 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Search Pattern:</source>
-        <translation>Padrão de busca:</translation>
+        <translation type="obsolete">Padrão de busca:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation>Parar</translation>
+        <translation type="obsolete">Parar</translation>
     </message>
     <message>
         <source>Status:</source>

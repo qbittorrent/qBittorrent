@@ -149,7 +149,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Port range:</source>
-        <translation>埠範圍:</translation>
+        <translation type="obsolete">埠範圍:</translation>
     </message>
     <message>
         <source>...</source>
@@ -193,7 +193,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connection</source>
-        <translation type="obsolete">連線</translation>
+        <translation type="unfinished">連線</translation>
     </message>
     <message>
         <source>Plastique style (KDE like)</source>
@@ -253,7 +253,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Network</source>
-        <translation>網路</translation>
+        <translation type="obsolete">網路</translation>
     </message>
     <message>
         <source>IP Filter</source>
@@ -366,7 +366,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>to</source>
         <comment>i.e: 1200 to 1300</comment>
-        <translation>到</translation>
+        <translation type="obsolete">到</translation>
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
@@ -523,15 +523,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Pause/Start torrent</source>
-        <translation>暫停/開始 torrent</translation>
+        <translation type="obsolete">暫停/開始 torrent</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>開啟目的地資料夾</translation>
+        <translation type="obsolete">開啟目的地資料夾</translation>
     </message>
     <message>
         <source>Display torrent properties</source>
-        <translation>顯示 torrent 屬性</translation>
+        <translation type="obsolete">顯示 torrent 屬性</translation>
     </message>
     <message>
         <source>In seeding list:</source>
@@ -610,8 +610,28 @@ p, li { white-space: pre-wrap; }
         <translation>假裝為 µtorrent 以避免被踢出 (需要重新啟動)</translation>
     </message>
     <message>
-        <source>Transfer lists double-click action</source>
+        <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port used for incoming connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Random</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -645,7 +665,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Seeds/Leechs</source>
         <comment>i.e: full/partial sources</comment>
-        <translation>種子/不完整種子</translation>
+        <translation type="obsolete">種子/不完整種子</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -721,7 +741,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Priority</source>
-        <translation>優先度</translation>
+        <translation type="obsolete">優先度</translation>
+    </message>
+    <message>
+        <source>Seeds/Leechers</source>
+        <comment>i.e: full/partial sources</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1673,6 +1698,45 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>SearchCategories</name>
+    <message>
+        <source>All categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TV shows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Software</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pictures</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchEngine</name>
     <message>
         <source>Cut</source>
@@ -2377,11 +2441,11 @@ p, li { white-space: pre-wrap; }
     <name>engineSelectDlg</name>
     <message>
         <source>True</source>
-        <translation>真</translation>
+        <translation type="obsolete">真</translation>
     </message>
     <message>
         <source>False</source>
-        <translation>假</translation>
+        <translation type="obsolete">假</translation>
     </message>
     <message>
         <source>Uninstall warning</source>
@@ -2472,6 +2536,14 @@ However, those plugins were disabled.</source>
     <message>
         <source>URL:</source>
         <translation>URL:</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2835,11 +2907,11 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Search Pattern:</source>
-        <translation>搜尋模式:</translation>
+        <translation type="obsolete">搜尋模式:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation>停止</translation>
+        <translation type="obsolete">停止</translation>
     </message>
     <message>
         <source>Status:</source>
