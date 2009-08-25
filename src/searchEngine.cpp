@@ -173,7 +173,8 @@ void SearchEngine::tab_changed(int t)
 }
 
 void SearchEngine::on_enginesButton_clicked() {
-  new engineSelectDlg(this, supported_engines);
+  engineSelectDlg *dlg = new engineSelectDlg(this, supported_engines);
+  connect(dlg, SIGNAL(enginesChanged()), this, SLOT(fillCatCombobox()));
 }
 
 // get the last searchs from a QSettings to a QStringList

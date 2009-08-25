@@ -123,11 +123,13 @@ public:
   QStringList supportedCategories() const {
     QStringList supported_cat;
     foreach(SupportedEngine *engine, values()) {
-      QStringList s = engine->getSupportedCategories();
-      foreach(QString cat, s) {
-        cat = cat.trimmed();
-        if(!cat.isEmpty() && !supported_cat.contains(cat))
-          supported_cat << cat;
+      if(engine->isEnabled()) {
+        QStringList s = engine->getSupportedCategories();
+        foreach(QString cat, s) {
+          cat = cat.trimmed();
+          if(!cat.isEmpty() && !supported_cat.contains(cat))
+            supported_cat << cat;
+        }
       }
     }
     return supported_cat;
