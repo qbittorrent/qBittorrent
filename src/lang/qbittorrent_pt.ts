@@ -561,7 +561,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>General</source>
-        <translation>Gerais</translation>
+        <translation type="obsolete">Gerais</translation>
     </message>
     <message>
         <source>Network</source>
@@ -933,6 +933,10 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
     <message>
         <source>Random</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

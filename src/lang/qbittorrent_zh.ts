@@ -617,7 +617,7 @@ XP)</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>普通</translation>
+        <translation type="obsolete">普通</translation>
     </message>
     <message>
         <source>Network</source>
@@ -1020,6 +1020,10 @@ folder:</source>
     </message>
     <message>
         <source>Random</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
