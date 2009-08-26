@@ -1,4 +1,4 @@
-#VERSION: 1.20
+#VERSION: 1.21
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 
@@ -33,7 +33,7 @@ from helpers import retrieve_url, download_file
 class piratebay(object):
 	url = 'http://thepiratebay.org'
 	name = 'The Pirate Bay'
-	supported_categories = {'all': '', 'movies': '', 'music': '', 'games': '', 'software': ''}
+	supported_categories = {'all': '0', 'movies': '200', 'music': '100', 'games': '400', 'software': '300'}
 	
 	def __init__(self):
 		self.results = []
@@ -101,7 +101,9 @@ class piratebay(object):
 		while True and i<11:
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
-			dat = retrieve_url(self.url+'/search/%s/%u/7' % (what, i))
+			print self.url+'/search/%s/%u/99/%s' % (what, i, self.supported_categories[cat])
+			return
+			dat = retrieve_url(self.url+'/search/%s/%u/99/%s' % (what, i, self.supported_categories[cat]))
 			parser.feed(dat)
 			parser.close()
 			if len(results) <= 0:
