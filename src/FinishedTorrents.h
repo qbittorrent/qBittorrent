@@ -35,6 +35,7 @@
 #include "qtorrenthandle.h"
 
 class QStandardItemModel;
+class QSortFilterProxyModel;
 class bittorrent;
 class FinishedListDelegate;
 
@@ -47,6 +48,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     bittorrent *BTSession;
     FinishedListDelegate *finishedListDelegate;
     QStandardItemModel *finishedListModel;
+    QSortFilterProxyModel *proxyModel;
     unsigned int nbFinished;
     void hideOrShowColumn(int index);
     bool loadHiddenColumns();
@@ -69,10 +71,6 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void displayFinishedHoSMenu(const QPoint&);
     void setRowColor(int row, QString color);
     void saveColWidthFinishedList() const;
-    void toggleFinishedListSortOrder(int index);
-    void sortFinishedList(int index=-1, Qt::SortOrder sortOrder=Qt::AscendingOrder);
-    void sortFinishedListFloat(int index, Qt::SortOrder sortOrder);
-    void sortFinishedListString(int index, Qt::SortOrder sortOrder);
     void updateFileSize(QString hash);
     void on_actionSet_upload_limit_triggered();
     void notifyTorrentDoubleClicked(const QModelIndex& index);
@@ -93,6 +91,7 @@ class FinishedTorrents : public QWidget, public Ui::seeding {
     void deleteTorrent(QString hash);
     void showPropertiesFromHash(QString hash);
     void loadLastSortedColumn();
+    void saveLastSortedColumn();
     void updateMetadata(QTorrentHandle &h);
 
   signals:

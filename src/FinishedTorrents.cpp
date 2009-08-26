@@ -38,6 +38,7 @@
 #include <QFile>
 #include <QSettings>
 #include <QStandardItemModel>
+#include <QSortFilterProxyModel>
 #include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
@@ -54,9 +55,16 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   finishedListModel->setHeaderData(F_PEERS, Qt::Horizontal, tr("Connected peers"));
   finishedListModel->setHeaderData(F_UPLOAD, Qt::Horizontal, tr("Total uploaded", "i.e: Total amount of uploaded data"));
   finishedListModel->setHeaderData(F_RATIO, Qt::Horizontal, tr("Ratio"));
-  finishedList->setModel(finishedListModel);
+
+  proxyModel = new QSortFilterProxyModel();
+  proxyModel->setDynamicSortFilter(true);
+  proxyModel->setSourceModel(finishedListModel);
+  finishedList->setModel(proxyModel);
+
   finishedList->setRootIsDecorated(false);
   finishedList->setAllColumnsShowFocus(true);
+  finishedList->setSortingEnabled(true);
+
   loadHiddenColumns();
   // Hide hash column
   finishedList->hideColumn(F_HASH);
@@ -104,9 +112,11 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
 }
 
 FinishedTorrents::~FinishedTorrents(){
+  saveLastSortedColumn();
   saveColWidthFinishedList();
   saveHiddenColumns();
   delete finishedListDelegate;
+  delete proxyModel;
   delete finishedListModel;
 }
 
@@ -141,8 +151,8 @@ void FinishedTorrents::addTorrent(QString hash){
   // Update the number of finished torrents
   ++nbFinished;
   emit finishedTorrentsNumberChanged(nbFinished);
-  // Sort List
-  sortFinishedList();
+
+  loadLastSortedColumn();
 }
 
 // Set the color of a row in data model
@@ -159,7 +169,7 @@ QStringList FinishedTorrents::getSelectedTorrents(bool only_one) const{
   foreach(const QModelIndex &index, selectedIndexes) {
     if(index.column() == F_NAME) {
       // Get the file hash
-      QString hash = finishedListModel->data(finishedListModel->index(index.row(), F_HASH)).toString();
+      QString hash = getHashFromRow(index.row());
       res << hash;
       if(only_one) break;
     }
@@ -208,6 +218,18 @@ bool FinishedTorrents::loadColWidthFinishedList(){
   return true;
 }
 
+void FinishedTorrents::saveLastSortedColumn() {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  Qt::SortOrder sortOrder = finishedList->header()->sortIndicatorOrder();
+  QString sortOrderLetter;
+  if(sortOrder == Qt::AscendingOrder)
+    sortOrderLetter = QString::fromUtf8("a");
+  else
+    sortOrderLetter = QString::fromUtf8("d");
+  int index = finishedList->header()->sortIndicatorSection();
+  settings.setValue(QString::fromUtf8("FinishedListSortedCol"), misc::toQString(index)+sortOrderLetter);
+}
+
 void FinishedTorrents::loadLastSortedColumn() {
   // Loading last sorted column
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
@@ -220,7 +242,7 @@ void FinishedTorrents::loadLastSortedColumn() {
       sortOrder = Qt::AscendingOrder;
     sortedCol = sortedCol.left(sortedCol.size()-1);
     int index = sortedCol.toInt();
-    sortFinishedList(index, sortOrder);
+    finishedList->sortByColumn(index, sortOrder);
   }
 }
 
@@ -265,7 +287,7 @@ void FinishedTorrents::on_actionSet_upload_limit_triggered(){
   foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == F_NAME){
       // Get the file hash
-      hashes << finishedListModel->data(finishedListModel->index(index.row(), F_HASH)).toString();
+      hashes << getHashFromRow(index.row());
     }
   }
   new BandwidthAllocationDialog(this, true, BTSession, hashes);
@@ -351,8 +373,8 @@ void FinishedTorrents::pauseTorrent(QString hash) {
 }
 
 QString FinishedTorrents::getHashFromRow(unsigned int row) const {
-  Q_ASSERT(row < (unsigned int)finishedListModel->rowCount());
-  return finishedListModel->data(finishedListModel->index(row, F_HASH)).toString();
+  Q_ASSERT(row < (unsigned int)proxyModel->rowCount());
+  return proxyModel->data(proxyModel->index(row, F_HASH)).toString();
 }
 
 // Will move it to download tab
@@ -369,7 +391,7 @@ void FinishedTorrents::deleteTorrent(QString hash){
 
 // Show torrent properties dialog
 void FinishedTorrents::showProperties(const QModelIndex &index){
-  showPropertiesFromHash(finishedListModel->data(finishedListModel->index(index.row(), F_HASH)).toString());
+  showPropertiesFromHash(getHashFromRow(index.row()));
 }
 
 void FinishedTorrents::showPropertiesFromHash(QString hash){
@@ -400,7 +422,7 @@ void FinishedTorrents::forceRecheck(){
   QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
   foreach(const QModelIndex &index, selectedIndexes){
       if(index.column() == F_NAME){
-          QString hash = finishedListModel->data(finishedListModel->index(index.row(), F_HASH)).toString();
+          QString hash = getHashFromRow(index.row());
           QTorrentHandle h = BTSession->getTorrentHandle(hash);
           qDebug("Forcing recheck for torrent %s", hash.toLocal8Bit().data());
           h.force_recheck();
@@ -416,7 +438,7 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint&){
   foreach(const QModelIndex &index, selectedIndexes) {
     if(index.column() == F_NAME) {
       // Get the file name
-      QString hash = finishedListModel->data(finishedListModel->index(index.row(), F_HASH)).toString();
+      QString hash = getHashFromRow(index.row());
       // Get handle and pause the torrent
       QTorrentHandle h = BTSession->getTorrentHandle(hash);
       if(!h.is_valid()) continue;
@@ -602,98 +624,4 @@ QAction* FinishedTorrents::getActionHoSCol(int index) {
     default :
       return NULL;
   }
-}
-
-
-/*
- * Sorting functions
- */
-
-void FinishedTorrents::toggleFinishedListSortOrder(int index) {
-  Qt::SortOrder sortOrder = Qt::AscendingOrder;
-  if(finishedList->header()->sortIndicatorSection() == index){
-    sortOrder = (Qt::SortOrder)!(bool)finishedList->header()->sortIndicatorOrder();
-  }
-  switch(index) {
-    case F_SIZE:
-    case F_UPSPEED:
-    case F_RATIO:
-    case F_UPLOAD:
-      sortFinishedListFloat(index, sortOrder);
-      break;
-    default:
-      sortFinishedListString(index, sortOrder);
-  }
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QString sortOrderLetter;
-  if(sortOrder == Qt::AscendingOrder)
-    sortOrderLetter = QString::fromUtf8("a");
-  else
-    sortOrderLetter = QString::fromUtf8("d");
-  settings.setValue(QString::fromUtf8("FinishedListSortedCol"), misc::toQString(index)+sortOrderLetter);
-}
-
-void FinishedTorrents::sortFinishedList(int index, Qt::SortOrder sortOrder){
-  if(index == -1) {
-    index = finishedList->header()->sortIndicatorSection();
-    sortOrder = finishedList->header()->sortIndicatorOrder();
-  } else {
-    finishedList->header()->setSortIndicator(index, sortOrder);
-  }
-  switch(index) {
-    case F_SIZE:
-    case F_UPSPEED:
-    case F_UPLOAD:
-    case F_RATIO:
-      sortFinishedListFloat(index, sortOrder);
-      break;
-    default:
-      sortFinishedListString(index, sortOrder);
-  }
-}
-
-void FinishedTorrents::sortFinishedListFloat(int index, Qt::SortOrder sortOrder){
-  QList<QPair<int, double> > lines;
-  // insertion sorting
-  unsigned int nbRows = finishedListModel->rowCount();
-  for(unsigned int i=0; i<nbRows; ++i){
-    misc::insertSort(lines, QPair<int,double>(i, finishedListModel->data(finishedListModel->index(i, index)).toDouble()), sortOrder);
-  }
-  // Insert items in new model, in correct order
-  unsigned int nbRows_old = lines.size();
-  for(unsigned int row=0; row<nbRows_old; ++row){
-    finishedListModel->insertRow(finishedListModel->rowCount());
-    unsigned int sourceRow = lines[row].first;
-    unsigned int nbColumns = finishedListModel->columnCount();
-    for(unsigned int col=0; col<nbColumns; ++col){
-      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col)));
-      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
-      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::ForegroundRole), Qt::ForegroundRole);
-    }
-  }
-  // Remove old rows
-  finishedListModel->removeRows(0, nbRows_old);
-}
-
-void FinishedTorrents::sortFinishedListString(int index, Qt::SortOrder sortOrder){
-  QList<QPair<int, QString> > lines;
-  // Insertion sorting
-  unsigned int nbRows = finishedListModel->rowCount();
-  for(unsigned int i=0; i<nbRows; ++i){
-    misc::insertSortString(lines, QPair<int, QString>(i, finishedListModel->data(finishedListModel->index(i, index)).toString()), sortOrder);
-  }
-  // Insert items in new model, in correct order
-  unsigned int nbRows_old = lines.size();
-  for(unsigned int row=0; row<nbRows_old; ++row){
-    finishedListModel->insertRow(finishedListModel->rowCount());
-    unsigned int sourceRow = lines[row].first;
-    unsigned int nbColumns = finishedListModel->columnCount();
-    for(unsigned int col=0; col<nbColumns; ++col){
-      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col)));
-      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::DecorationRole), Qt::DecorationRole);
-      finishedListModel->setData(finishedListModel->index(nbRows_old+row, col), finishedListModel->data(finishedListModel->index(sourceRow, col), Qt::ForegroundRole), Qt::ForegroundRole);
-    }
-  }
-  // Remove old rows
-  finishedListModel->removeRows(0, nbRows_old);
 }
