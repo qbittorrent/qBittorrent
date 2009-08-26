@@ -47,8 +47,8 @@ class DownloadingTorrents : public QWidget, public Ui::downloading{
     QObject *parent;
     bittorrent *BTSession;
     DLListDelegate *DLDelegate;
-    QStandardItemModel *srcModel;
-    QSortFilterProxyModel *DLListModel;
+    QStandardItemModel *DLListModel;
+    QSortFilterProxyModel *proxyModel;
     unsigned int nbTorrents;
     void hideOrShowColumn(int index);
     bool loadHiddenColumns();
