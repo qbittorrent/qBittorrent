@@ -172,13 +172,13 @@ void DownloadingTorrents::pauseTorrent(QString hash) {
 }
 
 QString DownloadingTorrents::getHashFromRow(unsigned int row) const {
-  Q_ASSERT(row < (unsigned int)DLListModel->rowCount());
-  return DLListModel->data(DLListModel->index(row, HASH)).toString();
+  Q_ASSERT(row < (unsigned int)proxyModel->rowCount());
+  return proxyModel->data(proxyModel->index(row, HASH)).toString();
 }
 
 // Show torrent properties dialog
 void DownloadingTorrents::showProperties(const QModelIndex &index) {
-  showPropertiesFromHash(DLListModel->data(DLListModel->index(index.row(), HASH)).toString());
+  showPropertiesFromHash(getHashFromRow(index.row()));
 }
 
 void DownloadingTorrents::showPropertiesFromHash(QString hash) {
@@ -209,7 +209,7 @@ void DownloadingTorrents::on_actionSet_download_limit_triggered() {
   foreach(const QModelIndex &index, selectedIndexes) {
     if(index.column() == NAME) {
       // Get the file hash
-      hashes << DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+      hashes << getHashFromRow(index.row());
     }
   }
   Q_ASSERT(hashes.size() > 0);
@@ -222,7 +222,7 @@ void DownloadingTorrents::on_actionSet_upload_limit_triggered() {
   foreach(const QModelIndex &index, selectedIndexes) {
     if(index.column() == NAME) {
       // Get the file hash
-      hashes << DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+      hashes << getHashFromRow(index.row());
     }
   }
   Q_ASSERT(hashes.size() > 0);
@@ -243,7 +243,7 @@ void DownloadingTorrents::forceRecheck() {
   QModelIndexList selectedIndexes = downloadList->selectionModel()->selectedIndexes();
   foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == NAME){
-      QString hash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+      QString hash = getHashFromRow(index.row());
       QTorrentHandle h = BTSession->getTorrentHandle(hash);
       if(h.is_valid() && h.has_metadata())
         h.force_recheck();
@@ -262,7 +262,7 @@ void DownloadingTorrents::displayDLListMenu(const QPoint&) {
   foreach(const QModelIndex &index, selectedIndexes) {
     if(index.column() == NAME) {
       // Get the file name
-      QString hash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+      QString hash = getHashFromRow(index.row());
       // Get handle and pause the torrent
       h = BTSession->getTorrentHandle(hash);
       if(!h.is_valid()) continue;
@@ -494,7 +494,7 @@ QStringList DownloadingTorrents::getSelectedTorrents(bool only_one) const{
   foreach(const QModelIndex &index, selectedIndexes) {
     if(index.column() == NAME) {
       // Get the file hash
-      QString hash = DLListModel->data(DLListModel->index(index.row(), HASH)).toString();
+      QString hash = getHashFromRow(index.row());
       res << hash;
       if(only_one) break;
     }
