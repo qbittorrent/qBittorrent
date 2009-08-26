@@ -1351,9 +1351,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       BTSession->increaseDlTorrentPriority(hash);
     }
     updateLists();
-    // Update sorting if necessary
-    if(downloadingTorrentTab->isPriorityColumnSorted())
-      downloadingTorrentTab->sortDownloadList();
   }
   
   void GUI::on_actionDecreasePriority_triggered() {
@@ -1363,9 +1360,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
       BTSession->decreaseDlTorrentPriority(hash);
     }
     updateLists();
-    // Update sorting if necessary
-    if(downloadingTorrentTab->isPriorityColumnSorted())
-      downloadingTorrentTab->sortDownloadList();
   }
   
   // pause selected items in the list

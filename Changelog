@@ -12,6 +12,7 @@
     - FEATURE: If a torrent contains a torrent file, process downloaded torrent file too
     - FEATURE: A random listening port can be chosen automatically
     - BUGFIX: torrent resume code rewrited
+    - BUGFIX: Greatly improved column sorting code
     - COSMETIC: Redesigned search tab to improve usability
     - COSMETIC: Redesigned RSS tab to improve usability
 
