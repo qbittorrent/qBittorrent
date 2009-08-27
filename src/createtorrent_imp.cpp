@@ -165,11 +165,11 @@ void createtorrent::on_createButton_clicked(){
     QMessageBox::critical(0, tr("No input path set"), tr("Please type an input path first"));
     return;
   }
-  QStringList trackers = allItems(trackers_list);
+  /*QStringList trackers = allItems(trackers_list);
   if(!trackers.size()){
     QMessageBox::critical(0, tr("No tracker path set"), tr("Please set at least one tracker"));
     return;
-  }
+  }*/
   QString destination = QFileDialog::getSaveFileName(this, tr("Select destination torrent file"), QDir::homePath(), tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if(!destination.isEmpty()) {
     if(!destination.endsWith(QString::fromUtf8(".torrent")))
