@@ -195,7 +195,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished">Anslutning</translation>
+        <translation>Anslutning</translation>
     </message>
     <message>
         <source>Plastique style (KDE like)</source>
@@ -610,31 +610,31 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
+        <translation>Åtgärd för dubbelklick</translation>
     </message>
     <message>
         <source>Start/Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Starta/Stoppa</translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna mapp</translation>
     </message>
     <message>
         <source>Show properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa egenskaper</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port att använda för inkommande anslutningar:</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>Slumpmässigt</translation>
     </message>
     <message>
         <source>UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Användargränssnitt</translation>
     </message>
 </context>
 <context>
@@ -694,192 +694,192 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished"></translation>
+        <translation>Distributörer/Reciprokörer</translation>
     </message>
 </context>
 <context>
     <name>FeedDownloader</name>
     <message>
         <source>RSS Feed downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Hämta RSS-kanal</translation>
     </message>
     <message>
         <source>RSS feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS-kanal:</translation>
     </message>
     <message>
         <source>Feed name</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanalnamn</translation>
     </message>
     <message>
         <source>Automatically download torrents from this feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Hämta automatiskt torrentfiler från denna kanal</translation>
     </message>
     <message>
         <source>Download filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Hämtningsfilter</translation>
     </message>
     <message>
         <source>Filters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter:</translation>
     </message>
     <message>
         <source>Filter settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Filterinställningar</translation>
     </message>
     <message>
         <source>Matches:</source>
-        <translation type="unfinished"></translation>
+        <translation>Matchar:</translation>
     </message>
     <message>
         <source>Does not match:</source>
-        <translation type="unfinished"></translation>
+        <translation>Matchar inte:</translation>
     </message>
     <message>
         <source>Destination folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Målmapp:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Filter testing</source>
-        <translation type="unfinished"></translation>
+        <translation>Testa filter</translation>
     </message>
     <message>
         <source>Torrent title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent-titel:</translation>
     </message>
     <message>
         <source>Result:</source>
-        <translation type="unfinished"></translation>
+        <translation>Resultat:</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation>Testa</translation>
     </message>
     <message>
         <source>Import...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importera...</translation>
     </message>
     <message>
         <source>Export...</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportera...</translation>
     </message>
     <message>
         <source>Rename filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Byt namn på filter</translation>
     </message>
     <message>
         <source>Remove filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort filter</translation>
     </message>
     <message>
         <source>Add filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till filter</translation>
     </message>
 </context>
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
         <source>New filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Nytt filter</translation>
     </message>
     <message>
         <source>Please choose a name for this filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj ett namn för detta filter</translation>
     </message>
     <message>
         <source>Filter name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filternamn:</translation>
     </message>
     <message>
         <source>Invalid filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogiltigt filternamn</translation>
     </message>
     <message>
         <source>The filter name cannot be left empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filternamnet får inte lämnas tomt.</translation>
     </message>
     <message>
         <source>This filter name is already in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>Detta filternamn används redan.</translation>
     </message>
     <message>
         <source>Filter testing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel vid test av filter</translation>
     </message>
     <message>
         <source>Please specify a test torrent name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange ett torrentnamn för test.</translation>
     </message>
     <message>
         <source>matches</source>
-        <translation type="unfinished"></translation>
+        <translation>matchar</translation>
     </message>
     <message>
         <source>does not match</source>
-        <translation type="unfinished"></translation>
+        <translation>matchar inte</translation>
     </message>
     <message>
         <source>Select file to import</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj en fil att importera</translation>
     </message>
     <message>
         <source>Filters Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrerar filer</translation>
     </message>
     <message>
         <source>Import successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Import lyckades</translation>
     </message>
     <message>
         <source>Filters import was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filterimport lyckades.</translation>
     </message>
     <message>
         <source>Import failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Importfel</translation>
     </message>
     <message>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter kunde inte importeras på grund av ett in-/ut-fel.</translation>
     </message>
     <message>
         <source>Select destination file</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj målfil</translation>
     </message>
     <message>
         <source>Overwriting confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Bekräfta överskrivning</translation>
     </message>
     <message>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Är du säker på att du vill skriva över den befintliga filen?</translation>
     </message>
     <message>
         <source>Export successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Export lyckades</translation>
     </message>
     <message>
         <source>Filters export was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filterexport lyckades.</translation>
     </message>
     <message>
         <source>Export failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel vid export</translation>
     </message>
     <message>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter kunde inte exporteras på grund av ett in-/ut-fel.</translation>
     </message>
 </context>
 <context>
     <name>FeedList</name>
     <message>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Oläst</translation>
     </message>
 </context>
 <context>
@@ -1370,11 +1370,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Ta bort</translation>
+        <translation>Ta bort</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation type="unfinished">Byt namn</translation>
+        <translation>Byt namn</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -1422,59 +1422,63 @@ Are you sure you want to quit qBittorrent?</source>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrentar:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(dubbelklicka för att hämta)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Download torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Hämta torrent</translation>
     </message>
     <message>
         <source>Open news URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna URL för nyheter</translation>
     </message>
     <message>
         <source>Copy feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopera URL för kanal</translation>
     </message>
     <message>
         <source>RSS feed downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Hämta RSS-kanal</translation>
     </message>
     <message>
         <source>New subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny prenumeration</translation>
     </message>
     <message>
         <source>Mark items read</source>
-        <translation type="unfinished"></translation>
+        <translation>Markera objekt som lästa</translation>
     </message>
     <message>
         <source>Update all</source>
-        <translation type="unfinished"></translation>
+        <translation>Uppdatera alla</translation>
     </message>
     <message>
         <source>Update all feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Uppdatera alla kanaler</translation>
     </message>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS-kanaler</translation>
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Uppdatera</translation>
     </message>
     <message>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny mapp</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <source>Feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL för kanal</translation>
     </message>
 </context>
 <context>
@@ -1541,52 +1545,52 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please choose a folder name</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj ett mappnamn</translation>
     </message>
     <message>
         <source>Folder name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mappnamn:</translation>
     </message>
     <message>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny mapp</translation>
     </message>
     <message>
         <source>Are you sure you want to delete these elements from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Är du säker på att du vill ta bort dessa element från listan?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this element from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Är du säker på att du vill ta bort detta element från listan?</translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj ett nytt namn för denna RSS-kanal</translation>
     </message>
     <message>
         <source>New feed name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nytt kanalnamn:</translation>
     </message>
     <message>
         <source>Name already in use</source>
-        <translation type="unfinished"></translation>
+        <translation>Namnet används redan</translation>
     </message>
     <message>
         <source>This name is already used by another item, please choose another one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Detta namn används redan av ett annat objekt. Välj ett annat namn.</translation>
     </message>
     <message>
         <source>Overwrite attempt</source>
-        <translation type="unfinished"></translation>
+        <translation>Överskrivningsförsök</translation>
     </message>
     <message>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Du kan inte skriva över %1 objekt.</translation>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Oläst</translation>
     </message>
 </context>
 <context>
@@ -1609,46 +1613,46 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hämtar automatiskt torrentfilen %1 från RSS-kanalen %2...</translation>
     </message>
 </context>
 <context>
     <name>SearchCategories</name>
     <message>
         <source>All categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla kategorier</translation>
     </message>
     <message>
         <source>Movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmer</translation>
     </message>
     <message>
         <source>TV shows</source>
-        <translation type="unfinished"></translation>
+        <translation>TV-program</translation>
     </message>
     <message>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Musik</translation>
     </message>
     <message>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Spel</translation>
     </message>
     <message>
         <source>Anime</source>
-        <translation type="unfinished"></translation>
+        <translation>Anime</translation>
     </message>
     <message>
         <source>Software</source>
-        <translation type="unfinished"></translation>
+        <translation>Programvara</translation>
     </message>
     <message>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Bilder</translation>
     </message>
     <message>
         <source>Books</source>
-        <translation type="unfinished"></translation>
+        <translation>Böcker</translation>
     </message>
 </context>
 <context>
@@ -1836,19 +1840,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Torrent size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentstorlek:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Okänd</translation>
     </message>
     <message>
         <source>Free disk space:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ledigt diskutrymme:</translation>
     </message>
     <message>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hämta i sekventiell ordning (långsammare men bra för förhandsvisning)</translation>
     </message>
 </context>
 <context>
@@ -1980,16 +1984,16 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;%1&quot; är inte en giltig magnet-URI.</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rekursiv hämtning av filen %1 inbäddad i torrentfilen %2</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte avkoda torrentfilen %1.</translation>
     </message>
 </context>
 <context>
@@ -2084,11 +2088,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add file</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till fil</translation>
     </message>
     <message>
         <source>Add folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till mapp</translation>
     </message>
 </context>
 <context>
@@ -2286,7 +2290,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiera magnetlänk</translation>
     </message>
 </context>
 <context>
@@ -2442,11 +2446,11 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Nej</translation>
     </message>
 </context>
 <context>
@@ -2925,7 +2929,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiera magnetlänk</translation>
     </message>
 </context>
 <context>
@@ -2968,7 +2972,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">In/Ut-fel</translation>
+        <translation>In/Ut-fel</translation>
     </message>
 </context>
 <context>
@@ -3027,17 +3031,17 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Okänd</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(%1 kvar efter torrenthämtning)</translation>
     </message>
     <message>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(%1 ytterligare krävs för att hämta)</translation>
     </message>
 </context>
 </TS>

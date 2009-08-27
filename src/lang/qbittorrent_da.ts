@@ -1382,7 +1382,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../FinishedTorrents.cpp" line="489"/>
+        <location filename="../FinishedTorrents.cpp" line="488"/>
         <source>Hide or Show Column</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2995,16 +2995,16 @@ Changelog:
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="479"/>
-        <location filename="../bittorrent.cpp" line="649"/>
         <location filename="../bittorrent.cpp" line="654"/>
+        <location filename="../bittorrent.cpp" line="659"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished">&apos;%1&apos; fortsat. (hurtig fortsættelse)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="481"/>
-        <location filename="../bittorrent.cpp" line="651"/>
         <location filename="../bittorrent.cpp" line="656"/>
+        <location filename="../bittorrent.cpp" line="661"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">&apos;%1&apos; lagt til download listen.</translation>
@@ -3022,55 +3022,55 @@ Changelog:
         <translation type="unfinished">Denne fil er enten korrupt eller ikke en torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="969"/>
+        <location filename="../bittorrent.cpp" line="1085"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="971"/>
+        <location filename="../bittorrent.cpp" line="1087"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1258"/>
+        <location filename="../bittorrent.cpp" line="1374"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1269"/>
+        <location filename="../bittorrent.cpp" line="1385"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1311"/>
+        <location filename="../bittorrent.cpp" line="1427"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="unfinished">Kunne ikke lytte på de opgivne porte.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1350"/>
+        <location filename="../bittorrent.cpp" line="1466"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1355"/>
+        <location filename="../bittorrent.cpp" line="1471"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1370"/>
+        <location filename="../bittorrent.cpp" line="1486"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1375"/>
+        <location filename="../bittorrent.cpp" line="1491"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1443"/>
+        <location filename="../bittorrent.cpp" line="1559"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">Downloader &apos;%1&apos;, vent venligst...</translation>
