@@ -136,7 +136,6 @@ class bittorrent : public QObject {
     void enableIPFilter(QString filter);
     void disableIPFilter();
     void setQueueingEnabled(bool enable);
-    void saveTorrentSpeedLimits(QString hash);
     void loadTorrentSpeedLimits(QString hash);
     void handleDownloadFailure(QString url, QString reason);
     void loadWebSeeds(QString fileHash);

@@ -147,9 +147,10 @@ void bittorrent::deleteBigRatios() {
 
 void bittorrent::setDownloadLimit(QString hash, long val) {
   QTorrentHandle h = getTorrentHandle(hash);
-  if(h.is_valid())
+  if(h.is_valid()) {
     h.set_download_limit(val);
-  saveTorrentSpeedLimits(hash);
+    TorrentPersistentData::saveSpeedLimits(h);
+  }
 }
 
 bool bittorrent::isQueueingEnabled() const {
@@ -172,9 +173,10 @@ void bittorrent::decreaseDlTorrentPriority(QString hash) {
 void bittorrent::setUploadLimit(QString hash, long val) {
   qDebug("Set upload limit rate to %ld", val);
   QTorrentHandle h = getTorrentHandle(hash);
-  if(h.is_valid())
+  if(h.is_valid()) {
     h.set_upload_limit(val);
-  saveTorrentSpeedLimits(hash);
+    TorrentPersistentData::saveSpeedLimits(h);
+  }
 }
 
 void bittorrent::handleDownloadFailure(QString url, QString reason) {
@@ -821,36 +823,11 @@ bool bittorrent::enableDHT(bool b) {
   return true;
 }
 
-void bittorrent::saveTorrentSpeedLimits(QString hash) {
-  qDebug("Saving speedLimits file for %s", hash.toLocal8Bit().data());
-  QTorrentHandle h = getTorrentHandle(hash);
-  int download_limit = h.download_limit();
-  int upload_limit = h.upload_limit();
-  QFile speeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".speedLimits");
-  if(!speeds_file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-    qDebug("* Error: Couldn't open speed limits file for torrent: %s", hash.toLocal8Bit().data());
-    return;
-  }
-  speeds_file.write(misc::toQByteArray(download_limit)+QByteArray(" ")+misc::toQByteArray(upload_limit));
-  speeds_file.close();
-}
-
 void bittorrent::loadTorrentSpeedLimits(QString hash) {
-  //   qDebug("Loading speedLimits file for %s", hash.toLocal8Bit().data());
   QTorrentHandle h = getTorrentHandle(hash);
-  QFile speeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".speedLimits");
-  if(!speeds_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-    return;
-  }
-  QByteArray speed_limits = speeds_file.readAll();
-  speeds_file.close();
-  QList<QByteArray> speeds = speed_limits.split(' ');
-  if(speeds.size() != 2) {
-    std::cerr << "Invalid .speedLimits file for " << hash.toStdString() << '\n';
-    return;
-  }
-  h.set_download_limit(speeds.at(0).toInt());
-  h.set_upload_limit(speeds.at(1).toInt());
+  qDebug("Loading speedLimits file for %s", hash.toLocal8Bit().data());
+  h.set_download_limit(TorrentPersistentData::getDownloadLimit(hash));
+  h.set_upload_limit(TorrentPersistentData::getUploadLimit(hash));
 }
 
 // Read pieces priorities from hard disk
@@ -1673,6 +1650,22 @@ void bittorrent::applyFormerAttributeFiles(QTorrentHandle h) {
       }
     }
     urlseeds_file.remove();
+  }
+  // Load speed limits
+  QFile speeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".speedLimits");
+  if(speeds_file.exists()) {
+    if(speeds_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+      QByteArray speed_limits = speeds_file.readAll();
+      speeds_file.close();
+      QList<QByteArray> speeds = speed_limits.split(' ');
+      if(speeds.size() != 2) {
+        std::cerr << "Invalid .speedLimits file for " << h.hash().toStdString() << '\n';
+        return;
+      }
+      h.set_download_limit(speeds.at(0).toInt());
+      h.set_upload_limit(speeds.at(1).toInt());
+    }
+    speeds_file.remove();
   }
 }
 

@@ -183,7 +183,11 @@ public:
       }
       data["url_seeds"] = url_seeds;
     }
+    // Sequential download
     data["sequential"] = h.is_sequential_download();
+    // Speed limits
+    data["up_speed"] = h.upload_limit();
+    data["dl_speed"] = h.download_limit();
     // Save data
     all_data[h.hash()] = data;
     settings.setValue("torrents", all_data);
@@ -234,6 +238,17 @@ public:
     all_data[hash] = data;
     settings.setValue("torrents", all_data);
     qDebug("TorrentPersistentData: Saving save_path: %s, hash: %s", save_path.toLocal8Bit().data(), hash.toLocal8Bit().data());
+  }
+
+  static void saveSpeedLimits(QTorrentHandle h) {
+    Q_ASSERT(!hash.isEmpty());
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
+    QHash<QString, QVariant> data = all_data[h.hash()].toHash();
+    data["up_speed"] = h.upload_limit();
+    data["dl_speed"] = h.download_limit();
+    all_data[h.hash()] = data;
+    settings.setValue("torrents", all_data);
   }
 
   static void saveUrlSeeds(QTorrentHandle h) {
@@ -289,6 +304,20 @@ public:
     QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
     QHash<QString, QVariant> data = all_data[hash].toHash();
     return data["files_priority"].toList();
+  }
+
+  static int getUploadLimit(QString hash) {
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
+    QHash<QString, QVariant> data = all_data[hash].toHash();
+    return data.value("up_speed", -1).toInt();
+  }
+
+  static int getDownloadLimit(QString hash) {
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
+    QHash<QString, QVariant> data = all_data[hash].toHash();
+    return data.value("dl_speed", -1).toInt();
   }
 
   static QString getSavePath(QString hash) {
