@@ -84,6 +84,9 @@ SearchTab::SearchTab(SearchEngine *parent) : QWidget(), parent(parent)
   if(!loadColWidthResultsList()){
     resultsBrowser->header()->resizeSection(0, 275);
   }
+
+  // Sort by Seeds
+  resultsBrowser->sortByColumn(SEEDERS, Qt::DescendingOrder);
 }
 
 void SearchTab::downloadSelectedItem(const QModelIndex& index) {
