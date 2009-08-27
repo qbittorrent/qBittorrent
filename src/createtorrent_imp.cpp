@@ -165,8 +165,8 @@ void createtorrent::on_createButton_clicked(){
     QMessageBox::critical(0, tr("No input path set"), tr("Please type an input path first"));
     return;
   }
-  /*QStringList trackers = allItems(trackers_list);
-  if(!trackers.size()){
+  QStringList trackers = allItems(trackers_list);
+  /*if(!trackers.size()){
     QMessageBox::critical(0, tr("No tracker path set"), tr("Please set at least one tracker"));
     return;
   }*/
