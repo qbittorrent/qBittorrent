@@ -241,7 +241,7 @@ public:
   }
 
   static void saveSpeedLimits(QTorrentHandle h) {
-    Q_ASSERT(!hash.isEmpty());
+    Q_ASSERT(!h.hash().isEmpty());
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
     QHash<QString, QVariant> data = all_data[h.hash()].toHash();
