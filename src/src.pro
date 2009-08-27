@@ -3,7 +3,7 @@ LANG_PATH = lang
 ICONS_PATH = Icons
 
 # Set the following variable to 1 to enable debug
-DEBUG_MODE = 1
+DEBUG_MODE = 0
 
 # Global
 TEMPLATE = app
@@ -14,7 +14,7 @@ CONFIG += qt \
     network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v1.5.0beta4\\\"
+DEFINES += VERSION=\\\"v1.5.0rc1\\\"
 DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=5
 DEFINES += VERSION_BUGFIX=0
