@@ -1586,8 +1586,6 @@ void bittorrent::importOldTempData(QString torrent_path) {
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental")) {
       qDebug("Imported torrent was sequential");
       TorrentTempData::setSequential(hash, true);
-      // Cleanup
-      QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental");
     }
   } catch(std::exception&) {
   }
