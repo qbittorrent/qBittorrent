@@ -3517,14 +3517,12 @@ Changelog:
         <translation>Torrent に追加するファイルを選択します</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>No tracker path set</source>
-        <translation>トラッカ パスが設定されてません</translation>
+        <translation type="obsolete">トラッカ パスが設定されてません</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>Please set at least one tracker</source>
-        <translation>少なくとも 1 つのトラッカを設定してください</translation>
+        <translation type="obsolete">少なくとも 1 つのトラッカを設定してください</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="196"/>

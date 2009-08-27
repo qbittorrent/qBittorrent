@@ -3383,11 +3383,11 @@ Changelog:
     </message>
     <message>
         <source>No tracker path set</source>
-        <translation>Calea la tracker nu este setată</translation>
+        <translation type="obsolete">Calea la tracker nu este setată</translation>
     </message>
     <message>
         <source>Please set at least one tracker</source>
-        <translation>Vă rugăm să setaţi cel puţin un tracker</translation>
+        <translation type="obsolete">Vă rugăm să setaţi cel puţin un tracker</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>

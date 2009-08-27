@@ -3379,14 +3379,12 @@ Changelog:
         <translation>Válassz fájlt(okat) a torrenthez</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>No tracker path set</source>
-        <translation>Nincs tracker megadva</translation>
+        <translation type="obsolete">Nincs tracker megadva</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>Please set at least one tracker</source>
-        <translation>Kérlek adj meg legalább egy trackert</translation>
+        <translation type="obsolete">Kérlek adj meg legalább egy trackert</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="196"/>

@@ -3493,11 +3493,11 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>No tracker path set</source>
-        <translation>Nebola nastavená cesta k trackeru</translation>
+        <translation type="obsolete">Nebola nastavená cesta k trackeru</translation>
     </message>
     <message>
         <source>Please set at least one tracker</source>
-        <translation>Prosím, nastavte aspoň jeden tracker</translation>
+        <translation type="obsolete">Prosím, nastavte aspoň jeden tracker</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>

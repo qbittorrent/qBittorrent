@@ -3746,11 +3746,11 @@ enabled)</source>
     </message>
     <message>
         <source>No tracker path set</source>
-        <translation>未设置tracker路径</translation>
+        <translation type="obsolete">未设置tracker路径</translation>
     </message>
     <message>
         <source>Please set at least one tracker</source>
-        <translation>请设置至少一个tracker</translation>
+        <translation type="obsolete">请设置至少一个tracker</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>

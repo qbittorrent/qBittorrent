@@ -4069,14 +4069,12 @@ Changelog:
         <translation>Selecteer een bestand om toe te voegen aan de torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>No tracker path set</source>
-        <translation>Geen tracker pad gekozen</translation>
+        <translation type="obsolete">Geen tracker pad gekozen</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>Please set at least one tracker</source>
-        <translation>Kies op zijn minst één tracker</translation>
+        <translation type="obsolete">Kies op zijn minst één tracker</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="196"/>

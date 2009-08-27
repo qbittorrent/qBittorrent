@@ -4124,14 +4124,12 @@ Changelog:
         <translation>Datei wählen um sie dem Torrent hinzuzufügen</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>No tracker path set</source>
-        <translation>Pfad zu Tracker nicht gesetzt</translation>
+        <translation type="obsolete">Pfad zu Tracker nicht gesetzt</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>Please set at least one tracker</source>
-        <translation>Bitte geben Sie mindestens einen Tracker an</translation>
+        <translation type="obsolete">Bitte geben Sie mindestens einen Tracker an</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="196"/>

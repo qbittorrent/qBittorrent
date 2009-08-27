@@ -4156,14 +4156,12 @@ Changelog:
         <translation>토렌트에 추가할 파일을 선택하십시오</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>No tracker path set</source>
-        <translation>트렉커(Tracker) 경로가 설정되지 않았습니다</translation>
+        <translation type="obsolete">트렉커(Tracker) 경로가 설정되지 않았습니다</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>Please set at least one tracker</source>
-        <translation>적어도 하나 이상의 트렉커(tracker)을 설정해 주십시오 </translation>
+        <translation type="obsolete">적어도 하나 이상의 트렉커(tracker)을 설정해 주십시오 </translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="196"/>

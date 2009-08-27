@@ -2237,11 +2237,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>No tracker path set</source>
-        <translation>沒有設定 tracker 路徑</translation>
+        <translation type="obsolete">沒有設定 tracker 路徑</translation>
     </message>
     <message>
         <source>Please set at least one tracker</source>
-        <translation>請先設定至少一個 tracker</translation>
+        <translation type="obsolete">請先設定至少一個 tracker</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>

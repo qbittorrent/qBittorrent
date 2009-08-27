@@ -2783,14 +2783,12 @@ p, li { white-space: pre-wrap; }
         <translation>Vyberte soubor pro přidání do torrentu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>No tracker path set</source>
-        <translation>Nebyla zadána cesta k trackeru</translation>
+        <translation type="obsolete">Nebyla zadána cesta k trackeru</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>Please set at least one tracker</source>
-        <translation>Prosím nastavte alespoň jeden tracker</translation>
+        <translation type="obsolete">Prosím nastavte alespoň jeden tracker</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="196"/>

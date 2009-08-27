@@ -4189,14 +4189,12 @@ Zmiany:
         <translation>Wybierz plik który chcesz dodać do torrenta</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>No tracker path set</source>
-        <translation>Nie ustawiono ścieżki trackera</translation>
+        <translation type="obsolete">Nie ustawiono ścieżki trackera</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>Please set at least one tracker</source>
-        <translation>Ustaw przynajmniej jeden tracker</translation>
+        <translation type="obsolete">Ustaw przynajmniej jeden tracker</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="196"/>

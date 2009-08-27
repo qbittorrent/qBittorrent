@@ -2148,11 +2148,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>No tracker path set</source>
-        <translation>Ingen sökväg för bevakare inställd</translation>
+        <translation type="obsolete">Ingen sökväg för bevakare inställd</translation>
     </message>
     <message>
         <source>Please set at least one tracker</source>
-        <translation>Ställ åtminstone in en bevakare</translation>
+        <translation type="obsolete">Ställ åtminstone in en bevakare</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>

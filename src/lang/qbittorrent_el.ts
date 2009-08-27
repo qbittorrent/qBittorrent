@@ -4209,14 +4209,12 @@ Changelog:
         <translation>Επιλέξτε ένα αρχείο να προστεθεί στο τορεντ</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>No tracker path set</source>
-        <translation>Καμία διαδρομή ιχνηλάτη δεν έχει ρυθμιστεί</translation>
+        <translation type="obsolete">Καμία διαδρομή ιχνηλάτη δεν έχει ρυθμιστεί</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>Please set at least one tracker</source>
-        <translation>Παρακαλώ εισάγετε τουλάχιστο ένα ιχνηλάτη</translation>
+        <translation type="obsolete">Παρακαλώ εισάγετε τουλάχιστο ένα ιχνηλάτη</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="196"/>

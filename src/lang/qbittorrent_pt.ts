@@ -3544,11 +3544,11 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>No tracker path set</source>
-        <translation>Nenhum tracker setado</translation>
+        <translation type="obsolete">Nenhum tracker setado</translation>
     </message>
     <message>
         <source>Please set at least one tracker</source>
-        <translation>Por favor, adicione ao menos um tracker</translation>
+        <translation type="obsolete">Por favor, adicione ao menos um tracker</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>

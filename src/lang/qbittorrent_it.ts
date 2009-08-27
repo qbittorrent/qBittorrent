@@ -3873,14 +3873,12 @@ Changelog:
         <translation>Selezionare un file da aggiungere al torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>No tracker path set</source>
-        <translation>Nessun percorso del tracker definito</translation>
+        <translation type="obsolete">Nessun percorso del tracker definito</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>Please set at least one tracker</source>
-        <translation>Per favore impostare almeno un tracker</translation>
+        <translation type="obsolete">Per favore impostare almeno un tracker</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="196"/>

@@ -4303,14 +4303,12 @@ Changements:
         <translation>Sélectionner un fichier à ajouter au torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>No tracker path set</source>
-        <translation>Aucun tracker spécifié</translation>
+        <translation type="obsolete">Aucun tracker spécifié</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>Please set at least one tracker</source>
-        <translation>Veuillez définir au moins un tracker</translation>
+        <translation type="obsolete">Veuillez définir au moins un tracker</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="196"/>

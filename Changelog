@@ -13,6 +13,7 @@
     - FEATURE: A random listening port can be chosen automatically
     - BUGFIX: torrent resume code rewrited
     - BUGFIX: Greatly improved column sorting code
+    - BUGFIX: Possibility to create trackerless torrents
     - COSMETIC: Redesigned search tab to improve usability
     - COSMETIC: Redesigned RSS tab to improve usability
 

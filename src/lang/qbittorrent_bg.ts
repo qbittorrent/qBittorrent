@@ -4131,14 +4131,12 @@ Changelog:
         <translation>Изберете файл за добавяне към торента</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>No tracker path set</source>
-        <translation>Не е определен път за тракер</translation>
+        <translation type="obsolete">Не е определен път за тракер</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>Please set at least one tracker</source>
-        <translation>Моля изберете поне един тракер</translation>
+        <translation type="obsolete">Моля изберете поне един тракер</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="196"/>

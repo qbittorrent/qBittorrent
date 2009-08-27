@@ -3542,11 +3542,11 @@ Changelog:
     </message>
     <message>
         <source>No tracker path set</source>
-        <translation>Ayarlanmış izleyici yolu yok</translation>
+        <translation type="obsolete">Ayarlanmış izleyici yolu yok</translation>
     </message>
     <message>
         <source>Please set at least one tracker</source>
-        <translation>Lütfen en azından bir izleyici ayarlayın</translation>
+        <translation type="obsolete">Lütfen en azından bir izleyici ayarlayın</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>

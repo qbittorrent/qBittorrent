@@ -4125,14 +4125,12 @@ Log:
         <translation>Selecciona otro archivo para agregar al torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>No tracker path set</source>
-        <translation>No se estableció la ruta del tracker</translation>
+        <translation type="obsolete">No se estableció la ruta del tracker</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>Please set at least one tracker</source>
-        <translation>Por favor establece al menos un tracker</translation>
+        <translation type="obsolete">Por favor establece al menos un tracker</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="196"/>

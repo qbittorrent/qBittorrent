@@ -3641,14 +3641,12 @@ Muutoshistoria:
         <translation>Valitse torrentiin lisättävä tiedosto</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>No tracker path set</source>
-        <translation>Seurantapalvelimen polkua ei ole asetettu</translation>
+        <translation type="obsolete">Seurantapalvelimen polkua ei ole asetettu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
         <source>Please set at least one tracker</source>
-        <translation>Aseta ainakin yksi seurantapalvelin</translation>
+        <translation type="obsolete">Aseta ainakin yksi seurantapalvelin</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="196"/>

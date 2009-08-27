@@ -3517,11 +3517,11 @@ Changelog:
     </message>
     <message>
         <source>No tracker path set</source>
-        <translation>Не встановлено шлях трекера</translation>
+        <translation type="obsolete">Не встановлено шлях трекера</translation>
     </message>
     <message>
         <source>Please set at least one tracker</source>
-        <translation>Будь-ласка, встановіть хоча б один трекер</translation>
+        <translation type="obsolete">Будь-ласка, встановіть хоча б один трекер</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>

@@ -3312,16 +3312,6 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
-        <source>No tracker path set</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../createtorrent_imp.cpp" line="170"/>
-        <source>Please set at least one tracker</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../createtorrent_imp.cpp" line="196"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
         <translation type="unfinished"></translation>
