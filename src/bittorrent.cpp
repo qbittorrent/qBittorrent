@@ -1560,8 +1560,6 @@ void bittorrent::importOldTempData(QString torrent_path) {
       savePath = QString::fromUtf8(line.data());
       qDebug("Imported the following save path: %s", savePath.toLocal8Bit().data());
       TorrentTempData::setSavePath(hash, savePath);
-      // Clean up
-      savepath_file.remove();
     }
     // Load pieces priority
     QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".priorities");
@@ -1583,8 +1581,6 @@ void bittorrent::importOldTempData(QString torrent_path) {
         TorrentTempData::setFilesPriority(hash, pp);
         qDebug("Successfuly imported pieces_priority");
       }
-      // Clean up
-      pieces_file.remove();
     }
     // Load sequential
     if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental")) {
@@ -1619,7 +1615,6 @@ void bittorrent::applyFormerAttributeFiles(QTorrentHandle h) {
         h.force_reannounce();
       }
     }
-    tracker_file.remove();
   }
   // Load Web seeds
   QFile urlseeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".urlseeds");
@@ -1649,7 +1644,6 @@ void bittorrent::applyFormerAttributeFiles(QTorrentHandle h) {
         }
       }
     }
-    urlseeds_file.remove();
   }
   // Load speed limits
   QFile speeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".speedLimits");
@@ -1665,7 +1659,6 @@ void bittorrent::applyFormerAttributeFiles(QTorrentHandle h) {
       h.set_download_limit(speeds.at(0).toInt());
       h.set_upload_limit(speeds.at(1).toInt());
     }
-    speeds_file.remove();
   }
 }
 
@@ -1696,8 +1689,6 @@ void bittorrent::importOldTorrents() {
             if(!ok)
               prio = 99999;
             prio_file.close();
-            // Clean up
-            prio_file.remove();
           }
         }
         misc::insertSort2<QString>(filePaths, qMakePair(prio, filePath));
