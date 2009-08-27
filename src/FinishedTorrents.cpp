@@ -77,7 +77,6 @@ FinishedTorrents::FinishedTorrents(QObject *parent, bittorrent *BTSession) : par
   // Make download list header clickable for sorting
   finishedList->header()->setClickable(true);
   finishedList->header()->setSortIndicatorShown(true);
-  connect(finishedList->header(), SIGNAL(sectionPressed(int)), this, SLOT(toggleFinishedListSortOrder(int)));
   finishedListDelegate = new FinishedListDelegate(finishedList);
   finishedList->setItemDelegate(finishedListDelegate);
   connect(finishedList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFinishedListMenu(const QPoint&)));
