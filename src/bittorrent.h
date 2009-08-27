@@ -115,6 +115,7 @@ class bittorrent : public QObject {
     QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
     QTorrentHandle addMagnetUri(QString magnet_uri, bool resumed=false);
     void importOldTorrents();
+    void applyFormerAttributeFiles(QTorrentHandle h);
     void importOldTempData(QString torrent_path);
     void loadSessionState();
     void saveSessionState();

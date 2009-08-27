@@ -664,142 +664,7 @@ QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   return h;
 }
 
-// Import torrents temp data from v1.4.0 or earlier: save_path, filtered pieces
-// TODO: Remove in qBittorrent v1.6.0
-void bittorrent::importOldTempData(QString torrent_path) {
-  // Create torrent hash
-  boost::intrusive_ptr<torrent_info> t;
-  try {
-    t = new torrent_info(torrent_path.toLocal8Bit().data());
-    QString hash = misc::toQString(t->info_hash());
-    // Load save path
-    QFile savepath_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".savepath");
-    QByteArray line;
-    QString savePath;
-    if(savepath_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-      line = savepath_file.readAll();
-      savepath_file.close();
-      qDebug(" -> Save path: %s", line.data());
-      savePath = QString::fromUtf8(line.data());
-      qDebug("Imported the following save path: %s", savePath.toLocal8Bit().data());
-      TorrentTempData::setSavePath(hash, savePath);
-      // Clean up
-      savepath_file.remove();
-    }
-    // Load pieces priority
-    QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".priorities");
-    if(pieces_file.exists()){
-      // Read saved file
-      if(pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QByteArray pieces_priorities = pieces_file.readAll();
-        pieces_file.close();
-        QList<QByteArray> pieces_priorities_list = pieces_priorities.split('\n');
-        std::vector<int> pp;
-        for(int i=0; i<t->num_files(); ++i) {
-          int priority = pieces_priorities_list.at(i).toInt();
-          if( priority < 0 || priority > 7) {
-            priority = 1;
-          }
-          qDebug("Setting piece piority to %d", priority);
-          pp.push_back(priority);
-        }
-        TorrentTempData::setFilesPriority(hash, pp);
-        qDebug("Successfuly imported pieces_priority");
-      }
-      // Clean up
-      pieces_file.remove();
-    }
-    // Load sequential
-    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental")) {
-      qDebug("Imported torrent was sequential");
-      TorrentTempData::setSequential(hash, true);
-      // Cleanup
-      QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental");
-    }
-  } catch(std::exception&) {
-  }
-}
 
-// Import torrents from v1.4.0 or earlier
-// TODO: Remove in qBittorrent v1.6.0
-void bittorrent::importOldTorrents() {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  if(!settings.value("v1_4_x_torrent_imported", false).toBool()) {
-    // Import old torrent
-    QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-    QStringList fileNames;
-    QStringList filters;
-    filters << "*.torrent";
-    fileNames = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
-    if(isQueueingEnabled()) {
-      QList<QPair<int, QString> > filePaths;
-      foreach(const QString &fileName, fileNames) {
-        QString filePath = torrentBackup.path()+QDir::separator()+fileName;
-        int prio = 99999;
-        // Get priority
-        QString prioPath = filePath;
-        prioPath.replace(".torrent", ".prio");
-        if(QFile::exists(prioPath)) {
-          QFile prio_file(prioPath);
-          if(prio_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            bool ok = false;
-            prio = prio_file.readAll().toInt(&ok);
-            if(!ok)
-              prio = 99999;
-            prio_file.close();
-            // Clean up
-            prio_file.remove();
-          }
-        }
-        misc::insertSort2<QString>(filePaths, qMakePair(prio, filePath));
-      }
-      // Resume downloads
-      QPair<int, QString> fileName;
-      foreach(fileName, filePaths) {
-        importOldTempData(fileName.second);
-        QTorrentHandle h = addTorrent(fileName.second, false, QString(), true);
-        // Sequential download
-        if(TorrentTempData::hasTempData(h.hash())) {
-          qDebug("addTorrent: Setting download as sequential (from tmp data)");
-          h.set_sequential_download(TorrentTempData::isSequential(h.hash()));
-        }
-        QString savePath = TorrentTempData::getSavePath(h.hash());
-        // Save persistent data for new torrent
-        TorrentPersistentData::saveTorrentPersistentData(h);
-        // Save save_path
-        if(!defaultTempPath.isEmpty() && !savePath.isNull()) {
-          qDebug("addTorrent: Saving save_path in persistent data: %s", savePath.toLocal8Bit().data());
-          TorrentPersistentData::saveSavePath(h.hash(), savePath);
-        }
-      }
-    } else {
-      QStringList filePaths;
-      foreach(const QString &fileName, fileNames) {
-        filePaths.append(torrentBackup.path()+QDir::separator()+fileName);
-      }
-      // Resume downloads
-      foreach(const QString &fileName, filePaths) {
-        importOldTempData(fileName);
-        QTorrentHandle h = addTorrent(fileName, false, QString(), true);
-        // Sequential download
-        if(TorrentTempData::hasTempData(h.hash())) {
-          qDebug("addTorrent: Setting download as sequential (from tmp data)");
-          h.set_sequential_download(TorrentTempData::isSequential(h.hash()));
-        }
-        QString savePath = TorrentTempData::getSavePath(h.hash());
-        // Save persistent data for new torrent
-        TorrentPersistentData::saveTorrentPersistentData(h);
-        // Save save_path
-        if(!defaultTempPath.isEmpty() && !savePath.isNull()) {
-          qDebug("addTorrent: Saving save_path in persistent data: %s", savePath.toLocal8Bit().data());
-          TorrentPersistentData::saveSavePath(h.hash(), savePath);
-        }
-      }
-    }
-    settings.setValue("v1_4_x_torrent_imported", true);
-    std::cout << "Successfully imported torrents from v1.4.x (or previous) instance" << std::endl;
-  }
-}
 
 // Check if the user filtered files in this torrent.
 bool bittorrent::has_filtered_files(QString hash) const{
@@ -1697,4 +1562,199 @@ void bittorrent::startUpTorrents() {
     }
   }
   qDebug("Unfinished torrents resumed");
+}
+
+// Import torrents temp data from v1.4.0 or earlier: save_path, filtered pieces
+// TODO: Remove in qBittorrent v1.6.0
+void bittorrent::importOldTempData(QString torrent_path) {
+  // Create torrent hash
+  boost::intrusive_ptr<torrent_info> t;
+  try {
+    t = new torrent_info(torrent_path.toLocal8Bit().data());
+    QString hash = misc::toQString(t->info_hash());
+    // Load save path
+    QFile savepath_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".savepath");
+    QByteArray line;
+    QString savePath;
+    if(savepath_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+      line = savepath_file.readAll();
+      savepath_file.close();
+      qDebug(" -> Save path: %s", line.data());
+      savePath = QString::fromUtf8(line.data());
+      qDebug("Imported the following save path: %s", savePath.toLocal8Bit().data());
+      TorrentTempData::setSavePath(hash, savePath);
+      // Clean up
+      savepath_file.remove();
+    }
+    // Load pieces priority
+    QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".priorities");
+    if(pieces_file.exists()){
+      // Read saved file
+      if(pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QByteArray pieces_priorities = pieces_file.readAll();
+        pieces_file.close();
+        QList<QByteArray> pieces_priorities_list = pieces_priorities.split('\n');
+        std::vector<int> pp;
+        for(int i=0; i<t->num_files(); ++i) {
+          int priority = pieces_priorities_list.at(i).toInt();
+          if( priority < 0 || priority > 7) {
+            priority = 1;
+          }
+          qDebug("Setting piece piority to %d", priority);
+          pp.push_back(priority);
+        }
+        TorrentTempData::setFilesPriority(hash, pp);
+        qDebug("Successfuly imported pieces_priority");
+      }
+      // Clean up
+      pieces_file.remove();
+    }
+    // Load sequential
+    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental")) {
+      qDebug("Imported torrent was sequential");
+      TorrentTempData::setSequential(hash, true);
+      // Cleanup
+      QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental");
+    }
+  } catch(std::exception&) {
+  }
+}
+
+// Trackers, web seeds, speed limits
+// TODO: Remove in qBittorrent v1.6.0
+void bittorrent::applyFormerAttributeFiles(QTorrentHandle h) {
+  // Load trackers
+  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+  QFile tracker_file(torrentBackup.path()+QDir::separator()+ h.hash() + ".trackers");
+  if(tracker_file.exists()) {
+    if(tracker_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+      QStringList lines = QString::fromUtf8(tracker_file.readAll().data()).split("\n");
+      std::vector<announce_entry> trackers;
+      foreach(const QString &line, lines) {
+        QStringList parts = line.split("|");
+        if(parts.size() != 2) continue;
+        announce_entry t(parts[0].toStdString());
+        t.tier = parts[1].toInt();
+        trackers.push_back(t);
+      }
+      if(!trackers.empty()) {
+        h.replace_trackers(trackers);
+        h.force_reannounce();
+      }
+    }
+    tracker_file.remove();
+  }
+  // Load Web seeds
+  QFile urlseeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".urlseeds");
+  if(urlseeds_file.exists()) {
+    if(urlseeds_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+      QByteArray urlseeds_lines = urlseeds_file.readAll();
+      urlseeds_file.close();
+      QList<QByteArray> url_seeds = urlseeds_lines.split('\n');
+      // First remove from the torrent the url seeds that were deleted
+      // in a previous session
+      QStringList seeds_to_delete;
+      QStringList existing_seeds = h.url_seeds();
+      foreach(const QString &existing_seed, existing_seeds) {
+        if(!url_seeds.contains(existing_seed.toLocal8Bit())) {
+          seeds_to_delete << existing_seed;
+        }
+      }
+      foreach(const QString &existing_seed, seeds_to_delete) {
+        h.remove_url_seed(existing_seed);
+      }
+      // Add the ones that were added in a previous session
+      foreach(const QByteArray &url_seed, url_seeds) {
+        if(!url_seed.isEmpty()) {
+          // XXX: Should we check if it is already in the list before adding it
+          // or is libtorrent clever enough to know
+          h.add_url_seed(url_seed);
+        }
+      }
+    }
+    urlseeds_file.remove();
+  }
+}
+
+// Import torrents from v1.4.0 or earlier
+// TODO: Remove in qBittorrent v1.6.0
+void bittorrent::importOldTorrents() {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  if(!settings.value("v1_4_x_torrent_imported", false).toBool()) {
+    // Import old torrent
+    QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+    QStringList fileNames;
+    QStringList filters;
+    filters << "*.torrent";
+    fileNames = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
+    if(isQueueingEnabled()) {
+      QList<QPair<int, QString> > filePaths;
+      foreach(const QString &fileName, fileNames) {
+        QString filePath = torrentBackup.path()+QDir::separator()+fileName;
+        int prio = 99999;
+        // Get priority
+        QString prioPath = filePath;
+        prioPath.replace(".torrent", ".prio");
+        if(QFile::exists(prioPath)) {
+          QFile prio_file(prioPath);
+          if(prio_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            bool ok = false;
+            prio = prio_file.readAll().toInt(&ok);
+            if(!ok)
+              prio = 99999;
+            prio_file.close();
+            // Clean up
+            prio_file.remove();
+          }
+        }
+        misc::insertSort2<QString>(filePaths, qMakePair(prio, filePath));
+      }
+      // Resume downloads
+      QPair<int, QString> fileName;
+      foreach(fileName, filePaths) {
+        importOldTempData(fileName.second);
+        QTorrentHandle h = addTorrent(fileName.second, false, QString(), true);
+        // Sequential download
+        if(TorrentTempData::hasTempData(h.hash())) {
+          qDebug("addTorrent: Setting download as sequential (from tmp data)");
+          h.set_sequential_download(TorrentTempData::isSequential(h.hash()));
+        }
+        applyFormerAttributeFiles(h);
+        QString savePath = TorrentTempData::getSavePath(h.hash());
+        // Save persistent data for new torrent
+        TorrentPersistentData::saveTorrentPersistentData(h);
+        // Save save_path
+        if(!defaultTempPath.isEmpty() && !savePath.isNull()) {
+          qDebug("addTorrent: Saving save_path in persistent data: %s", savePath.toLocal8Bit().data());
+          TorrentPersistentData::saveSavePath(h.hash(), savePath);
+        }
+      }
+    } else {
+      QStringList filePaths;
+      foreach(const QString &fileName, fileNames) {
+        filePaths.append(torrentBackup.path()+QDir::separator()+fileName);
+      }
+      // Resume downloads
+      foreach(const QString &fileName, filePaths) {
+        importOldTempData(fileName);
+        QTorrentHandle h = addTorrent(fileName, false, QString(), true);
+        // Sequential download
+        if(TorrentTempData::hasTempData(h.hash())) {
+          qDebug("addTorrent: Setting download as sequential (from tmp data)");
+          h.set_sequential_download(TorrentTempData::isSequential(h.hash()));
+        }
+        applyFormerAttributeFiles(h);
+        QString savePath = TorrentTempData::getSavePath(h.hash());
+        // Save persistent data for new torrent
+        TorrentPersistentData::saveTorrentPersistentData(h);
+        // Save save_path
+        if(!defaultTempPath.isEmpty() && !savePath.isNull()) {
+          qDebug("addTorrent: Saving save_path in persistent data: %s", savePath.toLocal8Bit().data());
+          TorrentPersistentData::saveSavePath(h.hash(), savePath);
+        }
+      }
+    }
+    settings.setValue("v1_4_x_torrent_imported", true);
+    std::cout << "Successfully imported torrents from v1.4.x (or previous) instance" << std::endl;
+  }
 }
