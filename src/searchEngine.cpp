@@ -311,19 +311,6 @@ void SearchEngine::searchStarted(){
   search_button->setText("Stop");
 }
 
-// Download the given item from search results list
-void SearchEngine::downloadSelectedItem(const QModelIndex& index){
-  int row = index.row();
-  // Get Item url
-  QStandardItemModel *model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel();
-  QString engine_url = model->data(model->index(index.row(), ENGINE_URL_COLUMN)).toString();
-  QString torrent_url = model->data(model->index(index.row(), URL_COLUMN)).toString();
-  // Download from url
-  downloadTorrent(engine_url, torrent_url);
-  // Set item color to RED
-  all_tab.at(tabWidget->currentIndex())->setRowColor(row, "red");
-}
-
 // search Qprocess return output as soon as it gets new
 // stuff to read. We split it into lines and add each
 // line to search results calling appendSearchResult().
@@ -475,19 +462,30 @@ void SearchEngine::appendSearchResult(QString line){
   if(parts.size() != 6){
     return;
   }
-  QString url = parts.takeFirst().trimmed();
-  QString filename = parts.first().trimmed();
-  parts << url;
+
   // Add item to search result list
-  int row = currentSearchTab->getCurrentSearchListModel()->rowCount();
-  currentSearchTab->getCurrentSearchListModel()->insertRow(row);
-  for(int i=0; i<6; ++i){
-    if(parts.at(i).trimmed().toFloat() == -1 && i != SIZE)
-      currentSearchTab->getCurrentSearchListModel()->setData(currentSearchTab->getCurrentSearchListModel()->index(row, i), tr("Unknown"));
-    else
-      currentSearchTab->getCurrentSearchListModel()->setData(currentSearchTab->getCurrentSearchListModel()->index(row, i), QVariant(parts.at(i).trimmed()));
+  QStandardItemModel *cur_model = currentSearchTab->getCurrentSearchListModel();
+  int row = cur_model->rowCount();
+  cur_model->insertRow(row);
+
+  cur_model->setData(cur_model->index(row, 5), parts.at(0).trimmed()); // download URL
+  cur_model->setData(cur_model->index(row, 0), parts.at(1).trimmed()); // Name
+  cur_model->setData(cur_model->index(row, 1), parts.at(2).trimmed().toLongLong()); // Size
+  bool ok = false;
+  qlonglong nb_seeders = parts.at(3).trimmed().toLongLong(&ok);
+  if(!ok || nb_seeders < 0) {
+    cur_model->setData(cur_model->index(row, 2), tr("Unknown")); // Seeders
+  } else {
+    cur_model->setData(cur_model->index(row, 2), nb_seeders); // Seeders
   }
-  // Add url to searchResultsUrls associative array
+  qlonglong nb_leechers = parts.at(4).trimmed().toLongLong(&ok);
+  if(!ok || nb_leechers < 0) {
+    cur_model->setData(cur_model->index(row, 3), tr("Unknown")); // Leechers
+  } else {
+    cur_model->setData(cur_model->index(row, 3), nb_leechers); // Leechers
+  }
+  cur_model->setData(cur_model->index(row, 4), parts.at(5).trimmed()); // Engine URL
+
   no_search_results = false;
   ++nb_search_results;
   // Enable clear & download buttons

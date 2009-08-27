@@ -78,7 +78,7 @@ public:
 
 public slots:
   void on_download_button_clicked();
-  void downloadSelectedItem(const QModelIndex& index);
+  void downloadTorrent(QString engine_url, QString torrent_url);
 
 protected slots:
   // Search slots
@@ -96,7 +96,6 @@ protected slots:
   void propagateSectionResized(int index, int oldsize , int newsize);
   void saveResultsColumnsWidth();
   void downloadFinished(int exitcode, QProcess::ExitStatus);
-  void downloadTorrent(QString engine_url, QString torrent_url);
   void displayPatternContextMenu(QPoint);
   void createCompleter();
   void fillCatCombobox();

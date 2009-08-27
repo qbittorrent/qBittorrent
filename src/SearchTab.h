@@ -41,32 +41,34 @@ class SearchEngine;
 class QTreeView;
 class QHeaderView;
 class QStandardItemModel;
+class QSortFilterProxyModel;
 
-class SearchTab : public QWidget, public Ui::search_engine
-{
-    Q_OBJECT
-            
-    private:
-        QVBoxLayout *box;
-        QLabel *results_lbl;
-        QTreeView *resultsBrowser;
-        QStandardItemModel *SearchListModel;
-        SearchListDelegate *SearchDelegate;
-    public:
-        SearchTab(SearchEngine *parent);
-        ~SearchTab();
-        bool loadColWidthResultsList();
-        QLabel * getCurrentLabel();
-        QStandardItemModel * getCurrentSearchListModel();
-        QTreeView * getCurrentTreeView();
-        void setRowColor(int row, QString color);
-        QHeaderView* header() const;
+class SearchTab: public QWidget, public Ui::search_engine {
+  Q_OBJECT
 
-    protected slots:
-        void sortSearchList(int index);
-        void sortSearchListInt(int index, Qt::SortOrder sortOrder);
-        void sortSearchListString(int index, Qt::SortOrder sortOrder);
-        
+private:
+  QVBoxLayout *box;
+  QLabel *results_lbl;
+  QTreeView *resultsBrowser;
+  QStandardItemModel *SearchListModel;
+  QSortFilterProxyModel *proxyModel;
+  SearchListDelegate *SearchDelegate;
+  SearchEngine *parent;
+
+protected slots:
+  void downloadSelectedItem(const QModelIndex& index);
+
+public:
+  SearchTab(SearchEngine *parent);
+  ~SearchTab();
+  bool loadColWidthResultsList();
+  QLabel * getCurrentLabel();
+  QStandardItemModel * getCurrentSearchListModel();
+  QTreeView * getCurrentTreeView();
+  void setRowColor(int row, QString color);
+  QHeaderView* header() const;
+
+
 };
 
 #endif
