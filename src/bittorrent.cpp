@@ -757,7 +757,20 @@ void bittorrent::importOldTorrents() {
       QPair<int, QString> fileName;
       foreach(fileName, filePaths) {
         importOldTempData(fileName.second);
-        addTorrent(fileName.second, false, QString(), true);
+        QTorrentHandle h = addTorrent(fileName.second, false, QString(), true);
+        // Sequential download
+        if(TorrentTempData::hasTempData(h.hash())) {
+          qDebug("addTorrent: Setting download as sequential (from tmp data)");
+          h.set_sequential_download(TorrentTempData::isSequential(h.hash()));
+        }
+        QString savePath = TorrentTempData::getSavePath(h.hash());
+        // Save persistent data for new torrent
+        TorrentPersistentData::saveTorrentPersistentData(h);
+        // Save save_path
+        if(!defaultTempPath.isEmpty() && !savePath.isNull()) {
+          qDebug("addTorrent: Saving save_path in persistent data: %s", savePath.toLocal8Bit().data());
+          TorrentPersistentData::saveSavePath(h.hash(), savePath);
+        }
       }
     } else {
       QStringList filePaths;
@@ -767,7 +780,20 @@ void bittorrent::importOldTorrents() {
       // Resume downloads
       foreach(const QString &fileName, filePaths) {
         importOldTempData(fileName);
-        addTorrent(fileName, false, QString(), true);
+        QTorrentHandle h = addTorrent(fileName, false, QString(), true);
+        // Sequential download
+        if(TorrentTempData::hasTempData(h.hash())) {
+          qDebug("addTorrent: Setting download as sequential (from tmp data)");
+          h.set_sequential_download(TorrentTempData::isSequential(h.hash()));
+        }
+        QString savePath = TorrentTempData::getSavePath(h.hash());
+        // Save persistent data for new torrent
+        TorrentPersistentData::saveTorrentPersistentData(h);
+        // Save save_path
+        if(!defaultTempPath.isEmpty() && !savePath.isNull()) {
+          qDebug("addTorrent: Saving save_path in persistent data: %s", savePath.toLocal8Bit().data());
+          TorrentPersistentData::saveSavePath(h.hash(), savePath);
+        }
       }
     }
     settings.setValue("v1_4_x_torrent_imported", true);
