@@ -510,8 +510,13 @@ void RSSImp::updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnr
   // Update Unread item
   updateItemInfos(listStreams->getUnreadItem());
   // If the feed is selected, update the displayed news
-  if(listStreams->currentItem() == item || listStreams->currentItem() == listStreams->getUnreadItem()){
+  if(listStreams->currentItem() == item ){
     refreshNewsList(item);
+  } else {
+    // Update unread items
+    if(listStreams->currentItem() == listStreams->getUnreadItem()) {
+      refreshNewsList(listStreams->getUnreadItem());
+    }
   }
 }
 
