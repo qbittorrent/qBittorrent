@@ -32,6 +32,8 @@
 
 #define REFRESH_MAX_LATENCY 600000
 
+#include <QPointer>
+
 #include "ui_rss.h"
 #include "rss.h"
 
@@ -46,6 +48,7 @@ private:
   RssManager *rssmanager;
   bittorrent *BTSession;
   FeedList *listStreams;
+  QTreeWidgetItem* previous_news;
 
 public slots:
   void deleteSelectedItems();

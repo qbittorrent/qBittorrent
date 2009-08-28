@@ -201,6 +201,7 @@ void RSSImp::deleteSelectedItems() {
     foreach(QTreeWidgetItem *item, selectedItems){
       if(listStreams->currentFeed() == item){
         textBrowser->clear();
+        previous_news = 0;
         listNews->clear();
       }
       RssFile *rss_item = listStreams->getRSSItem(item);
@@ -412,6 +413,7 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
     news = sortNewsList(rss_item->getNewsList());
   // Clear the list first
   textBrowser->clear();
+  previous_news = 0;
   listNews->clear();
   qDebug("Got the list of news");
   foreach(RssItem* article, news){
@@ -433,6 +435,14 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
 // display a news
 void RSSImp::refreshTextBrowser(QTreeWidgetItem *item) {
   if(!item) return;
+  // Stop displaying previous news if necessary
+  if(listStreams->currentFeed() == listStreams->getUnreadItem()) {
+    if(previous_news) {
+      delete previous_news;
+      previous_news = 0;
+    }
+    previous_news = item;
+  }
   RssStream *stream = listStreams->getRSSItemFromUrl(item->text(1));
   RssItem* article = stream->getItem(item->text(0));
   QString html;
