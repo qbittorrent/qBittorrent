@@ -137,8 +137,12 @@ void RssFolder::refreshStream(QString url) {
   qDebug("Refreshing feed: %s", url.toLocal8Bit().data());
   Q_ASSERT(this->contains(url));
   RssStream *stream = (RssStream*)this->value(url);
-  if(stream->isLoading()) return;
+  if(stream->isLoading()) {
+    qDebug("Stream %s is already being loaded...", stream->getUrl().toLocal8Bit().data());
+    return;
+  }
   stream->setLoading(true);
+  qDebug("stream %s : loaded=true", stream->getUrl().toLocal8Bit().data());
   downloader->downloadUrl(url);
   if(!stream->hasCustomIcon()){
     downloader->downloadUrl(stream->getIconUrl());
@@ -186,6 +190,7 @@ void RssFolder::processFinishedDownload(QString url, QString path) {
   }
   stream->processDownloadedFile(path);
   stream->setLoading(false);
+  qDebug("stream %s : loaded=false", stream->getUrl().toLocal8Bit().data());
   // If the feed has no alias, then we use the title as Alias
   // this is more user friendly
   if(stream->getName().isEmpty()){

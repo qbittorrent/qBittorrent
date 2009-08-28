@@ -141,6 +141,7 @@ void subDownloadThread::run(){
     qDebug("Downloading %s", url.toLocal8Bit().data());
     if(!abort)
         res = curl_easy_perform(curl);
+    qDebug("done downloading %s", url.toLocal8Bit().data());
     /* always cleanup */
     curl_easy_cleanup(curl);
     fclose(f);
@@ -151,6 +152,7 @@ void subDownloadThread::run(){
     } else {
       emit downloadFinishedST(this, url, filePath);      
     }
+    qDebug("%s Raised the signal", url.toLocal8Bit().data());
   } else {
     std::cerr << "Could not initialize CURL" << "\n";
   }
@@ -213,6 +215,7 @@ void downloadThread::propagateDownloadedFile(subDownloadThread* st, QString url,
   Q_ASSERT(index != -1);
   subThreads.removeAt(index);
   mutex.unlock();
+  qDebug("Deleting subthread");
   delete st;
   emit downloadFinished(url, path);
   mutex.lock();
@@ -220,6 +223,7 @@ void downloadThread::propagateDownloadedFile(subDownloadThread* st, QString url,
     condition.wakeOne();
   }
   mutex.unlock();
+  qDebug("Out of propagateDownloadedFile");
 }
 
 void downloadThread::propagateDownloadFailure(subDownloadThread* st, QString url, QString reason){

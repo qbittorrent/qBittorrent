@@ -503,7 +503,8 @@ void RSSImp::updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnr
   QTreeWidgetItem *item = listStreams->getTreeItemFromUrl(url);
   RssStream *stream = (RssStream*)listStreams->getRSSItem(item);
   item->setText(0, aliasOrUrl + QString::fromUtf8("  (") + QString::number(nbUnread, 10)+ QString(")"));
-  item->setData(0,Qt::DecorationRole, QVariant(QIcon(stream->getIconPath())));
+  if(!stream->isLoading())
+    item->setData(0,Qt::DecorationRole, QVariant(QIcon(stream->getIconPath())));
   // Update parent
   if(item->parent())
     updateItemInfos(item->parent());
