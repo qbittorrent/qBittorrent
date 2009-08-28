@@ -99,10 +99,10 @@ RssFolder* RssFolder::addFolder(QString name) {
 }
 
 RssStream* RssFolder::addStream(QString url) {
-  Q_ASSERT(!this->contains(url));
   RssStream* stream = new RssStream(this, rssmanager, BTSession, url);
-  (*this)[url] = stream;
-  refreshStream(url);
+   Q_ASSERT(!this->contains(stream->getUrl()));
+  (*this)[stream->getUrl()] = stream;
+  refreshStream(stream->getUrl());
   return stream;
 }
 
