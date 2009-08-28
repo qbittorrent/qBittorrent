@@ -100,7 +100,12 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Klient siete Bittorrent naprogramovaný v C++, založený na sade nástrojov Qt4&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;a libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Domovská stránka:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -453,7 +458,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished">Spojenie</translation>
+        <translation>Spojenie</translation>
     </message>
     <message>
         <source>Peer eXchange (PeX)</source>
@@ -923,36 +928,36 @@ p, li { white-space: pre-wrap; }
     </message>
     <message utf8="true">
         <source>Spoof µtorrent to avoid ban (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Predstierať µtorrent aby sme sa vyhli blokovaniu (vyžaduje reštart)</translation>
     </message>
     <message>
         <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
+        <translation>Operácia sa vykoná po dvojitom kliknutí na položku v zozname prenosov (sťahovaní/nahrávaní)</translation>
     </message>
     <message>
         <source>Start/Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustiť/Zastaviť</translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť priečinok</translation>
     </message>
     <message>
         <source>Show properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť vlastnosti</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port pre prichádzajúce spojenia:</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhodný</translation>
     </message>
     <message>
         <source>UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozhranie</translation>
     </message>
 </context>
 <context>
@@ -1070,192 +1075,192 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished"></translation>
+        <translation>Seederi/Leecheri</translation>
     </message>
 </context>
 <context>
     <name>FeedDownloader</name>
     <message>
         <source>RSS Feed downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Sťahovanie RSS kanála</translation>
     </message>
     <message>
         <source>RSS feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS kanál:</translation>
     </message>
     <message>
         <source>Feed name</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov kanála</translation>
     </message>
     <message>
         <source>Automatically download torrents from this feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticky sťahovať torrenty z tohto kanála</translation>
     </message>
     <message>
         <source>Download filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtre sťahovania</translation>
     </message>
     <message>
         <source>Filters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtre:</translation>
     </message>
     <message>
         <source>Filter settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenia filtrov</translation>
     </message>
     <message>
         <source>Matches:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zodpovedá:</translation>
     </message>
     <message>
         <source>Does not match:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezodpovedá:</translation>
     </message>
     <message>
         <source>Destination folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cieľový priečinok:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Filter testing</source>
-        <translation type="unfinished"></translation>
+        <translation>Testovanie filtra</translation>
     </message>
     <message>
         <source>Torrent title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov torrentu:</translation>
     </message>
     <message>
         <source>Result:</source>
-        <translation type="unfinished"></translation>
+        <translation>Výsledok:</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Import...</source>
-        <translation type="unfinished"></translation>
+        <translation>Import...</translation>
     </message>
     <message>
         <source>Export...</source>
-        <translation type="unfinished"></translation>
+        <translation>Export...</translation>
     </message>
     <message>
         <source>Rename filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Premenovať filter</translation>
     </message>
     <message>
         <source>Remove filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstrániť filter</translation>
     </message>
     <message>
         <source>Add filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať filter</translation>
     </message>
 </context>
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
         <source>New filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový filter</translation>
     </message>
     <message>
         <source>Please choose a name for this filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyberte názov pre tento filter</translation>
     </message>
     <message>
         <source>Filter name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov filtra:</translation>
     </message>
     <message>
         <source>Invalid filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný názov filtra</translation>
     </message>
     <message>
         <source>The filter name cannot be left empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov filtra nemôže byť prázdny.</translation>
     </message>
     <message>
         <source>This filter name is already in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento názov filtra už existuje.</translation>
     </message>
     <message>
         <source>Filter testing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba pri testovaní filtra</translation>
     </message>
     <message>
         <source>Please specify a test torrent name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, uveďte názov testovacieho torrentu.</translation>
     </message>
     <message>
         <source>matches</source>
-        <translation type="unfinished"></translation>
+        <translation>zodpovedá</translation>
     </message>
     <message>
         <source>does not match</source>
-        <translation type="unfinished"></translation>
+        <translation>nezodpovedá</translation>
     </message>
     <message>
         <source>Select file to import</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte súbor na import</translation>
     </message>
     <message>
         <source>Filters Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtre Súbory</translation>
     </message>
     <message>
         <source>Import successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Import prebehol úspešne</translation>
     </message>
     <message>
         <source>Filters import was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Import filtrov prebehol úspešne.</translation>
     </message>
     <message>
         <source>Import failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba importu</translation>
     </message>
     <message>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebolo možné importovať filtre z dôvodu V/V chyby.</translation>
     </message>
     <message>
         <source>Select destination file</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte cieľový súbor</translation>
     </message>
     <message>
         <source>Overwriting confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdenie prepísania</translation>
     </message>
     <message>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete prepísať existujúci súbor?</translation>
     </message>
     <message>
         <source>Export successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Export prebehol úspešne</translation>
     </message>
     <message>
         <source>Filters export was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Export filtrov prebehol úspešne.</translation>
     </message>
     <message>
         <source>Export failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba exportu</translation>
     </message>
     <message>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebolo možné exportovať filtre z dôvodu V/V chyby.</translation>
     </message>
 </context>
 <context>
     <name>FeedList</name>
     <message>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Neprečítané</translation>
     </message>
 </context>
 <context>
@@ -2479,11 +2484,11 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Zmazať</translation>
+        <translation>Zmazať</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation type="unfinished">Premenovať</translation>
+        <translation>Premenovať</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -2515,59 +2520,65 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrenty:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(stiahnite dvojitým kliknutím)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Download torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Stiahnuť torrent</translation>
     </message>
     <message>
         <source>Open news URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť URL kanála</translation>
     </message>
     <message>
         <source>Copy feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Skopírovať URL kanála</translation>
     </message>
     <message>
         <source>RSS feed downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Sťahovanie RSS kanálov</translation>
     </message>
     <message>
         <source>New subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové predplatné</translation>
     </message>
     <message>
         <source>Mark items read</source>
-        <translation type="unfinished"></translation>
+        <translation>Označiť položku ako prečítané</translation>
     </message>
     <message>
         <source>Update all</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizovať všetky</translation>
     </message>
     <message>
         <source>Update all feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizovať všetky kanálu</translation>
     </message>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS kanály
+</translation>
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizovať</translation>
     </message>
     <message>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový priečinok</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1
+</translation>
     </message>
     <message>
         <source>Feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL kanála</translation>
     </message>
 </context>
 <context>
@@ -2638,52 +2649,52 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please choose a folder name</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyberte názov priečinka</translation>
     </message>
     <message>
         <source>Folder name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov priečinka:</translation>
     </message>
     <message>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový priečinok</translation>
     </message>
     <message>
         <source>Are you sure you want to delete these elements from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete zmazať tieto prvky zo zoznamu?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this element from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete zmazať tento prvok zo zoznamu?</translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyberte nový názov pre tento RSS kanál</translation>
     </message>
     <message>
         <source>New feed name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový názov kanála:</translation>
     </message>
     <message>
         <source>Name already in use</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov sa už používa</translation>
     </message>
     <message>
         <source>This name is already used by another item, please choose another one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento názov už používa iná položka. Prosím, zvoľte iný názov.</translation>
     </message>
     <message>
         <source>Overwrite attempt</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokus o prepísanie</translation>
     </message>
     <message>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžete prepísať položku %1.</translation>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Neprečítané</translation>
     </message>
 </context>
 <context>
@@ -2706,46 +2717,46 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticky sa sťahuje torrent %1 z RSS kanála %2...</translation>
     </message>
 </context>
 <context>
     <name>SearchCategories</name>
     <message>
         <source>All categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetky kategórie</translation>
     </message>
     <message>
         <source>Movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmy</translation>
     </message>
     <message>
         <source>TV shows</source>
-        <translation type="unfinished"></translation>
+        <translation>TV relácie</translation>
     </message>
     <message>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Hudba</translation>
     </message>
     <message>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Hry</translation>
     </message>
     <message>
         <source>Anime</source>
-        <translation type="unfinished"></translation>
+        <translation>Anime</translation>
     </message>
     <message>
         <source>Software</source>
-        <translation type="unfinished"></translation>
+        <translation>Softvér</translation>
     </message>
     <message>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázky</translation>
     </message>
     <message>
         <source>Books</source>
-        <translation type="unfinished"></translation>
+        <translation>Knihy</translation>
     </message>
 </context>
 <context>
@@ -3093,19 +3104,19 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Torrent size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť torrentu:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznáma</translation>
     </message>
     <message>
         <source>Free disk space:</source>
-        <translation type="unfinished"></translation>
+        <translation>Voľné miesto na disku:</translation>
     </message>
     <message>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sťahovať v postupnom poradí (pomalšie, ale lepšie pre náhľady)</translation>
     </message>
 </context>
 <context>
@@ -3237,16 +3248,16 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="unfinished"></translation>
+        <translation>„%1“ nie je platný magnet URI.</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rekurzívne sťahovanie súboru %1 vnoreného v torrente %2</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa dekódovať torrent súbor %1.</translation>
     </message>
 </context>
 <context>
@@ -3401,11 +3412,11 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Add file</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať súbor</translation>
     </message>
     <message>
         <source>Add folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať priečinok</translation>
     </message>
 </context>
 <context>
@@ -3659,7 +3670,7 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať magnet URI</translation>
     </message>
 </context>
 <context>
@@ -3839,11 +3850,11 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Áno</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie</translation>
     </message>
 </context>
 <context>
@@ -4665,7 +4676,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať magnet URI</translation>
     </message>
 </context>
 <context>
@@ -4720,7 +4731,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">V/V Chyba</translation>
+        <translation>V/V Chyba</translation>
     </message>
 </context>
 <context>
@@ -4787,17 +4798,17 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznáma</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(po stiahnutí torrentu zostane %1)</translation>
     </message>
     <message>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(na stiahnutie treba ďalších %1)</translation>
     </message>
 </context>
 </TS>
