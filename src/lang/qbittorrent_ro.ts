@@ -2475,11 +2475,19 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>1</source>
+        <source>Feed URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Feed URL</source>
+        <source>Bullet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attachment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Article title</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

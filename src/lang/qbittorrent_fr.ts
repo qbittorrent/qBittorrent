@@ -3063,14 +3063,14 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="25"/>
-        <location filename="../rss.ui" line="197"/>
+        <location filename="../rss.ui" line="219"/>
         <source>New subscription</source>
         <translation>Nouveau flux</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="39"/>
-        <location filename="../rss.ui" line="218"/>
-        <location filename="../rss.ui" line="221"/>
+        <location filename="../rss.ui" line="240"/>
+        <location filename="../rss.ui" line="243"/>
         <source>Mark items read</source>
         <translation>Marquer comme lu</translation>
     </message>
@@ -3080,23 +3080,18 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation>Tout mettre à jour</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="138"/>
-        <source>1</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../rss.ui" line="143"/>
+        <location filename="../rss.ui" line="165"/>
         <source>Feed URL</source>
         <translation>URL du flux</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="185"/>
-        <location filename="../rss.ui" line="188"/>
+        <location filename="../rss.ui" line="207"/>
+        <location filename="../rss.ui" line="210"/>
         <source>Update</source>
         <translation>Mettre à jour</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="266"/>
+        <location filename="../rss.ui" line="288"/>
         <source>New folder</source>
         <translation>Nouveau dossier</translation>
     </message>
@@ -3119,20 +3114,35 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents :&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-clic pour télécharger)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="206"/>
-        <location filename="../rss.ui" line="209"/>
+        <location filename="../rss.ui" line="150"/>
+        <source>Bullet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="155"/>
+        <source>Attachment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="160"/>
+        <source>Article title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="228"/>
+        <location filename="../rss.ui" line="231"/>
         <source>Update all feeds</source>
         <translation>Tout mettre à jour</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="161"/>
-        <location filename="../rss.ui" line="164"/>
+        <location filename="../rss.ui" line="183"/>
+        <location filename="../rss.ui" line="186"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="173"/>
-        <location filename="../rss.ui" line="176"/>
+        <location filename="../rss.ui" line="195"/>
+        <location filename="../rss.ui" line="198"/>
         <source>Rename</source>
         <translation>Renommer</translation>
     </message>
@@ -3141,22 +3151,22 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Rafraîchir</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="230"/>
+        <location filename="../rss.ui" line="252"/>
         <source>Download torrent</source>
         <translation>Télécharger le torrent</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="239"/>
+        <location filename="../rss.ui" line="261"/>
         <source>Open news URL</source>
         <translation>Ouvrir l&apos;URL de l&apos;article</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="248"/>
+        <location filename="../rss.ui" line="270"/>
         <source>Copy feed URL</source>
         <translation>Copier l&apos;URL du flux</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="257"/>
+        <location filename="../rss.ui" line="279"/>
         <source>RSS feed downloader</source>
         <translation>Téléchargement du flux RSS</translation>
     </message>
@@ -3205,12 +3215,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="159"/>
+        <location filename="../rss_imp.cpp" line="169"/>
         <source>Please type a rss stream url</source>
         <translation>Veuillez entrer l&apos;url du flux RSS</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="159"/>
+        <location filename="../rss_imp.cpp" line="169"/>
         <source>Stream URL:</source>
         <translation>URL du flux :</translation>
     </message>
@@ -3227,8 +3237,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Aucune description disponible</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="193"/>
-        <location filename="../rss_imp.cpp" line="197"/>
+        <location filename="../rss_imp.cpp" line="203"/>
+        <location filename="../rss_imp.cpp" line="207"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Etes vous sûr ? -- qBittorrent</translation>
     </message>
@@ -3237,14 +3247,14 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Etes-vous certain de vouloir supprimer ce flux de la liste ?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="194"/>
-        <location filename="../rss_imp.cpp" line="198"/>
+        <location filename="../rss_imp.cpp" line="204"/>
+        <location filename="../rss_imp.cpp" line="208"/>
         <source>&amp;Yes</source>
         <translation>&amp;Oui</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="194"/>
-        <location filename="../rss_imp.cpp" line="198"/>
+        <location filename="../rss_imp.cpp" line="204"/>
+        <location filename="../rss_imp.cpp" line="208"/>
         <source>&amp;No</source>
         <translation>&amp;Non</translation>
     </message>
@@ -3273,83 +3283,83 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Dernier rafraîchissement :</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="105"/>
+        <location filename="../rss_imp.cpp" line="115"/>
         <source>Please choose a folder name</source>
         <translation>Veuillez indiquer un nom de dossier</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="105"/>
+        <location filename="../rss_imp.cpp" line="115"/>
         <source>Folder name:</source>
         <translation>Nom du dossier :</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="105"/>
+        <location filename="../rss_imp.cpp" line="115"/>
         <source>New folder</source>
         <translation>Nouveau dossier</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="126"/>
+        <location filename="../rss_imp.cpp" line="136"/>
         <source>Overwrite attempt</source>
         <translation>Tentative d&apos;écrasement</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="127"/>
+        <location filename="../rss_imp.cpp" line="137"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation>Vous ne pouvez pas écraser l&apos;élément %1.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="164"/>
+        <location filename="../rss_imp.cpp" line="174"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="165"/>
+        <location filename="../rss_imp.cpp" line="175"/>
         <source>This rss feed is already in the list.</source>
         <translation>Cette source RSS est déjà dans votre liste.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="193"/>
+        <location filename="../rss_imp.cpp" line="203"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>Etes-vous certain de vouloir supprimer ces éléments de la liste ?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="197"/>
+        <location filename="../rss_imp.cpp" line="207"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>Etes-vous certain de vouloir supprimer cet élément de la liste ?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="299"/>
+        <location filename="../rss_imp.cpp" line="316"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Veuillez choisir un nouveau nom pour ce flux RSS</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="299"/>
+        <location filename="../rss_imp.cpp" line="316"/>
         <source>New feed name:</source>
         <translation>Nouveau nom du flux :</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="302"/>
+        <location filename="../rss_imp.cpp" line="319"/>
         <source>Name already in use</source>
         <translation>Nom déjà utilisé</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="302"/>
+        <location filename="../rss_imp.cpp" line="319"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Ce nom est déjà utilisé par un autre élément, veuillez en choisir un autre.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="442"/>
+        <location filename="../rss_imp.cpp" line="472"/>
         <source>Date: </source>
         <translation>Date : </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="445"/>
+        <location filename="../rss_imp.cpp" line="475"/>
         <source>Author: </source>
         <translation>Auteur : </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="488"/>
+        <location filename="../rss_imp.cpp" line="518"/>
         <source>Unread</source>
         <translation>Non lu</translation>
     </message>
@@ -3357,7 +3367,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssItem</name>
     <message>
-        <location filename="../rss.h" line="354"/>
+        <location filename="../rss.h" line="351"/>
         <source>No description available</source>
         <translation>Aucune description disponible</translation>
     </message>
@@ -3370,7 +3380,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">il y a %1</translation>
     </message>
     <message>
-        <location filename="../rss.cpp" line="561"/>
+        <location filename="../rss.cpp" line="572"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Téléchargement automatique du torrent %1 depuis le flux RSS %2...</translation>
     </message>

@@ -2313,14 +2313,14 @@ qBittorrent を終了してもよろしいですか?</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="25"/>
-        <location filename="../rss.ui" line="197"/>
+        <location filename="../rss.ui" line="219"/>
         <source>New subscription</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../rss.ui" line="39"/>
-        <location filename="../rss.ui" line="218"/>
-        <location filename="../rss.ui" line="221"/>
+        <location filename="../rss.ui" line="240"/>
+        <location filename="../rss.ui" line="243"/>
         <source>Mark items read</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2330,23 +2330,33 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="138"/>
-        <source>1</source>
+        <location filename="../rss.ui" line="150"/>
+        <source>Bullet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="143"/>
+        <location filename="../rss.ui" line="155"/>
+        <source>Attachment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="160"/>
+        <source>Article title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="165"/>
         <source>Feed URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="185"/>
-        <location filename="../rss.ui" line="188"/>
+        <location filename="../rss.ui" line="207"/>
+        <location filename="../rss.ui" line="210"/>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="266"/>
+        <location filename="../rss.ui" line="288"/>
         <source>New folder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2360,8 +2370,8 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">RSS ストリーム:</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="206"/>
-        <location filename="../rss.ui" line="209"/>
+        <location filename="../rss.ui" line="228"/>
+        <location filename="../rss.ui" line="231"/>
         <source>Update all feeds</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2370,14 +2380,14 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">ニュース:</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="161"/>
-        <location filename="../rss.ui" line="164"/>
+        <location filename="../rss.ui" line="183"/>
+        <location filename="../rss.ui" line="186"/>
         <source>Delete</source>
         <translation type="unfinished">削除</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="173"/>
-        <location filename="../rss.ui" line="176"/>
+        <location filename="../rss.ui" line="195"/>
+        <location filename="../rss.ui" line="198"/>
         <source>Rename</source>
         <translation type="unfinished">名前の変更</translation>
     </message>
@@ -2386,22 +2396,22 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">更新</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="230"/>
+        <location filename="../rss.ui" line="252"/>
         <source>Download torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="239"/>
+        <location filename="../rss.ui" line="261"/>
         <source>Open news URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="248"/>
+        <location filename="../rss.ui" line="270"/>
         <source>Copy feed URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="257"/>
+        <location filename="../rss.ui" line="279"/>
         <source>RSS feed downloader</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2459,12 +2469,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="159"/>
+        <location filename="../rss_imp.cpp" line="169"/>
         <source>Please type a rss stream url</source>
         <translation>rss ストリームの url を入力してください</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="159"/>
+        <location filename="../rss_imp.cpp" line="169"/>
         <source>Stream URL:</source>
         <translation>ストリームの URL:</translation>
     </message>
@@ -2481,8 +2491,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">利用可能な説明がありません</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="193"/>
-        <location filename="../rss_imp.cpp" line="197"/>
+        <location filename="../rss_imp.cpp" line="203"/>
+        <location filename="../rss_imp.cpp" line="207"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>よろしいですか? -- qBittorrent</translation>
     </message>
@@ -2491,14 +2501,14 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">一覧からこのストリームを削除してもよろしいですか ?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="194"/>
-        <location filename="../rss_imp.cpp" line="198"/>
+        <location filename="../rss_imp.cpp" line="204"/>
+        <location filename="../rss_imp.cpp" line="208"/>
         <source>&amp;Yes</source>
         <translation>はい(&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="194"/>
-        <location filename="../rss_imp.cpp" line="198"/>
+        <location filename="../rss_imp.cpp" line="204"/>
+        <location filename="../rss_imp.cpp" line="208"/>
         <source>&amp;No</source>
         <translation>いいえ(&amp;N)</translation>
     </message>
@@ -2523,83 +2533,83 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">最後の更新:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="105"/>
+        <location filename="../rss_imp.cpp" line="115"/>
         <source>Please choose a folder name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="105"/>
+        <location filename="../rss_imp.cpp" line="115"/>
         <source>Folder name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="105"/>
+        <location filename="../rss_imp.cpp" line="115"/>
         <source>New folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="126"/>
+        <location filename="../rss_imp.cpp" line="136"/>
         <source>Overwrite attempt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="127"/>
+        <location filename="../rss_imp.cpp" line="137"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="164"/>
+        <location filename="../rss_imp.cpp" line="174"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="165"/>
+        <location filename="../rss_imp.cpp" line="175"/>
         <source>This rss feed is already in the list.</source>
         <translation>この rss フィードはすでに一覧にあります。</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="193"/>
+        <location filename="../rss_imp.cpp" line="203"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="197"/>
+        <location filename="../rss_imp.cpp" line="207"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="299"/>
+        <location filename="../rss_imp.cpp" line="316"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="299"/>
+        <location filename="../rss_imp.cpp" line="316"/>
         <source>New feed name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="302"/>
+        <location filename="../rss_imp.cpp" line="319"/>
         <source>Name already in use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="302"/>
+        <location filename="../rss_imp.cpp" line="319"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="442"/>
+        <location filename="../rss_imp.cpp" line="472"/>
         <source>Date: </source>
         <translation>日付: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="445"/>
+        <location filename="../rss_imp.cpp" line="475"/>
         <source>Author: </source>
         <translation>作者: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="488"/>
+        <location filename="../rss_imp.cpp" line="518"/>
         <source>Unread</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2607,7 +2617,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssItem</name>
     <message>
-        <location filename="../rss.h" line="354"/>
+        <location filename="../rss.h" line="351"/>
         <source>No description available</source>
         <translation>説明が利用できません</translation>
     </message>
@@ -2620,7 +2630,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">%1 前</translation>
     </message>
     <message>
-        <location filename="../rss.cpp" line="561"/>
+        <location filename="../rss.cpp" line="572"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation type="unfinished"></translation>
     </message>
