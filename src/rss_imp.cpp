@@ -437,6 +437,8 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
     it->setText(2, article->getTitle());
     if(article->has_attachment())
       it->setData(1, Qt::DecorationRole, QVariant(QIcon(":/Icons/oxygen/application-x-kgetlist.png")));
+    else
+      it->setData(1, Qt::DecorationRole, QVariant(QIcon(":/Icons/oxygen/application-x-kgetlist-no.png")));
     it->setText(3, article->getParent()->getUrl());
     if(article->isRead()){
       it->setData(2, Qt::ForegroundRole, QVariant(QColor("grey")));
