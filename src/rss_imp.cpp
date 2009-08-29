@@ -222,6 +222,8 @@ void RSSImp::deleteSelectedItems() {
       delete item;
     }
     rssmanager->saveStreamList();
+    // Update Unread items
+    updateItemInfos(listStreams->getUnreadItem());
   }
 }
 
