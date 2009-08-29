@@ -434,7 +434,7 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
 
 // display a news
 void RSSImp::refreshTextBrowser(QTreeWidgetItem *item) {
-  if(!item) return;
+  if(!item || item == previous_news) return;
   // Stop displaying previous news if necessary
   if(listStreams->currentFeed() == listStreams->getUnreadItem()) {
     if(previous_news) {
