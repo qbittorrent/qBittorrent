@@ -100,7 +100,7 @@ RssFolder* RssFolder::addFolder(QString name) {
 
 RssStream* RssFolder::addStream(QString url) {
   RssStream* stream = new RssStream(this, rssmanager, BTSession, url);
-   Q_ASSERT(!this->contains(stream->getUrl()));
+  Q_ASSERT(!this->contains(stream->getUrl()));
   (*this)[stream->getUrl()] = stream;
   refreshStream(stream->getUrl());
   return stream;
@@ -362,6 +362,7 @@ void RssManager::saveStreamList(){
 /** RssStream **/
 
 RssStream::RssStream(RssFolder* parent, RssManager *rssmanager, bittorrent *BTSession, QString _url): parent(parent), rssmanager(rssmanager), BTSession(BTSession), alias(""), iconPath(":/Icons/rss16.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
+  has_attachments = false;
   qDebug("RSSStream constructed");
   QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   url = QUrl(_url).toString();
@@ -371,8 +372,11 @@ RssStream::RssStream(RssFolder* parent, RssManager *rssmanager, bittorrent *BTSe
   foreach(const QVariant &var_it, old_items) {
     QHash<QString, QVariant> item = var_it.toHash();
     RssItem *rss_item = RssItem::fromHash(this, item);
-    if(rss_item->isValid())
+    if(rss_item->isValid()) {
       (*this)[rss_item->getTitle()] = rss_item;
+      if(rss_item->has_attachment())
+        has_attachments = true;
+    }
   }
 }
 
@@ -559,25 +563,28 @@ short RssStream::readDoc(const QDomDocument& doc) {
           RssItem * item = new RssItem(this, property);
           if(item->isValid() && !itemAlreadyExists(item->getTitle())) {
             (*this)[item->getTitle()] = item;
-            // Check if the item should be automatically downloaded
-            FeedFilter * matching_filter = FeedFilters::getFeedFilters(url).matches(item->getTitle());
-            if(matching_filter != 0) {
-              // Download the torrent
-              BTSession->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTitle()).arg(getName()));
-              if(matching_filter->isValid()) {
-                QString save_path = matching_filter->getSavePath();
-                if(save_path.isEmpty())
+            if(item->has_attachment()) {
+              has_attachments = true;
+              // Check if the item should be automatically downloaded
+              FeedFilter * matching_filter = FeedFilters::getFeedFilters(url).matches(item->getTitle());
+              if(matching_filter != 0) {
+                // Download the torrent
+                BTSession->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTitle()).arg(getName()));
+                if(matching_filter->isValid()) {
+                  QString save_path = matching_filter->getSavePath();
+                  if(save_path.isEmpty())
+                    BTSession->downloadUrlAndSkipDialog(item->getTorrentUrl());
+                  else
+                    BTSession->downloadUrlAndSkipDialog(item->getTorrentUrl(), save_path);
+                } else {
+                  // All torrents are downloaded from this feed
                   BTSession->downloadUrlAndSkipDialog(item->getTorrentUrl());
-                else
-                  BTSession->downloadUrlAndSkipDialog(item->getTorrentUrl(), save_path);
-              } else {
-                // All torrents are downloaded from this feed
-                BTSession->downloadUrlAndSkipDialog(item->getTorrentUrl());
+                }
+                // Item was downloaded, consider it as Read
+                item->setRead();
+                // Clean up
+                delete matching_filter;
               }
-              // Item was downloaded, consider it as Read
-              item->setRead();
-              // Clean up
-              delete matching_filter;
             }
           } else {
             delete item;

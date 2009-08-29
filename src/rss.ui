@@ -127,15 +127,37 @@ p, li { white-space: pre-wrap; }
           <property name="selectionMode">
            <enum>QAbstractItemView::ExtendedSelection</enum>
           </property>
+          <property name="rootIsDecorated">
+           <bool>false</bool>
+          </property>
+          <property name="itemsExpandable">
+           <bool>false</bool>
+          </property>
+          <property name="allColumnsShowFocus">
+           <bool>true</bool>
+          </property>
           <attribute name="headerVisible">
            <bool>false</bool>
           </attribute>
-          <attribute name="headerVisible">
-           <bool>false</bool>
+          <attribute name="headerStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="headerStretchLastSection">
+           <bool>true</bool>
           </attribute>
           <column>
            <property name="text">
-            <string>1</string>
+            <string>Bullet</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Attachment</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Article title</string>
            </property>
           </column>
           <column>

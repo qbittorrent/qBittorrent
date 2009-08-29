@@ -268,18 +268,10 @@ public:
           is_valid = false;
           return;
         }
-        if(!torrent_url.isEmpty())
-          is_valid = true;
       }
       else if (property.tagName() == "enclosure") {
         if(property.attribute("type", "") == "application/x-bittorrent") {
           torrent_url = property.attribute("url", QString::null);
-          if(torrent_url.isNull()) {
-            qDebug("Error: Torrent URL is null");
-            return;
-          }
-          if(!title.isEmpty())
-            is_valid = true;
         }
       }
       else if (property.tagName() == "link")
@@ -292,6 +284,7 @@ public:
         author = property.text();
       property = property.nextSibling().toElement();
     }
+    is_valid = true;
   }
 
   RssItem(RssStream* parent, QString _title, QString _torrent_url, QString _news_link, QString _description, QDateTime _date, QString _author, bool _read):
@@ -305,6 +298,10 @@ public:
   }
 
   ~RssItem(){
+  }
+
+  bool has_attachment() const {
+    return !torrent_url.isEmpty();
   }
 
   QHash<QString, QVariant> toHash() const {
@@ -388,6 +385,7 @@ private:
   bool refreshed;
   bool downloadFailure;
   bool currently_loading;
+  bool has_attachments;
 
 public slots:
   void processDownloadedFile(QString file_path);
@@ -423,6 +421,7 @@ public:
   QList<RssItem*> getNewsList() const;
   QList<RssItem*> getUnreadNewsList() const;
   QString getIconUrl();
+  bool hasAttachments() const { return has_attachments; }
 
 private:
   short readDoc(const QDomDocument& doc);

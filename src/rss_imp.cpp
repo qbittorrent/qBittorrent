@@ -68,8 +68,10 @@ void RSSImp::displayRSSListMenu(const QPoint& pos){
       myRSSListMenu.addSeparator();
       myRSSListMenu.addAction(actionCopy_feed_URL);
       if(selectedItems.size() == 1) {
-        myRSSListMenu.addSeparator();
-        myRSSListMenu.addAction(actionRSS_feed_downloader);
+        if(((RssStream*)listStreams->getRSSItem(selectedItems.first()))->hasAttachments()) {
+          myRSSListMenu.addSeparator();
+          myRSSListMenu.addAction(actionRSS_feed_downloader);
+        }
       }
     }
   }else{
@@ -85,7 +87,15 @@ void RSSImp::displayItemsListMenu(const QPoint&){
   QMenu myItemListMenu(this);
   QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
   if(selectedItems.size() > 0) {
-    myItemListMenu.addAction(actionDownload_torrent);
+    bool has_attachment = false;
+    foreach(QTreeWidgetItem *item, selectedItems) {
+      if(listStreams->getRSSItemFromUrl(item->text(3))->getItem(item->text(2))->has_attachment()) {
+        has_attachment = true;
+        break;
+      }
+    }
+    if(has_attachment)
+      myItemListMenu.addAction(actionDownload_torrent);
     myItemListMenu.addAction(actionOpen_news_URL);
   }
   myItemListMenu.exec(QCursor::pos());
@@ -272,8 +282,14 @@ void RSSImp::on_updateAllButton_clicked() {
 void RSSImp::downloadTorrent() {
   QList<QTreeWidgetItem *> selected_items = listNews->selectedItems();
   foreach(const QTreeWidgetItem* item, selected_items) {
-    RssItem* news =  listStreams->getRSSItemFromUrl(item->text(1))->getItem(item->text(0));
-    BTSession->downloadFromUrl(news->getTorrentUrl());
+    RssItem* article =  listStreams->getRSSItemFromUrl(item->text(3))->getItem(item->text(2));
+    if(article->has_attachment()) {
+      BTSession->downloadFromUrl(article->getTorrentUrl());
+    } else {
+      QString link = article->getLink();
+      if(!link.isEmpty())
+        QDesktopServices::openUrl(QUrl(link));
+    }
   }
 }
 
@@ -281,7 +297,7 @@ void RSSImp::downloadTorrent() {
 void RSSImp::openNewsUrl() {
   QList<QTreeWidgetItem *> selected_items = listNews->selectedItems();
   foreach(const QTreeWidgetItem* item, selected_items) {
-    RssItem* news =  listStreams->getRSSItemFromUrl(item->text(1))->getItem(item->text(0));
+    RssItem* news =  listStreams->getRSSItemFromUrl(item->text(3))->getItem(item->text(2));
     QString link = news->getLink();
     if(!link.isEmpty())
       QDesktopServices::openUrl(QUrl(link));
@@ -418,13 +434,15 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
   qDebug("Got the list of news");
   foreach(RssItem* article, news){
     QTreeWidgetItem* it = new QTreeWidgetItem(listNews);
-    it->setText(0, article->getTitle());
-    it->setText(1, article->getParent()->getUrl());
+    it->setText(2, article->getTitle());
+    if(article->has_attachment())
+      it->setData(1, Qt::DecorationRole, QVariant(QIcon(":/Icons/oxygen/application-x-kgetlist.png")));
+    it->setText(3, article->getParent()->getUrl());
     if(article->isRead()){
-      it->setData(0, Qt::ForegroundRole, QVariant(QColor("grey")));
+      it->setData(2, Qt::ForegroundRole, QVariant(QColor("grey")));
       it->setData(0, Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));
     }else{
-      it->setData(0, Qt::ForegroundRole, QVariant(QColor("blue")));
+      it->setData(2, Qt::ForegroundRole, QVariant(QColor("blue")));
       it->setData(0, Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere2.png")));
     }
   }
@@ -443,8 +461,8 @@ void RSSImp::refreshTextBrowser(QTreeWidgetItem *item) {
     }
     previous_news = item;
   }
-  RssStream *stream = listStreams->getRSSItemFromUrl(item->text(1));
-  RssItem* article = stream->getItem(item->text(0));
+  RssStream *stream = listStreams->getRSSItemFromUrl(item->text(3));
+  RssItem* article = stream->getItem(item->text(2));
   QString html;
   html += "<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>";
   html += "<div style='background-color: #678db2; font-weight: bold; color: #fff;'>"+article->getTitle() + "</div>";
@@ -458,11 +476,11 @@ void RSSImp::refreshTextBrowser(QTreeWidgetItem *item) {
   html += "<divstyle='margin-left: 5px; margin-right: 5px;'>"+article->getDescription()+"</div>";
   textBrowser->setHtml(html);
   article->setRead();
-  item->setData(0, Qt::ForegroundRole, QVariant(QColor("grey")));
+  item->setData(2, Qt::ForegroundRole, QVariant(QColor("grey")));
   item->setData(0, Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));
   // Decrement feed nb unread news
   updateItemInfos(listStreams->getUnreadItem());
-  updateItemInfos(listStreams->getTreeItemFromUrl(item->text(1)));
+  updateItemInfos(listStreams->getTreeItemFromUrl(item->text(3)));
 }
 
 void RSSImp::saveSlidersPosition() {
@@ -538,7 +556,9 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
 
   listStreams = new FeedList(splitter_h, rssmanager);
   splitter_h->insertWidget(0, listStreams);
-  listNews->hideColumn(1);
+  listNews->hideColumn(3);
+  listNews->setColumnWidth(0, 16);
+  listNews->setColumnWidth(1, 20);
 
   fillFeedsList();
   refreshNewsList(listStreams->currentItem());
