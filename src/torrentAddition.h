@@ -170,9 +170,12 @@ public:
     child << new QStandardItem(misc::toQString(NORMAL));
     // INDEX
     child << new QStandardItem(misc::toQString(root->getIndex()));
-    // TODO: row Color?
+
     // Add the child to the tree
     parent->appendRow(child);
+
+    // set row Color
+    setItemColor(first->index(), "green");
     // Add children
     QList<const torrent_file*> children = root->getChildren();
     foreach(const torrent_file *child, children) {
@@ -198,6 +201,7 @@ public slots:
         QStandardItem *parentPrio = grandFather->child(parent->row(), PRIORITY);
         if(parentPrio->text().toInt() != NORMAL) {
           parentPrio->setText(misc::toQString(NORMAL));
+          setItemColor(parentPrio->index(), "green");
           // Recursively update ancesters of this parent too
           updateParentsPriority(grandFather->child(parent->row()), priority);
         }
@@ -213,6 +217,10 @@ public slots:
     QStandardItem *parentPrio = grandFather->child(parent->row(), PRIORITY);
     if(parentPrio->text().toInt() != priority) {
       parentPrio->setText(misc::toQString(priority));
+      if(priority == IGNORED)
+        setItemColor(parentPrio->index(), "red");
+      else
+        setItemColor(parentPrio->index(), "green");
       // Recursively update ancesters of this parent too
       updateParentsPriority(grandFather->child(parent->row()), priority);
     }
@@ -229,6 +237,10 @@ public slots:
       QStandardItem * childPrio = parent->child(i, PRIORITY);
       if(childPrio->text().toInt() != priority) {
         childPrio->setText(misc::toQString(priority));
+        if(priority == IGNORED)
+          setItemColor(childPrio->index(), "red");
+        else
+          setItemColor(childPrio->index(), "green");
         // recursively update children of this child too
         updateChildrenPriority(parent->child(i), priority);
       }
@@ -245,6 +257,10 @@ public slots:
       parent = PropListModel->invisibleRootItem();
     }
     int priority = parent->child(item->row(), PRIORITY)->text().toInt();
+    if(priority == IGNORED)
+      setItemColor(item->index(), "red");
+    else
+      setItemColor(item->index(), "green");
     // Update parents priorities
     updateParentsPriority(item, priority);
     // If this is not a directory, then there are
@@ -312,9 +328,9 @@ public slots:
   }
 
   // Set the color of a row in data model
-  void setRowColor(int row, QString color){
+  void setItemColor(QModelIndex index, QString color){
     for(int i=0; i<PropListModel->columnCount(); ++i){
-      PropListModel->setData(PropListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
+      PropListModel->setData(index.sibling(index.row(), i), QVariant(QColor(color)), Qt::ForegroundRole);
     }
   }
 
@@ -347,9 +363,7 @@ public slots:
     foreach(const QModelIndex &index, selectedIndexes){
       if(index.column() == PRIORITY){
         PropListModel->setData(index, QVariant(IGNORED));
-      }
-      for(int i=0; i<PropListModel->columnCount(); ++i){
-        PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor(QString::fromUtf8("red"))), Qt::ForegroundRole);
+        setItemColor(index, "red");
       }
     }
   }
@@ -359,9 +373,7 @@ public slots:
     foreach(const QModelIndex &index, selectedIndexes){
       if(index.column() == PRIORITY){
         PropListModel->setData(index, QVariant(NORMAL));
-      }
-      for(int i=0; i<PropListModel->columnCount(); ++i){
-        PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor(QString::fromUtf8("green"))), Qt::ForegroundRole);
+        setItemColor(index, "green");
       }
     }
   }
@@ -371,9 +383,7 @@ public slots:
     foreach(const QModelIndex &index, selectedIndexes){
       if(index.column() == PRIORITY){
         PropListModel->setData(index, QVariant(HIGH));
-      }
-      for(int i=0; i<PropListModel->columnCount(); ++i){
-        PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("green")), Qt::ForegroundRole);
+        setItemColor(index, "green");
       }
     }
   }
@@ -383,9 +393,7 @@ public slots:
     foreach(const QModelIndex &index, selectedIndexes){
       if(index.column() == PRIORITY){
         PropListModel->setData(index, QVariant(MAXIMUM));
-      }
-      for(int i=0; i<PropListModel->columnCount(); ++i){
-        PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor(QString::fromUtf8("green"))), Qt::ForegroundRole);
+        setItemColor(index, "green");
       }
     }
   }

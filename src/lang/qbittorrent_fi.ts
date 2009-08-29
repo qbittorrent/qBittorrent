@@ -4449,8 +4449,8 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Perustiedot</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="457"/>
-        <location filename="../properties_imp.cpp" line="625"/>
+        <location filename="../properties_imp.cpp" line="466"/>
+        <location filename="../properties_imp.cpp" line="634"/>
         <source>None - Unreachable?</source>
         <translation>Ei yhtään - tavoittamattomissa?</translation>
     </message>
@@ -4628,18 +4628,18 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="68"/>
-        <location filename="../properties_imp.cpp" line="366"/>
+        <location filename="../properties_imp.cpp" line="383"/>
         <source>Priority</source>
         <translation>Prioriteetti</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="470"/>
-        <location filename="../properties_imp.cpp" line="531"/>
+        <location filename="../properties_imp.cpp" line="479"/>
+        <location filename="../properties_imp.cpp" line="540"/>
         <source>qBittorrent</source>
         <translation> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="532"/>
+        <location filename="../properties_imp.cpp" line="541"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>Seurantapalvelinlista ei voi olla tyhjä.</translation>
     </message>
@@ -4674,12 +4674,12 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation>URL-jaot</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="465"/>
+        <location filename="../properties_imp.cpp" line="474"/>
         <source>New url seed:</source>
         <translation>Uusi URL-jakaja:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="471"/>
+        <location filename="../properties_imp.cpp" line="480"/>
         <source>This url seed is already in the list.</source>
         <translation>Jakaja on jo listassa.</translation>
     </message>
@@ -4689,7 +4689,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Ei mikään</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="464"/>
+        <location filename="../properties_imp.cpp" line="473"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Uusi URL-lähde</translation>
@@ -4700,12 +4700,12 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation>Seuraavat URL-jaot ovat saatavilla:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="721"/>
+        <location filename="../properties_imp.cpp" line="716"/>
         <source>Priorities error</source>
         <translation>Prioriteettivirhe</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="721"/>
+        <location filename="../properties_imp.cpp" line="716"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Et voi suodattaa torrentin kaikkia tiedostoja.</translation>
     </message>
@@ -4730,18 +4730,18 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="672"/>
-        <location filename="../properties_imp.cpp" line="674"/>
+        <location filename="../properties_imp.cpp" line="667"/>
+        <location filename="../properties_imp.cpp" line="669"/>
         <source>Choose save path</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="681"/>
+        <location filename="../properties_imp.cpp" line="676"/>
         <source>Save path creation error</source>
         <translation>Tallennuskansion luominen ei onnistunut</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="681"/>
+        <location filename="../properties_imp.cpp" line="676"/>
         <source>Could not create the save path</source>
         <translation>Tallennuskansion luominen ei onnistunut</translation>
     </message>
@@ -4984,18 +4984,18 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentAddition.h" line="300"/>
-        <location filename="../torrentAddition.h" line="302"/>
+        <location filename="../torrentAddition.h" line="316"/>
+        <location filename="../torrentAddition.h" line="318"/>
         <source>Choose save path</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="430"/>
+        <location filename="../torrentAddition.h" line="438"/>
         <source>Could not create the save path</source>
         <translation>Tallennuskansion luominen ei onnistunut</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="432"/>
         <source>Empty save path</source>
         <translation>Ei tallennuskansiota</translation>
     </message>
@@ -5004,34 +5004,34 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Ei</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="443"/>
+        <location filename="../torrentAddition.h" line="451"/>
         <source>Invalid file selection</source>
         <translation>Virheellinen tiedostovalinta</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="432"/>
         <source>Please enter a save path</source>
         <translation>Anna tallennuskansio</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="269"/>
+        <location filename="../torrentAddition.h" line="285"/>
         <source>Unknown</source>
         <translation>Tuntematon</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="285"/>
+        <location filename="../torrentAddition.h" line="301"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 torrentin lataamisen jälkeen)</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="288"/>
+        <location filename="../torrentAddition.h" line="304"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(tarvitaan %1 lisää lataamiseen)</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="430"/>
+        <location filename="../torrentAddition.h" line="438"/>
         <source>Save path creation error</source>
         <translation>Tallennuskansion luominen ei onnistunut</translation>
     </message>
@@ -5050,7 +5050,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation>Torrent-tiedoston purkaminen ei onnistunut:</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="443"/>
+        <location filename="../torrentAddition.h" line="451"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Valitse ainakin yksi torrent-tiedosto</translation>
     </message>
@@ -5071,7 +5071,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="79"/>
-        <location filename="../torrentAddition.h" line="336"/>
+        <location filename="../torrentAddition.h" line="352"/>
         <source>Priority</source>
         <translation>Prioriteetti</translation>
     </message>

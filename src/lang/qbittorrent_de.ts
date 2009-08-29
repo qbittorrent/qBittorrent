@@ -5048,8 +5048,8 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete">Ausgewählt</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="457"/>
-        <location filename="../properties_imp.cpp" line="625"/>
+        <location filename="../properties_imp.cpp" line="466"/>
+        <location filename="../properties_imp.cpp" line="634"/>
         <source>None - Unreachable?</source>
         <translation>Keine - Unerreichbar?</translation>
     </message>
@@ -5208,18 +5208,18 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="68"/>
-        <location filename="../properties_imp.cpp" line="366"/>
+        <location filename="../properties_imp.cpp" line="383"/>
         <source>Priority</source>
         <translation>Priorität</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="470"/>
-        <location filename="../properties_imp.cpp" line="531"/>
+        <location filename="../properties_imp.cpp" line="479"/>
+        <location filename="../properties_imp.cpp" line="540"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="532"/>
+        <location filename="../properties_imp.cpp" line="541"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>die Tracker Liste kann nicht leer sein.</translation>
     </message>
@@ -5254,12 +5254,12 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation>URL Seeds</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="465"/>
+        <location filename="../properties_imp.cpp" line="474"/>
         <source>New url seed:</source>
         <translation>Neue URL Seeds:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="471"/>
+        <location filename="../properties_imp.cpp" line="480"/>
         <source>This url seed is already in the list.</source>
         <translation>Dieser URL Seed ist bereits in der Liste.</translation>
     </message>
@@ -5273,7 +5273,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete">Keine</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="464"/>
+        <location filename="../properties_imp.cpp" line="473"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Neuer URL Seed</translation>
@@ -5284,12 +5284,12 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation>Die folgenden URL Seeds sind für diesen Torrent nicht erhältlich:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="721"/>
+        <location filename="../properties_imp.cpp" line="716"/>
         <source>Priorities error</source>
         <translation>Prioritätsfehler</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="721"/>
+        <location filename="../properties_imp.cpp" line="716"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Sie können nicht alle Dateien aus einem Torrent filtern.</translation>
     </message>
@@ -5314,18 +5314,18 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="672"/>
-        <location filename="../properties_imp.cpp" line="674"/>
+        <location filename="../properties_imp.cpp" line="667"/>
+        <location filename="../properties_imp.cpp" line="669"/>
         <source>Choose save path</source>
         <translation>Wählen Sie den Speicher-Pfad</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="681"/>
+        <location filename="../properties_imp.cpp" line="676"/>
         <source>Save path creation error</source>
         <translation>Fehler beim erstellen des Speicher-Pfades</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="681"/>
+        <location filename="../properties_imp.cpp" line="676"/>
         <source>Could not create the save path</source>
         <translation>Speicher-Pfad konnte nicht erstellt werden</translation>
     </message>
@@ -5594,8 +5594,8 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete">Diese Datei ist entweder beschädigt, oder kein Torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="300"/>
-        <location filename="../torrentAddition.h" line="302"/>
+        <location filename="../torrentAddition.h" line="316"/>
+        <location filename="../torrentAddition.h" line="318"/>
         <source>Choose save path</source>
         <translation>Wählen Sie den Speicher-Pfad</translation>
     </message>
@@ -5604,49 +5604,49 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete">Falsch</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="269"/>
+        <location filename="../torrentAddition.h" line="285"/>
         <source>Unknown</source>
         <translation type="unfinished">Unbekannt</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="285"/>
+        <location filename="../torrentAddition.h" line="301"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="288"/>
+        <location filename="../torrentAddition.h" line="304"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="432"/>
         <source>Empty save path</source>
         <translation>Leerer Speicher-Pfad</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="432"/>
         <source>Please enter a save path</source>
         <translation>Bitte geben Sie einen Speicher-Pfad ein</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="430"/>
+        <location filename="../torrentAddition.h" line="438"/>
         <source>Save path creation error</source>
         <translation>Fehler beim erstellen des Speicher-Pfades</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="430"/>
+        <location filename="../torrentAddition.h" line="438"/>
         <source>Could not create the save path</source>
         <translation>Speicher-Pfad konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="443"/>
+        <location filename="../torrentAddition.h" line="451"/>
         <source>Invalid file selection</source>
         <translation>Ungültige Datei Auswahl</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="443"/>
+        <location filename="../torrentAddition.h" line="451"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Sie müssen mindestens eine Datei aus dem Torrent selektieren </translation>
     </message>
@@ -5667,7 +5667,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="79"/>
-        <location filename="../torrentAddition.h" line="336"/>
+        <location filename="../torrentAddition.h" line="352"/>
         <source>Priority</source>
         <translation>Priorität</translation>
     </message>

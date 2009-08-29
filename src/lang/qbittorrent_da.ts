@@ -4028,8 +4028,8 @@ However, those plugins were disabled.</source>
         <translation>Trackere:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="457"/>
-        <location filename="../properties_imp.cpp" line="625"/>
+        <location filename="../properties_imp.cpp" line="466"/>
+        <location filename="../properties_imp.cpp" line="634"/>
         <source>None - Unreachable?</source>
         <translation>Ingen - Kan ikke nås?</translation>
     </message>
@@ -4152,18 +4152,18 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="68"/>
-        <location filename="../properties_imp.cpp" line="366"/>
+        <location filename="../properties_imp.cpp" line="383"/>
         <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="470"/>
-        <location filename="../properties_imp.cpp" line="531"/>
+        <location filename="../properties_imp.cpp" line="479"/>
+        <location filename="../properties_imp.cpp" line="540"/>
         <source>qBittorrent</source>
         <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="532"/>
+        <location filename="../properties_imp.cpp" line="541"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4198,12 +4198,12 @@ However, those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="465"/>
+        <location filename="../properties_imp.cpp" line="474"/>
         <source>New url seed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="471"/>
+        <location filename="../properties_imp.cpp" line="480"/>
         <source>This url seed is already in the list.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4213,7 +4213,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Intet</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="464"/>
+        <location filename="../properties_imp.cpp" line="473"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation type="unfinished"></translation>
@@ -4224,12 +4224,12 @@ However, those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="721"/>
+        <location filename="../properties_imp.cpp" line="716"/>
         <source>Priorities error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="721"/>
+        <location filename="../properties_imp.cpp" line="716"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4254,18 +4254,18 @@ However, those plugins were disabled.</source>
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="672"/>
-        <location filename="../properties_imp.cpp" line="674"/>
+        <location filename="../properties_imp.cpp" line="667"/>
+        <location filename="../properties_imp.cpp" line="669"/>
         <source>Choose save path</source>
         <translation type="unfinished">Gem til denne mappe</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="681"/>
+        <location filename="../properties_imp.cpp" line="676"/>
         <source>Save path creation error</source>
         <translation type="unfinished">Fejl ved oprettelse af mappe</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="681"/>
+        <location filename="../properties_imp.cpp" line="676"/>
         <source>Could not create the save path</source>
         <translation type="unfinished">Kunne ikke oprette mappe svarende til den indtastede sti</translation>
     </message>
@@ -4502,8 +4502,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Denne fil er enten korrupt eller ikke en torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="300"/>
-        <location filename="../torrentAddition.h" line="302"/>
+        <location filename="../torrentAddition.h" line="316"/>
+        <location filename="../torrentAddition.h" line="318"/>
         <source>Choose save path</source>
         <translation>Gem til denne mappe</translation>
     </message>
@@ -4512,49 +4512,49 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Falsk</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="269"/>
+        <location filename="../torrentAddition.h" line="285"/>
         <source>Unknown</source>
         <translation type="unfinished">Ukendt</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="285"/>
+        <location filename="../torrentAddition.h" line="301"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="288"/>
+        <location filename="../torrentAddition.h" line="304"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="432"/>
         <source>Empty save path</source>
         <translation>Ingen mappe</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="432"/>
         <source>Please enter a save path</source>
         <translation>Vælg venligst en mappe som der skal hentes til</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="430"/>
+        <location filename="../torrentAddition.h" line="438"/>
         <source>Save path creation error</source>
         <translation>Fejl ved oprettelse af mappe</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="430"/>
+        <location filename="../torrentAddition.h" line="438"/>
         <source>Could not create the save path</source>
         <translation>Kunne ikke oprette mappe svarende til den indtastede sti</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="443"/>
+        <location filename="../torrentAddition.h" line="451"/>
         <source>Invalid file selection</source>
         <translation>Valg af filer ugyldigt</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="443"/>
+        <location filename="../torrentAddition.h" line="451"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Du skal vælge mindst en fil per torrent</translation>
     </message>
@@ -4575,7 +4575,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="79"/>
-        <location filename="../torrentAddition.h" line="336"/>
+        <location filename="../torrentAddition.h" line="352"/>
         <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>

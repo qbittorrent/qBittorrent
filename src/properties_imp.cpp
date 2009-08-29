@@ -172,9 +172,13 @@ void properties::addFilesToTree(const torrent_file *root, QStandardItem *parent)
   child << new QStandardItem(misc::toQString(root->getPriority()));
   // INDEX
   child << new QStandardItem(misc::toQString(root->getIndex()));
-  // TODO: row Color?
   // Add the child to the tree
   parent->appendRow(child);
+  // Set row color
+  if(root->getPriority() == IGNORED)
+    setItemColor(first->index(), "red");
+  else
+    setItemColor(first->index(), "green");
   // Add childs
   foreach(const torrent_file *childFile, root->getChildren()) {
     addFilesToTree(childFile, first);
@@ -240,6 +244,7 @@ void properties::updateParentsPriority(QStandardItem *item, int priority) {
       QStandardItem *parentPrio = grandFather->child(parent->row(), PRIORITY);
       if(parentPrio->text().toInt() != NORMAL) {
         parentPrio->setText(misc::toQString(NORMAL));
+        setItemColor(parentPrio->index(), "green");
         // Recursively update ancesters of this parent too
         updateParentsPriority(grandFather->child(parent->row()), priority);
       }
@@ -255,6 +260,10 @@ void properties::updateParentsPriority(QStandardItem *item, int priority) {
   QStandardItem *parentPrio = grandFather->child(parent->row(), PRIORITY);
   if(parentPrio->text().toInt() != priority) {
     parentPrio->setText(misc::toQString(priority));
+    if(priority == IGNORED)
+      setItemColor(parentPrio->index(), "red");
+    else
+      setItemColor(parentPrio->index(), "green");
     // Recursively update ancesters of this parent too
     updateParentsPriority(grandFather->child(parent->row()), priority);
   }
@@ -271,6 +280,10 @@ void properties::updateChildrenPriority(QStandardItem *item, int priority) {
     QStandardItem * childPrio = parent->child(i, PRIORITY);
     if(childPrio->text().toInt() != priority) {
       childPrio->setText(misc::toQString(priority));
+      if(priority == IGNORED)
+        setItemColor(childPrio->index(), "red");
+      else
+        setItemColor(childPrio->index(), "green");
       // recursively update children of this child too
       updateChildrenPriority(parent->child(i), priority);
     }
@@ -287,6 +300,10 @@ void properties::updatePriorities(QStandardItem *item) {
     parent = PropListModel->invisibleRootItem();
   }
   int priority = parent->child(item->row(), PRIORITY)->text().toInt();
+  if(priority == IGNORED)
+    setItemColor(item->index(), "red");
+  else
+    setItemColor(item->index(), "green");
   // Update parents priorities
   updateParentsPriority(item, priority);
   // If this is not a directory, then there are
@@ -379,9 +396,7 @@ void properties::ignoreSelection(){
       if(PropListModel->data(index) != QVariant(IGNORED)){
         PropListModel->setData(index, QVariant(IGNORED));
         changedFilteredfiles = true;
-        for(int i=0; i<PropListModel->columnCount(); ++i){
-          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("red")), Qt::ForegroundRole);
-        }
+        setItemColor(index, "red");
       }
     }
   }
@@ -394,9 +409,7 @@ void properties::normalSelection(){
       if(PropListModel->data(index) != QVariant(NORMAL)){
         PropListModel->setData(index, QVariant(NORMAL));
         changedFilteredfiles = true;
-        for(int i=0; i<PropListModel->columnCount(); ++i){
-          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("green")), Qt::ForegroundRole);
-        }
+        setItemColor(index, "green");
       }
     }
   }
@@ -409,9 +422,7 @@ void properties::highSelection(){
       if(PropListModel->data(index) != QVariant(HIGH)){
         PropListModel->setData(index, QVariant(HIGH));
         changedFilteredfiles = true;
-        for(int i=0; i<PropListModel->columnCount(); ++i){
-          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("green")), Qt::ForegroundRole);
-        }
+        setItemColor(index, "green");
       }
     }
   }
@@ -424,9 +435,7 @@ void properties::maximumSelection(){
       if(PropListModel->data(index) != QVariant(MAXIMUM)){
         PropListModel->setData(index, QVariant(MAXIMUM));
         changedFilteredfiles = true;
-        for(int i=0; i<PropListModel->columnCount(); ++i){
-          PropListModel->setData(PropListModel->index(index.row(), i), QVariant(QColor("green")), Qt::ForegroundRole);
-        }
+        setItemColor(index, "green");
       }
     }
   }
@@ -632,23 +641,9 @@ void properties::updateInfos(){
   }
 }
 
-// Set the color of a row in data model
-void properties::setRowColor(int row, QString color){
-  unsigned int nbCol = PropListModel->columnCount();
-  for(unsigned int i=0; i<nbCol; ++i){
-    PropListModel->setData(PropListModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
-  }
-}
-
-void properties::setAllPiecesState(unsigned short priority){
-  unsigned int nbFiles = h.num_files();
-  for(unsigned int i=0; i<nbFiles; ++i){
-    if(priority){
-      setRowColor(i, "green");
-    }else{
-      setRowColor(i, "red");
-    }
-    PropListModel->setData(PropListModel->index(i, PRIORITY), QVariant(priority));
+void properties::setItemColor(QModelIndex index, QString color){
+  for(int i=0; i<PropListModel->columnCount(); ++i){
+    PropListModel->setData(index.sibling(index.row(), i), QVariant(QColor(color)), Qt::ForegroundRole);
   }
 }
 

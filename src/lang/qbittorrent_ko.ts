@@ -5059,8 +5059,8 @@ However, those plugins were disabled.</source>
         <translation>서버목록:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="457"/>
-        <location filename="../properties_imp.cpp" line="625"/>
+        <location filename="../properties_imp.cpp" line="466"/>
+        <location filename="../properties_imp.cpp" line="634"/>
         <source>None - Unreachable?</source>
         <translation>없음 - 접근할수 없습니까?</translation>
     </message>
@@ -5211,18 +5211,18 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="68"/>
-        <location filename="../properties_imp.cpp" line="366"/>
+        <location filename="../properties_imp.cpp" line="383"/>
         <source>Priority</source>
         <translation>우선순위</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="470"/>
-        <location filename="../properties_imp.cpp" line="531"/>
+        <location filename="../properties_imp.cpp" line="479"/>
+        <location filename="../properties_imp.cpp" line="540"/>
         <source>qBittorrent</source>
         <translation>큐비토런트</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="532"/>
+        <location filename="../properties_imp.cpp" line="541"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>트렉커 리스트(Trackers List)를 비울수 없습니다. </translation>
     </message>
@@ -5257,12 +5257,12 @@ However, those plugins were disabled.</source>
         <translation>Url 완전체(Url seeds)</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="465"/>
+        <location filename="../properties_imp.cpp" line="474"/>
         <source>New url seed:</source>
         <translation>새 Url 완전체 (Url seed):</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="471"/>
+        <location filename="../properties_imp.cpp" line="480"/>
         <source>This url seed is already in the list.</source>
         <translation>이 Url 완전체(Url seed)는 이미 리스트에 포함되어 있습니다.</translation>
     </message>
@@ -5276,7 +5276,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">없음</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="464"/>
+        <location filename="../properties_imp.cpp" line="473"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>새 Url 완전체(seed)</translation>
@@ -5287,12 +5287,12 @@ However, those plugins were disabled.</source>
         <translation>다음 Url 완전체(seed)가 이 토렌트에 사용될수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="721"/>
+        <location filename="../properties_imp.cpp" line="716"/>
         <source>Priorities error</source>
         <translation>우선순위 설정 에러</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="721"/>
+        <location filename="../properties_imp.cpp" line="716"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>에러, 모든 파일을 필터할수는 없습니다.</translation>
     </message>
@@ -5317,18 +5317,18 @@ However, those plugins were disabled.</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="672"/>
-        <location filename="../properties_imp.cpp" line="674"/>
+        <location filename="../properties_imp.cpp" line="667"/>
+        <location filename="../properties_imp.cpp" line="669"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="681"/>
+        <location filename="../properties_imp.cpp" line="676"/>
         <source>Save path creation error</source>
         <translation>저장 경로 설정이 잘못되었습니다</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="681"/>
+        <location filename="../properties_imp.cpp" line="676"/>
         <source>Could not create the save path</source>
         <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>
@@ -5597,8 +5597,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">이 파일은 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="300"/>
-        <location filename="../torrentAddition.h" line="302"/>
+        <location filename="../torrentAddition.h" line="316"/>
+        <location filename="../torrentAddition.h" line="318"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
@@ -5607,49 +5607,49 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">틀림</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="269"/>
+        <location filename="../torrentAddition.h" line="285"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="285"/>
+        <location filename="../torrentAddition.h" line="301"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="288"/>
+        <location filename="../torrentAddition.h" line="304"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="432"/>
         <source>Empty save path</source>
         <translation>저장 경로 지우기</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="432"/>
         <source>Please enter a save path</source>
         <translation>저장 경로를 지정해주십시오</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="430"/>
+        <location filename="../torrentAddition.h" line="438"/>
         <source>Save path creation error</source>
         <translation>저장 경로 설정이 잘못되었습니다</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="430"/>
+        <location filename="../torrentAddition.h" line="438"/>
         <source>Could not create the save path</source>
         <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="443"/>
+        <location filename="../torrentAddition.h" line="451"/>
         <source>Invalid file selection</source>
         <translation>부적당한 파일 선택</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="443"/>
+        <location filename="../torrentAddition.h" line="451"/>
         <source>You must select at least one file in the torrent</source>
         <translation>토렌트에서 적어도 하나 이상의 파일을 선택해야 합니다 </translation>
     </message>
@@ -5670,7 +5670,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="79"/>
-        <location filename="../torrentAddition.h" line="336"/>
+        <location filename="../torrentAddition.h" line="352"/>
         <source>Priority</source>
         <translation>우선순위</translation>
     </message>

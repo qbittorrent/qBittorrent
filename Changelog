@@ -14,6 +14,7 @@
     - BUGFIX: torrent resume code rewrited
     - BUGFIX: Greatly improved column sorting code
     - BUGFIX: Possibility to create trackerless torrents
+    - BUGFIX: Better item coloring in torrent content filtering dialog
     - COSMETIC: Redesigned search tab to improve usability
     - COSMETIC: Redesigned RSS tab to improve usability
 

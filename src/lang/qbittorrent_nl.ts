@@ -4969,8 +4969,8 @@ selecteer alstublieft een er van:</translation>
         <translation type="obsolete">Locatie toekennen</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="457"/>
-        <location filename="../properties_imp.cpp" line="625"/>
+        <location filename="../properties_imp.cpp" line="466"/>
+        <location filename="../properties_imp.cpp" line="634"/>
         <source>None - Unreachable?</source>
         <translation>Geen - Onbereikbaar?</translation>
     </message>
@@ -5138,18 +5138,18 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <location filename="../properties_imp.cpp" line="68"/>
-        <location filename="../properties_imp.cpp" line="366"/>
+        <location filename="../properties_imp.cpp" line="383"/>
         <source>Priority</source>
         <translation>Prioriteit</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="470"/>
-        <location filename="../properties_imp.cpp" line="531"/>
+        <location filename="../properties_imp.cpp" line="479"/>
+        <location filename="../properties_imp.cpp" line="540"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="532"/>
+        <location filename="../properties_imp.cpp" line="541"/>
         <source>Trackers list can&apos;t be empty.</source>
         <translation>Trackerlijst kan niet leeg zijn.</translation>
     </message>
@@ -5184,12 +5184,12 @@ selecteer alstublieft een er van:</translation>
         <translation>Url seeds</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="465"/>
+        <location filename="../properties_imp.cpp" line="474"/>
         <source>New url seed:</source>
         <translation>Nieuwe url seed:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="471"/>
+        <location filename="../properties_imp.cpp" line="480"/>
         <source>This url seed is already in the list.</source>
         <translation>Deze url seed staat al in de lijst.</translation>
     </message>
@@ -5199,7 +5199,7 @@ selecteer alstublieft een er van:</translation>
         <translation type="obsolete">Geen</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="464"/>
+        <location filename="../properties_imp.cpp" line="473"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nieuwe url seed</translation>
@@ -5210,12 +5210,12 @@ selecteer alstublieft een er van:</translation>
         <translation>De volgende url seeds zijn beschikbaar voor deze torrent:</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="721"/>
+        <location filename="../properties_imp.cpp" line="716"/>
         <source>Priorities error</source>
         <translation>Prioriteitsfout</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="721"/>
+        <location filename="../properties_imp.cpp" line="716"/>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
         <translation>Fout: je kan niet alle bestanden filteren in een torrent.</translation>
     </message>
@@ -5240,18 +5240,18 @@ selecteer alstublieft een er van:</translation>
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="672"/>
-        <location filename="../properties_imp.cpp" line="674"/>
+        <location filename="../properties_imp.cpp" line="667"/>
+        <location filename="../properties_imp.cpp" line="669"/>
         <source>Choose save path</source>
         <translation type="unfinished">Kies opslag pad</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="681"/>
+        <location filename="../properties_imp.cpp" line="676"/>
         <source>Save path creation error</source>
         <translation type="unfinished">Opslag pad aanmaak fout</translation>
     </message>
     <message>
-        <location filename="../properties_imp.cpp" line="681"/>
+        <location filename="../properties_imp.cpp" line="676"/>
         <source>Could not create the save path</source>
         <translation type="unfinished">Kon het opslag pad niet aanmaken</translation>
     </message>
@@ -5516,8 +5516,8 @@ selecteer alstublieft een er van:</translation>
         <translation type="obsolete">Dit bestand is corrupt of is geen torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="300"/>
-        <location filename="../torrentAddition.h" line="302"/>
+        <location filename="../torrentAddition.h" line="316"/>
+        <location filename="../torrentAddition.h" line="318"/>
         <source>Choose save path</source>
         <translation>Kies opslag pad</translation>
     </message>
@@ -5526,49 +5526,49 @@ selecteer alstublieft een er van:</translation>
         <translation type="obsolete">Onwaar</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="269"/>
+        <location filename="../torrentAddition.h" line="285"/>
         <source>Unknown</source>
         <translation type="unfinished">Onbekend</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="285"/>
+        <location filename="../torrentAddition.h" line="301"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="288"/>
+        <location filename="../torrentAddition.h" line="304"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="432"/>
         <source>Empty save path</source>
         <translation>Leeg opslag pad</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="424"/>
+        <location filename="../torrentAddition.h" line="432"/>
         <source>Please enter a save path</source>
         <translation>Geef alstublieft een opslag pad</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="430"/>
+        <location filename="../torrentAddition.h" line="438"/>
         <source>Save path creation error</source>
         <translation>Opslag pad aanmaak fout</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="430"/>
+        <location filename="../torrentAddition.h" line="438"/>
         <source>Could not create the save path</source>
         <translation>Kon het opslag pad niet aanmaken</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="443"/>
+        <location filename="../torrentAddition.h" line="451"/>
         <source>Invalid file selection</source>
         <translation>Ongeldige bestand selectie</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="443"/>
+        <location filename="../torrentAddition.h" line="451"/>
         <source>You must select at least one file in the torrent</source>
         <translation>U moet tenminste een bestand in de torrent selecteren</translation>
     </message>
@@ -5589,7 +5589,7 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="79"/>
-        <location filename="../torrentAddition.h" line="336"/>
+        <location filename="../torrentAddition.h" line="352"/>
         <source>Priority</source>
         <translation>Prioriteit</translation>
     </message>

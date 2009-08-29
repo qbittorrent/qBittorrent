@@ -63,9 +63,8 @@ class properties : public QDialog, private Ui::properties{
   protected slots:
     void on_okButton_clicked();
     void on_incrementalDownload_stateChanged(int);
-    void setRowColor(int row, QString color);
+    void setItemColor(QModelIndex index, QString color);
     void updateInfos();
-    void setAllPiecesState(unsigned short priority);
     void askForTracker();
     void loadTrackers();
     void deleteSelectedTrackers();
