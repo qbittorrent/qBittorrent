@@ -3116,17 +3116,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss.ui" line="150"/>
         <source>Bullet</source>
-        <translation type="unfinished"></translation>
+        <translation>Puce</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="155"/>
         <source>Attachment</source>
-        <translation type="unfinished"></translation>
+        <translation>Pièce jointe</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="160"/>
         <source>Article title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titre de l&apos;article</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="228"/>
