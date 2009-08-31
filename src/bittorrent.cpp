@@ -1236,21 +1236,23 @@ void bittorrent::readAlerts() {
           }
         }
         h.save_resume_data();
-        // Check if there is a single torrent file inside
-        QString torrent_relpath = misc::toQString(h.get_torrent_info().file_at(0).path);
-        if(torrent_relpath.endsWith(".torrent")) {
-          addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(torrent_relpath).arg(h.name()));
-          QString torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
-          boost::intrusive_ptr<torrent_info> t;
-          try {
-            t = new torrent_info(torrent_fullpath.toLocal8Bit().data());
-            QString sub_hash = misc::toQString(t->info_hash());
-            // Passing the save path along to the sub torrent file
-            TorrentTempData::setSavePath(sub_hash, h.save_path());
-            addTorrent(torrent_fullpath);
-          } catch(std::exception&) {
-            qDebug("Caught error loading torrent");
-            addConsoleMessage(tr("Unable to decode %1 torrent file.").arg(torrent_fullpath), QString::fromUtf8("red"));
+        // Check if there are torrent files inside
+        for(int i=0; i<h.get_torrent_info().num_files(); ++i) {
+          QString torrent_relpath = misc::toQString(h.get_torrent_info().file_at(i).path);
+          if(torrent_relpath.endsWith(".torrent")) {
+            addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(torrent_relpath).arg(h.name()));
+            QString torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
+            boost::intrusive_ptr<torrent_info> t;
+            try {
+              t = new torrent_info(torrent_fullpath.toLocal8Bit().data());
+              QString sub_hash = misc::toQString(t->info_hash());
+              // Passing the save path along to the sub torrent file
+              TorrentTempData::setSavePath(sub_hash, h.save_path());
+              addTorrent(torrent_fullpath);
+            } catch(std::exception&) {
+              qDebug("Caught error loading torrent");
+              addConsoleMessage(tr("Unable to decode %1 torrent file.").arg(torrent_fullpath), QString::fromUtf8("red"));
+            }
           }
         }
         qDebug("Received finished alert for %s", h.name().toLocal8Bit().data());
