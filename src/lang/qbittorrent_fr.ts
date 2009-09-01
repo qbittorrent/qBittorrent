@@ -3984,43 +3984,43 @@ Changements:
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été banni suite à l&apos;envoi de données corrompues&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1242"/>
+        <location filename="../bittorrent.cpp" line="1243"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Téléchargement récursif du fichier %1 au sein du torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1253"/>
+        <location filename="../bittorrent.cpp" line="1254"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Impossible de décoder le torrent %1.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1295"/>
+        <location filename="../bittorrent.cpp" line="1297"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Impossible d&apos;écouter sur les ports donnés.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1334"/>
+        <location filename="../bittorrent.cpp" line="1336"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP : Echec de mapping du port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1339"/>
+        <location filename="../bittorrent.cpp" line="1341"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP : Réussite du mapping de port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1354"/>
+        <location filename="../bittorrent.cpp" line="1356"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Le relancement rapide a échoué pour le torrent %1, revérification...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1359"/>
+        <location filename="../bittorrent.cpp" line="1361"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Le contact de la source HTTP a échoué à l&apos;url : %1, message : %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1427"/>
+        <location filename="../bittorrent.cpp" line="1429"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>

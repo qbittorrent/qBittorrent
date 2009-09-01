@@ -3578,43 +3578,43 @@ Changelog:
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;è stato bannato a causa di parti corrotte&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1242"/>
+        <location filename="../bittorrent.cpp" line="1243"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1253"/>
+        <location filename="../bittorrent.cpp" line="1254"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1295"/>
+        <location filename="../bittorrent.cpp" line="1297"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Impossibile mettersi in ascolto sulle porte scelte.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1334"/>
+        <location filename="../bittorrent.cpp" line="1336"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: mappatura porte fallita, messaggio: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1339"/>
+        <location filename="../bittorrent.cpp" line="1341"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: mappatura porte riuscita, messaggio: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1354"/>
+        <location filename="../bittorrent.cpp" line="1356"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Il recupero veloce del torrent %1 è stato rifiutato, altro tentativo in corso...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1359"/>
+        <location filename="../bittorrent.cpp" line="1361"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Fallito seed web per l&apos;indirizzo: %1, messaggio: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1427"/>
+        <location filename="../bittorrent.cpp" line="1429"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Download di &apos;%1&apos; in corso...</translation>

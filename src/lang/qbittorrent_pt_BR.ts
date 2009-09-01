@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="en_US">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -100,7 +100,12 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Um cliente Bittorrent programado em C++, baseado no toolkit Qt4&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;e libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -116,6 +121,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Unlimited</source>
         <comment>Unlimited (bandwidth)</comment>
+        <translatorcomment>Ilimitado (banda)</translatorcomment>
         <translation>Ilimitado</translation>
     </message>
     <message>
@@ -437,7 +443,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished">Conexão</translation>
+        <translation>Conexão</translation>
     </message>
     <message>
         <source>Peer eXchange (PeX)</source>
@@ -602,6 +608,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
+        <translatorcomment>ex.: O icone da bandeja estará visivel quando a janela principal for fechada.</translatorcomment>
         <translation>Fechar na bandeja</translation>
     </message>
     <message>
@@ -639,11 +646,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
+        <translatorcomment>O torrent será adicionado a lista de download pausado</translatorcomment>
         <translation>Não iniciar downloads automáticamente</translation>
     </message>
     <message>
         <source>Folder watching</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
+        <translatorcomment>qBittorrent varrerá o diretório e automaticamente iniciará os downloads dessa pasta</translatorcomment>
         <translation>Varredura de pasta</translation>
     </message>
     <message>
@@ -908,36 +917,37 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
     <message utf8="true">
         <source>Spoof µtorrent to avoid ban (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spoof para evitar a proibição μtorrent (requer reinicialização)</translation>
     </message>
     <message>
         <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Ação executada quando der duplo clique num item de transferência (baixando/subindo)</translatorcomment>
+        <translation>Ação no duplo clique</translation>
     </message>
     <message>
         <source>Start/Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Inicia/Para</translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir pasta</translation>
     </message>
     <message>
         <source>Show properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra propriedades</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta usada para conexões de entrada:</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>Aleatório</translation>
     </message>
     <message>
         <source>UI</source>
-        <translation type="unfinished"></translation>
+        <translation>UI</translation>
     </message>
 </context>
 <context>
@@ -945,26 +955,31 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
+        <translatorcomment>ex.: nome do arquivo</translatorcomment>
         <translation>Nome</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
+        <translatorcomment>ex.: Tamanho do arquivo</translatorcomment>
         <translation>Tamanho</translation>
     </message>
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
+        <translatorcomment>ex.: % baixado</translatorcomment>
         <translation>Progresso</translation>
     </message>
     <message>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
+        <translatorcomment>ex: Velocidade de download ativo</translatorcomment>
         <translation>Velocidade de download</translation>
     </message>
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
+        <translatorcomment>ex: Velocidade de upload ativo</translatorcomment>
         <translation>Velocidade de Upload</translation>
     </message>
     <message>
@@ -1055,192 +1070,193 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     <message>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>ex: Fontes completas/parciais</translatorcomment>
+        <translation>Seeds/Leechers</translation>
     </message>
 </context>
 <context>
     <name>FeedDownloader</name>
     <message>
         <source>RSS Feed downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixador de conteúdo RSS</translation>
     </message>
     <message>
         <source>RSS feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS feed:</translation>
     </message>
     <message>
         <source>Feed name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do Feed</translation>
     </message>
     <message>
         <source>Automatically download torrents from this feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar automaticamente torrents deste feed</translation>
     </message>
     <message>
         <source>Download filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar filtros</translation>
     </message>
     <message>
         <source>Filters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtros:</translation>
     </message>
     <message>
         <source>Filter settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações de filtro</translation>
     </message>
     <message>
         <source>Matches:</source>
-        <translation type="unfinished"></translation>
+        <translation>Correspondem:</translation>
     </message>
     <message>
         <source>Does not match:</source>
-        <translation type="unfinished"></translation>
+        <translation>Não correspondem:</translation>
     </message>
     <message>
         <source>Destination folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta de destino:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Filter testing</source>
-        <translation type="unfinished"></translation>
+        <translation>Teste de filtro</translation>
     </message>
     <message>
         <source>Torrent title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Título do torrent:</translation>
     </message>
     <message>
         <source>Result:</source>
-        <translation type="unfinished"></translation>
+        <translation>Resultado:</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation>Teste</translation>
     </message>
     <message>
         <source>Import...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar...</translation>
     </message>
     <message>
         <source>Export...</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar...</translation>
     </message>
     <message>
         <source>Rename filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Renomear filtro</translation>
     </message>
     <message>
         <source>Remove filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover filtro</translation>
     </message>
     <message>
         <source>Add filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar filtro</translation>
     </message>
 </context>
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
         <source>New filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Novo filtro</translation>
     </message>
     <message>
         <source>Please choose a name for this filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor escolha um nome para este filtro</translation>
     </message>
     <message>
         <source>Filter name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do filtro:</translation>
     </message>
     <message>
         <source>Invalid filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome inválido para o filtro</translation>
     </message>
     <message>
         <source>The filter name cannot be left empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>O nome do filtro não pode ser vazio.</translation>
     </message>
     <message>
         <source>This filter name is already in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>Este nome de filtro já está sendo usado.</translation>
     </message>
     <message>
         <source>Filter testing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro ao testar o filtro</translation>
     </message>
     <message>
         <source>Please specify a test torrent name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor especifique um nome para o torrent.</translation>
     </message>
     <message>
         <source>matches</source>
-        <translation type="unfinished"></translation>
+        <translation>assemelha</translation>
     </message>
     <message>
         <source>does not match</source>
-        <translation type="unfinished"></translation>
+        <translation>não assemelha</translation>
     </message>
     <message>
         <source>Select file to import</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione arquivo a importar</translation>
     </message>
     <message>
         <source>Filters Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos de filtro</translation>
     </message>
     <message>
         <source>Import successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Importado com sucesso</translation>
     </message>
     <message>
         <source>Filters import was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtros importados com sucesso.</translation>
     </message>
     <message>
         <source>Import failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao importar</translation>
     </message>
     <message>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtros não podem ser importados por um erro de entrada e saída.</translation>
     </message>
     <message>
         <source>Select destination file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleciona arquivo de destino</translation>
     </message>
     <message>
         <source>Overwriting confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirma sobescrever</translation>
     </message>
     <message>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tem certeza que deseja sobescrever o arquivo existente ?</translation>
     </message>
     <message>
         <source>Export successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportado com sucesso</translation>
     </message>
     <message>
         <source>Filters export was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>A exportação foi executada com sucesso.</translation>
     </message>
     <message>
         <source>Export failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha na exportação</translation>
     </message>
     <message>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Os filtros não puderam ser exportados por um erro de entrada e saída.</translation>
     </message>
 </context>
 <context>
     <name>FeedList</name>
     <message>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Não lido</translation>
     </message>
 </context>
 <context>
@@ -2443,11 +2459,11 @@ Deseja mesmo sair do qBittorrent?</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Apagar</translation>
+        <translation>Apagar</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation type="unfinished">Renomear</translation>
+        <translation>Renomear</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -2499,55 +2515,63 @@ Deseja mesmo sair do qBittorrent?</translation>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(duplo-clique para baixar)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Download torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar torrent</translation>
     </message>
     <message>
         <source>Open news URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir novas URL</translation>
     </message>
     <message>
         <source>Copy feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar URL do feed</translation>
     </message>
     <message>
         <source>RSS feed downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixador de RSS feed</translation>
     </message>
     <message>
         <source>New subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova inscrição</translation>
     </message>
     <message>
         <source>Mark items read</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcar ítems lidos</translation>
     </message>
     <message>
         <source>Update all</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar todos</translation>
     </message>
     <message>
         <source>Update all feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar todos feeds</translation>
     </message>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS feeds</translation>
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualiza</translation>
     </message>
     <message>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova pasta</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="obsolete">1</translation>
     </message>
     <message>
         <source>Feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL do feed</translation>
     </message>
     <message>
         <source>Bullet</source>
@@ -2630,52 +2654,52 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please choose a folder name</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor escolha um nome de pasta</translation>
     </message>
     <message>
         <source>Folder name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome da pasta:</translation>
     </message>
     <message>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova pasta</translation>
     </message>
     <message>
         <source>Are you sure you want to delete these elements from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Está certo de que deseja deletar esses elementos da lista ?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this element from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Deseja realmente deletar esse ítem da lista?</translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor escolha um novo nome para este feed RSS</translation>
     </message>
     <message>
         <source>New feed name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Novo nome do feed:</translation>
     </message>
     <message>
         <source>Name already in use</source>
-        <translation type="unfinished"></translation>
+        <translation>Novo já está em uso</translation>
     </message>
     <message>
         <source>This name is already used by another item, please choose another one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Este nome já está sendo usado por outro ítem, por favor escolha outro.</translation>
     </message>
     <message>
         <source>Overwrite attempt</source>
-        <translation type="unfinished"></translation>
+        <translation>Atenção sobescrevendo</translation>
     </message>
     <message>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Você não pode sobescrever o ítem %1.</translation>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Não lido</translation>
     </message>
 </context>
 <context>
@@ -2698,46 +2722,46 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixando automaticamente o torrent %1 do RSS feed %2...</translation>
     </message>
 </context>
 <context>
     <name>SearchCategories</name>
     <message>
         <source>All categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Todas categorias</translation>
     </message>
     <message>
         <source>Movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmes</translation>
     </message>
     <message>
         <source>TV shows</source>
-        <translation type="unfinished"></translation>
+        <translation>Shows de TV</translation>
     </message>
     <message>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Música</translation>
     </message>
     <message>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogos</translation>
     </message>
     <message>
         <source>Anime</source>
-        <translation type="unfinished"></translation>
+        <translation>Anime</translation>
     </message>
     <message>
         <source>Software</source>
-        <translation type="unfinished"></translation>
+        <translation>Programa</translation>
     </message>
     <message>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagens</translation>
     </message>
     <message>
         <source>Books</source>
-        <translation type="unfinished"></translation>
+        <translation>Livros</translation>
     </message>
 </context>
 <context>
@@ -3156,19 +3180,19 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Torrent size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho do torrent:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">Desconhecido</translation>
+        <translation>Desconhecido</translation>
     </message>
     <message>
         <source>Free disk space:</source>
-        <translation type="unfinished"></translation>
+        <translation>Espaço livre em disco:</translation>
     </message>
     <message>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar em ordem de sequência (mais lento porém melhor para visualizar)</translation>
     </message>
 </context>
 <context>
@@ -3300,16 +3324,16 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; não é um URI magnético válido.</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="unfinished"></translation>
+        <translation>Download recursivo do arquivo %1 embutido no torrent %2</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossível decodificar %1 do arquivo torrent.</translation>
     </message>
 </context>
 <context>
@@ -3460,11 +3484,11 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Add file</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar arquivo</translation>
     </message>
     <message>
         <source>Add folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar pasta</translation>
     </message>
 </context>
 <context>
@@ -3718,7 +3742,7 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar link magnético</translation>
     </message>
 </context>
 <context>
@@ -3874,11 +3898,11 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Sim</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Não</translation>
     </message>
 </context>
 <context>
@@ -4648,7 +4672,7 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar link magnético</translation>
     </message>
 </context>
 <context>
@@ -4703,7 +4727,7 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de entrada e saída</translation>
     </message>
 </context>
 <context>
@@ -4770,17 +4794,18 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">Desconhecido</translation>
+        <translation>Desconhecido</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>ex: (100MiB depois de baixar o torrent)</translatorcomment>
+        <translation>(%1 depois de baixar o torrent)</translation>
     </message>
     <message>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(%1 mais é requerido para baixar)</translation>
     </message>
 </context>
 </TS>

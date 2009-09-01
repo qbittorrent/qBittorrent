@@ -3818,43 +3818,43 @@ Log:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1242"/>
+        <location filename="../bittorrent.cpp" line="1243"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1253"/>
+        <location filename="../bittorrent.cpp" line="1254"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1295"/>
+        <location filename="../bittorrent.cpp" line="1297"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="unfinished">No se pudo escuchar en ninguno de los puertos brindados.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1334"/>
+        <location filename="../bittorrent.cpp" line="1336"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Falló el mapeo del puerto, mensaje: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1339"/>
+        <location filename="../bittorrent.cpp" line="1341"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Mapeo del puerto exitoso, mensaje: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1354"/>
+        <location filename="../bittorrent.cpp" line="1356"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">Se negaron los datos para reinicio rápido del torrent: %1, verificando de nuevo...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1359"/>
+        <location filename="../bittorrent.cpp" line="1361"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">Falló la búsqueda de semilla por Url para la url: %1, mensaje: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1427"/>
+        <location filename="../bittorrent.cpp" line="1429"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">Descargando &apos;%1&apos;, por favor espera...</translation>

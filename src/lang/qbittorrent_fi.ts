@@ -3375,43 +3375,43 @@ Muutoshistoria:
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;on estetty korruptuneiden osien takia&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1242"/>
+        <location filename="../bittorrent.cpp" line="1243"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekursiivinen tiedoston %1 lataus torrentissa %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1253"/>
+        <location filename="../bittorrent.cpp" line="1254"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Torrent-tiedostoa %1 ei voitu tulkita.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1295"/>
+        <location filename="../bittorrent.cpp" line="1297"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Minkään annetun portin käyttäminen ei onnistunut.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1334"/>
+        <location filename="../bittorrent.cpp" line="1336"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: portin varaaminen epäonnistui: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1339"/>
+        <location filename="../bittorrent.cpp" line="1341"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: portin varaaminen onnistui: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1354"/>
+        <location filename="../bittorrent.cpp" line="1356"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Nopean jatkamisen tiedot eivät kelpaa torrentille %1. Tarkistetaan uudestaan...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1359"/>
+        <location filename="../bittorrent.cpp" line="1361"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Jakajien haku osoitteesta %1 epäonnistui: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1427"/>
+        <location filename="../bittorrent.cpp" line="1429"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Ladataa torrenttia ”%1”. Odota...</translation>
