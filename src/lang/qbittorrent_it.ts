@@ -21,7 +21,12 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Un client Bittorrent scritto in C++, basato sulle Qt4 &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;e libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="146"/>
@@ -479,7 +484,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="125"/>
         <source>Connection</source>
-        <translation type="unfinished">Connessione</translation>
+        <translation>Connessione</translation>
     </message>
     <message>
         <source>Peer eXchange (PeX)</source>
@@ -733,19 +738,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="493"/>
         <location filename="../options.ui" line="536"/>
         <source>Start/Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvia/Ferma</translation>
     </message>
     <message>
         <location filename="../options.ui" line="498"/>
         <location filename="../options.ui" line="541"/>
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri cartella</translation>
     </message>
     <message>
         <location filename="../options.ui" line="503"/>
         <location filename="../options.ui" line="546"/>
         <source>Show properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra proprietà</translation>
     </message>
     <message>
         <location filename="../options.ui" line="528"/>
@@ -850,7 +855,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="95"/>
         <source>UI</source>
-        <translation type="unfinished"></translation>
+        <translation>UI</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1124"/>
@@ -1007,17 +1012,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="468"/>
         <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
+        <translation>Azione per il doppio clic</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1055"/>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta usata per connessioni in entrata:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1075"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>Casuale</translation>
     </message>
     <message>
         <location filename="../options.ui" line="2270"/>
@@ -1116,7 +1121,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../downloadingTorrents.cpp" line="68"/>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished"></translation>
+        <translation>Seeds / Leechs</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -1213,104 +1218,104 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FeedDownloader.ui" line="14"/>
         <source>RSS Feed downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Scaricatore di Feed RSS</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="29"/>
         <source>RSS feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Feed RSS:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="43"/>
         <source>Feed name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome del feed</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="65"/>
         <source>Automatically download torrents from this feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Download automatico dei torrent da questo feed</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="81"/>
         <source>Download filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Scarica filtri</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="99"/>
         <source>Filters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtri:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="213"/>
         <source>Filter settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni dei filtri</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="232"/>
         <source>Matches:</source>
-        <translation type="unfinished"></translation>
+        <translation>Corrisponde:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="248"/>
         <source>Does not match:</source>
-        <translation type="unfinished"></translation>
+        <translation>Non corrisponde:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="264"/>
         <source>Destination folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella di destinazione:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="306"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="319"/>
         <source>Filter testing</source>
-        <translation type="unfinished"></translation>
+        <translation>Test del filtro</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="341"/>
         <source>Torrent title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Titolo del torrent:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="357"/>
         <source>Result:</source>
-        <translation type="unfinished"></translation>
+        <translation>Risultato:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="382"/>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation>Test</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="451"/>
         <source>Import...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importa...</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="458"/>
         <source>Export...</source>
-        <translation type="unfinished"></translation>
+        <translation>Esporta...</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="481"/>
         <location filename="../FeedDownloader.ui" line="484"/>
         <source>Rename filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Rinomina filtro</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="493"/>
         <location filename="../FeedDownloader.ui" line="496"/>
         <source>Remove filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancella filtro</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="505"/>
         <source>Add filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi filtro</translation>
     </message>
 </context>
 <context>
@@ -1318,121 +1323,121 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FeedDownloader.h" line="380"/>
         <source>New filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo filtro</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="387"/>
         <source>Please choose a name for this filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore scegliere un nome per questo filtro</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="387"/>
         <source>Filter name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome del filtro:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="356"/>
         <location filename="../FeedDownloader.h" line="395"/>
         <location filename="../FeedDownloader.h" line="411"/>
         <source>Invalid filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome filtro non valido</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="395"/>
         <source>The filter name cannot be left empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il nome del filtro non può essere lasciato vuoto.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="356"/>
         <location filename="../FeedDownloader.h" line="411"/>
         <source>This filter name is already in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>Questo nome filtro è già in uso.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="433"/>
         <source>Filter testing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore test del filtro</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="433"/>
         <source>Please specify a test torrent name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore specificare il nome di un torrent di test.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="440"/>
         <source>matches</source>
-        <translation type="unfinished"></translation>
+        <translation>corrisponde</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="442"/>
         <source>does not match</source>
-        <translation type="unfinished"></translation>
+        <translation>non corrisponde</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="446"/>
         <source>Select file to import</source>
-        <translation type="unfinished"></translation>
+        <translation>Selezionare file da importare</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="446"/>
         <location filename="../FeedDownloader.h" line="463"/>
         <source>Filters Files</source>
-        <translation type="unfinished"></translation>
+        <translation>File del filtro</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="456"/>
         <source>Import successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Importazione riuscita</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="456"/>
         <source>Filters import was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Importazione dei filtri riuscita.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="458"/>
         <source>Import failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Importazione fallita</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="458"/>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtri non importati a causa di un errore I/O.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="463"/>
         <source>Select destination file</source>
-        <translation type="unfinished"></translation>
+        <translation>Selezionare file di destinazione</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="469"/>
         <source>Overwriting confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Conferma sovrascrittura</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="469"/>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sei sicuro di voler sovrascrivere il file esistente?</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="473"/>
         <source>Export successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Esportazione riuscita</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="473"/>
         <source>Filters export was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Esportazione dei filtri riuscita.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="475"/>
         <source>Export failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Esportazione fallita</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="475"/>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtri non esportati a causa di un errore I/O.</translation>
     </message>
 </context>
 <context>
@@ -1440,7 +1445,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../feedList.h" line="33"/>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Non letti</translation>
     </message>
 </context>
 <context>
@@ -2689,42 +2694,46 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="25"/>
-        <location filename="../rss.ui" line="219"/>
+        <location filename="../rss.ui" line="211"/>
         <source>New subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuova iscrizione</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="39"/>
-        <location filename="../rss.ui" line="240"/>
-        <location filename="../rss.ui" line="243"/>
+        <location filename="../rss.ui" line="232"/>
+        <location filename="../rss.ui" line="235"/>
         <source>Mark items read</source>
-        <translation type="unfinished"></translation>
+        <translation>Segna come letti</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="62"/>
         <source>Update all</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiorna tutti</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="165"/>
+        <source>1</source>
+        <translation type="obsolete">1</translation>
+    </message>
+    <message>
+        <location filename="../rss.ui" line="157"/>
         <source>Feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL del Feed</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="207"/>
-        <location filename="../rss.ui" line="210"/>
+        <location filename="../rss.ui" line="199"/>
+        <location filename="../rss.ui" line="202"/>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiorna</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="288"/>
+        <location filename="../rss.ui" line="280"/>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuova cartella</translation>
     </message>
     <message>
         <location filename="../feedList.h" line="30"/>
         <source>RSS feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Feed Rss</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="110"/>
@@ -2733,64 +2742,63 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(doppio clic per scaricare)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="150"/>
+        <location filename="../rss.ui" line="147"/>
         <source>Bullet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="155"/>
-        <source>Attachment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../rss.ui" line="160"/>
+        <location filename="../rss.ui" line="152"/>
         <source>Article title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="228"/>
-        <location filename="../rss.ui" line="231"/>
+        <location filename="../rss.ui" line="220"/>
+        <location filename="../rss.ui" line="223"/>
         <source>Update all feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiorna tutti i Feed</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="183"/>
-        <location filename="../rss.ui" line="186"/>
+        <location filename="../rss.ui" line="175"/>
+        <location filename="../rss.ui" line="178"/>
         <source>Delete</source>
-        <translation type="unfinished">Cancella</translation>
+        <translation>Cancella</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="195"/>
-        <location filename="../rss.ui" line="198"/>
+        <location filename="../rss.ui" line="187"/>
+        <location filename="../rss.ui" line="190"/>
         <source>Rename</source>
-        <translation type="unfinished">Rinomina</translation>
+        <translation>Rinomina</translation>
     </message>
     <message>
         <source>Refresh</source>
         <translation type="obsolete">Aggiorna</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="252"/>
+        <location filename="../rss.ui" line="244"/>
         <source>Download torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Scarica torrent</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="261"/>
+        <location filename="../rss.ui" line="253"/>
         <source>Open news URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri URL delle notizie</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="270"/>
+        <location filename="../rss.ui" line="262"/>
         <source>Copy feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia URL del Feed</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="279"/>
+        <location filename="../rss.ui" line="271"/>
         <source>RSS feed downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Scaricatore di Feed RSS</translation>
     </message>
     <message>
         <source>Create</source>
@@ -2837,12 +2845,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="169"/>
+        <location filename="../rss_imp.cpp" line="174"/>
         <source>Please type a rss stream url</source>
         <translation>Per favore digitare l&apos;indirizzo di un flusso rss</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="169"/>
+        <location filename="../rss_imp.cpp" line="174"/>
         <source>Stream URL:</source>
         <translation>Indirizzo del flusso:</translation>
     </message>
@@ -2855,8 +2863,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Nuovo nome del flusso:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="203"/>
-        <location filename="../rss_imp.cpp" line="207"/>
+        <location filename="../rss_imp.cpp" line="208"/>
+        <location filename="../rss_imp.cpp" line="212"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Sei sicuro? -- qBittorrent</translation>
     </message>
@@ -2865,14 +2873,14 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Sei sicuro di voler cancellare questo flusso dalla lista ?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="204"/>
-        <location filename="../rss_imp.cpp" line="208"/>
+        <location filename="../rss_imp.cpp" line="209"/>
+        <location filename="../rss_imp.cpp" line="213"/>
         <source>&amp;Yes</source>
         <translation>&amp;Sì</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="204"/>
-        <location filename="../rss_imp.cpp" line="208"/>
+        <location filename="../rss_imp.cpp" line="209"/>
+        <location filename="../rss_imp.cpp" line="213"/>
         <source>&amp;No</source>
         <translation>&amp;No</translation>
     </message>
@@ -2893,85 +2901,85 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Ultimo aggiornamento:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="115"/>
+        <location filename="../rss_imp.cpp" line="120"/>
         <source>Please choose a folder name</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore scegliere un nome cartella</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="115"/>
+        <location filename="../rss_imp.cpp" line="120"/>
         <source>Folder name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome cartella:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="115"/>
+        <location filename="../rss_imp.cpp" line="120"/>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuova cartella</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="136"/>
+        <location filename="../rss_imp.cpp" line="141"/>
         <source>Overwrite attempt</source>
-        <translation type="unfinished"></translation>
+        <translation>Tentativo di sovrascrittura</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="137"/>
+        <location filename="../rss_imp.cpp" line="142"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile sovrascrivere %1.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="174"/>
+        <location filename="../rss_imp.cpp" line="179"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="175"/>
+        <location filename="../rss_imp.cpp" line="180"/>
         <source>This rss feed is already in the list.</source>
         <translation>Questo feed rss è già nella lista.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="203"/>
+        <location filename="../rss_imp.cpp" line="208"/>
         <source>Are you sure you want to delete these elements from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sei sicuro di voler cancellare questi elementi dalla lista?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
+        <location filename="../rss_imp.cpp" line="212"/>
         <source>Are you sure you want to delete this element from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sei sicuro di voler cancellare questo elemento dalla lista?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="318"/>
+        <location filename="../rss_imp.cpp" line="323"/>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore scegliere un nuovo nome per questo Feed RSS</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="318"/>
+        <location filename="../rss_imp.cpp" line="323"/>
         <source>New feed name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo nome Feed:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="321"/>
+        <location filename="../rss_imp.cpp" line="326"/>
         <source>Name already in use</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome già in uso</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="321"/>
+        <location filename="../rss_imp.cpp" line="326"/>
         <source>This name is already used by another item, please choose another one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Questo nome è già in uso da un altro elemento, per favore sceglierne un altro.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="474"/>
+        <location filename="../rss_imp.cpp" line="479"/>
         <source>Date: </source>
         <translation>Data: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="477"/>
+        <location filename="../rss_imp.cpp" line="482"/>
         <source>Author: </source>
         <translation>Autore: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="520"/>
+        <location filename="../rss_imp.cpp" line="525"/>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Non letti</translation>
     </message>
 </context>
 <context>
@@ -2992,7 +3000,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss.cpp" line="572"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation type="unfinished"></translation>
+        <translation>Download automatico del torrent %1 dal Feed RSS %2...</translation>
     </message>
     <message>
         <source>Never</source>
@@ -3004,47 +3012,47 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../supportedEngines.h" line="49"/>
         <source>All categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutte le categorie</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="50"/>
         <source>Movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Film</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="51"/>
         <source>TV shows</source>
-        <translation type="unfinished"></translation>
+        <translation>Programmi TV</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="52"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Musica</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="53"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Giochi</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="54"/>
         <source>Anime</source>
-        <translation type="unfinished"></translation>
+        <translation>Anime</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="55"/>
         <source>Software</source>
-        <translation type="unfinished"></translation>
+        <translation>Software</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="56"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagini</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="57"/>
         <source>Books</source>
-        <translation type="unfinished"></translation>
+        <translation>Libri</translation>
     </message>
 </context>
 <context>
@@ -3346,28 +3354,28 @@ Changelog:
     <message>
         <location filename="../addTorrentDialog.ui" line="69"/>
         <source>Torrent size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dimensione del torrent:</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="76"/>
         <location filename="../addTorrentDialog.ui" line="107"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Sconosciuta</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="100"/>
         <source>Free disk space:</source>
-        <translation type="unfinished"></translation>
+        <translation>Spazio libero sul disco:</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="142"/>
         <source>Torrent content:</source>
-        <translation>Contenuti del torrent:</translation>
+        <translation>Contenuto del torrent:</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="206"/>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>Scarica nell&apos;ordine giusto (più lento ma migliore per le anteprime)</translation>
     </message>
     <message>
         <source>File name</source>
@@ -3527,7 +3535,7 @@ Changelog:
     <message>
         <location filename="../bittorrent.cpp" line="375"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; non è un URI magnetico valido.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="400"/>
@@ -3581,12 +3589,12 @@ Changelog:
         <location filename="../bittorrent.cpp" line="1243"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="unfinished"></translation>
+        <translation>Download ricorsivo del file %1 incluso nel torrent %2</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1254"/>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile decifrare il file torrent %1.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1297"/>
@@ -3716,12 +3724,12 @@ Changelog:
     <message>
         <location filename="../createtorrent.ui" line="65"/>
         <source>Add file</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi file</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="76"/>
         <source>Add folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi cartella</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="395"/>
@@ -3794,7 +3802,7 @@ Changelog:
     <message>
         <location filename="../createtorrent_imp.cpp" line="173"/>
         <source>Select destination torrent file</source>
-        <translation>Scegli la destinazione del file torrent</translation>
+        <translation>Selezionare il file torrent di destinazione</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="173"/>
@@ -4083,7 +4091,7 @@ Changelog:
     <message>
         <location filename="../download.ui" line="185"/>
         <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia link magnetico</translation>
     </message>
 </context>
 <context>
@@ -4210,7 +4218,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <location filename="../engineSelectDlg.cpp" line="210"/>
         <location filename="../engineSelectDlg.cpp" line="435"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Sì</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="130"/>
@@ -4218,7 +4226,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <location filename="../engineSelectDlg.cpp" line="223"/>
         <location filename="../engineSelectDlg.cpp" line="438"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>No</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="268"/>
@@ -5165,7 +5173,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     <message>
         <location filename="../seeding.ui" line="151"/>
         <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia link magnetico</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -5229,7 +5237,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     <message>
         <location filename="../downloadThread.cpp" line="88"/>
         <source>I/O Error</source>
-        <translation type="unfinished">Errore I/O</translation>
+        <translation>Errore I/O</translation>
     </message>
     <message>
         <source>Connection forbidden (403)</source>
@@ -5298,19 +5306,19 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     <message>
         <location filename="../torrentAddition.h" line="285"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Sconosciuto</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="301"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(%1 rimasti dopo il download del torrent)</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="304"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(%1 ancora per il download del torrent)</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="432"/>

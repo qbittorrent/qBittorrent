@@ -2670,10 +2670,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Attachment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Article title</source>
         <translation type="unfinished"></translation>
     </message>

@@ -1837,14 +1837,14 @@ Opravdu chcete ukončit qBittorrent?</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="25"/>
-        <location filename="../rss.ui" line="219"/>
+        <location filename="../rss.ui" line="211"/>
         <source>New subscription</source>
         <translation>Nové přihlášení k odběru</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="39"/>
-        <location filename="../rss.ui" line="240"/>
-        <location filename="../rss.ui" line="243"/>
+        <location filename="../rss.ui" line="232"/>
+        <location filename="../rss.ui" line="235"/>
         <source>Mark items read</source>
         <translation>Označit jako přečtené</translation>
     </message>
@@ -1858,18 +1858,18 @@ Opravdu chcete ukončit qBittorrent?</translation>
         <translation type="obsolete">1</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="165"/>
+        <location filename="../rss.ui" line="157"/>
         <source>Feed URL</source>
         <translation>URL kanálu</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="207"/>
-        <location filename="../rss.ui" line="210"/>
+        <location filename="../rss.ui" line="199"/>
+        <location filename="../rss.ui" line="202"/>
         <source>Update</source>
         <translation>Aktualizovat</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="288"/>
+        <location filename="../rss.ui" line="280"/>
         <source>New folder</source>
         <translation>Nový adresář</translation>
     </message>
@@ -1892,35 +1892,30 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrenty:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(dvojité kliknutí pro stažení)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="150"/>
+        <location filename="../rss.ui" line="147"/>
         <source>Bullet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="155"/>
-        <source>Attachment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../rss.ui" line="160"/>
+        <location filename="../rss.ui" line="152"/>
         <source>Article title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="228"/>
-        <location filename="../rss.ui" line="231"/>
+        <location filename="../rss.ui" line="220"/>
+        <location filename="../rss.ui" line="223"/>
         <source>Update all feeds</source>
         <translation>Aktualizovat všechny kanály</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="183"/>
-        <location filename="../rss.ui" line="186"/>
+        <location filename="../rss.ui" line="175"/>
+        <location filename="../rss.ui" line="178"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="195"/>
-        <location filename="../rss.ui" line="198"/>
+        <location filename="../rss.ui" line="187"/>
+        <location filename="../rss.ui" line="190"/>
         <source>Rename</source>
         <translation>Přejmenovat</translation>
     </message>
@@ -1929,22 +1924,22 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Obnovit</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="252"/>
+        <location filename="../rss.ui" line="244"/>
         <source>Download torrent</source>
         <translation>Stáhnout torrent</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="261"/>
+        <location filename="../rss.ui" line="253"/>
         <source>Open news URL</source>
         <translation>Otevřít URL s novinkami</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="270"/>
+        <location filename="../rss.ui" line="262"/>
         <source>Copy feed URL</source>
         <translation>Kopírovat URL kanálu</translation>
     </message>
     <message>
-        <location filename="../rss.ui" line="279"/>
+        <location filename="../rss.ui" line="271"/>
         <source>RSS feed downloader</source>
         <translation>Stáhnout z RSS kanálů</translation>
     </message>
@@ -1989,12 +1984,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="169"/>
+        <location filename="../rss_imp.cpp" line="174"/>
         <source>Please type a rss stream url</source>
         <translation>Prosím napište URL RSS kanálu</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="169"/>
+        <location filename="../rss_imp.cpp" line="174"/>
         <source>Stream URL:</source>
         <translation>URL kanálu:</translation>
     </message>
@@ -2007,20 +2002,20 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Nový název kanálu:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="203"/>
-        <location filename="../rss_imp.cpp" line="207"/>
+        <location filename="../rss_imp.cpp" line="208"/>
+        <location filename="../rss_imp.cpp" line="212"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Jste si jist? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="204"/>
-        <location filename="../rss_imp.cpp" line="208"/>
+        <location filename="../rss_imp.cpp" line="209"/>
+        <location filename="../rss_imp.cpp" line="213"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ano</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="204"/>
-        <location filename="../rss_imp.cpp" line="208"/>
+        <location filename="../rss_imp.cpp" line="209"/>
+        <location filename="../rss_imp.cpp" line="213"/>
         <source>&amp;No</source>
         <translation>&amp;Ne</translation>
     </message>
@@ -2041,83 +2036,83 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Poslední obnova:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="115"/>
+        <location filename="../rss_imp.cpp" line="120"/>
         <source>Please choose a folder name</source>
         <translation>Prosím vyberte název adresáře</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="115"/>
+        <location filename="../rss_imp.cpp" line="120"/>
         <source>Folder name:</source>
         <translation>Název adresáře:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="115"/>
+        <location filename="../rss_imp.cpp" line="120"/>
         <source>New folder</source>
         <translation>Nový adresář</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="136"/>
+        <location filename="../rss_imp.cpp" line="141"/>
         <source>Overwrite attempt</source>
         <translation>Pokus o přepsání</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="137"/>
+        <location filename="../rss_imp.cpp" line="142"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation>Nelze přepsat %1.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="174"/>
+        <location filename="../rss_imp.cpp" line="179"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="175"/>
+        <location filename="../rss_imp.cpp" line="180"/>
         <source>This rss feed is already in the list.</source>
         <translation>Tento RSS kanál už v seznamu existuje.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="203"/>
+        <location filename="../rss_imp.cpp" line="208"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>Jste si jist, že chcete smazat tyto prvky ze seznamu?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
+        <location filename="../rss_imp.cpp" line="212"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>Jste si jist, že chcete smazat tento prvek ze seznamu?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="318"/>
+        <location filename="../rss_imp.cpp" line="323"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Prosím vyberte nový název pro tento RSS kanál</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="318"/>
+        <location filename="../rss_imp.cpp" line="323"/>
         <source>New feed name:</source>
         <translation>Název nového kanálu:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="321"/>
+        <location filename="../rss_imp.cpp" line="326"/>
         <source>Name already in use</source>
         <translation>Název je již používán</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="321"/>
+        <location filename="../rss_imp.cpp" line="326"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Tento název již používá jiná položka, vyberte prosím jiný.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="474"/>
+        <location filename="../rss_imp.cpp" line="479"/>
         <source>Date: </source>
         <translation>Datum:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="477"/>
+        <location filename="../rss_imp.cpp" line="482"/>
         <source>Author: </source>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="520"/>
+        <location filename="../rss_imp.cpp" line="525"/>
         <source>Unread</source>
         <translation>Nepřečtené</translation>
     </message>
