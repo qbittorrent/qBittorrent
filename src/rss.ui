@@ -142,17 +142,9 @@ p, li { white-space: pre-wrap; }
           <attribute name="headerStretchLastSection">
            <bool>true</bool>
           </attribute>
-          <attribute name="headerStretchLastSection">
-           <bool>true</bool>
-          </attribute>
           <column>
            <property name="text">
             <string>Bullet</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Attachment</string>
            </property>
           </column>
           <column>
