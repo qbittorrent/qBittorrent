@@ -21,7 +21,12 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bittorrent kliens, C++ nyelven fejlesztve, QT4 eszköztárra &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;és libtorrent-rasterbarra alapul. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Weboldal:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="146"/>
@@ -423,7 +428,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="125"/>
         <source>Connection</source>
-        <translation type="unfinished">Kapcsolatok</translation>
+        <translation>Kapcsolatok</translation>
     </message>
     <message>
         <source>Peer eXchange (PeX)</source>
@@ -677,19 +682,19 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="493"/>
         <location filename="../options.ui" line="536"/>
         <source>Start/Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Indítás/szünet</translation>
     </message>
     <message>
         <location filename="../options.ui" line="498"/>
         <location filename="../options.ui" line="541"/>
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Könyvtár megnyitás</translation>
     </message>
     <message>
         <location filename="../options.ui" line="503"/>
         <location filename="../options.ui" line="546"/>
         <source>Show properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Tulajdonságok</translation>
     </message>
     <message>
         <location filename="../options.ui" line="528"/>
@@ -794,7 +799,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="95"/>
         <source>UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Felület</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1124"/>
@@ -951,17 +956,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="468"/>
         <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dupla katt esetén</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1055"/>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port a bejövő kapcsoaltokhoz:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1075"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>Random</translation>
     </message>
     <message>
         <location filename="../options.ui" line="2270"/>
@@ -1060,7 +1065,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../downloadingTorrents.cpp" line="68"/>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished"></translation>
+        <translation>Seed/Leech</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -1157,104 +1162,104 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FeedDownloader.ui" line="14"/>
         <source>RSS Feed downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés RSS forrásból</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="29"/>
         <source>RSS feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS forrás:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="43"/>
         <source>Feed name</source>
-        <translation type="unfinished"></translation>
+        <translation>Forrás neve</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="65"/>
         <source>Automatically download torrents from this feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent automatikus letöltése ebből a forrásból</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="81"/>
         <source>Download filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltési szűrő</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="99"/>
         <source>Filters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szűrő:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="213"/>
         <source>Filter settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Szűrő beállításai</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="232"/>
         <source>Matches:</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyezések:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="248"/>
         <source>Does not match:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kivételek:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="264"/>
         <source>Destination folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Célmappa:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="306"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="319"/>
         <source>Filter testing</source>
-        <translation type="unfinished"></translation>
+        <translation>Szűrő próbája</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="341"/>
         <source>Torrent title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent címe:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="357"/>
         <source>Result:</source>
-        <translation type="unfinished"></translation>
+        <translation>Eredmény:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="382"/>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation>Teszt</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="451"/>
         <source>Import...</source>
-        <translation type="unfinished"></translation>
+        <translation>Import...</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="458"/>
         <source>Export...</source>
-        <translation type="unfinished"></translation>
+        <translation>Export...</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="481"/>
         <location filename="../FeedDownloader.ui" line="484"/>
         <source>Rename filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Szűrő átnevezése</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="493"/>
         <location filename="../FeedDownloader.ui" line="496"/>
         <source>Remove filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Szűrő eltávolítása</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="505"/>
         <source>Add filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Szűrő hozzáadása</translation>
     </message>
 </context>
 <context>
@@ -1262,121 +1267,121 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FeedDownloader.h" line="380"/>
         <source>New filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Új szűrő</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="387"/>
         <source>Please choose a name for this filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Kérlek válassz nevet a szűrőnek</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="387"/>
         <source>Filter name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter név:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="356"/>
         <location filename="../FeedDownloader.h" line="395"/>
         <location filename="../FeedDownloader.h" line="411"/>
         <source>Invalid filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Érvénytelen szűrő név</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="395"/>
         <source>The filter name cannot be left empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>A szűrő név mindenképpen szükséges.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="356"/>
         <location filename="../FeedDownloader.h" line="411"/>
         <source>This filter name is already in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>A szűrő név már használatban.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="433"/>
         <source>Filter testing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Szűrő teszt hiba</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="433"/>
         <source>Please specify a test torrent name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kérlek válassz teszt torrentet.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="440"/>
         <source>matches</source>
-        <translation type="unfinished"></translation>
+        <translation>egyezés</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="442"/>
         <source>does not match</source>
-        <translation type="unfinished"></translation>
+        <translation>nincs egyezés</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="446"/>
         <source>Select file to import</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájl kiválasztása</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="446"/>
         <location filename="../FeedDownloader.h" line="463"/>
         <source>Filters Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Szűrő fájlok</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="456"/>
         <source>Import successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Importálás sikeres</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="456"/>
         <source>Filters import was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Szűrő importálás sikeres.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="458"/>
         <source>Import failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Importálás sikertelen</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="458"/>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation type="unfinished"></translation>
+        <translation>A szűrőt nem sikerült importálni I/O hiba miatt.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="463"/>
         <source>Select destination file</source>
-        <translation type="unfinished"></translation>
+        <translation>Szűrő fájl kiválasztása</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="469"/>
         <source>Overwriting confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Felülírás megerősítése</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="469"/>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Biztosan felül akarod írni a már létező fájlt?</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="473"/>
         <source>Export successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportálás sikeres</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="473"/>
         <source>Filters export was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Szűrő exportálás sikeres.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="475"/>
         <source>Export failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportálás sikertelen</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="475"/>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation type="unfinished"></translation>
+        <translation>A szűrőt nem sikerült exportálni I/O hiba miatt.</translation>
     </message>
 </context>
 <context>
@@ -1384,7 +1389,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../feedList.h" line="33"/>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Olvasatlan</translation>
     </message>
 </context>
 <context>
@@ -2300,40 +2305,44 @@ Mégis leállítod a qBittorrentet?</translation>
         <location filename="../rss.ui" line="25"/>
         <location filename="../rss.ui" line="219"/>
         <source>New subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Új feliratkozás</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="39"/>
         <location filename="../rss.ui" line="240"/>
         <location filename="../rss.ui" line="243"/>
         <source>Mark items read</source>
-        <translation type="unfinished"></translation>
+        <translation>Olvasottnak jelölés</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="62"/>
         <source>Update all</source>
-        <translation type="unfinished"></translation>
+        <translation>Összes frissítése</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="obsolete">1</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="165"/>
         <source>Feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL forrás</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="207"/>
         <location filename="../rss.ui" line="210"/>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="288"/>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Új könyvtár</translation>
     </message>
     <message>
         <location filename="../feedList.h" line="30"/>
         <source>RSS feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS források</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="110"/>
@@ -2342,7 +2351,11 @@ Mégis leállítod a qBittorrentet?</translation>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(dupla katt a letöltéshez)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="150"/>
@@ -2363,19 +2376,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss.ui" line="228"/>
         <location filename="../rss.ui" line="231"/>
         <source>Update all feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Összes forrás frissítése</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="183"/>
         <location filename="../rss.ui" line="186"/>
         <source>Delete</source>
-        <translation type="unfinished">Törlés</translation>
+        <translation>Törlés</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="195"/>
         <location filename="../rss.ui" line="198"/>
         <source>Rename</source>
-        <translation type="unfinished">Átnevezés</translation>
+        <translation>Átnevezés</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -2384,22 +2397,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss.ui" line="252"/>
         <source>Download torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent letöltése</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="261"/>
         <source>Open news URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Új URL megnyitása</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="270"/>
         <source>Copy feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL forrás másolása</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="279"/>
         <source>RSS feed downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés RSS forrásból</translation>
     </message>
     <message>
         <source>Delete selected streams</source>
@@ -2508,28 +2521,28 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss_imp.cpp" line="115"/>
         <source>Please choose a folder name</source>
-        <translation type="unfinished"></translation>
+        <translation>Válassz könyvtár nevet</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="115"/>
         <source>Folder name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Könyvtár név:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="115"/>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Új könyvtár</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="136"/>
         <source>Overwrite attempt</source>
-        <translation type="unfinished"></translation>
+        <translation>Felülírási kísérlet</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="137"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nem lehet felülírni: %1.</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="174"/>
@@ -2544,32 +2557,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss_imp.cpp" line="203"/>
         <source>Are you sure you want to delete these elements from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Egészen biztos, hogy törlöd ezeket az elemet a listáról?</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="207"/>
         <source>Are you sure you want to delete this element from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Egészen biztos, hogy törlöd ezt az elemet a listáról?</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="318"/>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Válassz új nevet az RSS csatornának</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="318"/>
         <source>New feed name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Új forrás neve:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="321"/>
         <source>Name already in use</source>
-        <translation type="unfinished"></translation>
+        <translation>A név már foglalt</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="321"/>
         <source>This name is already used by another item, please choose another one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez a név már foglalt, kérlek válassz másikat.</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="474"/>
@@ -2584,7 +2597,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss_imp.cpp" line="520"/>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Olvasatlan</translation>
     </message>
 </context>
 <context>
@@ -2605,7 +2618,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss.cpp" line="572"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatikus letöltése %1 torrentnek a %2 RSS forrásból...</translation>
     </message>
     <message>
         <source>Never</source>
@@ -2617,47 +2630,47 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../supportedEngines.h" line="49"/>
         <source>All categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Összes kategória</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="50"/>
         <source>Movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmek</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="51"/>
         <source>TV shows</source>
-        <translation type="unfinished"></translation>
+        <translation>TV műsorok</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="52"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Zene</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="53"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Játék</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="54"/>
         <source>Anime</source>
-        <translation type="unfinished"></translation>
+        <translation>Anime</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="55"/>
         <source>Software</source>
-        <translation type="unfinished"></translation>
+        <translation>Szoftver</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="56"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Képek</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="57"/>
         <source>Books</source>
-        <translation type="unfinished"></translation>
+        <translation>Könyvek</translation>
     </message>
 </context>
 <context>
@@ -2908,18 +2921,18 @@ Changelog:
     <message>
         <location filename="../addTorrentDialog.ui" line="69"/>
         <source>Torrent size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent mérete:</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="76"/>
         <location filename="../addTorrentDialog.ui" line="107"/>
         <source>Unknown</source>
-        <translation type="unfinished">Ismeretlen</translation>
+        <translation>Ismeretlen</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="100"/>
         <source>Free disk space:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szabad hely:</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="142"/>
@@ -2929,7 +2942,7 @@ Changelog:
     <message>
         <location filename="../addTorrentDialog.ui" line="206"/>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés sorrendben (lassabb, de előnézethez ideális)</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -3069,7 +3082,7 @@ Changelog:
     <message>
         <location filename="../bittorrent.cpp" line="375"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; nem hiteles magnet URI.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="400"/>
@@ -3123,12 +3136,12 @@ Changelog:
         <location filename="../bittorrent.cpp" line="1243"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fájl ismételt letöltése %1 beágyazva a torrent %2</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1254"/>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Megfejthetetlen torrent: %1.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1297"/>
@@ -3234,12 +3247,12 @@ Changelog:
     <message>
         <location filename="../createtorrent.ui" line="65"/>
         <source>Add file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájl hozzáadása</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="76"/>
         <source>Add folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Könyvtár hozzáadása</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="395"/>
@@ -3589,7 +3602,7 @@ Changelog:
     <message>
         <location filename="../download.ui" line="185"/>
         <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet link másolása</translation>
     </message>
 </context>
 <context>
@@ -3712,7 +3725,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <location filename="../engineSelectDlg.cpp" line="210"/>
         <location filename="../engineSelectDlg.cpp" line="435"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Igen</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="130"/>
@@ -3720,7 +3733,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <location filename="../engineSelectDlg.cpp" line="223"/>
         <location filename="../engineSelectDlg.cpp" line="438"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="268"/>
@@ -4496,7 +4509,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
     <message>
         <location filename="../seeding.ui" line="151"/>
         <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet link másolása</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -4560,7 +4573,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
     <message>
         <location filename="../downloadThread.cpp" line="88"/>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O Hiba</translation>
+        <translation>I/O Hiba</translation>
     </message>
     <message>
         <source>Connection forbidden (403)</source>
@@ -4615,19 +4628,19 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
     <message>
         <location filename="../torrentAddition.h" line="285"/>
         <source>Unknown</source>
-        <translation type="unfinished">Ismeretlen</translation>
+        <translation>Ismeretlen</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="301"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(%1 hely marad letöltés után)</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="304"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(%1 hely hiányzik a letöltéshez)</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="316"/>
