@@ -12,11 +12,13 @@
     - FEATURE: If a torrent contains a torrent file, process downloaded torrent file too
     - FEATURE: A random listening port can be chosen automatically
     - BUGFIX: torrent resume code rewrited
+    - BUGFIX: Fixed uTorrent spoofing code
     - BUGFIX: Greatly improved column sorting code
     - BUGFIX: Possibility to create trackerless torrents
     - BUGFIX: Better item coloring in torrent content filtering dialog
     - COSMETIC: Redesigned search tab to improve usability
     - COSMETIC: Redesigned RSS tab to improve usability
+    - COSMETIC: Improved tracker errors readability
 
 * Sun Aug 21 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.4.1
     - BUGFIX: Fix problems when changing save path (if using temporary download folder)

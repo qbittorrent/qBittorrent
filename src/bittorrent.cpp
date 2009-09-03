@@ -62,11 +62,14 @@ bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(
   // Creating bittorrent session
   // Check if we should spoof utorrent
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  if(settings.value(QString::fromUtf8("AzureusSpoof"), false).toBool()) {
+  if(settings.value(QString::fromUtf8("Preferences/Bittorrent/AzureusSpoof"), false).toBool()) {
     s = new session(fingerprint("UT", 1, 8, 4, 0), 0);
+    qDebug("Peer ID: %s", fingerprint("UT", 1, 8, 4, 0).to_string().c_str());
   } else {
     s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0), 0);
+    qDebug("Peer ID: ", fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0).to_string().c_str());
   }
+
   // Set severity level of libtorrent session
   //s->set_alert_mask(alert::all_categories & ~alert::progress_notification);
   s->set_alert_mask(alert::error_notification | alert::peer_notification | alert::port_mapping_notification | alert::storage_notification | alert::tracker_notification | alert::status_notification | alert::ip_block_notification);
