@@ -3,7 +3,7 @@ LANG_PATH = lang
 ICONS_PATH = Icons
 
 # Set the following variable to 1 to enable debug
-DEBUG_MODE = 0
+DEBUG_MODE = 1
 
 # Global
 TEMPLATE = app
@@ -14,9 +14,9 @@ CONFIG += qt \
     network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v1.5.0\\\"
+DEFINES += VERSION=\\\"v1.6.0alpha1\\\"
 DEFINES += VERSION_MAJOR=1
-DEFINES += VERSION_MINOR=5
+DEFINES += VERSION_MINOR=6
 DEFINES += VERSION_BUGFIX=0
 !mac:QMAKE_LFLAGS += -Wl,--as-needed
 contains(DEBUG_MODE, 1) { 
