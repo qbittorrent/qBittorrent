@@ -63,7 +63,7 @@ bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(
   // Check if we should spoof utorrent
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   if(settings.value(QString::fromUtf8("AzureusSpoof"), false).toBool()) {
-    s = new session(fingerprint("UT", 1, 8, 3, 0), 0);
+    s = new session(fingerprint("UT", 1, 8, 4, 0), 0);
   } else {
     s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0), 0);
   }

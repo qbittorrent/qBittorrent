@@ -454,7 +454,15 @@ void properties::loadTrackers(){
     if(errors.contains(current_tracker)) {
       item->setForeground(QBrush(QColor("red")));
       // Set tooltip
-      item->setToolTip(errors[current_tracker]);
+      QString msg="";
+      unsigned int i=0;
+      foreach(QString word, errors[current_tracker].split(" ")) {
+        if(i > 0 && i%5!=1) msg += " ";
+        msg += word;
+        if(i> 0 && i%5==0) msg += "\n";
+        ++i;
+      }
+      item->setToolTip(msg);
     } else {
       item->setForeground(QBrush(QColor("green")));
     }
