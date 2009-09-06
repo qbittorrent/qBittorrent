@@ -279,11 +279,8 @@ public slots:
 
   void updateDiskSpaceLabels() {
     unsigned long long available = misc::freeDiskSpaceOnPath(savePathTxt->text());
-    if (available > 0) {
-      lbl_disk_space->setText(misc::friendlyUnit(available));
-    } else {
-      lbl_disk_space->setText(tr("Unknown"));
-    }
+    lbl_disk_space->setText(misc::friendlyUnit(available));
+
     // Determine torrent size
     unsigned long long torrent_size = 0;
     int nbFiles = t->num_files();
