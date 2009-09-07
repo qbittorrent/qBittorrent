@@ -99,11 +99,17 @@ public:
   }
 
 
-  static unsigned long long freeDiskSpaceOnPath(QString path) {
+  static long long freeDiskSpaceOnPath(QString path) {
+    if(path.isEmpty()) return -1;
+    QDir dir_path(path);
+    if(!dir_path.exists()) {
+      if(!dir_path.cdUp()) return -1;
+    }
+    Q_ASSERT(dir_path.exists());
 #ifndef Q_WS_WIN
     unsigned long long available;
     struct statfs stats;
-    int ret = statfs ((path+"/.").toLocal8Bit().data(), &stats) ;
+    int ret = statfs ((dir_path.path()+"/.").toLocal8Bit().data(), &stats) ;
     if(ret == 0) {
       available = ((unsigned long long)stats.f_bavail) *
                   ((unsigned long long)stats.f_bsize) ;
