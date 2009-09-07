@@ -25,6 +25,7 @@ GenericName[sv]=Bittorrent-klient
 GenericName[tr]=Bittorrent istemcisi
 GenericName[uk]=Bittorrent-клієнт
 GenericName[zh]=Bittorrent之用户
+GenericName[zh_TW]=Bittorrent客戶端
 Icon=qbittorrent
 MimeType=application/x-bittorrent;
 Name=qBittorrent
