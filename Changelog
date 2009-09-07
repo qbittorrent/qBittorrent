@@ -1,6 +1,7 @@
 * Thu Sep 7 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.1
    - BUGFIX: Fix crash in torrent addition dialog when save path does not exist (closes #425227)
    - BUGFIX: Fix downloading from URL (broken in v1.5.0)
+   - BUGFIX: Pause torrents in error state
 
 * Thu Sep 3 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.0
     - FEATURE: Added Magnet URI support

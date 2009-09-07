@@ -4770,7 +4770,7 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Onbekend</translation>
+        <translation type="obsolete">Onbekend</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>
