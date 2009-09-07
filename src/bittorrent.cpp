@@ -1435,6 +1435,12 @@ void bittorrent::downloadFromUrl(QString url) {
   downloader->downloadUrl(url);
 }
 
+void bittorrent::downloadFromURLList(const QStringList& urls) {
+  foreach(const QString &url, urls) {
+    downloadFromUrl(url);
+  }
+}
+
 void bittorrent::addMagnetSkipAddDlg(QString uri) {
   addMagnetUri(uri, false);
 }

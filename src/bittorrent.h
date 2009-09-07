@@ -170,6 +170,7 @@ class bittorrent : public QObject {
     void processDownloadedFile(QString, QString);
     void saveTrackerFile(QString hash);
     void addMagnetSkipAddDlg(QString uri);
+    void downloadFromURLList(const QStringList& urls);
 
   protected slots:
     void scanDirectory(QString);
