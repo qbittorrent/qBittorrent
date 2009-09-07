@@ -450,7 +450,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   }
   
   void GUI::setPaused(QTorrentHandle &h) const {
-    if(!h.is_paused()) return;
+    if(!h.is_paused()) {
+      // FIXME in v1.6.0: Add Error state and stop using pause for this
+      h.pause();
+    }
     qDebug("Marking torrent %s as paused", h.hash().toLocal8Bit().data());
     if(h.is_seed()) {
       // In finished list
