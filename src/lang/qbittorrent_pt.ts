@@ -4790,7 +4790,7 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Desconhecido</translation>
+        <translation type="obsolete">Desconhecido</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>

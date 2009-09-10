@@ -3154,7 +3154,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>未知</translation>
+        <translation type="obsolete">未知</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>

@@ -3039,7 +3039,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Okänd</translation>
+        <translation type="obsolete">Okänd</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>

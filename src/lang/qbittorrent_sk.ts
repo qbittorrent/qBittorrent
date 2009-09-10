@@ -4806,7 +4806,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Neznáma</translation>
+        <translation type="obsolete">Neznáma</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>
