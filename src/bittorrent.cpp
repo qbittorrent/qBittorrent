@@ -67,7 +67,7 @@ bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(
     qDebug("Peer ID: %s", fingerprint("UT", 1, 8, 4, 0).to_string().c_str());
   } else {
     s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0), 0);
-    qDebug("Peer ID: ", fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0).to_string().c_str());
+    qDebug("Peer ID: %s", fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0).to_string().c_str());
   }
 
   // Set severity level of libtorrent session
@@ -1300,13 +1300,13 @@ void bittorrent::readAlerts() {
       addConsoleMessage(tr("Couldn't listen on any of the given ports."), QString::fromUtf8("red"));
       //emit portListeningFailure();
     }
-    else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())) {
+    /*else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
       qDebug("Received a torrent_paused_alert for %s", h.hash().toLocal8Bit().data());
       if(h.is_valid()) {
         emit torrentPaused(h);
       }
-    }
+    }*/
     else if (tracker_error_alert* p = dynamic_cast<tracker_error_alert*>(a.get())) {
       // Level: fatal
       QTorrentHandle h(p->handle);
