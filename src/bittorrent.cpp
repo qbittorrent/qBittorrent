@@ -1224,7 +1224,7 @@ void bittorrent::readAlerts() {
   while (a.get()) {
     if (torrent_finished_alert* p = dynamic_cast<torrent_finished_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
-      if(h.is_valid()){
+      if(h.is_valid()) {
         emit finishedTorrent(h);
         QString hash = h.hash();
         // Remember finished state
@@ -1264,16 +1264,18 @@ void bittorrent::readAlerts() {
     else if (save_resume_data_alert* p = dynamic_cast<save_resume_data_alert*>(a.get())) {
       QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
       QTorrentHandle h(p->handle);
-      QString file = h.hash()+".fastresume";
-      // Delete old fastresume file if necessary
-      if(QFile::exists(file))
-        QFile::remove(file);
-      qDebug("Saving fastresume data in %s", file.toLocal8Bit().data());
-      if (p->resume_data)
-      {
-        boost::filesystem::ofstream out(fs::path(torrentBackup.path().toLocal8Bit().data()) / file.toLocal8Bit().data(), std::ios_base::binary);
-        out.unsetf(std::ios_base::skipws);
-        bencode(std::ostream_iterator<char>(out), *p->resume_data);
+      if(h.is_valid()) {
+        QString file = h.hash()+".fastresume";
+        // Delete old fastresume file if necessary
+        if(QFile::exists(file))
+          QFile::remove(file);
+        qDebug("Saving fastresume data in %s", file.toLocal8Bit().data());
+        if (p->resume_data)
+        {
+          boost::filesystem::ofstream out(fs::path(torrentBackup.path().toLocal8Bit().data()) / file.toLocal8Bit().data(), std::ios_base::binary);
+          out.unsetf(std::ios_base::skipws);
+          bencode(std::ostream_iterator<char>(out), *p->resume_data);
+        }
       }
     }
     else if (metadata_received_alert* p = dynamic_cast<metadata_received_alert*>(a.get())) {
@@ -1290,10 +1292,12 @@ void bittorrent::readAlerts() {
     }
     else if (file_error_alert* p = dynamic_cast<file_error_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
-      h.auto_managed(false);
-      std::cerr << "File Error: " << p->message().c_str() << std::endl;
-      if(h.is_valid())
-        emit fullDiskError(h, misc::toQString(p->message()));
+      if(h.is_valid()) {
+        h.auto_managed(false);
+        std::cerr << "File Error: " << p->message().c_str() << std::endl;
+        if(h.is_valid())
+          emit fullDiskError(h, misc::toQString(p->message()));
+      }
     }
     else if (dynamic_cast<listen_failed_alert*>(a.get())) {
       // Level: fatal
