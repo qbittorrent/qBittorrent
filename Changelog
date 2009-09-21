@@ -1,3 +1,6 @@
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.5.3
+  - BUGFIX: Fix a possible crash when pausing then deleting a torrent quickly
+
 * Sun Sep 20 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.2
   - BUGFIX: Some torrents were pausing for no reason
   - I18N: Updated Korean translation
