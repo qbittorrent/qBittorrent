@@ -63,7 +63,6 @@ SearchTab::SearchTab(SearchEngine *parent) : QWidget(), parent(parent)
   SearchListModel->setHeaderData(SEARCH_SEEDERS, Qt::Horizontal, tr("Seeders", "i.e: Number of full sources"));
   SearchListModel->setHeaderData(SEARCH_LEECHERS, Qt::Horizontal, tr("Leechers", "i.e: Number of partial sources"));
   SearchListModel->setHeaderData(SEARCH_ENGINE, Qt::Horizontal, tr("Search engine"));
-  resultsBrowser->hideColumn(URL_COLUMN); // Hide url column
 
   proxyModel = new QSortFilterProxyModel();
   proxyModel->setDynamicSortFilter(true);
@@ -72,6 +71,8 @@ SearchTab::SearchTab(SearchEngine *parent) : QWidget(), parent(parent)
 
   SearchDelegate = new SearchListDelegate();
   resultsBrowser->setItemDelegate(SearchDelegate);
+
+  resultsBrowser->hideColumn(URL_COLUMN); // Hide url column
 
   resultsBrowser->setRootIsDecorated(false);
   resultsBrowser->setAllColumnsShowFocus(true);
