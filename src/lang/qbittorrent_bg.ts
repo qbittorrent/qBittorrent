@@ -41,7 +41,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Битторент клиент програмиран на C++, базиран на Qt4 toolkit &lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;и libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Начална:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="146"/>
@@ -581,7 +581,7 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="125"/>
         <source>Connection</source>
-        <translation type="unfinished">Връзка</translation>
+        <translation>Връзка</translation>
     </message>
     <message>
         <source>Peer eXchange (PeX)</source>
@@ -835,19 +835,19 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="493"/>
         <location filename="../options.ui" line="536"/>
         <source>Start/Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Старт/Стоп</translation>
     </message>
     <message>
         <location filename="../options.ui" line="498"/>
         <location filename="../options.ui" line="541"/>
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Отвори папка</translation>
     </message>
     <message>
         <location filename="../options.ui" line="503"/>
         <location filename="../options.ui" line="546"/>
         <source>Show properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Покажи настройки</translation>
     </message>
     <message>
         <location filename="../options.ui" line="528"/>
@@ -917,7 +917,7 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
     <message utf8="true">
         <location filename="../options.ui" line="1515"/>
         <source>Spoof µtorrent to avoid ban (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Направи се на µtorrent за да избегнеш изхвърляне (изисква рестарт)</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1710"/>
@@ -952,7 +952,7 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../options.ui" line="95"/>
         <source>UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Вид към потребителя</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1124"/>
@@ -1109,17 +1109,17 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
         <location filename="../options.ui" line="468"/>
         <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
+        <translation>Действие при двойно щракване</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1055"/>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Порт ползван за входящи връзки:</translation>
     </message>
     <message>
         <location filename="../options.ui" line="1075"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>Приблизително</translation>
     </message>
     <message>
         <location filename="../options.ui" line="2270"/>
@@ -1218,7 +1218,7 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
         <location filename="../downloadingTorrents.cpp" line="68"/>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished"></translation>
+        <translation>Даващи/Вземащи</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -1315,104 +1315,104 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FeedDownloader.ui" line="14"/>
         <source>RSS Feed downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS Feed сваляч</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="29"/>
         <source>RSS feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS Feed:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="43"/>
         <source>Feed name</source>
-        <translation type="unfinished"></translation>
+        <translation>Feed име </translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="65"/>
         <source>Automatically download torrents from this feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматично сваляне на торентите от този feed</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="81"/>
         <source>Download filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Филтри за сваляне</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="99"/>
         <source>Filters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Филтри:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="213"/>
         <source>Filter settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки на филтъра</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="232"/>
         <source>Matches:</source>
-        <translation type="unfinished"></translation>
+        <translation>Съответстващи:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="248"/>
         <source>Does not match:</source>
-        <translation type="unfinished"></translation>
+        <translation>Несъответстващи:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="264"/>
         <source>Destination folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Папка получател:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="306"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="319"/>
         <source>Filter testing</source>
-        <translation type="unfinished"></translation>
+        <translation>Тест на филтъра</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="341"/>
         <source>Torrent title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Име но торента:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="357"/>
         <source>Result:</source>
-        <translation type="unfinished"></translation>
+        <translation>Резултат:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="382"/>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation>Тест</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="451"/>
         <source>Import...</source>
-        <translation type="unfinished"></translation>
+        <translation>Внос...</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="458"/>
         <source>Export...</source>
-        <translation type="unfinished"></translation>
+        <translation>Износ...</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="481"/>
         <location filename="../FeedDownloader.ui" line="484"/>
         <source>Rename filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Преименувай филтъра</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="493"/>
         <location filename="../FeedDownloader.ui" line="496"/>
         <source>Remove filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Премахни филтъра</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.ui" line="505"/>
         <source>Add filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Добави филтър</translation>
     </message>
 </context>
 <context>
@@ -1420,121 +1420,121 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../FeedDownloader.h" line="380"/>
         <source>New filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Нов филтър</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="387"/>
         <source>Please choose a name for this filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Моля изберете име за този филтър</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="387"/>
         <source>Filter name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Име на филтър:</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="356"/>
         <location filename="../FeedDownloader.h" line="395"/>
         <location filename="../FeedDownloader.h" line="411"/>
         <source>Invalid filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Невалидно име на филтър</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="395"/>
         <source>The filter name cannot be left empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Името на филтър не може да е празно.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="356"/>
         <location filename="../FeedDownloader.h" line="411"/>
         <source>This filter name is already in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>Това име на филтър вече се ползва.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="433"/>
         <source>Filter testing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка при тест на филтъра</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="433"/>
         <source>Please specify a test torrent name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Моля определете име на тест торент.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="440"/>
         <source>matches</source>
-        <translation type="unfinished"></translation>
+        <translation>съответства</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="442"/>
         <source>does not match</source>
-        <translation type="unfinished"></translation>
+        <translation>несъответства</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="446"/>
         <source>Select file to import</source>
-        <translation type="unfinished"></translation>
+        <translation>Изберете файл за внос</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="446"/>
         <location filename="../FeedDownloader.h" line="463"/>
         <source>Filters Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Файлове Филтри</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="456"/>
         <source>Import successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Внос успешен</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="456"/>
         <source>Filters import was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Внос на филтри успешен.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="458"/>
         <source>Import failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка при внос</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="458"/>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Филтрите не могат да бъдат внесени поради В/И грешка.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="463"/>
         <source>Select destination file</source>
-        <translation type="unfinished"></translation>
+        <translation>Изберете файл-получател</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="469"/>
         <source>Overwriting confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Потвърждение за запис върху предишен</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="469"/>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Сигурни ли сте че искате да запишете върху съществуващ файл?</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="473"/>
         <source>Export successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Износ успешен</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="473"/>
         <source>Filters export was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Износ на филтри успешен.</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="475"/>
         <source>Export failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка при износ</translation>
     </message>
     <message>
         <location filename="../FeedDownloader.h" line="475"/>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Филтрите не могат да бъдат изнесени поради В/И грешка.</translation>
     </message>
 </context>
 <context>
@@ -1542,7 +1542,7 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../feedList.h" line="33"/>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Непрочетен</translation>
     </message>
 </context>
 <context>
@@ -2929,40 +2929,44 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../rss.ui" line="25"/>
         <location filename="../rss.ui" line="211"/>
         <source>New subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Нов абонамент</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="39"/>
         <location filename="../rss.ui" line="232"/>
         <location filename="../rss.ui" line="235"/>
         <source>Mark items read</source>
-        <translation type="unfinished"></translation>
+        <translation>Четене на маркираните</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="62"/>
         <source>Update all</source>
-        <translation type="unfinished"></translation>
+        <translation>Обнови всички</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="obsolete">1</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="157"/>
         <source>Feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL на канал</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="199"/>
         <location filename="../rss.ui" line="202"/>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновяване</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="280"/>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Нова папка</translation>
     </message>
     <message>
         <location filename="../feedList.h" line="30"/>
         <source>RSS feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS канали</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="110"/>
@@ -2971,7 +2975,7 @@ Are you sure you want to quit qBittorrent?</source>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Торенти:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="147"/>
@@ -2987,19 +2991,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss.ui" line="220"/>
         <location filename="../rss.ui" line="223"/>
         <source>Update all feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Обнови всички канали</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="175"/>
         <location filename="../rss.ui" line="178"/>
         <source>Delete</source>
-        <translation type="unfinished">Изтрий</translation>
+        <translation>Изтрий</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="187"/>
         <location filename="../rss.ui" line="190"/>
         <source>Rename</source>
-        <translation type="unfinished">Преименувай</translation>
+        <translation>Преименувай</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -3008,22 +3012,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss.ui" line="244"/>
         <source>Download torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Торент сваляне</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="253"/>
         <source>Open news URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Отваря URL за новини</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="262"/>
         <source>Copy feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Копира URL на канал</translation>
     </message>
     <message>
         <location filename="../rss.ui" line="271"/>
         <source>RSS feed downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS Feed сваляч</translation>
     </message>
     <message>
         <source>Create</source>
@@ -3124,28 +3128,28 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss_imp.cpp" line="120"/>
         <source>Please choose a folder name</source>
-        <translation type="unfinished"></translation>
+        <translation>Моля изберете име на папка</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="120"/>
         <source>Folder name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Име на папка:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="120"/>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Нова папка</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="141"/>
         <source>Overwrite attempt</source>
-        <translation type="unfinished"></translation>
+        <translation>Опит за презаписване</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="142"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Не можете да презапишете %1.</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="179"/>
@@ -3155,37 +3159,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss_imp.cpp" line="180"/>
         <source>This rss feed is already in the list.</source>
-        <translation>Този rss feed е вече в списъка.</translation>
+        <translation>Този rss канал е вече в списъка.</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="208"/>
         <source>Are you sure you want to delete these elements from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Сигурни ли сте че искате да изтриете тези елементи от списъка?</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="212"/>
         <source>Are you sure you want to delete this element from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Сигурни ли сте че искате да изтриете този елемент от списъка?</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="323"/>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Моля изберете ново име за този RSS канал</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="323"/>
         <source>New feed name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Име на нов канал:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="326"/>
         <source>Name already in use</source>
-        <translation type="unfinished"></translation>
+        <translation>Името вече се ползва</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="326"/>
         <source>This name is already used by another item, please choose another one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Това име се ползва от друг елемент, моля изберете друго.</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="479"/>
@@ -3200,7 +3204,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss_imp.cpp" line="525"/>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Непрочетен</translation>
     </message>
 </context>
 <context>
@@ -3221,7 +3225,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss.cpp" line="572"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматично сваляне на %1 торент от %2 RSS канал...</translation>
     </message>
     <message>
         <source>Never</source>
@@ -3233,47 +3237,47 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../supportedEngines.h" line="49"/>
         <source>All categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Всички категории</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="50"/>
         <source>Movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Филми</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="51"/>
         <source>TV shows</source>
-        <translation type="unfinished"></translation>
+        <translation>TV шоу</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="52"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Музика</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="53"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Игри</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="54"/>
         <source>Anime</source>
-        <translation type="unfinished"></translation>
+        <translation>Анимация</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="55"/>
         <source>Software</source>
-        <translation type="unfinished"></translation>
+        <translation>Софтуер</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="56"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Снимки</translation>
     </message>
     <message>
         <location filename="../supportedEngines.h" line="57"/>
         <source>Books</source>
-        <translation type="unfinished"></translation>
+        <translation>Книги</translation>
     </message>
 </context>
 <context>
@@ -3583,18 +3587,18 @@ Changelog:
     <message>
         <location filename="../addTorrentDialog.ui" line="69"/>
         <source>Torrent size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Торент размер:</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="76"/>
         <location filename="../addTorrentDialog.ui" line="107"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Неизвестен</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="100"/>
         <source>Free disk space:</source>
-        <translation type="unfinished"></translation>
+        <translation>Празно пространство на диска:</translation>
     </message>
     <message>
         <location filename="../addTorrentDialog.ui" line="142"/>
@@ -3604,7 +3608,7 @@ Changelog:
     <message>
         <location filename="../addTorrentDialog.ui" line="206"/>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation>Сваляне поред (по-бавно но удобно за преглед)</translation>
     </message>
     <message>
         <source>File name</source>
@@ -3768,7 +3772,7 @@ Changelog:
     <message>
         <location filename="../bittorrent.cpp" line="378"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; е невалиден magnet URI.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="403"/>
@@ -3822,40 +3826,40 @@ Changelog:
         <location filename="../bittorrent.cpp" line="1246"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="unfinished"></translation>
+        <translation>Програмирано сваляне на файл %1 вмъкнато в торент %2</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1257"/>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не мога да декодирам %1 торент-файла.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1300"/>
+        <location filename="../bittorrent.cpp" line="1304"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Невъзможно изчакване от дадените портове.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1339"/>
+        <location filename="../bittorrent.cpp" line="1343"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Грешка при следене на порт, съобщение: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1344"/>
+        <location filename="../bittorrent.cpp" line="1348"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Следене на порт успешно, съобщение: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1359"/>
+        <location filename="../bittorrent.cpp" line="1363"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Бърза пауза бе отхвърлена за торент %1, нова проверка...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1364"/>
+        <location filename="../bittorrent.cpp" line="1368"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url споделяне провалено за url: %1, съобщение: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1432"/>
+        <location filename="../bittorrent.cpp" line="1436"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Сваляне на &apos;%1&apos;, моля изчакайте...</translation>
@@ -3965,12 +3969,12 @@ Changelog:
     <message>
         <location filename="../createtorrent.ui" line="65"/>
         <source>Add file</source>
-        <translation type="unfinished"></translation>
+        <translation>Добави файл</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="76"/>
         <source>Add folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Добави папка</translation>
     </message>
     <message>
         <location filename="../createtorrent.ui" line="395"/>
@@ -4336,7 +4340,7 @@ Changelog:
     <message>
         <location filename="../download.ui" line="185"/>
         <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Копирай връзка magnet</translation>
     </message>
 </context>
 <context>
@@ -4463,7 +4467,7 @@ However, those plugins were disabled.</source>
         <location filename="../engineSelectDlg.cpp" line="210"/>
         <location filename="../engineSelectDlg.cpp" line="435"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Да</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="130"/>
@@ -4471,7 +4475,7 @@ However, those plugins were disabled.</source>
         <location filename="../engineSelectDlg.cpp" line="223"/>
         <location filename="../engineSelectDlg.cpp" line="438"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Не</translation>
     </message>
     <message>
         <location filename="../engineSelectDlg.cpp" line="268"/>
@@ -5445,7 +5449,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../seeding.ui" line="151"/>
         <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Копирай връзка magnet</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -5509,7 +5513,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../downloadThread.cpp" line="88"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>В/И Грешка</translation>
     </message>
     <message>
         <source>Connection forbidden (403)</source>
@@ -5576,16 +5580,20 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Грешка</translation>
     </message>
     <message>
+        <source>Unknown</source>
+        <translation type="obsolete">Неизвестен</translation>
+    </message>
+    <message>
         <location filename="../torrentAddition.h" line="300"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(%1 остават след сваляне на торента)</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="303"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(още %1 са необходими за свалянето)</translation>
     </message>
     <message>
         <location filename="../torrentAddition.h" line="430"/>
