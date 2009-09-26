@@ -987,11 +987,12 @@ void bittorrent::scanDirectory(QString scan_dir) {
   foreach(const QString &file, files) {
     QString fullPath = dir.path()+QDir::separator()+file;
     QFile torrent(fullPath);
-    if(torrent.size() != 0) {
-      qDebug("Adding for scan_dir: %s", fullPath.toLocal8Bit().data());
+    qDebug("Adding for scan_dir: %s", fullPath.toLocal8Bit().data());
+    try {
+      torrent_info t(fullPath.toLocal8Bit().data());
       addTorrent(fullPath, true);
-    } else {
-      qDebug("Ignoring empty file: %s", fullPath.toLocal8Bit().data());
+    } catch(std::exception&) {
+      qDebug("Ignoring incomplete torrent file: %s", fullPath.toLocal8Bit().data());
     }
   }
   FSMutex->unlock();
