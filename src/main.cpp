@@ -35,27 +35,27 @@
 #include <QSplashScreen>
 #include <QSettings>
 #ifdef QT_4_4
-  #include <QLocalSocket>
-  #include <unistd.h>
-  #include <sys/types.h>
+#include <QLocalSocket>
+#include <unistd.h>
+#include <sys/types.h>
 #else
-  #include <QTcpSocket>
-  #include <QHostAddress>
+#include <QTcpSocket>
+#include <QHostAddress>
 #endif
 #include <QPlastiqueStyle>
 #include "qgnomelook.h"
 #include <QMotifStyle>
 #include <QCDEStyle>
 #ifdef Q_WS_WIN
-  #include <QWindowsXPStyle>
+#include <QWindowsXPStyle>
 #endif
 #ifdef Q_WS_MAC
-  #include <QMacStyle>
+#include <QMacStyle>
 #endif
 #ifndef Q_WS_WIN
-  #include <signal.h>
-  #include <execinfo.h>
-  #include "stacktrace.h"
+#include <signal.h>
+#include <execinfo.h>
+#include "stacktrace.h"
 #endif
 
 #include <stdlib.h>
@@ -66,44 +66,44 @@
 QApplication *app;
 
 #ifndef Q_WS_WIN
-  void sigtermHandler(int) {
-    qDebug("Catching SIGTERM, exiting cleanly");
-    app->exit();
-  }
-  void sigsegvHandler(int) {
-    std::cerr << "\n\n*************************************************************\n";
-    std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
-    print_stacktrace();
-    std::raise(SIGINT);
-    std::abort();
-  }
+void sigtermHandler(int) {
+  qDebug("Catching SIGTERM, exiting cleanly");
+  app->exit();
+}
+void sigsegvHandler(int) {
+  std::cerr << "\n\n*************************************************************\n";
+  std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
+  print_stacktrace();
+  std::raise(SIGINT);
+  std::abort();
+}
 #endif
 
 void useStyle(QApplication *app, int style){
   switch(style) {
-    case 1:
-      app->setStyle(new QPlastiqueStyle());
-      break;
-    case 2:
-      app->setStyle(new QGnomeLookStyle());
-      break;
-    case 3:
-      app->setStyle(new QMotifStyle());
-      break;
-    case 4:
-      app->setStyle(new QCDEStyle());
-      break;
+  case 1:
+    app->setStyle(new QPlastiqueStyle());
+    break;
+  case 2:
+    app->setStyle(new QGnomeLookStyle());
+    break;
+  case 3:
+    app->setStyle(new QMotifStyle());
+    break;
+  case 4:
+    app->setStyle(new QCDEStyle());
+    break;
 #ifdef Q_WS_MAC
-    case 5:
+  case 5:
     app->setStyle(new QMacStyle());
     break;
 #endif
 #ifdef Q_WS_WIN
-    case 6:
+  case 6:
     app->setStyle(new QWindowsXPStyle());
     break;
 #endif
-   default:
+  default:
     if(app->style()->objectName() == "cleanlooks") {
       // Force our own cleanlooks style
       qDebug("Forcing our own cleanlooks style");
@@ -116,6 +116,7 @@ void useStyle(QApplication *app, int style){
 int main(int argc, char *argv[]){
   QFile file;
   QString locale;
+  bool no_splash = false;
   if(argc > 1){
     if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--version")){
       std::cout << "qBittorrent " << VERSION << '\n';
@@ -124,9 +125,13 @@ int main(int argc, char *argv[]){
     if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--help")){
       std::cout << "Usage: \n";
       std::cout << '\t' << argv[0] << " --version : displays program version\n";
+      std::cout << '\t' << argv[0] << " --no-splash : disable splash screen\n";
       std::cout << '\t' << argv[0] << " --help : displays this help message\n";
       std::cout << '\t' << argv[0] << " [files or urls] : starts program and download given parameters (optional)\n";
       return 0;
+    }
+    if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--no-splash")){
+      no_splash = true;
     }
   }
   // Set environment variable
@@ -146,44 +151,47 @@ int main(int argc, char *argv[]){
 #else
   int serverPort = settings.value(QString::fromUtf8("uniqueInstancePort"), -1).toInt();
   if(serverPort != -1) {
-  localSocket.connectToHost(QHostAddress::LocalHost, serverPort, QIODevice::WriteOnly);
+    localSocket.connectToHost(QHostAddress::LocalHost, serverPort, QIODevice::WriteOnly);
 #endif
-  if (localSocket.waitForConnected(1000)){
-    std::cout << "Another qBittorrent instance is already running...\n";
-    // Send parameters
-    if(argc > 1){
-      QStringList params;
-      for(int i=1;i<argc;++i){
-        params << QString::fromLocal8Bit(argv[i]);
-        std::cout << argv[i] << '\n';
-      }
-      QByteArray block = params.join("\n").toLocal8Bit();
-      std::cout << "writting: " << block.data() << '\n';
-      std::cout << "size: " << block.size() << '\n';
-      uint val = localSocket.write(block);
-      if(localSocket.waitForBytesWritten(5000)){
-        std::cout << "written(" <<val<<"): " << block.data() << '\n';
-      }else{
-        std::cerr << "Writing to the socket timed out\n";
-      }
+    if (localSocket.waitForConnected(1000)){
+      std::cout << "Another qBittorrent instance is already running...\n";
+      // Send parameters
+      if(argc > 1){
+        QStringList params;
+        for(int i=1;i<argc;++i){
+          params << QString::fromLocal8Bit(argv[i]);
+          std::cout << argv[i] << '\n';
+        }
+        QByteArray block = params.join("\n").toLocal8Bit();
+        std::cout << "writting: " << block.data() << '\n';
+        std::cout << "size: " << block.size() << '\n';
+        uint val = localSocket.write(block);
+        if(localSocket.waitForBytesWritten(5000)){
+          std::cout << "written(" <<val<<"): " << block.data() << '\n';
+        }else{
+          std::cerr << "Writing to the socket timed out\n";
+        }
 #ifdef QT_4_4
-      localSocket.disconnectFromServer();
+        localSocket.disconnectFromServer();
 #else
-      localSocket.disconnectFromHost();
+        localSocket.disconnectFromHost();
 #endif
-      std::cout << "disconnected\n";
+        std::cout << "disconnected\n";
+      }
+      localSocket.close();
+      return 0;
     }
-    localSocket.close();
-    return 0;
-  }
 #ifndef QT_4_4
   }
 #endif
   app = new QApplication(argc, argv);
   useStyle(app, settings.value("Preferences/General/Style", 0).toInt());
   app->setStyleSheet("QStatusBar::item { border-width: 0; }");
-  QSplashScreen *splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/skin/splash.png")));
-  splash->show();
+  QSplashScreen *splash;
+  if(!no_splash) {
+    splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/skin/splash.png")));
+    splash->show();
+  }
   // Open options file to read locale
   locale = settings.value(QString::fromUtf8("Preferences/General/Locale"), QString()).toString();
   QTranslator translator;
@@ -208,8 +216,10 @@ int main(int argc, char *argv[]){
   // Remove first argument (program name)
   torrentCmdLine.removeFirst();
   GUI *window = new GUI(0, torrentCmdLine);
-  splash->finish(window);
-  delete splash;
+  if(!no_splash) {
+    splash->finish(window);
+    delete splash;
+  }
   int ret =  app->exec();
   delete window;
   delete app;
