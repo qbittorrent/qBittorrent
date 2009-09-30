@@ -987,11 +987,12 @@ void bittorrent::scanDirectory(QString scan_dir) {
   foreach(const QString &file, files) {
     QString fullPath = dir.path()+QDir::separator()+file;
     QFile torrent(fullPath);
-    if(torrent.size() != 0) {
-      qDebug("Adding for scan_dir: %s", fullPath.toLocal8Bit().data());
+    qDebug("Adding for scan_dir: %s", fullPath.toLocal8Bit().data());
+    try {
+      torrent_info t(fullPath.toLocal8Bit().data());
       addTorrent(fullPath, true);
-    } else {
-      qDebug("Ignoring empty file: %s", fullPath.toLocal8Bit().data());
+    } catch(std::exception&) {
+      qDebug("Ignoring incomplete torrent file: %s", fullPath.toLocal8Bit().data());
     }
   }
   FSMutex->unlock();
@@ -1043,6 +1044,11 @@ void bittorrent::saveTrackerFile(QString hash) {
 // Enable directory scanning
 void bittorrent::enableDirectoryScanning(QString scan_dir) {
   if(!scan_dir.isEmpty()) {
+    QDir newDir(scan_dir);
+    if(!newDir.exists()) {
+      qDebug("Scan dir %s does not exist, create it", scan_dir.toUtf8().data());
+      newDir.mkpath(scan_dir);
+    }
     if(FSWatcher == 0) {
       FSMutex = new QMutex();
       FSWatcher = new QFileSystemWatcher(QStringList(scan_dir), this);
@@ -1050,9 +1056,12 @@ void bittorrent::enableDirectoryScanning(QString scan_dir) {
       // Initial scan
       scanDirectory(scan_dir);
     } else {
-      QString old_scan_dir = FSWatcher->directories().first();
+      QString old_scan_dir = "";
+      if(!FSWatcher->directories().empty())
+        old_scan_dir = FSWatcher->directories().first();
       if(old_scan_dir != scan_dir) {
-        FSWatcher->removePath(old_scan_dir);
+        if(!old_scan_dir.isEmpty())
+          FSWatcher->removePath(old_scan_dir);
         FSWatcher->addPath(scan_dir);
         // Initial scan
         scanDirectory(scan_dir);
