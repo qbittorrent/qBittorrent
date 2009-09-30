@@ -1,0 +1,122 @@
+/* Reset */
+
+ul,ol,dl,li,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input,object,iframe { margin: 0; padding: 0; }
+a img,:link img,:visited img { border: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+:focus { outline: none; }
+
+/* Structure */
+
+body {
+	margin: 0;
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 18px;
+	color: #555;	
+}
+
+.aside {
+	width: 300px;
+}
+
+.invisible {
+	display: none;
+}
+
+/* Typography */
+	
+h2, h3, h4 {
+	margin: 0;
+	padding: 0 0 5px 0;
+	font-size: 12px;
+	font-weight: bold;
+	color: #333;	
+}
+	
+h2 {
+	font-size: 14px;
+	color: #555;
+	font-weight: bold;	
+}
+	
+#mochaPage h3 {
+	display: block;
+	font-size: 12px;
+	padding: 6px 0 6px 0;
+	margin: 0 0 8px 0;
+	border-bottom: 1px solid #bbb;
+}
+
+#error_div {
+	color: #f00;
+	font-weight: bold;
+}
+
+h4 {
+	font-size: 11px;
+}
+	
+a {
+	color: #e60;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a:hover {
+	text-decoration: none;
+}
+	
+p {
+	margin: 0;
+	padding: 0 0 9px 0;
+}
+	
+/* List Elements */
+
+ul {
+	list-style: outside;
+	margin: 0 0 9px 16px;
+}
+
+dt {
+	font-weight: bold;
+	}
+	
+dd {
+	padding: 0 0 9px 0;
+}	
+
+/* Code */
+	
+pre {
+	background-color: #f6f6f6;
+	color: #006600;
+	display: block;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 11px;
+	max-height: 250px;
+	overflow: auto;
+	margin: 0 0 10px 0;
+	padding: 10px;
+	border: 1px solid #d1d7dc;	
+	}
+	
+/* Dividers */
+
+hr {
+	background-color: #ddd;
+	color: #ccc;
+	height: 1px;
+	border: 0px;
+}
+
+.vcenter {
+	vertical-align: middle;
+}
+
+#urls {
+	width:90%;
+	height:100%;
+}
+

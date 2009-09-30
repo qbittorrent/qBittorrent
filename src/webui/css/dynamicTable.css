@@ -1,0 +1,43 @@
+
+
+/**************************************************************
+
+	Dynamic Table
+	v 0.4
+
+**************************************************************/
+
+table {
+	border: 1px solid #ccc;
+	width: 100%;
+}
+
+th {
+	background-color: #eee;
+	padding: 4px;
+}
+
+tr {
+	background-color: #fff;
+	padding: 4px;
+}
+
+tr.alt {
+	background-color: #eee;
+	padding: 4px;
+}
+
+td {
+	padding: 0 2px;
+}
+
+tr.selected {
+	background-color: #354158;
+	color: #fff;
+}
+
+tr.over {
+	background-color: #ee6600;
+	color: #fff;
+	cursor: pointer;
+}

@@ -1,0 +1,35 @@
+[Desktop Entry]
+Categories=Qt;Network;P2P;
+Comment=V1.5.3
+Exec=qbittorrent %f
+GenericName=Bittorrent client
+GenericName[bg]=Торент клиент
+GenericName[cs]=Bittorrent klient
+GenericName[de]=Bittorren Client
+GenericName[el]=Bittorrent πελάτης
+GenericName[es]=Cliente Bittorrent
+GenericName[fi]=Bittorrent-ohjelma
+GenericName[fr]=Client Bittorrent
+GenericName[hu]=Bittorrent kliens
+GenericName[it]=Client Bittorrent
+GenericName[ja]=Bittorrent クライアント
+GenericName[ko]=비토렌트 클라이언트
+GenericName[nl]=Bittorrent-cliënt
+GenericName[pl]=Klient Bittorrent
+GenericName[pt]=Cliente Bittorrent
+GenericName[pt_BR]=Cliente Bittorrent
+GenericName[ro]=Client Bittorrent
+GenericName[ru]=клиент Bittorrent
+GenericName[sk]=Klient siete Bittorrent
+GenericName[sv]=Bittorrent-klient
+GenericName[tr]=Bittorrent istemcisi
+GenericName[uk]=Bittorrent-клієнт
+GenericName[zh]=Bittorrent之用户
+GenericName[zh_TW]=Bittorrent客戶端
+Icon=qbittorrent
+MimeType=application/x-bittorrent;
+Name=qBittorrent
+Name[ko]=큐비토런트
+Terminal=false
+Type=Application
+

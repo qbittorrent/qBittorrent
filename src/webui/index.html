@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>qBittorrent web User Interface</title>
+	<link rel="stylesheet" href="css/dynamicTable.css" type="text/css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/mocha.css" type="text/css" />
+	<link rel="stylesheet" href="css/mootabs1.2.css" type="text/css" />
+	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
+	<!--[if IE]>
+		<script type="text/javascript" src="scripts/excanvas-compressed.js"></script>
+	<![endif]-->
+	<script type="text/javascript" src="scripts/mootabs1.2.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/mocha.js"></script>
+	<script type="text/javascript" src="scripts/mocha-init.js"></script>
+	<script type="text/javascript" src="scripts/progressbar.js"></script>
+	<script type="text/javascript" src="scripts/dynamicTable.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/client.js" charset="utf-8"></script>
+</head>
+<body>
+	<div id="desktop">
+		<div id="desktopHeader">
+			<div id="desktopTitlebar">
+				<h1 class="applicationTitle">qBittorrent Web User Interface <span class="version">version 1.3.2</span></h1>
+			</div>
+			<div id="desktopNavbar">
+				<ul>
+					<li>
+						<a class="returnFalse">File</a>
+						<ul>
+							<li><a id="downloadLink">Download from URL</a></li>
+						  <li><a id="uploadLink">Download local torrent</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="returnFalse">Edit</a>
+						<ul>
+							<li><a id="resumeAllLink">Start All</a></li>
+							<li><a id="pauseAllLink">Pause All</a></li>
+							<li class="divider"><a id="resumeLink">Start</a></li>
+							<li><a id="pauseLink">Pause</a></li>
+							<li class="divider"><a id="deleteLink">Delete</a></li>
+							<li><a id="deletePermLink">Delete from HD</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="returnFalse">Help</a>
+						<ul>
+							<li><a id="bugLink">Report a bug</a></li>
+							<li><a id="siteLink">Visit Website</a></li>
+							<li><a id="docsLink">Documentation</a></li>
+							<li><a id="aboutLink">About</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div id="mochaToolbar">
+				<a id="downloadButton"><img class="mochaToolButton" title="Download from URL" src="images/skin/url.png"/></a>
+			  <a id="uploadButton"><img class="mochaToolButton" title="Download local torrent" src="images/skin/open.png"/></a>
+			  <a id="deleteButton"><img class="mochaToolButton" title="Delete" src="images/skin/delete.png"/></a>
+			  <a id="deletePermButton"><img class="mochaToolButton" title="Delete from HD" src="images/skin/delete_perm.png"/></a>
+				<a id="resumeButton"><img class="mochaToolButton" title="Resume" src="images/skin/play.png"/></a>
+				<a id="pauseButton"><img class="mochaToolButton" title="Pause" src="images/skin/pause.png"/></a>
+				<a id="resumeAllButton"><img class="mochaToolButton" title="Resume all" src="images/skin/play_all.png"/></a>
+				<a id="pauseAllButton"><img class="mochaToolButton" title="Pause All" src="images/skin/pause_all.png"/></a>
+				<span id="queueingButtons">
+				<a id="decreasePrioButton"><img class="mochaToolButton" title="Decrease priority" src="images/skin/decrease.png"/></a>
+				<a id="increasePrioButton"><img class="mochaToolButton" title="Increase priority" src="images/skin/increase.png"/></a>
+				</span>
+			</div>
+		</div>
+		<div id="pageWrapper">						<span id="error_div"></span>	
+		<div id="myTabs" class="toolbarTabs">
+			<ul class="mootabs_title">
+				<li title="Tab1"><a>Downloads</a></li>
+				<li title="Tab2"><a>Uploads</a></li>
+			</ul>
+			<div id="Tab1" class="mootabs_panel">
+								<table class="torrentTable" cellpadding="0" cellspacing="0">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Name</th>
+											<th>Size</th>
+											<th style="width: 90px;">Progress</th>
+											<th>DL Speed</th>
+											<th>UP Speed</th>
+											<th id='prioHeader'>Priority</th>
+										</tr>
+									</thead>
+									<tbody id="myTable"></tbody>
+								</table>
+			</div><!-- tab1 -->
+			<div id="Tab2" class="mootabs_panel">
+								<table class="torrentTable" cellpadding="0" cellspacing="0">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Name</th>
+											<th>Size</th>
+											<th>UP Speed</th>
+										</tr>
+									</thead>
+									<tbody id="myTableUP"></tbody>
+								</table>
+			</div>
+		</div><!-- tabs -->
+	</div>
+	</div>
+</body>
+</html>

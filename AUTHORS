@@ -1,0 +1,84 @@
+Author:
+* Christophe Dumez <chris@qbittorrent.org>
+
+Contributors:
+* Arnaud Demaizière <arnaud@qbittorrent.org>
+* Ishan Arora <ishan@qbittorrent.org>
+* Grigis Gaëtan <cipher16@gmail.com>
+
+Code from other projects:
+* files src/ico.cpp src/ico.h
+  copyright: Malte Starostik <malte@kde.org>
+  license: LGPL
+
+Images Authors:
+* files: src/Icons/*.png
+  copyright: Gnome Icon Theme
+  license: GPLv2
+  url: http://ftp.acc.umu.se/pub/GNOME/sources/gnome-icon-theme
+
+* files: src/oxygen/*.png
+  copyright: Oxygen Icon Theme (KDE)
+  license: LGPL
+  url: http://www.oxygen-icons.org
+
+* files: src/Icons/flags/*.png
+  copyright: Open Clip Art Library
+  license: Creative Commons Public Domain Dedication
+  url: http://www.openclipart.org
+
+* files: src/Icons/skin/*.png
+  files: src/menuicons/YYxYY/*.png
+  copyright: Mateusz Tobola <tobejodok@qbittorrent.org>
+  license: GPLv2
+
+* file: src/Icons/skin/tabs.gif
+  copyright: Greg Houston <gregory.houston@gmail.com>
+  license: MIT
+
+* file: src/search_engine/engines/btjunkie.png
+  copyright: Downloaded from btjunkie.org
+
+* file: src/search_engine/engines/isohunt.png
+  copyright: Downloaded from isohunt.com
+
+* file: src/search_engine/engines/mininova.png
+  copyright: Downloaded from mininova.org
+
+* file: src/search_engine/engines/piratebay.png
+  copyright: Downloaded from thepiratebay.org
+
+* file: src/search_engine/engines/torrentreactor.png
+  copyright: Downloaded from torrentreactor.net
+
+Translations authors:
+* files: src/lang/*.ts
+  copyright:
+  - Brazilian: Nick Marinho (nickmarinho@gmail.com)
+  - Bulgarian: Tsvetan & Boiko Bankov (emerge_life@users.sourceforge.net)
+  - Catalan: Gekko Dam Beer (gekko04@users.sourceforge.net)
+  - Chinese (Simplified): Guo Yue (yue.guo0418@gmail.com)
+  - Chinese (Traditional): Yi-Shun Wang (dnextstep@gmail.com)
+  - Czech: Jirka Vilim (web@tets.cz)
+  - Danish: Mathias Nielsen (comoneo@gmail.com)
+  - Dutch: Joost Schipper (heavyjoost@users.sourceforge.net)
+  - English: Christophe Dumez (chris@qbittorrent.org)
+  - Finnish: Niklas Laxström (nikerabbit@users.sourceforge.net)
+  - French: Christophe Dumez (chris@qbittorrent.org)
+  - German: Niels Hoffmann (zentralmaschine@users.sourceforge.net)
+  - Greek: Tsvetan Bankov (emerge_life@users.sourceforge.net)
+  - Hungarian: Majoros Péter (majoros.j.p@t-online.hu)
+  - Italian: Mirko Ferrari (mirkoferrari@gmail.com) and Ferraro Luciano (luciano.ferraro@gmail.com)
+  - Japanese: Nardog (nardog@e2umail.com)
+  - Korean: Jin Woo Sin (jin828sin@users.sourceforge.net)
+  - Norwegian: Lars-Erik Labori (hamil@users.sourceforge.net)
+  - Polish: Jarek Smieja (ajep9691@wp.pl)
+  - Portuguese: Nick Marinho (nickmarinho@gmail.com)
+  - Romanian: Obada Denis (obadadenis@users.sourceforge.net)
+  - Russian: Nick Khazov (m2k3d0n at users.sourceforge.net)
+  - Slovak:  helix84
+  - Spanish: Vicente Raul Plata Fonseca (silverxnt@users.sourceforge.net)
+  - Swedish: Daniel Nylander (po@danielnylander.se)
+  - Turkish: Erdem Bingöl (erdem84@gmail.com)
+  - Ukrainian: Andrey Shpachenko (masterfix@users.sourceforge.net)
+  license: GPLv2

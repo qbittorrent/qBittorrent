@@ -1,0 +1,19 @@
+<qconf>
+ <name>qbittorrent</name>
+ <profile>qbittorrent.pro</profile>
+ <moddir>qcm</moddir>
+ <datadir/>
+  <dep type='qt4'>
+    <required/>
+  </dep>
+  <dep type='libtorrent-rasterbar'>
+    <required/>
+  </dep>
+  <dep type='libboost'>
+    <required/>
+  </dep>
+  <dep type='libcurl'>
+    <required/>
+  </dep>
+  <dep type='libzzip'/>
+</qconf>

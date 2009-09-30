@@ -1,0 +1,29 @@
+/*
+-----BEGIN QCMOD-----
+name: libtorrent-rasterbar
+-----END QCMOD-----
+*/
+// see  Conf::findPkgConfig
+class qc_libtorrent_rasterbar : public ConfObj
+{
+public:
+	qc_libtorrent_rasterbar(Conf *c) : ConfObj(c) {}
+	QString name() const { return "libtorrent-rasterbar >= 0.14.0 (>= 0.14.4 advised)"; }
+	QString shortname() const { return "libtorrent-rasterbar"; }
+	bool exec(){
+		QStringList incs;
+		QString req_ver = "0.14.0";
+		QString adv_ver = "0.14.4";
+		QString version, libs, other;
+		VersionMode mode = VersionMin;
+		if(!conf->findPkgConfig("libtorrent-rasterbar", mode, req_ver, &version, &incs, &libs, &other))
+			return false;
+		for(int n = 0; n < incs.count(); ++n)
+			conf->addIncludePath(incs[n]);
+		if(!libs.isEmpty())
+			conf->addLib(libs);
+		if(!conf->findPkgConfig("libtorrent-rasterbar", mode, adv_ver, &version, &incs, &libs, &other))
+			printf("\nWarning: libtorrent-rasterbar v%s was detected. Although it will compile and run, you will probably experience some bugs. Please consider updating to v%s!\n", version.toLocal8Bit().data(), adv_ver.toUtf8().data());
+		return true;
+	}
+};

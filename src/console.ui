@@ -1,0 +1,58 @@
+<ui version="4.0" >
+ <class>ConsoleDlg</class>
+ <widget class="QDialog" name="ConsoleDlg" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>512</width>
+    <height>497</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>qBittorrent console</string>
+  </property>
+  <property name="windowIcon" >
+	  <iconset resource="icons.qrc" >:/Icons/oxygen/log.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QTabWidget" name="tabConsole" >
+     <property name="currentIndex" >
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab" >
+      <attribute name="title" >
+       <string>General</string>
+      </attribute>
+      <attribute name="icon" >
+	      <iconset resource="icons.qrc" >:/Icons/oxygen/log.png</iconset>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QTextBrowser" name="textConsole" />
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2" >
+      <attribute name="title" >
+       <string>Blocked IPs</string>
+      </attribute>
+      <attribute name="icon" >
+       <iconset resource="icons.qrc" >:/Icons/filter.png</iconset>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QTextBrowser" name="textBannedPeers" />
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="icons.qrc" />
+ </resources>
+ <connections/>
+</ui>
