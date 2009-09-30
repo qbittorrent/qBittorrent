@@ -868,6 +868,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     default:
       return;
     }
+    if(hashes.empty()) return;
     int ret;
     if(inDownloadList) {
       ret = QMessageBox::question(
@@ -919,7 +920,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     default:
       return;
     }
-    if(!hashes.size()) return;
+    if(hashes.empty()) return;
     int ret;
     if(inDownloadList) {
       ret = QMessageBox::question(

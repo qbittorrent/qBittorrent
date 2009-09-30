@@ -383,6 +383,20 @@ void FinishedTorrents::deleteTorrent(QString hash){
     qDebug("Torrent is not in finished list, nothing to delete");
     return;
   }
+  // Select item just under (or above nothing under) the one that was deleted
+  QModelIndex current_prox_index = proxyModel->mapFromSource(finishedListModel->index(row, 0, finishedList->rootIndex()));
+  bool was_selected = finishedList->selectionModel()->isSelected(current_prox_index);
+  if(finishedListModel->rowCount() > 1 && was_selected) {
+    QModelIndex under_prox_index;
+    if(current_prox_index.row() == finishedListModel->rowCount()-1)
+      under_prox_index = proxyModel->index(current_prox_index.row()-1, 0);
+    else
+      under_prox_index = proxyModel->index(current_prox_index.row()+1, 0);
+    //downloadList->selectionModel()->select(under_prox_index, QItemSelectionModel::Current|QItemSelectionModel::Columns|QItemSelectionModel::Select);
+    finishedList->setCurrentIndex(under_prox_index);
+    finishedList->update();
+  }
+  // Actually delete the row
   finishedListModel->removeRow(row);
   --nbFinished;
   emit finishedTorrentsNumberChanged(nbFinished);
