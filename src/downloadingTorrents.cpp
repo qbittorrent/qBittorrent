@@ -198,6 +198,20 @@ void DownloadingTorrents::deleteTorrent(QString hash) {
     qDebug("torrent is not in download list, nothing to delete");
     return;
   }
+  // Select item just under (or above nothing under) the one that was deleted
+  QModelIndex current_prox_index = proxyModel->mapFromSource(DLListModel->index(row, 0, downloadList->rootIndex()));
+  bool was_selected = downloadList->selectionModel()->isSelected(current_prox_index);
+  if(DLListModel->rowCount() > 1 && was_selected) {
+    QModelIndex under_prox_index;
+    if(current_prox_index.row() == DLListModel->rowCount()-1)
+      under_prox_index = proxyModel->index(current_prox_index.row()-1, 0);
+    else
+      under_prox_index = proxyModel->index(current_prox_index.row()+1, 0);
+    //downloadList->selectionModel()->select(under_prox_index, QItemSelectionModel::Current|QItemSelectionModel::Columns|QItemSelectionModel::Select);
+    downloadList->setCurrentIndex(under_prox_index);
+    downloadList->update();
+  }
+  // Actually delete the row
   DLListModel->removeRow(row);
   --nbTorrents;
   emit unfinishedTorrentsNumberChanged(nbTorrents);

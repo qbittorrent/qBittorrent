@@ -1,10 +1,12 @@
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.5.3
+* Wed Sep 30 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.3
   - BUGFIX: Fix a possible crash when pausing then deleting a torrent quickly
   - BUGFIX: Fix a race condition in folder scanning and torrent downloader
   - BUGFIX: Hide download url column in search results
   - BUGFIX: Fix a crash when scanned directory does not exist
   - BUGFIX: Fix compilation on Mac OS
   - BUGFIX: Added a command line parameter to disable splash screen
+  - BUGFIX: Ignore permanent deletion button when no torrent is selected
+  - BUGFIX: When a selected torrent is deleted, select next suitable torrent
 
 * Sun Sep 20 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.2
   - BUGFIX: Some torrents were pausing for no reason
