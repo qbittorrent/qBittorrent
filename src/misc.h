@@ -43,9 +43,14 @@
 #include <QThread>
 
 #ifndef Q_WS_WIN
-#include <sys/vfs.h>
+#ifdef Q_WS_MAC
+  #include <sys/param.h>
+  #include <sys/mount.h>
 #else
-#include <winbase.h>
+  #include <sys/vfs.h>
+#endif
+#else
+  #include <winbase.h>
 #endif
 
 #include <libtorrent/torrent_info.hpp>
