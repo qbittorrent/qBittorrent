@@ -147,7 +147,7 @@ p, li { white-space: pre-wrap; }
     <name>BandwidthAllocationDialog</name>
     <message>
         <source>Upload limit:</source>
-        <translation>Ограничение раздачи:</translation>
+        <translation>Ограничение отдачи:</translation>
     </message>
     <message>
         <source>Download limit:</source>
@@ -1024,7 +1024,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Скорость загр</translation>
+        <translation>Скорость отдачи</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -1363,7 +1363,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Скорость загр</translation>
+        <translation>Скорость отдачи</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -1396,7 +1396,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Total uploaded</source>
         <comment>i.e: Total amount of uploaded data</comment>
-        <translation>Всего закачано</translation>
+        <translation>Всего отдано</translation>
     </message>
     <message>
         <source>Hide or Show Column</source>
@@ -1576,7 +1576,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Finished</source>
-        <translation>Закончено</translation>
+        <translation>Завершено</translation>
     </message>
     <message>
         <source>Checking...</source>
@@ -1901,7 +1901,7 @@ Please close the other one first.</source>
     <message>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Скорость загр.: %1 KiB/с</translation>
+        <translation>Отдача.: %1 KiB/с</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -2220,7 +2220,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation>qBittorrent %1 (Скач: %2КиБ/с, Загр: %3КиБ/с)</translation>
+        <translation>qBittorrent %1 (Скач: %2КиБ/с, Отд: %3КиБ/с)</translation>
     </message>
     <message>
         <source>DL: %1 KiB/s</source>
@@ -2228,7 +2228,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>UP: %1 KiB/s</source>
-        <translation>Загр: %1 КиБ/с</translation>
+        <translation>Отдача: %1 КиБ/с</translation>
     </message>
     <message>
         <source>Ratio: %1</source>
@@ -2671,7 +2671,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Article title</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок статьи</translation>
     </message>
 </context>
 <context>
@@ -3597,7 +3597,7 @@ Changelog:
     <name>downloadFromURL</name>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation>Загрузить торреннт из URL</translation>
+        <translation>Скачать торрент из URL</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
@@ -3676,7 +3676,7 @@ Changelog:
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Установить предел загрузки</translation>
+        <translation>Установить предел отдачи</translation>
     </message>
     <message>
         <source>Set download limit</source>
@@ -4367,7 +4367,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation>Всего загружено:</translation>
+        <translation>Всего отдано:</translation>
     </message>
     <message>
         <source>Main info</source>
@@ -4627,7 +4627,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
-        <translation>&lt;u&gt;Замечание:&lt;/u&gt;Важно, чтобы скачанные файлы раздавались какое-то время после скачивания, иначе вы будете забанены на трекере.</translation>
+        <translation>&lt;u&gt;Примечание:&lt;/u&gt; Важно, чтобы скачанные файлы раздавались какое-то время после скачивания, иначе вы будете забанены на трекере.</translation>
     </message>
     <message>
         <source>Start</source>
@@ -4655,7 +4655,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Установить предел загрузки</translation>
+        <translation>Установить предел отдачи</translation>
     </message>
     <message>
         <source>Open destination folder</source>
@@ -4671,7 +4671,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Upload Speed</source>
-        <translation>Скорость Загр</translation>
+        <translation>Скорость отдачи</translation>
     </message>
     <message>
         <source>Connected peers</source>
@@ -4695,7 +4695,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Total uploaded</source>
-        <translation>Всего закачано</translation>
+        <translation>Всего отдано</translation>
     </message>
     <message>
         <source>Priority</source>
