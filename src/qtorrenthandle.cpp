@@ -236,7 +236,7 @@ size_type QTorrentHandle::filesize_at(unsigned int index) const {
 
 std::vector<announce_entry> const& QTorrentHandle::trackers() const {
   Q_ASSERT(h.is_valid());
-  return h.trackers();
+  return h.get_torrent_info().trackers();
 }
 
 torrent_status::state_t QTorrentHandle::state() const {
