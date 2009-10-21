@@ -573,6 +573,7 @@ bool DownloadingTorrents::updateTorrent(QTorrentHandle h) {
     switch(h.state()) {
         case torrent_status::checking_files:
         case torrent_status::queued_for_checking:
+        case torrent_status::checking_resume_data:
       DLListModel->setData(DLListModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/time.png"))), Qt::DecorationRole);
       setRowColor(row, QString::fromUtf8("grey"));
       break;
