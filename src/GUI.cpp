@@ -249,8 +249,9 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     QMainWindow::statusBar()->addPermanentWidget(upSpeedLbl);
     QMainWindow::statusBar()->addPermanentWidget(statusSep4);
     QMainWindow::statusBar()->addPermanentWidget(ratioLbl);
-    if(!settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), false).toBool()) {
-      show();
+    show();
+    if(settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), false).toBool()) {
+      this->setWindowState(Qt::WindowMinimized);
     }
     scrapeTimer = new QTimer(this);
     connect(scrapeTimer, SIGNAL(timeout()), this, SLOT(scrapeTrackers()));
