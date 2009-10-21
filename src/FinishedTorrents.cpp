@@ -447,7 +447,8 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint&){
   QMenu myFinishedListMenu(this);
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
-  bool has_pause = false, has_start = false, has_preview = false;
+  bool has_pause = false, has_start = false, has_preview = false, hide_uper_seeding = false, super_seeding_enabled = false;
+  bool first_torrent = true;
   foreach(const QModelIndex &index, selectedIndexes) {
     if(index.column() == F_NAME) {
       // Get the file name
@@ -470,13 +471,34 @@ void FinishedTorrents::displayFinishedListMenu(const QPoint&){
          myFinishedListMenu.addAction(actionPreview_file);
          has_preview = true;
       }
-      if(has_pause && has_start && has_preview) break;
+      if(h.super_seeding()) {
+        if(first_torrent) {
+          super_seeding_enabled = true;
+        } else {
+          if(!super_seeding_enabled) hide_uper_seeding = true;
+        }
+      } else {
+        if(!first_torrent) {
+          if(super_seeding_enabled) hide_uper_seeding = true;
+        }
+      }
+      first_torrent = false;
+      if(has_pause && has_start && has_preview && hide_uper_seeding) break;
     }
   }
   myFinishedListMenu.addSeparator();
   myFinishedListMenu.addAction(actionDelete);
   myFinishedListMenu.addAction(actionDelete_Permanently);
   myFinishedListMenu.addSeparator();
+  if(!hide_uper_seeding) {
+    QAction *act;
+    if(super_seeding_enabled)
+      act = myFinishedListMenu.addAction(QIcon(":/Icons/oxygen/button_ok.png"), tr("Super seeding mode"));
+    else
+      act = myFinishedListMenu.addAction(QIcon(":/Icons/oxygen/button_cancel.png"), tr("Super seeding mode"));
+    // Bind signal / slot
+    connect(act, SIGNAL(triggered()), this, SLOT(toggleSuperSeedingMode()));
+  }
   myFinishedListMenu.addAction(actionSet_upload_limit);
   myFinishedListMenu.addSeparator();
   myFinishedListMenu.addAction(actionForce_recheck);
@@ -506,6 +528,43 @@ void FinishedTorrents::displayFinishedHoSMenu(const QPoint&){
   }
   // Call menu
   hideshowColumn.exec(QCursor::pos());
+}
+
+void FinishedTorrents::toggleSuperSeedingMode() {
+  QModelIndexList selectedIndexes = finishedList->selectionModel()->selectedIndexes();
+  bool super_seeding_enabled = false, first_torrent=true;
+  // Check whether we should disable or enable super seeding mode
+  foreach(const QModelIndex &index, selectedIndexes) {
+    if(index.column() == F_NAME) {
+      // Get the file name
+      QString hash = getHashFromRow(index.row());
+      // Get handle and pause the torrent
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
+      if(!h.is_valid()) continue;
+      if(h.super_seeding()) {
+        if(first_torrent) {
+          super_seeding_enabled = true;
+        }
+      } else {
+        if(!first_torrent) {
+          if(super_seeding_enabled) super_seeding_enabled = false;
+        }
+      }
+      first_torrent = false;
+    }
+  }
+  // Toggling super seeding mode
+  foreach(const QModelIndex &index, selectedIndexes) {
+    if(index.column() == F_NAME) {
+      // Get the file name
+      QString hash = getHashFromRow(index.row());
+      // Get handle and pause the torrent
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
+      if(!h.is_valid()) continue;
+      qDebug("Seeding mode=%d for torrent %s",!super_seeding_enabled, h.name().toLocal8Bit().data());
+      h.super_seeding(!super_seeding_enabled);
+    }
+  }
 }
 
 // toggle hide/show a column

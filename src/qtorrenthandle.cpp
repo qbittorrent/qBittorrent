@@ -168,6 +168,11 @@ fs::path QTorrentHandle::save_path_boost() const {
   return h.save_path();
 }
 
+bool QTorrentHandle::super_seeding() const {
+  Q_ASSERT(h.is_valid());
+  return h.super_seeding();
+}
+
 QStringList QTorrentHandle::url_seeds() const {
   Q_ASSERT(h.is_valid());
   QStringList res;
@@ -444,6 +449,11 @@ void QTorrentHandle::move_storage(QString new_path) const {
 void QTorrentHandle::file_priority(int index, int priority) const {
   Q_ASSERT(h.is_valid());
   h.file_priority(index, priority);
+}
+
+void QTorrentHandle::super_seeding(bool on) const {
+  Q_ASSERT(h.is_valid());
+  h.super_seeding(on);
 }
 
 //

@@ -110,6 +110,7 @@ class QTorrentHandle {
     int active_time() const;
     std::vector<int> file_priorities() const;
     bool is_sequential_download() const;
+    bool super_seeding() const;
 
     //
     // Setters
@@ -135,6 +136,7 @@ class QTorrentHandle {
     void auto_managed(bool) const;
     void force_recheck() const;
     void move_storage(QString path) const;
+    void super_seeding(bool on) const;
 
     //
     // Operators
