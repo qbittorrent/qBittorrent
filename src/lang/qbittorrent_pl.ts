@@ -1027,6 +1027,10 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
         <source>Maximum active uploads:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadingTorrents</name>
@@ -1446,6 +1450,10 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     <message>
         <source>Priority</source>
         <translation type="obsolete">Priorytet</translation>
+    </message>
+    <message>
+        <source>Super seeding mode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

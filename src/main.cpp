@@ -116,6 +116,7 @@ void useStyle(QApplication *app, int style){
 int main(int argc, char *argv[]){
   QFile file;
   QString locale;
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   bool no_splash = false;
   if(argc > 1){
     if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--version")){
@@ -134,11 +135,13 @@ int main(int argc, char *argv[]){
       no_splash = true;
     }
   }
+  if(settings.value(QString::fromUtf8("Preferences/General/NoSplashScreen"), false).toBool()) {
+    no_splash = true;
+  }
   // Set environment variable
   if(putenv((char*)"QBITTORRENT="VERSION)) {
     std::cerr << "Couldn't set environment variable...\n";
   }
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   //Check if there is another instance running
 #ifdef QT_4_4
   QLocalSocket localSocket;

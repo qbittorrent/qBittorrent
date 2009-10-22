@@ -949,6 +949,10 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
         <source>UI</source>
         <translation>UI</translation>
     </message>
+    <message>
+        <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadingTorrents</name>
@@ -1376,6 +1380,10 @@ ex.: Quantidade total de dados transferidos</translation>
     <message>
         <source>Priority</source>
         <translation type="obsolete">Prioridade</translation>
+    </message>
+    <message>
+        <source>Super seeding mode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

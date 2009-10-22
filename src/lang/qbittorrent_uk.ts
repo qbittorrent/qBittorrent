@@ -943,6 +943,10 @@ p, li { white-space: pre-wrap; }
         <source>UI</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadingTorrents</name>
@@ -1341,6 +1345,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Priority</source>
         <translation type="obsolete">Пріоритет</translation>
+    </message>
+    <message>
+        <source>Super seeding mode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

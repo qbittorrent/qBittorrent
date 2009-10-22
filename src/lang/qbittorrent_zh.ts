@@ -1026,6 +1026,10 @@ folder:</source>
         <source>UI</source>
         <translation>用户界面</translation>
     </message>
+    <message>
+        <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadingTorrents</name>
@@ -1494,6 +1498,10 @@ wait...</comment>
     <message>
         <source>Priority</source>
         <translation type="obsolete">优先</translation>
+    </message>
+    <message>
+        <source>Super seeding mode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

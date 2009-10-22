@@ -74,6 +74,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     bool minimizeToTray() const;
     bool closeToTray() const;
     bool startMinimized() const;
+    bool isSlashScreenDisabled() const;
     bool OSDEnabled() const;
     bool isToolbarDisplayed() const;
     // Downloads

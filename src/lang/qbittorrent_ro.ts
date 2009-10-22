@@ -953,6 +953,10 @@ qBittorrent va monitoriza directoriul și va adăuga în lista de descărcare a 
         <source>UI</source>
         <translation>UI</translation>
     </message>
+    <message>
+        <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadingTorrents</name>
@@ -1372,6 +1376,10 @@ qBittorrent va monitoriza directoriul și va adăuga în lista de descărcare a 
     <message>
         <source>Priority</source>
         <translation type="obsolete">Prioritate</translation>
+    </message>
+    <message>
+        <source>Super seeding mode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

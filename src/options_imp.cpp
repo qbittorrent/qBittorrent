@@ -182,6 +182,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkStartMinimized, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkSystrayBalloons, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkDisplayToolbar, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkNoSplash, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
   // Downloads tab
   connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkPreallocateAll, SIGNAL(stateChanged(int)), this, SLOT(enableApplyButton()));
@@ -335,6 +336,7 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("StartMinimized"), startMinimized());
   settings.setValue(QString::fromUtf8("NotificationBaloons"), OSDEnabled());
   settings.setValue(QString::fromUtf8("ToolbarDisplayed"), isToolbarDisplayed());
+  settings.setValue(QString::fromUtf8("NoSplashScreen"), isSlashScreenDisabled());
   // End General preferences
   settings.endGroup();
   // Downloads preferences
@@ -525,6 +527,7 @@ void options_imp::loadOptions(){
   spinRefreshInterval->setValue(settings.value(QString::fromUtf8("RefreshInterval"), 1500).toInt());
   checkNoSystray->setChecked(!settings.value(QString::fromUtf8("SystrayEnabled"), true).toBool());
   checkDisplayToolbar->setChecked(settings.value(QString::fromUtf8("ToolbarDisplayed"), true).toBool());
+  checkNoSplash->setChecked(settings.value(QString::fromUtf8("NoSplashScreen"), false).toBool());
   if(!systrayIntegration()) {
     disableSystrayOptions();
   } else {
@@ -1229,6 +1232,10 @@ void options_imp::enableDirScan(int checkBoxValue){
     textScanDir->setEnabled(false);
     browseScanDirButton->setEnabled(false);
   }
+}
+
+bool options_imp::isSlashScreenDisabled() const {
+  return checkNoSplash->isChecked();
 }
 
 bool options_imp::speedInTitleBar() const {

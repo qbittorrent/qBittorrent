@@ -349,6 +349,13 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="checkNoSplash">
+              <property name="text">
+               <string>Disable splash screen</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QCheckBox" name="checkSpeedInTitle">
               <property name="text">
                <string>Display current speed in title bar</string>
