@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v1.5.4
+* Sun Oct 25 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.4
   - BUGFIX: Updated man page
   - BUGFIX: Fixed possible crash with torrents containing unicode characters
   - BUGFIX: Fixed problem when disabling systray integration and starting minimized
