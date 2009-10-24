@@ -190,7 +190,7 @@ int main(int argc, char *argv[]){
   app = new QApplication(argc, argv);
   useStyle(app, settings.value("Preferences/General/Style", 0).toInt());
   app->setStyleSheet("QStatusBar::item { border-width: 0; }");
-  QSplashScreen *splash;
+  QSplashScreen *splash = 0;
   if(!no_splash) {
     splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/skin/splash.png")));
     splash->show();
