@@ -76,8 +76,9 @@ bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(
   // Load previous state
   loadSessionState();
   // Enabling plugins
-  s->add_extension(&create_metadata_plugin);
+  //s->add_extension(&create_metadata_plugin);
   s->add_extension(&create_ut_metadata_plugin);
+  s->add_extension(create_lt_trackers_plugin);
   s->add_extension(&create_ut_pex_plugin);
   s->add_extension(&create_smart_ban_plugin);
   timerAlerts = new QTimer();

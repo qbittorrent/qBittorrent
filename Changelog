@@ -1,6 +1,16 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.6.0
     - FEATURE: Added per-torrent super seeding mode
     - FEATURE: Added program option to disable splash screen
+    - FEATURE: Support for storing symbolic links in .torrent files
+    - FEATURE: Support for uTorrent interpretation of multi-tracker torrents
+    - FEATURE: Handle torrents with duplicate filenames
+    - FEATURE: Support for merkle hash tree torrents (.merkle.torrent)
+    - FEATURE: Metadata download from swarm is now compatible with µtorrent
+    - FEATURE: Support tracker exchange between peers
+    - FEATURE: Better http seed support
+    - FEATURE: Tracker connections are now also subject to IP filtering
+    - FEATURE: Include DHT traffic in the rate limiter
+    - FEATURE: Support for bitcomet padding files
 
 * Thu Sep 3 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.0
     - FEATURE: Added Magnet URI support
