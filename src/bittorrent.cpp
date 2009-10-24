@@ -42,9 +42,10 @@
 #include "filterParserThread.h"
 #include "torrentPersistentData.h"
 #include <libtorrent/extensions/ut_metadata.hpp>
+#include <libtorrent/extensions/lt_trackers.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
 #include <libtorrent/extensions/smart_ban.hpp>
-#include <libtorrent/extensions/metadata_transfer.hpp>
+//#include <libtorrent/extensions/metadata_transfer.hpp>
 #include <libtorrent/entry.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/identify_client.hpp>
