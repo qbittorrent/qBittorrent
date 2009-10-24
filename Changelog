@@ -1,7 +1,10 @@
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.5.4
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v1.5.4
   - BUGFIX: Updated man page
   - BUGFIX: Fixed possible crash with torrents containing unicode characters
   - BUGFIX: Fixed problem when disabling systray integration and starting minimized
+  - BUGFIX: Fixed PirateBay search plugin
+  - BUGFIX: Using Download button in search results list now downloads the right torrents
+  - BUGFIX: The search results list is no longer sorted automatically when a row color is updated
 
 * Wed Sep 30 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.3
   - BUGFIX: Fix a possible crash when pausing then deleting a torrent quickly
