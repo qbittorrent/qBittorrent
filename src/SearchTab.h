@@ -63,7 +63,8 @@ public:
   ~SearchTab();
   bool loadColWidthResultsList();
   QLabel * getCurrentLabel();
-  QStandardItemModel * getCurrentSearchListModel();
+  QStandardItemModel* getCurrentSearchListModel() const;
+  QSortFilterProxyModel* getCurrentSearchListProxy() const;
   QTreeView * getCurrentTreeView();
   void setRowColor(int row, QString color);
   QHeaderView* header() const;

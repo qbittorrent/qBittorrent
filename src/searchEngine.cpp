@@ -42,6 +42,7 @@
 #include <QMenu>
 #include <QClipboard>
 #include <QMimeData>
+#include <QSortFilterProxyModel>
 
 #include "searchEngine.h"
 #include "bittorrent.h"
@@ -464,7 +465,7 @@ void SearchEngine::appendSearchResult(QString line){
   }
 
   // Add item to search result list
-  QStandardItemModel *cur_model = currentSearchTab->getCurrentSearchListModel();
+  QStandardItemModel* cur_model = currentSearchTab->getCurrentSearchListModel();
   int row = cur_model->rowCount();
   cur_model->insertRow(row);
 
@@ -523,7 +524,7 @@ void SearchEngine::on_download_button_clicked(){
   foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == NAME){
       // Get Item url
-      QStandardItemModel *model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel();
+      QSortFilterProxyModel* model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
       QString torrent_url = model->data(model->index(index.row(), URL_COLUMN)).toString();
       QString engine_url = model->data(model->index(index.row(), ENGINE_URL_COLUMN)).toString();
       downloadTorrent(engine_url, torrent_url);

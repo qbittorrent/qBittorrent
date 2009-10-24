@@ -135,16 +135,23 @@ QTreeView* SearchTab::getCurrentTreeView()
   return resultsBrowser;
 }
 
-QStandardItemModel* SearchTab::getCurrentSearchListModel()
+QSortFilterProxyModel* SearchTab::getCurrentSearchListProxy() const
+{
+  return proxyModel;
+}
+
+QStandardItemModel* SearchTab::getCurrentSearchListModel() const
 {
   return SearchListModel;
 }
 
 // Set the color of a row in data model
 void SearchTab::setRowColor(int row, QString color){
+  proxyModel->setDynamicSortFilter(false);
   for(int i=0; i<proxyModel->columnCount(); ++i){
     proxyModel->setData(proxyModel->index(row, i), QVariant(QColor(color)), Qt::ForegroundRole);
   }
+  proxyModel->setDynamicSortFilter(true);
 }
 
 
