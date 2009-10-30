@@ -93,7 +93,7 @@ class QTorrentHandle {
     bool is_queued() const;
     QString file_at(unsigned int index) const;
     size_type filesize_at(unsigned int index) const;
-    std::vector<announce_entry> const& trackers() const;
+    std::vector<announce_entry> trackers() const;
     torrent_status::state_t state() const;
     QString creator() const;
     QString comment() const;
