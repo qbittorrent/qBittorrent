@@ -604,7 +604,7 @@ void RssStream::resizeList() {
   unsigned int max_articles = settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 100).toInt();
   unsigned int nb_articles = this->size();
   if(nb_articles > max_articles) {
-    QList<RssItem*> listItem = sortNewsList(this->values());
+    QList<RssItem*> listItem = RssManager::sortNewsList(this->values());
     int excess = nb_articles - max_articles;
     for(int i=0; i<excess; ++i){
       RssItem *lastItem = listItem.takeLast();
