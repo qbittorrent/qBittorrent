@@ -858,7 +858,8 @@ void bittorrent::loadFilesPriorities(QTorrentHandle &h) {
     qDebug("Setting file piority to %d", priority);
     v.push_back(priority);
   }
-  h.prioritize_files(v);
+  if(v.size() == (unsigned int)h.num_files())
+    h.prioritize_files(v);
 }
 
 float bittorrent::getRealRatio(QString hash) const{
