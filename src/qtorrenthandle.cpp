@@ -163,11 +163,6 @@ QString QTorrentHandle::save_path() const {
   return misc::toQString(h.save_path().string());
 }
 
-fs::path QTorrentHandle::save_path_boost() const {
-  Q_ASSERT(h.is_valid());
-  return h.save_path();
-}
-
 bool QTorrentHandle::super_seeding() const {
   Q_ASSERT(h.is_valid());
   return h.super_seeding();
