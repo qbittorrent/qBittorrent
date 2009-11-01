@@ -81,7 +81,6 @@ class QTorrentHandle {
     int num_incomplete() const;
     void scrape_tracker() const;
     QString save_path() const;
-    fs::path save_path_boost() const;
     QStringList url_seeds() const;
     size_type actual_size() const;
     int download_limit() const;
