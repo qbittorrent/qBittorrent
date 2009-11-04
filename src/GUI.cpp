@@ -35,15 +35,10 @@
 #include <QStatusBar>
 #include <QFrame>
 #include <QClipboard>
-#ifdef QT_4_4
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <unistd.h>
 #include <sys/types.h>
-#else
-#include <QTcpServer>
-#include <QTcpSocket>
-#endif
 #include <stdlib.h>
 #include <QCloseEvent>
 #include <QShortcut>
@@ -189,7 +184,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     initWebUi(username, password, port);
   }
   // Use a tcp server to allow only one instance of qBittorrent
-#ifdef QT_4_4
   localServer = new QLocalServer();
   QString uid = QString::number(getuid());
 #ifdef Q_WS_X11
@@ -200,18 +194,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   }
 #endif
   if (!localServer->listen("qBittorrent-"+uid)) {
-#else
-    localServer = new QTcpServer();
-    if (!localServer->listen(QHostAddress::LocalHost)) {
-#endif
       std::cerr  << "Couldn't create socket, single instance mode won't work...\n";
     }
-#ifndef QT_4_4
-    else {
-      QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-      settings.setValue(QString::fromUtf8("uniqueInstancePort"), localServer->serverPort());
-    }
-#endif
     connect(localServer, SIGNAL(newConnection()), this, SLOT(acceptConnection()));
     // Start connection checking timer
     checkConnect = new QTimer(this);

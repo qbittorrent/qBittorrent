@@ -34,14 +34,9 @@
 #include <QFile>
 #include <QSplashScreen>
 #include <QSettings>
-#ifdef QT_4_4
 #include <QLocalSocket>
 #include <unistd.h>
 #include <sys/types.h>
-#else
-#include <QTcpSocket>
-#include <QHostAddress>
-#endif
 #include <QPlastiqueStyle>
 #include "qgnomelook.h"
 #include <QMotifStyle>
@@ -143,19 +138,9 @@ int main(int argc, char *argv[]){
     std::cerr << "Couldn't set environment variable...\n";
   }
   //Check if there is another instance running
-#ifdef QT_4_4
   QLocalSocket localSocket;
   QString uid = QString::number(getuid());
-#else
-  QTcpSocket localSocket;
-#endif
-#ifdef QT_4_4
   localSocket.connectToServer("qBittorrent-"+uid, QIODevice::WriteOnly);
-#else
-  int serverPort = settings.value(QString::fromUtf8("uniqueInstancePort"), -1).toInt();
-  if(serverPort != -1) {
-    localSocket.connectToHost(QHostAddress::LocalHost, serverPort, QIODevice::WriteOnly);
-#endif
     if (localSocket.waitForConnected(1000)){
       std::cout << "Another qBittorrent instance is already running...\n";
       // Send parameters
@@ -174,19 +159,12 @@ int main(int argc, char *argv[]){
         }else{
           std::cerr << "Writing to the socket timed out\n";
         }
-#ifdef QT_4_4
         localSocket.disconnectFromServer();
-#else
-        localSocket.disconnectFromHost();
-#endif
         std::cout << "disconnected\n";
       }
       localSocket.close();
       return 0;
     }
-#ifndef QT_4_4
-  }
-#endif
   app = new QApplication(argc, argv);
   useStyle(app, settings.value("Preferences/General/Style", 0).toInt());
   app->setStyleSheet("QStatusBar::item { border-width: 0; }");

@@ -14,7 +14,7 @@ CONFIG += qt \
     network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v1.6.0alpha2\\\"
+DEFINES += VERSION=\\\"v1.6.0beta1\\\"
 DEFINES += VERSION_MAJOR=1
 DEFINES += VERSION_MINOR=6
 DEFINES += VERSION_BUGFIX=0
@@ -90,7 +90,7 @@ contains(DEBUG_MODE, 0) {
 # QMAKE_CXXFLAGS_DEBUG += -fwrapv
 unix:QMAKE_LFLAGS_SHAPP += -rdynamic
 CONFIG += link_pkgconfig
-PKGCONFIG += "libtorrent-rasterbar libcurl"
+PKGCONFIG += "libtorrent-rasterbar"
 QT += network \
     xml
 DEFINES += QT_NO_CAST_TO_ASCII
@@ -98,7 +98,7 @@ DEFINES += QT_NO_CAST_TO_ASCII
 # QT_NO_CAST_FROM_ASCII
 # Windows
 # usually built as static
-# win32:LIBS += -ltorrent -lcurl -lboost_system
+# win32:LIBS += -ltorrent -lboost_system
 # win32:LIBS += -lz ?
 win32:LIBS += -lssl32 \
     -lws2_32 \

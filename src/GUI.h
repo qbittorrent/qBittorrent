@@ -44,13 +44,8 @@ class DownloadingTorrents;
 class FinishedTorrents;
 class downloadFromURL;
 class SearchEngine;
-#ifdef QT_4_4
-  class QLocalServer;
-  class QLocalSocket;
-#else
-  class QTcpServer;
-  class QTcpSocket;
-#endif
+class QLocalServer;
+class QLocalSocket;
 class QCloseEvent;
 class RSSImp;
 class QShortcut;
@@ -109,13 +104,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // Web UI
     QPointer<HttpServer> httpServer;
     // Misc
-#ifdef QT_4_4
     QLocalServer *localServer;
     QLocalSocket *clientConnection;
-#else
-    QTcpServer *localServer;
-    QTcpSocket *clientConnection;
-#endif
 
   protected slots:
     // GUI related slots

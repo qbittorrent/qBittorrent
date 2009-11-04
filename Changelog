@@ -11,6 +11,8 @@
     - FEATURE: Tracker connections are now also subject to IP filtering
     - FEATURE: Include DHT traffic in the rate limiter
     - FEATURE: Support for bitcomet padding files
+    - FEATURE: Dropped dependency on libcurl
+    - FEATURE: Dropped Qt 4.3 support (Qt >= 4.4 is required)
 
 * Thu Sep 3 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.0
     - FEATURE: Added Magnet URI support
