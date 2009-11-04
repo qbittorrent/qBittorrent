@@ -3,6 +3,7 @@
   - BUGFIX: Fix crash on torrent addition (if libtorrent-rasterbar has debug enabled)
   - BUGFIX: Fix trackers addition to torrents (bug introduced in v1.5.4)
   - BUGFIX: Suppress compilation warning regarding sortNewsList() not being used
+  - BUGFIX: Make sure scan folder is different than qBittorrent backup directory to avoid torrents deletion
 
 * Sun Oct 25 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.4
   - BUGFIX: Updated man page

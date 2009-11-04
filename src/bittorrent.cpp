@@ -982,6 +982,12 @@ void bittorrent::scanDirectory(QString scan_dir) {
   FSMutex->lock();
   qDebug("Scanning directory: %s", scan_dir.toLocal8Bit().data());
   QDir dir(scan_dir);
+  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+  // Check that scan dir is not BT_backup (silly but who knows...)
+  if(dir == torrentBackup) {
+    std::cerr << "Scan directory cannot be qBittorrent backup folder!" << std::endl;
+    return;
+  }
   QStringList filters;
   filters << "*.torrent";
   QStringList files = dir.entryList(filters, QDir::Files, QDir::Unsorted);
