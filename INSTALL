@@ -1,12 +1,6 @@
 qBittorrent - A BitTorrent client in C++ / Qt4
 ------------------------------------------
 
-*** Necessary if qt3 is default on your system ***
-export QTDIR=/usr/include/qt4
-export PATH=$QTDIR/bin:$PATH
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$QTDIR/lib
-*** End ***
-
 ./configure
 make && make install
 qbittorrent
@@ -27,9 +21,6 @@ Dependencies:
 - libcurl
 
 - python >= 2.3 (needed by search engine)
-
-- libmagick++ (advised, not required)
-  * Needed for favicons support (RSS / Search plugins)
 
 - libzzip (advised, not required)
   * Needed for zip support (Search plugins)
