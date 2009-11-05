@@ -1685,12 +1685,12 @@ list:</source>
         <translation type="obsolete"> 업로딩 속도:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="837"/>
+        <location filename="../GUI.cpp" line="821"/>
         <source>Open Torrent Files</source>
         <translation>토런트  파일 열기</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="838"/>
+        <location filename="../GUI.cpp" line="822"/>
         <source>Torrent Files</source>
         <translation>토런트 파일</translation>
     </message>
@@ -1744,20 +1744,20 @@ list?</source>
 파일을 지우고 싶으세요?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="735"/>
-        <location filename="../GUI.cpp" line="879"/>
-        <location filename="../GUI.cpp" line="886"/>
-        <location filename="../GUI.cpp" line="931"/>
-        <location filename="../GUI.cpp" line="938"/>
+        <location filename="../GUI.cpp" line="719"/>
+        <location filename="../GUI.cpp" line="863"/>
+        <location filename="../GUI.cpp" line="870"/>
+        <location filename="../GUI.cpp" line="915"/>
+        <location filename="../GUI.cpp" line="922"/>
         <source>&amp;Yes</source>
         <translation>&amp;예</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="735"/>
-        <location filename="../GUI.cpp" line="879"/>
-        <location filename="../GUI.cpp" line="886"/>
-        <location filename="../GUI.cpp" line="931"/>
-        <location filename="../GUI.cpp" line="938"/>
+        <location filename="../GUI.cpp" line="719"/>
+        <location filename="../GUI.cpp" line="863"/>
+        <location filename="../GUI.cpp" line="870"/>
+        <location filename="../GUI.cpp" line="915"/>
+        <location filename="../GUI.cpp" line="922"/>
         <source>&amp;No</source>
         <translation>&amp;아니요</translation>
     </message>
@@ -1812,7 +1812,7 @@ download list?</source>
         <translation type="obsolete">다시 시작됨.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1273"/>
+        <location filename="../GUI.cpp" line="1257"/>
         <source>Finished</source>
         <translation>완료</translation>
     </message>
@@ -1852,7 +1852,7 @@ download list?</source>
         <translation type="obsolete">다운로드 목록에 있는 모든 파일을 지우고 싶으세요?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="930"/>
+        <location filename="../GUI.cpp" line="914"/>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation>다운로딩 목록에서 선택하신 모든 아이템을 삭제하시겠습니까?</translation>
     </message>
@@ -1865,16 +1865,16 @@ download list?</source>
         <translation type="obsolete"> 개발자: 크리스토프 두메스 :: Copyright (c) 2006</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="733"/>
-        <location filename="../GUI.cpp" line="1517"/>
+        <location filename="../GUI.cpp" line="717"/>
+        <location filename="../GUI.cpp" line="1501"/>
         <source>qBittorrent</source>
         <translation>큐비토런트</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="877"/>
-        <location filename="../GUI.cpp" line="884"/>
-        <location filename="../GUI.cpp" line="929"/>
-        <location filename="../GUI.cpp" line="936"/>
+        <location filename="../GUI.cpp" line="861"/>
+        <location filename="../GUI.cpp" line="868"/>
+        <location filename="../GUI.cpp" line="913"/>
+        <location filename="../GUI.cpp" line="920"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>재확인해주십시요? -- 큐비토런트</translation>
     </message>
@@ -2133,7 +2133,7 @@ Please close the other one first.</source>
         <translation type="obsolete">정말로 지금 선택하신 파일들을 다운로드 목록과 하드 드라이브에서 삭제하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="396"/>
+        <location filename="../GUI.cpp" line="380"/>
         <source>Download finished</source>
         <translation>다운로드 완료</translation>
     </message>
@@ -2147,15 +2147,15 @@ Please close the other one first.</source>
         <translation type="obsolete">검색 엔진</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="84"/>
-        <location filename="../GUI.cpp" line="1002"/>
+        <location filename="../GUI.cpp" line="79"/>
+        <location filename="../GUI.cpp" line="986"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>큐비토런트 %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="226"/>
-        <location filename="../GUI.cpp" line="1535"/>
+        <location filename="../GUI.cpp" line="210"/>
+        <location filename="../GUI.cpp" line="1519"/>
         <source>Connection status:</source>
         <translation>연결 상태:</translation>
     </message>
@@ -2218,15 +2218,15 @@ Please close the other one first.</source>
         <translation type="obsolete">큐비토런트 %1가 시작되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1512"/>
-        <location filename="../GUI.cpp" line="1520"/>
+        <location filename="../GUI.cpp" line="1496"/>
+        <location filename="../GUI.cpp" line="1504"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>다운로딩 속도: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1514"/>
-        <location filename="../GUI.cpp" line="1523"/>
+        <location filename="../GUI.cpp" line="1498"/>
+        <location filename="../GUI.cpp" line="1507"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>업로딩 속도: %1 KiB/s</translation>
@@ -2247,7 +2247,7 @@ Please close the other one first.</source>
         <translation type="obsolete">대기중</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="733"/>
+        <location filename="../GUI.cpp" line="717"/>
         <source>Are you sure you want to quit?</source>
         <translation>정말로 종료하시겠습니까?</translation>
     </message>
@@ -2310,14 +2310,14 @@ Please close the other one first.</source>
         <translation type="obsolete">&apos;%1&apos; 가 다운로드를 다시 시작되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="392"/>
-        <location filename="../GUI.cpp" line="396"/>
+        <location filename="../GUI.cpp" line="376"/>
+        <location filename="../GUI.cpp" line="380"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1가 다운로드를 완료하였습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="444"/>
+        <location filename="../GUI.cpp" line="428"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O 에러</translation>
@@ -2333,12 +2333,12 @@ Please close the other one first.</source>
         <translation type="obsolete">오류 발생 (디스크가 꽉찼습니까?), &apos;%1&apos;가 정지 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1532"/>
+        <location filename="../GUI.cpp" line="1516"/>
         <source>Connection Status:</source>
         <translation>연결 상태:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1532"/>
+        <location filename="../GUI.cpp" line="1516"/>
         <source>Online</source>
         <translation>온라인</translation>
     </message>
@@ -2374,23 +2374,23 @@ Please close the other one first.</source>
         <translation type="obsolete">&apos;%1&apos;을 다운 중입니다, 잠시 기다려 주세요...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="450"/>
+        <location filename="../GUI.cpp" line="434"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>오류 발생 (디스크가 꽉찼습니까?), &apos;%1&apos;가 정지 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="165"/>
+        <location filename="../GUI.cpp" line="160"/>
         <source>Search</source>
         <translation>검색</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="320"/>
+        <location filename="../GUI.cpp" line="304"/>
         <source>RSS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="444"/>
+        <location filename="../GUI.cpp" line="428"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2408,13 +2408,13 @@ Please close the other one first.</source>
         <translation type="obsolete">DHT 지원 [사용함], 포트: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1135"/>
-        <location filename="../GUI.cpp" line="1139"/>
+        <location filename="../GUI.cpp" line="1119"/>
+        <location filename="../GUI.cpp" line="1123"/>
         <source>DHT support [OFF]</source>
         <translation>DHT 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1142"/>
+        <location filename="../GUI.cpp" line="1126"/>
         <source>PeX support [ON]</source>
         <translation>Pes 지원 [사용함]</translation>
     </message>
@@ -2423,25 +2423,25 @@ Please close the other one first.</source>
         <translation type="obsolete">Pes 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="734"/>
+        <location filename="../GUI.cpp" line="718"/>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
         <translation>다운로드 리스트가 파일이 있습니다.
 큐비토런트를 종료하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="152"/>
-        <location filename="../GUI.cpp" line="1268"/>
+        <location filename="../GUI.cpp" line="147"/>
+        <location filename="../GUI.cpp" line="1252"/>
         <source>Downloads</source>
         <translation>다운로드</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="937"/>
+        <location filename="../GUI.cpp" line="921"/>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
         <translation> 현재 완료목록에서 선택된 파일을 지우시겠습니까? </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1061"/>
+        <location filename="../GUI.cpp" line="1045"/>
         <source>UPnP support [ON]</source>
         <translation>UPnp 지원 [사용함]</translation>
     </message>
@@ -2450,17 +2450,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">허락없이 저작권이 있는 자료를 공유하는 것은 법에 저촉됩니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1161"/>
+        <location filename="../GUI.cpp" line="1145"/>
         <source>Encryption support [ON]</source>
         <translation>암호화(Encryption) 지원 [사용함]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1166"/>
+        <location filename="../GUI.cpp" line="1150"/>
         <source>Encryption support [FORCED]</source>
         <translation>암호화(Encryption) 지원 [강압적으로 사용]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1171"/>
+        <location filename="../GUI.cpp" line="1155"/>
         <source>Encryption support [OFF]</source>
         <translation>암호화(Encryption) 지원 [사용안함]</translation>
     </message>
@@ -2474,30 +2474,30 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">비율</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="472"/>
+        <location filename="../GUI.cpp" line="456"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="474"/>
+        <location filename="../GUI.cpp" line="458"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="480"/>
+        <location filename="../GUI.cpp" line="464"/>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="550"/>
+        <location filename="../GUI.cpp" line="534"/>
         <source>Url download error</source>
         <translation>Url 다운로드 오류</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="550"/>
+        <location filename="../GUI.cpp" line="534"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>다음 주소(Url)에서 파일을 다운로드할수 없습니다: %1, 이유:%2.</translation>
     </message>
@@ -2506,12 +2506,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">토렌트 %1는 빨리 이어받기가 사용될수 없습니다, 확인중입니다... </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="878"/>
+        <location filename="../GUI.cpp" line="862"/>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
         <translation>다운로드 목록에서 선택된 파일을 하드 드라이버에서도 지우시겠습니까?  </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="885"/>
+        <location filename="../GUI.cpp" line="869"/>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
         <translation>완료 목록에서 선택된 파일을 하드 드라이버에서도 지우시겠습니까?  </translation>
     </message>
@@ -2525,50 +2525,50 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">다음 Url 완전체(Url seed)의 검색이 실패하였습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="476"/>
+        <location filename="../GUI.cpp" line="460"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="478"/>
+        <location filename="../GUI.cpp" line="462"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1039"/>
+        <location filename="../GUI.cpp" line="1023"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation>큐비토런트는 다음 포트을  사용하고 있습니다: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1064"/>
+        <location filename="../GUI.cpp" line="1048"/>
         <source>UPnP support [OFF]</source>
         <translation>UPnP 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1069"/>
+        <location filename="../GUI.cpp" line="1053"/>
         <source>NAT-PMP support [ON]</source>
         <translation>NAT-PMP 지원 [사용함]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1072"/>
+        <location filename="../GUI.cpp" line="1056"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>NAT-PMP 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1133"/>
+        <location filename="../GUI.cpp" line="1117"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT 지원 [사용함], 포트:&apos;UDP/%1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1146"/>
+        <location filename="../GUI.cpp" line="1130"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery (로컬 네트웍크내 공유자 찾기) [사용함]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1149"/>
+        <location filename="../GUI.cpp" line="1133"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Local Peer Discovery (로컬 네트웍크내 공유자 찾기) [사용안함]</translation>
     </message>
@@ -2578,48 +2578,48 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">사용자께거 지정하신 할당율에 도달하였기에 &apos;%1&apos;는(은) 목록에서 삭제되었습니다. </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1491"/>
+        <location filename="../GUI.cpp" line="1475"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>큐비토런트 버젼: %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="227"/>
-        <location filename="../GUI.cpp" line="1464"/>
+        <location filename="../GUI.cpp" line="211"/>
+        <location filename="../GUI.cpp" line="1448"/>
         <source>DL: %1 KiB/s</source>
         <translation>다운로딩 속도: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="228"/>
-        <location filename="../GUI.cpp" line="1465"/>
+        <location filename="../GUI.cpp" line="212"/>
+        <location filename="../GUI.cpp" line="1449"/>
         <source>UP: %1 KiB/s</source>
         <translation>업로딩 속도: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="229"/>
-        <location filename="../GUI.cpp" line="355"/>
+        <location filename="../GUI.cpp" line="213"/>
+        <location filename="../GUI.cpp" line="339"/>
         <source>Ratio: %1</source>
         <translation>비율: %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="230"/>
-        <location filename="../GUI.cpp" line="357"/>
+        <location filename="../GUI.cpp" line="214"/>
+        <location filename="../GUI.cpp" line="341"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 노드(nodes)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="226"/>
-        <location filename="../GUI.cpp" line="1535"/>
+        <location filename="../GUI.cpp" line="210"/>
+        <location filename="../GUI.cpp" line="1519"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>직접적으로 연결된 네트워크를 찾지 못했습니다. 네트워크 설정에 의해 발생된 오류일 가능성이 있습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="159"/>
+        <location filename="../GUI.cpp" line="154"/>
         <source>Uploads</source>
         <translation>업로드</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1618"/>
+        <location filename="../GUI.cpp" line="1602"/>
         <source>Options were saved successfully.</source>
         <translation>설정이 성공적으로 저장되었습니다.</translation>
     </message>
@@ -3343,12 +3343,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">검색 엔진</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="211"/>
+        <location filename="../searchEngine.cpp" line="212"/>
         <source>Empty search pattern</source>
         <translation>검색 양식 지우기</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="211"/>
+        <location filename="../searchEngine.cpp" line="212"/>
         <source>Please type a search pattern first</source>
         <translation>검색 양식을 작성해주십시오</translation>
     </message>
@@ -3361,13 +3361,13 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">적어도 하나 이상의 검색 엔진을 선택해야 합니다.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="245"/>
-        <location filename="../searchEngine.cpp" line="329"/>
+        <location filename="../searchEngine.cpp" line="246"/>
+        <location filename="../searchEngine.cpp" line="330"/>
         <source>Results</source>
         <translation>결과</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="309"/>
+        <location filename="../searchEngine.cpp" line="310"/>
         <source>Searching...</source>
         <translation>검색중...</translation>
     </message>
@@ -3410,58 +3410,58 @@ Changelog:
         <translation type="obsolete">님은 현재 최신 검색 엔진 플로그인을 사용중입니다.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="122"/>
+        <location filename="../searchEngine.cpp" line="123"/>
         <source>Cut</source>
         <translation>잘라내기</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="123"/>
+        <location filename="../searchEngine.cpp" line="124"/>
         <source>Copy</source>
         <translation>복사하기</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="124"/>
+        <location filename="../searchEngine.cpp" line="125"/>
         <source>Paste</source>
         <translation>붙이기</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="125"/>
+        <location filename="../searchEngine.cpp" line="126"/>
         <source>Clear field</source>
         <translation>내용 지우기</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="126"/>
+        <location filename="../searchEngine.cpp" line="127"/>
         <source>Clear completion history</source>
         <translation>완료 내역 지우기</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="434"/>
+        <location filename="../searchEngine.cpp" line="435"/>
         <source>Search Engine</source>
         <translation>검색 엔진</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="434"/>
-        <location filename="../searchEngine.cpp" line="445"/>
+        <location filename="../searchEngine.cpp" line="435"/>
+        <location filename="../searchEngine.cpp" line="446"/>
         <source>Search has finished</source>
         <translation>검색 완료</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="437"/>
+        <location filename="../searchEngine.cpp" line="438"/>
         <source>An error occured during search...</source>
         <translation>검색 중 오류 발생...</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="440"/>
+        <location filename="../searchEngine.cpp" line="441"/>
         <source>Search aborted</source>
         <translation>검색이 중단됨</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="443"/>
+        <location filename="../searchEngine.cpp" line="444"/>
         <source>Search returned no results</source>
         <translation>검색 결과가 없음</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="450"/>
+        <location filename="../searchEngine.cpp" line="451"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>결과</translation>
@@ -3475,8 +3475,8 @@ Changelog:
         <translation type="obsolete">다음 url에서 검색 플러그인 (Plugin)을 다운로드 할수 없습니다: %1, 이유: %2.</translation>
     </message>
     <message>
-        <location filename="../searchEngine.cpp" line="477"/>
-        <location filename="../searchEngine.cpp" line="483"/>
+        <location filename="../searchEngine.cpp" line="478"/>
+        <location filename="../searchEngine.cpp" line="484"/>
         <source>Unknown</source>
         <translation>알려지지 않음</translation>
     </message>
@@ -3655,6 +3655,11 @@ Changelog:
         <translation>순차적으로 다운받기(느리지만 미리보기에 좋음)</translation>
     </message>
     <message>
+        <location filename="../addTorrentDialog.ui" line="213"/>
+        <source>Skip file checking and start seeding immediately</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>File name</source>
         <translation type="obsolete">파일 이름</translation>
     </message>
@@ -3671,17 +3676,17 @@ Changelog:
         <translation type="obsolete">순차적으로 다운받기(느리지만 미리보기에 편합니다)</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="213"/>
+        <location filename="../addTorrentDialog.ui" line="220"/>
         <source>Add to download list in paused state</source>
         <translation>정지 상태로 다운로드 목록에 추가하기</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="241"/>
+        <location filename="../addTorrentDialog.ui" line="248"/>
         <source>Add</source>
         <translation>추가</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="248"/>
+        <location filename="../addTorrentDialog.ui" line="255"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
@@ -3698,22 +3703,22 @@ Changelog:
         <translation type="obsolete">선택</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="270"/>
+        <location filename="../addTorrentDialog.ui" line="277"/>
         <source>Ignored</source>
         <translation>무시</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="275"/>
+        <location filename="../addTorrentDialog.ui" line="282"/>
         <source>Normal</source>
         <translation>보통</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="280"/>
+        <location filename="../addTorrentDialog.ui" line="287"/>
         <source>High</source>
         <translation>높음</translation>
     </message>
     <message>
-        <location filename="../addTorrentDialog.ui" line="285"/>
+        <location filename="../addTorrentDialog.ui" line="292"/>
         <source>Maximum</source>
         <translation>최고</translation>
     </message>
@@ -3783,18 +3788,18 @@ Changelog:
 <context>
     <name>bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="143"/>
+        <location filename="../bittorrent.cpp" line="145"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>&apos;%1&apos; 는 설정된 최대 공유 비율에 도달했습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="300"/>
+        <location filename="../bittorrent.cpp" line="302"/>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
         <translation>&apos;%1&apos; 는 영구삭제 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="302"/>
+        <location filename="../bittorrent.cpp" line="304"/>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
         <translation>&apos;%1&apos; 가 삭제되었습니다.</translation>
@@ -3810,96 +3815,96 @@ Changelog:
         <translation type="obsolete">&apos;%1&apos; 가 다운로드를 다시 시작되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="378"/>
+        <location filename="../bittorrent.cpp" line="380"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos;는 유효한 마그넷 URI (magnet URI)가 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="403"/>
-        <location filename="../bittorrent.cpp" line="546"/>
-        <location filename="../bittorrent.cpp" line="549"/>
+        <location filename="../bittorrent.cpp" line="405"/>
+        <location filename="../bittorrent.cpp" line="548"/>
+        <location filename="../bittorrent.cpp" line="551"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos;는/은 이미 다운로드 목록에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="484"/>
-        <location filename="../bittorrent.cpp" line="659"/>
-        <location filename="../bittorrent.cpp" line="664"/>
+        <location filename="../bittorrent.cpp" line="486"/>
+        <location filename="../bittorrent.cpp" line="669"/>
+        <location filename="../bittorrent.cpp" line="674"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos;가 다시 시작되었습니다. (빠른 재개)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="486"/>
-        <location filename="../bittorrent.cpp" line="661"/>
-        <location filename="../bittorrent.cpp" line="666"/>
+        <location filename="../bittorrent.cpp" line="488"/>
+        <location filename="../bittorrent.cpp" line="671"/>
+        <location filename="../bittorrent.cpp" line="676"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos;가 다운로드 목록에 추가되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="520"/>
-        <location filename="../bittorrent.cpp" line="524"/>
+        <location filename="../bittorrent.cpp" line="522"/>
+        <location filename="../bittorrent.cpp" line="526"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>다음 파일은 해독 할수가 없습니다: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="527"/>
+        <location filename="../bittorrent.cpp" line="529"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>이 파일은 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="956"/>
+        <location filename="../bittorrent.cpp" line="967"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 IP 필터에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="958"/>
+        <location filename="../bittorrent.cpp" line="969"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1255"/>
+        <location filename="../bittorrent.cpp" line="1272"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>토렌트 %2 에는 회귀적 다운로드 파일 %1이 포함되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1266"/>
+        <location filename="../bittorrent.cpp" line="1283"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>%1 토렌트를 해독할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1313"/>
+        <location filename="../bittorrent.cpp" line="1330"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>설정하신 포트에 연결할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1352"/>
+        <location filename="../bittorrent.cpp" line="1369"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1357"/>
+        <location filename="../bittorrent.cpp" line="1374"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1372"/>
+        <location filename="../bittorrent.cpp" line="1389"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>토렌트 %1는 빨리 이어받기가 사용될수 없습니다, 확인중입니다... </translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1377"/>
+        <location filename="../bittorrent.cpp" line="1394"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>다음 Url 완전체(Url seed)의 검색이 실패하였습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1445"/>
+        <location filename="../bittorrent.cpp" line="1462"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;을 다운 중입니다, 잠시 기다려 주세요...</translation>
@@ -4233,6 +4238,125 @@ Changelog:
     </message>
 </context>
 <context>
+    <name>downloadThread</name>
+    <message>
+        <location filename="../downloadThread.cpp" line="69"/>
+        <location filename="../downloadThread.cpp" line="73"/>
+        <source>I/O Error</source>
+        <translation type="unfinished">I/O 에러</translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="123"/>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="125"/>
+        <source>The operation was canceled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="127"/>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="129"/>
+        <source>The connection to the remote server timed out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="131"/>
+        <source>SSL/TLS handshake failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="133"/>
+        <source>The remote server refused the connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="135"/>
+        <source>The connection to the proxy server was refused</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="137"/>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="139"/>
+        <source>The proxy host name was not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="141"/>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="143"/>
+        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="145"/>
+        <source>The access to the remote content was denied (401)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="147"/>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="149"/>
+        <source>The remote content was not found at the server (404)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="151"/>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="153"/>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="155"/>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="157"/>
+        <source>An unknown network-related error was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="159"/>
+        <source>An unknown proxy-related error was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="161"/>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="163"/>
+        <source>A breakdown in protocol was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloadThread.cpp" line="165"/>
+        <source>Unknown error</source>
+        <translation type="unfinished">알수 없는 오류</translation>
+    </message>
+</context>
+<context>
     <name>downloading</name>
     <message>
         <location filename="../download.ui" line="14"/>
@@ -4453,12 +4577,12 @@ Changelog:
         <translation type="obsolete">아님</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="197"/>
+        <location filename="../engineSelectDlg.cpp" line="198"/>
         <source>Uninstall warning</source>
         <translation>언인스톨 경고</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="197"/>
+        <location filename="../engineSelectDlg.cpp" line="198"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -4468,83 +4592,83 @@ However, those plugins were disabled.</source>
 </translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="199"/>
+        <location filename="../engineSelectDlg.cpp" line="200"/>
         <source>Uninstall success</source>
         <translation>제거 완료</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="474"/>
+        <location filename="../engineSelectDlg.cpp" line="475"/>
         <source>Select search plugins</source>
         <translation>검색 플러그인을 선택하십시오 </translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="476"/>
-        <location filename="../engineSelectDlg.cpp" line="478"/>
+        <location filename="../engineSelectDlg.cpp" line="477"/>
+        <location filename="../engineSelectDlg.cpp" line="479"/>
         <source>qBittorrent search plugins</source>
         <translation>큐비토런트 검색엔진</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="268"/>
-        <location filename="../engineSelectDlg.cpp" line="317"/>
-        <location filename="../engineSelectDlg.cpp" line="328"/>
-        <location filename="../engineSelectDlg.cpp" line="374"/>
-        <location filename="../engineSelectDlg.cpp" line="398"/>
-        <location filename="../engineSelectDlg.cpp" line="403"/>
-        <location filename="../engineSelectDlg.cpp" line="412"/>
-        <location filename="../engineSelectDlg.cpp" line="415"/>
+        <location filename="../engineSelectDlg.cpp" line="269"/>
+        <location filename="../engineSelectDlg.cpp" line="318"/>
+        <location filename="../engineSelectDlg.cpp" line="329"/>
+        <location filename="../engineSelectDlg.cpp" line="375"/>
+        <location filename="../engineSelectDlg.cpp" line="399"/>
+        <location filename="../engineSelectDlg.cpp" line="404"/>
+        <location filename="../engineSelectDlg.cpp" line="413"/>
+        <location filename="../engineSelectDlg.cpp" line="416"/>
         <source>Search plugin install</source>
         <translation>검색 엔진 설치</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="127"/>
-        <location filename="../engineSelectDlg.cpp" line="210"/>
-        <location filename="../engineSelectDlg.cpp" line="435"/>
+        <location filename="../engineSelectDlg.cpp" line="128"/>
+        <location filename="../engineSelectDlg.cpp" line="211"/>
+        <location filename="../engineSelectDlg.cpp" line="436"/>
         <source>Yes</source>
         <translation>예</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="130"/>
-        <location filename="../engineSelectDlg.cpp" line="176"/>
-        <location filename="../engineSelectDlg.cpp" line="223"/>
-        <location filename="../engineSelectDlg.cpp" line="438"/>
+        <location filename="../engineSelectDlg.cpp" line="131"/>
+        <location filename="../engineSelectDlg.cpp" line="177"/>
+        <location filename="../engineSelectDlg.cpp" line="224"/>
+        <location filename="../engineSelectDlg.cpp" line="439"/>
         <source>No</source>
         <translation>아니오</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="268"/>
-        <location filename="../engineSelectDlg.cpp" line="317"/>
-        <location filename="../engineSelectDlg.cpp" line="328"/>
-        <location filename="../engineSelectDlg.cpp" line="374"/>
-        <location filename="../engineSelectDlg.cpp" line="398"/>
-        <location filename="../engineSelectDlg.cpp" line="403"/>
-        <location filename="../engineSelectDlg.cpp" line="412"/>
-        <location filename="../engineSelectDlg.cpp" line="415"/>
-        <location filename="../engineSelectDlg.cpp" line="537"/>
-        <location filename="../engineSelectDlg.cpp" line="577"/>
-        <location filename="../engineSelectDlg.cpp" line="611"/>
-        <location filename="../engineSelectDlg.cpp" line="619"/>
-        <location filename="../engineSelectDlg.cpp" line="625"/>
+        <location filename="../engineSelectDlg.cpp" line="269"/>
+        <location filename="../engineSelectDlg.cpp" line="318"/>
+        <location filename="../engineSelectDlg.cpp" line="329"/>
+        <location filename="../engineSelectDlg.cpp" line="375"/>
+        <location filename="../engineSelectDlg.cpp" line="399"/>
+        <location filename="../engineSelectDlg.cpp" line="404"/>
+        <location filename="../engineSelectDlg.cpp" line="413"/>
+        <location filename="../engineSelectDlg.cpp" line="416"/>
+        <location filename="../engineSelectDlg.cpp" line="538"/>
+        <location filename="../engineSelectDlg.cpp" line="578"/>
+        <location filename="../engineSelectDlg.cpp" line="612"/>
+        <location filename="../engineSelectDlg.cpp" line="620"/>
+        <location filename="../engineSelectDlg.cpp" line="626"/>
         <source>qBittorrent</source>
         <translation>큐비토런트</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="374"/>
+        <location filename="../engineSelectDlg.cpp" line="375"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>최신 버젼의 %1이 이미 설치되어있습니다.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="537"/>
-        <location filename="../engineSelectDlg.cpp" line="577"/>
-        <location filename="../engineSelectDlg.cpp" line="611"/>
-        <location filename="../engineSelectDlg.cpp" line="619"/>
-        <location filename="../engineSelectDlg.cpp" line="625"/>
+        <location filename="../engineSelectDlg.cpp" line="538"/>
+        <location filename="../engineSelectDlg.cpp" line="578"/>
+        <location filename="../engineSelectDlg.cpp" line="612"/>
+        <location filename="../engineSelectDlg.cpp" line="620"/>
+        <location filename="../engineSelectDlg.cpp" line="626"/>
         <source>Search plugin update</source>
         <translation>검색 엔진 플러그인 업데이트</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="577"/>
-        <location filename="../engineSelectDlg.cpp" line="611"/>
+        <location filename="../engineSelectDlg.cpp" line="578"/>
+        <location filename="../engineSelectDlg.cpp" line="612"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>죄송합니다. 현재 임시적으로 업데이트 서버가 접속이 불가능합니다.</translation>
     </message>
@@ -4554,37 +4678,37 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">죄송하지만 검색엔진 %1의 업데이트가 실패하였습니다.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="537"/>
+        <location filename="../engineSelectDlg.cpp" line="538"/>
         <source>All your plugins are already up to date.</source>
         <translation>모든 검색엔진이 최신버젼입니다. </translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="398"/>
+        <location filename="../engineSelectDlg.cpp" line="399"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>검색엔진 %1은 업데이트 될수 없습니다. 기존버젼을 유지하겠습니다. </translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="317"/>
-        <location filename="../engineSelectDlg.cpp" line="328"/>
-        <location filename="../engineSelectDlg.cpp" line="403"/>
+        <location filename="../engineSelectDlg.cpp" line="318"/>
+        <location filename="../engineSelectDlg.cpp" line="329"/>
+        <location filename="../engineSelectDlg.cpp" line="404"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>검색엔진 %1은/는 설치될수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="199"/>
+        <location filename="../engineSelectDlg.cpp" line="200"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>선택된 모든 플러그인들이 성공적으로 제거 되었습니다</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="412"/>
+        <location filename="../engineSelectDlg.cpp" line="413"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>검색엔진 %1이 성공적으로 업데이트 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="415"/>
+        <location filename="../engineSelectDlg.cpp" line="416"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>검색엔진 %1이 성공적으로 설치 되었습니다.</translation>
@@ -4595,24 +4719,24 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">검색엔진 %1이 성공적으로 업데이트 되었습니다. </translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="268"/>
+        <location filename="../engineSelectDlg.cpp" line="269"/>
         <source>Search engine plugin archive could not be read.</source>
         <translation>검색엔진 플러그인이 일혀지질 않습니다.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="619"/>
-        <location filename="../engineSelectDlg.cpp" line="625"/>
+        <location filename="../engineSelectDlg.cpp" line="620"/>
+        <location filename="../engineSelectDlg.cpp" line="626"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>죄송하지만, 검색엔진 플로그인, %1,의 설치가 실패하였습니다.</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="465"/>
+        <location filename="../engineSelectDlg.cpp" line="466"/>
         <source>New search engine plugin URL</source>
         <translation>새 검색엔진 플러그인 주소(URL)</translation>
     </message>
     <message>
-        <location filename="../engineSelectDlg.cpp" line="466"/>
+        <location filename="../engineSelectDlg.cpp" line="467"/>
         <source>URL:</source>
         <translation></translation>
     </message>
@@ -5532,29 +5656,24 @@ However, those plugins were disabled.</source>
 <context>
     <name>subDownloadThread</name>
     <message>
-        <location filename="../downloadThread.cpp" line="43"/>
         <source>Host is unreachable</source>
-        <translation>호스트에 도달할수 없습니다</translation>
+        <translation type="obsolete">호스트에 도달할수 없습니다</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="46"/>
         <source>File was not found (404)</source>
-        <translation>파일을 찾을수 없습니다 (404)</translation>
+        <translation type="obsolete">파일을 찾을수 없습니다 (404)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="50"/>
         <source>Connection was denied</source>
-        <translation>연결 시간이 부인되었습니다</translation>
+        <translation type="obsolete">연결 시간이 부인되었습니다</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="52"/>
         <source>Url is invalid</source>
-        <translation>주소(Url)가 유효하지 않습니다</translation>
+        <translation type="obsolete">주소(Url)가 유효하지 않습니다</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="88"/>
         <source>I/O Error</source>
-        <translation>I/O 에러</translation>
+        <translation type="obsolete">I/O 에러</translation>
     </message>
     <message>
         <source>Connection forbidden (403)</source>
@@ -5569,29 +5688,24 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">내용이 이동되었습니다 (301)</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="62"/>
         <source>Connection failure</source>
-        <translation>연결 실패</translation>
+        <translation type="obsolete">연결 실패</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="64"/>
         <source>Connection was timed out</source>
-        <translation>연결 시간이 초과하였습니다</translation>
+        <translation type="obsolete">연결 시간이 초과하였습니다</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="66"/>
         <source>Incorrect network interface</source>
-        <translation>네트웍크 인터페이스(network interface)가 맞지 않습니다.</translation>
+        <translation type="obsolete">네트웍크 인터페이스(network interface)가 맞지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="68"/>
         <source>Unknown error</source>
-        <translation>알수 없는 오류</translation>
+        <translation type="obsolete">알수 없는 오류</translation>
     </message>
     <message>
-        <location filename="../downloadThread.cpp" line="54"/>
         <source>Could not resolve proxy</source>
-        <translation>프록시를 설정할수 없습니다</translation>
+        <translation type="obsolete">프록시를 설정할수 없습니다</translation>
     </message>
 </context>
 <context>
@@ -5657,12 +5771,12 @@ However, those plugins were disabled.</source>
         <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="449"/>
+        <location filename="../torrentAddition.h" line="451"/>
         <source>Invalid file selection</source>
         <translation>부적당한 파일 선택</translation>
     </message>
     <message>
-        <location filename="../torrentAddition.h" line="449"/>
+        <location filename="../torrentAddition.h" line="451"/>
         <source>You must select at least one file in the torrent</source>
         <translation>토렌트에서 적어도 하나 이상의 파일을 선택해야 합니다 </translation>
     </message>

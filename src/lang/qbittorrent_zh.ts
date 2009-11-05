@@ -3379,6 +3379,10 @@ previewing)</source>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>按顺序下载(速度有所减慢但利于预览)</translation>
     </message>
+    <message>
+        <source>Skip file checking and start seeding immediately</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>authentication</name>
@@ -3802,6 +3806,101 @@ enabled)</source>
     <message>
         <source>Please type at least one URL.</source>
         <translation>请至少输入一个URL.</translation>
+    </message>
+</context>
+<context>
+    <name>downloadThread</name>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">输入/输出错误</translation>
+    </message>
+    <message>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The operation was canceled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The connection to the remote server timed out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSL/TLS handshake failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote server refused the connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The connection to the proxy server was refused</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy host name was not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The access to the remote content was denied (401)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote content was not found at the server (404)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown network-related error was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown proxy-related error was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A breakdown in protocol was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown error</source>
+        <translation type="unfinished">未知错误</translation>
     </message>
 </context>
 <context>
@@ -4973,19 +5072,19 @@ network.</source>
     <name>subDownloadThread</name>
     <message>
         <source>Host is unreachable</source>
-        <translation>无法连接到主机</translation>
+        <translation type="obsolete">无法连接到主机</translation>
     </message>
     <message>
         <source>File was not found (404)</source>
-        <translation>文件未找到（404）</translation>
+        <translation type="obsolete">文件未找到（404）</translation>
     </message>
     <message>
         <source>Connection was denied</source>
-        <translation>连接被拒绝</translation>
+        <translation type="obsolete">连接被拒绝</translation>
     </message>
     <message>
         <source>Url is invalid</source>
-        <translation>网址无效</translation>
+        <translation type="obsolete">网址无效</translation>
     </message>
     <message>
         <source>Connection forbidden (403)</source>
@@ -5001,27 +5100,27 @@ network.</source>
     </message>
     <message>
         <source>Connection failure</source>
-        <translation>连接失败</translation>
+        <translation type="obsolete">连接失败</translation>
     </message>
     <message>
         <source>Connection was timed out</source>
-        <translation>连接超时</translation>
+        <translation type="obsolete">连接超时</translation>
     </message>
     <message>
         <source>Incorrect network interface</source>
-        <translation>不正确的网络关联</translation>
+        <translation type="obsolete">不正确的网络关联</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation>未知错误</translation>
+        <translation type="obsolete">未知错误</translation>
     </message>
     <message>
         <source>Could not resolve proxy</source>
-        <translation>无法联系到代理服务器</translation>
+        <translation type="obsolete">无法联系到代理服务器</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation>输入/输出错误</translation>
+        <translation type="obsolete">输入/输出错误</translation>
     </message>
 </context>
 <context>

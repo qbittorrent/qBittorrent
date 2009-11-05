@@ -208,6 +208,13 @@
     </widget>
    </item>
    <item>
+    <widget class="QCheckBox" name="addInSeed">
+     <property name="text">
+      <string>Skip file checking and start seeding immediately</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QCheckBox" name="addInPause">
      <property name="text">
       <string>Add to download list in paused state</string>

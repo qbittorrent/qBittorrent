@@ -52,10 +52,10 @@ class about : public QDialog, private Ui::AboutDlg{
       lb_name->setText(QString::fromUtf8("<b><h1>")+tr("qBittorrent")+QString::fromUtf8(" "VERSION"</h1></b>"));
       // Thanks
       te_thanks->append(QString::fromUtf8("<a name='top'></a>"));
-      te_thanks->append(QString::fromUtf8("<ul><li>I would like to thank sourceforge.net for hosting qBittorrent project.</li>"));
-      te_thanks->append(QString::fromUtf8("<li>I am happy that Ishan Arora and Arnaud Demaizière are contributing to the project as developers. Their help is greatly appreciated</li>"));
-      te_thanks->append(QString::fromUtf8("<li>I also want to thank Jeffery Fernandez (jeffery@qbittorrent.org), project consultant, RPM packager, for his help and support.</li>"));
-      te_thanks->append(QString::fromUtf8("<li>I am grateful to Peter Koeleman (peter@qbittorrent.org) who is helping port qBittorrent to Windows.</li>"));
+      te_thanks->append(QString::fromUtf8("<ul><li>I would first like to thank sourceforge.net for hosting qBittorrent project and for their support.</li>"));
+      te_thanks->append(QString::fromUtf8("<li>I am pleased that people from all over the world are contributing to qBittorrent: Ishan Arora (India), Arnaud Demaizière (France) and Stephanos Antaris (Greece). Their help is greatly appreciated</li>"));
+      te_thanks->append(QString::fromUtf8("<li>I also want to thank Jeffery Fernandez (jeffery@qbittorrent.org), project consultant, for his help and support since the beginning of this project.</li>"));
+      te_thanks->append(QString::fromUtf8("<li>I am grateful to Peter Koeleman (peter@qbittorrent.org) for working on qBittorrent port to Windows.</li>"));
       te_thanks->append(QString::fromUtf8("<li>Thanks a lot to our graphist Mateusz Toboła (tobejodok@qbittorrent.org) for his great work.</li></ul><br><br>"));
       te_thanks->scrollToAnchor(QString::fromUtf8("top"));
       // Translation

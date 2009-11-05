@@ -581,6 +581,14 @@ QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   } else {
     p.save_path = defaultTempPath.toLocal8Bit().data();
   }
+
+  // Skip checking and directly start seeding (new in libtorrent v0.15)
+  if(TorrentTempData::isSeedingMode(hash)){
+    p.seed_mode=true;
+  } else {
+    p.seed_mode=false;
+  }
+
   // TODO: Remove in v1.6.0: For backward compatibility only
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")) {
     p.save_path = savePath.toLocal8Bit().data();

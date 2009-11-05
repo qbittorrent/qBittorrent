@@ -3027,6 +3027,10 @@ Changelog:
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Descarcă în ordine secvențială (încet dar bine pentru preview)</translation>
     </message>
+    <message>
+        <source>Skip file checking and start seeding immediately</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>authentication</name>
@@ -3449,6 +3453,101 @@ Changelog:
     <message>
         <source>Please type at least one URL.</source>
         <translation>Vă rugăm să introduceţi cel puţin un URL.</translation>
+    </message>
+</context>
+<context>
+    <name>downloadThread</name>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">Eroare de intrare/eşire</translation>
+    </message>
+    <message>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The operation was canceled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The connection to the remote server timed out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSL/TLS handshake failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote server refused the connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The connection to the proxy server was refused</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy host name was not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The access to the remote content was denied (401)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote content was not found at the server (404)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown network-related error was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown proxy-related error was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A breakdown in protocol was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown error</source>
+        <translation type="unfinished">Eroare necunoscută</translation>
     </message>
 </context>
 <context>
@@ -4520,19 +4619,19 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     <name>subDownloadThread</name>
     <message>
         <source>Host is unreachable</source>
-        <translation>Calculatorul nu poate fi accesat</translation>
+        <translation type="obsolete">Calculatorul nu poate fi accesat</translation>
     </message>
     <message>
         <source>File was not found (404)</source>
-        <translation>Fişierul nu a fost găsit(404)</translation>
+        <translation type="obsolete">Fişierul nu a fost găsit(404)</translation>
     </message>
     <message>
         <source>Connection was denied</source>
-        <translation>Conectarea a fost interzisă</translation>
+        <translation type="obsolete">Conectarea a fost interzisă</translation>
     </message>
     <message>
         <source>Url is invalid</source>
-        <translation>Adresa URL nu este validă</translation>
+        <translation type="obsolete">Adresa URL nu este validă</translation>
     </message>
     <message>
         <source>Connection forbidden (403)</source>
@@ -4548,27 +4647,27 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     </message>
     <message>
         <source>Connection failure</source>
-        <translation>Conectarea eşuată</translation>
+        <translation type="obsolete">Conectarea eşuată</translation>
     </message>
     <message>
         <source>Connection was timed out</source>
-        <translation>Timpul de conectare expirat</translation>
+        <translation type="obsolete">Timpul de conectare expirat</translation>
     </message>
     <message>
         <source>Incorrect network interface</source>
-        <translation>Interfaţa de reţea incorectă</translation>
+        <translation type="obsolete">Interfaţa de reţea incorectă</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation>Eroare necunoscută</translation>
+        <translation type="obsolete">Eroare necunoscută</translation>
     </message>
     <message>
         <source>Could not resolve proxy</source>
-        <translation>Proxy nu a putut fi rezolvata</translation>
+        <translation type="obsolete">Proxy nu a putut fi rezolvata</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation>Eroare de intrare/eşire</translation>
+        <translation type="obsolete">Eroare de intrare/eşire</translation>
     </message>
 </context>
 <context>

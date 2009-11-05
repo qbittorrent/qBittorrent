@@ -11,6 +11,7 @@
     - FEATURE: Tracker connections are now also subject to IP filtering
     - FEATURE: Include DHT traffic in the rate limiter
     - FEATURE: Support for bitcomet padding files
+    - FEATURE: Option to skip file checking and start seeding immediately in torrent addition dialog (Stephanos Antaris)
     - FEATURE: Dropped dependency on libcurl
     - FEATURE: Dropped Qt 4.3 support (Qt >= 4.4 is required)
 
