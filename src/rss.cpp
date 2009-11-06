@@ -591,7 +591,6 @@ short RssStream::readDoc(const QDomDocument& doc) {
                 }
               }
             }
-
           } else {
             delete item;
           }

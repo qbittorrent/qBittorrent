@@ -63,7 +63,7 @@ protected slots:
   void refreshSelectedItems();
   void copySelectedFeedsURL();
   void refreshNewsList(QTreeWidgetItem* item);
-  void refreshTextBrowser(QTreeWidgetItem *);
+  void refreshTextBrowser();
   void updateFeedIcon(QString url, QString icon_path);
   void updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnread);
   void updateItemsInfos(QList<QTreeWidgetItem*> items);
