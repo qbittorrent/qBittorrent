@@ -41,6 +41,7 @@
 #include <QFileDialog>
 #include <QDropEvent>
 #include <QInputDialog>
+#include <QTemporaryFile>
 
 #ifdef HAVE_ZZIP
 #include <zzip/zzip.h>

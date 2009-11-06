@@ -163,11 +163,6 @@ QString QTorrentHandle::save_path() const {
   return misc::toQString(h.save_path().string());
 }
 
-fs::path QTorrentHandle::save_path_boost() const {
-  Q_ASSERT(h.is_valid());
-  return h.save_path();
-}
-
 bool QTorrentHandle::super_seeding() const {
   Q_ASSERT(h.is_valid());
   return h.super_seeding();
@@ -239,9 +234,9 @@ size_type QTorrentHandle::filesize_at(unsigned int index) const {
   return h.get_torrent_info().file_at(index).size;
 }
 
-std::vector<announce_entry> const& QTorrentHandle::trackers() const {
+std::vector<announce_entry> QTorrentHandle::trackers() const {
   Q_ASSERT(h.is_valid());
-  return h.get_torrent_info().trackers();
+  return h.trackers();
 }
 
 torrent_status::state_t QTorrentHandle::state() const {

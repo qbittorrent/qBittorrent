@@ -444,6 +444,8 @@ public slots:
     settings.setValue(QString::fromUtf8("LastDirTorrentAdd"), savePathTxt->text());
     // Create .incremental file if necessary
     TorrentTempData::setSequential(hash, checkIncrementalDL->isChecked());
+    // Skip file checking and directly start seeding
+    TorrentTempData::setSeedingMode(hash, addInSeed->isChecked());
     // Check if there is at least one selected file
     if(allFiltered()){
       QMessageBox::warning(0, tr("Invalid file selection"), tr("You must select at least one file in the torrent"));

@@ -3191,6 +3191,10 @@ Changelog:
         <source>Expand all</source>
         <translation>Alles uitklappen</translation>
     </message>
+    <message>
+        <source>Skip file checking and start seeding immediately</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>authentication</name>
@@ -3601,6 +3605,101 @@ Changelog:
     <message>
         <source>Please type at least one URL.</source>
         <translation>Typ op zijn minst één URL.</translation>
+    </message>
+</context>
+<context>
+    <name>downloadThread</name>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">I/O Fout</translation>
+    </message>
+    <message>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The operation was canceled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The connection to the remote server timed out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSL/TLS handshake failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote server refused the connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The connection to the proxy server was refused</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy host name was not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The access to the remote content was denied (401)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote content was not found at the server (404)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown network-related error was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown proxy-related error was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A breakdown in protocol was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown error</source>
+        <translation type="unfinished">Onbekende fout</translation>
     </message>
 </context>
 <context>
@@ -4703,23 +4802,23 @@ selecteer alstublieft een er van:</translation>
     <name>subDownloadThread</name>
     <message>
         <source>Host is unreachable</source>
-        <translation>Host is onbereikbaar</translation>
+        <translation type="obsolete">Host is onbereikbaar</translation>
     </message>
     <message>
         <source>File was not found (404)</source>
-        <translation>Bestand niet gevonden (404)</translation>
+        <translation type="obsolete">Bestand niet gevonden (404)</translation>
     </message>
     <message>
         <source>Connection was denied</source>
-        <translation>Verbinding niet toegestaan</translation>
+        <translation type="obsolete">Verbinding niet toegestaan</translation>
     </message>
     <message>
         <source>Url is invalid</source>
-        <translation>Url is ongeldig</translation>
+        <translation type="obsolete">Url is ongeldig</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation>I/O Fout</translation>
+        <translation type="obsolete">I/O Fout</translation>
     </message>
     <message>
         <source>Connection forbidden (403)</source>
@@ -4735,23 +4834,23 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Connection failure</source>
-        <translation>Verbindingsfout</translation>
+        <translation type="obsolete">Verbindingsfout</translation>
     </message>
     <message>
         <source>Connection was timed out</source>
-        <translation>Verbinding verlopen</translation>
+        <translation type="obsolete">Verbinding verlopen</translation>
     </message>
     <message>
         <source>Incorrect network interface</source>
-        <translation>Verkeerde netwerkinterface</translation>
+        <translation type="obsolete">Verkeerde netwerkinterface</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation>Onbekende fout</translation>
+        <translation type="obsolete">Onbekende fout</translation>
     </message>
     <message>
         <source>Could not resolve proxy</source>
-        <translation>Kon proxy niet herleiden</translation>
+        <translation type="obsolete">Kon proxy niet herleiden</translation>
     </message>
 </context>
 <context>

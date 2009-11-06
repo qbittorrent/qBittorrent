@@ -3198,6 +3198,10 @@ Log de mudanças:</translation>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Baixar em ordem de sequência (mais lento porém melhor para visualizar)</translation>
     </message>
+    <message>
+        <source>Skip file checking and start seeding immediately</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>authentication</name>
@@ -3620,6 +3624,101 @@ Log de mudanças:</translation>
     <message>
         <source>Please type at least one URL.</source>
         <translation>Por favor digite uma URL.</translation>
+    </message>
+</context>
+<context>
+    <name>downloadThread</name>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The operation was canceled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The connection to the remote server timed out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSL/TLS handshake failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote server refused the connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The connection to the proxy server was refused</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy host name was not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The access to the remote content was denied (401)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote content was not found at the server (404)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown network-related error was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown proxy-related error was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A breakdown in protocol was detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown error</source>
+        <translation type="unfinished">Erro desconhecido</translation>
     </message>
 </context>
 <context>
@@ -4683,19 +4782,19 @@ Portanto os plugins foram desabilitados.</translation>
     <name>subDownloadThread</name>
     <message>
         <source>Host is unreachable</source>
-        <translation>O host é inalcançável</translation>
+        <translation type="obsolete">O host é inalcançável</translation>
     </message>
     <message>
         <source>File was not found (404)</source>
-        <translation>Arquivo não encontrado (404)</translation>
+        <translation type="obsolete">Arquivo não encontrado (404)</translation>
     </message>
     <message>
         <source>Connection was denied</source>
-        <translation>Conexão foi negada</translation>
+        <translation type="obsolete">Conexão foi negada</translation>
     </message>
     <message>
         <source>Url is invalid</source>
-        <translation>Url é inválida</translation>
+        <translation type="obsolete">Url é inválida</translation>
     </message>
     <message>
         <source>Connection forbidden (403)</source>
@@ -4711,27 +4810,27 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Connection failure</source>
-        <translation>Conexão falhou</translation>
+        <translation type="obsolete">Conexão falhou</translation>
     </message>
     <message>
         <source>Connection was timed out</source>
-        <translation>Conexão esgotou o tempo</translation>
+        <translation type="obsolete">Conexão esgotou o tempo</translation>
     </message>
     <message>
         <source>Incorrect network interface</source>
-        <translation>Relação da rede incorreta</translation>
+        <translation type="obsolete">Relação da rede incorreta</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation>Erro desconhecido</translation>
+        <translation type="obsolete">Erro desconhecido</translation>
     </message>
     <message>
         <source>Could not resolve proxy</source>
-        <translation>Não pude resolver proxy</translation>
+        <translation type="obsolete">Não pude resolver proxy</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation>Erro de entrada e saída</translation>
+        <translation type="obsolete">Erro de entrada e saída</translation>
     </message>
 </context>
 <context>

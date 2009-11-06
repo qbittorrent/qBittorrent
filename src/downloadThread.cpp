@@ -29,215 +29,140 @@
  */
 
 #include "downloadThread.h"
-#include <iostream>
+#include <QTemporaryFile>
 #include <QSettings>
-#include <stdio.h>
-
-#define MAX_THREADS 3
-
-// http://curl.rtin.bz/libcurl/c/libcurl-errors.html
-QString subDownloadThread::errorCodeToString(CURLcode status) {
-  switch(status){
-    case CURLE_FTP_CANT_GET_HOST:
-    case CURLE_COULDNT_RESOLVE_HOST:
-      return tr("Host is unreachable");
-    case CURLE_READ_ERROR:
-    case CURLE_FILE_COULDNT_READ_FILE:
-      return tr("File was not found (404)");
-    case CURLE_FTP_ACCESS_DENIED:
-    case CURLE_LOGIN_DENIED:
-    case CURLE_FTP_USER_PASSWORD_INCORRECT:
-      return tr("Connection was denied");
-    case CURLE_URL_MALFORMAT:
-      return tr("Url is invalid");
-    case CURLE_COULDNT_RESOLVE_PROXY:
-      return tr("Could not resolve proxy");
-    //case 5:
-    //  return tr("Connection forbidden (403)");
-    //case 6:
-    //  return tr("Connection was not authorized (401)");
-    //case 7:
-    //  return tr("Content has moved (301)");
-    case CURLE_COULDNT_CONNECT:
-      return tr("Connection failure");
-    case CURLE_OPERATION_TIMEOUTED:
-      return tr("Connection was timed out");
-    case CURLE_INTERFACE_FAILED:
-      return tr("Incorrect network interface");
-    default:
-      return tr("Unknown error");
-  }
-}
-
-subDownloadThread::subDownloadThread(QObject *parent, QString url) : QThread(parent), url(url), abort(false){}
-
-subDownloadThread::~subDownloadThread(){
-  abort = true;
-  wait();
-}
-
-void subDownloadThread::run(){
-  // Get a unique filename
-  QString filePath;
-  QTemporaryFile tmpfile;
-  tmpfile.setAutoRemove(false);
-  if (tmpfile.open()) {
-    filePath = tmpfile.fileName();
-    qDebug("Temporary filename is: %s", filePath.toLocal8Bit().data());
-  } else {
-    emit downloadFailureST(this, url, tr("I/O Error"));
-    return;
-  }
-  tmpfile.close();
-  // Now temporary file is created but closed so that
-  // curl can use it
-  FILE *f = fopen(filePath.toLocal8Bit().data(), "wb");
-  if(!f) {
-    std::cerr << "couldn't open destination file" << "\n";
-    return;
-  }
-  CURL *curl;
-  CURLcode res = (CURLcode)-1;
-  curl = curl_easy_init();
-  if(curl) {
-    std::string c_url = url.toLocal8Bit().data();
-    curl_easy_setopt(curl, CURLOPT_URL, c_url.c_str());
-    // SSL support
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
-    // PROXY SUPPORT
-    QSettings settings("qBittorrent", "qBittorrent");
-    int intValue = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxyType"), 0).toInt();
-    if(intValue > 0) {
-      // Proxy enabled
-      QString IP = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/IP"), "0.0.0.0").toString();
-      QString port = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Port"), 8080).toString();
-      qDebug("Using proxy: %s", (IP+QString(":")+port).toLocal8Bit().data());
-      curl_easy_setopt(curl, CURLOPT_PROXYPORT, (IP+QString(":")+port).toLocal8Bit().data());
-      // Default proxy type is HTTP, we must change if it is SOCKS5
-      if(intValue%2==0) {
-        qDebug("Proxy is SOCKS5, not HTTP");
-        curl_easy_setopt(curl, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
-      }
-      // Authentication?
-      if(intValue > 2) {
-        qDebug("Proxy requires authentication, authenticating");
-        QString username = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Username"), QString()).toString();
-        QString password = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Password"), QString()).toString();
-        curl_easy_setopt(curl, CURLOPT_PROXYUSERPWD, (username+QString(":")+password).toLocal8Bit().data());
-      }
-    }
-    // We have to define CURLOPT_WRITEFUNCTION or it will crash on windows
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fwrite);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, f);
-    // Verbose
-    //curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
-    // No progress info (we don't use it)
-    curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1);
-    // Redirections
-    curl_easy_setopt(curl, CURLOPT_AUTOREFERER, 1);
-    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
-    curl_easy_setopt(curl, CURLOPT_MAXREDIRS, -1);
-    qDebug("Downloading %s", url.toLocal8Bit().data());
-    if(!abort)
-        res = curl_easy_perform(curl);
-    qDebug("done downloading %s", url.toLocal8Bit().data());
-    /* always cleanup */
-    curl_easy_cleanup(curl);
-    fclose(f);
-    if(abort)
-        return;
-    if(res) {
-      emit downloadFailureST(this, url, errorCodeToString(res));
-    } else {
-      emit downloadFinishedST(this, url, filePath);      
-    }
-    qDebug("%s Raised the signal", url.toLocal8Bit().data());
-  } else {
-    std::cerr << "Could not initialize CURL" << "\n";
-  }
-}
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkProxy>
 
 /** Download Thread **/
 
-downloadThread::downloadThread(QObject* parent) : QThread(parent), abort(false){}
+downloadThread::downloadThread(QObject* parent) : QObject(parent) {
+  networkManager = new QNetworkAccessManager(this);
+  connect(networkManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(processDlFinished(QNetworkReply*)));
+}
 
 downloadThread::~downloadThread(){
-  mutex.lock();
-  abort = true;
-  condition.wakeOne();
-  mutex.unlock();
-  //qDebug("downloadThread deleting subthreads...");
-  qDeleteAll(subThreads);
-  //qDebug("downloadThread deleted subthreads");
-  wait();
+  delete networkManager;
+}
+
+void downloadThread::processDlFinished(QNetworkReply* reply) {
+  QString url = reply->url().toString();
+  if(reply->error() != QNetworkReply::NoError) {
+    // Failure
+    emit downloadFailure(url, errorCodeToString(reply->error()));
+  } else {
+    // Success
+    QString filePath;
+    QTemporaryFile tmpfile;
+    tmpfile.setAutoRemove(false);
+    if (tmpfile.open()) {
+      filePath = tmpfile.fileName();
+      qDebug("Temporary filename is: %s", filePath.toLocal8Bit().data());
+      if(reply->open(QIODevice::ReadOnly)) {
+        tmpfile.write(reply->readAll());
+        reply->close();
+        tmpfile.close();
+        // Send finished signal
+        emit downloadFinished(url, filePath);
+      } else {
+        // Error when reading the request
+        tmpfile.close();
+        emit downloadFailure(url, tr("I/O Error"));
+      }
+    } else {
+      emit downloadFailure(url, tr("I/O Error"));
+    }
+  }
+  // Clean up
+  reply->deleteLater();
 }
 
 void downloadThread::downloadUrl(QString url){
-  QMutexLocker locker(&mutex);
-  urls_queue.enqueue(url);
-  if(!isRunning()){
-    start();
-  }else{
-    condition.wakeOne();
-  }
+  // Update proxy settings
+  applyProxySettings();
+  // Process download request
+  networkManager->get(QNetworkRequest(QUrl(url)));
 }
 
-void downloadThread::run(){
-  forever{
-    if(abort) {
-      qDebug("DownloadThread aborting...");
-      return;
+void downloadThread::applyProxySettings() {
+  QNetworkProxy proxy;
+  QSettings settings("qBittorrent", "qBittorrent");
+  int intValue = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxyType"), 0).toInt();
+  if(intValue > 0) {
+    // Proxy enabled
+    QString IP = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/IP"), "0.0.0.0").toString();
+    proxy.setHostName(IP);
+    QString port = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Port"), 8080).toString();
+    qDebug("Using proxy: %s", (IP+QString(":")+port).toLocal8Bit().data());
+    proxy.setPort(port.toUShort());
+    // Default proxy type is HTTP, we must change if it is SOCKS5
+    if(intValue%2==0) {
+      qDebug("Proxy is SOCKS5, not HTTP");
+      proxy.setType(QNetworkProxy::Socks5Proxy);
+    } else {
+      proxy.setType(QNetworkProxy::HttpProxy);
     }
-    mutex.lock();
-    if(!urls_queue.empty() && subThreads.size() < MAX_THREADS){
-      QString url = urls_queue.dequeue();
-      mutex.unlock();
-      //qDebug("DownloadThread downloading %s...", url.toLocal8Bit().data());
-      subDownloadThread *st = new subDownloadThread(0, url);
-      subThreads << st;
-      connect(st, SIGNAL(downloadFinishedST(subDownloadThread*, QString, QString)), this, SLOT(propagateDownloadedFile(subDownloadThread*, QString, QString)));
-      connect(st, SIGNAL(downloadFailureST(subDownloadThread*, QString, QString)), this, SLOT(propagateDownloadFailure(subDownloadThread*, QString, QString)));
-      st->start();
-    }else{
-      //qDebug("DownloadThread sleeping...");
-      condition.wait(&mutex);
-      //qDebug("DownloadThread woke up");
-      mutex.unlock();
+    // Authentication?
+    if(intValue > 2) {
+      qDebug("Proxy requires authentication, authenticating");
+      QString username = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Username"), QString()).toString();
+      proxy.setUser(username);
+      QString password = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Password"), QString()).toString();
+      proxy.setPassword(password);
     }
+
+  } else {
+    proxy.setType(QNetworkProxy::NoProxy);
   }
+  networkManager->setProxy(proxy);
 }
 
-void downloadThread::propagateDownloadedFile(subDownloadThread* st, QString url, QString path){
-  qDebug("Downloading %s was successful", url.toLocal8Bit().data());
-  mutex.lock();
-  int index = subThreads.indexOf(st);
-  Q_ASSERT(index != -1);
-  subThreads.removeAt(index);
-  mutex.unlock();
-  qDebug("Deleting subthread");
-  delete st;
-  emit downloadFinished(url, path);
-  mutex.lock();
-  if(!urls_queue.empty()) {
-    condition.wakeOne();
+QString downloadThread::errorCodeToString(QNetworkReply::NetworkError status) {
+  switch(status){
+  case QNetworkReply::HostNotFoundError:
+    return tr("The remote host name was not found (invalid hostname)");
+  case QNetworkReply::OperationCanceledError:
+    return tr("The operation was canceled");
+  case QNetworkReply::RemoteHostClosedError:
+    return tr("The remote server closed the connection prematurely, before the entire reply was received and processed");
+  case QNetworkReply::TimeoutError:
+    return tr("The connection to the remote server timed out");
+  case QNetworkReply::SslHandshakeFailedError:
+    return tr("SSL/TLS handshake failed");
+  case QNetworkReply::ConnectionRefusedError:
+    return tr("The remote server refused the connection");
+  case QNetworkReply::ProxyConnectionRefusedError:
+    return tr("The connection to the proxy server was refused");
+  case QNetworkReply::ProxyConnectionClosedError:
+    return tr("The proxy server closed the connection prematurely");
+  case QNetworkReply::ProxyNotFoundError:
+    return tr("The proxy host name was not found");
+  case QNetworkReply::ProxyTimeoutError:
+    return tr("The connection to the proxy timed out or the proxy did not reply in time to the request sent");
+  case QNetworkReply::ProxyAuthenticationRequiredError:
+    return tr("The proxy requires authentication in order to honour the request but did not accept any credentials offered");
+  case QNetworkReply::ContentAccessDenied:
+    return tr("The access to the remote content was denied (401)");
+  case QNetworkReply::ContentOperationNotPermittedError:
+    return tr("The operation requested on the remote content is not permitted");
+  case QNetworkReply::ContentNotFoundError:
+    return tr("The remote content was not found at the server (404)");
+  case QNetworkReply::AuthenticationRequiredError:
+    return tr("The remote server requires authentication to serve the content but the credentials provided were not accepted");
+  case QNetworkReply::ProtocolUnknownError:
+    return tr("The Network Access API cannot honor the request because the protocol is not known");
+  case QNetworkReply::ProtocolInvalidOperationError:
+    return tr("The requested operation is invalid for this protocol");
+  case QNetworkReply::UnknownNetworkError:
+    return tr("An unknown network-related error was detected");
+  case QNetworkReply::UnknownProxyError:
+    return tr("An unknown proxy-related error was detected");
+  case QNetworkReply::UnknownContentError:
+    return tr("An unknown error related to the remote content was detected");
+  case QNetworkReply::ProtocolFailure:
+    return tr("A breakdown in protocol was detected");
+  default:
+    return tr("Unknown error");
   }
-  mutex.unlock();
-  qDebug("Out of propagateDownloadedFile");
-}
-
-void downloadThread::propagateDownloadFailure(subDownloadThread* st, QString url, QString reason){
-  qDebug("Downloading %s failed", url.toLocal8Bit().data());
-  mutex.lock();
-  int index = subThreads.indexOf(st);
-  Q_ASSERT(index != -1);
-  subThreads.removeAt(index);
-  mutex.unlock();
-  delete st;
-  emit downloadFailure(url, reason);
-  mutex.lock();
-  if(!urls_queue.empty()) {
-    condition.wakeOne();
-  }
-  mutex.unlock();
 }

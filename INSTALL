@@ -1,12 +1,6 @@
 qBittorrent - A BitTorrent client in C++ / Qt4
 ------------------------------------------
 
-*** Necessary if qt3 is default on your system ***
-export QTDIR=/usr/include/qt4
-export PATH=$QTDIR/bin:$PATH
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$QTDIR/lib
-*** End ***
-
 ./configure
 make && make install
 qbittorrent
@@ -14,8 +8,7 @@ qbittorrent
 will install and execute qBittorrent hopefully without any problems.
 
 Dependencies:
-- Qt >= 4.3.0 (libqt-devel, libqtgui, libqtcore, libqtnetwork, libqtxml)
-  Qt >= 4.4.0 is advised
+- Qt >= 4.4.0 (libqt-devel, libqtgui, libqtcore, libqtnetwork, libqtxml)
 
 - libtorrent-rasterbar by Arvid Norberg (>= v0.15.0 REQUIRED)
     -> http://www.qbittorrent.org/download.php (advised)
@@ -24,12 +17,7 @@ Dependencies:
 
 - libboost: libboost-filesystem, libboost-date-time, libboost-thread, libboost-serialization
 
-- libcurl
-
 - python >= 2.3 (needed by search engine)
-
-- libmagick++ (advised, not required)
-  * Needed for favicons support (RSS / Search plugins)
 
 - libzzip (advised, not required)
   * Needed for zip support (Search plugins)

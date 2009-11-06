@@ -99,6 +99,25 @@ public:
 
   }
 
+  static void setSeedingMode(QString hash,bool seed){
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    QHash<QString, QVariant> all_data = settings.value("torrents-tmp", QHash<QString, QVariant>()).toHash();
+    QHash<QString, QVariant> data = all_data[hash].toHash();
+    data["seeding"] = seed;
+    all_data[hash] = data;
+    settings.setValue("torrents-tmp", all_data);
+  }
+
+  static bool isSeedingMode(QString hash){
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    QHash<QString, QVariant> all_data = settings.value("torrents-tmp", QHash<QString, QVariant>()).toHash();
+    QHash<QString, QVariant> data = all_data[hash].toHash();
+    if(data.contains("seeding"))
+      return data["seeding"].toBool();
+    return false;
+  }
+
+
   static QString getSavePath(QString hash) {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents-tmp", QHash<QString, QVariant>()).toHash();

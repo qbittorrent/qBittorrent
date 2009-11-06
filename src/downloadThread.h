@@ -31,64 +31,34 @@
 #ifndef DOWNLOADTHREAD_H
 #define DOWNLOADTHREAD_H
 
-#include <QThread>
-#include <QFile>
-#include <QTemporaryFile>
-#include <QMutex>
-#include <QMutexLocker>
-#include <QWaitCondition>
-#include <QStringList>
-#include <curl/curl.h>
-#include <QQueue>
+#include <QNetworkReply>
+#include <QObject>
 
-class subDownloadThread : public QThread {
-  Q_OBJECT
-  private:
-    QString url;
-    bool abort;
+class QNetworkAccessManager;
 
-  public:
-    subDownloadThread(QObject *parent, QString url);
-    ~subDownloadThread();
-    QString errorCodeToString(CURLcode status);
-
-  signals:
-    // For subthreads
-    void downloadFinishedST(subDownloadThread* st, QString url, QString file_path);
-    void downloadFailureST(subDownloadThread* st, QString url, QString reason);
-
-  protected:
-    void run();
-};
-
-class downloadThread : public QThread {
+class downloadThread : public QObject {
   Q_OBJECT
 
-  private:
-    QQueue<QString> urls_queue;
-    QMutex mutex;
-    QWaitCondition condition;
-    bool abort;
-    QList<subDownloadThread*> subThreads;
+private:
+  QNetworkAccessManager *networkManager;
 
-  signals:
-    void downloadFinished(QString url, QString file_path);
-    void downloadFailure(QString url, QString reason);
+signals:
+  void downloadFinished(QString url, QString file_path);
+  void downloadFailure(QString url, QString reason);
 
-  public:
-    downloadThread(QObject* parent);
+public:
+  downloadThread(QObject* parent);
+  ~downloadThread();
+  void downloadUrl(QString url);
+  //void setProxy(QString IP, int port, QString username, QString password);
 
-    ~downloadThread();
+protected:
+  QString errorCodeToString(QNetworkReply::NetworkError status);
+  void applyProxySettings();
 
-    void downloadUrl(QString url);
-    void setProxy(QString IP, int port, QString username, QString password);
+protected slots:
+  void processDlFinished(QNetworkReply* reply);
 
-  protected:
-    void run();
-
-  protected slots:
-    void propagateDownloadedFile(subDownloadThread* st, QString url, QString path);
-    void propagateDownloadFailure(subDownloadThread* st, QString url, QString reason);
 };
 
 #endif

@@ -492,23 +492,25 @@ public slots:
 public:
   RssManager(bittorrent *BTSession);
   ~RssManager();
+  static void insertSortElem(QList<RssItem*> &list, RssItem *item) {
+    int i = 0;
+    while(i < list.size() && item->getDate() < list.at(i)->getDate()) {
+      ++i;
+    }
+    list.insert(i, item);
+  }
+
+  static QList<RssItem*> sortNewsList(QList<RssItem*> news_list) {
+    QList<RssItem*> new_list;
+    foreach(RssItem *item, news_list) {
+      insertSortElem(new_list, item);
+    }
+    return new_list;
+  }
 
 };
 
-static void insertSortElem(QList<RssItem*> &list, RssItem *item) {
-  int i = 0;
-  while(i < list.size() && item->getDate() < list.at(i)->getDate()) {
-    ++i;
-  }
-  list.insert(i, item);
-}
 
-static QList<RssItem*> sortNewsList(QList<RssItem*> news_list) {
-  QList<RssItem*> new_list;
-  foreach(RssItem *item, news_list) {
-    insertSortElem(new_list, item);
-  }
-  return new_list;
-}
+
 
 #endif

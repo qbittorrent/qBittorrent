@@ -2,10 +2,10 @@ Author:
 * Christophe Dumez <chris@qbittorrent.org>
 
 Contributors:
-* Arnaud Demaizière <arnaud@qbittorrent.org>
-* Ishan Arora <ishan@qbittorrent.org>
-* Grigis Gaëtan <cipher16@gmail.com>
 * Stefanos Antaris <santaris@csd.auth.gr>
+* Ishan Arora <ishan@qbittorrent.org>
+* Arnaud Demaizière <arnaud@qbittorrent.org>
+* Grigis Gaëtan <cipher16@gmail.com>
 
 Code from other projects:
 * files src/ico.cpp src/ico.h

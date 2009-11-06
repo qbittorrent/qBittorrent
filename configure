@@ -19,8 +19,6 @@ Main options:
 
 Dependency options:
   --with-libboost-inc=[path]     Path to libboost include files
-  --with-libcurl-inc=[path]      Path to libcurl include files
-  --with-libcurl-lib=[path]      Path to libcurl library files
   --disable-libzzip             Disable use of libzzip
   --with-libzzip-inc=[path]      Path to libzzip++ include files
   --with-libzzip-lib=[path]      Path to libzzip++ library files
@@ -145,16 +143,6 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
-		--with-libcurl-inc=*)
-			QC_WITH_LIBCURL_INC=$optarg
-			shift
-			;;
-
-		--with-libcurl-lib=*)
-			QC_WITH_LIBCURL_LIB=$optarg
-			shift
-			;;
-
 		--disable-libzzip)
 			QC_DISABLE_libzzip="Y"
 			shift
@@ -192,8 +180,6 @@ echo BINDIR=$BINDIR
 echo DATADIR=$DATADIR
 echo EX_QTDIR=$EX_QTDIR
 echo QC_WITH_LIBBOOST_INC=$QC_WITH_LIBBOOST_INC
-echo QC_WITH_LIBCURL_INC=$QC_WITH_LIBCURL_INC
-echo QC_WITH_LIBCURL_LIB=$QC_WITH_LIBCURL_LIB
 echo QC_DISABLE_libzzip=$QC_DISABLE_libzzip
 echo QC_WITH_LIBZZIP_INC=$QC_WITH_LIBZZIP_INC
 echo QC_WITH_LIBZZIP_LIB=$QC_WITH_LIBZZIP_LIB
@@ -308,14 +294,11 @@ class qc_qt4 : public ConfObj
 {
 public:
 	qc_qt4(Conf *c) : ConfObj(c) {}
-	QString name() const { return "Qt >= 4.3"; }
-	QString shortname() const { return "Qt 4.3"; }
+	QString name() const { return "Qt >= 4.4"; }
+	QString shortname() const { return "Qt 4.4"; }
 	bool exec()
 	{
-		if(QT_VERSION >= 0x040400) {
-			conf->addDefine("QT_4_4");
-		}
-		return(QT_VERSION >= 0x040300);
+		return(QT_VERSION >= 0x040400);
 		
 	}
 };
@@ -403,68 +386,6 @@ public:
 		return true;
 	}
 };
-#line 1 "libcurl.qcm"
-/*
------BEGIN QCMOD-----
-name: libcommoncpp2
-arg: with-libcurl-inc=[path], Path to libcurl include files
-arg: with-libcurl-lib=[path], Path to libcurl library files
------END QCMOD-----
-*/
-class qc_libcurl : public ConfObj
-{
-public:
-	qc_libcurl(Conf *c) : ConfObj(c) {}
-	QString name() const { return "libcurl"; }
-	QString shortname() const { return "libcurl"; }
-	bool exec(){
-    QString s;
-		s = conf->getenv("QC_WITH_LIBCURL_INC");
-		if(!s.isEmpty()) {
-			if(!conf->checkHeader(s, "curl/curl.h")) {
-				return false;
-    	}
-		}else{
-			QStringList sl;
-			sl << "/usr/include";
-			sl << "/usr/local/include";
-			bool found = false;
-			foreach(s, sl){
-				if(conf->checkHeader(s, "curl/curl.h")){
-					found = true;
-					break;
-				}
-			}
-			if(!found) {
-				return false;
-      }
-		}
-		conf->addIncludePath(s);
-
-		s = conf->getenv("QC_WITH_LIBCURL_LIB");
-		if(!s.isEmpty()) {
-			if(!QFile::exists(s+QString("/libcurl.so")))
-		          return false;
-    	conf->addLib(QString("-L") + s);
-		}else{
-			QStringList sl;
-			sl << "/usr/lib/";
-			sl << "/usr/lib64/";
-			sl << "/usr/local/lib/";
-			sl << "/usr/local/lib64/";
-			bool found = false;
-			foreach(s, sl){
-				if(QFile::exists(s+QString("libcurl.so"))){
-					found = true;
-					break;
-				}
-			}
-			if(!found) return false;
-			conf->addLib(QString("-L") + s);
-		}
-		return true;
-	}
-};
 #line 1 "libzzip.qcm"
 /*
 -----BEGIN QCMOD-----
@@ -547,9 +468,6 @@ cat >$1/modules_new.cpp <<EOT
     o->required = true;
     o->disabled = false;
     o = new qc_libboost(conf);
-    o->required = true;
-    o->disabled = false;
-    o = new qc_libcurl(conf);
     o->required = true;
     o->disabled = false;
     o = new qc_libzzip(conf);
@@ -1501,8 +1419,6 @@ export BINDIR
 export DATADIR
 export EX_QTDIR
 export QC_WITH_LIBBOOST_INC
-export QC_WITH_LIBCURL_INC
-export QC_WITH_LIBCURL_LIB
 export QC_DISABLE_libzzip
 export QC_WITH_LIBZZIP_INC
 export QC_WITH_LIBZZIP_LIB
