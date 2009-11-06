@@ -62,13 +62,14 @@ void downloadThread::processDlFinished(QNetworkReply* reply) {
       if(reply->open(QIODevice::ReadOnly)) {
         tmpfile.write(reply->readAll());
         reply->close();
+        tmpfile.close();
         // Send finished signal
         emit downloadFinished(url, filePath);
       } else {
         // Error when reading the request
+        tmpfile.close();
         emit downloadFailure(url, tr("I/O Error"));
       }
-      tmpfile.close();
     } else {
       emit downloadFailure(url, tr("I/O Error"));
     }
