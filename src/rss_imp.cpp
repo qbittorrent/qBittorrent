@@ -460,8 +460,11 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
 }
 
 // display a news
-void RSSImp::refreshTextBrowser(QTreeWidgetItem *item) {
-  if(!item || item == previous_news) return;
+void RSSImp::refreshTextBrowser() {
+  QList<QTreeWidgetItem*> selection = listNews->selectedItems();
+  if(selection.empty()) return;
+  QTreeWidgetItem *item = selection.first();
+  if(item == previous_news) return;
   // Stop displaying previous news if necessary
   if(listStreams->currentFeed() == listStreams->getUnreadItem()) {
     if(previous_news) {
@@ -596,7 +599,7 @@ RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   connect(listStreams, SIGNAL(foldersAltered(QList<QTreeWidgetItem*>)), this, SLOT(updateItemsInfos(QList<QTreeWidgetItem*>)));
   connect(listStreams, SIGNAL(overwriteAttempt(QString)), this, SLOT(displayOverwriteError(QString)));
 
-  connect(listNews, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this, SLOT(refreshTextBrowser(QTreeWidgetItem *)));
+  connect(listNews, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
   connect(listNews, SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)), this, SLOT(downloadTorrent()));
 
   // Refresh all feeds
