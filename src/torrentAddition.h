@@ -445,7 +445,15 @@ public slots:
     // Create .incremental file if necessary
     TorrentTempData::setSequential(hash, checkIncrementalDL->isChecked());
     // Skip file checking and directly start seeding
-    TorrentTempData::setSeedingMode(hash, addInSeed->isChecked());
+    if(addInSeed->isChecked()) {
+      // Check if local file(s) actually exist
+      if(savePath.exists(misc::toQString(t->name()))) {
+        TorrentTempData::setSeedingMode(hash, true);
+      } else {
+        QMessageBox::warning(0, tr("Seeding mode error"), tr("You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path."));
+        return;
+      }
+    }
     // Check if there is at least one selected file
     if(allFiltered()){
       QMessageBox::warning(0, tr("Invalid file selection"), tr("You must select at least one file in the torrent"));
