@@ -380,14 +380,6 @@ void DownloadingTorrents::hideOrShowColumn(int index) {
   }
 }
 
-void DownloadingTorrents::hidePriorityColumn(bool hide) {
-  downloadList->setColumnHidden(PRIORITY, hide);
-  if(hide)
-    getActionHoSCol(PRIORITY)->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_cancel.png")));
-  else
-    getActionHoSCol(PRIORITY)->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_ok.png")));
-}
-
 // save the hidden columns in settings
 void DownloadingTorrents::saveHiddenColumns() {
   QSettings settings("qBittorrent", "qBittorrent");
@@ -778,3 +770,5 @@ int DownloadingTorrents::getRowFromHash(QString hash) const{
   }
   return -1;
 }
+
+

@@ -185,7 +185,9 @@ HEADERS += GUI.h \
     torrentPersistentData.h \
     FeedDownloader.h \
     feedList.h \
-    supportedEngines.h
+    supportedEngines.h \
+    TransferListWidget.h \
+    TransferListDelegate.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \
@@ -228,5 +230,6 @@ SOURCES += GUI.cpp \
     eventmanager.cpp \
     SearchTab.cpp \
     ico.cpp \
-    rss.cpp
+    rss.cpp \
+    TransferListWidget.cpp
 DESTDIR = .

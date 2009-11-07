@@ -97,8 +97,7 @@ class bittorrent : public QObject {
     session* getSession() const;
     QHash<QString, QString> getTrackersErrors(QString hash) const;
     bool has_filtered_files(QString hash) const;
-    unsigned int getFinishedPausedTorrentsNb() const;
-    unsigned int getUnfinishedPausedTorrentsNb() const;
+    bool hasActiveTorrents() const;
     bool isQueueingEnabled() const;
     int getDlTorrentPriority(QString hash) const;
     int getUpTorrentPriority(QString hash) const;

@@ -40,8 +40,6 @@
 class bittorrent;
 class createtorrent;
 class QTimer;
-class DownloadingTorrents;
-class FinishedTorrents;
 class downloadFromURL;
 class SearchEngine;
 class QLocalServer;
@@ -57,6 +55,7 @@ class QLabel;
 class QModelIndex;
 class HttpServer;
 class QFrame;
+class TransferListWidget;
 
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -73,14 +72,12 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QSystemTrayIcon *myTrayIcon;
     QPointer<QTimer> systrayCreator;
     QMenu *myTrayIconMenu;
-    DownloadingTorrents *downloadingTorrentTab;
-    FinishedTorrents *finishedTorrentTab;
+    TransferListWidget *transferList;
     QLabel *connecStatusLblIcon;
     bool systrayIntegration;
     bool displaySpeedInTitle;
     bool force_exit;
-    unsigned int refreshInterval;
-    QTimer *refresher;
+    //unsigned int refreshInterval;
     QLabel *dlSpeedLbl;
     QLabel *upSpeedLbl;
     QLabel *ratioLbl;
@@ -119,21 +116,15 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void on_actionShow_console_triggered();
     void readParamsOnSocket();
     void acceptConnection();
-    void togglePausedState(QString hash);
-    void torrentDoubleClicked(QString hash, bool finished);
-    void on_actionPreview_file_triggered();
     void previewFile(QString filePath);
     void balloonClicked();
     void writeSettings();
     void readSettings();
     void on_actionExit_triggered();
     void createTrayIcon();
-    void updateUnfinishedTorrentNumber(unsigned int nb);
-    void updateFinishedTorrentNumber(unsigned int nb);
     void fullDiskError(QTorrentHandle& h, QString msg) const;
     void handleDownloadFromUrlFailure(QString, QString) const;
     void createSystrayDelayed();
-    void setPaused(QTorrentHandle &h) const;
     // Keyboard shortcuts
     void createKeyboardShortcuts();
     void displayDownTab() const;
@@ -141,17 +132,10 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void displaySearchTab() const;
     void displayRSSTab() const;
     // Torrent actions
-    void on_actionTorrent_Properties_triggered();
-    void on_actionPause_triggered();
-    void on_actionPause_All_triggered();
-    void on_actionStart_triggered();
-    void on_actionStart_All_triggered();
-    void on_actionOpen_triggered();
-    void on_actionDelete_Permanently_triggered();
-    void on_actionDelete_triggered();
     void on_actionSet_global_upload_limit_triggered();
     void on_actionSet_global_download_limit_triggered();
     void on_actionDocumentation_triggered() const;
+    void on_actionOpen_triggered();
     void checkConnectionStatus();
     void configureSession(bool deleteOptions);
     void processParams(const QStringList& params);
@@ -159,16 +143,9 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void addUnauthenticatedTracker(QPair<QTorrentHandle,QString> tracker);
     void processDownloadedFiles(QString path, QString url);
     void downloadFromURLList(const QStringList& urls);
-    void deleteTorrent(QString hash);
     void finishedTorrent(QTorrentHandle& h) const;
-    void addedTorrent(QTorrentHandle& h) const;
-    void checkedTorrent(QTorrentHandle& h) const;
-    void pausedTorrent(QTorrentHandle& h) const;
-    void resumedTorrent(QTorrentHandle& h) const;
-    void updateLists(bool force=false);
+    //void updateLists(bool force=false);
     bool initWebUi(QString username, QString password, int port);
-    void on_actionIncreasePriority_triggered();
-    void on_actionDecreasePriority_triggered();
     void scrapeTrackers();
     // Options slots
     void on_actionOptions_triggered();
@@ -180,10 +157,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
   public slots:
     void trackerAuthenticationRequired(QTorrentHandle& h);
     void setTabText(int index, QString text) const;
-    void openDestinationFolder() const;
-    void goBuyPage() const;
-    void copyMagnetURI() const;
     void updateRatio();
+    void showNotificationBaloon(QString title, QString msg) const;
 
   protected:
     void closeEvent(QCloseEvent *);
