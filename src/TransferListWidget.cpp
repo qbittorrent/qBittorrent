@@ -37,7 +37,7 @@
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QDesktopServices>
-#include <QBasicTimer>
+#include <QTimer>
 #include <QSettings>
 #include <QClipboard>
 #include <QColor>
@@ -89,8 +89,9 @@ TransferListWidget::TransferListWidget(QWidget *parent, bittorrent *_BTSession):
   connect(header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLHoSMenu(const QPoint&)));
 
   // Refresh timer
-  refreshTimer = new QBasicTimer();
-  refreshTimer->start(settings.value("Preferences/General/RefreshInterval", 1500).toInt(), this);
+  refreshTimer = new QTimer();
+  refreshTimer->start(settings.value("Preferences/General/RefreshInterval", 1500).toInt());
+  connect(refreshTimer, SIGNAL(timeout()), this, SLOT(refreshList()));
 }
 
 TransferListWidget::~TransferListWidget() {
@@ -99,10 +100,6 @@ TransferListWidget::~TransferListWidget() {
   delete proxyModel;
   delete listModel;
   delete listDelegate;
-}
-
-void TransferListWidget::timerEvent(QTimerEvent*) {
-  refreshList();
 }
 
 void TransferListWidget::addTorrent(QTorrentHandle& h) {
@@ -146,7 +143,6 @@ void TransferListWidget::pauseTorrent(QString hash) {
 }
 
 void TransferListWidget::pauseTorrent(int row) {
-  qDebug("Torrent visibly paused");
   listModel->setData(listModel->index(row, DLSPEED), QVariant((double)0.0));
   listModel->setData(listModel->index(row, UPSPEED), QVariant((double)0.0));
   listModel->setData(listModel->index(row, ETA), QVariant((qlonglong)-1));
@@ -263,7 +259,7 @@ void TransferListWidget::setFinished(QTorrentHandle &h) {
 }
 
 void TransferListWidget::setRefreshInterval(int t) {
-  refreshTimer->start(t, this);
+  refreshTimer->start(t);
 }
 
 void TransferListWidget::refreshList() {
@@ -343,7 +339,6 @@ void TransferListWidget::pauseSelectedTorrents() {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if(h.is_valid() && !h.is_paused()) {
       h.pause();
-      qDebug("row: %d", index.row());
       pauseTorrent(index.row());
     }
   }

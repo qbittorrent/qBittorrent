@@ -38,7 +38,7 @@ class TransferListDelegate;
 class QStandardItemModel;
 class QSortFilterProxyModel;
 class bittorrent;
-class QBasicTimer;
+class QTimer;
 
 class TransferListWidget: public QTreeView {
   Q_OBJECT
@@ -48,14 +48,13 @@ private:
   QStandardItemModel *listModel;
   QSortFilterProxyModel *proxyModel;
   bittorrent* BTSession;
-  QBasicTimer *refreshTimer;
+  QTimer *refreshTimer;
 
 public:
   TransferListWidget(QWidget *parent, bittorrent* BTSession);
   ~TransferListWidget();
 
 protected:
-  void timerEvent(QTimerEvent*);
   int getRowFromHash(QString hash) const;
   QString getHashFromRow(int row) const;
 
