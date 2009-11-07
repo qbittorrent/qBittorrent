@@ -33,6 +33,7 @@
 #include "bittorrent.h"
 #include "torrentPersistentData.h"
 #include "previewSelect.h"
+#include "allocationDlg.h"
 #include "options_imp.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
@@ -86,6 +87,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, bittorrent *_BTSession):
 
   // Listen for list events
   connect(this, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(torrentDoubleClicked(QModelIndex)));
+  connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayListMenu(const QPoint&)));
   connect(header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLHoSMenu(const QPoint&)));
 
   // Refresh timer
@@ -416,7 +418,6 @@ void TransferListWidget::decreasePrioSelectedTorrents() {
   }
 }
 
-// FIXME: Use this function
 void TransferListWidget::buySelectedTorrents() const {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   foreach(const QModelIndex &index, selectedIndexes) {
@@ -426,7 +427,6 @@ void TransferListWidget::buySelectedTorrents() const {
   }
 }
 
-//FIXME: Use this function
 void TransferListWidget::copySelectedMagnetURIs() const {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   QStringList magnet_uris;
@@ -442,7 +442,6 @@ void TransferListWidget::hidePriorityColumn(bool hide) {
   setColumnHidden(PRIORITY, hide);
 }
 
-// FIXME: Use it
 void TransferListWidget::openSelectedTorrentsFolder() const {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   QStringList pathsList;
@@ -458,7 +457,6 @@ void TransferListWidget::openSelectedTorrentsFolder() const {
   }
 }
 
-// FIXME: Use it
 void TransferListWidget::previewSelectedTorrents() {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   QStringList pathsList;
@@ -467,6 +465,41 @@ void TransferListWidget::previewSelectedTorrents() {
     if(h.is_valid()) {
       new previewSelect(this, h);
     }
+  }
+}
+
+void TransferListWidget::setDlLimitSelectedTorrents() {
+  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+  QStringList hashes;
+  foreach(const QModelIndex &index, selectedIndexes) {
+    // Get the file hash
+    QString hash = getHashFromRow(index.row());
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(h.is_valid() && !h.is_seed())
+      hashes << hash;
+  }
+  Q_ASSERT(hashes.size() > 0);
+  new BandwidthAllocationDialog(this, false, BTSession, hashes);
+}
+
+void TransferListWidget::setUpLimitSelectedTorrents() {
+  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+  QStringList hashes;
+  foreach(const QModelIndex &index, selectedIndexes) {
+    // Get the file hash
+    hashes << getHashFromRow(index.row());
+  }
+  Q_ASSERT(hashes.size() > 0);
+  new BandwidthAllocationDialog(this, true, BTSession, hashes);
+}
+
+void TransferListWidget::recheckSelectedTorrents() {
+  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+  foreach(const QModelIndex &index, selectedIndexes){
+    QString hash = getHashFromRow(index.row());
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(h.is_valid() && h.has_metadata())
+      h.force_recheck();
   }
 }
 
@@ -529,4 +562,91 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&){
   QAction *act = hideshowColumn.exec(QCursor::pos());
   int col = actions.indexOf(act);
   setColumnHidden(col, !isColumnHidden(col));
+}
+
+// FIXME: Not everything should be displayed for seeding torrents
+void TransferListWidget::displayListMenu(const QPoint&) {
+  // Create actions
+  QAction actionStart(QIcon(QString::fromUtf8(":/Icons/skin/play.png")), tr("Start"), 0);
+  connect(&actionStart, SIGNAL(triggered()), this, SLOT(startSelectedTorrents()));
+  QAction actionPause(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")), tr("Pause"), 0);
+  connect(&actionPause, SIGNAL(triggered()), this, SLOT(pauseSelectedTorrents()));
+  QAction actionDelete(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")), tr("Delete"), 0);
+  connect(&actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedTorrents()));
+  QAction actionPreview_file(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")), tr("Preview file"), 0);
+  connect(&actionPreview_file, SIGNAL(triggered()), this, SLOT(previewSelectedTorrents()));
+  QAction actionSet_upload_limit(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")), tr("Set upload limit"), 0);
+  connect(&actionSet_upload_limit, SIGNAL(triggered()), this, SLOT(setUpLimitSelectedTorrents()));
+  QAction actionSet_download_limit(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")), tr("Set download limit"), 0);
+  connect(&actionSet_download_limit, SIGNAL(triggered()), this, SLOT(setDlLimitSelectedTorrents()));
+  QAction actionDelete_Permanently(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")), tr("Delete Permanently"), 0);
+  connect(&actionDelete_Permanently, SIGNAL(triggered()), this, SLOT(deletePermSelectedTorrents()));
+  QAction actionOpen_destination_folder(QIcon(QString::fromUtf8(":/Icons/oxygen/folder.png")), tr("Open destination folder"), 0);
+  connect(&actionOpen_destination_folder, SIGNAL(triggered()), this, SLOT(openSelectedTorrentsFolder()));
+  QAction actionBuy_it(QIcon(QString::fromUtf8(":/Icons/oxygen/wallet.png")), tr("Buy it"), 0);
+  connect(&actionBuy_it, SIGNAL(triggered()), this, SLOT(buySelectedTorrents()));
+  QAction actionIncreasePriority(QIcon(QString::fromUtf8(":/Icons/skin/increase.png")), tr("Increase priority"), 0);
+  connect(&actionIncreasePriority, SIGNAL(triggered()), this, SLOT(increasePrioSelectedTorrents()));
+  QAction actionDecreasePriority(QIcon(QString::fromUtf8(":/Icons/skin/decrease.png")), tr("Decrease priority"), 0);
+  connect(&actionDecreasePriority, SIGNAL(triggered()), this, SLOT(decreasePrioSelectedTorrents()));
+  QAction actionForce_recheck(QIcon(QString::fromUtf8(":/Icons/oxygen/gear.png")), tr("Force recheck"), 0);
+  connect(&actionForce_recheck, SIGNAL(triggered()), this, SLOT(recheckSelectedTorrents()));
+  QAction actionCopy_magnet_link(QIcon(QString::fromUtf8(":/Icons/magnet.png")), tr("Copy magnet link"), 0);
+  connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
+  // End of actions
+  QMenu listMenu(this);
+  // Enable/disable pause/start action given the DL state
+  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+  bool has_pause = false, has_start = false, has_preview = false;
+  bool one_has_metadata = false;
+  QTorrentHandle h;
+  qDebug("Displaying menu");
+  foreach(const QModelIndex &index, selectedIndexes) {
+    // Get the file name
+    QString hash = getHashFromRow(index.row());
+    // Get handle and pause the torrent
+    h = BTSession->getTorrentHandle(hash);
+    if(!h.is_valid()) continue;
+    if(h.has_metadata()) {
+      one_has_metadata = true;
+    }
+    if(h.is_paused()) {
+      if(!has_start) {
+        listMenu.addAction(&actionStart);
+        has_start = true;
+      }
+    }else{
+      if(!has_pause) {
+        listMenu.addAction(&actionPause);
+        has_pause = true;
+      }
+    }
+    if(h.has_metadata() && BTSession->isFilePreviewPossible(hash) && !has_preview) {
+      listMenu.addAction(&actionPreview_file);
+      has_preview = true;
+    }
+    if(has_pause && has_start && has_preview) break;
+  }
+  listMenu.addSeparator();
+  listMenu.addAction(&actionDelete);
+  listMenu.addAction(&actionDelete_Permanently);
+  listMenu.addSeparator();
+  listMenu.addAction(&actionSet_download_limit);
+  listMenu.addAction(&actionSet_upload_limit);
+  listMenu.addSeparator();
+  if(one_has_metadata) {
+    listMenu.addAction(&actionForce_recheck);
+    listMenu.addSeparator();
+  }
+  listMenu.addAction(&actionOpen_destination_folder);
+  if(BTSession->isQueueingEnabled()) {
+    listMenu.addSeparator();
+    listMenu.addAction(&actionIncreasePriority);
+    listMenu.addAction(&actionDecreasePriority);
+  }
+  listMenu.addSeparator();
+  listMenu.addAction(&actionCopy_magnet_link);
+  listMenu.addAction(&actionBuy_it);
+  // Call menu
+  listMenu.exec(QCursor::pos());
 }

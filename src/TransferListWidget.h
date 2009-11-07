@@ -66,6 +66,7 @@ protected slots:
   void torrentDoubleClicked(QModelIndex index);
   bool loadHiddenColumns();
   void saveHiddenColumns();
+  void displayListMenu(const QPoint&);
   //void setRowColor(int row, QColor color);
 
 public slots:
@@ -85,6 +86,9 @@ public slots:
   void buySelectedTorrents() const;
   void copySelectedMagnetURIs() const;
   void openSelectedTorrentsFolder() const;
+  void recheckSelectedTorrents();
+  void setDlLimitSelectedTorrents();
+  void setUpLimitSelectedTorrents();
   void previewSelectedTorrents();
   void hidePriorityColumn(bool hide);
   void displayDLHoSMenu(const QPoint&);
