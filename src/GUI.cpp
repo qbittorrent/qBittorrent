@@ -62,6 +62,7 @@
 #include "console_imp.h"
 #include "httpserver.h"
 #include "torrentPersistentData.h"
+#include "TransferListFiltersWidget.h"
 
 using namespace libtorrent;
 
@@ -135,10 +136,16 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
 
   qDebug("create tabWidget");
   tabs = new QTabWidget();
+  vSplitter = new QSplitter(Qt::Horizontal);
+
   // Transfer List tab
-  transferList = new TransferListWidget(tabs, BTSession);
-  int index_tab = tabs->addTab(transferList, tr("Transfers"));
-  tabs->setTabIcon(index_tab, QIcon(QString::fromUtf8(":/Icons/oxygen/folder-remote.png")));
+  transferListFilters = new TransferListFiltersWidget(vSplitter);
+  vSplitter->addWidget(transferListFilters);
+  transferList = new TransferListWidget(vSplitter, BTSession);
+  vSplitter->addWidget(transferList);
+
+  tabs->addTab(vSplitter, QIcon(QString::fromUtf8(":/Icons/oxygen/folder-remote.png")), tr("Transfers"));
+
   vboxLayout->addWidget(tabs);
 
   // Transfer list slots
@@ -155,8 +162,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   //connect(downloadingTorrentTab, SIGNAL(torrentDoubleClicked(QString, bool)), this, SLOT(torrentDoubleClicked(QString, bool)));
   // Search engine tab
   searchEngine = new SearchEngine(BTSession, myTrayIcon, systrayIntegration);
-  index_tab = tabs->addTab(searchEngine, tr("Search"));
-  tabs->setTabIcon(index_tab, QIcon(QString::fromUtf8(":/Icons/oxygen/edit-find.png")));
+  tabs->addTab(searchEngine, QIcon(QString::fromUtf8(":/Icons/oxygen/edit-find.png")), tr("Search"));
   readSettings();
   // RSS Tab
   rssWidget = 0;
@@ -233,6 +239,11 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   if(settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), false).toBool()) {
     this->setWindowState(Qt::WindowMinimized);
   }
+  // Splitter size
+  QList<int> sizes;
+  sizes << 120;
+  sizes << vSplitter->width()-120;
+  vSplitter->setSizes(sizes);
   scrapeTimer = new QTimer(this);
   connect(scrapeTimer, SIGNAL(timeout()), this, SLOT(scrapeTrackers()));
   scrapeTimer->start(20000);
@@ -260,7 +271,9 @@ GUI::~GUI() {
   if(rssWidget != 0)
     delete rssWidget;
   delete searchEngine;
+  delete transferListFilters;
   delete transferList;
+  delete vSplitter;
   delete checkConnect;
   qDebug("1");
   if(systrayCreator) {

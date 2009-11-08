@@ -56,6 +56,8 @@ class QModelIndex;
 class HttpServer;
 class QFrame;
 class TransferListWidget;
+class TransferListFiltersWidget;
+class QSplitter;
 
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -73,6 +75,8 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QPointer<QTimer> systrayCreator;
     QMenu *myTrayIconMenu;
     TransferListWidget *transferList;
+    TransferListFiltersWidget *transferListFilters;
+    QSplitter *vSplitter;
     QLabel *connecStatusLblIcon;
     bool systrayIntegration;
     bool displaySpeedInTitle;
