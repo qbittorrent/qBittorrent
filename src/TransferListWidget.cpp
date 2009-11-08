@@ -199,7 +199,7 @@ void TransferListWidget::updateTorrent(int row) {
             listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/run-build.png"))), Qt::DecorationRole);
             listModel->setData(listModel->index(row, PROGRESS), QVariant((double)h.progress()));
           }else {
-            listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/mail-queued.png"))), Qt::DecorationRole);
+            listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/mail-queue.png"))), Qt::DecorationRole);
             listModel->setData(listModel->index(row, ETA), QVariant((qlonglong)-1));
           }
           // Reset speeds and seeds/leech
