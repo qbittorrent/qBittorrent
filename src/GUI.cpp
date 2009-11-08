@@ -163,7 +163,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   // Search engine tab
   searchEngine = new SearchEngine(BTSession, myTrayIcon, systrayIntegration);
   tabs->addTab(searchEngine, QIcon(QString::fromUtf8(":/Icons/oxygen/edit-find.png")), tr("Search"));
-  readSettings();
+
   // RSS Tab
   rssWidget = 0;
 
@@ -235,15 +235,16 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   QMainWindow::statusBar()->addPermanentWidget(upSpeedLbl);
   QMainWindow::statusBar()->addPermanentWidget(statusSep4);
   QMainWindow::statusBar()->addPermanentWidget(ratioLbl);
+
   show();
+
+  // Load Window state and sizes
+  readSettings();
+
   if(settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), false).toBool()) {
     this->setWindowState(Qt::WindowMinimized);
   }
-  // Splitter size
-  QList<int> sizes;
-  sizes << 120;
-  sizes << vSplitter->width()-120;
-  vSplitter->setSizes(sizes);
+
   scrapeTimer = new QTimer(this);
   connect(scrapeTimer, SIGNAL(timeout()), this, SLOT(scrapeTrackers()));
   scrapeTimer->start(20000);
@@ -365,6 +366,11 @@ void GUI::writeSettings() {
   settings.beginGroup(QString::fromUtf8("MainWindow"));
   settings.setValue(QString::fromUtf8("size"), size());
   settings.setValue(QString::fromUtf8("pos"), pos());
+  // Splitter size
+  QStringList sizes_str;
+  sizes_str << QString::number(vSplitter->sizes().first());
+  sizes_str << QString::number(vSplitter->sizes().last());
+  settings.setValue(QString::fromUtf8("vSplitterSizes"), sizes_str);
   settings.endGroup();
 }
 
@@ -436,6 +442,18 @@ void GUI::readSettings() {
   settings.beginGroup(QString::fromUtf8("MainWindow"));
   resize(settings.value(QString::fromUtf8("size"), size()).toSize());
   move(settings.value(QString::fromUtf8("pos"), screenCenter()).toPoint());
+  QStringList sizes_str = settings.value("vSplitterSizes", QStringList()).toStringList();
+  // Splitter size
+  QList<int> sizes;
+  if(sizes_str.size() == 2) {
+    sizes << sizes_str.first().toInt();
+    sizes << sizes_str.last().toInt();
+  } else {
+    qDebug("Default splitter size");
+    sizes << 120;
+    sizes << vSplitter->width()-120;
+  }
+  vSplitter->setSizes(sizes);
   settings.endGroup();
 }
 
