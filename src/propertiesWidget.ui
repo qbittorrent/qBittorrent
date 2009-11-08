@@ -733,9 +733,23 @@
     </widget>
    </item>
    <item>
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="main_infos_button">
+       <property name="styleSheet">
+        <string>QPushButton { 
+border: 1px solid rgb(85, 81, 91);
+border-radius: 3px;
+padding: 2px;
+}</string>
+       </property>
        <property name="text">
         <string>General</string>
        </property>
@@ -753,6 +767,13 @@
      </item>
      <item>
       <widget class="QPushButton" name="trackers_button">
+       <property name="styleSheet">
+        <string>QPushButton { 
+border: 1px solid rgb(85, 81, 91);
+border-radius: 3px;
+padding: 2px;
+}</string>
+       </property>
        <property name="text">
         <string>Trackers</string>
        </property>
@@ -770,6 +791,13 @@
      </item>
      <item>
       <widget class="QPushButton" name="url_seeds_button">
+       <property name="styleSheet">
+        <string>QPushButton { 
+border: 1px solid rgb(85, 81, 91);
+border-radius: 3px;
+padding: 2px;
+}</string>
+       </property>
        <property name="text">
         <string>URL seeds</string>
        </property>
@@ -787,6 +815,13 @@
      </item>
      <item>
       <widget class="QPushButton" name="files_button">
+       <property name="styleSheet">
+        <string>QPushButton { 
+border: 1px solid rgb(85, 81, 91);
+border-radius: 3px;
+padding: 2px;
+}</string>
+       </property>
        <property name="text">
         <string>Files</string>
        </property>

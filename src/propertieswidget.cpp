@@ -39,6 +39,9 @@
 #include "realprogressbarthread.h"
 #include "bittorrent.h"
 
+#define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;}"
+#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;background-color: rgb(255, 208, 105);}"
+
 PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession): QWidget(parent), transferList(transferList), BTSession(BTSession) {
   setupUi(this);
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle&)), this, SLOT(loadTorrentInfos(QTorrentHandle &)));
@@ -68,7 +71,7 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
   if(!h.is_valid()) return;
   if(progressBarUpdater)
     delete progressBarUpdater;
-    progressBarUpdater = 0;
+  progressBarUpdater = 0;
   try {
     // Save path
     save_path->setText(TorrentPersistentData::getSavePath(h.hash()));
@@ -124,8 +127,8 @@ void PropertiesWidget::loadDynamicData() {
 
 void PropertiesWidget::setIncrementalDownload(int checkboxState) {
   if(!h.is_valid()) return;
-   h.set_sequential_download(checkboxState == Qt::Checked);
-   TorrentPersistentData::saveSequentialStatus(h);
+  h.set_sequential_download(checkboxState == Qt::Checked);
+  TorrentPersistentData::saveSequentialStatus(h);
 }
 
 void PropertiesWidget::loadTrackers() {
@@ -164,10 +167,23 @@ void PropertiesWidget::loadTrackers() {
 }
 
 /* Tab buttons */
+QPushButton* PropertiesWidget::getButtonFromIndex(int index) {
+  switch(index) {
+      case TRACKERS_TAB:
+    return trackers_button;
+      default:
+    return main_infos_button;
+  }
+}
+
 void PropertiesWidget::on_main_infos_button_clicked() {
+  getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
   stackedProperties->setCurrentIndex(MAIN_TAB);
+  main_infos_button->setStyleSheet(SELECTED_BUTTON_CSS);
 }
 
 void PropertiesWidget::on_trackers_button_clicked() {
+  getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
   stackedProperties->setCurrentIndex(TRACKERS_TAB);
+  trackers_button->setStyleSheet(SELECTED_BUTTON_CSS);
 }

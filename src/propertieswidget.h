@@ -56,6 +56,9 @@ private:
   QVBoxLayout *progressBarVbox;
   bittorrent* BTSession;
 
+protected:
+  QPushButton* getButtonFromIndex(int index);
+
 protected slots:
   void loadTorrentInfos(QTorrentHandle &h);
   void loadDynamicData();
