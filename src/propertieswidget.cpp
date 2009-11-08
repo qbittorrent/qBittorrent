@@ -135,6 +135,8 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     incrementalDownload->setChecked(TorrentPersistentData::isSequentialDownload(h.hash()));
     // Trackers
     loadTrackers();
+    // URL seeds
+    loadUrlSeeds();
     // downloaded pieces updater
     progressBarUpdater = new RealProgressBarThread(progressBar, h);
     progressBarUpdater->start();
@@ -210,6 +212,27 @@ void PropertiesWidget::loadTrackers() {
     trackerURL->setText(tracker);
   }else{
     trackerURL->setText(tr("None - Unreachable?"));
+  }
+}
+
+void PropertiesWidget::loadUrlSeeds(){
+  QStringList already_added;
+  listWebSeeds->clear();
+  QVariantList url_seeds = TorrentPersistentData::getUrlSeeds(h.hash());
+  foreach(const QVariant &var_url_seed, url_seeds){
+    QString url_seed = var_url_seed.toString();
+    if(!url_seed.isEmpty()) {
+      new QListWidgetItem(url_seed, listWebSeeds);
+      already_added << url_seed;
+    }
+  }
+  // Load the hard-coded url seeds
+  QStringList hc_seeds = h.url_seeds();
+  // Add hard coded url seeds
+  foreach(const QString &hc_seed, hc_seeds){
+    if(!already_added.contains(hc_seed)){
+      new QListWidgetItem(hc_seed, listWebSeeds);
+    }
   }
 }
 

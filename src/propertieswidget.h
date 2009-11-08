@@ -66,6 +66,7 @@ protected slots:
   void loadDynamicData();
   void setIncrementalDownload(int checkboxState);
   void loadTrackers();
+  void loadUrlSeeds();
   void on_main_infos_button_clicked();
   void on_trackers_button_clicked();
   void on_url_seeds_button_clicked();
