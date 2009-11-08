@@ -598,7 +598,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   bool has_pause = false, has_start = false, has_preview = false;
-  bool one_has_metadata = false;
+  bool one_has_metadata = false, one_not_seed = false;
   QTorrentHandle h;
   qDebug("Displaying menu");
   foreach(const QModelIndex &index, selectedIndexes) {
@@ -607,9 +607,10 @@ void TransferListWidget::displayListMenu(const QPoint&) {
     // Get handle and pause the torrent
     h = BTSession->getTorrentHandle(hash);
     if(!h.is_valid()) continue;
-    if(h.has_metadata()) {
+    if(h.has_metadata())
       one_has_metadata = true;
-    }
+    if(!h.is_seed())
+      one_not_seed = true;
     if(h.is_paused()) {
       if(!has_start) {
         listMenu.addAction(&actionStart);
@@ -625,13 +626,14 @@ void TransferListWidget::displayListMenu(const QPoint&) {
       listMenu.addAction(&actionPreview_file);
       has_preview = true;
     }
-    if(has_pause && has_start && has_preview) break;
+    if(has_pause && has_start && has_preview && one_not_seed) break;
   }
   listMenu.addSeparator();
   listMenu.addAction(&actionDelete);
   listMenu.addAction(&actionDelete_Permanently);
   listMenu.addSeparator();
-  listMenu.addAction(&actionSet_download_limit);
+  if(one_not_seed)
+    listMenu.addAction(&actionSet_download_limit);
   listMenu.addAction(&actionSet_upload_limit);
   listMenu.addSeparator();
   if(one_has_metadata) {
@@ -639,7 +641,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
     listMenu.addSeparator();
   }
   listMenu.addAction(&actionOpen_destination_folder);
-  if(BTSession->isQueueingEnabled()) {
+  if(BTSession->isQueueingEnabled() && one_not_seed) {
     listMenu.addSeparator();
     listMenu.addAction(&actionIncreasePriority);
     listMenu.addAction(&actionDecreasePriority);
