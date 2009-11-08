@@ -46,7 +46,13 @@
 PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession): QWidget(parent), transferList(transferList), BTSession(BTSession) {
   setupUi(this);
   state = VISIBLE;
-  reduce();
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  if(!settings.value("TorrentProperties/Visible", false).toBool()) {
+    reduce();
+  } else {
+    main_infos_button->setStyleSheet(SELECTED_BUTTON_CSS);
+    setEnabled(false);
+  }
 
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle&)), this, SLOT(loadTorrentInfos(QTorrentHandle &)));
   connect(incrementalDownload, SIGNAL(stateChanged(int)), this, SLOT(setIncrementalDownload(int)));
@@ -64,6 +70,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transfer
 }
 
 PropertiesWidget::~PropertiesWidget() {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.setValue("TorrentProperties/Visible", state==VISIBLE);
   delete refreshTimer;
   if(progressBarUpdater)
     delete progressBarUpdater;
@@ -85,9 +93,29 @@ void PropertiesWidget::slide() {
   }
 }
 
+void PropertiesWidget::clear() {
+  save_path->clear();
+  creator->clear();
+  hash_lbl->clear();
+  comment_lbl->clear();
+  incrementalDownload->setChecked(false);
+  trackersURLS->clear();
+  trackerURL->clear();
+  progressBar->setProgress(QRealArray());
+  failed->clear();
+  upTotal->clear();
+  dlTotal->clear();
+  shareRatio->clear();
+  setEnabled(false);
+}
+
 void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
   h = _h;
-  if(!h.is_valid()) return;
+  if(!h.is_valid()) {
+    clear();
+    return;
+  }
+  setEnabled(true);
   if(progressBarUpdater)
     delete progressBarUpdater;
   progressBarUpdater = 0;

@@ -79,6 +79,10 @@ TransferListWidget::TransferListWidget(QWidget *parent, bittorrent *_BTSession):
   setRootIsDecorated(false);
   setAllColumnsShowFocus(true);
   setSortingEnabled(true);
+  setSelectionMode(QAbstractItemView::ExtendedSelection);
+  setItemsExpandable(false);
+  setAutoScroll(true);
+
   hideColumn(PRIORITY);
   hideColumn(HASH);
   hideColumn(STATUS);
@@ -139,6 +143,9 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
       listModel->setData(listModel->index(row, STATUS), DOWNLOADING);
       //setRowColor(row, QString::fromUtf8("grey"));
     }
+    // Select first torrent to be added
+    if(listModel->rowCount() == 1)
+      selectionModel()->setCurrentIndex(proxyModel->index(row, NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
   } catch(invalid_handle e) {
     // Remove added torrent
     listModel->removeRow(row);
@@ -403,11 +410,13 @@ void TransferListWidget::deleteSelectedTorrents() {
         tr("&Yes"), tr("&No"),
         QString(), 0, 1);
     if(ret) return;
+    QStringList hashes;
     foreach(const QModelIndex &index, selectedIndexes) {
       // Get the file hash
-      int row = proxyModel->mapToSource(index).row();
-      QString hash = getHashFromRow(row);
-      deleteTorrent(row);
+      hashes << getHashFromRow(proxyModel->mapToSource(index).row());
+    }
+    foreach(const QString &hash, hashes) {
+      deleteTorrent(getRowFromHash(hash));
       BTSession->deleteTorrent(hash, false);
     }
   }
@@ -423,11 +432,13 @@ void TransferListWidget::deletePermSelectedTorrents() {
         tr("&Yes"), tr("&No"),
         QString(), 0, 1);
     if(ret) return;
+    QStringList hashes;
     foreach(const QModelIndex &index, selectedIndexes) {
       // Get the file hash
-      int row = proxyModel->mapToSource(index).row();
-      QString hash = getHashFromRow(row);
-      deleteTorrent(row);
+      hashes << getHashFromRow(proxyModel->mapToSource(index).row());
+    }
+    foreach(const QString &hash, hashes) {
+      deleteTorrent(getRowFromHash(hash));
       BTSession->deleteTorrent(hash, true);
     }
   }
@@ -790,8 +801,11 @@ void TransferListWidget::loadLastSortedColumn() {
 }
 
 void TransferListWidget::currentChanged(const QModelIndex& current, const QModelIndex&) {
-  int row = proxyModel->mapToSource(current).row();
-  QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(row));
+  QTorrentHandle h;
+  if(current.isValid()) {
+    int row = proxyModel->mapToSource(current).row();
+    h = BTSession->getTorrentHandle(getHashFromRow(row));
+  }
   emit currentTorrentChanged(h);
 }
 

@@ -74,6 +74,7 @@ protected slots:
 public slots:
   void reduce();
   void slide();
+  void clear();
 
 public:
   PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession);
