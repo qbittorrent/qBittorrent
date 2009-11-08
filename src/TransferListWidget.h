@@ -74,6 +74,7 @@ protected slots:
   void saveHiddenColumns();
   void displayListMenu(const QPoint&);
   void updateMetadata(QTorrentHandle &h);
+  void currentChanged(const QModelIndex& current, const QModelIndex&);
   //void setRowColor(int row, QColor color);
 
 public slots:
@@ -100,6 +101,9 @@ public slots:
   void hidePriorityColumn(bool hide);
   void displayDLHoSMenu(const QPoint&);
   void applyFilter(int f);
+
+signals:
+  void currentTorrentChanged(QTorrentHandle &h);
 
 };
 

@@ -33,11 +33,31 @@
 
 #include <QWidget>
 #include "ui_propertiesWidget.h"
+#include "qtorrenthandle.h"
+
+class TransferListWidget;
+class QTimer;
+class RealProgressBar;
+class QVBoxLayout;
+class RealProgressBarThread;
 
 class PropertiesWidget : public QWidget, private Ui::PropertiesWidget {
   Q_OBJECT
+
+private:
+  TransferListWidget *transferList;
+  QTorrentHandle h;
+  QTimer *refreshTimer;
+  RealProgressBar *progressBar;
+  RealProgressBarThread *progressBarUpdater;
+  QVBoxLayout *progressBarVbox;
+
+protected slots:
+  void loadTorrentInfos(QTorrentHandle &h);
+  void loadDynamicData();
+
 public:
-  PropertiesWidget(QWidget *parent);
+  PropertiesWidget(QWidget *parent, TransferListWidget *transferList);
   ~PropertiesWidget();
 };
 

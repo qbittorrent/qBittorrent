@@ -28,12 +28,88 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QTimer>
+#include <QVBoxLayout>
 #include "propertieswidget.h"
+#include "TransferListWidget.h"
+#include "torrentPersistentData.h"
+#include "realprogressbar.h"
+#include "realprogressbarthread.h"
 
-PropertiesWidget::PropertiesWidget(QWidget *parent): QWidget(parent) {
+PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transferList): QWidget(parent), transferList(transferList) {
   setupUi(this);
+  connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle&)), this, SLOT(loadTorrentInfos(QTorrentHandle &)));
+  // Downloaded pieces progress bar
+  progressBar = new RealProgressBar(this);
+  progressBar->setForegroundColor(Qt::blue);
+  progressBarVbox = new QVBoxLayout(RealProgressBox);
+  progressBarVbox->addWidget(progressBar);
+  progressBarUpdater = 0;
+  // Dynamic data refresher
+  refreshTimer = new QTimer(this);
+  connect(refreshTimer, SIGNAL(timeout()), this, SLOT(loadDynamicData()));
+  refreshTimer->start(10000); // 10sec
 }
 
 PropertiesWidget::~PropertiesWidget() {
+  delete refreshTimer;
+  if(progressBarUpdater)
+    delete progressBarUpdater;
+  delete progressBar;
+  delete progressBarVbox;
+}
 
+void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
+  h = _h;
+  if(!h.is_valid()) return;
+  if(progressBarUpdater)
+    delete progressBarUpdater;
+    progressBarUpdater = 0;
+  try {
+    // Save path
+    save_path->setText(TorrentPersistentData::getSavePath(h.hash()));
+    // Author
+    QString author = h.creator().trimmed();
+    if(author.isEmpty())
+      author = tr("Unknown");
+    creator->setText(author);
+    // Hash
+    hash_lbl->setText(h.hash());
+    // Comment
+    comment_lbl->setText(h.comment());
+    // downloaded pieces updater
+    progressBarUpdater = new RealProgressBarThread(progressBar, h);
+    progressBarUpdater->start();
+  } catch(invalid_handle e) {
+
+  }
+  // Load dynamic data
+  loadDynamicData();
+}
+
+void PropertiesWidget::loadDynamicData() {
+  if(!h.is_valid()) return;
+  try {
+    // Session infos
+    failed->setText(misc::friendlyUnit(h.total_failed_bytes()));
+    upTotal->setText(misc::friendlyUnit(h.total_payload_upload()));
+    dlTotal->setText(misc::friendlyUnit(h.total_payload_download()));
+    // Update ratio info
+    float ratio;
+    if(h.total_payload_download() == 0){
+      if(h.total_payload_upload() == 0)
+        ratio = 1.;
+      else
+        ratio = 10.; // Max ratio
+    }else{
+      ratio = (double)h.total_payload_upload()/(double)h.total_payload_download();
+      if(ratio > 10.){
+        ratio = 10.;
+      }
+    }
+    shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
+    // Downloaded pieces
+    if(progressBarUpdater)
+      progressBarUpdater->refresh();
+  } catch(invalid_handle e) {}
 }

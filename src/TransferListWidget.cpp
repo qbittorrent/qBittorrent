@@ -789,6 +789,12 @@ void TransferListWidget::loadLastSortedColumn() {
   }
 }
 
+void TransferListWidget::currentChanged(const QModelIndex& current, const QModelIndex&) {
+  int row = proxyModel->mapToSource(current).row();
+  QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(row));
+  emit currentTorrentChanged(h);
+}
+
 void TransferListWidget::applyFilter(int f) {
   switch(f) {
   case DOWNLOADING:
