@@ -139,11 +139,11 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   vSplitter = new QSplitter(Qt::Horizontal);
 
   // Transfer List tab
-  transferListFilters = new TransferListFiltersWidget(vSplitter);
-  vSplitter->addWidget(transferListFilters);
   transferList = new TransferListWidget(vSplitter, BTSession);
-  vSplitter->addWidget(transferList);
+  transferListFilters = new TransferListFiltersWidget(vSplitter, transferList);
 
+  vSplitter->addWidget(transferListFilters);
+  vSplitter->addWidget(transferList);
   tabs->addTab(vSplitter, QIcon(QString::fromUtf8(":/Icons/oxygen/folder-remote.png")), tr("Transfers"));
 
   vboxLayout->addWidget(tabs);
