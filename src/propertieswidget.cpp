@@ -39,6 +39,7 @@
 PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transferList): QWidget(parent), transferList(transferList) {
   setupUi(this);
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle&)), this, SLOT(loadTorrentInfos(QTorrentHandle &)));
+  connect(incrementalDownload, SIGNAL(stateChanged(int)), this, SLOT(setIncrementalDownload(int)));
   // Downloaded pieces progress bar
   progressBar = new RealProgressBar(this);
   progressBar->setForegroundColor(Qt::blue);
@@ -77,6 +78,8 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     hash_lbl->setText(h.hash());
     // Comment
     comment_lbl->setText(h.comment());
+    // Sequential download
+    incrementalDownload->setChecked(TorrentPersistentData::isSequentialDownload(h.hash()));
     // downloaded pieces updater
     progressBarUpdater = new RealProgressBarThread(progressBar, h);
     progressBarUpdater->start();
@@ -112,4 +115,10 @@ void PropertiesWidget::loadDynamicData() {
     if(progressBarUpdater)
       progressBarUpdater->refresh();
   } catch(invalid_handle e) {}
+}
+
+void PropertiesWidget::setIncrementalDownload(int checkboxState) {
+  if(!h.is_valid()) return;
+   h.set_sequential_download(checkboxState == Qt::Checked);
+   TorrentPersistentData::saveSequentialStatus(h);
 }

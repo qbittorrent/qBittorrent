@@ -55,6 +55,7 @@ private:
 protected slots:
   void loadTorrentInfos(QTorrentHandle &h);
   void loadDynamicData();
+  void setIncrementalDownload(int checkboxState);
 
 public:
   PropertiesWidget(QWidget *parent, TransferListWidget *transferList);
