@@ -68,6 +68,7 @@
   <file>Icons/flags/italy.png</file>
   <file>Icons/flags/south_korea.png</file>
   <file>Icons/flags/japan.png</file>
+  <file>Icons/oxygen/mail-queue.png</file>
   <file>Icons/oxygen/view-refresh.png</file>
   <file>Icons/oxygen/file.png</file>
   <file>Icons/oxygen/mail-folder-inbox.png</file>
@@ -76,6 +77,7 @@
   <file>Icons/oxygen/folder-new.png</file>
   <file>Icons/oxygen/folder-remote.png</file>
   <file>Icons/oxygen/edit-paste.png</file>
+  <file>Icons/oxygen/run-build.png</file>
   <file>Icons/oxygen/proxy.png</file>
   <file>Icons/oxygen/log.png</file>
   <file>Icons/oxygen/unavailable.png</file>

@@ -186,10 +186,10 @@ void TransferListWidget::updateTorrent(int row) {
         listModel->setData(listModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
         if(h.is_queued()) {
           if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) {
-            listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/time.png"))), Qt::DecorationRole);
+            listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/run-build.png"))), Qt::DecorationRole);
             listModel->setData(listModel->index(row, PROGRESS), QVariant((double)h.progress()));
           }else {
-            listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queued.png"))), Qt::DecorationRole);
+            listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/mail-queued.png"))), Qt::DecorationRole);
             listModel->setData(listModel->index(row, ETA), QVariant((qlonglong)-1));
           }
           // Reset speeds and seeds/leech
@@ -209,7 +209,7 @@ void TransferListWidget::updateTorrent(int row) {
       case torrent_status::checking_files:
       case torrent_status::queued_for_checking:
       case torrent_status::checking_resume_data:
-        listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/time.png"))), Qt::DecorationRole);
+        listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/run-build.png"))), Qt::DecorationRole);
         //setRowColor(row, QString::fromUtf8("grey"));
         break;
       case torrent_status::downloading:
