@@ -169,8 +169,12 @@ void PropertiesWidget::loadTrackers() {
 /* Tab buttons */
 QPushButton* PropertiesWidget::getButtonFromIndex(int index) {
   switch(index) {
-      case TRACKERS_TAB:
+  case TRACKERS_TAB:
     return trackers_button;
+  case URLSEEDS_TAB:
+    return url_seeds_button;
+  case FILES_TAB:
+    return files_button;
       default:
     return main_infos_button;
   }
@@ -186,4 +190,16 @@ void PropertiesWidget::on_trackers_button_clicked() {
   getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
   stackedProperties->setCurrentIndex(TRACKERS_TAB);
   trackers_button->setStyleSheet(SELECTED_BUTTON_CSS);
+}
+
+void PropertiesWidget::on_url_seeds_button_clicked() {
+  getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
+  stackedProperties->setCurrentIndex(URLSEEDS_TAB);
+  url_seeds_button->setStyleSheet(SELECTED_BUTTON_CSS);
+}
+
+void PropertiesWidget::on_files_button_clicked() {
+  getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
+  stackedProperties->setCurrentIndex(FILES_TAB);
+  files_button->setStyleSheet(SELECTED_BUTTON_CSS);
 }

@@ -66,6 +66,8 @@ protected slots:
   void loadTrackers();
   void on_main_infos_button_clicked();
   void on_trackers_button_clicked();
+  void on_url_seeds_button_clicked();
+  void on_files_button_clicked();
 
 public:
   PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession);

@@ -730,6 +730,8 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="page_3"/>
+     <widget class="QWidget" name="page_4"/>
     </widget>
    </item>
    <item>
