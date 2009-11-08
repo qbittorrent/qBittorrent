@@ -190,7 +190,6 @@ void TransferListWidget::updateTorrent(int row) {
     return;
   }
   try {
-    if(h.is_paused()) return;
     if(!h.is_seed()) {
       // Queueing code
       if(BTSession->isQueueingEnabled()) {
@@ -211,6 +210,7 @@ void TransferListWidget::updateTorrent(int row) {
           return;
         }
       }
+      if(h.is_paused()) return;
       // Update
       listModel->setData(listModel->index(row, PROGRESS), QVariant((double)h.progress()));
       listModel->setData(listModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
@@ -421,9 +421,9 @@ void TransferListWidget::increasePrioSelectedTorrents() {
     QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(index.row()));
     if(h.is_valid() && !h.is_seed()) {
       BTSession->increaseDlTorrentPriority(h.hash());
-      updateTorrent(index.row());
     }
   }
+  refreshList();
 }
 
 // FIXME: Should work only if the tab is displayed
@@ -433,9 +433,9 @@ void TransferListWidget::decreasePrioSelectedTorrents() {
     QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(index.row()));
     if(h.is_valid() && !h.is_seed()) {
       BTSession->decreaseDlTorrentPriority(h.hash());
-      updateTorrent(index.row());
     }
   }
+  refreshList();
 }
 
 void TransferListWidget::buySelectedTorrents() const {
