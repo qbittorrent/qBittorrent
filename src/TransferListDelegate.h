@@ -40,16 +40,7 @@
 #include "misc.h"
 
 // Defines for download list list columns
-#define NAME 0
-#define SIZE 1
-#define PROGRESS 2
-#define DLSPEED 3
-#define UPSPEED 4
-#define SEEDSLEECH 5
-#define RATIO 6
-#define ETA 7
-#define PRIORITY 8
-#define HASH 9
+enum Column {NAME, SIZE, PROGRESS, DLSPEED, UPSPEED, SEEDSLEECH, RATIO, ETA, PRIORITY, HASH, STATUS};
 
 class TransferListDelegate: public QItemDelegate {
   Q_OBJECT

@@ -40,6 +40,8 @@ class QSortFilterProxyModel;
 class bittorrent;
 class QTimer;
 
+enum TorrentFilter {ALL, DOWNLOADING, COMPLETED, ACTIVE, INACTIVE };
+
 class TransferListWidget: public QTreeView {
   Q_OBJECT
 
@@ -97,6 +99,7 @@ public slots:
   void previewSelectedTorrents();
   void hidePriorityColumn(bool hide);
   void displayDLHoSMenu(const QPoint&);
+  void applyFilter(int f);
 
 };
 

@@ -31,6 +31,10 @@ public:
     QListWidgetItem *inactive = new QListWidgetItem(this);
     inactive->setData(Qt::DisplayRole, tr("Inactive"));
     inactive->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/draw-rectangle.png"));
+
+    // SIGNAL/SLOT
+    connect(this, SIGNAL(currentRowChanged(int)), transferList, SLOT(applyFilter(int)));
+
     // Load settings
     loadSettings();
   }
