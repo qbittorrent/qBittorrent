@@ -7,8 +7,20 @@
     <x>0</x>
     <y>0</y>
     <width>756</width>
-    <height>300</height>
+    <height>291</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>333</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -27,6 +39,7 @@
           <widget class="QGroupBox" name="groupTorrentInfos">
            <property name="font">
             <font>
+             <pointsize>8</pointsize>
              <weight>75</weight>
              <bold>true</bold>
             </font>
@@ -49,6 +62,7 @@
                   </property>
                   <property name="font">
                    <font>
+                    <pointsize>8</pointsize>
                     <weight>50</weight>
                     <bold>false</bold>
                    </font>
@@ -62,6 +76,7 @@
                  <widget class="QLabel" name="creator_lbl">
                   <property name="font">
                    <font>
+                    <pointsize>8</pointsize>
                     <weight>50</weight>
                     <bold>false</bold>
                    </font>
@@ -75,6 +90,7 @@
                  <widget class="QLabel" name="hash_lbl2">
                   <property name="font">
                    <font>
+                    <pointsize>8</pointsize>
                     <weight>50</weight>
                     <bold>false</bold>
                    </font>
@@ -88,6 +104,7 @@
                  <widget class="QLabel" name="comment_lbl2">
                   <property name="font">
                    <font>
+                    <pointsize>8</pointsize>
                     <weight>50</weight>
                     <bold>false</bold>
                    </font>
@@ -221,8 +238,7 @@
            </property>
            <property name="font">
             <font>
-             <family>Sans Serif</family>
-             <pointsize>9</pointsize>
+             <pointsize>8</pointsize>
              <weight>75</weight>
              <italic>false</italic>
              <bold>true</bold>
@@ -260,8 +276,6 @@
                  <widget class="QLabel" name="label_5">
                   <property name="font">
                    <font>
-                    <family>Sans Serif</family>
-                    <pointsize>9</pointsize>
                     <weight>50</weight>
                     <italic>false</italic>
                     <bold>false</bold>
@@ -278,8 +292,6 @@
                  <widget class="QLabel" name="label_6">
                   <property name="font">
                    <font>
-                    <family>Sans Serif</family>
-                    <pointsize>9</pointsize>
                     <weight>50</weight>
                     <italic>false</italic>
                     <bold>false</bold>
@@ -296,13 +308,8 @@
                  <widget class="QLabel" name="lbl_ratio">
                   <property name="font">
                    <font>
-                    <family>Sans Serif</family>
-                    <pointsize>9</pointsize>
                     <weight>50</weight>
-                    <italic>false</italic>
                     <bold>false</bold>
-                    <underline>false</underline>
-                    <strikeout>false</strikeout>
                    </font>
                   </property>
                   <property name="text">
@@ -314,8 +321,6 @@
                  <widget class="QLabel" name="label_8">
                   <property name="font">
                    <font>
-                    <family>Sans Serif</family>
-                    <pointsize>9</pointsize>
                     <weight>50</weight>
                     <italic>false</italic>
                     <bold>false</bold>
@@ -422,6 +427,7 @@
          </property>
          <property name="font">
           <font>
+           <pointsize>8</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -435,8 +441,7 @@
         <widget class="QCheckBox" name="incrementalDownload">
          <property name="font">
           <font>
-           <family>Sans Serif</family>
-           <pointsize>9</pointsize>
+           <pointsize>8</pointsize>
            <weight>50</weight>
            <italic>false</italic>
            <bold>false</bold>
@@ -465,8 +470,7 @@
           <widget class="QLabel" name="label_12">
            <property name="font">
             <font>
-             <family>Sans Serif</family>
-             <pointsize>9</pointsize>
+             <pointsize>8</pointsize>
              <weight>50</weight>
              <italic>false</italic>
              <bold>false</bold>
@@ -686,8 +690,7 @@
            </property>
            <property name="font">
             <font>
-             <family>Sans Serif</family>
-             <pointsize>9</pointsize>
+             <pointsize>8</pointsize>
              <weight>50</weight>
              <italic>false</italic>
              <bold>false</bold>

@@ -31,6 +31,7 @@
 #include <QMessageBox>
 #include <QDesktopWidget>
 #include <QTimer>
+#include <QVBoxLayout>
 #include <QDesktopServices>
 #include <QStatusBar>
 #include <QFrame>
@@ -138,16 +139,18 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   qDebug("create tabWidget");
   tabs = new QTabWidget();
   vSplitter = new QSplitter(Qt::Horizontal);
-  hSplitter = new QSplitter(Qt::Vertical, vSplitter);
+  rightPanel = new QWidget(vSplitter);
+  hSplitter = new QVBoxLayout(vSplitter);
+  rightPanel->setLayout(hSplitter);
 
   // Transfer List tab
-  transferList = new TransferListWidget(hSplitter, BTSession);
-  properties = new PropertiesWidget(hSplitter, transferList, BTSession);
+  transferList = new TransferListWidget(rightPanel, BTSession);
+  properties = new PropertiesWidget(rightPanel, transferList, BTSession);
   transferListFilters = new TransferListFiltersWidget(vSplitter, transferList);
   hSplitter->addWidget(transferList);
   hSplitter->addWidget(properties);
   vSplitter->addWidget(transferListFilters);
-  vSplitter->addWidget(hSplitter);
+  vSplitter->addWidget(rightPanel);
   tabs->addTab(vSplitter, QIcon(QString::fromUtf8(":/Icons/oxygen/folder-remote.png")), tr("Transfers"));
 
   vboxLayout->addWidget(tabs);
@@ -280,6 +283,7 @@ GUI::~GUI() {
   delete transferList;
   delete properties;
   delete hSplitter;
+  delete rightPanel;
   delete vSplitter;
   delete checkConnect;
   qDebug("1");

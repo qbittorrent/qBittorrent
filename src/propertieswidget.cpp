@@ -32,6 +32,7 @@
 #include <QListWidgetItem>
 #include <QVBoxLayout>
 #include <QStackedWidget>
+#include <QSplitter>
 #include "propertieswidget.h"
 #include "TransferListWidget.h"
 #include "torrentPersistentData.h"
@@ -44,8 +45,12 @@
 
 PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession): QWidget(parent), transferList(transferList), BTSession(BTSession) {
   setupUi(this);
+  state = VISIBLE;
+  reduce();
+
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle&)), this, SLOT(loadTorrentInfos(QTorrentHandle &)));
   connect(incrementalDownload, SIGNAL(stateChanged(int)), this, SLOT(setIncrementalDownload(int)));
+
   // Downloaded pieces progress bar
   progressBar = new RealProgressBar(this);
   progressBar->setForegroundColor(Qt::blue);
@@ -64,6 +69,20 @@ PropertiesWidget::~PropertiesWidget() {
     delete progressBarUpdater;
   delete progressBar;
   delete progressBarVbox;
+}
+
+void PropertiesWidget::reduce() {
+  if(state == VISIBLE) {
+    stackedProperties->setFixedHeight(0);
+    state = REDUCED;
+  }
+}
+
+void PropertiesWidget::slide() {
+  if(state == REDUCED) {
+    stackedProperties->setFixedHeight(232);
+    state = VISIBLE;
+  }
 }
 
 void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
@@ -181,25 +200,45 @@ QPushButton* PropertiesWidget::getButtonFromIndex(int index) {
 }
 
 void PropertiesWidget::on_main_infos_button_clicked() {
-  getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
-  stackedProperties->setCurrentIndex(MAIN_TAB);
-  main_infos_button->setStyleSheet(SELECTED_BUTTON_CSS);
+  if(state == VISIBLE && stackedProperties->currentIndex() == MAIN_TAB) {
+    reduce();
+  } else {
+    slide();
+    getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
+    stackedProperties->setCurrentIndex(MAIN_TAB);
+    main_infos_button->setStyleSheet(SELECTED_BUTTON_CSS);
+  }
 }
 
 void PropertiesWidget::on_trackers_button_clicked() {
-  getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
-  stackedProperties->setCurrentIndex(TRACKERS_TAB);
-  trackers_button->setStyleSheet(SELECTED_BUTTON_CSS);
+  if(state == VISIBLE && stackedProperties->currentIndex() == TRACKERS_TAB) {
+    reduce();
+  } else {
+    slide();
+    getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
+    stackedProperties->setCurrentIndex(TRACKERS_TAB);
+    trackers_button->setStyleSheet(SELECTED_BUTTON_CSS);
+  }
 }
 
 void PropertiesWidget::on_url_seeds_button_clicked() {
-  getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
-  stackedProperties->setCurrentIndex(URLSEEDS_TAB);
-  url_seeds_button->setStyleSheet(SELECTED_BUTTON_CSS);
+  if(state == VISIBLE && stackedProperties->currentIndex() == URLSEEDS_TAB) {
+    reduce();
+  } else {
+    slide();
+    getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
+    stackedProperties->setCurrentIndex(URLSEEDS_TAB);
+    url_seeds_button->setStyleSheet(SELECTED_BUTTON_CSS);
+  }
 }
 
 void PropertiesWidget::on_files_button_clicked() {
-  getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
-  stackedProperties->setCurrentIndex(FILES_TAB);
-  files_button->setStyleSheet(SELECTED_BUTTON_CSS);
+  if(state == VISIBLE && stackedProperties->currentIndex() == FILES_TAB) {
+    reduce();
+  } else {
+    slide();
+    getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
+    stackedProperties->setCurrentIndex(FILES_TAB);
+    files_button->setStyleSheet(SELECTED_BUTTON_CSS);
+  }
 }

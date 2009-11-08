@@ -43,6 +43,7 @@ class RealProgressBarThread;
 class bittorrent;
 
 enum Tab {MAIN_TAB, TRACKERS_TAB, URLSEEDS_TAB, FILES_TAB};
+enum SlideState {REDUCED, VISIBLE};
 
 class PropertiesWidget : public QWidget, private Ui::PropertiesWidget {
   Q_OBJECT
@@ -55,6 +56,7 @@ private:
   RealProgressBarThread *progressBarUpdater;
   QVBoxLayout *progressBarVbox;
   bittorrent* BTSession;
+  SlideState state;
 
 protected:
   QPushButton* getButtonFromIndex(int index);
@@ -68,6 +70,10 @@ protected slots:
   void on_trackers_button_clicked();
   void on_url_seeds_button_clicked();
   void on_files_button_clicked();
+
+public slots:
+  void reduce();
+  void slide();
 
 public:
   PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession);
