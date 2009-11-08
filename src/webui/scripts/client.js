@@ -49,13 +49,13 @@ window.addEvent('domready', function(){
       case 'seeding':
           return '<img src="images/skin/seeding.png"/>';
       case 'checking':
-          return '<img src="images/oxygen/time.png"/>';
+          return '<img src="images/oxygen/run-build.png"/>';
       case 'downloading':
           return '<img src="images/skin/downloading.png"/>';
       case 'stalled':
           return '<img src="images/skin/stalled.png"/>';
       case 'queued':
-          return '<img src="images/skin/queued.png"/>';
+          return '<img src="images/oxygen/mail-queue.png"/>';
       default:
 	  return '<img src="images/skin/stalled.png"/>';
     }

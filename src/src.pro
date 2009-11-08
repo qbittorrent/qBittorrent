@@ -145,7 +145,6 @@ HEADERS += GUI.h \
     about_imp.h \
     properties_imp.h \
     createtorrent_imp.h \
-    DLListDelegate.h \
     SearchListDelegate.h \
     PropListDelegate.h \
     previewSelect.h \
@@ -158,11 +157,8 @@ HEADERS += GUI.h \
     searchEngine.h \
     rss.h \
     rss_imp.h \
-    FinishedTorrents.h \
     allocationDlg.h \
-    FinishedListDelegate.h \
     qtorrenthandle.h \
-    downloadingTorrents.h \
     engineSelectDlg.h \
     pluginSource.h \
     arborescence.h \
@@ -187,7 +183,8 @@ HEADERS += GUI.h \
     feedList.h \
     supportedEngines.h \
     TransferListWidget.h \
-    TransferListDelegate.h
+    TransferListDelegate.h \
+    TransferListFiltersWidget.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \
@@ -201,7 +198,6 @@ FORMS += MainWindow.ui \
     rss.ui \
     seeding.ui \
     bandwidth_limit.ui \
-    download.ui \
     engineSelect.ui \
     pluginSource.ui \
     trackersAdd.ui \
@@ -215,9 +211,7 @@ SOURCES += GUI.cpp \
     bittorrent.cpp \
     searchEngine.cpp \
     rss_imp.cpp \
-    FinishedTorrents.cpp \
     qtorrenthandle.cpp \
-    downloadingTorrents.cpp \
     engineSelectDlg.cpp \
     downloadThread.cpp \
     realprogressbar.cpp \
