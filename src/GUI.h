@@ -58,6 +58,7 @@ class QFrame;
 class TransferListWidget;
 class TransferListFiltersWidget;
 class QSplitter;
+class PropertiesWidget;
 
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -76,7 +77,9 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     QMenu *myTrayIconMenu;
     TransferListWidget *transferList;
     TransferListFiltersWidget *transferListFilters;
+    PropertiesWidget *properties;
     QSplitter *vSplitter;
+    QSplitter *hSplitter;
     QLabel *connecStatusLblIcon;
     bool systrayIntegration;
     bool displaySpeedInTitle;

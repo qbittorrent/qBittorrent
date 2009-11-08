@@ -184,7 +184,8 @@ HEADERS += GUI.h \
     supportedEngines.h \
     TransferListWidget.h \
     TransferListDelegate.h \
-    TransferListFiltersWidget.h
+    TransferListFiltersWidget.h \
+    propertieswidget.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \
@@ -202,7 +203,8 @@ FORMS += MainWindow.ui \
     pluginSource.ui \
     trackersAdd.ui \
     console.ui \
-    FeedDownloader.ui
+    FeedDownloader.ui \
+    propertiesWidget.ui
 SOURCES += GUI.cpp \
     main.cpp \
     options_imp.cpp \
@@ -225,5 +227,6 @@ SOURCES += GUI.cpp \
     SearchTab.cpp \
     ico.cpp \
     rss.cpp \
-    TransferListWidget.cpp
+    TransferListWidget.cpp \
+    propertieswidget.cpp
 DESTDIR = .

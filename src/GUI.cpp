@@ -63,6 +63,7 @@
 #include "httpserver.h"
 #include "torrentPersistentData.h"
 #include "TransferListFiltersWidget.h"
+#include "propertieswidget.h"
 
 using namespace libtorrent;
 
@@ -137,13 +138,16 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   qDebug("create tabWidget");
   tabs = new QTabWidget();
   vSplitter = new QSplitter(Qt::Horizontal);
+  hSplitter = new QSplitter(Qt::Vertical, vSplitter);
 
   // Transfer List tab
+  properties = new PropertiesWidget(hSplitter);
   transferList = new TransferListWidget(vSplitter, BTSession);
   transferListFilters = new TransferListFiltersWidget(vSplitter, transferList);
-
+  hSplitter->addWidget(transferList);
+  hSplitter->addWidget(properties);
   vSplitter->addWidget(transferListFilters);
-  vSplitter->addWidget(transferList);
+  vSplitter->addWidget(hSplitter);
   tabs->addTab(vSplitter, QIcon(QString::fromUtf8(":/Icons/oxygen/folder-remote.png")), tr("Transfers"));
 
   vboxLayout->addWidget(tabs);
@@ -274,6 +278,8 @@ GUI::~GUI() {
   delete searchEngine;
   delete transferListFilters;
   delete transferList;
+  delete properties;
+  delete hSplitter;
   delete vSplitter;
   delete checkConnect;
   qDebug("1");
