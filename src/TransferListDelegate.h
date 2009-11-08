@@ -88,8 +88,12 @@ public:
           }
         case PRIORITY: {
             int priority = index.data().toInt();
-            if(priority >= 0)
+            if(priority >= 0) {
               QItemDelegate::paint(painter, option, index);
+            } else {
+              QItemDelegate::drawBackground(painter, opt, index);
+              QItemDelegate::drawDisplay(painter, opt, opt.rect, "*");
+            }
             break;
           }
         case PROGRESS:{

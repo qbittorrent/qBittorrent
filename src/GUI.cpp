@@ -138,7 +138,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   // Transfer List tab
   transferList = new TransferListWidget(tabs, BTSession);
   int index_tab = tabs->addTab(transferList, tr("Transfers"));
-  tabs->setTabIcon(index_tab, QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")));
+  tabs->setTabIcon(index_tab, QIcon(QString::fromUtf8(":/Icons/oxygen/folder-remote.png")));
   vboxLayout->addWidget(tabs);
 
   // Transfer list slots
