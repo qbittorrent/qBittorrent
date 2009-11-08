@@ -29,14 +29,17 @@
  */
 
 #include <QTimer>
+#include <QListWidgetItem>
 #include <QVBoxLayout>
+#include <QStackedWidget>
 #include "propertieswidget.h"
 #include "TransferListWidget.h"
 #include "torrentPersistentData.h"
 #include "realprogressbar.h"
 #include "realprogressbarthread.h"
+#include "bittorrent.h"
 
-PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transferList): QWidget(parent), transferList(transferList) {
+PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession): QWidget(parent), transferList(transferList), BTSession(BTSession) {
   setupUi(this);
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle&)), this, SLOT(loadTorrentInfos(QTorrentHandle &)));
   connect(incrementalDownload, SIGNAL(stateChanged(int)), this, SLOT(setIncrementalDownload(int)));
@@ -80,6 +83,8 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     comment_lbl->setText(h.comment());
     // Sequential download
     incrementalDownload->setChecked(TorrentPersistentData::isSequentialDownload(h.hash()));
+    // Trackers
+    loadTrackers();
     // downloaded pieces updater
     progressBarUpdater = new RealProgressBarThread(progressBar, h);
     progressBarUpdater->start();
@@ -121,4 +126,48 @@ void PropertiesWidget::setIncrementalDownload(int checkboxState) {
   if(!h.is_valid()) return;
    h.set_sequential_download(checkboxState == Qt::Checked);
    TorrentPersistentData::saveSequentialStatus(h);
+}
+
+void PropertiesWidget::loadTrackers() {
+  if(!h.is_valid()) return;
+  //Trackers
+  std::vector<announce_entry> trackers = h.trackers();
+  trackersURLS->clear();
+  QHash<QString, QString> errors = BTSession->getTrackersErrors(h.hash());
+  unsigned int nbTrackers = trackers.size();
+  for(unsigned int i=0; i<nbTrackers; ++i){
+    QString current_tracker = misc::toQString(trackers[i].url);
+    QListWidgetItem *item = new QListWidgetItem(current_tracker, trackersURLS);
+    // IsThere any errors ?
+    if(errors.contains(current_tracker)) {
+      item->setForeground(QBrush(QColor("red")));
+      // Set tooltip
+      QString msg="";
+      unsigned int i=0;
+      foreach(QString word, errors[current_tracker].split(" ")) {
+        if(i > 0 && i%5!=1) msg += " ";
+        msg += word;
+        if(i> 0 && i%5==0) msg += "\n";
+        ++i;
+      }
+      item->setToolTip(msg);
+    } else {
+      item->setForeground(QBrush(QColor("green")));
+    }
+  }
+  QString tracker = h.current_tracker().trimmed();
+  if(!tracker.isEmpty()){
+    trackerURL->setText(tracker);
+  }else{
+    trackerURL->setText(tr("None - Unreachable?"));
+  }
+}
+
+/* Tab buttons */
+void PropertiesWidget::on_main_infos_button_clicked() {
+  stackedProperties->setCurrentIndex(MAIN_TAB);
+}
+
+void PropertiesWidget::on_trackers_button_clicked() {
+  stackedProperties->setCurrentIndex(TRACKERS_TAB);
 }

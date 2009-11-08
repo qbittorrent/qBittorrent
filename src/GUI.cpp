@@ -142,7 +142,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
 
   // Transfer List tab
   transferList = new TransferListWidget(hSplitter, BTSession);
-  properties = new PropertiesWidget(hSplitter, transferList);
+  properties = new PropertiesWidget(hSplitter, transferList, BTSession);
   transferListFilters = new TransferListFiltersWidget(vSplitter, transferList);
   hSplitter->addWidget(transferList);
   hSplitter->addWidget(properties);

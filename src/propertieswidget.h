@@ -40,6 +40,9 @@ class QTimer;
 class RealProgressBar;
 class QVBoxLayout;
 class RealProgressBarThread;
+class bittorrent;
+
+enum Tab {MAIN_TAB, TRACKERS_TAB, URLSEEDS_TAB, FILES_TAB};
 
 class PropertiesWidget : public QWidget, private Ui::PropertiesWidget {
   Q_OBJECT
@@ -51,14 +54,18 @@ private:
   RealProgressBar *progressBar;
   RealProgressBarThread *progressBarUpdater;
   QVBoxLayout *progressBarVbox;
+  bittorrent* BTSession;
 
 protected slots:
   void loadTorrentInfos(QTorrentHandle &h);
   void loadDynamicData();
   void setIncrementalDownload(int checkboxState);
+  void loadTrackers();
+  void on_main_infos_button_clicked();
+  void on_trackers_button_clicked();
 
 public:
-  PropertiesWidget(QWidget *parent, TransferListWidget *transferList);
+  PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession);
   ~PropertiesWidget();
 };
 
