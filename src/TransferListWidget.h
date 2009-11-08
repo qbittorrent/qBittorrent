@@ -71,6 +71,7 @@ protected slots:
   bool loadHiddenColumns();
   void saveHiddenColumns();
   void displayListMenu(const QPoint&);
+  void updateMetadata(QTorrentHandle &h);
   //void setRowColor(int row, QColor color);
 
 public slots:

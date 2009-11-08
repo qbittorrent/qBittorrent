@@ -89,6 +89,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, bittorrent *_BTSession):
   // Listen for BTSession events
   connect(BTSession, SIGNAL(addedTorrent(QTorrentHandle&)), this, SLOT(addTorrent(QTorrentHandle&)));
   connect(BTSession, SIGNAL(finishedTorrent(QTorrentHandle&)), this, SLOT(setFinished(QTorrentHandle&)));
+  connect(BTSession, SIGNAL(metadataReceived(QTorrentHandle&)), this, SLOT(updateMetadata(QTorrentHandle&)));
 
   // Listen for list events
   connect(this, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(torrentDoubleClicked(QModelIndex)));
@@ -168,6 +169,16 @@ void TransferListWidget::resumeTorrent(int row) {
   if(h.is_seed())
     listModel->setData(listModel->index(row, NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
   updateTorrent(row);
+}
+
+void TransferListWidget::updateMetadata(QTorrentHandle &h) {
+  QString hash = h.hash();
+  int row = getRowFromHash(hash);
+  if(row != -1) {
+    qDebug("Updating torrent metadata in download list");
+    listModel->setData(listModel->index(row, NAME), QVariant(h.name()));
+    listModel->setData(listModel->index(row, SIZE), QVariant((qlonglong)h.actual_size()));
+  }
 }
 
 void TransferListWidget::updateTorrent(int row) {
