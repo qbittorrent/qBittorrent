@@ -57,6 +57,10 @@ public:
 protected:
   int getRowFromHash(QString hash) const;
   QString getHashFromRow(int row) const;
+  void saveColWidthList();
+  bool loadColWidthList();
+  void saveLastSortedColumn();
+  void loadLastSortedColumn();
 
 protected slots:
   void updateTorrent(int row);

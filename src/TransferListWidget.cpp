@@ -79,6 +79,11 @@ TransferListWidget::TransferListWidget(QWidget *parent, bittorrent *_BTSession):
   hideColumn(PRIORITY);
   hideColumn(HASH);
   loadHiddenColumns();
+  // Load last columns width for transfer list
+  if(!loadColWidthList()) {
+    header()->resizeSection(0, 200);
+  }
+  loadLastSortedColumn();
   setContextMenuPolicy(Qt::CustomContextMenu);
 
   // Listen for BTSession events
@@ -97,7 +102,11 @@ TransferListWidget::TransferListWidget(QWidget *parent, bittorrent *_BTSession):
 }
 
 TransferListWidget::~TransferListWidget() {
+  // Save settings
+  saveLastSortedColumn();
+  saveColWidthList();
   saveHiddenColumns();
+  // Clean up
   delete refreshTimer;
   delete proxyModel;
   delete listModel;
@@ -564,7 +573,6 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&){
   setColumnHidden(col, !isColumnHidden(col));
 }
 
-// FIXME: Not everything should be displayed for seeding torrents
 void TransferListWidget::displayListMenu(const QPoint&) {
   // Create actions
   QAction actionStart(QIcon(QString::fromUtf8(":/Icons/skin/play.png")), tr("Start"), 0);
@@ -651,4 +659,102 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   listMenu.addAction(&actionBuy_it);
   // Call menu
   listMenu.exec(QCursor::pos());
+}
+
+// Save columns width in a file to remember them
+void TransferListWidget::saveColWidthList() {
+  qDebug("Saving columns width in transfer list");
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QStringList width_list;
+  QStringList new_width_list;
+  short nbColumns = listModel->columnCount()-1;
+  QString line = settings.value("TransferListColsWidth", QString()).toString();
+  if(!line.isEmpty()) {
+    width_list = line.split(' ');
+  }
+  for(short i=0; i<nbColumns; ++i){
+    if(columnWidth(i)<1 && width_list.size() == nbColumns && width_list.at(i).toInt()>=1) {
+      // load the former width
+      new_width_list << width_list.at(i);
+    } else if(columnWidth(i)>=1) {
+      // usual case, save the current width
+      new_width_list << misc::toQString(columnWidth(i));
+    } else {
+      // default width
+      resizeColumnToContents(i);
+      new_width_list << misc::toQString(columnWidth(i));
+    }
+  }
+  settings.setValue(QString::fromUtf8("TransferListColsWidth"), new_width_list.join(QString::fromUtf8(" ")));
+  QVariantList visualIndexes;
+  for(int i=0; i<nbColumns; ++i) {
+    visualIndexes.append(header()->visualIndex(i));
+  }
+  settings.setValue(QString::fromUtf8("TransferListVisualIndexes"), visualIndexes);
+  qDebug("Download list columns width saved");
+}
+
+// Load columns width in a file that were saved previously
+bool TransferListWidget::loadColWidthList() {
+  qDebug("Loading columns width for download list");
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QString line = settings.value(QString::fromUtf8("TransferListColsWidth"), QString()).toString();
+  if(line.isEmpty())
+    return false;
+  QStringList width_list = line.split(QString::fromUtf8(" "));
+  if(width_list.size() != listModel->columnCount()-1) {
+    qDebug("Corrupted values for download list columns sizes");
+    return false;
+  }
+  unsigned int listSize = width_list.size();
+  for(unsigned int i=0; i<listSize; ++i) {
+    header()->resizeSection(i, width_list.at(i).toInt());
+  }
+  QVariantList visualIndexes = settings.value(QString::fromUtf8("TransferListVisualIndexes"), QVariantList()).toList();
+  if(visualIndexes.size() != listModel->columnCount()-1) {
+    qDebug("Corrupted values for download list columns sizes");
+    return false;
+  }
+  bool change = false;
+  do {
+    change = false;
+    for(int i=0;i<visualIndexes.size(); ++i) {
+      int new_visual_index = visualIndexes.at(header()->logicalIndex(i)).toInt();
+      if(i != new_visual_index) {
+        qDebug("Moving column from %d to %d", header()->logicalIndex(i), new_visual_index);
+        header()->moveSection(i, new_visual_index);
+        change = true;
+      }
+    }
+  }while(change);
+  qDebug("Transfer list columns width loaded");
+  return true;
+}
+
+void TransferListWidget::saveLastSortedColumn() {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  Qt::SortOrder sortOrder = header()->sortIndicatorOrder();
+  QString sortOrderLetter;
+  if(sortOrder == Qt::AscendingOrder)
+    sortOrderLetter = QString::fromUtf8("a");
+  else
+    sortOrderLetter = QString::fromUtf8("d");
+  int index = header()->sortIndicatorSection();
+  settings.setValue(QString::fromUtf8("TransferListSortedCol"), misc::toQString(index)+sortOrderLetter);
+}
+
+void TransferListWidget::loadLastSortedColumn() {
+  // Loading last sorted column
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QString sortedCol = settings.value(QString::fromUtf8("TransferListSortedCol"), QString()).toString();
+  if(!sortedCol.isEmpty()) {
+    Qt::SortOrder sortOrder;
+    if(sortedCol.endsWith(QString::fromUtf8("d")))
+      sortOrder = Qt::DescendingOrder;
+    else
+      sortOrder = Qt::AscendingOrder;
+    sortedCol = sortedCol.left(sortedCol.size()-1);
+    int index = sortedCol.toInt();
+    sortByColumn(index, sortOrder);
+  }
 }
