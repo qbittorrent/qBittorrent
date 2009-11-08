@@ -334,11 +334,12 @@ void TransferListWidget::startSelectedTorrents() {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   foreach(const QModelIndex &index, selectedIndexes) {
     // Get the file hash
-    QString hash = getHashFromRow(index.row());
+    int row = proxyModel->mapToSource(index).row();
+    QString hash = getHashFromRow(row);
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if(h.is_valid() && h.is_paused()) {
       h.resume();
-      resumeTorrent(index.row());
+      resumeTorrent(row);
     }
   }
 }
@@ -357,11 +358,12 @@ void TransferListWidget::pauseSelectedTorrents() {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   foreach(const QModelIndex &index, selectedIndexes) {
     // Get the file hash
-    QString hash = getHashFromRow(index.row());
+    int row = proxyModel->mapToSource(index).row();
+    QString hash = getHashFromRow(row);
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if(h.is_valid() && !h.is_paused()) {
       h.pause();
-      pauseTorrent(index.row());
+      pauseTorrent(row);
     }
   }
 }
@@ -388,8 +390,9 @@ void TransferListWidget::deleteSelectedTorrents() {
     if(ret) return;
     foreach(const QModelIndex &index, selectedIndexes) {
       // Get the file hash
-      QString hash = getHashFromRow(index.row());
-      deleteTorrent(index.row());
+      int row = proxyModel->mapToSource(index).row();
+      QString hash = getHashFromRow(row);
+      deleteTorrent(row);
       BTSession->deleteTorrent(hash, false);
     }
   }
@@ -407,8 +410,9 @@ void TransferListWidget::deletePermSelectedTorrents() {
     if(ret) return;
     foreach(const QModelIndex &index, selectedIndexes) {
       // Get the file hash
-      QString hash = getHashFromRow(index.row());
-      deleteTorrent(index.row());
+      int row = proxyModel->mapToSource(index).row();
+      QString hash = getHashFromRow(row);
+      deleteTorrent(row);
       BTSession->deleteTorrent(hash, true);
     }
   }
@@ -418,7 +422,7 @@ void TransferListWidget::deletePermSelectedTorrents() {
 void TransferListWidget::increasePrioSelectedTorrents() {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   foreach(const QModelIndex &index, selectedIndexes) {
-    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(index.row()));
+    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(proxyModel->mapToSource(index).row()));
     if(h.is_valid() && !h.is_seed()) {
       BTSession->increaseDlTorrentPriority(h.hash());
     }
@@ -430,7 +434,7 @@ void TransferListWidget::increasePrioSelectedTorrents() {
 void TransferListWidget::decreasePrioSelectedTorrents() {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   foreach(const QModelIndex &index, selectedIndexes) {
-    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(index.row()));
+    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(proxyModel->mapToSource(index).row()));
     if(h.is_valid() && !h.is_seed()) {
       BTSession->decreaseDlTorrentPriority(h.hash());
     }
@@ -441,7 +445,7 @@ void TransferListWidget::decreasePrioSelectedTorrents() {
 void TransferListWidget::buySelectedTorrents() const {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   foreach(const QModelIndex &index, selectedIndexes) {
-    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(index.row()));
+    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(proxyModel->mapToSource(index).row()));
     if(h.is_valid())
       QDesktopServices::openUrl("http://match.sharemonkey.com/?info_hash="+h.hash()+"&n="+h.name()+"&cid=33");
   }
@@ -451,7 +455,7 @@ void TransferListWidget::copySelectedMagnetURIs() const {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   QStringList magnet_uris;
   foreach(const QModelIndex &index, selectedIndexes) {
-    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(index.row()));
+    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(proxyModel->mapToSource(index).row()));
     if(h.is_valid())
       magnet_uris << misc::toQString(make_magnet_uri(h.get_torrent_info()));
   }
@@ -466,7 +470,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   QStringList pathsList;
   foreach(const QModelIndex &index, selectedIndexes) {
-    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(index.row()));
+    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(proxyModel->mapToSource(index).row()));
     if(h.is_valid()) {
       QString savePath = h.save_path();
       if(!pathsList.contains(savePath)) {
@@ -481,7 +485,7 @@ void TransferListWidget::previewSelectedTorrents() {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   QStringList pathsList;
   foreach(const QModelIndex &index, selectedIndexes) {
-    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(index.row()));
+    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(proxyModel->mapToSource(index).row()));
     if(h.is_valid()) {
       new previewSelect(this, h);
     }
@@ -493,7 +497,7 @@ void TransferListWidget::setDlLimitSelectedTorrents() {
   QStringList hashes;
   foreach(const QModelIndex &index, selectedIndexes) {
     // Get the file hash
-    QString hash = getHashFromRow(index.row());
+    QString hash = getHashFromRow(proxyModel->mapToSource(index).row());
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if(h.is_valid() && !h.is_seed())
       hashes << hash;
@@ -507,7 +511,7 @@ void TransferListWidget::setUpLimitSelectedTorrents() {
   QStringList hashes;
   foreach(const QModelIndex &index, selectedIndexes) {
     // Get the file hash
-    hashes << getHashFromRow(index.row());
+    hashes << getHashFromRow(proxyModel->mapToSource(index).row());
   }
   Q_ASSERT(hashes.size() > 0);
   new BandwidthAllocationDialog(this, true, BTSession, hashes);
@@ -516,7 +520,7 @@ void TransferListWidget::setUpLimitSelectedTorrents() {
 void TransferListWidget::recheckSelectedTorrents() {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   foreach(const QModelIndex &index, selectedIndexes){
-    QString hash = getHashFromRow(index.row());
+    QString hash = getHashFromRow(proxyModel->mapToSource(index).row());
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if(h.is_valid() && h.has_metadata())
       h.force_recheck();
@@ -622,7 +626,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   qDebug("Displaying menu");
   foreach(const QModelIndex &index, selectedIndexes) {
     // Get the file name
-    QString hash = getHashFromRow(index.row());
+    QString hash = getHashFromRow(proxyModel->mapToSource(index).row());
     // Get handle and pause the torrent
     h = BTSession->getTorrentHandle(hash);
     if(!h.is_valid()) continue;
