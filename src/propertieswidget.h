@@ -75,6 +75,7 @@ protected:
   QPushButton* getButtonFromIndex(int index);
   std::vector<int> loadFilesPriorities();
   bool allFiltered() const;
+  bool savePiecesPriorities();
 
 protected slots:
   void loadTorrentInfos(QTorrentHandle &h);

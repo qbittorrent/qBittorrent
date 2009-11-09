@@ -522,7 +522,7 @@ void PropertiesWidget::ignoreSelection(){
     if(index.column() == PRIORITY){
       if(PropListModel->data(index) != QVariant(IGNORED)){
         PropListModel->setData(index, QVariant(IGNORED));
-        transferList->updateTorrentSizeAndProgress(h.hash());
+        filteredFilesChanged();
         setItemColor(index, "red");
       }
     }
@@ -535,7 +535,7 @@ void PropertiesWidget::normalSelection(){
     if(index.column() == PRIORITY){
       if(PropListModel->data(index) != QVariant(NORMAL)){
         PropListModel->setData(index, QVariant(NORMAL));
-        transferList->updateTorrentSizeAndProgress(h.hash());
+        filteredFilesChanged();
         setItemColor(index, "green");
       }
     }
@@ -548,7 +548,7 @@ void PropertiesWidget::highSelection(){
     if(index.column() == PRIORITY){
       if(PropListModel->data(index) != QVariant(HIGH)){
         PropListModel->setData(index, QVariant(HIGH));
-        transferList->updateTorrentSizeAndProgress(h.hash());
+        filteredFilesChanged();
         setItemColor(index, "green");
       }
     }
@@ -561,7 +561,7 @@ void PropertiesWidget::maximumSelection(){
     if(index.column() == PRIORITY){
       if(PropListModel->data(index) != QVariant(MAXIMUM)){
         PropListModel->setData(index, QVariant(MAXIMUM));
-        transferList->updateTorrentSizeAndProgress(h.hash());
+        filteredFilesChanged();
         setItemColor(index, "green");
       }
     }
@@ -727,6 +727,26 @@ void PropertiesWidget::setItemColor(QModelIndex index, QString color){
   }
 }
 
+bool PropertiesWidget::savePiecesPriorities() {
+  /*if(!changedFilteredfiles) return true;
+  if(allFiltered()) {
+    QMessageBox::warning(0, tr("Priorities error"), tr("Error, you can't filter all the files in a torrent."));
+    return false;
+  }*/
+  qDebug("Saving pieces priorities");
+  int *priorities = new int[h.get_torrent_info().num_files()];
+  getPriorities(PropListModel->invisibleRootItem(), priorities);
+  unsigned int nbFiles = h.get_torrent_info().num_files();
+  for(unsigned int i=0; i<nbFiles; ++i) {
+    h.file_priority(i, priorities[i]);
+  }
+  delete[] priorities;
+  TorrentPersistentData::saveFilesPriority(h);
+
+  return true;
+}
+
+
 void PropertiesWidget::on_changeSavePathButton_clicked() {
   QString dir;
   QDir saveDir(h.save_path());
@@ -755,8 +775,10 @@ void PropertiesWidget::on_changeSavePathButton_clicked() {
 }
 
 void PropertiesWidget::filteredFilesChanged() {
-  if(h.is_valid())
+  if(h.is_valid()) {
+    savePiecesPriorities();
     transferList->updateTorrentSizeAndProgress(h.hash());
+  }
 }
 
 void PropertiesWidget::addFilesToTree(torrent_file *root, QStandardItem *parent) {
