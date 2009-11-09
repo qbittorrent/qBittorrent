@@ -828,4 +828,7 @@ void TransferListWidget::applyFilter(int f) {
   default:
     proxyModel->setFilterRegExp(QRegExp());
   }
+  // Select first item if nothing is selected
+  if(selectionModel()->selectedRows(0).empty() && proxyModel->rowCount() > 0)
+    selectionModel()->setCurrentIndex(proxyModel->index(0, NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
 }
