@@ -188,7 +188,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     <name>DLListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -1037,32 +1037,27 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation>Nazwa</translation>
+        <translation type="obsolete">Nazwa</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation>Rozmiar</translation>
+        <translation type="obsolete">Rozmiar</translation>
     </message>
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation>Postęp</translation>
+        <translation type="obsolete">Postęp</translation>
     </message>
     <message>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Prędkość DL</translation>
+        <translation type="obsolete">Prędkość DL</translation>
     </message>
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Prędkość UP</translation>
-    </message>
-    <message>
-        <source>Seeds/Leechers</source>
-        <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Prędkość UP</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -1071,17 +1066,17 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Ratio</translation>
+        <translation type="obsolete">Ratio</translation>
     </message>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>ETA</translation>
+        <translation type="obsolete">ETA</translation>
     </message>
     <message>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation>qBittorrent %1 uruchomiony.</translation>
+        <translation type="obsolete">qBittorrent %1 uruchomiony.</translation>
     </message>
     <message>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
@@ -1135,7 +1130,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Hide or Show Column</source>
-        <translation>Pokaż lub ukryj kolumny</translation>
+        <translation type="obsolete">Pokaż lub ukryj kolumny</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
@@ -1355,7 +1350,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     <name>FinishedListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -1367,20 +1362,12 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation>Nazwa</translation>
+        <translation type="obsolete">Nazwa</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation>Rozmiar</translation>
-    </message>
-    <message>
-        <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connected peers</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Rozmiar</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -1395,7 +1382,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Prędkość UP</translation>
+        <translation type="obsolete">Prędkość UP</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -1423,7 +1410,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Ratio</translation>
+        <translation type="obsolete">Ratio</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -1431,13 +1418,8 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
         <translation type="obsolete">Leechers</translation>
     </message>
     <message>
-        <source>Total uploaded</source>
-        <comment>i.e: Total amount of uploaded data</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Hide or Show Column</source>
-        <translation>Ukryj lub pokaż kolumny</translation>
+        <translation type="obsolete">Ukryj lub pokaż kolumny</translation>
     </message>
     <message>
         <source>Incomplete torrent in seeding list</source>
@@ -1450,10 +1432,6 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     <message>
         <source>Priority</source>
         <translation type="obsolete">Priorytet</translation>
-    </message>
-    <message>
-        <source>Super seeding mode</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1533,7 +1511,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
-        <translation>Czy chcesz usunąć wybrane elementy z listy pobierania?</translation>
+        <translation type="obsolete">Czy chcesz usunąć wybrane elementy z listy pobierania?</translation>
     </message>
     <message>
         <source>removed.</source>
@@ -1572,7 +1550,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Finished</source>
-        <translation>Ukończone</translation>
+        <translation type="obsolete">Ukończone</translation>
     </message>
     <message>
         <source>Checking...</source>
@@ -1611,7 +1589,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Are you sure? -- qBittorrent</source>
-        <translation>Jesteś pewny? -- qBittorrent</translation>
+        <translation type="obsolete">Jesteś pewny? -- qBittorrent</translation>
     </message>
     <message>
         <source>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </source>
@@ -1861,7 +1839,7 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="obsolete">Prędkość</translation>
+        <translation type="unfinished">Prędkość</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -1873,7 +1851,7 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Download finished</source>
-        <translation>Pobieranie zakończone</translation>
+        <translation type="obsolete">Pobieranie zakończone</translation>
     </message>
     <message>
         <source> has finished downloading.</source>
@@ -2141,12 +2119,12 @@ Zamknij najpierw okno podglądu.</translation>
     <message>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>Lista pobierania nie jest pusta.
+        <translation type="obsolete">Lista pobierania nie jest pusta.
 Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation>Pobieranie</translation>
+        <translation type="obsolete">Pobieranie</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in finished list and in hard drive?</source>
@@ -2154,7 +2132,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
-        <translation>Czy napewno usunąć wybrane pozycje z listy zakończonych?</translation>
+        <translation type="obsolete">Czy napewno usunąć wybrane pozycje z listy zakończonych?</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
@@ -2219,11 +2197,11 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
-        <translation>Czy chcesz usunąć wybrane elementy z listy pobierania i z twardego dysku?</translation>
+        <translation type="obsolete">Czy chcesz usunąć wybrane elementy z listy pobierania i z twardego dysku?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
-        <translation>Czy chcesz usunąć wybrane elementy z listy ukończonych i z twardego dysku?</translation>
+        <translation type="obsolete">Czy chcesz usunąć wybrane elementy z listy ukończonych i z twardego dysku?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed permanently.</source>
@@ -2281,7 +2259,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     <message>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
+        <translation type="obsolete">qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
         <source>DL: %1 KiB/s</source>
@@ -2305,11 +2283,20 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Uploads</source>
-        <translation>Wysyłane</translation>
+        <translation type="obsolete">Wysyłane</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
         <translation>Ustawienia zapisane.</translation>
+    </message>
+    <message>
+        <source>Download completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some files are currently transferring.
+Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2603,6 +2590,155 @@ Czy napewno zamknąć qBittorrent?</translation>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maksymalny</translation>
+    </message>
+</context>
+<context>
+    <name>PropertiesWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Creator:</source>
+        <translation type="unfinished">Kreator:</translation>
+    </message>
+    <message>
+        <source>Torrent hash:</source>
+        <translation type="unfinished">Torrent hash:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">Komentarz:</translation>
+    </message>
+    <message>
+        <source>Current session</source>
+        <translation type="unfinished">Bieżąca sesja</translation>
+    </message>
+    <message>
+        <source>Total uploaded:</source>
+        <translation type="unfinished">Ogółem wysłanych:</translation>
+    </message>
+    <message>
+        <source>Total downloaded:</source>
+        <translation type="unfinished">Ogółem pobranych:</translation>
+    </message>
+    <message>
+        <source>Share ratio:</source>
+        <translation type="unfinished">Współczynnik udostępniania:</translation>
+    </message>
+    <message>
+        <source>Total failed:</source>
+        <translation type="unfinished">Ogółem błędnych:</translation>
+    </message>
+    <message>
+        <source>Downloaded pieces</source>
+        <translation type="unfinished">Pobrane części</translation>
+    </message>
+    <message>
+        <source>Download in correct order (slower but good for previewing)</source>
+        <translation type="unfinished">Pobierz w ustalonej kolejności (wolniejsze ale lepsze przy korzystaniu z opcji podglądu)</translation>
+    </message>
+    <message>
+        <source>Current tracker:</source>
+        <translation type="unfinished">Aktualny tracker:</translation>
+    </message>
+    <message>
+        <source>Collapse all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expand all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QPushButton { 
+border: 1px solid rgb(85, 81, 91);
+border-radius: 3px;
+padding: 2px;
+margin-left: 3px; margin-right: 3px;
+}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Główne</translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation type="unfinished">Trackery</translation>
+    </message>
+    <message>
+        <source>URL seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File name</source>
+        <translation type="unfinished">Nazwa pliku</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Rozmiar</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Postęp</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Priorytet</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished">Nieznany</translation>
+    </message>
+    <message>
+        <source>None - Unreachable?</source>
+        <translation type="unfinished">Brak - Nieosiągalny?</translation>
+    </message>
+    <message>
+        <source>New url seed</source>
+        <comment>New HTTP source</comment>
+        <translation type="unfinished">Nowy url seeda</translation>
+    </message>
+    <message>
+        <source>New url seed:</source>
+        <translation type="unfinished">Nowy url seeda:</translation>
+    </message>
+    <message>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <source>This url seed is already in the list.</source>
+        <translation type="unfinished">Ten url seeda już jest na liście.</translation>
+    </message>
+    <message>
+        <source>Trackers list can&apos;t be empty.</source>
+        <translation type="unfinished">Lista trackerów nie może być pusta.</translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">Wybierz katalog docelowy</translation>
+    </message>
+    <message>
+        <source>Save path creation error</source>
+        <translation type="unfinished">Błąd tworzenia katalogu docelowego</translation>
+    </message>
+    <message>
+        <source>Could not create the save path</source>
+        <translation type="unfinished">Nie można założyć katalogu docelowego</translation>
     </message>
 </context>
 <context>
@@ -3104,6 +3240,154 @@ Zmiany:
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Lista trackerów do dodania (jeden na linię):</translation>
+    </message>
+</context>
+<context>
+    <name>TransferListDelegate</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished">KiB/s</translation>
+    </message>
+</context>
+<context>
+    <name>TransferListFiltersWidget</name>
+    <message>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation type="unfinished">Pobieranie</translation>
+    </message>
+    <message>
+        <source>Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inactive</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TransferListWidget</name>
+    <message>
+        <source>Name</source>
+        <comment>i.e: file name</comment>
+        <translation type="unfinished">Nazwa</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <comment>i.e: file size</comment>
+        <translation type="unfinished">Rozmiar</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <comment>i.e: % downloaded</comment>
+        <translation type="unfinished">Postęp</translation>
+    </message>
+    <message>
+        <source>DL Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished">Prędkość DL</translation>
+    </message>
+    <message>
+        <source>UP Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished">Prędkość UP</translation>
+    </message>
+    <message>
+        <source>Seeds/Leechers</source>
+        <comment>i.e: full/partial sources</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ratio</source>
+        <translation type="unfinished">Ratio</translation>
+    </message>
+    <message>
+        <source>ETA</source>
+        <comment>i.e: Estimated Time of Arrival / Time left</comment>
+        <translation type="unfinished">ETA</translation>
+    </message>
+    <message>
+        <source>Deletion confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from transfer list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;Tak</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;Nie</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from transfe list and hard disk?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Column visibility</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished">Start</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="unfinished">Wstrzymaj</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Skasuj</translation>
+    </message>
+    <message>
+        <source>Preview file</source>
+        <translation type="unfinished">Podgląd pliku</translation>
+    </message>
+    <message>
+        <source>Set upload limit</source>
+        <translation type="unfinished">Ustaw limit wysyłania</translation>
+    </message>
+    <message>
+        <source>Set download limit</source>
+        <translation type="unfinished">Ustaw limit pobierania</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished">Usuń całkowicie</translation>
+    </message>
+    <message>
+        <source>Open destination folder</source>
+        <translation type="unfinished">Otwórz folder pobierań</translation>
+    </message>
+    <message>
+        <source>Buy it</source>
+        <translation type="unfinished">Kup to</translation>
+    </message>
+    <message>
+        <source>Increase priority</source>
+        <translation type="unfinished">Zwiększ priorytet</translation>
+    </message>
+    <message>
+        <source>Decrease priority</source>
+        <translation type="unfinished">Zmniejsz priorytet</translation>
+    </message>
+    <message>
+        <source>Force recheck</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy magnet link</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3813,7 +4097,7 @@ Zmiany:
     <name>downloading</name>
     <message>
         <source>Search</source>
-        <translation>Szukaj</translation>
+        <translation type="obsolete">Szukaj</translation>
     </message>
     <message>
         <source>Total DL Speed:</source>
@@ -3841,15 +4125,15 @@ Zmiany:
     </message>
     <message>
         <source>Start</source>
-        <translation>Start</translation>
+        <translation type="obsolete">Start</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Wstrzymaj</translation>
+        <translation type="obsolete">Wstrzymaj</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Skasuj</translation>
+        <translation type="obsolete">Skasuj</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -3857,83 +4141,75 @@ Zmiany:
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Podgląd pliku</translation>
+        <translation type="obsolete">Podgląd pliku</translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Ustaw limit wysyłania</translation>
+        <translation type="obsolete">Ustaw limit wysyłania</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation>Ustaw limit pobierania</translation>
+        <translation type="obsolete">Ustaw limit pobierania</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>Usuń całkowicie</translation>
+        <translation type="obsolete">Usuń całkowicie</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Właściwości Torrenta</translation>
+        <translation type="obsolete">Właściwości Torrenta</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>Otwórz folder pobierań</translation>
+        <translation type="obsolete">Otwórz folder pobierań</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nazwa</translation>
+        <translation type="obsolete">Nazwa</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Rozmiar</translation>
+        <translation type="obsolete">Rozmiar</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Postęp</translation>
+        <translation type="obsolete">Postęp</translation>
     </message>
     <message>
         <source>DLSpeed</source>
-        <translation>Prędkość pobierania</translation>
+        <translation type="obsolete">Prędkość pobierania</translation>
     </message>
     <message>
         <source>UpSpeed</source>
-        <translation>Prędkość wysyłania</translation>
+        <translation type="obsolete">Prędkość wysyłania</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
-        <translation>Seeds/Leechs</translation>
+        <translation type="obsolete">Seeds/Leechs</translation>
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Ratio</translation>
+        <translation type="obsolete">Ratio</translation>
     </message>
     <message>
         <source>ETA</source>
-        <translation>ETA</translation>
+        <translation type="obsolete">ETA</translation>
     </message>
     <message>
         <source>Buy it</source>
-        <translation>Kup to</translation>
+        <translation type="obsolete">Kup to</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorytet</translation>
+        <translation type="obsolete">Priorytet</translation>
     </message>
     <message>
         <source>Increase priority</source>
-        <translation>Zwiększ priorytet</translation>
+        <translation type="obsolete">Zwiększ priorytet</translation>
     </message>
     <message>
         <source>Decrease priority</source>
-        <translation>Zmniejsz priorytet</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Zmniejsz priorytet</translation>
     </message>
 </context>
 <context>
@@ -4400,7 +4676,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <name>properties</name>
     <message>
         <source>Torrent Properties</source>
-        <translation>Właściwości Torrenta</translation>
+        <translation type="obsolete">Właściwości Torrenta</translation>
     </message>
     <message>
         <source>Main Infos</source>
@@ -4440,7 +4716,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="obsolete">OK</translation>
     </message>
     <message>
         <source>Total Failed:</source>
@@ -4480,7 +4756,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Nieznany</translation>
+        <translation type="obsolete">Nieznany</translation>
     </message>
     <message>
         <source>Complete: </source>
@@ -4492,11 +4768,11 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
-        <translation>Pliki w torrencie:</translation>
+        <translation type="obsolete">Pliki w torrencie:</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Rozmiar</translation>
+        <translation type="obsolete">Rozmiar</translation>
     </message>
     <message>
         <source>Selected</source>
@@ -4528,11 +4804,11 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Trackers:</source>
-        <translation>Trackery:</translation>
+        <translation type="obsolete">Trackery:</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
-        <translation>Brak - Nieosiągalny?</translation>
+        <translation type="obsolete">Brak - Nieosiągalny?</translation>
     </message>
     <message>
         <source>Errors:</source>
@@ -4540,7 +4816,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Postęp</translation>
+        <translation type="obsolete">Postęp</translation>
     </message>
     <message>
         <source>Main infos</source>
@@ -4552,31 +4828,23 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Current tracker:</source>
-        <translation>Aktualny tracker:</translation>
+        <translation type="obsolete">Aktualny tracker:</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation>Ogółem wysłanych:</translation>
-    </message>
-    <message>
-        <source>Main info</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Torrent information</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Ogółem wysłanych:</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation>Ogółem pobranych:</translation>
+        <translation type="obsolete">Ogółem pobranych:</translation>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation>Ogółem błędnych:</translation>
+        <translation type="obsolete">Ogółem błędnych:</translation>
     </message>
     <message>
         <source>Torrent content</source>
-        <translation>Zawartość torrenta</translation>
+        <translation type="obsolete">Zawartość torrenta</translation>
     </message>
     <message>
         <source>Options</source>
@@ -4584,7 +4852,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation>Pobierz w ustalonej kolejności (wolniejsze ale lepsze przy korzystaniu z opcji podglądu)</translation>
+        <translation type="obsolete">Pobierz w ustalonej kolejności (wolniejsze ale lepsze przy korzystaniu z opcji podglądu)</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
@@ -4600,7 +4868,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation>Katalog zapisu:</translation>
+        <translation type="obsolete">Katalog zapisu:</translation>
     </message>
     <message>
         <source>Torrent infos</source>
@@ -4608,27 +4876,27 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Creator:</source>
-        <translation>Kreator:</translation>
+        <translation type="obsolete">Kreator:</translation>
     </message>
     <message>
         <source>Torrent hash:</source>
-        <translation>Torrent hash:</translation>
+        <translation type="obsolete">Torrent hash:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation>Komentarz:</translation>
+        <translation type="obsolete">Komentarz:</translation>
     </message>
     <message>
         <source>Current session</source>
-        <translation>Bieżąca sesja</translation>
+        <translation type="obsolete">Bieżąca sesja</translation>
     </message>
     <message>
         <source>Share ratio:</source>
-        <translation>Współczynnik udostępniania:</translation>
+        <translation type="obsolete">Współczynnik udostępniania:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Trackery</translation>
+        <translation type="obsolete">Trackery</translation>
     </message>
     <message>
         <source>New tracker</source>
@@ -4640,67 +4908,67 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Priorities:</source>
-        <translation>Pierwszeństwa:</translation>
+        <translation type="obsolete">Pierwszeństwa:</translation>
     </message>
     <message>
         <source>Normal: normal priority. Download order is dependent on availability</source>
-        <translation>Normalny: normalny priorytet. Kolejność pobierania zależy od dostępności</translation>
+        <translation type="obsolete">Normalny: normalny priorytet. Kolejność pobierania zależy od dostępności</translation>
     </message>
     <message>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
-        <translation>Wysoki: wysoki priorytet. Części są ważniejsze od tych z taką samą dostępnością, lecz nie od części z niższą dostępnością</translation>
+        <translation type="obsolete">Wysoki: wysoki priorytet. Części są ważniejsze od tych z taką samą dostępnością, lecz nie od części z niższą dostępnością</translation>
     </message>
     <message>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
-        <translation>Maksymalny: maksymalny priorytet. Dostępność jest zlekceważona, części są ważniejsze od tych z niższym priorytetem</translation>
+        <translation type="obsolete">Maksymalny: maksymalny priorytet. Dostępność jest zlekceważona, części są ważniejsze od tych z niższym priorytetem</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation>Nazwa pliku</translation>
+        <translation type="obsolete">Nazwa pliku</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorytet</translation>
+        <translation type="obsolete">Priorytet</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Trackers list can&apos;t be empty.</source>
-        <translation>Lista trackerów nie może być pusta.</translation>
+        <translation type="obsolete">Lista trackerów nie może być pusta.</translation>
     </message>
     <message>
         <source>Ignored: file is not downloaded at all</source>
-        <translation>Ignorowany: plik nie jest pobierany</translation>
+        <translation type="obsolete">Ignorowany: plik nie jest pobierany</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignorowany</translation>
+        <translation type="obsolete">Ignorowany</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normalny</translation>
+        <translation type="obsolete">Normalny</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maksymalny</translation>
+        <translation type="obsolete">Maksymalny</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Wysoki</translation>
+        <translation type="obsolete">Wysoki</translation>
     </message>
     <message>
         <source>Url seeds</source>
-        <translation>Url seeda</translation>
+        <translation type="obsolete">Url seeda</translation>
     </message>
     <message>
         <source>New url seed:</source>
-        <translation>Nowy url seeda:</translation>
+        <translation type="obsolete">Nowy url seeda:</translation>
     </message>
     <message>
         <source>This url seed is already in the list.</source>
-        <translation>Ten url seeda już jest na liście.</translation>
+        <translation type="obsolete">Ten url seeda już jest na liście.</translation>
     </message>
     <message>
         <source>Hard-coded url seeds cannot be deleted.</source>
@@ -4714,47 +4982,39 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
-        <translation>Nowy url seeda</translation>
+        <translation type="obsolete">Nowy url seeda</translation>
     </message>
     <message>
         <source>The following url seeds are available for this torrent:</source>
-        <translation>Dla tego torrenta dostępne są następujące url seeda:</translation>
+        <translation type="obsolete">Dla tego torrenta dostępne są następujące url seeda:</translation>
     </message>
     <message>
         <source>Priorities error</source>
-        <translation>Błąd priorytetu</translation>
+        <translation type="obsolete">Błąd priorytetu</translation>
     </message>
     <message>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
-        <translation>Błąd, nie można filtrować wszystkich plików torrencie.</translation>
+        <translation type="obsolete">Błąd, nie można filtrować wszystkich plików torrencie.</translation>
     </message>
     <message>
         <source>Downloaded pieces</source>
-        <translation>Pobrane części</translation>
-    </message>
-    <message>
-        <source>Collapse all</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Pobrane części</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished">Wybierz katalog docelowy</translation>
+        <translation type="obsolete">Wybierz katalog docelowy</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished">Błąd tworzenia katalogu docelowego</translation>
+        <translation type="obsolete">Błąd tworzenia katalogu docelowego</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Nie można założyć katalogu docelowego</translation>
+        <translation type="obsolete">Nie można założyć katalogu docelowego</translation>
     </message>
 </context>
 <context>
@@ -4812,7 +5072,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <name>seeding</name>
     <message>
         <source>Search</source>
-        <translation>Szukaj</translation>
+        <translation type="obsolete">Szukaj</translation>
     </message>
     <message>
         <source>The following torrents are finished and shared:</source>
@@ -4820,63 +5080,51 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
-        <translation>&lt;u&gt;Notka:&lt;/u&gt; Ważne abyś zostawił pobrany torrent do współdzielenia w sieci dla jej dobrego działania.</translation>
+        <translation type="obsolete">&lt;u&gt;Notka:&lt;/u&gt; Ważne abyś zostawił pobrany torrent do współdzielenia w sieci dla jej dobrego działania.</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Start</translation>
+        <translation type="obsolete">Start</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Wstrzymaj</translation>
+        <translation type="obsolete">Wstrzymaj</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Skasuj</translation>
+        <translation type="obsolete">Skasuj</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>Usuń całkowicie</translation>
+        <translation type="obsolete">Usuń całkowicie</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Właściwości Torrenta</translation>
+        <translation type="obsolete">Właściwości Torrenta</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Podgląd pliku</translation>
+        <translation type="obsolete">Podgląd pliku</translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Ustaw limit wysyłania</translation>
+        <translation type="obsolete">Ustaw limit wysyłania</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>Otwórz folder pobierań</translation>
+        <translation type="obsolete">Otwórz folder pobierań</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nazwa</translation>
+        <translation type="obsolete">Nazwa</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Rozmiar</translation>
+        <translation type="obsolete">Rozmiar</translation>
     </message>
     <message>
         <source>Upload Speed</source>
-        <translation>Prędkość wysyłania</translation>
-    </message>
-    <message>
-        <source>Connected peers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Seeds / Leechers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Prędkość wysyłania</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -4884,15 +5132,11 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Ratio</translation>
+        <translation type="obsolete">Ratio</translation>
     </message>
     <message>
         <source>Buy it</source>
-        <translation>Kup to</translation>
-    </message>
-    <message>
-        <source>Total uploaded</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Kup to</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -4905,10 +5149,6 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <source>Decrease priority</source>
         <translation type="obsolete">Zmniejsz priorytet</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5041,6 +5281,14 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <source>Priority</source>
         <translation>Priorytet</translation>
+    </message>
+    <message>
+        <source>Seeding mode error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

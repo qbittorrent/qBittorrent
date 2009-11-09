@@ -182,7 +182,7 @@ p, li { white-space: pre-wrap; }
     <name>DLListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>КиБ/с</translation>
+        <translation type="obsolete">КиБ/с</translation>
     </message>
 </context>
 <context>
@@ -1008,27 +1008,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation>Имя</translation>
+        <translation type="obsolete">Имя</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation>Размер</translation>
+        <translation type="obsolete">Размер</translation>
     </message>
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation>Состояние</translation>
+        <translation type="obsolete">Состояние</translation>
     </message>
     <message>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Скорость скач</translation>
+        <translation type="obsolete">Скорость скач</translation>
     </message>
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Скорость отдачи</translation>
+        <translation type="obsolete">Скорость отдачи</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -1037,17 +1037,17 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Соотношение</translation>
+        <translation type="obsolete">Соотношение</translation>
     </message>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Ост. время</translation>
+        <translation type="obsolete">Ост. время</translation>
     </message>
     <message>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation>qBittorrent %1 запущен.</translation>
+        <translation type="obsolete">qBittorrent %1 запущен.</translation>
     </message>
     <message>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
@@ -1101,7 +1101,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Hide or Show Column</source>
-        <translation>Скрыть или показать столбец</translation>
+        <translation type="obsolete">Скрыть или показать столбец</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
@@ -1118,7 +1118,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation>Раздающих/Качающих</translation>
+        <translation type="obsolete">Раздающих/Качающих</translation>
     </message>
 </context>
 <context>
@@ -1327,7 +1327,7 @@ p, li { white-space: pre-wrap; }
     <name>FinishedListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>КиБ/с</translation>
+        <translation type="obsolete">КиБ/с</translation>
     </message>
 </context>
 <context>
@@ -1339,20 +1339,20 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation>Имя</translation>
+        <translation type="obsolete">Имя</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation>Размер</translation>
+        <translation type="obsolete">Размер</translation>
     </message>
     <message>
         <source>Seeds / Leechers</source>
-        <translation>Раздающих/Скачивающих</translation>
+        <translation type="obsolete">Раздающих/Скачивающих</translation>
     </message>
     <message>
         <source>Connected peers</source>
-        <translation>Подключенные пиры</translation>
+        <translation type="obsolete">Подключенные пиры</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -1367,7 +1367,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Скорость отдачи</translation>
+        <translation type="obsolete">Скорость отдачи</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -1390,7 +1390,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Соотношение</translation>
+        <translation type="obsolete">Соотношение</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -1400,11 +1400,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Total uploaded</source>
         <comment>i.e: Total amount of uploaded data</comment>
-        <translation>Всего отдано</translation>
+        <translation type="obsolete">Всего отдано</translation>
     </message>
     <message>
         <source>Hide or Show Column</source>
-        <translation>Скрыть или показать столбец</translation>
+        <translation type="obsolete">Скрыть или показать столбец</translation>
     </message>
     <message>
         <source>Incomplete torrent in seeding list</source>
@@ -1417,10 +1417,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Priority</source>
         <translation type="obsolete">Приоритет</translation>
-    </message>
-    <message>
-        <source>Super seeding mode</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1496,7 +1492,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Are you sure? -- qBittorrent</source>
-        <translation>Вы уверены? -- qBittorrent</translation>
+        <translation type="obsolete">Вы уверены? -- qBittorrent</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
@@ -1516,7 +1512,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
-        <translation>Вы уверены что хотите удалить выделенные пункты из списка закачек?</translation>
+        <translation type="obsolete">Вы уверены что хотите удалить выделенные пункты из списка закачек?</translation>
     </message>
     <message>
         <source>removed.</source>
@@ -1584,7 +1580,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Finished</source>
-        <translation>Завершено</translation>
+        <translation type="obsolete">Завершено</translation>
     </message>
     <message>
         <source>Checking...</source>
@@ -1811,7 +1807,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="obsolete">Передачи</translation>
+        <translation type="unfinished">Передачи</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -1823,7 +1819,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Download finished</source>
-        <translation>Скачивание завершено</translation>
+        <translation type="obsolete">Скачивание завершено</translation>
     </message>
     <message>
         <source> has finished downloading.</source>
@@ -2092,16 +2088,16 @@ Please close the other one first.</source>
     <message>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>Список закачек не пуст.
+        <translation type="obsolete">Список закачек не пуст.
 Вы хотите выйти из qBittorrent?</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation>Закачки</translation>
+        <translation type="obsolete">Закачки</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
-        <translation>Вы уверены что хотите удалить выделенные пункты из списка завершенных?</translation>
+        <translation type="obsolete">Вы уверены что хотите удалить выделенные пункты из списка завершенных?</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
@@ -2166,11 +2162,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
-        <translation>Вы действительно хотите удалить выбранный(-е) элемент(ы) из списка скачек и с жесткого диска?</translation>
+        <translation type="obsolete">Вы действительно хотите удалить выбранный(-е) элемент(ы) из списка скачек и с жесткого диска?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
-        <translation>Вы действительно хотите удалить выбранный(-е) элемент(ы) из списка законченных скачек и с жесткого диска?</translation>
+        <translation type="obsolete">Вы действительно хотите удалить выбранный(-е) элемент(ы) из списка законченных скачек и с жесткого диска?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed permanently.</source>
@@ -2228,7 +2224,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation>qBittorrent %1 (Скач: %2КиБ/с, Отд: %3КиБ/с)</translation>
+        <translation type="obsolete">qBittorrent %1 (Скач: %2КиБ/с, Отд: %3КиБ/с)</translation>
     </message>
     <message>
         <source>DL: %1 KiB/s</source>
@@ -2252,11 +2248,20 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Uploads</source>
-        <translation>Раздачи</translation>
+        <translation type="obsolete">Раздачи</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
         <translation>Настройки были успешно сохранены.</translation>
+    </message>
+    <message>
+        <source>Download completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some files are currently transferring.
+Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2542,6 +2547,155 @@ Are you sure you want to quit qBittorrent?</source>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Максимальный</translation>
+    </message>
+</context>
+<context>
+    <name>PropertiesWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent information</source>
+        <translation type="unfinished">Информация torrent-а</translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="unfinished">Путь сохранения:</translation>
+    </message>
+    <message>
+        <source>Creator:</source>
+        <translation type="unfinished">Создатель:</translation>
+    </message>
+    <message>
+        <source>Torrent hash:</source>
+        <translation type="unfinished">Хэш torrentа:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">Комментарий:</translation>
+    </message>
+    <message>
+        <source>Current session</source>
+        <translation type="unfinished">Текущая сессия</translation>
+    </message>
+    <message>
+        <source>Total uploaded:</source>
+        <translation type="unfinished">Всего отдано:</translation>
+    </message>
+    <message>
+        <source>Total downloaded:</source>
+        <translation type="unfinished">Всего скачено:</translation>
+    </message>
+    <message>
+        <source>Share ratio:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total failed:</source>
+        <translation type="unfinished">Всего неудачно:</translation>
+    </message>
+    <message>
+        <source>Downloaded pieces</source>
+        <translation type="unfinished">Закаченые кусочки</translation>
+    </message>
+    <message>
+        <source>Download in correct order (slower but good for previewing)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current tracker:</source>
+        <translation type="unfinished">Текущий трэкер:</translation>
+    </message>
+    <message>
+        <source>Collapse all</source>
+        <translation type="unfinished">Свернуть все</translation>
+    </message>
+    <message>
+        <source>Expand all</source>
+        <translation type="unfinished">Развернуть все</translation>
+    </message>
+    <message>
+        <source>QPushButton { 
+border: 1px solid rgb(85, 81, 91);
+border-radius: 3px;
+padding: 2px;
+margin-left: 3px; margin-right: 3px;
+}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Общие</translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation type="unfinished">Трэкеры</translation>
+    </message>
+    <message>
+        <source>URL seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File name</source>
+        <translation type="unfinished">Имя файла</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Размер</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Приоритет</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished">Неизвестно</translation>
+    </message>
+    <message>
+        <source>None - Unreachable?</source>
+        <translation type="unfinished">Нет - Недостигаемо?</translation>
+    </message>
+    <message>
+        <source>New url seed</source>
+        <comment>New HTTP source</comment>
+        <translation type="unfinished">Новый URL раздачи</translation>
+    </message>
+    <message>
+        <source>New url seed:</source>
+        <translation type="unfinished">URL нового раздающего:</translation>
+    </message>
+    <message>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <source>This url seed is already in the list.</source>
+        <translation type="unfinished">Этот URL раздающего уже в списке.</translation>
+    </message>
+    <message>
+        <source>Trackers list can&apos;t be empty.</source>
+        <translation type="unfinished">Список трекеров не может быть пуст.</translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">Выберите путь сохранения</translation>
+    </message>
+    <message>
+        <source>Save path creation error</source>
+        <translation type="unfinished">Ошибка создания пути сохранения</translation>
+    </message>
+    <message>
+        <source>Could not create the save path</source>
+        <translation type="unfinished">Невозможно создать путь сохранения</translation>
     </message>
 </context>
 <context>
@@ -3038,6 +3192,154 @@ Changelog:
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Список трекеров для добавление (один трекер на строку):</translation>
+    </message>
+</context>
+<context>
+    <name>TransferListDelegate</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished">КиБ/с</translation>
+    </message>
+</context>
+<context>
+    <name>TransferListFiltersWidget</name>
+    <message>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation type="unfinished">Скачивание</translation>
+    </message>
+    <message>
+        <source>Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inactive</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TransferListWidget</name>
+    <message>
+        <source>Name</source>
+        <comment>i.e: file name</comment>
+        <translation type="unfinished">Имя</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <comment>i.e: file size</comment>
+        <translation type="unfinished">Размер</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <comment>i.e: % downloaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DL Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished">Скорость скач</translation>
+    </message>
+    <message>
+        <source>UP Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeds/Leechers</source>
+        <comment>i.e: full/partial sources</comment>
+        <translation type="unfinished">Раздающих/Качающих</translation>
+    </message>
+    <message>
+        <source>Ratio</source>
+        <translation type="unfinished">Соотношение</translation>
+    </message>
+    <message>
+        <source>ETA</source>
+        <comment>i.e: Estimated Time of Arrival / Time left</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deletion confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from transfer list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;Да</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;Нет</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from transfe list and hard disk?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Column visibility</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="unfinished">Приостановить</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Удалить</translation>
+    </message>
+    <message>
+        <source>Preview file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set upload limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set download limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished">Удалить навсегда</translation>
+    </message>
+    <message>
+        <source>Open destination folder</source>
+        <translation type="unfinished">Открыть папку назначения</translation>
+    </message>
+    <message>
+        <source>Buy it</source>
+        <translation type="unfinished">Купить</translation>
+    </message>
+    <message>
+        <source>Increase priority</source>
+        <translation type="unfinished">Повысить приоритет</translation>
+    </message>
+    <message>
+        <source>Decrease priority</source>
+        <translation type="unfinished">Понизить приоритет</translation>
+    </message>
+    <message>
+        <source>Force recheck</source>
+        <translation type="unfinished">Проверить принудительно</translation>
+    </message>
+    <message>
+        <source>Copy magnet link</source>
+        <translation type="unfinished">Скопировать ссылку magnet</translation>
     </message>
 </context>
 <context>
@@ -3735,7 +4037,7 @@ Changelog:
     <name>downloading</name>
     <message>
         <source>Search</source>
-        <translation>Поиск</translation>
+        <translation type="obsolete">Поиск</translation>
     </message>
     <message>
         <source>Total DL Speed:</source>
@@ -3763,15 +4065,15 @@ Changelog:
     </message>
     <message>
         <source>Start</source>
-        <translation>Начать</translation>
+        <translation type="obsolete">Начать</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Приостановить</translation>
+        <translation type="obsolete">Приостановить</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Удалить</translation>
+        <translation type="obsolete">Удалить</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -3779,83 +4081,83 @@ Changelog:
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Просмотреть файл</translation>
+        <translation type="obsolete">Просмотреть файл</translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Установить предел отдачи</translation>
+        <translation type="obsolete">Установить предел отдачи</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation>Установить предел скачивания</translation>
+        <translation type="obsolete">Установить предел скачивания</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>Удалить навсегда</translation>
+        <translation type="obsolete">Удалить навсегда</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Свойства torrentа</translation>
+        <translation type="obsolete">Свойства torrentа</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>Открыть папку назначения</translation>
+        <translation type="obsolete">Открыть папку назначения</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Имя</translation>
+        <translation type="obsolete">Имя</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Размер</translation>
+        <translation type="obsolete">Размер</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Прогресс</translation>
+        <translation type="obsolete">Прогресс</translation>
     </message>
     <message>
         <source>DLSpeed</source>
-        <translation>Скорость скач</translation>
+        <translation type="obsolete">Скорость скач</translation>
     </message>
     <message>
         <source>UpSpeed</source>
-        <translation>Скорость загр</translation>
+        <translation type="obsolete">Скорость загр</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
-        <translation>Раздающих/Скачивающих</translation>
+        <translation type="obsolete">Раздающих/Скачивающих</translation>
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Соотношение</translation>
+        <translation type="obsolete">Соотношение</translation>
     </message>
     <message>
         <source>ETA</source>
-        <translation>Оцен. время</translation>
+        <translation type="obsolete">Оцен. время</translation>
     </message>
     <message>
         <source>Buy it</source>
-        <translation>Купить</translation>
+        <translation type="obsolete">Купить</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Приоритет</translation>
+        <translation type="obsolete">Приоритет</translation>
     </message>
     <message>
         <source>Increase priority</source>
-        <translation>Повысить приоритет</translation>
+        <translation type="obsolete">Повысить приоритет</translation>
     </message>
     <message>
         <source>Decrease priority</source>
-        <translation>Понизить приоритет</translation>
+        <translation type="obsolete">Понизить приоритет</translation>
     </message>
     <message>
         <source>Force recheck</source>
-        <translation>Проверить принудительно</translation>
+        <translation type="obsolete">Проверить принудительно</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation>Скопировать ссылку magnet</translation>
+        <translation type="obsolete">Скопировать ссылку magnet</translation>
     </message>
 </context>
 <context>
@@ -4318,7 +4620,7 @@ However, those plugins were disabled.</source>
     <name>properties</name>
     <message>
         <source>Torrent Properties</source>
-        <translation>Свойства Torrent</translation>
+        <translation type="obsolete">Свойства Torrent</translation>
     </message>
     <message>
         <source>Main Infos</source>
@@ -4342,7 +4644,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Trackers:</source>
-        <translation>Трэкеры:</translation>
+        <translation type="obsolete">Трэкеры:</translation>
     </message>
     <message>
         <source>Current Tracker:</source>
@@ -4374,11 +4676,11 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
-        <translation>Файлы, содержащиеся в текущем torrent-е:</translation>
+        <translation type="obsolete">Файлы, содержащиеся в текущем torrent-е:</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Размер</translation>
+        <translation type="obsolete">Размер</translation>
     </message>
     <message>
         <source>Selected</source>
@@ -4398,7 +4700,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="obsolete">OK</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4434,11 +4736,11 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>None - Unreachable?</source>
-        <translation>Нет - Недостигаемо?</translation>
+        <translation type="obsolete">Нет - Недостигаемо?</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Неизвестно</translation>
+        <translation type="obsolete">Неизвестно</translation>
     </message>
     <message>
         <source>Complete: </source>
@@ -4458,7 +4760,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Прогресс</translation>
+        <translation type="obsolete">Прогресс</translation>
     </message>
     <message>
         <source>Main infos</source>
@@ -4470,31 +4772,31 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Current tracker:</source>
-        <translation>Текущий трэкер:</translation>
+        <translation type="obsolete">Текущий трэкер:</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation>Всего отдано:</translation>
+        <translation type="obsolete">Всего отдано:</translation>
     </message>
     <message>
         <source>Main info</source>
-        <translation>Главная информация</translation>
+        <translation type="obsolete">Главная информация</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation>Информация torrent-а</translation>
+        <translation type="obsolete">Информация torrent-а</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation>Всего скачено:</translation>
+        <translation type="obsolete">Всего скачено:</translation>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation>Всего неудачно:</translation>
+        <translation type="obsolete">Всего неудачно:</translation>
     </message>
     <message>
         <source>Torrent content</source>
-        <translation>Содержимое Torrent-a</translation>
+        <translation type="obsolete">Содержимое Torrent-a</translation>
     </message>
     <message>
         <source>Options</source>
@@ -4502,7 +4804,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation>Загрузить в правильном порядке</translation>
+        <translation type="obsolete">Загрузить в правильном порядке</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
@@ -4518,7 +4820,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Save path:</source>
-        <translation>Путь сохранения:</translation>
+        <translation type="obsolete">Путь сохранения:</translation>
     </message>
     <message>
         <source>Torrent infos</source>
@@ -4526,27 +4828,27 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Creator:</source>
-        <translation>Создатель:</translation>
+        <translation type="obsolete">Создатель:</translation>
     </message>
     <message>
         <source>Torrent hash:</source>
-        <translation>Хэш torrentа:</translation>
+        <translation type="obsolete">Хэш torrentа:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation>Комментарий:</translation>
+        <translation type="obsolete">Комментарий:</translation>
     </message>
     <message>
         <source>Current session</source>
-        <translation>Текущая сессия</translation>
+        <translation type="obsolete">Текущая сессия</translation>
     </message>
     <message>
         <source>Share ratio:</source>
-        <translation>Соотношение раздачи:</translation>
+        <translation type="obsolete">Соотношение раздачи:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Трэкеры</translation>
+        <translation type="obsolete">Трэкеры</translation>
     </message>
     <message>
         <source>New tracker</source>
@@ -4558,67 +4860,67 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Priorities:</source>
-        <translation>Приоритеты:</translation>
+        <translation type="obsolete">Приоритеты:</translation>
     </message>
     <message>
         <source>Normal: normal priority. Download order is dependent on availability</source>
-        <translation>Обычный: обычный приоритет. Порядок скачивания зависит от степени доступности</translation>
+        <translation type="obsolete">Обычный: обычный приоритет. Порядок скачивания зависит от степени доступности</translation>
     </message>
     <message>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
-        <translation>Высокий: приоритет выше обычного. Кусочки скачиваются раньше, чем нормальные при одной доступности, но не раньше более доступных</translation>
+        <translation type="obsolete">Высокий: приоритет выше обычного. Кусочки скачиваются раньше, чем нормальные при одной доступности, но не раньше более доступных</translation>
     </message>
     <message>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
-        <translation>Максимум: максимальный приоритет, доступность игнорируется, скачиваются в первую очередь при любой доступности</translation>
+        <translation type="obsolete">Максимум: максимальный приоритет, доступность игнорируется, скачиваются в первую очередь при любой доступности</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation>Имя файла</translation>
+        <translation type="obsolete">Имя файла</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Приоритет</translation>
+        <translation type="obsolete">Приоритет</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Trackers list can&apos;t be empty.</source>
-        <translation>Список трекеров не может быть пуст.</translation>
+        <translation type="obsolete">Список трекеров не может быть пуст.</translation>
     </message>
     <message>
         <source>Ignored: file is not downloaded at all</source>
-        <translation>Игнорирован: файл не будет скачан</translation>
+        <translation type="obsolete">Игнорирован: файл не будет скачан</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Проигнорирован</translation>
+        <translation type="obsolete">Проигнорирован</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Обычный</translation>
+        <translation type="obsolete">Обычный</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Максимум</translation>
+        <translation type="obsolete">Максимум</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Высокий</translation>
+        <translation type="obsolete">Высокий</translation>
     </message>
     <message>
         <source>Url seeds</source>
-        <translation>URL раздающих</translation>
+        <translation type="obsolete">URL раздающих</translation>
     </message>
     <message>
         <source>New url seed:</source>
-        <translation>URL нового раздающего:</translation>
+        <translation type="obsolete">URL нового раздающего:</translation>
     </message>
     <message>
         <source>This url seed is already in the list.</source>
-        <translation>Этот URL раздающего уже в списке.</translation>
+        <translation type="obsolete">Этот URL раздающего уже в списке.</translation>
     </message>
     <message>
         <source>Hard-coded url seeds cannot be deleted.</source>
@@ -4632,47 +4934,47 @@ However, those plugins were disabled.</source>
     <message>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
-        <translation>Новый URL раздачи</translation>
+        <translation type="obsolete">Новый URL раздачи</translation>
     </message>
     <message>
         <source>The following url seeds are available for this torrent:</source>
-        <translation>Для данного torrentа доступны следующие URL раздач:</translation>
+        <translation type="obsolete">Для данного torrentа доступны следующие URL раздач:</translation>
     </message>
     <message>
         <source>Priorities error</source>
-        <translation>Ошибка приоритетов</translation>
+        <translation type="obsolete">Ошибка приоритетов</translation>
     </message>
     <message>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
-        <translation>Ошибка, вы не можете отфильтровать все файлы в torrentе.</translation>
+        <translation type="obsolete">Ошибка, вы не можете отфильтровать все файлы в torrentе.</translation>
     </message>
     <message>
         <source>Downloaded pieces</source>
-        <translation>Закаченые кусочки</translation>
+        <translation type="obsolete">Закаченые кусочки</translation>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Свернуть все</translation>
+        <translation type="obsolete">Свернуть все</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Развернуть все</translation>
+        <translation type="obsolete">Развернуть все</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Выберите путь сохранения</translation>
+        <translation type="obsolete">Выберите путь сохранения</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Ошибка создания пути сохранения</translation>
+        <translation type="obsolete">Ошибка создания пути сохранения</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Невозможно создать путь сохранения</translation>
+        <translation type="obsolete">Невозможно создать путь сохранения</translation>
     </message>
 </context>
 <context>
@@ -4726,7 +5028,7 @@ However, those plugins were disabled.</source>
     <name>seeding</name>
     <message>
         <source>Search</source>
-        <translation>Поиск</translation>
+        <translation type="obsolete">Поиск</translation>
     </message>
     <message>
         <source>The following torrents are finished and shared:</source>
@@ -4734,59 +5036,59 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
-        <translation>&lt;u&gt;Примечание:&lt;/u&gt; Важно, чтобы скачанные файлы раздавались какое-то время после скачивания, иначе вы будете забанены на трекере.</translation>
+        <translation type="obsolete">&lt;u&gt;Примечание:&lt;/u&gt; Важно, чтобы скачанные файлы раздавались какое-то время после скачивания, иначе вы будете забанены на трекере.</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Начать</translation>
+        <translation type="obsolete">Начать</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Приостановить</translation>
+        <translation type="obsolete">Приостановить</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Удалить</translation>
+        <translation type="obsolete">Удалить</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>Удалить навсегда</translation>
+        <translation type="obsolete">Удалить навсегда</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Свойства torrentа</translation>
+        <translation type="obsolete">Свойства torrentа</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Предпросмотр фаила </translation>
+        <translation type="obsolete">Предпросмотр фаила </translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Установить предел отдачи</translation>
+        <translation type="obsolete">Установить предел отдачи</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>Открыть папку назначения</translation>
+        <translation type="obsolete">Открыть папку назначения</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Имя</translation>
+        <translation type="obsolete">Имя</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Размер</translation>
+        <translation type="obsolete">Размер</translation>
     </message>
     <message>
         <source>Upload Speed</source>
-        <translation>Скорость отдачи</translation>
+        <translation type="obsolete">Скорость отдачи</translation>
     </message>
     <message>
         <source>Connected peers</source>
-        <translation>Подключенные пиры</translation>
+        <translation type="obsolete">Подключенные пиры</translation>
     </message>
     <message>
         <source>Seeds / Leechers</source>
-        <translation>Раздающих/Скачивающих</translation>
+        <translation type="obsolete">Раздающих/Скачивающих</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -4794,15 +5096,15 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Соотношение</translation>
+        <translation type="obsolete">Соотношение</translation>
     </message>
     <message>
         <source>Buy it</source>
-        <translation>Купить</translation>
+        <translation type="obsolete">Купить</translation>
     </message>
     <message>
         <source>Total uploaded</source>
-        <translation>Всего отдано</translation>
+        <translation type="obsolete">Всего отдано</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -4818,11 +5120,11 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Force recheck</source>
-        <translation>Проверить принудительно</translation>
+        <translation type="obsolete">Проверить принудительно</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation>Скопировать ссылку magnet</translation>
+        <translation type="obsolete">Скопировать ссылку magnet</translation>
     </message>
 </context>
 <context>
@@ -4955,6 +5257,14 @@ However, those plugins were disabled.</source>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(на %1 больше нужно для загрузки)</translation>
+    </message>
+    <message>
+        <source>Seeding mode error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

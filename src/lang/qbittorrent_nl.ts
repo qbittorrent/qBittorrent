@@ -194,7 +194,7 @@ p, li { white-space: pre-wrap; }
     <name>DLListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -1043,32 +1043,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation>Naam</translation>
+        <translation type="obsolete">Naam</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation>Grootte</translation>
+        <translation type="obsolete">Grootte</translation>
     </message>
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation>Voortgang</translation>
+        <translation type="obsolete">Voortgang</translation>
     </message>
     <message>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>DL snelheid</translation>
+        <translation type="obsolete">DL snelheid</translation>
     </message>
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>UP snelheid</translation>
+        <translation type="obsolete">UP snelheid</translation>
     </message>
     <message>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation>Seeds/Leechers</translation>
+        <translation type="obsolete">Seeds/Leechers</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -1077,17 +1077,17 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Verhouding</translation>
+        <translation type="obsolete">Verhouding</translation>
     </message>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Geschatte resterende tijd</translation>
+        <translation type="obsolete">Geschatte resterende tijd</translation>
     </message>
     <message>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation>qBittorrent %1 gestart.</translation>
+        <translation type="obsolete">qBittorrent %1 gestart.</translation>
     </message>
     <message>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
@@ -1141,7 +1141,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Hide or Show Column</source>
-        <translation>Verberg of Toon Kolom</translation>
+        <translation type="obsolete">Verberg of Toon Kolom</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
@@ -1361,7 +1361,7 @@ p, li { white-space: pre-wrap; }
     <name>FinishedListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -1369,20 +1369,20 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation>Naam</translation>
+        <translation type="obsolete">Naam</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation>Grootte</translation>
+        <translation type="obsolete">Grootte</translation>
     </message>
     <message>
         <source>Seeds / Leechers</source>
-        <translation>Seeds / Leechers</translation>
+        <translation type="obsolete">Seeds / Leechers</translation>
     </message>
     <message>
         <source>Connected peers</source>
-        <translation>Verbonden peers</translation>
+        <translation type="obsolete">Verbonden peers</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -1397,7 +1397,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>UP snelheid</translation>
+        <translation type="obsolete">UP snelheid</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -1420,7 +1420,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Verhouding</translation>
+        <translation type="obsolete">Verhouding</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -1430,11 +1430,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Total uploaded</source>
         <comment>i.e: Total amount of uploaded data</comment>
-        <translation>Totaal geüpload</translation>
+        <translation type="obsolete">Totaal geüpload</translation>
     </message>
     <message>
         <source>Hide or Show Column</source>
-        <translation>Verberg of Toon Kolom</translation>
+        <translation type="obsolete">Verberg of Toon Kolom</translation>
     </message>
     <message>
         <source>Incomplete torrent in seeding list</source>
@@ -1447,10 +1447,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Priority</source>
         <translation type="obsolete">Prioriteit</translation>
-    </message>
-    <message>
-        <source>Super seeding mode</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1526,7 +1522,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Are you sure? -- qBittorrent</source>
-        <translation>Weet u het zeker? -- qBittorrent</translation>
+        <translation type="obsolete">Weet u het zeker? -- qBittorrent</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all files in download list?</source>
@@ -1546,7 +1542,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
-        <translation>Weet u zeker dat u de geselecteerde bestanden uit de downloadlijst wilt verwijderen?</translation>
+        <translation type="obsolete">Weet u zeker dat u de geselecteerde bestanden uit de downloadlijst wilt verwijderen?</translation>
     </message>
     <message>
         <source>removed.</source>
@@ -1614,7 +1610,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Finished</source>
-        <translation>Klaar</translation>
+        <translation type="obsolete">Klaar</translation>
     </message>
     <message>
         <source>Checking...</source>
@@ -1826,11 +1822,11 @@ Stop het eerste proccess eerst.
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="obsolete">Overdrachten</translation>
+        <translation type="unfinished">Overdrachten</translation>
     </message>
     <message>
         <source>Download finished</source>
-        <translation>Download afgerond</translation>
+        <translation type="obsolete">Download afgerond</translation>
     </message>
     <message>
         <source> has finished downloading.</source>
@@ -2094,16 +2090,16 @@ Stop het eerste proccess eerst.
     <message>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>De downloadlijst is niet leeg.
+        <translation type="obsolete">De downloadlijst is niet leeg.
 Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation>Downloads</translation>
+        <translation type="obsolete">Downloads</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
-        <translation>Weet u zeker dat u de geselecteerde item(s) wilt verwijderen van de voltooidlijst?</translation>
+        <translation type="obsolete">Weet u zeker dat u de geselecteerde item(s) wilt verwijderen van de voltooidlijst?</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
@@ -2153,11 +2149,11 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
-        <translation>Weet u zeker dat u de geselecteerde item(s) wilt verwijderen van de downloadlijst en de harde schijf?</translation>
+        <translation type="obsolete">Weet u zeker dat u de geselecteerde item(s) wilt verwijderen van de downloadlijst en de harde schijf?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
-        <translation>Weet u zeker dat u de geselecteerde item(s) wilt verwijderen van de voltooidlijst en de harde schijf?</translation>
+        <translation type="obsolete">Weet u zeker dat u de geselecteerde item(s) wilt verwijderen van de voltooidlijst en de harde schijf?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed permanently.</source>
@@ -2211,7 +2207,7 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     <message>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
+        <translation type="obsolete">qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
         <source>DL: %1 KiB/s</source>
@@ -2235,11 +2231,20 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     </message>
     <message>
         <source>Uploads</source>
-        <translation>Uploads</translation>
+        <translation type="obsolete">Uploads</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
         <translation>Opties zijn succesvol opgeslagen.</translation>
+    </message>
+    <message>
+        <source>Download completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some files are currently transferring.
+Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2525,6 +2530,155 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maximum</translation>
+    </message>
+</context>
+<context>
+    <name>PropertiesWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent information</source>
+        <translation type="unfinished">Torrentinformatie</translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="unfinished">Opslag pad:</translation>
+    </message>
+    <message>
+        <source>Creator:</source>
+        <translation type="unfinished">Maker:</translation>
+    </message>
+    <message>
+        <source>Torrent hash:</source>
+        <translation type="unfinished">Torrent hash:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">Opmerkingen:</translation>
+    </message>
+    <message>
+        <source>Current session</source>
+        <translation type="unfinished">Huidige sessie</translation>
+    </message>
+    <message>
+        <source>Total uploaded:</source>
+        <translation type="unfinished">Totaal geüpload:</translation>
+    </message>
+    <message>
+        <source>Total downloaded:</source>
+        <translation type="unfinished">Totaal gedownload:</translation>
+    </message>
+    <message>
+        <source>Share ratio:</source>
+        <translation type="unfinished">Deelratio:</translation>
+    </message>
+    <message>
+        <source>Total failed:</source>
+        <translation type="unfinished">Totaal gefaald:</translation>
+    </message>
+    <message>
+        <source>Downloaded pieces</source>
+        <translation type="unfinished">Gedownloade stukjes</translation>
+    </message>
+    <message>
+        <source>Download in correct order (slower but good for previewing)</source>
+        <translation type="unfinished">Download in juiste volgorde (langzamer maar goed voor vooruitblikken)</translation>
+    </message>
+    <message>
+        <source>Current tracker:</source>
+        <translation type="unfinished">Huidige tracker:</translation>
+    </message>
+    <message>
+        <source>Collapse all</source>
+        <translation type="unfinished">Alles inklappen</translation>
+    </message>
+    <message>
+        <source>Expand all</source>
+        <translation type="unfinished">Alles uitklappen</translation>
+    </message>
+    <message>
+        <source>QPushButton { 
+border: 1px solid rgb(85, 81, 91);
+border-radius: 3px;
+padding: 2px;
+margin-left: 3px; margin-right: 3px;
+}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Algemeen</translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation type="unfinished">Trackers</translation>
+    </message>
+    <message>
+        <source>URL seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File name</source>
+        <translation type="unfinished">Bestandsnaam</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Grootte</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Voortgang</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Prioriteit</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished">Onbekend</translation>
+    </message>
+    <message>
+        <source>None - Unreachable?</source>
+        <translation type="unfinished">Geen - Onbereikbaar?</translation>
+    </message>
+    <message>
+        <source>New url seed</source>
+        <comment>New HTTP source</comment>
+        <translation type="unfinished">Nieuwe url seed</translation>
+    </message>
+    <message>
+        <source>New url seed:</source>
+        <translation type="unfinished">Nieuwe url seed:</translation>
+    </message>
+    <message>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <source>This url seed is already in the list.</source>
+        <translation type="unfinished">Deze url seed staat al in de lijst.</translation>
+    </message>
+    <message>
+        <source>Trackers list can&apos;t be empty.</source>
+        <translation type="unfinished">Trackerlijst kan niet leeg zijn.</translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save path creation error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not create the save path</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3021,6 +3175,154 @@ Changelog:
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Lijst van toe te voegen trackers (een per regel):</translation>
+    </message>
+</context>
+<context>
+    <name>TransferListDelegate</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished">KiB/s</translation>
+    </message>
+</context>
+<context>
+    <name>TransferListFiltersWidget</name>
+    <message>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation type="unfinished">Downloaden</translation>
+    </message>
+    <message>
+        <source>Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inactive</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TransferListWidget</name>
+    <message>
+        <source>Name</source>
+        <comment>i.e: file name</comment>
+        <translation type="unfinished">Naam</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <comment>i.e: file size</comment>
+        <translation type="unfinished">Grootte</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <comment>i.e: % downloaded</comment>
+        <translation type="unfinished">Voortgang</translation>
+    </message>
+    <message>
+        <source>DL Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished">DL snelheid</translation>
+    </message>
+    <message>
+        <source>UP Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished">UP snelheid</translation>
+    </message>
+    <message>
+        <source>Seeds/Leechers</source>
+        <comment>i.e: full/partial sources</comment>
+        <translation type="unfinished">Seeds/Leechers</translation>
+    </message>
+    <message>
+        <source>Ratio</source>
+        <translation type="unfinished">Verhouding</translation>
+    </message>
+    <message>
+        <source>ETA</source>
+        <comment>i.e: Estimated Time of Arrival / Time left</comment>
+        <translation type="unfinished">Geschatte resterende tijd</translation>
+    </message>
+    <message>
+        <source>Deletion confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from transfer list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;Ja</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;Nee</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from transfe list and hard disk?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Column visibility</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished">Start</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="unfinished">Pauze</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Verwijderen</translation>
+    </message>
+    <message>
+        <source>Preview file</source>
+        <translation type="unfinished">Kijk vooruit op bestand</translation>
+    </message>
+    <message>
+        <source>Set upload limit</source>
+        <translation type="unfinished">Uploadlimiet instellen</translation>
+    </message>
+    <message>
+        <source>Set download limit</source>
+        <translation type="unfinished">Downloadlimiet instellen</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished">Permanent verwijderen</translation>
+    </message>
+    <message>
+        <source>Open destination folder</source>
+        <translation type="unfinished">Open doel map</translation>
+    </message>
+    <message>
+        <source>Buy it</source>
+        <translation type="unfinished">Koop het</translation>
+    </message>
+    <message>
+        <source>Increase priority</source>
+        <translation type="unfinished">Prioriteit verhogen</translation>
+    </message>
+    <message>
+        <source>Decrease priority</source>
+        <translation type="unfinished">Prioriteit verlagen</translation>
+    </message>
+    <message>
+        <source>Force recheck</source>
+        <translation type="unfinished">Forceer hercontrole</translation>
+    </message>
+    <message>
+        <source>Copy magnet link</source>
+        <translation type="unfinished">Kopieer magnet link</translation>
     </message>
 </context>
 <context>
@@ -3706,7 +4008,7 @@ Changelog:
     <name>downloading</name>
     <message>
         <source>Search</source>
-        <translation>Zoeken</translation>
+        <translation type="obsolete">Zoeken</translation>
     </message>
     <message>
         <source>Total DL Speed:</source>
@@ -3734,15 +4036,15 @@ Changelog:
     </message>
     <message>
         <source>Start</source>
-        <translation>Start</translation>
+        <translation type="obsolete">Start</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pauze</translation>
+        <translation type="obsolete">Pauze</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Verwijderen</translation>
+        <translation type="obsolete">Verwijderen</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -3750,83 +4052,83 @@ Changelog:
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Kijk vooruit op bestand</translation>
+        <translation type="obsolete">Kijk vooruit op bestand</translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Uploadlimiet instellen</translation>
+        <translation type="obsolete">Uploadlimiet instellen</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation>Downloadlimiet instellen</translation>
+        <translation type="obsolete">Downloadlimiet instellen</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>Permanent verwijderen</translation>
+        <translation type="obsolete">Permanent verwijderen</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Torrent eigenschappen</translation>
+        <translation type="obsolete">Torrent eigenschappen</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>Open doel map</translation>
+        <translation type="obsolete">Open doel map</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Naam</translation>
+        <translation type="obsolete">Naam</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Grootte</translation>
+        <translation type="obsolete">Grootte</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Voortgang</translation>
+        <translation type="obsolete">Voortgang</translation>
     </message>
     <message>
         <source>DLSpeed</source>
-        <translation>DLSnelheid</translation>
+        <translation type="obsolete">DLSnelheid</translation>
     </message>
     <message>
         <source>UpSpeed</source>
-        <translation>UpSnelheid</translation>
+        <translation type="obsolete">UpSnelheid</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
-        <translation>Up-/Downloaders</translation>
+        <translation type="obsolete">Up-/Downloaders</translation>
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Verhouding</translation>
+        <translation type="obsolete">Verhouding</translation>
     </message>
     <message>
         <source>ETA</source>
-        <translation>Geschatte resterende tijd</translation>
+        <translation type="obsolete">Geschatte resterende tijd</translation>
     </message>
     <message>
         <source>Buy it</source>
-        <translation>Koop het</translation>
+        <translation type="obsolete">Koop het</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioriteit</translation>
+        <translation type="obsolete">Prioriteit</translation>
     </message>
     <message>
         <source>Increase priority</source>
-        <translation>Prioriteit verhogen</translation>
+        <translation type="obsolete">Prioriteit verhogen</translation>
     </message>
     <message>
         <source>Decrease priority</source>
-        <translation>Prioriteit verlagen</translation>
+        <translation type="obsolete">Prioriteit verlagen</translation>
     </message>
     <message>
         <source>Force recheck</source>
-        <translation>Forceer hercontrole</translation>
+        <translation type="obsolete">Forceer hercontrole</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation>Kopieer magnet link</translation>
+        <translation type="obsolete">Kopieer magnet link</translation>
     </message>
 </context>
 <context>
@@ -4295,11 +4597,11 @@ selecteer alstublieft een er van:</translation>
     <name>properties</name>
     <message>
         <source>Torrent Properties</source>
-        <translation>Torrent eigenschappen</translation>
+        <translation type="obsolete">Torrent eigenschappen</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="obsolete">OK</translation>
     </message>
     <message>
         <source>Main Infos</source>
@@ -4339,7 +4641,7 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Trackers:</source>
-        <translation>Trackers:</translation>
+        <translation type="obsolete">Trackers:</translation>
     </message>
     <message>
         <source>Current Tracker:</source>
@@ -4355,7 +4657,7 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
-        <translation>Bestanden in de huidige torrent:</translation>
+        <translation type="obsolete">Bestanden in de huidige torrent:</translation>
     </message>
     <message>
         <source> Unselect</source>
@@ -4371,7 +4673,7 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Grootte</translation>
+        <translation type="obsolete">Grootte</translation>
     </message>
     <message>
         <source>Selected</source>
@@ -4411,11 +4713,11 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
-        <translation>Geen - Onbereikbaar?</translation>
+        <translation type="obsolete">Geen - Onbereikbaar?</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Onbekend</translation>
+        <translation type="obsolete">Onbekend</translation>
     </message>
     <message>
         <source>Complete: </source>
@@ -4435,7 +4737,7 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Voortgang</translation>
+        <translation type="obsolete">Voortgang</translation>
     </message>
     <message>
         <source>Main infos</source>
@@ -4447,31 +4749,31 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Current tracker:</source>
-        <translation>Huidige tracker:</translation>
+        <translation type="obsolete">Huidige tracker:</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation>Totaal geüpload:</translation>
+        <translation type="obsolete">Totaal geüpload:</translation>
     </message>
     <message>
         <source>Main info</source>
-        <translation>Hoofdinformatie</translation>
+        <translation type="obsolete">Hoofdinformatie</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation>Torrentinformatie</translation>
+        <translation type="obsolete">Torrentinformatie</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation>Totaal gedownload:</translation>
+        <translation type="obsolete">Totaal gedownload:</translation>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation>Totaal gefaald:</translation>
+        <translation type="obsolete">Totaal gefaald:</translation>
     </message>
     <message>
         <source>Torrent content</source>
-        <translation>Torrent inhoud</translation>
+        <translation type="obsolete">Torrent inhoud</translation>
     </message>
     <message>
         <source>Options</source>
@@ -4479,7 +4781,7 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation>Download in juiste volgorde (langzamer maar goed voor vooruitblikken)</translation>
+        <translation type="obsolete">Download in juiste volgorde (langzamer maar goed voor vooruitblikken)</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
@@ -4495,7 +4797,7 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation>Opslag pad:</translation>
+        <translation type="obsolete">Opslag pad:</translation>
     </message>
     <message>
         <source>Torrent infos</source>
@@ -4503,27 +4805,27 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Creator:</source>
-        <translation>Maker:</translation>
+        <translation type="obsolete">Maker:</translation>
     </message>
     <message>
         <source>Torrent hash:</source>
-        <translation>Torrent hash:</translation>
+        <translation type="obsolete">Torrent hash:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation>Opmerkingen:</translation>
+        <translation type="obsolete">Opmerkingen:</translation>
     </message>
     <message>
         <source>Current session</source>
-        <translation>Huidige sessie</translation>
+        <translation type="obsolete">Huidige sessie</translation>
     </message>
     <message>
         <source>Share ratio:</source>
-        <translation>Deelratio:</translation>
+        <translation type="obsolete">Deelratio:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Trackers</translation>
+        <translation type="obsolete">Trackers</translation>
     </message>
     <message>
         <source>New tracker</source>
@@ -4535,67 +4837,67 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Priorities:</source>
-        <translation>Prioriteiten:</translation>
+        <translation type="obsolete">Prioriteiten:</translation>
     </message>
     <message>
         <source>Normal: normal priority. Download order is dependent on availability</source>
-        <translation>Normaal: normale prioriteit. Downloadvolgorde is afhankelijk van beschikbaarheid</translation>
+        <translation type="obsolete">Normaal: normale prioriteit. Downloadvolgorde is afhankelijk van beschikbaarheid</translation>
     </message>
     <message>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
-        <translation>Hoog: hoger dan normale prioriteit. Stukken worden geprefereerd over stukken met dezelfde beschikbaarheid maar niet over stukken met lagere beschikbaarheid</translation>
+        <translation type="obsolete">Hoog: hoger dan normale prioriteit. Stukken worden geprefereerd over stukken met dezelfde beschikbaarheid maar niet over stukken met lagere beschikbaarheid</translation>
     </message>
     <message>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
-        <translation>Maximum: maximale prioriteit, beschikbaarheid doet er niet toe, het stuk wordt geprefereerd over elk ander stuk met lagere prioriteit</translation>
+        <translation type="obsolete">Maximum: maximale prioriteit, beschikbaarheid doet er niet toe, het stuk wordt geprefereerd over elk ander stuk met lagere prioriteit</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation>Bestandsnaam</translation>
+        <translation type="obsolete">Bestandsnaam</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioriteit</translation>
+        <translation type="obsolete">Prioriteit</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Trackers list can&apos;t be empty.</source>
-        <translation>Trackerlijst kan niet leeg zijn.</translation>
+        <translation type="obsolete">Trackerlijst kan niet leeg zijn.</translation>
     </message>
     <message>
         <source>Ignored: file is not downloaded at all</source>
-        <translation>Genegeerd: bestand wordt niet gedownload</translation>
+        <translation type="obsolete">Genegeerd: bestand wordt niet gedownload</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Genegeerd</translation>
+        <translation type="obsolete">Genegeerd</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normaal</translation>
+        <translation type="obsolete">Normaal</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maximum</translation>
+        <translation type="obsolete">Maximum</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Hoog</translation>
+        <translation type="obsolete">Hoog</translation>
     </message>
     <message>
         <source>Url seeds</source>
-        <translation>Url seeds</translation>
+        <translation type="obsolete">Url seeds</translation>
     </message>
     <message>
         <source>New url seed:</source>
-        <translation>Nieuwe url seed:</translation>
+        <translation type="obsolete">Nieuwe url seed:</translation>
     </message>
     <message>
         <source>This url seed is already in the list.</source>
-        <translation>Deze url seed staat al in de lijst.</translation>
+        <translation type="obsolete">Deze url seed staat al in de lijst.</translation>
     </message>
     <message>
         <source>None</source>
@@ -4605,47 +4907,47 @@ selecteer alstublieft een er van:</translation>
     <message>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
-        <translation>Nieuwe url seed</translation>
+        <translation type="obsolete">Nieuwe url seed</translation>
     </message>
     <message>
         <source>The following url seeds are available for this torrent:</source>
-        <translation>De volgende url seeds zijn beschikbaar voor deze torrent:</translation>
+        <translation type="obsolete">De volgende url seeds zijn beschikbaar voor deze torrent:</translation>
     </message>
     <message>
         <source>Priorities error</source>
-        <translation>Prioriteitsfout</translation>
+        <translation type="obsolete">Prioriteitsfout</translation>
     </message>
     <message>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
-        <translation>Fout: je kan niet alle bestanden filteren in een torrent.</translation>
+        <translation type="obsolete">Fout: je kan niet alle bestanden filteren in een torrent.</translation>
     </message>
     <message>
         <source>Downloaded pieces</source>
-        <translation>Gedownloade stukjes</translation>
+        <translation type="obsolete">Gedownloade stukjes</translation>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Alles inklappen</translation>
+        <translation type="obsolete">Alles inklappen</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Alles uitklappen</translation>
+        <translation type="obsolete">Alles uitklappen</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Kies opslagpad</translation>
+        <translation type="obsolete">Kies opslagpad</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Opslagpad aanmaakfout</translation>
+        <translation type="obsolete">Opslagpad aanmaakfout</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Kon het opslagpad niet aanmaken</translation>
+        <translation type="obsolete">Kon het opslagpad niet aanmaken</translation>
     </message>
 </context>
 <context>
@@ -4699,7 +5001,7 @@ selecteer alstublieft een er van:</translation>
     <name>seeding</name>
     <message>
         <source>Search</source>
-        <translation>Zoeken</translation>
+        <translation type="obsolete">Zoeken</translation>
     </message>
     <message>
         <source>The following torrents are finished and shared:</source>
@@ -4707,63 +5009,63 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
-        <translation>&lt;u&gt;Let op:&lt;/u&gt; Het is belangrijk om het netwerk in stand te houden door uw torrents te blijven delen nadat ze klaar zijn.</translation>
+        <translation type="obsolete">&lt;u&gt;Let op:&lt;/u&gt; Het is belangrijk om het netwerk in stand te houden door uw torrents te blijven delen nadat ze klaar zijn.</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Start</translation>
+        <translation type="obsolete">Start</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pauze</translation>
+        <translation type="obsolete">Pauze</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Verwijderen</translation>
+        <translation type="obsolete">Verwijderen</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>Permanent verwijderen</translation>
+        <translation type="obsolete">Permanent verwijderen</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Torrent eigenschappen</translation>
+        <translation type="obsolete">Torrent eigenschappen</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Kijk vooruit op bestand</translation>
+        <translation type="obsolete">Kijk vooruit op bestand</translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Uploadlimiet instellen</translation>
+        <translation type="obsolete">Uploadlimiet instellen</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>Open doel map</translation>
+        <translation type="obsolete">Open doel map</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Naam</translation>
+        <translation type="obsolete">Naam</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Grootte</translation>
+        <translation type="obsolete">Grootte</translation>
     </message>
     <message>
         <source>Upload Speed</source>
-        <translation>Upload Snelheid</translation>
+        <translation type="obsolete">Upload Snelheid</translation>
     </message>
     <message>
         <source>Connected peers</source>
-        <translation>Verbonden peers</translation>
+        <translation type="obsolete">Verbonden peers</translation>
     </message>
     <message>
         <source>Seeds / Leechers</source>
-        <translation>Seeds / Leechers</translation>
+        <translation type="obsolete">Seeds / Leechers</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation>Kopieer magnet link</translation>
+        <translation type="obsolete">Kopieer magnet link</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -4771,15 +5073,15 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Verhouding</translation>
+        <translation type="obsolete">Verhouding</translation>
     </message>
     <message>
         <source>Buy it</source>
-        <translation>Koop het</translation>
+        <translation type="obsolete">Koop het</translation>
     </message>
     <message>
         <source>Total uploaded</source>
-        <translation>Totaal geüpload</translation>
+        <translation type="obsolete">Totaal geüpload</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -4795,7 +5097,7 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Force recheck</source>
-        <translation>Forceer hercontrole</translation>
+        <translation type="obsolete">Forceer hercontrole</translation>
     </message>
 </context>
 <context>
@@ -4928,6 +5230,14 @@ selecteer alstublieft een er van:</translation>
     <message>
         <source>Priority</source>
         <translation>Prioriteit</translation>
+    </message>
+    <message>
+        <source>Seeding mode error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

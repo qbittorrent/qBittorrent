@@ -162,7 +162,7 @@ p, li { white-space: pre-wrap; }
     <name>DLListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -1036,27 +1036,27 @@ folder:</source>
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation>名称</translation>
+        <translation type="obsolete">名称</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation>大小</translation>
+        <translation type="obsolete">大小</translation>
     </message>
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation>进度</translation>
+        <translation type="obsolete">进度</translation>
     </message>
     <message>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>下载速度</translation>
+        <translation type="obsolete">下载速度</translation>
     </message>
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>上传速度</translation>
+        <translation type="obsolete">上传速度</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -1065,17 +1065,17 @@ folder:</source>
     </message>
     <message>
         <source>Ratio</source>
-        <translation> 比率</translation>
+        <translation type="obsolete"> 比率</translation>
     </message>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>估计剩余时间</translation>
+        <translation type="obsolete">估计剩余时间</translation>
     </message>
     <message>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation>qBittorrent %1开始.</translation>
+        <translation type="obsolete">qBittorrent %1开始.</translation>
     </message>
     <message>
         <source>Be careful, sharing copyrighted material without permission 
@@ -1178,7 +1178,7 @@ wait...</comment>
     </message>
     <message>
         <source>Hide or Show Column</source>
-        <translation>隐藏或显示栏</translation>
+        <translation type="obsolete">隐藏或显示栏</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
@@ -1195,7 +1195,7 @@ wait...</comment>
     <message>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation>完整种子/不完整种子</translation>
+        <translation type="obsolete">完整种子/不完整种子</translation>
     </message>
 </context>
 <context>
@@ -1403,7 +1403,7 @@ wait...</comment>
     <name>FinishedListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -1415,20 +1415,20 @@ wait...</comment>
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation>名称</translation>
+        <translation type="obsolete">名称</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation>大小</translation>
+        <translation type="obsolete">大小</translation>
     </message>
     <message>
         <source>Seeds / Leechers</source>
-        <translation>完整种子/不完整种子</translation>
+        <translation type="obsolete">完整种子/不完整种子</translation>
     </message>
     <message>
         <source>Connected peers</source>
-        <translation>连接的用户</translation>
+        <translation type="obsolete">连接的用户</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -1443,7 +1443,7 @@ wait...</comment>
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>上传速度</translation>
+        <translation type="obsolete">上传速度</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -1471,7 +1471,7 @@ wait...</comment>
     </message>
     <message>
         <source>Ratio</source>
-        <translation> 比率</translation>
+        <translation type="obsolete"> 比率</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -1481,11 +1481,11 @@ wait...</comment>
     <message>
         <source>Total uploaded</source>
         <comment>i.e: Total amount of uploaded data</comment>
-        <translation>总上传</translation>
+        <translation type="obsolete">总上传</translation>
     </message>
     <message>
         <source>Hide or Show Column</source>
-        <translation>隐藏或显示栏</translation>
+        <translation type="obsolete">隐藏或显示栏</translation>
     </message>
     <message>
         <source>Incomplete torrent in seeding list</source>
@@ -1498,10 +1498,6 @@ wait...</comment>
     <message>
         <source>Priority</source>
         <translation type="obsolete">优先</translation>
-    </message>
-    <message>
-        <source>Super seeding mode</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1547,7 +1543,7 @@ download list?</source>
     </message>
     <message>
         <source>Finished</source>
-        <translation>完成</translation>
+        <translation type="obsolete">完成</translation>
     </message>
     <message>
         <source>Checking...</source>
@@ -1631,7 +1627,7 @@ download list?</source>
     </message>
     <message>
         <source>Are you sure? -- qBittorrent</source>
-        <translation>确定? -- qBittorrent</translation>
+        <translation type="obsolete">确定? -- qBittorrent</translation>
     </message>
     <message>
         <source>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </source>
@@ -1877,7 +1873,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="obsolete">传输</translation>
+        <translation type="unfinished">传输</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -1890,7 +1886,7 @@ download list and in hard drive?</source>
     </message>
     <message>
         <source>Download finished</source>
-        <translation> 下载完毕</translation>
+        <translation type="obsolete"> 下载完毕</translation>
     </message>
     <message>
         <source> has finished downloading.</source>
@@ -2173,12 +2169,12 @@ paused.</comment>
     <message>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>下载列表不为空
+        <translation type="obsolete">下载列表不为空
 您确定要离开qBittorrent吗?</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation>下载</translation>
+        <translation type="obsolete">下载</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in 
@@ -2320,7 +2316,7 @@ maximum value you set.</source>
     <message>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation>qBittorrent %1 (下载: %2KiB/s, 上传: 
+        <translation type="obsolete">qBittorrent %1 (下载: %2KiB/s, 上传: 
 %3KiB/s)</translation>
     </message>
     <message>
@@ -2335,11 +2331,11 @@ maximum value you set.</source>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
-        <translation>您确定要从下载列表和硬盘中删除选中的项目吗?</translation>
+        <translation type="obsolete">您确定要从下载列表和硬盘中删除选中的项目吗?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
-        <translation>您确定要从完成列表和硬盘中删除选中的项目吗?</translation>
+        <translation type="obsolete">您确定要从完成列表和硬盘中删除选中的项目吗?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
@@ -2348,11 +2344,11 @@ maximum value you set.</source>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
-        <translation>您确定要删除下载列表中选中的项目吗?</translation>
+        <translation type="obsolete">您确定要删除下载列表中选中的项目吗?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
-        <translation>您确定要删除完成列表中选中的项目吗?</translation>
+        <translation type="obsolete">您确定要删除完成列表中选中的项目吗?</translation>
     </message>
     <message>
         <source>DL: %1 KiB/s</source>
@@ -2376,11 +2372,20 @@ maximum value you set.</source>
     </message>
     <message>
         <source>Uploads</source>
-        <translation>上传</translation>
+        <translation type="obsolete">上传</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
         <translation>选项保存成功.</translation>
+    </message>
+    <message>
+        <source>Download completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some files are currently transferring.
+Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2662,6 +2667,155 @@ maximum value you set.</source>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>最大</translation>
+    </message>
+</context>
+<context>
+    <name>PropertiesWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent information</source>
+        <translation type="unfinished">Torrent信息</translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="unfinished">保存路径:</translation>
+    </message>
+    <message>
+        <source>Creator:</source>
+        <translation type="unfinished">创建者:</translation>
+    </message>
+    <message>
+        <source>Torrent hash:</source>
+        <translation type="unfinished">Torrent哈西值:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">注释:</translation>
+    </message>
+    <message>
+        <source>Current session</source>
+        <translation type="unfinished">当前会话</translation>
+    </message>
+    <message>
+        <source>Total uploaded:</source>
+        <translation type="unfinished">上传总数:</translation>
+    </message>
+    <message>
+        <source>Total downloaded:</source>
+        <translation type="unfinished">下载总数:</translation>
+    </message>
+    <message>
+        <source>Share ratio:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total failed:</source>
+        <translation type="unfinished">错误总数:</translation>
+    </message>
+    <message>
+        <source>Downloaded pieces</source>
+        <translation type="unfinished">已下载的文件块</translation>
+    </message>
+    <message>
+        <source>Download in correct order (slower but good for previewing)</source>
+        <translation type="unfinished">按递增顺序下载(速度会有所减慢但利于预览)</translation>
+    </message>
+    <message>
+        <source>Current tracker:</source>
+        <translation type="unfinished">当前tracker:</translation>
+    </message>
+    <message>
+        <source>Collapse all</source>
+        <translation type="unfinished">隐藏所有</translation>
+    </message>
+    <message>
+        <source>Expand all</source>
+        <translation type="unfinished">展开所有</translation>
+    </message>
+    <message>
+        <source>QPushButton { 
+border: 1px solid rgb(85, 81, 91);
+border-radius: 3px;
+padding: 2px;
+margin-left: 3px; margin-right: 3px;
+}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">普通</translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation type="unfinished">Trackers</translation>
+    </message>
+    <message>
+        <source>URL seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File name</source>
+        <translation type="unfinished">文件名</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">大小</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">进度</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">优先</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None - Unreachable?</source>
+        <translation type="unfinished">无-无法连接到服务器?</translation>
+    </message>
+    <message>
+        <source>New url seed</source>
+        <comment>New HTTP source</comment>
+        <translation type="unfinished">新网址种子</translation>
+    </message>
+    <message>
+        <source>New url seed:</source>
+        <translation type="unfinished">新网址种子:</translation>
+    </message>
+    <message>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <source>This url seed is already in the list.</source>
+        <translation type="unfinished">该网址种子已在列表中.</translation>
+    </message>
+    <message>
+        <source>Trackers list can&apos;t be empty.</source>
+        <translation type="unfinished">Trackers列表不能为空.</translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">选择保存路径</translation>
+    </message>
+    <message>
+        <source>Save path creation error</source>
+        <translation type="unfinished">创建保存路径时出现错误</translation>
+    </message>
+    <message>
+        <source>Could not create the save path</source>
+        <translation type="unfinished">无法创建保存路径</translation>
     </message>
 </context>
 <context>
@@ -3171,6 +3325,154 @@ reason: %2.</source>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>要添加的trackers列表(每行一个):</translation>
+    </message>
+</context>
+<context>
+    <name>TransferListDelegate</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished">KiB/s</translation>
+    </message>
+</context>
+<context>
+    <name>TransferListFiltersWidget</name>
+    <message>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation type="unfinished">下载中</translation>
+    </message>
+    <message>
+        <source>Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inactive</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TransferListWidget</name>
+    <message>
+        <source>Name</source>
+        <comment>i.e: file name</comment>
+        <translation type="unfinished">名称</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <comment>i.e: file size</comment>
+        <translation type="unfinished">大小</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <comment>i.e: % downloaded</comment>
+        <translation type="unfinished">进度</translation>
+    </message>
+    <message>
+        <source>DL Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished">下载速度</translation>
+    </message>
+    <message>
+        <source>UP Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished">上传速度</translation>
+    </message>
+    <message>
+        <source>Seeds/Leechers</source>
+        <comment>i.e: full/partial sources</comment>
+        <translation type="unfinished">完整种子/不完整种子</translation>
+    </message>
+    <message>
+        <source>Ratio</source>
+        <translation type="unfinished"> 比率</translation>
+    </message>
+    <message>
+        <source>ETA</source>
+        <comment>i.e: Estimated Time of Arrival / Time left</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deletion confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from transfer list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;是</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;否</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from transfe list and hard disk?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Column visibility</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished">开始</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="unfinished">暂停</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">删除</translation>
+    </message>
+    <message>
+        <source>Preview file</source>
+        <translation type="unfinished">预览文件</translation>
+    </message>
+    <message>
+        <source>Set upload limit</source>
+        <translation type="unfinished">设定上传限制</translation>
+    </message>
+    <message>
+        <source>Set download limit</source>
+        <translation type="unfinished">设定下载限制</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished">永久删除</translation>
+    </message>
+    <message>
+        <source>Open destination folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Buy it</source>
+        <translation type="unfinished">购买</translation>
+    </message>
+    <message>
+        <source>Increase priority</source>
+        <translation type="unfinished">增加优先</translation>
+    </message>
+    <message>
+        <source>Decrease priority</source>
+        <translation type="unfinished">降低优先</translation>
+    </message>
+    <message>
+        <source>Force recheck</source>
+        <translation type="unfinished">强制再次核对</translation>
+    </message>
+    <message>
+        <source>Copy magnet link</source>
+        <translation type="unfinished">复制MAGNET链接</translation>
     </message>
 </context>
 <context>
@@ -3907,7 +4209,7 @@ enabled)</source>
     <name>downloading</name>
     <message>
         <source>Search</source>
-        <translation>搜索</translation>
+        <translation type="obsolete">搜索</translation>
     </message>
     <message>
         <source>Total DL Speed:</source>
@@ -3935,15 +4237,15 @@ enabled)</source>
     </message>
     <message>
         <source>Start</source>
-        <translation>开始</translation>
+        <translation type="obsolete">开始</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>暂停</translation>
+        <translation type="obsolete">暂停</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>删除</translation>
+        <translation type="obsolete">删除</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -3951,83 +4253,79 @@ enabled)</source>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>预览文件</translation>
+        <translation type="obsolete">预览文件</translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>设定上传限制</translation>
+        <translation type="obsolete">设定上传限制</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation>设定下载限制</translation>
+        <translation type="obsolete">设定下载限制</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>永久删除</translation>
+        <translation type="obsolete">永久删除</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Torrent属性</translation>
+        <translation type="obsolete">Torrent属性</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>打开目标文件夹</translation>
+        <translation type="obsolete">打开目标文件夹</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>名称</translation>
+        <translation type="obsolete">名称</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>大小</translation>
+        <translation type="obsolete">大小</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>进度</translation>
+        <translation type="obsolete">进度</translation>
     </message>
     <message>
         <source>DLSpeed</source>
-        <translation>下载速度</translation>
+        <translation type="obsolete">下载速度</translation>
     </message>
     <message>
         <source>UpSpeed</source>
-        <translation>上传速度</translation>
+        <translation type="obsolete">上传速度</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
-        <translation>完整种子/不完整种子</translation>
+        <translation type="obsolete">完整种子/不完整种子</translation>
     </message>
     <message>
         <source>Ratio</source>
-        <translation> 比率</translation>
+        <translation type="obsolete"> 比率</translation>
     </message>
     <message>
         <source>ETA</source>
-        <translation>估计剩余时间</translation>
+        <translation type="obsolete">估计剩余时间</translation>
     </message>
     <message>
         <source>Buy it</source>
-        <translation>购买</translation>
+        <translation type="obsolete">购买</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>优先</translation>
+        <translation type="obsolete">优先</translation>
     </message>
     <message>
         <source>Increase priority</source>
-        <translation>增加优先</translation>
-    </message>
-    <message>
-        <source>Decrease priority</source>
-        <translation></translation>
+        <translation type="obsolete">增加优先</translation>
     </message>
     <message>
         <source>Force recheck</source>
-        <translation>强制再次核对</translation>
+        <translation type="obsolete">强制再次核对</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation>复制MAGNET链接</translation>
+        <translation type="obsolete">复制MAGNET链接</translation>
     </message>
 </context>
 <context>
@@ -4489,7 +4787,7 @@ select one of them:</source>
     <name>properties</name>
     <message>
         <source>Torrent Properties</source>
-        <translation>Torrent属性</translation>
+        <translation type="obsolete">Torrent属性</translation>
     </message>
     <message>
         <source>Main Infos</source>
@@ -4550,7 +4848,7 @@ select one of them:</source>
     </message>
     <message>
         <source>OK</source>
-        <translation>确认</translation>
+        <translation type="obsolete">确认</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -4602,7 +4900,7 @@ select one of them:</source>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>未知</translation>
+        <translation type="obsolete">未知</translation>
     </message>
     <message>
         <source>Complete: </source>
@@ -4614,11 +4912,11 @@ select one of them:</source>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
-        <translation>存在于当前torrent内的文件有:</translation>
+        <translation type="obsolete">存在于当前torrent内的文件有:</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>大小</translation>
+        <translation type="obsolete">大小</translation>
     </message>
     <message>
         <source>Selected</source>
@@ -4651,11 +4949,11 @@ download in current torrent.</source>
     </message>
     <message>
         <source>Trackers:</source>
-        <translation>Trackers:</translation>
+        <translation type="obsolete">Trackers:</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
-        <translation>无-无法连接到服务器?</translation>
+        <translation type="obsolete">无-无法连接到服务器?</translation>
     </message>
     <message>
         <source>Errors:</source>
@@ -4663,7 +4961,7 @@ download in current torrent.</source>
     </message>
     <message>
         <source>Progress</source>
-        <translation>进度</translation>
+        <translation type="obsolete">进度</translation>
     </message>
     <message>
         <source>Main infos</source>
@@ -4675,31 +4973,31 @@ download in current torrent.</source>
     </message>
     <message>
         <source>Current tracker:</source>
-        <translation>当前tracker:</translation>
+        <translation type="obsolete">当前tracker:</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation>上传总数:</translation>
+        <translation type="obsolete">上传总数:</translation>
     </message>
     <message>
         <source>Main info</source>
-        <translation>主要信息</translation>
+        <translation type="obsolete">主要信息</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation>Torrent信息</translation>
+        <translation type="obsolete">Torrent信息</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation>下载总数:</translation>
+        <translation type="obsolete">下载总数:</translation>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation>错误总数:</translation>
+        <translation type="obsolete">错误总数:</translation>
     </message>
     <message>
         <source>Torrent content</source>
-        <translation>Torrent内容</translation>
+        <translation type="obsolete">Torrent内容</translation>
     </message>
     <message>
         <source>Options</source>
@@ -4724,7 +5022,7 @@ previewing)</source>
     </message>
     <message>
         <source>Save path:</source>
-        <translation>保存路径:</translation>
+        <translation type="obsolete">保存路径:</translation>
     </message>
     <message>
         <source>Torrent infos</source>
@@ -4732,27 +5030,27 @@ previewing)</source>
     </message>
     <message>
         <source>Creator:</source>
-        <translation>创建者:</translation>
+        <translation type="obsolete">创建者:</translation>
     </message>
     <message>
         <source>Torrent hash:</source>
-        <translation>Torrent哈西值:</translation>
+        <translation type="obsolete">Torrent哈西值:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation>注释:</translation>
+        <translation type="obsolete">注释:</translation>
     </message>
     <message>
         <source>Current session</source>
-        <translation>当前会话</translation>
+        <translation type="obsolete">当前会话</translation>
     </message>
     <message>
         <source>Share ratio:</source>
-        <translation>共享率:</translation>
+        <translation type="obsolete">共享率:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Trackers</translation>
+        <translation type="obsolete">Trackers</translation>
     </message>
     <message>
         <source>New tracker</source>
@@ -4764,7 +5062,7 @@ previewing)</source>
     </message>
     <message>
         <source>Priorities:</source>
-        <translation>优先:</translation>
+        <translation type="obsolete">优先:</translation>
     </message>
     <message>
         <source>Normal: normal priority. Download order is dependent on 
@@ -4784,51 +5082,51 @@ piece is preferred over any other piece with lower priority</source>
     </message>
     <message>
         <source>File name</source>
-        <translation>文件名</translation>
+        <translation type="obsolete">文件名</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>优先</translation>
+        <translation type="obsolete">优先</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Trackers list can&apos;t be empty.</source>
-        <translation>Trackers列表不能为空.</translation>
+        <translation type="obsolete">Trackers列表不能为空.</translation>
     </message>
     <message>
         <source>Ignored: file is not downloaded at all</source>
-        <translation>忽略：文件没有被下载</translation>
+        <translation type="obsolete">忽略：文件没有被下载</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>忽略</translation>
+        <translation type="obsolete">忽略</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>正常</translation>
+        <translation type="obsolete">正常</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>最大</translation>
+        <translation type="obsolete">最大</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>高</translation>
+        <translation type="obsolete">高</translation>
     </message>
     <message>
         <source>Url seeds</source>
-        <translation>网址种子</translation>
+        <translation type="obsolete">网址种子</translation>
     </message>
     <message>
         <source>New url seed:</source>
-        <translation>新网址种子:</translation>
+        <translation type="obsolete">新网址种子:</translation>
     </message>
     <message>
         <source>This url seed is already in the list.</source>
-        <translation>该网址种子已在列表中.</translation>
+        <translation type="obsolete">该网址种子已在列表中.</translation>
     </message>
     <message>
         <source>Hard-coded url seeds cannot be deleted.</source>
@@ -4842,7 +5140,7 @@ piece is preferred over any other piece with lower priority</source>
     <message>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
-        <translation>新网址种子</translation>
+        <translation type="obsolete">新网址种子</translation>
     </message>
     <message>
         <source>The following url seeds are available for this 
@@ -4851,7 +5149,7 @@ torrent:</source>
     </message>
     <message>
         <source>Priorities error</source>
-        <translation>属性错误</translation>
+        <translation type="obsolete">属性错误</translation>
     </message>
     <message>
         <source>Error, you can&apos;t filter all the files in a 
@@ -4860,55 +5158,55 @@ torrent.</source>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation>按递增顺序下载(速度会有所减慢但利于预览)</translation>
+        <translation type="obsolete">按递增顺序下载(速度会有所减慢但利于预览)</translation>
     </message>
     <message>
         <source>The following url seeds are available for this torrent:</source>
-        <translation>以下网址种子对该torrent可用:</translation>
+        <translation type="obsolete">以下网址种子对该torrent可用:</translation>
     </message>
     <message>
         <source>Normal: normal priority. Download order is dependent on availability</source>
-        <translation>正常:正常优先.下载顺序取决于可用性</translation>
+        <translation type="obsolete">正常:正常优先.下载顺序取决于可用性</translation>
     </message>
     <message>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
-        <translation>高:高于正常优先.优先使用可用性相同的文件块,而不是可用性较低的</translation>
+        <translation type="obsolete">高:高于正常优先.优先使用可用性相同的文件块,而不是可用性较低的</translation>
     </message>
     <message>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
-        <translation>最大:最大优先,忽略可用性,此文件块优先于任何优先级较低的文件块</translation>
+        <translation type="obsolete">最大:最大优先,忽略可用性,此文件块优先于任何优先级较低的文件块</translation>
     </message>
     <message>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
-        <translation>错误,不能过滤torrent中的所有文件.</translation>
+        <translation type="obsolete">错误,不能过滤torrent中的所有文件.</translation>
     </message>
     <message>
         <source>Downloaded pieces</source>
-        <translation>已下载的文件块</translation>
+        <translation type="obsolete">已下载的文件块</translation>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>隐藏所有</translation>
+        <translation type="obsolete">隐藏所有</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>展开所有</translation>
+        <translation type="obsolete">展开所有</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>选择保存路径</translation>
+        <translation type="obsolete">选择保存路径</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>创建保存路径时出现错误</translation>
+        <translation type="obsolete">创建保存路径时出现错误</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>无法创建保存路径</translation>
+        <translation type="obsolete">无法创建保存路径</translation>
     </message>
 </context>
 <context>
@@ -4962,7 +5260,7 @@ torrent.</source>
     <name>seeding</name>
     <message>
         <source>Search</source>
-        <translation>搜索</translation>
+        <translation type="obsolete">搜索</translation>
     </message>
     <message>
         <source>The following torrents are finished and shared:</source>
@@ -4977,59 +5275,59 @@ network.</source>
     </message>
     <message>
         <source>Start</source>
-        <translation>开始</translation>
+        <translation type="obsolete">开始</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>暂停</translation>
+        <translation type="obsolete">暂停</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>删除</translation>
+        <translation type="obsolete">删除</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>永久删除</translation>
+        <translation type="obsolete">永久删除</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Torrent属性</translation>
+        <translation type="obsolete">Torrent属性</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>预览文件</translation>
+        <translation type="obsolete">预览文件</translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>设定上传限制</translation>
+        <translation type="obsolete">设定上传限制</translation>
     </message>
     <message>
         <source>Connected peers</source>
-        <translation>连接的用户</translation>
+        <translation type="obsolete">连接的用户</translation>
     </message>
     <message>
         <source>Seeds / Leechers</source>
-        <translation>完整种子/不完整种子</translation>
+        <translation type="obsolete">完整种子/不完整种子</translation>
     </message>
     <message>
         <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
-        <translation>&lt;u&gt;注释:&lt;/u&gt; 完成后继续共享torrents对网络的良好运作很重要.</translation>
+        <translation type="obsolete">&lt;u&gt;注释:&lt;/u&gt; 完成后继续共享torrents对网络的良好运作很重要.</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>打开目标文件夹</translation>
+        <translation type="obsolete">打开目标文件夹</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>名称</translation>
+        <translation type="obsolete">名称</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>大小</translation>
+        <translation type="obsolete">大小</translation>
     </message>
     <message>
         <source>Upload Speed</source>
-        <translation>上传速度</translation>
+        <translation type="obsolete">上传速度</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -5037,15 +5335,15 @@ network.</source>
     </message>
     <message>
         <source>Ratio</source>
-        <translation> 比率</translation>
+        <translation type="obsolete"> 比率</translation>
     </message>
     <message>
         <source>Buy it</source>
-        <translation>购买</translation>
+        <translation type="obsolete">购买</translation>
     </message>
     <message>
         <source>Total uploaded</source>
-        <translation>总上传</translation>
+        <translation type="obsolete">总上传</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -5061,11 +5359,11 @@ network.</source>
     </message>
     <message>
         <source>Force recheck</source>
-        <translation>强制再次核对</translation>
+        <translation type="obsolete">强制再次核对</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation>复制MAGNET链接</translation>
+        <translation type="obsolete">复制MAGNET链接</translation>
     </message>
 </context>
 <context>
@@ -5203,6 +5501,14 @@ torrent.</source>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>（另需%1以完成下载）</translation>
+    </message>
+    <message>
+        <source>Seeding mode error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

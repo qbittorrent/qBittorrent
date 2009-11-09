@@ -147,7 +147,7 @@ p, li { white-space: pre-wrap; }
     <name>DLListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -969,27 +969,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation>Názov</translation>
+        <translation type="obsolete">Názov</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation>Veľkosť</translation>
+        <translation type="obsolete">Veľkosť</translation>
     </message>
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation>Priebeh</translation>
+        <translation type="obsolete">Priebeh</translation>
     </message>
     <message>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Rýchlosť sťahovania</translation>
+        <translation type="obsolete">Rýchlosť sťahovania</translation>
     </message>
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Rýchlosť nahrávania</translation>
+        <translation type="obsolete">Rýchlosť nahrávania</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -998,17 +998,17 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Pomer</translation>
+        <translation type="obsolete">Pomer</translation>
     </message>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Odh. čas</translation>
+        <translation type="obsolete">Odh. čas</translation>
     </message>
     <message>
         <source>qBittorrent %1 started.</source>
         <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation>qBittorrent %1 spustený.</translation>
+        <translation type="obsolete">qBittorrent %1 spustený.</translation>
     </message>
     <message>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
@@ -1062,7 +1062,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Hide or Show Column</source>
-        <translation>Skryť alebo zobraziť stĺpec</translation>
+        <translation type="obsolete">Skryť alebo zobraziť stĺpec</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
@@ -1079,7 +1079,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation>Seederi/Leecheri</translation>
+        <translation type="obsolete">Seederi/Leecheri</translation>
     </message>
 </context>
 <context>
@@ -1287,7 +1287,7 @@ p, li { white-space: pre-wrap; }
     <name>FinishedListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -1295,20 +1295,20 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation>Názov</translation>
+        <translation type="obsolete">Názov</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation>Veľkosť</translation>
+        <translation type="obsolete">Veľkosť</translation>
     </message>
     <message>
         <source>Seeds / Leechers</source>
-        <translation>Seederi/Leecheri</translation>
+        <translation type="obsolete">Seederi/Leecheri</translation>
     </message>
     <message>
         <source>Connected peers</source>
-        <translation>Pripojení</translation>
+        <translation type="obsolete">Pripojení</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -1318,7 +1318,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Rýchlosť nahrávania</translation>
+        <translation type="obsolete">Rýchlosť nahrávania</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
@@ -1336,7 +1336,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Pomer</translation>
+        <translation type="obsolete">Pomer</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -1346,11 +1346,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Total uploaded</source>
         <comment>i.e: Total amount of uploaded data</comment>
-        <translation>Celkovo nahrané</translation>
+        <translation type="obsolete">Celkovo nahrané</translation>
     </message>
     <message>
         <source>Hide or Show Column</source>
-        <translation>Zobraziť alebo skryť stĺpec</translation>
+        <translation type="obsolete">Zobraziť alebo skryť stĺpec</translation>
     </message>
     <message>
         <source>Incomplete torrent in seeding list</source>
@@ -1363,10 +1363,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Priority</source>
         <translation type="obsolete">Priorita</translation>
-    </message>
-    <message>
-        <source>Super seeding mode</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1397,7 +1393,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
-        <translation>Určite chcete zmazať vybrané položky v zozname sťahovaných?</translation>
+        <translation type="obsolete">Určite chcete zmazať vybrané položky v zozname sťahovaných?</translation>
     </message>
     <message>
         <source>paused</source>
@@ -1409,7 +1405,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Finished</source>
-        <translation>Dokončené</translation>
+        <translation type="obsolete">Dokončené</translation>
     </message>
     <message>
         <source>Checking...</source>
@@ -1497,7 +1493,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Are you sure? -- qBittorrent</source>
-        <translation>Ste si istý? -- qBittorrent</translation>
+        <translation type="obsolete">Ste si istý? -- qBittorrent</translation>
     </message>
     <message>
         <source>&lt;b&gt;qBittorrent&lt;/b&gt;&lt;br&gt;DL Speed: </source>
@@ -1703,7 +1699,7 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="obsolete">Prenosy</translation>
+        <translation type="unfinished">Prenosy</translation>
     </message>
     <message>
         <source>Preview process already running</source>
@@ -1744,7 +1740,7 @@ Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
         <source>Download finished</source>
-        <translation>Sťahovanie dokončené</translation>
+        <translation type="obsolete">Sťahovanie dokončené</translation>
     </message>
     <message>
         <source> has finished downloading.</source>
@@ -1987,7 +1983,7 @@ Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation>Sťahovania</translation>
+        <translation type="obsolete">Sťahovania</translation>
     </message>
     <message>
         <source>An I/O error occured for torrent %1.
@@ -2000,12 +1996,12 @@ Najskôr ho prosím zatvorte.</translation>
     <message>
         <source>The download list is not empty.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>Zoznam sťahovaní nie je prázdny.
+        <translation type="obsolete">Zoznam sťahovaní nie je prázdny.
 Ste si istý, že chcete ukončiť qBittorrent?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in finished list?</source>
-        <translation>Ste si istý, že chcete zmazať vybrané položky zo zoznamu dokončených?</translation>
+        <translation type="obsolete">Ste si istý, že chcete zmazať vybrané položky zo zoznamu dokončených?</translation>
     </message>
     <message>
         <source>qBittorrent is bind to port: %1</source>
@@ -2091,11 +2087,11 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
-        <translation>Ste si istý, že chcete zmazať vybrané položky zo zoznamu sťahovaných a z pevného disku?</translation>
+        <translation type="obsolete">Ste si istý, že chcete zmazať vybrané položky zo zoznamu sťahovaných a z pevného disku?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
-        <translation>Ste si istý, že chcete zmazať vybrané položky zo zoznamu dokončených a z pevného disku?</translation>
+        <translation type="obsolete">Ste si istý, že chcete zmazať vybrané položky zo zoznamu dokončených a z pevného disku?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed permanently.</source>
@@ -2153,7 +2149,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
+        <translation type="obsolete">qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
         <source>DL: %1 KiB/s</source>
@@ -2177,11 +2173,20 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     </message>
     <message>
         <source>Uploads</source>
-        <translation>Nahrávania</translation>
+        <translation type="obsolete">Nahrávania</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
         <translation>Nastavenia boli úspešne uložené.</translation>
+    </message>
+    <message>
+        <source>Download completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some files are currently transferring.
+Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2459,6 +2464,155 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maximálna</translation>
+    </message>
+</context>
+<context>
+    <name>PropertiesWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent information</source>
+        <translation type="unfinished">Info o torrente</translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="unfinished">Uložiť kam:</translation>
+    </message>
+    <message>
+        <source>Creator:</source>
+        <translation type="unfinished">Tvorca:</translation>
+    </message>
+    <message>
+        <source>Torrent hash:</source>
+        <translation type="unfinished">Haš torrentu:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current session</source>
+        <translation type="unfinished">Súčasná relácia</translation>
+    </message>
+    <message>
+        <source>Total uploaded:</source>
+        <translation type="unfinished">Celkovo nahrané:</translation>
+    </message>
+    <message>
+        <source>Total downloaded:</source>
+        <translation type="unfinished">Celkovo stiahnuté:</translation>
+    </message>
+    <message>
+        <source>Share ratio:</source>
+        <translation type="unfinished">Pomer zdieľania:</translation>
+    </message>
+    <message>
+        <source>Total failed:</source>
+        <translation type="unfinished">Celkovo zlyhalo:</translation>
+    </message>
+    <message>
+        <source>Downloaded pieces</source>
+        <translation type="unfinished">Stiahnuté časti</translation>
+    </message>
+    <message>
+        <source>Download in correct order (slower but good for previewing)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current tracker:</source>
+        <translation type="unfinished">Súčasný tracker:</translation>
+    </message>
+    <message>
+        <source>Collapse all</source>
+        <translation type="unfinished">Zbaliť všetko</translation>
+    </message>
+    <message>
+        <source>Expand all</source>
+        <translation type="unfinished">Rozbaliť všetko</translation>
+    </message>
+    <message>
+        <source>QPushButton { 
+border: 1px solid rgb(85, 81, 91);
+border-radius: 3px;
+padding: 2px;
+margin-left: 3px; margin-right: 3px;
+}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Všeobecné</translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation type="unfinished">Trackery</translation>
+    </message>
+    <message>
+        <source>URL seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File name</source>
+        <translation type="unfinished">Názov súboru</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Priebeh</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Priorita</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None - Unreachable?</source>
+        <translation type="unfinished">Žiadne - Nedostupné?</translation>
+    </message>
+    <message>
+        <source>New url seed</source>
+        <comment>New HTTP source</comment>
+        <translation type="unfinished">Nový URL seed</translation>
+    </message>
+    <message>
+        <source>New url seed:</source>
+        <translation type="unfinished">Nový URL seed:</translation>
+    </message>
+    <message>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <source>This url seed is already in the list.</source>
+        <translation type="unfinished">Tento URL seed je už v zozname.</translation>
+    </message>
+    <message>
+        <source>Trackers list can&apos;t be empty.</source>
+        <translation type="unfinished">Zoznam trackerov nemôže byť prázdny.</translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">Zvoľte cestu pre uloženie</translation>
+    </message>
+    <message>
+        <source>Save path creation error</source>
+        <translation type="unfinished">Chyba pri vytváraní cesty pre uloženie</translation>
+    </message>
+    <message>
+        <source>Could not create the save path</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2956,6 +3110,154 @@ Záznam zmien:</translation>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Pridať nasledovné trackery (jeden tracker na riadok):</translation>
+    </message>
+</context>
+<context>
+    <name>TransferListDelegate</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished">KiB/s</translation>
+    </message>
+</context>
+<context>
+    <name>TransferListFiltersWidget</name>
+    <message>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation type="unfinished">Sťahujem</translation>
+    </message>
+    <message>
+        <source>Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inactive</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TransferListWidget</name>
+    <message>
+        <source>Name</source>
+        <comment>i.e: file name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <comment>i.e: file size</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <comment>i.e: % downloaded</comment>
+        <translation type="unfinished">Priebeh</translation>
+    </message>
+    <message>
+        <source>DL Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UP Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeds/Leechers</source>
+        <comment>i.e: full/partial sources</comment>
+        <translation type="unfinished">Seederi/Leecheri</translation>
+    </message>
+    <message>
+        <source>Ratio</source>
+        <translation type="unfinished">Pomer</translation>
+    </message>
+    <message>
+        <source>ETA</source>
+        <comment>i.e: Estimated Time of Arrival / Time left</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deletion confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from transfer list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;Áno</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;Nie</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from transfe list and hard disk?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Column visibility</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished">Spustiť</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="unfinished">Pozastaviť</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Zmazať</translation>
+    </message>
+    <message>
+        <source>Preview file</source>
+        <translation type="unfinished">Náhľad súboru</translation>
+    </message>
+    <message>
+        <source>Set upload limit</source>
+        <translation type="unfinished">Nastaviť limit nahrávania</translation>
+    </message>
+    <message>
+        <source>Set download limit</source>
+        <translation type="unfinished">Nastaviť limit sťahovania</translation>
+    </message>
+    <message>
+        <source>Delete Permanently</source>
+        <translation type="unfinished">Trvalo zmazať</translation>
+    </message>
+    <message>
+        <source>Open destination folder</source>
+        <translation type="unfinished">Otvoriť cieľový priečinok</translation>
+    </message>
+    <message>
+        <source>Buy it</source>
+        <translation type="unfinished">Kúpiť</translation>
+    </message>
+    <message>
+        <source>Increase priority</source>
+        <translation type="unfinished">Zvýšiť prioritu</translation>
+    </message>
+    <message>
+        <source>Decrease priority</source>
+        <translation type="unfinished">Znížiť prioritu</translation>
+    </message>
+    <message>
+        <source>Force recheck</source>
+        <translation type="unfinished">Vynútiť opätovnú kontrolu</translation>
+    </message>
+    <message>
+        <source>Copy magnet link</source>
+        <translation type="unfinished">Kopírovať magnet URI</translation>
     </message>
 </context>
 <context>
@@ -3665,7 +3967,7 @@ Záznam zmien:</translation>
     <name>downloading</name>
     <message>
         <source>Search</source>
-        <translation>Vyhľadávanie</translation>
+        <translation type="obsolete">Vyhľadávanie</translation>
     </message>
     <message>
         <source>Total DL Speed:</source>
@@ -3693,15 +3995,15 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Spustiť</translation>
+        <translation type="obsolete">Spustiť</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pozastaviť</translation>
+        <translation type="obsolete">Pozastaviť</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Zmazať</translation>
+        <translation type="obsolete">Zmazať</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -3709,83 +4011,83 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Náhľad súboru</translation>
+        <translation type="obsolete">Náhľad súboru</translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Nastaviť limit nahrávania</translation>
+        <translation type="obsolete">Nastaviť limit nahrávania</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation>Nastaviť limit sťahovania</translation>
+        <translation type="obsolete">Nastaviť limit sťahovania</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>Trvalo zmazať</translation>
+        <translation type="obsolete">Trvalo zmazať</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Vlastnosti torrentu</translation>
+        <translation type="obsolete">Vlastnosti torrentu</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>Otvoriť cieľový priečinok</translation>
+        <translation type="obsolete">Otvoriť cieľový priečinok</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Názov</translation>
+        <translation type="obsolete">Názov</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Veľkosť</translation>
+        <translation type="obsolete">Veľkosť</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Priebeh</translation>
+        <translation type="obsolete">Priebeh</translation>
     </message>
     <message>
         <source>DLSpeed</source>
-        <translation>Rýchlosť sťahovania</translation>
+        <translation type="obsolete">Rýchlosť sťahovania</translation>
     </message>
     <message>
         <source>UpSpeed</source>
-        <translation>Rýchlosť nahrávania</translation>
+        <translation type="obsolete">Rýchlosť nahrávania</translation>
     </message>
     <message>
         <source>Seeds/Leechs</source>
-        <translation>Seederi/Leecheri</translation>
+        <translation type="obsolete">Seederi/Leecheri</translation>
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Pomer</translation>
+        <translation type="obsolete">Pomer</translation>
     </message>
     <message>
         <source>ETA</source>
-        <translation>Odh. čas</translation>
+        <translation type="obsolete">Odh. čas</translation>
     </message>
     <message>
         <source>Buy it</source>
-        <translation>Kúpiť</translation>
+        <translation type="obsolete">Kúpiť</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorita</translation>
+        <translation type="obsolete">Priorita</translation>
     </message>
     <message>
         <source>Increase priority</source>
-        <translation>Zvýšiť prioritu</translation>
+        <translation type="obsolete">Zvýšiť prioritu</translation>
     </message>
     <message>
         <source>Decrease priority</source>
-        <translation>Znížiť prioritu</translation>
+        <translation type="obsolete">Znížiť prioritu</translation>
     </message>
     <message>
         <source>Force recheck</source>
-        <translation>Vynútiť opätovnú kontrolu</translation>
+        <translation type="obsolete">Vynútiť opätovnú kontrolu</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation>Kopírovať magnet URI</translation>
+        <translation type="obsolete">Kopírovať magnet URI</translation>
     </message>
 </context>
 <context>
@@ -4283,7 +4585,7 @@ Tieto moduly však boli vypnuté.</translation>
     <name>properties</name>
     <message>
         <source>Torrent Properties</source>
-        <translation>Vlastnosti torrentu</translation>
+        <translation type="obsolete">Vlastnosti torrentu</translation>
     </message>
     <message>
         <source>Main Infos</source>
@@ -4323,7 +4625,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="obsolete">OK</translation>
     </message>
     <message>
         <source>Total Failed:</source>
@@ -4363,7 +4665,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Neznámy</translation>
+        <translation type="obsolete">Neznámy</translation>
     </message>
     <message>
         <source>Complete: </source>
@@ -4375,11 +4677,11 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Files contained in current torrent:</source>
-        <translation>Súbory obsiahnuté v súčasnom torrente:</translation>
+        <translation type="obsolete">Súbory obsiahnuté v súčasnom torrente:</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Veľkosť</translation>
+        <translation type="obsolete">Veľkosť</translation>
     </message>
     <message>
         <source>Selected</source>
@@ -4411,11 +4713,11 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Trackers:</source>
-        <translation>Trackery:</translation>
+        <translation type="obsolete">Trackery:</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
-        <translation>Žiadne - Nedostupné?</translation>
+        <translation type="obsolete">Žiadne - Nedostupné?</translation>
     </message>
     <message>
         <source>Errors:</source>
@@ -4423,7 +4725,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Priebeh</translation>
+        <translation type="obsolete">Priebeh</translation>
     </message>
     <message>
         <source>Main infos</source>
@@ -4435,31 +4737,31 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Current tracker:</source>
-        <translation>Súčasný tracker:</translation>
+        <translation type="obsolete">Súčasný tracker:</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation>Celkovo nahrané:</translation>
+        <translation type="obsolete">Celkovo nahrané:</translation>
     </message>
     <message>
         <source>Main info</source>
-        <translation>Hlavné info</translation>
+        <translation type="obsolete">Hlavné info</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation>Info o torrente</translation>
+        <translation type="obsolete">Info o torrente</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation>Celkovo stiahnuté:</translation>
+        <translation type="obsolete">Celkovo stiahnuté:</translation>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation>Celkovo zlyhalo:</translation>
+        <translation type="obsolete">Celkovo zlyhalo:</translation>
     </message>
     <message>
         <source>Torrent content</source>
-        <translation>Obsah torrentu</translation>
+        <translation type="obsolete">Obsah torrentu</translation>
     </message>
     <message>
         <source>Seeders:</source>
@@ -4479,11 +4781,11 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
-        <translation>Stiahnuť v správnom poradí (pomalšie, ale lepšie pre náhľad)</translation>
+        <translation type="obsolete">Stiahnuť v správnom poradí (pomalšie, ale lepšie pre náhľad)</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation>Uložiť kam:</translation>
+        <translation type="obsolete">Uložiť kam:</translation>
     </message>
     <message>
         <source>Torrent infos</source>
@@ -4491,51 +4793,51 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Creator:</source>
-        <translation>Tvorca:</translation>
+        <translation type="obsolete">Tvorca:</translation>
     </message>
     <message>
         <source>Torrent hash:</source>
-        <translation>Haš torrentu:</translation>
+        <translation type="obsolete">Haš torrentu:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation>Komentár:</translation>
+        <translation type="obsolete">Komentár:</translation>
     </message>
     <message>
         <source>Current session</source>
-        <translation>Súčasná relácia</translation>
+        <translation type="obsolete">Súčasná relácia</translation>
     </message>
     <message>
         <source>Share ratio:</source>
-        <translation>Pomer zdieľania:</translation>
+        <translation type="obsolete">Pomer zdieľania:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Trackery</translation>
+        <translation type="obsolete">Trackery</translation>
     </message>
     <message>
         <source>Priorities:</source>
-        <translation>Priority:</translation>
+        <translation type="obsolete">Priority:</translation>
     </message>
     <message>
         <source>Normal: normal priority. Download order is dependent on availability</source>
-        <translation>Normálna: normálna priorita. Poradie sťahovania záleží na dostupnosti</translation>
+        <translation type="obsolete">Normálna: normálna priorita. Poradie sťahovania záleží na dostupnosti</translation>
     </message>
     <message>
         <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
-        <translation>Vysoká: vyššia priorita ako normálna. Kúsky sa uprednostňujú pred kúskami s rovnakou dostupnosťou, ale nie pred kúskami s nižšou dostupnosťou</translation>
+        <translation type="obsolete">Vysoká: vyššia priorita ako normálna. Kúsky sa uprednostňujú pred kúskami s rovnakou dostupnosťou, ale nie pred kúskami s nižšou dostupnosťou</translation>
     </message>
     <message>
         <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
-        <translation>Maximálna: maximálna priorita, na dostupnosť sa neberie ohľad, kúsky sú uprednostňované pred inými kúskami s nižšou prioritou</translation>
+        <translation type="obsolete">Maximálna: maximálna priorita, na dostupnosť sa neberie ohľad, kúsky sú uprednostňované pred inými kúskami s nižšou prioritou</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation>Názov súboru</translation>
+        <translation type="obsolete">Názov súboru</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorita</translation>
+        <translation type="obsolete">Priorita</translation>
     </message>
     <message>
         <source>New tracker</source>
@@ -4547,43 +4849,43 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Trackers list can&apos;t be empty.</source>
-        <translation>Zoznam trackerov nemôže byť prázdny.</translation>
+        <translation type="obsolete">Zoznam trackerov nemôže byť prázdny.</translation>
     </message>
     <message>
         <source>Ignored: file is not downloaded at all</source>
-        <translation>Ignorované: súbor sa vôbec nesťahuje</translation>
+        <translation type="obsolete">Ignorované: súbor sa vôbec nesťahuje</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignorované</translation>
+        <translation type="obsolete">Ignorované</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normálna</translation>
+        <translation type="obsolete">Normálna</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maximálna</translation>
+        <translation type="obsolete">Maximálna</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Vysoká</translation>
+        <translation type="obsolete">Vysoká</translation>
     </message>
     <message>
         <source>Url seeds</source>
-        <translation>Url seedy</translation>
+        <translation type="obsolete">Url seedy</translation>
     </message>
     <message>
         <source>New url seed:</source>
-        <translation>Nový URL seed:</translation>
+        <translation type="obsolete">Nový URL seed:</translation>
     </message>
     <message>
         <source>This url seed is already in the list.</source>
-        <translation>Tento URL seed je už v zozname.</translation>
+        <translation type="obsolete">Tento URL seed je už v zozname.</translation>
     </message>
     <message>
         <source>Hard-coded url seeds cannot be deleted.</source>
@@ -4597,47 +4899,47 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
-        <translation>Nový URL seed</translation>
+        <translation type="obsolete">Nový URL seed</translation>
     </message>
     <message>
         <source>The following url seeds are available for this torrent:</source>
-        <translation>Pre tento torrent sú dostupné  nasledovné url seedy:</translation>
+        <translation type="obsolete">Pre tento torrent sú dostupné  nasledovné url seedy:</translation>
     </message>
     <message>
         <source>Priorities error</source>
-        <translation>Chyba priorít</translation>
+        <translation type="obsolete">Chyba priorít</translation>
     </message>
     <message>
         <source>Error, you can&apos;t filter all the files in a torrent.</source>
-        <translation>Chyba, nemôžete filtrovať všetky súbory v torrente.</translation>
+        <translation type="obsolete">Chyba, nemôžete filtrovať všetky súbory v torrente.</translation>
     </message>
     <message>
         <source>Downloaded pieces</source>
-        <translation>Stiahnuté časti</translation>
+        <translation type="obsolete">Stiahnuté časti</translation>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Zbaliť všetko</translation>
+        <translation type="obsolete">Zbaliť všetko</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Rozbaliť všetko</translation>
+        <translation type="obsolete">Rozbaliť všetko</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Zvoľte cestu pre uloženie</translation>
+        <translation type="obsolete">Zvoľte cestu pre uloženie</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Chyba pri vytváraní cesty pre uloženie</translation>
+        <translation type="obsolete">Chyba pri vytváraní cesty pre uloženie</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Nebolo možné vytvoriť cestu pre uloženie</translation>
+        <translation type="obsolete">Nebolo možné vytvoriť cestu pre uloženie</translation>
     </message>
 </context>
 <context>
@@ -4695,7 +4997,7 @@ Tieto moduly však boli vypnuté.</translation>
     <name>seeding</name>
     <message>
         <source>Search</source>
-        <translation>Vyhľadávanie</translation>
+        <translation type="obsolete">Vyhľadávanie</translation>
     </message>
     <message>
         <source>The following torrents are finished and shared:</source>
@@ -4703,59 +5005,59 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
-        <translation>&lt;u&gt;Pozn.:&lt;/u&gt; Pre dobro siete je dôležité, aby ste aj po skončení sťahovania naďalej naďalej stiahnuté torrenty zdieľali.</translation>
+        <translation type="obsolete">&lt;u&gt;Pozn.:&lt;/u&gt; Pre dobro siete je dôležité, aby ste aj po skončení sťahovania naďalej naďalej stiahnuté torrenty zdieľali.</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Spustiť</translation>
+        <translation type="obsolete">Spustiť</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pozastaviť</translation>
+        <translation type="obsolete">Pozastaviť</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Zmazať</translation>
+        <translation type="obsolete">Zmazať</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>Trvalo zmazať</translation>
+        <translation type="obsolete">Trvalo zmazať</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Vlastnosti torrentu</translation>
+        <translation type="obsolete">Vlastnosti torrentu</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Náhľad súboru</translation>
+        <translation type="obsolete">Náhľad súboru</translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Nastaviť limit nahrávania</translation>
+        <translation type="obsolete">Nastaviť limit nahrávania</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation>Otvoriť cieľový priečinok</translation>
+        <translation type="obsolete">Otvoriť cieľový priečinok</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Názov</translation>
+        <translation type="obsolete">Názov</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Veľkosť</translation>
+        <translation type="obsolete">Veľkosť</translation>
     </message>
     <message>
         <source>Upload Speed</source>
-        <translation>Rýchlosť nahrávania</translation>
+        <translation type="obsolete">Rýchlosť nahrávania</translation>
     </message>
     <message>
         <source>Connected peers</source>
-        <translation>Pripojení</translation>
+        <translation type="obsolete">Pripojení</translation>
     </message>
     <message>
         <source>Seeds / Leechers</source>
-        <translation>Seederi/Leecheri</translation>
+        <translation type="obsolete">Seederi/Leecheri</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -4763,15 +5065,15 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Ratio</source>
-        <translation>Pomer</translation>
+        <translation type="obsolete">Pomer</translation>
     </message>
     <message>
         <source>Buy it</source>
-        <translation>Kúpiť</translation>
+        <translation type="obsolete">Kúpiť</translation>
     </message>
     <message>
         <source>Total uploaded</source>
-        <translation>Celkovo nahrané</translation>
+        <translation type="obsolete">Celkovo nahrané</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -4787,11 +5089,11 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Force recheck</source>
-        <translation>Vynútiť opätovnú kontrolu</translation>
+        <translation type="obsolete">Vynútiť opätovnú kontrolu</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation>Kopírovať magnet URI</translation>
+        <translation type="obsolete">Kopírovať magnet URI</translation>
     </message>
 </context>
 <context>
@@ -4924,6 +5226,14 @@ Tieto moduly však boli vypnuté.</translation>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(na stiahnutie treba ďalších %1)</translation>
+    </message>
+    <message>
+        <source>Seeding mode error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
