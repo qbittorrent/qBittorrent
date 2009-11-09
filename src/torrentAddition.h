@@ -179,8 +179,8 @@ public:
     // set row Color
     setItemColor(first->index(), "green");
     // Add children
-    QList<const torrent_file*> children = root->getChildren();
-    foreach(const torrent_file *child, children) {
+    QList<torrent_file*> children = root->getChildren();
+    foreach(torrent_file *child, children) {
       addFilesToTree(child, first);
     }
   }

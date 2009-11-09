@@ -35,7 +35,6 @@
   <file>Icons/skin/info.png</file>
   <file>Icons/skin/tabs.gif</file>
   <file>Icons/skin/delete_perm.png</file>
-  <file>Icons/skin/queued.png</file>
   <file>Icons/skin/settings.png</file>
   <file>Icons/skin/exit.png</file>
   <file>Icons/skin/delete_all.png</file>
@@ -68,13 +67,16 @@
   <file>Icons/flags/italy.png</file>
   <file>Icons/flags/south_korea.png</file>
   <file>Icons/flags/japan.png</file>
+  <file>Icons/oxygen/mail-queue.png</file>
   <file>Icons/oxygen/view-refresh.png</file>
   <file>Icons/oxygen/file.png</file>
+  <file>Icons/oxygen/folder-remote16.png</file>
   <file>Icons/oxygen/mail-folder-inbox.png</file>
-  <file>Icons/oxygen/time.png</file>
   <file>Icons/oxygen/edit-find.png</file>
   <file>Icons/oxygen/folder-new.png</file>
+  <file>Icons/oxygen/folder-remote.png</file>
   <file>Icons/oxygen/edit-paste.png</file>
+  <file>Icons/oxygen/run-build.png</file>
   <file>Icons/oxygen/proxy.png</file>
   <file>Icons/oxygen/log.png</file>
   <file>Icons/oxygen/unavailable.png</file>
@@ -87,7 +89,9 @@
   <file>Icons/oxygen/download.png</file>
   <file>Icons/oxygen/application-x-kgetlist-no.png</file>
   <file>Icons/oxygen/gear.png</file>
+  <file>Icons/oxygen/draw-triangle2.png</file>
   <file>Icons/oxygen/remove.png</file>
+  <file>Icons/oxygen/peer.png</file>
   <file>Icons/oxygen/browse.png</file>
   <file>Icons/oxygen/unsubscribe16.png</file>
   <file>Icons/oxygen/subscribe.png</file>
@@ -101,11 +105,15 @@
   <file>Icons/oxygen/list-remove.png</file>
   <file>Icons/oxygen/connection.png</file>
   <file>Icons/oxygen/bug.png</file>
+  <file>Icons/oxygen/help-about.png</file>
   <file>Icons/oxygen/list-add.png</file>
+  <file>Icons/oxygen/network-server.png</file>
   <file>Icons/oxygen/application-x-kgetlist.png</file>
   <file>Icons/oxygen/folder.png</file>
+  <file>Icons/oxygen/urlseed.png</file>
   <file>Icons/oxygen/edit-cut.png</file>
   <file>Icons/oxygen/unsubscribe.png</file>
+  <file>Icons/oxygen/draw-rectangle.png</file>
   <file>Icons/oxygen/subscribe16.png</file>
 </qresource>
 </RCC>

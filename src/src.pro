@@ -143,9 +143,7 @@ HEADERS += GUI.h \
     misc.h \
     options_imp.h \
     about_imp.h \
-    properties_imp.h \
     createtorrent_imp.h \
-    DLListDelegate.h \
     SearchListDelegate.h \
     PropListDelegate.h \
     previewSelect.h \
@@ -158,11 +156,8 @@ HEADERS += GUI.h \
     searchEngine.h \
     rss.h \
     rss_imp.h \
-    FinishedTorrents.h \
     allocationDlg.h \
-    FinishedListDelegate.h \
     qtorrenthandle.h \
-    downloadingTorrents.h \
     engineSelectDlg.h \
     pluginSource.h \
     arborescence.h \
@@ -185,11 +180,14 @@ HEADERS += GUI.h \
     torrentPersistentData.h \
     FeedDownloader.h \
     feedList.h \
-    supportedEngines.h
+    supportedEngines.h \
+    TransferListWidget.h \
+    TransferListDelegate.h \
+    TransferListFiltersWidget.h \
+    propertieswidget.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \
-    properties.ui \
     createtorrent.ui \
     preview.ui \
     login.ui \
@@ -197,25 +195,21 @@ FORMS += MainWindow.ui \
     addTorrentDialog.ui \
     search.ui \
     rss.ui \
-    seeding.ui \
     bandwidth_limit.ui \
-    download.ui \
     engineSelect.ui \
     pluginSource.ui \
     trackersAdd.ui \
     console.ui \
-    FeedDownloader.ui
+    FeedDownloader.ui \
+    propertiesWidget.ui
 SOURCES += GUI.cpp \
     main.cpp \
     options_imp.cpp \
-    properties_imp.cpp \
     createtorrent_imp.cpp \
     bittorrent.cpp \
     searchEngine.cpp \
     rss_imp.cpp \
-    FinishedTorrents.cpp \
     qtorrenthandle.cpp \
-    downloadingTorrents.cpp \
     engineSelectDlg.cpp \
     downloadThread.cpp \
     realprogressbar.cpp \
@@ -228,5 +222,7 @@ SOURCES += GUI.cpp \
     eventmanager.cpp \
     SearchTab.cpp \
     ico.cpp \
-    rss.cpp
+    rss.cpp \
+    TransferListWidget.cpp \
+    propertieswidget.cpp
 DESTDIR = .

@@ -28,38 +28,42 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "properties_imp.h"
-#include "misc.h"
-#include "PropListDelegate.h"
-#include "bittorrent.h"
-#include "arborescence.h"
-#include "realprogressbar.h"
-#include "realprogressbarthread.h"
-#include "TrackersAdditionDlg.h"
-#include "torrentPersistentData.h"
-
-#include <QInputDialog>
+#include <QTimer>
+#include <QListWidgetItem>
+#include <QStandardItemModel>
+#include <QStandardItem>
+#include <QVBoxLayout>
+#include <QStackedWidget>
+#include <QSplitter>
+#include <QAction>
 #include <QMessageBox>
 #include <QMenu>
-#include <QTimer>
-#include <QStandardItemModel>
-#include <QSettings>
-#include <QDesktopWidget>
 #include <QFileDialog>
-#include <QHeaderView>
+#include <QInputDialog>
+#include "propertieswidget.h"
+#include "TransferListWidget.h"
+#include "torrentPersistentData.h"
+#include "realprogressbar.h"
+#include "realprogressbarthread.h"
+#include "arborescence.h"
+#include "bittorrent.h"
+#include "PropListDelegate.h"
+#include "TrackersAdditionDlg.h"
 
-// Constructor
-properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h): QDialog(parent), h(h), BTSession(BTSession), changedFilteredfiles(false), hash(h.hash()) {
+#define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px; margin-left: 3px; margin-right: 3px;}"
+#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;background-color: rgb(255, 208, 105);margin-left: 3px; margin-right: 3px;}"
+
+PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession): QWidget(parent), transferList(transferList), BTSession(BTSession) {
   setupUi(this);
-  lbl_priorities->setText(tr("Priorities:")+"<ul><li>"+tr("Ignored: file is not downloaded at all")+"</li><li>"+tr("Normal: normal priority. Download order is dependent on availability")+"</li><li>"+tr("High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability")+"</li><li>"+tr("Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority")+"</li></ul>");
-  // set icons
-  addTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/list-add.png")));
-  removeTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/list-remove.png")));
-  lowerTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/downarrow.png")));
-  riseTracker_button->setIcon(QIcon(QString::fromUtf8(":/Icons/uparrow.png")));
-  addWS_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/list-add.png")));
-  deleteWS_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/list-remove.png")));
-  setAttribute(Qt::WA_DeleteOnClose);
+  state = VISIBLE;
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  if(!settings.value("TorrentProperties/Visible", false).toBool()) {
+    reduce();
+  } else {
+    main_infos_button->setStyleSheet(SELECTED_BUTTON_CSS);
+    setEnabled(false);
+  }
+
   // Set Properties list model
   PropListModel = new QStandardItemModel(0,5);
   PropListModel->setHeaderData(NAME, Qt::Horizontal, tr("File name"));
@@ -68,8 +72,16 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   PropListModel->setHeaderData(PRIORITY, Qt::Horizontal, tr("Priority"));
   filesList->setModel(PropListModel);
   filesList->hideColumn(INDEX);
-  PropDelegate = new PropListDelegate(0, &changedFilteredfiles);
+  PropDelegate = new PropListDelegate(0);
   filesList->setItemDelegate(PropDelegate);
+
+  // QActions
+  actionIgnored = new QAction(this);
+  actionNormal = new QAction(this);
+  actionMaximum = new QAction(this);
+  actionHigh = new QAction(this);
+
+  // SIGNAL/SLOTS
   connect(filesList, SIGNAL(clicked(const QModelIndex&)), filesList, SLOT(edit(const QModelIndex&)));
   connect(collapseAllButton, SIGNAL(clicked()), filesList, SLOT(collapseAll()));
   connect(expandAllButton, SIGNAL(clicked()), filesList, SLOT(expandAll()));
@@ -84,127 +96,132 @@ properties::properties(QWidget *parent, bittorrent *BTSession, QTorrentHandle &h
   connect(actionMaximum, SIGNAL(triggered()), this, SLOT(maximumSelection()));
   connect(addWS_button, SIGNAL(clicked()), this, SLOT(askWebSeed()));
   connect(deleteWS_button, SIGNAL(clicked()), this, SLOT(deleteSelectedUrlSeeds()));
-  // get Infos from torrent handle
-  fileName->setText(h.name());
-  // Torrent Infos
-  save_path->setText(TorrentPersistentData::getSavePath(hash));
-  QString author = h.creator().trimmed();
-  if(author.isEmpty())
-    author = tr("Unknown");
-  creator->setText(author);
-  hash_lbl->setText(hash);
-  comment_txt->setText(h.comment());
-  //Trackers
-  loadTrackers();
-  // Session infos
-  failed->setText(misc::friendlyUnit(h.total_failed_bytes()));
-  upTotal->setText(misc::friendlyUnit(h.total_payload_upload()));
-  dlTotal->setText(misc::friendlyUnit(h.total_payload_download()));
-  // Update ratio info
-  float ratio;
-  if(h.total_payload_download() == 0){
-    if(h.total_payload_upload() == 0)
-      ratio = 1.;
-    else
-      ratio = 10.; // Max ratio
-  }else{
-    ratio = (double)h.total_payload_upload()/(double)h.total_payload_download();
-    if(ratio > 10.){
-      ratio = 10.;
-    }
-  }
-  shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
-  std::vector<size_type> fp;
-  h.file_progress(fp);
-  std::vector<int> files_priority = loadFilesPriorities();
-  // List files in torrent
-  h.get_torrent_info();
-  arborescence *arb = new arborescence(h.get_torrent_info(), fp, files_priority);
-  addFilesToTree(arb->getRoot(), PropListModel->invisibleRootItem());
-  delete arb;
+  connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle&)), this, SLOT(loadTorrentInfos(QTorrentHandle &)));
+  connect(incrementalDownload, SIGNAL(stateChanged(int)), this, SLOT(setIncrementalDownload(int)));
   connect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
-  filesList->expandAll();
-  // List web seeds
-  loadWebSeedsFromFile();
-  loadWebSeeds();
-  // Incremental download
-  incrementalDownload->setChecked(TorrentPersistentData::isSequentialDownload(hash));
-  updateInfosTimer = new QTimer(this);
-  connect(updateInfosTimer, SIGNAL(timeout()), this, SLOT(updateInfos()));
-  updateInfosTimer->start(3000);
+  connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
+
+  // Downloaded pieces progress bar
   progressBar = new RealProgressBar(this);
   progressBar->setForegroundColor(Qt::blue);
   progressBarVbox = new QVBoxLayout(RealProgressBox);
   progressBarVbox->addWidget(progressBar);
-  progressBarUpdater = new RealProgressBarThread(progressBar, h);
-  progressBarUpdater->start();
-  //  progressBarUpdater->refresh();
-  connect(updateInfosTimer, SIGNAL(timeout()), progressBarUpdater, SLOT(refresh()));
-  loadSettings();
+  // Pointers init
+  progressBarUpdater = 0;
+  arb = 0;
+  // Dynamic data refresher
+  refreshTimer = new QTimer(this);
+  connect(refreshTimer, SIGNAL(timeout()), this, SLOT(loadDynamicData()));
+  refreshTimer->start(10000); // 10sec
 }
 
-properties::~properties(){
-  writeSettings();
-  qDebug("Properties destroyed");
-  delete updateInfosTimer;
-  delete PropDelegate;
-  delete PropListModel;
-  delete progressBarUpdater;
+PropertiesWidget::~PropertiesWidget() {
+  saveSettings();
+  delete refreshTimer;
+  if(progressBarUpdater)
+    delete progressBarUpdater;
   delete progressBar;
   delete progressBarVbox;
+  delete PropListModel;
+  if(arb)
+    delete arb;
+  // Delete QActions
+  delete actionIgnored;
+  delete actionNormal;
+  delete actionMaximum;
+  delete actionHigh;
 }
 
-void properties::addFilesToTree(const torrent_file *root, QStandardItem *parent) {
-  QList<QStandardItem*> child;
-  // Name
-  QStandardItem *first;
-  if(root->isDir()) {
-    first = new QStandardItem(QIcon(":/Icons/oxygen/folder.png"), root->name());
-  } else {
-    first = new QStandardItem(QIcon(":/Icons/oxygen/file.png"), root->name());
-  }
-  child << first;
-  // Size
-  child << new QStandardItem(misc::toQString(root->getSize()));
-  // Progress
-  child << new QStandardItem(misc::toQString(root->getProgress()));
-  // Prio
-  child << new QStandardItem(misc::toQString(root->getPriority()));
-  // INDEX
-  child << new QStandardItem(misc::toQString(root->getIndex()));
-  // Add the child to the tree
-  parent->appendRow(child);
-  // Set row color
-  if(root->getPriority() == IGNORED)
-    setItemColor(first->index(), "red");
-  else
-    setItemColor(first->index(), "green");
-  // Add childs
-  foreach(const torrent_file *childFile, root->getChildren()) {
-    addFilesToTree(childFile, first);
+void PropertiesWidget::reduce() {
+  if(state == VISIBLE) {
+    stackedProperties->setFixedHeight(0);
+    state = REDUCED;
   }
 }
 
-void properties::writeSettings() {
+void PropertiesWidget::slide() {
+  if(state == REDUCED) {
+    stackedProperties->setFixedHeight(260);
+    state = VISIBLE;
+  }
+}
+
+void PropertiesWidget::clear() {
+  save_path->clear();
+  creator->clear();
+  hash_lbl->clear();
+  comment_lbl->clear();
+  incrementalDownload->setChecked(false);
+  trackersURLS->clear();
+  trackerURL->clear();
+  progressBar->setProgress(QRealArray());
+  failed->clear();
+  upTotal->clear();
+  dlTotal->clear();
+  shareRatio->clear();
+  listWebSeeds->clear();
+  PropListModel->removeRows(0, PropListModel->rowCount());
+  setEnabled(false);
+}
+
+void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
+  h = _h;
+  if(!h.is_valid()) {
+    clear();
+    return;
+  }
+  setEnabled(true);
+  if(progressBarUpdater) {
+    delete progressBarUpdater;
+    progressBarUpdater = 0;
+  }
+  if(arb != 0) {
+    delete arb;
+    arb = 0;
+  }
+  try {
+    // Save path
+    save_path->setText(TorrentPersistentData::getSavePath(h.hash()));
+    // Author
+    QString author = h.creator().trimmed();
+    if(author.isEmpty())
+      author = tr("Unknown");
+    creator->setText(author);
+    // Hash
+    hash_lbl->setText(h.hash());
+    // Comment
+    comment_lbl->setText(h.comment());
+    // Sequential download
+    incrementalDownload->setChecked(TorrentPersistentData::isSequentialDownload(h.hash()));
+    // Trackers
+    loadTrackers();
+    // URL seeds
+    loadUrlSeeds();
+    // downloaded pieces updater
+    progressBarUpdater = new RealProgressBarThread(progressBar, h);
+    progressBarUpdater->start();
+    // Create arborescence (Tree representation of files in the torrent)
+    std::vector<size_type> fp;
+    h.file_progress(fp);
+    std::vector<int> files_priority = loadFilesPriorities();
+    // List files in torrent
+    arborescence *arb = new arborescence(h.get_torrent_info(), fp, files_priority);
+    PropListModel->removeRows(0, PropListModel->rowCount());
+    addFilesToTree(arb->getRoot(), PropListModel->invisibleRootItem());
+    // Increase first column width
+    //filesList->resizeColumnToContents(0); // does not work
+  } catch(invalid_handle e) {
+
+  }
+  // Load dynamic data
+  loadDynamicData();
+}
+
+void PropertiesWidget::readSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  settings.beginGroup(QString::fromUtf8("PropWindow"));
-  settings.setValue(QString::fromUtf8("size"), size());
-  settings.setValue(QString::fromUtf8("pos"), pos());
-  QVariantList contentColsWidths;
-  for(int i=0; i<PropListModel->columnCount()-1; ++i) {
-    contentColsWidths.append(filesList->columnWidth(i));
-  }
-  settings.setValue(QString::fromUtf8("contentColsWidths"), contentColsWidths);
-  settings.endGroup();
-}
-
-void properties::loadSettings() {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  resize(settings.value(QString::fromUtf8("PropWindow/size"), size()).toSize());
-  move(settings.value(QString::fromUtf8("PropWindow/pos"), screenCenter()).toPoint());
-  QVariantList contentColsWidths = settings.value(QString::fromUtf8("PropWindow/contentColsWidths"), QVariantList()).toList();
+  QVariantList contentColsWidths = settings.value(QString::fromUtf8("TorrentProperties/filesColsWidth"), QVariantList()).toList();
   if(contentColsWidths.empty()) {
-    filesList->header()->resizeSection(NAME, 200);
+    filesList->header()->resizeSection(0, filesList->width()/2.);
   } else {
     for(int i=0; i<contentColsWidths.size(); ++i) {
       filesList->setColumnWidth(i, contentColsWidths.at(i).toInt());
@@ -212,24 +229,165 @@ void properties::loadSettings() {
   }
 }
 
-// Center window
-QPoint properties::screenCenter() const{
-  int scrn = 0;
-  QWidget *w = this->topLevelWidget();
+void PropertiesWidget::saveSettings() {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.setValue("TorrentProperties/Visible", state==VISIBLE);
+  QVariantList contentColsWidths;
+  for(int i=0; i<PropListModel->columnCount()-1; ++i) {
+    contentColsWidths.append(filesList->columnWidth(i));
+  }
+  settings.setValue(QString::fromUtf8("TorrentProperties/filesColsWidth"), contentColsWidths);
+}
 
-  if(w)
-    scrn = QApplication::desktop()->screenNumber(w);
-  else if(QApplication::desktop()->isVirtualDesktop())
-    scrn = QApplication::desktop()->screenNumber(QCursor::pos());
-  else
-    scrn = QApplication::desktop()->screenNumber(this);
+void PropertiesWidget::loadDynamicData() {
+  if(!h.is_valid()) return;
+  try {
+    // Session infos
+    failed->setText(misc::friendlyUnit(h.total_failed_bytes()));
+    upTotal->setText(misc::friendlyUnit(h.total_payload_upload()));
+    dlTotal->setText(misc::friendlyUnit(h.total_payload_download()));
+    // Update ratio info
+    float ratio;
+    if(h.total_payload_download() == 0){
+      if(h.total_payload_upload() == 0)
+        ratio = 1.;
+      else
+        ratio = 10.; // Max ratio
+    }else{
+      ratio = (double)h.total_payload_upload()/(double)h.total_payload_download();
+      if(ratio > 10.){
+        ratio = 10.;
+      }
+    }
+    shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
+    // Downloaded pieces
+    if(progressBarUpdater)
+      progressBarUpdater->refresh();
+  } catch(invalid_handle e) {}
+}
 
-  QRect desk(QApplication::desktop()->availableGeometry(scrn));
-  return QPoint((desk.width() - this->frameGeometry().width()) / 2, (desk.height() - this->frameGeometry().height()) / 2);
+void PropertiesWidget::setIncrementalDownload(int checkboxState) {
+  if(!h.is_valid()) return;
+  h.set_sequential_download(checkboxState == Qt::Checked);
+  TorrentPersistentData::saveSequentialStatus(h);
+}
+
+void PropertiesWidget::loadTrackers() {
+  if(!h.is_valid()) return;
+  //Trackers
+  std::vector<announce_entry> trackers = h.trackers();
+  trackersURLS->clear();
+  QHash<QString, QString> errors = BTSession->getTrackersErrors(h.hash());
+  unsigned int nbTrackers = trackers.size();
+  for(unsigned int i=0; i<nbTrackers; ++i){
+    QString current_tracker = misc::toQString(trackers[i].url);
+    QListWidgetItem *item = new QListWidgetItem(current_tracker, trackersURLS);
+    // IsThere any errors ?
+    if(errors.contains(current_tracker)) {
+      item->setForeground(QBrush(QColor("red")));
+      // Set tooltip
+      QString msg="";
+      unsigned int i=0;
+      foreach(QString word, errors[current_tracker].split(" ")) {
+        if(i > 0 && i%5!=1) msg += " ";
+        msg += word;
+        if(i> 0 && i%5==0) msg += "\n";
+        ++i;
+      }
+      item->setToolTip(msg);
+    } else {
+      item->setForeground(QBrush(QColor("green")));
+    }
+  }
+  QString tracker = h.current_tracker().trimmed();
+  if(!tracker.isEmpty()){
+    trackerURL->setText(tracker);
+  }else{
+    trackerURL->setText(tr("None - Unreachable?"));
+  }
+}
+
+void PropertiesWidget::loadUrlSeeds(){
+  QStringList already_added;
+  listWebSeeds->clear();
+  QVariantList url_seeds = TorrentPersistentData::getUrlSeeds(h.hash());
+  foreach(const QVariant &var_url_seed, url_seeds){
+    QString url_seed = var_url_seed.toString();
+    if(!url_seed.isEmpty()) {
+      new QListWidgetItem(url_seed, listWebSeeds);
+      already_added << url_seed;
+    }
+  }
+  // Load the hard-coded url seeds
+  QStringList hc_seeds = h.url_seeds();
+  // Add hard coded url seeds
+  foreach(const QString &hc_seed, hc_seeds){
+    if(!already_added.contains(hc_seed)){
+      new QListWidgetItem(hc_seed, listWebSeeds);
+    }
+  }
+}
+
+/* Tab buttons */
+QPushButton* PropertiesWidget::getButtonFromIndex(int index) {
+  switch(index) {
+  case TRACKERS_TAB:
+    return trackers_button;
+  case URLSEEDS_TAB:
+    return url_seeds_button;
+  case FILES_TAB:
+    return files_button;
+      default:
+    return main_infos_button;
+  }
+}
+
+void PropertiesWidget::on_main_infos_button_clicked() {
+  if(state == VISIBLE && stackedProperties->currentIndex() == MAIN_TAB) {
+    reduce();
+  } else {
+    slide();
+    getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
+    stackedProperties->setCurrentIndex(MAIN_TAB);
+    main_infos_button->setStyleSheet(SELECTED_BUTTON_CSS);
+  }
+}
+
+void PropertiesWidget::on_trackers_button_clicked() {
+  if(state == VISIBLE && stackedProperties->currentIndex() == TRACKERS_TAB) {
+    reduce();
+  } else {
+    slide();
+    getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
+    stackedProperties->setCurrentIndex(TRACKERS_TAB);
+    trackers_button->setStyleSheet(SELECTED_BUTTON_CSS);
+  }
+}
+
+void PropertiesWidget::on_url_seeds_button_clicked() {
+  if(state == VISIBLE && stackedProperties->currentIndex() == URLSEEDS_TAB) {
+    reduce();
+  } else {
+    slide();
+    getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
+    stackedProperties->setCurrentIndex(URLSEEDS_TAB);
+    url_seeds_button->setStyleSheet(SELECTED_BUTTON_CSS);
+  }
+}
+
+void PropertiesWidget::on_files_button_clicked() {
+  if(state == VISIBLE && stackedProperties->currentIndex() == FILES_TAB) {
+    reduce();
+  } else {
+    slide();
+    getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
+    stackedProperties->setCurrentIndex(FILES_TAB);
+    files_button->setStyleSheet(SELECTED_BUTTON_CSS);
+  }
 }
 
 // priority is the new priority of given item
-void properties::updateParentsPriority(QStandardItem *item, int priority) {
+void PropertiesWidget::updateParentsPriority(QStandardItem *item, int priority) {
   QStandardItem *parent = item->parent();
   if(!parent) return;
   // Check if children have different priorities
@@ -269,7 +427,7 @@ void properties::updateParentsPriority(QStandardItem *item, int priority) {
   }
 }
 
-void properties::updateChildrenPriority(QStandardItem *item, int priority) {
+void PropertiesWidget::updateChildrenPriority(QStandardItem *item, int priority) {
   QStandardItem *parent = item->parent();
   if(!parent) {
     parent = PropListModel->invisibleRootItem();
@@ -290,7 +448,7 @@ void properties::updateChildrenPriority(QStandardItem *item, int priority) {
   }
 }
 
-void properties::updatePriorities(QStandardItem *item) {
+void PropertiesWidget::updatePriorities(QStandardItem *item) {
   qDebug("Priority changed");
   // First we disable the signal/slot on item edition
   // temporarily so that it doesn't mess with our manual updates
@@ -318,19 +476,9 @@ void properties::updatePriorities(QStandardItem *item) {
   connect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
 }
 
-void properties::loadWebSeeds(){
-  // Clear url seeds list
-  listWebSeeds->clear();
-  // Add manually added url seeds
-  foreach(const QString &url_seed, urlSeeds){
-    listWebSeeds->addItem(url_seed);
-    qDebug("Added custom url seed to list: %s", url_seed.toLocal8Bit().data());
-  }
-}
-
-std::vector<int> properties::loadFilesPriorities(){
+std::vector<int> PropertiesWidget::loadFilesPriorities(){
   std::vector<int> fp;
-  QVariantList files_priority = TorrentPersistentData::getFilesPriority(hash);
+  QVariantList files_priority = TorrentPersistentData::getFilesPriority(h.hash());
   if(files_priority.empty()) {
     for(int i=0; i<h.num_files(); ++i) {
       fp.push_back(1);
@@ -348,7 +496,7 @@ std::vector<int> properties::loadFilesPriorities(){
   return fp;
 }
 
-bool properties::allFiltered() const {
+bool PropertiesWidget::allFiltered() const {
   unsigned int nbRows = PropListModel->rowCount();
   for(unsigned int i=0; i<nbRows; ++i){
     if(PropListModel->data(PropListModel->index(i, PRIORITY)).toInt() != IGNORED)
@@ -358,7 +506,7 @@ bool properties::allFiltered() const {
 }
 
 
-void properties::getPriorities(QStandardItem *parent, int *priorities) {
+void PropertiesWidget::getPriorities(QStandardItem *parent, int *priorities) {
   qDebug("In getPriorities");
   unsigned int nbRows = parent->rowCount();
   for(unsigned int i=0; i<nbRows; ++i){
@@ -374,7 +522,7 @@ void properties::getPriorities(QStandardItem *parent, int *priorities) {
   }
 }
 
-void properties::displayFilesListMenu(const QPoint&){
+void PropertiesWidget::displayFilesListMenu(const QPoint&){
   if(h.get_torrent_info().num_files() == 1) return;
   QMenu myFilesLlistMenu(this);
   QModelIndex index;
@@ -389,93 +537,59 @@ void properties::displayFilesListMenu(const QPoint&){
   myFilesLlistMenu.exec(QCursor::pos());
 }
 
-void properties::ignoreSelection(){
+void PropertiesWidget::ignoreSelection(){
   QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
   foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == PRIORITY){
       if(PropListModel->data(index) != QVariant(IGNORED)){
         PropListModel->setData(index, QVariant(IGNORED));
-        changedFilteredfiles = true;
+        filteredFilesChanged();
         setItemColor(index, "red");
       }
     }
   }
 }
 
-void properties::normalSelection(){
+void PropertiesWidget::normalSelection(){
   QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
   foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == PRIORITY){
       if(PropListModel->data(index) != QVariant(NORMAL)){
         PropListModel->setData(index, QVariant(NORMAL));
-        changedFilteredfiles = true;
+        filteredFilesChanged();
         setItemColor(index, "green");
       }
     }
   }
 }
 
-void properties::highSelection(){
+void PropertiesWidget::highSelection(){
   QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
   foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == PRIORITY){
       if(PropListModel->data(index) != QVariant(HIGH)){
         PropListModel->setData(index, QVariant(HIGH));
-        changedFilteredfiles = true;
+        filteredFilesChanged();
         setItemColor(index, "green");
       }
     }
   }
 }
 
-void properties::maximumSelection(){
+void PropertiesWidget::maximumSelection(){
   QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
   foreach(const QModelIndex &index, selectedIndexes){
     if(index.column() == PRIORITY){
       if(PropListModel->data(index) != QVariant(MAXIMUM)){
         PropListModel->setData(index, QVariant(MAXIMUM));
-        changedFilteredfiles = true;
+        filteredFilesChanged();
         setItemColor(index, "green");
       }
     }
   }
 }
 
-void properties::loadTrackers(){
-  //Trackers
-  std::vector<announce_entry> trackers = h.trackers();
-  trackersURLS->clear();
-  QHash<QString, QString> errors = BTSession->getTrackersErrors(h.hash());
-  unsigned int nbTrackers = trackers.size();
-  for(unsigned int i=0; i<nbTrackers; ++i){
-    QString current_tracker = misc::toQString(trackers[i].url);
-    QListWidgetItem *item = new QListWidgetItem(current_tracker, trackersURLS);
-    // IsThere any errors ?
-    if(errors.contains(current_tracker)) {
-      item->setForeground(QBrush(QColor("red")));
-      // Set tooltip
-      QString msg="";
-      unsigned int i=0;
-      foreach(QString word, errors[current_tracker].split(" ")) {
-        if(i > 0 && i%5!=1) msg += " ";
-        msg += word;
-        if(i> 0 && i%5==0) msg += "\n";
-        ++i;
-      }
-      item->setToolTip(msg);
-    } else {
-      item->setForeground(QBrush(QColor("green")));
-    }
-  }
-  QString tracker = h.current_tracker().trimmed();
-  if(!tracker.isEmpty()){
-    trackerURL->setText(tracker);
-  }else{
-    trackerURL->setText(tr("None - Unreachable?"));
-  }
-}
-
-void properties::askWebSeed(){
+void PropertiesWidget::askWebSeed(){
   bool ok;
   // Ask user for a new url seed
   QString url_seed = QInputDialog::getText(this, tr("New url seed", "New HTTP source"),
@@ -483,28 +597,27 @@ void properties::askWebSeed(){
                                            QString::fromUtf8("http://www."), &ok);
   if(!ok) return;
   qDebug("Adding %s web seed", url_seed.toLocal8Bit().data());
-  if(urlSeeds.indexOf(url_seed) != -1) {
+  if(!listWebSeeds->findItems(url_seed, Qt::MatchFixedString).empty()) {
     QMessageBox::warning(this, tr("qBittorrent"),
                          tr("This url seed is already in the list."),
                          QMessageBox::Ok);
     return;
   }
-  urlSeeds << url_seed;
   h.add_url_seed(url_seed);
   TorrentPersistentData::saveUrlSeeds(h);
   // Refresh the seeds list
-  loadWebSeeds();
+  loadUrlSeeds();
 }
 
 // Ask the user for a new tracker
 // and add it to the download list
 // if it is not already in it
-void properties::askForTracker(){
+void PropertiesWidget::askForTracker(){
   TrackersAddDlg *dlg = new TrackersAddDlg(this);
   connect(dlg, SIGNAL(TrackersToAdd(QStringList)), this, SLOT(addTrackerList(QStringList)));
 }
 
-void properties::addTrackerList(QStringList myTrackers) {
+void PropertiesWidget::addTrackerList(QStringList myTrackers) {
   // Add the trackers to the list
   std::vector<announce_entry> trackers = h.trackers();
   foreach(const QString& tracker, myTrackers) {
@@ -517,17 +630,14 @@ void properties::addTrackerList(QStringList myTrackers) {
   h.force_reannounce();
   // Reload Trackers
   loadTrackers();
-  emit trackersChanged(h.hash());
+  BTSession->saveTrackerFile(h.hash());
 }
 
-void properties::deleteSelectedUrlSeeds(){
+void PropertiesWidget::deleteSelectedUrlSeeds(){
   QList<QListWidgetItem *> selectedItems = listWebSeeds->selectedItems();
   bool change = false;
   foreach(QListWidgetItem *item, selectedItems){
     QString url_seed = item->text();
-    int index = urlSeeds.indexOf(url_seed);
-    Q_ASSERT(index != -1);
-    urlSeeds.removeAt(index);
     h.remove_url_seed(url_seed);
     change = true;
   }
@@ -535,11 +645,11 @@ void properties::deleteSelectedUrlSeeds(){
     // Save them to disk
     TorrentPersistentData::saveUrlSeeds(h);
     // Refresh list
-    loadWebSeeds();
+    loadUrlSeeds();
   }
 }
 
-void properties::deleteSelectedTrackers(){
+void PropertiesWidget::deleteSelectedTrackers(){
   QList<QListWidgetItem *> selectedItems = trackersURLS->selectedItems();
   if(!selectedItems.size()) return;
   std::vector<announce_entry> trackers = h.trackers();
@@ -563,10 +673,10 @@ void properties::deleteSelectedTrackers(){
   h.force_reannounce();
   // Reload Trackers
   loadTrackers();
-  emit trackersChanged(h.hash());
+  BTSession->saveTrackerFile(h.hash());
 }
 
-void properties::riseSelectedTracker(){
+void PropertiesWidget::riseSelectedTracker(){
   unsigned int i = 0;
   std::vector<announce_entry> trackers = h.trackers();
   QList<QListWidgetItem *> selectedItems = trackersURLS->selectedItems();
@@ -595,11 +705,11 @@ void properties::riseSelectedTracker(){
     // Reload Trackers
     loadTrackers();
     trackersURLS->item(i-1)->setSelected(true);
-    emit trackersChanged(h.hash());
+    BTSession->saveTrackerFile(h.hash());
   }
 }
 
-void properties::lowerSelectedTracker(){
+void PropertiesWidget::lowerSelectedTracker(){
   unsigned int i = 0;
   std::vector<announce_entry> trackers = h.trackers();
   QList<QListWidgetItem *> selectedItems = trackersURLS->selectedItems();
@@ -628,47 +738,37 @@ void properties::lowerSelectedTracker(){
     // Reload Trackers
     loadTrackers();
     trackersURLS->item(i+1)->setSelected(true);
-    emit trackersChanged(h.hash());
+    BTSession->saveTrackerFile(h.hash());
   }
 }
 
-void properties::updateInfos(){
-  // Update current tracker
-  try {
-    QString tracker = h.current_tracker().trimmed();
-    if(!tracker.isEmpty()){
-      trackerURL->setText(tracker);
-    }else{
-      trackerURL->setText(tr("None - Unreachable?"));
-    }
-    // XXX: This causes selection problems
-    //loadTrackers();
-  }catch(invalid_handle e){
-    // torrent was removed, closing properties
-    close();
-  }
-}
-
-void properties::setItemColor(QModelIndex index, QString color){
+void PropertiesWidget::setItemColor(QModelIndex index, QString color){
   for(int i=0; i<PropListModel->columnCount(); ++i){
     PropListModel->setData(index.sibling(index.row(), i), QVariant(QColor(color)), Qt::ForegroundRole);
   }
 }
 
-void properties::on_incrementalDownload_stateChanged(int state){
-  qDebug("Incremental download toggled");
-  if(state == Qt::Checked){
-    if(!TorrentPersistentData::isSequentialDownload(hash)) {
-      h.set_sequential_download(true);
-      TorrentPersistentData::saveSequentialStatus(h);
-    }
-  }else{
-    h.set_sequential_download(false);
-    TorrentPersistentData::saveSequentialStatus(h);
+bool PropertiesWidget::savePiecesPriorities() {
+  /*if(!changedFilteredfiles) return true;
+  if(allFiltered()) {
+    QMessageBox::warning(0, tr("Priorities error"), tr("Error, you can't filter all the files in a torrent."));
+    return false;
+  }*/
+  qDebug("Saving pieces priorities");
+  int *priorities = new int[h.get_torrent_info().num_files()];
+  getPriorities(PropListModel->invisibleRootItem(), priorities);
+  unsigned int nbFiles = h.get_torrent_info().num_files();
+  for(unsigned int i=0; i<nbFiles; ++i) {
+    h.file_priority(i, priorities[i]);
   }
+  delete[] priorities;
+  TorrentPersistentData::saveFilesPriority(h);
+
+  return true;
 }
 
-void properties::on_changeSavePathButton_clicked() {
+
+void PropertiesWidget::on_changeSavePathButton_clicked() {
   QString dir;
   QDir saveDir(h.save_path());
   if(saveDir.exists()){
@@ -686,7 +786,7 @@ void properties::on_changeSavePathButton_clicked() {
       }
     }
     // Save savepath
-    TorrentPersistentData::saveSavePath(hash, savePath.path());
+    TorrentPersistentData::saveSavePath(h.hash(), savePath.path());
     // Actually move storage
     if(!BTSession->useTemporaryFolder() || h.is_seed())
       h.move_storage(savePath.path());
@@ -695,45 +795,40 @@ void properties::on_changeSavePathButton_clicked() {
   }
 }
 
-void properties::on_okButton_clicked(){
-  if(savePiecesPriorities())
-    close();
-}
-
-void properties::loadWebSeedsFromFile(){
-  urlSeeds.clear();
-  QVariantList url_seeds = TorrentPersistentData::getUrlSeeds(hash);
-  foreach(const QVariant &var_url_seed, url_seeds){
-    QString url_seed = var_url_seed.toString();
-    if(!url_seed.isEmpty())
-      urlSeeds << url_seed;
-  }
-  // Load the hard-coded url seeds
-  QStringList hc_seeds = h.url_seeds();
-  // Add hard coded url seeds
-  foreach(const QString &hc_seed, hc_seeds){
-    if(urlSeeds.indexOf(hc_seed) == -1){
-      urlSeeds << hc_seed;
-    }
+void PropertiesWidget::filteredFilesChanged() {
+  if(h.is_valid()) {
+    savePiecesPriorities();
+    transferList->updateTorrentSizeAndProgress(h.hash());
   }
 }
 
-bool properties::savePiecesPriorities() {
-  if(!changedFilteredfiles) return true;
-  if(allFiltered()) {
-    QMessageBox::warning(0, tr("Priorities error"), tr("Error, you can't filter all the files in a torrent."));
-    return false;
+void PropertiesWidget::addFilesToTree(torrent_file *root, QStandardItem *parent) {
+  QList<QStandardItem*> child;
+  // Name
+  QStandardItem *first;
+  if(root->isDir()) {
+    first = new QStandardItem(QIcon(":/Icons/oxygen/folder.png"), root->name());
+  } else {
+    first = new QStandardItem(QIcon(":/Icons/oxygen/file.png"), root->name());
   }
-  qDebug("Saving pieces priorities");
-  int *priorities = new int[h.get_torrent_info().num_files()];
-  getPriorities(PropListModel->invisibleRootItem(), priorities);
-  unsigned int nbFiles = h.get_torrent_info().num_files();
-  for(unsigned int i=0; i<nbFiles; ++i) {
-    h.file_priority(i, priorities[i]);
+  child << first;
+  // Size
+  child << new QStandardItem(misc::toQString(root->getSize()));
+  // Progress
+  child << new QStandardItem(misc::toQString(root->getProgress()));
+  // Prio
+  child << new QStandardItem(misc::toQString(root->getPriority()));
+  // INDEX
+  child << new QStandardItem(misc::toQString(root->getIndex()));
+  // Add the child to the tree
+  parent->appendRow(child);
+  // Set row color
+  if(root->getPriority() == IGNORED)
+    setItemColor(first->index(), "red");
+  else
+    setItemColor(first->index(), "green");
+  // Add childs
+  foreach(torrent_file *childFile, root->getChildren()) {
+    addFilesToTree(childFile, first);
   }
-  delete[] priorities;
-  TorrentPersistentData::saveFilesPriority(h);
-  // Emit a signal so that the GUI updates the size
-  emit filteredFilesChanged(hash);
-  return true;
 }

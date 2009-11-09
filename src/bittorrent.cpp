@@ -243,32 +243,15 @@ QTorrentHandle bittorrent::getTorrentHandle(QString hash) const{
   return QTorrentHandle(s->find_torrent(misc::fromString<sha1_hash>((hash.toStdString()))));
 }
 
-unsigned int bittorrent::getFinishedPausedTorrentsNb() const {
-  unsigned int nbPaused = 0;
+bool bittorrent::hasActiveTorrents() const {
   std::vector<torrent_handle> torrents = getTorrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
-    if(!h.is_valid()) continue;
-    if(h.is_seed() && h.is_paused()) {
-      ++nbPaused;
-    }
+    if(h.is_valid() && !h.is_paused() && !h.is_queued())
+      return true;
   }
-  return nbPaused;
-}
-
-unsigned int bittorrent::getUnfinishedPausedTorrentsNb() const {
-  unsigned int nbPaused = 0;
-  std::vector<torrent_handle> torrents = getTorrents();
-  std::vector<torrent_handle>::iterator torrentIT;
-  for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
-    QTorrentHandle h = QTorrentHandle(*torrentIT);
-    if(!h.is_valid()) continue;
-    if(!h.is_seed() && h.is_paused()) {
-      ++nbPaused;
-    }
-  }
-  return nbPaused;
+  return false;
 }
 
 // Delete a torrent from the session, given its hash

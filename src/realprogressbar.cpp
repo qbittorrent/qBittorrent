@@ -38,6 +38,7 @@ RealProgressBar::RealProgressBar(QWidget *parent)
 {
 	background = Qt::white;
 	foreground = Qt::black;
+        setFixedHeight(20);
 	active = false;
 	array[0] = 0.;
 	drawPixmap();
