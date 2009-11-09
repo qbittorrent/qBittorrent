@@ -14,9 +14,9 @@ CONFIG += qt \
     network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v1.6.0beta1\\\"
-DEFINES += VERSION_MAJOR=1
-DEFINES += VERSION_MINOR=6
+DEFINES += VERSION=\\\"v2.0.0beta1\\\"
+DEFINES += VERSION_MAJOR=2
+DEFINES += VERSION_MINOR=0
 DEFINES += VERSION_BUGFIX=0
 !mac:QMAKE_LFLAGS += -Wl,--as-needed
 contains(DEBUG_MODE, 1) { 
