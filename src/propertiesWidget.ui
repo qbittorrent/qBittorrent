@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>756</width>
-    <height>303</height>
+    <height>291</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+   <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -37,6 +37,18 @@
    </property>
    <item>
     <widget class="QStackedWidget" name="stackedProperties">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>260</height>
+      </size>
+     </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
@@ -44,6 +56,9 @@
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <property name="spacing">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QGroupBox" name="groupTorrentInfos">
            <property name="font">
@@ -57,6 +72,9 @@
             <string>Torrent information</string>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <item>
@@ -259,11 +277,17 @@
             <string>Current session</string>
            </property>
            <layout class="QVBoxLayout" name="_2">
-            <property name="spacing">
-             <number>6</number>
-            </property>
-            <property name="margin">
+            <property name="leftMargin">
              <number>9</number>
+            </property>
+            <property name="topMargin">
+             <number>9</number>
+            </property>
+            <property name="rightMargin">
+             <number>9</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
             </property>
             <item>
              <layout class="QHBoxLayout" name="_3">
@@ -905,6 +929,7 @@
 border: 1px solid rgb(85, 81, 91);
 border-radius: 3px;
 padding: 2px;
+margin-left: 3px; margin-right: 3px;
 }</string>
        </property>
        <property name="text">
@@ -929,6 +954,7 @@ padding: 2px;
 border: 1px solid rgb(85, 81, 91);
 border-radius: 3px;
 padding: 2px;
+margin-left: 3px; margin-right: 3px;
 }</string>
        </property>
        <property name="text">
@@ -953,6 +979,7 @@ padding: 2px;
 border: 1px solid rgb(85, 81, 91);
 border-radius: 3px;
 padding: 2px;
+margin-left: 3px; margin-right: 3px;
 }</string>
        </property>
        <property name="text">
@@ -977,6 +1004,7 @@ padding: 2px;
 border: 1px solid rgb(85, 81, 91);
 border-radius: 3px;
 padding: 2px;
+margin-left: 3px; margin-right: 3px;
 }</string>
        </property>
        <property name="text">

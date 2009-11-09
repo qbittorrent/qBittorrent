@@ -50,8 +50,8 @@
 #include "PropListDelegate.h"
 #include "TrackersAdditionDlg.h"
 
-#define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;}"
-#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;background-color: rgb(255, 208, 105);}"
+#define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px; margin-left: 3px; margin-right: 3px;}"
+#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;background-color: rgb(255, 208, 105);margin-left: 3px; margin-right: 3px;}"
 
 PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession): QWidget(parent), transferList(transferList), BTSession(BTSession) {
   setupUi(this);
@@ -141,7 +141,7 @@ void PropertiesWidget::reduce() {
 
 void PropertiesWidget::slide() {
   if(state == REDUCED) {
-    stackedProperties->setFixedHeight(232);
+    stackedProperties->setFixedHeight(260);
     state = VISIBLE;
   }
 }

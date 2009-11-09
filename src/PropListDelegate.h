@@ -98,12 +98,14 @@ public:
               qDebug("Unhandled priority, setting NORMAL");
               newopt.currentText = tr("Normal", "Normal (priority)");
             }
-            newopt.state |= QStyle::State_Enabled;
-            newopt.subControls = QStyle::SC_All;
+            //newopt.state |= QStyle::State_Enabled;
+            //newopt.subControls = QStyle::SC_All;
             //painter->translate(QPoint(opt.rect.x()*-1,opt.rect.y()*-1));
             //QApplication::style()->drawComplexControl(QStyle::CC_ComboBox, &newopt, painter);
             //painter->translate(QPoint(opt.rect.x(),opt.rect.y()));
-            QApplication::style()->drawControl(QStyle::CE_ComboBoxLabel, &newopt, painter);
+            //QApplication::style()->drawControl(QStyle::CE_ComboBoxLabel, &newopt, painter);
+            QItemDelegate::drawBackground(painter, opt, index);
+            QItemDelegate::drawDisplay(painter, opt, option.rect, newopt.currentText);
             break;
           }
         default:
@@ -153,7 +155,7 @@ public:
     QFontMetrics fontMetrics(fnt);
     const QString text = index.data(Qt::DisplayRole).toString();
     QRect textRect = QRect(0, 0, 0, fontMetrics.lineSpacing() * (text.count(QLatin1Char('\n')) + 1));
-    textRect.setHeight(textRect.height()+10);
+    textRect.setHeight(textRect.height()+4);
     return textRect.size();
   }
 
