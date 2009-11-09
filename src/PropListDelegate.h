@@ -113,6 +113,7 @@ class PropListDelegate: public QItemDelegate {
     }
 
     QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &/* option */, const QModelIndex & index) const {
+      qDebug("CreateEditor called");
       if(index.column() != PRIORITY) return 0;
       QComboBox* editor = new QComboBox(parent);
       editor->setFocusPolicy(Qt::StrongFocus);
@@ -124,6 +125,7 @@ class PropListDelegate: public QItemDelegate {
     }
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const {
+      qDebug("setEditorData called");
       unsigned short val = index.model()->data(index, Qt::DisplayRole).toInt();
       QComboBox *combobox = static_cast<QComboBox*>(editor);
       qDebug("Set Editor data: Prio is %d", val);
@@ -213,6 +215,7 @@ class PropListDelegate: public QItemDelegate {
     }
 
     void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &/* index */) const {
+      qDebug("UpdateEditor Geometry called");
       editor->setGeometry(option.rect);
     }
 
