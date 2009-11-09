@@ -43,26 +43,17 @@
 #include "misc.h"
 
 // Defines for properties list columns
-#define NAME 0
-#define SIZE 1
-#define PROGRESS 2
-#define PRIORITY 3
-#define INDEX 4
-
-#define IGNORED 0
-#define NORMAL 1
-#define HIGH 2
-#define MAXIMUM 7
+enum PropColumn {NAME, SIZE, PROGRESS, PRIORITY, INDEX};
+enum PropPriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7};
 
 class PropListDelegate: public QItemDelegate {
   Q_OBJECT
 
-  private:
-    bool* filteredFilesChanged;
+  signals:
+    void filteredFilesChanged();
 
   public:
-    PropListDelegate(QObject *parent=0, bool* filteredFilesChanged=0) : QItemDelegate(parent){
-      this->filteredFilesChanged = filteredFilesChanged;
+    PropListDelegate(QObject *parent=0) : QItemDelegate(parent){
     }
 
     ~PropListDelegate(){}
@@ -165,7 +156,7 @@ class PropListDelegate: public QItemDelegate {
     }
 
     public slots:
-    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const {
+    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) {
       QComboBox *combobox = static_cast<QComboBox*>(editor);
       int value = combobox->currentIndex();
       qDebug("Setting combobox value in index: %d", value);
@@ -174,8 +165,7 @@ class PropListDelegate: public QItemDelegate {
         case 0:
           if(old_val != IGNORED){
             model->setData(index, QVariant(IGNORED));
-            if(filteredFilesChanged != 0)
-              *filteredFilesChanged = true;
+            emit filteredFilesChanged();
           } else {
             // XXX: hack to force the model to send the itemChanged() signal
             model->setData(index, QVariant(NORMAL));
@@ -190,15 +180,13 @@ class PropListDelegate: public QItemDelegate {
 //           } else {
             model->setData(index, QVariant(HIGH));
             model->setData(index, QVariant(NORMAL));
-            if(filteredFilesChanged != 0)
-              *filteredFilesChanged = true;
+            emit filteredFilesChanged();
 //           }
           break;
         case 2:
           if(old_val != HIGH){
             model->setData(index, QVariant(HIGH));
-            if(filteredFilesChanged != 0)
-              *filteredFilesChanged = true;
+            emit filteredFilesChanged();
           } else {
             model->setData(index, QVariant(NORMAL));
             model->setData(index, QVariant(HIGH));
@@ -207,8 +195,7 @@ class PropListDelegate: public QItemDelegate {
         case 3:
           if(old_val != MAXIMUM){
             model->setData(index, QVariant(MAXIMUM));
-            if(filteredFilesChanged != 0)
-              *filteredFilesChanged = true;
+            emit filteredFilesChanged();
           } else {
             model->setData(index, QVariant(HIGH));
             model->setData(index, QVariant(MAXIMUM));
@@ -217,8 +204,7 @@ class PropListDelegate: public QItemDelegate {
         default:
           if(old_val != NORMAL){
             model->setData(index, QVariant(NORMAL));
-            if(filteredFilesChanged != 0)
-              *filteredFilesChanged = true;
+            emit filteredFilesChanged();
           } else {
             model->setData(index, QVariant(HIGH));
             model->setData(index, QVariant(NORMAL));

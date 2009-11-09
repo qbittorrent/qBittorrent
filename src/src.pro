@@ -143,7 +143,6 @@ HEADERS += GUI.h \
     misc.h \
     options_imp.h \
     about_imp.h \
-    properties_imp.h \
     createtorrent_imp.h \
     SearchListDelegate.h \
     PropListDelegate.h \
@@ -189,7 +188,6 @@ HEADERS += GUI.h \
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \
-    properties.ui \
     createtorrent.ui \
     preview.ui \
     login.ui \
@@ -197,7 +195,6 @@ FORMS += MainWindow.ui \
     addTorrentDialog.ui \
     search.ui \
     rss.ui \
-    seeding.ui \
     bandwidth_limit.ui \
     engineSelect.ui \
     pluginSource.ui \
@@ -208,7 +205,6 @@ FORMS += MainWindow.ui \
 SOURCES += GUI.cpp \
     main.cpp \
     options_imp.cpp \
-    properties_imp.cpp \
     createtorrent_imp.cpp \
     bittorrent.cpp \
     searchEngine.cpp \

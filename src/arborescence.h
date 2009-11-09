@@ -41,7 +41,7 @@ private:
   torrent_file *parent;
   bool is_dir;
   QString rel_path;
-  QList<const torrent_file*> children;
+  QList<torrent_file*> children;
   size_type size;
   float progress;
   int priority;
@@ -61,6 +61,19 @@ public:
 
   ~torrent_file() {
     qDeleteAll(children);
+  }
+
+  void updateProgress(std::vector<size_type> fp) {
+    progress = fp[index]/size;
+    Q_ASSERT(progress >= 0.);
+    Q_ASSERT(progress <= 1.);
+    // Update children
+    foreach(torrent_file* child, children) {
+      child->updateProgress(fp);
+    }
+    if(parent) {
+      parent->updateProgress();
+    }
   }
 
   QString path() const {
@@ -90,7 +103,7 @@ public:
 
   void updatePriority(int prio) {
     Q_ASSERT(is_dir);
-    foreach(const torrent_file *child, children) {
+    foreach(torrent_file *child, children) {
       if(child->getPriority() != prio) return;
     }
     priority = prio;
@@ -120,13 +133,13 @@ public:
     return (!children.isEmpty());
   }
 
-  QList<const torrent_file*> getChildren() const {
+  QList<torrent_file*> getChildren() const {
     return children;
   }
 
-  const torrent_file* getChild(QString fileName) const {
+  torrent_file* getChild(QString fileName) const {
     Q_ASSERT(is_dir);
-    foreach(const torrent_file *f, children) {
+    foreach(torrent_file *f, children) {
       if(f->name() == fileName) return f;
     }
     return 0;
@@ -223,6 +236,10 @@ public:
 
   ~arborescence() {
     delete root;
+  }
+
+  void updateFileProgress(std::vector<size_type> fp) {
+    root->updateProgress(fp);
   }
 
   torrent_file* getRoot() const {

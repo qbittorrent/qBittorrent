@@ -832,3 +832,11 @@ void TransferListWidget::applyFilter(int f) {
   if(selectionModel()->selectedRows(0).empty() && proxyModel->rowCount() > 0)
     selectionModel()->setCurrentIndex(proxyModel->index(0, NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
 }
+
+void TransferListWidget::updateTorrentSizeAndProgress(QString hash) {
+  int row = getRowFromHash(hash);
+  Q_ASSERT(row != -1);
+  QTorrentHandle h = BTSession->getTorrentHandle(hash);
+  listModel->setData(listModel->index(row, SIZE), QVariant((qlonglong)h.actual_size()));
+  listModel->setData(listModel->index(row, PROGRESS), QVariant((double)h.progress()));
+}

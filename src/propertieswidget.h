@@ -41,6 +41,12 @@ class RealProgressBar;
 class QVBoxLayout;
 class RealProgressBarThread;
 class bittorrent;
+class arborescence;
+class QStandardItemModel;
+class PropListDelegate;
+class QStandardItem;
+class QAction;
+class torrent_file;
 
 enum Tab {MAIN_TAB, TRACKERS_TAB, URLSEEDS_TAB, FILES_TAB};
 enum SlideState {REDUCED, VISIBLE};
@@ -57,9 +63,18 @@ private:
   QVBoxLayout *progressBarVbox;
   bittorrent* BTSession;
   SlideState state;
+  arborescence *arb;
+  QStandardItemModel *PropListModel;
+  PropListDelegate *PropDelegate;
+  QAction *actionIgnored;
+  QAction *actionNormal;
+  QAction *actionMaximum;
+  QAction *actionHigh;
 
 protected:
   QPushButton* getButtonFromIndex(int index);
+  std::vector<int> loadFilesPriorities();
+  bool allFiltered() const;
 
 protected slots:
   void loadTorrentInfos(QTorrentHandle &h);
@@ -71,6 +86,26 @@ protected slots:
   void on_trackers_button_clicked();
   void on_url_seeds_button_clicked();
   void on_files_button_clicked();
+  void updateChildrenPriority(QStandardItem *item, int priority);
+  void updateParentsPriority(QStandardItem *item, int priority);
+  void updatePriorities(QStandardItem *item);
+  void ignoreSelection();
+  void normalSelection();
+  void highSelection();
+  void maximumSelection();
+  void askWebSeed();
+  void deleteSelectedUrlSeeds();
+  void askForTracker();
+  void deleteSelectedTrackers();
+  void lowerSelectedTracker();
+  void riseSelectedTracker();
+  void displayFilesListMenu(const QPoint& pos);
+  void setItemColor(QModelIndex index, QString color);
+  void on_changeSavePathButton_clicked();
+  void addFilesToTree(torrent_file *root, QStandardItem *parent);
+  void getPriorities(QStandardItem *parent, int *priorities);
+  void addTrackerList(QStringList myTrackers);
+  void filteredFilesChanged();
 
 public slots:
   void reduce();
