@@ -130,6 +130,8 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
     listModel->insertRow(row);
     listModel->setData(listModel->index(row, NAME), QVariant(h.name()));
     listModel->setData(listModel->index(row, SIZE), QVariant((qlonglong)h.actual_size()));
+    listModel->setData(listModel->index(row, ETA), QVariant((qlonglong)-1));
+    listModel->setData(listModel->index(row, SEEDSLEECH), QVariant(QString::fromUtf8("0/0")));
     if(BTSession->isQueueingEnabled() && !h.is_seed())
       listModel->setData(listModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(h.hash())));
     listModel->setData(listModel->index(row, HASH), QVariant(h.hash()));
