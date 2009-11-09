@@ -1,4 +1,4 @@
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v1.6.0
+* Unknown - Christophe Dumez <chris@qbittorrent.org> - v2.0.0
     - FEATURE: Added per-torrent super seeding mode
     - FEATURE: Added program option to disable splash screen
     - FEATURE: Support for storing symbolic links in .torrent files
@@ -14,6 +14,9 @@
     - FEATURE: Option to skip file checking and start seeding immediately in torrent addition dialog (Stephanos Antaris)
     - FEATURE: Dropped dependency on libcurl
     - FEATURE: Dropped Qt 4.3 support (Qt >= 4.4 is required)
+    - COSMETIC: Merged download / upload lists
+    - COSMETIC: Torrents can be filtered based on their status
+    - COSMETIC: Torrent properties are now displayed in main window
 
 * Thu Sep 3 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.0
     - FEATURE: Added Magnet URI support
