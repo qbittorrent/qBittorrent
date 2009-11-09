@@ -160,6 +160,8 @@ void PropertiesWidget::clear() {
   upTotal->clear();
   dlTotal->clear();
   shareRatio->clear();
+  listWebSeeds->clear();
+  PropListModel->clear();
   setEnabled(false);
 }
 
@@ -205,7 +207,10 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     std::vector<int> files_priority = loadFilesPriorities();
     // List files in torrent
     arborescence *arb = new arborescence(h.get_torrent_info(), fp, files_priority);
+    PropListModel->clear();
     addFilesToTree(arb->getRoot(), PropListModel->invisibleRootItem());
+    // Increase first column width
+    //filesList->resizeColumnToContents(0); // does not work
   } catch(invalid_handle e) {
 
   }
