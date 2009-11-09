@@ -247,6 +247,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
 
   // Load Window state and sizes
   readSettings();
+  properties->readSettings();
 
   if(settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), false).toBool()) {
     this->setWindowState(Qt::WindowMinimized);

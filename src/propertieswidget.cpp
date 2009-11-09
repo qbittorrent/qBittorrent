@@ -116,8 +116,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transfer
 }
 
 PropertiesWidget::~PropertiesWidget() {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  settings.setValue("TorrentProperties/Visible", state==VISIBLE);
+  saveSettings();
   delete refreshTimer;
   if(progressBarUpdater)
     delete progressBarUpdater;
@@ -216,6 +215,28 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
   }
   // Load dynamic data
   loadDynamicData();
+}
+
+void PropertiesWidget::readSettings() {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QVariantList contentColsWidths = settings.value(QString::fromUtf8("TorrentProperties/filesColsWidth"), QVariantList()).toList();
+  if(contentColsWidths.empty()) {
+    filesList->header()->resizeSection(0, filesList->width()/2.);
+  } else {
+    for(int i=0; i<contentColsWidths.size(); ++i) {
+      filesList->setColumnWidth(i, contentColsWidths.at(i).toInt());
+    }
+  }
+}
+
+void PropertiesWidget::saveSettings() {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.setValue("TorrentProperties/Visible", state==VISIBLE);
+  QVariantList contentColsWidths;
+  for(int i=0; i<PropListModel->columnCount()-1; ++i) {
+    contentColsWidths.append(filesList->columnWidth(i));
+  }
+  settings.setValue(QString::fromUtf8("TorrentProperties/filesColsWidth"), contentColsWidths);
 }
 
 void PropertiesWidget::loadDynamicData() {

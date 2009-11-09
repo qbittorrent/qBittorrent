@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>756</width>
-    <height>333</height>
+    <height>303</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,22 @@
   <property name="maximumSize">
    <size>
     <width>16777215</width>
-    <height>333</height>
+    <height>303</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string/>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="margin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QStackedWidget" name="stackedProperties">
      <property name="currentIndex">
@@ -821,12 +830,6 @@
          <property name="expandsOnDoubleClick">
           <bool>false</bool>
          </property>
-         <attribute name="headerStretchLastSection">
-          <bool>true</bool>
-         </attribute>
-         <attribute name="headerStretchLastSection">
-          <bool>true</bool>
-         </attribute>
         </widget>
        </item>
        <item>
@@ -886,6 +889,15 @@
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>4</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
      <item>
       <widget class="QPushButton" name="main_infos_button">
        <property name="styleSheet">

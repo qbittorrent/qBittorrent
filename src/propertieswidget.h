@@ -112,6 +112,8 @@ public slots:
   void reduce();
   void slide();
   void clear();
+  void readSettings();
+  void saveSettings();
 
 public:
   PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession);
