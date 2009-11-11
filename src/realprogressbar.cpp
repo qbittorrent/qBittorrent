@@ -33,85 +33,83 @@
 #include <QtDebug>
 #include <QResizeEvent>
 
-RealProgressBar::RealProgressBar(QWidget *parent)
-	: QWidget(parent), array(1)
-{
-	background = Qt::white;
-	foreground = Qt::black;
-        setFixedHeight(20);
-	active = false;
-	array[0] = 0.;
-	drawPixmap();
+RealProgressBar::RealProgressBar(QWidget *parent): QWidget(parent), array(1) {
+  background = Qt::white;
+  foreground = Qt::black;
+  setFixedHeight(18);
+  active = false;
+  array[0] = 0.;
+  drawPixmap();
 }
 
 RealProgressBar::~RealProgressBar()
 {
-	qDebug("RealProgressBar destruction");
+  qDebug("RealProgressBar destruction");
 }
 
 void RealProgressBar::setBackgroundColor(const QColor &newColor)
 {
-	background = newColor;
-	drawPixmap();
+  background = newColor;
+  drawPixmap();
 }
 
 void RealProgressBar::setForegroundColor(const QColor &newColor)
 {
-	foreground = newColor;
-	drawPixmap();
+  foreground = newColor;
+  drawPixmap();
 }
 /*
 void RealProgressBar::setThread(const RealProgressBarThread *newThread)
 {
-	thread = newThread;
+        thread = newThread;
 }
 */
 void RealProgressBar::paintEvent(QPaintEvent *)
 {
-	QPainter painter(this);
-	painter.drawPixmap(rect(), pixmap);
+  QPainter painter(this);
+  painter.drawPixmap(rect(), pixmap);
 }
 
 void RealProgressBar::resizeEvent(QResizeEvent *event)
 {
-	if(width() != event->oldSize().width())
-		emit widthChanged(width());
+  if(width() != event->oldSize().width())
+    emit widthChanged(width());
 }
 
 void RealProgressBar::setProgress(QRealArray progress)
 {
-	qDebug("setProgress called");
-	array = progress;
-	drawPixmap();
+  qDebug("setProgress called");
+  array = progress;
+  drawPixmap();
 }
 
 void RealProgressBar::drawPixmap()
 {
-	if(pixmap.width() != array.size())
-		pixmap = QPixmap(array.size(), 1);
-	QPainter painter(&pixmap);
-	for(int i=0; i<array.size(); i++)
-	{
-		painter.setPen(penColor(array[i]));
-		painter.drawPoint(i,0);
-	}
-	update();
+  if(pixmap.width() != array.size())
+    pixmap = QPixmap(array.size(), 1);
+  QPainter painter(&pixmap);
+  for(int i=0; i<array.size(); i++)
+  {
+    painter.setPen(penColor(array[i]));
+    painter.drawPoint(i,0);
+  }
+  update();
 }
 
 QColor RealProgressBar::penColor(qreal x)
 {
-	if(x < 0.)
-		x = 0.;
-	else
-		if(x > 1.)
-			x = 1.;
-	qreal y = 1. - x;
-//	Q_ASSERT(x >= 0.);
-//	Q_ASSERT(y >= 0.);
-	qreal r1, g1, b1, a1, r2, g2, b2, a2;
-	foreground.getRgbF(&r1, &g1, &b1, &a1);
-	background.getRgbF(&r2, &g2, &b2, &a2);
-	QColor color;
-	color.setRgbF(x*r1+y*r2, x*g1+y*g2, x*b1+y*b2, x*a1+y*a2);
-	return color;
+  if(x < 0.)
+    x = 0.;
+  else
+    if(x > 1.)
+      x = 1.;
+  qreal y = 1. - x;
+  //	Q_ASSERT(x >= 0.);
+  //	Q_ASSERT(y >= 0.);
+  qreal r1, g1, b1, a1, r2, g2, b2, a2;
+  foreground.getRgbF(&r1, &g1, &b1, &a1);
+  background.getRgbF(&r2, &g2, &b2, &a2);
+  QColor color;
+  color.setRgbF(x*r1+y*r2, x*g1+y*g2, x*b1+y*b2, x*a1+y*a2);
+  return color;
 }

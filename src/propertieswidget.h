@@ -39,7 +39,6 @@
 class TransferListWidget;
 class QTimer;
 class RealProgressBar;
-class QVBoxLayout;
 class RealProgressBarThread;
 class bittorrent;
 class TorrentFilesModel;
@@ -59,7 +58,6 @@ private:
   QTimer *refreshTimer;
   RealProgressBar *progressBar;
   RealProgressBarThread *progressBarUpdater;
-  QVBoxLayout *progressBarVbox;
   bittorrent* BTSession;
   SlideState state;
   TorrentFilesModel *PropListModel;

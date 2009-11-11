@@ -96,8 +96,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transfer
   // Downloaded pieces progress bar
   progressBar = new RealProgressBar(this);
   progressBar->setForegroundColor(Qt::blue);
-  progressBarVbox = new QVBoxLayout(RealProgressBox);
-  progressBarVbox->addWidget(progressBar);
+  ProgressHLayout->insertWidget(1, progressBar);
+  //progressBar->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
   // Pointers init
   progressBarUpdater = 0;
   // Dynamic data refresher
@@ -112,7 +112,6 @@ PropertiesWidget::~PropertiesWidget() {
   if(progressBarUpdater)
     delete progressBarUpdater;
   delete progressBar;
-  delete progressBarVbox;
   delete PropListModel;
   // Delete QActions
   delete actionIgnored;
@@ -246,6 +245,8 @@ void PropertiesWidget::loadDynamicData() {
     // Downloaded pieces
     if(progressBarUpdater)
       progressBarUpdater->refresh();
+    // Progress
+    progress_lbl->setText(QString::number(h.progress(), 'f', 1)+"%");
     // Files progress
     std::vector<size_type> fp;
     h.file_progress(fp);
