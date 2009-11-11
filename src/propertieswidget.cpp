@@ -54,13 +54,6 @@
 PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession): QWidget(parent), transferList(transferList), BTSession(BTSession) {
   setupUi(this);
   state = VISIBLE;
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  if(!settings.value("TorrentProperties/Visible", false).toBool()) {
-    reduce();
-  } else {
-    main_infos_button->setStyleSheet(SELECTED_BUTTON_CSS);
-    setEnabled(false);
-  }
 
   // Set Properties list model
   PropListModel = new TorrentFilesModel();
@@ -122,14 +115,25 @@ PropertiesWidget::~PropertiesWidget() {
 
 void PropertiesWidget::reduce() {
   if(state == VISIBLE) {
-    stackedProperties->setFixedHeight(0);
+    QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
+    slideSizes = hSplitter->sizes();
+    stackedProperties->setVisible(false);
+    QList<int> sizes;
+    sizes << hSplitter->geometry().height()-30 << 30;
+    hSplitter->setSizes(sizes);
+    hSplitter->handle(1)->setVisible(false);
+    hSplitter->handle(1)->setDisabled(true);
     state = REDUCED;
   }
 }
 
 void PropertiesWidget::slide() {
   if(state == REDUCED) {
-    stackedProperties->setFixedHeight(260);
+    stackedProperties->setVisible(true);
+    QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
+    hSplitter->handle(1)->setDisabled(false);
+    hSplitter->handle(1)->setVisible(true);
+    hSplitter->setSizes(slideSizes);
     state = VISIBLE;
   }
 }
@@ -209,6 +213,20 @@ void PropertiesWidget::readSettings() {
       filesList->setColumnWidth(i, contentColsWidths.at(i).toInt());
     }
   }
+  // Restore splitter sizes
+  QStringList sizes_str = settings.value(QString::fromUtf8("TorrentProperties/SplitterSizes"), QString()).toString().split(",");
+  if(sizes_str.size() == 2) {
+    slideSizes << sizes_str.first().toInt();
+    slideSizes << sizes_str.last().toInt();
+    QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
+    hSplitter->setSizes(slideSizes);
+  }
+  if(!settings.value("TorrentProperties/Visible", false).toBool()) {
+    reduce();
+  } else {
+    main_infos_button->setStyleSheet(SELECTED_BUTTON_CSS);
+    setEnabled(false);
+  }
 }
 
 void PropertiesWidget::saveSettings() {
@@ -217,6 +235,18 @@ void PropertiesWidget::saveSettings() {
   QVariantList contentColsWidths;
   for(int i=0; i<PropListModel->columnCount(); ++i) {
     contentColsWidths.append(filesList->columnWidth(i));
+  }
+  QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
+  QList<int> sizes;
+  if(state == VISIBLE)
+    sizes = hSplitter->sizes();
+  else
+    sizes = slideSizes;
+  if(state == VISIBLE)
+    qDebug("Visible");
+  qDebug("Sizes: %d", sizes.size());
+  if(sizes.size() == 2) {
+    settings.setValue(QString::fromUtf8("TorrentProperties/SplitterSizes"), QString::number(sizes.first())+','+QString::number(sizes.last()));
   }
   settings.setValue(QString::fromUtf8("TorrentProperties/filesColsWidth"), contentColsWidths);
 }

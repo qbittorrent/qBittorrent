@@ -139,20 +139,17 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   qDebug("create tabWidget");
   tabs = new QTabWidget();
   vSplitter = new QSplitter(Qt::Horizontal);
-  rightPanel = new QWidget(vSplitter);
-  hSplitter = new QVBoxLayout(vSplitter);
-  rightPanel->setLayout(hSplitter);
+  hSplitter = new QSplitter(Qt::Vertical);
 
   // Transfer List tab
-  transferList = new TransferListWidget(rightPanel, BTSession);
-  properties = new PropertiesWidget(rightPanel, transferList, BTSession);
+  transferList = new TransferListWidget(hSplitter, BTSession);
+  properties = new PropertiesWidget(hSplitter, transferList, BTSession);
   transferListFilters = new TransferListFiltersWidget(vSplitter, transferList);
   hSplitter->addWidget(transferList);
   hSplitter->addWidget(properties);
   vSplitter->addWidget(transferListFilters);
-  vSplitter->addWidget(rightPanel);
+  vSplitter->addWidget(hSplitter);
   tabs->addTab(vSplitter, QIcon(QString::fromUtf8(":/Icons/oxygen/folder-remote.png")), tr("Transfers"));
-
   vboxLayout->addWidget(tabs);
 
   // Transfer list slots
@@ -281,10 +278,9 @@ GUI::~GUI() {
     delete rssWidget;
   delete searchEngine;
   delete transferListFilters;
-  delete transferList;
   delete properties;
+  delete transferList;
   delete hSplitter;
-  delete rightPanel;
   delete vSplitter;
   delete checkConnect;
   qDebug("1");

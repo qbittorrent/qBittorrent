@@ -66,6 +66,7 @@ private:
   QAction *actionNormal;
   QAction *actionMaximum;
   QAction *actionHigh;
+  QList<int> slideSizes;
 
 protected:
   QPushButton* getButtonFromIndex(int index);
