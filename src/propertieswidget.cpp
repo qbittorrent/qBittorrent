@@ -193,10 +193,7 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     std::vector<int> files_priority = loadFilesPriorities();
     PropListModel->updateFilesPriorities(files_priority);
     // Expand first item if possible
-    if(PropListModel->rowCount())
-      filesList->expand(PropListModel->index(0, 0));
-    // Increase first column width
-    //filesList->resizeColumnToContents(0); // does not work
+    filesList->expand(PropListModel->index(0, 0));
   } catch(invalid_handle e) {
 
   }
