@@ -38,7 +38,6 @@
 #include <QMessageBox>
 #include <QMenu>
 #include <QSettings>
-#include <QStandardItemModel>
 #include <QHeaderView>
 
 #include <libtorrent/session.hpp>
@@ -47,8 +46,8 @@
 #include "misc.h"
 #include "PropListDelegate.h"
 #include "ui_addTorrentDialog.h"
-#include "arborescence.h"
 #include "torrentPersistentData.h"
+#include "TorrentFilesModel.h"
 
 using namespace libtorrent;
 
@@ -61,7 +60,7 @@ private:
   QString hash;
   QString filePath;
   QString from_url;
-  QStandardItemModel *PropListModel;
+  TorrentFilesModel *PropListModel;
   PropListDelegate *PropDelegate;
   unsigned int nbFiles;
   boost::intrusive_ptr<torrent_info> t;
@@ -72,11 +71,7 @@ public:
     setAttribute(Qt::WA_DeleteOnClose);
     BTSession = _BTSession;
     // Set Properties list model
-    PropListModel = new QStandardItemModel(0,5);
-    PropListModel->setHeaderData(NAME, Qt::Horizontal, tr("File name"));
-    PropListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
-    PropListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
-    PropListModel->setHeaderData(PRIORITY, Qt::Horizontal, tr("Priority"));
+    PropListModel = new TorrentFilesModel();
     torrentContentList->setModel(PropListModel);
     torrentContentList->hideColumn(PROGRESS);
     torrentContentList->hideColumn(INDEX);
@@ -90,7 +85,7 @@ public:
     connect(actionMaximum, SIGNAL(triggered()), this, SLOT(maximumSelection()));
     connect(collapseAllButton, SIGNAL(clicked()), torrentContentList, SLOT(collapseAll()));
     connect(expandAllButton, SIGNAL(clicked()), torrentContentList, SLOT(expandAll()));
-
+    // FIXME: Remember columns width
     torrentContentList->header()->resizeSection(0, 200);
     //torrentContentList->header()->setResizeMode(0, QHeaderView::Stretch);
     QString home = QDir::homePath();
@@ -144,140 +139,17 @@ public:
     }
     fileNameLbl->setText(QString::fromUtf8("<center><b>")+newFileName+QString::fromUtf8("</b></center>"));
     // List files in torrent
-    arborescence *arb = new arborescence(t);
-    addFilesToTree(arb->getRoot(), PropListModel->invisibleRootItem());
-    delete arb;
-    connect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
+    PropListModel->setupModelData(*t);
+    // Expand first item if possible
+    torrentContentList->expand(PropListModel->index(0, 0));
+    connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(updateDiskSpaceLabels()));
     //torrentContentList->expandAll();
     connect(savePathTxt, SIGNAL(textChanged(QString)), this, SLOT(updateDiskSpaceLabels()));
     updateDiskSpaceLabels();
     show();
   }
 
-  void addFilesToTree(const torrent_file *root, QStandardItem *parent) {
-    QList<QStandardItem*> child;
-    // Name
-    QStandardItem *first;
-    if(root->isDir()) {
-      first = new QStandardItem(QIcon(":/Icons/oxygen/folder.png"), root->name());
-    } else {
-      first = new QStandardItem(QIcon(":/Icons/oxygen/file.png"), root->name());
-    }
-    child << first;
-    // Size
-    child << new QStandardItem(misc::toQString(root->getSize()));
-    // Hidden progress
-    child << new QStandardItem("");
-    // Prio
-    child << new QStandardItem(misc::toQString(NORMAL));
-    // INDEX
-    child << new QStandardItem(misc::toQString(root->getIndex()));
-
-    // Add the child to the tree
-    parent->appendRow(child);
-
-    // set row Color
-    setItemColor(first->index(), "green");
-    // Add children
-    QList<torrent_file*> children = root->getChildren();
-    foreach(torrent_file *child, children) {
-      addFilesToTree(child, first);
-    }
-  }
-
 public slots:
-
-  // priority is the new priority of given item
-  void updateParentsPriority(QStandardItem *item, int priority) {
-    QStandardItem *parent = item->parent();
-    if(!parent) return;
-    // Check if children have different priorities
-    // then folder must have NORMAL priority
-    unsigned int rowCount = parent->rowCount();
-    for(unsigned int i=0; i<rowCount; ++i) {
-      if(parent->child(i, PRIORITY)->text().toInt() != priority) {
-        QStandardItem *grandFather = parent->parent();
-        if(!grandFather) {
-          grandFather = PropListModel->invisibleRootItem();
-        }
-        QStandardItem *parentPrio = grandFather->child(parent->row(), PRIORITY);
-        if(parentPrio->text().toInt() != NORMAL) {
-          parentPrio->setText(misc::toQString(NORMAL));
-          setItemColor(parentPrio->index(), "green");
-          // Recursively update ancesters of this parent too
-          updateParentsPriority(grandFather->child(parent->row()), priority);
-        }
-        return;
-      }
-    }
-    // All the children have the same priority
-    // Parent folder should have the same priority too
-    QStandardItem *grandFather = parent->parent();
-    if(!grandFather) {
-      grandFather = PropListModel->invisibleRootItem();
-    }
-    QStandardItem *parentPrio = grandFather->child(parent->row(), PRIORITY);
-    if(parentPrio->text().toInt() != priority) {
-      parentPrio->setText(misc::toQString(priority));
-      if(priority == IGNORED)
-        setItemColor(parentPrio->index(), "red");
-      else
-        setItemColor(parentPrio->index(), "green");
-      // Recursively update ancesters of this parent too
-      updateParentsPriority(grandFather->child(parent->row()), priority);
-    }
-  }
-
-  void updateChildrenPriority(QStandardItem *item, int priority) {
-    QStandardItem *parent = item->parent();
-    if(!parent) {
-      parent = PropListModel->invisibleRootItem();
-    }
-    parent = parent->child(item->row());
-    unsigned int rowCount = parent->rowCount();
-    for(unsigned int i=0; i<rowCount; ++i) {
-      QStandardItem * childPrio = parent->child(i, PRIORITY);
-      if(childPrio->text().toInt() != priority) {
-        childPrio->setText(misc::toQString(priority));
-        if(priority == IGNORED)
-          setItemColor(childPrio->index(), "red");
-        else
-          setItemColor(childPrio->index(), "green");
-        // recursively update children of this child too
-        updateChildrenPriority(parent->child(i), priority);
-      }
-    }
-  }
-
-  void updatePriorities(QStandardItem *item) {
-    qDebug("Priority changed");
-    // First we disable the signal/slot on item edition
-    // temporarily so that it doesn't mess with our manual updates
-    disconnect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
-    QStandardItem *parent = item->parent();
-    if(!parent) {
-      parent = PropListModel->invisibleRootItem();
-    }
-    int priority = parent->child(item->row(), PRIORITY)->text().toInt();
-    if(priority == IGNORED)
-      setItemColor(item->index(), "red");
-    else
-      setItemColor(item->index(), "green");
-    // Update parents priorities
-    updateParentsPriority(item, priority);
-    // If this is not a directory, then there are
-    // no children to update
-    if(parent->child(item->row(), INDEX)->text().toInt() == -1) {
-      // Updating children
-      qDebug("Priority changed for a folder to %d", priority);
-      updateChildrenPriority(item, priority);
-    }
-    // Reconnect the signal/slot on item edition so that we
-    // get future updates
-    connect(PropListModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(updatePriorities(QStandardItem*)));
-    // Update disk space labels
-    updateDiskSpaceLabels();
-  }
 
   void updateDiskSpaceLabels() {
     long long available = misc::freeDiskSpaceOnPath(savePathTxt->text());
@@ -285,10 +157,10 @@ public slots:
 
     // Determine torrent size
     unsigned long long torrent_size = 0;
-    int nbFiles = t->num_files();
-    int *priorities = new int[nbFiles];
-    getPriorities(PropListModel->invisibleRootItem(), priorities);
-    for(int i=0; i<nbFiles; ++i) {
+    unsigned int nbFiles = t->num_files();
+    std::vector<int> priorities = PropListModel->getFilesPriorities(nbFiles);
+
+    for(unsigned int i=0; i<nbFiles; ++i) {
       if(priorities[i] > 0)
         torrent_size += t->file_at(i).size;
     }
@@ -325,20 +197,8 @@ public slots:
     close();
   }
 
-  // Set the color of a row in data model
-  void setItemColor(QModelIndex index, QString color){
-    for(int i=0; i<PropListModel->columnCount(); ++i){
-      PropListModel->setData(index.sibling(index.row(), i), QVariant(QColor(color)), Qt::ForegroundRole);
-    }
-  }
-
   bool allFiltered() const {
-    unsigned int nbRows = PropListModel->rowCount();
-    for(unsigned int i=0; i<nbRows; ++i){
-      if(PropListModel->data(PropListModel->index(i, PRIORITY)).toInt() != IGNORED)
-        return false;
-    }
-    return true;
+    return PropListModel->allFiltered();
   }
 
   void displayFilesListMenu(const QPoint&){
@@ -361,7 +221,6 @@ public slots:
     foreach(const QModelIndex &index, selectedIndexes){
       if(index.column() == PRIORITY){
         PropListModel->setData(index, QVariant(IGNORED));
-        setItemColor(index, "red");
       }
     }
   }
@@ -371,7 +230,6 @@ public slots:
     foreach(const QModelIndex &index, selectedIndexes){
       if(index.column() == PRIORITY){
         PropListModel->setData(index, QVariant(NORMAL));
-        setItemColor(index, "green");
       }
     }
   }
@@ -381,7 +239,6 @@ public slots:
     foreach(const QModelIndex &index, selectedIndexes){
       if(index.column() == PRIORITY){
         PropListModel->setData(index, QVariant(HIGH));
-        setItemColor(index, "green");
       }
     }
   }
@@ -391,37 +248,14 @@ public slots:
     foreach(const QModelIndex &index, selectedIndexes){
       if(index.column() == PRIORITY){
         PropListModel->setData(index, QVariant(MAXIMUM));
-        setItemColor(index, "green");
-      }
-    }
-  }
-
-  void getPriorities(QStandardItem *parent, int *priorities) {
-    unsigned int nbRows = parent->rowCount();
-    for(unsigned int i=0; i<nbRows; ++i){
-      QStandardItem *item = parent->child(i, INDEX);
-      int index = item->text().toInt();
-      if(index < 0) {
-        qDebug("getPriorities(), found a folder, checking its children");
-        getPriorities(parent->child(i), priorities);
-      } else {
-        item = parent->child(i, PRIORITY);
-        qDebug("getPriorities(), found priority %d for file at index %d", item->text().toInt(), index);
-        priorities[index] = item->text().toInt();
       }
     }
   }
 
   void savePiecesPriorities(){
     qDebug("Saving pieces priorities");
-    int *priorities = new int[nbFiles];
-    getPriorities(PropListModel->invisibleRootItem(), priorities);
-    std::vector<int> vect_prio;
-    for(unsigned int i=0; i<nbFiles; ++i) {
-      vect_prio.push_back(priorities[i]);
-    }
-    delete[] priorities;
-    TorrentTempData::setFilesPriority(hash, vect_prio);
+    std::vector<int> priorities = PropListModel->getFilesPriorities(t->num_files());
+    TorrentTempData::setFilesPriority(hash, priorities);
   }
 
   void on_OkButton_clicked(){

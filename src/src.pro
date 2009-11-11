@@ -160,7 +160,6 @@ HEADERS += GUI.h \
     qtorrenthandle.h \
     engineSelectDlg.h \
     pluginSource.h \
-    arborescence.h \
     qgnomelook.h \
     realprogressbar.h \
     realprogressbarthread.h \

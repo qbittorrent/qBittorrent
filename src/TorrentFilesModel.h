@@ -273,6 +273,11 @@ public:
     return prio;
   }
 
+  bool allFiltered() const {
+    if(!rootItem->childCount()) return true;
+    return (rootItem->child(0)->getPriority() == IGNORED);
+  }
+
   int columnCount(const QModelIndex &parent=QModelIndex()) const {
     if (parent.isValid())
       return static_cast<TreeItem*>(parent.internalPointer())->columnCount();
