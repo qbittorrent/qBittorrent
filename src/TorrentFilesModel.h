@@ -49,19 +49,23 @@ private:
 
 public:
   // File Construction
-  TreeItem(file_entry const& f, TreeItem *parent=0) {
+  TreeItem(file_entry const& f, TreeItem *parent) {
     parentItem = parent;
     type = TFILE;
     itemData << misc::toQString(f.path.string()).split("/").last();
+    qDebug("Created a TreeItem file with name %s", getName().toLocal8Bit().data());
+    qDebug("parent is %s", parent->getName().toLocal8Bit().data());
     itemData << f.size;
     itemData << 0.; // Progress;
     itemData << 1; // Priority
+    if(parent)
+      parent->updateSize();
   }
 
   // Folder constructor
   TreeItem(QString name, TreeItem *parent=0) {
-    type = FOLDER;
     parentItem = parent;
+    type = FOLDER;
     itemData << name;
     itemData << 0.; // Size
     itemData << 0.; // Progress;
@@ -69,25 +73,45 @@ public:
   }
 
   TreeItem(QList<QVariant> data) {
+    parentItem = 0;
     type = ROOT;
     itemData = data;
   }
 
   ~TreeItem() {
+    qDebug("Deleting item: %s", getName().toLocal8Bit().data());
     qDeleteAll(childItems);
   }
 
+  void deleteAllChildren() {
+    Q_ASSERT(type==ROOT);
+    qDeleteAll(childItems);
+    childItems.clear();
+    Q_ASSERT(childItems.empty());
+  }
+
+  const QList<TreeItem*>& children() const {
+    return childItems;
+  }
+
   QString getName() const {
+    //Q_ASSERT(type != ROOT);
     return itemData.first().toString();
   }
 
-  size_t getSize() const {
+  void setName(QString name) {
+    Q_ASSERT(type != ROOT);
+    itemData.replace(0, name);
+  }
+
+  qulonglong getSize() const {
     return itemData.value(1).toULongLong();
   }
 
-  void setSize(size_t size) {
+  void setSize(qulonglong size) {
+    qDebug("Called setSize(%llu) in %s", (unsigned long long)size, getName().toLocal8Bit().data());
     if(getSize() == size) return;
-    itemData.replace(1, size);
+    itemData.replace(1, (qulonglong)size);
     if(parentItem)
       parentItem->updateSize();
   }
@@ -95,9 +119,11 @@ public:
   void updateSize() {
     if(type == ROOT) return;
     Q_ASSERT(type == FOLDER);
-    size_t size = 0;
+    qulonglong size = 0;
+    qDebug("UpdateSize in %s", getName().toLocal8Bit().data());
     foreach(TreeItem* child, childItems) {
       size += child->getSize();
+      qDebug("Child %s has size %llu", child->getName().toLocal8Bit().data(), (unsigned long long)child->getSize());
     }
     setSize(size);
   }
@@ -162,16 +188,29 @@ public:
     setPriority(priority);
   }
 
+  TreeItem* childWithName(QString name) const {
+    foreach(TreeItem *child, childItems) {
+      if(child->getName() == name) return child;
+    }
+    return 0;
+  }
+
   bool isFolder() const {
     return (type==FOLDER);
   }
 
   void appendChild(TreeItem *item) {
+    Q_ASSERT(item);
+    Q_ASSERT(!childWithName(item->getName()));
+    Q_ASSERT(parentItem != item);
+    Q_ASSERT(type != TFILE);
     childItems.append(item);
+    Q_ASSERT(type != ROOT || childItems.size() == 1);
   }
 
   TreeItem *child(int row) {
-    return childItems.value(row);
+    //Q_ASSERT(row >= 0 && row < childItems.size());
+    return childItems.value(row, 0);
   }
 
   int childCount() const {
@@ -187,9 +226,10 @@ public:
   }
 
   int row() const {
-    if (parentItem)
-      return parentItem->childItems.indexOf(const_cast<TreeItem*>(this));
-
+    if (parentItem) {
+      return parentItem->children().indexOf(const_cast<TreeItem*>(this));
+    }
+    Q_ASSERT(0); // Should not go through here
     return 0;
   }
 
@@ -205,12 +245,11 @@ private:
   TreeItem **files_index;
 
 public:
-  TorrentFilesModel(torrent_info const& t, QObject *parent): QAbstractItemModel(parent) {
-    files_index = new TreeItem*[t.num_files()];
+  TorrentFilesModel(QObject *parent=0): QAbstractItemModel(parent) {
+    files_index = 0;
     QList<QVariant> rootData;
     rootData << "Name" << "Size" << "Progress" << "Priority";
     rootItem = new TreeItem(rootData);
-    setupModelData(t, rootItem);
   }
 
   ~TorrentFilesModel() {
@@ -231,14 +270,46 @@ public:
     }
   }
 
-  int columnCount(const QModelIndex &parent) const {
+  std::vector<int> getFilesPriorities(unsigned int nbFiles) const {
+    std::vector<int> prio;
+    for(unsigned int i=0; i<nbFiles; ++i) {
+      prio.push_back(files_index[i]->getPriority());
+    }
+    return prio;
+  }
+
+  int columnCount(const QModelIndex &parent=QModelIndex()) const {
     if (parent.isValid())
       return static_cast<TreeItem*>(parent.internalPointer())->columnCount();
     else
       return rootItem->columnCount();
   }
 
-  QVariant data(const QModelIndex &index, int role) const {
+  bool setData(const QModelIndex & index, const QVariant & value, int role = Qt::EditRole) {
+    if(!index.isValid()) return false;
+    if (role != Qt::EditRole) return false;
+    TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
+    switch(index.column()) {
+    case 0:
+      item->setName(value.toString());
+      break;
+    case 1:
+      item->setSize(value.toULongLong());
+      break;
+    case 2:
+      item->setProgress(value.toDouble());
+      break;
+    case 3:
+      item->setPriority(value.toInt());
+      break;
+    default:
+      return false;
+    }
+    emit dataChanged(index, index);
+    return true;
+  }
+
+  QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const {
     if (!index.isValid())
       return QVariant();
     TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
@@ -258,7 +329,7 @@ public:
     if (!index.isValid())
       return 0;
 
-    return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+    return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable;
   }
 
   QVariant headerData(int section, Qt::Orientation orientation, int role) const {
@@ -268,9 +339,9 @@ public:
     return QVariant();
   }
 
-  QModelIndex index(int row, int column, const QModelIndex &parent) const {
-    if (!hasIndex(row, column, parent))
-      return QModelIndex();
+  QModelIndex index(int row, int column, const QModelIndex &parent=QModelIndex()) const {
+    if (parent.isValid() && parent.column() != 0)
+         return QModelIndex();
 
     TreeItem *parentItem;
 
@@ -299,8 +370,9 @@ public:
     return createIndex(parentItem->row(), 0, parentItem);
   }
 
-  int rowCount(const QModelIndex &parent) const {
+  int rowCount(const QModelIndex &parent=QModelIndex()) const {
     TreeItem *parentItem;
+
     if (parent.column() > 0)
       return 0;
 
@@ -312,24 +384,44 @@ public:
     return parentItem->childCount();
   }
 
-private:
-  void setupModelData(torrent_info const& t, TreeItem *parent) {
-    if(t.num_files() == 0) return;
+  void clear() {
+    qDebug("clear called");
+    if(files_index) {
+      delete [] files_index;
+      files_index = 0;
+    }
+    rootItem->deleteAllChildren();
+    Q_ASSERT(rootItem->children().empty());
+    reset();
+    emit layoutChanged();
+  }
 
+  void setupModelData(torrent_info const& t) {
+    qDebug("setup model data called");
+    if(t.num_files() == 0) return;
+    // Initialize files_index array
+    files_index = new TreeItem*[t.num_files()];
+
+    TreeItem *parent = this->rootItem;
     if(t.num_files() ==1) {
       TreeItem *f = new TreeItem(t.file_at(0), parent);
       parent->appendChild(f);
       files_index[0] = f;
+      qDebug("setup model data completed (before signal)");
+      emit layoutChanged();
+      qDebug("setup model data completed (after signal)");
       return;
     }
     // Create parent folder
     TreeItem *current_parent = new TreeItem(misc::toQString(t.name()), parent);
     parent->appendChild(current_parent);
+    TreeItem *root_folder = current_parent;
 
     // Iterate over files
     int i = 0;
     torrent_info::file_iterator fi = t.begin_files();
     while(fi != t.end_files()) {
+      current_parent = root_folder;
       QString path = QDir::cleanPath(misc::toQString(fi->path.string()));
       // Iterate of parts of the path to create necessary folders
       QStringList pathFolders = path.split('/');
@@ -338,8 +430,11 @@ private:
       QString currentFolderName = pathFolders.takeFirst();
       Q_ASSERT(currentFolderName == current_parent->getName());
       foreach(const QString &pathPart, pathFolders) {
-        TreeItem *new_parent = new TreeItem(pathPart, current_parent);
-        current_parent->appendChild(new_parent);
+        TreeItem *new_parent = current_parent->childWithName(pathPart);
+        if(!new_parent) {
+          new_parent = new TreeItem(pathPart, current_parent);
+          current_parent->appendChild(new_parent);
+        }
         current_parent = new_parent;
       }
       // Actually create the file
@@ -349,6 +444,7 @@ private:
       fi++;
       ++i;
     }
+    emit layoutChanged();
   }
 };
 
