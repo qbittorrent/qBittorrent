@@ -156,7 +156,7 @@ public slots:
     lbl_disk_space->setText(misc::friendlyUnit(available));
 
     // Determine torrent size
-    unsigned long long torrent_size = 0;
+    qulonglong torrent_size = 0;
     unsigned int nbFiles = t->num_files();
     std::vector<int> priorities = PropListModel->getFilesPriorities(nbFiles);
 
@@ -202,11 +202,8 @@ public slots:
   }
 
   void displayFilesListMenu(const QPoint&){
-    if(nbFiles == 1) return;
     QMenu myFilesLlistMenu(this);
-    QModelIndex index;
     // Enable/disable pause/start action given the DL state
-    QModelIndexList selectedIndexes = torrentContentList->selectionModel()->selectedIndexes();
     myFilesLlistMenu.setTitle(tr("Priority"));
     myFilesLlistMenu.addAction(actionIgnored);
     myFilesLlistMenu.addAction(actionNormal);
