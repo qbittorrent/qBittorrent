@@ -139,7 +139,9 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   qDebug("create tabWidget");
   tabs = new QTabWidget();
   vSplitter = new QSplitter(Qt::Horizontal);
+  vSplitter->setChildrenCollapsible(false);
   hSplitter = new QSplitter(Qt::Vertical);
+  hSplitter->setChildrenCollapsible(false);
 
   // Transfer List tab
   transferList = new TransferListWidget(hSplitter, BTSession);
