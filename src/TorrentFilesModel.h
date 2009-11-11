@@ -109,7 +109,6 @@ public:
   }
 
   void setSize(qulonglong size) {
-    qDebug("Called setSize(%llu) in %s", (unsigned long long)size, getName().toLocal8Bit().data());
     if(getSize() == size) return;
     itemData.replace(1, (qulonglong)size);
     if(parentItem)
@@ -120,10 +119,8 @@ public:
     if(type == ROOT) return;
     Q_ASSERT(type == FOLDER);
     qulonglong size = 0;
-    qDebug("UpdateSize in %s", getName().toLocal8Bit().data());
     foreach(TreeItem* child, childItems) {
       size += child->getSize();
-      qDebug("Child %s has size %llu", child->getName().toLocal8Bit().data(), (unsigned long long)child->getSize());
     }
     setSize(size);
   }
@@ -201,11 +198,10 @@ public:
 
   void appendChild(TreeItem *item) {
     Q_ASSERT(item);
-    Q_ASSERT(!childWithName(item->getName()));
-    Q_ASSERT(parentItem != item);
+    //Q_ASSERT(!childWithName(item->getName()));
     Q_ASSERT(type != TFILE);
     childItems.append(item);
-    Q_ASSERT(type != ROOT || childItems.size() == 1);
+    //Q_ASSERT(type != ROOT || childItems.size() == 1);
   }
 
   TreeItem *child(int row) {
@@ -229,7 +225,6 @@ public:
     if (parentItem) {
       return parentItem->children().indexOf(const_cast<TreeItem*>(this));
     }
-    Q_ASSERT(0); // Should not go through here
     return 0;
   }
 
@@ -392,7 +387,6 @@ public:
       files_index = 0;
     }
     rootItem->deleteAllChildren();
-    Q_ASSERT(rootItem->children().empty());
     reset();
     emit layoutChanged();
   }
@@ -408,9 +402,7 @@ public:
       TreeItem *f = new TreeItem(t.file_at(0), parent);
       parent->appendChild(f);
       files_index[0] = f;
-      qDebug("setup model data completed (before signal)");
       emit layoutChanged();
-      qDebug("setup model data completed (after signal)");
       return;
     }
     // Create parent folder
