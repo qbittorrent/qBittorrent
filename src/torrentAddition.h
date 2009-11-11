@@ -74,7 +74,6 @@ public:
     PropListModel = new TorrentFilesModel();
     torrentContentList->setModel(PropListModel);
     torrentContentList->hideColumn(PROGRESS);
-    torrentContentList->hideColumn(INDEX);
     PropDelegate = new PropListDelegate();
     torrentContentList->setItemDelegate(PropDelegate);
     connect(torrentContentList, SIGNAL(clicked(const QModelIndex&)), torrentContentList, SLOT(edit(const QModelIndex&)));
@@ -85,8 +84,8 @@ public:
     connect(actionMaximum, SIGNAL(triggered()), this, SLOT(maximumSelection()));
     connect(collapseAllButton, SIGNAL(clicked()), torrentContentList, SLOT(collapseAll()));
     connect(expandAllButton, SIGNAL(clicked()), torrentContentList, SLOT(expandAll()));
-    // FIXME: Remember columns width
-    torrentContentList->header()->resizeSection(0, 200);
+    // Remember columns width
+    readSettings();
     //torrentContentList->header()->setResizeMode(0, QHeaderView::Stretch);
     QString home = QDir::homePath();
     if(home[home.length()-1] != QDir::separator()){
@@ -101,8 +100,31 @@ public:
   }
 
   ~torrentAdditionDialog() {
+    saveSettings();
     delete PropDelegate;
     delete PropListModel;
+  }
+
+  void readSettings() {
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QVariantList contentColsWidths = settings.value(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth"), QVariantList()).toList();
+    if(contentColsWidths.empty()) {
+      torrentContentList->header()->resizeSection(0, 200);
+    } else {
+      for(int i=0; i<contentColsWidths.size(); ++i) {
+        torrentContentList->setColumnWidth(i, contentColsWidths.at(i).toInt());
+      }
+    }
+  }
+
+  void saveSettings() {
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QVariantList contentColsWidths;
+    // -1 because we hid PROGRESS column
+    for(int i=0; i<PropListModel->columnCount()-1; ++i) {
+      contentColsWidths.append(torrentContentList->columnWidth(i));
+    }
+    settings.setValue(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth"), contentColsWidths);
   }
 
   void showLoad(QString filePath, QString from_url=QString::null){

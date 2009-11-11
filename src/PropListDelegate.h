@@ -43,7 +43,7 @@
 #include "misc.h"
 
 // Defines for properties list columns
-enum PropColumn {NAME, SIZE, PROGRESS, PRIORITY, INDEX};
+enum PropColumn {NAME, SIZE, PROGRESS, PRIORITY};
 enum PropPriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7};
 
 class PropListDelegate: public QItemDelegate {

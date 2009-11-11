@@ -65,7 +65,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transfer
   // Set Properties list model
   PropListModel = new TorrentFilesModel();
   filesList->setModel(PropListModel);
-  filesList->hideColumn(INDEX);
   PropDelegate = new PropListDelegate(0);
   filesList->setItemDelegate(PropDelegate);
 
@@ -217,7 +216,7 @@ void PropertiesWidget::saveSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.setValue("TorrentProperties/Visible", state==VISIBLE);
   QVariantList contentColsWidths;
-  for(int i=0; i<PropListModel->columnCount()-1; ++i) {
+  for(int i=0; i<PropListModel->columnCount(); ++i) {
     contentColsWidths.append(filesList->columnWidth(i));
   }
   settings.setValue(QString::fromUtf8("TorrentProperties/filesColsWidth"), contentColsWidths);
