@@ -35,16 +35,15 @@
 #include "ui_propertiesWidget.h"
 #include "qtorrenthandle.h"
 
+
 class TransferListWidget;
 class QTimer;
 class RealProgressBar;
 class QVBoxLayout;
 class RealProgressBarThread;
 class bittorrent;
-class arborescence;
-class QStandardItemModel;
+class TorrentFilesModel;
 class PropListDelegate;
-class QStandardItem;
 class QAction;
 class torrent_file;
 
@@ -63,8 +62,7 @@ private:
   QVBoxLayout *progressBarVbox;
   bittorrent* BTSession;
   SlideState state;
-  arborescence *arb;
-  QStandardItemModel *PropListModel;
+  TorrentFilesModel *PropListModel;
   PropListDelegate *PropDelegate;
   QAction *actionIgnored;
   QAction *actionNormal;
@@ -74,7 +72,6 @@ private:
 protected:
   QPushButton* getButtonFromIndex(int index);
   std::vector<int> loadFilesPriorities();
-  bool allFiltered() const;
   bool savePiecesPriorities();
 
 protected slots:
@@ -87,9 +84,6 @@ protected slots:
   void on_trackers_button_clicked();
   void on_url_seeds_button_clicked();
   void on_files_button_clicked();
-  void updateChildrenPriority(QStandardItem *item, int priority);
-  void updateParentsPriority(QStandardItem *item, int priority);
-  void updatePriorities(QStandardItem *item);
   void ignoreSelection();
   void normalSelection();
   void highSelection();
@@ -101,10 +95,7 @@ protected slots:
   void lowerSelectedTracker();
   void riseSelectedTracker();
   void displayFilesListMenu(const QPoint& pos);
-  void setItemColor(QModelIndex index, QString color);
   void on_changeSavePathButton_clicked();
-  void addFilesToTree(torrent_file *root, QStandardItem *parent);
-  void getPriorities(QStandardItem *parent, int *priorities);
   void addTrackerList(QStringList myTrackers);
   void filteredFilesChanged();
 

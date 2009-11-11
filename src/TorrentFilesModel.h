@@ -341,7 +341,7 @@ public:
 
   QModelIndex index(int row, int column, const QModelIndex &parent=QModelIndex()) const {
     if (parent.isValid() && parent.column() != 0)
-         return QModelIndex();
+      return QModelIndex();
 
     TreeItem *parentItem;
 
@@ -351,10 +351,11 @@ public:
       parentItem = static_cast<TreeItem*>(parent.internalPointer());
 
     TreeItem *childItem = parentItem->child(row);
-    if (childItem)
+    if (childItem) {
       return createIndex(row, column, childItem);
-    else
+    } else {
       return QModelIndex();
+    }
   }
 
   QModelIndex parent(const QModelIndex &index) const {
